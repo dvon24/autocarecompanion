@@ -1,0 +1,625 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "GMC",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 173,
+    "issuesWithDtcCodes": 95,
+    "uniqueDtcCount": 153,
+    "solutionInstructionCount": 184,
+    "dtcDispositionCount": 95,
+    "toolLinkedDispositionCount": 74,
+    "procedureNoToolDispositionCount": 146,
+    "unresolvedToolHoldCount": 59,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "gmc-acadia-timing-chain-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Complete the GM diagnostic procedure before ordering parts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-acadia-timing-chain-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The bulletin says guides, sprockets, actuators and the crank gear should not be replaced automatically unless separately worn or diagnosed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-acadia-shift-to-park-message-no-shutdown-door-lock-lockout-battery",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Have a GMC retailer reproduce the message and check for DTC B000A.",
+      "reasonCode": "scanner-capability-needs-code-or-module",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-ck-2500-brake-line-rust-1999",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The preferred repair is a complete pre-bent stainless or NiCopp brake line kit with new fittings, followed by bleeding the full hydraulic system (including ABS if required by the scan tool/service procedure) and replacing any contaminated hoses or calipers/wheel cylinders found leaking.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-canyon-p0420-p0430-catalytic-converter-efficiency-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose before replacing: rule out a faulty downstream O2 sensor or exhaust leak, and correct any oil-consumption root cause (PCV orifice/valve cover) first so the new converter is not re-poisoned.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-envoy-4-2l-crankshaft-sensor-2002",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Clear codes and test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-envoy-instrument-cluster-stepper-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace all gauge stepper motors simultaneously with X27.168 kit.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-hummer-ev-warning-lights-limp-2022",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0161, U0100",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-hummer-ev-suv-air-suspension-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0710, C0760",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-hummer-ev-suv-charge-port-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0AA6",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-hummer-ev-suv-charging-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A09, P0AF0",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-jimmy-transfer-case-encoder-1998",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0327, C0387",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra1500-front-hub-bearing-assembly-1999",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0050, C0055",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra1500-4l60-e-4l65-e-sun-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0732, P0734, P0751, P0753, P0785, P1870",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra1500-blend-door-hvac-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Repair involves replacing the failed mode, blend, or recirculation actuator and then performing HVAC recalibration by fuse pull or scan-tool procedure depending on year and system configuration.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra1500-blend-door-hvac-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0229, B0414, B0424, B3770",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra1500-stepper-motor-instrument-cluster-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If only one gauge is wrong, the whole cluster is still usually rebuilt because the remaining motors often fail later.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0011-intake-cam-over-advanced-from-sludge-clogged-vvt-solen",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A proven test is swapping the Bank 1 intake solenoid with another solenoid — if the code follows to P0014/P0021, the solenoid is bad.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "the gauge to separate a bad ECT sensor from a bad thermostat.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0442-small-evap-leak-from-loose-cracked-gas-cap-fractured-f",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace the purge or vent solenoid if the smoke test isolates it there.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0700-transmission-fault-flag-from-failing-6l80-6l90-interna",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "P0700 alone is not actionable — pull the transmission-specific sub-codes with a capable scanner to find the real fault.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra1500-power-door-lock-actuator-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis involves confirming power and ground at the latch/actuator assembly and ruling out broken door-jamb wiring or BCM command issues.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra1500-power-door-lock-actuator-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B3125, B3130",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-brake-control-module-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0045, C0050",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-hd-gas-engine-oil-consumption-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Oil consumption: GM oil consumption test procedure — if over 1 qt/2,000 miles, piston ring replacement authorized.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-blend-door-actuator-failure-causing-temperature-airflow-control-problems",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Identify the failed actuator (temperature blend, mode, or recirculation) using HVAC actuator recalibration and scan tool data where available.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-blend-door-actuator-failure-causing-temperature-airflow-control-problems",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0408, B0414, B0423, B3770",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-front-differential-actuator-failure-causing-4wd-engagement-problems",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0327, C0379, U0121",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-allison-trans-2008",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0717, P0722, P0747, U0101",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-def-system-2011",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the DEF tank heater, reductant quality/level sensor, and pump module;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-dpf-diesel-particulate-filter-clogging-and-regeneration-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Forced active regen via Tech 2 or MDI scan tool;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-turbocharger-vgt-vane-sticking-and-boost-control-failure-duramax-lml-l5p",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P003A, P0046, P0299, P132B",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-cluster-display-failure-2015",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U0155, U0164",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-injector-failure-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the failed injector with a relative compression test and injector balance rate scan using a Tech 2 or equivalent scan tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-steering-box-leak-2015",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-trailer-brake-controller-integrated-trailer-brake-module-malfunction",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for trailer brake control module DTCs and apply GM software updates/reprogramming when applicable;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-trailer-brake-controller-integrated-trailer-brake-module-malfunction",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1114, U0100, U0121",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-electric-power-steering-eps-assist-loss-reduced-assist-warnings-new-body-style",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for EPS-related DTCs and follow GM SI diagnostics for the steering gear/module and harness.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-sierra-3500hd-electric-power-steering-eps-assist-loss-reduced-assist-warnings-new-body-style",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545, C056D, U0100, U0121",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-terrain-2-4l-oil-consumption-2010",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "GM formal oil consumption test (PIP4656D): measure consumption over 3,000 miles.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-terrain-hvac-blend-door-actuator-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace the failed blend/mode-door actuator (OEM/ACDelco recommended to avoid repeat aftermarket failures) and recalibrate with a scan tool after installation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-terrain-hvac-blend-door-actuator-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0408, B0423",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-terrain-intellilink-infotainment-freezing-rebooting-backup-camera-bl",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B101D, U0184",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-terrain-electronic-shifter-fault-vehicle-stuck-park-shift-to-park-me",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P182E, P1876",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose whether the fault is the encoder motor, the position sensor/selector, or the transfer case control module.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "After replacement the actuator position must be relearned with a scan tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C038D",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-hvac-blend-door-actuator-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0423, B0429",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-engine-overheat-fail-safe-mode-from-thermostat-coolant-temp",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose whether the thermostat is stuck open or the ECT sensor has drifted.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukonxl-blend-door-hvac-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Use the HVAC self-diagnostic procedure or a scan tool where available, then identify whether the failed unit is the mode, temperature, or recirculation actuator.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukonxl-blend-door-hvac-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0229, B0414, B0424",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukonxl-front-hub-bearing-and-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan ABS wheel speed data during a low-speed stop and compare left and right front sensor readings.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukonxl-front-hub-bearing-and-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0221, C0223, C0227, C0229",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-xl-rear-air-suspension-auto-leveling-compressor-failure-air-shock-leaks-z55-z95-equipped",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose for leaks (air shocks, lines, fittings) and replace the failed compressor/dryer assembly and/or leaking air shocks.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-xl-rear-wiper-motor-washer-hose-failure-no-rear-wipe-or-washer-spray",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose power/ground at the rear wiper motor and replace the motor if failed;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-xl-magnetic-ride-control-mrc-shock-strut-fluid-leak-and-service-suspension-system-warnings",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0550",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-xl-steering-column-click-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A Tech 2 or MDI scan tool relearn procedure must be performed after installation to program the new module to the BCM.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-xl-steering-column-click-2015",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2725, B2726, B3033, U0140",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "gmc-yukon-xl-transfer-case-leak-2015",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0327, C0569",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

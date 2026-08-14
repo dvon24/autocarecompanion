@@ -1,0 +1,1919 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Lincoln",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "a36d8cfdc6214cca08e5c0e0c08ec496370ce229addbaf2d7ae1827f4189935d",
+    "02-fitment-worklist.json": "9459fb84ef8f898e8b7bd48b3801a3571744f0799679c99c25537fdbf916029f",
+    "03-showmetheparts-evidence.json": "5b5bc900478200a15985c093bb5c6dd5d110e98d34ec4170f4e68340d79adf19",
+    "04-part-proposals.json": "b05b04aa2b9d524cd79e4a35815b5a15c307aaeff0e49916e24d849198149e59",
+    "05-direct-link-evidence.json": "5670a43aa406f1849be1e88ce75c5a34d910a816f93032cee0c67564fac0caea"
+  },
+  "supplementalArtifactSha256": {
+    "repair-role-decisions.json": "9dfdcaa6288f2cfae3a27e2b32c37f7a2a153a48e594492047b314b73aea3f03",
+    "existing-public-claim-review.json": "5b4885573ce609c3745209c6f1371f179c4e0c34a73b59cb04ecf1b1d25ed7df"
+  },
+  "proposalCount": 0,
+  "partRowCount": 0,
+  "tally": {
+    "approve": 0,
+    "block_wrong_role": 0,
+    "block_incomplete_scope": 0,
+    "block_ambiguous": 0,
+    "hold_no_exact_link": 0,
+    "hold_needs_manual": 0
+  },
+  "reconciliation": {
+    "sourceProposalCount": 0,
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "sourceIssueCount": 101,
+    "reviewedIssueCount": 101,
+    "sourceWorkItemCount": 230,
+    "reviewedWorkItemDispositionCount": 230,
+    "terminalWorkItemDispositionCount": 230,
+    "proposedWorkItemCount": 0,
+    "heldWorkItemCount": 230,
+    "workItemDispositionSha256": "e649caf0069ec00c1755b9370ddc23889f817d8095ea0df37914e84be7a20087",
+    "workItemDispositionReasonTally": {
+      "fitment-no-catalog": 37,
+      "fitment-unmapped": 193
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "exactProductLinkRowCount": 0,
+    "exactProductLinkCount": 0,
+    "noExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkCount": 0,
+    "listingTitleSourceCount": 0,
+    "itemSpecificsSourceCount": 0,
+    "observedListingTitlePresentCount": 0,
+    "recomputedTitleHashMatchCount": 0,
+    "matchedPartNumberMatchCount": 0,
+    "observedPartNumberFieldPresentCount": 0,
+    "observedPartNumberValuePresentCount": 0,
+    "observedPartNumberValueMatchCount": 0,
+    "urlProductIdMatchCount": 0,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 141,
+  "uniqueExistingClaimCount": 90,
+  "existingClaimTally": {
+    "preserve": 141,
+    "block": 0
+  },
+  "existingClaims": [
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-0-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "K2GZ-9F464-B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-0-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "K2GZ-9F464-A (superseded OEM)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-0-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "K2GE-9F464-AC (early OE casting)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-1-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "CYFS-12Y-PCT",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-1-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "CYFS-12Y-PCTX (current supersession)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-1-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "Motorcraft SP-550",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-1-3--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "Motorcraft SP-550X",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-1-4--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "CYFS12YPCT",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-2-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "VC-3DIL-B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-2-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "Ford spec WSS-M97B44-D2",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-2-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "Motorcraft Yellow VC-13DIL-B (forward/back-compatible replac",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white--existing-fix-part-3-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "partNumber": "J2GZ-6006-E",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 20-2234, perform a cooling-system pressure test and inspect the EGR cooler; replace the EGR cooler and update PCM software for the typical case. If a coolant smell, white smoke, and cylinder misfires persist (coolant intrusion past the head gasket), the durable fix is a long-block / engine replacement with the updated cross-drilled block — a head-gasket-only repair on the old-style block will fail again. Replace fouled spark plugs and flush the cooling system.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-0-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "L1MZ-6256-C",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-0-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "L1MZ-6256-E (latest Ford supersession - current revision)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-0-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "L1MZ-6256-A / L1MZ-6256-B (earlier superseded revisions)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-1-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "L1MZ-6C525-C",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-1-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "L1MZ-6C525-E (latest Ford supersession - current revision)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-1-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "L1MZ-6C525-A / L1MZ-6C525-B (earlier superseded revisions)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-2-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "CP9Z-6279-C",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-2-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6279-A (superseded-by/interchange Ford PN)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-3-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6020-K",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-3-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6020-H (Front Cover Gasket 2)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-3-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6020-J (Front Cover Gasket 3)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-3-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6020-A (Front Cover Gasket 4)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-3-4--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-00815-C (Oil Gallery Seal)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-3-5--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "BR3Z-6020-A (front cover coolant pipe seal, related)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-4-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6584-D",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-4-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6584-B (Right Valve Cover Gasket)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-4-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6584-C (Left Valve Cover Gasket)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-4-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6584-E (Right Valve Cover Gasket)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-5-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "XW4Z-6700-B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-6-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6A340-A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-7-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6626-A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-7-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "BR3Z-6C535-A / BR3Z-6C535-B (oil pump electrical connector s",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-8-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "JT4Z-6710-A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-8-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "KT4Z-6710-A (Oil Pan Gasket - second pan gasket)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-9-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6020-G",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-9-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-8507-C (Coolant Pump Seal)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-10-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "KU2Z-6731-A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-10-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "Motorcraft FL-2062-A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-10-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FL-2062",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-10-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "FT4Z-6731-A (interchange Ford PN)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-11-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "BL3Z-9450-A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-11-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "W712458-S900 (Exhaust Studs x4)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-11-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "W714265-S442 (Cat-to-turbo flange nuts x4)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-11-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "1X4Z-9E936-AA (Throttle Body Gasket)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-12-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "XO-5W30-Q1SP",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-12-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "VC-13DL-G (Motorcraft Yellow Prediluted Antifreeze/Coolant)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-12-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "TA-357 (Motorcraft High Performance Engine RTV Silicone)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-12-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "TA-26 (Motorcraft Threadlock 262)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle--existing-fix-part-12-4--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-2-7l-ecoboost-cold-start-vct-rattle",
+      "partNumber": "XL-2 (Motorcraft High Temp Nickel Anti-Seize)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per TSB 23-2356 the prescribed repair is to replace all four VCT (cam phaser) units — a substantial ~14.7-hour labor job. Using the correct oil viscosity and avoiding extended oil-change intervals helps slow phaser wear. Many out-of-warranty owners report Ford goodwill covering a large portion (one owner quoted ~$2,600 with ~2/3 covered at 88k miles).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-0-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "XT-12-QULV",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-0-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "XT-12-QULV",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-0-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Valvoline Mercon ULV",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-0-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Valvoline Mercon ULV",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-0-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Castrol Transmax ULV",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-0-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Castrol Transmax ULV",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-0-3--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Idemitsu Type ULV",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-0-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Idemitsu Type ULV",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-1-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "JM5Z-7902-FTC",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-1-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "JM5Z-7902-FTC",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-1-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "JM5Z-7902-F (superseded OEM)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-1-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "JM5Z-7902-F (superseded OEM)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-1-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "JM5Z-7902-B (superseded OEM)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-1-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "JM5Z-7902-B (superseded OEM)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-2-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "JM5Z-7A098-A",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-2-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "JM5Z-7A098-A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-2-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Allomatic 515269",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-2-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Allomatic 515269",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-2-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Kemmex 518269",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-2-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Kemmex 518269",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-2-3--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Raybestos 515269",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph--existing-fix-part-2-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph",
+      "partNumber": "Raybestos 515269",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First-line fix per TSB 21-2389 is to reprogram the PCM with the latest software level and update the transmission solenoid (adaptive) strategy (about 0.9 hours labor, typically covered under the 6yr/70k powertrain warranty). If the shudder persists after reprogramming, the shop should inspect for a failing torque converter, worn clutch packs, or contaminated fluid and replace as needed. A transmission fluid service with the correct Mercon ULV is recommended at the same time.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "BAGM-94RH7-800",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "BAGM-94RH7-800",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "Motorcraft BAGM-94RH7-800 (OEM AGM, 800 CCA)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "Motorcraft BAGM-94RH7-800 (OEM AGM, 800 CCA)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "Interstate MTX-94R/H7 (AGM, 850 CCA)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "Interstate MTX-94R/H7 (AGM, 850 CCA)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-3--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "Duralast Platinum H7-AGM (94R)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "Duralast Platinum H7-AGM (94R)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-4--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "EverStart Platinum H7/94R AGM",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-4--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "EverStart Platinum H7/94R AGM",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-5--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "Optima DH7 YellowTop (94R, 880 CCA)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-5--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "Optima DH7 YellowTop (94R, 880 CCA)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-6--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "DieHard 94R AGM",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-0-6--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "DieHard 94R AGM",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-1-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart--existing-fix-part-1-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "partNumber": "",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test the 12V battery and charging system; replace a weak or aged AGM battery with the correct spec and perform a Battery Monitoring System (BMS) reset so the PCM relearns state-of-charge. Ensure parasitic-draw and software are current. Owners who simply dislike the feature use the dash defeat button each drive or a plug-and-play disable module (not a repair, a preference).",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-front-brake-groan-grunt-noise-stopping--existing-fix-part-0-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-front-brake-groan-grunt-noise-stopping",
+      "partNumber": "PZ1Z-1125-B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Dealer remedy is to install the revised front rotors (and, for squeal complaints, an updated rear brake-pad shim kit). It is a noise/quality concern, not a stopping-performance failure; replacement is covered under the new-vehicle warranty. Owners experiencing backorder should ask the dealer to document the concern so it stays covered.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-front-brake-groan-grunt-noise-stopping--existing-fix-part-0-0--2-0l-ecoboost-hybrid",
+      "issueId": "lincoln-nautilus-front-brake-groan-grunt-noise-stopping",
+      "partNumber": "PZ1Z-1125-B",
+      "engineWorkRow": "2.0L EcoBoost Hybrid",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Dealer remedy is to install the revised front rotors (and, for squeal complaints, an updated rear brake-pad shim kit). It is a noise/quality concern, not a stopping-performance failure; replacement is covered under the new-vehicle warranty. Owners experiencing backorder should ask the dealer to document the concern so it stays covered.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains--existing-fix-part-0-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains",
+      "partNumber": "FA1Z-58502C53-B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Have the dealer clear/flush the four sunroof drain tubes (they route from the roof corners down the A- and C-pillars) and verify outlets are not pinched or disconnected. Inspect and reseal/replace the sunroof track and seals; dry out and replace water-damaged carpet/insulation to prevent mold and corrosion. Repairs are covered under the 4yr/50k bumper-to-bumper warranty when in period.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains--existing-fix-part-0-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains",
+      "partNumber": "FA1Z-58502C53-B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Have the dealer clear/flush the four sunroof drain tubes (they route from the roof corners down the A- and C-pillars) and verify outlets are not pinched or disconnected. Inspect and reseal/replace the sunroof track and seals; dry out and replace water-damaged carpet/insulation to prevent mold and corrosion. Repairs are covered under the 4yr/50k bumper-to-bumper warranty when in period.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains--existing-fix-part-1-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains",
+      "partNumber": "FA1Z-58502C52-A",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Have the dealer clear/flush the four sunroof drain tubes (they route from the roof corners down the A- and C-pillars) and verify outlets are not pinched or disconnected. Inspect and reseal/replace the sunroof track and seals; dry out and replace water-damaged carpet/insulation to prevent mold and corrosion. Repairs are covered under the 4yr/50k bumper-to-bumper warranty when in period.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains--existing-fix-part-1-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains",
+      "partNumber": "FA1Z-58502C52-A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Have the dealer clear/flush the four sunroof drain tubes (they route from the roof corners down the A- and C-pillars) and verify outlets are not pinched or disconnected. Inspect and reseal/replace the sunroof track and seals; dry out and replace water-damaged carpet/insulation to prevent mold and corrosion. Repairs are covered under the 4yr/50k bumper-to-bumper warranty when in period.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains--existing-fix-part-2-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains",
+      "partNumber": "FA1Z-5851884-B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Have the dealer clear/flush the four sunroof drain tubes (they route from the roof corners down the A- and C-pillars) and verify outlets are not pinched or disconnected. Inspect and reseal/replace the sunroof track and seals; dry out and replace water-damaged carpet/insulation to prevent mold and corrosion. Repairs are covered under the 4yr/50k bumper-to-bumper warranty when in period.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains--existing-fix-part-2-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-panoramic-vista-roof-water-leaks-from-clogged-sunroof-drains",
+      "partNumber": "FA1Z-5851884-B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Have the dealer clear/flush the four sunroof drain tubes (they route from the roof corners down the A- and C-pillars) and verify outlets are not pinched or disconnected. Inspect and reseal/replace the sunroof track and seals; dry out and replace water-damaged carpet/insulation to prevent mold and corrosion. Repairs are covered under the 4yr/50k bumper-to-bumper warranty when in period.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z-14B351-A",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z-14B351-A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z14B351A",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z14B351A",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z14B351B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z14B351B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-3--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "Dorman (tailgate lift motor)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "Dorman (tailgate lift motor)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-4--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "KT4Z-14B351-A (Ford Edge equivalent)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-0-4--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "KT4Z-14B351-A (Ford Edge equivalent)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-1-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z-58406A10B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-1-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z-58406A10B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-1-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z58406A10B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-1-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z58406A10B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-1-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "Amazon B0GYF2KDJQ (electric tailgate gas strut, MKX/Nautilus",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-1-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "Amazon B0GYF2KDJQ (electric tailgate gas strut, MKX/Nautilus",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z-7443150-B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z-7443150-B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "Dorman 931-273",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "Dorman 931-273",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z7443150B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z7443150B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-3--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "DS7Z-7443150-B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "DS7Z-7443150-B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-4--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z-7443150-C",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-4--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "FA1Z-7443150-C",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-5--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "GJ5Z7443150B",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own--existing-fix-part-2-5--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-power-liftgate-inoperative-opens-closes-its-own",
+      "partNumber": "GJ5Z7443150B",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with an RGTM software reprogram and a power-liftgate re-initialization procedure, which resolves many no-open/erratic cases without parts. If the gate is mechanically weak or won't hold position, replace the failing gas support strut and/or the liftgate drive motor. Verify the kick-sensor and latch operation after repair.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-0-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "JS7Z-14G371-CDC",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-0-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "JS7Z-14G371-CDC",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-0-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "JS7Z14G371CDC",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-0-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "JS7Z14G371CDC",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-0-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "JS7Z-14G370-CDC (programmed/asbuilt variant)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-0-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "JS7Z-14G370-CDC (programmed/asbuilt variant)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-0-3--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "14G371 (SYNC 3 nav family)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-0-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "14G371 (SYNC 3 nav family)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-1-0--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "KU5Z-14G371-BDF",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-1-0--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "KU5Z-14G371-BDF",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-1-1--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "KU5Z14G371BDF",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-1-1--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "KU5Z14G371BDF",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-1-2--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "14G371 (SYNC 3 non-nav family)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-1-2--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "14G371 (SYNC 3 non-nav family)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-1-3--2-0l-ecoboost-i4-gas",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "KU5T-14G371-* (base casting)",
+      "engineWorkRow": "2.0L EcoBoost I4 (gas)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots--existing-fix-part-1-3--2-7l-ecoboost-v6",
+      "issueId": "lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots",
+      "partNumber": "KU5T-14G371-* (base casting)",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Try a SYNC master reset (hold the power/volume button and Seek-Right for 10 seconds) and install the latest SYNC 3 software via USB or OTA. If freezes recur, the APIM module is reprogrammed or replaced by the dealer; updating to the current software level resolves most memory-related lockups. A pending USB drive update can also stop the reboot loop.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    }
+  ],
+  "decisions": []
+}

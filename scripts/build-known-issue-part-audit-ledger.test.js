@@ -78,6 +78,7 @@ function markComplete(outputRoot, make, snapshotHash, projectRoot) {
     '00-make-source.json', '01-disposition-ledger.json', '02-fitment-worklist.json',
     '03-showmetheparts-evidence.json', '04-part-proposals.json', '05-direct-link-evidence.json',
     '06-independent-review.json', '07-decision-patch.json', '08-guarded-manifest.json',
+    'reviewed-retailer-candidates.json',
     'classification-ledger.json', 'checkpoint.json', 'diagnostic-tool-evidence.json',
   ];
   fs.mkdirSync(directory, { recursive: true });
@@ -87,7 +88,7 @@ function markComplete(outputRoot, make, snapshotHash, projectRoot) {
     snapshotHash,
     globalSnapshotHash: snapshotHash,
     make,
-    makeKey: make.toLowerCase(),
+    makeKey: makeSlug,
     records: [],
   };
   const makeSourceHash = hashValue(sourceBody);
@@ -115,7 +116,7 @@ function markComplete(outputRoot, make, snapshotHash, projectRoot) {
     releaseBlocked: false,
     completionState: 'AUDIT_COMPLETE_RELEASE_READY',
     snapshotHash,
-    makeKey: make.toLowerCase(),
+    makeKey: makeSlug,
     makeSourceHash,
     issueCount: 1,
     manifestFile: '08-guarded-manifest.json',
@@ -151,7 +152,7 @@ test('enumerates makes case-insensitively with Acura first', () => {
   ]), [
     { key: 'acura', make: 'Acura' },
     { key: 'abarth', make: 'Abarth' },
-    { key: 'alfa romeo', make: 'Alfa Romeo' },
+    { key: 'alfa-romeo', make: 'Alfa Romeo' },
     { key: 'audi', make: 'Audi' },
     { key: 'bmw', make: 'BMW' },
   ]);
@@ -238,6 +239,40 @@ test('rejects legacy or mutated COMPLETE files for later-make gating', () => {
     () => runAudit({ snapshotPath: file, dispositionPath: alfaDisposition, make: 'Alfa Romeo', outputRoot, projectRoot: temp }),
     /not a valid COMPLETE checkpoint/,
   );
+});
+
+test('a freshly frozen make may follow a hash-verified prior make from an older snapshot', () => {
+  const temp = fs.mkdtempSync(path.join(os.tmpdir(), 'au7o-part-audit-cross-snapshot-'));
+  const outputRoot = path.join(temp, 'audit');
+  const records = [
+    record('acura-1', 'Acura', 'Replace the water pump.'),
+    record('alfa-1', 'Alfa Romeo', 'Replace the thermostat.'),
+  ];
+  const first = writeSnapshot(temp, records);
+  markComplete(outputRoot, 'Acura', first.hash, temp);
+
+  const secondBody = {
+    schemaVersion: 2,
+    auditScope: 'full-record',
+    snapshotKind: 'known-issues-catalog-deeplinks',
+    generatedAt: '2026-08-13T00:00:00.000Z',
+    source: 'newer test frozen snapshot',
+    records,
+  };
+  const secondSnapshot = { ...secondBody, snapshotHash: snapshotBodyHash(secondBody) };
+  const secondFile = path.join(temp, 'snapshot-newer.json');
+  fs.writeFileSync(secondFile, `${JSON.stringify(secondSnapshot, null, 2)}\n`);
+  const alfaDisposition = writeDisposition(temp, secondSnapshot.snapshotHash, 'Alfa Romeo', [records[1]]);
+
+  const result = runAudit({
+    snapshotPath: secondFile,
+    dispositionPath: alfaDisposition,
+    make: 'Alfa Romeo',
+    outputRoot,
+    projectRoot: temp,
+  });
+  assert.equal(result.make, 'Alfa Romeo');
+  assert.equal(result.snapshotHash, secondSnapshot.snapshotHash);
 });
 
 test('an independently reconciled prior audit may remain release-blocked without blocking the next make audit', () => {

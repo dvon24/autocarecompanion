@@ -1,0 +1,337 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "RAM",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 102,
+    "issuesWithDtcCodes": 46,
+    "uniqueDtcCount": 93,
+    "solutionInstructionCount": 118,
+    "dtcDispositionCount": 46,
+    "toolLinkedDispositionCount": 39,
+    "procedureNoToolDispositionCount": 98,
+    "unresolvedToolHoldCount": 27,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "ram-1500-42re-46re-governor-pressure-solenoid-sensor-failure-limp-mod",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0748, P0868, P0870, P1757",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-4wd-central-axle-disconnect-vacuum-actuator-line-failure-4x4",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose vacuum before parts: with engine running, one line to the axle shift motor should read ~20 in-Hg and switch when the transfer case is shifted.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-fuel-level-sending-unit-failure-inaccurate-stuck-erratic-fue",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Avoid the cheapest unbranded senders, which frequently read wrong out of the box;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-sentry-key-immobilizer-no-start-security-light-cranks-but-wo",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read the security light while cranking (blinking = SKIM lockout).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-sentry-key-immobilizer-no-start-security-light-cranks-but-wo",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Diagnose with a scan tool that can access SKIM (basic code readers can't).",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-sentry-key-immobilizer-no-start-security-light-cranks-but-wo",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1057, B2103, P1682",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-instrument-cluster-gauge-stepper-motor-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Run the self-test (hold the trip/odometer button while turning key to RUN — gauges should sweep).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-front-wheel-bearing-hub-assembly-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0040, C0045",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-transfer-case-shift-motor-actuator-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C2200, U0103, U0404",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-4-corner-air-suspension-compressor-failure-won-t-raise-lower",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for suspension/ride-height fault codes and perform a leak-down/soap test on bags, lines, and fittings.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-optional-air-suspension-compressor-failure-ride-height-error",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose for air-bag leaks first (soapy-water test on bags/fittings) before condemning the compressor, since a leaking bag is the usual root cause of compressor burnout.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-5-7l-hemi-mds-lifter-collapse-camshaft-lobe-wear",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the tick with a stethoscope to rule out exhaust-manifold leaks vs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-abs-electronic-brake-control-module-internal-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C2116, C2200, U0121",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-electric-power-steering-rack-failure-loss-assist",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1011, C2310, U0131",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-cab-water-leak-from-rear-window-third-brake-light-into-headl",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a targeted water test to identify the entry point (third brake light, rear window, or antenna).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-air-suspension-failure-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Leak test each air spring with soapy water at all seams and fittings.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-etorque-mild-hybrid-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with a Mopar wiTECH scan tool to identify if the 48V battery, BDM, or control module is at fault.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-steering-grind-rubbing-noise-when-turning-right-low-speed",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Owners should insist the truck be road-tested at the exact speed where the noise occurs since it can be hard to reproduce on a lift.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-digital-instrument-cluster-goes-blank-startup-while-driving",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Outside an open campaign, preserve cluster, body and network faults before diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-1500-classic-exhaust-manifold-bolts-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "a smoke test can help pinpoint smaller leaks.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-2500-tipm-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose which circuit is affected before replacing.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-2500-tipm-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0685, P0688, P069E, U1110",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-2500-6-7l-cummins-grid-heater-bolt-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do the preventive 'wiggle test': with the engine off, grab the external power terminal (10mm bolt) and try to move it;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-2500-6-7l-cummins-vgt-turbo-actuator-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The new actuator MUST be calibrated/aligned and programmed to the turbo with a Cummins-capable scan tool (wiTECH) or a pre-programmed 'corded' plug-and-play unit such as the BD Diesel corded HE351 actuator.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-2500-6-7l-cummins-vgt-turbo-actuator-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P003A, P0045, P0046, P132B, P2262, P2263",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-2500-def-system-issues-2013",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with Cummins INSITE or wiTECH to identify the specific DEF component failure.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "ram-3500-front-hub-bearing-2010",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0050, C0051",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

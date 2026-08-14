@@ -6,6 +6,7 @@ import {
   hasKnownIssueCommerce,
   isKnownIssueProductUrl,
   knownIssueAffiliateUrl,
+  vendorMatchesProductUrl,
 } from '../src/lib/known-issue-commerce';
 
 test('accepts product-detail URLs and rejects marketplace searches', () => {
@@ -22,6 +23,13 @@ test('accepts product-detail URLs and rejects marketplace searches', () => {
   assert.equal(isKnownIssueProductUrl('https://www.rockauto.com/en/partsearch/?q=11340029751'), false);
   assert.equal(isKnownIssueProductUrl('https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html'), true);
   assert.equal(isKnownIssueProductUrl('https://www.fcpeuro.com/products/bmw-valve-seal-kit-11340029751'), true);
+  assert.equal(isKnownIssueProductUrl('https://www.mishimoto.com/dodge-challenger-aluminum-radiator-2009-2016.html'), true);
+  assert.equal(vendorMatchesProductUrl('Mishimoto', 'https://www.mishimoto.com/dodge-challenger-aluminum-radiator-2009-2016.html'), true);
+  assert.equal(isKnownIssueProductUrl('https://www.mishimoto.com/collections/radiators'), false);
+  assert.equal(isKnownIssueProductUrl('https://www.moparpartsgiant.com/parts/mopar-radiator-engine-cooling~68050126ab.html'), true);
+  assert.equal(vendorMatchesProductUrl('Mopar Parts Giant', 'https://www.moparpartsgiant.com/parts/mopar-radiator-engine-cooling~68050126ab.html'), true);
+  assert.equal(isKnownIssueProductUrl('https://store.ross-tech.com/shop/vchv2_ent/'), true);
+  assert.equal(vendorMatchesProductUrl('Ross-Tech', 'https://store.ross-tech.com/shop/vchv2_ent/'), true);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/search?q=11340029751'), false);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/parts'), false);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/parts/brakes'), false);
@@ -81,8 +89,8 @@ test('exposes commerce only from fixParts and keeps owner guidance text-only', (
   });
 
   assert.deepEqual(result.fixParts[0].buyLinks, [
-    { vendor: 'eBay', url: 'https://www.ebay.com/itm/277072199375', verified: true },
     { vendor: 'FCP Euro', url: 'https://www.fcpeuro.com/products/bmw-valve-seal-kit-11340029751', verified: true },
+    { vendor: 'eBay', url: 'https://www.ebay.com/itm/277072199375', verified: true },
   ]);
   assert.deepEqual(result.ownerGuidance, [
     { type: 'tip', content: 'Check the oil level regularly while diagnosis is pending.' },
@@ -94,6 +102,25 @@ test('exposes commerce only from fixParts and keeps owner guidance text-only', (
   assert.equal('affiliateLink' in result.ownerGuidance[0], false);
   assert.equal('amazonLink' in result.ownerGuidance[0], false);
   assert.equal('partNumber' in result.ownerGuidance[0], false);
+});
+
+test('prefers one exact direct retailer plus eBay and caps the public choice at two', () => {
+  const result = getKnownIssueCommerce({
+    fixParts: [{
+      component: 'aluminum radiator',
+      oemPartNumber: null,
+      aftermarketXref: ['MMRAD-SRT-09'],
+      note: '', variants: [], verified: true,
+      buyLinks: [
+        { vendor: 'Amazon', url: 'https://www.amazon.com/dp/B0ABC12345', verified: true },
+        { vendor: 'eBay', url: 'https://www.ebay.com/itm/277072199375', verified: true },
+        { vendor: 'Mishimoto', url: 'https://www.mishimoto.com/dodge-challenger-aluminum-radiator-2009-2016.html', verified: true },
+        { vendor: 'eBay.com', url: 'https://www.ebay.com/itm/396256904399', verified: true },
+      ],
+    }],
+    communityRecommendations: [],
+  });
+  assert.deepEqual(result.fixParts[0]!.buyLinks.map((link) => link.vendor), ['Mishimoto', 'eBay']);
 });
 
 test('search-only fixParts do not count as public commerce', () => {

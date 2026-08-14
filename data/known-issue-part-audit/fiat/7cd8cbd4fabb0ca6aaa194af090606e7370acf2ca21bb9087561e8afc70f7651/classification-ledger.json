@@ -1,0 +1,1882 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Fiat",
+  "makeKey": "fiat",
+  "makeIndex": 13,
+  "totalMakes": 54,
+  "issueCount": 42,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 17,
+    "diagnosis-dependent": 17,
+    "recall/dealer": 4,
+    "service/tool/fluid": 3,
+    "no-commerce": 1
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 8,
+    "uniqueDtcCount": 18,
+    "instructionCount": 46,
+    "dtcDispositionCount": 8,
+    "toolLinkedCount": 7,
+    "procedureNoToolCount": 34,
+    "unresolvedToolHoldCount": 13
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "fiat-124-spider-boost-leak",
+      "make": "Fiat",
+      "model": "124 Spider",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Abarth",
+        "Classica",
+        "Lusso"
+      ],
+      "engines": [
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Turbo Boost Leak from Intercooler Piping",
+      "howToFix": "Inspect and retighten all intercooler piping clamps. Replace any cracked or deteriorated silicone couplers. Upgraded aftermarket piping kits with T-bolt clamps are recommended.",
+      "dtcCodes": [
+        "P0299"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and retighten all intercooler piping clamps."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0299"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-124-spider-boost-leak--prescription-0-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-124-spider-infotainment",
+      "make": "Fiat",
+      "model": "124 Spider",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Abarth",
+        "Classica",
+        "Lusso"
+      ],
+      "engines": [
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Infotainment System Lag and Connectivity Issues",
+      "howToFix": "Update the infotainment firmware to the latest version via USB. Reset the Bluetooth pairings and re-pair devices. Some owners have had success replacing the USB hub module.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-124-spider-infotainment--prescription-0-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-124-spider-soft-top",
+      "make": "Fiat",
+      "model": "124 Spider",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Abarth",
+        "Classica",
+        "Lusso"
+      ],
+      "engines": [
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Soft Top Mechanism Binding",
+      "howToFix": "Lubricate all soft top hinges and pivot points with silicone spray. Adjust the header latch striker plates for proper alignment. Replace any worn or bent linkage components.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "fiat-500-ac-compressor",
+      "make": "Fiat",
+      "model": "500",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Abarth",
+        "Lounge",
+        "Pop",
+        "Sport",
+        "Turbo"
+      ],
+      "engines": [
+        "1.4L MultiAir",
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "AC Compressor Failure",
+      "howToFix": "Replace the AC compressor, receiver/drier, and expansion valve. Flush the system to remove debris before charging with R-134a refrigerant.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500-ac-compressor--prescription-0-0--1-4l-multiair",
+        "fiat-500-ac-compressor--prescription-0-0--1-4l-multiair-turbo",
+        "fiat-500-ac-compressor--prescription-1-0--1-4l-multiair",
+        "fiat-500-ac-compressor--prescription-1-0--1-4l-multiair-turbo",
+        "fiat-500-ac-compressor--prescription-2-0--1-4l-multiair",
+        "fiat-500-ac-compressor--prescription-2-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-500-clutch-shudder",
+      "make": "Fiat",
+      "model": "500",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Lounge",
+        "Pop",
+        "Sport",
+        "Turbo"
+      ],
+      "engines": [
+        "1.4L MultiAir",
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Manual Clutch Shudder and Chatter",
+      "howToFix": "Replace the clutch disc and pressure plate assembly. Consider upgrading to a single-mass flywheel conversion if the dual-mass flywheel is worn.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500-clutch-shudder--prescription-0-0--1-4l-multiair",
+        "fiat-500-clutch-shudder--prescription-0-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-500-eps-failure",
+      "make": "Fiat",
+      "model": "500",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Abarth",
+        "Lounge",
+        "Pop",
+        "Sport",
+        "Turbo"
+      ],
+      "engines": [
+        "1.4L MultiAir",
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Electric Power Steering (EPS) Failure",
+      "howToFix": "Replace the EPS motor and steering column assembly. Reprogram the EPS module with updated software if available.",
+      "dtcCodes": [
+        "C1001",
+        "C1002"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1001, C1002"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500-eps-failure--prescription-0-0--1-4l-multiair",
+        "fiat-500-eps-failure--prescription-0-0--1-4l-multiair-turbo",
+        "fiat-500-eps-failure--prescription-1-0--1-4l-multiair",
+        "fiat-500-eps-failure--prescription-1-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-500-input-shaft-bearing",
+      "make": "Fiat",
+      "model": "500",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Abarth",
+        "Lounge",
+        "Pop",
+        "Sport",
+        "Turbo"
+      ],
+      "engines": [
+        "1.4L MultiAir",
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Transmission Input Shaft Bearing Noise",
+      "howToFix": "Replace the input shaft bearing or rebuild the transmission. Ensure correct transmission fluid is used (75W-85 GL-4).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500-input-shaft-bearing--prescription-0-0--1-4l-multiair",
+        "fiat-500-input-shaft-bearing--prescription-0-0--1-4l-multiair-turbo",
+        "fiat-500-input-shaft-bearing--prescription-1-0--1-4l-multiair",
+        "fiat-500-input-shaft-bearing--prescription-1-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-500-multiair-actuator",
+      "make": "Fiat",
+      "model": "500",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Lounge",
+        "Pop",
+        "Sport",
+        "Turbo"
+      ],
+      "engines": [
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "MultiAir Actuator Failure",
+      "howToFix": "Replace the MultiAir actuator unit on top of the cylinder head. Use updated Mopar part number for revised design.",
+      "dtcCodes": [
+        "P1065",
+        "P1067",
+        "P1069",
+        "P106B"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P1065, P1067, P1069, P106B"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500-multiair-actuator--prescription-0-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-500-oil-consumption",
+      "make": "Fiat",
+      "model": "500",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Abarth",
+        "Lounge",
+        "Pop",
+        "Sport",
+        "Turbo"
+      ],
+      "engines": [
+        "1.4L MultiAir",
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Excessive Oil Consumption",
+      "howToFix": "Monitor oil level frequently and top off as needed. For severe cases, replace the MultiAir actuator seals and check turbo oil feed and return lines for restriction.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil level frequently and top off as needed."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "For severe cases, replace the MultiAir actuator seals and check turbo oil feed and return lines for restriction."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500-oil-consumption--prescription-0-0--1-4l-multiair",
+        "fiat-500-oil-consumption--prescription-0-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-500e-12v-battery-drain",
+      "make": "Fiat",
+      "model": "500e",
+      "years": [
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Inspired By",
+        "La Prima"
+      ],
+      "engines": [
+        "Electric Motor"
+      ],
+      "title": "12V Auxiliary Battery Drain",
+      "howToFix": "Update the body control module software to the latest version. If the 12V battery has been deeply discharged, replace it with an AGM battery. Keeping the car plugged in helps maintain the 12V battery.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500e-12v-battery-drain--prescription-0-0--electric-motor"
+      ]
+    },
+    {
+      "issueId": "fiat-500e-charging-port",
+      "make": "Fiat",
+      "model": "500e",
+      "years": [
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Inspired By",
+        "La Prima"
+      ],
+      "engines": [
+        "Electric Motor"
+      ],
+      "title": "Charging Port Connection Issues",
+      "howToFix": "Clean the charging port contacts and inspect for debris or corrosion. Update the onboard charger firmware. If the issue persists, the charging port assembly or EVSE communication module may need replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clean the charging port contacts and inspect for debris or corrosion."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500e-charging-port--prescription-0-0--electric-motor"
+      ]
+    },
+    {
+      "issueId": "fiat-500l-dct-shudder",
+      "make": "Fiat",
+      "model": "500L",
+      "years": [
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Pop"
+      ],
+      "engines": [
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Dual-Clutch Transmission Shudder",
+      "howToFix": "Perform a TCM adaptation reset via scan tool. If shudder persists, replace the dual-clutch assembly. Some owners have had success with the updated TCM calibration from FCA.",
+      "dtcCodes": [
+        "P0730",
+        "P0868"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Perform a TCM adaptation reset via scan tool."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0730, P0868"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500l-dct-shudder--prescription-0-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-500l-strut-noise",
+      "make": "Fiat",
+      "model": "500L",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Lounge",
+        "Pop",
+        "Trekking"
+      ],
+      "engines": [
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Front Suspension Strut Noise",
+      "howToFix": "Replace the front strut mount assemblies including the bearing plates. Replace struts at the same time if they have over 60,000 miles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500l-strut-noise--prescription-0-0--1-4l-multiair-turbo",
+        "fiat-500l-strut-noise--prescription-1-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-500l-wastegate-rattle",
+      "make": "Fiat",
+      "model": "500L",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Lounge",
+        "Pop",
+        "Trekking"
+      ],
+      "engines": [
+        "1.4L MultiAir Turbo"
+      ],
+      "title": "Turbo Wastegate Rattle",
+      "howToFix": "Replace the wastegate actuator or adjust the wastegate rod length. In severe cases, the turbocharger assembly may need replacement if internal wastegate components are worn.",
+      "dtcCodes": [
+        "P0299"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0299"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500l-wastegate-rattle--prescription-0-0--1-4l-multiair-turbo"
+      ]
+    },
+    {
+      "issueId": "fiat-500x-infotainment-freeze",
+      "make": "Fiat",
+      "model": "500X",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Lounge",
+        "Pop",
+        "Sport",
+        "Trekking"
+      ],
+      "engines": [
+        "1.3L Turbo",
+        "2.4L Tigershark"
+      ],
+      "title": "Uconnect Infotainment Freezing",
+      "howToFix": "Perform a Uconnect soft reset by holding the power and volume buttons for 10 seconds. Update to the latest Uconnect firmware. If problems continue, the head unit may need replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500x-infotainment-freeze--prescription-0-0--1-3l-turbo",
+        "fiat-500x-infotainment-freeze--prescription-0-0--2-4l-tigershark"
+      ]
+    },
+    {
+      "issueId": "fiat-500x-oil-consumption-24",
+      "make": "Fiat",
+      "model": "500X",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Lounge",
+        "Pop",
+        "Trekking"
+      ],
+      "engines": [
+        "2.4L Tigershark"
+      ],
+      "title": "Oil Consumption 2.4L Tigershark Engine",
+      "howToFix": "Monitor oil level regularly between changes. FCA has issued TSB 09-002-18 for updated piston rings on some VINs. Switching to a higher-viscosity synthetic may reduce consumption slightly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil level regularly between changes."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "fiat-500x-transmission-shifting",
+      "make": "Fiat",
+      "model": "500X",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Lounge",
+        "Pop",
+        "Sport",
+        "Trekking"
+      ],
+      "engines": [
+        "1.3L Turbo",
+        "2.4L Tigershark"
+      ],
+      "title": "Transmission Harsh Shifting",
+      "howToFix": "Update the TCM software to the latest calibration from FCA. Perform a transmission fluid flush with the correct ATF+4 fluid. If problems persist, the valve body may need replacement.",
+      "dtcCodes": [
+        "P0700",
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500x-transmission-shifting--prescription-0-0--1-3l-turbo",
+        "fiat-500x-transmission-shifting--prescription-0-0--2-4l-tigershark"
+      ]
+    },
+    {
+      "issueId": "fiat-500x-water-pump",
+      "make": "Fiat",
+      "model": "500X",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Lounge",
+        "Pop",
+        "Sport",
+        "Trekking"
+      ],
+      "engines": [
+        "1.3L Turbo",
+        "2.4L Tigershark"
+      ],
+      "title": "Water Pump Failure",
+      "howToFix": "Replace the water pump with an updated design featuring a metal impeller. Replace the thermostat and coolant at the same time. Pressure test the cooling system after repair.",
+      "dtcCodes": [
+        "P0217"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure test the cooling system after repair."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0217"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-500x-water-pump--prescription-0-0--1-3l-turbo",
+        "fiat-500x-water-pump--prescription-0-0--2-4l-tigershark",
+        "fiat-500x-water-pump--prescription-1-0--1-3l-turbo",
+        "fiat-500x-water-pump--prescription-1-0--2-4l-tigershark"
+      ]
+    },
+    {
+      "issueId": "fiat-palio-cooling-system-weak-points-water-pump-impeller-failure-therm",
+      "make": "Fiat",
+      "model": "Palio",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Cooling system weak points: water pump impeller failure and thermostat housing/seal leaks (Fire engines)",
+      "howToFix": "Replace coolant at proper intervals and inspect the thermostat housing for seepage at every service. Replace the water pump preventively with the timing belt, and replace the thermostat valve/housing and seals at the first sign of leakage (both are cheap parts in Brazil). If the engine has overheated, perform a combustion-gas (block) test; head gasket replacement requires proper head surface finish and correct bolt torque, to which the Fire 16V is particularly sensitive.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace coolant at proper intervals and inspect the thermostat housing for seepage at every service."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "If the engine has overheated, perform a combustion-gas (block) test;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-palio-cooling-system-weak-points-water-pump-impeller-failure-therm--prescription-0-0--all-engines",
+        "fiat-palio-cooling-system-weak-points-water-pump-impeller-failure-therm--prescription-1-0--all-engines",
+        "fiat-palio-cooling-system-weak-points-water-pump-impeller-failure-therm--prescription-2-0--all-engines",
+        "fiat-palio-cooling-system-weak-points-water-pump-impeller-failure-therm--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-palio-electronic-throttle-body-wear-causes-power-loss-erratic-idle",
+      "make": "Fiat",
+      "model": "Palio",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electronic throttle body (TBI) wear causes power loss and erratic idle (Fire 1.0/1.4)",
+      "howToFix": "Clean the throttle body and intake breather line, inspect and repair the TBI harness, and test the accelerator pedal sensor. If the actuator gear teeth or sensor tracks are worn, replace the throttle body (aftermarket units are inexpensive in Brazil). Always perform the ECU/throttle re-learn procedure after battery disconnection or TBI replacement (key-on relearn or scanner-guided throttle adaptation).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clean the throttle body and intake breather line, inspect and repair the TBI harness, and test the accelerator pedal sensor."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Always perform the ECU/throttle re-learn procedure after battery disconnection or TBI replacement (key-on relearn or scanner-guided throttle adaptation)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-palio-electronic-throttle-body-wear-causes-power-loss-erratic-idle--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-palio-fire-engine-valve-train-neglect-30-000-km-valve-adjustments",
+      "make": "Fiat",
+      "model": "Palio",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fire engine valve-train neglect: 30,000 km valve adjustments, sludge buildup and head gasket failures",
+      "howToFix": "Adjust valve clearances every 30,000 km as specified. Change oil every 5,000-10,000 km with the correct specification oil given the small 3 L sump. If sludge is present, perform a careful chemical flush or remove the head/pan for cleaning. For head gasket replacement, respect head-surface finish limits and bolt-torque specs — the Fire 16V steel gasket leaks if the resurfaced finish is out of spec.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-palio-fire-engine-valve-train-neglect-30-000-km-valve-adjustments--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-palio-rear-twist-beam-axle-develops-cracks-without-impact",
+      "make": "Fiat",
+      "model": "Palio",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear twist-beam axle develops cracks without impact (chronic structural complaint)",
+      "howToFix": "Inspect the rear axle beam (around spring seats and trailing-arm weld areas) at every alignment or suspension service, especially on cars driven on rough roads. If cracked, do not weld-repair a structural fracture — replace the axle assembly; independent shops commonly fit new aftermarket or sound used axles at a fraction of dealer pricing. Document the failure and pursue Fiat/consumer channels if the car is low-mileage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the rear axle beam (around spring seats and trailing-arm weld areas) at every alignment or suspension service, especially on cars driven on rough roads."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-palio-rear-twist-beam-axle-develops-cracks-without-impact--prescription-0-0--all-engines",
+        "fiat-palio-rear-twist-beam-axle-develops-cracks-without-impact--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-palio-official-recall-front-seat-belt-anchor-fasteners-can-rupture",
+      "make": "Fiat",
+      "model": "Palio",
+      "years": [
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Official recall: front seat-belt anchor fasteners can rupture in a crash (Palio Fire 1.0, 2012-2013)",
+      "howToFix": "Check the VIN against Fiat's recall portal (servicos.fiat.com.br/recall.html) or call Fiat Brazil (0800 707 1000) to confirm whether the seat-belt anchor fastener replacement was performed; if not, the repair is free at any Fiat dealer. Used-car buyers should verify recall completion before purchase since many compact Fiats of this era have open recalls.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN against Fiat's recall portal (servicos.fiat.com.br/recall.html) or call Fiat Brazil (0800 707 1000) to confirm whether the seat-belt anchor fastener replacement was performed;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Used-car buyers should verify recall completion before purchase since many compact Fiats of this era have open recalls."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "fiat-palio-official-recall-defective-alternator-can-cause-unexpected-en",
+      "make": "Fiat",
+      "model": "Palio",
+      "years": [
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Official recall: defective alternator can cause unexpected engine shutdown (2016-2017)",
+      "howToFix": "Check the VIN on Fiat's recall portal or call 0800 707 1000; the dealer inspects and, if needed, replaces the alternator free of charge (roughly 1 hour). Outside the recall scope, test charging output (~14 V at idle) and replace or rebuild a failing alternator; warning signs should not be ignored since failure can stall the engine in traffic.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN on Fiat's recall portal or call 0800 707 1000;"
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Outside the recall scope, test charging output (~14 V at idle) and replace or rebuild a failing alternator;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-palio-official-recall-defective-alternator-can-cause-unexpected-en--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-strada-dualogic-automated-manual-gearbox-faults-jerky-shifts-clutch",
+      "make": "Fiat",
+      "model": "Strada",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Dualogic Automated-Manual Gearbox Faults — Jerky Shifts, Clutch and Actuator Failures (Adventure 1.8, Previous Generation)",
+      "howToFix": "For erratic shifting, first inspect the clutch actuator wiring harness, contacts and terminals, and have the Dualogic hydraulic fluid and pump checked; relearn/calibration via diagnostic tool fixes some complaints. Worn units need a clutch kit and frequently the clutch actuator together (dedicated Strada 1.8 Dualogic kits are sold in Brazil). On used purchases, road-test for smooth engagement when cold, jerks between 1st and 3rd, and any drop to neutral; walk away or budget a full clutch/actuator job if present.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "For erratic shifting, first inspect the clutch actuator wiring harness, contacts and terminals, and have the Dualogic hydraulic fluid and pump checked;"
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "relearn/calibration via diagnostic tool fixes some complaints."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "On used purchases, road-test for smooth engagement when cold, jerks between 1st and 3rd, and any drop to neutral;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "fiat-strada-cvt-jerking-low-speed-premature-transmission-failures",
+      "make": "Fiat",
+      "model": "Strada",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "CVT Jerking at Low Speed and Premature Transmission Failures (2021+ Generation)",
+      "howToFix": "Have the dealer check for transmission software/calibration updates and verify CVT fluid condition first — low-speed jerking is often improved by reflash and fluid service. Genuine internal failures (valve body, belt/pulley, or complete unit) require repair or replacement of the CVT, which is expensive out of warranty, so document symptoms early and insist on a formal warranty claim within the 3-year factory warranty. Avoid towing/loading beyond rated capacity, which accelerates CVT wear on a work truck.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have the dealer check for transmission software/calibration updates and verify CVT fluid condition first — low-speed jerking is often improved by reflash and fluid service."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-strada-cvt-jerking-low-speed-premature-transmission-failures--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-strada-premature-suspension-noise-wheel-bearing-wear",
+      "make": "Fiat",
+      "model": "Strada",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Premature Suspension Noise and Wheel-Bearing Wear (Bushings, Front Right Side, Rear Bearings)",
+      "howToFix": "Replace the worn control-arm bushings (or the complete control arm if play has spread to the ball joint) — independent Brazilian shops quote roughly R$250–600 parts and labor. Noisy rear wheel bearings should be replaced promptly since a seized bearing can lock a wheel. Within the 3-year factory warranty, insist on repair documentation each visit since the noise frequently recurs. For trucks used at full payload, inspect bushings, springs and bearings at every service interval.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "For trucks used at full payload, inspect bushings, springs and bearings at every service interval."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-strada-premature-suspension-noise-wheel-bearing-wear--prescription-0-0--all-engines",
+        "fiat-strada-premature-suspension-noise-wheel-bearing-wear--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-strada-water-infiltration-into-cabin-through-door-seals",
+      "make": "Fiat",
+      "model": "Strada",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Water Infiltration into the Cabin Through Door Seals",
+      "howToFix": "Under warranty, dealers re-seat or replace the door weatherstrips, adjust door alignment, and reseal body seams; persistent cases have required multiple dealer visits, so document each occurrence in writing. Out of warranty, replacing door seals and clearing the door and cowl drain channels resolves most leaks. Address leaks promptly — standing moisture causes mold, odors and electrical connector corrosion under the carpet.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-strada-water-infiltration-into-cabin-through-door-seals--prescription-0-0--all-engines",
+        "fiat-strada-water-infiltration-into-cabin-through-door-seals--prescription-1-0--all-engines",
+        "fiat-strada-water-infiltration-into-cabin-through-door-seals--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-strada-missing-upper-steering-column-body-fixing-bolts",
+      "make": "Fiat",
+      "model": "Strada",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Missing Upper Steering-Column Body Fixing Bolts (September 2024 Recall)",
+      "howToFix": "Free safety recall. Check the chassis (VIN) on Fiat Brazil's recall portal or call 0800 707 1000 / WhatsApp (31) 2123-6000. Dealers install the missing fixing bolts on the upper steering column structure; the repair takes roughly 1.5 hours (about 2 hours if the parking-brake lever service is also required). Used-truck buyers should confirm the recall was performed before purchase.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the chassis (VIN) on Fiat Brazil's recall portal or call 0800 707 1000 / WhatsApp (31) 2123-6000."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Used-truck buyers should confirm the recall was performed before purchase."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-strada-missing-upper-steering-column-body-fixing-bolts--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-strada-engine-control-module-water-intrusion-causes-engine-stall-wh",
+      "make": "Fiat",
+      "model": "Strada",
+      "years": [
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Engine Control Module (ECM) Water Intrusion Causes Engine Stall While Driving (May 2025 Recall)",
+      "howToFix": "This is a free safety recall. Check the vehicle's chassis (VIN) on Fiat Brazil's recall portal (servicos.fiat.com.br/recall.html) or call 0800 707 1000. Dealers inspect and, when necessary, replace the engine control module; the service takes about one hour. Owners experiencing stalling in rain on an affected unit should stop driving the vehicle and schedule the recall immediately.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the vehicle's chassis (VIN) on Fiat Brazil's recall portal (servicos.fiat.com.br/recall.html) or call 0800 707 1000."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers inspect and, when necessary, replace the engine control module;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-strada-engine-control-module-water-intrusion-causes-engine-stall-wh--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-toro-at9-9-speed-automatic-harsh-shifting-clunks-limp-mode-diesel",
+      "make": "Fiat",
+      "model": "Toro",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "AT9 (ZF 9HP48) 9-Speed Automatic Harsh Shifting, Clunks and Limp Mode on Diesel Models",
+      "howToFix": "First steps are a TCU software update and adaptation reset at a Fiat dealer, plus an ATF fluid and filter service with the correct ZF 8&9-speed fluid — these resolve many harsh-shift complaints. Inspect the coolant for signs of cross-contamination before any transmission work. Persistent clunking or limp mode requires valve-body/mechatronic diagnosis; severe cases need a transmission rebuild. Document complaints in writing with the dealer while under warranty, as Brazilian consumer lawyers note many failures surface just after warranty expiry.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the coolant for signs of cross-contamination before any transmission work."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Persistent clunking or limp mode requires valve-body/mechatronic diagnosis;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "fiat-toro-electrical-system-faults-infotainment-freezes-rapid-battery",
+      "make": "Fiat",
+      "model": "Toro",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electrical System Faults: Infotainment Freezes, Rapid Battery Discharge and Start-Stop Failure",
+      "howToFix": "Apply the latest Uconnect/module software updates at a Fiat dealer — Fiat has released updates addressing multimedia freezing. Have the battery load-tested and replaced with a correct-spec (or higher-capacity) AGM/EFB unit if weak, since most start-stop and module misbehavior traces back to low voltage; the start-stop system also requires a battery registered/coded to spec to resume working. For vehicles that sit unused, a smart trickle charger prevents the rapid-discharge complaints. Persistent gremlins after battery and software service warrant a parasitic-draw test and inspection of grounds and the body control module.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Have the battery load-tested and replaced with a correct-spec (or higher-capacity) AGM/EFB unit if weak, since most start-stop and module misbehavior traces back to low voltage;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Persistent gremlins after battery and software service warrant a parasitic-draw test and inspection of grounds and the body control module."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "fiat-toro-transmission-heat-exchanger-failure-causing-coolant-transmis",
+      "make": "Fiat",
+      "model": "Toro",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Transmission Heat Exchanger Failure Causing Coolant and Transmission Fluid Cross-Contamination",
+      "howToFix": "If caught early (oil in the coolant reservoir but no coolant in the transmission), replace the heat exchanger and flush the cooling system. If coolant has entered the transmission, the transmission must be disassembled, cleaned and rebuilt with new clutches and seals, plus a new heat exchanger. Brazilian specialists recommend preventive coolant replacement every 40,000 km (far earlier than the factory 240,000 km interval) using the correct para-flu additive ratio, and many shops offer a conversion kit replacing the exchanger with a larger air-cooled external transmission oil radiator (similar to the diesel AT9 setup), which lowers ATF temperature 10-15°C and removes the contamination path entirely.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-toro-transmission-heat-exchanger-failure-causing-coolant-transmis--prescription-0-0--all-engines",
+        "fiat-toro-transmission-heat-exchanger-failure-causing-coolant-transmis--prescription-1-0--all-engines",
+        "fiat-toro-transmission-heat-exchanger-failure-causing-coolant-transmis--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-toro-2-4-tigershark-multiair-engine-excessive-oil-consumption-sta",
+      "make": "Fiat",
+      "model": "Toro",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "2.4 Tigershark MultiAir Engine Excessive Oil Consumption and Stall Risk",
+      "howToFix": "Check the oil level weekly and never let it run low — this engine can consume a quart between services. Fiat replaced engines or ring packages under warranty in documented Brazilian cases; out of warranty, the definitive fix is an engine rebuild with revised pistons/rings or a replacement engine block. When buying a used 2.4 Toro, verify service records for an engine replacement or documented oil-consumption test, and budget for a rebuild if consumption exceeds roughly 1 liter per 1,000 km.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the oil level weekly and never let it run low — this engine can consume a quart between services."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "When buying a used 2.4 Toro, verify service records for an engine replacement or documented oil-consumption test, and budget for a rebuild if consumption exceeds roughly 1 liter per 1,000 km."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-toro-2-4-tigershark-multiair-engine-excessive-oil-consumption-sta--prescription-0-0--all-engines",
+        "fiat-toro-2-4-tigershark-multiair-engine-excessive-oil-consumption-sta--prescription-1-0--all-engines",
+        "fiat-toro-2-4-tigershark-multiair-engine-excessive-oil-consumption-sta--prescription-2-0--all-engines",
+        "fiat-toro-2-4-tigershark-multiair-engine-excessive-oil-consumption-sta--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-toro-recall-high-pressure-fuel-pump-mounting-bolt-may-break-fuel",
+      "make": "Fiat",
+      "model": "Toro",
+      "years": [
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Recall: High-Pressure Fuel Pump Mounting Bolt May Break, Fuel Leak and Fire Risk (1.3 Turbo)",
+      "howToFix": "Check whether the recall was performed using the chassis number on the official Fiat recall portal (servicos.fiat.com.br/recall.html) or by calling 0800 707 1000. Affected vehicles receive free inspection of the high-pressure fuel pump mounting bolt and replacement if needed at any Fiat dealership; the service takes about two hours. When buying a used 2022-2023 Toro 1.3 turbo, confirm recall completion before purchase.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check whether the recall was performed using the chassis number on the official Fiat recall portal (servicos.fiat.com.br/recall.html) or by calling 0800 707 1000."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Affected vehicles receive free inspection of the high-pressure fuel pump mounting bolt and replacement if needed at any Fiat dealership;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "When buying a used 2022-2023 Toro 1.3 turbo, confirm recall completion before purchase."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "fiat-toro-recall-front-suspension-fastener-bolts-nuts-may-be-improperl",
+      "make": "Fiat",
+      "model": "Toro",
+      "years": [
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Recall: Front Suspension Fastener Bolts/Nuts May Be Improperly Torqued, Wheel Separation Risk",
+      "howToFix": "Verify recall completion via the chassis number on the official Fiat recall portal (servicos.fiat.com.br/recall.html) or by calling 0800 707 1000 / WhatsApp +55 31 2123-6000. The fix is a free inspection and re-torque of the front suspension fastening bolts and nuts at any Fiat dealership, taking about one hour. Owners noticing front-end knocking, looseness or steering wander on a 2024+ Toro should stop driving and have the suspension fasteners checked immediately.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify recall completion via the chassis number on the official Fiat recall portal (servicos.fiat.com.br/recall.html) or by calling 0800 707 1000 / WhatsApp +55 31 2123-6000."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "The fix is a free inspection and re-torque of the front suspension fastening bolts and nuts at any Fiat dealership, taking about one hour."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners noticing front-end knocking, looseness or steering wander on a 2024+ Toro should stop driving and have the suspension fasteners checked immediately."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-toro-recall-front-suspension-fastener-bolts-nuts-may-be-improperl--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-uno-plastic-thermostat-housing-cracks-coolant-leak",
+      "make": "Fiat",
+      "model": "Uno",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Plastic Thermostat Housing Cracks and Coolant Leak (Fire Evo 1.0/1.4)",
+      "howToFix": "Replace the cracked plastic housing with an aluminum aftermarket housing (widely available in Brazil for the Fire Evo) together with a new thermostat, seal and fresh coolant. The part is inexpensive and the job is straightforward. On any used Fire-engined Uno, inspect the housing for seepage and check coolant level history as part of pre-purchase inspection. Never keep driving with the temperature gauge climbing — head gasket damage costs many times more than the housing.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "On any used Fire-engined Uno, inspect the housing for seepage and check coolant level history as part of pre-purchase inspection."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Never keep driving with the temperature gauge climbing — head gasket damage costs many times more than the housing."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-uno-plastic-thermostat-housing-cracks-coolant-leak--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-uno-dualogic-gsr-automated-manual-transmission-faults-neutral-dr",
+      "make": "Fiat",
+      "model": "Uno",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Dualogic/GSR Automated Manual Transmission Faults and Neutral Drop-Out (Including 2019 Recall)",
+      "howToFix": "For 2017-2018 GSR cars: confirm the official recall (replacement of the gear selector sensor, ~1 hour, free) was performed. For chronic faults: scan the TCU for stored codes first; many problems are resolved by clutch actuator recalibration or replacement and hydraulic fluid/leak service rather than full transmission replacement. Worn clutches must be replaced with actuator recalibration. Use a shop experienced with Fiat Dualogic/GSR — incorrect calibration is a common cause of repeat failures.",
+      "dtcCodes": [
+        "P0715",
+        "P0725",
+        "P0805",
+        "P0806",
+        "P0942",
+        "P2712",
+        "P2904"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "For 2017-2018 GSR cars: confirm the official recall (replacement of the gear selector sensor, ~1 hour, free) was performed."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "For chronic faults: scan the TCU for stored codes first;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0715, P0725, P0805, P0806, P0942, P2712, P2904"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-uno-dualogic-gsr-automated-manual-transmission-faults-neutral-dr--prescription-0-0--all-engines",
+        "fiat-uno-dualogic-gsr-automated-manual-transmission-faults-neutral-dr--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-uno-front-suspension-knocks-squeaks-widespread-interior-rattles",
+      "make": "Fiat",
+      "model": "Uno",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Suspension Knocks and Squeaks (Stabilizer Links, Bushings) with Widespread Interior Rattles",
+      "howToFix": "Diagnose with the car on the ground (links unloaded on a lift can mask play): typical fixes are replacing the stabilizer bar end links/pivots and stabilizer or control arm bushings, and checking shock absorber top mounts. Parts are inexpensive and widely available. For accompanying interior rattles (door panels, window glass channels), retorquing fasteners and applying felt/foam at trim contact points at a trim shop is the usual remedy — dealers rarely resolve it definitively.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnose with the car on the ground (links unloaded on a lift can mask play): typical fixes are replacing the stabilizer bar end links/pivots and stabilizer or control arm bushings, and checking shock absorber top mounts."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-uno-front-suspension-knocks-squeaks-widespread-interior-rattles--prescription-0-0--all-engines",
+        "fiat-uno-front-suspension-knocks-squeaks-widespread-interior-rattles--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-uno-takata-airbag-inflator-rupture-recall",
+      "make": "Fiat",
+      "model": "Uno",
+      "years": [
+        2013,
+        2014
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Takata Airbag Inflator Rupture Recall (2013-2014 Models)",
+      "howToFix": "Free recall repair: Fiat replaces the driver and/or passenger front airbag inflator modules at any authorized dealership (about 2 hours of work). Check whether the repair was performed via Fiat's official recall lookup (servicos.fiat.com.br/recall.html) using the VIN, or call 0800-707-1000. This must be done even on used cars bought second-hand — recall campaigns in Brazil have no expiration date.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check whether the repair was performed via Fiat's official recall lookup (servicos.fiat.com.br/recall.html) using the VIN, or call 0800-707-1000."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-uno-takata-airbag-inflator-rupture-recall--prescription-0-0--all-engines",
+        "fiat-uno-takata-airbag-inflator-rupture-recall--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "fiat-uno-fuel-pump-malfunction-causing-engine-stalling-official-recal",
+      "make": "Fiat",
+      "model": "Uno",
+      "years": [
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fuel Pump Malfunction Causing Engine Stalling — Official Recall (Firefly 1.0/1.3, 2016-2017)",
+      "howToFix": "Free recall repair: engine control module software update; vehicles equipped with Start&Stop also receive a replacement fuel pump. Verify recall completion by VIN at a Fiat dealership or servicos.fiat.com.br/recall.html. For non-recall cars with hard-start or stalling symptoms, have the fuel pump pressure, pump relay and the pump ground terminal connections tested before replacing the pump.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Verify recall completion by VIN at a Fiat dealership or servicos.fiat.com.br/recall.html."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "For non-recall cars with hard-start or stalling symptoms, have the fuel pump pressure, pump relay and the pump ground terminal connections tested before replacing the pump."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "fiat-uno-start-stop-unavailable-warning-efb-battery-degradation",
+      "make": "Fiat",
+      "model": "Uno",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "\"Start-Stop Unavailable\" Warning — EFB Battery Degradation (Firefly 1.0/1.3, 2017+)",
+      "howToFix": "Have the battery's state of health and charge tested with proper equipment. If the battery is healthy but discharged (typical for short-trip use), a controlled recharge restores the system. If degraded, replace it with an EFB (or AGM) battery of the correct specification — a conventional flooded battery will cause the warning to return and ages rapidly under stop-start cycling. Some owners simply disable Start-Stop via the dashboard button each drive as a workaround, which has no mechanical consequence.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Have the battery's state of health and charge tested with proper equipment."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "fiat-uno-start-stop-unavailable-warning-efb-battery-degradation--prescription-0-0--all-engines"
+      ]
+    }
+  ]
+}

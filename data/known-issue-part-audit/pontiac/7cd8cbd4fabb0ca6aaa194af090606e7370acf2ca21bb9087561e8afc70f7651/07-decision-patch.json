@@ -1,0 +1,1100 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "pontiac-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "cf45ba7b263f106572fe2404b20c19be30b60b137a6f6206ba4719b4c007bf51",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": true,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "8785259d7e4b6254d9364d294699286828d7ce850e1b0f47642a3a1cb6b23d76",
+      "checkpoint.json": "503a8a6b82f78974473fc566cddd69b42ca2ca127b4726839abb61e972c0da0b",
+      "diagnostic-tool-evidence.json": "147d6bcd45a88153355a3e29c9264dfe6ececd934b2c7fa5d96d94087b535a8c"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 96,
+      "issuesWithDtcCodes": 20,
+      "uniqueDtcCount": 42,
+      "solutionInstructionCount": 87,
+      "dtcDispositionCount": 20,
+      "toolLinkedDispositionCount": 15,
+      "procedureNoToolDispositionCount": 72,
+      "unresolvedToolHoldCount": 20,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "pontiac-aztek-4t65-e-transmission-failure-pressure-control-solenoid-errati",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose stored codes first: P1811 with harsh shifts points to the pressure control solenoid, which requires removing the transmission side cover (engine cradle lowered) to replace.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-aztek-4t65-e-transmission-failure-pressure-control-solenoid-errati",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0717, P0730, P1811, P1860",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-bonneville-crankshaft-position-sensor-ignition-control-module-failure-c",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test the crank sensor and ICM circuits and replace the failed component;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-firebird-700-r4-4l60e-automatic-transmission-3-4-clutch-pack-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1870",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-g6-front-wheel-hub-bearing-growl-groan-highway-speed",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test by swerving gently at 40-50 mph: noise quieter on right turn = left bearing bad.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-g6-low-beam-headlight-connector-melting-pigtail-burn",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace the melted bulb socket pigtail with a ceramic high-temperature H11 connector kit (14-gauge wire) and pack the new connector with dielectric grease.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-g6-stabilitrak-traction-control-abs-warning-from-bcm-connector",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Also scan wheel-speed and steering-position sensors before condemning the BCM.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-g6-retractable-hardtop-hydraulic-pump-microswitch-failures",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Diagnose with a scan tool that reads body module roof codes — most repairs are weak hydraulic pumps ($400-800), leaking rams ($600-1200), or microswitch/latch sensor replacement ($150-400).",
+        "reasonCode": "scanner-capability-needs-code-or-module",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-g6-2.4-timing-chain-leda",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0008, P0009, P0016, P0017, P0300",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-grand-am-front-wheel-hub-bearing-premature-repeat-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0035, C0040",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-grand-am-hazard-warning-switch-failure-disabling-turn-signals",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Toggling the hazard button often temporarily revives the signals, which confirms the diagnosis.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-grand-am-ignition-switch-inadvertent-key-rotation-stall-airbag-non-de",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose low-retention, starting or cylinder complaints separately.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-grand-am-passlock-anti-theft-system-false-activation-causing-no-start",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B3033, P1626",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-grand-prix-ignition-switch-may-slip-out-run-position",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose separate switch/cylinder complaints independently.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-montana-4t65e-automatic-transmission-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "For slipping or shudder, diagnose pressure and solenoid operation first;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-montana-blower-motor-hvac-blower-resistor-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test for power at the blower connector: power present but no fan means a bad motor;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-solstice-passenger-airbag-suppression-sensor-mat-fails-disabling-pass",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "campaign applicability, diagnostic state, part number, programming and VIN fitment must be verified first.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-solstice-high-pressure-fuel-pump-failure-gxp",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose fuel-rail pressure and replace the high-pressure fuel pump;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-trans-am-lt1-optispark-distributor-failure-from-moisture-ozone-contam",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "16, 36, 42",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "pontiac-vibe-evap-system-faults-charcoal-canister-vent-vsv-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "First rule out a loose or worn gas cap, then test the vent VSV and replace it if stuck (a much cheaper repair than the full canister);",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [],
+  "removalProposals": [],
+  "releaseBlockers": [
+    {
+      "type": "no-reviewed-commerce-writes",
+      "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "cf45ba7b263f106572fe2404b20c19be30b60b137a6f6206ba4719b4c007bf51",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "8785259d7e4b6254d9364d294699286828d7ce850e1b0f47642a3a1cb6b23d76",
+        "checkpoint.json": "503a8a6b82f78974473fc566cddd69b42ca2ca127b4726839abb61e972c0da0b",
+        "diagnostic-tool-evidence.json": "147d6bcd45a88153355a3e29c9264dfe6ececd934b2c7fa5d96d94087b535a8c"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 96,
+        "issuesWithDtcCodes": 20,
+        "uniqueDtcCount": 42,
+        "solutionInstructionCount": 87,
+        "dtcDispositionCount": 20,
+        "toolLinkedDispositionCount": 15,
+        "procedureNoToolDispositionCount": 72,
+        "unresolvedToolHoldCount": 20,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "pontiac-aztek-4t65-e-transmission-failure-pressure-control-solenoid-errati",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose stored codes first: P1811 with harsh shifts points to the pressure control solenoid, which requires removing the transmission side cover (engine cradle lowered) to replace.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-aztek-4t65-e-transmission-failure-pressure-control-solenoid-errati",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0717, P0730, P1811, P1860",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-bonneville-crankshaft-position-sensor-ignition-control-module-failure-c",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test the crank sensor and ICM circuits and replace the failed component;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-firebird-700-r4-4l60e-automatic-transmission-3-4-clutch-pack-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1870",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-g6-front-wheel-hub-bearing-growl-groan-highway-speed",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test by swerving gently at 40-50 mph: noise quieter on right turn = left bearing bad.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-g6-low-beam-headlight-connector-melting-pigtail-burn",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace the melted bulb socket pigtail with a ceramic high-temperature H11 connector kit (14-gauge wire) and pack the new connector with dielectric grease.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-g6-stabilitrak-traction-control-abs-warning-from-bcm-connector",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Also scan wheel-speed and steering-position sensors before condemning the BCM.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-g6-retractable-hardtop-hydraulic-pump-microswitch-failures",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Diagnose with a scan tool that reads body module roof codes — most repairs are weak hydraulic pumps ($400-800), leaking rams ($600-1200), or microswitch/latch sensor replacement ($150-400).",
+          "reasonCode": "scanner-capability-needs-code-or-module",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-g6-2.4-timing-chain-leda",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0008, P0009, P0016, P0017, P0300",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-grand-am-front-wheel-hub-bearing-premature-repeat-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0035, C0040",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-grand-am-hazard-warning-switch-failure-disabling-turn-signals",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Toggling the hazard button often temporarily revives the signals, which confirms the diagnosis.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-grand-am-ignition-switch-inadvertent-key-rotation-stall-airbag-non-de",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose low-retention, starting or cylinder complaints separately.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-grand-am-passlock-anti-theft-system-false-activation-causing-no-start",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B3033, P1626",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-grand-prix-ignition-switch-may-slip-out-run-position",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose separate switch/cylinder complaints independently.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-montana-4t65e-automatic-transmission-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "For slipping or shudder, diagnose pressure and solenoid operation first;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-montana-blower-motor-hvac-blower-resistor-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test for power at the blower connector: power present but no fan means a bad motor;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-solstice-passenger-airbag-suppression-sensor-mat-fails-disabling-pass",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "campaign applicability, diagnostic state, part number, programming and VIN fitment must be verified first.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-solstice-high-pressure-fuel-pump-failure-gxp",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose fuel-rail pressure and replace the high-pressure fuel pump;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-trans-am-lt1-optispark-distributor-failure-from-moisture-ozone-contam",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "16, 36, 42",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "pontiac-vibe-evap-system-faults-charcoal-canister-vent-vsv-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "First rule out a loose or worn gas cap, then test the vent VSV and replace it if stuck (a much cheaper repair than the full canister);",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 96,
+      "reviewedProposalPartRows": 0,
+      "approvedRows": 0,
+      "selectedPrimaryRows": 0,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 0,
+      "heldProposalRows": 0,
+      "blockedExistingClaimRows": 0,
+      "changedIssueCount": 0,
+      "mergedStablePartCount": 0,
+      "manifestIssueCount": 0,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "575d7bdcc7a419139af4b7b815b2a7990e21b9dca11e09552d6b00426accd7d3",
+      "01-disposition-ledger.json": "091c538e2345f7bd4066f9bb8fd9d9896fca676d82f72c1da3d2ca1023d19622",
+      "02-fitment-worklist.json": "945783b30c0754c53ecada5908357c400207c85225a2582ac9c549f1feff0b7f",
+      "03-showmetheparts-evidence.json": "613fc4cd561f6f0e7011fb194b1d220eb5ecda84817e8a83179846b165330c67",
+      "04-part-proposals.json": "e427b1c36824d2ccc738a4195293d65774f0f670c4400eec045f79dda1d5c046",
+      "05-direct-link-evidence.json": "7e5942c4dbf64b9f83419012c32abb750fab6e74c3dc98a5d26d35d38f506c22",
+      "06-independent-review.json": "598356b745107c032e730946fde542265c34f40f48960987f587804d6404b6d1",
+      "classification-ledger.json": "8785259d7e4b6254d9364d294699286828d7ce850e1b0f47642a3a1cb6b23d76",
+      "checkpoint.json": "503a8a6b82f78974473fc566cddd69b42ca2ca127b4726839abb61e972c0da0b",
+      "diagnostic-tool-evidence.json": "147d6bcd45a88153355a3e29c9264dfe6ececd934b2c7fa5d96d94087b535a8c"
+    },
+    "reviewRows": [],
+    "removalProposals": [],
+    "releaseBlockers": [
+      {
+        "type": "no-reviewed-commerce-writes",
+        "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "pontiac-aztek-3-4l-v6-intake-manifold-head-gasket-coolant-leaks",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-aztek-4t65-e-transmission-failure-pressure-control-solenoid-errati",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-aztek-erratic-fuel-gauge-from-failed-fuel-level-sensor",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-aztek-instrument-cluster-stepper-motor-failure-stuck-pegged-errati",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-aztek-intermediate-steering-shaft",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-aztek-premature-front-wheel-hub-bearing-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-aztek-rear-liftgate-electronic-release-failure-hatch-will-not-open",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-aztek-versatrak-awd-rear-differential-failure-awd-disable-light-cl",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-bonneville-3800-lim-gasket",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-bonneville-crankshaft-position-sensor-ignition-control-module-failure-c",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-bonneville-fuel-tank-pressure-sensor-defect-fuel-leak-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-bonneville-instrument-cluster-gauge-backlighting-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-bonneville-mass-air-flow-sensor-contamination-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-bonneville-plastic-upper-intake-manifold-degradation-coolant-ingestion",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-bonneville-power-window-regulator-cable-motor-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-bonneville-ssei-supercharger-nose-drive-coupler-bearing-wear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-firebird-3-4l-v6-intake-manifold-head-gasket-coolant-leaks",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-firebird-700-r4-4l60e-automatic-transmission-3-4-clutch-pack-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-firebird-fourth-gen-instrument-cluster-gauge-failures",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-firebird-lt1-optispark",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-firebird-pop-up-headlight-motor-gear-stripping",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-firebird-power-window-motor-regulator-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-firebird-t-top-water-leaks-from-deteriorated-weatherstripping",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-firebird-vats-passkey-anti-theft-system-no-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-2.4-timing-chain-leda",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-front-wheel-bearing-hub-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-front-wheel-hub-bearing-growl-groan-highway-speed",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-intake-manifold-gasket-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-low-beam-headlight-connector-melting-pigtail-burn",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-low-beam-headlights-repeatedly-fail",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-panoramic-sunroof-leaks-mechanical-failures",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-panoramic-sunroof-water-leak-from-disconnected-drain-tubes",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-passlock-anti-theft-no-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-reduced-engine-power-throttle-limp-mode",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-retractable-hardtop-hydraulic-pump-microswitch-failures",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-rocker-panel-lower-door-rust-through",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-stabilitrak-traction-control-abs-warning-from-bcm-connector",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-sudden-loss-electric-power-steering-assist",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g6-transmission-shift-cable-vehicle-not-actually-park",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-g8-fuel-pump-recall",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-am-3.4l-intake-gasket",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-am-front-wheel-hub-bearing-premature-repeat-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-am-hazard-warning-switch-failure-disabling-turn-signals",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-am-ignition-switch-inadvertent-key-rotation-stall-airbag-non-de",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-am-passlock-anti-theft-system-false-activation-causing-no-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-am-power-window-regulator-cable-plastic-clip-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-am-premature-front-brake-rotor-warping-pedal-pulsation",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-am-tank-fuel-pump-module-failure-stalling-no-start-erratic-fuel",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-prix-3-8l-v6-intake-manifold-gasket-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-prix-3800-lim-gasket",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-prix-4t65-e-automatic-transmission-hard-shifting-failure",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-prix-engine-oil-leak-onto-exhaust-manifold-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-prix-headlamp-driver-module-overheat-low-beams-fail",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-prix-hvac-blower-motor-resistor-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-prix-ignition-switch-may-slip-out-run-position",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-prix-key-sticks-won-t-turn-come-out-ignition",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-grand-prix-supercharger-coupler-rattle",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-gto-front-strut-to-tire-rub-destroying-inner-front-tire-sidewall",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-gto-ignition-lock-cylinder-housing-binding-key-will-not-turn",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-gto-instrument-cluster-lcd-odometer-pixel-display-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-gto-internal-clutch-slave-cylinder-throwout-bearing-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-gto-rear-differential-mount-bushing-deterioration-driveline-clun",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-gto-rear-shock-upper-mount-bushing-wear-rear-end-clunk",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-gto-rear-tire-rub-2005-2006",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-montana-3-4l-lower-intake-manifold-gasket-coolant-oil-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-montana-3.4l-intake-gasket",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-montana-4t65e-automatic-transmission-failure",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-montana-aftermarket-dorman-steering-knuckle-recall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-montana-blower-motor-hvac-blower-resistor-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-montana-fuel-pump-fuel-system-failure-causing-stalling-no-start",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-montana-instrument-cluster-speedometer-stepper-motor-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-montana-power-sliding-door-can-open-while-vehicle-is-moving",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-solstice-convertible-top-water-leaks-into-trunk-around-rear-window",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-solstice-high-pressure-fuel-pump-failure-gxp",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-solstice-ignition-switch-can-move-out-run-stalling-engine",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-solstice-no-interior-trunk-release-trunk-becomes-impossible-to-open-d",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-solstice-passenger-airbag-suppression-sensor-mat-fails-disabling-pass",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-solstice-rear-differential-driveline-clunk-gear-whine",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-solstice-reduced-engine-power-limp-mode-from-throttle-body-coking-tac",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-solstice-timing-chain-balance-shaft-chain-stretch-gxp-2-0t",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-solstice-trunk-leak",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-sunfire-2.2-ecotec-head-gasket",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-trans-am-early-ls1-piston-slap-high-oil-consumption",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-trans-am-lt1-optispark-distributor-failure-from-moisture-ozone-contam",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-trans-am-lt1-water-pump-failure-weep-hole-coolant-leak-onto-optispark",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-trans-am-pop-up-headlight-motor-nylon-gear-stripping",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-trans-am-t-top-roof-weatherstrip-leaks",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-vibe-1zz-oil-consumption",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-vibe-2-4l-2az-fe-excessive-oil-consumption-from-defective-piston",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-vibe-ecm-circuit-board-solder-cracks-causing-stalling-no-start",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-vibe-evap-system-faults-charcoal-canister-vent-vsv-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-vibe-front-door-glass-bolts-loosen-window-binds-shatters",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-vibe-power-window-master-switch-overheats-melts-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-vibe-takata-airbag-inflator-rupture-including-2024-do-not-drive-a",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "pontiac-vibe-unintended-acceleration-sticking-accelerator-pedal-floor-mat",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

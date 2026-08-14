@@ -11,11 +11,15 @@
     "05-direct-link-evidence.json"
   ],
   "reviewedArtifactSha256": {
-    "01-disposition-ledger.json": "9c4ce63ab564ca80241e397dd2ba483e5798106000c6d80dd4516441ff77d975",
-    "02-fitment-worklist.json": "1dd5a142ccab2794bb4ce1902572e0005ba7f38348808efc8f669847fbc90be5",
-    "03-showmetheparts-evidence.json": "9ea152ce6e71e75185fd08dbb9cc89b85fc1516d35c819257d3f4d5bb68258a3",
-    "04-part-proposals.json": "34becb3237d12912d5b70f89071fc4856b4a0ed55992ef0e9e8d2042074971c9",
-    "05-direct-link-evidence.json": "f3ab45b67ce306eb005713020a0227c59139372cfcd3d27eacb6d50e27ef2d89"
+    "01-disposition-ledger.json": "6a139668579a7ed5cd02f0f65da97df608f348103ab7961196bd98f48a51ef36",
+    "02-fitment-worklist.json": "ef8da440b3a001d298f41c9cc36686bfdc1e56e547a9184213826bd730c69917",
+    "03-showmetheparts-evidence.json": "07f98270ea15188e449b938d8da6d2d84ed9e9ca2b0a5882ba35b11b162b4803",
+    "04-part-proposals.json": "d40054dfd134c139e6b2a02b53b082b3765a37ec6577de69065584d82aaaaa82",
+    "05-direct-link-evidence.json": "d15e6feba886aa22d30ff8f818915c0e1b1ae813753cf84bce20954d525edaf6"
+  },
+  "supplementalArtifactSha256": {
+    "06-independent-review.json": "bdee8951fae014a27e198b18e46750bc028e1bdf0d08682a551c18a1bc02f634",
+    "existing-public-claim-review.json": "7b122d4210d82156378c3931c59d56383de6f96aad9855ca8b00b491050e0b9a"
   },
   "proposalCount": 34,
   "partRowCount": 54,
@@ -33,21 +37,21 @@
     "reviewedPartRowCount": 54,
     "sourceIssueCount": 70,
     "reviewedIssueCount": 70,
-    "sourceWorkItemCount": 246,
-    "reviewedWorkItemDispositionCount": 246,
-    "terminalWorkItemDispositionCount": 246,
+    "sourceWorkItemCount": 258,
+    "reviewedWorkItemDispositionCount": 258,
+    "terminalWorkItemDispositionCount": 258,
     "proposedWorkItemCount": 34,
-    "heldWorkItemCount": 212,
-    "workItemDispositionSha256": "6fac863e65a7a28eca7362c1ec08d98f6b02f7daf2594b323e9575ff824ed032",
+    "heldWorkItemCount": 224,
+    "workItemDispositionSha256": "54a8483918d493410d71b4481fe89d8aace3bfc62f17e8647f523af6bf136acb",
     "workItemDispositionReasonTally": {
       "eligible-proposal": 34,
       "fitment-confirmed": 5,
-      "fitment-no-catalog": 37,
-      "fitment-unmapped": 115,
+      "fitment-no-catalog": 44,
+      "fitment-unmapped": 118,
       "incomplete-model-or-engine-coverage": 6,
       "no-matching-part-type": 17,
       "no-primary": 14,
-      "unsupported-catalog-application-restriction": 18
+      "unsupported-catalog-application-restriction": 20
     },
     "missingIssues": [],
     "missingWorkItemDispositions": [],
@@ -60,8 +64,10 @@
     "sourcePartRowCount": 54,
     "reviewedPartRowCount": 54,
     "exactProductLinkRowCount": 41,
+    "exactProductLinkCount": 41,
     "noExactProductLinkRowCount": 13,
     "reviewedExactProductLinkRowCount": 41,
+    "reviewedExactProductLinkCount": 41,
     "listingTitleSourceCount": 18,
     "itemSpecificsSourceCount": 23,
     "observedListingTitlePresentCount": 41,
@@ -89,9 +95,9 @@
       "verdict": "block",
       "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
       "reviewedSourceEvidence": {
-        "howToFix": "Replace belt, tensioner, spring, water pump, seals, and applicable balance-shaft belt; do not mix LS and GSR water pumps/belts.",
-        "catalog": "ShowMeTheParts: Continental TB184K1 is a kit without water pump; applications LS/RS/GS/Special Edition on 1994-2001 Integra 1.8L, with no engine-code matrix.",
-        "directLink": "Existing eBay /itm/ URL is an exact Continental TB184K1 product link, but exact identity does not resolve incomplete contents or missing scope."
+        "howToFix": "Replace the complete timing belt kit: belt, tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable.\nNon-VTEC LS (B18B1) timing belt part numbers are 14400-P7J-004 or 14400-PR4-A01, paired with the 19-tooth water pump 19200-P75-003 / 19200-PT5-000 / 19200-PT5-003. The VTEC GSR (B18C1) uses timing belt 14400-P72-004 / 14400-P72-014 paired with a 22-tooth water pump.\nDo NOT mix LS and GSR water pumps — the tooth counts differ (19T vs 22T) and the belts are different lengths.\nProfessional cost for preventive replacement: approximately $350-600. Post-failure repair (valve job / head rebuild) can reach $2,000-3,000+.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/276327487296?_skw=Continental+TB184K1+Engine+Timing+Belt+Kit&hash=item405666d740%3Ag%3AY3AAAOSwXfZlxpBT&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
       }
     },
     {
@@ -100,11 +106,11 @@
       "partNumber": "TB184K1",
       "engineWorkRow": "B18C1",
       "verdict": "block",
-      "reason": "The live claim has no variants and would be shown for B18C1, but ShowMeTheParts does not list GSR for TB184K1 and the article explicitly says the VTEC GSR uses a different belt and 22-tooth pump; the kit also excludes the required water pump.",
+      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
       "reviewedSourceEvidence": {
-        "howToFix": "B18C1 GSR uses its own belt and 22-tooth pump; do not mix it with LS components.",
-        "catalog": "ShowMeTheParts: TB184K1 applications omit GSR and the kit is explicitly without water pump.",
-        "directLink": "Existing eBay /itm/ URL is an exact Continental TB184K1 product link, but it cannot be preserved for the unproven B18C1 scope."
+        "howToFix": "Replace the complete timing belt kit: belt, tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable.\nNon-VTEC LS (B18B1) timing belt part numbers are 14400-P7J-004 or 14400-PR4-A01, paired with the 19-tooth water pump 19200-P75-003 / 19200-PT5-000 / 19200-PT5-003. The VTEC GSR (B18C1) uses timing belt 14400-P72-004 / 14400-P72-014 paired with a 22-tooth water pump.\nDo NOT mix LS and GSR water pumps — the tooth counts differ (19T vs 22T) and the belts are different lengths.\nProfessional cost for preventive replacement: approximately $350-600. Post-failure repair (valve job / head rebuild) can reach $2,000-3,000+.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/276327487296?_skw=Continental+TB184K1+Engine+Timing+Belt+Kit&hash=item405666d740%3Ag%3AY3AAAOSwXfZlxpBT&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
       }
     },
     {
@@ -113,11 +119,11 @@
       "partNumber": "TB184K1",
       "engineWorkRow": "B18C5",
       "verdict": "block",
-      "reason": "The live claim has no variants and would be shown for B18C5, but the catalog provides no B18C5/Type R application evidence and the kit explicitly omits the water pump required by the article.",
+      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
       "reviewedSourceEvidence": {
-        "howToFix": "Use a complete engine-appropriate timing service kit and do not mix the different belt/pump combinations.",
-        "catalog": "ShowMeTheParts: TB184K1 applications omit Type R and expose only generic 1.8L plus non-Type-R trims; kit does not include water pump.",
-        "directLink": "Existing eBay /itm/ URL is an exact Continental TB184K1 product link, but the B18C5 scope and complete-kit role are unsupported."
+        "howToFix": "Replace the complete timing belt kit: belt, tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable.\nNon-VTEC LS (B18B1) timing belt part numbers are 14400-P7J-004 or 14400-PR4-A01, paired with the 19-tooth water pump 19200-P75-003 / 19200-PT5-000 / 19200-PT5-003. The VTEC GSR (B18C1) uses timing belt 14400-P72-004 / 14400-P72-014 paired with a 22-tooth water pump.\nDo NOT mix LS and GSR water pumps — the tooth counts differ (19T vs 22T) and the belts are different lengths.\nProfessional cost for preventive replacement: approximately $350-600. Post-failure repair (valve job / head rebuild) can reach $2,000-3,000+.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/276327487296?_skw=Continental+TB184K1+Engine+Timing+Belt+Kit&hash=item405666d740%3Ag%3AY3AAAOSwXfZlxpBT&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
       }
     },
     {
@@ -128,9 +134,9 @@
       "verdict": "block",
       "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale.",
       "reviewedSourceEvidence": {
-        "howToFix": "Replace any oil-fouled plugs, making replacement conditional on inspection.",
-        "catalog": "ShowMeTheParts: Bosch 9619 double-iridium spark plug, 2010-2013 MDX 3.7L; no application restrictions beyond preset gap.",
-        "directLink": "Existing eBay /itm/ URL is an exact Bosch 9619 product link; conditional repair role remains unresolved."
+        "howToFix": "Replace failed hydraulic motor mounts (front + rear) and any oil-fouled plugs. Many owners install a VCM Tuner / S-VCM Controller to lock the engine in 6-cylinder mode and prevent recurrence. Monitor oil level monthly.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/226904777924?_skw=Bosch+Spark+Plugs+9619+Spark+Plug&hash=item34d49424c4%3Ag%3A7B8AAeSwTU5okfxh&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
       }
     },
     {
@@ -141,9 +147,9 @@
       "verdict": "block",
       "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2.",
       "reviewedSourceEvidence": {
-        "howToFix": "Use a full kit and only OEM Honda or Aisin tensioner; cheap/import-brand tensioners are explicitly rejected.",
-        "catalog": "ShowMeTheParts: Continental PP211LK2 kit with water pump and seals for 1992-1994 Vigor 2.5L; no hydraulic-tensioner/idler/accessory-belt contents stated.",
-        "directLink": "Existing eBay /itm/ URL is an exact Continental PP211LK2 product link, but exact identity conflicts with the prescribed tensioner class and unproven kit contents."
+        "howToFix": "Full timing kit replacement: belt + hydraulic tensioner + water pump + idler + all front seals + accessory belts as one job. A complete Aisin or Allied Motor Parts kit for the G25A1 runs $150-250. Labor at an independent: $400-700. Total: $550-950. Dealer: $1,000-1,500. The job takes ~6-8 hours because the 5-cylinder is longitudinally mounted and accessory removal is fiddlier than a transverse V6. ONLY use the OEM Honda tensioner or Aisin — the import-brand tensioners on AliExpress / cheap Amazon kits routinely fail within 10k miles on this engine.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/267324021898?_skw=Continental+PP211LK2+Engine+Timing+Belt+Kit+with+Water+Pump&hash=item3e3dc0dc8a%3Ag%3AVBcAAeSwrepoc%7Ep4&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
       }
     }
   ],
@@ -151,6 +157,8 @@
     {
       "proposalId": "acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1",
       "issueId": "acura-integra-da-distributor-internal-oil-leak",
+      "workItemId": "acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1",
+      "model": "Integra",
       "partIndex": 0,
       "partNumber": "31-17407",
       "decision": "approve",
@@ -164,6 +172,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "95129K1",
       "decision": "hold_needs_manual",
@@ -177,6 +187,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-0-0--2-7l-v6-c27a",
+      "model": "Legend",
       "partIndex": 1,
       "partNumber": "T129",
       "decision": "approve",
@@ -190,6 +202,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--3-2l-v6-c32a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-0-0--3-2l-v6-c32a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "95193K1",
       "decision": "hold_no_exact_link",
@@ -203,6 +217,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-0-0--3-2l-v6-c32a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-0-0--3-2l-v6-c32a",
+      "model": "Legend",
       "partIndex": 1,
       "partNumber": "T193",
       "decision": "approve",
@@ -216,6 +232,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "WPH-008",
       "decision": "approve",
@@ -229,6 +247,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-1-0--2-7l-v6-c27a",
+      "model": "Legend",
       "partIndex": 1,
       "partNumber": "WP129K1A",
       "decision": "hold_no_exact_link",
@@ -242,6 +262,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-1-0--3-2l-v6-c32a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-1-0--3-2l-v6-c32a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "WP193K1A",
       "decision": "hold_no_exact_link",
@@ -255,6 +277,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--2-7l-v6-c27a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-2-0--2-7l-v6-c27a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "95129K1",
       "decision": "hold_needs_manual",
@@ -268,6 +292,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--2-7l-v6-c27a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-2-0--2-7l-v6-c27a",
+      "model": "Legend",
       "partIndex": 1,
       "partNumber": "T129",
       "decision": "block_wrong_role",
@@ -281,6 +307,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--3-2l-v6-c32a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-2-0--3-2l-v6-c32a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "95193K1",
       "decision": "hold_no_exact_link",
@@ -294,6 +322,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-2-0--3-2l-v6-c32a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-2-0--3-2l-v6-c32a",
+      "model": "Legend",
       "partIndex": 1,
       "partNumber": "T193",
       "decision": "block_wrong_role",
@@ -307,6 +337,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--2-7l-v6-c27a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-3-0--2-7l-v6-c27a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "16149",
       "decision": "block_wrong_role",
@@ -320,6 +352,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--2-7l-v6-c27a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-3-0--2-7l-v6-c27a",
+      "model": "Legend",
       "partIndex": 1,
       "partNumber": "SK0028",
       "decision": "block_incomplete_scope",
@@ -333,6 +367,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--3-2l-v6-c32a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-3-0--3-2l-v6-c32a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "16471",
       "decision": "block_wrong_role",
@@ -346,6 +382,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-3-0--3-2l-v6-c32a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-3-0--3-2l-v6-c32a",
+      "model": "Legend",
       "partIndex": 1,
       "partNumber": "SK0031",
       "decision": "block_incomplete_scope",
@@ -359,6 +397,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-4-0--2-7l-v6-c27a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-4-0--2-7l-v6-c27a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "T41015",
       "decision": "block_wrong_role",
@@ -372,6 +412,8 @@
     {
       "proposalId": "acura-legend-timing-belt-interference-engine--prescription-4-0--3-2l-v6-c32a",
       "issueId": "acura-legend-timing-belt-interference-engine",
+      "workItemId": "acura-legend-timing-belt-interference-engine--prescription-4-0--3-2l-v6-c32a",
+      "model": "Legend",
       "partIndex": 0,
       "partNumber": "T41021",
       "decision": "block_wrong_role",
@@ -385,6 +427,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "40286",
       "decision": "hold_needs_manual",
@@ -398,6 +442,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "95286K1",
       "decision": "hold_needs_manual",
@@ -411,6 +457,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "40286",
       "decision": "hold_needs_manual",
@@ -424,6 +472,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-0-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "95286K1",
       "decision": "hold_needs_manual",
@@ -437,6 +487,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "T41090",
       "decision": "hold_needs_manual",
@@ -450,6 +502,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "ALT16324",
       "decision": "hold_needs_manual",
@@ -463,6 +517,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "T41090",
       "decision": "hold_needs_manual",
@@ -476,6 +532,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-1-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "ALT16324",
       "decision": "hold_needs_manual",
@@ -489,6 +547,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "TKH-001",
       "decision": "hold_needs_manual",
@@ -502,6 +562,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "WP286K1C",
       "decision": "hold_needs_manual",
@@ -515,6 +577,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "TKH-001",
       "decision": "hold_needs_manual",
@@ -528,6 +592,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-2-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "WP286K1C",
       "decision": "hold_needs_manual",
@@ -541,6 +607,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "T41090",
       "decision": "block_wrong_role",
@@ -554,6 +622,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "ALT16324",
       "decision": "block_wrong_role",
@@ -567,6 +637,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "T41090",
       "decision": "block_wrong_role",
@@ -580,6 +652,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-3-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "ALT16324",
       "decision": "block_wrong_role",
@@ -593,6 +667,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "40286",
       "decision": "block_wrong_role",
@@ -606,6 +682,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a3-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a3-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "95286K1",
       "decision": "block_wrong_role",
@@ -619,6 +697,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 0,
       "partNumber": "40286",
       "decision": "block_wrong_role",
@@ -632,6 +712,8 @@
     {
       "proposalId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a5-v6",
       "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a5-v6",
+      "model": "MDX",
       "partIndex": 1,
       "partNumber": "95286K1",
       "decision": "block_wrong_role",
@@ -645,6 +727,8 @@
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "workItemId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
+      "model": "RL",
       "partIndex": 0,
       "partNumber": "TB279",
       "decision": "hold_needs_manual",
@@ -658,6 +742,8 @@
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "workItemId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
+      "model": "RL",
       "partIndex": 1,
       "partNumber": "95279K1",
       "decision": "hold_no_exact_link",
@@ -671,6 +757,8 @@
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-1-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "workItemId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-1-0--3-5l-v6-c35a",
+      "model": "RL",
       "partIndex": 0,
       "partNumber": "T42144",
       "decision": "block_wrong_role",
@@ -684,19 +772,23 @@
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-2-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "workItemId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-2-0--3-5l-v6-c35a",
+      "model": "RL",
       "partIndex": 0,
       "partNumber": "WP279K1A",
       "decision": "hold_no_exact_link",
-      "reason": "The kit includes the prescribed water pump and catalog fitment covers 1996-1999 RL 3.5L, but no exact direct product page was resolved.",
+      "reason": "Repair role and 1996-1999 RL 3.5L catalog fitment are supported, but the current exact-link evidence contains no direct product URL for Dayco WP279K1A.",
       "reviewedSourceEvidence": {
         "howToFix": "Replace the water pump during the complete timing service.",
         "catalog": "ShowMeTheParts: Dayco WP279K1A includes water pump, timing belt, balance-shaft belt, and belt tensioners for 1996-1999 RL 3.5L C35A.",
-        "directLink": "05 reports no exact-product link for WP279K1A; no buy URL can be approved."
+        "directLink": "05 artifact reports no-exact-product-link; no buy URL emitted."
       }
     },
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-2-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "workItemId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-2-0--3-5l-v6-c35a",
+      "model": "RL",
       "partIndex": 1,
       "partNumber": "43133",
       "decision": "approve",
@@ -710,6 +802,8 @@
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-3-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "workItemId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-3-0--3-5l-v6-c35a",
+      "model": "RL",
       "partIndex": 0,
       "partNumber": "SK0028",
       "decision": "hold_needs_manual",
@@ -723,6 +817,8 @@
     {
       "proposalId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-4-0--3-5l-v6-c35a",
       "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "workItemId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-4-0--3-5l-v6-c35a",
+      "model": "RL",
       "partIndex": 0,
       "partNumber": "T42144",
       "decision": "block_wrong_role",
@@ -736,6 +832,8 @@
     {
       "proposalId": "acura-rsx-ac-compressor-clutch-2002--prescription-2-0--2-0l-k20a2-i4",
       "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "workItemId": "acura-rsx-ac-compressor-clutch-2002--prescription-2-0--2-0l-k20a2-i4",
+      "model": "RSX",
       "partIndex": 0,
       "partNumber": "K070669",
       "decision": "block_ambiguous",
@@ -749,6 +847,8 @@
     {
       "proposalId": "acura-rsx-ac-compressor-clutch-2002--prescription-2-0--2-0l-k20a3-i4",
       "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "workItemId": "acura-rsx-ac-compressor-clutch-2002--prescription-2-0--2-0l-k20a3-i4",
+      "model": "RSX",
       "partIndex": 0,
       "partNumber": "K070669",
       "decision": "block_ambiguous",
@@ -762,6 +862,8 @@
     {
       "proposalId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--2-4l-k24a2-i4",
       "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "workItemId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--2-4l-k24a2-i4",
+      "model": "TSX",
       "partIndex": 0,
       "partNumber": "K070677",
       "decision": "block_incomplete_scope",
@@ -775,6 +877,8 @@
     {
       "proposalId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--2-4l-k24z3-i4",
       "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "workItemId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--2-4l-k24z3-i4",
+      "model": "TSX",
       "partIndex": 0,
       "partNumber": "K070677",
       "decision": "block_ambiguous",
@@ -788,6 +892,8 @@
     {
       "proposalId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--3-5l-j35z6-v6",
       "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "workItemId": "acura-tsx-ac-compressor-clutch-2004--prescription-2-0--3-5l-j35z6-v6",
+      "model": "TSX",
       "partIndex": 0,
       "partNumber": "K060468",
       "decision": "block_ambiguous",
@@ -801,6 +907,8 @@
     {
       "proposalId": "acura-vigor-g25a1-timing-belt-interference--prescription-1-0--2-5l-i5-g25a1",
       "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "workItemId": "acura-vigor-g25a1-timing-belt-interference--prescription-1-0--2-5l-i5-g25a1",
+      "model": "Vigor",
       "partIndex": 0,
       "partNumber": "T41020",
       "decision": "block_wrong_role",
@@ -814,6 +922,8 @@
     {
       "proposalId": "acura-vigor-g25a1-timing-belt-interference--prescription-2-0--2-5l-i5-g25a1",
       "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "workItemId": "acura-vigor-g25a1-timing-belt-interference--prescription-2-0--2-5l-i5-g25a1",
+      "model": "Vigor",
       "partIndex": 0,
       "partNumber": "WP211K1A",
       "decision": "hold_no_exact_link",
@@ -827,6 +937,8 @@
     {
       "proposalId": "acura-vigor-g25a1-timing-belt-interference--prescription-2-0--2-5l-i5-g25a1",
       "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "workItemId": "acura-vigor-g25a1-timing-belt-interference--prescription-2-0--2-5l-i5-g25a1",
+      "model": "Vigor",
       "partIndex": 1,
       "partNumber": "41103",
       "decision": "approve",
@@ -840,6 +952,8 @@
     {
       "proposalId": "acura-vigor-g25a1-timing-belt-interference--prescription-4-0--2-5l-i5-g25a1",
       "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "workItemId": "acura-vigor-g25a1-timing-belt-interference--prescription-4-0--2-5l-i5-g25a1",
+      "model": "Vigor",
       "partIndex": 0,
       "partNumber": "SK0045",
       "decision": "hold_no_exact_link",

@@ -1,0 +1,3895 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Pontiac",
+  "makeKey": "pontiac",
+  "makeIndex": 38,
+  "totalMakes": 54,
+  "issueCount": 96,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 45,
+    "diagnosis-dependent": 18,
+    "recall/dealer": 15,
+    "service/tool/fluid": 7,
+    "no-commerce": 11
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 20,
+    "uniqueDtcCount": 42,
+    "instructionCount": 87,
+    "dtcDispositionCount": 20,
+    "toolLinkedCount": 15,
+    "procedureNoToolCount": 72,
+    "unresolvedToolHoldCount": 20
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "pontiac-aztek-3-4l-v6-intake-manifold-head-gasket-coolant-leaks",
+      "make": "Pontiac",
+      "model": "Aztek",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "3.4L V6 Intake Manifold and Head Gasket Coolant Leaks (Dex-Cool)",
+      "howToFix": "Replace the lower intake manifold gaskets with updated Fel-Pro 'Problem Solver' metal-carrier gaskets and perform a full cooling system flush. If the engine overheated, have the heads checked for warpage and replace head gaskets as needed. Service Dex-Cool on time and never let the system run low.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the engine overheated, have the heads checked for warpage and replace head gaskets as needed."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-aztek-3-4l-v6-intake-manifold-head-gasket-coolant-leaks--prescription-0-0--all-engines",
+        "pontiac-aztek-3-4l-v6-intake-manifold-head-gasket-coolant-leaks--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-aztek-4t65-e-transmission-failure-pressure-control-solenoid-errati",
+      "make": "Pontiac",
+      "model": "Aztek",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "4T65-E Transmission Failure and Pressure Control Solenoid Erratic Shifting",
+      "howToFix": "Diagnose stored codes first: P1811 with harsh shifts points to the pressure control solenoid, which requires removing the transmission side cover (engine cradle lowered) to replace. Severely slipping or non-driving units need a rebuilt or remanufactured 4T65-E. Fluid and filter service every 50,000 miles extends solenoid and clutch life.",
+      "dtcCodes": [
+        "P0717",
+        "P0730",
+        "P1811",
+        "P1860"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose stored codes first: P1811 with harsh shifts points to the pressure control solenoid, which requires removing the transmission side cover (engine cradle lowered) to replace."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P0717, P0730, P1811, P1860"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-aztek-4t65-e-transmission-failure-pressure-control-solenoid-errati--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-aztek-erratic-fuel-gauge-from-failed-fuel-level-sensor",
+      "make": "Pontiac",
+      "model": "Aztek",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Erratic Fuel Gauge from Failed Fuel Level Sensor",
+      "howToFix": "Replace the fuel level sensor/sending unit, which on the Aztek requires dropping the fuel tank to access the pump module — many shops recommend replacing the complete pump module at the same time given the labor overlap. Inspect and clean the sender connector and wiring for corrosion before condemning the sender.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and clean the sender connector and wiring for corrosion before condemning the sender."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-aztek-erratic-fuel-gauge-from-failed-fuel-level-sensor--prescription-0-0--all-engines",
+        "pontiac-aztek-erratic-fuel-gauge-from-failed-fuel-level-sensor--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-aztek-instrument-cluster-stepper-motor-failure-stuck-pegged-errati",
+      "make": "Pontiac",
+      "model": "Aztek",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Instrument Cluster Stepper Motor Failure — Stuck, Pegged, or Erratic Gauges",
+      "howToFix": "Repair rather than replace: install updated Switec X27.168 stepper motors (the GM-authorized replacement), renew the backlight bulbs, and reflow the cracked solder joints. Mail-in cluster rebuild services do all of this with a warranty; handy DIYers can replace the motors with a soldering iron for under $100 in parts.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-aztek-instrument-cluster-stepper-motor-failure-stuck-pegged-errati--prescription-0-0--all-engines",
+        "pontiac-aztek-instrument-cluster-stepper-motor-failure-stuck-pegged-errati--prescription-1-0--all-engines",
+        "pontiac-aztek-instrument-cluster-stepper-motor-failure-stuck-pegged-errati--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-aztek-intermediate-steering-shaft",
+      "make": "Pontiac",
+      "model": "Aztek",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [
+        "AWD",
+        "Base",
+        "GT",
+        "Rally"
+      ],
+      "engines": [
+        "3.4L LA1 V6"
+      ],
+      "title": "Aztek/Rendezvous Intermediate Steering Shaft — 2003 Recall + General Clunk Issue",
+      "howToFix": "Recall: check VIN at NHTSA — affected 2003 cars get free shaft replacement. General clunk: disassemble the intermediate shaft, clean and re-lube splines with synthetic grease (DIY) or pay ~$80 shop labor. If splines are visibly worn, replace the shaft ($150-$300 part). GM \"shaft lube kit\" with snap-in collar is a durable fix.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Recall: check VIN at NHTSA — affected 2003 cars get free shaft replacement."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-aztek-intermediate-steering-shaft--prescription-0-0--3-4l-la1-v6"
+      ]
+    },
+    {
+      "issueId": "pontiac-aztek-premature-front-wheel-hub-bearing-failure",
+      "make": "Pontiac",
+      "model": "Aztek",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Premature Front Wheel Hub Bearing Failure",
+      "howToFix": "Replace the failed hub/bearing assembly with a quality (preferably OE-grade) unit, torque the axle nut to spec, and clean the integrated wheel speed sensor connector to clear ABS/AWD warnings. Inspect both sides — owners frequently report sequential failure of the opposite hub.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect both sides — owners frequently report sequential failure of the opposite hub."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-aztek-premature-front-wheel-hub-bearing-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-aztek-rear-liftgate-electronic-release-failure-hatch-will-not-open",
+      "make": "Pontiac",
+      "model": "Aztek",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear Liftgate Electronic Release Failure — Hatch Will Not Open",
+      "howToFix": "Replace the failed liftgate latch/release actuator (accessed by removing the interior hatch trim and manually tripping the latch with a screwdriver while an assistant pulls the gate). Check the release circuit fuse and wiring first, and replace both gas struts if the hatch will not stay up.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the release circuit fuse and wiring first, and replace both gas struts if the hatch will not stay up."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-aztek-rear-liftgate-electronic-release-failure-hatch-will-not-open--prescription-0-0--all-engines",
+        "pontiac-aztek-rear-liftgate-electronic-release-failure-hatch-will-not-open--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-aztek-versatrak-awd-rear-differential-failure-awd-disable-light-cl",
+      "make": "Pontiac",
+      "model": "Aztek",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Versatrak AWD Rear Differential Failure — AWD Disable Light and Clutch Chatter",
+      "howToFix": "Change the Versatrak rear differential fluid with the correct GM fluid every 15,000-30,000 miles — early fluid service cures most chatter and groaning. Fix seal leaks promptly; once the clutch pumps or check valves fail, the accepted repair is a rebuilt or good used rear carrier assembly (GM part 88894200 era).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "once the clutch pumps or check valves fail, the accepted repair is a rebuilt or good used rear carrier assembly (GM part 88894200 era)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-bonneville-crankshaft-position-sensor-ignition-control-module-failure-c",
+      "make": "Pontiac",
+      "model": "Bonneville",
+      "years": [
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Crankshaft Position Sensor / Ignition Control Module Failure Causing Stalling and No-Start",
+      "howToFix": "Test the crank sensor and ICM circuits and replace the failed component; the dual CKP sensor sits behind the harmonic balancer, so the crank pulley must be pulled, and a crank relearn may be required after replacement. Many high-mileage owners replace the CKP sensor and ICM together to end repeat intermittent stalls.",
+      "dtcCodes": [
+        "P0336",
+        "P0337"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Test the crank sensor and ICM circuits and replace the failed component;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0336, P0337"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-bonneville-crankshaft-position-sensor-ignition-control-module-failure-c--prescription-0-0--all-engines",
+        "pontiac-bonneville-crankshaft-position-sensor-ignition-control-module-failure-c--prescription-1-0--all-engines",
+        "pontiac-bonneville-crankshaft-position-sensor-ignition-control-module-failure-c--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-bonneville-ssei-supercharger-nose-drive-coupler-bearing-wear",
+      "make": "Pontiac",
+      "model": "Bonneville",
+      "years": [
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "SSEi Supercharger Nose-Drive Coupler and Bearing Wear (Eaton M62/M90)",
+      "howToFix": "Rebuild the supercharger nose drive with an Eaton-spec kit (front and rear bearings, coupler, snout seal, snap ring) and refill with proper supercharger oil, or install a rebuilt snout assembly from a 3800 specialist such as ZZPerformance. This is a well-documented DIY-friendly repair on these cars.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-bonneville-ssei-supercharger-nose-drive-coupler-bearing-wear--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-bonneville-3800-lim-gasket",
+      "make": "Pontiac",
+      "model": "Bonneville",
+      "years": [
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [
+        "GXP",
+        "SE",
+        "SLE",
+        "SSE",
+        "SSEi"
+      ],
+      "engines": [
+        "3.8L L36 (Series II/III)",
+        "3.8L L67 Supercharged"
+      ],
+      "title": "Bonneville 3800 V6 Lower Intake Manifold (LIM) Gasket Failure",
+      "howToFix": "Replace LIM gasket with updated Fel-Pro MS98003T (improved metal-reinforced) — $400-$800 at independent. Replace upper intake plenum if cracked. Drain Dex-Cool and refill with Zerex G-05. Check oil for coolant at every change.",
+      "dtcCodes": [
+        "P0171",
+        "P0174",
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check oil for coolant at every change."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174, P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-bonneville-3800-lim-gasket--prescription-0-0--3-8l-l36-series-ii-iii",
+        "pontiac-bonneville-3800-lim-gasket--prescription-0-0--3-8l-l67-supercharged"
+      ]
+    },
+    {
+      "issueId": "pontiac-bonneville-plastic-upper-intake-manifold-degradation-coolant-ingestion",
+      "make": "Pontiac",
+      "model": "Bonneville",
+      "years": [
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Plastic Upper Intake Manifold (Plenum) Degradation and Coolant Ingestion (3800 Series II)",
+      "howToFix": "Replace the upper intake manifold with an updated unit (aftermarket versions include a reinforced/aluminum EGR sleeve) along with new gaskets; most shops replace the lower intake gaskets at the same time since access overlaps. Monitor coolant level closely and never keep driving an engine that is consuming coolant with no visible leak.",
+      "dtcCodes": [
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor coolant level closely and never keep driving an engine that is consuming coolant with no visible leak."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-bonneville-plastic-upper-intake-manifold-degradation-coolant-ingestion--prescription-0-0--all-engines",
+        "pontiac-bonneville-plastic-upper-intake-manifold-degradation-coolant-ingestion--prescription-1-0--all-engines",
+        "pontiac-bonneville-plastic-upper-intake-manifold-degradation-coolant-ingestion--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-bonneville-mass-air-flow-sensor-contamination-failure",
+      "make": "Pontiac",
+      "model": "Bonneville",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Mass Air Flow (MAF) Sensor Contamination and Failure",
+      "howToFix": "Clean the sensor element with dedicated MAF cleaner as a first step; if symptoms or codes return, replace the MAF sensor, a common and straightforward repair on these cars. Also verify the intake tube is sealed and check the MAF/O2 fuse, which feeds the sensor's 12V supply.",
+      "dtcCodes": [
+        "P0101",
+        "P0102",
+        "P0103"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Also verify the intake tube is sealed and check the MAF/O2 fuse, which feeds the sensor's 12V supply."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0101, P0102, P0103"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-bonneville-mass-air-flow-sensor-contamination-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-bonneville-instrument-cluster-gauge-backlighting-failure",
+      "make": "Pontiac",
+      "model": "Bonneville",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Instrument Cluster Gauge (Stepper Motor) and Backlighting Failure",
+      "howToFix": "Have the cluster rebuilt with updated X27.168-style stepper motors and new backlighting bulbs (mail-in services run about $130-$250 and preserve the odometer mileage), or replace the faulty stepper motors yourself with basic soldering skills. Used replacement clusters require mileage reprogramming, so rebuilding the original is the accepted fix.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-bonneville-power-window-regulator-cable-motor-failure",
+      "make": "Pontiac",
+      "model": "Bonneville",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Window Regulator Cable and Motor Failure",
+      "howToFix": "Replace the failed regulator (and motor, which is often sold as one assembly) with an updated aftermarket unit; the door panel must come off, and owners commonly replace regulators on multiple doors over the car's life. Aftermarket assemblies are inexpensive, making this a manageable repair at an independent shop or DIY.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-bonneville-power-window-regulator-cable-motor-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-bonneville-fuel-tank-pressure-sensor-defect-fuel-leak-fire-risk",
+      "make": "Pontiac",
+      "model": "Bonneville",
+      "years": [
+        2002,
+        2003
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fuel Tank Pressure Sensor Defect — Fuel Leak and Fire Risk (NHTSA Recall 03V238000, SSEi)",
+      "howToFix": "Check the VIN in the NHTSA and GM recall systems for campaign 03V238000/03038 completion or an open remedy. If fuel odor or leakage is present, stop refueling, shut the vehicle off away from ignition sources, do not restart it, and arrange qualified inspection. The campaign remedy is dealer replacement of the fuel-tank pressure sensor; current availability and any charge for a vehicle of this age must be confirmed with GM rather than promised here. Do not buy a pressure sensor or other EVAP/fuel-system part from this page; recall eligibility, leak condition, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN in the NHTSA and GM recall systems for campaign 03V238000/03038 completion or an open remedy."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If fuel odor or leakage is present, stop refueling, shut the vehicle off away from ignition sources, do not restart it, and arrange qualified inspection."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-firebird-700-r4-4l60e-automatic-transmission-3-4-clutch-pack-failure",
+      "make": "Pontiac",
+      "model": "Firebird",
+      "years": [
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "700-R4/4L60E Automatic Transmission 3-4 Clutch Pack Failure",
+      "howToFix": "A quality rebuild that addresses the root cause — Sonnax/TransGo corrective parts, upgraded 3-4 clutch pack and band, and verification of proper line-pressure rise — is the accepted fix. A parts-swap rebuild without these corrections commonly fails again within tens of thousands of miles.",
+      "dtcCodes": [
+        "P1870"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P1870"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-firebird-pop-up-headlight-motor-gear-stripping",
+      "make": "Pontiac",
+      "model": "Firebird",
+      "years": [
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Pop-Up Headlight Motor Gear Stripping (Headlights Stuck Up or Down)",
+      "howToFix": "Rebuild the original motor with an aftermarket brass or aluminum gear kit, or rotate the stock nylon gear 180 degrees to engage the unused teeth as a free interim fix. Replacement motors are also available; verify wiring, fuses, and grounds first by checking whether the manual knob on the motor spins when the switch is operated.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "verify wiring, fuses, and grounds first by checking whether the manual knob on the motor spins when the switch is operated."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-firebird-pop-up-headlight-motor-gear-stripping--prescription-0-0--all-engines",
+        "pontiac-firebird-pop-up-headlight-motor-gear-stripping--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-firebird-power-window-motor-regulator-failure",
+      "make": "Pontiac",
+      "model": "Firebird",
+      "years": [
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Window Motor and Regulator Failure (Slow or Stuck Windows)",
+      "howToFix": "Replace the failed window motor (and regulator if the cable/sector gear is worn), drilling out the factory rivets and converting to bolts for easier future service. Annual lubrication of the window tracks and addressing the passenger-door power-feed voltage drop extend motor life.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-firebird-power-window-motor-regulator-failure--prescription-0-0--all-engines",
+        "pontiac-firebird-power-window-motor-regulator-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-firebird-t-top-water-leaks-from-deteriorated-weatherstripping",
+      "make": "Pontiac",
+      "model": "Firebird",
+      "years": [
+        1982,
+        1983,
+        1984,
+        1985,
+        1986,
+        1987,
+        1988,
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "T-Top Water Leaks from Deteriorated Weatherstripping",
+      "howToFix": "Clean and recondition marginal seals with silicone/dielectric weatherstrip grease (GM 12345579) and adjust the door glass for firm seal contact; brittle or cracked weatherstrip must be replaced with a full reproduction seal kit. Persistent leaks at the windshield header may require removing trim and re-sealing with urethane adhesive.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-firebird-t-top-water-leaks-from-deteriorated-weatherstripping--prescription-0-0--all-engines",
+        "pontiac-firebird-t-top-water-leaks-from-deteriorated-weatherstripping--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-firebird-vats-passkey-anti-theft-system-no-start",
+      "make": "Pontiac",
+      "model": "Firebird",
+      "years": [
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "VATS/PassKey Anti-Theft System No-Start (Security Light, Car Won't Crank or Stalls)",
+      "howToFix": "Replace the worn key and/or ignition lock cylinder, or repair the broken pellet-sensing wires in the column. The widely accepted permanent fix on these aging cars is a resistor bypass matching one of GM's 15 pellet values (or a bypass module) wired into the VATS sensing circuit, a procedure extensively documented on F-body forums.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-firebird-vats-passkey-anti-theft-system-no-start--prescription-0-0--all-engines",
+        "pontiac-firebird-vats-passkey-anti-theft-system-no-start--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-firebird-3-4l-v6-intake-manifold-head-gasket-coolant-leaks",
+      "make": "Pontiac",
+      "model": "Firebird",
+      "years": [
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "3.4L V6 Intake Manifold and Head Gasket Coolant Leaks (1993-1995)",
+      "howToFix": "Replace the intake manifold gaskets with updated steel-core Fel-Pro gaskets after pressure-testing to confirm the leak source; if combustion gases are present in the coolant, the head gasket must be replaced as well. Flush the cooling system and maintain fresh coolant to slow gasket deterioration.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace the intake manifold gaskets with updated steel-core Fel-Pro gaskets after pressure-testing to confirm the leak source;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-firebird-3-4l-v6-intake-manifold-head-gasket-coolant-leaks--prescription-0-0--all-engines",
+        "pontiac-firebird-3-4l-v6-intake-manifold-head-gasket-coolant-leaks--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-firebird-fourth-gen-instrument-cluster-gauge-failures",
+      "make": "Pontiac",
+      "model": "Firebird",
+      "years": [
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fourth-Gen Instrument Cluster and Gauge Failures (Multiple Gauges Dead, Warning Lights On)",
+      "howToFix": "Clean and re-secure the cluster grounds and connectors first — bad grounds and corroded PCM/cluster connector pins fix many cases. If wiring checks out, repair or replace the cluster circuit board/stepper motors or swap in a known-good used cluster.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-firebird-fourth-gen-instrument-cluster-gauge-failures--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-firebird-lt1-optispark",
+      "make": "Pontiac",
+      "model": "Firebird",
+      "years": [
+        1993,
+        1994,
+        1995,
+        1996,
+        1997
+      ],
+      "trims": [
+        "Base",
+        "Formula",
+        "Trans Am",
+        "WS6"
+      ],
+      "engines": [
+        "5.7L LT1 V8"
+      ],
+      "title": "Firebird LT1 Optispark Distributor Failure",
+      "howToFix": "Replace Optispark with a 1995+ vented Delco unit ($250-$500 part). ALWAYS replace the water pump at the same time ($150-$250 part) — they are the same labor job (water pump must come off to access the Optispark). Total job ~$400-$900 at independent. Confirm the vent tube routing on later \"vented\" Optispark.",
+      "dtcCodes": [
+        "P0300",
+        "P0351",
+        "P0352",
+        "P0353",
+        "P0354"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the vent tube routing on later \"vented\" Optispark."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0351, P0352, P0353, P0354"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-firebird-lt1-optispark--prescription-0-0--5-7l-lt1-v8",
+        "pontiac-firebird-lt1-optispark--prescription-1-0--5-7l-lt1-v8"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-front-wheel-bearing-hub-failure",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front wheel bearing/hub failure (humming/grinding noise)",
+      "howToFix": "Replace the affected front wheel bearing/hub assembly (a bolt-on unit). They are often replaced in pairs; quality units (e.g., Timken/SKF) are recommended.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-g6-front-wheel-bearing-hub-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-front-wheel-hub-bearing-growl-groan-highway-speed",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Wheel Hub Bearing Growl/Groan at Highway Speed",
+      "howToFix": "Replace the failed bolt-on front hub assembly (DIY-friendly, no press needed). Test by swerving gently at 40-50 mph: noise quieter on right turn = left bearing bad. Use Timken/SKF/Moog for longevity.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Test by swerving gently at 40-50 mph: noise quieter on right turn = left bearing bad."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-g6-front-wheel-hub-bearing-growl-groan-highway-speed--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-low-beam-headlight-connector-melting-pigtail-burn",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Low-Beam Headlight Connector Melting / Pigtail Burn",
+      "howToFix": "Replace the melted bulb socket pigtail with a ceramic high-temperature H11 connector kit (14-gauge wire) and pack the new connector with dielectric grease. Inspect both sides even if only one has failed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Replace the melted bulb socket pigtail with a ceramic high-temperature H11 connector kit (14-gauge wire) and pack the new connector with dielectric grease."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect both sides even if only one has failed."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-g6-low-beam-headlight-connector-melting-pigtail-burn--prescription-0-0--all-engines",
+        "pontiac-g6-low-beam-headlight-connector-melting-pigtail-burn--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-low-beam-headlights-repeatedly-fail",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Low-beam headlights repeatedly fail (melted bulb connector/socket)",
+      "howToFix": "Replace the melted bulb socket/connector pigtail (often sold as a repair harness). A durable fix is upgrading to ceramic or gold-plated soldered connectors. Inspect fuses (commonly 7 and 9) and the headlight switch/wiring for corrosion.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect fuses (commonly 7 and 9) and the headlight switch/wiring for corrosion."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-g6-low-beam-headlights-repeatedly-fail--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-panoramic-sunroof-leaks-mechanical-failures",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Panoramic sunroof leaks and mechanical failures",
+      "howToFix": "Clear and re-secure or replace the sunroof drain tubes so they stay seated at the outlets; repair or replace the sunshade mechanism and any loose panel hardware. Keep drains clear of debris.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-g6-panoramic-sunroof-leaks-mechanical-failures--prescription-0-0--all-engines",
+        "pontiac-g6-panoramic-sunroof-leaks-mechanical-failures--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-panoramic-sunroof-water-leak-from-disconnected-drain-tubes",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Panoramic Sunroof Water Leak from Disconnected Drain Tubes",
+      "howToFix": "Reattach and extend rear sunroof drains per GM TSB 06-08-57-004E (use longer hose with proper grommets). Clear all four drain tubes with low-pressure compressed air. Avoid wire snakes, which can puncture the tubes.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-g6-passlock-anti-theft-no-start",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Passlock anti-theft no-start (security light on)",
+      "howToFix": "Temporary: turn key to ON and wait ~10 minutes until the security light stops flashing (repeat the relearn cycle as needed). Permanent fix is replacing the ignition lock cylinder / Passlock sensor and relearning the system, sometimes with a fresh dealer key.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-g6-passlock-anti-theft-no-start--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-rocker-panel-lower-door-rust-through",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rocker Panel and Lower Door Rust-Through",
+      "howToFix": "Catch early: grind to bare metal, treat with rust converter, prime and topcoat. Advanced cases require cut-and-weld rocker patch panels ($200 per side in parts, ~$1000 body-shop labor). GM's 6-year/100k corrosion warranty has long expired on these vehicles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-g6-stabilitrak-traction-control-abs-warning-from-bcm-connector",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "StabiliTrak / Traction Control / ABS Warning from BCM Connector Corrosion",
+      "howToFix": "Remove the passenger kick panel to access the three large BCM connectors (especially the C2 connector); unlatch via the plastic levers, inspect for green/fretting corrosion, clean with electrical contact cleaner, apply dielectric grease per GM procedure (one-inch nylon bristle brush on C2 pins), and re-seat several times. Note: the 'Reduced Engine Power' message specifically is often caused by a separate IP-to-body harness connector in the DRIVER-side (left) kick panel carrying the APP signal — inspect both sides. Do NOT replace the BCM for this condition. Also scan wheel-speed and steering-position sensors before condemning the BCM.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "unlatch via the plastic levers, inspect for green/fretting corrosion, clean with electrical contact cleaner, apply dielectric grease per GM procedure (one-inch nylon bristle brush on C2 pins), and re-seat several times."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Note: the 'Reduced Engine Power' message specifically is often caused by a separate IP-to-body harness connector in the DRIVER-side (left) kick panel carrying the APP signal — inspect both sides."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Also scan wheel-speed and steering-position sensors before condemning the BCM."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-g6-sudden-loss-electric-power-steering-assist",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Sudden loss of electric power steering (EPS) assist",
+      "howToFix": "A sudden loss of assist requires greater steering effort, especially at low speed; reduce speed and stop safely if control is affected. Check the VIN with NHTSA and GM for open campaigns and have codes/build applicability diagnosed before repair. Ask the dealer to confirm current remedy availability and any charge in 2026. Do not buy a torque sensor, column, EPS motor or controller from this page; the applicable bulletin, failed component, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN with NHTSA and GM for open campaigns and have codes/build applicability diagnosed before repair."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Ask the dealer to confirm current remedy availability and any charge in 2026."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-g6-transmission-shift-cable-vehicle-not-actually-park",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Transmission shift cable / vehicle not actually in Park (rollaway)",
+      "howToFix": "Under recall, dealers install a retainer/clip over the cable end or replace the shift cable as necessary, at no charge. Out of recall, the shift cable assembly is replaced. Use the parking brake until repaired.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-g6-intake-manifold-gasket-coolant-leak",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Intake manifold gasket coolant leak (3.5L V6)",
+      "howToFix": "Replace the lower intake manifold gaskets, ideally with an upgraded metal-framed set (e.g., Fel-Pro). It's a 4-6 hour job; check the oil for a milky appearance before driving as a contaminated engine should not be run.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "check the oil for a milky appearance before driving as a contaminated engine should not be run."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-g6-intake-manifold-gasket-coolant-leak--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-reduced-engine-power-throttle-limp-mode",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Reduced Engine Power / throttle limp mode (P2135, P0121, P2101)",
+      "howToFix": "Inspect and clean the throttle body and TPS connector; check wiring for corrosion/water intrusion. The common fix is replacing the electronic throttle body assembly; relearn the throttle after replacement.",
+      "dtcCodes": [
+        "P0121",
+        "P2101",
+        "P2135"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and clean the throttle body and TPS connector;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "check wiring for corrosion/water intrusion."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0121, P2101, P2135"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-g6-reduced-engine-power-throttle-limp-mode--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-retractable-hardtop-hydraulic-pump-microswitch-failures",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [
+        "GT Convertible",
+        "GTP Convertible"
+      ],
+      "engines": [],
+      "title": "Retractable Hardtop Hydraulic Pump and Microswitch Failures",
+      "howToFix": "Diagnose with a scan tool that reads body module roof codes — most repairs are weak hydraulic pumps ($400-800), leaking rams ($600-1200), or microswitch/latch sensor replacement ($150-400). Keep trunk drain channel clear so a stuck top does not flood the trunk.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "scanner-capability-needs-code-or-module",
+          "excerpt": "Diagnose with a scan tool that reads body module roof codes — most repairs are weak hydraulic pumps ($400-800), leaking rams ($600-1200), or microswitch/latch sensor replacement ($150-400)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-g6-retractable-hardtop-hydraulic-pump-microswitch-failures--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-g6-2.4-timing-chain-leda",
+      "make": "Pontiac",
+      "model": "G6",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "Base",
+        "GT",
+        "GTP",
+        "SE"
+      ],
+      "engines": [
+        "2.4L Ecotec LE5 / LAT (Hybrid)"
+      ],
+      "title": "G6 2.4L Ecotec (LE5/LAT) Timing Chain Stretch",
+      "howToFix": "Full timing chain kit replacement (chain, tensioner, guides) ~$1,200-$2,000. If you experience the issue under 100,000 miles, request a goodwill-assistance review at a GM/Chevy dealer (not all approved, but some are). Use dexos1 full-synthetic 5W-30 and stick to 5,000-mile intervals going forward.",
+      "dtcCodes": [
+        "P0008",
+        "P0009",
+        "P0016",
+        "P0017",
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "excerpt": "P0008, P0009, P0016, P0017, P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-g8-fuel-pump-recall",
+      "make": "Pontiac",
+      "model": "G8",
+      "years": [
+        2008,
+        2009
+      ],
+      "trims": [
+        "Base",
+        "GT",
+        "GXP"
+      ],
+      "engines": [
+        "3.6L V6",
+        "6.0L L76 V8",
+        "6.2L LS3 V8"
+      ],
+      "title": "G8 Fuel-Tank-Module Issues + Brake Lamp Switch Recall",
+      "howToFix": "Brake-lamp switch is a 15-minute DIY replacement ($30-$50). Fuel pump assembly is more involved — $400-$700 OEM part, install via the tank-top access plate (no need to drop the tank). Confirm any open recalls on your VIN — Pontiac/GM recalls remain open for free dealer repair indefinitely.",
+      "dtcCodes": [
+        "P0087",
+        "P0171"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Confirm any open recalls on your VIN — Pontiac/GM recalls remain open for free dealer repair indefinitely."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087, P0171"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-grand-am-3.4l-intake-gasket",
+      "make": "Pontiac",
+      "model": "Grand Am",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [
+        "GT",
+        "GT-V6",
+        "GT1",
+        "SE",
+        "SE1",
+        "SE2"
+      ],
+      "engines": [
+        "3.4L LA1 V6"
+      ],
+      "title": "Grand Am 3.4L V6 Upper/Lower Intake Gasket Failure",
+      "howToFix": "Updated Fel-Pro MS98010T LIM gasket (metal-reinforced) plus the matching UIM gasket and plenum repair/replacement. $500-$900 at independent. Replace coolant temperature sensor and thermostat at the same time. Drain Dex-Cool, switch to G-05.",
+      "dtcCodes": [
+        "P0171",
+        "P0174",
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174, P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-am-3-4l-intake-gasket--prescription-0-0--3-4l-la1-v6",
+        "pontiac-grand-am-3-4l-intake-gasket--prescription-1-0--3-4l-la1-v6",
+        "pontiac-grand-am-3-4l-intake-gasket--prescription-2-0--3-4l-la1-v6"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-am-front-wheel-hub-bearing-premature-repeat-failure",
+      "make": "Pontiac",
+      "model": "Grand Am",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Wheel Hub Bearing Premature and Repeat Failure",
+      "howToFix": "Replace the complete hub/bearing assembly (the sensor is integral and not serviceable separately) with a quality unit, torqued to spec with a new axle nut. Inspect and repair the wheel-speed sensor harness where it flexes near the strut before condemning a second hub.",
+      "dtcCodes": [
+        "C0035",
+        "C0040"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and repair the wheel-speed sensor harness where it flexes near the strut before condemning a second hub."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C0035, C0040"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-am-front-wheel-hub-bearing-premature-repeat-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-am-hazard-warning-switch-failure-disabling-turn-signals",
+      "make": "Pontiac",
+      "model": "Grand Am",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Hazard Warning Switch Failure Disabling Turn Signals (Recall 03V327000)",
+      "howToFix": "Replace the hazard warning switch, which restores turn-signal operation. 2000-2001 cars may still qualify for free replacement under recall 03V327000; for other years it is an inexpensive part swap at the steering column. Toggling the hazard button often temporarily revives the signals, which confirms the diagnosis.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Toggling the hazard button often temporarily revives the signals, which confirms the diagnosis."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-am-hazard-warning-switch-failure-disabling-turn-signals--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-am-ignition-switch-inadvertent-key-rotation-stall-airbag-non-de",
+      "make": "Pontiac",
+      "model": "Grand Am",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Ignition Switch Inadvertent Key Rotation — Stall and Airbag Non-Deployment (Recall 14V-400)",
+      "howToFix": "Until the campaign remedy is confirmed complete, remove other items and the key fob from the ignition-key ring as NHTSA directs. Check the VIN with NHTSA and GM and ask the dealer to confirm current remedy availability and any charge in 2026. Diagnose low-retention, starting or cylinder complaints separately. Do not buy an ignition switch, lock cylinder, key insert or cover from this page; campaign status, key configuration, failed path, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN with NHTSA and GM and ask the dealer to confirm current remedy availability and any charge in 2026."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose low-retention, starting or cylinder complaints separately."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-grand-am-passlock-anti-theft-system-false-activation-causing-no-start",
+      "make": "Pontiac",
+      "model": "Grand Am",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Passlock Anti-Theft System False Activation Causing No-Start",
+      "howToFix": "Replace the ignition lock cylinder (which contains the Passlock sensor) and perform the 10-30 minute Passlock relearn procedure. As a stopgap, owners can do the 10-minute relearn (key on, wait for the security light to stop flashing) to start the car; many DIYers permanently bypass the sensor with an inline resistor on the Passlock signal wires.",
+      "dtcCodes": [
+        "B3033",
+        "P1626"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "B3033, P1626"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-am-passlock-anti-theft-system-false-activation-causing-no-start--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-am-power-window-regulator-cable-plastic-clip-failure",
+      "make": "Pontiac",
+      "model": "Grand Am",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Window Regulator Cable and Plastic Clip Failure",
+      "howToFix": "Replace the window regulator, ideally as a combined regulator-and-motor assembly for a lasting repair; aftermarket assemblies are inexpensive. Re-taping or re-clipping the old plastic guides is only a temporary fix.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-am-power-window-regulator-cable-plastic-clip-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-am-premature-front-brake-rotor-warping-pedal-pulsation",
+      "make": "Pontiac",
+      "model": "Grand Am",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Premature Front Brake Rotor Warping and Pedal Pulsation",
+      "howToFix": "Replace (don't machine) the front rotors with quality aftermarket rotors and fresh pads, clean the hub face, and torque the lug nuts evenly to spec. Upgraded aftermarket rotors hold up noticeably better than the original-spec parts.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-am-premature-front-brake-rotor-warping-pedal-pulsation--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-am-tank-fuel-pump-module-failure-stalling-no-start-erratic-fuel",
+      "make": "Pontiac",
+      "model": "Grand Am",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "In-Tank Fuel Pump Module Failure — Stalling, No-Start, and Erratic Fuel Gauge",
+      "howToFix": "Replace the fuel pump module (pump and level sender together) and always install a new fuel filter and strainer at the same time. On these cars the tank must be lowered to access the pump, so doing the complete module once avoids paying the labor twice.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-am-tank-fuel-pump-module-failure-stalling-no-start-erratic-fuel--prescription-0-0--all-engines",
+        "pontiac-grand-am-tank-fuel-pump-module-failure-stalling-no-start-erratic-fuel--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-prix-3-8l-v6-intake-manifold-gasket-coolant-leak",
+      "make": "Pontiac",
+      "model": "Grand Prix",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "3.8L V6 Intake Manifold Gasket Coolant Leak",
+      "howToFix": "Replace the upper plastic intake manifold and both upper and lower intake manifold gaskets, ideally with upgraded aluminum-reinforced aftermarket gaskets (e.g., Fel-Pro). Flush the cooling system and change the oil immediately if coolant contamination is suspected. Inspect the EGR stovepipe area where the plastic manifold commonly melts.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the EGR stovepipe area where the plastic manifold commonly melts."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-prix-3-8l-v6-intake-manifold-gasket-coolant-leak--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-prix-3800-lim-gasket",
+      "make": "Pontiac",
+      "model": "Grand Prix",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [
+        "GT",
+        "GT1",
+        "GT2",
+        "GTP",
+        "GTP Daytona 500",
+        "SE"
+      ],
+      "engines": [
+        "3.8L L36 (Series II/III)",
+        "3.8L L67 Supercharged"
+      ],
+      "title": "Grand Prix 3800 V6 Lower Intake Manifold (LIM) Gasket Failure",
+      "howToFix": "Updated Fel-Pro MS98003T gasket replacement ($400-$800). Replace UIM plenum simultaneously if cracked, and EGR stovepipe gasket. Drain Dex-Cool and switch to Zerex G-05 / Sierra HOAT. Check oil monthly for milky discoloration.",
+      "dtcCodes": [
+        "P0171",
+        "P0174",
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check oil monthly for milky discoloration."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174, P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-prix-3800-lim-gasket--prescription-0-0--3-8l-l36-series-ii-iii",
+        "pontiac-grand-prix-3800-lim-gasket--prescription-0-0--3-8l-l67-supercharged",
+        "pontiac-grand-prix-3800-lim-gasket--prescription-1-0--3-8l-l36-series-ii-iii",
+        "pontiac-grand-prix-3800-lim-gasket--prescription-1-0--3-8l-l67-supercharged"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-prix-engine-oil-leak-onto-exhaust-manifold-fire-risk",
+      "make": "Pontiac",
+      "model": "Grand Prix",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Engine Oil Leak onto Exhaust Manifold - Fire Risk (Recall 15V-201 / 08V-118)",
+      "howToFix": "Until the applicable campaign remedy is confirmed complete, follow NHTSA/GM precautions, including parking outside away from structures where directed; if a burning odor, smoke or active leak appears, stop safely and arrange inspection. Check the VIN for all applicable campaigns and ask a dealer to confirm current remedy availability and any charge in 2026. Do not buy a valve cover, gasket, oil-fill extension or wire retainer from this page; campaign, engine, build, completion state, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "if a burning odor, smoke or active leak appears, stop safely and arrange inspection."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN for all applicable campaigns and ask a dealer to confirm current remedy availability and any charge in 2026."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-grand-prix-hvac-blower-motor-resistor-failure",
+      "make": "Pontiac",
+      "model": "Grand Prix",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "HVAC Blower Motor Resistor Failure (Fan Stuck on High / Lost Speeds)",
+      "howToFix": "Replace the blower motor resistor and the wiring-harness connector together; replace the blower motor at the same time if worn to prevent repeat failure. For 2004-2005 control-module logic lockups, a GM TSB recommends installing a capacitor at the blower control module connector. Seal cowl leaks to prevent recurrence.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-prix-hvac-blower-motor-resistor-failure--prescription-0-0--all-engines",
+        "pontiac-grand-prix-hvac-blower-motor-resistor-failure--prescription-1-0--all-engines",
+        "pontiac-grand-prix-hvac-blower-motor-resistor-failure--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-prix-supercharger-coupler-rattle",
+      "make": "Pontiac",
+      "model": "Grand Prix",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Supercharger Coupler Rattle (GTP / L67 Supercharged 3.8L)",
+      "howToFix": "Replace the supercharger coupler/isolator (remanufactured nose units are available); change the supercharger snout oil at the recommended interval, and inspect the belt, idlers, and vacuum lines. Address recurring rattle promptly to avoid further blower damage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "change the supercharger snout oil at the recommended interval, and inspect the belt, idlers, and vacuum lines."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-grand-prix-4t65-e-automatic-transmission-hard-shifting-failure",
+      "make": "Pontiac",
+      "model": "Grand Prix",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "4T65-E Automatic Transmission Hard Shifting and Failure",
+      "howToFix": "Identify the transmission by VIN/RPO and capture codes, freeze-frame, commanded/actual gear, shift timing and temperature. Inspect fluid/debris, cooler flow and line pressure, then follow the code- and unit-specific tree before solenoid, valve-body, converter, clutch or unit replacement. Do not buy a solenoid, valve body, clutch kit, accumulator, magnet or transmission from this page; unit/RPO, failed path, calibration, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect fluid/debris, cooler flow and line pressure, then follow the code- and unit-specific tree before solenoid, valve-body, converter, clutch or unit replacement."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-grand-prix-key-sticks-won-t-turn-come-out-ignition",
+      "make": "Pontiac",
+      "model": "Grand Prix",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Key Sticks / Won't Turn or Come Out of Ignition",
+      "howToFix": "Verify the shifter is fully in Park and the brake/shift interlock is functioning; replace a worn ignition lock cylinder. Inspect the BTSI (brake-transmission shift interlock) solenoid and cylinder housing. Lubricating with the correct cylinder lubricant can help in mild cases.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify the shifter is fully in Park and the brake/shift interlock is functioning;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the BTSI (brake-transmission shift interlock) solenoid and cylinder housing."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-grand-prix-key-sticks-won-t-turn-come-out-ignition--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-grand-prix-ignition-switch-may-slip-out-run-position",
+      "make": "Pontiac",
+      "model": "Grand Prix",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Ignition Switch May Slip Out of Run Position (Recall 14V400000)",
+      "howToFix": "Until the campaign remedy is confirmed complete, remove all other items and the key fob from the ignition-key ring as NHTSA directs. Check VIN/open-campaign status and ask the dealer to confirm current remedy availability and any charge in 2026. Diagnose separate switch/cylinder complaints independently. Do not buy an ignition switch, lock cylinder, key insert or cover from this page; campaign status, key configuration, failed path, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check VIN/open-campaign status and ask the dealer to confirm current remedy availability and any charge in 2026."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose separate switch/cylinder complaints independently."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-grand-prix-headlamp-driver-module-overheat-low-beams-fail",
+      "make": "Pontiac",
+      "model": "Grand Prix",
+      "years": [
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Headlamp Driver Module (HDM) Overheat - Low Beams Fail (Recall 15V519000)",
+      "howToFix": "Have the HDM replaced free of charge under recall 15V519000 (GM recall 14291); 2006 models may be covered under GM's extended warranty program. Verify by VIN at NHTSA and address promptly given the safety impact.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify by VIN at NHTSA and address promptly given the safety impact."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-gto-front-strut-to-tire-rub-destroying-inner-front-tire-sidewall",
+      "make": "Pontiac",
+      "model": "GTO",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Strut-to-Tire Rub Destroying Inner Front Tire Sidewalls",
+      "howToFix": "Replace the front strut upper mounts, bearings, and radius rod bushings (Pedders or Whiteline urethane parts are the accepted fix), install eccentric camber/caster bolts, and realign to gain at least 1/4 inch of tire-to-strut clearance. Inspect inner front sidewalls regularly and replace any tire showing cord; alignment alone without the bushing/mount work rarely cures it.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect inner front sidewalls regularly and replace any tire showing cord;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-gto-front-strut-to-tire-rub-destroying-inner-front-tire-sidewall--prescription-0-0--all-engines",
+        "pontiac-gto-front-strut-to-tire-rub-destroying-inner-front-tire-sidewall--prescription-1-0--all-engines",
+        "pontiac-gto-front-strut-to-tire-rub-destroying-inner-front-tire-sidewall--prescription-2-0--all-engines",
+        "pontiac-gto-front-strut-to-tire-rub-destroying-inner-front-tire-sidewall--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-gto-ignition-lock-cylinder-housing-binding-key-will-not-turn",
+      "make": "Pontiac",
+      "model": "GTO",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Ignition Lock Cylinder/Housing Binding — Key Will Not Turn",
+      "howToFix": "Replace the ignition lock housing with the revised-design GM part (the original barrel and key tumblers can be reused, so no re-coding is needed). As a temporary measure, rocking the steering wheel firmly while turning the key, or depressing the lock barrel into the housing, can relieve pin pressure enough to start the car.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-gto-ignition-lock-cylinder-housing-binding-key-will-not-turn--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-gto-instrument-cluster-lcd-odometer-pixel-display-failure",
+      "make": "Pontiac",
+      "model": "GTO",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Instrument Cluster LCD Odometer Pixel/Display Failure",
+      "howToFix": "Send the cluster to an instrument-cluster repair service for LCD replacement and solder re-flow of the power supply circuit, or fit a used cluster ($75-100) and have the mileage professionally reprogrammed to match the car. Simple resoldering fixes intermittent displays in some cases.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-gto-instrument-cluster-lcd-odometer-pixel-display-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-gto-internal-clutch-slave-cylinder-throwout-bearing-failure",
+      "make": "Pontiac",
+      "model": "GTO",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Internal Clutch Slave Cylinder / Throwout Bearing Failure",
+      "howToFix": "Replace the slave cylinder/release bearing with a fresh GM unit (forum consensus is OEM over aftermarket), and replace it preventively any time the transmission is out for clutch work. Adding a remote bleeder line and an aluminum billet bearing support while in there are widely accepted upgrades.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-gto-rear-differential-mount-bushing-deterioration-driveline-clun",
+      "make": "Pontiac",
+      "model": "GTO",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear Differential Mount Bushing Deterioration — Driveline Clunk and Wheel Hop",
+      "howToFix": "Install a polyurethane differential mount insert (Whiteline or Pedders, roughly $40 in parts) to take up the slack in the factory bushing and restore pinion angle; replace the full mount and rear crossmember bushings if badly degraded. Check driveshaft-to-diff bolt torque whenever clunking appears.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check driveshaft-to-diff bolt torque whenever clunking appears."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-gto-rear-differential-mount-bushing-deterioration-driveline-clun--prescription-0-0--all-engines",
+        "pontiac-gto-rear-differential-mount-bushing-deterioration-driveline-clun--prescription-1-0--all-engines",
+        "pontiac-gto-rear-differential-mount-bushing-deterioration-driveline-clun--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-gto-rear-shock-upper-mount-bushing-wear-rear-end-clunk",
+      "make": "Pontiac",
+      "model": "GTO",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear Shock Upper (Pedestal) Mount Bushing Wear — Rear-End Clunk",
+      "howToFix": "Inspect the upper bushings by pulling back the trunk carpet over the tank sides; replace worn bushings with an uprated set (Whiteline W31467 kit, about $34) and torque the upper mount with the car on the ground, top first. If bushings are intact, properly re-torquing the upper and lower mounts cures most shock-sourced clunks.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the upper bushings by pulling back the trunk carpet over the tank sides;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-gto-rear-shock-upper-mount-bushing-wear-rear-end-clunk--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-gto-rear-tire-rub-2005-2006",
+      "make": "Pontiac",
+      "model": "GTO",
+      "years": [
+        2005,
+        2006
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "6.0L LS2 V8"
+      ],
+      "title": "GTO LS2 Rear Tire Rub Under Hard Cornering",
+      "howToFix": "Inspect rear inner fender liner for cut marks at each tire rotation. Roll the rear fender lips ($150-$300 specialist) and trim back the plastic splash guard. Avoid maxing out cargo + passengers simultaneously. Aftermarket shorter springs without other geometry changes makes the rub WORSE, not better.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect rear inner fender liner for cut marks at each tire rotation."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-montana-power-sliding-door-can-open-while-vehicle-is-moving",
+      "make": "Pontiac",
+      "model": "Montana",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Sliding Door Can Open While Vehicle Is Moving (NHTSA Recall)",
+      "howToFix": "If the passenger-side power sliding door does not positively latch, keep occupants away from it and do not drive until secured and inspected. Check the VIN and campaign-completion history for 01V067 and 01V264 with NHTSA and a GM dealer. Ask the dealer to confirm the currently available inspection/remedy and any charge; do not infer present-day no-cost service from the historical owner letter. Do not buy an actuator or latch part from this page; campaign applicability, prior repair, installed assembly, part number and VIN fitment must be verified first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the passenger-side power sliding door does not positively latch, keep occupants away from it and do not drive until secured and inspected."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN and campaign-completion history for 01V067 and 01V264 with NHTSA and a GM dealer."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Ask the dealer to confirm the currently available inspection/remedy and any charge;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-montana-3.4l-intake-gasket",
+      "make": "Pontiac",
+      "model": "Montana",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [
+        "Base",
+        "MontanaVision",
+        "Vista"
+      ],
+      "engines": [
+        "3.4L LA1 V6"
+      ],
+      "title": "Montana 3.4L V6 Intake Gasket — Same as Grand Am",
+      "howToFix": "Same fix — updated Fel-Pro MS98010T LIM gasket + UIM gasket + plenum repair/replacement. $500-$1,000 at independent (minivan labor slightly higher due to packaging). Drain Dex-Cool, refill with Zerex G-05.",
+      "dtcCodes": [
+        "P0171",
+        "P0174",
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174, P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-montana-3-4l-lower-intake-manifold-gasket-coolant-oil-leak",
+      "make": "Pontiac",
+      "model": "Montana",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "3.4L (3400) Lower Intake Manifold Gasket Coolant/Oil Leak",
+      "howToFix": "Replace the lower intake manifold gaskets, ideally with the updated Fel-Pro/aluminum-frame gasket set rather than the original plastic-carrier design. Inspect for coolant in the oil; if present, do an oil change immediately after the repair and check bearing condition. Many shops also resurface/clean the mating surfaces and replace the thermostat and coolant while the manifold is off.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect for coolant in the oil;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "if present, do an oil change immediately after the repair and check bearing condition."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-montana-3-4l-lower-intake-manifold-gasket-coolant-oil-leak--prescription-0-0--all-engines",
+        "pontiac-montana-3-4l-lower-intake-manifold-gasket-coolant-oil-leak--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-montana-4t65e-automatic-transmission-failure",
+      "make": "Pontiac",
+      "model": "Montana",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "4T65E Automatic Transmission Failure (Slipping, Shudder, Hard Shifts)",
+      "howToFix": "Service fluid and filter on schedule; many owners/specialists add an auxiliary transmission cooler to combat heat-related failure. For slipping or shudder, diagnose pressure and solenoid operation first; a worn unit typically requires a rebuild or a remanufactured 4T65E. Address any external leaks (axle seals, side cover) promptly to avoid running low.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "For slipping or shudder, diagnose pressure and solenoid operation first;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-montana-blower-motor-hvac-blower-resistor-failure",
+      "make": "Pontiac",
+      "model": "Montana",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Blower Motor / HVAC Blower Resistor Failure",
+      "howToFix": "If only high speed works, replace the blower motor resistor (located near the blower motor, usually accessible behind dash trim). Test for power at the blower connector: power present but no fan means a bad motor; no power means a bad resistor (or relay/connector). Inspect and clean corroded connectors and check the relay and ground. Both repairs are inexpensive and require no programming.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Test for power at the blower connector: power present but no fan means a bad motor;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and clean corroded connectors and check the relay and ground."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-montana-blower-motor-hvac-blower-resistor-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-montana-fuel-pump-fuel-system-failure-causing-stalling-no-start",
+      "make": "Pontiac",
+      "model": "Montana",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fuel Pump / Fuel System Failure Causing Stalling and No-Start",
+      "howToFix": "Test fuel pressure to confirm; replace the in-tank fuel pump module if pressure is low and replace the fuel filter (recommended every ~30,000 miles to prevent overstressing the pump). Inspect and repair any corroded fuel-tank harness connectors. Rule out the fuel pump relay and crankshaft position sensor for intermittent stalling.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Test fuel pressure to confirm;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and repair any corroded fuel-tank harness connectors."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-montana-fuel-pump-fuel-system-failure-causing-stalling-no-start--prescription-0-0--all-engines",
+        "pontiac-montana-fuel-pump-fuel-system-failure-causing-stalling-no-start--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-montana-instrument-cluster-speedometer-stepper-motor-failure",
+      "make": "Pontiac",
+      "model": "Montana",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Instrument Cluster / Speedometer Stepper Motor Failure",
+      "howToFix": "Send the cluster to a specialist (or DIY) to replace all gauge stepper motors with new Switec 27x.168 units and re-flow the solder joints. Because mileage is stored in the cluster, repair the existing unit rather than swapping in a used cluster from another vehicle, which would import the donor's mileage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Send the cluster to a specialist (or DIY) to replace all gauge stepper motors with new Switec 27x.168 units and re-flow the solder joints."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-montana-instrument-cluster-speedometer-stepper-motor-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-montana-aftermarket-dorman-steering-knuckle-recall",
+      "make": "Pontiac",
+      "model": "Montana",
+      "years": [
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Aftermarket Dorman Steering Knuckle Recall (Loss of Steering Control)",
+      "howToFix": "If the installed knuckle could be an affected aftermarket unit, avoid driving until a qualified shop identifies both sides by part marking, material and repair history and checks for damage. Contact Dorman and use NHTSA recall 09E005 to confirm whether the installed part remains covered and what remedy and labor reimbursement are currently available; do not assume a 2009 hotline or no-charge remedy is unchanged today. Do not buy a generic knuckle from this page; installed-part identity, side, current replacement number and VIN fitment must be verified first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Contact Dorman and use NHTSA recall 09E005 to confirm whether the installed part remains covered and what remedy and labor reimbursement are currently available;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-solstice-convertible-top-water-leaks-into-trunk-around-rear-window",
+      "make": "Pontiac",
+      "model": "Solstice",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Convertible top water leaks into trunk and around rear window",
+      "howToFix": "Reseal or replace the buttress-pin grommets and the trunk-lid cable hose, and clear/route the top's drainage. If the top won't stow or seal, readjust or reconnect the drive-link socket on the convertible top arm. Keep the trunk weatherstrip and rear deck seals in good condition.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-solstice-convertible-top-water-leaks-into-trunk-around-rear-window--prescription-0-0--all-engines",
+        "pontiac-solstice-convertible-top-water-leaks-into-trunk-around-rear-window--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-solstice-ignition-switch-can-move-out-run-stalling-engine",
+      "make": "Pontiac",
+      "model": "Solstice",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Ignition switch can move out of \"run,\" stalling the engine",
+      "howToFix": "Check the VIN and completion history for NHTSA 14V047 with NHTSA and a GM dealer. Until applicability and completion are confirmed, minimize key-ring weight and stop using a switch that moves unexpectedly; if the engine shuts off, steer and brake deliberately to a safe stop. Ask the dealer to confirm the currently available remedy and any charge rather than relying on the 2014 owner letter. Do not buy an ignition switch, cylinder or key set from this page; campaign applicability, prior repair, part number, programming and VIN fitment must be verified first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN and completion history for NHTSA 14V047 with NHTSA and a GM dealer."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Ask the dealer to confirm the currently available remedy and any charge rather than relying on the 2014 owner letter."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-solstice-no-interior-trunk-release-trunk-becomes-impossible-to-open-d",
+      "make": "Pontiac",
+      "model": "Solstice",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "No interior trunk release - trunk becomes impossible to open with a dead battery",
+      "howToFix": "Restore power by connecting jumper cables or a charger to the underhood remote terminals to operate the release, or use the emergency procedure: remove the left rear wheel and wheelhouse liner, remove the pressure-relief valve, reach in and pull the child-safety release cable to unlatch the deck. Worn fob membranes can be replaced cheaply.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-solstice-no-interior-trunk-release-trunk-becomes-impossible-to-open-d--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-solstice-passenger-airbag-suppression-sensor-mat-fails-disabling-pass",
+      "make": "Pontiac",
+      "model": "Solstice",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Passenger airbag suppression (PPS) sensor mat fails, disabling passenger airbag",
+      "howToFix": "Do not place an adult passenger in the seat when the airbag-off indicator or Service Airbag warning shows an active PPS fault. Check the VIN and recall-completion history for 17V061 with NHTSA and a GM dealer. Ask the dealer to confirm the currently available inspection/remedy and any charge; prior temporary repair did not necessarily close the recall. Do not buy a sensor mat, PPS module, reinforcement or seat part from this page; campaign applicability, diagnostic state, part number, programming and VIN fitment must be verified first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN and recall-completion history for 17V061 with NHTSA and a GM dealer."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Ask the dealer to confirm the currently available inspection/remedy and any charge;"
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "campaign applicability, diagnostic state, part number, programming and VIN fitment must be verified first."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-solstice-rear-differential-driveline-clunk-gear-whine",
+      "make": "Pontiac",
+      "model": "Solstice",
+      "years": [
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear differential/driveline clunk and gear whine",
+      "howToFix": "GM issued TSBs covering the noise; the common fix for chatter-on-turns is a differential fluid drain and refill with the correct limited-slip additive (owners frequently use Royal Purple or a synthetic with friction modifier). Later cars received the driveline alignment redesign.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-solstice-reduced-engine-power-limp-mode-from-throttle-body-coking-tac",
+      "make": "Pontiac",
+      "model": "Solstice",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "\"Reduced Engine Power\" limp mode from throttle body coking / TAC faults",
+      "howToFix": "Clean (or replace) the throttle body, clean the MAF, and service the notorious driver-side engine ground strap and battery. A battery disconnect/relearn often clears the fault after cleaning. Persistent faults may require throttle body or pedal-position sensor replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-solstice-reduced-engine-power-limp-mode-from-throttle-body-coking-tac--prescription-0-0--all-engines",
+        "pontiac-solstice-reduced-engine-power-limp-mode-from-throttle-body-coking-tac--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-solstice-trunk-leak",
+      "make": "Pontiac",
+      "model": "Solstice",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [
+        "Base",
+        "GXP"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Solstice Trunk Leak with Top Down (Kappa Platform)",
+      "howToFix": "Inspect trunk seal annually; replace if cracked ($60-$120 part). 3M weatherstrip adhesive helps reseal. Always check spare tire well after heavy rain. Some owners install a small bilge-pump style drain. Permanent fix is to confirm rain gutters at the top stowage area aren't clogged.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect trunk seal annually;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Always check spare tire well after heavy rain."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Permanent fix is to confirm rain gutters at the top stowage area aren't clogged."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-solstice-high-pressure-fuel-pump-failure-gxp",
+      "make": "Pontiac",
+      "model": "Solstice",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "High-pressure fuel pump failure on the GXP (direct-injected 2.0T)",
+      "howToFix": "Diagnose fuel-rail pressure and replace the high-pressure fuel pump; the pump follower/cam lobe should also be inspected. Owners report total cost is typically several hundred to about $1,200 including labor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose fuel-rail pressure and replace the high-pressure fuel pump;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "the pump follower/cam lobe should also be inspected."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-solstice-high-pressure-fuel-pump-failure-gxp--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-solstice-timing-chain-balance-shaft-chain-stretch-gxp-2-0t",
+      "make": "Pontiac",
+      "model": "Solstice",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Timing chain and balance shaft chain stretch on the GXP 2.0T (LNF)",
+      "howToFix": "Replace the complete timing chain kit along with the balance-shaft chain kit, guides, tensioner, and water pump together since the labor overlaps. Addressing chain noise promptly prevents catastrophic interference-engine damage.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 5,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-solstice-timing-chain-balance-shaft-chain-stretch-gxp-2-0t--prescription-0-0--all-engines",
+        "pontiac-solstice-timing-chain-balance-shaft-chain-stretch-gxp-2-0t--prescription-1-0--all-engines",
+        "pontiac-solstice-timing-chain-balance-shaft-chain-stretch-gxp-2-0t--prescription-2-0--all-engines",
+        "pontiac-solstice-timing-chain-balance-shaft-chain-stretch-gxp-2-0t--prescription-3-0--all-engines",
+        "pontiac-solstice-timing-chain-balance-shaft-chain-stretch-gxp-2-0t--prescription-4-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-sunfire-2.2-ecotec-head-gasket",
+      "make": "Pontiac",
+      "model": "Sunfire",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [
+        "GT",
+        "SE"
+      ],
+      "engines": [
+        "2.2L L61 Ecotec"
+      ],
+      "title": "Sunfire 2.2L Ecotec (L61) Head Gasket / Head Crack",
+      "howToFix": "Pressure-test cooling system to confirm. Head gasket replacement ~$1,000-$1,800 — but ALWAYS have the head pressure-tested and resurfaced (~$150-$250 machine shop) since cracking is so common. If head is cracked, a used head is often the most economical replacement ($200-$400 from yard). Driving while overheating destroys the head; tow it.",
+      "dtcCodes": [
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure-test cooling system to confirm."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Head gasket replacement ~$1,000-$1,800 — but ALWAYS have the head pressure-tested and resurfaced (~$150-$250 machine shop) since cracking is so common."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0301, P0302, P0303, P0304"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-sunfire-2-2-ecotec-head-gasket--prescription-0-0--2-2l-l61-ecotec"
+      ]
+    },
+    {
+      "issueId": "pontiac-trans-am-t-top-roof-weatherstrip-leaks",
+      "make": "Pontiac",
+      "model": "Trans Am",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "Formula",
+        "Trans Am",
+        "Trans Am GT",
+        "Trans Am WS6"
+      ],
+      "engines": [
+        "5.7L L98 V8",
+        "5.7L LS1 V8",
+        "5.7L LT1 V8"
+      ],
+      "title": "T-top and roof weatherstrip leaks",
+      "howToFix": "Replace the T-top and roof-rail weatherstripping with new reproduction seals (widely available from F-body/Firebird specialists), clean and re-seat the moldings, verify the T-top panels are properly adjusted/latched, and confirm the roof drain channels are clear.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace the T-top and roof-rail weatherstripping with new reproduction seals (widely available from F-body/Firebird specialists), clean and re-seat the moldings, verify the T-top panels are properly adjusted/latched, and confirm the roof drain channels are clear."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-trans-am-t-top-roof-weatherstrip-leaks--prescription-0-0--5-7l-l98-v8",
+        "pontiac-trans-am-t-top-roof-weatherstrip-leaks--prescription-0-0--5-7l-ls1-v8",
+        "pontiac-trans-am-t-top-roof-weatherstrip-leaks--prescription-0-0--5-7l-lt1-v8"
+      ]
+    },
+    {
+      "issueId": "pontiac-trans-am-lt1-optispark-distributor-failure-from-moisture-ozone-contam",
+      "make": "Pontiac",
+      "model": "Trans Am",
+      "years": [
+        1993,
+        1994,
+        1995,
+        1996,
+        1997
+      ],
+      "trims": [
+        "Formula",
+        "Trans Am",
+        "Trans Am GT",
+        "Trans Am WS6"
+      ],
+      "engines": [
+        "5.7L LT1 V8"
+      ],
+      "title": "LT1 Optispark distributor failure from moisture and ozone contamination",
+      "howToFix": "Replace the Optispark with a vented-style unit (AC Delco or a quality aftermarket), replace the water pump at the same time since it must come off for access, and route a small hose from the water pump weep hole to divert coolant away from the distributor. Keep the engine bay dry and avoid pressure-washing near the front of the engine. Replacing plug wires while it is apart is standard practice.",
+      "dtcCodes": [
+        "16",
+        "36",
+        "42"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "16, 36, 42"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-trans-am-lt1-optispark-distributor-failure-from-moisture-ozone-contam--prescription-0-0--5-7l-lt1-v8",
+        "pontiac-trans-am-lt1-optispark-distributor-failure-from-moisture-ozone-contam--prescription-1-0--5-7l-lt1-v8",
+        "pontiac-trans-am-lt1-optispark-distributor-failure-from-moisture-ozone-contam--prescription-2-0--5-7l-lt1-v8"
+      ]
+    },
+    {
+      "issueId": "pontiac-trans-am-lt1-water-pump-failure-weep-hole-coolant-leak-onto-optispark",
+      "make": "Pontiac",
+      "model": "Trans Am",
+      "years": [
+        1993,
+        1994,
+        1995,
+        1996,
+        1997
+      ],
+      "trims": [
+        "Formula",
+        "Trans Am",
+        "Trans Am GT",
+        "Trans Am WS6"
+      ],
+      "engines": [
+        "5.7L LT1 V8"
+      ],
+      "title": "LT1 water pump failure (shaft bearing/seal) with weep-hole coolant leak onto Optispark",
+      "howToFix": "Replace the water pump (AC Delco or quality aftermarket) and, given the shared labor to remove the belt, crank pulley, and access area, replace the Optispark at the same time. Add a diverter hose on the weep hole to protect the distributor. Inspect the drive seal behind the pump.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the drive seal behind the pump."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-trans-am-lt1-water-pump-failure-weep-hole-coolant-leak-onto-optispark--prescription-0-0--5-7l-lt1-v8",
+        "pontiac-trans-am-lt1-water-pump-failure-weep-hole-coolant-leak-onto-optispark--prescription-1-0--5-7l-lt1-v8",
+        "pontiac-trans-am-lt1-water-pump-failure-weep-hole-coolant-leak-onto-optispark--prescription-2-0--5-7l-lt1-v8"
+      ]
+    },
+    {
+      "issueId": "pontiac-trans-am-pop-up-headlight-motor-nylon-gear-stripping",
+      "make": "Pontiac",
+      "model": "Trans Am",
+      "years": [
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "Formula",
+        "Trans Am",
+        "Trans Am GT",
+        "Trans Am WS6"
+      ],
+      "engines": [
+        "5.7L LS1 V8",
+        "5.7L LT1 V8"
+      ],
+      "title": "Pop-up headlight motor nylon gear stripping (4th-gen)",
+      "howToFix": "Rebuild the original motor with an aftermarket brass or aluminum gear kit (both motors typically done together). As a temporary fix a stripped nylon gear can be rotated 180 degrees to expose good teeth. Re-secure the motor housing to prevent repeat failure.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-trans-am-pop-up-headlight-motor-nylon-gear-stripping--prescription-0-0--5-7l-ls1-v8",
+        "pontiac-trans-am-pop-up-headlight-motor-nylon-gear-stripping--prescription-0-0--5-7l-lt1-v8"
+      ]
+    },
+    {
+      "issueId": "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure",
+      "make": "Pontiac",
+      "model": "Trans Am",
+      "years": [
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [
+        "Formula",
+        "Trans Am",
+        "Trans Am GT",
+        "Trans Am WS6"
+      ],
+      "engines": [
+        "5.7L LS1 V8",
+        "5.7L LT1 V8"
+      ],
+      "title": "4L60E automatic transmission 3-4 clutch pack failure",
+      "howToFix": "Rebuild the transmission with an upgraded 3-4 clutch pack (Raybestos GPZ or Borg-Warner Hi-Energy frictions are the community favorites), remove the problematic load-release springs, add a shift/valve-body correction kit and a stronger backing plate, and use fresh fluid and filter. Keeping the trans cool with an auxiliary cooler and servicing fluid on schedule extends life.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure--prescription-0-0--5-7l-ls1-v8",
+        "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure--prescription-0-0--5-7l-lt1-v8",
+        "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure--prescription-1-0--5-7l-ls1-v8",
+        "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure--prescription-1-0--5-7l-lt1-v8",
+        "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure--prescription-2-0--5-7l-ls1-v8",
+        "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure--prescription-2-0--5-7l-lt1-v8",
+        "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure--prescription-3-0--5-7l-ls1-v8",
+        "pontiac-trans-am-4l60e-automatic-transmission-3-4-clutch-pack-failure--prescription-3-0--5-7l-lt1-v8"
+      ]
+    },
+    {
+      "issueId": "pontiac-trans-am-early-ls1-piston-slap-high-oil-consumption",
+      "make": "Pontiac",
+      "model": "Trans Am",
+      "years": [
+        1998,
+        1999
+      ],
+      "trims": [
+        "Formula",
+        "Trans Am",
+        "Trans Am WS6"
+      ],
+      "engines": [
+        "5.7L LS1 V8"
+      ],
+      "title": "Early LS1 piston slap and high oil consumption",
+      "howToFix": "Cold-start piston slap that quiets when warm is generally considered cosmetic and can be monitored rather than repaired. For genuine excessive oil consumption, GM released updated higher-tension oil rings and a Napier second compression ring; severe cases require a ring job or short-block replacement. Regular oil-level checks and using the correct oil weight are the practical mitigations.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Cold-start piston slap that quiets when warm is generally considered cosmetic and can be monitored rather than repaired."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-trans-am-early-ls1-piston-slap-high-oil-consumption--prescription-0-0--5-7l-ls1-v8"
+      ]
+    },
+    {
+      "issueId": "pontiac-vibe-1zz-oil-consumption",
+      "make": "Pontiac",
+      "model": "Vibe",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [
+        "AWD",
+        "Base",
+        "GT"
+      ],
+      "engines": [
+        "1.8L 1ZZ-FE"
+      ],
+      "title": "Vibe 1.8L (1ZZ-FE) Oil Consumption — Coked Piston Rings",
+      "howToFix": "Top-end engine cleaner (BG EPR, AMSOIL Engine and Transmission Flush) cycled through oil changes can sometimes free stuck rings. Failing that, piston-ring replacement (~$1,800-$3,000) or full short-block swap (~$3,000-$4,500). Monitor oil level weekly until consumption rate is known. Switching to a high-mileage oil (Mobil 1 High Mileage 5W-30) sometimes slows the rate of consumption.",
+      "dtcCodes": [
+        "P0300",
+        "P0521",
+        "P0524"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil level weekly until consumption rate is known."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0521, P0524"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-vibe-1zz-oil-consumption--prescription-0-0--1-8l-1zz-fe"
+      ]
+    },
+    {
+      "issueId": "pontiac-vibe-evap-system-faults-charcoal-canister-vent-vsv-failure",
+      "make": "Pontiac",
+      "model": "Vibe",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "EVAP System Faults — Charcoal Canister and Vent VSV Failure (P0440/P0441/P0446)",
+      "howToFix": "First rule out a loose or worn gas cap, then test the vent VSV and replace it if stuck (a much cheaper repair than the full canister); replace the charcoal canister assembly if it is saturated or its integrated valves have failed. Stop topping off the tank after the nozzle clicks to avoid saturating the new canister.",
+      "dtcCodes": [
+        "P0440",
+        "P0441",
+        "P0442",
+        "P0446"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "First rule out a loose or worn gas cap, then test the vent VSV and replace it if stuck (a much cheaper repair than the full canister);"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0440, P0441, P0442, P0446"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-vibe-front-door-glass-bolts-loosen-window-binds-shatters",
+      "make": "Pontiac",
+      "model": "Vibe",
+      "years": [
+        2003,
+        2004
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Door Glass Bolts Loosen — Window Binds and Shatters (Recall 08V-162)",
+      "howToFix": "If a front window rattles, binds or shifts in the channel, stop operating it and keep hands clear of the glass. Check the VIN under campaign 08V-162/GM 07273 and contact an authorized GM dealer to confirm whether it is open and the current bolt inspection/replacement availability and charge. If glass has separated or shattered, secure the opening and use a qualified repairer. Do not buy bolts, a regulator or glass from this page; power-window equipment, affected side, damage, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN under campaign 08V-162/GM 07273 and contact an authorized GM dealer to confirm whether it is open and the current bolt inspection/replacement availability and charge."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-vibe-takata-airbag-inflator-rupture-including-2024-do-not-drive-a",
+      "make": "Pontiac",
+      "model": "Vibe",
+      "years": [
+        2003,
+        2004,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Takata Airbag Inflator Rupture — Including 2024 Do-Not-Drive Advisory (2003-2004)",
+      "howToFix": "Check the VIN immediately in the NHTSA and GM recall lookups. If a 2003-2004 Vibe has an open Takata recall covered by the Do Not Drive warning, do not drive it; contact GM to arrange the current authorized remedy and ask about mobile repair or towing. For any open 2009-2010 inflator campaign, schedule the authorized remedy promptly. Confirm current availability and charge when scheduling. Do not buy or handle an inflator or airbag module from this page; campaign, VIN and repair history determine the remedy.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN immediately in the NHTSA and GM recall lookups."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm current availability and charge when scheduling."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-vibe-ecm-circuit-board-solder-cracks-causing-stalling-no-start",
+      "make": "Pontiac",
+      "model": "Vibe",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "ECM Circuit Board Solder Cracks Causing Stalling and No-Start (Recall 10V-387)",
+      "howToFix": "If the engine stalls in traffic, move out of the travel lane if possible and arrange towing rather than repeatedly driving it. Check the VIN and ECM production number under campaign 10V-387/GM 10282; contact an authorized GM dealer to confirm the recall is open and the current inspection/replacement availability and charge before service. Outside an open campaign, verify power, grounds, network communication, codes, production number and programming requirements before replacing the ECM. Do not buy an ECM from this page; production number, programming, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN and ECM production number under campaign 10V-387/GM 10282;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "contact an authorized GM dealer to confirm the recall is open and the current inspection/replacement availability and charge before service."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Outside an open campaign, verify power, grounds, network communication, codes, production number and programming requirements before replacing the ECM."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-vibe-2-4l-2az-fe-excessive-oil-consumption-from-defective-piston",
+      "make": "Pontiac",
+      "model": "Vibe",
+      "years": [
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "2.4L 2AZ-FE Excessive Oil Consumption from Defective Piston Rings",
+      "howToFix": "Replace the pistons and rings with the updated Toyota design (the ZE7-style repair), or install a replacement engine in severe cases. In the interim, check oil every fuel fill-up and top off to prevent bearing damage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "In the interim, check oil every fuel fill-up and top off to prevent bearing damage."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "pontiac-vibe-2-4l-2az-fe-excessive-oil-consumption-from-defective-piston--prescription-0-0--all-engines",
+        "pontiac-vibe-2-4l-2az-fe-excessive-oil-consumption-from-defective-piston--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "pontiac-vibe-power-window-master-switch-overheats-melts-fire-risk",
+      "make": "Pontiac",
+      "model": "Vibe",
+      "years": [
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Window Master Switch Overheats and Melts — Fire Risk (Recalls 12V-491 / 15V-689)",
+      "howToFix": "If the switch is hot, smells burned, smokes or shows melting, stop using it, turn the vehicle off when safe, move occupants away and call emergency services if fire is present. Check the VIN under 12V-491 and 15V-689 and contact an authorized GM dealer to confirm open status and current inspection/lubrication or circuit-board replacement availability and charge. Do not apply household or unapproved lubricant. Do not buy a switch from this page; campaign status, heat damage, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN under 12V-491 and 15V-689 and contact an authorized GM dealer to confirm open status and current inspection/lubrication or circuit-board replacement availability and charge."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "pontiac-vibe-unintended-acceleration-sticking-accelerator-pedal-floor-mat",
+      "make": "Pontiac",
+      "model": "Vibe",
+      "years": [
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Unintended Acceleration — Sticking Accelerator Pedal and Floor Mat Entrapment (Recall 10V-024)",
+      "howToFix": "Have a GM or Toyota dealer perform the recall remedies free of charge: a reinforcement bar installed in the pedal assembly (or pedal replacement) for the sticky-pedal defect, plus the floor mat interference remedy. Verify completion via a NHTSA VIN recall lookup and never stack aftermarket floor mats.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify completion via a NHTSA VIN recall lookup and never stack aftermarket floor mats."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

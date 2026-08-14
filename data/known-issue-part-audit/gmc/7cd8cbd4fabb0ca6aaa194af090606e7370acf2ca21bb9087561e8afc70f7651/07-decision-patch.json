@@ -1,0 +1,2801 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "gmc-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "aef346ba58aa224a8af5678fc519b72bcbc2abba287164f70cac038b5765ce9d",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": true,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "5a6901a112db365e2c68207b4c856fecd7b801f6c08970245c221b7cd7a0b13a",
+      "checkpoint.json": "e8c09ceaf7a832208eb640397e6204401eb736a1439544b2dec5e63b75ad794c",
+      "diagnostic-tool-evidence.json": "efc7b833a1da1c00e5657c07bd233736548747c9a19e3cf0e6778db543ca422f"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 173,
+      "issuesWithDtcCodes": 95,
+      "uniqueDtcCount": 153,
+      "solutionInstructionCount": 184,
+      "dtcDispositionCount": 95,
+      "toolLinkedDispositionCount": 74,
+      "procedureNoToolDispositionCount": 146,
+      "unresolvedToolHoldCount": 59,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "gmc-acadia-timing-chain-2007",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Complete the GM diagnostic procedure before ordering parts.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-acadia-timing-chain-2007",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The bulletin says guides, sprockets, actuators and the crank gear should not be replaced automatically unless separately worn or diagnosed.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-acadia-shift-to-park-message-no-shutdown-door-lock-lockout-battery",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Have a GMC retailer reproduce the message and check for DTC B000A.",
+        "reasonCode": "scanner-capability-needs-code-or-module",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-ck-2500-brake-line-rust-1999",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The preferred repair is a complete pre-bent stainless or NiCopp brake line kit with new fittings, followed by bleeding the full hydraulic system (including ABS if required by the scan tool/service procedure) and replacing any contaminated hoses or calipers/wheel cylinders found leaking.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-canyon-p0420-p0430-catalytic-converter-efficiency-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose before replacing: rule out a faulty downstream O2 sensor or exhaust leak, and correct any oil-consumption root cause (PCV orifice/valve cover) first so the new converter is not re-poisoned.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-envoy-4-2l-crankshaft-sensor-2002",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Clear codes and test.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-envoy-instrument-cluster-stepper-2003",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace all gauge stepper motors simultaneously with X27.168 kit.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-hummer-ev-warning-lights-limp-2022",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0161, U0100",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-hummer-ev-suv-air-suspension-2024",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0710, C0760",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-hummer-ev-suv-charge-port-2024",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0AA6",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-hummer-ev-suv-charging-2024",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0A09, P0AF0",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-jimmy-transfer-case-encoder-1998",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0327, C0387",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra1500-front-hub-bearing-assembly-1999",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0035, C0040, C0050, C0055",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra1500-4l60-e-4l65-e-sun-2000",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0732, P0734, P0751, P0753, P0785, P1870",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra1500-blend-door-hvac-2000",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Repair involves replacing the failed mode, blend, or recirculation actuator and then performing HVAC recalibration by fuse pull or scan-tool procedure depending on year and system configuration.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra1500-blend-door-hvac-2000",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B0229, B0414, B0424, B3770",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra1500-stepper-motor-instrument-cluster-2003",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If only one gauge is wrong, the whole cluster is still usually rebuilt because the remaining motors often fail later.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0011-intake-cam-over-advanced-from-sludge-clogged-vvt-solen",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A proven test is swapping the Bank 1 intake solenoid with another solenoid — if the code follows to P0014/P0021, the solenoid is bad.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "the gauge to separate a bad ECT sensor from a bad thermostat.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0442-small-evap-leak-from-loose-cracked-gas-cap-fractured-f",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace the purge or vent solenoid if the smoke test isolates it there.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0700-transmission-fault-flag-from-failing-6l80-6l90-interna",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "P0700 alone is not actionable — pull the transmission-specific sub-codes with a capable scanner to find the real fault.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra1500-power-door-lock-actuator-2007",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis involves confirming power and ground at the latch/actuator assembly and ruling out broken door-jamb wiring or BCM command issues.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra1500-power-door-lock-actuator-2007",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B3125, B3130",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-brake-control-module-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0035, C0040, C0045, C0050",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-hd-gas-engine-oil-consumption-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Oil consumption: GM oil consumption test procedure — if over 1 qt/2,000 miles, piston ring replacement authorized.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-blend-door-actuator-failure-causing-temperature-airflow-control-problems",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Identify the failed actuator (temperature blend, mode, or recirculation) using HVAC actuator recalibration and scan tool data where available.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-blend-door-actuator-failure-causing-temperature-airflow-control-problems",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B0408, B0414, B0423, B3770",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-front-differential-actuator-failure-causing-4wd-engagement-problems",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0327, C0379, U0121",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-allison-trans-2008",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0717, P0722, P0747, U0101",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-def-system-2011",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test the DEF tank heater, reductant quality/level sensor, and pump module;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-dpf-diesel-particulate-filter-clogging-and-regeneration-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Forced active regen via Tech 2 or MDI scan tool;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-turbocharger-vgt-vane-sticking-and-boost-control-failure-duramax-lml-l5p",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P003A, P0046, P0299, P132B",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-cluster-display-failure-2015",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "U0155, U0164",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-injector-failure-2015",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the failed injector with a relative compression test and injector balance rate scan using a Tech 2 or equivalent scan tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-steering-box-leak-2015",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0545",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-trailer-brake-controller-integrated-trailer-brake-module-malfunction",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan for trailer brake control module DTCs and apply GM software updates/reprogramming when applicable;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-trailer-brake-controller-integrated-trailer-brake-module-malfunction",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1114, U0100, U0121",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-electric-power-steering-eps-assist-loss-reduced-assist-warnings-new-body-style",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan for EPS-related DTCs and follow GM SI diagnostics for the steering gear/module and harness.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-electric-power-steering-eps-assist-loss-reduced-assist-warnings-new-body-style",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0545, C056D, U0100, U0121",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-terrain-2-4l-oil-consumption-2010",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "GM formal oil consumption test (PIP4656D): measure consumption over 3,000 miles.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-terrain-hvac-blend-door-actuator-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace the failed blend/mode-door actuator (OEM/ACDelco recommended to avoid repeat aftermarket failures) and recalibrate with a scan tool after installation.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-terrain-hvac-blend-door-actuator-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B0408, B0423",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-terrain-intellilink-infotainment-freezing-rebooting-backup-camera-bl",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B101D, U0184",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-terrain-electronic-shifter-fault-vehicle-stuck-park-shift-to-park-me",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P182E, P1876",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose whether the fault is the encoder motor, the position sensor/selector, or the transfer case control module.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "After replacement the actuator position must be relearned with a scan tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C038D",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-hvac-blend-door-actuator-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B0423, B0429",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-engine-overheat-fail-safe-mode-from-thermostat-coolant-temp",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose whether the thermostat is stuck open or the ECT sensor has drifted.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukonxl-blend-door-hvac-2000",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Use the HVAC self-diagnostic procedure or a scan tool where available, then identify whether the failed unit is the mode, temperature, or recirculation actuator.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukonxl-blend-door-hvac-2000",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B0229, B0414, B0424",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukonxl-front-hub-bearing-and-2000",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan ABS wheel speed data during a low-speed stop and compare left and right front sensor readings.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukonxl-front-hub-bearing-and-2000",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0035, C0040, C0221, C0223, C0227, C0229",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-xl-rear-air-suspension-auto-leveling-compressor-failure-air-shock-leaks-z55-z95-equipped",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose for leaks (air shocks, lines, fittings) and replace the failed compressor/dryer assembly and/or leaking air shocks.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-xl-rear-wiper-motor-washer-hose-failure-no-rear-wipe-or-washer-spray",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose power/ground at the rear wiper motor and replace the motor if failed;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-xl-magnetic-ride-control-mrc-shock-strut-fluid-leak-and-service-suspension-system-warnings",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0550",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-xl-steering-column-click-2015",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A Tech 2 or MDI scan tool relearn procedure must be performed after installation to program the new module to the BCM.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-xl-steering-column-click-2015",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B2725, B2726, B3033, U0140",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "gmc-yukon-xl-transfer-case-leak-2015",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0327, C0569",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [],
+  "removalProposals": [
+    {
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-5l-i4-lcv",
+      "partNumber": "K700902",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application."
+    },
+    {
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--3-6l-v6-lgz",
+      "partNumber": "K700902",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application."
+    },
+    {
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-8l-duramax-lwn",
+      "partNumber": "K700902",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application."
+    },
+    {
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-7l-turbo-luf",
+      "partNumber": "K700902",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application."
+    },
+    {
+      "issueId": "gmc-envoy-4-2l-crankshaft-sensor-2002",
+      "workItemId": "gmc-envoy-4-2l-crankshaft-sensor-2002--existing-fix-part-0-0--4-2l-i6-ll8",
+      "partNumber": "235-1078",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped 235-1078 claim is not one of the article-prescribed ACDelco 213-3521 or Delphi SS11378 options, and current catalog evidence does not establish complete application coverage."
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--5-3l-v8",
+      "partNumber": "THRGM-0002",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass."
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--6-2l-v8",
+      "partNumber": "THRGM-0002",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass."
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--4-3l-v6",
+      "partNumber": "THRGM-0002",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass."
+    },
+    {
+      "issueId": "gmc-sierra-ac-compressor-failure",
+      "workItemId": "gmc-sierra-ac-compressor-failure--existing-fix-part-0-0--all-engines",
+      "partNumber": "471-1021",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped 471-1021 compressor claim does not prove complete year, engine, refrigerant-system, or catastrophic-failure application coverage, and the current catalog pass cannot confirm it."
+    },
+    {
+      "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+      "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--2-4l-ecotec-i4-laf-lea",
+      "partNumber": "WPGM-700",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link."
+    },
+    {
+      "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+      "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-0l-v6-lf1",
+      "partNumber": "WPGM-700",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link."
+    },
+    {
+      "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+      "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-6l-v6-lfx",
+      "partNumber": "WPGM-700",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link."
+    },
+    {
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--4-8l-v8",
+      "partNumber": "WPGM-609V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application."
+    },
+    {
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--5-3l-v8",
+      "partNumber": "WPGM-609V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application."
+    },
+    {
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-0l-v8",
+      "partNumber": "WPGM-609V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application."
+    },
+    {
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-2l-v8",
+      "partNumber": "WPGM-609V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application."
+    },
+    {
+      "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+      "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--5-3l-v8",
+      "partNumber": "MS19936",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage."
+    },
+    {
+      "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+      "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--6-2l-v8",
+      "partNumber": "MS19936",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage."
+    }
+  ],
+  "releaseBlockers": [
+    {
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-5l-i4-lcv",
+      "partNumber": "K700902",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--3-6l-v6-lgz",
+      "partNumber": "K700902",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-8l-duramax-lwn",
+      "partNumber": "K700902",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-7l-turbo-luf",
+      "partNumber": "K700902",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-envoy-4-2l-crankshaft-sensor-2002",
+      "workItemId": "gmc-envoy-4-2l-crankshaft-sensor-2002--existing-fix-part-0-0--4-2l-i6-ll8",
+      "partNumber": "235-1078",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The existing unscoped 235-1078 claim is not one of the article-prescribed ACDelco 213-3521 or Delphi SS11378 options, and current catalog evidence does not establish complete application coverage.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--5-3l-v8",
+      "partNumber": "THRGM-0002",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--6-2l-v8",
+      "partNumber": "THRGM-0002",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--4-3l-v6",
+      "partNumber": "THRGM-0002",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-sierra-ac-compressor-failure",
+      "workItemId": "gmc-sierra-ac-compressor-failure--existing-fix-part-0-0--all-engines",
+      "partNumber": "471-1021",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped 471-1021 compressor claim does not prove complete year, engine, refrigerant-system, or catastrophic-failure application coverage, and the current catalog pass cannot confirm it.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+      "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--2-4l-ecotec-i4-laf-lea",
+      "partNumber": "WPGM-700",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+      "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-0l-v6-lf1",
+      "partNumber": "WPGM-700",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+      "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-6l-v6-lfx",
+      "partNumber": "WPGM-700",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--4-8l-v8",
+      "partNumber": "WPGM-609V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--5-3l-v8",
+      "partNumber": "WPGM-609V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-0l-v8",
+      "partNumber": "WPGM-609V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-2l-v8",
+      "partNumber": "WPGM-609V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+      "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--5-3l-v8",
+      "partNumber": "MS19936",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+      "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--6-2l-v8",
+      "partNumber": "MS19936",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "type": "no-reviewed-commerce-writes",
+      "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "aef346ba58aa224a8af5678fc519b72bcbc2abba287164f70cac038b5765ce9d",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "5a6901a112db365e2c68207b4c856fecd7b801f6c08970245c221b7cd7a0b13a",
+        "checkpoint.json": "e8c09ceaf7a832208eb640397e6204401eb736a1439544b2dec5e63b75ad794c",
+        "diagnostic-tool-evidence.json": "efc7b833a1da1c00e5657c07bd233736548747c9a19e3cf0e6778db543ca422f"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 173,
+        "issuesWithDtcCodes": 95,
+        "uniqueDtcCount": 153,
+        "solutionInstructionCount": 184,
+        "dtcDispositionCount": 95,
+        "toolLinkedDispositionCount": 74,
+        "procedureNoToolDispositionCount": 146,
+        "unresolvedToolHoldCount": 59,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "gmc-acadia-timing-chain-2007",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Complete the GM diagnostic procedure before ordering parts.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-acadia-timing-chain-2007",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The bulletin says guides, sprockets, actuators and the crank gear should not be replaced automatically unless separately worn or diagnosed.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-acadia-shift-to-park-message-no-shutdown-door-lock-lockout-battery",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Have a GMC retailer reproduce the message and check for DTC B000A.",
+          "reasonCode": "scanner-capability-needs-code-or-module",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-ck-2500-brake-line-rust-1999",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The preferred repair is a complete pre-bent stainless or NiCopp brake line kit with new fittings, followed by bleeding the full hydraulic system (including ABS if required by the scan tool/service procedure) and replacing any contaminated hoses or calipers/wheel cylinders found leaking.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-canyon-p0420-p0430-catalytic-converter-efficiency-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose before replacing: rule out a faulty downstream O2 sensor or exhaust leak, and correct any oil-consumption root cause (PCV orifice/valve cover) first so the new converter is not re-poisoned.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-envoy-4-2l-crankshaft-sensor-2002",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Clear codes and test.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-envoy-instrument-cluster-stepper-2003",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace all gauge stepper motors simultaneously with X27.168 kit.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-hummer-ev-warning-lights-limp-2022",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0161, U0100",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-hummer-ev-suv-air-suspension-2024",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0710, C0760",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-hummer-ev-suv-charge-port-2024",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0AA6",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-hummer-ev-suv-charging-2024",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0A09, P0AF0",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-jimmy-transfer-case-encoder-1998",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0327, C0387",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra1500-front-hub-bearing-assembly-1999",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0035, C0040, C0050, C0055",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra1500-4l60-e-4l65-e-sun-2000",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0732, P0734, P0751, P0753, P0785, P1870",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra1500-blend-door-hvac-2000",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Repair involves replacing the failed mode, blend, or recirculation actuator and then performing HVAC recalibration by fuse pull or scan-tool procedure depending on year and system configuration.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra1500-blend-door-hvac-2000",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B0229, B0414, B0424, B3770",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra1500-stepper-motor-instrument-cluster-2003",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If only one gauge is wrong, the whole cluster is still usually rebuilt because the remaining motors often fail later.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-1500-p0011-intake-cam-over-advanced-from-sludge-clogged-vvt-solen",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A proven test is swapping the Bank 1 intake solenoid with another solenoid — if the code follows to P0014/P0021, the solenoid is bad.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "the gauge to separate a bad ECT sensor from a bad thermostat.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-1500-p0442-small-evap-leak-from-loose-cracked-gas-cap-fractured-f",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace the purge or vent solenoid if the smoke test isolates it there.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-1500-p0700-transmission-fault-flag-from-failing-6l80-6l90-interna",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "P0700 alone is not actionable — pull the transmission-specific sub-codes with a capable scanner to find the real fault.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra1500-power-door-lock-actuator-2007",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis involves confirming power and ground at the latch/actuator assembly and ruling out broken door-jamb wiring or BCM command issues.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra1500-power-door-lock-actuator-2007",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B3125, B3130",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-brake-control-module-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0035, C0040, C0045, C0050",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-hd-gas-engine-oil-consumption-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Oil consumption: GM oil consumption test procedure — if over 1 qt/2,000 miles, piston ring replacement authorized.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-blend-door-actuator-failure-causing-temperature-airflow-control-problems",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Identify the failed actuator (temperature blend, mode, or recirculation) using HVAC actuator recalibration and scan tool data where available.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-blend-door-actuator-failure-causing-temperature-airflow-control-problems",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B0408, B0414, B0423, B3770",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-front-differential-actuator-failure-causing-4wd-engagement-problems",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0327, C0379, U0121",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-allison-trans-2008",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0717, P0722, P0747, U0101",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-def-system-2011",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test the DEF tank heater, reductant quality/level sensor, and pump module;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-dpf-diesel-particulate-filter-clogging-and-regeneration-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Forced active regen via Tech 2 or MDI scan tool;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-turbocharger-vgt-vane-sticking-and-boost-control-failure-duramax-lml-l5p",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P003A, P0046, P0299, P132B",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-cluster-display-failure-2015",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "U0155, U0164",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-injector-failure-2015",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the failed injector with a relative compression test and injector balance rate scan using a Tech 2 or equivalent scan tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-steering-box-leak-2015",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0545",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-trailer-brake-controller-integrated-trailer-brake-module-malfunction",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan for trailer brake control module DTCs and apply GM software updates/reprogramming when applicable;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-trailer-brake-controller-integrated-trailer-brake-module-malfunction",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1114, U0100, U0121",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-electric-power-steering-eps-assist-loss-reduced-assist-warnings-new-body-style",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan for EPS-related DTCs and follow GM SI diagnostics for the steering gear/module and harness.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-sierra-3500hd-electric-power-steering-eps-assist-loss-reduced-assist-warnings-new-body-style",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0545, C056D, U0100, U0121",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-terrain-2-4l-oil-consumption-2010",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "GM formal oil consumption test (PIP4656D): measure consumption over 3,000 miles.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-terrain-hvac-blend-door-actuator-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace the failed blend/mode-door actuator (OEM/ACDelco recommended to avoid repeat aftermarket failures) and recalibrate with a scan tool after installation.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-terrain-hvac-blend-door-actuator-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B0408, B0423",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-terrain-intellilink-infotainment-freezing-rebooting-backup-camera-bl",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B101D, U0184",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-terrain-electronic-shifter-fault-vehicle-stuck-park-shift-to-park-me",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P182E, P1876",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose whether the fault is the encoder motor, the position sensor/selector, or the transfer case control module.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "After replacement the actuator position must be relearned with a scan tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C038D",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-hvac-blend-door-actuator-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B0423, B0429",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-engine-overheat-fail-safe-mode-from-thermostat-coolant-temp",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose whether the thermostat is stuck open or the ECT sensor has drifted.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukonxl-blend-door-hvac-2000",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Use the HVAC self-diagnostic procedure or a scan tool where available, then identify whether the failed unit is the mode, temperature, or recirculation actuator.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukonxl-blend-door-hvac-2000",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B0229, B0414, B0424",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukonxl-front-hub-bearing-and-2000",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan ABS wheel speed data during a low-speed stop and compare left and right front sensor readings.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukonxl-front-hub-bearing-and-2000",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0035, C0040, C0221, C0223, C0227, C0229",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-xl-rear-air-suspension-auto-leveling-compressor-failure-air-shock-leaks-z55-z95-equipped",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose for leaks (air shocks, lines, fittings) and replace the failed compressor/dryer assembly and/or leaking air shocks.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-xl-rear-wiper-motor-washer-hose-failure-no-rear-wipe-or-washer-spray",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose power/ground at the rear wiper motor and replace the motor if failed;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-xl-magnetic-ride-control-mrc-shock-strut-fluid-leak-and-service-suspension-system-warnings",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0550",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-xl-steering-column-click-2015",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A Tech 2 or MDI scan tool relearn procedure must be performed after installation to program the new module to the BCM.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-xl-steering-column-click-2015",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B2725, B2726, B3033, U0140",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "gmc-yukon-xl-transfer-case-leak-2015",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0327, C0569",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 173,
+      "reviewedProposalPartRows": 0,
+      "approvedRows": 0,
+      "selectedPrimaryRows": 0,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 0,
+      "heldProposalRows": 0,
+      "blockedExistingClaimRows": 18,
+      "changedIssueCount": 0,
+      "mergedStablePartCount": 0,
+      "manifestIssueCount": 0,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "1c6294fecdf6d4771ff29646aa10de81654e16a2901d564a61a64f5b89db3332",
+      "01-disposition-ledger.json": "e315b59bece03d967d2fb4f1747ffac0345ae3afa23be9f681e8ddc19f301879",
+      "02-fitment-worklist.json": "06d04740ffbe6ba63809f5c0b2762bf459428a3afda11a90be74841c9504360c",
+      "03-showmetheparts-evidence.json": "6a7d1d6f64832af12436e473421c76523fa5e6d2db91fd237144da3af0c51549",
+      "04-part-proposals.json": "dec9517e41a5c1d5325253ceaa187a6998eec822d23b099eb4fdb6aa9cb48175",
+      "05-direct-link-evidence.json": "951fa55d1a4582ad67434d5b1274980d743e269105994ed341bd9b4f74c2457f",
+      "06-independent-review.json": "662755ecbc54d0ef6bfc7459c55609beacc7b060ec1d5811ae8df31bf8f95db4",
+      "classification-ledger.json": "5a6901a112db365e2c68207b4c856fecd7b801f6c08970245c221b7cd7a0b13a",
+      "checkpoint.json": "e8c09ceaf7a832208eb640397e6204401eb736a1439544b2dec5e63b75ad794c",
+      "diagnostic-tool-evidence.json": "efc7b833a1da1c00e5657c07bd233736548747c9a19e3cf0e6778db543ca422f"
+    },
+    "reviewRows": [],
+    "removalProposals": [
+      {
+        "issueId": "gmc-canyon-front-suspension-clunk-2015",
+        "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-5l-i4-lcv",
+        "partNumber": "K700902",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application."
+      },
+      {
+        "issueId": "gmc-canyon-front-suspension-clunk-2015",
+        "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--3-6l-v6-lgz",
+        "partNumber": "K700902",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application."
+      },
+      {
+        "issueId": "gmc-canyon-front-suspension-clunk-2015",
+        "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-8l-duramax-lwn",
+        "partNumber": "K700902",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application."
+      },
+      {
+        "issueId": "gmc-canyon-front-suspension-clunk-2015",
+        "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-7l-turbo-luf",
+        "partNumber": "K700902",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application."
+      },
+      {
+        "issueId": "gmc-envoy-4-2l-crankshaft-sensor-2002",
+        "workItemId": "gmc-envoy-4-2l-crankshaft-sensor-2002--existing-fix-part-0-0--4-2l-i6-ll8",
+        "partNumber": "235-1078",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped 235-1078 claim is not one of the article-prescribed ACDelco 213-3521 or Delphi SS11378 options, and current catalog evidence does not establish complete application coverage."
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+        "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--5-3l-v8",
+        "partNumber": "THRGM-0002",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass."
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+        "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--6-2l-v8",
+        "partNumber": "THRGM-0002",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass."
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+        "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--4-3l-v6",
+        "partNumber": "THRGM-0002",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass."
+      },
+      {
+        "issueId": "gmc-sierra-ac-compressor-failure",
+        "workItemId": "gmc-sierra-ac-compressor-failure--existing-fix-part-0-0--all-engines",
+        "partNumber": "471-1021",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped 471-1021 compressor claim does not prove complete year, engine, refrigerant-system, or catastrophic-failure application coverage, and the current catalog pass cannot confirm it."
+      },
+      {
+        "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+        "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--2-4l-ecotec-i4-laf-lea",
+        "partNumber": "WPGM-700",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link."
+      },
+      {
+        "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+        "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-0l-v6-lf1",
+        "partNumber": "WPGM-700",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link."
+      },
+      {
+        "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+        "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-6l-v6-lfx",
+        "partNumber": "WPGM-700",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link."
+      },
+      {
+        "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+        "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--4-8l-v8",
+        "partNumber": "WPGM-609V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application."
+      },
+      {
+        "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+        "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--5-3l-v8",
+        "partNumber": "WPGM-609V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application."
+      },
+      {
+        "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+        "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-0l-v8",
+        "partNumber": "WPGM-609V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application."
+      },
+      {
+        "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+        "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-2l-v8",
+        "partNumber": "WPGM-609V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application."
+      },
+      {
+        "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+        "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--5-3l-v8",
+        "partNumber": "MS19936",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage."
+      },
+      {
+        "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+        "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--6-2l-v8",
+        "partNumber": "MS19936",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage."
+      }
+    ],
+    "releaseBlockers": [
+      {
+        "issueId": "gmc-canyon-front-suspension-clunk-2015",
+        "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-5l-i4-lcv",
+        "partNumber": "K700902",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-canyon-front-suspension-clunk-2015",
+        "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--3-6l-v6-lgz",
+        "partNumber": "K700902",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-canyon-front-suspension-clunk-2015",
+        "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-8l-duramax-lwn",
+        "partNumber": "K700902",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-canyon-front-suspension-clunk-2015",
+        "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-7l-turbo-luf",
+        "partNumber": "K700902",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-envoy-4-2l-crankshaft-sensor-2002",
+        "workItemId": "gmc-envoy-4-2l-crankshaft-sensor-2002--existing-fix-part-0-0--4-2l-i6-ll8",
+        "partNumber": "235-1078",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The existing unscoped 235-1078 claim is not one of the article-prescribed ACDelco 213-3521 or Delphi SS11378 options, and current catalog evidence does not establish complete application coverage.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+        "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--5-3l-v8",
+        "partNumber": "THRGM-0002",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+        "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--6-2l-v8",
+        "partNumber": "THRGM-0002",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+        "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--4-3l-v6",
+        "partNumber": "THRGM-0002",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-sierra-ac-compressor-failure",
+        "workItemId": "gmc-sierra-ac-compressor-failure--existing-fix-part-0-0--all-engines",
+        "partNumber": "471-1021",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped 471-1021 compressor claim does not prove complete year, engine, refrigerant-system, or catastrophic-failure application coverage, and the current catalog pass cannot confirm it.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+        "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--2-4l-ecotec-i4-laf-lea",
+        "partNumber": "WPGM-700",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+        "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-0l-v6-lf1",
+        "partNumber": "WPGM-700",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+        "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-6l-v6-lfx",
+        "partNumber": "WPGM-700",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+        "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--4-8l-v8",
+        "partNumber": "WPGM-609V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+        "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--5-3l-v8",
+        "partNumber": "WPGM-609V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+        "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-0l-v8",
+        "partNumber": "WPGM-609V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+        "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-2l-v8",
+        "partNumber": "WPGM-609V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+        "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--5-3l-v8",
+        "partNumber": "MS19936",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+        "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--6-2l-v8",
+        "partNumber": "MS19936",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "type": "no-reviewed-commerce-writes",
+        "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "gmc-acadia-fuel-pump-mixing-tube-burr-causing-engine-stall-low-fuel",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-acadia-incorrect-transmission-sun-gear-causing-driver-side-half-sha",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-acadia-infotainment-system-lockup-black-screen-random-reboots",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-acadia-power-steering-failure-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-acadia-shift-to-park-message-no-shutdown-door-lock-lockout-battery",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-acadia-start-stop-transmission-accumulator-missing-bolts-fluid-leak",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-acadia-surround-vision-rearview-camera-coaxial-cable-crimp-failure",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-acadia-timing-chain-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-acadia-transmission-9t65-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-acadia-water-pump-failure-2007",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-canyon-2024-headlight-flicker-2023-2024-seat-belt-buckle-bolt-recal",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-canyon-3-6l-v6-excessive-oil-consumption-from-clogged-pcv-orifice",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-canyon-8l45-transmission-shudder-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-canyon-cylinder-deactivation-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-canyon-driver-airbag-inflator-misalignment-sdm-reprogram",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-canyon-duramax-def-dpf-issues-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-canyon-front-brake-caliper-brake-fluid-leak",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-canyon-front-suspension-clunk-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "gmc-canyon-p0420-p0430-catalytic-converter-efficiency-failure",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-canyon-power-steering-assist-loss-from-corroded-steering-gear-conne",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-1500-4l60e-trans-1993",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-1500-brake-line-corrosion-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-1500-oil-pressure-sender-1988",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-1500-spider-injector-1996",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-2500-65l-diesel-pmd-1994",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-2500-abs-sensor-1995",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-2500-brake-line-rust-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-2500-pitman-arm-1990",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-3500-oil-pressure-sender-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck-3500-rear-axle-seal-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck2500-fuel-pump-1996",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck3500-brake-hydroboost-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck3500-fuel-pump-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-ck3500-idler-pitman-arm-1990",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-envoy-4-2l-crankshaft-sensor-2002",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "gmc-envoy-fan-clutch-2002",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-envoy-instrument-cluster-stepper-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-envoy-transfer-case-4wd-failure-2002",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-hummer-ev-a-pillar-leak-2022",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-hummer-ev-battery-seal-water-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-hummer-ev-charging-software-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-hummer-ev-suv-air-suspension-2024",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-hummer-ev-suv-charge-port-2024",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-hummer-ev-suv-charging-2024",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-hummer-ev-suv-infotainment-2024",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-hummer-ev-warning-lights-limp-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-jimmy-ball-joint-failure-1995",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-jimmy-fuel-pressure-regulator-1996",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-jimmy-intake-gasket-1996",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-jimmy-transfer-case-encoder-1998",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-safari-43l-intake-gasket-1996",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-safari-fuel-pump-1990",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-safari-fuel-spider-injector-1996",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-safari-rear-door-latch-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-savana-afm-lifter-vortec-2010",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-savana-brake-line-corrosion-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-savana-door-hinge-1996",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-savana-fuel-pump-failure-2003",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-savana-ignition-switch-1996",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0011-intake-cam-over-advanced-from-sludge-clogged-vvt-solen",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0016-crank-cam-correlation-fault-from-stretched-timing-chai",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0420-catalyst-efficiency-bank-1-from-failing-cat-often-caus",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0430-catalyst-efficiency-bank-2-converter-failure-5-3l-v8",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0442-small-evap-leak-from-loose-cracked-gas-cap-fractured-f",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0455-gross-evap-leak-from-failed-vent-solenoid-missing-gas",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-1500-p0700-transmission-fault-flag-from-failing-6l80-6l90-interna",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-a-c-condenser-leak-leading-to-loss-of-refrigerant-and-warm-air",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-allison-1000-2000-series-transmission-torque-converter-shudder",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-allison-trans-2008",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-blend-door-actuator-failure-causing-temperature-airflow-control-problems",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-cluster-display-failure-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-def-system-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-dpf-diesel-particulate-filter-clogging-and-regeneration-failure",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-duramax-cp4-failure-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-duramax-water-pump-failure-and-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-egr-cooler-failure-and-coolant-contamination-duramax-lmm-lml",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-electric-power-steering-eps-assist-loss-reduced-assist-warnings-new-body-style",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-exhaust-manifold-crack-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-front-differential-actuator-failure-causing-4wd-engagement-problems",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-fuel-tank-strap-and-fuel-sender-unit-corrosion-causing-fuel-gauge-inaccuracy",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-glow-plug-control-module-glow-plug-circuit-faults-causing-hard-cold-starts-duramax",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-hydroboost-brake-assist-loss-due-to-power-steering-pump-hose-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-injector-failure-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-leaf-spring-breakage-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-rear-axle-pinion-seal-leak-and-differential-fluid-loss-aam-11-5-11-8",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-silverado-sierra-3500hd-frame-corrosion-and-rust-through-salt-belt",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-steering-box-leak-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-trailer-brake-controller-integrated-trailer-brake-module-malfunction",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-transfer-case-pump-rub-causing-fluid-leak-and-transfer-case-damage-4wd",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-3500hd-turbocharger-vgt-vane-sticking-and-boost-control-failure-duramax-lml-l5p",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-8-10-speed-transmission-shudder",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-ac-compressor-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "gmc-sierra-afm-dfm-lifter-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-brake-control-module-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-direct-injection-carbon-buildup",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-hd-allison-tcm-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-hd-duramax-cp4-failure-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-hd-duramax-egr-cooler-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-hd-front-axle-4wd-actuator-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-hd-gas-engine-oil-consumption-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-infotainment-audio-loss",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-steering-intermediate-shaft-clunk",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra-transfer-case-neutral-shift",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-4l60-e-4l65-e-sun-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-blend-door-hvac-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-front-hub-bearing-assembly-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-fuel-level-sensor-failure-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-fuel-pump-module-failure-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-knock-sensor-water-intrusion-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-power-door-lock-actuator-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-rusting-brake-lines-leading-1999",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-stepper-motor-instrument-cluster-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sierra1500-upper-dash-pad-cracking-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sonoma-43l-intake-gasket-1996",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sonoma-door-handle-break-1994",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-sonoma-fuel-pump-1991",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-suburban-57l-intake-gasket-1996",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-suburban-fuel-pump-1996",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-suburban-hvac-blend-door-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-suburban-rear-ac-evaporator-1995",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-suburban-rear-hvac-1992",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-1-5t-pcv-oil-leak-2018",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-2-4l-oil-consumption-2010",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-ecotec-timing-chain-2010",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-electric-power-steering-sticking-increased-steering-effort",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-electronic-shifter-fault-vehicle-stuck-park-shift-to-park-me",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-engine-driven-brake-vacuum-pump-failure-sudden-loss-power-br",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-high-pressure-fuel-pump-failure-causing-engine-stall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-hvac-blend-door-actuator-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-intellilink-infotainment-freezing-rebooting-backup-camera-bl",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-start-stop-transmission-accumulator-endcap-missing-bolts-flu",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-throttle-body-throttle-position-sensor-failure-reduced-engin",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-transmission-shudder-2010",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "gmc-yukon-10l80-10-speed-transmission-harsh-shifting-shudder-rear-whee",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-5-3l-v8-excessive-oil-consumption",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-6-2l-l87-v8-rod-bearing-failure-loss-propulsion",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-8l90-transmission-shudder-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-afm-lifter-failure-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-air-suspension-compressor-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-automatic-4wd-transfer-case-position-sensor-encoder-motor-fa",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-brake-vacuum-pump-failure-causing-hard-brake-pedal",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-cracked-dashboard-over-airbag-instrument-panel",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-engine-overheat-fail-safe-mode-from-thermostat-coolant-temp",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-hvac-blend-door-actuator-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-instrument-cluster-stepper-motor-gauge-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-intermediate-steering-shaft-clunk-pop",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-mylink-intellilink-8-inch-touchscreen-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-power-running-boards-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "gmc-yukon-xl-6l80-6l90-transmission-cooler-line-leak-at-crimp-fitting-fluid-loss",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-ac-compressor-2007",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-afm-lifter-tick-2007",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-brake-lines-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "gmc-yukon-xl-dashboard-cracking-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-door-handle-linkage-failure-exterior-handle-pulls-but-door-won-t-open",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-electric-power-steering-eps-assist-loss-reduced-assist-nhtsa-14v-153",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-liftgate-struts-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-magnetic-ride-control-mrc-shock-strut-fluid-leak-and-service-suspension-system-warnings",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-rear-air-suspension-auto-leveling-compressor-failure-air-shock-leaks-z55-z95-equipped",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-rear-wiper-motor-washer-hose-failure-no-rear-wipe-or-washer-spray",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-steering-column-click-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-takata-passenger-airbag-inflator-rupture-risk-recall-174-nhtsa-21v-050",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-torque-converter-shudder-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukon-xl-transfer-case-leak-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukonxl-blend-door-hvac-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukonxl-front-hub-bearing-and-2000",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukonxl-fuel-pump-module-failure-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukonxl-instrument-cluster-stepper-motor-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukonxl-intermediate-steering-shaft-clunk-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "gmc-yukonxl-knock-sensor-water-intrusion-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

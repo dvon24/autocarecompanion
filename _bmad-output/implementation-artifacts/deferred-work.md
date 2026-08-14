@@ -11,3 +11,7 @@
 - source_spec: `_bmad-output/implementation-artifacts/spec-complete-bmw-known-issues-audit-and-production-deploy.md`
   summary: Bind transitive manifest-generator dependencies into the reviewed generator hash for future factory-backed audit cohorts.
   evidence: `_build-full-record-model-manifest-core.cjs` hashes the core and thin per-model config but does not include `_config-bmw-remaining-factory.cjs`; this does not change committed immutable BMW manifests, but a future regeneration could execute changed factory code under the same reviewed core/config hashes.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-make-by-make-known-issue-part-links.md`
+  summary: Add moderated owner/community submissions for identifying issues and proposing evidence-backed article corrections.
+  evidence: The user wants a future path for owners to help identify issues or flag article updates so maintainers can review the vehicle context, supporting evidence, and proposed correction before any public content changes.

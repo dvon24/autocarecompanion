@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Lexus",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 77,
+    "issuesWithDtcCodes": 20,
+    "uniqueDtcCount": 41,
+    "solutionInstructionCount": 78,
+    "dtcDispositionCount": 20,
+    "toolLinkedDispositionCount": 10,
+    "procedureNoToolDispositionCount": 69,
+    "unresolvedToolHoldCount": 19,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "lexus-ct-hybrid-battery-degradation-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A80, P3000, P3006",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-ct-water-pump-failure-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A93",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-es300h-hybrid-battery-degradation-2013",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A80, P3000",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-gx-secondary-air-pump-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Some owners in non-emissions-testing states choose to bypass the system entirely with a tune.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-gx-ahc-suspension-leak-2010",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1435, C1436",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-is-alternator-failure-from-age-2001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The battery should be load-tested afterward because repeated deep discharge can damage it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-is-lexus-safety-system-false-2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A10, C1A11, C1A47, C1AA0",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-ls-air-suspension-failure-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1714, C1715, C1760",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-ls-headlight-self-leveling-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Recalibrate the headlight system with a Lexus diagnostic scan tool after replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-ls-headlight-self-leveling-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1601, B1602",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-lx-ahc-suspension-failure-2008",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1714, C1715",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-lx-center-diff-lock-actuator-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "After installation, perform a system initialization using a Toyota/Lexus diagnostic scanner.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-lx-center-diff-lock-actuator-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test engagement on a loose surface in a straight line.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-lx-123-inch-infotainment-lexus-2022",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U0155, U0235",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-lx-front-occupant-classification--2022",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1650, B1780, B1795",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-lx-power-tailgate-rear-2022",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2220, B2222",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-rc-interior-rattle-and-buzzing-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Because the problem is often intermittent, documenting road speed, temperature, and road surface helps diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-rx-front-camera-millimeter-wave-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a scan for ADAS-related DTCs, then complete static/dynamic calibration of the forward recognition camera and millimeter-wave radar if alignment is out of spec.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lexus-rx-front-camera-millimeter-wave-2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A10, C1A11, C1A14, C1AA0",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

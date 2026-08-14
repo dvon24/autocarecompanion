@@ -1,0 +1,1174 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "BMW",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 385,
+    "issuesWithDtcCodes": 125,
+    "uniqueDtcCount": 93,
+    "solutionInstructionCount": 401,
+    "dtcDispositionCount": 125,
+    "toolLinkedDispositionCount": 94,
+    "procedureNoToolDispositionCount": 312,
+    "unresolvedToolHoldCount": 120,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "bmw-1series-n54-hpfp-2008",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "29DC, 29F1, 29F2, 2FBF",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-1series-n54-wastegate-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "ShowMeTheParts returned turbocharger candidates, but no candidate was approved as a diagnosis or remedy.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-1-series-electric-water-pump-2012",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-2series-n20-timing-chain-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Repair only the components identified by that diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-diesel-swirl-flap-sticking-carbon-build-up-causing-limp-mode",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read DDE swirl-flap actuator codes, then clean or free the flaps and linkage of carbon, or replace the actuator/intake manifold if worn.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-electromechanical-parking-brake-failure-false-warning",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with BMW-specific equipment (e.g.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-electromechanical-parking-brake-failure-false-warning",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "ISTA) to read the EMF module.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-electromechanical-parking-brake-failure-false-warning",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "420106",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-spurious-collision-warning-autonomous-emergency-braking-acti",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have BMW diagnose the camera/radar driving-assistant module and brake-light switch;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-3series-window-regulator-cable-and-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis is straightforward when the window binds, tilts, or falls into the door.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-3-series-water-pump-2006",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-n54-hpfp",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "ShowMeTheParts resolved three 2009 335i fuel-pump candidates, but catalog fitment is not diagnosis or remedy proof and no commerce link is approved.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-n54-hpfp",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "29DC, 29F1, 29F2, 2FBF",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-n55-boost-solenoid-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose boost system for proper operation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-4series-convertible-top-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose specific failure point - pump motor, hydraulic lines, microswitches, or latch mechanisms.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-4series-n55-vanos-solenoid-2014",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1014, P1017, P1023, P1030, P10DF, P10E0, P10E1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-4series-n55-water-pump-2014",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-5-series-water-pump-2004",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-5-series-n63-timing-chain-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace both chains only if the approved test reports that the chain is not OK.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-5-series-electric-water-pump-2011",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Register the new pump with BMW diagnostic software to reset the pump runtime counter.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-5-series-electric-water-pump-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-5-series-n20-timing-chain-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace a module only when the approved test result requires it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-5-series-air-suspension-g30-2017",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "BMW diagnostic software is needed to calibrate ride height after replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-6series-n62-coolant-pipe-2004",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-6-series-adaptive-headlight-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the control module is replaced, it must be programmed with BMW ISTA diagnostic software.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-6series-n63-timing-chain-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace both chains only if the approved test reports that the chain is not OK.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-6-series-n63-valve-stem-seals-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not assume historical settlement eligibility or replace valve-stem seals without diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-7series-electrical-e65-2002",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose specific module failures with BMW diagnostic software.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-7series-electrical-e65-2002",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Common fixes: CCC module replacement ($1,500-2,500), window regulator replacement ($300-600 per window), battery registration after replacement, and parasitic draw diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-7series-n63-valvetronic-2009",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1014, P1017, P1023, P1030, P10DF, P10E0, P10E1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-7series-n63-turbo-2009",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Repair only the component supported by the documented test result;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-8-series-adaptive-suspension-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "BMW's diagnostic system can identify which specific damper has failed through the suspension control module fault memory.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-8-series-b58-coolant-loss-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pressure test the entire cooling system after repairs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-8-series-b58-coolant-loss-2019",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i3-12v-battery-drain-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "program the vehicle when the measured I-level and diagnostic result meet SIB 61 05 20.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i3-12v-battery-drain-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace and register a 12V battery only if separate testing proves it failed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i4-drivetrain-malfunction-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Capture any red warning and arrange diagnosis if the VIN is not included or the fault remains after the recall remedy.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i4-heat-pump-cold-weather-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "replace the applicable older-production valve and bleed/test the cooling system with ISTA when the BMW criteria are met.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i4-pedestrian-sound-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if the VIN is outside the campaign, diagnose the exact warning and faults separately.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i5-acoustic-pedestrian-warning-sound-generator-fault",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "diagnose vehicles outside the campaign separately.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i5-adaptive-suspension-calibration-2024",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a suspension calibration reset using BMW ISTA diagnostic software.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i5-electric-drive-motor-software-false-isolation-fault-causing",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Capture any red warning and arrange diagnosis if the VIN is not included or the fault remains after the remedy.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i5-high-voltage-battery-module-insufficient-weld-seams",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "vehicles outside the campaign require separate fault-led diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i7-autonomous-system-updates-2025",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read ADCAM fault memory with ISTA before replacing anything.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i7-autonomous-system-updates-2025",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "7E00A0, 7E0197",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i7-ota-update-failures-2025",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "80424A, 80424B, 80424C, 80424D, 80424E, 80424F",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i8-butterfly-door-actuator-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Run Energy Diagnosis for the 12-volt system and test the key-fob batteries.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i8-butterfly-door-actuator-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If BDC door-lock faults are present or the LED pattern does not match, continue ISTA diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i8-cooling-system-failure-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Clear the fault and activate the turbocharger coolant pump with the specified ISTA/D test plan.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i8-cooling-system-failure-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If it returns during activation, continue ISTA diagnosis;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i8-cooling-system-failure-2014",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "20A503",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i8-12v-battery-drain-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If either condition is absent, continue standard diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-i8-12v-battery-drain-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not replace the Controller or buy a generic battery maintainer or scan tool as the repair.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-ix-air-suspension-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis required to identify failing component.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-ix-hv-battery-ecu-software-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Capture any red warning and arrange diagnosis if the VIN is not included or the fault remains after the recall remedy.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-ix-infotainment-screen-blackout-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "With the vehicle stationary, follow the bulletin sequence: full sleep cycle, a volume-control head-unit reset longer than 70 seconds, the BMW-directed 12-volt reset when necessary, then ISTA display test plan ABL-DIT-AT6581_CID3.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-ix-phantom-braking-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read ADCAM fault memory with ISTA before replacing anything.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-ix-phantom-braking-2022",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "7E00A0, 7E0197",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-ix3-charging-socket-lock-fault-cable-will-not-unlock-charging-wo",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "805503, 805532",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-ix3-onboard-charger-manufacturing-fault-electric-shock-risk",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "vehicles outside the recall require BMW fault-led diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m2-charge-pipe-2016",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "120208, 120408",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m240i-b58-vanos-solenoid-2017",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1014, P1017, P1023, P1030, P10DF, P10E0, P10E1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-e46-throttle-actuator-2001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "ECU Testing (UK) offers motor rewinding + TPS repair for $300-$500.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-e46-vanos-failure-2001",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1014, P1017, P1023, P1030, P10DF, P10E0, P10E1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-e9x-vanos-solenoid-2008",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1014, P1017, P1023, P1030, P10DF, P10E0, P10E1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-s65-throttle-actuator-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "ECU Testing offers actuator rebuilds as a cost-effective alternative.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-s65-vanos-solenoid-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1014, P1017, P1023, P1030, P10DF, P10E0, P10E1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-e9x-idle-control-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For a confirmed eligible failure, an authorized BMW center performs the BMW test module and replaces the idle control device when required.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-f80-injector-failure-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Injector coding/adaptation via BMW diagnostic software is required after replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-f80-water-pump-2015",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-s55-water-pump-electric-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m3-g80-cooling-system-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m340i-12v-battery-drain-failure-battery-registration-issues",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test and replace the AGM battery with the correct OEM-spec unit, then register the new battery with BimmerLink/ISTA so the charging strategy adapts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m340i-vanos-solenoid-o-ring-failure",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Diagnose with a scan tool (VANOS/camshaft position fault codes), then replace the affected intake/exhaust VANOS solenoid(s) and O-rings.",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m340i-vanos-solenoid-o-ring-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "cost is mostly diagnosis and labor, typically a few hundred dollars.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m340i-vanos-solenoid-o-ring-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2A82, 2A87, 2A98, 2A9A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m340i-zf-8hp-harsh-jerky-low-speed-shifting-mechatronic-faults",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For persistent erratic shifting or warning lights, scan the transmission and repair/replace the mechatronic unit (valve body) as needed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m340i-b58-coolant-loss-2020",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m4-convertible-top-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose specific failure: hydraulic pump motor, lines, microswitches, or latch mechanisms.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m5-absdsc-module-failure-triggering-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis should begin with scanning the ABS/DSC module for communication or wheel-speed sensor faults and verifying power, ground, and sensor signals.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m5-e39-m5-vanos-solenoidseal-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0011, P0021, P1520, P1523",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m5-instrument-cluster-pixel-failure-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis is usually visual, confirming missing display segments in the cluster or MID.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m5-maf-sensor-degradation-causing-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0101, P0102, P0103, P0171, P0174, P1083, P1085",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m5-s85-throttle-actuator-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "ECU Testing and Euro Power Motorsports offer actuator rebuilds ($500-$800 per actuator) as cost-effective alternatives.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m5-smg-pump-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "DIAGNOSIS FIRST: Insist on proper diagnosis before pump replacement - accumulator failure has similar symptoms and costs $500 vs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m5-valve-stem-seals-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Blue smoke test: let engine idle 30+ minutes until hot, then rev to redline briefly - big blue smoke plume = valve seals.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m6-f12-convertible-top-hydraulic-pump-relay-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose whether the fault is the pump's high-current relays (relatively cheap, often the cure), a pressure loss in the pump, a hydraulic leak, or a roof microswitch/sensor.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-m6-s63-high-pressure-fuel-pump-fuel-injector-cold-start-misfire",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for misfire and fuel-system codes and test cold-start fuel-rail pressure.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x1-transfer-case-2013",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose specific failure point.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x3-coolant-expansion-tank-2004",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x3-vanos-solenoid-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1014, P1017, P1023, P1030, P10DF, P10E0, P10E1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x3-water-pump-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x3-electric-water-pump-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x3-m-electric-wastegate-actuator-adaptation-fault-boost-cutout-ea",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose unrelated mechanical noise separately;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x3-m-electric-wastegate-actuator-adaptation-fault-boost-cutout-ea",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "120408, 123518",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Keep a close eye on coolant temperature gauge as early detection is key to preventing engine damage from overheating.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x4-transfer-case-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose specific failure.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the air supply only after those checks isolate it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-n63-wastegate-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read all DME faults and compare requested versus actual boost under the BMW test plan.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-n63-wastegate-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "No retail link is published until diagnosis selects a VIN-specific component.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-vanos-solenoid-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the VIN is outside the recall or a fault remains after the remedy, use BMW-capable diagnostics to test oil supply and pressure, wiring, sensors, control solenoids, adjustment units, and mechanical timing before selecting a part.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-air-suspension-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Start with the VIN build/options, open-campaign status, exact warning, complete fault memory, and BMW ISTA test plan.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-air-suspension-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For other vehicles, test the particular system shown by the VIN and fault path before selecting any component.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-transfer-case-actuator-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "diagnose any powertrain faults;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5-transfer-case-actuator-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the symptom remains, continue diagnosis rather than buying an actuator or transfer case.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x5m-s63-turbo-coolant-line-2010",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x6-adaptive-drive-malfunction-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose specific Adaptive Drive component failure using BMW ISTA diagnostics.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-x7-b58-coolant-2019",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-xm-airbag-passenger-knee-recall-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not attempt airbag diagnosis or order a clock spring or airbag module from this card;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-z3-hvac-blower-final-stage-resistor-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If a new resistor does not restore all speeds, test the blower motor itself, which may also be worn.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-z3-rear-subframe-crack-1996",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "a dye penetrant test or removing trunk trim/seam sealer may be needed to reveal early damage.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-z3-vanos-seals-1999",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1014, P1017, P1023, P1030, P10DF, P10E0, P10E1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-z4-n54-wastegate-rattle-2009",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not replace a turbocharger, actuator or wastegate from this card without the required diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-z4-soft-top-hydraulic-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the leak location and replace the failed component.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "bmw-z4-g29-b58-water-pump-2019",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "2E81, 2E82, 2E83, 2E84, 2E85, 377A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

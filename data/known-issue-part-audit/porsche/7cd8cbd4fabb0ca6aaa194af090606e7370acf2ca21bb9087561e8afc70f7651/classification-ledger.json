@@ -1,0 +1,4893 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Porsche",
+  "makeKey": "porsche",
+  "makeIndex": 39,
+  "totalMakes": 54,
+  "issueCount": 96,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 49,
+    "diagnosis-dependent": 19,
+    "recall/dealer": 9,
+    "service/tool/fluid": 8,
+    "no-commerce": 11
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 24,
+    "uniqueDtcCount": 27,
+    "instructionCount": 76,
+    "dtcDispositionCount": 24,
+    "toolLinkedCount": 26,
+    "procedureNoToolCount": 58,
+    "unresolvedToolHoldCount": 16
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "porsche-718-boxster-air-oil-separator-failure-causing-oil-ingestion-smoke",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS (2.5T)",
+        "718 Boxster S",
+        "718 Boxster T"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Air-Oil Separator (AOS) Failure Causing Oil Ingestion and Smoke",
+      "howToFix": "Diagnose with a crankcase-vacuum test; replace the failed AOS and clean the intake tract. Inspect spark plugs, oxygen sensors and MAF for oil contamination. For track use, consider an upgraded/baffled AOS or catch-can setup. Address promptly to prevent oil-ingestion damage to cams, pistons or sensors.",
+      "dtcCodes": [
+        "P0171",
+        "P0174"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose with a crankcase-vacuum test;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect spark plugs, oxygen sensors and MAF for oil contamination."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-boxster-air-oil-separator-failure-causing-smoke-misfires",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS",
+        "718 Boxster S"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Air-Oil Separator (AOS) Failure Causing Smoke and Misfires",
+      "howToFix": "Diagnose by checking for oil in the intake manifold/throttle body and measuring crankcase pressure. Replace the failed AOS (and clean oil residue from the intake tract); tracked cars may benefit from an upgraded separator. Clear fuel-trim and misfire codes after repair and verify the smoke and idle quality are resolved.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnose by checking for oil in the intake manifold/throttle body and measuring crankcase pressure."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clear fuel-trim and misfire codes after repair and verify the smoke and idle quality are resolved."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-boxster-convertible-top-2017",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S",
+        "Spyder",
+        "T"
+      ],
+      "engines": [],
+      "title": "Convertible Top Alignment and Seal Issues",
+      "howToFix": "Adjust the convertible top alignment and latch mechanism per Porsche specifications. Replace worn or compressed top seals. Lubricate the latching mechanism and hinges with Porsche-specified lubricant. In cold climates, warm the car briefly before operating the top.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-boxster-convertible-top-2017--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-718-boxster-coolant-leak-2017",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Base",
+        "S",
+        "T"
+      ],
+      "engines": [
+        "2.0L Turbo Flat-4",
+        "2.5L Turbo Flat-4",
+        "turbo flat-four"
+      ],
+      "title": "Coolant Leak at Turbo Connections",
+      "howToFix": "Replace the cracked coolant housing or turbo water line fittings. Porsche has updated the plastic housing design on later production runs. Pressure test the cooling system at every major service to catch leaks early.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure test the cooling system at every major service to catch leaks early."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-boxster-coolant-leak-2017--prescription-0-0--2-0l-turbo-flat-4",
+        "porsche-718-boxster-coolant-leak-2017--prescription-0-0--2-5l-turbo-flat-4",
+        "porsche-718-boxster-coolant-leak-2017--prescription-0-0--turbo-flat-four",
+        "porsche-718-boxster-coolant-leak-2017--prescription-1-0--2-0l-turbo-flat-4",
+        "porsche-718-boxster-coolant-leak-2017--prescription-1-0--2-5l-turbo-flat-4",
+        "porsche-718-boxster-coolant-leak-2017--prescription-1-0--turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-718-boxster-cooling-system-changeover-bypass-valve-water-pump-failure-ca",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS",
+        "718 Boxster S"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Cooling System Changeover/Bypass Valve and Water Pump Failure Causing Overheating",
+      "howToFix": "Diagnose with the factory tool to identify whether the fault lies in the changeover valves, the water pump, or the coolant cover. Replace the failed changeover valve(s) and/or the water pump assembly and any cracked coolant cover, then bleed/refill the system per Porsche procedure. Because the plastic impeller and pump bearings wear early, many owners pre-emptively replace the water pump around 30,000-40,000 miles and inspect hoses, the expansion tank, and radiators at the same time.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose with the factory tool to identify whether the fault lies in the changeover valves, the water pump, or the coolant cover."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Because the plastic impeller and pump bearings wear early, many owners pre-emptively replace the water pump around 30,000-40,000 miles and inspect hoses, the expansion tank, and radiators at the same time."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-boxster-cooling-system-changeover-bypass-valve-water-pump-failure-ca--prescription-0-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-cooling-system-changeover-bypass-valve-water-pump-failure-ca--prescription-0-0--2-5l-turbo-flat-four",
+        "porsche-718-boxster-cooling-system-changeover-bypass-valve-water-pump-failure-ca--prescription-1-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-cooling-system-changeover-bypass-valve-water-pump-failure-ca--prescription-1-0--2-5l-turbo-flat-four",
+        "porsche-718-boxster-cooling-system-changeover-bypass-valve-water-pump-failure-ca--prescription-2-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-cooling-system-changeover-bypass-valve-water-pump-failure-ca--prescription-2-0--2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-718-boxster-fuel-collection-pipe-high-pressure-fuel-line-leak",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS",
+        "718 Boxster S"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Fuel Collection Pipe / High-Pressure Fuel Line Leak (NHTSA Recall AH01 / 19V113)",
+      "howToFix": "Check the VIN against open recalls (NHTSA campaign 19V113000 / Porsche reference AH01, and the EU bank-2 fuel-pipe seal recall). Dealers correct the fuel collection pipe fastening and secure the crossmember with additional rivets free of charge; the EU campaign replaces/reseals the affected high-pressure fuel pipe. Repairs are performed at no cost under the recall.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN against open recalls (NHTSA campaign 19V113000 / Porsche reference AH01, and the EU bank-2 fuel-pipe seal recall)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-boxster-fuel-collection-pipe-high-pressure-fuel-line-leak--prescription-0-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-fuel-collection-pipe-high-pressure-fuel-line-leak--prescription-0-0--2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-718-boxster-fuel-system-leak-recalls-collection-pipe-screws-fuel-crossme",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS",
+        "718 Boxster S"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Fuel System Leak Recalls – Collection Pipe Screws and Fuel Crossmember",
+      "howToFix": "If fuel odor, visible fuel or smoke is present, stop, switch the engine off when safe, move away and arrange towing; call emergency services for fire. Check the VIN against both 17V-054/AH01 and 19V-113/AKA3, then contact an authorized Porsche dealer to confirm open status and current remedy availability and charge. Do not buy fuel-pipe screws, a fuel rail, line or crossmember from this page; campaign status, exact condition, part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN against both 17V-054/AH01 and 19V-113/AKA3, then contact an authorized Porsche dealer to confirm open status and current remedy availability and charge."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-boxster-manual-transmission-1st-to-2nd-gear-synchro-grind",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "718 Boxster (6-speed manual)",
+        "718 Boxster GTS (6-speed manual)",
+        "718 Boxster S (6-speed manual)"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Manual Transmission 1st-to-2nd Gear Synchro Grind",
+      "howToFix": "Bleed the clutch hydraulic system to remove air and ensure full disengagement, and verify clutch pedal travel/master-cylinder operation. Use the correct Porsche manual-transmission fluid and allow the gearbox to warm before brisk shifting. If the synchro is already damaged, the transmission must be opened to replace the 2nd-gear synchro assembly; some cars have been addressed under warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Bleed the clutch hydraulic system to remove air and ensure full disengagement, and verify clutch pedal travel/master-cylinder operation."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-boxster-manual-transmission-1st-to-2nd-gear-synchro-grind--prescription-0-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-manual-transmission-1st-to-2nd-gear-synchro-grind--prescription-0-0--2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-718-boxster-oil-leaks-from-rear-main-seal-valve-cover-spark-plug-tube-se",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS (2.5T)",
+        "718 Boxster GTS 4.0",
+        "718 Boxster S",
+        "718 Boxster T",
+        "718 Spyder"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four",
+        "4.0L flat-six"
+      ],
+      "title": "Oil Leaks from Rear Main Seal, Valve Cover and Spark Plug Tube Seals",
+      "howToFix": "Clean suspected areas, then short-drive and re-inspect to pinpoint the source. Valve-cover and spark-plug-tube seals are the easiest to address and should be done at major services. A confirmed rear main seal leak requires transmission removal — often combined with a clutch job on manual cars to save labor. Also check oil cooler and cam seals as secondary culprits.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clean suspected areas, then short-drive and re-inspect to pinpoint the source."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Also check oil cooler and cam seals as secondary culprits."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-boxster-pcm-apple-carplay-touchscreen-freeze-connection-dropouts",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS",
+        "718 Boxster GTS 4.0",
+        "718 Boxster S",
+        "718 Boxster T",
+        "718 Spyder"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four",
+        "4.0L flat-six"
+      ],
+      "title": "PCM Apple CarPlay / Touchscreen Freeze and Connection Dropouts",
+      "howToFix": "Reboot the PCM by holding the left head-unit (volume) knob until it restarts. To resolve the wired-CarPlay/Bluetooth conflict, 'forget' the Porsche Bluetooth pairing on the iPhone so wired CarPlay can take over the UI. Start the car, wait a moment, then connect an undamaged genuine Apple cable to an unlocked phone (no USB adapter). Apply any available PCM/software updates from the dealer.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-boxster-pcm-infotainment-freezing-carplay-dropouts-backup-camera-fai",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS",
+        "718 Boxster S"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "PCM Infotainment Freezing, CarPlay Dropouts, and Backup Camera Failure",
+      "howToFix": "Apply the latest PCM software/firmware update at the dealer, which resolves many freezing, CarPlay, and Bluetooth complaints. Try a PCM reset, remove and re-pair the phone, and use a known-good certified cable for wired CarPlay. If the screen remains dead or stuck in a reboot loop after software updates, the PCM display unit may need replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-boxster-pcm-infotainment-freezing-carplay-dropouts-backup-camera-fai--prescription-0-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-pcm-infotainment-freezing-carplay-dropouts-backup-camera-fai--prescription-0-0--2-5l-turbo-flat-four",
+        "porsche-718-boxster-pcm-infotainment-freezing-carplay-dropouts-backup-camera-fai--prescription-1-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-pcm-infotainment-freezing-carplay-dropouts-backup-camera-fai--prescription-1-0--2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-718-boxster-pdk-mechatronic-2017",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Base",
+        "S"
+      ],
+      "engines": [
+        "2.0L Turbo Flat-4",
+        "2.5L Turbo Flat-4"
+      ],
+      "title": "PDK Mechatronic Unit Valve Body Issues",
+      "howToFix": "PDK mechatronic unit replacement or rebuild. Porsche dealers typically replace the entire unit. Independent specialists can rebuild the valve body at lower cost. Keep PDK fluid changes on schedule (every 40,000 miles) to extend mechatronic life.",
+      "dtcCodes": [
+        "P0700",
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-boxster-rear-main-seal-engine-oil-seal-leaks",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS",
+        "718 Boxster S"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Rear Main Seal and Engine Oil Seal Leaks",
+      "howToFix": "Confirm the leak source (rear main seal vs. valve cover vs. spark-plug tubes) since they look similar from underneath. Replace the rear main seal during a clutch or transmission-removal service to save labor, and renew valve-cover gaskets and spark-plug-tube seals with high-quality parts when oil is found on the plugs/coils. Clean affected ignition components and inspect coils for oil damage. Address any oil found on plugs immediately to prevent misfires.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the leak source (rear main seal vs."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "spark-plug tubes) since they look similar from underneath."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clean affected ignition components and inspect coils for oil damage."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-boxster-rear-main-seal-engine-oil-seal-leaks--prescription-0-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-rear-main-seal-engine-oil-seal-leaks--prescription-0-0--2-5l-turbo-flat-four",
+        "porsche-718-boxster-rear-main-seal-engine-oil-seal-leaks--prescription-1-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-rear-main-seal-engine-oil-seal-leaks--prescription-1-0--2-5l-turbo-flat-four",
+        "porsche-718-boxster-rear-main-seal-engine-oil-seal-leaks--prescription-2-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-rear-main-seal-engine-oil-seal-leaks--prescription-2-0--2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-718-boxster-wastegate-rattle-2017",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Base",
+        "S",
+        "T"
+      ],
+      "engines": [
+        "2.0L Turbo Flat-4",
+        "2.5L Turbo Flat-4"
+      ],
+      "title": "Turbo Wastegate Rattle at Idle",
+      "howToFix": "Porsche released an updated wastegate actuator with tighter tolerances. Some owners report success with adjusting the wastegate arm preload. The rattle does not cause mechanical damage but can be addressed under warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-boxster-water-pump-bearing-impeller-failure",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS (2.5T)",
+        "718 Boxster S",
+        "718 Boxster T"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Water Pump Bearing and Impeller Failure (Flat-Four 2.0/2.5)",
+      "howToFix": "Inspect the water pump for weeping/bearing play and listen for whine; replace the pump (often with the thermostat) proactively at around 30k-40k miles or at the first sign of a leak/noise. Confirm coolant is not being pulled into the vacuum/changeover-valve system. Use only Porsche-approved coolant and bleed the system properly after replacement to avoid air pockets and overheating.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the water pump for weeping/bearing play and listen for whine;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm coolant is not being pulled into the vacuum/changeover-valve system."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-boxster-water-pump-bearing-impeller-failure--prescription-0-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-water-pump-bearing-impeller-failure--prescription-0-0--2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-718-boxster-gasoline-particulate-filter-clogging-premature-failure",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS (2.5T)",
+        "718 Boxster S",
+        "718 Boxster T"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Gasoline Particulate Filter (GPF/OPF) Clogging and Premature Failure",
+      "howToFix": "Drive the car periodically at sustained highway speed/load to allow the GPF to passively regenerate; avoid repeated short trips. Use only the manufacturer-specified low-ash (C-spec) engine oil. If limp mode or a GPF fault appears, scan for codes and have the filter/differential-pressure sensor inspected; a clogged filter may require forced regeneration or replacement. Pursue a goodwill/warranty claim for premature (low-mileage) failures.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "scanner-capability-needs-code-or-module",
+          "excerpt": "If limp mode or a GPF fault appears, scan for codes and have the filter/differential-pressure sensor inspected;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-boxster-gasoline-particulate-filter-clogging-failure",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "718 Boxster",
+        "718 Boxster GTS",
+        "718 Boxster S"
+      ],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Gasoline Particulate Filter (OPF/GPF) Clogging and Failure",
+      "howToFix": "Have a dealer or Porsche specialist read the differential-pressure data and confirm whether the filter is genuinely saturated or the sensor is misreading before authorizing replacement. Force an active/service regeneration and apply the latest engine-control and GPF software updates, which have resolved many cases. Avoid repeated short, low-temperature trips and use quality fuel to promote passive regeneration. If the filter is genuinely failed, the combined GPF/catalytic-converter unit must be replaced; open a case with Porsche Customer Care to pursue goodwill coverage given the documented software involvement.",
+      "dtcCodes": [
+        "P2002",
+        "P242F"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have a dealer or Porsche specialist read the differential-pressure data and confirm whether the filter is genuinely saturated or the sensor is misreading before authorizing replacement."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2002, P242F"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-boxster-gasoline-particulate-filter-clogging-failure--prescription-0-0--2-0l-turbo-flat-four",
+        "porsche-718-boxster-gasoline-particulate-filter-clogging-failure--prescription-0-0--2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-718-boxster-4-0-flat-six-connecting-rod-defect-recall",
+      "make": "Porsche",
+      "model": "718 Boxster",
+      "years": [
+        2020,
+        2021
+      ],
+      "trims": [
+        "718 Boxster GTS 4.0",
+        "718 Cayman GT4",
+        "718 Cayman GTS 4.0",
+        "718 Spyder"
+      ],
+      "engines": [
+        "4.0L naturally-aspirated flat-six"
+      ],
+      "title": "4.0 Flat-Six Connecting Rod Defect – Recall (GTS 4.0 / Spyder)",
+      "howToFix": "Check the VIN against NHTSA recall 21V200000 and confirm with a Porsche dealer that the connecting-rod remedy has been performed. Under the recall, dealers replace the connecting rods or the entire engine at no cost. For any 4.0 showing low oil pressure warnings or abnormal noise, stop driving and have it inspected immediately to avoid catastrophic damage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN against NHTSA recall 21V200000 and confirm with a Porsche dealer that the connecting-rod remedy has been performed."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "For any 4.0 showing low oil pressure warnings or abnormal noise, stop driving and have it inspected immediately to avoid catastrophic damage."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-cayman-2-0l-turbo-wastegate-actuator-seizure-causing-boost-collapse",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "718 Cayman (base 2.0L)"
+      ],
+      "engines": [
+        "2.0L turbo flat-four (base 718)"
+      ],
+      "title": "2.0L Turbo Wastegate Actuator Seizure Causing Boost Collapse / Limp Mode",
+      "howToFix": "Diagnose with boost-pressure logging; freeing/greasing the actuator arm can be a temporary measure, but Porsche's fix is to replace the turbocharger assembly (under warranty/extended warranty where applicable). Use the updated turbo with improved actuator protection and inspect/seal the underbody exposure point.",
+      "dtcCodes": [
+        "P0299"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose with boost-pressure logging;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Use the updated turbo with improved actuator protection and inspect/seal the underbody exposure point."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0299"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-cayman-2-0l-turbo-wastegate-actuator-seizure-causing-boost-collapse--prescription-0-0--2-0l-turbo-flat-four-base-718"
+      ]
+    },
+    {
+      "issueId": "porsche-718-cayman-air-oil-separator-diaphragm-failure",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Air-Oil Separator (AOS) Diaphragm Failure",
+      "howToFix": "Replace the AOS (some owners fit upgraded units, especially for track use); inspect the intake for oil contamination and clear any stored fuel-trim codes. Address promptly to avoid runaway oil consumption.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "inspect the intake for oil contamination and clear any stored fuel-trim codes."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-cayman-air-oil-separator-diaphragm-failure--prescription-0-0--2-0l-turbo-flat-four",
+        "porsche-718-cayman-air-oil-separator-diaphragm-failure--prescription-0-0--2-5l-turbo-flat-four",
+        "porsche-718-cayman-air-oil-separator-diaphragm-failure--prescription-1-0--2-0l-turbo-flat-four",
+        "porsche-718-cayman-air-oil-separator-diaphragm-failure--prescription-1-0--2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-718-cayman-coolant-expansion-tank-cracking-seam-requiring-engine-out-re",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L turbo flat-four",
+        "2.5L turbo flat-four"
+      ],
+      "title": "Coolant Expansion Tank (Reservoir) Cracking at Seam Requiring Engine-Out Repair",
+      "howToFix": "Replace the coolant reservoir (and the level sensor if faulty) with the updated part; confirm whether the symptom is a true crack/leak versus a faulty level sensor before authorizing the engine-out labor. Pressure-test the system after repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "confirm whether the symptom is a true crack/leak versus a faulty level sensor before authorizing the engine-out labor."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Pressure-test the system after repair."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-cayman-direct-injection-carbon-2017",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Base",
+        "GT4 RS",
+        "GTS",
+        "S",
+        "T"
+      ],
+      "engines": [
+        "2.0L Turbo Flat-4",
+        "2.5L Turbo Flat-4",
+        "4.0L Flat-6"
+      ],
+      "title": "Direct Injection Intake Valve Carbon Buildup",
+      "howToFix": "Walnut blasting of intake valves every 40,000-50,000 miles. Install an oil catch can to reduce the rate of carbon buildup. Chemical intake cleaning can help in mild cases but walnut blasting is the definitive solution.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-cayman-direct-injection-carbon-2017--prescription-0-0--2-0l-turbo-flat-4",
+        "porsche-718-cayman-direct-injection-carbon-2017--prescription-0-0--2-5l-turbo-flat-4",
+        "porsche-718-cayman-direct-injection-carbon-2017--prescription-0-0--4-0l-flat-6"
+      ]
+    },
+    {
+      "issueId": "porsche-718-cayman-headlight-taillight-condensation-internal-lens-coating-defec",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Headlight and Taillight Condensation / Internal Lens Coating Defect",
+      "howToFix": "Distinguish normal venting mist from true water ingress; for pooling water, persistent fogging, or internal lens cracking/peeling, replace the affected headlight or taillight assembly (warranty where applicable). Verify housing seals and venting are intact on replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify housing seals and venting are intact on replacement."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-cayman-manual-transmission-1st-to-2nd-gear-grind-crunch",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "6-speed manual (base, S, GTS, including GTS 4.0)"
+      ],
+      "engines": [],
+      "title": "Manual Transmission 1st-to-2nd Gear Grind/Crunch",
+      "howToFix": "Bleed/replace the clutch fluid and verify the slave cylinder is correctly mounted and adjusted; confirm correct gearbox oil level/spec. Adjust shift technique (full clutch travel, let revs drop). If grinding persists after hydraulic service, have the dealer inspect the 1-2 synchros under warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Bleed/replace the clutch fluid and verify the slave cylinder is correctly mounted and adjusted;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "confirm correct gearbox oil level/spec."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "If grinding persists after hydraulic service, have the dealer inspect the 1-2 synchros under warranty."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-718-cayman-pdk-mechatronic-2017",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Base",
+        "S"
+      ],
+      "engines": [
+        "2.0L Turbo Flat-4",
+        "2.5L Turbo Flat-4"
+      ],
+      "title": "PDK Mechatronic Unit Issues",
+      "howToFix": "Replace or rebuild the PDK mechatronic unit. Maintain strict 40,000-mile PDK fluid change intervals. The repair is identical to the 718 Boxster procedure.",
+      "dtcCodes": [
+        "P0700",
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-cayman-pdk-mechatronic-2017--prescription-0-0--2-0l-turbo-flat-4",
+        "porsche-718-cayman-pdk-mechatronic-2017--prescription-0-0--2-5l-turbo-flat-4"
+      ]
+    },
+    {
+      "issueId": "porsche-718-cayman-seized-ignition-coil-bolts-during-first-spark-plug-service",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "718 Cayman S"
+      ],
+      "engines": [
+        "2.5L turbo flat-four (Cayman S)"
+      ],
+      "title": "Seized Ignition Coil Bolts During First Spark Plug Service",
+      "howToFix": "On the first plug change, anticipate seized coil bolts; if a bolt shears or seizes, drill it out and replace the affected coil pack. Use anti-seize on reinstallation. Owners within warranty should pursue coverage as a known defect.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-cayman-seized-ignition-coil-bolts-during-first-spark-plug-service--prescription-0-0--2-5l-turbo-flat-four-cayman-s"
+      ]
+    },
+    {
+      "issueId": "porsche-718-cayman-wastegate-rattle-2017",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Base",
+        "S",
+        "T"
+      ],
+      "engines": [
+        "2.0L Turbo Flat-4",
+        "2.5L Turbo Flat-4"
+      ],
+      "title": "Turbo Wastegate Rattle at Idle",
+      "howToFix": "Replace the wastegate actuator with updated Porsche part. The fix is identical to the 718 Boxster — dealer warranty coverage is available for many VINs.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-cayman-wastegate-rattle-2017--prescription-0-0--2-0l-turbo-flat-4",
+        "porsche-718-cayman-wastegate-rattle-2017--prescription-0-0--2-5l-turbo-flat-4"
+      ]
+    },
+    {
+      "issueId": "porsche-718-cayman-water-pump-bearing-seal-failure-labor-intensive-exhaust-remo",
+      "make": "Porsche",
+      "model": "718 Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L turbo flat-four (MA2.20)",
+        "2.5L turbo flat-four (MA2.25)"
+      ],
+      "title": "Water Pump (Coolant Pump) Bearing/Seal Failure with Labor-Intensive Exhaust Removal",
+      "howToFix": "Replace the coolant pump (often together with thermostat, gasket, pulley, and a coolant flush) once seepage, noise, or coolant loss appears; many owners replace it proactively before the warranty expires given the high labor content. Pressure-test the system afterward and inspect the changeover valve.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Pressure-test the system afterward and inspect the changeover valve."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-718-cayman-water-pump-bearing-seal-failure-labor-intensive-exhaust-remo--prescription-0-0--2-0l-turbo-flat-four-ma2-20",
+        "porsche-718-cayman-water-pump-bearing-seal-failure-labor-intensive-exhaust-remo--prescription-0-0--2-5l-turbo-flat-four-ma2-25"
+      ]
+    },
+    {
+      "issueId": "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        1965,
+        1968,
+        1970,
+        1972,
+        1974,
+        1976,
+        1978,
+        1980,
+        1983,
+        1986,
+        1989
+      ],
+      "trims": [
+        "911",
+        "911SC",
+        "Carrera 3.2"
+      ],
+      "engines": [
+        "2.0 flat-6",
+        "2.2 flat-6",
+        "2.4 flat-6",
+        "2.7 flat-6",
+        "3.0 SC flat-6",
+        "3.2 Carrera flat-6"
+      ],
+      "title": "Chronic oil leaks from cooler lines, thermostat seal and chain housings",
+      "howToFix": "During restoration, reseal the whole oil system as a system rather than chasing one drip: replace the crimped front-cooler rubber hoses with new (ideally braided/AN-style) lines, renew the thermostat O-ring, and properly re-gasket the chain housing covers and cam towers with correct gaskets and sealant. Many restorers upgrade to a larger front cooler and braided cooler lines while everything is apart, improving both sealing and cooling margin. Doing all the seals at once — and torquing covers to spec — is the proven way to end the chronic seep for good.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 6,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-0-0--2-0-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-0-0--2-2-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-0-0--2-4-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-0-0--2-7-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-0-0--3-0-sc-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-0-0--3-2-carrera-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-1-0--2-0-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-1-0--2-2-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-1-0--2-4-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-1-0--2-7-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-1-0--3-0-sc-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-1-0--3-2-carrera-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-2-0--2-0-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-2-0--2-2-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-2-0--2-4-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-2-0--2-7-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-2-0--3-0-sc-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-2-0--3-2-carrera-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-3-0--2-0-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-3-0--2-2-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-3-0--2-4-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-3-0--2-7-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-3-0--3-0-sc-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-3-0--3-2-carrera-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-4-0--2-0-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-4-0--2-2-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-4-0--2-4-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-4-0--2-7-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-4-0--3-0-sc-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-4-0--3-2-carrera-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-5-0--2-0-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-5-0--2-2-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-5-0--2-4-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-5-0--2-7-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-5-0--3-0-sc-flat-6",
+        "porsche-911-chronic-oil-leaks-from-cooler-lines-thermostat-seal-chain-ho--prescription-5-0--3-2-carrera-flat-6"
+      ]
+    },
+    {
+      "issueId": "porsche-911-structural-rust-kidney-bowls-longitudinals-floor-pan-battery",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        1965,
+        1968,
+        1970,
+        1972,
+        1974,
+        1975
+      ],
+      "trims": [
+        "911",
+        "911E",
+        "911S",
+        "911T",
+        "Carrera 2.7"
+      ],
+      "engines": [
+        "2.0 flat-6",
+        "2.2 flat-6",
+        "2.4 flat-6",
+        "2.7 flat-6"
+      ],
+      "title": "Structural rust in kidney bowls, longitudinals, floor pan and battery box",
+      "howToFix": "Cut out the rot and weld in correct repair panels — Porsche/OEM-pattern kidney bowls, longitudinal/inner-sill sections, floor and suspension pans and battery box are all reproduced (Stoddard, Heritage, Restoration Design). The bulletproofing step that beats the factory: after metal repair, fully seam-seal and then inject cavity wax (Wurth/Dinitrol) into every box section the factory left bare on pre-'76 cars, and re-apply a flexible underbody coating. Replicating the post-1976 hot-dip galvanizing logic with modern cavity wax is what stops the rust from ever coming back. Address blocked battery-box and sunroof/windshield drains so water can't pool again.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-structural-rust-kidney-bowls-longitudinals-floor-pan-battery--prescription-0-0--2-0-flat-6",
+        "porsche-911-structural-rust-kidney-bowls-longitudinals-floor-pan-battery--prescription-0-0--2-2-flat-6",
+        "porsche-911-structural-rust-kidney-bowls-longitudinals-floor-pan-battery--prescription-0-0--2-4-flat-6",
+        "porsche-911-structural-rust-kidney-bowls-longitudinals-floor-pan-battery--prescription-0-0--2-7-flat-6"
+      ]
+    },
+    {
+      "issueId": "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        1965,
+        1968,
+        1970,
+        1972,
+        1974,
+        1976,
+        1978,
+        1980,
+        1982,
+        1983
+      ],
+      "trims": [
+        "911",
+        "911E",
+        "911S",
+        "911SC",
+        "911T",
+        "Carrera 2.7"
+      ],
+      "engines": [
+        "2.0 flat-6",
+        "2.2 flat-6",
+        "2.4 flat-6",
+        "2.7 flat-6",
+        "3.0 SC flat-6"
+      ],
+      "title": "Timing chain tensioner collapse on pre-1984 cars destroys the engine",
+      "howToFix": "Retrofit the 1984-89 Carrera 3.2 pressure-fed (oil-fed) chain tensioners. These are continuously lubricated and damped by engine oil pressure instead of a self-contained spring/oil cartridge, so they cannot dry out and collapse. The bolt-on kit includes both housing covers, two external oil feed lines tapped off the oil galleries, the two Carrera tensioners and fittings (~$700-1,000 in parts). It is the universally recommended bulletproofing upgrade for any pre-'84 911. A cheaper interim fix some owners use is a bronze-bushing internal stop that prevents full collapse, but the Carrera oil-fed conversion is the proper permanent cure.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-0-0--2-0-flat-6",
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-0-0--2-2-flat-6",
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-0-0--2-4-flat-6",
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-0-0--2-7-flat-6",
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-0-0--3-0-sc-flat-6",
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-1-0--2-0-flat-6",
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-1-0--2-2-flat-6",
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-1-0--2-4-flat-6",
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-1-0--2-7-flat-6",
+        "porsche-911-timing-chain-tensioner-collapse-pre-1984-cars-destroys-engin--prescription-1-0--3-0-sc-flat-6"
+      ]
+    },
+    {
+      "issueId": "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        1972,
+        1974,
+        1976,
+        1978,
+        1980,
+        1982,
+        1983,
+        1986
+      ],
+      "trims": [
+        "911SC",
+        "Carrera 2.7",
+        "Carrera 3.2"
+      ],
+      "engines": [
+        "2.7 flat-6",
+        "3.0 SC flat-6",
+        "3.2 Carrera flat-6"
+      ],
+      "title": "915 gearbox worn 2nd-gear synchros and rounded dog teeth",
+      "howToFix": "Rebuild the 915 with new/updated synchro rings and replace the worn 2nd-gear (and often 1st) gear sets with good dog teeth, set the correct shift-rod and shifter adjustment, and fill with a quality GL-4/GL-5 gear oil (many specialists add Swepco or a friction modifier that noticeably improves synchro feel). Restorers commonly fit updated late-style synchro components and a short-shift kit, and rebush the worn shift linkage and coupler. A properly rebuilt and correctly adjusted 915 with fresh synchros shifts cleanly — the bulletproofing is doing the rebuild right plus disciplined, non-speed-shifting driving.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Rebuild the 915 with new/updated synchro rings and replace the worn 2nd-gear (and often 1st) gear sets with good dog teeth, set the correct shift-rod and shifter adjustment, and fill with a quality GL-4/GL-5 gear oil (many specialists add Swepco or a friction modifier that noticeably improves synchro feel)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth--prescription-0-0--2-7-flat-6",
+        "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth--prescription-0-0--3-0-sc-flat-6",
+        "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth--prescription-0-0--3-2-carrera-flat-6",
+        "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth--prescription-1-0--2-7-flat-6",
+        "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth--prescription-1-0--3-0-sc-flat-6",
+        "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth--prescription-1-0--3-2-carrera-flat-6",
+        "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth--prescription-2-0--2-7-flat-6",
+        "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth--prescription-2-0--3-0-sc-flat-6",
+        "porsche-911-915-gearbox-worn-2nd-gear-synchros-rounded-dog-teeth--prescription-2-0--3-2-carrera-flat-6"
+      ]
+    },
+    {
+      "issueId": "porsche-911-cis-airbox-blows-apart-from-intake-backfire",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        1973,
+        1974,
+        1976,
+        1978,
+        1980,
+        1982,
+        1983
+      ],
+      "trims": [
+        "911 2.7",
+        "911SC",
+        "Carrera 2.7"
+      ],
+      "engines": [
+        "2.7 flat-6",
+        "3.0 SC flat-6"
+      ],
+      "title": "CIS airbox blows apart from an intake backfire",
+      "howToFix": "Install a backfire pop-off (pressure-relief) valve in the airbox — a spring-loaded flapper that vents backfire pressure harmlessly into the intake instead of letting it split the box. It's a cheap, well-documented modification (hole-saw the box, epoxy in the valve). The more durable bulletproofing route is to replace the plastic box altogether with an aftermarket aluminum CIS airbox, which simply cannot be blown apart, while still running a pop-off valve. Also fix the root cause (set CIS mixture/timing correctly and cure any lean stumble) so backfires stop happening in the first place.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-cis-airbox-blows-apart-from-intake-backfire--prescription-0-0--2-7-flat-6",
+        "porsche-911-cis-airbox-blows-apart-from-intake-backfire--prescription-0-0--3-0-sc-flat-6"
+      ]
+    },
+    {
+      "issueId": "porsche-911-aos-failure-1999",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [
+        "3.4L M96",
+        "3.6L M96",
+        "3.6L M97",
+        "3.8L M97"
+      ],
+      "title": "Air-Oil Separator (AOS) Failure",
+      "howToFix": "Replace the AOS unit. Use an updated OEM Porsche unit or aftermarket upgrade from LN Engineering. The AOS is located in the engine V between the cylinder banks and requires moderate disassembly to access.",
+      "dtcCodes": [
+        "P0171",
+        "P0174"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-911-ims-bearing-failure-1999",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [
+        "Carrera",
+        "Carrera 4",
+        "Carrera 4S",
+        "Carrera S",
+        "Targa"
+      ],
+      "engines": [
+        "3.4L M96",
+        "3.6L M96",
+        "3.6L M97",
+        "3.8L M97"
+      ],
+      "title": "Intermediate Shaft (IMS) Bearing Failure",
+      "howToFix": "Replace the IMS bearing with an upgraded ceramic hybrid bearing (LN Engineering IMS Solution or IMS Retrofit). This can be done with the engine in the car during a clutch replacement. On 2006-2008 single-row cars, replacement is strongly recommended as a preventive measure.",
+      "dtcCodes": [
+        "P0520",
+        "P0521"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0520, P0521"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-ims-bearing-failure-1999--prescription-0-0--3-4l-m96",
+        "porsche-911-ims-bearing-failure-1999--prescription-0-0--3-6l-m96",
+        "porsche-911-ims-bearing-failure-1999--prescription-0-0--3-6l-m97",
+        "porsche-911-ims-bearing-failure-1999--prescription-0-0--3-8l-m97",
+        "porsche-911-ims-bearing-failure-1999--prescription-1-0--3-4l-m96",
+        "porsche-911-ims-bearing-failure-1999--prescription-1-0--3-6l-m96",
+        "porsche-911-ims-bearing-failure-1999--prescription-1-0--3-6l-m97",
+        "porsche-911-ims-bearing-failure-1999--prescription-1-0--3-8l-m97"
+      ]
+    },
+    {
+      "issueId": "porsche-911-rear-main-seal-leak-1999",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [
+        "3.4L M96",
+        "3.4L MA1",
+        "3.6L M96",
+        "3.6L M97",
+        "3.8L M97",
+        "3.8L MA1",
+        "M96",
+        "M97",
+        "MA1"
+      ],
+      "title": "Rear Main Seal (RMS) Oil Leak",
+      "howToFix": "Replace the rear main seal. This requires transmission removal and is commonly done alongside clutch replacement and IMS bearing upgrade to save labor costs. Use the updated Porsche OEM seal design.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-rear-main-seal-leak-1999--prescription-0-0--3-4l-m96",
+        "porsche-911-rear-main-seal-leak-1999--prescription-0-0--3-4l-ma1",
+        "porsche-911-rear-main-seal-leak-1999--prescription-0-0--3-6l-m96",
+        "porsche-911-rear-main-seal-leak-1999--prescription-0-0--3-6l-m97",
+        "porsche-911-rear-main-seal-leak-1999--prescription-0-0--3-8l-m97",
+        "porsche-911-rear-main-seal-leak-1999--prescription-0-0--3-8l-ma1",
+        "porsche-911-rear-main-seal-leak-1999--prescription-0-0--m96",
+        "porsche-911-rear-main-seal-leak-1999--prescription-0-0--m97",
+        "porsche-911-rear-main-seal-leak-1999--prescription-0-0--ma1",
+        "porsche-911-rear-main-seal-leak-1999--prescription-1-0--3-4l-m96",
+        "porsche-911-rear-main-seal-leak-1999--prescription-1-0--3-4l-ma1",
+        "porsche-911-rear-main-seal-leak-1999--prescription-1-0--3-6l-m96",
+        "porsche-911-rear-main-seal-leak-1999--prescription-1-0--3-6l-m97",
+        "porsche-911-rear-main-seal-leak-1999--prescription-1-0--3-8l-m97",
+        "porsche-911-rear-main-seal-leak-1999--prescription-1-0--3-8l-ma1",
+        "porsche-911-rear-main-seal-leak-1999--prescription-1-0--m96",
+        "porsche-911-rear-main-seal-leak-1999--prescription-1-0--m97",
+        "porsche-911-rear-main-seal-leak-1999--prescription-1-0--ma1",
+        "porsche-911-rear-main-seal-leak-1999--prescription-2-0--3-4l-m96",
+        "porsche-911-rear-main-seal-leak-1999--prescription-2-0--3-4l-ma1",
+        "porsche-911-rear-main-seal-leak-1999--prescription-2-0--3-6l-m96",
+        "porsche-911-rear-main-seal-leak-1999--prescription-2-0--3-6l-m97",
+        "porsche-911-rear-main-seal-leak-1999--prescription-2-0--3-8l-m97",
+        "porsche-911-rear-main-seal-leak-1999--prescription-2-0--3-8l-ma1",
+        "porsche-911-rear-main-seal-leak-1999--prescription-2-0--m96",
+        "porsche-911-rear-main-seal-leak-1999--prescription-2-0--m97",
+        "porsche-911-rear-main-seal-leak-1999--prescription-2-0--ma1"
+      ]
+    },
+    {
+      "issueId": "porsche-911-bore-scoring-2009",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Carrera",
+        "Carrera 4",
+        "Carrera 4S",
+        "Carrera S",
+        "GT3",
+        "GTS"
+      ],
+      "engines": [
+        "3.0L Twin-Turbo",
+        "3.4L MA1",
+        "3.8L MA1",
+        "4.0L MA1"
+      ],
+      "title": "Cylinder Bore Scoring (Nikasil Wear)",
+      "howToFix": "Engine must be removed and disassembled. Scored cylinders are repaired by installing iron sleeves (LN Engineering Nickies) or replacing the cylinder block. Some owners opt for a used or rebuilt engine. Prevention: always warm the engine fully before spirited driving and avoid short trips.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0306"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0306"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-bore-scoring-2009--prescription-0-0--3-0l-twin-turbo",
+        "porsche-911-bore-scoring-2009--prescription-0-0--3-4l-ma1",
+        "porsche-911-bore-scoring-2009--prescription-0-0--3-8l-ma1",
+        "porsche-911-bore-scoring-2009--prescription-0-0--4-0l-ma1"
+      ]
+    },
+    {
+      "issueId": "porsche-911-chain-tensioner-failure-2009",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Carrera",
+        "Carrera S",
+        "GT3",
+        "GT3 RS",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "3.0L Twin-Turbo",
+        "3.4L MA1",
+        "3.8L MA1",
+        "3.8L Twin-Turbo",
+        "4.0L MA1"
+      ],
+      "title": "Timing Chain Tensioner and Guide Failure",
+      "howToFix": "Replace timing chain tensioners with updated Porsche parts. On early 991.1 cars, the tensioner design was revised (updated part number). Replace chain guides at the same time. Some shops recommend replacing chains as well if mileage is above 80,000.",
+      "dtcCodes": [
+        "P0016",
+        "P0017",
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017, P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-chain-tensioner-failure-2009--prescription-0-0--3-0l-twin-turbo",
+        "porsche-911-chain-tensioner-failure-2009--prescription-0-0--3-4l-ma1",
+        "porsche-911-chain-tensioner-failure-2009--prescription-0-0--3-8l-ma1",
+        "porsche-911-chain-tensioner-failure-2009--prescription-0-0--3-8l-twin-turbo",
+        "porsche-911-chain-tensioner-failure-2009--prescription-0-0--4-0l-ma1",
+        "porsche-911-chain-tensioner-failure-2009--prescription-1-0--3-0l-twin-turbo",
+        "porsche-911-chain-tensioner-failure-2009--prescription-1-0--3-4l-ma1",
+        "porsche-911-chain-tensioner-failure-2009--prescription-1-0--3-8l-ma1",
+        "porsche-911-chain-tensioner-failure-2009--prescription-1-0--3-8l-twin-turbo",
+        "porsche-911-chain-tensioner-failure-2009--prescription-1-0--4-0l-ma1",
+        "porsche-911-chain-tensioner-failure-2009--prescription-2-0--3-0l-twin-turbo",
+        "porsche-911-chain-tensioner-failure-2009--prescription-2-0--3-4l-ma1",
+        "porsche-911-chain-tensioner-failure-2009--prescription-2-0--3-8l-ma1",
+        "porsche-911-chain-tensioner-failure-2009--prescription-2-0--3-8l-twin-turbo",
+        "porsche-911-chain-tensioner-failure-2009--prescription-2-0--4-0l-ma1"
+      ]
+    },
+    {
+      "issueId": "porsche-911-direct-injection-carbon-2009",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Carrera",
+        "Carrera S",
+        "GTS",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "3.0L Twin-Turbo",
+        "3.4L MA1",
+        "3.8L MA1",
+        "3.8L Twin-Turbo"
+      ],
+      "title": "Direct Injection Intake Valve Carbon Buildup",
+      "howToFix": "Perform intake valve walnut blasting to remove carbon deposits. This typically needs to be done every 40,000-60,000 miles on DFI engines. Some shops use chemical soak methods as well. Consider installing a catch can to reduce oil vapor entering the intake.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-direct-injection-carbon-2009--prescription-0-0--3-0l-twin-turbo",
+        "porsche-911-direct-injection-carbon-2009--prescription-0-0--3-4l-ma1",
+        "porsche-911-direct-injection-carbon-2009--prescription-0-0--3-8l-ma1",
+        "porsche-911-direct-injection-carbon-2009--prescription-0-0--3-8l-twin-turbo"
+      ]
+    },
+    {
+      "issueId": "porsche-911-coolant-pipe-leak-2012",
+      "make": "Porsche",
+      "model": "911",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Carrera",
+        "Carrera 4",
+        "Carrera 4S",
+        "Carrera S",
+        "GTS"
+      ],
+      "engines": [
+        "3.0L Twin-Turbo",
+        "3.4L MA1",
+        "3.8L MA1"
+      ],
+      "title": "Coolant Pipe and Fitting Leaks",
+      "howToFix": "Replace cracked plastic coolant pipes with updated Porsche parts or aftermarket aluminum replacements. Inspect all quick-connect fittings and replace any that show signs of degradation. Pressure test the cooling system annually.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect all quick-connect fittings and replace any that show signs of degradation."
+        },
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure test the cooling system annually."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-911-coolant-pipe-leak-2012--prescription-0-0--3-0l-twin-turbo",
+        "porsche-911-coolant-pipe-leak-2012--prescription-0-0--3-4l-ma1",
+        "porsche-911-coolant-pipe-leak-2012--prescription-0-0--3-8l-ma1"
+      ]
+    },
+    {
+      "issueId": "porsche-boxster-aos-failure-1997",
+      "make": "Porsche",
+      "model": "Boxster",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [
+        "Base",
+        "S"
+      ],
+      "engines": [
+        "2.5L M96",
+        "2.7L M96",
+        "3.2L M96"
+      ],
+      "title": "Air-Oil Separator (AOS) Diaphragm Failure",
+      "howToFix": "Replace the AOS unit with updated OEM or LN Engineering aftermarket version. The AOS is accessible from above in the Boxster, making it a moderately difficult DIY job.",
+      "dtcCodes": [
+        "P0171",
+        "P0174"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-boxster-convertible-top-hydraulic-1997",
+      "make": "Porsche",
+      "model": "Boxster",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S",
+        "Spyder"
+      ],
+      "engines": [],
+      "title": "Convertible Top Hydraulic System Failure",
+      "howToFix": "Replace leaking hydraulic cylinders, lines, or pump motor. Rebuilding the hydraulic cylinders is possible and more affordable than OEM replacement. Flush and replace the hydraulic fluid every 5 years as preventive maintenance.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-boxster-convertible-top-hydraulic-1997--prescription-0-0--all-engines",
+        "porsche-boxster-convertible-top-hydraulic-1997--prescription-1-0--all-engines",
+        "porsche-boxster-convertible-top-hydraulic-1997--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-boxster-ims-bearing-1997",
+      "make": "Porsche",
+      "model": "Boxster",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [
+        "Base",
+        "S"
+      ],
+      "engines": [
+        "2.5L M96",
+        "2.7L M96",
+        "3.2L M96",
+        "3.4L M97"
+      ],
+      "title": "Intermediate Shaft (IMS) Bearing Failure",
+      "howToFix": "Replace the IMS bearing with a ceramic hybrid upgrade (LN Engineering IMS Solution). Best done during clutch replacement to save labor costs. Oil filter inspection at every change is critical for early detection.",
+      "dtcCodes": [
+        "P0520",
+        "P0521"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Oil filter inspection at every change is critical for early detection."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0520, P0521"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-boxster-ims-bearing-1997--prescription-0-0--2-5l-m96",
+        "porsche-boxster-ims-bearing-1997--prescription-0-0--2-7l-m96",
+        "porsche-boxster-ims-bearing-1997--prescription-0-0--3-2l-m96",
+        "porsche-boxster-ims-bearing-1997--prescription-0-0--3-4l-m97",
+        "porsche-boxster-ims-bearing-1997--prescription-1-0--2-5l-m96",
+        "porsche-boxster-ims-bearing-1997--prescription-1-0--2-7l-m96",
+        "porsche-boxster-ims-bearing-1997--prescription-1-0--3-2l-m96",
+        "porsche-boxster-ims-bearing-1997--prescription-1-0--3-4l-m97"
+      ]
+    },
+    {
+      "issueId": "porsche-boxster-rms-oil-leak-1997",
+      "make": "Porsche",
+      "model": "Boxster",
+      "years": [
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "Base",
+        "S"
+      ],
+      "engines": [
+        "2.5L M96",
+        "2.7L M96",
+        "2.9L M97",
+        "3.2L M96",
+        "3.4L M97",
+        "M96",
+        "M97"
+      ],
+      "title": "Rear Main Seal Oil Leak",
+      "howToFix": "Replace the rear main seal during clutch replacement. Use the updated Porsche OEM seal. Bundle this with IMS bearing replacement to maximize labor efficiency — all three jobs share the same access.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-boxster-rms-oil-leak-1997--prescription-0-0--2-5l-m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-0-0--2-7l-m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-0-0--2-9l-m97",
+        "porsche-boxster-rms-oil-leak-1997--prescription-0-0--3-2l-m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-0-0--3-4l-m97",
+        "porsche-boxster-rms-oil-leak-1997--prescription-0-0--m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-0-0--m97",
+        "porsche-boxster-rms-oil-leak-1997--prescription-1-0--2-5l-m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-1-0--2-7l-m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-1-0--2-9l-m97",
+        "porsche-boxster-rms-oil-leak-1997--prescription-1-0--3-2l-m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-1-0--3-4l-m97",
+        "porsche-boxster-rms-oil-leak-1997--prescription-1-0--m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-1-0--m97",
+        "porsche-boxster-rms-oil-leak-1997--prescription-2-0--2-5l-m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-2-0--2-7l-m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-2-0--2-9l-m97",
+        "porsche-boxster-rms-oil-leak-1997--prescription-2-0--3-2l-m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-2-0--3-4l-m97",
+        "porsche-boxster-rms-oil-leak-1997--prescription-2-0--m96",
+        "porsche-boxster-rms-oil-leak-1997--prescription-2-0--m97"
+      ]
+    },
+    {
+      "issueId": "porsche-boxster-bore-scoring-2005",
+      "make": "Porsche",
+      "model": "Boxster",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "Base",
+        "S"
+      ],
+      "engines": [
+        "2.7L M96",
+        "2.9L M97",
+        "3.2L M96",
+        "3.4L M97"
+      ],
+      "title": "Cylinder Bore Scoring",
+      "howToFix": "Engine disassembly and cylinder re-sleeving with iron Nickies inserts or full engine replacement. Prevention includes extended warm-up periods and avoiding short-trip driving patterns.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0306"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0306"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-boxster-bore-scoring-2005--prescription-0-0--2-7l-m96",
+        "porsche-boxster-bore-scoring-2005--prescription-0-0--2-9l-m97",
+        "porsche-boxster-bore-scoring-2005--prescription-0-0--3-2l-m96",
+        "porsche-boxster-bore-scoring-2005--prescription-0-0--3-4l-m97",
+        "porsche-boxster-bore-scoring-2005--prescription-1-0--2-7l-m96",
+        "porsche-boxster-bore-scoring-2005--prescription-1-0--2-9l-m97",
+        "porsche-boxster-bore-scoring-2005--prescription-1-0--3-2l-m96",
+        "porsche-boxster-bore-scoring-2005--prescription-1-0--3-4l-m97"
+      ]
+    },
+    {
+      "issueId": "porsche-boxster-intermediate-shaft-bearing-play-2005",
+      "make": "Porsche",
+      "model": "Boxster",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [
+        "Base",
+        "S"
+      ],
+      "engines": [
+        "2.7L M96",
+        "3.2L M96",
+        "3.4L M97"
+      ],
+      "title": "Intermediate Shaft End-Play and Bearing Wear",
+      "howToFix": "Measure IMS end-play with a dial indicator through the small inspection plug. If play exceeds spec, replace the IMS bearing immediately. The single-row bearing used in 2005-2008 is particularly prone to developing play.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Measure IMS end-play with a dial indicator through the small inspection plug."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-boxster-intermediate-shaft-bearing-play-2005--prescription-0-0--2-7l-m96",
+        "porsche-boxster-intermediate-shaft-bearing-play-2005--prescription-0-0--3-2l-m96",
+        "porsche-boxster-intermediate-shaft-bearing-play-2005--prescription-0-0--3-4l-m97"
+      ]
+    },
+    {
+      "issueId": "porsche-cayenne-air-suspension-failure-2003",
+      "make": "Porsche",
+      "model": "Cayenne",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "GTS",
+        "S",
+        "Turbo",
+        "Turbo GT",
+        "Turbo S"
+      ],
+      "engines": [],
+      "title": "Air Suspension Compressor and Strut Failure",
+      "howToFix": "Replace failed air struts and compressor. Consider replacing all four struts simultaneously. Arnott offers quality aftermarket replacements at lower cost than OEM. Some owners convert to coilover suspension to eliminate the air system entirely.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayenne-air-suspension-failure-2003--prescription-0-0--all-engines",
+        "porsche-cayenne-air-suspension-failure-2003--prescription-1-0--all-engines",
+        "porsche-cayenne-air-suspension-failure-2003--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-cayenne-coolant-pipe-leak-2003",
+      "make": "Porsche",
+      "model": "Cayenne",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "3.0L V6 Supercharged",
+        "3.6L VR6",
+        "4.5L V8",
+        "4.8L V8",
+        "4.8L V8 Twin-Turbo",
+        "V8",
+        "VR6"
+      ],
+      "title": "Coolant Pipe Failure Between Cylinder Banks",
+      "howToFix": "Replace all plastic coolant pipes with updated Porsche parts or aftermarket aluminum replacements. This requires intake manifold removal on V8 models. Replace the thermostat and water pump seals while the system is apart.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-0-0--3-0l-v6-supercharged",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-0-0--3-6l-vr6",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-0-0--4-5l-v8",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-0-0--4-8l-v8",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-0-0--4-8l-v8-twin-turbo",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-0-0--v8",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-0-0--vr6",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-1-0--3-0l-v6-supercharged",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-1-0--3-6l-vr6",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-1-0--4-5l-v8",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-1-0--4-8l-v8",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-1-0--4-8l-v8-twin-turbo",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-1-0--v8",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-1-0--vr6",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-2-0--3-0l-v6-supercharged",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-2-0--3-6l-vr6",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-2-0--4-5l-v8",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-2-0--4-8l-v8",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-2-0--4-8l-v8-twin-turbo",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-2-0--v8",
+        "porsche-cayenne-coolant-pipe-leak-2003--prescription-2-0--vr6"
+      ]
+    },
+    {
+      "issueId": "porsche-cayenne-transfer-case-failure-2003",
+      "make": "Porsche",
+      "model": "Cayenne",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S",
+        "Turbo"
+      ],
+      "engines": [
+        "3.6L VR6",
+        "4.5L V8",
+        "4.8L V8",
+        "4.8L V8 Twin-Turbo"
+      ],
+      "title": "Transfer Case Failure and Fluid Leak",
+      "howToFix": "Replace transfer case seals and fluid at 60,000-mile intervals. If bearing noise is present, a full transfer case rebuild or replacement is needed. Use only Porsche-specified transfer case fluid.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayenne-transfer-case-failure-2003--prescription-0-0--3-6l-vr6",
+        "porsche-cayenne-transfer-case-failure-2003--prescription-0-0--4-5l-v8",
+        "porsche-cayenne-transfer-case-failure-2003--prescription-0-0--4-8l-v8",
+        "porsche-cayenne-transfer-case-failure-2003--prescription-0-0--4-8l-v8-twin-turbo"
+      ]
+    },
+    {
+      "issueId": "porsche-cayenne-pdcc-leak-2007",
+      "make": "Porsche",
+      "model": "Cayenne",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "GTS",
+        "Turbo",
+        "Turbo GT",
+        "Turbo S"
+      ],
+      "engines": [],
+      "title": "PDCC (Porsche Dynamic Chassis Control) Hydraulic Leak",
+      "howToFix": "Replace leaking hydraulic lines, actuators, or seals. Use only Porsche-specified PDCC hydraulic fluid. Some owners choose to disable the PDCC system and install conventional sway bars as a more affordable long-term solution.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayenne-pdcc-leak-2007--prescription-0-0--all-engines",
+        "porsche-cayenne-pdcc-leak-2007--prescription-1-0--all-engines",
+        "porsche-cayenne-pdcc-leak-2007--prescription-2-0--all-engines",
+        "porsche-cayenne-pdcc-leak-2007--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-cayenne-timing-chain-2008",
+      "make": "Porsche",
+      "model": "Cayenne",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S"
+      ],
+      "engines": [
+        "3.6L VR6",
+        "4.8L V8"
+      ],
+      "title": "Timing Chain Stretch and Tensioner Failure",
+      "howToFix": "Replace timing chains, tensioners, and guides. On the V8 this is a major job requiring engine removal or significant drivetrain disassembly. Budget 20-30 hours labor. The VR6 is somewhat more accessible. Use updated Porsche tensioner parts.",
+      "dtcCodes": [
+        "P0016",
+        "P0017",
+        "P0341"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017, P0341"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayenne-timing-chain-2008--prescription-0-0--3-6l-vr6",
+        "porsche-cayenne-timing-chain-2008--prescription-0-0--4-8l-v8",
+        "porsche-cayenne-timing-chain-2008--prescription-1-0--3-6l-vr6",
+        "porsche-cayenne-timing-chain-2008--prescription-1-0--4-8l-v8",
+        "porsche-cayenne-timing-chain-2008--prescription-2-0--3-6l-vr6",
+        "porsche-cayenne-timing-chain-2008--prescription-2-0--4-8l-v8"
+      ]
+    },
+    {
+      "issueId": "porsche-cayenne-turbo-coolant-line-2008",
+      "make": "Porsche",
+      "model": "Cayenne",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "4.8L V8 Twin-Turbo"
+      ],
+      "title": "Turbo Coolant Line Leak",
+      "howToFix": "Replace turbo coolant lines with updated OEM parts or silicone hose upgrades. Inspect lines at every oil change. Replace all rubber coolant hoses in the turbo feed/return circuit at 80,000 miles as preventive maintenance.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect lines at every oil change."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayenne-turbo-coolant-line-2008--prescription-0-0--4-8l-v8-twin-turbo",
+        "porsche-cayenne-turbo-coolant-line-2008--prescription-1-0--4-8l-v8-twin-turbo"
+      ]
+    },
+    {
+      "issueId": "porsche-cayenne-catalytic-converter-2011",
+      "make": "Porsche",
+      "model": "Cayenne",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S"
+      ],
+      "engines": [
+        "3.0L V6 Supercharged",
+        "3.6L VR6",
+        "4.8L V8"
+      ],
+      "title": "Catalytic Converter Premature Failure",
+      "howToFix": "Replace the failed catalytic converter(s). OEM converters are extremely expensive ($2,000-$4,000 each). Aftermarket CARB-compliant converters are available at lower cost. Diagnose the root cause of failure (oil burning, misfires) before replacing to prevent recurrence.",
+      "dtcCodes": [
+        "P0420",
+        "P0430"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose the root cause of failure (oil burning, misfires) before replacing to prevent recurrence."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0420, P0430"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayenne-catalytic-converter-2011--prescription-0-0--3-0l-v6-supercharged",
+        "porsche-cayenne-catalytic-converter-2011--prescription-0-0--3-6l-vr6",
+        "porsche-cayenne-catalytic-converter-2011--prescription-0-0--4-8l-v8",
+        "porsche-cayenne-catalytic-converter-2011--prescription-1-0--3-0l-v6-supercharged",
+        "porsche-cayenne-catalytic-converter-2011--prescription-1-0--3-6l-vr6",
+        "porsche-cayenne-catalytic-converter-2011--prescription-1-0--4-8l-v8"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-ac-compressor-2006",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "R",
+        "S"
+      ],
+      "engines": [],
+      "title": "AC Compressor Failure and Clutch Burnout",
+      "howToFix": "Replace the AC compressor and receiver/drier. Flush the AC system of any debris from the failed compressor. Replace the expansion valve as preventive maintenance. Ensure proper refrigerant charge after repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-ac-compressor-2006--prescription-0-0--all-engines",
+        "porsche-cayman-ac-compressor-2006--prescription-1-0--all-engines",
+        "porsche-cayman-ac-compressor-2006--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-aos-failure-2006",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "Base",
+        "R",
+        "S"
+      ],
+      "engines": [
+        "2.7L M97",
+        "2.9L M97",
+        "3.4L M97"
+      ],
+      "title": "Air-Oil Separator (AOS) Failure",
+      "howToFix": "Replace the AOS with an updated OEM or LN Engineering aftermarket unit. Inspect the AOS at every major service interval, especially on cars with over 60,000 miles.",
+      "dtcCodes": [
+        "P0171",
+        "P0174"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the AOS at every major service interval, especially on cars with over 60,000 miles."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-aos-failure-2006--prescription-0-0--2-7l-m97",
+        "porsche-cayman-aos-failure-2006--prescription-0-0--2-9l-m97",
+        "porsche-cayman-aos-failure-2006--prescription-0-0--3-4l-m97"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-bore-scoring-2006",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Base",
+        "GT4",
+        "GTS",
+        "R",
+        "S"
+      ],
+      "engines": [
+        "2.7L M97",
+        "2.9L M97",
+        "3.4L M97",
+        "3.4L MA1",
+        "3.8L MA1"
+      ],
+      "title": "Cylinder Bore Scoring",
+      "howToFix": "Engine rebuild with iron cylinder sleeves (Nickies) or engine replacement. Regular borescope inspections can detect scoring before it becomes catastrophic. Allow full warm-up before spirited driving.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0306"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0306"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-bore-scoring-2006--prescription-0-0--2-7l-m97",
+        "porsche-cayman-bore-scoring-2006--prescription-0-0--2-9l-m97",
+        "porsche-cayman-bore-scoring-2006--prescription-0-0--3-4l-m97",
+        "porsche-cayman-bore-scoring-2006--prescription-0-0--3-4l-ma1",
+        "porsche-cayman-bore-scoring-2006--prescription-0-0--3-8l-ma1"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Cayman",
+        "Cayman S"
+      ],
+      "engines": [
+        "M96",
+        "M97",
+        "MA1 2.7L",
+        "MA1 3.4L"
+      ],
+      "title": "Coolant Expansion Tank and Cap Failure / Cooling System Leaks",
+      "howToFix": "Pressure-test the cooling system. Replace the cracked expansion tank and the pressure cap together (the cap fails about half the time and is cheap to do alongside). Reseal or replace the plastic coolant pipe seals if leaking. Bleed the system afterward.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure-test the cooling system."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-0-0--m96",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-0-0--m97",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-0-0--ma1-2-7l",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-0-0--ma1-3-4l",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-1-0--m96",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-1-0--m97",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-1-0--ma1-2-7l",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-1-0--ma1-3-4l",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-2-0--m96",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-2-0--m97",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-2-0--ma1-2-7l",
+        "porsche-cayman-coolant-expansion-tank-cap-failure-cooling-system-leaks--prescription-2-0--ma1-3-4l"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-front-radiator-c-condenser-corrosion-debris-trapped-leaks",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Cayman",
+        "Cayman GTS",
+        "Cayman R",
+        "Cayman S"
+      ],
+      "engines": [],
+      "title": "Front Radiator / A/C Condenser Corrosion and Debris-Trapped Leaks",
+      "howToFix": "Clean trapped debris from the bumper ducts (typical shop charge around USD 300), and replace the corroded radiator and/or A/C condenser, then re-gas the A/C. Many owners fit aftermarket radiator/condenser protective grilles or screens behind the bumper intakes to prevent recurrence.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-front-radiator-c-condenser-corrosion-debris-trapped-leaks--prescription-0-0--all-engines",
+        "porsche-cayman-front-radiator-c-condenser-corrosion-debris-trapped-leaks--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-front-suspension-clunk-control-arms-sway-bar-bushings-drop-l",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Cayman",
+        "Cayman S"
+      ],
+      "engines": [],
+      "title": "Front Suspension Clunk — Control Arms, Sway Bar Bushings, Drop Links",
+      "howToFix": "Inspect for play with the car lifted. Replace worn drop links first (cheap DIY), and renew sway bar mount bushings, lower control arms / ball joints, and tie rod ends as needed. A four-wheel alignment is required after control arm replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect for play with the car lifted."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-front-suspension-clunk-control-arms-sway-bar-bushings-drop-l--prescription-0-0--all-engines",
+        "porsche-cayman-front-suspension-clunk-control-arms-sway-bar-bushings-drop-l--prescription-1-0--all-engines",
+        "porsche-cayman-front-suspension-clunk-control-arms-sway-bar-bushings-drop-l--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-ignition-switch-failure-no-start",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "Cayman",
+        "Cayman S"
+      ],
+      "engines": [],
+      "title": "Ignition Switch Failure / No-Start (Key Not Responding)",
+      "howToFix": "Replace the electrical portion of the ignition switch (a relatively inexpensive, straightforward part behind the lock barrel) — this usually cures the no-start immediately. In persistent cases the lock cylinder is replaced as well.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-cayman-ims-bearing-2006",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "Base",
+        "R",
+        "S"
+      ],
+      "engines": [
+        "2.7L M97",
+        "2.9L M97",
+        "3.4L M97"
+      ],
+      "title": "Intermediate Shaft (IMS) Bearing Failure",
+      "howToFix": "Replace the IMS bearing with a ceramic hybrid upgrade during clutch service. The Cayman mid-engine layout provides the same access as the Boxster for this repair.",
+      "dtcCodes": [
+        "P0520"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0520"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-ims-bearing-2006--prescription-0-0--2-7l-m97",
+        "porsche-cayman-ims-bearing-2006--prescription-0-0--2-9l-m97",
+        "porsche-cayman-ims-bearing-2006--prescription-0-0--3-4l-m97"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-rear-main-seal-oil-leak",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "Cayman",
+        "Cayman S"
+      ],
+      "engines": [
+        "M96",
+        "M97 3.4L flat-six"
+      ],
+      "title": "Rear Main Seal (RMS) Oil Leak",
+      "howToFix": "Replace the rear main seal (engine/transmission must be separated). Because the gearbox is already removed, owners and shops strongly recommend replacing the clutch at the same time, and many also replace the IMS bearing and check the AOS while the drivetrain is apart to consolidate labor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Because the gearbox is already removed, owners and shops strongly recommend replacing the clutch at the same time, and many also replace the IMS bearing and check the AOS while the drivetrain is apart to consolidate labor."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-rear-main-seal-oil-leak--prescription-0-0--m96",
+        "porsche-cayman-rear-main-seal-oil-leak--prescription-0-0--m97-3-4l-flat-six",
+        "porsche-cayman-rear-main-seal-oil-leak--prescription-1-0--m96",
+        "porsche-cayman-rear-main-seal-oil-leak--prescription-1-0--m97-3-4l-flat-six",
+        "porsche-cayman-rear-main-seal-oil-leak--prescription-2-0--m96",
+        "porsche-cayman-rear-main-seal-oil-leak--prescription-2-0--m97-3-4l-flat-six",
+        "porsche-cayman-rear-main-seal-oil-leak--prescription-3-0--m96",
+        "porsche-cayman-rear-main-seal-oil-leak--prescription-3-0--m97-3-4l-flat-six"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-pdk-dual-clutch-mechatronic-clutch-pack-faults",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Cayman GTS PDK",
+        "Cayman PDK",
+        "Cayman S PDK"
+      ],
+      "engines": [],
+      "title": "PDK Dual-Clutch Mechatronic / Clutch-Pack Faults",
+      "howToFix": "Diagnose with a Porsche scan tool. Service the PDK fluid and filter on schedule. Repair or rebuild the mechatronic unit (valve body / sensors / solenoids) — now repairable for a fraction of full transmission replacement — and replace worn clutch packs as needed.",
+      "dtcCodes": [
+        "P0732",
+        "P17B7",
+        "P17F1",
+        "P18B4"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose with a Porsche scan tool."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P0732, P17B7, P17F1, P18B4"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-pdk-dual-clutch-mechatronic-clutch-pack-faults--prescription-0-0--all-engines",
+        "porsche-cayman-pdk-dual-clutch-mechatronic-clutch-pack-faults--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-718-cayman-early-turbo-four-high-oil-consumption",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "718 Cayman 2.0",
+        "718 Cayman S 2.5"
+      ],
+      "engines": [
+        "MA2.20 2.0L turbo flat-four",
+        "MA2.21 2.5L turbo flat-four"
+      ],
+      "title": "718 Cayman (982) Early Turbo-Four High Oil Consumption",
+      "howToFix": "Document consumption with a Porsche oil-consumption test. Replace a failed air-oil separator / PCV diaphragm. Severely affected engines were replaced under warranty by Porsche; otherwise monitor level closely and top up with the correct specification oil between services.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Document consumption with a Porsche oil-consumption test."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "otherwise monitor level closely and top up with the correct specification oil between services."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-718-cayman-early-turbo-four-high-oil-consumption--prescription-0-0--ma2-20-2-0l-turbo-flat-four",
+        "porsche-cayman-718-cayman-early-turbo-four-high-oil-consumption--prescription-0-0--ma2-21-2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-cayman-718-cayman-gasoline-particulate-filter-failure",
+      "make": "Porsche",
+      "model": "Cayman",
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "718 Cayman 2.0",
+        "718 Cayman GTS 2.5",
+        "718 Cayman S 2.5"
+      ],
+      "engines": [
+        "MA2.20 2.0L turbo flat-four",
+        "MA2.21 2.5L turbo flat-four"
+      ],
+      "title": "718 Cayman (982) Gasoline Particulate Filter (GPF/OPF) Failure",
+      "howToFix": "Confirm the fault via diagnostics. Apply the updated GPF/OPF software where available and fit the revised filter (e.g. part 982 254 400 AF designed to resist the problem). Use the correct low-ash specification oil and avoid only short trips. Failed units require GPF/cat assembly replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the fault via diagnostics."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-cayman-718-cayman-gasoline-particulate-filter-failure--prescription-0-0--ma2-20-2-0l-turbo-flat-four",
+        "porsche-cayman-718-cayman-gasoline-particulate-filter-failure--prescription-0-0--ma2-21-2-5l-turbo-flat-four"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-diesel-3-0-v6-tdi-egr-dpf-clogging-adblue-line-splitting",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "Macan S Diesel"
+      ],
+      "engines": [
+        "3.0L V6 TDI diesel"
+      ],
+      "title": "Diesel 3.0 V6 TDI EGR/DPF Clogging and AdBlue Line Splitting (EU-spec)",
+      "howToFix": "Force/complete a DPF regeneration with a sustained ~20-minute high-rpm drive; clean or replace the EGR valve; replace cracked AdBlue lines/connectors and top up DEF. Severe DPF clogging requires forced regen, off-car DPF cleaning, or DPF replacement. Address EGR fault codes promptly so regen can complete. Avoid chronic short-trip use.",
+      "dtcCodes": [
+        "P0403",
+        "P140000",
+        "P140100"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P0403, P140000, P140100"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-diesel-3-0-v6-tdi-egr-dpf-clogging-adblue-line-splitting--prescription-0-0--3-0l-v6-tdi-diesel",
+        "porsche-macan-diesel-3-0-v6-tdi-egr-dpf-clogging-adblue-line-splitting--prescription-1-0--3-0l-v6-tdi-diesel"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-adaptive-air-suspension-strut-compressor-failure",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Macan GTS",
+        "Macan S (air susp. option)",
+        "Macan Turbo"
+      ],
+      "engines": [],
+      "title": "Adaptive Air Suspension (PASM) Strut and Compressor Failure",
+      "howToFix": "Replace the failed air spring/strut (and often the compressor and distribution/valve block). Dealer repairs commonly run $3,800 for a compressor up to $5,000-$7,000 for struts; air spring ~$1,500/side, PASM strut ~$1,300/side plus ~$1,000 labor. Aftermarket air spring kits and DIY replacement substantially reduce cost; some owners convert to conventional coil-over PASM dampers.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-adaptive-air-suspension-strut-compressor-failure--prescription-0-0--all-engines",
+        "porsche-macan-adaptive-air-suspension-strut-compressor-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-fuel-pump-flange-crack-fuel-leak",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "Macan",
+        "Macan GTS",
+        "Macan S",
+        "Macan Turbo"
+      ],
+      "engines": [
+        "2.0L turbo I4",
+        "3.0L V6 turbo",
+        "3.6L V6 turbo"
+      ],
+      "title": "Fuel Pump Flange Crack and Fuel Leak (Recall ALA2 / NHTSA 20V077000)",
+      "howToFix": "Check the VIN for open campaign ALA2 and arrange the free Porsche recall remedy. The dealer removes and reworks or replaces the service cover, inspects the filter-flange supply port, replaces a cracked flange and applies the specified protective film when required. If fuel odor or wetness is present, avoid ignition sources and have the vehicle inspected rather than attempting a retail-parts repair. Do not buy a fuel pump, flange, cover or film from this page; campaign status and the authorized VIN-specific remedy control the repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN for open campaign ALA2 and arrange the free Porsche recall remedy."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If fuel odor or wetness is present, avoid ignition sources and have the vehicle inspected rather than attempting a retail-parts repair."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-macan-panoramic-sunroof-drain-clogging-cabin-water-leaks",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Macan GTS",
+        "Macan (panoramic roof)",
+        "Macan S",
+        "Macan Turbo"
+      ],
+      "engines": [],
+      "title": "Panoramic Sunroof Drain Clogging and Cabin Water Leaks",
+      "howToFix": "Confirm panoramic-roof equipment, inspect the luggage compartment and rear electronics for water, and test left and right drainage with the measured-water procedure. A trained technician should clean the rear hoses using the specified VAS 6620 tool from the underbody side and replace damaged hoses or the rear sleeve set when required; the bulletin warns that improper insertion can damage the drain. Dry affected trim and inspect electrical connections after the leak path is corrected. Do not buy generic tubing, compressed-air tools or drain sleeves from this page; the blocked location, damage and current part/VIN applicability must be verified first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm panoramic-roof equipment, inspect the luggage compartment and rear electronics for water, and test left and right drainage with the measured-water procedure."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dry affected trim and inspect electrical connections after the leak path is corrected."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-panoramic-sunroof-drain-clogging-cabin-water-leaks--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-pcm-3-1-infotainment-failure-reboot-loop-2020-update-damage",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Macan",
+        "Macan GTS",
+        "Macan S",
+        "Macan Turbo"
+      ],
+      "engines": [],
+      "title": "PCM 3.1 Infotainment Failure, Reboot Loop and 2020 Update Damage",
+      "howToFix": "For HDD-related boot loops, the PCM unit is repaired or replaced (or the storage replaced) — dealer replacement runs roughly $2,000-$3,000. For units damaged by the 2020 update, affected owners were eligible for settlement reimbursement (up to $7,500 for documented repairs/battery replacements). Keeping software current and avoiding the faulty update mitigates the reboot cycle.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-macan-pdk-shudder-2015",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S",
+        "Turbo"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L V6 Twin-Turbo",
+        "3.0L V6 Twin-Turbo",
+        "3.6L V6 Twin-Turbo"
+      ],
+      "title": "PDK Low-Speed Shudder and Rough Engagement",
+      "howToFix": "PDK clutch adaptation reset via PIWIS diagnostic tool can improve symptoms temporarily. A PDK fluid change and clutch calibration helps in many cases. If shudder is severe, clutch pack replacement may be necessary.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "PDK clutch adaptation reset via PIWIS diagnostic tool can improve symptoms temporarily."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-pdk-shudder-2015--prescription-0-0--2-0l-turbo-i4",
+        "porsche-macan-pdk-shudder-2015--prescription-0-0--2-9l-v6-twin-turbo",
+        "porsche-macan-pdk-shudder-2015--prescription-0-0--3-0l-v6-twin-turbo",
+        "porsche-macan-pdk-shudder-2015--prescription-0-0--3-6l-v6-twin-turbo",
+        "porsche-macan-pdk-shudder-2015--prescription-1-0--2-0l-turbo-i4",
+        "porsche-macan-pdk-shudder-2015--prescription-1-0--2-9l-v6-twin-turbo",
+        "porsche-macan-pdk-shudder-2015--prescription-1-0--3-0l-v6-twin-turbo",
+        "porsche-macan-pdk-shudder-2015--prescription-1-0--3-6l-v6-twin-turbo"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-premature-rear-brake-pad-rotor-wear-persistent-brake-squeal",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Macan GTS",
+        "Macan S",
+        "Macan Turbo (PTV / PSCB / PCCB)"
+      ],
+      "engines": [],
+      "title": "Premature Rear Brake Pad/Rotor Wear and Persistent Brake Squeal",
+      "howToFix": "Replace rear pads (and rotors when worn or grooved) at their shorter interval; on PTV cars budget for more frequent rear service. For squeal, fit Porsche-spec pads, apply caliper anti-squeal/lubricant on the abutment hardware, and properly bed-in new pads; note that some PSCB/PCCB squeal is inherent and not a defect.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-premature-rear-brake-pad-rotor-wear-persistent-brake-squeal--prescription-0-0--all-engines",
+        "porsche-macan-premature-rear-brake-pad-rotor-wear-persistent-brake-squeal--prescription-1-0--all-engines",
+        "porsche-macan-premature-rear-brake-pad-rotor-wear-persistent-brake-squeal--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-timing-chain-tensioner-2015",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S",
+        "Turbo"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L V6 Twin-Turbo",
+        "3.0L V6 Twin-Turbo",
+        "3.6L V6 Twin-Turbo"
+      ],
+      "title": "Timing Chain Tensioner Failure",
+      "howToFix": "Replace timing chain tensioners with updated parts. On the V6 engines, this requires significant front-end disassembly. Replace chains and guides at the same time if mileage exceeds 80,000 miles.",
+      "dtcCodes": [
+        "P0016",
+        "P0017",
+        "P0341"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017, P0341"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-timing-chain-tensioner-2015--prescription-0-0--2-0l-turbo-i4",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-0-0--2-9l-v6-twin-turbo",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-0-0--3-0l-v6-twin-turbo",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-0-0--3-6l-v6-twin-turbo",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-1-0--2-0l-turbo-i4",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-1-0--2-9l-v6-twin-turbo",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-1-0--3-0l-v6-twin-turbo",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-1-0--3-6l-v6-twin-turbo",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-2-0--2-0l-turbo-i4",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-2-0--2-9l-v6-twin-turbo",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-2-0--3-0l-v6-twin-turbo",
+        "porsche-macan-timing-chain-tensioner-2015--prescription-2-0--3-6l-v6-twin-turbo"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-transfer-case-leak-2015",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S",
+        "Turbo"
+      ],
+      "engines": [],
+      "title": "Transfer Case Seal Leak",
+      "howToFix": "Replace transfer case seals and top off with Porsche-specified fluid. If bearing noise is present, a full transfer case rebuild may be needed. Check transfer case fluid level and condition at every oil change.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check transfer case fluid level and condition at every oil change."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-transfer-case-leak-2015--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-turbo-coolant-line-2015",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "GTS",
+        "S",
+        "Turbo"
+      ],
+      "engines": [
+        "2.9L V6 Twin-Turbo",
+        "3.0L V6 Twin-Turbo",
+        "3.6L V6 Twin-Turbo"
+      ],
+      "title": "Turbo Coolant Line Leak",
+      "howToFix": "Replace turbo coolant lines with updated parts or silicone upgrades. Inspect lines carefully at every service. Consider preventive replacement at 60,000 miles on turbo models.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect lines carefully at every service."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-turbo-coolant-line-2015--prescription-0-0--2-9l-v6-twin-turbo",
+        "porsche-macan-turbo-coolant-line-2015--prescription-0-0--3-0l-v6-twin-turbo",
+        "porsche-macan-turbo-coolant-line-2015--prescription-0-0--3-6l-v6-twin-turbo"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-v6-coolant-transfer-vent-pipe-leak-under-intake-manifold",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Macan GTS",
+        "Macan S",
+        "Macan Turbo"
+      ],
+      "engines": [
+        "3.0L V6 turbo",
+        "3.6L V6 turbo"
+      ],
+      "title": "V6 Coolant Transfer/Vent Pipe Leak Under the Intake Manifold",
+      "howToFix": "Replace the cracked coolant transfer/vent pipe (parts are cheap, often under $200) — but the intake manifold, fuel lines and many connectors must be removed for access, making it a 6-8 hour job; total repair commonly $1,500-$3,500+. Always fit a new pipe, never a used plastic one, since used parts fail again from age/heat. Inspect/replace the integrated thermostat housing while in there.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect/replace the integrated thermostat housing while in there."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-v6-coolant-transfer-vent-pipe-leak-under-intake-manifold--prescription-0-0--3-0l-v6-turbo",
+        "porsche-macan-v6-coolant-transfer-vent-pipe-leak-under-intake-manifold--prescription-0-0--3-6l-v6-turbo",
+        "porsche-macan-v6-coolant-transfer-vent-pipe-leak-under-intake-manifold--prescription-1-0--3-0l-v6-turbo",
+        "porsche-macan-v6-coolant-transfer-vent-pipe-leak-under-intake-manifold--prescription-1-0--3-6l-v6-turbo"
+      ]
+    },
+    {
+      "issueId": "porsche-macan-water-pump-failure-2015",
+      "make": "Porsche",
+      "model": "Macan",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Base",
+        "GTS",
+        "S",
+        "Turbo"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L V6 Twin-Turbo",
+        "3.0L V6 Twin-Turbo",
+        "3.6L V6 Twin-Turbo"
+      ],
+      "title": "Water Pump Failure and Coolant Leak",
+      "howToFix": "Replace the water pump with an updated OEM unit. Replace the thermostat and coolant hoses at the same time as preventive maintenance. Flush the cooling system with fresh Porsche G13 coolant.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-macan-water-pump-failure-2015--prescription-0-0--2-0l-turbo-i4",
+        "porsche-macan-water-pump-failure-2015--prescription-0-0--2-9l-v6-twin-turbo",
+        "porsche-macan-water-pump-failure-2015--prescription-0-0--3-0l-v6-twin-turbo",
+        "porsche-macan-water-pump-failure-2015--prescription-0-0--3-6l-v6-twin-turbo",
+        "porsche-macan-water-pump-failure-2015--prescription-1-0--2-0l-turbo-i4",
+        "porsche-macan-water-pump-failure-2015--prescription-1-0--2-9l-v6-twin-turbo",
+        "porsche-macan-water-pump-failure-2015--prescription-1-0--3-0l-v6-twin-turbo",
+        "porsche-macan-water-pump-failure-2015--prescription-1-0--3-6l-v6-twin-turbo",
+        "porsche-macan-water-pump-failure-2015--prescription-2-0--2-0l-turbo-i4",
+        "porsche-macan-water-pump-failure-2015--prescription-2-0--2-9l-v6-twin-turbo",
+        "porsche-macan-water-pump-failure-2015--prescription-2-0--3-0l-v6-twin-turbo",
+        "porsche-macan-water-pump-failure-2015--prescription-2-0--3-6l-v6-twin-turbo"
+      ]
+    },
+    {
+      "issueId": "porsche-panamera-air-suspension-2010",
+      "make": "Porsche",
+      "model": "Panamera",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "4S",
+        "GTS",
+        "Turbo",
+        "Turbo S",
+        "Turbo S E-Hybrid"
+      ],
+      "engines": [],
+      "title": "Air Suspension Strut and Compressor Failure",
+      "howToFix": "Replace failed air struts and compressor. Inspect all four struts when replacing one — they typically age at similar rates. Arnott and Bilstein offer quality aftermarket options.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect all four struts when replacing one — they typically age at similar rates."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-panamera-air-suspension-2010--prescription-0-0--all-engines",
+        "porsche-panamera-air-suspension-2010--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-panamera-battery-drain-2010",
+      "make": "Porsche",
+      "model": "Panamera",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Parasitic Battery Drain",
+      "howToFix": "Perform a parasitic draw test to identify the offending module. Common culprits include the PCM head unit, telephone module, and comfort access system. Install a battery maintainer for vehicles that sit for extended periods. Replace the battery if it has been deeply discharged multiple times.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "parasitic-draw",
+          "toolId": "dc-clamp-meter-low-current",
+          "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Perform a parasitic draw test to identify the offending module."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-panamera-battery-drain-2010--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-panamera-coolant-pipe-2010",
+      "make": "Porsche",
+      "model": "Panamera",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "4S",
+        "GTS",
+        "S",
+        "Turbo"
+      ],
+      "engines": [
+        "2.9L V6 Twin-Turbo",
+        "3.0L V6 Twin-Turbo",
+        "4.8L V8",
+        "4.8L V8 Twin-Turbo",
+        "V6",
+        "V8"
+      ],
+      "title": "Coolant Pipe and Distribution Housing Leak",
+      "howToFix": "Replace all plastic coolant pipes with updated or aftermarket aluminum versions. This is a labor-intensive repair on the V8 requiring intake manifold removal. Replace water pump gaskets and thermostat housing seals while the system is apart.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-panamera-coolant-pipe-2010--prescription-0-0--2-9l-v6-twin-turbo",
+        "porsche-panamera-coolant-pipe-2010--prescription-0-0--3-0l-v6-twin-turbo",
+        "porsche-panamera-coolant-pipe-2010--prescription-0-0--4-8l-v8",
+        "porsche-panamera-coolant-pipe-2010--prescription-0-0--4-8l-v8-twin-turbo",
+        "porsche-panamera-coolant-pipe-2010--prescription-0-0--v6",
+        "porsche-panamera-coolant-pipe-2010--prescription-0-0--v8",
+        "porsche-panamera-coolant-pipe-2010--prescription-1-0--2-9l-v6-twin-turbo",
+        "porsche-panamera-coolant-pipe-2010--prescription-1-0--3-0l-v6-twin-turbo",
+        "porsche-panamera-coolant-pipe-2010--prescription-1-0--4-8l-v8",
+        "porsche-panamera-coolant-pipe-2010--prescription-1-0--4-8l-v8-twin-turbo",
+        "porsche-panamera-coolant-pipe-2010--prescription-1-0--v6",
+        "porsche-panamera-coolant-pipe-2010--prescription-1-0--v8",
+        "porsche-panamera-coolant-pipe-2010--prescription-2-0--2-9l-v6-twin-turbo",
+        "porsche-panamera-coolant-pipe-2010--prescription-2-0--3-0l-v6-twin-turbo",
+        "porsche-panamera-coolant-pipe-2010--prescription-2-0--4-8l-v8",
+        "porsche-panamera-coolant-pipe-2010--prescription-2-0--4-8l-v8-twin-turbo",
+        "porsche-panamera-coolant-pipe-2010--prescription-2-0--v6",
+        "porsche-panamera-coolant-pipe-2010--prescription-2-0--v8"
+      ]
+    },
+    {
+      "issueId": "porsche-panamera-infotainment-failure-2010",
+      "make": "Porsche",
+      "model": "Panamera",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "PCM Infotainment System Freezing and Failure",
+      "howToFix": "Perform a PCM software update to the latest version. If the hardware has failed, replace the PCM head unit. Aftermarket CarPlay/Android Auto retrofit units from BimmerTech or Rennline can replace the aging OEM system.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-panamera-infotainment-failure-2010--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-panamera-pdk-failure-2010",
+      "make": "Porsche",
+      "model": "Panamera",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "4S",
+        "GTS",
+        "S",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "2.9L V6 Twin-Turbo",
+        "3.0L V6 Twin-Turbo",
+        "4.8L V8",
+        "4.8L V8 Twin-Turbo"
+      ],
+      "title": "PDK Dual-Clutch Transmission Mechatronic Failure",
+      "howToFix": "PDK mechatronic unit replacement or rebuild. Maintain strict fluid change intervals at 40,000 miles. A full PDK service including clutch pack inspection is recommended at 80,000 miles.",
+      "dtcCodes": [
+        "P0700",
+        "P0730",
+        "P0868"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "A full PDK service including clutch pack inspection is recommended at 80,000 miles."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0730, P0868"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-panamera-timing-chain-2010",
+      "make": "Porsche",
+      "model": "Panamera",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "4S",
+        "GTS",
+        "S",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "4.8L V8",
+        "4.8L V8 Twin-Turbo"
+      ],
+      "title": "Timing Chain Stretch and Tensioner Failure",
+      "howToFix": "Replace timing chains, tensioners, and guides. Requires engine removal or extensive rear-of-engine access. Budget $5,000-$9,000 at an independent specialist. Do not defer once symptoms appear.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-panamera-timing-chain-2010--prescription-0-0--4-8l-v8",
+        "porsche-panamera-timing-chain-2010--prescription-0-0--4-8l-v8-twin-turbo",
+        "porsche-panamera-timing-chain-2010--prescription-1-0--4-8l-v8",
+        "porsche-panamera-timing-chain-2010--prescription-1-0--4-8l-v8-twin-turbo",
+        "porsche-panamera-timing-chain-2010--prescription-2-0--4-8l-v8",
+        "porsche-panamera-timing-chain-2010--prescription-2-0--4-8l-v8-twin-turbo"
+      ]
+    },
+    {
+      "issueId": "porsche-taycan-12v-battery-drain-2020",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "4S",
+        "Base",
+        "Cross Turismo",
+        "GTS",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "Electric - Dual Motor",
+        "Electric - Single Motor"
+      ],
+      "title": "12V Auxiliary Battery Drain",
+      "howToFix": "Update to the latest Porsche software version which includes improved 12V battery management. Replace the 12V battery with an AGM unit if degraded. Install a 12V battery maintainer for extended parking. Disable unnecessary always-on features in the vehicle settings.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-taycan-12v-battery-drain-2020--prescription-0-0--electric-dual-motor",
+        "porsche-taycan-12v-battery-drain-2020--prescription-0-0--electric-single-motor"
+      ]
+    },
+    {
+      "issueId": "porsche-taycan-charge-port-door-actuator-failure-cross-lock-fault",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Taycan",
+        "Taycan 4S",
+        "Taycan Cross Turismo",
+        "Taycan Turbo",
+        "Taycan Turbo S"
+      ],
+      "engines": [],
+      "title": "Charge Port Door (Power Supply Flap) Actuator Failure / Cross-Lock Fault",
+      "howToFix": "Record which door, direction and warning are involved, then check both sides under TI 186/24 because the cross-lock message can identify the opposite door. Inspect position sensing, harnesses, connectors, drive and module operation. Apply WLK2 only to an eligible VIN and use its campaign procedure; use the symptom-specific Porsche path for other vehicles. Do not buy an actuator, door module, harness, sensor or charging socket from this page; the failed side, cause, campaign status, current part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Record which door, direction and warning are involved, then check both sides under TI 186/24 because the cross-lock message can identify the opposite door."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect position sensing, harnesses, connectors, drive and module operation."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-taycan-charging-issues-2020",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "4S",
+        "Base",
+        "Cross Turismo",
+        "GTS",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "Electric - Dual Motor",
+        "Electric - Single Motor"
+      ],
+      "title": "DC Fast Charging Failures and Reduced Charging Speed",
+      "howToFix": "Update vehicle software to the latest version. Try a different charger or charging network if one consistently fails. Pre-condition the battery (use the navigation to route to a charger) before DC fast charging to achieve maximum charging speed. Report charger-specific failures to both Porsche and the charging network.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-taycan-front-brake-hose-cracking-brake-fluid-leak",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Taycan",
+        "Taycan 4S",
+        "Taycan Cross Turismo",
+        "Taycan GTS",
+        "Taycan Sport Turismo",
+        "Taycan Turbo",
+        "Taycan Turbo S"
+      ],
+      "engines": [],
+      "title": "Front Brake Hose Cracking and Brake Fluid Leak",
+      "howToFix": "Check the VIN for ARB0 / 24V455. If open, have a Porsche center replace the front brake hoses with the revised parts free of charge. Treat a brake-fluid-low or PSM warning as urgent: stop safely, do not continue driving with suspected leakage, and have hydraulic integrity inspected. Do not buy hoses, fluid or fittings from this page; recall status, leak location, current part number, service procedure and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN for ARB0 / 24V455."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Treat a brake-fluid-low or PSM warning as urgent: stop safely, do not continue driving with suspected leakage, and have hydraulic integrity inspected."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-taycan-high-voltage-battery-internal-short-circuit-fire-risk",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Taycan",
+        "Taycan 4S",
+        "Taycan Cross Turismo",
+        "Taycan Turbo",
+        "Taycan Turbo S"
+      ],
+      "engines": [],
+      "title": "High-Voltage Battery Internal Short-Circuit and Fire Risk (LG Module Defect)",
+      "howToFix": "Check the VIN for ARB6, ARB7 and related NHTSA campaigns before charging or driving advice is given. Follow the current recall instructions, including an 80-percent charging limit only when Porsche assigns that interim measure. Have the diagnostic software installed and the high-voltage battery evaluated; Porsche replaces affected modules under the campaign when indicated. Do not buy a cell module, battery pack, charger or monitoring device from this page; campaign assignment, diagnostic result, high-voltage qualification, current part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN for ARB6, ARB7 and related NHTSA campaigns before charging or driving advice is given."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Have the diagnostic software installed and the high-voltage battery evaluated;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Do not buy a cell module, battery pack, charger or monitoring device from this page;"
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "campaign assignment, diagnostic result, high-voltage qualification, current part number and VIN fitment must be established first."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-taycan-onboard-ac-charger-failure-electrical-system-fault",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Taycan 4S",
+        "Taycan Turbo",
+        "Taycan Turbo S",
+        "Taycan with 22 kW onboard charger option"
+      ],
+      "engines": [],
+      "title": "Onboard AC Charger (22 kW Option) Failure - 'Electrical System Fault'",
+      "howToFix": "Under warranty (including Porsche Approved Warranty), the OBC is replaced as a warranty claim. Because 22 kW units are scarce, Porsche commonly offers a goodwill payment (~€1,700) to downgrade to the stable 11 kW charger, which dealers note rarely fails. Out of warranty, a replacement can run roughly $7,000-$10,000 depending on dealer, making the 11 kW downgrade the practical fix.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-taycan-range-degradation-2020",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "4S",
+        "Base",
+        "GTS",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "Electric - Dual Motor",
+        "Electric - Single Motor"
+      ],
+      "title": "High-Voltage Battery Range Degradation",
+      "howToFix": "Have the battery health checked at a Porsche dealer using PIWIS diagnostics. Minimize DC fast charging to 80% and prefer AC home charging. Avoid storing the vehicle at very high or very low states of charge. Porsche provides an 8-year/100,000-mile battery warranty covering capacity loss below 70%.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have the battery health checked at a Porsche dealer using PIWIS diagnostics."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-taycan-rearview-camera-blackout-no-image-reverse",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Taycan",
+        "Taycan 4S",
+        "Taycan Cross Turismo",
+        "Taycan GTS",
+        "Taycan Turbo",
+        "Taycan Turbo S"
+      ],
+      "engines": [],
+      "title": "Rearview (Backup) Camera Blackout / No Image in Reverse",
+      "howToFix": "Check the VIN for ASB2 / 25V896 and have the assistance-system control-unit software updated free of charge when open. Until repaired, use mirrors, direct observation and a spotter where necessary, and do not rely on a missing image. Outside the campaign, record whether one or multiple cameras fail and diagnose software, camera, wiring, power and communication paths. Do not buy a camera, control unit, harness or screen from this page; recall eligibility, failed path, current part number, coding and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN for ASB2 / 25V896 and have the assistance-system control-unit software updated free of charge when open."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Outside the campaign, record whether one or multiple cameras fail and diagnose software, camera, wiring, power and communication paths."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-taycan-software-bugs-2020",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "4S",
+        "Base",
+        "Cross Turismo",
+        "GTS",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "Electric - Dual Motor",
+        "Electric - Single Motor"
+      ],
+      "title": "Infotainment and Vehicle Software Bugs",
+      "howToFix": "Keep the vehicle software updated to the latest version via OTA or dealer service. Perform a hard reset of the infotainment system if freezing occurs (hold power button for 10 seconds). Report persistent bugs to Porsche for inclusion in future software patches.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-taycan-sudden-powertrain-shutdown-total-loss-power-while-driving",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021
+      ],
+      "trims": [
+        "Taycan",
+        "Taycan 4S",
+        "Taycan Cross Turismo",
+        "Taycan Turbo",
+        "Taycan Turbo S"
+      ],
+      "engines": [],
+      "title": "Sudden Powertrain Shutdown / Total Loss of Power While Driving (Pulse Inverter Software)",
+      "howToFix": "Check the VIN for AMB5 / 21V486 and have the power-electronics and engine-control software reprogrammed free of charge when open. If motive power is lost, activate hazards, steer and brake to a safe location and arrange service; do not attempt to continue driving. Outside the campaign, preserve complete power-electronics, motor-control and battery fault data before diagnosis. Do not buy an inverter, drive unit, control unit or battery component from this page; recall eligibility, software status, failed path, current part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN for AMB5 / 21V486 and have the power-electronics and engine-control software reprogrammed free of charge when open."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Outside the campaign, preserve complete power-electronics, motor-control and battery fault data before diagnosis."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "porsche-taycan-suspension-noise-2020",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "4S",
+        "Base",
+        "Cross Turismo",
+        "GTS",
+        "Turbo",
+        "Turbo S"
+      ],
+      "engines": [
+        "Electric - Dual Motor",
+        "Electric - Single Motor"
+      ],
+      "title": "Front Suspension Clunking and Creaking",
+      "howToFix": "Replace worn upper strut mounts, control arm bushings, or anti-roll bar end links. Porsche has released updated parts with improved durability. Lubricate suspension contact points with silicone-based lubricant as a temporary measure.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-taycan-suspension-noise-2020--prescription-0-0--electric-dual-motor",
+        "porsche-taycan-suspension-noise-2020--prescription-0-0--electric-single-motor",
+        "porsche-taycan-suspension-noise-2020--prescription-1-0--electric-dual-motor",
+        "porsche-taycan-suspension-noise-2020--prescription-1-0--electric-single-motor",
+        "porsche-taycan-suspension-noise-2020--prescription-2-0--electric-dual-motor",
+        "porsche-taycan-suspension-noise-2020--prescription-2-0--electric-single-motor"
+      ]
+    },
+    {
+      "issueId": "porsche-taycan-air-suspension-strut-retaining-ring-dislodgement",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2021
+      ],
+      "trims": [
+        "Taycan with adaptive air suspension"
+      ],
+      "engines": [],
+      "title": "Air Suspension Strut Retaining Ring Dislodgement (Air Spring Strut Failure)",
+      "howToFix": "Check the VIN for Porsche campaign ANB8 / NHTSA 22V921. If open, follow the free recall inspection and replace the affected air-suspension strut when directed. If the VIN is outside the campaign, record warning and ride height, test pneumatic pressure and inspect the exact strut, line, valve, sensor and wiring path before condemning hardware. Do not buy a strut, air spring, compressor, valve or sensor from this page; recall eligibility, failed corner, current part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN for Porsche campaign ANB8 / NHTSA 22V921."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If open, follow the free recall inspection and replace the affected air-suspension strut when directed."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the VIN is outside the campaign, record warning and ride height, test pneumatic pressure and inspect the exact strut, line, valve, sensor and wiring path before condemning hardware."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "porsche-taycan-air-suspension-strut-retaining-ring-dislodgement--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "porsche-taycan-front-passenger-airbag-deactivation",
+      "make": "Porsche",
+      "model": "Taycan",
+      "years": [
+        2022,
+        2023
+      ],
+      "trims": [
+        "Taycan",
+        "Taycan Cross Turismo",
+        "Taycan Cross Turismo Turbo"
+      ],
+      "engines": [],
+      "title": "Front Passenger Airbag Deactivation (Occupant Classification System / Seat Heating Mat Crimp Defect)",
+      "howToFix": "Check the VIN for ASA2 / 25V221. If open, have a Porsche center replace the front passenger seat cushion free of charge. If the warning appears with a passenger present, move the occupant to another seating position or stop using that seat until the vehicle is inspected. For vehicles outside the campaign, diagnose the OCS, cushion wiring, connectors and control system under the exact Porsche procedure. Do not buy a cushion, heating mat, OCS sensor, harness or airbag component from this page; recall eligibility, fault path, current part number and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN for ASA2 / 25V221."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the warning appears with a passenger present, move the occupant to another seating position or stop using that seat until the vehicle is inspected."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "For vehicles outside the campaign, diagnose the OCS, cushion wiring, connectors and control system under the exact Porsche procedure."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

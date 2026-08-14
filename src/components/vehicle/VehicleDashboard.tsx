@@ -602,6 +602,8 @@ function IssueCardExpanded({ issue, vehicle, styled = true, onAskAI }: { issue: 
               solution={issue.solution || ''}
               dtcCodes={issue.dtcCodes}
               engines={fitmentVehicle.engine ? [fitmentVehicle.engine] : issue.vehicleMatch.engines}
+              make={issue.vehicleMatch.make || vehicle.make}
+              years={fitmentVehicle.year ? [fitmentVehicle.year] : issue.vehicleMatch.years}
             />
           )}
           {fixParts.length === 0 && fitmentPrompt && (

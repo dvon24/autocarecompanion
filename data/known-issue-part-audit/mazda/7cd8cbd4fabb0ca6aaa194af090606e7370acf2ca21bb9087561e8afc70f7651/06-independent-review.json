@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Mazda",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "5818ac6c54bf1389cde6193b4c05bdd010aa6e04676367c4389b6df9ad9de437",
+    "02-fitment-worklist.json": "61d10872d6f555d720da78383f7954ae4ec86ad70aa9e3def08c1f1066ea10d9",
+    "03-showmetheparts-evidence.json": "547a26ef1e05af1d60f3896526eef003f392bf8c33d27c32e54385549975178f",
+    "04-part-proposals.json": "75178d6e2a869070c08f5cd7ca1fd1a22d1bc47ce3bb702bd8e12e13d79841c9",
+    "05-direct-link-evidence.json": "110ac81968761dbae1fb7bfeca49a65068444266bc14ad17968da673f721b7eb"
+  },
+  "supplementalArtifactSha256": {
+    "repair-role-decisions.json": "81a915f9be5d94bb7cffb72d9408203a51efae6e583bef5c18abfb537c22808d",
+    "existing-public-claim-review.json": "056054c2edaf8e84ca7ceeee20f62e2be90e14ca683f9d884bf79e7d4c7b6236"
+  },
+  "proposalCount": 0,
+  "partRowCount": 0,
+  "tally": {
+    "approve": 0,
+    "block_wrong_role": 0,
+    "block_incomplete_scope": 0,
+    "block_ambiguous": 0,
+    "hold_no_exact_link": 0,
+    "hold_needs_manual": 0
+  },
+  "reconciliation": {
+    "sourceProposalCount": 0,
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "sourceIssueCount": 259,
+    "reviewedIssueCount": 259,
+    "sourceWorkItemCount": 474,
+    "reviewedWorkItemDispositionCount": 474,
+    "terminalWorkItemDispositionCount": 474,
+    "proposedWorkItemCount": 0,
+    "heldWorkItemCount": 474,
+    "workItemDispositionSha256": "cac75b4af34daa06f4038245a40c281a0c2da06d6d3609f41aa5cc783a71b7f4",
+    "workItemDispositionReasonTally": {
+      "fitment-no-catalog": 193,
+      "fitment-unmapped": 281
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "exactProductLinkRowCount": 0,
+    "exactProductLinkCount": 0,
+    "noExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkCount": 0,
+    "listingTitleSourceCount": 0,
+    "itemSpecificsSourceCount": 0,
+    "observedListingTitlePresentCount": 0,
+    "recomputedTitleHashMatchCount": 0,
+    "matchedPartNumberMatchCount": 0,
+    "observedPartNumberFieldPresentCount": 0,
+    "observedPartNumberValuePresentCount": 0,
+    "observedPartNumberValueMatchCount": 0,
+    "urlProductIdMatchCount": 0,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 4,
+  "uniqueExistingClaimCount": 4,
+  "existingClaimTally": {
+    "preserve": 4,
+    "block": 0
+  },
+  "existingClaims": [
+    {
+      "workItemId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch--existing-fix-part-0-0--all-engines",
+      "issueId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch",
+      "partNumber": "CR2032",
+      "engineWorkRow": "All engines",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First replace the fob coin-cell batteries (both keys) and re-test. If the fault persists, have the dealer read the keyless/BCM for handle request-switch and antenna faults, apply any keyless control software update, and replace the door-handle request sensor/antenna if it fails self-test. Keep fobs away from phones/wireless chargers that can desync them.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch--existing-fix-part-0-1--all-engines",
+      "issueId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch",
+      "partNumber": "ECR2032",
+      "engineWorkRow": "All engines",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First replace the fob coin-cell batteries (both keys) and re-test. If the fault persists, have the dealer read the keyless/BCM for handle request-switch and antenna faults, apply any keyless control software update, and replace the door-handle request sensor/antenna if it fails self-test. Keep fobs away from phones/wireless chargers that can desync them.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch--existing-fix-part-0-2--all-engines",
+      "issueId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch",
+      "partNumber": "DL2032",
+      "engineWorkRow": "All engines",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "First replace the fob coin-cell batteries (both keys) and re-test. If the fault persists, have the dealer read the keyless/BCM for handle request-switch and antenna faults, apply any keyless control software update, and replace the door-handle request sensor/antenna if it fails self-test. Keep fobs away from phones/wireless chargers that can desync them.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "mazda-mazda3-dashboard-melting-2004--existing-fix-part-0-0--all-engines",
+      "issueId": "mazda-mazda3-dashboard-melting-2004",
+      "partNumber": "BBM4-60-400H-02",
+      "engineWorkRow": "",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the VIN/build range and inspect whether the condition is the sticky surface described by SSP99 rather than cracking, warping, splitting, contamination, or another failure. Mazda's specified repair was complete dashboard replacement, historically using BBM4-60-400H-02, after dealer verification. SSP99 extended coverage to 10 years from the original warranty start date, so all eligible vehicles are now beyond that stated time window; ask the dealer to confirm current part supersession and any case-specific assistance before authorising a paid repair. A generic overlay, mat, vinyl wrap, or protectant is not Mazda's repair and should not be sold as the fix.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    }
+  ],
+  "decisions": []
+}

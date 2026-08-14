@@ -1,0 +1,2725 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "mazda-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "16859a3302d7867172333c06636d4e3f71aff173c7ac0641b91310266d778f97",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": true,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "1d17b342b4bf4ed5489912b2cb3436127bf2572dced172e1c141c6ded127f305",
+      "checkpoint.json": "284229085d36067055e31889ce59d3f68abc9080c15675982872d51474e51188",
+      "diagnostic-tool-evidence.json": "70be019e921189710ba34eeff7c66b6428392cbaa5b242df56a7db3198aed90c"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 259,
+      "issuesWithDtcCodes": 71,
+      "uniqueDtcCount": 76,
+      "solutionInstructionCount": 251,
+      "dtcDispositionCount": 71,
+      "toolLinkedDispositionCount": 63,
+      "procedureNoToolDispositionCount": 194,
+      "unresolvedToolHoldCount": 65,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "mazda-626-cd4e-4-speed-automatic-transmission-premature-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0730, P0733, P0741, P1744",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-626-distributor-failure-1993",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The ignition control module (ICM) should also be tested, as it can cause similar symptoms.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Always retract the EPB using the maintenance/service mode (scan tool or owner's-manual procedure) before rear pad service.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Diagnose with a scanner for C2005 / C112A-type motor-position codes, then inspect the actuator connector for bent or corroded pins (a frequently overlooked fix) before condemning the motor.",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C112A, C2005",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-5-i-stop-agm-battery-premature-failure-start-stop-system-malfu",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "After replacement the battery must be registered/i-stop re-initialized (disconnect-and-relearn or scan tool) so the charging system manages it correctly.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-5-skyactiv-g-2-5t-cracked-cylinder-head-coolant-leak",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P111A",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-50-cylinder-deactivation-solenoid-failure-metal-shavings-oil",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P3400",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "First replace the fob coin-cell batteries (both keys) and re-test.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-60-wireless-qi-charger-overheating-won-t-fast-charge-phone",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If red flashing continues, test another compatible cool device under the same conditions.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-60-wireless-qi-charger-overheating-won-t-fast-charge-phone",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If the indicator is solid red, or a verified compatible device still fails after the conditions are met, have Mazda diagnose the charger by VIN.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-12v-battery-drain-warning",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If the VIN is not covered or the drain remains, fully charge the 12V battery, test its condition and charging strategy, measure key-off current only after all modules have had time to sleep, and isolate the circuit that remains awake.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-12v-battery-drain-warning",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace the 12V battery only if it fails the appropriate test, using the exact installed specification for that powertrain and completing any required battery initialisation.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-12v-battery-drain-warning",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Repeatedly discharged batteries should be tested because deep discharge can cause permanent capacity loss.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-diesel-clunk-vibration-2022",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "An OBD scanner or oil-and-filter bundle is not the repair for either condition.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-phev-charging-fault-2023",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If safe and permitted by the manual, retry once after waiting and test a known-good compatible charging point to isolate the supply from the vehicle.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-phev-charging-fault-2023",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A red indicator, charge warning, repeated failure on multiple known-good stations, or damaged port requires an authorised high-voltage diagnosis.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-phev-ev-range-accuracy-2022",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If usable energy or actual EV distance falls abruptly under comparable conditions, charge disappears while parked, a warning appears, or EV mode repeatedly cancels without a documented reason, ask Mazda for campaign status, high-voltage-battery state-of-health data, charging history, relevant DTCs, and BECM diagnosis.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-phev-insulation-resistance-recall-as007a",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If P0AA6:00 remains after the campaign software is completed, Mazda's bulletin says the vehicle must be diagnosed for a genuine insulation fault rather than assuming every recurrence is false detection.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-phev-insulation-resistance-recall-as007a",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0AA6:00",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-phev-transmission-jerk-2022",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan all powertrain modules and complete only the Mazda-directed programming, initial learning, or adaptation procedure that applies to that VIN.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-software-warnings-recall-ar058a",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose any remaining instrument blackout, low-12V warning, no-restart, or drivability symptom under its own stored faults and applicable campaign;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-sticky-notchy-steering-rack",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If symptoms remain after the recall, return for steering diagnosis rather than assuming a full rack is required.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-infotainment-lag-2023",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "For wired testing, use the correct USB port and a known-good Apple-approved or phone-manufacturer-approved data cable;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx60-infotainment-lag-2023",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "test another compatible phone to separate a phone problem from a vehicle problem.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-70-12v-battery-drain-dead-battery-while-parked",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Have the battery fully charged and tested with Mazda's specified procedure;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-70-engine-malfunction-have-engine-inspected-warning-from-c-refr",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0531",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-70-hybrid-system-malfunction-warning-engine-stall-power-loss",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis and reprogramming are covered under the hybrid/powertrain warranty;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-70-inaccurate-fuel-gauge-reading",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Until repaired, refuel earlier than the gauge suggests.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-70-phantom-braking-false-smart-brake-support-activation",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Mazda Connect can turn SBS off as a temporary risk-control choice while arranging diagnosis, but that removes collision-mitigation assistance and is not a repair.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-70-phev-fails-to-charge-charger-shows-service-fault",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "a red vehicle indicator or a fault that persists after the manual checks requires Mazda diagnosis.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-70-phev-fails-to-charge-charger-shows-service-fault",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A trained repairer should read charging-system faults and determine whether the problem follows the supply equipment or the vehicle before naming an OBC, inlet, lead-acid battery, or cable.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-70-sudden-unintended-low-speed-acceleration-forward-lurch",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis and reprogramming are covered under warranty;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx9-rear-diff-coupling-2007",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Reset the coupling adaptation with a Mazda scan tool after service.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx9-rear-diff-coupling-2007",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1288, P1889",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-90-48v-mhev-battery-cell-imbalance-engine-malfunction-light-los",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0DAB",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx-90-inaccurate-fuel-gauge-causing-unexpected-stalling-recall-782",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Until repaired, refuel earlier than the gauge suggests and track mileage rather than relying on the gauge or range-to-empty estimate.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-cx90-transmission-jerkiness-2024",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0741, P0751",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda3-purge-valve-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "run the KOEO EVAP test;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda3-purge-valve-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "locate other leaks with the specified detector or smoke-test process;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda3-purge-valve-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "and test purge-valve gas tightness.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda3-purge-valve-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "For P0441, run Mazda's KOER purge-flow self-test.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda3-purge-valve-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace the purge solenoid only if it fails the stated sealing or flow test, then repeat the EVAP test.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda3-carbon-buildup-di-2012",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If the freeze-frame pattern does not match, follow normal misfire diagnosis for ignition coils, plugs, injectors, compression, vacuum leaks, fuel quality, and other causes.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda3-infotainment-crash-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If neither bulletin applies, follow Mazda's symptom diagnosis rather than ordering a used or generic CMU from this card.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda3-infotainment-crash-2014",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "U3000:49",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda6-alternator-failure-2003",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test the battery and replace if it has been deeply discharged.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mazda6-melting-sticky-dashboard-crash-pad",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "diagnosis, current coverage and the VIN-specific service part must be confirmed.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-speed3-turbo-failure-2007",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Perform a boost leak test with a pressurized adapter at every 30,000-mile interval.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-miata-crank-angle-sensor-o-ring-valve-cover-gasket-oil-leaks",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose by sliding cardboard under the engine and noting where drips land — rear means CAS O-ring, front means front crank seal, sides/top means valve cover.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-miata-crankshaft-thrust-bearing-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose by measuring crankshaft endplay with a dial indicator at the front pulley while an assistant works the clutch pedal: more than ~0.008 in.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mpv-sliding-door",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose specific component — motor, cable, or latch.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mx5-miata-nc-power-steering-2006",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with a Mazda scan tool to identify the specific failed component (sensor, module, or motor).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-mx5-miata-nc-power-steering-2006",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1515, C1516, C1530",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-protege-alternator-failure-1995",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test output voltage at the battery (should be 13.8-14.4V) and load test the battery, which may have been damaged by the failing alternator.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx-7-degraded-chassis-engine-grounds-3-800-rpm-hesitation",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Clean and refresh every factory ground point (shock tower, starter/bell-housing, ECU grounds), protect them with dielectric grease, and add supplemental 8-10 gauge ground straps from the engine and chassis to the battery negative — forum consensus is this cures the hesitation about 90% of the time.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx-7-turbo-ii-wastegate-flapper-undersizing-boost-creep-overboost",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Until fixed, keep the exhaust restriction stock and watch a known-accurate boost gauge.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx-7-apex-seal-failure-loss-compression",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with a rotary compression test (a rotary-specific tester reading all three faces per rotor;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx-7-clogged-catalytic-converter-raising-exhaust-gas-temps-killin",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace a clogged cat with a fresh high-flow catalytic converter (or a test/replacement pipe where legal) and correct any upstream oil or fuel cause so the new unit isn't destroyed.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx-7-hot-start-flooding-from-leaking-fuel-injectors",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Have injectors flow-tested and cleaned if budget is tight, but old injector tips typically need replacement on a 20+ year old FD.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx-7-sequential-twin-turbo-system-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Pressure-test the vacuum system to locate leaks.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx-7-sequential-twin-turbo-system-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Bench-test each solenoid for proper actuation;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx-8-ignition-coil-spark-plug-rapid-wear-causing-misfires",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with misfire codes P0300-P0304 before replacing.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx-8-undersized-factory-battery-parasitic-drain",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace with a higher-capacity battery (many owners fit a ~640 CCA unit of the same case dimensions), use a battery tender when parked, and diagnose/repair any abnormal parasitic draw or a failing alternator.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mazda-rx8-catalytic-converter-clog-2004",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Some owners use high-flow aftermarket cats or test pipes for track use.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [],
+  "removalProposals": [],
+  "releaseBlockers": [
+    {
+      "type": "no-reviewed-commerce-writes",
+      "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "16859a3302d7867172333c06636d4e3f71aff173c7ac0641b91310266d778f97",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "1d17b342b4bf4ed5489912b2cb3436127bf2572dced172e1c141c6ded127f305",
+        "checkpoint.json": "284229085d36067055e31889ce59d3f68abc9080c15675982872d51474e51188",
+        "diagnostic-tool-evidence.json": "70be019e921189710ba34eeff7c66b6428392cbaa5b242df56a7db3198aed90c"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 259,
+        "issuesWithDtcCodes": 71,
+        "uniqueDtcCount": 76,
+        "solutionInstructionCount": 251,
+        "dtcDispositionCount": 71,
+        "toolLinkedDispositionCount": 63,
+        "procedureNoToolDispositionCount": 194,
+        "unresolvedToolHoldCount": 65,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "mazda-626-cd4e-4-speed-automatic-transmission-premature-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0730, P0733, P0741, P1744",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-626-distributor-failure-1993",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The ignition control module (ICM) should also be tested, as it can cause similar symptoms.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Always retract the EPB using the maintenance/service mode (scan tool or owner's-manual procedure) before rear pad service.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Diagnose with a scanner for C2005 / C112A-type motor-position codes, then inspect the actuator connector for bent or corroded pins (a frequently overlooked fix) before condemning the motor.",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C112A, C2005",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-5-i-stop-agm-battery-premature-failure-start-stop-system-malfu",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "After replacement the battery must be registered/i-stop re-initialized (disconnect-and-relearn or scan tool) so the charging system manages it correctly.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-5-skyactiv-g-2-5t-cracked-cylinder-head-coolant-leak",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P111A",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-50-cylinder-deactivation-solenoid-failure-metal-shavings-oil",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P3400",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "First replace the fob coin-cell batteries (both keys) and re-test.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-60-wireless-qi-charger-overheating-won-t-fast-charge-phone",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If red flashing continues, test another compatible cool device under the same conditions.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-60-wireless-qi-charger-overheating-won-t-fast-charge-phone",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If the indicator is solid red, or a verified compatible device still fails after the conditions are met, have Mazda diagnose the charger by VIN.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-12v-battery-drain-warning",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If the VIN is not covered or the drain remains, fully charge the 12V battery, test its condition and charging strategy, measure key-off current only after all modules have had time to sleep, and isolate the circuit that remains awake.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-12v-battery-drain-warning",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace the 12V battery only if it fails the appropriate test, using the exact installed specification for that powertrain and completing any required battery initialisation.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-12v-battery-drain-warning",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Repeatedly discharged batteries should be tested because deep discharge can cause permanent capacity loss.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-diesel-clunk-vibration-2022",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "An OBD scanner or oil-and-filter bundle is not the repair for either condition.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-phev-charging-fault-2023",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If safe and permitted by the manual, retry once after waiting and test a known-good compatible charging point to isolate the supply from the vehicle.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-phev-charging-fault-2023",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A red indicator, charge warning, repeated failure on multiple known-good stations, or damaged port requires an authorised high-voltage diagnosis.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-phev-ev-range-accuracy-2022",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If usable energy or actual EV distance falls abruptly under comparable conditions, charge disappears while parked, a warning appears, or EV mode repeatedly cancels without a documented reason, ask Mazda for campaign status, high-voltage-battery state-of-health data, charging history, relevant DTCs, and BECM diagnosis.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-phev-insulation-resistance-recall-as007a",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If P0AA6:00 remains after the campaign software is completed, Mazda's bulletin says the vehicle must be diagnosed for a genuine insulation fault rather than assuming every recurrence is false detection.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-phev-insulation-resistance-recall-as007a",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0AA6:00",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-phev-transmission-jerk-2022",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan all powertrain modules and complete only the Mazda-directed programming, initial learning, or adaptation procedure that applies to that VIN.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-software-warnings-recall-ar058a",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose any remaining instrument blackout, low-12V warning, no-restart, or drivability symptom under its own stored faults and applicable campaign;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-sticky-notchy-steering-rack",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If symptoms remain after the recall, return for steering diagnosis rather than assuming a full rack is required.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-infotainment-lag-2023",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "For wired testing, use the correct USB port and a known-good Apple-approved or phone-manufacturer-approved data cable;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx60-infotainment-lag-2023",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "test another compatible phone to separate a phone problem from a vehicle problem.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-70-12v-battery-drain-dead-battery-while-parked",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Have the battery fully charged and tested with Mazda's specified procedure;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-70-engine-malfunction-have-engine-inspected-warning-from-c-refr",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0531",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-70-hybrid-system-malfunction-warning-engine-stall-power-loss",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis and reprogramming are covered under the hybrid/powertrain warranty;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-70-inaccurate-fuel-gauge-reading",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Until repaired, refuel earlier than the gauge suggests.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-70-phantom-braking-false-smart-brake-support-activation",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Mazda Connect can turn SBS off as a temporary risk-control choice while arranging diagnosis, but that removes collision-mitigation assistance and is not a repair.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-70-phev-fails-to-charge-charger-shows-service-fault",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "a red vehicle indicator or a fault that persists after the manual checks requires Mazda diagnosis.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-70-phev-fails-to-charge-charger-shows-service-fault",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A trained repairer should read charging-system faults and determine whether the problem follows the supply equipment or the vehicle before naming an OBC, inlet, lead-acid battery, or cable.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-70-sudden-unintended-low-speed-acceleration-forward-lurch",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis and reprogramming are covered under warranty;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx9-rear-diff-coupling-2007",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Reset the coupling adaptation with a Mazda scan tool after service.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx9-rear-diff-coupling-2007",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1288, P1889",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-90-48v-mhev-battery-cell-imbalance-engine-malfunction-light-los",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0DAB",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx-90-inaccurate-fuel-gauge-causing-unexpected-stalling-recall-782",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Until repaired, refuel earlier than the gauge suggests and track mileage rather than relying on the gauge or range-to-empty estimate.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-cx90-transmission-jerkiness-2024",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0741, P0751",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda3-purge-valve-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "run the KOEO EVAP test;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda3-purge-valve-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "locate other leaks with the specified detector or smoke-test process;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda3-purge-valve-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "and test purge-valve gas tightness.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda3-purge-valve-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "For P0441, run Mazda's KOER purge-flow self-test.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda3-purge-valve-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace the purge solenoid only if it fails the stated sealing or flow test, then repeat the EVAP test.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda3-carbon-buildup-di-2012",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If the freeze-frame pattern does not match, follow normal misfire diagnosis for ignition coils, plugs, injectors, compression, vacuum leaks, fuel quality, and other causes.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda3-infotainment-crash-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If neither bulletin applies, follow Mazda's symptom diagnosis rather than ordering a used or generic CMU from this card.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda3-infotainment-crash-2014",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "U3000:49",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda6-alternator-failure-2003",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test the battery and replace if it has been deeply discharged.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mazda6-melting-sticky-dashboard-crash-pad",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "diagnosis, current coverage and the VIN-specific service part must be confirmed.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-speed3-turbo-failure-2007",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Perform a boost leak test with a pressurized adapter at every 30,000-mile interval.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-miata-crank-angle-sensor-o-ring-valve-cover-gasket-oil-leaks",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose by sliding cardboard under the engine and noting where drips land — rear means CAS O-ring, front means front crank seal, sides/top means valve cover.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-miata-crankshaft-thrust-bearing-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose by measuring crankshaft endplay with a dial indicator at the front pulley while an assistant works the clutch pedal: more than ~0.008 in.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mpv-sliding-door",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose specific component — motor, cable, or latch.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mx5-miata-nc-power-steering-2006",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with a Mazda scan tool to identify the specific failed component (sensor, module, or motor).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-mx5-miata-nc-power-steering-2006",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1515, C1516, C1530",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-protege-alternator-failure-1995",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test output voltage at the battery (should be 13.8-14.4V) and load test the battery, which may have been damaged by the failing alternator.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx-7-degraded-chassis-engine-grounds-3-800-rpm-hesitation",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Clean and refresh every factory ground point (shock tower, starter/bell-housing, ECU grounds), protect them with dielectric grease, and add supplemental 8-10 gauge ground straps from the engine and chassis to the battery negative — forum consensus is this cures the hesitation about 90% of the time.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx-7-turbo-ii-wastegate-flapper-undersizing-boost-creep-overboost",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Until fixed, keep the exhaust restriction stock and watch a known-accurate boost gauge.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx-7-apex-seal-failure-loss-compression",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with a rotary compression test (a rotary-specific tester reading all three faces per rotor;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx-7-clogged-catalytic-converter-raising-exhaust-gas-temps-killin",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace a clogged cat with a fresh high-flow catalytic converter (or a test/replacement pipe where legal) and correct any upstream oil or fuel cause so the new unit isn't destroyed.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx-7-hot-start-flooding-from-leaking-fuel-injectors",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Have injectors flow-tested and cleaned if budget is tight, but old injector tips typically need replacement on a 20+ year old FD.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx-7-sequential-twin-turbo-system-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Pressure-test the vacuum system to locate leaks.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx-7-sequential-twin-turbo-system-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Bench-test each solenoid for proper actuation;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx-8-ignition-coil-spark-plug-rapid-wear-causing-misfires",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with misfire codes P0300-P0304 before replacing.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx-8-undersized-factory-battery-parasitic-drain",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace with a higher-capacity battery (many owners fit a ~640 CCA unit of the same case dimensions), use a battery tender when parked, and diagnose/repair any abnormal parasitic draw or a failing alternator.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mazda-rx8-catalytic-converter-clog-2004",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Some owners use high-flow aftermarket cats or test pipes for track use.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 259,
+      "reviewedProposalPartRows": 0,
+      "approvedRows": 0,
+      "selectedPrimaryRows": 0,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 0,
+      "heldProposalRows": 0,
+      "blockedExistingClaimRows": 0,
+      "changedIssueCount": 0,
+      "mergedStablePartCount": 0,
+      "manifestIssueCount": 0,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "592cb6a70906b4840b40c683574d9151fac5b06e301147d0ee860db6477a74e7",
+      "01-disposition-ledger.json": "5818ac6c54bf1389cde6193b4c05bdd010aa6e04676367c4389b6df9ad9de437",
+      "02-fitment-worklist.json": "61d10872d6f555d720da78383f7954ae4ec86ad70aa9e3def08c1f1066ea10d9",
+      "03-showmetheparts-evidence.json": "547a26ef1e05af1d60f3896526eef003f392bf8c33d27c32e54385549975178f",
+      "04-part-proposals.json": "75178d6e2a869070c08f5cd7ca1fd1a22d1bc47ce3bb702bd8e12e13d79841c9",
+      "05-direct-link-evidence.json": "110ac81968761dbae1fb7bfeca49a65068444266bc14ad17968da673f721b7eb",
+      "06-independent-review.json": "00ec75f102015c2941e1eb455150a903e0ad34178a3b663f8aeee851a89cf674",
+      "classification-ledger.json": "1d17b342b4bf4ed5489912b2cb3436127bf2572dced172e1c141c6ded127f305",
+      "checkpoint.json": "284229085d36067055e31889ce59d3f68abc9080c15675982872d51474e51188",
+      "diagnostic-tool-evidence.json": "70be019e921189710ba34eeff7c66b6428392cbaa5b242df56a7db3198aed90c"
+    },
+    "reviewRows": [],
+    "removalProposals": [],
+    "releaseBlockers": [
+      {
+        "type": "no-reviewed-commerce-writes",
+        "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "mazda-626-cd4e-4-speed-automatic-transmission-premature-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-626-distributor-failure-1993",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-626-egr-clog",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-626-head-gasket-failure-chronic-overheating",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-626-ignition-switch-overheating-fire-hazard",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-626-kl-v6-distributor-internal-oil-seal-leak-cap-rotor-fouling",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-626-rough-idle-stalling-from-idle-air-control-valve-intake-manif",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-626-timing-belt-auto-tensioner-spring-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-626-transmission-failure-1998",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-b-series-ball-joint",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-b-series-frame-rust-1994",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-b-series-head-gasket-3l-1998",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-b-series-leaf-spring",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-b-series-timing-chain",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-30-cylinder-deactivation-valvetrain-tapping-rattle-sa-026-23",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-30-damaged-abs-hydraulic-control-unit-reduced-braking-recall-23",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-30-disconnected-fuel-evap-vent-hose-causing-fuel-leak-stalling",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-30-excessive-oil-consumption-low-oil-warning-between-changes",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-30-i-activsense-false-emergency-braking-spurious-brake-driver-a",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-30-power-liftgate-unexpectedly-lowers-recall-21v086000",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-5-2021-turbo-exhaust-valve-stem-seal-oil-consumption",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-5-cylinder-deactivation-rocker-arm-dislodgement-engine-stall",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-5-i-stop-agm-battery-premature-failure-start-stop-system-malfu",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-5-skyactiv-g-2-5t-cracked-cylinder-head-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-5-timing-chain-cover-oil-weep-water-pump-coolant-seepage",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-50-abs-hydraulic-control-unit-internal-damage-reduces-braking-r",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-50-accessory-trailer-hitch-bolts-under-torqued-hitch-can-detach",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-50-cylinder-deactivation-solenoid-failure-metal-shavings-oil",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-50-forward-sensing-camera-mode-setting-error-i-activsense-malfu",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-50-hybrid-system-failure-warning-no-start-powertrain-gateway-un",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-50-windshield-cracking-radiating-from-driver-side-pillar-little",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-12v-battery-drains-goes-flat-when-parked",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-adblue-overfull-false-warning-messages-diesel",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-diesel-dpf-frequent-regeneration-poor-economy-short-trips",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-driveline-vibration-speed",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-harsh-bouncy-ride-poorly-resolved-suspension-tuning",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-highway-wind-noise-from-pillar-door-seal-area",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-hybrid-system-malfunction-warning-engine-fails-to-restart-fr",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-infotainment-freezing-carplay-android-auto-disconnects",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-interior-b-pillar-door-rattle-over-rough-roads",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-jerky-low-speed-shifting-shift-shock",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-petrol-phev-refueling-nozzle-premature-click-off",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-rear-suspension-creaking-knocking-over-bumps",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-smart-brake-support-i-activsense-phantom-braking-false-warni",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-transmission-clunk-bang-rocking-startup",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-60-wireless-qi-charger-overheating-won-t-fast-charge-phone",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-12v-battery-drain-dead-battery-while-parked",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-8-speed-transmission-clunky-jerky-low-speed-shifting-hesitat",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-blind-spot-monitoring-false-phantom-rear-corner-warnings",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-dash-electrical-supply-unit-malfunction-defroster-seat-belt",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-engine-malfunction-have-engine-inspected-warning-from-c-refr",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-hybrid-system-malfunction-warning-engine-stall-power-loss",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-inaccurate-fuel-gauge-reading",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-interior-rattles-from-cargo-area-subwoofer-panel-fuel-door",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-loss-drive-power-ev-mode-from-faulty-inverter-software",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-phantom-braking-false-smart-brake-support-activation",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-phev-fails-to-charge-charger-shows-service-fault",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-sudden-unintended-low-speed-acceleration-forward-lurch",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-sun-heat-induced-melting-warping-plastic-trim",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-70-water-intrusion-into-cabin-cargo-area",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-90-48v-mhev-battery-cell-imbalance-engine-malfunction-light-los",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-90-dash-electrical-supply-unit-software-fault-inoperative-defro",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-90-inaccurate-fuel-gauge-causing-unexpected-stalling-recall-782",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-90-infotainment-display-freezing-wireless-carplay-android-auto",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx-90-sudden-increase-steering-effort-recall-24v022-failed-remedy",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx3-ac-compressor-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx3-carbon-buildup-2016",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx3-rear-brake-noise-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx3-transmission-shudder-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx30-ac-condenser-leak-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx30-infotainment-freeze-2020",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx30-windshield-cracking-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-ac-compressor-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-brake-calipers-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-carbon-buildup-2013",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-cmu-failure-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-drl-failure-2016",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-exhaust-manifold-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-fuel-pump-2019",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-maf-sensor-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-oil-consumption-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-rust-doors-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-suspension-clunk-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx5-wheel-bearing-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx50-infotainment-lag-2023",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx50-transmission-hesitation-2023",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx50-turbo-wastegate-rattle-2023",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx50-wind-noise-roof-rails-2023",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-12v-battery-drain-warning",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-diesel-clunk-vibration-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-door-noise-insulation-tsb",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-harsh-rear-suspension-ride",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-infotainment-lag-2023",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-phev-charging-fault-2023",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-phev-ev-range-accuracy-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-phev-insulation-resistance-recall-as007a",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-phev-transmission-jerk-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-software-warnings-recall-ar058a",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx60-sticky-notchy-steering-rack",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx7-turbo-failure-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx7-vvt-actuator-2007",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx70-infotainment-lag-2025",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx70-infotainment-updates-2025",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx70-panoramic-roof-creak-2025",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx70-phev-software-glitches-2025",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx70-rear-suspension-noise-2025",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx9-ac-evaporator-leak-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx9-power-liftgate-2016",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx9-rear-diff-coupling-2007",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx9-timing-chain-stretch-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx9-timing-chain-stretch-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx9-transfer-case-leak-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx9-turbo-coolant-leak-2016",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx9-water-pump-leak-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx90-engine-stalling-recall-2024",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx90-panoramic-roof-creak-2024",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx90-phev-charging-failure-2024",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-cx90-transmission-jerkiness-2024",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda2-ac-condenser-leak-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda2-rear-drum-brake-2011",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda2-rear-shock-mount-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda2-tcm-reprogram-2011",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda2-transmission-mount-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda3-carbon-buildup-di-2012",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda3-clutch-judder-2014",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda3-dashboard-melting-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda3-infotainment-crash-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda3-purge-valve-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda3-rear-brake-seizing-2010",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda3-rear-shock-mount-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda3-torsion-beam-bushing-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda3-windshield-stress-crack-2019",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda5-ac-evaporator-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda5-egr-valve-clog-2006",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda5-sliding-door-cable-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda5-sliding-door-latch-2006",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda5-transmission-mount-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-alternator-failure-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-clutch-judder-2014",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-control-arm-ball-joint-2009",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-egr-valve-carbon-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-front-subframe-cross-member-corrosion",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-low-pressure-fuel-pump-impeller-cracking-engine-stall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-mazda-connect-infotainment-freezing-reboot-loop",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-melting-sticky-dashboard-crash-pad",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-rear-caliper-seizing-2009",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-rear-parking-brake-caliper-corrosion-sticking",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-rear-trailing-arm-bushing-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-skyactiv-g-2-5t-turbo-cylinder-head-cracking-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-skyactiv-g-intake-valve-carbon-buildup",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-subframe-rust-2003",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-takata-passenger-airbag-inflator-rupture",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazda6-vvt-actuator-2009",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed3-motor-mount-failure-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed3-turbo-seal-failure-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-fuel-pump-mounting-ring-leak-recall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-high-pressure-fuel-pump-cannot-hold-pressure-under-load",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-intake-valve-carbon-buildup",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-notchy-manual-transmission-clutch-engagement-problems",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-pcv-system-failure-causing-oil-consumption-smoking-turbo",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-rear-differential-wear-2006",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-takata-airbag-inflator-recalls",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-turbo-oil-starvation-2006",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-vvt-actuator-timing-chain-noise-cold-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mazdaspeed6-weak-rear-differential-mount-sheared-mount-bolts",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-miata-clutch-slave-cylinder-hydraulic-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-miata-convertible-top-rear-plastic-window-cracking-zipper-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-miata-crank-angle-sensor-o-ring-valve-cover-gasket-oil-leaks",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-miata-crankshaft-thrust-bearing-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-miata-short-nose-crankshaft-keyway-wear",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-miata-structural-rust-rear-rocker-panels-front-frame-rails",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-millenia-el-joint-coolant-leak-1995",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-millenia-miller-cycle-supercharger-2001",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-millenia-strut-tower",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-millenia-window-regulator",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mpv-alternator",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mpv-rear-coil-spring-corrosion-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mpv-sliding-door",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mpv-transmission",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mpv-transmission-slip-2000",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-5-miata-cam-crank-angle-sensor-o-ring-oil-leak-1-8l-engines",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-5-miata-convertible-soft-top-plastic-rear-window-cracking-hazing-zip",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-5-miata-fuel-filler-pipe-non-return-valve-sticking-fuel-spit-back",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-5-miata-overdue-timing-belt-water-pump-service",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-5-miata-rocker-panel-front-frame-rail-rust",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-5-miata-short-nose-crankshaft-keyway-failure-1990-early-1991-1-6",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-6-distributor-oil-leak-failure-causing-no-spark-condition",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-6-egr-valve-carbon-buildup-causing-rough-idle-p0400-codes",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-6-front-suspension-knock-from-worn-sway-bar-end-links-strut-mo",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-6-gf4a-el-automatic-transmission-harsh-shifts-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx-6-timing-belt-failure-strands-car",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx30-12v-battery-drain-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx30-dc-charging-speed-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx30-freestyle-door-access-2022",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx30-freestyle-door-hinge-2022",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx30-range-anxiety-2022",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx5-miata-cps-failure-1999",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx5-miata-diff-whine-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx5-miata-na-timing-belt-water-pump-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx5-miata-nb-coolant-overflow-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx5-miata-nc-power-steering-2006",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx5-miata-nd-infotainment-2016",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx5-miata-rear-main-seal-1990",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx5-miata-short-nose-crank-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx5-miata-soft-top-wear-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx6-clutch-slave",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx6-distributor-failure-1993",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx6-power-window-regulator-1993",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-mx6-transmission-mount",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-1-8l-bp-head-gasket-failure-cooling-system-age-wear",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-alternator-failure-1995",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-automatic-transaxle-erratic-harsh-shifting-complete-failures",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-distributor-failure-causing-intermittent-stalling-hot-no-sta",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-egr-insufficient-flow-code-rough-idle-check-engine-light",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-engine-mount-failure-1999",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-ignition-switch-may-overheat-catch-fire",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-rear-sway-bar",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-structural-rust-rocker-panels-rear-subframe-crossmember-stru",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-protege-thermostat",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-5th-6th-auxiliary-intake-port-sleeve-actuator-seizure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-apex-seal-failure-loss-compression",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-clogged-catalytic-converter-raising-exhaust-gas-temps-killin",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-degraded-chassis-engine-grounds-3-800-rpm-hesitation",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-dtss-rear-toe-control-bushing-wear-vague-self-steering-rear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-fuel-pulsation-damper-failure-fuel-leak-fire-lean-risk",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-hot-start-flooding-from-leaking-fuel-injectors",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-ignition-coil-coil-harness-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-oil-metering-pump-neglect-brittle-injection-lines-apex-seal",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-oil-metering-pump-o-ring-line-failure-starving-apex-seals",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-overheating-coolant-seal-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-sequential-twin-turbo-system-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-sequential-twin-turbo-vacuum-hose-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-trailing-ignition-drop-out",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-7-turbo-ii-wastegate-flapper-undersizing-boost-creep-overboost",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-8-clutch-pedal-bracket-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-8-ignition-coil-spark-plug-rapid-wear-causing-misfires",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-8-secondary-shutter-valve-carbon-buildup-hesitation",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-8-undersized-factory-battery-parasitic-drain",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx-8-weak-starter-motor-hard-cold-starting",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx7-apex-seal-failure-1993",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx7-cooling",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx7-turbo-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx7-vacuum-hose-rot-1993",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx8-apex-seal-failure-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx8-catalytic-converter-clog-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx8-flooding-cold-start-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-rx8-oil-metering-pump-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-speed3-turbo-failure-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-speed3-vvt-timing-chain-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-speed6-connecting-rod-failure-2006",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-speed6-transfer-case-failure-2006",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-speed6-turbo-oil-leak-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-tribute-coil-pack",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-tribute-escape-trans",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-tribute-rear-differential",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-tribute-rear-subframe-rust-2001",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mazda-tribute-transfer-case-leak-2001",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

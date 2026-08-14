@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Land Rover",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "bb42d708abf5e9a3a69a7ece20b99280ab5a63966058a174636e93606d56879c",
+    "02-fitment-worklist.json": "2906d6bdfd8f0855dc4d8aa84df3bf762491f66b9d5ebf46e57c506687af52f4",
+    "03-showmetheparts-evidence.json": "361beadcdb2e9a3d68d297ac2bc5241a77e87ea75921c2d84ad8693a089823d8",
+    "04-part-proposals.json": "9e34630b6ef1a3bba393779d2e3b16e85703e9adc5166591c4c5ecd2dc860eef",
+    "05-direct-link-evidence.json": "a6ef8d67a24296cda9b2ed1d9cfbc9f5bfd910fd4394694097d76381c760a532"
+  },
+  "supplementalArtifactSha256": {
+    "repair-role-decisions.json": "18ef2bc7fdb9562723d4cea83355e28f8ecbd8a0f3e0a9978edb25db4b42de9f",
+    "existing-public-claim-review.json": "ecb1b837c09182a9c56c6fbf09d4ea54d6aa209ac2ace673dfafa2c17e0ea4e4"
+  },
+  "proposalCount": 0,
+  "partRowCount": 0,
+  "tally": {
+    "approve": 0,
+    "block_wrong_role": 0,
+    "block_incomplete_scope": 0,
+    "block_ambiguous": 0,
+    "hold_no_exact_link": 0,
+    "hold_needs_manual": 0
+  },
+  "reconciliation": {
+    "sourceProposalCount": 0,
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "sourceIssueCount": 281,
+    "reviewedIssueCount": 281,
+    "sourceWorkItemCount": 864,
+    "reviewedWorkItemDispositionCount": 864,
+    "terminalWorkItemDispositionCount": 864,
+    "proposedWorkItemCount": 0,
+    "heldWorkItemCount": 864,
+    "workItemDispositionSha256": "4ae0e5f297db78fd6051686ea338bbd203729309eba9beac8db949b7f7025361",
+    "workItemDispositionReasonTally": {
+      "fitment-no-catalog": 139,
+      "fitment-unmapped": 725
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "exactProductLinkRowCount": 0,
+    "exactProductLinkCount": 0,
+    "noExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkCount": 0,
+    "listingTitleSourceCount": 0,
+    "itemSpecificsSourceCount": 0,
+    "observedListingTitlePresentCount": 0,
+    "recomputedTitleHashMatchCount": 0,
+    "matchedPartNumberMatchCount": 0,
+    "observedPartNumberFieldPresentCount": 0,
+    "observedPartNumberValuePresentCount": 0,
+    "observedPartNumberValueMatchCount": 0,
+    "urlProductIdMatchCount": 0,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 4,
+  "uniqueExistingClaimCount": 2,
+  "existingClaimTally": {
+    "preserve": 2,
+    "block": 2
+  },
+  "existingClaims": [
+    {
+      "workItemId": "land-rover-range-rover-evoque-thermostat-housing-2012--existing-fix-part-0-0--2-0l-si4-turbo",
+      "issueId": "land-rover-range-rover-evoque-thermostat-housing-2012",
+      "partNumber": "143-0922",
+      "engineWorkRow": "2.0L Si4 Turbo",
+      "verdict": "block",
+      "reason": "Beck/Arnley 143-0922 matches the thermostat-housing role but the public card spans 2012-2019, including a generation boundary, and the current catalog pass did not confirm full application coverage.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the thermostat housing assembly with the updated design. Some aftermarket manufacturers offer aluminum replacements that eliminate the cracking issue. Replace the thermostat at the same time. Refill with JLR OAT coolant and bleed the cooling system properly.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/146075943306?_skw=Beck+Arnley+143-0922+Engine+Coolant+Thermostat+Housing+Assembly&hash=item2202ce018a%3Ag%3A790AAeSwL1VofHR8&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://us.amazon.com/BECKARNLEY-143-0922-Thermostat-with-Housing/dp/B07CJWVZDH?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "land-rover-range-rover-evoque-thermostat-housing-2012--existing-fix-part-0-0--2-0l-si4",
+      "issueId": "land-rover-range-rover-evoque-thermostat-housing-2012",
+      "partNumber": "143-0922",
+      "engineWorkRow": "2.0L Si4",
+      "verdict": "block",
+      "reason": "Beck/Arnley 143-0922 matches the thermostat-housing role but the public card spans 2012-2019, including a generation boundary, and the current catalog pass did not confirm full application coverage.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the thermostat housing assembly with the updated design. Some aftermarket manufacturers offer aluminum replacements that eliminate the cracking issue. Replace the thermostat at the same time. Refill with JLR OAT coolant and bleed the cooling system properly.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/146075943306?_skw=Beck+Arnley+143-0922+Engine+Coolant+Thermostat+Housing+Assembly&hash=item2202ce018a%3Ag%3A790AAeSwL1VofHR8&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://us.amazon.com/BECKARNLEY-143-0922-Thermostat-with-Housing/dp/B07CJWVZDH?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "land-rover-range-rover-sport-crankshaft-sensor-2005--existing-fix-part-0-0--4-4l-v8",
+      "issueId": "land-rover-range-rover-sport-crankshaft-sensor-2005",
+      "partNumber": "235-1597",
+      "engineWorkRow": "4.4L V8",
+      "verdict": "preserve",
+      "reason": "Walker 235-1597 directly matches the crankshaft-sensor repair and is already limited by the article to the related 4.2L supercharged and 4.4L V8 applications; the existing Amazon and eBay destinations are exact product pages from distinct vendors.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the crankshaft position sensor with a genuine JLR or Bosch unit. Avoid cheap aftermarket sensors as they fail quickly. The sensor is located on the lower front of the engine block and is relatively accessible. Also inspect and clean the wiring connector for corrosion.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168500244471?_skw=Walker+Products+235-1597+Engine+Crankshaft+Position+Sensor&hash=item273b65aff7%3Ai%3A168500244471&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://www.amazon.com/Walker-Products-235-1597-Crankshaft-Position/dp/B07G1Z5371?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "land-rover-range-rover-sport-crankshaft-sensor-2005--existing-fix-part-0-0--4-2l-v8-supercharged",
+      "issueId": "land-rover-range-rover-sport-crankshaft-sensor-2005",
+      "partNumber": "235-1597",
+      "engineWorkRow": "4.2L V8 Supercharged",
+      "verdict": "preserve",
+      "reason": "Walker 235-1597 directly matches the crankshaft-sensor repair and is already limited by the article to the related 4.2L supercharged and 4.4L V8 applications; the existing Amazon and eBay destinations are exact product pages from distinct vendors.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the crankshaft position sensor with a genuine JLR or Bosch unit. Avoid cheap aftermarket sensors as they fail quickly. The sensor is located on the lower front of the engine block and is relatively accessible. Also inspect and clean the wiring connector for corrosion.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168500244471?_skw=Walker+Products+235-1597+Engine+Crankshaft+Position+Sensor&hash=item273b65aff7%3Ai%3A168500244471&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://www.amazon.com/Walker-Products-235-1597-Crankshaft-Position/dp/B07G1Z5371?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    }
+  ],
+  "decisions": []
+}

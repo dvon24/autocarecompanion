@@ -1,0 +1,362 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Polestar",
+  "makeKey": "polestar",
+  "makeIndex": 37,
+  "totalMakes": 54,
+  "issueCount": 10,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 1,
+    "diagnosis-dependent": 1,
+    "recall/dealer": 2,
+    "service/tool/fluid": 1,
+    "no-commerce": 5
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 0,
+    "uniqueDtcCount": 0,
+    "instructionCount": 5,
+    "dtcDispositionCount": 0,
+    "toolLinkedCount": 0,
+    "procedureNoToolCount": 4,
+    "unresolvedToolHoldCount": 1
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "polestar-1-charging-issues",
+      "make": "Polestar",
+      "model": "Polestar 1",
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "PHEV"
+      ],
+      "title": "Polestar 1 PHEV Charging Issues / OBC Faults",
+      "howToFix": "Polestar Space service is the only option for OBC repairs — limited Polestar 1 parts availability means some repairs take weeks. Out-of-warranty OBC replacement is expensive ($2,500-$4,500 + install). Plan ahead for parts lead time.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "polestar-2-12v-drain",
+      "make": "Polestar",
+      "model": "Polestar 2",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Long Range Dual Motor",
+        "Long Range Single Motor",
+        "Performance Pack",
+        "Standard Range Single Motor"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Polestar 2 12V Auxiliary Battery Drain",
+      "howToFix": "Update software via OTA or Polestar Space. Use a 12V battery maintainer for storage stretches over 2 weeks. AGM 12V replacement under warranty for documented failures; out-of-warranty €180-€280 + coding.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "polestar-2-android-automotive-bugs",
+      "make": "Polestar",
+      "model": "Polestar 2",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "all"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Polestar 2 Android Automotive Infotainment Bugs",
+      "howToFix": "Apply latest OTA. Hard-reset: hold both lower-corner buttons of center screen for 20 seconds. Persistent issues may need a \"system reset\" at Polestar Space (does not erase saved profile).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "polestar-2-bms-recall-23v-101",
+      "make": "Polestar",
+      "model": "Polestar 2",
+      "years": [
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "Long Range Dual Motor",
+        "Long Range Single Motor",
+        "Performance Pack"
+      ],
+      "engines": [
+        "Dual Motor",
+        "Single Motor"
+      ],
+      "title": "Polestar 2 BMS Software Recall — Charge Limit Mis-Reporting",
+      "howToFix": "Software update via OTA addresses most BMS recalls. Verify your VIN is current on recalls at Polestar Space or via NHTSA lookup. If charge level is suspect, plug in to an L2 charger and let the car re-baseline.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify your VIN is current on recalls at Polestar Space or via NHTSA lookup."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "polestar-2-charge-port-stuck",
+      "make": "Polestar",
+      "model": "Polestar 2",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Long Range Dual Motor",
+        "Long Range Single Motor",
+        "Performance Pack"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Polestar 2 Charge Port Door Stuck / Latch Failure",
+      "howToFix": "Emergency release procedure documented in owner manual (manual cable behind sidewall trim in cargo area). Replacement latch assembly $200-$400 + install. Polestar Space covers under warranty for documented failures.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "polestar-2-inverter-recall-22v-029",
+      "make": "Polestar",
+      "model": "Polestar 2",
+      "years": [
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "Launch Edition",
+        "Long Range Dual Motor",
+        "Long Range Single Motor",
+        "Performance Pack"
+      ],
+      "engines": [
+        "Dual Motor",
+        "Single Motor"
+      ],
+      "title": "Polestar 2 Front Inverter Recall (Capacitor Tin-Plating Defect) — Sudden Power Loss",
+      "howToFix": "Free recall remedy at Polestar Space — inverter module replacement with non-affected unit in a single workshop visit. Confirm VIN via Polestar customer service or NHTSA recall lookup. If you experience sudden loss of acceleration, pull over safely.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm VIN via Polestar customer service or NHTSA recall lookup."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "polestar-2-hv-coolant-heater",
+      "make": "Polestar",
+      "model": "Polestar 2",
+      "years": [
+        2021,
+        2022
+      ],
+      "trims": [
+        "Long Range Dual Motor",
+        "Long Range Single Motor"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Polestar 2 HV Coolant Heater (PTC) Failure",
+      "howToFix": "Schedule Polestar Space inspection — PTC heater replacement under warranty (8 yr / 100,000 mi for HV components). Heat-pump option from 2023+ is the durable fix; some 2021-2022 owners qualify for heat-pump retrofit (region-dependent).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Schedule Polestar Space inspection — PTC heater replacement under warranty (8 yr / 100,000 mi for HV components)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "polestar-2-hv-coolant-heater--prescription-0-0--all"
+      ]
+    },
+    {
+      "issueId": "polestar-3-first-year-delivery-quality",
+      "make": "Polestar",
+      "model": "Polestar 3",
+      "years": [
+        2023,
+        2024
+      ],
+      "trims": [
+        "Launch Edition",
+        "Long Range Dual Motor",
+        "Long Range Single Motor",
+        "Performance Pack"
+      ],
+      "engines": [
+        "Dual Motor",
+        "Single Motor"
+      ],
+      "title": "Polestar 3 Early-Production Delivery + Quality Issues",
+      "howToFix": "Stay current on OTA — the Polestar 3 receives frequent updates. Document delivery-quality issues in writing with Polestar Space within 90 days for goodwill correction. Most first-year quality issues are covered under bumper-to-bumper warranty (4 yr / 50,000 mi).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "polestar-polestar-4-86-kwh-battery-thermal-runaway-risk-china-recall-charge-limi",
+      "make": "Polestar",
+      "model": "Polestar 4",
+      "years": [
+        2024
+      ],
+      "trims": [],
+      "engines": [
+        "Standard Range Single Motor (China-market 86 kWh variant — exact trim unconfirmed by public sources)"
+      ],
+      "title": "86 kWh battery thermal runaway risk — China recall, charge limit to 70%",
+      "howToFix": "Owners of a China-market 86 kWh Polestar 4 should verify recall eligibility through Polestar or the SAMR recall system. Until the affected battery modules are replaced, follow the regulator's temporary instruction not to charge the high-voltage battery above 70%. The recall remedy is free replacement of all affected battery modules. If the battery warning lamp and audible warning activate, pull over immediately when safe, call Polestar China support at 400-6171-017 and wait for rescue as the filing directs. Do not open, test or repair the high-voltage pack. Do not buy a battery module, cell, charger or thermal-management part from this page; campaign eligibility and the authorized remedy are VIN-specific.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners of a China-market 86 kWh Polestar 4 should verify recall eligibility through Polestar or the SAMR recall system."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Do not open, test or repair the high-voltage pack."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "polestar-polestar-4-86-kwh-battery-thermal-runaway-risk-china-recall-charge-limi--prescription-0-0--standard-range-single-motor-china-market-86-kwh-variant-exact-trim-unconfirmed-by-public-sources"
+      ]
+    },
+    {
+      "issueId": "polestar-polestar-4-gps-off-by-100-200-m-infotainment-lag-driver-assist-settings",
+      "make": "Polestar",
+      "model": "Polestar 4",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "GPS off by 100–200 m, infotainment lag, driver-assist settings reset (software P4.x bugs)",
+      "howToFix": "Keep the car on the latest OTA (P4.2.11+ as of 2025) but expect regressions; full sleep/wake cycle (lock and leave 30+ min) clears many bugs. Log each occurrence with Polestar Support and the dealer — service has acknowledged a 'major software release' is required, not customer-fixable. Use Apple CarPlay for navigation as a workaround for GPS drift.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

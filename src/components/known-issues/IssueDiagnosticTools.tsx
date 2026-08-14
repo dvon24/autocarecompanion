@@ -26,6 +26,8 @@ interface IssueDiagnosticToolsProps {
   dtcCodes?: string[] | null;
   /** Selected engine first; otherwise the article's declared engine scope. */
   engines?: string[] | null;
+  make?: string | null;
+  years?: number[] | null;
 }
 
 /** Public renderers should mount the diagnostic resolver for either prose or codes. */
@@ -33,11 +35,11 @@ export function issueHasDiagnosticToolInput(solution?: string | null, dtcCodes?:
   return Boolean(solution?.trim()) || Boolean(dtcCodes?.length);
 }
 
-export function IssueDiagnosticTools({ solution, dtcCodes, engines }: IssueDiagnosticToolsProps) {
+export function IssueDiagnosticTools({ solution, dtcCodes, engines, make, years }: IssueDiagnosticToolsProps) {
   const { procedures, families, hasUnknownCode, tools } = diagnosticToolsForIssue(
     solution,
     dtcCodes,
-    { engines: engines || [] },
+    { engines: engines || [], make: make || undefined, years: years || [] },
   );
 
   // If the issue names codes, the reader also needs something that can READ

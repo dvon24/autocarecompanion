@@ -1,0 +1,1794 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Chevrolet",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "59d3f1fb94258465c41cb9c0fa98831fb371b408bbb92d43104d9b6ab0ef66c9",
+    "02-fitment-worklist.json": "17cac7576f0c67317d99c00ba40f4a1f5a45ef17229ae6427d9987f2c0162bc8",
+    "03-showmetheparts-evidence.json": "abbbc2ba72092764880721bfc47cbff0a6023d5cbd6d418f89f6145ba9238e7e",
+    "04-part-proposals.json": "dd34b716d017eb58ce23ec228eea86ebec3a63cdcc6221153182f96d8502e062",
+    "05-direct-link-evidence.json": "883eed481bb233b41a31311988e8f8616f21089900af92b6b67e93250d4968e4"
+  },
+  "supplementalArtifactSha256": {
+    "06-independent-review.json": "b1c2043ad0d3165a7c7f4d441f59d963822ff9a964097d8734edafd2d4b2bd21",
+    "existing-public-claim-review.json": "11ac80a5811526077370cd5725716b507e668e3a96e6a51f7314b7ff9a536add"
+  },
+  "proposalCount": 45,
+  "partRowCount": 69,
+  "tally": {
+    "approve": 21,
+    "block_wrong_role": 13,
+    "block_incomplete_scope": 5,
+    "block_ambiguous": 9,
+    "hold_no_exact_link": 9,
+    "hold_needs_manual": 12
+  },
+  "reconciliation": {
+    "sourceProposalCount": 45,
+    "sourcePartRowCount": 69,
+    "reviewedPartRowCount": 69,
+    "sourceIssueCount": 552,
+    "reviewedIssueCount": 552,
+    "sourceWorkItemCount": 1670,
+    "reviewedWorkItemDispositionCount": 1670,
+    "terminalWorkItemDispositionCount": 1670,
+    "proposedWorkItemCount": 45,
+    "heldWorkItemCount": 1625,
+    "workItemDispositionSha256": "7ae9a776292def439beb2eb828e47f12e6869c482d655e3a38b0bb1cf3ffb030",
+    "workItemDispositionReasonTally": {
+      "eligible-proposal": 45,
+      "fitment-confirmed": 39,
+      "fitment-no-catalog": 305,
+      "fitment-unmapped": 1139,
+      "incomplete-model-or-engine-coverage": 6,
+      "missing-or-risky-source-metadata": 2,
+      "no-matching-part-type": 87,
+      "no-primary": 8,
+      "placeholder-part-number": 5,
+      "unsupported-catalog-application-restriction": 33,
+      "year-sets-disagree-scope-likely-too-broad": 1
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 69,
+    "reviewedPartRowCount": 69,
+    "exactProductLinkRowCount": 39,
+    "exactProductLinkCount": 39,
+    "noExactProductLinkRowCount": 30,
+    "reviewedExactProductLinkRowCount": 39,
+    "reviewedExactProductLinkCount": 39,
+    "listingTitleSourceCount": 13,
+    "itemSpecificsSourceCount": 26,
+    "observedListingTitlePresentCount": 39,
+    "recomputedTitleHashMatchCount": 39,
+    "matchedPartNumberMatchCount": 39,
+    "observedPartNumberFieldPresentCount": 39,
+    "observedPartNumberValuePresentCount": 39,
+    "observedPartNumberValueMatchCount": 39,
+    "urlProductIdMatchCount": 39,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 51,
+  "uniqueExistingClaimCount": 28,
+  "existingClaimTally": {
+    "preserve": 9,
+    "block": 42
+  },
+  "existingClaims": [
+    {
+      "workItemId": "chevrolet-avalanche-excessive-oil-consumption-afm-lifter-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "chevrolet-avalanche-excessive-oil-consumption-afm-lifter-failure",
+      "partNumber": "213-1738",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The linked roller-lifter part is unscoped and is not proven to be the required AFM lifter for every 5.3L application; publishing it risks the wrong valvetrain hardware.",
+      "reviewedSourceEvidence": {
+        "howToFix": "For oil consumption, GM's TSB remedy involves replacing the AFM oil-pressure relief valve/deflector and often the pistons/rings; many owners delete AFM (range-disabler or PCM tune + delete kit) to prevent recurrence. For a failed lifter, replace the lifters (and cam if scored), commonly done alongside an AFM delete. Eligible owners can file under the Siqueiros settlement.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Clevite-77-213-1738-Roller-Lifter/dp/B000C07XZI?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-blazer-abs-false-activation-low-speed-from-wheel-speed-sensor-corro--existing-fix-part-0-0--all-engines",
+      "issueId": "chevrolet-blazer-abs-false-activation-low-speed-from-wheel-speed-sensor-corro",
+      "partNumber": "241-1040",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The repair is conditional on rust-jacking diagnosis and the failed front side, while this wheel-speed-sensor claim has no location or fitment scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Per the GM TSB, remove the front wheel speed sensors, thoroughly clean the corrosion from the sensor mounting surfaces on the steering knuckles, and reinstall (replacing sensors damaged by rust jacking). Severely corroded hub/bearing assemblies with integral reluctor rings must be replaced.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/147456510782?_skw=Walker+Products+241-1040+ABS+Wheel+Speed+Sensor&hash=item225517cb3e%3Ag%3AWCcAAeSw3dRobAe6&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-blazer-kelsey-hayes-abs-wheel-speed-sensor-ebcm-faults-corroded-gro--existing-fix-part-0-0--4-3l-vortec-v6",
+      "issueId": "chevrolet-blazer-kelsey-hayes-abs-wheel-speed-sensor-ebcm-faults-corroded-gro",
+      "partNumber": "241-1060",
+      "engineWorkRow": "4.3L Vortec V6",
+      "verdict": "block",
+      "reason": "The catalog could not confirm this wheel-speed-sensor claim for the stated 4.3L application, and the article also allows a hub or EBCM repair instead.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Scan for C-codes and inspect. Clean and tighten the EBCM ground straps at the radiator support first. Replace corroded front wheel-speed sensors / hub bearing assemblies as needed. If the EBCM itself is faulty, a repair-and-return board service is a cost-effective alternative to a new module.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/257651530644?_skw=Walker+Products+241-1060+ABS+Wheel+Speed+Sensor&hash=item3bfd3a5b94%3Ai%3A257651530644&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-bolt-ev-dcfc-speed-reduction-2017--existing-fix-part-0-0--all-engines",
+      "issueId": "chevrolet-bolt-ev-dcfc-speed-reduction-2017",
+      "partNumber": "S6566B",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The article explicitly states that reduced DC charging is an intentional software limitation with no repair; a 12-volt vehicle battery is the wrong role.",
+      "reviewedSourceEvidence": {
+        "howToFix": "There is currently no fix — the reduced charging speed is an intentional software limitation by GM to protect the replacement battery. Precondition the battery before arriving at a fast charger by setting navigation to a DC fast charge station (the Bolt will warm the battery en route, improving charging speed by 10-20%). Avoid fast charging when the battery is below 20% or above 80% for best charging rates. Some aftermarket tools can monitor BMS temperature limits, but modifying the charging software voids the battery warranty.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/BOSCH-S6566B-High-Performance-Automotive-Battery/dp/B0GL9HZRC1?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-camaro-front-wheel-bearing-hub-assembly-failure--existing-fix-part-0-0--3-6l-v6",
+      "issueId": "chevrolet-camaro-front-wheel-bearing-hub-assembly-failure",
+      "partNumber": "BR930674",
+      "engineWorkRow": "3.6L V6",
+      "verdict": "block",
+      "reason": "The front hub claim has no persisted engine, side, or application scope and the current catalog run did not confirm it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the noisy side (noise worsens when weight shifts to the bad bearing during cornering) and check for play. Replace the complete sealed hub/bearing assembly; replacing in pairs is recommended if one side has failed from age. A relearn is not usually needed, but the ABS codes clear once the integrated speed sensor is restored.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/375480705671?_skw=SKF+BR930674+Wheel+Bearing+and+Hub+Assembly&hash=item576c64e287%3Ag%3ADawAAeSwSTJoYBko&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-camaro-front-wheel-bearing-hub-assembly-failure--existing-fix-part-0-0--6-2l-v8",
+      "issueId": "chevrolet-camaro-front-wheel-bearing-hub-assembly-failure",
+      "partNumber": "BR930674",
+      "engineWorkRow": "6.2L V8",
+      "verdict": "block",
+      "reason": "The front hub claim has no persisted engine, side, or application scope and the current catalog run did not confirm it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the noisy side (noise worsens when weight shifts to the bad bearing during cornering) and check for play. Replace the complete sealed hub/bearing assembly; replacing in pairs is recommended if one side has failed from age. A relearn is not usually needed, but the ABS codes clear once the integrated speed sensor is restored.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/375480705671?_skw=SKF+BR930674+Wheel+Bearing+and+Hub+Assembly&hash=item576c64e287%3Ag%3ADawAAeSwSTJoYBko&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-camaro-fuel-pump-high-pressure-fuel-pump-failure--existing-fix-part-0-0--6-2l-v8-lt1",
+      "issueId": "chevrolet-camaro-fuel-pump-high-pressure-fuel-pump-failure",
+      "partNumber": "FG2740",
+      "engineWorkRow": "6.2L V8 LT1",
+      "verdict": "block",
+      "reason": "The article requires diagnosis between the high-pressure and in-tank fuel pumps; this unscoped in-tank module would surface without that distinction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnose fuel-rail pressure with a scan tool; low pressure with P0087 indicates a failing HPFP or supply (in-tank) pump or a clogged filter. Replace the failed pump (HPFP is engine-top mounted; the in-tank pump/module requires tank access). Replace the fuel filter at recommended intervals to reduce strain. Track/high-output cars often upgrade the pump and lines to prevent starvation.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/366272791243?_skw=Delphi+FG2740+Fuel+Pump+Module+Assembly&hash=item55478f42cb%3Ag%3Ai-oAAeSwV%7EFqOUAh&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-camaro-fuel-pump-high-pressure-fuel-pump-failure--existing-fix-part-0-0--6-2l-v8-lt4",
+      "issueId": "chevrolet-camaro-fuel-pump-high-pressure-fuel-pump-failure",
+      "partNumber": "FG2740",
+      "engineWorkRow": "6.2L V8 LT4",
+      "verdict": "block",
+      "reason": "The article requires diagnosis between the high-pressure and in-tank fuel pumps; this unscoped in-tank module would surface without that distinction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnose fuel-rail pressure with a scan tool; low pressure with P0087 indicates a failing HPFP or supply (in-tank) pump or a clogged filter. Replace the failed pump (HPFP is engine-top mounted; the in-tank pump/module requires tank access). Replace the fuel filter at recommended intervals to reduce strain. Track/high-output cars often upgrade the pump and lines to prevent starvation.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/366272791243?_skw=Delphi+FG2740+Fuel+Pump+Module+Assembly&hash=item55478f42cb%3Ag%3Ai-oAAeSwV%7EFqOUAh&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-camaro-fuel-pump-high-pressure-fuel-pump-failure--existing-fix-part-0-0--3-6l-v6-lgx",
+      "issueId": "chevrolet-camaro-fuel-pump-high-pressure-fuel-pump-failure",
+      "partNumber": "FG2740",
+      "engineWorkRow": "3.6L V6 LGX",
+      "verdict": "block",
+      "reason": "The article requires diagnosis between the high-pressure and in-tank fuel pumps; this unscoped in-tank module would surface without that distinction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnose fuel-rail pressure with a scan tool; low pressure with P0087 indicates a failing HPFP or supply (in-tank) pump or a clogged filter. Replace the failed pump (HPFP is engine-top mounted; the in-tank pump/module requires tank access). Replace the fuel filter at recommended intervals to reduce strain. Track/high-output cars often upgrade the pump and lines to prevent starvation.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/366272791243?_skw=Delphi+FG2740+Fuel+Pump+Module+Assembly&hash=item55478f42cb%3Ag%3Ai-oAAeSwV%7EFqOUAh&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-camaro-l99-afm-lifter-failure-2010--existing-fix-part-0-0--6-2l-l99-v8",
+      "issueId": "chevrolet-camaro-l99-afm-lifter-failure-2010",
+      "partNumber": "213-1738",
+      "engineWorkRow": "6.2L L99 V8",
+      "verdict": "block",
+      "reason": "The linked roller-lifter part is not proven to be the required L99 AFM lifter and complete repair hardware, so the unscoped claim remains unsafe.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis usually starts with a persistent misfire, ticking, and cylinder-specific contribution loss; compression/leakdown and valvetrain inspection help confirm a failed lifter. Proper repair typically involves replacing the failed AFM lifters, trays/guides, and often the camshaft if lobe wear is present; many owners also replace related gaskets, head bolts, and oil pump components while inside. Continued driving can worsen metal contamination and increase repair cost.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Clevite-77-213-1738-Roller-Lifter/dp/B000C07XZI?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-camaro-lt1-optispark-distributor-failure--existing-fix-part-0-0--5-7l-lt1-v8",
+      "issueId": "chevrolet-camaro-lt1-optispark-distributor-failure",
+      "partNumber": "DP820",
+      "engineWorkRow": "5.7L LT1 V8",
+      "verdict": "preserve",
+      "reason": "The Dayco DP820 water pump is directly prescribed during Optispark access and was independently reconfirmed for every 1993-1997 Camaro LT1 year.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the Optispark distributor (and the optical sensor/cap-and-rotor as an assembly). Because the water pump must be removed to access it, the accepted practice is to replace the water pump at the same time and to install a vented-style Optispark plus a small tube/tee routed into the water pump weep hole to divert coolant away from the distributor. Verify grounds, coil and plug wires first, since those are cheaper and can mimic the symptoms.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/127857884768?_skw=Dayco+DP820+Engine+Water+Pump&hash=item1dc4ec7e60%3Ag%3AWUkAAeSw1WNqOaSi&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-corsica-window-motor--existing-fix-part-0-0--all-engines",
+      "issueId": "chevrolet-corsica-window-motor",
+      "partNumber": "42-102",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The article prescribes a regulator-with-motor assembly, while Cardone 42-102 is only a window motor.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace window motor and regulator as an assembly. Aftermarket units are affordable and readily available.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168313679702?_skw=Cardone+42-102+Window+Motor&hash=item273046ef56%3Ag%3AmK8AAeSwamJp4Wag&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-corvette-cross-fire-injection-driveability-problems--existing-fix-part-0-0--all-engines",
+      "issueId": "chevrolet-corvette-cross-fire-injection-driveability-problems",
+      "partNumber": "EF0008",
+      "engineWorkRow": "",
+      "verdict": "preserve",
+      "reason": "The 1984-only Cross-Fire article directly prescribes the updated coolant-temperature sensor, and NGK EF0008 was confirmed for the complete frozen scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Restore the system to spec: replace the coolant temperature sensor (updated weather-pack type) and oil pressure switch, reseal the intake manifold, rebuild or rebush worn throttle bodies, clean or replace injectors, and synchronize the two throttle bodies. Specialist Cross-Fire shops can rebuild the throttle bodies when wear is advanced.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/406881999616?_skw=NGK+EF0008+Engine+Coolant+Temperature+Sensor&hash=item5ebc0e9b00%3Ag%3AafgAAOSw9EBoLdG3&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-equinox-front-wheel-bearing-and-2005--existing-fix-part-0-0--all-engines",
+      "issueId": "chevrolet-equinox-front-wheel-bearing-and-2005",
+      "partNumber": "BR930663",
+      "engineWorkRow": "",
+      "verdict": "preserve",
+      "reason": "The article directly prescribes the affected sealed hub assembly, and SKF BR930663 was confirmed across every frozen 2005-2009 Equinox year.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis involves road-testing for bearing noise, checking for wheel play, and scanning ABS data for an intermittent or weak wheel speed signal. The standard repair is replacement of the affected hub assembly, often in pairs if both sides are noisy or high-mileage. After replacement, technicians should verify sensor wiring condition and clear any stored ABS codes.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/145827847576?_skw=SKF+BR930663+Wheel+Bearing+and+Hub+Assembly&hash=item21f4045d98%3Ag%3A0GUAAeSwLCpoX%7EX5&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-equinox-head-gasket-coolant-leak-2005--existing-fix-part-0-0--3-4l-v6",
+      "issueId": "chevrolet-equinox-head-gasket-coolant-leak-2005",
+      "partNumber": "4956",
+      "engineWorkRow": "3.4L V6",
+      "verdict": "preserve",
+      "reason": "The 3.4L article directly prescribes head-gasket replacement, and MAHLE 4956 was confirmed for every frozen 2005-2009 application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis usually includes pressure-testing the cooling system, checking for combustion gases in the coolant, inspecting for coolant loss with no visible leak, and verifying whether the engine has been overheated. Repair typically involves replacing the head gaskets, checking head flatness, resurfacing if needed, and replacing related components such as intake gaskets, head bolts, thermostat, and coolant. If overheating was severe, the cylinder heads or engine may also need machine work or replacement.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-4956-Engine-Cylinder/dp/B000CLGBD2?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-impala-water-pump-coolant-crossover-pipe-gasket-leaks--existing-fix-part-0-0--3-5l-v6-lze-lz4",
+      "issueId": "chevrolet-impala-water-pump-coolant-crossover-pipe-gasket-leaks",
+      "partNumber": "WPGM-604V",
+      "engineWorkRow": "3.5L V6 (LZE/LZ4)",
+      "verdict": "preserve",
+      "reason": "The article directly prescribes the water pump when the leak is at the weep hole, and Aisin WPGM-604V was confirmed across both stated V6 engine slices.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system to pinpoint the source. A weep-hole drip or coolant flung by the belt means the water pump — replace it (and the belt if soaked). Coolant at the rear/right of the engine points to the crossover pipe gaskets — replace both crossover gaskets. Refill with the correct Dex-Cool and bleed the system. Do not keep driving with a suspected bad water pump; overheating these aluminum engines risks head-gasket damage.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/236913822460?_skw=Aisin+WPGM-604V+Engine+Water+Pump&hash=item37292a0afc%3Ag%3ArncAAOSwCxJoTVpr&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-impala-water-pump-coolant-crossover-pipe-gasket-leaks--existing-fix-part-0-0--3-9l-v6-lz9-lz8-lgd",
+      "issueId": "chevrolet-impala-water-pump-coolant-crossover-pipe-gasket-leaks",
+      "partNumber": "WPGM-604V",
+      "engineWorkRow": "3.9L V6 (LZ9/LZ8/LGD)",
+      "verdict": "preserve",
+      "reason": "The article directly prescribes the water pump when the leak is at the weep hole, and Aisin WPGM-604V was confirmed across both stated V6 engine slices.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system to pinpoint the source. A weep-hole drip or coolant flung by the belt means the water pump — replace it (and the belt if soaked). Coolant at the rear/right of the engine points to the crossover pipe gaskets — replace both crossover gaskets. Refill with the correct Dex-Cool and bleed the system. Do not keep driving with a suspected bad water pump; overheating these aluminum engines risks head-gasket damage.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/236913822460?_skw=Aisin+WPGM-604V+Engine+Water+Pump&hash=item37292a0afc%3Ag%3ArncAAOSwCxJoTVpr&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-malibu-electric-power-steering-column-2004--existing-fix-part-0-0--all-engines",
+      "issueId": "chevrolet-malibu-electric-power-steering-column-2004",
+      "partNumber": "1C-1005S",
+      "engineWorkRow": "",
+      "verdict": "preserve",
+      "reason": "The article directly allows replacement of the intermediate steering shaft, and Cardone 1C-1005S was confirmed for the complete 2004-2007 scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis involves isolating the noise from suspension components and checking for play or binding in the intermediate shaft. The typical repair is lubricating the shaft if applicable per service procedure or replacing the intermediate steering shaft with an updated part. If noise persists, inspect strut mounts and lower steering column joints to rule out similar sounds.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/117334360871?_skw=Cardone+1C-1005S+Steering+Column+Intermediate+Shaft&hash=item1b51ac4327%3Ai%3A117334360871&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--existing-fix-part-0-0--2-4l-ecotec-i4-le5-le9",
+      "issueId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t",
+      "partNumber": "THRGM-0001",
+      "engineWorkRow": "2.4L Ecotec I4 (LE5/LE9)",
+      "verdict": "block",
+      "reason": "The unscoped Aisin thermostat would also surface for engines where catalog evidence says absent and contradicts the article explicit OEM/ACDelco instruction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify coolant level and confirm the ECT sensor reads accurately, then replace the thermostat and gasket (ACDelco 131-158 on the 2.4L). Use an OEM/ACDelco thermostat — cheap aftermarket units frequently fail to regulate and leave the code active. Refill and bleed the cooling system, then confirm the engine reaches full operating temperature.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/117205102568?_skw=Aisin+THRGM-0001+Engine+Coolant+Thermostat&hash=item1b49f7efe8%3Ag%3ASdsAAeSwWcdqeMaq&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--existing-fix-part-0-0--2-5l-i4-lkw",
+      "issueId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t",
+      "partNumber": "THRGM-0001",
+      "engineWorkRow": "2.5L I4 (LKW)",
+      "verdict": "block",
+      "reason": "The unscoped Aisin thermostat would also surface for engines where catalog evidence says absent and contradicts the article explicit OEM/ACDelco instruction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify coolant level and confirm the ECT sensor reads accurately, then replace the thermostat and gasket (ACDelco 131-158 on the 2.4L). Use an OEM/ACDelco thermostat — cheap aftermarket units frequently fail to regulate and leave the code active. Refill and bleed the cooling system, then confirm the engine reaches full operating temperature.",
+        "catalog": "Fitment work row ended with absent; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/117205102568?_skw=Aisin+THRGM-0001+Engine+Coolant+Thermostat&hash=item1b49f7efe8%3Ag%3ASdsAAeSwWcdqeMaq&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--existing-fix-part-0-0--1-5l-turbo-lfv",
+      "issueId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t",
+      "partNumber": "THRGM-0001",
+      "engineWorkRow": "1.5L Turbo (LFV)",
+      "verdict": "block",
+      "reason": "The unscoped Aisin thermostat would also surface for engines where catalog evidence says absent and contradicts the article explicit OEM/ACDelco instruction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify coolant level and confirm the ECT sensor reads accurately, then replace the thermostat and gasket (ACDelco 131-158 on the 2.4L). Use an OEM/ACDelco thermostat — cheap aftermarket units frequently fail to regulate and leave the code active. Refill and bleed the cooling system, then confirm the engine reaches full operating temperature.",
+        "catalog": "Fitment work row ended with absent; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/117205102568?_skw=Aisin+THRGM-0001+Engine+Coolant+Thermostat&hash=item1b49f7efe8%3Ag%3ASdsAAeSwWcdqeMaq&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-prizm-oxygen-sensor--existing-fix-part-0-0--all-engines",
+      "issueId": "chevrolet-prizm-oxygen-sensor",
+      "partNumber": "13051",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The article specifically directs Denso or NTK oxygen sensors; the Bosch claim conflicts with that reviewed supplier requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace failed oxygen sensor(s). Use Denso or NTK OEM-quality sensors. Address any oil consumption issue to prevent premature fouling of new sensor.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/358904822804?_skw=Bosch+Oxygen+Sensors+13051+Oxygen+Sensor&hash=item539064fc14%3Ag%3AHIkAAeSwm6tqeKEV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-broken-exhaust-manifold-bolts-5-3l-6-2l-v8-causing-exhaust-t--existing-fix-part-0-0--4-8l-v8",
+      "issueId": "chevrolet-silverado-1500-broken-exhaust-manifold-bolts-5-3l-6-2l-v8-causing-exhaust-t",
+      "partNumber": "MS16124",
+      "engineWorkRow": "4.8L V8",
+      "verdict": "block",
+      "reason": "The unscoped gasket claim spans Gen III, IV, and V engines and years without proving the correct manifold/gasket application for each branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Inspect the manifold flanges for soot/leak tracks and the corner bolts for breakage. Repair is to extract the broken bolt shanks (often requires drilling/extractor or a slide-hammer style broken-bolt kit), replace the manifold gaskets, and reinstall with upgraded fasteners — ARP 134-1102 header bolts on Gen III/IV LS (4.8/5.3/6.0) or ARP 134-1104 on Gen V LT (5.3 L83 / 6.2 L86) — torqued in sequence with anti-seize. Re-evaluate any P0420 after the leak is sealed before condemning the catalytic converter or O2 sensors.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168072016602?_skw=MAHLE+Clevite+MS16124+Exhaust+Manifold+Gasket+Set&hash=item2721df72da%3Ag%3AfJUAAeSweblpYiCU&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-broken-exhaust-manifold-bolts-5-3l-6-2l-v8-causing-exhaust-t--existing-fix-part-0-0--5-3l-v8",
+      "issueId": "chevrolet-silverado-1500-broken-exhaust-manifold-bolts-5-3l-6-2l-v8-causing-exhaust-t",
+      "partNumber": "MS16124",
+      "engineWorkRow": "5.3L V8",
+      "verdict": "block",
+      "reason": "The unscoped gasket claim spans Gen III, IV, and V engines and years without proving the correct manifold/gasket application for each branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Inspect the manifold flanges for soot/leak tracks and the corner bolts for breakage. Repair is to extract the broken bolt shanks (often requires drilling/extractor or a slide-hammer style broken-bolt kit), replace the manifold gaskets, and reinstall with upgraded fasteners — ARP 134-1102 header bolts on Gen III/IV LS (4.8/5.3/6.0) or ARP 134-1104 on Gen V LT (5.3 L83 / 6.2 L86) — torqued in sequence with anti-seize. Re-evaluate any P0420 after the leak is sealed before condemning the catalytic converter or O2 sensors.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168072016602?_skw=MAHLE+Clevite+MS16124+Exhaust+Manifold+Gasket+Set&hash=item2721df72da%3Ag%3AfJUAAeSweblpYiCU&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-broken-exhaust-manifold-bolts-5-3l-6-2l-v8-causing-exhaust-t--existing-fix-part-0-0--6-0l-v8",
+      "issueId": "chevrolet-silverado-1500-broken-exhaust-manifold-bolts-5-3l-6-2l-v8-causing-exhaust-t",
+      "partNumber": "MS16124",
+      "engineWorkRow": "6.0L V8",
+      "verdict": "block",
+      "reason": "The unscoped gasket claim spans Gen III, IV, and V engines and years without proving the correct manifold/gasket application for each branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Inspect the manifold flanges for soot/leak tracks and the corner bolts for breakage. Repair is to extract the broken bolt shanks (often requires drilling/extractor or a slide-hammer style broken-bolt kit), replace the manifold gaskets, and reinstall with upgraded fasteners — ARP 134-1102 header bolts on Gen III/IV LS (4.8/5.3/6.0) or ARP 134-1104 on Gen V LT (5.3 L83 / 6.2 L86) — torqued in sequence with anti-seize. Re-evaluate any P0420 after the leak is sealed before condemning the catalytic converter or O2 sensors.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168072016602?_skw=MAHLE+Clevite+MS16124+Exhaust+Manifold+Gasket+Set&hash=item2721df72da%3Ag%3AfJUAAeSweblpYiCU&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-broken-exhaust-manifold-bolts-5-3l-6-2l-v8-causing-exhaust-t--existing-fix-part-0-0--6-2l-v8",
+      "issueId": "chevrolet-silverado-1500-broken-exhaust-manifold-bolts-5-3l-6-2l-v8-causing-exhaust-t",
+      "partNumber": "MS16124",
+      "engineWorkRow": "6.2L V8",
+      "verdict": "block",
+      "reason": "The unscoped gasket claim spans Gen III, IV, and V engines and years without proving the correct manifold/gasket application for each branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Inspect the manifold flanges for soot/leak tracks and the corner bolts for breakage. Repair is to extract the broken bolt shanks (often requires drilling/extractor or a slide-hammer style broken-bolt kit), replace the manifold gaskets, and reinstall with upgraded fasteners — ARP 134-1102 header bolts on Gen III/IV LS (4.8/5.3/6.0) or ARP 134-1104 on Gen V LT (5.3 L83 / 6.2 L86) — torqued in sequence with anti-seize. Re-evaluate any P0420 after the leak is sealed before condemning the catalytic converter or O2 sensors.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168072016602?_skw=MAHLE+Clevite+MS16124+Exhaust+Manifold+Gasket+Set&hash=item2721df72da%3Ag%3AfJUAAeSweblpYiCU&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-intake-manifold-gasket-vacuum-leak--existing-fix-part-0-0--4-8l-v8-vortec",
+      "issueId": "chevrolet-silverado-1500-intake-manifold-gasket-vacuum-leak",
+      "partNumber": "MIS16340",
+      "engineWorkRow": "4.8L V8 Vortec",
+      "verdict": "block",
+      "reason": "The article explicitly calls for the upgraded steel-backed Fel-Pro MS98016T design; the unscoped MAHLE claim does not satisfy that instruction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Smoke-test the intake to confirm the leak, then replace the intake manifold gasket set with an upgraded steel-backed design (Fel-Pro MS98016T for 4.8/5.3/6.0 is the widely-used set). Because the intake must come off, it's smart to replace the knock sensors and their harness (a separate known failure that also lives under the intake) at the same time. Inspect the PCV and vacuum lines while apart.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/406089128311?_skw=MAHLE+Clevite+MIS16340+Engine+Intake+Manifold+Gasket+Set&hash=item5e8ccc5977%3Ag%3A5icAAeSwFARqLGTL&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-intake-manifold-gasket-vacuum-leak--existing-fix-part-0-0--5-3l-v8-vortec",
+      "issueId": "chevrolet-silverado-1500-intake-manifold-gasket-vacuum-leak",
+      "partNumber": "MIS16340",
+      "engineWorkRow": "5.3L V8 Vortec",
+      "verdict": "block",
+      "reason": "The article explicitly calls for the upgraded steel-backed Fel-Pro MS98016T design; the unscoped MAHLE claim does not satisfy that instruction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Smoke-test the intake to confirm the leak, then replace the intake manifold gasket set with an upgraded steel-backed design (Fel-Pro MS98016T for 4.8/5.3/6.0 is the widely-used set). Because the intake must come off, it's smart to replace the knock sensors and their harness (a separate known failure that also lives under the intake) at the same time. Inspect the PCV and vacuum lines while apart.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/406089128311?_skw=MAHLE+Clevite+MIS16340+Engine+Intake+Manifold+Gasket+Set&hash=item5e8ccc5977%3Ag%3A5icAAeSwFARqLGTL&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-intake-manifold-gasket-vacuum-leak--existing-fix-part-0-0--6-0l-v8-vortec",
+      "issueId": "chevrolet-silverado-1500-intake-manifold-gasket-vacuum-leak",
+      "partNumber": "MIS16340",
+      "engineWorkRow": "6.0L V8 Vortec",
+      "verdict": "block",
+      "reason": "The article explicitly calls for the upgraded steel-backed Fel-Pro MS98016T design; the unscoped MAHLE claim does not satisfy that instruction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Smoke-test the intake to confirm the leak, then replace the intake manifold gasket set with an upgraded steel-backed design (Fel-Pro MS98016T for 4.8/5.3/6.0 is the widely-used set). Because the intake must come off, it's smart to replace the knock sensors and their harness (a separate known failure that also lives under the intake) at the same time. Inspect the PCV and vacuum lines while apart.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/406089128311?_skw=MAHLE+Clevite+MIS16340+Engine+Intake+Manifold+Gasket+Set&hash=item5e8ccc5977%3Ag%3A5icAAeSwFARqLGTL&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-power-window-regulator-failure--existing-fix-part-0-0--4-3l-v6",
+      "issueId": "chevrolet-silverado-1500-power-window-regulator-failure",
+      "partNumber": "RPAGM-180",
+      "engineWorkRow": "4.3L V6",
+      "verdict": "block",
+      "reason": "The current regulator assembly has no confirmed catalog application for any reviewed engine slice and does not prove the article specified side/design.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the window regulator-with-motor assembly (e.g., Dorman 741-442 front driver side for 2007-2013; OE-fix designs add reinforced cable guides). Inspect the door-jamb wiring harness for broken conductors and test the master switch before assuming the regulator. Lubricate the run channels to reduce load on the new regulator.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/287236722583?_skw=Aisin+RPAGM-180+Window+Motor+and+Regulator+Assembly&hash=item42e0a48f97%3Ag%3AoUEAAOSw3JBnkP8O&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-power-window-regulator-failure--existing-fix-part-0-0--5-3l-v8",
+      "issueId": "chevrolet-silverado-1500-power-window-regulator-failure",
+      "partNumber": "RPAGM-180",
+      "engineWorkRow": "5.3L V8",
+      "verdict": "block",
+      "reason": "The current regulator assembly has no confirmed catalog application for any reviewed engine slice and does not prove the article specified side/design.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the window regulator-with-motor assembly (e.g., Dorman 741-442 front driver side for 2007-2013; OE-fix designs add reinforced cable guides). Inspect the door-jamb wiring harness for broken conductors and test the master switch before assuming the regulator. Lubricate the run channels to reduce load on the new regulator.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/287236722583?_skw=Aisin+RPAGM-180+Window+Motor+and+Regulator+Assembly&hash=item42e0a48f97%3Ag%3AoUEAAOSw3JBnkP8O&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-power-window-regulator-failure--existing-fix-part-0-0--6-2l-v8",
+      "issueId": "chevrolet-silverado-1500-power-window-regulator-failure",
+      "partNumber": "RPAGM-180",
+      "engineWorkRow": "6.2L V8",
+      "verdict": "block",
+      "reason": "The current regulator assembly has no confirmed catalog application for any reviewed engine slice and does not prove the article specified side/design.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the window regulator-with-motor assembly (e.g., Dorman 741-442 front driver side for 2007-2013; OE-fix designs add reinforced cable guides). Inspect the door-jamb wiring harness for broken conductors and test the master switch before assuming the regulator. Lubricate the run channels to reduce load on the new regulator.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/287236722583?_skw=Aisin+RPAGM-180+Window+Motor+and+Regulator+Assembly&hash=item42e0a48f97%3Ag%3AoUEAAOSw3JBnkP8O&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-rear-differential-whine-pinion-bearing-howl-seal-leak--existing-fix-part-0-0--5-3l-v8",
+      "issueId": "chevrolet-silverado-1500-rear-differential-whine-pinion-bearing-howl-seal-leak",
+      "partNumber": "SDK324-E",
+      "engineWorkRow": "5.3L V8",
+      "verdict": "block",
+      "reason": "Differential bearing kits depend on axle, ratio, carrier, and drivetrain details that are absent from this public claim, and the catalog run did not confirm it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the source by checking pinion/yoke play and inspecting for a gear-oil leak at the pinion seal and axle seals. Repair requires replacing the pinion and/or carrier bearings and pinion seal and correctly setting bearing preload and gear pattern (special tools required — not a basic DIY). Severe cases need a ring-and-pinion set. Refill with correct spec gear oil and friction modifier for limited-slip axles.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/147311931546?_skw=SKF+SDK324-E+Axle+Differential+Bearing+and+Seal+Kit&hash=item224c79b09a%3Ag%3A4EkAAeSwSp9oX-ps&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-silverado-1500-rear-differential-whine-pinion-bearing-howl-seal-leak--existing-fix-part-0-0--6-2l-v8",
+      "issueId": "chevrolet-silverado-1500-rear-differential-whine-pinion-bearing-howl-seal-leak",
+      "partNumber": "SDK324-E",
+      "engineWorkRow": "6.2L V8",
+      "verdict": "block",
+      "reason": "Differential bearing kits depend on axle, ratio, carrier, and drivetrain details that are absent from this public claim, and the catalog run did not confirm it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the source by checking pinion/yoke play and inspecting for a gear-oil leak at the pinion seal and axle seals. Repair requires replacing the pinion and/or carrier bearings and pinion seal and correctly setting bearing preload and gear pattern (special tools required — not a basic DIY). Severe cases need a ring-and-pinion set. Refill with correct spec gear oil and friction modifier for limited-slip axles.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/147311931546?_skw=SKF+SDK324-E+Axle+Differential+Bearing+and+Seal+Kit&hash=item224c79b09a%3Ag%3A4EkAAeSwSp9oX-ps&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil--existing-fix-part-0-0--1-8l-i4-luw-lwe",
+      "issueId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil",
+      "partNumber": "VS50656",
+      "engineWorkRow": "1.8L I4 (LUW/LWE)",
+      "verdict": "preserve",
+      "reason": "The oil-in-plug-well issue directly prescribes the valve-cover gasket, and MAHLE VS50656 was confirmed for every stated 2012-2018 1.8L application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace worn spark plugs and any failed ignition coil(s). Critically, inspect the spark plug wells for oil - if present, replace the valve cover gasket to eliminate the root cause, otherwise misfires recur.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-VS50656-Engine-Gasket/dp/B01GAHNFGC?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-broken-exhaust-manifold-bolts--existing-fix-part-0-0--4-8l-v8",
+      "issueId": "chevrolet-tahoe-broken-exhaust-manifold-bolts",
+      "partNumber": "MS16124",
+      "engineWorkRow": "4.8L V8",
+      "verdict": "block",
+      "reason": "The unscoped exhaust-gasket claim crosses multiple LS/LT generations without proving the correct manifold application for every engine and year.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the broken bolts and manifold gaskets, torquing new hardware to spec. Heads that snapped flush usually require an extractor or weld-a-nut removal; Dorman and similar makers also sell exhaust-manifold repair clamp kits (e.g. Dorman exhaust manifold hardware kit) that bolt into an unused hole and clamp the manifold down without extracting a seized stud. Use updated bolts and new gaskets to prevent recurrence.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168072016602?_skw=MAHLE+Clevite+MS16124+Exhaust+Manifold+Gasket+Set&hash=item2721df72da%3Ag%3AfJUAAeSweblpYiCU&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-broken-exhaust-manifold-bolts--existing-fix-part-0-0--5-3l-v8",
+      "issueId": "chevrolet-tahoe-broken-exhaust-manifold-bolts",
+      "partNumber": "MS16124",
+      "engineWorkRow": "5.3L V8",
+      "verdict": "block",
+      "reason": "The unscoped exhaust-gasket claim crosses multiple LS/LT generations without proving the correct manifold application for every engine and year.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the broken bolts and manifold gaskets, torquing new hardware to spec. Heads that snapped flush usually require an extractor or weld-a-nut removal; Dorman and similar makers also sell exhaust-manifold repair clamp kits (e.g. Dorman exhaust manifold hardware kit) that bolt into an unused hole and clamp the manifold down without extracting a seized stud. Use updated bolts and new gaskets to prevent recurrence.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168072016602?_skw=MAHLE+Clevite+MS16124+Exhaust+Manifold+Gasket+Set&hash=item2721df72da%3Ag%3AfJUAAeSweblpYiCU&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-broken-exhaust-manifold-bolts--existing-fix-part-0-0--6-0l-v8",
+      "issueId": "chevrolet-tahoe-broken-exhaust-manifold-bolts",
+      "partNumber": "MS16124",
+      "engineWorkRow": "6.0L V8",
+      "verdict": "block",
+      "reason": "The unscoped exhaust-gasket claim crosses multiple LS/LT generations without proving the correct manifold application for every engine and year.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the broken bolts and manifold gaskets, torquing new hardware to spec. Heads that snapped flush usually require an extractor or weld-a-nut removal; Dorman and similar makers also sell exhaust-manifold repair clamp kits (e.g. Dorman exhaust manifold hardware kit) that bolt into an unused hole and clamp the manifold down without extracting a seized stud. Use updated bolts and new gaskets to prevent recurrence.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168072016602?_skw=MAHLE+Clevite+MS16124+Exhaust+Manifold+Gasket+Set&hash=item2721df72da%3Ag%3AfJUAAeSweblpYiCU&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-broken-exhaust-manifold-bolts--existing-fix-part-0-0--6-2l-v8",
+      "issueId": "chevrolet-tahoe-broken-exhaust-manifold-bolts",
+      "partNumber": "MS16124",
+      "engineWorkRow": "6.2L V8",
+      "verdict": "block",
+      "reason": "The unscoped exhaust-gasket claim crosses multiple LS/LT generations without proving the correct manifold application for every engine and year.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the broken bolts and manifold gaskets, torquing new hardware to spec. Heads that snapped flush usually require an extractor or weld-a-nut removal; Dorman and similar makers also sell exhaust-manifold repair clamp kits (e.g. Dorman exhaust manifold hardware kit) that bolt into an unused hole and clamp the manifold down without extracting a seized stud. Use updated bolts and new gaskets to prevent recurrence.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168072016602?_skw=MAHLE+Clevite+MS16124+Exhaust+Manifold+Gasket+Set&hash=item2721df72da%3Ag%3AfJUAAeSweblpYiCU&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-tank-fuel-pump-module-failure--existing-fix-part-0-0--4-8l-vortec-v8",
+      "issueId": "chevrolet-tahoe-tank-fuel-pump-module-failure",
+      "partNumber": "67307",
+      "engineWorkRow": "4.8L Vortec V8",
+      "verdict": "block",
+      "reason": "The Bosch fuel-module claim is not confirmed for the 6.0L branch and does not match the article reviewed ACDelco/Delphi/Spectra choices.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm with a fuel-pressure gauge on the Schrader port: good pressure should reach ~58-62 PSI within ~2 seconds of key-on and hold. Also check the fuel-pump relay/fuse and inspect the pump connector for heat damage. Fix is a complete fuel pump module (pump + level sender + strainer). OEM: ACDelco MU1613 (GM 19153711), which includes the seal, float and harness; quality aftermarket options include Delphi/Spectra modules (part roughly $150-350). Drop the tank, replace the module and strainer, and blow out/inspect the tank if rust is present.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/305025412919?_skw=Bosch+Fuel+Pumps+67307+Fuel+Pump+Module+Assembly&hash=item4704ee6f37%3Ag%3A7UQAAOSwiOFntJec&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-tank-fuel-pump-module-failure--existing-fix-part-0-0--5-3l-vortec-v8",
+      "issueId": "chevrolet-tahoe-tank-fuel-pump-module-failure",
+      "partNumber": "67307",
+      "engineWorkRow": "5.3L Vortec V8",
+      "verdict": "block",
+      "reason": "The Bosch fuel-module claim is not confirmed for the 6.0L branch and does not match the article reviewed ACDelco/Delphi/Spectra choices.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm with a fuel-pressure gauge on the Schrader port: good pressure should reach ~58-62 PSI within ~2 seconds of key-on and hold. Also check the fuel-pump relay/fuse and inspect the pump connector for heat damage. Fix is a complete fuel pump module (pump + level sender + strainer). OEM: ACDelco MU1613 (GM 19153711), which includes the seal, float and harness; quality aftermarket options include Delphi/Spectra modules (part roughly $150-350). Drop the tank, replace the module and strainer, and blow out/inspect the tank if rust is present.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/305025412919?_skw=Bosch+Fuel+Pumps+67307+Fuel+Pump+Module+Assembly&hash=item4704ee6f37%3Ag%3A7UQAAOSwiOFntJec&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-tank-fuel-pump-module-failure--existing-fix-part-0-0--6-0l-vortec-v8",
+      "issueId": "chevrolet-tahoe-tank-fuel-pump-module-failure",
+      "partNumber": "67307",
+      "engineWorkRow": "6.0L Vortec V8",
+      "verdict": "block",
+      "reason": "The Bosch fuel-module claim is not confirmed for the 6.0L branch and does not match the article reviewed ACDelco/Delphi/Spectra choices.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm with a fuel-pressure gauge on the Schrader port: good pressure should reach ~58-62 PSI within ~2 seconds of key-on and hold. Also check the fuel-pump relay/fuse and inspect the pump connector for heat damage. Fix is a complete fuel pump module (pump + level sender + strainer). OEM: ACDelco MU1613 (GM 19153711), which includes the seal, float and harness; quality aftermarket options include Delphi/Spectra modules (part roughly $150-350). Drop the tank, replace the module and strainer, and blow out/inspect the tank if rust is present.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/305025412919?_skw=Bosch+Fuel+Pumps+67307+Fuel+Pump+Module+Assembly&hash=item4704ee6f37%3Ag%3A7UQAAOSwiOFntJec&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-water-pump-failure-coolant-leak--existing-fix-part-0-0--4-8l-v8",
+      "issueId": "chevrolet-tahoe-water-pump-failure-coolant-leak",
+      "partNumber": "DP990",
+      "engineWorkRow": "4.8L V8",
+      "verdict": "block",
+      "reason": "The unscoped DP990 pump conflicts with the reviewed proposal evidence, which limits that pump to earlier applications and uses different 2014+ parts.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump with an OE-quality unit (ACDelco / GM Genuine or Aisin/Gates equivalent) and fresh dexos-approved coolant; inspect the belt, tensioner and thermostat while there. Avoid the cheapest pumps — some last only ~30k miles versus 100k+ for a quality unit. Pressure-test the system afterward to confirm no residual leaks.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/235816734491?_skw=Dayco+DP990+Engine+Water+Pump&hash=item36e7c5cf1b%3Ag%3AybEAAOSwikxnKRDl&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-water-pump-failure-coolant-leak--existing-fix-part-0-0--5-3l-v8",
+      "issueId": "chevrolet-tahoe-water-pump-failure-coolant-leak",
+      "partNumber": "DP990",
+      "engineWorkRow": "5.3L V8",
+      "verdict": "block",
+      "reason": "The unscoped DP990 pump conflicts with the reviewed proposal evidence, which limits that pump to earlier applications and uses different 2014+ parts.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump with an OE-quality unit (ACDelco / GM Genuine or Aisin/Gates equivalent) and fresh dexos-approved coolant; inspect the belt, tensioner and thermostat while there. Avoid the cheapest pumps — some last only ~30k miles versus 100k+ for a quality unit. Pressure-test the system afterward to confirm no residual leaks.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/235816734491?_skw=Dayco+DP990+Engine+Water+Pump&hash=item36e7c5cf1b%3Ag%3AybEAAOSwikxnKRDl&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-water-pump-failure-coolant-leak--existing-fix-part-0-0--6-0l-v8",
+      "issueId": "chevrolet-tahoe-water-pump-failure-coolant-leak",
+      "partNumber": "DP990",
+      "engineWorkRow": "6.0L V8",
+      "verdict": "block",
+      "reason": "The unscoped DP990 pump conflicts with the reviewed proposal evidence, which limits that pump to earlier applications and uses different 2014+ parts.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump with an OE-quality unit (ACDelco / GM Genuine or Aisin/Gates equivalent) and fresh dexos-approved coolant; inspect the belt, tensioner and thermostat while there. Avoid the cheapest pumps — some last only ~30k miles versus 100k+ for a quality unit. Pressure-test the system afterward to confirm no residual leaks.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/235816734491?_skw=Dayco+DP990+Engine+Water+Pump&hash=item36e7c5cf1b%3Ag%3AybEAAOSwikxnKRDl&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevrolet-tahoe-water-pump-failure-coolant-leak--existing-fix-part-0-0--6-2l-v8",
+      "issueId": "chevrolet-tahoe-water-pump-failure-coolant-leak",
+      "partNumber": "DP990",
+      "engineWorkRow": "6.2L V8",
+      "verdict": "block",
+      "reason": "The unscoped DP990 pump conflicts with the reviewed proposal evidence, which limits that pump to earlier applications and uses different 2014+ parts.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump with an OE-quality unit (ACDelco / GM Genuine or Aisin/Gates equivalent) and fresh dexos-approved coolant; inspect the belt, tensioner and thermostat while there. Avoid the cheapest pumps — some last only ~30k miles versus 100k+ for a quality unit. Pressure-test the system afterward to confirm no residual leaks.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/235816734491?_skw=Dayco+DP990+Engine+Water+Pump&hash=item36e7c5cf1b%3Ag%3AybEAAOSwikxnKRDl&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevy-corsica-head-gasket-1990--existing-fix-part-0-0--2-2l-ohv",
+      "issueId": "chevy-corsica-head-gasket-1990",
+      "partNumber": "5871G",
+      "engineWorkRow": "2.2L OHV",
+      "verdict": "preserve",
+      "reason": "The 2.2L OHV article directly prescribes the head gasket, and MAHLE 5871G was confirmed across every frozen 1990-1996 application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the head gasket and have the cylinder head checked for warpage — machine the head if out of specification (max 0.003\" deviation). Replace the thermostat and inspect the water pump while accessible. Use a quality multi-layer steel gasket and torque head bolts in sequence. Perform a cooling system pressure test after repair.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://us.amazon.com/MAHLE-Original-5871G-Engine-Cylinder/dp/B000CJLH2E?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevy-lumina-crankshaft-sensor-1995--existing-fix-part-0-0--all-engines",
+      "issueId": "chevy-lumina-crankshaft-sensor-1995",
+      "partNumber": "235-1021",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The crank-sensor claim has no engine/application scope across seven model years, so catalog confirmation is insufficient for safe public fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the crankshaft position sensor. The harmonic balancer must be removed for access. Inspect the balancer for rubber separation while it is removed. Use a quality OEM-equivalent sensor. Apply anti-seize to the sensor bolt threads. Clear any stored DTCs after installation.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/383342713622?_skw=Walker+Products+235-1021+Engine+Crankshaft+Position+Sensor&hash=item5941019b16%3Ag%3AxWAAAOSwaudbUu1B&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevy-sonic-water-pump-failure-2012--existing-fix-part-0-0--1-4t-ecotec",
+      "issueId": "chevy-sonic-water-pump-failure-2012",
+      "partNumber": "WPK-818",
+      "engineWorkRow": "1.4T Ecotec",
+      "verdict": "block",
+      "reason": "The unscoped WPK-818 claim would show to both 1.4T and 1.8L cars although the reviewed fitment proposals use engine-specific water-pump parts.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump at the first sign of leaking. On the 1.4T, the water pump is internal and driven by the timing chain, making replacement more labor-intensive ($400-$800). On the 1.8L, it is belt-driven and easier to access ($200-$400). Monitor coolant levels regularly. Replace the thermostat at the same time.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/307099386598?_skw=Aisin+WPK-818+Engine+Water+Pump&hash=item47808cc2e6%3Ag%3AzA0AAeSwrsFqbbZL&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://www.amazon.com/AISIN-WPK-818-Engine-Water-Pump/dp/B01LZJWC4C?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevy-sonic-water-pump-failure-2012--existing-fix-part-0-0--1-8l-ecotec",
+      "issueId": "chevy-sonic-water-pump-failure-2012",
+      "partNumber": "WPK-818",
+      "engineWorkRow": "1.8L Ecotec",
+      "verdict": "block",
+      "reason": "The unscoped WPK-818 claim would show to both 1.4T and 1.8L cars although the reviewed fitment proposals use engine-specific water-pump parts.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump at the first sign of leaking. On the 1.4T, the water pump is internal and driven by the timing chain, making replacement more labor-intensive ($400-$800). On the 1.8L, it is belt-driven and easier to access ($200-$400). Monitor coolant levels regularly. Replace the thermostat at the same time.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/307099386598?_skw=Aisin+WPK-818+Engine+Water+Pump&hash=item47808cc2e6%3Ag%3AzA0AAeSwrsFqbbZL&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://www.amazon.com/AISIN-WPK-818-Engine-Water-Pump/dp/B01LZJWC4C?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "chevy-spark-ac-weak-2013--existing-fix-part-0-0--1-4l",
+      "issueId": "chevy-spark-ac-weak-2013",
+      "partNumber": "LA 472",
+      "engineWorkRow": "1.4L",
+      "verdict": "block",
+      "reason": "The cabin-filter part was not confirmed by the catalog for the reviewed Spark application, so its legacy verified flag is insufficient.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify refrigerant charge is at the correct level (do not overcharge). Replace the cabin air filter. Ensure the condenser is clean and free of debris. Aftermarket solutions include adding a condenser fan or upgrading to a slightly larger condenser. Using recirculate mode instead of fresh air helps significantly.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-472-Cabin-Filter/dp/B0068MUR6G?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "proposalId": "chevrolet-camaro-lt1-optispark-distributor-failure--prescription-1-0--5-7l-lt1-v8",
+      "issueId": "chevrolet-camaro-lt1-optispark-distributor-failure",
+      "workItemId": "chevrolet-camaro-lt1-optispark-distributor-failure--prescription-1-0--5-7l-lt1-v8",
+      "model": "Camaro",
+      "partIndex": 0,
+      "partNumber": "DP820",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Dayco DP820 is the same repair role, is catalog-scoped to 1993-1997, 5.7L LT1 V8, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the Optispark distributor (and the optical sensor/cap-and-rotor as an assembly). Because the water pump must be removed to access it, the accepted practice is to replace the water pump at the same time and to install a vented-style Optispark plus a small tube/tee routed into the water pump weep hole to divert coolant away from the distributor. Verify grounds, coil and plug wires first, since those are cheaper and can mimic the symptoms.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/406963218830?fits=Year%3A1993%7CEngine+-+Liter_Display%3A5.7L%7CModel%3ACamaro%7CMake%3AChevrolet&_skw=1993+Chevrolet+Camaro+5.7L+Dayco+DP820+Engine+Water+Pump&hash=item5ec0e5e98e%3Ag%3AYeIAAeSwIL9qG7Zi&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 406963218830. Observed Manufacturer Part Number contains DP820. Observed title: Dayco DP820 Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "chevrolet-camaro-lt1-optispark-distributor-failure--prescription-1-0--5-7l-lt1-v8",
+      "issueId": "chevrolet-camaro-lt1-optispark-distributor-failure",
+      "workItemId": "chevrolet-camaro-lt1-optispark-distributor-failure--prescription-1-0--5-7l-lt1-v8",
+      "model": "Camaro",
+      "partIndex": 1,
+      "partNumber": "44037",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Gates 44037 is the same repair role, is catalog-scoped to 1993-1997, 5.7L LT1 V8, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the Optispark distributor (and the optical sensor/cap-and-rotor as an assembly). Because the water pump must be removed to access it, the accepted practice is to replace the water pump at the same time and to install a vented-style Optispark plus a small tube/tee routed into the water pump weep hole to divert coolant away from the distributor. Verify grounds, coil and plug wires first, since those are cheaper and can mimic the symptoms.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/373708631207?fits=Year%3A1993%7CEngine+-+Liter_Display%3A5.7L%7CModel%3ACamaro%7CMake%3AChevrolet&_skw=1993+Chevrolet+Camaro+5.7L+Gates+44037+Engine+Water+Pump&hash=item5702c52ca7%3Ag%3A9swAAeSwms5qahOv&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 373708631207. Observed Manufacturer Part Number contains 44037. Observed title: 44037 Gates Water Pump for Chevy Chevrolet Camaro Pontiac Firebird 1993-1997."
+      }
+    },
+    {
+      "proposalId": "chevrolet-colorado-fuel-level-sensor-failure-2004--prescription-0-0--all-engines",
+      "issueId": "chevrolet-colorado-fuel-level-sensor-failure-2004",
+      "workItemId": "chevrolet-colorado-fuel-level-sensor-failure-2004--prescription-0-0--all-engines",
+      "model": "Colorado",
+      "partIndex": 0,
+      "partNumber": "67792",
+      "decision": "block_incomplete_scope",
+      "reason": "Bosch Fuel Pumps 67792 covers only 2009-2012, unscoped engine and does not establish the full year/engine scope of the article?s fuel pump module repair branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the issue by comparing scan data, gauge behavior, and actual fuel added at fill-up. The repair is usually replacement of the fuel pump module or sender assembly, depending on parts availability, with inspection of the connector for heat damage or corrosion. After replacement, verify the gauge sweeps correctly and that the EVAP/fuel tank wiring is intact.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/364066832461?fits=Year%3A2009%7CModel%3AColorado%7CMake%3AChevrolet&_skw=2009+Chevrolet+Colorado+Bosch+Fuel+Pumps+67792+Fuel+Pump+Module+Assembly&hash=item54c413004d%3Ag%3AfZgAAeSwOcpn3GeN&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 364066832461. Observed Manufacturer Part Number contains 67792. Observed title: Bosch 67792 Fuel Pump Module Assembly for Chevy Colorado GMC Canyon 2009-2012."
+      }
+    },
+    {
+      "proposalId": "chevrolet-corvette-opti-spark-distributor-failure-lt1-lt4-engines--prescription-1-0--5-7l-lt1-v8",
+      "issueId": "chevrolet-corvette-opti-spark-distributor-failure-lt1-lt4-engines",
+      "workItemId": "chevrolet-corvette-opti-spark-distributor-failure-lt1-lt4-engines--prescription-1-0--5-7l-lt1-v8",
+      "model": "Corvette",
+      "partIndex": 0,
+      "partNumber": "DP1225",
+      "decision": "block_incomplete_scope",
+      "reason": "Dayco DP1225 covers only 1992-1995, 5.7L LT1 V8 and does not establish the full year/engine scope of the article?s water pump repair branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the Opti-Spark distributor (later vented-style unit is the upgrade for 92-93 cars; a vacuum-vented design arrived on 1995-1996 units). Because the water pump sits directly above it and is the most common contaminant source, the accepted practice is to replace the water pump at the same time ('while you're in there'), since the front cover/serpentine and much labor overlaps. Many owners also drill/tap the water pump weep hole and route a hose away from the distributor.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-corvette-opti-spark-distributor-failure-lt1-lt4-engines--prescription-1-0--5-7l-lt4-v8",
+      "issueId": "chevrolet-corvette-opti-spark-distributor-failure-lt1-lt4-engines",
+      "workItemId": "chevrolet-corvette-opti-spark-distributor-failure-lt1-lt4-engines--prescription-1-0--5-7l-lt4-v8",
+      "model": "Corvette",
+      "partIndex": 0,
+      "partNumber": "DP1225",
+      "decision": "block_ambiguous",
+      "reason": "Dayco DP1225 has a year/engine application that conflicts with or cannot be reconciled to the article?s stated water pump vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the Opti-Spark distributor (later vented-style unit is the upgrade for 92-93 cars; a vacuum-vented design arrived on 1995-1996 units). Because the water pump sits directly above it and is the most common contaminant source, the accepted practice is to replace the water pump at the same time ('while you're in there'), since the front cover/serpentine and much labor overlaps. Many owners also drill/tap the water pump weep hole and route a hose away from the distributor.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-corvette-water-pump-front-seal-leak--prescription-0-0--5-7l-lt1-v8",
+      "issueId": "chevrolet-corvette-water-pump-front-seal-leak",
+      "workItemId": "chevrolet-corvette-water-pump-front-seal-leak--prescription-0-0--5-7l-lt1-v8",
+      "model": "Corvette",
+      "partIndex": 0,
+      "partNumber": "DP1225",
+      "decision": "block_incomplete_scope",
+      "reason": "Dayco DP1225 covers only 1992-1995, 5.7L LT1 V8 and does not establish the full year/engine scope of the article?s water pump repair branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump when weeping is observed; do not defer, given the Opti-Spark below it. Standard practice is to replace the Opti-Spark at the same time if any contamination has occurred, or proactively since the labor overlaps. Owners commonly drill/tap the weep hole and route clear hose away from the distributor to protect it from any future seepage.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-corvette-water-pump-front-seal-leak--prescription-0-0--5-7l-lt4-v8",
+      "issueId": "chevrolet-corvette-water-pump-front-seal-leak",
+      "workItemId": "chevrolet-corvette-water-pump-front-seal-leak--prescription-0-0--5-7l-lt4-v8",
+      "model": "Corvette",
+      "partIndex": 0,
+      "partNumber": "DP1225",
+      "decision": "block_ambiguous",
+      "reason": "Dayco DP1225 has a year/engine application that conflicts with or cannot be reconciled to the article?s stated water pump vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump when weeping is observed; do not defer, given the Opti-Spark below it. Standard practice is to replace the Opti-Spark at the same time if any contamination has occurred, or proactively since the labor overlaps. Owners commonly drill/tap the weep hole and route clear hose away from the distributor to protect it from any future seepage.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-equinox-2-4l-ecotec-timing-balance-chain-stretch-from-tensioner-low--prescription-0-0--2-4l-laf-lea-ecotec-i4",
+      "issueId": "chevrolet-equinox-2-4l-ecotec-timing-balance-chain-stretch-from-tensioner-low",
+      "workItemId": "chevrolet-equinox-2-4l-ecotec-timing-balance-chain-stretch-from-tensioner-low--prescription-0-0--2-4l-laf-lea-ecotec-i4",
+      "model": "Equinox",
+      "partIndex": 0,
+      "partNumber": "KTC1333",
+      "decision": "hold_needs_manual",
+      "reason": "The article requires both the full timing-chain service and the separate balance chain, but the catalog/listing evidence does not prove that Dayco KTC1333 contains every prescribed chain, guide, and tensioner.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnose with cam/crank correlation codes and inspect chain stretch. Replace the full timing chain kit (chains, guides, tensioners) and the balance chain; correct any underlying oil consumption first or the new chain will wear early. Address promptly at first rattle — driving on a stretched chain risks valve-to-piston contact and a totaled engine.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/298440610657?fits=Year%3A2010%7CEngine+-+Liter_Display%3A2.4L%7CModel%3AEquinox%7CMake%3AChevrolet&_skw=2010+Chevrolet+Equinox+2.4L+Dayco+KTC1333+Engine+Timing+Chain+Kit&hash=item457c725361%3Ag%3A8aAAAeSwtAZqOa4x&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 298440610657. Observed title contains KTC1333. Observed title: Dayco KTC1333 Engine Timing Chain Kit for Valve Train  co."
+      }
+    },
+    {
+      "proposalId": "chevrolet-equinox-2-4l-ecotec-timing-balance-chain-stretch-from-tensioner-low--prescription-0-0--2-4l-laf-lea-ecotec-i4",
+      "issueId": "chevrolet-equinox-2-4l-ecotec-timing-balance-chain-stretch-from-tensioner-low",
+      "workItemId": "chevrolet-equinox-2-4l-ecotec-timing-balance-chain-stretch-from-tensioner-low--prescription-0-0--2-4l-laf-lea-ecotec-i4",
+      "model": "Equinox",
+      "partIndex": 1,
+      "partNumber": "CHK133",
+      "decision": "hold_needs_manual",
+      "reason": "The article requires both the full timing-chain service and the separate balance chain, but the catalog/listing evidence does not prove that Gates CHK133 contains every prescribed chain, guide, and tensioner.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnose with cam/crank correlation codes and inspect chain stretch. Replace the full timing chain kit (chains, guides, tensioners) and the balance chain; correct any underlying oil consumption first or the new chain will wear early. Address promptly at first rattle — driving on a stretched chain risks valve-to-piston contact and a totaled engine.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/147456905942?fits=Year%3A2010%7CEngine+-+Liter_Display%3A2.4L%7CModel%3AEquinox%7CMake%3AChevrolet&_skw=2010+Chevrolet+Equinox+2.4L+Gates+CHK133+Engine+Timing+Chain+Kit&hash=item22551dd2d6%3Ag%3AM5AAAeSwM9BomgEk&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 147456905942. Observed title contains CHK133. Observed title: GATES CHK133 Engine Timing Chain Kit."
+      }
+    },
+    {
+      "proposalId": "chevrolet-equinox-evap-canister-purge-valve-stuck-open-causing-p0496-rough-run--prescription-0-0--3-0l-v6-lfw",
+      "issueId": "chevrolet-equinox-evap-canister-purge-valve-stuck-open-causing-p0496-rough-run",
+      "workItemId": "chevrolet-equinox-evap-canister-purge-valve-stuck-open-causing-p0496-rough-run--prescription-0-0--3-0l-v6-lfw",
+      "model": "Equinox",
+      "partIndex": 0,
+      "partNumber": "0280142480",
+      "decision": "block_incomplete_scope",
+      "reason": "Bosch Engine Management Sensors 0280142480 covers only 2010-2011, 3.0L V6 (LFW) and does not establish the full year/engine scope of the article?s vapor canister purge valve repair branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm P0496 and inspect the purge-valve vacuum lines for cracks and the connector for damage before replacing. Replace the vapor canister purge valve with the GM/ACDelco OE part 12690512 (supersedes 12610560). After replacement, clear codes and run a drive cycle to confirm the EVAP monitor passes and the light stays off. Also verify the gas cap and EVAP lines if leak codes (P0455/P0446) accompany the purge code.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-equinox-head-gasket-coolant-leak-2005--prescription-0-0--3-4l-v6",
+      "issueId": "chevrolet-equinox-head-gasket-coolant-leak-2005",
+      "workItemId": "chevrolet-equinox-head-gasket-coolant-leak-2005--prescription-0-0--3-4l-v6",
+      "model": "Equinox",
+      "partIndex": 0,
+      "partNumber": "4956",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE Clevite 4956 matches the prescribed head gaskets role and reviewed scope, but no exact direct product page was resolved, so no commerce link is approved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis usually includes pressure-testing the cooling system, checking for combustion gases in the coolant, inspecting for coolant loss with no visible leak, and verifying whether the engine has been overheated. Repair typically involves replacing the head gaskets, checking head flatness, resurfacing if needed, and replacing related components such as intake gaskets, head bolts, thermostat, and coolant. If overheating was severe, the cylinder heads or engine may also need machine work or replacement.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-5l-v6",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-5l-v6",
+      "model": "Impala",
+      "partIndex": 0,
+      "partNumber": "S3-34",
+      "decision": "block_wrong_role",
+      "reason": "Bosch Batteries S3-34 does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-5l-v6",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-5l-v6",
+      "model": "Impala",
+      "partIndex": 1,
+      "partNumber": "34/78-CP",
+      "decision": "block_wrong_role",
+      "reason": "Continental Battery 34/78-CP does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-6l-v6",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-6l-v6",
+      "model": "Impala",
+      "partIndex": 0,
+      "partNumber": "S3-34",
+      "decision": "block_wrong_role",
+      "reason": "Bosch Batteries S3-34 does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-6l-v6",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-6l-v6",
+      "model": "Impala",
+      "partIndex": 1,
+      "partNumber": "34/78-CP",
+      "decision": "block_wrong_role",
+      "reason": "Continental Battery 34/78-CP does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-9l-v6",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-9l-v6",
+      "model": "Impala",
+      "partIndex": 0,
+      "partNumber": "S3-34",
+      "decision": "block_wrong_role",
+      "reason": "Bosch Batteries S3-34 does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-9l-v6",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--3-9l-v6",
+      "model": "Impala",
+      "partIndex": 1,
+      "partNumber": "34/78-CP",
+      "decision": "block_wrong_role",
+      "reason": "Continental Battery 34/78-CP does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--2-4l-i4",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--2-4l-i4",
+      "model": "Impala",
+      "partIndex": 0,
+      "partNumber": "S5531B",
+      "decision": "block_wrong_role",
+      "reason": "Bosch Batteries S5531B does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--2-4l-i4",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--2-4l-i4",
+      "model": "Impala",
+      "partIndex": 1,
+      "partNumber": "L2/H5/47-AGM",
+      "decision": "block_wrong_role",
+      "reason": "Continental Battery L2/H5/47-AGM does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--5-3l-v8",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--5-3l-v8",
+      "model": "Impala",
+      "partIndex": 0,
+      "partNumber": "S4566B",
+      "decision": "block_wrong_role",
+      "reason": "Bosch Batteries S4566B does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--5-3l-v8",
+      "issueId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature",
+      "workItemId": "chevrolet-impala-hvac-blend-door-actuator-clicking-uneven-cabin-temperature--prescription-1-0--5-3l-v8",
+      "model": "Impala",
+      "partIndex": 1,
+      "partNumber": "85-CS",
+      "decision": "block_wrong_role",
+      "reason": "Continental Battery 85-CS does not satisfy the article?s exact reconnect battery repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Locate the clicking actuator (temperature/blend, mode, or recirc — the Dorman 604-108 covers common Impala blend-door applications). Replace the failed actuator; pulling its fuse only silences the clicking temporarily and is not a fix. Many Impala actuators self-calibrate on install: set temperature to full hot or cold, reconnect the battery, cycle the key on, and let the motors auto-calibrate.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--prescription-0-0--2-4l-ecotec-i4-le5-le9",
+      "issueId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t",
+      "workItemId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--prescription-0-0--2-4l-ecotec-i4-le5-le9",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "THRGM-0001",
+      "decision": "hold_needs_manual",
+      "reason": "The article explicitly requires OEM/ACDelco 131-158 for the 2.4L and warns against cheap aftermarket thermostats; Aisin THRGM-0001 cannot be approved without evidence that it satisfies that instruction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify coolant level and confirm the ECT sensor reads accurately, then replace the thermostat and gasket (ACDelco 131-158 on the 2.4L). Use an OEM/ACDelco thermostat — cheap aftermarket units frequently fail to regulate and leave the code active. Refill and bleed the cooling system, then confirm the engine reaches full operating temperature.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/375983814307?fits=Year%3A2008%7CEngine+-+Liter_Display%3A2.4L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2008+Chevrolet+Malibu+2.4L+Aisin+THRGM-0001+Engine+Coolant+Thermostat&hash=item578a61b6a3%3Ag%3AQv8AAOSww-FoTUXo&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 375983814307. Observed title contains THRGM0001. Observed title: AISIN WORLD CORP. OF AMERICA THRGM0001 Engine Coolant Thermostat."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--prescription-0-0--2-4l-ecotec-i4-le5-le9",
+      "issueId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t",
+      "workItemId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--prescription-0-0--2-4l-ecotec-i4-le5-le9",
+      "model": "Malibu",
+      "partIndex": 1,
+      "partNumber": "33943",
+      "decision": "hold_needs_manual",
+      "reason": "The article explicitly requires OEM/ACDelco 131-158 for the 2.4L and warns against cheap aftermarket thermostats; Gates 33943 cannot be approved against that contrary supplier instruction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify coolant level and confirm the ECT sensor reads accurately, then replace the thermostat and gasket (ACDelco 131-158 on the 2.4L). Use an OEM/ACDelco thermostat — cheap aftermarket units frequently fail to regulate and leave the code active. Refill and bleed the cooling system, then confirm the engine reaches full operating temperature.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/306733272727?fits=Year%3A2008%7CEngine+-+Liter_Display%3A2.4L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2008+Chevrolet+Malibu+2.4L+Gates+33943+Engine+Coolant+Thermostat&hash=item476aba4e97%3Ag%3AcjgAAeSwBdhqOahk&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 306733272727. Observed Manufacturer Part Number contains 33943. Observed title: Gates 33943 Engine Coolant Thermostat for V40-99-0024 61180 4698 46698 eb."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--prescription-0-0--2-5l-i4-lkw",
+      "issueId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t",
+      "workItemId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--prescription-0-0--2-5l-i4-lkw",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "34846",
+      "decision": "hold_needs_manual",
+      "reason": "The article directs the repair toward an OEM/ACDelco thermostat; Gates 34846 is fitment-confirmed but the reviewed evidence does not establish compliance with the article?s supplier requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify coolant level and confirm the ECT sensor reads accurately, then replace the thermostat and gasket (ACDelco 131-158 on the 2.4L). Use an OEM/ACDelco thermostat — cheap aftermarket units frequently fail to regulate and leave the code active. Refill and bleed the cooling system, then confirm the engine reaches full operating temperature.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/377170260388?fits=Year%3A2013%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2013+Chevrolet+Malibu+2.5L+Gates+34846+Engine+Coolant+Thermostat&hash=item57d11971a4%3Ag%3A4-YAAeSwYi9p3PBk&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 377170260388. Observed Manufacturer Part Number contains 34846. Observed title: Engine Coolant Thermostat-Integrated Housing Thermostat Gates 34846."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--prescription-0-0--1-5l-turbo-lfv",
+      "issueId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t",
+      "workItemId": "chevrolet-malibu-p0128-coolant-below-thermostat-regulating-temperature-from-t--prescription-0-0--1-5l-turbo-lfv",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "34842",
+      "decision": "hold_needs_manual",
+      "reason": "The article directs the repair toward an OEM/ACDelco thermostat; Gates 34842 is fitment-confirmed but the reviewed evidence does not establish compliance with the article?s supplier requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify coolant level and confirm the ECT sensor reads accurately, then replace the thermostat and gasket (ACDelco 131-158 on the 2.4L). Use an OEM/ACDelco thermostat — cheap aftermarket units frequently fail to regulate and leave the code active. Refill and bleed the cooling system, then confirm the engine reaches full operating temperature.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/377170242123?fits=Year%3A2016%7CEngine+-+Liter_Display%3A1.5L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2016+Chevrolet+Malibu+1.5L+Gates+34842+Engine+Coolant+Thermostat&hash=item57d1192a4b%3Ag%3ABXQAAeSweSZp3QmK&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 377170242123. Observed Manufacturer Part Number contains 34842. Observed title: Engine Coolant Thermostat-Integrated Housing Thermostat Gates 34842."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0174-system-too-lean-from-failed-evap-purge-valve-intake-ma--prescription-1-0--3-5l-v6-lx9",
+      "issueId": "chevrolet-malibu-p0174-system-too-lean-from-failed-evap-purge-valve-intake-ma",
+      "workItemId": "chevrolet-malibu-p0174-system-too-lean-from-failed-evap-purge-valve-intake-ma--prescription-1-0--3-5l-v6-lx9",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "MIS19509",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE Clevite MIS19509 matches the prescribed intake manifold gasket role and reviewed scope, but no exact direct product page was resolved, so no commerce link is approved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the lean condition with a scan tool (Bank 2 long-term fuel trim high) and perform a smoke test of the intake and EVAP system. Replace the EVAP purge valve if it fails closed/leaks, repair any torn PCV or intake boot hoses, and replace the intake manifold gasket if the leak is at the manifold. Clean or replace the MAF sensor if fuel trims are skewed on both banks. Re-check trims after repair.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0174-system-too-lean-from-failed-evap-purge-valve-intake-ma--prescription-1-0--3-6l-v6-ly7-llt",
+      "issueId": "chevrolet-malibu-p0174-system-too-lean-from-failed-evap-purge-valve-intake-ma",
+      "workItemId": "chevrolet-malibu-p0174-system-too-lean-from-failed-evap-purge-valve-intake-ma--prescription-1-0--3-6l-v6-ly7-llt",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "MS19605",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE Clevite MS19605 matches the prescribed intake manifold gasket role and reviewed scope, but no exact direct product page was resolved, so no commerce link is approved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the lean condition with a scan tool (Bank 2 long-term fuel trim high) and perform a smoke test of the intake and EVAP system. Replace the EVAP purge valve if it fails closed/leaks, repair any torn PCV or intake boot hoses, and replace the intake manifold gasket if the leak is at the manifold. Clean or replace the MAF sensor if fuel trims are skewed on both banks. Re-check trims after repair.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0174-system-too-lean-from-failed-evap-purge-valve-intake-ma--prescription-1-0--3-9l-v6-lz9",
+      "issueId": "chevrolet-malibu-p0174-system-too-lean-from-failed-evap-purge-valve-intake-ma",
+      "workItemId": "chevrolet-malibu-p0174-system-too-lean-from-failed-evap-purge-valve-intake-ma--prescription-1-0--3-9l-v6-lz9",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "MIS19510",
+      "decision": "block_ambiguous",
+      "reason": "MAHLE Clevite MIS19510 has a year/engine application that conflicts with or cannot be reconciled to the article stated intake manifold gasket vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the lean condition with a scan tool (Bank 2 long-term fuel trim high) and perform a smoke test of the intake and EVAP system. Replace the EVAP purge valve if it fails closed/leaks, repair any torn PCV or intake boot hoses, and replace the intake manifold gasket if the leak is at the manifold. Clean or replace the MAF sensor if fuel trims are skewed on both banks. Re-check trims after repair.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-2l-ecotec-i4",
+      "issueId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp",
+      "workItemId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-2l-ecotec-i4",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "6716",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes spark plug; Bosch Spark Plugs 6716 is the same repair role, is catalog-scoped to 2004-2008, 2.2L Ecotec I4, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Swap the cylinder 2 ignition coil with an adjacent cylinder and clear codes — if the misfire follows the coil to the new cylinder, replace the coil. If P0302 stays on cylinder 2, inspect and replace the spark plug (check for oil/carbon fouling and correct gap). Replace worn plugs as a set and, if plugs foul repeatedly, investigate oil consumption or a leaking injector.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/325852815708?fits=Year%3A2004%7CEngine+-+Liter_Display%3A2.2L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2004+Chevrolet+Malibu+2.2L+Bosch+Spark+Plugs+6716+Spark+Plug&hash=item4bde57615c%3Ag%3AMMsAAeSww5NpsUB8&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 325852815708. Observed Manufacturer Part Number contains 6716. Observed title: Spark Plug Bosch 6716."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-2l-ecotec-i4",
+      "issueId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp",
+      "workItemId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-2l-ecotec-i4",
+      "model": "Malibu",
+      "partIndex": 1,
+      "partNumber": "4717",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes spark plug; Denso 4717 is the same repair role, is catalog-scoped to 2007-2008, 2.2L Ecotec I4, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Swap the cylinder 2 ignition coil with an adjacent cylinder and clear codes — if the misfire follows the coil to the new cylinder, replace the coil. If P0302 stays on cylinder 2, inspect and replace the spark plug (check for oil/carbon fouling and correct gap). Replace worn plugs as a set and, if plugs foul repeatedly, investigate oil consumption or a leaking injector.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/406908178211?fits=Year%3A2007%7CEngine+-+Liter_Display%3A2.2L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2007+Chevrolet+Malibu+2.2L+Denso+4717+Spark+Plug&hash=item5ebd9e0f23%3Ag%3ADBIAAeSwl85qV0HV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 406908178211. Observed Manufacturer Part Number contains 4717. Observed title: Spark Plug-FULL HYBRID EV-GAS (FHEV) DENSO 4717."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-4l-ecotec-i4-le5-le9",
+      "issueId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp",
+      "workItemId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-4l-ecotec-i4-le5-le9",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "6716",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes spark plug; Bosch Spark Plugs 6716 is the same repair role, is catalog-scoped to 2008-2012, 2.4L Ecotec I4 (LE5/LE9), and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Swap the cylinder 2 ignition coil with an adjacent cylinder and clear codes — if the misfire follows the coil to the new cylinder, replace the coil. If P0302 stays on cylinder 2, inspect and replace the spark plug (check for oil/carbon fouling and correct gap). Replace worn plugs as a set and, if plugs foul repeatedly, investigate oil consumption or a leaking injector.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/325852815708?fits=Year%3A2008%7CEngine+-+Liter_Display%3A2.4L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2008+Chevrolet+Malibu+2.4L+Bosch+Spark+Plugs+6716+Spark+Plug&hash=item4bde57615c%3Ag%3AMMsAAeSww5NpsUB8&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 325852815708. Observed Manufacturer Part Number contains 6716. Observed title: Spark Plug Bosch 6716."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-4l-ecotec-i4-le5-le9",
+      "issueId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp",
+      "workItemId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-4l-ecotec-i4-le5-le9",
+      "model": "Malibu",
+      "partIndex": 1,
+      "partNumber": "4718",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes spark plug; Denso 4718 is the same repair role, is catalog-scoped to 2009-2014, 2.4L Ecotec I4 (LE5/LE9), and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Swap the cylinder 2 ignition coil with an adjacent cylinder and clear codes — if the misfire follows the coil to the new cylinder, replace the coil. If P0302 stays on cylinder 2, inspect and replace the spark plug (check for oil/carbon fouling and correct gap). Replace worn plugs as a set and, if plugs foul repeatedly, investigate oil consumption or a leaking injector.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/225824701609?fits=Year%3A2009%7CEngine+-+Liter_Display%3A2.4L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2009+Chevrolet+Malibu+2.4L+Denso+4718+Spark+Plug&hash=item3494337ca9%3Ag%3AFAYAAeSwstBqV0Hk&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 225824701609. Observed Manufacturer Part Number contains 4718. Observed title: Spark Plug-i DENSO 4718."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-5l-i4-lkw",
+      "issueId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp",
+      "workItemId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-5l-i4-lkw",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "6716",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes spark plug; Bosch Spark Plugs 6716 is the same repair role, is catalog-scoped to 2013-2015, 2.5L I4 (LKW), and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Swap the cylinder 2 ignition coil with an adjacent cylinder and clear codes — if the misfire follows the coil to the new cylinder, replace the coil. If P0302 stays on cylinder 2, inspect and replace the spark plug (check for oil/carbon fouling and correct gap). Replace worn plugs as a set and, if plugs foul repeatedly, investigate oil consumption or a leaking injector.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/325852815708?fits=Year%3A2013%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2013+Chevrolet+Malibu+2.5L+Bosch+Spark+Plugs+6716+Spark+Plug&hash=item4bde57615c%3Ag%3AMMsAAeSww5NpsUB8&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 325852815708. Observed Manufacturer Part Number contains 6716. Observed title: Spark Plug Bosch 6716."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-5l-i4-lkw",
+      "issueId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp",
+      "workItemId": "chevrolet-malibu-p0302-cylinder-2-misfire-from-failed-ignition-coil-fouled-sp--prescription-2-0--2-5l-i4-lkw",
+      "model": "Malibu",
+      "partIndex": 1,
+      "partNumber": "4718",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes spark plug; Denso 4718 is the same repair role, is catalog-scoped to 2013-2015, 2.5L I4 (LKW), and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Swap the cylinder 2 ignition coil with an adjacent cylinder and clear codes — if the misfire follows the coil to the new cylinder, replace the coil. If P0302 stays on cylinder 2, inspect and replace the spark plug (check for oil/carbon fouling and correct gap). Replace worn plugs as a set and, if plugs foul repeatedly, investigate oil consumption or a leaking injector.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/406688018517?fits=Year%3A2013%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2013+Chevrolet+Malibu+2.5L+Denso+4718+Spark+Plug&hash=item5eb07eb055%3Ag%3AFAYAAeSwstBqV0Hk&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 406688018517. Observed Manufacturer Part Number contains 4718. Observed title: Spark Plug-i DENSO 4718."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv--prescription-0-0--1-5l-turbo-lfv",
+      "issueId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv",
+      "workItemId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv--prescription-0-0--1-5l-turbo-lfv",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "8508",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes cylinder 3 spark plug; Bosch Spark Plugs 8508 is the same repair role, is catalog-scoped to 2016-2023, 1.5L Turbo (LFV), and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Inspect and, if worn/fouled, replace the cylinder 3 spark plug; swap the #3 coil with an adjacent one to see if the misfire follows it and replace the coil if so. If ignition parts are good and misfire persists, check for carbon buildup on the intake valves (per GM bulletin) and perform a walnut-blast/intake-valve cleaning; verify injector #3 and check for vacuum/PCV leaks. Stop driving if the CEL flashes to protect the catalytic converter.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/136557786047?fits=Year%3A2016%7CEngine+-+Liter_Display%3A1.5L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2016+Chevrolet+Malibu+1.5L+Bosch+Spark+Plugs+8508+Spark+Plug&hash=item1fcb7a73bf%3Ag%3AG80AAeSwrNFo5VGQ&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 136557786047. Observed OE Part Numbers contains 8508. Observed title: Bosch Spark Plug Set For Chevrolet Malibu."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv--prescription-0-0--1-5l-turbo-lfv",
+      "issueId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv",
+      "workItemId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv--prescription-0-0--1-5l-turbo-lfv",
+      "model": "Malibu",
+      "partIndex": 1,
+      "partNumber": "9665",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes cylinder 3 spark plug; Champion Spark Plugs 9665 is the same repair role, is catalog-scoped to 2016-2023, 1.5L Turbo (LFV), and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Inspect and, if worn/fouled, replace the cylinder 3 spark plug; swap the #3 coil with an adjacent one to see if the misfire follows it and replace the coil if so. If ignition parts are good and misfire persists, check for carbon buildup on the intake valves (per GM bulletin) and perform a walnut-blast/intake-valve cleaning; verify injector #3 and check for vacuum/PCV leaks. Stop driving if the CEL flashes to protect the catalytic converter.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/356127034566?fits=Year%3A2016%7CEngine+-+Liter_Display%3A1.5L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2016+Chevrolet+Malibu+1.5L+Champion+Spark+Plugs+9665+Spark+Plug&hash=item52ead34cc6%3Ag%3A2EUAAOSwzD9oSMEx&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 356127034566. Observed Manufacturer Part Number contains 9665. Observed title: Iridium Spark Plug  Champion Spark Plug  9665."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv--prescription-0-0--2-0l-turbo-ltg",
+      "issueId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv",
+      "workItemId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv--prescription-0-0--2-0l-turbo-ltg",
+      "model": "Malibu",
+      "partIndex": 0,
+      "partNumber": "96315",
+      "decision": "block_ambiguous",
+      "reason": "Bosch Spark Plugs 96315 has a year/engine application that conflicts with or cannot be reconciled to the article stated cylinder 3 spark plug vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Inspect and, if worn/fouled, replace the cylinder 3 spark plug; swap the #3 coil with an adjacent one to see if the misfire follows it and replace the coil if so. If ignition parts are good and misfire persists, check for carbon buildup on the intake valves (per GM bulletin) and perform a walnut-blast/intake-valve cleaning; verify injector #3 and check for vacuum/PCV leaks. Stop driving if the CEL flashes to protect the catalytic converter.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/236489101391?fits=Year%3A2016%7CEngine+-+Liter_Display%3A2.0L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2016+Chevrolet+Malibu+2.0L+Bosch+Spark+Plugs+96315+Spark+Plug&hash=item370fd9504f%3Ag%3AzwQAAeSwzLlp4y-Q&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 236489101391. Observed MPN contains 96315. Observed title: 4 Pack Bosch 96315 HR7NII332S Double Iridium Spark Plugs."
+      }
+    },
+    {
+      "proposalId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv--prescription-0-0--2-0l-turbo-ltg",
+      "issueId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv",
+      "workItemId": "chevrolet-malibu-p0303-cylinder-3-misfire-from-ignition-coil-plug-intake-valv--prescription-0-0--2-0l-turbo-ltg",
+      "model": "Malibu",
+      "partIndex": 1,
+      "partNumber": "7004",
+      "decision": "block_ambiguous",
+      "reason": "Champion Spark Plugs 7004 has a year/engine application that conflicts with or cannot be reconciled to the article stated cylinder 3 spark plug vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Inspect and, if worn/fouled, replace the cylinder 3 spark plug; swap the #3 coil with an adjacent one to see if the misfire follows it and replace the coil if so. If ignition parts are good and misfire persists, check for carbon buildup on the intake valves (per GM bulletin) and perform a walnut-blast/intake-valve cleaning; verify injector #3 and check for vacuum/PCV leaks. Stop driving if the CEL flashes to protect the catalytic converter.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/800189035593?fits=Year%3A2016%7CEngine+-+Liter_Display%3A2.0L%7CModel%3AMalibu%7CMake%3AChevrolet&_skw=2016+Chevrolet+Malibu+2.0L+Champion+Spark+Plugs+7004+Spark+Plug&hash=itemba4efbb449%3Ag%3ALW4AAOSwz1doUDrV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 800189035593. Observed Manufacturer Part Number contains 7004. Observed title: Spark Plug Champion Spark Plug 7004."
+      }
+    },
+    {
+      "proposalId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--4-8l-v8",
+      "issueId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8",
+      "workItemId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--4-8l-v8",
+      "model": "Silverado 1500",
+      "partIndex": 0,
+      "partNumber": "WPGM-609V",
+      "decision": "block_ambiguous",
+      "reason": "Aisin WPGM-609V has a year/engine application that conflicts with or cannot be reconciled to the article stated water pump vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and confirm the leak is from the pump weep hole / shaft seal versus a gasket or hose. Replace the water pump (and gasket), refill with the correct GM Dex-Cool spec coolant, and bleed the system. Inspect the belt and tensioner while accessing the pump. Address any low-coolant overheating before it damages head gaskets.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/377170126657?fits=Year%3A2007%7CEngine+-+Liter_Display%3A4.8L%7CMake%3AChevrolet&_skw=2007+Chevrolet+Silverado+1500+4.8L+Aisin+WPGM-609V+Engine+Water+Pump&hash=item57d1176741%3Ag%3AfwcAAOSwtctoTVpd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 377170126657. Observed title contains WPGM609V. Observed title: AISIN WORLD CORP. OF AMERICA WPGM609V Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--4-8l-v8",
+      "issueId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8",
+      "workItemId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--4-8l-v8",
+      "model": "Silverado 1500",
+      "partIndex": 1,
+      "partNumber": "DP990",
+      "decision": "block_ambiguous",
+      "reason": "Dayco DP990 has a year/engine application that conflicts with or cannot be reconciled to the article?s stated water pump vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and confirm the leak is from the pump weep hole / shaft seal versus a gasket or hose. Replace the water pump (and gasket), refill with the correct GM Dex-Cool spec coolant, and bleed the system. Inspect the belt and tensioner while accessing the pump. Address any low-coolant overheating before it damages head gaskets.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/235816734491?fits=Year%3A2007%7CEngine+-+Liter_Display%3A4.8L%7CMake%3AChevrolet&_skw=2007+Chevrolet+Silverado+1500+4.8L+Dayco+DP990+Engine+Water+Pump&hash=item36e7c5cf1b%3Ag%3AybEAAOSwikxnKRDl&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 235816734491. Observed Manufacturer Part Number contains DP990. Observed title: Dayco DP990 Engine Water Pump Fits 07-14 Tahoe 07-14 Escalade New Genuine."
+      }
+    },
+    {
+      "proposalId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--5-3l-v8",
+      "issueId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8",
+      "workItemId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--5-3l-v8",
+      "model": "Silverado 1500",
+      "partIndex": 0,
+      "partNumber": "WPGM-606V",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Aisin WPGM-606V is the same repair role, is catalog-scoped to 2014-2018, 5.3L V8, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and confirm the leak is from the pump weep hole / shaft seal versus a gasket or hose. Replace the water pump (and gasket), refill with the correct GM Dex-Cool spec coolant, and bleed the system. Inspect the belt and tensioner while accessing the pump. Address any low-coolant overheating before it damages head gaskets.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/286750090800?fits=Year%3A2014%7CEngine+-+Liter_Display%3A5.3L%7CModel%3ASilverado+1500%7CMake%3AChevrolet&_skw=2014+Chevrolet+Silverado+1500+5.3L+Aisin+WPGM-606V+Engine+Water+Pump&hash=item42c3a32630%3Ag%3AyKwAAeSwoxBokmLy&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 286750090800. Observed title contains WPGM-606V. Observed title: For Chevy Silverado 1500 LD 2019 AISIN WPGM-606V Engine Coolant Water Pump."
+      }
+    },
+    {
+      "proposalId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--5-3l-v8",
+      "issueId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8",
+      "workItemId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--5-3l-v8",
+      "model": "Silverado 1500",
+      "partIndex": 1,
+      "partNumber": "DP990",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Dayco DP990 is the same repair role, is catalog-scoped to 2007-2013, 5.3L V8, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and confirm the leak is from the pump weep hole / shaft seal versus a gasket or hose. Replace the water pump (and gasket), refill with the correct GM Dex-Cool spec coolant, and bleed the system. Inspect the belt and tensioner while accessing the pump. Address any low-coolant overheating before it damages head gaskets.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/235816734491?fits=Year%3A2007%7CEngine+-+Liter_Display%3A5.3L%7CMake%3AChevrolet&_skw=2007+Chevrolet+Silverado+1500+5.3L+Dayco+DP990+Engine+Water+Pump&hash=item36e7c5cf1b%3Ag%3AybEAAOSwikxnKRDl&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 235816734491. Observed Manufacturer Part Number contains DP990. Observed title: Dayco DP990 Engine Water Pump Fits 07-14 Tahoe 07-14 Escalade New Genuine."
+      }
+    },
+    {
+      "proposalId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--6-0l-v8",
+      "issueId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8",
+      "workItemId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--6-0l-v8",
+      "model": "Silverado 1500",
+      "partIndex": 0,
+      "partNumber": "WPGM-609V",
+      "decision": "block_ambiguous",
+      "reason": "Aisin WPGM-609V has a year/engine application that conflicts with or cannot be reconciled to the article?s stated water pump vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and confirm the leak is from the pump weep hole / shaft seal versus a gasket or hose. Replace the water pump (and gasket), refill with the correct GM Dex-Cool spec coolant, and bleed the system. Inspect the belt and tensioner while accessing the pump. Address any low-coolant overheating before it damages head gaskets.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/377170126657?fits=Year%3A2007%7CEngine+-+Liter_Display%3A6.0L%7CMake%3AChevrolet&_skw=2007+Chevrolet+Silverado+1500+6.0L+Aisin+WPGM-609V+Engine+Water+Pump&hash=item57d1176741%3Ag%3AfwcAAOSwtctoTVpd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 377170126657. Observed title contains WPGM609V. Observed title: AISIN WORLD CORP. OF AMERICA WPGM609V Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--6-0l-v8",
+      "issueId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8",
+      "workItemId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--6-0l-v8",
+      "model": "Silverado 1500",
+      "partIndex": 1,
+      "partNumber": "DP990",
+      "decision": "block_ambiguous",
+      "reason": "Dayco DP990 has a year/engine application that conflicts with or cannot be reconciled to the article?s stated water pump vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and confirm the leak is from the pump weep hole / shaft seal versus a gasket or hose. Replace the water pump (and gasket), refill with the correct GM Dex-Cool spec coolant, and bleed the system. Inspect the belt and tensioner while accessing the pump. Address any low-coolant overheating before it damages head gaskets.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/235816734491?fits=Year%3A2007%7CEngine+-+Liter_Display%3A6.0L%7CMake%3AChevrolet&_skw=2007+Chevrolet+Silverado+1500+6.0L+Dayco+DP990+Engine+Water+Pump&hash=item36e7c5cf1b%3Ag%3AybEAAOSwikxnKRDl&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 235816734491. Observed Manufacturer Part Number contains DP990. Observed title: Dayco DP990 Engine Water Pump Fits 07-14 Tahoe 07-14 Escalade New Genuine."
+      }
+    },
+    {
+      "proposalId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--6-2l-v8",
+      "issueId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8",
+      "workItemId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--6-2l-v8",
+      "model": "Silverado 1500",
+      "partIndex": 0,
+      "partNumber": "WPGM-606V",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Aisin WPGM-606V is the same repair role, is catalog-scoped to 2014-2018, 6.2L V8, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and confirm the leak is from the pump weep hole / shaft seal versus a gasket or hose. Replace the water pump (and gasket), refill with the correct GM Dex-Cool spec coolant, and bleed the system. Inspect the belt and tensioner while accessing the pump. Address any low-coolant overheating before it damages head gaskets.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/286750090800?fits=Year%3A2014%7CEngine+-+Liter_Display%3A6.2L%7CModel%3ASilverado+1500%7CMake%3AChevrolet&_skw=2014+Chevrolet+Silverado+1500+6.2L+Aisin+WPGM-606V+Engine+Water+Pump&hash=item42c3a32630%3Ag%3AyKwAAeSwoxBokmLy&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 286750090800. Observed title contains WPGM-606V. Observed title: For Chevy Silverado 1500 LD 2019 AISIN WPGM-606V Engine Coolant Water Pump."
+      }
+    },
+    {
+      "proposalId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--6-2l-v8",
+      "issueId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8",
+      "workItemId": "chevrolet-silverado-1500-water-pump-failure-weep-hole-coolant-leak-5-3l-6-2l-v8--prescription-0-0--6-2l-v8",
+      "model": "Silverado 1500",
+      "partIndex": 1,
+      "partNumber": "DP2232",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Dayco DP2232 is the same repair role, is catalog-scoped to 2014-2018, 6.2L V8, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and confirm the leak is from the pump weep hole / shaft seal versus a gasket or hose. Replace the water pump (and gasket), refill with the correct GM Dex-Cool spec coolant, and bleed the system. Inspect the belt and tensioner while accessing the pump. Address any low-coolant overheating before it damages head gaskets.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/147298774174?fits=Year%3A2014%7CEngine+-+Liter_Display%3A6.2L%7CModel%3ASilverado+1500%7CMake%3AChevrolet&_skw=2014+Chevrolet+Silverado+1500+6.2L+Dayco+DP2232+Engine+Water+Pump&hash=item224bb0ec9e%3Ag%3AfZgAAOSwrmZoUBj%7E&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 147298774174. Observed title contains DP2232. Observed title: DAYCO PRODUCTS LLC DP2232 Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil--prescription-1-0--1-8l-i4-luw-lwe",
+      "issueId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil",
+      "workItemId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil--prescription-1-0--1-8l-i4-luw-lwe",
+      "model": "Sonic",
+      "partIndex": 0,
+      "partNumber": "098622A213",
+      "decision": "hold_no_exact_link",
+      "reason": "Bosch Engine Management Sensors 098622A213 matches the prescribed ignition coil role and reviewed scope, but no exact direct product page was resolved, so no commerce link is approved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace worn spark plugs and any failed ignition coil(s). Critically, inspect the spark plug wells for oil - if present, replace the valve cover gasket to eliminate the root cause, otherwise misfires recur.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil--prescription-1-0--1-8l-i4-luw-lwe",
+      "issueId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil",
+      "workItemId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil--prescription-1-0--1-8l-i4-luw-lwe",
+      "model": "Sonic",
+      "partIndex": 1,
+      "partNumber": "GN10234",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes ignition coil; Delphi GN10234 is the same repair role, is catalog-scoped to 2012-2018, 1.8L I4 (LUW/LWE), and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace worn spark plugs and any failed ignition coil(s). Critically, inspect the spark plug wells for oil - if present, replace the valve cover gasket to eliminate the root cause, otherwise misfires recur.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/377167675417?fits=Year%3A2012%7CEngine+-+Liter_Display%3A1.8L%7CModel%3ASonic%7CMake%3AChevrolet&_skw=2012+Chevrolet+Sonic+1.8L+Delphi+GN10234+Ignition+Coil&hash=item57d0f20019%3Ag%3AAGIAAOSwDGJoImb2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 377167675417. Observed title contains GN10234. Observed title: Ignition Coil Delphi GN10234."
+      }
+    },
+    {
+      "proposalId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil--prescription-2-0--1-8l-i4-luw-lwe",
+      "issueId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil",
+      "workItemId": "chevrolet-sonic-ignition-coil-spark-plug-misfire-from-valve-cover-gasket-oil--prescription-2-0--1-8l-i4-luw-lwe",
+      "model": "Sonic",
+      "partIndex": 0,
+      "partNumber": "VS50656",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE Clevite VS50656 matches the prescribed valve cover gasket role and reviewed scope, but no exact direct product page was resolved, so no commerce link is approved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace worn spark plugs and any failed ignition coil(s). Critically, inspect the spark plug wells for oil - if present, replace the valve cover gasket to eliminate the root cause, otherwise misfires recur.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-spark-ignition-coil-2013--prescription-0-0--1-4l",
+      "issueId": "chevrolet-spark-ignition-coil-2013",
+      "workItemId": "chevrolet-spark-ignition-coil-2013--prescription-0-0--1-4l",
+      "model": "Spark",
+      "partIndex": 0,
+      "partNumber": "921-2348",
+      "decision": "block_incomplete_scope",
+      "reason": "Walker Products 921-2348 covers only 2016-2022, 1.4L and does not establish the full year/engine scope of the article?s ignition coil pack repair branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the failed ignition coil pack. Recommended to replace all four coils and spark plugs at once since labor overlaps and remaining coils are likely near end of life.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/158112946681?fits=Year%3A2016%7CEngine+-+Liter_Display%3A1.4L%7CModel%3ASpark%7CMake%3AChevrolet&_skw=2016+Chevrolet+Spark+1.4L+Walker+Products+921-2348+Ignition+Coil&hash=item24d04419f9%3Ag%3AaREAAeSwtsZobIVF&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 158112946681. Observed Manufacturer Part Number contains 921-2348. Observed title: Ignition Coil-Single Coil Walker Products fits 16-21 Chevrolet Spark 1.4L-L4."
+      }
+    },
+    {
+      "proposalId": "chevrolet-tahoe-distributor-cap-rotor-moisture-corrosion--prescription-0-0--5-7l-vortec-v8-l31",
+      "issueId": "chevrolet-tahoe-distributor-cap-rotor-moisture-corrosion",
+      "workItemId": "chevrolet-tahoe-distributor-cap-rotor-moisture-corrosion--prescription-0-0--5-7l-vortec-v8-l31",
+      "model": "Tahoe",
+      "partIndex": 0,
+      "partNumber": "30-1829",
+      "decision": "block_wrong_role",
+      "reason": "Cardone 30-1829 does not satisfy the article?s exact distributor cap repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the distributor cap and rotor, using OEM AC Delco parts for longevity. Clean the small distributor housing vent holes with compressed air or a thin wire so condensation can escape. Inspect and replace corroded plug wires as needed.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/335013971888?fits=Year%3A1996%7CEngine+-+Liter_Display%3A5.7L%7CModel%3ATahoe%7CMake%3AChevrolet&_skw=1996+Chevrolet+Tahoe+5.7L+Cardone+30-1829+Distributor&hash=item4e006387b0%3Ag%3AE9MAAOSwdE5itBI4&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 335013971888. Observed Manufacturer Part Number contains 30-1829. Observed title: 1998-2002 Chevrolet GMC C/K Trucks Distributor-VIN: R Cardone 30-1829 Reman."
+      }
+    },
+    {
+      "proposalId": "chevrolet-tahoe-tank-fuel-pump-module-failure--prescription-0-0--4-8l-vortec-v8",
+      "issueId": "chevrolet-tahoe-tank-fuel-pump-module-failure",
+      "workItemId": "chevrolet-tahoe-tank-fuel-pump-module-failure--prescription-0-0--4-8l-vortec-v8",
+      "model": "Tahoe",
+      "partIndex": 0,
+      "partNumber": "67307",
+      "decision": "hold_needs_manual",
+      "reason": "The article names ACDelco MU1613 and Delphi/Spectra as reviewed module choices; Bosch 67307 has exact fitment and identity but needs manual repair-role/quality equivalence review.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm with a fuel-pressure gauge on the Schrader port: good pressure should reach ~58-62 PSI within ~2 seconds of key-on and hold. Also check the fuel-pump relay/fuse and inspect the pump connector for heat damage. Fix is a complete fuel pump module (pump + level sender + strainer). OEM: ACDelco MU1613 (GM 19153711), which includes the seal, float and harness; quality aftermarket options include Delphi/Spectra modules (part roughly $150-350). Drop the tank, replace the module and strainer, and blow out/inspect the tank if rust is present.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/363912859625?fits=Year%3A2000%7CEngine+-+Liter_Display%3A4.8L%7CModel%3ATahoe%7CMake%3AChevrolet&_skw=2000+Chevrolet+Tahoe+4.8L+Bosch+Fuel+Pumps+67307+Fuel+Pump+Module+Assembly&hash=item54bae58fe9%3Ag%3AJ8UAAOSw13pna-M-&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 363912859625. Observed Manufacturer Part Number contains 67307. Observed title: Bosch 67307 Fuel Pump Module Assembly For Cadillac Chevrolet GMC."
+      }
+    },
+    {
+      "proposalId": "chevrolet-tahoe-tank-fuel-pump-module-failure--prescription-0-0--4-8l-vortec-v8",
+      "issueId": "chevrolet-tahoe-tank-fuel-pump-module-failure",
+      "workItemId": "chevrolet-tahoe-tank-fuel-pump-module-failure--prescription-0-0--4-8l-vortec-v8",
+      "model": "Tahoe",
+      "partIndex": 1,
+      "partNumber": "953-0030",
+      "decision": "hold_needs_manual",
+      "reason": "The article names ACDelco MU1613 and Delphi/Spectra as reviewed module choices; Denso 953-0030 is neither named nor backed by an exact product link in this packet.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm with a fuel-pressure gauge on the Schrader port: good pressure should reach ~58-62 PSI within ~2 seconds of key-on and hold. Also check the fuel-pump relay/fuse and inspect the pump connector for heat damage. Fix is a complete fuel pump module (pump + level sender + strainer). OEM: ACDelco MU1613 (GM 19153711), which includes the seal, float and harness; quality aftermarket options include Delphi/Spectra modules (part roughly $150-350). Drop the tank, replace the module and strainer, and blow out/inspect the tank if rust is present.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-trailblazer-42l-coolant-leak-2003--prescription-4-0--4-2l-atlas-i6",
+      "issueId": "chevrolet-trailblazer-42l-coolant-leak-2003",
+      "workItemId": "chevrolet-trailblazer-42l-coolant-leak-2003--prescription-4-0--4-2l-atlas-i6",
+      "model": "TrailBlazer",
+      "partIndex": 0,
+      "partNumber": "TI 226 88",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE Clevite TI 226 88 matches the prescribed thermostat role and reviewed scope, but no exact direct product page was resolved, so no commerce link is approved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and inspect the throttle body heater hoses/port, thermostat housing, and the water pump weep hole on the 4.2L Atlas I6; dried coolant residue below the pump pulley or around the throttle body usually confirms the source. Replace any leaking throttle body heater hose or fitting, the thermostat housing and seal if seepage is present, and the water pump if coolant is coming from the weep hole; on these engines it is also wise to install a new thermostat and fresh Dex-Cool coolant during service. After repair, vacuum-fill or properly bleed the system and verify fan clutch operation and operating temperature on a road test. Typical repair cost ranges from about $150-$300 for hoses or housing repairs, and roughly $500-$900 for a water pump replacement depending on labor rates and parts quality.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-trailblazer-42l-coolant-leak-2003--prescription-4-0--4-2l-atlas-i6",
+      "issueId": "chevrolet-trailblazer-42l-coolant-leak-2003",
+      "workItemId": "chevrolet-trailblazer-42l-coolant-leak-2003--prescription-4-0--4-2l-atlas-i6",
+      "model": "TrailBlazer",
+      "partIndex": 1,
+      "partNumber": "33939",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes thermostat; Gates 33939 is the same repair role, is catalog-scoped to 2002-2009, 4.2L Atlas I6, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and inspect the throttle body heater hoses/port, thermostat housing, and the water pump weep hole on the 4.2L Atlas I6; dried coolant residue below the pump pulley or around the throttle body usually confirms the source. Replace any leaking throttle body heater hose or fitting, the thermostat housing and seal if seepage is present, and the water pump if coolant is coming from the weep hole; on these engines it is also wise to install a new thermostat and fresh Dex-Cool coolant during service. After repair, vacuum-fill or properly bleed the system and verify fan clutch operation and operating temperature on a road test. Typical repair cost ranges from about $150-$300 for hoses or housing repairs, and roughly $500-$900 for a water pump replacement depending on labor rates and parts quality.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/375480582432?fits=Year%3A2002%7CEngine+-+Liter_Display%3A4.2L%7CModel%3ATrailblazer%7CMake%3AChevrolet&_skw=2002+Chevrolet+TrailBlazer+4.2L+Gates+33939+Engine+Coolant+Thermostat&hash=item576c630120%3Ag%3AA4oAAeSw0Qpp3Qma&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 375480582432. Observed Manufacturer Part Number contains 33939. Observed title: Engine Coolant Thermostat-Integrated Housing Thermostat Gates 33939."
+      }
+    },
+    {
+      "proposalId": "chevrolet-traverse-oil-consumption-3-6l-2009--prescription-0-0--all-engines",
+      "issueId": "chevrolet-traverse-oil-consumption-3-6l-2009",
+      "workItemId": "chevrolet-traverse-oil-consumption-3-6l-2009--prescription-0-0--all-engines",
+      "model": "Traverse",
+      "partIndex": 0,
+      "partNumber": "42076CP",
+      "decision": "hold_needs_manual",
+      "reason": "Piston-ring replacement is a severe-case, diagnosis-dependent engine teardown, while this candidate has no persisted engine scope or exact product link; it remains a manual hold.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Check oil level at every fuel stop and top off as needed. Use the GM-specified dexos1 Gen 3 approved 5W-30 synthetic oil. An oil consumption test at the dealer involves measuring consumption over a set mileage interval — if it exceeds GM limits, warranty coverage may apply. For out-of-warranty vehicles, using a slightly heavier 5W-40 European-spec oil can reduce burn-off. Severe cases may require piston ring replacement ($2,500-$4,000) or valve stem seal replacement ($1,000-$2,000).",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-uplander-intake-gasket-3500--prescription-0-0--3-5l-v6",
+      "issueId": "chevrolet-uplander-intake-gasket-3500",
+      "workItemId": "chevrolet-uplander-intake-gasket-3500--prescription-0-0--3-5l-v6",
+      "model": "Uplander",
+      "partIndex": 0,
+      "partNumber": "MIS19509",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE Clevite MIS19509 matches the prescribed intake manifold gaskets role and reviewed scope, but no exact direct product page was resolved, so no commerce link is approved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace intake manifold gaskets with updated design. Flush cooling system and oil after repair.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevrolet-venture-intake-gasket-1997--prescription-0-0--3-4l-v6",
+      "issueId": "chevrolet-venture-intake-gasket-1997",
+      "workItemId": "chevrolet-venture-intake-gasket-1997--prescription-0-0--3-4l-v6",
+      "model": "Venture",
+      "partIndex": 0,
+      "partNumber": "MIS16259",
+      "decision": "block_wrong_role",
+      "reason": "MAHLE Clevite MIS16259 does not satisfy the article?s exact lower intake manifold gaskets repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the lower intake manifold gaskets with updated Fel-Pro design that resists Dex-Cool degradation. Flush the cooling system and change the oil immediately if coolant contamination is found.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevy-cavalier-intake-gasket-leak-1995--prescription-0-0--2-2l",
+      "issueId": "chevy-cavalier-intake-gasket-leak-1995",
+      "workItemId": "chevy-cavalier-intake-gasket-leak-1995--prescription-0-0--2-2l",
+      "model": "Cavalier",
+      "partIndex": 0,
+      "partNumber": "MS19337",
+      "decision": "block_wrong_role",
+      "reason": "MAHLE Clevite MS19337 does not satisfy the article?s exact lower intake manifold gasket repair role, required assembly contents, or explicitly named supplier/design requirement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the lower intake manifold gasket with an updated Fel-Pro design. Flush the cooling system and switch to conventional green coolant if desired. Check the oil for milky contamination — if present, perform multiple oil changes to flush the system. Torque intake bolts to specification in the correct sequence.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevy-colorado-water-pump-2015--prescription-0-0--3-6l-v6",
+      "issueId": "chevy-colorado-water-pump-2015",
+      "workItemId": "chevy-colorado-water-pump-2015--prescription-0-0--3-6l-v6",
+      "model": "Colorado",
+      "partIndex": 0,
+      "partNumber": "WPGM-611V",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Aisin WPGM-611V is the same repair role, is catalog-scoped to 2015-2016, 3.6L V6, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump when symptoms appear. Replace thermostat at same time. Consider replacing timing chain components preventatively if high mileage. Flush cooling system after repair. Monitor for proper bleeding of cooling system.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/227414656496?fits=Year%3A2015%7CEngine+-+Liter_Display%3A3.6L%7CModel%3AColorado%7CMake%3AChevrolet&_skw=2015+Chevrolet+Colorado+3.6L+Aisin+WPGM-611V+Engine+Water+Pump&hash=item34f2f845f0%3Ag%3A2koAAOSwvdpoTVph&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 227414656496. Observed title contains WPGM611V. Observed title: AISIN WORLD CORP. OF AMERICA WPGM611V Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "chevy-colorado-water-pump-2015--prescription-0-0--3-6l-v6",
+      "issueId": "chevy-colorado-water-pump-2015",
+      "workItemId": "chevy-colorado-water-pump-2015--prescription-0-0--3-6l-v6",
+      "model": "Colorado",
+      "partIndex": 1,
+      "partNumber": "DP532",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Dayco DP532 is the same repair role, is catalog-scoped to 2015-2016, 3.6L V6, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump when symptoms appear. Replace thermostat at same time. Consider replacing timing chain components preventatively if high mileage. Flush cooling system after repair. Monitor for proper bleeding of cooling system.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/335655110447?fits=Year%3A2015%7CEngine+-+Liter_Display%3A3.6L%7CModel%3AColorado%7CMake%3AChevrolet&_skw=2015+Chevrolet+Colorado+3.6L+Dayco+DP532+Engine+Water+Pump&hash=item4e269a872f%3Ag%3AEuMAAOSwsRtnKPwp&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 335655110447. Observed Manufacturer Part Number contains DP532. Observed title: Dayco DP532 Engine Water Pump Fits 08-17 Equinox 09-23 Traverse New Genuine."
+      }
+    },
+    {
+      "proposalId": "chevy-corsica-head-gasket-1990--prescription-0-0--2-2l-ohv",
+      "issueId": "chevy-corsica-head-gasket-1990",
+      "workItemId": "chevy-corsica-head-gasket-1990--prescription-0-0--2-2l-ohv",
+      "model": "Corsica",
+      "partIndex": 0,
+      "partNumber": "5871G",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE Clevite 5871G matches the prescribed head gasket role and reviewed scope, but no exact direct product page was resolved, so no commerce link is approved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the head gasket and have the cylinder head checked for warpage — machine the head if out of specification (max 0.003\" deviation). Replace the thermostat and inspect the water pump while accessible. Use a quality multi-layer steel gasket and torque head bolts in sequence. Perform a cooling system pressure test after repair.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevy-corsica-ignition-module-1990--prescription-1-0--all-engines",
+      "issueId": "chevy-corsica-ignition-module-1990",
+      "workItemId": "chevy-corsica-ignition-module-1990--prescription-1-0--all-engines",
+      "model": "Corsica",
+      "partIndex": 0,
+      "partNumber": "178-8206",
+      "decision": "hold_needs_manual",
+      "reason": "The ignition-coil pack is only an optional high-mileage companion to the ignition-control-module repair, so it must not be surfaced as an unconditional fix without a reviewed diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the ignition control module. Apply a thin layer of heat sink compound (dielectric thermal grease) between the ICM and mounting surface for better heat dissipation. Replace the ignition coil pack at the same time if it has high mileage. Carry a spare ICM — this is a known stranding failure.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/115144805102?fits=Year%3A1990%7CModel%3ACorsica%7CMake%3AChevrolet&_skw=1990+Chevrolet+Corsica+Beck+Arnley+178-8206+Ignition+Coil&hash=item1acf2a4aee%3Ag%3AelQAAOSwpuRhu5Be&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 115144805102. Observed title contains 178-8206. Observed title: Ignition Coil Beck/Arnley 178-8206."
+      }
+    },
+    {
+      "proposalId": "chevy-corsica-ignition-module-1990--prescription-1-0--all-engines",
+      "issueId": "chevy-corsica-ignition-module-1990",
+      "workItemId": "chevy-corsica-ignition-module-1990--prescription-1-0--all-engines",
+      "model": "Corsica",
+      "partIndex": 1,
+      "partNumber": "GN10123",
+      "decision": "hold_needs_manual",
+      "reason": "The ignition-coil pack is only an optional high-mileage companion to the ignition-control-module repair, so it must not be surfaced as an unconditional fix without a reviewed diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the ignition control module. Apply a thin layer of heat sink compound (dielectric thermal grease) between the ICM and mounting surface for better heat dissipation. Replace the ignition coil pack at the same time if it has high mileage. Carry a spare ICM — this is a known stranding failure.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/267242611106?fits=Year%3A1990%7CModel%3ACorsica%7CMake%3AChevrolet&_skw=1990+Chevrolet+Corsica+Delphi+GN10123+Ignition+Coil&hash=item3e38e6a1a2%3Ag%3AzfMAAOSw0v1oGkDI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 267242611106. Observed title contains GN10123. Observed title: Ignition Coil Delphi GN10123."
+      }
+    },
+    {
+      "proposalId": "chevy-sonic-water-pump-failure-2012--prescription-0-0--1-8l-ecotec",
+      "issueId": "chevy-sonic-water-pump-failure-2012",
+      "workItemId": "chevy-sonic-water-pump-failure-2012--prescription-0-0--1-8l-ecotec",
+      "model": "Sonic",
+      "partIndex": 0,
+      "partNumber": "TKGM-002",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Aisin TKGM-002 is the same repair role, is catalog-scoped to 2012-2015, 1.8L Ecotec, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump at the first sign of leaking. On the 1.4T, the water pump is internal and driven by the timing chain, making replacement more labor-intensive ($400-$800). On the 1.8L, it is belt-driven and easier to access ($200-$400). Monitor coolant levels regularly. Replace the thermostat at the same time.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/407096846445?fits=Year%3A2012%7CEngine+-+Liter_Display%3A1.8L%7CModel%3ASonic%7CMake%3AChevrolet&_skw=2012+Chevrolet+Sonic+1.8L+Aisin+TKGM-002+Engine+Timing+Belt+Kit+with+Water+Pump&hash=item5ec8dce86d%3Ai%3A407096846445&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 407096846445. Observed title contains TKGM-002. Observed title: AISIN TKGM-002 Engine Timing Belt Kit with Water Pump."
+      }
+    },
+    {
+      "proposalId": "chevy-sonic-water-pump-failure-2012--prescription-0-0--1-8l-ecotec",
+      "issueId": "chevy-sonic-water-pump-failure-2012",
+      "workItemId": "chevy-sonic-water-pump-failure-2012--prescription-0-0--1-8l-ecotec",
+      "model": "Sonic",
+      "partIndex": 1,
+      "partNumber": "DP191",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes water pump; Dayco DP191 is the same repair role, is catalog-scoped to 2012-2018, 1.8L Ecotec, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump at the first sign of leaking. On the 1.4T, the water pump is internal and driven by the timing chain, making replacement more labor-intensive ($400-$800). On the 1.8L, it is belt-driven and easier to access ($200-$400). Monitor coolant levels regularly. Replace the thermostat at the same time.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/388882207059?fits=Year%3A2012%7CEngine+-+Liter_Display%3A1.8L%7CModel%3ASonic%7CMake%3AChevrolet&_skw=2012+Chevrolet+Sonic+1.8L+Dayco+DP191+Engine+Water+Pump&hash=item5a8b2f9153%3Ag%3AFRUAAOSwGz1oT%7EYP&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGYGvAFXOTb1SSPREW9CJZj6wll%2Bla8wzVD%2B7O%2B6GjEMrGVWrQSfB2xi%2By49Grj9U%2B8asGiFC%2F2UFXxrr0NLUhgV3pNyStCBEYnEUobuHvVf%2FIFQC%2FqCzYSM7pUeKKYgscKnbG8jcMuoF7p30AgXZfCVXYt0eJbaTRcDWIhQ0qjGnKVOWzWnRMdgcTbIYT00ozfw2hadi8n%2F9rCF3yDT9LO2xcXdpDLwgPddJDoLdO55B73%2BlO2XC2czVzQdtveur0oQkxxYELNWilwICmTr1N2dGHIiCQGJ3a%2Bxb2PVnwKwkkWn%2BRfcA8qB4fgzkg%2FYgZU6XCBGvmBB%2BS41QDbcozkz&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 388882207059. Observed Manufacturer Part Number contains DP191. Observed title: Engine Water Pump Dayco DP191."
+      }
+    },
+    {
+      "proposalId": "chevy-sonic-water-pump-failure-2012--prescription-1-0--1-8l-ecotec",
+      "issueId": "chevy-sonic-water-pump-failure-2012",
+      "workItemId": "chevy-sonic-water-pump-failure-2012--prescription-1-0--1-8l-ecotec",
+      "model": "Sonic",
+      "partIndex": 0,
+      "partNumber": "TM 41 105",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE Clevite TM 41 105 matches the prescribed thermostat role and reviewed scope, but no exact direct product page was resolved, so no commerce link is approved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump at the first sign of leaking. On the 1.4T, the water pump is internal and driven by the timing chain, making replacement more labor-intensive ($400-$800). On the 1.8L, it is belt-driven and easier to access ($200-$400). Monitor coolant levels regularly. Replace the thermostat at the same time.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "chevy-sonic-water-pump-failure-2012--prescription-1-0--1-8l-ecotec",
+      "issueId": "chevy-sonic-water-pump-failure-2012",
+      "workItemId": "chevy-sonic-water-pump-failure-2012--prescription-1-0--1-8l-ecotec",
+      "model": "Sonic",
+      "partIndex": 1,
+      "partNumber": "34710",
+      "decision": "approve",
+      "reason": "The How-to-Fix text positively prescribes thermostat; Gates 34710 is the same repair role, is catalog-scoped to 2012-2018, 1.8L Ecotec, and has one exact product-identity link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump at the first sign of leaking. On the 1.4T, the water pump is internal and driven by the timing chain, making replacement more labor-intensive ($400-$800). On the 1.8L, it is belt-driven and easier to access ($200-$400). Monitor coolant levels regularly. Replace the thermostat at the same time.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/256631079424?fits=Year%3A2012%7CEngine+-+Liter_Display%3A1.8L%7CModel%3ASonic%7CMake%3AChevrolet&_skw=2012+Chevrolet+Sonic+1.8L+Gates+34710+Engine+Coolant+Thermostat&hash=item3bc0678200%3Ag%3AAhAAAOSwm1Rm3Jxk&amdata=enc%3AAQALAAABIACCtXRWQnOEpyOqnQQ8KGav6Uo9EnH57hBEtpSfblHS8fcQj02nGBULjmaxA6Kh7YR0oj99ByPzShY6VWFLqZS2le2QiKpVN%2Fwc5A4sPGlmOYNpIMeyyLI3OZiKHB0GICGRa%2BoB6NS17pkzxO%2B40dtp9blBiSKxCflCPz%2FXcVROvMhTUqFSBkZWtNKwCldygQwnR%2BA80ahaWzM6hd301jV10i7HngHL9rNSCvZSnxrs3PdYudfFGWYFDcxOeWDURYuVS0t51uCYQSb%2FPupy2zob%2B2XuHOS7dxsi6D85JGbY8rSWpVouSTIQSGW0s0qFHilT1loGo0t%2Bwg30U4qoFTUsxwjFxsV62I6vVJOspAsJrPefFWYzTwSVLQFb56xTIA%3D%3D&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 256631079424. Observed Manufacturer Part Number contains 34710. Observed title: GATES Thermostat Coolant 105 Deg C for Chevy Aveo Cruze Sonic Pontiac 1.6 1.8."
+      }
+    },
+    {
+      "proposalId": "chevy-trax-turbo-oil-consumption-2015--prescription-1-0--1-4l-turbo",
+      "issueId": "chevy-trax-turbo-oil-consumption-2015",
+      "workItemId": "chevy-trax-turbo-oil-consumption-2015--prescription-1-0--1-4l-turbo",
+      "model": "Trax",
+      "partIndex": 0,
+      "partNumber": "42189CP",
+      "decision": "hold_needs_manual",
+      "reason": "Piston-ring replacement is only a severe-consumption teardown branch; the candidate covers only 2015-2017, has no exact link, and lacks a public diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Monitor oil level between changes and top off as needed. Replace the PCV valve and inspect the intake manifold for oil buildup. For severe consumption, an engine teardown to replace piston rings and valve stem seals may be necessary. Use full synthetic 5W-30 oil as specified.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    }
+  ]
+}

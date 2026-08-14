@@ -1,0 +1,3112 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Opel",
+  "makeKey": "opel",
+  "makeIndex": 35,
+  "totalMakes": 54,
+  "issueCount": 63,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 22,
+    "diagnosis-dependent": 9,
+    "recall/dealer": 13,
+    "service/tool/fluid": 12,
+    "no-commerce": 7
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 28,
+    "uniqueDtcCount": 41,
+    "instructionCount": 80,
+    "dtcDispositionCount": 28,
+    "toolLinkedCount": 25,
+    "procedureNoToolCount": 61,
+    "unresolvedToolHoldCount": 22
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "opel-astra-astra-h-ignition-barrel-steering-column-lock-jamming",
+      "make": "Opel",
+      "model": "Astra",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Astra H Ignition Barrel / Steering Column Lock Jamming (Key Won't Turn)",
+      "howToFix": "If stranded, firmly rock the steering wheel left-right while gently turning the key to unload the lock bolt — this resolves many cases. Penetrating oil or electrical contact cleaner into the barrel can temporarily free a sticking plunger, but the fault typically returns; the lasting fix is replacing the ignition lock barrel (an auto locksmith can often code it to the existing key, which is cheaper than a dealer barrel + new keys). If the fault is electronic (no-start with steering lock error messages, pre-2008 cars), have the CIM software updated or the CIM replaced and coded by a dealer or specialist.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-astra-h-rear-axle-corrosion",
+      "make": "Opel",
+      "model": "Astra",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "Cosmo",
+        "Edition",
+        "Selection",
+        "Sport"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Astra H Rear Axle Bush Wear + Suspension Mount Corrosion (Salt-Belt)",
+      "howToFix": "Rear axle bush replacement: 3-4 hours labor, £175-£280 / €200-€350. Suspension mount corrosion repair: depends on extent — minor patch welds €200-€500, structural sections €600-€1,500. Inspect annually after age 8 in salt regions; underseal proactively at year 5.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect annually after age 8 in salt regions;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-astra-h-water-pump-z16xep",
+      "make": "Opel",
+      "model": "Astra",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "Cosmo",
+        "Edition",
+        "Selection",
+        "Sport"
+      ],
+      "engines": [
+        "1.6 Twinport (Z16XEP)",
+        "1.8 (Z18XER)"
+      ],
+      "title": "Astra H Water Pump Failure (Z16XEP Twinport / Z18XER 1.8)",
+      "howToFix": "Z16XEP: water pump replacement is a stand-alone job (€150-€300 incl. labor) once aux belt is off. Z18XER: do water pump AT the timing-belt service interval (~€400-€700 combined). Replace thermostat housing at the same time — same plastic-degradation issue.",
+      "dtcCodes": [
+        "P0128",
+        "P0217"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0128, P0217"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-astra-h-water-pump-z16xep--prescription-0-0--1-6-twinport-z16xep",
+        "opel-astra-h-water-pump-z16xep--prescription-0-0--1-8-z18xer",
+        "opel-astra-h-water-pump-z16xep--prescription-1-0--1-6-twinport-z16xep",
+        "opel-astra-h-water-pump-z16xep--prescription-1-0--1-8-z18xer"
+      ]
+    },
+    {
+      "issueId": "opel-astra-1.4-turbo-timing-chain",
+      "make": "Opel",
+      "model": "Astra",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "120 Jahre",
+        "Cosmo",
+        "Edition",
+        "Selection",
+        "Sport"
+      ],
+      "engines": [
+        "1.4 Turbo (A14NEL)",
+        "1.4 Turbo (A14NET)"
+      ],
+      "title": "1.4 Turbo (A14NET) Timing Chain Stretch",
+      "howToFix": "Diagnose before replacing — TSB E-14-3157 DMF replacement (€700-€1,200) for startup-only rattle. Full timing chain kit (chain, tensioner, guides, sprockets) €900-€1,500 for persistent rattle / misfire codes. Catastrophic failure means engine rebuild (€4,000+). Use full-synthetic 5W-30 (dexos2) and stick to 10,000 km intervals.",
+      "dtcCodes": [
+        "P0008",
+        "P0009",
+        "P0016",
+        "P0017",
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose before replacing — TSB E-14-3157 DMF replacement (€700-€1,200) for startup-only rattle."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0009, P0016, P0017, P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-astra-j-1.7-cdti-egr-clog",
+      "make": "Opel",
+      "model": "Astra",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "Cosmo",
+        "Edition",
+        "Selection",
+        "Sport"
+      ],
+      "engines": [
+        "1.7 CDTI (A17DTR/A17DTS)"
+      ],
+      "title": "Astra J 1.7 CDTI EGR Valve Clogging",
+      "howToFix": "EGR valve clean or replacement (€400-€800 incl. labor). EGR delete is common but illegal in most markets and fails TÜV / MOT emissions tests. Walnut blasting helps the intake manifold simultaneously.",
+      "dtcCodes": [
+        "P0401",
+        "P0402",
+        "P0404",
+        "P0405"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0401, P0402, P0404, P0405"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-astra-astra-j-electronic-parking-brake-faults-hill-start-assist-ro",
+      "make": "Opel",
+      "model": "Astra",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Astra J Electronic Parking Brake Faults and Hill-Start Assist Rollback Recall (15-R-058)",
+      "howToFix": "First, check with an Opel dealer whether recall 15-R-058 (hill-start assist software update, ~30 minutes of work, free of charge) was performed on the vehicle. For EPB faults: read fault codes before replacing parts. Test the console switch first (inexpensive and a frequent cause); if voltage reaches the switch and bridging the connector actuates the motors, replace the switch. Otherwise inspect rear caliper actuators and cables for seizure — seized rear calipers typically need replacement in pairs. A defective EPB control module is the most expensive outcome. Always park in gear on slopes until the system is repaired.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "First, check with an Opel dealer whether recall 15-R-058 (hill-start assist software update, ~30 minutes of work, free of charge) was performed on the vehicle."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "scanner-capability-needs-code-or-module",
+          "excerpt": "For EPB faults: read fault codes before replacing parts."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Test the console switch first (inexpensive and a frequent cause);"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Otherwise inspect rear caliper actuators and cables for seizure — seized rear calipers typically need replacement in pairs."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-astra-astra-j-electronic-parking-brake-faults-hill-start-assist-ro--prescription-0-0--all-engines",
+        "opel-astra-astra-j-electronic-parking-brake-faults-hill-start-assist-ro--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-astra-astra-k-1-6-cdti-whisper-diesel-egr-cooler-internal-leak-dpf",
+      "make": "Opel",
+      "model": "Astra",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Astra K 1.6 CDTI \"Whisper Diesel\" EGR Cooler Internal Leak and DPF Clogging",
+      "howToFix": "Pressure-test the cooling system and inspect the EGR cooler for internal leakage; check for coolant residue in the intake tract. Vauxhall/Opel sells the complete EGR cooler/valve assembly (around GBP 800-1000 in parts), but the cracked cooler sleeve alone is available as a separate part for roughly GBP 80 plus about an hour of labour, so insist on a sleeve-level repair quote first. Clean or force-regenerate the DPF if short-trip clogging is present, and have injector quantity corrections read out; replace and code any injector outside tolerance. Avoid sustained short-trip driving with this engine.",
+      "dtcCodes": [
+        "P0401"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure-test the cooling system and inspect the EGR cooler for internal leakage;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "check for coolant residue in the intake tract."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Clean or force-regenerate the DPF if short-trip clogging is present, and have injector quantity corrections read out;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0401"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-astra-astra-k-1-6-cdti-whisper-diesel-egr-cooler-internal-leak-dpf--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-astra-astra-k-1-6-diesel-brake-fluid-contamination-recall-reduced",
+      "make": "Opel",
+      "model": "Astra",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Astra K 1.6 Diesel Brake Fluid Contamination Recall — Reduced Braking Performance (18-C-120)",
+      "howToFix": "Check the vehicle's recall status with an Opel/Vauxhall dealer using the VIN and have campaign 18-C-120 completed free of charge — both stages: the brake/clutch fluid flush and, where required, the component replacement. On any used Astra K 1.6 diesel manual from this build window, confirm recall completion before purchase. If the brake pedal feels long or braking effort has increased on an unrepaired car, stop driving it and have the hydraulic system inspected immediately.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the vehicle's recall status with an Opel/Vauxhall dealer using the VIN and have campaign 18-C-120 completed free of charge — both stages: the brake/clutch fluid flush and, where required, the component replacement."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "On any used Astra K 1.6 diesel manual from this build window, confirm recall completion before purchase."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the brake pedal feels long or braking effort has increased on an unrepaired car, stop driving it and have the hydraulic system inspected immediately."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-astra-astra-l-1-2-turbo-wet-timing-belt-premature-degradation",
+      "make": "Opel",
+      "model": "Astra",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Astra L 1.2 Turbo (PureTech) Wet Timing Belt Premature Degradation",
+      "howToFix": "Verify the engine version by build date: early Astra L 1.2 Turbos (2022 into 2023 production) have the wet belt; the Gen-3 1.2 (from late 2023, including the new hybrid) uses a chain and is not affected. For wet-belt cars: use only oil meeting the exact Stellantis specification (PSA B71 2010 / 0W-20 as specified), change it strictly on or before schedule, and avoid chronic short-trip use. Have the belt inspected via the oil filler/inspection method (a low-cost belt-wear gauge exists) and replace it early at any sign of swelling or fraying, including cleaning the oil pick-up strainer. If damage occurred within 175,000 km / 10 years with full service history, claim goodwill coverage from Opel/Stellantis before paying out of pocket.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify the engine version by build date: early Astra L 1.2 Turbos (2022 into 2023 production) have the wet belt;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Have the belt inspected via the oil filler/inspection method (a low-cost belt-wear gauge exists) and replace it early at any sign of swelling or fraying, including cleaning the oil pick-up strainer."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-combo-parking-brake-lever-may-fail-to-lock-engaged-position",
+      "make": "Opel",
+      "model": "Combo",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Parking brake (handbrake) lever may fail to lock in engaged position",
+      "howToFix": "Have the recall completed at an authorised Opel/Vauxhall dealer. Technicians inspect the handbrake lever ratchet/latching mechanism and correct the misalignment or replace the lever assembly. Owners should check their VIN against the recall database to confirm the fix has been applied. Until repaired, always leave the vehicle in gear and chock wheels when parked on an incline.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Technicians inspect the handbrake lever ratchet/latching mechanism and correct the misalignment or replace the lever assembly."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners should check their VIN against the recall database to confirm the fix has been applied."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-combo-1-2-puretech-petrol-wet-timing-belt-premature-failure",
+      "make": "Opel",
+      "model": "Combo",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "1.2 PureTech / EB2 petrol (110 & 130 hp)"
+      ],
+      "title": "1.2 PureTech petrol wet timing belt premature failure (engine destruction risk)",
+      "howToFix": "Service the engine annually with the exact correct low-SAPS oil specification and never exceed the (revised, shortened) oil-change and belt-replacement intervals. Have the wet timing belt and oil pump strainer inspected/replaced early per the updated Stellantis schedule. If the car qualifies, claim repair costs through the Stellantis PureTech goodwill/warranty portal. Some specialists convert affected engines to an upgraded belt or recommend earlier renewal; a failed belt usually means a replacement or rebuilt engine.",
+      "dtcCodes": [
+        "P0011",
+        "P0016",
+        "P0521"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Have the wet timing belt and oil pump strainer inspected/replaced early per the updated Stellantis schedule."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0011, P0016, P0521"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-combo-diesel-adblue-scr-system-failure-preventing-engine-restart",
+      "make": "Opel",
+      "model": "Combo",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [
+        "1.5 BlueHDi diesel",
+        "1.6 BlueHDi diesel"
+      ],
+      "title": "Diesel AdBlue / SCR system failure preventing engine restart",
+      "howToFix": "Top up with genuine ISO 22241-compliant AdBlue and complete a steady driving cycle to let the ECU validate the correction. If the warning persists, have the SCR system, NOx sensors and AdBlue level/quality sensors diagnosed (Opel MDI/diagnostic tool) and replace the faulty sensor or injector. Avoid cheap/contaminated AdBlue, which damages the SCR catalyst and sensors. Crystallised AdBlue lines may need cleaning/replacement.",
+      "dtcCodes": [
+        "P204F",
+        "P20E8",
+        "P229F"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "If the warning persists, have the SCR system, NOx sensors and AdBlue level/quality sensors diagnosed (Opel MDI/diagnostic tool) and replace the faulty sensor or injector."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P204F, P20E8, P229F"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-combo-diesel-adblue-scr-system-failure-preventing-engine-restart--prescription-0-0--1-5-bluehdi-diesel",
+        "opel-combo-diesel-adblue-scr-system-failure-preventing-engine-restart--prescription-0-0--1-6-bluehdi-diesel",
+        "opel-combo-diesel-adblue-scr-system-failure-preventing-engine-restart--prescription-1-0--1-5-bluehdi-diesel",
+        "opel-combo-diesel-adblue-scr-system-failure-preventing-engine-restart--prescription-1-0--1-6-bluehdi-diesel"
+      ]
+    },
+    {
+      "issueId": "opel-combo-diesel-egr-valve-dpf-clogging-short-journey-use",
+      "make": "Opel",
+      "model": "Combo",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "1.5 BlueHDi diesel"
+      ],
+      "title": "Diesel EGR valve and DPF clogging on short-journey use",
+      "howToFix": "Drive for at least 10-15 minutes at 65 km/h (~40 mph) or more regularly to allow the DPF to regenerate. Use the correct low-ash (low-SAPS) diesel oil. If already clogged, perform a forced regeneration via diagnostics, clean or replace the EGR valve, and clean or replace the DPF. Address any leaking injectors or weak turbo boost that overload the DPF with soot. Buyers doing only short trips should consider the petrol model instead of the diesel.",
+      "dtcCodes": [
+        "P0401",
+        "P0402",
+        "P2002",
+        "P242F"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "If already clogged, perform a forced regeneration via diagnostics, clean or replace the EGR valve, and clean or replace the DPF."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0401, P0402, P2002, P242F"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-combo-diesel-egr-valve-dpf-clogging-short-journey-use--prescription-0-0--1-5-bluehdi-diesel",
+        "opel-combo-diesel-egr-valve-dpf-clogging-short-journey-use--prescription-1-0--1-5-bluehdi-diesel"
+      ]
+    },
+    {
+      "issueId": "opel-combo-front-seats-do-not-fully-recline",
+      "make": "Opel",
+      "model": "Combo",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front seats do not fully recline (design limitation, not a defect)",
+      "howToFix": "There is no official remedy because it is by design. Owners work around it with aftermarket seat cushions/extenders or sleep using the folded rear seats instead. Prospective buyers who need full front-seat recline should test this before purchase, as the platform does not support it.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Prospective buyers who need full front-seat recline should test this before purchase, as the platform does not support it."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-combo-infotainment-touchscreen-freezing-crashing-failing-to-respon",
+      "make": "Opel",
+      "model": "Combo",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment touchscreen freezing, crashing and failing to respond",
+      "howToFix": "Force a reboot by long-pressing the relevant button combination (e.g. holding the phone button ~5 seconds, or NAV + phone until the screen goes black). Check for and apply the latest infotainment software update via the dealer or Vauxhall/Opel update tool. Persistent cases may need a head-unit software re-flash or replacement under warranty. A full battery disconnect for several minutes can clear stubborn lockups.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check for and apply the latest infotainment software update via the dealer or Vauxhall/Opel update tool."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-combo-air-conditioning-compressor-stator-wiring-fault-causing-powe",
+      "make": "Opel",
+      "model": "Combo",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Air-conditioning compressor stator wiring fault causing powertrain shutdown while driving",
+      "howToFix": "Complete the DVSA/manufacturer recall at an authorised dealer. The repair involves inspecting and rectifying the AC compressor stator wiring (rework or replacement of the affected wiring/compressor) to prevent the current loss and shutdown. Check the VIN against the recall database to ensure it has been carried out.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "The repair involves inspecting and rectifying the AC compressor stator wiring (rework or replacement of the affected wiring/compressor) to prevent the current loss and shutdown."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN against the recall database to ensure it has been carried out."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-combo-air-conditioning-compressor-stator-wiring-fault-causing-powe--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-combo-steering-inner-tie-rods-steering-column-not-built-to-specifi",
+      "make": "Opel",
+      "model": "Combo",
+      "years": [
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Steering inner tie rods / steering column not built to specification",
+      "howToFix": "Have the relevant DVSA/manufacturer recall completed at an authorised dealer. Technicians inspect and replace the affected inner tie rods or steering column with correctly specified parts. Owners should verify their VIN against the recall list and report any unusual steering noise, play or pulling to the dealer.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Technicians inspect and replace the affected inner tie rods or steering column with correctly specified parts."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Owners should verify their VIN against the recall list and report any unusual steering noise, play or pulling to the dealer."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-combo-steering-inner-tie-rods-steering-column-not-built-to-specifi--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-combo-1-5-bluehdi-diesel-fuel-rail-leak-engine-bay-fire-risk",
+      "make": "Opel",
+      "model": "Combo",
+      "years": [
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "1.5 BlueHDi (DV5R) diesel"
+      ],
+      "title": "1.5 BlueHDi (DV5R) diesel fuel rail leak with engine-bay fire risk",
+      "howToFix": "Take the vehicle to an authorised dealer for the recall. Technicians inspect/replace the high-pressure fuel rail and ensure the rail cone/nut interface is correctly formed and torqued so fuel cannot escape. Owners of recent diesel Combos should check their VIN against the recall database and act on any leak smell of diesel immediately.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Technicians inspect/replace the high-pressure fuel rail and ensure the rail cone/nut interface is correctly formed and torqued so fuel cannot escape."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners of recent diesel Combos should check their VIN against the recall database and act on any leak smell of diesel immediately."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-corsa-corsa-d-front-subframe-corrosion",
+      "make": "Opel",
+      "model": "Corsa",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Corsa D Front Subframe (Axle Carrier) Corrosion",
+      "howToFix": "Inspect the front subframe and rear axle beam annually once the car is past ~7 years old, and treat surface rust early with rust converter and cavity/underbody wax. If corrosion is advanced or perforated, replace the axle carrier (new parts roughly €140-600; powder-coated replacements are recommended) — all stretch/tension bolts must be renewed and a wheel alignment performed afterwards. A professional replacement including alignment typically runs around €800.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the front subframe and rear axle beam annually once the car is past ~7 years old, and treat surface rust early with rust converter and cavity/underbody wax."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-corsa-corsa-d-heater-blower-resistor-failure-fan-only-works-speed",
+      "make": "Opel",
+      "model": "Corsa",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Corsa D Heater Blower Resistor Failure — Fan Only Works on Speed 4",
+      "howToFix": "Replace the heater blower resistor pack (GM part 55702407 / 13248240, roughly £15-35) — it is accessible behind the glovebox/heater body and is a common DIY job. Inspect the wiring connector for heat damage and fit a repair pigtail if melted. If the resistor fails again quickly, replace or lubricate the blower motor, as a worn motor drawing high current is what blows the resistor's thermal fuse.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the wiring connector for heat damage and fit a repair pigtail if melted."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-corsa-corsa-d-heater-blower-resistor-failure-fan-only-works-speed--prescription-0-0--all-engines",
+        "opel-corsa-corsa-d-heater-blower-resistor-failure-fan-only-works-speed--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-corsa-d-handbrake-cable-corrosion",
+      "make": "Opel",
+      "model": "Corsa",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Color Edition",
+        "Cosmo",
+        "Edition",
+        "Selection"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Corsa D Handbrake — Lever Mechanism (CSP) + Cable Wear",
+      "howToFix": "Check Vauxhall service-history records for the CSP modification — if not done, your dealer should still apply it free. Cable replacement €120-€280 incl. labor. Always test parking-brake hold on an incline periodically — failure can be sudden and silent.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check Vauxhall service-history records for the CSP modification — if not done, your dealer should still apply it free."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Always test parking-brake hold on an incline periodically — failure can be sudden and silent."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-corsa-d-handbrake-cable-corrosion--prescription-0-0--all"
+      ]
+    },
+    {
+      "issueId": "opel-corsa-d-stretched-timing-chain-1.2-1.4",
+      "make": "Opel",
+      "model": "Corsa",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Color Edition",
+        "Cosmo",
+        "Edition",
+        "Selection"
+      ],
+      "engines": [
+        "1.2 (A12XER/Z12XEP)",
+        "1.4 (A14XER/Z14XEP)"
+      ],
+      "title": "Corsa D 1.2 / 1.4 Petrol Timing Chain Stretch",
+      "howToFix": "Chain kit replacement (chain, tensioner, guides) typically €700-€1,200. Some independents will polish the existing sprockets; OEM kit is the durable fix. Use the correct Dexos2 oil (5W-30) and stick to 10,000 km intervals at most.",
+      "dtcCodes": [
+        "P0008",
+        "P0016",
+        "P0017",
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0016, P0017, P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-corsa-e-electric-power-steering",
+      "make": "Opel",
+      "model": "Corsa",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Cosmo",
+        "Edition",
+        "Selection"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Corsa E Electric Power Steering Column Failure",
+      "howToFix": "Replacement steering column assembly is the standard fix (€600-€1,200 dealer; refurbishment specialists offer rebuild at €300-€500). Always check service-history records for any goodwill replacements at the dealer; some owners have had part-funded repairs as a goodwill gesture even outside formal warranty.",
+      "dtcCodes": [
+        "C0545",
+        "U0131"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Always check service-history records for any goodwill replacements at the dealer;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C0545, U0131"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-corsa-corsa-f-1-2-puretech-wet-timing-belt-premature-degradation",
+      "make": "Opel",
+      "model": "Corsa",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Corsa F 1.2 PureTech Wet Timing Belt Premature Degradation",
+      "howToFix": "Have the wet belt inspected (a degraded belt shows swelling and shed teeth visible through the oil filler or during endoscope inspection) and replaced early — many specialists recommend every 4-6 years / 50,000-60,000 miles instead of the factory interval. Use only oil meeting the PSA B71 2312 / Stellantis specification and shorten oil change intervals to roughly 10,000 km or annually. If the oil pressure light has come on, the sump and oil pick-up strainer must also be cleaned of belt debris. Check eligibility under the Stellantis 10-year/180,000 km extended warranty and compensation scheme for belt-related repairs performed between January 2022 and December 2024.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Have the wet belt inspected (a degraded belt shows swelling and shed teeth visible through the oil filler or during endoscope inspection) and replaced early — many specialists recommend every 4-6 years / 50,000-60,000 miles instead of the factory interval."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check eligibility under the Stellantis 10-year/180,000 km extended warranty and compensation scheme for belt-related repairs performed between January 2022 and December 2024."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-corsa-corsa-f-ecoled-headlight-models-no-warning-when-turn-signal",
+      "make": "Opel",
+      "model": "Corsa",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Corsa F EcoLED Headlight Models — No Warning When a Turn Signal Fails (Recall 22-C-049)",
+      "howToFix": "Free recall fix at an Opel/Vauxhall dealer: a software update for the BSI central body control unit, taking about 45 minutes. Owners of 2019-2022 Corsa F cars with EcoLED headlights should verify by VIN that campaign E212102140 (22-C-049) has been performed; in the meantime, periodically check that all indicators flash correctly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners of 2019-2022 Corsa F cars with EcoLED headlights should verify by VIN that campaign E212102140 (22-C-049) has been performed;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "in the meantime, periodically check that all indicators flash correctly."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-corsa-corsa-f-side-airbag-unintended-deployment-faulty-ground-conn",
+      "make": "Opel",
+      "model": "Corsa",
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Corsa F Side Airbag Unintended Deployment — Faulty Ground Connection (Recall 20-C-192)",
+      "howToFix": "Free recall repair at any Opel/Vauxhall authorized workshop: the body ground points are inspected, sanded clean where corroded or poorly bonded, and resealed — about 30 minutes of work at no cost. Owners of 2019-2021 Corsa F/Corsa-e cars should check with a dealer (or via VIN) that campaign E202008520 / 20-C-192 has been carried out.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Free recall repair at any Opel/Vauxhall authorized workshop: the body ground points are inspected, sanded clean where corroded or poorly bonded, and resealed — about 30 minutes of work at no cost."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Owners of 2019-2021 Corsa F/Corsa-e cars should check with a dealer (or via VIN) that campaign E202008520 / 20-C-192 has been carried out."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-corsa-corsa-e-board-charger-fault-electric-traction-system-fault-b",
+      "make": "Opel",
+      "model": "Corsa",
+      "years": [
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Corsa-e On-Board Charger Fault — 'Electric Traction System Fault' / 'Battery Charge Fault'",
+      "howToFix": "Have an Opel/Vauxhall dealer check whether the OBC recall/service campaign is outstanding for the VIN and read out the stored DTCs — the campaign includes a software update and OBC replacement where codes confirm the fault (a 3-6 hour job, free under the campaign). If faults persist, the battery charge monitoring module (BECB) may need replacement under warranty. Test and replace the 12V auxiliary battery if weak, as low 12V voltage triggers the same warnings; disconnecting the 12V battery for a few minutes clears the fault only temporarily.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have an Opel/Vauxhall dealer check whether the OBC recall/service campaign is outstanding for the VIN and read out the stored DTCs — the campaign includes a software update and OBC replacement where codes confirm the fault (a 3-6 hour job, free under the campaign)."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If faults persist, the battery charge monitoring module (BECB) may need replacement under warranty."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Test and replace the 12V auxiliary battery if weak, as low 12V voltage triggers the same warnings;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-corsa-corsa-e-board-charger-fault-electric-traction-system-fault-b--prescription-0-0--all-engines",
+        "opel-corsa-corsa-e-board-charger-fault-electric-traction-system-fault-b--prescription-1-0--all-engines",
+        "opel-corsa-corsa-e-board-charger-fault-electric-traction-system-fault-b--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-crossland-1.2-puretech-oil-bath-belt",
+      "make": "Opel",
+      "model": "Crossland",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "Edition",
+        "Elegance",
+        "Innovation",
+        "Selection"
+      ],
+      "engines": [
+        "1.2 PureTech Turbo (EB2DTS)"
+      ],
+      "title": "Crossland 1.2 PureTech \"Wet\" Timing Belt Disintegration",
+      "howToFix": "Use ONLY Stellantis-approved Total Quartz INEO First 0W-30 (or equivalent C2 spec). Replace belt at 100,000 km / 6 years — earlier than original schedule (Stellantis revised guidance multiple times). Oil pickup strainer should be inspected if belt is overdue. Catastrophic failure means engine replacement (€5,000+).",
+      "dtcCodes": [
+        "P0521",
+        "P0524"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Oil pickup strainer should be inspected if belt is overdue."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0521, P0524"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-crossland-1-2-puretech-oil-bath-belt--prescription-0-0--1-2-puretech-turbo-eb2dts",
+        "opel-crossland-1-2-puretech-oil-bath-belt--prescription-1-0--1-2-puretech-turbo-eb2dts"
+      ]
+    },
+    {
+      "issueId": "opel-grandland-1.6-thp-timing-chain",
+      "make": "Opel",
+      "model": "Grandland",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "Edition",
+        "Elegance",
+        "GS Line",
+        "Innovation",
+        "Selection"
+      ],
+      "engines": [
+        "1.6 Turbo (Prince/THP)"
+      ],
+      "title": "Grandland X 1.6 THP Timing Chain Stretch",
+      "howToFix": "Chain kit replacement €1,200-€2,000. Stick to 10,000 km oil intervals with full-synthetic C2/C3. Listen for the characteristic \"death rattle\" on cold start — once consistent, replacement is urgent.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Listen for the characteristic \"death rattle\" on cold start — once consistent, replacement is urgent."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-grandland-diesel-scr-adblue-nox-sensor-emissions-fault-starting-imposs",
+      "make": "Opel",
+      "model": "Grandland",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "1.5 Diesel BlueHDi",
+        "1.6 Diesel"
+      ],
+      "engines": [
+        "1.5 BlueHDi (DV5)",
+        "1.6 diesel"
+      ],
+      "title": "Diesel SCR/AdBlue & NOx Sensor Emissions Fault with 'Starting Impossible' Limp Mode",
+      "howToFix": "Diagnose with a scan tool to identify whether the fault is a NOx sensor, the SCR/AdBlue dosing system, or sensor wiring/connector corrosion. Typical fixes: replace the failed NOx sensor (upstream/downstream), clean or replace the AdBlue injector/pump, refill with quality AdBlue, and clear the codes/reset the countdown. Software updates from Stellantis exist for some after-treatment faults. Do not ignore the 'start prevented' countdown.",
+      "dtcCodes": [
+        "P11DC",
+        "P20EE",
+        "P2202",
+        "P229F",
+        "P2BAD"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "Diagnose with a scan tool to identify whether the fault is a NOx sensor, the SCR/AdBlue dosing system, or sensor wiring/connector corrosion."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P11DC, P20EE, P2202, P229F, P2BAD"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-grandland-diesel-scr-adblue-nox-sensor-emissions-fault-starting-imposs--prescription-0-0--1-5-bluehdi-dv5",
+        "opel-grandland-diesel-scr-adblue-nox-sensor-emissions-fault-starting-imposs--prescription-0-0--1-6-diesel",
+        "opel-grandland-diesel-scr-adblue-nox-sensor-emissions-fault-starting-imposs--prescription-1-0--1-5-bluehdi-dv5",
+        "opel-grandland-diesel-scr-adblue-nox-sensor-emissions-fault-starting-imposs--prescription-1-0--1-6-diesel"
+      ]
+    },
+    {
+      "issueId": "opel-grandland-intellilink-nac-infotainment-freezing-reversing-camera-dropo",
+      "make": "Opel",
+      "model": "Grandland",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "IntelliLink / NAC infotainment"
+      ],
+      "engines": [],
+      "title": "IntelliLink/NAC Infotainment Freezing & Reversing Camera Dropout",
+      "howToFix": "Apply the latest infotainment/NAC software update from Opel/Vauxhall, which resolves many freeze and connectivity bugs. Persistent reversing-camera dropouts can require reseating/repairing the camera connector or replacing the camera or head unit if a hardware fault is confirmed. A battery disconnect/module reset is a common temporary workaround.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-grandland-intellilink-nac-infotainment-freezing-reversing-camera-dropo--prescription-0-0--all-engines",
+        "opel-grandland-intellilink-nac-infotainment-freezing-reversing-camera-dropo--prescription-1-0--all-engines",
+        "opel-grandland-intellilink-nac-infotainment-freezing-reversing-camera-dropo--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-grandland-eat8-automatic-transmission-jerking-hesitation-whining-noise",
+      "make": "Opel",
+      "model": "Grandland",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "1.5 Diesel",
+        "1.6 Turbo petrol",
+        "Hybrid/PHEV"
+      ],
+      "engines": [
+        "EAT8 / AWF8G30 8-speed automatic"
+      ],
+      "title": "EAT8 (Aisin AWF8) Automatic Transmission Jerking, Hesitation & Whining Noise",
+      "howToFix": "First step is a transmission adaptation reset followed by relearn drive cycle, plus any Opel/Stellantis transmission control software update; many cars improve significantly without mechanical repair. Persistent harsh shifting can require an ATF fluid level/quality check and service (the EAT8 needs the correct Aisin spec fluid). The whine is harder to resolve and sometimes requires valve body or gearbox replacement under warranty if severe.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Persistent harsh shifting can require an ATF fluid level/quality check and service (the EAT8 needs the correct Aisin spec fluid)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-grandland-1-2-puretech-wet-timing-belt-degradation-oil-starvation",
+      "make": "Opel",
+      "model": "Grandland",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "1.2 Turbo petrol"
+      ],
+      "engines": [
+        "1.2 PureTech EB2 (110/130 PS)"
+      ],
+      "title": "1.2 PureTech (EB2) Wet Timing Belt Degradation & Oil Starvation",
+      "howToFix": "Replace the wet timing belt well ahead of the original interval. Manufacturer guidance was revised down from ~180,000 km to roughly every 90,000-100,000 km (or 6 years); some specialists recommend even earlier inspection. Use only the correct low-SAPS oil and keep to short oil-change intervals to slow belt breakdown. If debris/oil starvation has occurred, the oil pump strainer, solenoids and possibly the engine must be inspected/replaced.",
+      "dtcCodes": [
+        "P0011",
+        "P0016"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "some specialists recommend even earlier inspection."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If debris/oil starvation has occurred, the oil pump strainer, solenoids and possibly the engine must be inspected/replaced."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0011, P0016"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-grandland-plug-hybrid-high-voltage-battery-fire-risk",
+      "make": "Opel",
+      "model": "Grandland",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Hybrid",
+        "Hybrid4 PHEV"
+      ],
+      "engines": [
+        "1.6 Turbo PHEV (13.2 kWh battery)"
+      ],
+      "title": "Plug-in Hybrid High-Voltage Battery Fire Risk (Recall KT8/KC5)",
+      "howToFix": "Take the vehicle to an authorized Opel/Vauxhall dealer to have the recall performed: technicians inspect the HV battery, add water drainage holes in the battery support/reinforcement to prevent water pooling and corrosion, and replace the battery if found defective. Until repaired, some campaigns advise limiting charging. Repair is free of charge under the recall.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Take the vehicle to an authorized Opel/Vauxhall dealer to have the recall performed: technicians inspect the HV battery, add water drainage holes in the battery support/reinforcement to prevent water pooling and corrosion, and replace the battery if found defective."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-grandland-front-lower-suspension-arm-ball-joint-bolt-failure",
+      "make": "Opel",
+      "model": "Grandland",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Lower Suspension Arm Ball Joint Bolt Failure (Recall KQG)",
+      "howToFix": "Have the recall carried out free of charge at an authorized Opel/Vauxhall dealer; technicians inspect and replace the suspension arm fixing screws/ball joint mount to the correct specification and torque. Owners noticing front-end clunking or knocking should have it inspected immediately.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "technicians inspect and replace the suspension arm fixing screws/ball joint mount to the correct specification and torque."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners noticing front-end clunking or knocking should have it inspected immediately."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-insignia-a-2.0-cdti-egr-cooler-crack",
+      "make": "Opel",
+      "model": "Insignia",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "Cosmo",
+        "Country Tourer",
+        "Edition",
+        "Sport",
+        "Sports Tourer"
+      ],
+      "engines": [
+        "2.0 CDTI (A20DT/A20DTH/A20DTR)"
+      ],
+      "title": "Insignia A 2.0 CDTI EGR Cooler Crack (Coolant Loss into Intake)",
+      "howToFix": "EGR cooler replacement €600-€1,200 incl. labor. If coolant has been pulled into cylinders, hydrolock check required. Some independents recommend EGR delete + remap — illegal in most markets and disqualifies TÜV inspection.",
+      "dtcCodes": [
+        "P0401",
+        "P0402",
+        "P046C"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If coolant has been pulled into cylinders, hydrolock check required."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Some independents recommend EGR delete + remap — illegal in most markets and disqualifies TÜV inspection."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0401, P0402, P046C"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-insignia-a-2-0-cdti-egr-cooler-crack--prescription-0-0--2-0-cdti-a20dt-a20dth-a20dtr"
+      ]
+    },
+    {
+      "issueId": "opel-insignia-a-aisin-af40-shift-quality",
+      "make": "Opel",
+      "model": "Insignia",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "Cosmo",
+        "Country Tourer",
+        "Edition",
+        "OPC",
+        "Sport"
+      ],
+      "engines": [
+        "2.0 CDTI",
+        "2.0 Turbo",
+        "2.8 Turbo V6"
+      ],
+      "title": "Insignia A Aisin AF40 Harsh Shifts / Shudder",
+      "howToFix": "Drain-and-fill ATF every 60,000 km using Aisin JWS3309 / Dexron VI-compatible fluid (~€150-€250 DIY). Solenoid pack replacement if shifts remain harsh (€500-€900). Full mechatronic / valve body rebuild €1,500-€2,500. Severe shudder may indicate torque converter wear.",
+      "dtcCodes": [
+        "P0741",
+        "P0746",
+        "P0776"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0741, P0746, P0776"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-insignia-a-aisin-af40-shift-quality--prescription-0-0--2-0-cdti",
+        "opel-insignia-a-aisin-af40-shift-quality--prescription-0-0--2-0-turbo",
+        "opel-insignia-a-aisin-af40-shift-quality--prescription-0-0--2-8-turbo-v6"
+      ]
+    },
+    {
+      "issueId": "opel-insignia-a-flexpipe-exhaust-failure",
+      "make": "Opel",
+      "model": "Insignia",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "Cosmo",
+        "Country Tourer",
+        "Edition",
+        "Sport",
+        "Sports Tourer"
+      ],
+      "engines": [
+        "2.0 CDTI",
+        "2.0 Turbo"
+      ],
+      "title": "Insignia A Flex-Pipe Exhaust Failure",
+      "howToFix": "Flex section can be cut out and replaced (independent specialist €120-€280) instead of buying the full front pipe. OEM full pipe €350-€600. Check downstream lambda sensor function after repair.",
+      "dtcCodes": [
+        "P0171",
+        "P0420",
+        "P0430"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check downstream lambda sensor function after repair."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0420, P0430"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-insignia-insignia-2-0-cdti-premature-timing-belt-water-pump-failure",
+      "make": "Opel",
+      "model": "Insignia",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Insignia A 2.0 CDTI Premature Timing Belt / Water Pump Failure (Engine Destruction)",
+      "howToFix": "Replace the timing belt kit early and completely: belt, tensioner, idler rollers AND the water pump together, ideally every 90,000-100,000 km or 6 years rather than waiting for the maximum factory interval (German workshops quote roughly 450-750 EUR for the full job). Investigate any whining or grinding from the belt area or unexplained coolant loss immediately, since a failing water pump is the most common belt killer. If the belt has already snapped, the engine must be stripped: expect bent valves, damaged rockers and possible piston contact — repairs range from a cylinder head overhaul to a replacement engine.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-insignia-insignia-2-0-cdti-premature-timing-belt-water-pump-failure--prescription-0-0--all-engines",
+        "opel-insignia-insignia-2-0-cdti-premature-timing-belt-water-pump-failure--prescription-1-0--all-engines",
+        "opel-insignia-insignia-2-0-cdti-premature-timing-belt-water-pump-failure--prescription-2-0--all-engines",
+        "opel-insignia-insignia-2-0-cdti-premature-timing-belt-water-pump-failure--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-insignia-insignia-4x4-haldex-coupling-rear-differential-failure",
+      "make": "Opel",
+      "model": "Insignia",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Insignia A 4x4 Haldex Coupling & Rear Differential Failure (Oil Mixing / Pump Failure)",
+      "howToFix": "Preventive care is the cheap fix: change the Haldex oil (and clean the pump screen) every 40,000-60,000 km even though Opel does not require it, and have the diff to Haldex shaft seal checked for weeping whenever the car is on a lift. If knocking/juddering in tight corners has started, have the Haldex pump, fluid condition and seal inspected before the differential is damaged — a pump and oil service is a few hundred euros, while a worn-out unit means a ~2,000 EUR differential or ~4,000 EUR complete rear drive unit. After repair, the Haldex/ABS-ESP software may need reprogramming.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Preventive care is the cheap fix: change the Haldex oil (and clean the pump screen) every 40,000-60,000 km even though Opel does not require it, and have the diff to Haldex shaft seal checked for weeping whenever the car is on a lift."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If knocking/juddering in tight corners has started, have the Haldex pump, fluid condition and seal inspected before the differential is damaged — a pump and oil service is a few hundred euros, while a worn-out unit means a ~2,000 EUR differential or ~4,000 EUR complete rear drive unit."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-insignia-insignia-electric-parking-brake-actuator-control-module-fail",
+      "make": "Opel",
+      "model": "Insignia",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Insignia A Electric Parking Brake Actuator / Control Module Failure",
+      "howToFix": "Diagnose before replacing parts: read EPB fault codes and check the switch, cables and actuator individually — a corroded cable set or worn switch is far cheaper than the actuator/control unit. Always put the EPB into service mode (or use a diagnostic tester) before doing any rear brake work, otherwise the actuator can over-travel and jam. If the actuator motor or control module has failed, replacement (often with the latest software) is the fix; budget a few hundred euros for switch/cables up to 1,500-2,000 EUR for the dealer actuator/control-unit job. Freeing a stuck brake at the roadside may require manual release and a tow.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnose before replacing parts: read EPB fault codes and check the switch, cables and actuator individually — a corroded cable set or worn switch is far cheaper than the actuator/control unit."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Always put the EPB into service mode (or use a diagnostic tester) before doing any rear brake work, otherwise the actuator can over-travel and jam."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-insignia-insignia-electric-parking-brake-actuator-control-module-fail--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-insignia-navi-900-intellilink-infotainment-display-failure",
+      "make": "Opel",
+      "model": "Insignia",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Navi 900 / IntelliLink Infotainment Display Failure (Black Screen, Freezing, Reboot Loops)",
+      "howToFix": "First try a soft reset (some freezes clear after disconnecting the battery for ~10 minutes) and ask the dealer to load the latest firmware, which resolved some crash patterns. For hardware faults — flickering, dead touch layer, U150F, reboot loops — the cost-effective route is a board-level repair of the display/head unit by an electronics specialist (around 300 EUR, typically 2-4 hours or mail-in) rather than a new unit from Opel, which can run 800-1,500 EUR plus programming. Check connector seating on the display ribbon cables when the unit is out, as poor connections mimic display failure.",
+      "dtcCodes": [
+        "U150F"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check connector seating on the display ribbon cables when the unit is out, as poor connections mimic display failure."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "U150F"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-insignia-insignia-b-2-0-diesel-fuel-line-chafing-fire-risk",
+      "make": "Opel",
+      "model": "Insignia",
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Insignia B 2.0 Diesel Fuel Line Chafing — Fire Risk (KBA Recall E191905110 / 20-C-012)",
+      "howToFix": "Check whether the recall has been performed: enter the VIN on Opel's official recall-check page or ask any Opel dealer to query the campaign status (KBA E191905110 / Opel 20-C-012). If open, the dealer inspects the fuel line routing, replaces the damaged line where needed, fits a new spacer and adds protective sleeving — free of charge, about 30 minutes. Until the fix is done, investigate any diesel smell or visible wetness on fuel lines near the engine immediately and do not keep driving with an active fuel leak.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check whether the recall has been performed: enter the VIN on Opel's official recall-check page or ask any Opel dealer to query the campaign status (KBA E191905110 / Opel 20-C-012)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-mokka-a-1.7-cdti-water-pump",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Color Edition",
+        "Edition",
+        "Innovation",
+        "Selection"
+      ],
+      "engines": [
+        "1.7 CDTI (A17DTS)"
+      ],
+      "title": "Mokka A 1.7 CDTI Water Pump / Timing Belt Drive",
+      "howToFix": "Replace water pump WITH timing belt as a kit (€700-€1,100) rather than belt alone. Catastrophic pump failure with belt jump means head rebuild (€2,500+). Do the kit early if there's any whining or weeping from the pump.",
+      "dtcCodes": [
+        "P0335",
+        "P0340"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0335, P0340"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-mokka-a-1-7-cdti-water-pump--prescription-0-0--1-7-cdti-a17dts"
+      ]
+    },
+    {
+      "issueId": "opel-mokka-1-4-turbo-timing-chain-stretch-cold-start-rattle",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "1.4 Turbo / 1.4 Turbo 4x4"
+      ],
+      "engines": [
+        "1.4 Turbo petrol (A14NET / B14NET, GM Family 0)"
+      ],
+      "title": "1.4 Turbo Timing Chain Stretch / Cold-Start Rattle (A14NET/B14NET)",
+      "howToFix": "Diagnose chain stretch via crank/cam correlation and cam-timing fault codes; replace the timing chain, tensioner, guides and sprockets as a kit, using genuine/quality parts and the correct oil and service intervals to prevent recurrence. Address any related turbo or water-pump wear at the same time while the front is apart.",
+      "dtcCodes": [
+        "P0008",
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose chain stretch via crank/cam correlation and cam-timing fault codes;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-mokka-1-4-turbo-timing-chain-stretch-cold-start-rattle--prescription-0-0--1-4-turbo-petrol-a14net-b14net-gm-family-0",
+        "opel-mokka-1-4-turbo-timing-chain-stretch-cold-start-rattle--prescription-1-0--1-4-turbo-petrol-a14net-b14net-gm-family-0",
+        "opel-mokka-1-4-turbo-timing-chain-stretch-cold-start-rattle--prescription-2-0--1-4-turbo-petrol-a14net-b14net-gm-family-0",
+        "opel-mokka-1-4-turbo-timing-chain-stretch-cold-start-rattle--prescription-3-0--1-4-turbo-petrol-a14net-b14net-gm-family-0"
+      ]
+    },
+    {
+      "issueId": "opel-mokka-diesel-particulate-filter-clogging-failed-regeneration",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "1.6 CDTI",
+        "1.7 CDTI"
+      ],
+      "engines": [
+        "1.6 CDTI",
+        "1.7 CDTI diesel"
+      ],
+      "title": "Diesel Particulate Filter (DPF) Clogging & Failed Regeneration",
+      "howToFix": "Take the car on regular sustained motorway drives to allow active regeneration; when clogged, perform a forced (static) regeneration with a diagnostic tool or professional DPF clean. A failed/blocked filter must be replaced. Fix any underlying EGR, injector or sensor faults that prevent successful regen.",
+      "dtcCodes": [
+        "P2002",
+        "P242F",
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "when clogged, perform a forced (static) regeneration with a diagnostic tool or professional DPF clean."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2002, P242F, P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-mokka-diesel-particulate-filter-clogging-failed-regeneration--prescription-0-0--1-6-cdti",
+        "opel-mokka-diesel-particulate-filter-clogging-failed-regeneration--prescription-0-0--1-7-cdti-diesel"
+      ]
+    },
+    {
+      "issueId": "opel-mokka-dual-mass-flywheel-rattle-clutch-judder",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "1.6 CDTI manual",
+        "1.7 CDTI manual"
+      ],
+      "engines": [
+        "1.6 CDTI",
+        "1.7 CDTI diesel"
+      ],
+      "title": "Dual-Mass Flywheel Rattle / Clutch Judder (Manual Diesel)",
+      "howToFix": "Confirm DMF wear (excess rotational free-play, characteristic rattle) and replace the dual-mass flywheel; because the gearbox must come out, the clutch kit (and often the slave cylinder) is replaced at the same time to avoid duplicate labour.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm DMF wear (excess rotational free-play, characteristic rattle) and replace the dual-mass flywheel;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-mokka-start-stop-system-malfunction-12v-battery-parasitic-drain",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "1.4 Turbo",
+        "1.6 CDTI"
+      ],
+      "engines": [
+        "1.4 Turbo petrol",
+        "1.6 CDTI diesel"
+      ],
+      "title": "Start-Stop System Malfunction / 12V Battery Parasitic Drain (ICE)",
+      "howToFix": "Test the battery and alternator first and fit the correct AGM/EFB battery with proper coding/registration; if drain persists, perform a parasitic-draw test to find the module/circuit staying awake and repair it. Ensure software is up to date.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Test the battery and alternator first and fit the correct AGM/EFB battery with proper coding/registration;"
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "if drain persists, perform a parasitic-draw test to find the module/circuit staying awake and repair it."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-mokka-start-stop-system-malfunction-12v-battery-parasitic-drain--prescription-0-0--1-4-turbo-petrol",
+        "opel-mokka-start-stop-system-malfunction-12v-battery-parasitic-drain--prescription-0-0--1-6-cdti-diesel"
+      ]
+    },
+    {
+      "issueId": "opel-mokka-air-conditioning-condenser-leak-compressor-failure",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "1.4 Turbo",
+        "1.6 CDTI"
+      ],
+      "engines": [],
+      "title": "Air Conditioning Condenser Leak / Compressor Failure",
+      "howToFix": "Leak-test the system (UV dye / electronic sniffer / nitrogen pressure test) to locate the leak; replace the condenser, expansion valve or compressor as required, evacuate and recharge with the correct refrigerant and oil. Replacing the receiver/drier is recommended when the system is opened.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Leak-test the system (UV dye / electronic sniffer / nitrogen pressure test) to locate the leak;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-mokka-air-conditioning-condenser-leak-compressor-failure--prescription-0-0--all-engines",
+        "opel-mokka-air-conditioning-condenser-leak-compressor-failure--prescription-1-0--all-engines",
+        "opel-mokka-air-conditioning-condenser-leak-compressor-failure--prescription-2-0--all-engines",
+        "opel-mokka-air-conditioning-condenser-leak-compressor-failure--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "opel-mokka-1-6-cdti-egr-valve-cooler-carbon-clogging",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "1.6 CDTI"
+      ],
+      "engines": [
+        "1.6 CDTI diesel (B16DTH / B16DTU)"
+      ],
+      "title": "1.6 CDTI EGR Valve & Cooler Carbon Clogging (P0401)",
+      "howToFix": "Remove and ultrasonically clean the EGR valve, throttle body and intake pipe; in many cases the EGR cooler is fully clogged or the bypass flap is broken and must be replaced. Verify MAF/MAP sensors and vacuum lines. Regular motorway runs and good-quality diesel reduce recurrence.",
+      "dtcCodes": [
+        "P0101",
+        "P0401",
+        "P0404"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify MAF/MAP sensors and vacuum lines."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0101, P0401, P0404"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-mokka-1-6-cdti-egr-valve-cooler-carbon-clogging--prescription-0-0--1-6-cdti-diesel-b16dth-b16dtu"
+      ]
+    },
+    {
+      "issueId": "opel-mokka-e-12v-battery-drain",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Electric",
+        "Mokka-e"
+      ],
+      "engines": [
+        "Electric"
+      ],
+      "title": "Mokka-e 12V Auxiliary Battery Drain",
+      "howToFix": "Update vehicle software to latest (dealer can check; some VINs covered by recall). Use a 12V battery maintainer for parked stretches over 1 week. Disable MyOpel remote polling if parking long-term. AGM 12V replacement needs coding — DIY is risky; dealer cost ~€290 (€150-€250 battery + €50-€100 fit/code).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Update vehicle software to latest (dealer can check;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-mokka-1-2-puretech-wet-timing-belt-degradation-failure",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "1.2 Turbo (PureTech 100/130)"
+      ],
+      "engines": [
+        "1.2 PureTech (EB2/EB2ADTS, 3-cylinder turbo petrol)"
+      ],
+      "title": "1.2 PureTech Wet Timing Belt Degradation / Failure (Mokka B)",
+      "howToFix": "Strictly follow the (shortened) oil-and-belt service interval with the correct low-SAPS oil; replace the wet belt, tensioner and oil pump strainer preventively (many indies convert/replace early). If oil consumption or belt debris is found, submit a claim through the Stellantis PureTech compensation portal / authorised dealer; catastrophic failures require a full engine rebuild or replacement.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-mokka-1-2-puretech-wet-timing-belt-degradation-failure--prescription-0-0--1-2-puretech-eb2-eb2adts-3-cylinder-turbo-petrol",
+        "opel-mokka-1-2-puretech-wet-timing-belt-degradation-failure--prescription-1-0--1-2-puretech-eb2-eb2adts-3-cylinder-turbo-petrol",
+        "opel-mokka-1-2-puretech-wet-timing-belt-degradation-failure--prescription-2-0--1-2-puretech-eb2-eb2adts-3-cylinder-turbo-petrol"
+      ]
+    },
+    {
+      "issueId": "opel-mokka-mokka-e-onboard-ac-charger-failure",
+      "make": "Opel",
+      "model": "Mokka",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Mokka-e / Mokka Electric"
+      ],
+      "engines": [
+        "BEV (50 kWh, e-CMP)"
+      ],
+      "title": "Mokka-e Onboard AC Charger (Mahle 11kW) Failure",
+      "howToFix": "Diagnose the OBC via dealer/EV specialist; the fix is replacement of the onboard charger module (covered under the EV-component / battery extended warranty where applicable). As a temporary workaround some owners reduce wallbox current (e.g. 32A to 16A) or use DC rapid charging until repaired.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Diagnose the OBC via dealer/EV specialist;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-mokka-mokka-e-onboard-ac-charger-failure--prescription-0-0--bev-50-kwh-e-cmp"
+      ]
+    },
+    {
+      "issueId": "opel-vivaro-b-1.6-biturbo-timing-chain",
+      "make": "Opel",
+      "model": "Vivaro",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Cargo",
+        "Combi",
+        "Sportive",
+        "Tour"
+      ],
+      "engines": [
+        "1.6 BiTurbo CDTI (R9M)"
+      ],
+      "title": "Vivaro B 1.6 BiTurbo CDTI (R9M) Timing Chain Stretch",
+      "howToFix": "Full chain kit (€1,200-€1,800) including chain, guides, tensioners, sprockets — full job often involves engine drop in vans due to tight clearance. Use C4-spec low-SAPS 5W-30 oil and shorten intervals to 15,000 km max for fleet/stop-start duty.",
+      "dtcCodes": [
+        "P0016",
+        "P0017",
+        "P0335"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017, P0335"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-zafira-1-8-petrol-coolant-leaks-water-pump-failure",
+      "make": "Opel",
+      "model": "Zafira",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Zafira B"
+      ],
+      "engines": [
+        "1.8 A18XER",
+        "1.8 Z18XER"
+      ],
+      "title": "1.8 Petrol (Z18XER/A18XER) Coolant Leaks and Water Pump Failure",
+      "howToFix": "Pressure-test the cooling system to pinpoint the leak. Replace the water pump (ideally with the timing belt and tensioner as a combined job, ~every 60k miles / belt interval), and renew cracked plastic coolant pipes, the thermostat housing and any perished hoses. Inspect the oil cooler seal. Use the correct long-life coolant.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure-test the cooling system to pinpoint the leak."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the oil cooler seal."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-zafira-1-8-petrol-coolant-leaks-water-pump-failure--prescription-0-0--1-8-a18xer",
+        "opel-zafira-1-8-petrol-coolant-leaks-water-pump-failure--prescription-0-0--1-8-z18xer",
+        "opel-zafira-1-8-petrol-coolant-leaks-water-pump-failure--prescription-1-0--1-8-a18xer",
+        "opel-zafira-1-8-petrol-coolant-leaks-water-pump-failure--prescription-1-0--1-8-z18xer",
+        "opel-zafira-1-8-petrol-coolant-leaks-water-pump-failure--prescription-2-0--1-8-a18xer",
+        "opel-zafira-1-8-petrol-coolant-leaks-water-pump-failure--prescription-2-0--1-8-z18xer",
+        "opel-zafira-1-8-petrol-coolant-leaks-water-pump-failure--prescription-3-0--1-8-a18xer",
+        "opel-zafira-1-8-petrol-coolant-leaks-water-pump-failure--prescription-3-0--1-8-z18xer"
+      ]
+    },
+    {
+      "issueId": "opel-zafira-1-9-cdti-swirl-flap-linkage-failure",
+      "make": "Opel",
+      "model": "Zafira",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Zafira B"
+      ],
+      "engines": [
+        "1.9 CDTi Z19DT",
+        "1.9 CDTi Z19DTH"
+      ],
+      "title": "1.9 CDTi Swirl Flap (Drallklappen) Linkage Failure (Z19DTH/Z19DT)",
+      "howToFix": "Fit a swirl flap linkage repair kit (replacement rod, bushings and clips) — a low-cost fix that restores flap movement; clear codes afterwards. Some owners delete/blank the swirl flaps where legal. Inspect and clean the EGR valve and intake at the same time, as carbon build-up worsens the problem.",
+      "dtcCodes": [
+        "P2075",
+        "P2279"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and clean the EGR valve and intake at the same time, as carbon build-up worsens the problem."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2075, P2279"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-zafira-1-9-cdti-swirl-flap-linkage-failure--prescription-0-0--1-9-cdti-z19dt",
+        "opel-zafira-1-9-cdti-swirl-flap-linkage-failure--prescription-0-0--1-9-cdti-z19dth"
+      ]
+    },
+    {
+      "issueId": "opel-zafira-b-fire-risk-heater-blower",
+      "make": "Opel",
+      "model": "Zafira",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Cosmo",
+        "Edition",
+        "Selection",
+        "Sport"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Zafira B Fire Risk — HVAC Blower Resistor (2015-2016 Recall)",
+      "howToFix": "Check the VIN and heating/air-conditioning configuration with Vauxhall and complete every outstanding recall free of charge. The official second-recall repair uses a wax-fuse heater-fan resistor and water deflector and checks the blower motor for replacement. Until that repair, follow the current manufacturer instruction for the exact vehicle; the 2016 letter specifies fan setting 0 or 4 and setting 0 if speed 4 does not operate. Never bypass a thermal fuse. Do not buy or install a resistor, motor or wiring repair from this page; recall status and the authorized remedy are VIN-specific.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN and heating/air-conditioning configuration with Vauxhall and complete every outstanding recall free of charge."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-zafira-electric-power-steering-column-unit-failure",
+      "make": "Opel",
+      "model": "Zafira",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Zafira B"
+      ],
+      "engines": [],
+      "title": "Electric Power Steering (Delphi EPS) Column Unit Failure",
+      "howToFix": "Diagnose via stored code (C1500). The EPS column unit can be remanufactured/repaired (sensor and electronics rebuilt) by specialists at lower cost than a new genuine unit, or replaced with a new column. Reset/relearn the steering angle sensor after fitment. Check connector and wiring integrity first, as poor connections can mimic the fault.",
+      "dtcCodes": [
+        "C1500"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose via stored code (C1500)."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check connector and wiring integrity first, as poor connections can mimic the fault."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1500"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-zafira-steering-column-intermediate-shaft-loose-press-fit",
+      "make": "Opel",
+      "model": "Zafira",
+      "years": [
+        2009,
+        2010
+      ],
+      "trims": [
+        "Zafira B"
+      ],
+      "engines": [],
+      "title": "Steering Column Intermediate Shaft Loose Press-Fit (Safety Recall R/2010/032)",
+      "howToFix": "Have a new intermediate steering shaft fitted under the manufacturer recall (free of charge). Check the recall status by VIN with an Opel/Vauxhall dealer; any car with knocking or play in the column from this build window should be inspected before further driving.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the recall status by VIN with an Opel/Vauxhall dealer;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "any car with knocking or play in the column from this build window should be inspected before further driving."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "opel-zafira-c-1.6-cdti-egr-cooler",
+      "make": "Opel",
+      "model": "Zafira",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Cosmo",
+        "Edition",
+        "Selection",
+        "Tourer"
+      ],
+      "engines": [
+        "1.6 CDTI (B16DTH \"Whisper Diesel\")"
+      ],
+      "title": "Zafira Tourer 1.6 CDTI EGR Cooler Failure",
+      "howToFix": "EGR cooler assembly replacement €550-€1,100. Check for coolant in oil (head gasket damage from hydrolock attempts). Use only Dex-Cool-compatible coolant (G12++) — mixed coolants accelerate failure.",
+      "dtcCodes": [
+        "P0401",
+        "P046C"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check for coolant in oil (head gasket damage from hydrolock attempts)."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0401, P046C"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-zafira-c-1-6-cdti-egr-cooler--prescription-0-0--1-6-cdti-b16dth-whisper-diesel"
+      ]
+    },
+    {
+      "issueId": "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch",
+      "make": "Opel",
+      "model": "Zafira",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Zafira Tourer C"
+      ],
+      "engines": [
+        "1.6 CDTi B16DTE",
+        "1.6 CDTi B16DTH",
+        "1.6 CDTi B16DTL"
+      ],
+      "title": "1.6 CDTi Timing Chain Tensioner Failure and Chain Stretch (B16DTH/B16DTE/B16DTL)",
+      "howToFix": "Replace the timing chain, both sprockets, guides and the uprated/gasketed tensioner as a kit (10-12 hours labour, often requiring engine/gearbox separation). Catch it early at the first cold-start rattle. Frequent oil changes with the correct dexos2 spec oil at 6,000-9,000 mile intervals slow chain wear. If the chain has already snapped, expect a full engine rebuild or replacement.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-0-0--1-6-cdti-b16dte",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-0-0--1-6-cdti-b16dth",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-0-0--1-6-cdti-b16dtl",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-1-0--1-6-cdti-b16dte",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-1-0--1-6-cdti-b16dth",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-1-0--1-6-cdti-b16dtl",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-2-0--1-6-cdti-b16dte",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-2-0--1-6-cdti-b16dth",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-2-0--1-6-cdti-b16dtl",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-3-0--1-6-cdti-b16dte",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-3-0--1-6-cdti-b16dth",
+        "opel-zafira-1-6-cdti-timing-chain-tensioner-failure-chain-stretch--prescription-3-0--1-6-cdti-b16dtl"
+      ]
+    },
+    {
+      "issueId": "opel-zafira-nox-sensor-scr-system-failure-euro-6-diesels",
+      "make": "Opel",
+      "model": "Zafira",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Zafira Tourer C"
+      ],
+      "engines": [
+        "1.6 CDTi B16DTH",
+        "2.0 CDTi B20DTH",
+        "2.0 CDTi D20DTH"
+      ],
+      "title": "NOx Sensor / SCR System Failure on Euro 6 Diesels (Zafira Tourer C)",
+      "howToFix": "Diagnose with a scan tool to identify which NOx sensor (position 1 upstream or position 2 downstream) and confirm the SCR catalyst is functioning. Replace the failed NOx sensor with an OE-quality part and clear codes. Verify AdBlue/DEF quality and dosing, and rule out a genuinely degraded SCR catalyst before condemning the sensor.",
+      "dtcCodes": [
+        "P118B",
+        "P20EE",
+        "P229F"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "Diagnose with a scan tool to identify which NOx sensor (position 1 upstream or position 2 downstream) and confirm the SCR catalyst is functioning."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify AdBlue/DEF quality and dosing, and rule out a genuinely degraded SCR catalyst before condemning the sensor."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P118B, P20EE, P229F"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-zafira-nox-sensor-scr-system-failure-euro-6-diesels--prescription-0-0--1-6-cdti-b16dth",
+        "opel-zafira-nox-sensor-scr-system-failure-euro-6-diesels--prescription-0-0--2-0-cdti-b20dth",
+        "opel-zafira-nox-sensor-scr-system-failure-euro-6-diesels--prescription-0-0--2-0-cdti-d20dth"
+      ]
+    },
+    {
+      "issueId": "opel-zafira-front-suspension-control-arm-bolt-corrosion-breakage",
+      "make": "Opel",
+      "model": "Zafira",
+      "years": [
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "Zafira Life",
+        "Zafira Tourer"
+      ],
+      "engines": [],
+      "title": "Front Suspension Control Arm Bolt Corrosion / Breakage (KBA Recall 15411R)",
+      "howToFix": "Under the recall, an authorised workshop replaces the screws/bolts and bushings on both sides of the front control arms. Owners should check recall status by VIN and have the work done before further driving if a clunk or handling change is noticed at the front.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners should check recall status by VIN and have the work done before further driving if a clunk or handling change is noticed at the front."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "opel-zafira-front-suspension-control-arm-bolt-corrosion-breakage--prescription-0-0--all-engines",
+        "opel-zafira-front-suspension-control-arm-bolt-corrosion-breakage--prescription-1-0--all-engines"
+      ]
+    }
+  ]
+}

@@ -455,6 +455,19 @@ function jsonEqual(left, right) {
   return JSON.stringify(stableValue(left)) === JSON.stringify(stableValue(right));
 }
 
+const AMAZON_DOMAINS = new Set([
+  'amazon.com', 'amazon.ca', 'amazon.co.uk', 'amazon.com.au', 'amazon.de',
+  'amazon.fr', 'amazon.it', 'amazon.es', 'amazon.nl', 'amazon.pl',
+]);
+const EBAY_DOMAINS = new Set([
+  'ebay.com', 'ebay.ca', 'ebay.co.uk', 'ebay.com.au', 'ebay.de', 'ebay.fr',
+  'ebay.it', 'ebay.es', 'ebay.at', 'ebay.be', 'ebay.ch', 'ebay.ie', 'ebay.nl', 'ebay.pl',
+]);
+
+function isOwnedMarketplaceHost(host, domains) {
+  return [...domains].some((domain) => host === domain || host.endsWith(`.${domain}`));
+}
+
 function productUrlError(value) {
   let parsed;
   try {
@@ -471,8 +484,11 @@ function productUrlError(value) {
   if (/(^|\/)(s|search|search-results?|sch|partsearch|category|catalog)(\/|$)/i.test(pathname)) {
     return 'search/category URL';
   }
-  const amazonHost = host === 'amazon.com' || host.endsWith('.amazon.com') || /^amazon\.[a-z.]+$/.test(host) || /\.amazon\.[a-z.]+$/.test(host);
-  const ebayHost = host === 'ebay.com' || host.endsWith('.ebay.com') || /^ebay\.[a-z.]+$/.test(host) || /\.ebay\.[a-z.]+$/.test(host);
+  const amazonHost = isOwnedMarketplaceHost(host, AMAZON_DOMAINS);
+  const ebayHost = isOwnedMarketplaceHost(host, EBAY_DOMAINS);
+  const hostLabels = host.split('.');
+  if (!amazonHost && hostLabels.includes('amazon')) return 'lookalike Amazon host';
+  if (!ebayHost && hostLabels.includes('ebay')) return 'lookalike eBay host';
   if (amazonHost) {
     if (!/(^|\/)(dp|gp\/product)\/[a-z0-9]{10}(\/|$)/i.test(pathname)) return 'Amazon URL is not a product detail page';
   }
@@ -487,13 +503,19 @@ function vendorMatchesUrl(vendor, value) {
   try {
     const host = new URL(value).hostname.toLowerCase().replace(/^www\./, '');
     const normalized = String(vendor || '').toLowerCase().replace(/[^a-z0-9]/g, '');
-    if (normalized === 'amazon') return host === 'amazon.com' || host.endsWith('.amazon.com') || /^amazon\.[a-z.]+$/.test(host) || /\.amazon\.[a-z.]+$/.test(host);
-    if (normalized === 'ebay') return host === 'ebay.com' || host.endsWith('.ebay.com') || /^ebay\.[a-z.]+$/.test(host) || /\.ebay\.[a-z.]+$/.test(host);
+    if (normalized === 'amazon') return isOwnedMarketplaceHost(host, AMAZON_DOMAINS);
+    if (normalized === 'ebay') return isOwnedMarketplaceHost(host, EBAY_DOMAINS);
     const hostBrand = host.split('.').slice(-2, -1)[0].replace(/[^a-z0-9]/g, '');
     return normalized.length >= 3 && (hostBrand.includes(normalized) || normalized.includes(hostBrand));
   } catch {
     return false;
   }
+}
+
+function commerceLinkMerchantKey(link) {
+  if (vendorMatchesUrl('eBay', link.url)) return 'ebay';
+  if (vendorMatchesUrl('Amazon', link.url)) return 'amazon';
+  return String(link.vendor || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
 function recommendationHasCommerce(rec) {
@@ -687,6 +709,21 @@ function validateFullRecordIssue(issue, prefix, errors) {
       errors.push(`${prefix}: invalid after.fixParts[${index}].component`);
     }
     if (!Array.isArray(part && part.buyLinks)) errors.push(`${prefix}: after.fixParts[${index}].buyLinks must be an array`);
+    const links = asArray(part && part.buyLinks);
+    if (links.length > 2) errors.push(`${prefix}: after.fixParts[${index}].buyLinks exceeds the two-link cap`);
+    const seenUrls = new Set();
+    const seenMerchants = new Set();
+    for (const link of links) {
+      let canonicalUrl = String(link && link.url || '');
+      try { canonicalUrl = new URL(canonicalUrl).toString(); } catch { /* reported by the URL guard */ }
+      const merchantKey = commerceLinkMerchantKey(link || {});
+      if (seenUrls.has(canonicalUrl) || seenMerchants.has(merchantKey)) {
+        errors.push(`${prefix}: after.fixParts[${index}].buyLinks must be URL- and vendor-distinct`);
+        break;
+      }
+      seenUrls.add(canonicalUrl);
+      seenMerchants.add(merchantKey);
+    }
     if (part && part.recallFirst === true && (!String(part.note || '').trim() || asArray(part.buyLinks).length > 0)) {
       errors.push(`${prefix}: recall-first fixParts[${index}] requires a note and no buy links`);
     }
@@ -702,7 +739,13 @@ function validateManifest(manifest) {
   }
   if (manifest.manifestKind !== 'known-issues-catalog-deeplinks') errors.push('manifestKind');
   if (!/^[a-z0-9][a-z0-9._-]{2,100}$/i.test(manifest.batchId || '')) errors.push('batchId');
-  if (!Array.isArray(manifest.issues) || manifest.issues.length === 0) errors.push('issues must be a non-empty array');
+  if (!Array.isArray(manifest.issues)
+    || (manifest.issues.length === 0 && manifest.auditOnlyNoWrites !== true)) {
+    errors.push('issues must be a non-empty array unless auditOnlyNoWrites is true');
+  }
+  if (manifest.auditOnlyNoWrites === true && asArray(manifest.issues).length !== 0) {
+    errors.push('auditOnlyNoWrites manifests cannot contain issues');
+  }
   if (manifest.schemaVersion === 3) validateReviewedBatchContract(manifest, errors);
   validateMakeReleaseMarker(manifest, errors);
   const seenIds = new Set();

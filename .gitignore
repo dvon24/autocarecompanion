@@ -106,5 +106,14 @@ public/swe-worker-*
 /data/known-issue-part-audit/*/pending/
 # Superseded pre-contract Acura scratch output used a truncated snapshot hash.
 /data/known-issue-part-audit/acura/c22aa18f11e2/
+# Local scratch for audit runs — parser iterations and the multi-MB global
+# production export. Working data, never evidence.
+/.tmp/
+
+# Stage-builder intermediates. Only the numbered artifacts bound by the
+# COMPLETE.json hash map are evidence; these are pre-merge working copies.
+/data/known-issue-part-audit/**/*.next.json
+/data/known-issue-part-audit/**/*.current.json
+/data/known-issue-part-audit/**/*.next.json.ledger.json
 
 /src/generated/prisma

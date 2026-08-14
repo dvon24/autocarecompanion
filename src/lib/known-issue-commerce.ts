@@ -11,6 +11,20 @@ export interface OwnerGuidance {
 
 type Marketplace = 'amazon' | 'ebay' | 'direct';
 
+function productLinkPriority(value: string): number {
+  const marketplace = marketplaceForProductUrl(value);
+  if (marketplace === 'direct') return 0;
+  if (marketplace === 'ebay') return 1;
+  if (marketplace === 'amazon') return 2;
+  return 3;
+}
+
+function merchantKey(vendor: string, value: string): string {
+  const marketplace = marketplaceForProductUrl(value);
+  if (marketplace === 'amazon' || marketplace === 'ebay') return marketplace;
+  return vendor.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
 function marketplaceForProductUrl(value: string): Marketplace | null {
   if (!isKnownIssueProductUrl(value)) return null;
   const host = new URL(value).hostname.toLowerCase().replace(/^www\./, '');
@@ -34,7 +48,7 @@ export function vendorMatchesProductUrl(vendor: string, value: string): boolean 
   const hostLabels = new URL(value).hostname.toLowerCase().replace(/^www\./, '').split('.');
   return vendorIdentity.length >= 3
     && hostLabels.length >= 2
-    && hostLabels.at(-2) === vendorIdentity;
+    && hostLabels.at(-2)?.replace(/[^a-z0-9]/g, '') === vendorIdentity;
 }
 
 /** Add owned affiliate attribution only after the destination passes the guard. */
@@ -160,6 +174,8 @@ export function isKnownIssueProductUrl(value: string): boolean {
  * run first.
  */
 const VERIFIED_RETAILER_PATTERNS: Array<[RegExp, RegExp]> = [
+  // Official VCDS HEX-V2 Enthusiast product page.
+  [/^store\.ross-tech\.com$/, /^\/shop\/vchv2_ent\/?$/i],
   // partshawk.com/delphi-ss10867-abs-wheel-speed-sensor.html
   [/^partshawk\.com$/, /^\/[a-z0-9-]*\d[a-z0-9-]*\.html$/i],
   // densoproducts.com/denso-477-0771-ac-condenser — the manufacturer's own page
@@ -176,6 +192,10 @@ const VERIFIED_RETAILER_PATTERNS: Array<[RegExp, RegExp]> = [
   // product page. Trade-channel transmission parts are largely absent from
   // consumer retail, so the maker's page is often the only real destination.
   [/^raybestospowertrain\.com$/, /^\/[a-z0-9-]+\/\d{4,}$/i],
+  // mishimoto.com/dodge-challenger-aluminum-radiator-2009-2016.html
+  // Official Mishimoto product pages use a descriptive root slug rather than
+  // a /product/ segment. Requiring a digit keeps category/editorial roots out.
+  [/^mishimoto\.com$/, /^\/(?=[a-z0-9-]*\d)[a-z0-9][a-z0-9-]+\.html$/i],
   // transpartswarehouse.com was a candidate here and is deliberately NOT listed:
   // its product URL did not survive a live fetch. The bar for this list is a
   // page we actually retrieved, not one that merely looks right.
@@ -210,16 +230,23 @@ export function getKnownIssueCommerce(
   const recallFirst = allParts.some((part) => part.recallFirst);
   const fixParts = verifiedParts
     .map((part) => {
-      const seen = new Set<string>();
+      const seenUrls = new Set<string>();
+      const seenMerchants = new Set<string>();
       const buyLinks = recallFirst
         ? []
-        : (part.buyLinks || []).filter((link) => {
+        : [...(part.buyLinks || [])]
+          .filter((link) => link.verified === true && vendorMatchesProductUrl(link.vendor, link.url))
+          .sort((left, right) => productLinkPriority(left.url) - productLinkPriority(right.url))
+          .filter((link) => {
             if (link.verified !== true || !vendorMatchesProductUrl(link.vendor, link.url)) return false;
             const canonicalUrl = new URL(link.url).toString();
-            if (seen.has(canonicalUrl)) return false;
-            seen.add(canonicalUrl);
+            const merchant = merchantKey(link.vendor, link.url);
+            if (seenUrls.has(canonicalUrl) || seenMerchants.has(merchant)) return false;
+            seenUrls.add(canonicalUrl);
+            seenMerchants.add(merchant);
             return true;
-          });
+          })
+          .slice(0, 2);
       return { ...part, buyLinks };
     });
 

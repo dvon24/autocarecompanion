@@ -1,0 +1,1089 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-quoted-part-repair-role-review",
+  "make": "Audi",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "status": "REVIEWED_NOT_APPLIED",
+  "productionApplied": false,
+  "releaseBlocked": true,
+  "reviewedArtifactSha256": {
+    "sourceSha256": "358c765e7764318919afab11d20cb8456fc37a80aefc634ab7907b5df73ece2a",
+    "proposalSha256": "50bead8c5c4dbb66ea9f7ccb077cbaa58f02fd9824344dfce8a915d06f56bf32",
+    "decisionsSha256": "bd8195ad3f969a7b919c0f44ff7cb4a29239f41f8efdeecbf502d3dc53d6c17c"
+  },
+  "proposalPartCount": 39,
+  "approvedCount": 13,
+  "heldOrBlockedCount": 26,
+  "tally": {
+    "approve": 13,
+    "block_wrong_role": 4,
+    "block_incomplete_scope": 1,
+    "block_ambiguous": 1,
+    "hold_diagnosis_gate": 20,
+    "hold_needs_manual": 0
+  },
+  "decisions": [
+    {
+      "proposalId": "audi-20t-ignition-coils-2009--existing-fix-part-0-0--2-0t",
+      "issueId": "audi-20t-ignition-coils-2009",
+      "partIndex": 0,
+      "partNumber": "07K905715G",
+      "component": "ignition coil",
+      "decision": "approve",
+      "reason": "The issue and repair instruction directly identify failed ignition coils; the card names this exact component and does not imply that it repairs a different failure branch.",
+      "sourceEvidence": {
+        "title": "Ignition Coil Failure",
+        "howToFix": "Replace failed coil(s) with OEM or quality aftermarket. Consider replacing all four at once. Replace spark plugs at same time. Ensure proper spark plug gap."
+      },
+      "fitment": {
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "engines": [
+          "2.0T"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-20t-pcv-failure-2009--existing-fix-part-0-0--2-0t",
+      "issueId": "audi-20t-pcv-failure-2009",
+      "partIndex": 0,
+      "partNumber": "06H103495AK",
+      "component": "PCV valve oil separator assembly",
+      "decision": "approve",
+      "reason": "The prescribed repair directly replaces the PCV/oil-separator assembly named by this exact part proposal.",
+      "sourceEvidence": {
+        "title": "PCV Valve/Breather System Failure",
+        "howToFix": "Replace PCV valve assembly. Check for oil in intake manifold. Updated PCV designs are more reliable. Install catch can to reduce oil vapor in intake system."
+      },
+      "fitment": {
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "engines": [
+          "2.0T"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-20t-timing-chain-2009--existing-fix-part-0-0--2-0t",
+      "issueId": "audi-20t-timing-chain-2009",
+      "partIndex": 0,
+      "partNumber": "06K109467K",
+      "component": "timing chain tensioner (updated)",
+      "decision": "approve",
+      "reason": "The updated tensioner is an explicitly prescribed timing-service component and is labeled as a tensioner rather than as a complete kit.",
+      "sourceEvidence": {
+        "title": "Timing Chain Tensioner Failure",
+        "howToFix": "Replace timing chain, tensioner, and guides with updated parts. Cold start rattle is a warning sign - don't ignore it. Many owners do this preventatively around 100,000 miles. Check VIN for updated tensioner production."
+      },
+      "fitment": {
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014
+        ],
+        "engines": [
+          "2.0T"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-a3-panoramic-sunroof-glass-cracking-2016--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-a3-panoramic-sunroof-glass-cracking-2016",
+      "partIndex": 0,
+      "partNumber": "8V5877071A",
+      "component": "panoramic sunroof glass panel",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The article distinguishes cracked glass from frame, seal, drain, impact, and alignment causes; the glass link needs the glass-damage branch to be confirmed first.",
+      "sourceEvidence": {
+        "title": "Panoramic Sunroof Glass Cracking or Exploding and Sunroof Frame/Rattle Problems",
+        "howToFix": "Inspect the roof glass for stress cracks, frame distortion, and evidence of impact versus spontaneous failure. Repairs typically involve replacing the glass panel and, if needed, adjusting or replacing frame/seal components. If rattles or leaks are present, drains should be checked and the roof cassette alignment verified before replacing trim pieces."
+      },
+      "fitment": {
+        "years": [
+          2016,
+          2017,
+          2018,
+          2019,
+          2020
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-a3-tdi-egr-2010--existing-fix-part-0-0--2-0l-tdi",
+      "issueId": "audi-a3-tdi-egr-2010",
+      "partIndex": 0,
+      "partNumber": "03L131501K",
+      "component": "EGR valve",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The repair may be cleaning, EGR-valve replacement, or EGR-cooler replacement; the valve link must be gated to a confirmed valve fault.",
+      "sourceEvidence": {
+        "title": "EGR Valve/Cooler Failure",
+        "howToFix": "Clean or replace EGR valve (03L131501K). Inspect EGR cooler (03L131512AF) for leaks - coolant loss can indicate internal cooler failure. Regular intake cleaning helps prevent carbon buildup. Use quality diesel fuel. The EGR cooler removal process is documented at myturbodiesel.com for CBEA/CJAA engines."
+      },
+      "fitment": {
+        "years": [
+          2010,
+          2011,
+          2012
+        ],
+        "engines": [
+          "2.0L TDI"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-a3-tdi-injector-2010--existing-fix-part-0-0--2-0l-tdi",
+      "issueId": "audi-a3-tdi-injector-2010",
+      "partIndex": 0,
+      "partNumber": "03L130277A",
+      "component": "diesel fuel injector",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The article requires VCDS deviation testing and allows cleaning before replacing only the failed injector; the current proposal has no diagnostic condition.",
+      "sourceEvidence": {
+        "title": "Diesel Injector Failure",
+        "howToFix": "Use quality diesel fuel. Have injectors tested with VCDS if symptoms appear - check injection quantity deviation. Replace failed injectors individually (03L130277A, Bosch 0445116030). Always replace injector seals when removing injectors. Injector seal kit includes copper washer (WHT000884 bottom O-ring, 059130119 top O-ring, 059130519 seal ring). Consider professional injector cleaning service before full replacement."
+      },
+      "fitment": {
+        "years": [
+          2010,
+          2011,
+          2012
+        ],
+        "engines": [
+          "2.0L TDI"
+        ],
+        "trims": [
+          "TDI",
+          "TDI Premium",
+          "TDI Premium Plus",
+          "TDI Prestige"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-a3-tdi-injector-2010--existing-fix-part-0-0--cbea",
+      "issueId": "audi-a3-tdi-injector-2010",
+      "partIndex": 0,
+      "partNumber": "03L130277A",
+      "component": "diesel fuel injector",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The CBEA slice still requires VCDS deviation testing and confirmation of the individual failed injector before commerce is shown.",
+      "sourceEvidence": {
+        "title": "Diesel Injector Failure",
+        "howToFix": "Use quality diesel fuel. Have injectors tested with VCDS if symptoms appear - check injection quantity deviation. Replace failed injectors individually (03L130277A, Bosch 0445116030). Always replace injector seals when removing injectors. Injector seal kit includes copper washer (WHT000884 bottom O-ring, 059130119 top O-ring, 059130519 seal ring). Consider professional injector cleaning service before full replacement."
+      },
+      "fitment": {
+        "years": [
+          2010,
+          2011,
+          2012
+        ],
+        "engines": [
+          "CBEA"
+        ],
+        "trims": [
+          "TDI",
+          "TDI Premium",
+          "TDI Premium Plus",
+          "TDI Prestige"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-a3-tdi-turbo-2010--existing-fix-part-0-0--2-0l-tdi",
+      "issueId": "audi-a3-tdi-turbo-2010",
+      "partIndex": 0,
+      "partNumber": "03L253056",
+      "component": "turbocharger",
+      "decision": "approve",
+      "reason": "The issue is turbocharger failure and the repair explicitly prescribes this turbocharger component; required oil lines and gaskets remain separate prescribed items rather than changing this part's role.",
+      "sourceEvidence": {
+        "title": "Turbocharger Failure",
+        "howToFix": "Regular oil changes with VW 507.00 spec diesel oil are critical - the turbo depends on clean oil for bearing lubrication. Replace turbo if failed using OEM BorgWarner unit (03L253056). Always replace the turbo oil feed line (03L145771) and oil return line (03G145736F) with new gaskets (03L145757Q oil return gasket) when replacing the turbo. Let engine idle 30-60 seconds before shutdown to allow turbo to cool down."
+      },
+      "fitment": {
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013
+        ],
+        "engines": [
+          "2.0L TDI CBEA"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-a4-avant-panoramic-sunroof-drain-2009--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-a4-avant-panoramic-sunroof-drain-2009",
+      "partIndex": 0,
+      "partNumber": "8K9877201",
+      "component": "sunroof drain hose (front)",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The primary repair is clearing the drains; hose replacement is prescribed only when a drain connection is cracked, which the proposal cannot yet express.",
+      "sourceEvidence": {
+        "title": "Panoramic Sunroof Drain Tube Clogging",
+        "howToFix": "Clear all four sunroof drain tubes using compressed air or a flexible cleaning wire. Clean the sunroof channel tray. Inspect and replace any cracked drain tube connections at the roof corners."
+      },
+      "fitment": {
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-a4-avant-rear-shock-mount-2009--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-a4-avant-rear-shock-mount-2009",
+      "partIndex": 0,
+      "partNumber": "8K0513353E",
+      "component": "rear upper shock absorber mount",
+      "decision": "approve",
+      "reason": "The issue and repair instruction directly call for rear upper shock-mount replacement, matching this exact component role.",
+      "sourceEvidence": {
+        "title": "Rear Upper Shock Mount Bushing Wear",
+        "howToFix": "Replace rear upper shock mount bushings. Consider replacing rear shocks at the same time if over 80,000 miles. Bilstein B4 or Sachs OE replacements are recommended. Realign rear suspension after service."
+      },
+      "fitment": {
+        "years": [
+          2009,
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-a5-timing-chain-2008--existing-fix-part-0-0--2-0t",
+      "issueId": "audi-a5-timing-chain-2008",
+      "partIndex": 0,
+      "partNumber": "06K109467K",
+      "component": "timing chain tensioner (upper)",
+      "decision": "approve",
+      "reason": "The upper timing-chain tensioner is explicitly prescribed as one accurately labeled component of the complete timing service.",
+      "sourceEvidence": {
+        "title": "EA888 Timing Chain Tensioner Failure",
+        "howToFix": "Replace timing chain, tensioner (use latest revision 06K109467K), and all guides as a complete kit. Preventive replacement recommended at 80,000-100,000 miles before symptoms appear. If chain has already jumped, engine teardown is required to assess valve and piston damage."
+      },
+      "fitment": {
+        "years": [
+          2010,
+          2011,
+          2012,
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "engines": [
+          "2.0T"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-a8-zf-6hp26-automatic-transmission-2004--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-a8-zf-6hp26-automatic-transmission-2004",
+      "partIndex": 0,
+      "partNumber": "09E323571A",
+      "component": "torque converter",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The article lists fluid service, valve-body work, torque-converter replacement, or a rebuild depending on scan, slip, and debris evidence; a blanket converter link is unsafe.",
+      "sourceEvidence": {
+        "title": "ZF 6HP26 Automatic Transmission Torque Converter Shudder and Failure",
+        "howToFix": "Diagnosis typically includes scanning the transmission control module for ratio and converter clutch faults, checking fluid condition, and measuring slip values during road testing. Repairs range from fluid/filter service and valve body work to torque converter replacement or full transmission rebuild if clutch debris has contaminated the unit. Using the correct ZF Lifeguard fluid and adapting the transmission after repair is commonly recommended."
+      },
+      "fitment": {
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007
+        ],
+        "engines": [
+          "4.2L V8"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-cabriolet-coolant-1994--existing-fix-part-0-0--2-8-v6",
+      "issueId": "audi-cabriolet-coolant-1994",
+      "partIndex": 0,
+      "partNumber": "078121113F",
+      "component": "engine coolant thermostat",
+      "decision": "approve",
+      "reason": "The thermostat is explicitly included in the prescribed cooling-system replacement and the proposal labels it only as that component.",
+      "sourceEvidence": {
+        "title": "Cooling System Hose and Flange Deterioration",
+        "howToFix": "Replace all coolant hoses, plastic flanges, and thermostat as a system. Inspect heater core for leaks."
+      },
+      "fitment": {
+        "years": [
+          1994,
+          1995,
+          1996,
+          1997,
+          1998
+        ],
+        "engines": [
+          "2.8 V6"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-q3-timing-chain-tensioner-2015--existing-fix-part-0-0--ea888",
+      "issueId": "audi-q3-timing-chain-tensioner-2015",
+      "partIndex": 0,
+      "partNumber": "06K109467K",
+      "component": "timing chain tensioner",
+      "decision": "approve",
+      "reason": "The tensioner is explicitly prescribed and accurately labeled as one component of the complete chain, tensioner, and guide service.",
+      "sourceEvidence": {
+        "title": "Timing Chain Tensioner Failure (2.0 TFSI Engine)",
+        "howToFix": "PREVENTIVE REPLACEMENT: Replace timing chain, tensioners, and guides at 80,000-100,000 miles BEFORE rattling starts ($2,000-$3,000). If rattling has started, DO NOT delay—chain can jump at any moment. Repair requires removing front engine cover, water pump, thermostat. Labor is 8-12 hours. Use ONLY OEM Audi parts—aftermarket tensioners fail quickly. Change oil every 5,000 miles and check oil level weekly to prevent accelerated tensioner wear. If catastrophic failure occurs, engine replacement ($6,000-$10,000) is often more cost-effective than rebuild. 2021+ Q3 models have updated parts and are more reliable."
+      },
+      "fitment": {
+        "years": [
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "EA888"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-q7-supercharger-failure-2011--existing-fix-part-0-0--3-0t",
+      "issueId": "audi-q7-supercharger-failure-2011",
+      "partIndex": 0,
+      "partNumber": "057128063G",
+      "component": "supercharger bypass valve",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The article separates bearing, bypass-valve, and boost-hose failures; this valve link is valid only after the bypass-valve branch is confirmed.",
+      "sourceEvidence": {
+        "title": "Supercharger Bearing Failure and Boost Leaks (3.0T)",
+        "howToFix": "Worn bearings: Supercharger rebuild with new bearings ($1,500-2,500) or replacement supercharger ($3,000-5,000). Bypass valve: Replace supercharger bypass valve ($300-600). Boost leaks: Inspect all boost hoses/clamps, replace cracked hoses ($150-400). Use OEM Audi or quality aftermarket (INA) supercharger bearings. AudiWorld recommends catch can installation ($300-500) to reduce oil vapor damage to supercharger."
+      },
+      "fitment": {
+        "years": [
+          2011,
+          2012,
+          2013,
+          2014,
+          2015
+        ],
+        "engines": [
+          "3.0T"
+        ],
+        "trims": [
+          "Premium",
+          "Premium Plus",
+          "Prestige",
+          "S line",
+          "SQ7"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-q7-water-pump-failure-2007--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-q7-water-pump-failure-2007",
+      "partIndex": 0,
+      "partNumber": "022121011B",
+      "component": "water pump",
+      "decision": "approve",
+      "reason": "The water pump is directly prescribed for this water-pump/thermostat failure and is truthfully labeled as the pump rather than a complete repair kit.",
+      "sourceEvidence": {
+        "title": "Water Pump and Thermostat Failure (Overheating)",
+        "howToFix": "IMMEDIATE if overheating: Pull over, turn off engine, DO NOT continue - engine damage occurs in minutes. Preventive: Replace water pump/thermostat assembly at 60k-80k miles ($800-1,500) to avoid catastrophic failure. Failed pump: Replace water pump/thermostat ($800-1,500). If overheated: Cylinder head inspection, possible head gasket replacement ($2,500-5,000). Use OEM Audi or premium Geba/Meyle parts."
+      },
+      "fitment": {
+        "years": [
+          2007,
+          2008,
+          2009,
+          2010
+        ],
+        "engines": [
+          "3.6L V6"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-q8-front-brake-rotor-corrosion-premature-pad-rotor-wear--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-q8-front-brake-rotor-corrosion-premature-pad-rotor-wear",
+      "partIndex": 0,
+      "partNumber": "4M0615301AS",
+      "component": "front brake rotor (disc)",
+      "decision": "hold_diagnosis_gate",
+      "reason": "Light rust should be cleared by braking and refinishing is another branch; rotor purchase is appropriate only when deep corrosion or warping is confirmed.",
+      "sourceEvidence": {
+        "title": "Front Brake Rotor Corrosion and Premature Pad/Rotor Wear",
+        "howToFix": "For light surface rust, normal braking usually clears it; for noise, refinish or replace rotors and fit OEM-spec pads with proper bedding-in. Apply high-temp anti-seize/lubricant on contact points and ensure caliper slides move freely. Replace warped or deeply corroded rotors in axle sets."
+      },
+      "fitment": {
+        "years": [
+          2019,
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "engines": [
+          "3.0L V6"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-q8-panoramic-sunroof-water-leak-into-cabin--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-q8-panoramic-sunroof-water-leak-into-cabin",
+      "partIndex": 0,
+      "partNumber": "4M8877201",
+      "component": "front sunroof drain hose",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The leak may require clearing or rerouting drains, repairing the tray, or replacing a cracked channel; the hose link lacks that branch confirmation.",
+      "sourceEvidence": {
+        "title": "Panoramic Sunroof Water Leak Into Cabin (TSB)",
+        "howToFix": "Clear or re-route the four sunroof drain tubes, reseal or replace the cracked water-management channel/tray per the applicable TSB, and verify drain outlets at the A- and C-pillars are flowing. Dry and treat any soaked carpet/insulation to prevent mold and electrical corrosion."
+      },
+      "fitment": {
+        "years": [
+          2019,
+          2020,
+          2021
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-r8-ac-compressor-v8-2008--existing-fix-part-0-0--4-2-v8",
+      "issueId": "audi-r8-ac-compressor-v8-2008",
+      "partIndex": 0,
+      "partNumber": "4E0260805AS",
+      "component": "A/C compressor",
+      "decision": "approve",
+      "reason": "The issue is compressor failure and the stated repair directly replaces the A/C compressor; access method and labor do not change the component role.",
+      "sourceEvidence": {
+        "title": "A/C Compressor Failure Requiring Engine-Out Repair (4.2 V8)",
+        "howToFix": "A/C COMPRESSOR REPLACEMENT: Requires ENGINE REMOVAL on the V8 model. Total repair cost $5,000-$8,000 ($1,000-$1,500 for parts, $4,000-$6,500 for labor). When the engine is out, strongly recommended to also address: motor mounts, clutch inspection, and any other components that benefit from engine-out access. ALTERNATIVE: Some specialty R8 shops have developed methods to access the compressor with partial disassembly (removing subframe) rather than full engine removal, potentially reducing labor to $3,000-$4,000. PREVENTION: Run the A/C regularly (even in winter for 5-10 minutes monthly) to keep compressor seals lubricated."
+      },
+      "fitment": {
+        "years": [
+          2008,
+          2009,
+          2010,
+          2011,
+          2012
+        ],
+        "engines": [
+          "4.2 V8"
+        ],
+        "trims": [
+          "4.2"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-rs7-air-suspension-2014--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-rs7-air-suspension-2014",
+      "partIndex": 0,
+      "partNumber": "4H0616039AS",
+      "component": "front air suspension strut",
+      "decision": "block_ambiguous",
+      "reason": "The article does not identify the failed corner and the proposal's generic front-strut label does not establish a side-specific selectable application.",
+      "sourceEvidence": {
+        "title": "Air Suspension System Failure",
+        "howToFix": "Replace failed air struts and check compressor health. Full system refresh recommended at 80,000 miles."
+      },
+      "fitment": {
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-rs7-turbo-wastegate-2014--existing-fix-part-0-0--4-0l-twin-turbo-v8",
+      "issueId": "audi-rs7-turbo-wastegate-2014",
+      "partIndex": 0,
+      "partNumber": "079145462M",
+      "component": "turbocharger wastegate actuator",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The article requires boost logging and linkage inspection and may require an actuator, an entire turbocharger, or carbon cleaning; actuator commerce needs a confirmed serviceable-actuator branch.",
+      "sourceEvidence": {
+        "title": "Turbo Wastegate Rattle and Carbon Buildup",
+        "howToFix": "Diagnose the concern by scanning for boost-control and turbocharger actuator faults, logging requested vs. actual boost, and physically checking both turbo wastegate linkages/actuators for free play or rattle at idle; also inspect intake valves with a borescope for carbon accumulation. Repair typically involves replacing the affected turbocharger assembly or wastegate actuator hardware where serviceable, then performing actuator basic settings/adaptation with a factory-capable scan tool; if carbon buildup is significant, perform walnut blasting of the intake valves and intake-port cleaning. On the 4.0T, labor is substantial because of turbocharger access in the hot-V, so expect roughly $3,500-$8,000+ for turbo-related repairs depending on whether one or both units are replaced, plus about $600-$1,200 for carbon cleaning."
+      },
+      "fitment": {
+        "years": [
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0L Twin-Turbo V8"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s4-b6-timing-chain-2004--existing-fix-part-0-0--4-2l-v8",
+      "issueId": "audi-s4-b6-timing-chain-2004",
+      "partIndex": 0,
+      "partNumber": "079109218D",
+      "component": "timing chain tensioner",
+      "decision": "approve",
+      "reason": "The tensioner is one explicitly prescribed and accurately labeled component of the full rear timing service, not represented as the complete kit.",
+      "sourceEvidence": {
+        "title": "B6/B7 4.2L V8 Timing Chain Tensioner Failure",
+        "howToFix": "Diagnose by scanning for cam/crank correlation faults (commonly P0011, P0021, P0016-P0018), listening for prolonged chain rattle on cold start, and confirming camshaft adjustment values with VCDS or equivalent; severe cases may also show worn guide material in the oil pan. The proper repair is engine/transmission removal and replacement of the full rear timing service components: primary and secondary chain tensioners, chain guides/rails, timing chains as needed, cam adjuster hardware, seals/gaskets, and often related wear items such as valve cover gaskets and clutch or rear main seal while access is available. Because the timing set is mounted at the rear of the 4.2L V8, this is a labor-intensive job typically requiring precise locking tools and timing setup, with independent shop costs commonly around $4,000-$7,000 and dealer repairs often higher. Continuing to drive with startup rattle or timing faults risks chain jump and catastrophic valve-to-piston engine damage."
+      },
+      "fitment": {
+        "years": [
+          2004,
+          2005,
+          2006,
+          2007,
+          2008
+        ],
+        "engines": [
+          "4.2L V8"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s4-thermostat-2010--existing-fix-part-0-0--3-0t",
+      "issueId": "audi-s4-thermostat-2010",
+      "partIndex": 0,
+      "partNumber": "06E121111AD",
+      "component": "thermostat housing assembly",
+      "decision": "approve",
+      "reason": "The prescribed repair directly replaces the thermostat housing assembly identified by the proposal.",
+      "sourceEvidence": {
+        "title": "Thermostat Housing Failure and Coolant Leak",
+        "howToFix": "Replace thermostat housing assembly with updated part. Use OEM or quality aftermarket housing with metal reinforcement."
+      },
+      "fitment": {
+        "years": [
+          2011,
+          2012,
+          2013
+        ],
+        "engines": [
+          "3.0T"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s7-air-suspension-2012--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-s7-air-suspension-2012",
+      "partIndex": 0,
+      "partNumber": "4G0616005D",
+      "component": "air suspension compressor",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The article covers both strut and compressor failures and requires checking air lines; a compressor link needs compressor-failure evidence rather than a generic suspension symptom.",
+      "sourceEvidence": {
+        "title": "Air Suspension Compressor and Strut Failure",
+        "howToFix": "Replace air struts and compressor. Check all air lines for cracks. Consider coilover conversion for long-term reliability."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s7-ea839-2-9t-v6-water-pump-internal-leak-overheating--existing-fix-part-3-0--2-9t-tfsi-biturbo-v6-ea839",
+      "issueId": "audi-s7-ea839-2-9t-v6-water-pump-internal-leak-overheating",
+      "partIndex": 0,
+      "partNumber": "06M121688",
+      "component": "Thermostat seal / gasket",
+      "decision": "block_wrong_role",
+      "reason": "The article prescribes the revised water-pump/thermostat module; a loose thermostat gasket is supporting hardware and is not the stated failed repair component.",
+      "sourceEvidence": {
+        "title": "EA839 2.9T V6 Water Pump Internal Leak and Overheating (C8 S7)",
+        "howToFix": "If coolant loss or an overheating warning appears, stop driving and have the cooling system pressure-tested. Replace the water pump with the updated 6-bolt-pulley revised unit, ideally as a combined water-pump-and-thermostat module, and inspect the vacuum solenoid valve (N649) for coolant contamination since it is commonly damaged by a leaking pump. Replace coolant and verify the vacuum control circuit operates correctly after repair. Affected owners should check eligibility under the EA839 water-pump class action."
+      },
+      "fitment": {
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "engines": [
+          "2.9T TFSI Biturbo V6 (EA839)"
+        ],
+        "trims": [
+          "S7",
+          "S7 Sportback"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s7-front-control-arm-bushing-ball-joint-failure--existing-fix-part-3-0--4-0t-tfsi-biturbo-v8-ea824",
+      "issueId": "audi-s7-front-control-arm-bushing-ball-joint-failure",
+      "partIndex": 0,
+      "partNumber": "8K0407509M",
+      "component": "Front upper control arm, left rearward",
+      "decision": "hold_diagnosis_gate",
+      "reason": "This arm is a valid member of the front-arm repair, but the article requires play inspection to identify which arm is worn before selecting the left-rearward upper arm.",
+      "sourceEvidence": {
+        "title": "Front Control Arm Bushing and Ball Joint Failure (C7 Suspension)",
+        "howToFix": "Inspect all front control arms for play in the bushings and ball joints. Replace worn arms — many owners do the full front control-arm set (commonly a 16-piece kit covering both sides) to avoid repeat visits since the labor overlaps. Critical install notes: torque the bushing bolts at ride height (not with the suspension hanging) to avoid pre-loading and destroying the new bushings, and perform a four-wheel alignment afterward."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0T TFSI Biturbo V8 (EA824)"
+        ],
+        "trims": [
+          "S7",
+          "S7 Sportback"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s7-front-control-arm-bushing-ball-joint-failure--existing-fix-part-4-0--4-0t-tfsi-biturbo-v8-ea824",
+      "issueId": "audi-s7-front-control-arm-bushing-ball-joint-failure",
+      "partIndex": 0,
+      "partNumber": "8K0407510M",
+      "component": "Front upper control arm, right rearward",
+      "decision": "hold_diagnosis_gate",
+      "reason": "This arm is a valid member of the front-arm repair, but the article requires play inspection to identify which arm is worn before selecting the right-rearward upper arm.",
+      "sourceEvidence": {
+        "title": "Front Control Arm Bushing and Ball Joint Failure (C7 Suspension)",
+        "howToFix": "Inspect all front control arms for play in the bushings and ball joints. Replace worn arms — many owners do the full front control-arm set (commonly a 16-piece kit covering both sides) to avoid repeat visits since the labor overlaps. Critical install notes: torque the bushing bolts at ride height (not with the suspension hanging) to avoid pre-loading and destroying the new bushings, and perform a four-wheel alignment afterward."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0T TFSI Biturbo V8 (EA824)"
+        ],
+        "trims": [
+          "S7",
+          "S7 Sportback"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s7-front-control-arm-bushing-ball-joint-failure--existing-fix-part-9-0--4-0t-tfsi-biturbo-v8-ea824",
+      "issueId": "audi-s7-front-control-arm-bushing-ball-joint-failure",
+      "partIndex": 0,
+      "partNumber": "4G0423811A",
+      "component": "Outer tie rod end, left",
+      "decision": "block_wrong_role",
+      "reason": "The How-to-Fix prescribes worn front control arms; it does not prescribe a standalone left tie-rod end for this control-arm and ball-joint issue.",
+      "sourceEvidence": {
+        "title": "Front Control Arm Bushing and Ball Joint Failure (C7 Suspension)",
+        "howToFix": "Inspect all front control arms for play in the bushings and ball joints. Replace worn arms — many owners do the full front control-arm set (commonly a 16-piece kit covering both sides) to avoid repeat visits since the labor overlaps. Critical install notes: torque the bushing bolts at ride height (not with the suspension hanging) to avoid pre-loading and destroying the new bushings, and perform a four-wheel alignment afterward."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017
+        ],
+        "engines": [
+          "4.0T TFSI Biturbo V8 (EA824)"
+        ],
+        "trims": [
+          "S7",
+          "S7 Sportback"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s7-front-control-arm-bushing-ball-joint-failure--existing-fix-part-10-0--4-0t-tfsi-biturbo-v8-ea824",
+      "issueId": "audi-s7-front-control-arm-bushing-ball-joint-failure",
+      "partIndex": 0,
+      "partNumber": "4G0423812A",
+      "component": "Outer tie rod end, right",
+      "decision": "block_wrong_role",
+      "reason": "The How-to-Fix prescribes worn front control arms; it does not prescribe a standalone right tie-rod end for this control-arm and ball-joint issue.",
+      "sourceEvidence": {
+        "title": "Front Control Arm Bushing and Ball Joint Failure (C7 Suspension)",
+        "howToFix": "Inspect all front control arms for play in the bushings and ball joints. Replace worn arms — many owners do the full front control-arm set (commonly a 16-piece kit covering both sides) to avoid repeat visits since the labor overlaps. Critical install notes: torque the bushing bolts at ride height (not with the suspension hanging) to avoid pre-loading and destroying the new bushings, and perform a four-wheel alignment afterward."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0T TFSI Biturbo V8 (EA824)"
+        ],
+        "trims": [
+          "S7",
+          "S7 Sportback"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s7-fuel-injector-deposits-failure-causing-misfire-rough-running--existing-fix-part-0-0--4-0-tfsi-v8-ea824",
+      "issueId": "audi-s7-fuel-injector-deposits-failure-causing-misfire-rough-running",
+      "partIndex": 0,
+      "partNumber": "079906036AD",
+      "component": "fuel injector",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The article requires cylinder localization and distinguishes injectors, plugs, coils, and carbon; this injector link needs a confirmed failed or leaking injector branch.",
+      "sourceEvidence": {
+        "title": "Fuel Injector Deposits / Failure Causing Misfire and Rough Running (4.0T V8)",
+        "howToFix": "Pull misfire counts per cylinder to localize the fault. Inspect/replace failed or leaking injectors and renew injector seals; replace spark plugs and any weak coils as a set. Confirm fuel trims return to normal and clear codes; address intake carbon if present."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0 TFSI V8 (EA824)"
+        ],
+        "trims": [
+          "S7 Quattro 4.0T"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s7-ignition-coil-pack-failure-causing-misfires--existing-fix-part-1-0--4-0t-tfsi-biturbo-v8-ea824",
+      "issueId": "audi-s7-ignition-coil-pack-failure-causing-misfires",
+      "partIndex": 0,
+      "partNumber": "06K905601M",
+      "component": "Spark plug — set of 8",
+      "decision": "approve",
+      "reason": "The article explicitly recommends replacing the spark plugs as a set during the shared-access coil repair, matching the set-of-eight component label.",
+      "sourceEvidence": {
+        "title": "Ignition Coil Pack Failure Causing Misfires (4.0T V8)",
+        "howToFix": "Confirm the failing cylinder, then swap the suspect coil to another cylinder to verify the fault follows the coil. Replace the failed coil; best practice on the 4.0T is to replace all eight coils and the spark plugs as a set since the access labor is shared and mixed-age coils tend to fail in sequence. Use OE or quality OE-equivalent coils (the 4.0T uses the 079905110-series coil). Inspect spark plugs for fouling/oil that could indicate a secondary issue."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0T TFSI Biturbo V8 (EA824)"
+        ],
+        "trims": [
+          "S7",
+          "S7 Sportback"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s7-motor-mount-failure-2012--existing-fix-part-0-0--4-0t",
+      "issueId": "audi-s7-motor-mount-failure-2012",
+      "partIndex": 0,
+      "partNumber": "4H0199256T",
+      "component": "engine mount (right)",
+      "decision": "block_incomplete_scope",
+      "reason": "The repair explicitly requires both engine mounts as a pair, while this proposal supplies only the right mount and no paired left-mount proposal.",
+      "sourceEvidence": {
+        "title": "Premature Motor Mount Failure (4.0T V8)",
+        "howToFix": "Replace both engine mounts as a pair ($800-$1,500 for both, $1,500-$2,500 with labor). Always replace BOTH mounts simultaneously—if one has failed, the other is close behind. Use OEM Audi mounts for proper damping characteristics. Aftermarket solid mounts increase NVH (noise/vibration) significantly. INSPECT: Check transmission mount at the same time—it often wears concurrently. Replace transmission mount if showing signs of deterioration ($400-$800 additional)."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0T"
+        ],
+        "trims": [
+          "S7",
+          "Competition"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s8-d2-4-2-v8-timing-belt-tensioner-service--existing-fix-part-6-0--4-2l-40v-v8-ays",
+      "issueId": "audi-s8-d2-4-2-v8-timing-belt-tensioner-service",
+      "partIndex": 0,
+      "partNumber": "078121043A",
+      "component": "Water pump gasket / seal",
+      "decision": "block_wrong_role",
+      "reason": "The prescribed repair is the complete timing-belt, tensioner, roller, and water-pump service; a loose water-pump gasket is supporting hardware rather than the identified repair component.",
+      "sourceEvidence": {
+        "title": "D2 4.2 V8 Timing Belt and Tensioner Service (Interference Engine)",
+        "howToFix": "Replace the timing belt as a complete kit — belt, tensioner, idler/guide rollers, and water pump — at or before Audi's interval (and by age regardless of mileage). Use genuine/OE-quality components and set cam/crank timing precisely with the correct locking tools; this is a front-of-engine ('service position') job. Inspect the exhaust-side chain tensioners while in there. Always confirm timing-belt history (with receipts) before buying a D2 S8; if unknown, do it immediately."
+      },
+      "fitment": {
+        "years": [
+          2001,
+          2002,
+          2003
+        ],
+        "engines": [
+          "4.2L 40V V8 (AYS)"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s8-front-suspension-control-arm-bushing-sway-bar-link-wear--existing-fix-part-4-0--4-0t-tfsi-v8-ctfa-cgta-cwuc",
+      "issueId": "audi-s8-front-suspension-control-arm-bushing-sway-bar-link-wear",
+      "partIndex": 0,
+      "partNumber": "4H0407151B",
+      "component": "Front lower control arm - left forward",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The left-forward lower arm is a valid repair component only after inspection identifies play or torn rubber at that specific arm.",
+      "sourceEvidence": {
+        "title": "Front Suspension Control-Arm Bushing and Sway-Bar Link Wear (Clunking)",
+        "howToFix": "Inspect the front control-arm bushings (look for cracked/missing rubber at the inboard mounts) and grab the sway-bar end links for play. Replace worn sway-bar links first (cheap, bolt-in) and the upper/lower control arms as needed — use OE Lemforder/genuine arms rather than cheap aftermarket, which owners report wears out faster. Perform a four-wheel alignment after any arm replacement. Doing the full front 'arm kit' at once is common practice on higher-mileage cars to avoid repeat labor."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0T TFSI V8 (CTFA/CGTA/CWUC)"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s8-front-suspension-control-arm-bushing-sway-bar-link-wear--existing-fix-part-6-0--4-0t-tfsi-v8-ctfa-cgta-cwuc",
+      "issueId": "audi-s8-front-suspension-control-arm-bushing-sway-bar-link-wear",
+      "partIndex": 0,
+      "partNumber": "4H0407693F",
+      "component": "Front lower control arm - left rearward",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The left-rearward lower arm is a valid repair component only after inspection identifies play or torn rubber at that specific arm.",
+      "sourceEvidence": {
+        "title": "Front Suspension Control-Arm Bushing and Sway-Bar Link Wear (Clunking)",
+        "howToFix": "Inspect the front control-arm bushings (look for cracked/missing rubber at the inboard mounts) and grab the sway-bar end links for play. Replace worn sway-bar links first (cheap, bolt-in) and the upper/lower control arms as needed — use OE Lemforder/genuine arms rather than cheap aftermarket, which owners report wears out faster. Perform a four-wheel alignment after any arm replacement. Doing the full front 'arm kit' at once is common practice on higher-mileage cars to avoid repeat labor."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0T TFSI V8 (CTFA/CGTA/CWUC)"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s8-front-suspension-control-arm-bushing-sway-bar-link-wear--existing-fix-part-7-0--4-0t-tfsi-v8-ctfa-cgta-cwuc",
+      "issueId": "audi-s8-front-suspension-control-arm-bushing-sway-bar-link-wear",
+      "partIndex": 0,
+      "partNumber": "4H0407694F",
+      "component": "Front lower control arm - right rearward",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The right-rearward lower arm is a valid repair component only after inspection identifies play or torn rubber at that specific arm.",
+      "sourceEvidence": {
+        "title": "Front Suspension Control-Arm Bushing and Sway-Bar Link Wear (Clunking)",
+        "howToFix": "Inspect the front control-arm bushings (look for cracked/missing rubber at the inboard mounts) and grab the sway-bar end links for play. Replace worn sway-bar links first (cheap, bolt-in) and the upper/lower control arms as needed — use OE Lemforder/genuine arms rather than cheap aftermarket, which owners report wears out faster. Perform a four-wheel alignment after any arm replacement. Doing the full front 'arm kit' at once is common practice on higher-mileage cars to avoid repeat labor."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016,
+          2017,
+          2018
+        ],
+        "engines": [
+          "4.0T TFSI V8 (CTFA/CGTA/CWUC)"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-s8-high-pressure-fuel-pump-injector-internal-leak-causing-hard--existing-fix-part-0-0--4-0-tfsi-twin-turbo-v8-4-0t",
+      "issueId": "audi-s8-high-pressure-fuel-pump-injector-internal-leak-causing-hard",
+      "partIndex": 0,
+      "partNumber": "079127025AJ",
+      "component": "high-pressure fuel pump (HPFP)",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The TSB procedure must distinguish a leaking HPFP from leaking injectors; this pump link cannot be shown as the repair before the pressure-decay branch is confirmed.",
+      "sourceEvidence": {
+        "title": "High-Pressure Fuel Pump / Injector Internal Leak Causing Hard or No-Start (4.0T)",
+        "howToFix": "Diagnose per TSB 2046724 with a fuel-pressure decay test to isolate a leaking HPFP versus leaking injectors. Replace the failed high-pressure pump(s) and/or the affected high-pressure injectors. Because accessing the hot-vee valley is labor-intensive, shops often bundle other 'while-you're-in-there' items (PCV, coolant lines). Change the oil afterward if fuel dilution occurred."
+      },
+      "fitment": {
+        "years": [
+          2013,
+          2014,
+          2015,
+          2016
+        ],
+        "engines": [
+          "4.0 TFSI twin-turbo V8 (4.0T)"
+        ],
+        "trims": [
+          "S8"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-sq8-air-suspension-2020--existing-fix-part-0-0--4-0t",
+      "issueId": "audi-sq8-air-suspension-2020",
+      "partIndex": 0,
+      "partNumber": "4M0616005H",
+      "component": "air suspension compressor",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The issue may be an air spring, compressor, valve block, height sensor, or leak; compressor commerce requires a confirmed compressor failure after leak isolation.",
+      "sourceEvidence": {
+        "title": "Adaptive Air Suspension Compressor and Air Spring Failures",
+        "howToFix": "Same diagnostic and repair approach as SQ7 (shared 4M platform). Isolate the failed component: air springs ($800-$1,500 per corner), compressor ($1,200-$2,500), valve block ($500-$1,000), or height sensor ($200-$400). Always check for air leaks before replacing the compressor. Aftermarket air suspension components from Arnott/Strutmasters offer 40-50% savings over OEM. Annual inspection of air springs for cracking recommended, especially in hot climates where UV and heat accelerate rubber degradation."
+      },
+      "fitment": {
+        "years": [
+          2020,
+          2021,
+          2022,
+          2023,
+          2024
+        ],
+        "engines": [
+          "4.0T"
+        ],
+        "trims": [
+          "Premium Plus",
+          "Prestige"
+        ]
+      },
+      "exactProductLinkCount": 1
+    },
+    {
+      "proposalId": "audi-tt-front-control-arm-bushings-2000--existing-fix-part-0-0--all-engines",
+      "issueId": "audi-tt-front-control-arm-bushings-2000",
+      "partIndex": 0,
+      "partNumber": "8N0407165",
+      "component": "Front left lower control arm",
+      "decision": "hold_diagnosis_gate",
+      "reason": "The article requires inspecting bushings, ball joints, and tie rods and does not identify the left side; this complete left-arm link needs a side-specific failed-arm diagnosis.",
+      "sourceEvidence": {
+        "title": "Front Control Arm Bushings and Ball Joint Wear Causing Clunks and Uneven Tire Wear",
+        "howToFix": "Inspect lower control arm rear bushings, front bushings, ball joints, and tie-rod ends for play or torn rubber. Repairs typically involve replacing complete control arms or pressing in upgraded bushings, followed by a four-wheel alignment. Addressing the issue early improves steering precision and prevents abnormal tire wear."
+      },
+      "fitment": {
+        "years": [
+          2000,
+          2001,
+          2002,
+          2003,
+          2004,
+          2005,
+          2006
+        ]
+      },
+      "exactProductLinkCount": 1
+    }
+  ]
+}

@@ -39,6 +39,7 @@ export type CodeFamily = 'P' | 'B' | 'C' | 'U';
 /** Procedures a known-issue solution can call for, matched from its own wording. */
 export type Procedure =
   | 'scan-codes'
+  | 'vag-scan-codes'
   | 'parasitic-draw'
   | 'battery-state-of-health'
   | 'smoke-test'
@@ -93,6 +94,26 @@ export const diagnosticTools: DiagnosticTool[] = [
     procedures: ['scan-codes'],
     tier: 'budget',
     productUrl: 'https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20',
+  },
+  {
+    id: 'ross-tech-vcds-hex-v2',
+    kind: 'scanner',
+    name: 'Ross-Tech VCDS HEX-V2 Enthusiast',
+    brand: 'Ross-Tech',
+    priceRange: '$199–$299',
+    priceAnchor: 249,
+    description:
+      'A licensed USB VCDS interface for diagnostic-capable Volkswagen/Audi Group vehicles. It is selected only for reviewed 1995+ VAG context and does not turn generic compatibility into a hybrid/EV claim.',
+    features: [
+      'Near-factory-level VW/Audi Group diagnostics',
+      'Reads manufacturer-specific control-module faults',
+      'Includes the VCDS software license',
+      'Windows PC and limited VIN count required',
+    ],
+    codeFamilies: ['P', 'B', 'C', 'U'],
+    procedures: ['scan-codes', 'vag-scan-codes'],
+    tier: 'advanced',
+    productUrl: 'https://store.ross-tech.com/shop/vchv2_ent/',
   },
   {
     id: 'bluedriver-pro',
@@ -347,6 +368,8 @@ export function codeFamilyOf(code: string): CodeFamily | null {
 
 export interface DiagnosticVehicleContext {
   engines?: string[];
+  make?: string;
+  years?: number[];
 }
 
 /**
@@ -402,6 +425,13 @@ export interface DiagnosticToolSelection {
 /** Tools for a set of procedures, cheapest first, deduped. */
 function toolMatchesVehicleContext(tool: DiagnosticTool, context: DiagnosticVehicleContext): boolean {
   const engines = (context.engines || []).map((engine) => String(engine).toLowerCase());
+  if (tool.id === 'ross-tech-vcds-hex-v2') {
+    const make = String(context.make || '').trim().toLowerCase();
+    const years = (context.years || []).filter(Number.isInteger);
+    return /^(?:audi|volkswagen|vw)$/.test(make)
+      && years.length > 0
+      && years.every((year) => year >= 1995);
+  }
   if (tool.id === 'otc-5606-compression') {
     return engines.length > 0
       && engines.every((engine) => /\b(?:gasoline|petrol|spark[- ]ignition)\b/.test(engine))
@@ -437,10 +467,21 @@ export function diagnosticToolsForIssue(
   dtcCodes: string[] | null | undefined,
   context: DiagnosticVehicleContext = {},
 ): DiagnosticToolSelection {
+  // Keep scanner selection on the same exact capability boundary as the
+  // frozen audit. Family-only matching would market a generic reader for
+  // manufacturer-specific and hybrid/EV powertrain codes it may not read.
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const shared = require('../lib/diagnostic-procedures') as {
+    scannerToolIdForCodes(value: string[], vehicle: DiagnosticVehicleContext): {
+      toolId: string | null;
+    };
+  };
   const procedures = proceduresInSolution(solution);
   const codes = diagnosticCodesForIssue(solution, dtcCodes);
   const parsedFamilies = codes.map(codeFamilyOf);
-  const hasUnknownCode = parsedFamilies.some((family) => family === null);
+  const scannerSelection = shared.scannerToolIdForCodes(codes, context);
+  const hasUnknownCode = parsedFamilies.some((family) => family === null)
+    || (codes.length > 0 && scannerSelection.toolId === null);
   const families = [...new Set(
     parsedFamilies.filter((family): family is CodeFamily => family !== null),
   )];
@@ -449,7 +490,9 @@ export function diagnosticToolsForIssue(
     hasUnknownCode ? [] : families,
     context,
   );
-  const scanner = hasUnknownCode ? undefined : scannersForCodeFamilies(families)[0];
+  const scanner = hasUnknownCode
+    ? undefined
+    : diagnosticTools.find((tool) => tool.id === scannerSelection.toolId);
   if (scanner && !tools.some((tool) => tool.id === scanner.id)) tools.push(scanner);
   return { procedures, codes, families, hasUnknownCode, tools };
 }

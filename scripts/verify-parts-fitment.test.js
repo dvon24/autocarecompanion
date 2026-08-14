@@ -1,7 +1,58 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
 const assert = require('node:assert/strict');
 const test = require('node:test');
-const { looserPartTypeTier, resolveModels, selectOrderedCategory, serializeCandidate, verifyEntry } = require('./verify-parts-fitment');
+const {
+  canReuseEvidenceResult,
+  looserPartTypeTier,
+  resolveModels,
+  selectOrderedCategory,
+  serializeCandidate,
+  verifyEntry,
+} = require('./verify-parts-fitment');
+
+function reusableRows() {
+  const entry = {
+    id: 'cadillac-example',
+    workItemId: 'cadillac-example--prescription-0-0--3-6l-v6',
+    prescriptionKey: 'prescription--0--0',
+    component: 'water pump',
+    repairRoleEvidence: 'Replace the water pump after confirming shaft play.',
+    articleScope: {
+      make: 'Cadillac', model: 'Example', years: [2015, 2016], trims: [],
+      engines: ['3.6L V6'], drivetrains: [], transmissions: [],
+    },
+    existingFixParts: [],
+    partNumber: '',
+    partTypeMatch: 'water pump',
+    source: 'prescription',
+    engineMatch: '3.6L',
+  };
+  const result = {
+    id: entry.id,
+    workItemId: entry.workItemId,
+    prescriptionKey: entry.prescriptionKey,
+    component: entry.component,
+    repairRoleEvidence: entry.repairRoleEvidence,
+    articleScope: entry.articleScope,
+    existingFixParts: [],
+    quotedPartNumber: '',
+    partTypeMatch: entry.partTypeMatch,
+    mappedFrom: 'prescription',
+    engineMatch: entry.engineMatch,
+    verdict: 'discovered',
+  };
+  return { entry, result };
+}
+
+test('resume reuses only exact worklist/evidence identity', () => {
+  const { entry, result } = reusableRows();
+  assert.equal(canReuseEvidenceResult(entry, result), true);
+  assert.equal(canReuseEvidenceResult({ ...entry, component: 'thermostat' }, result), false);
+  assert.equal(canReuseEvidenceResult({ ...entry, repairRoleEvidence: 'Replace the thermostat.' }, result), false);
+  assert.equal(canReuseEvidenceResult({ ...entry, partTypeMatch: 'pump' }, result), false);
+  assert.equal(canReuseEvidenceResult({ ...entry, engineMatch: '2.0L' }, result), false);
+  assert.equal(canReuseEvidenceResult(entry, { ...result, verdict: '' }), false);
+});
 
 test('verifier output preserves every catalog restriction channel', () => {
   const projected = serializeCandidate({

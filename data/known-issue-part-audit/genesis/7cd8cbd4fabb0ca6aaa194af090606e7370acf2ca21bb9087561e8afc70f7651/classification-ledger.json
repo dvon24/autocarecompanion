@@ -1,0 +1,2602 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Genesis",
+  "makeKey": "genesis",
+  "makeIndex": 15,
+  "totalMakes": 54,
+  "issueCount": 63,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 14,
+    "diagnosis-dependent": 12,
+    "recall/dealer": 18,
+    "service/tool/fluid": 9,
+    "no-commerce": 10
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 11,
+    "uniqueDtcCount": 21,
+    "instructionCount": 56,
+    "dtcDispositionCount": 11,
+    "toolLinkedCount": 11,
+    "procedureNoToolCount": 46,
+    "unresolvedToolHoldCount": 10
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "genesis-g70-3-3t-oil-consumption-smoke-fouled-plugs",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "3.3T",
+        "3.3T Sport",
+        "Launch Edition",
+        "Sport Prestige"
+      ],
+      "engines": [
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "3.3T Oil Consumption with Smoke and Fouled Plugs",
+      "howToFix": "Document consumption with a dealer oil-consumption test (measured top-offs over a set mileage) while the powertrain warranty is in force. Inspect the PCV system and turbo seals for oil ingestion, replace fouled spark plugs, and clean carboned intake valves (walnut blast) if buildup is found. Check the oil level frequently between changes and use the correct spec oil; severe consumption may require dealer powertrain repair under warranty.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0306"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Document consumption with a dealer oil-consumption test (measured top-offs over a set mileage) while the powertrain warranty is in force."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the PCV system and turbo seals for oil ingestion, replace fouled spark plugs, and clean carboned intake valves (walnut blast) if buildup is found."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the oil level frequently between changes and use the correct spec oil;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0306"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g70-3-3t-oil-consumption-smoke-fouled-plugs--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi"
+      ]
+    },
+    {
+      "issueId": "genesis-g70-abs-module-electrical-short-causing-engine-bay-fire-risk",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "2.0T",
+        "3.3T",
+        "Advanced",
+        "Elite",
+        "Prestige",
+        "Sport"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)",
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "ABS Module Electrical Short Causing Engine-Bay Fire Risk (Recall 21V-161 / 007G)",
+      "howToFix": "Confirm the VIN against Recall 21V-161 (007G) and have the free remedy performed — dealers add a multi-fuse to the ABS module's power supply so a short can't start a fire. Until repaired, park outdoors away from buildings. If the ABS warning light is on or the module has already been damaged, the hydraulic electronic control unit (HECU/ABS module) is inspected and replaced as needed.",
+      "dtcCodes": [
+        "C1604",
+        "C1611"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the VIN against Recall 21V-161 (007G) and have the free remedy performed — dealers add a multi-fuse to the ABS module's power supply so a short can't start a fire."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the ABS warning light is on or the module has already been damaged, the hydraulic electronic control unit (HECU/ABS module) is inspected and replaced as needed."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1604, C1611"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g70-electronic-parking-brake-actuator-failure-won-t-release-enga",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "2.0T",
+        "3.3T",
+        "Sport"
+      ],
+      "engines": [
+        "2.0L Theta II turbo (2.0T)",
+        "3.3L Lambda II twin-turbo V6 (3.3T)"
+      ],
+      "title": "Electronic Parking Brake (EPB) Actuator Failure — Won't Release or Engage",
+      "howToFix": "Diagnose for EPB actuator/control-module fault codes and check for a stuck Auto Hold condition. Accepted fix is replacement of the rear EPB actuator (typically as part of the rear caliper assembly) followed by system calibration/clearing via a scan tool. Some owners have reset a stuck system temporarily by pulling the relevant fuses with the engine running, but replacement is the durable fix; some cases resolved under warranty goodwill.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnose for EPB actuator/control-module fault codes and check for a stuck Auto Hold condition."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Accepted fix is replacement of the rear EPB actuator (typically as part of the rear caliper assembly) followed by system calibration/clearing via a scan tool."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g70-front-brake-rotor-warping-pulsation",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "2.0T Sport",
+        "3.3T",
+        "3.3T Sport (Brembo)",
+        "Sport Prestige"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)",
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "Front Brake Rotor Warping / Pulsation (Brembo Pad Deposit and Early Warping)",
+      "howToFix": "First try a proper bedding-in procedure (a series of firm high-speed stops) to even out and burn off pad deposits — this resolves the pulsation for many owners. If pulsation persists, measure rotor thickness variation/runout; machine or replace warped rotors and fit pads that run hotter/cleaner. Many owners upgrade to aftermarket slotted rotors and more aggressive pads. OEM front rotor for Brembo cars is 51712-J5500; DBA 4000-series slotted rotors are a common direct-fit upgrade.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g70-front-brake-rotor-warping-pulsation--prescription-0-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-front-brake-rotor-warping-pulsation--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi",
+        "genesis-g70-front-brake-rotor-warping-pulsation--prescription-1-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-front-brake-rotor-warping-pulsation--prescription-1-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi",
+        "genesis-g70-front-brake-rotor-warping-pulsation--prescription-2-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-front-brake-rotor-warping-pulsation--prescription-2-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi",
+        "genesis-g70-front-brake-rotor-warping-pulsation--prescription-3-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-front-brake-rotor-warping-pulsation--prescription-3-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi"
+      ]
+    },
+    {
+      "issueId": "genesis-g70-gdi-intake-valve-carbon-buildup",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "2.0T",
+        "3.3T",
+        "Sport",
+        "Sport Prestige"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)",
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "GDI Intake-Valve Carbon Buildup (Misfires, Rough Idle)",
+      "howToFix": "Definitive repair is mechanical intake-valve cleaning (walnut-blasting / media blasting) after removing the intake manifold — typically due around 40,000-80,000 miles depending on driving and oil use. Address any contributing oil consumption (PCV/valve guides) at the same time. A quality top-tier fuel, regular oil changes, and an occasional Italian tune-up slow accumulation; catch-can installation reduces future buildup. Replace fouled spark plugs and clear misfire codes after cleaning.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g70-gdi-intake-valve-carbon-buildup--prescription-0-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-gdi-intake-valve-carbon-buildup--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi"
+      ]
+    },
+    {
+      "issueId": "genesis-g70-headlight-condensation-moisture-causing-lighting-failure",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "2.0T",
+        "3.3T",
+        "Sport",
+        "Sport Advanced",
+        "Sport Prestige",
+        "Standard"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)",
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "Headlight Condensation and Moisture Causing Lighting Failure",
+      "howToFix": "Light fogging that clears after running the headlights a few minutes is considered normal. If you see water droplets/streaks or pooling, document it (photos over time) and pursue a warranty assembly replacement — dealers replace the full headlamp unit, which requires removing the front bumper cover. Minor recurring condensation can sometimes be managed by replacing the internal desiccant pack. Confirm you order the correct generation: pre-facelift (2019-2021) vs facelift (2022-2026) assemblies are not interchangeable.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm you order the correct generation: pre-facelift (2019-2021) vs facelift (2022-2026) assemblies are not interchangeable."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g70-headlight-condensation-moisture-causing-lighting-failure--prescription-0-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-headlight-condensation-moisture-causing-lighting-failure--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi"
+      ]
+    },
+    {
+      "issueId": "genesis-g70-high-pressure-fuel-pump-failure-causing-power-loss",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "2.0T",
+        "3.3T",
+        "Launch Edition",
+        "Sport",
+        "Sport Advanced",
+        "Sport Prestige"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)",
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "High-Pressure Fuel Pump Failure Causing Power Loss (Recall 24V-528 / 023G)",
+      "howToFix": "First verify the VIN against Recall 24V-528 (023G) — the fix is free under recall. Dealers apply an updated ECM/engine-control software calibration and inspect the high-pressure fuel pump, replacing the pump assembly if it fails inspection. Out of warranty/recall, the OEM HPFP is replaced; the 3.3T uses Hyundai/Genesis pump 35320-3L000 and the 2.0T uses 35320-2CTB1. After replacement, clear codes and confirm fuel-rail pressure is within spec.",
+      "dtcCodes": [
+        "P0087",
+        "P0093",
+        "P0191"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "First verify the VIN against Recall 24V-528 (023G) — the fix is free under recall."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers apply an updated ECM/engine-control software calibration and inspect the high-pressure fuel pump, replacing the pump assembly if it fails inspection."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "After replacement, clear codes and confirm fuel-rail pressure is within spec."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087, P0093, P0191"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g70-high-pressure-fuel-pump-failure-causing-power-loss--prescription-0-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-high-pressure-fuel-pump-failure-causing-power-loss--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi"
+      ]
+    },
+    {
+      "issueId": "genesis-g70-infotainment-lag",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment System Lag and Crashes",
+      "howToFix": "Update to the latest head unit software via the Genesis Connected Services app or dealer visit. The 2022+ models received significant hardware and software improvements. A factory reset can resolve persistent lag issues.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g70-lsd-noise",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Limited-Slip Differential Chatter Noise",
+      "howToFix": "Drain and refill the differential with Hyundai/Genesis-specified gear oil containing the correct friction modifier additive. The differential may need a break-in period after fluid change. This noise is somewhat normal for clutch-type LSDs.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g70-parasitic-battery-drain-dead-12v-battery",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "2.0T",
+        "3.3T",
+        "Sport",
+        "Sport Prestige"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)",
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "Parasitic Battery Drain / Dead 12V Battery",
+      "howToFix": "Load-test the battery and check charging-system output first; replace the AGM battery if it fails. If the battery is good, measure parasitic draw with a multimeter after the modules sleep (target under ~25-50 mA) and pull fuses to isolate the offending circuit — the head unit/infotainment is a common culprit. Apply any infotainment/BMS software updates, and have the dealer check for related service campaigns. A battery maintainer helps cars that sit for long periods.",
+      "dtcCodes": [
+        "B1318",
+        "P0562"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Load-test the battery and check charging-system output first;"
+        },
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "parasitic-draw",
+          "toolId": "dc-clamp-meter-low-current",
+          "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "If the battery is good, measure parasitic draw with a multimeter after the modules sleep (target under ~25-50 mA) and pull fuses to isolate the offending circuit — the head unit/infotainment is a common culprit."
+        },
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "multimeter-basic",
+          "toolId": "fluke-15b-plus",
+          "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "If the battery is good, measure parasitic draw with a multimeter after the modules sleep (target under ~25-50 mA) and pull fuses to isolate the offending circuit — the head unit/infotainment is a common culprit."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Apply any infotainment/BMS software updates, and have the dealer check for related service campaigns."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "B1318, P0562"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g70-parasitic-battery-drain-dead-12v-battery--prescription-0-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-parasitic-battery-drain-dead-12v-battery--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi"
+      ]
+    },
+    {
+      "issueId": "genesis-g70-power-folding-mirror-failure",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "2.0T",
+        "3.3T",
+        "Sport",
+        "Sport Prestige"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)",
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "Power-Folding Mirror Failure (Clicking / Not Folding or Unfolding)",
+      "howToFix": "Rule out the easy causes first: confirm the mirror-fold switch/setting wasn't bumped off, and reseat the door-harness connector (the rectangular plug with a black locking tab inside the door frame), which has fixed some cases. If the mirror clicks and won't move, the actuator's internal fold gears are stripped — replace the fold motor/gear set or the mirror actuator assembly. Severe cases require the full mirror assembly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Rule out the easy causes first: confirm the mirror-fold switch/setting wasn't bumped off, and reseat the door-harness connector (the rectangular plug with a black locking tab inside the door frame), which has fixed some cases."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g70-power-folding-mirror-failure--prescription-0-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-power-folding-mirror-failure--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi",
+        "genesis-g70-power-folding-mirror-failure--prescription-1-0--2-0l-turbo-i4-theta-ii-2-0t-gdi",
+        "genesis-g70-power-folding-mirror-failure--prescription-1-0--3-3l-twin-turbo-v6-lambda-ii-3-3t-gdi"
+      ]
+    },
+    {
+      "issueId": "genesis-g70-soft-clear-coat-easy-chipping-peeling-swirl-marks",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "2.0T",
+        "3.3T",
+        "Sport",
+        "Sport Prestige"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)",
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "Soft Clear Coat — Easy Chipping, Peeling and Swirl Marks",
+      "howToFix": "For chips and stone damage, paint protection film (PPF) on the hood, fenders and mirrors is the most common preventive fix. For swirls, use proper two-bucket wash technique and a light machine polish followed by a ceramic coating to add a sacrificial layer. Document clear-coat bubbling/peeling early and pursue it under the paint warranty — some dealers have repainted affected panels for owners showing adhesion failure.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g70-sunroof-headliner-rattle-creaking-noise",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "2.0T",
+        "3.3T",
+        "Sport",
+        "Sport Prestige"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)",
+        "3.3L twin-turbo V6 (Lambda II 3.3T-GDI)"
+      ],
+      "title": "Sunroof / Headliner Rattle and Creaking Noise",
+      "howToFix": "Have the dealer diagnose under warranty — fixes have ranged from repositioning/shimming the sunroof rail 'foot,' adding felt/foam or 3M tape at contact points, to ordering a replacement sunroof assembly when the rattle can't be resolved in the shop. Owners have had partial success self-treating the sunroof foot with felt tape. Confirm whether any related sunroof-noise service bulletin applies to the VIN.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have the dealer diagnose under warranty — fixes have ranged from repositioning/shimming the sunroof rail 'foot,' adding felt/foam or 3M tape at contact points, to ordering a replacement sunroof assembly when the rattle can't be resolved in the shop."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm whether any related sunroof-noise service bulletin applies to the VIN."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g70-transmission-shift-quality",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "8-Speed Automatic Shift Quality Issues",
+      "howToFix": "Perform a transmission adaptation reset at the dealer. Update the TCM software to the latest calibration. Allow the transmission to fully warm up before spirited driving. A fluid change at 60,000 miles can improve shift quality.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g70-turbo-oil-line-leak",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [
+        "3.3L Twin-Turbo V6",
+        "3.3T"
+      ],
+      "title": "Left Turbocharger Oil Feed Line Leak (Recall 24V-191)",
+      "howToFix": "Replace the banjo bolt crush washers with new copper washers at both turbocharger oil feed connections. Inspect the oil feed lines for cracking. Torque banjo bolts to specification to prevent over-tightening.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the oil feed lines for cracking."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g70-turbo-oil-line-leak--prescription-0-0--3-3l-twin-turbo-v6",
+        "genesis-g70-turbo-oil-line-leak--prescription-0-0--3-3t"
+      ]
+    },
+    {
+      "issueId": "genesis-g70-torque-converter-internal-rivet-damage-scratching-noise-low",
+      "make": "Genesis",
+      "model": "G70",
+      "years": [
+        2023
+      ],
+      "trims": [
+        "2.0T",
+        "Sport Advanced",
+        "Standard"
+      ],
+      "engines": [
+        "2.0L turbo I4 (Theta II 2.0T-GDI)"
+      ],
+      "title": "Torque Converter Internal Rivet Damage — Scratching Noise / Low-Speed Stall (Campaign T27G)",
+      "howToFix": "Confirm the VIN and production date against Service Campaign T27G (TSB 23-01-003G). The remedy is replacement of the torque converter at no charge for affected vehicles. If you have a low-speed stall or scratching noise on a 2023 2.0T, have the dealer investigate this campaign first — do not let the ECM be replaced before the torque converter is ruled out.",
+      "dtcCodes": [
+        "P0740",
+        "P0741"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the VIN and production date against Service Campaign T27G (TSB 23-01-003G)."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0740, P0741"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g80-infotainment-glitches",
+      "make": "Genesis",
+      "model": "G80",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment System Software Glitches",
+      "howToFix": "Keep the system updated to the latest firmware. Perform a factory reset after major OTA updates. Visit the dealer for a head unit reflash if persistent issues occur. The rotary controller can be used as a backup input method.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g80-electrified-software",
+      "make": "Genesis",
+      "model": "G80",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "Electric"
+      ],
+      "title": "Electrified G80 Software and Charging Issues",
+      "howToFix": "Update to the latest EV software through the dealer or OTA. Reset the BMS by disconnecting the 12V battery for 30 minutes. Report failed charging sessions to Genesis Connected Services for remote diagnostics.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Report failed charging sessions to Genesis Connected Services for remote diagnostics."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g90-5-0l-tau-v8-gdi-intake-valve-carbon-buildup-some-oil-consump",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "G90 5.0 Ultimate"
+      ],
+      "engines": [
+        "5.0L V8 (Tau)"
+      ],
+      "title": "5.0L Tau V8 GDI intake-valve carbon buildup and some oil consumption",
+      "howToFix": "Perform periodic walnut-blast (media) cleaning of the intake valves to remove carbon; use Top Tier 91-93 octane fuel and occasional higher-rpm driving to slow deposit formation, plus an intake-cleaning additive service. Monitor oil consumption with regular level checks between changes; document consumption for warranty if it exceeds spec.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil consumption with regular level checks between changes;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g90-8-speed-automatic-harsh-jerky-upshifts-low-speed-lurch",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [
+        "3.3L Twin-Turbo V6 (Lambda II)",
+        "5.0L V8 (Tau)"
+      ],
+      "title": "8-speed automatic harsh/jerky upshifts and low-speed lurch (solenoid TSB)",
+      "howToFix": "Have the dealer apply the harsh-shift TSB (upgraded shift solenoids) and perform a transmission adaptive-value reset so the TCM relearns shift points. Verify fluid level/condition. Many owners find Sport mode's shift profile smooths hesitation as an interim workaround.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify fluid level/condition."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g90-air-suspension-failures-leaking-air-struts-bags-compressor-b",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [
+        "3.3L Twin-Turbo V6 (Lambda II)",
+        "5.0L V8 (Tau)"
+      ],
+      "title": "Air suspension failures — leaking air struts/bags, compressor burnout and rear sag",
+      "howToFix": "Diagnose the specific failed component: replace leaking air struts/bags, the compressor (often failing after it runs continuously trying to keep up with a leak), the air dryer, or a faulty height/leveling sensor. A dealer-only suspension ECU reboot/reset can resolve a rear that sags on startup when no leak is present. Fix leaks promptly to avoid killing the compressor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose the specific failed component: replace leaking air struts/bags, the compressor (often failing after it runs continuously trying to keep up with a leak), the air dryer, or a faulty height/leveling sensor."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g90-air-suspension-failures-leaking-air-struts-bags-compressor-b--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii",
+        "genesis-g90-air-suspension-failures-leaking-air-struts-bags-compressor-b--prescription-0-0--5-0l-v8-tau",
+        "genesis-g90-air-suspension-failures-leaking-air-struts-bags-compressor-b--prescription-1-0--3-3l-twin-turbo-v6-lambda-ii",
+        "genesis-g90-air-suspension-failures-leaking-air-struts-bags-compressor-b--prescription-1-0--5-0l-v8-tau",
+        "genesis-g90-air-suspension-failures-leaking-air-struts-bags-compressor-b--prescription-2-0--3-3l-twin-turbo-v6-lambda-ii",
+        "genesis-g90-air-suspension-failures-leaking-air-struts-bags-compressor-b--prescription-2-0--5-0l-v8-tau"
+      ]
+    },
+    {
+      "issueId": "genesis-g90-coolant-leaks-from-water-pump-thermostat-housing",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [
+        "3.3L Twin-Turbo V6 (Lambda II)",
+        "5.0L V8 (Tau)"
+      ],
+      "title": "Coolant leaks from water pump and thermostat housing",
+      "howToFix": "Pressure-test the cooling system to pinpoint the source. Replace the water pump (G90 water pump PN 25100-3F300) and/or thermostat housing with new gaskets; clean and flatten mating surfaces and torque bolts in sequence to spec to avoid a repeat leak. Refill with the correct Hyundai/Genesis long-life coolant and bleed air.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure-test the cooling system to pinpoint the source."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g90-coolant-leaks-from-water-pump-thermostat-housing--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii",
+        "genesis-g90-coolant-leaks-from-water-pump-thermostat-housing--prescription-0-0--5-0l-v8-tau"
+      ]
+    },
+    {
+      "issueId": "genesis-g90-infotainment-navigation-screen-freezes-goes-blank-requiring",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [
+        "3.3L Twin-Turbo V6 (Lambda II)",
+        "5.0L V8 (Tau)"
+      ],
+      "title": "Infotainment/navigation screen freezes or goes blank, requiring reboot",
+      "howToFix": "Soft-reboot by holding the MAP and SETUP hard buttons together until the screen goes black and the Genesis logo appears (or hold power 10-15s). Apply the latest navigation/firmware update via dealer or USB. Persistent cases have been resolved by head-unit software reflash or replacement under warranty; a battery-cable disconnect can clear a stuck boot.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g90-infotainment-navigation-screen-freezes-goes-blank-requiring--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii",
+        "genesis-g90-infotainment-navigation-screen-freezes-goes-blank-requiring--prescription-0-0--5-0l-v8-tau"
+      ]
+    },
+    {
+      "issueId": "genesis-g90-left-turbocharger-oil-feed-pipe-cracks-leaks-oil-onto-exhaus",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "3.3T"
+      ],
+      "engines": [
+        "3.3L Twin-Turbo V6 (Lambda II)"
+      ],
+      "title": "Left turbocharger oil feed pipe cracks and leaks oil onto exhaust manifold, causing engine-compartment fire",
+      "howToFix": "Under recall 019G the dealer replaces the left turbo oil feed pipe/hose with an improved, more durable (stainless-reinforced) part free of charge. OEM left oil feed pipe/hose assembly is Hyundai PN 28240-3L100 (service kit references 28240-3L122QQH); inspect for oil weeping at the turbo and manifold, and address any oil-soaked heat shielding at the same time.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "inspect for oil weeping at the turbo and manifold, and address any oil-soaked heat shielding at the same time."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g90-panoramic-sunroof-creaking-rattling-wind-noise",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "3.3T",
+        "5.0",
+        "Premium",
+        "Ultimate"
+      ],
+      "engines": [
+        "3.3L twin-turbo V6",
+        "5.0L Tau V8"
+      ],
+      "title": "Panoramic sunroof creaking, rattling and wind noise (loose/under-torqued frame bolts)",
+      "howToFix": "Per TSB 23-BD-014G, install the sunroof felt/anti-noise kit (adds felt padding and lubricant to stop metal-on-metal movement) and fit modified sunroof frame bolts torqued to spec; loose factory bolts are re-torqued. In stubborn cases the roof/sunroof frame assembly is replaced. For a shattered glass panel, the sunroof glass or full assembly is replaced.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g90-panoramic-sunroof-creaking-rattling-wind-noise--prescription-0-0--3-3l-twin-turbo-v6",
+        "genesis-g90-panoramic-sunroof-creaking-rattling-wind-noise--prescription-0-0--5-0l-tau-v8"
+      ]
+    },
+    {
+      "issueId": "genesis-g90-power-trunk-fails-to-close-latch-release-often-due-to-lid-mi",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "3.3T",
+        "5.0",
+        "Premium",
+        "Ultimate"
+      ],
+      "engines": [
+        "3.3L twin-turbo V6",
+        "5.0L Tau V8"
+      ],
+      "title": "Power trunk fails to close/latch or release, often due to lid misalignment",
+      "howToFix": "Dealers typically start by adjusting the striker, bump stops/rubber stoppers and plastic trim to correct alignment, and check the release switch/harness and battery voltage; a full re-charge sometimes restores operation. Where the actuators are actually failed, the power latch assembly and/or power drive unit are replaced and the trunk initialization/re-learn is run. Under warranty the repair is free; out of warranty, actuator/latch parts plus labor typically run several hundred to over a thousand dollars.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers typically start by adjusting the striker, bump stops/rubber stoppers and plastic trim to correct alignment, and check the release switch/harness and battery voltage;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g90-power-trunk-fails-to-close-latch-release-often-due-to-lid-mi--prescription-0-0--3-3l-twin-turbo-v6",
+        "genesis-g90-power-trunk-fails-to-close-latch-release-often-due-to-lid-mi--prescription-0-0--5-0l-tau-v8"
+      ]
+    },
+    {
+      "issueId": "genesis-g90-repeated-12v-battery-drain-dead-battery-from-head-unit-modul",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "3.3L Twin-Turbo V6 (Lambda II)",
+        "3.5L Twin-Turbo V6 (Smartstream)",
+        "5.0L V8 (Tau)"
+      ],
+      "title": "Repeated 12V battery drain / dead battery from head unit and modules drawing power when parked",
+      "howToFix": "Measure key-off parasitic draw with a clamp/multimeter (target under ~50 mA); pull fuses to isolate the offending circuit. Where the head unit is the source, dealers have replaced it under warranty. Replace a degraded battery, keep the fob away from the vehicle when parked, and use a maintainer for cars that sit.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Measure key-off parasitic draw with a clamp/multimeter (target under ~50 mA);"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g90-repeated-12v-battery-drain-dead-battery-from-head-unit-modul--prescription-0-0--3-3l-twin-turbo-v6-lambda-ii",
+        "genesis-g90-repeated-12v-battery-drain-dead-battery-from-head-unit-modul--prescription-0-0--3-5l-twin-turbo-v6-smartstream",
+        "genesis-g90-repeated-12v-battery-drain-dead-battery-from-head-unit-modul--prescription-0-0--5-0l-v8-tau"
+      ]
+    },
+    {
+      "issueId": "genesis-g90-water-intrusion-into-starter-solenoid-causes-electrical-shor",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [
+        "3.3L Twin-Turbo V6 (Lambda II)",
+        "5.0L V8 (Tau)"
+      ],
+      "title": "Water intrusion into starter solenoid causes electrical short and engine-compartment fire",
+      "howToFix": "Under recall 24V107, dealers install a remedy relay kit in the engine junction box that de-energizes the starter circuit when the engine is running, preventing solenoid overheating/short — performed free of charge. No customer parts purchase required; verify the relay kit was installed if buying used.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "verify the relay kit was installed if buying used."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g90-low-pressure-fuel-pump-impeller-deforms-heat-causing-stallin",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2022,
+        2023
+      ],
+      "trims": [
+        "3.3T Premium (2022)",
+        "3.5T (2023)",
+        "3.5T E-Supercharger (2023)",
+        "5.0 Ultimate (2022)"
+      ],
+      "engines": [
+        "3.3L Twin-Turbo V6 Lambda II (G6DP) — 2022 1st-gen G90",
+        "3.5L Twin-Turbo V6 Smartstream/Lambda III (G6DS) — 2023 2nd-gen G90",
+        "5.0L V8 Tau (G8BE) — 2022 1st-gen G90"
+      ],
+      "title": "Low-pressure fuel pump impeller deforms in heat, causing stalling (NHTSA Recall 24V282000)",
+      "howToFix": "Recall 022G (NHTSA 24V282000): Genesis dealer inspects and replaces the low-pressure fuel pump assembly free of charge. Owner notification mailed June 18, 2024. Check VIN at nhtsa.gov/recalls or call Genesis at 1-855-371-9460. Do not delay — a sudden fuel pump shutdown in traffic increases crash risk.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check VIN at nhtsa.gov/recalls or call Genesis at 1-855-371-9460."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g90-blank-instrument-cluster-startup-due-to-lg-software-logic-er",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "3.5T",
+        "3.5T E-Supercharger"
+      ],
+      "engines": [
+        "3.5L Twin-Turbo V6",
+        "3.5L Twin-Turbo V6 E-Supercharger"
+      ],
+      "title": "Blank instrument cluster on startup due to LG software logic error",
+      "howToFix": "Recall 027G: free OTA software update pushed to the cluster, or a dealer flash if OTA fails. If your cluster is blank, do not drive — pull over, key-cycle, and contact Genesis at 844-340-9741 (reference recall 027G). Owner notification letters were mailed no later than September 15, 2025.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g90-fuel-crossover-pipe-leaks-engine-rail-fire-risk",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "3.5T",
+        "3.5T E-Supercharger"
+      ],
+      "engines": [
+        "3.5L twin-turbo GDI V6 (Lambda III)"
+      ],
+      "title": "Fuel crossover pipe leaks at engine rail (under-torqued fasteners) - fire risk",
+      "howToFix": "Under recall, dealers inspect the fuel crossover pipe and its fasteners, re-tighten them to spec with the correct torque stabilizer, and replace the fuel pipe if a leak or damage is found - free of charge regardless of warranty status, with reimbursement for prior out-of-pocket repairs. NHTSA advises parking outside and away from structures until the repair is done. VINs became searchable on NHTSA.gov April 11, 2026 and owner letters were mailed June 8, 2026.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Under recall, dealers inspect the fuel crossover pipe and its fasteners, re-tighten them to spec with the correct torque stabilizer, and replace the fuel pipe if a leak or damage is found - free of charge regardless of warranty status, with reimbursement for prior out-of-pocket repairs."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g90-fuel-crossover-pipe-leaks-engine-rail-fire-risk--prescription-0-0--3-5l-twin-turbo-gdi-v6-lambda-iii"
+      ]
+    },
+    {
+      "issueId": "genesis-g90-intermittent-dashboard-warning-cascade-electronic-parking-br",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2023
+      ],
+      "trims": [
+        "3.5T E-Supercharger"
+      ],
+      "engines": [],
+      "title": "Intermittent dashboard warning cascade with electronic parking brake lockout",
+      "howToFix": "Document every occurrence with date, mileage, and a photo of the cluster. Demand a parasitic-draw test and scan of all CAN modules. If the fault recurs after sensor replacement (commonly the body-control or yaw module), escalate to Genesis case management — multiple owners have qualified for lemon-law buyback once events exceed 30 days down or 3+ repair attempts.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Demand a parasitic-draw test and scan of all CAN modules."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g90-savile-silver-paint-reflects-corner-radar-triggering-phantom",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "3.5L Twin-Turbo V6 (Smartstream)"
+      ],
+      "title": "Savile Silver paint reflects corner radar, triggering phantom automatic emergency braking (Highway Drive Assist)",
+      "howToFix": "Under recall 25V833 a certified Genesis technician seals the front bumper beam so the radar signal is not transmitted through the body panel to strike the paint. Free of charge. As an interim measure owners can disable HDA/forward-collision-assist braking if experiencing phantom braking, and confirm the bumper-beam remedy has been applied.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "As an interim measure owners can disable HDA/forward-collision-assist braking if experiencing phantom braking, and confirm the bumper-beam remedy has been applied."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-g90-seat-belt-pretensioner-over-pressurization-can-rupture-eject",
+      "make": "Genesis",
+      "model": "G90",
+      "years": [
+        2023
+      ],
+      "trims": [
+        "3.5T",
+        "3.5T E-Supercharger"
+      ],
+      "engines": [
+        "3.5L twin-turbo GDI V6"
+      ],
+      "title": "Seat-belt pretensioner over-pressurization can rupture and eject metal fragments",
+      "howToFix": "Dealers install a securing cap on the seat-belt pretensioners so that, even if a pretensioner over-deploys, the assembly is contained and cannot fling metal fragments into the occupant space. The remedy is performed free of charge; owner notification letters were mailed in May 2023.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-g90-seat-belt-pretensioner-over-pressurization-can-rupture-eject--prescription-0-0--3-5l-twin-turbo-gdi-v6"
+      ]
+    },
+    {
+      "issueId": "genesis-gv60-12v-battery-drain",
+      "make": "Genesis",
+      "model": "GV60",
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "Electric"
+      ],
+      "title": "12V Battery Drain When Parked",
+      "howToFix": "Keep the vehicle plugged in when parked for more than 3 days to allow the HV system to maintain the 12V battery. Update to the latest software that includes improved power management. A 12V battery maintainer can be used as a backup.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv60-ota-software-issues",
+      "make": "Genesis",
+      "model": "GV60",
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "Electric"
+      ],
+      "title": "OTA Software Update Failures",
+      "howToFix": "Ensure the vehicle is plugged in with a strong cellular signal during OTA updates. If an update fails, visit the dealer for a complete software reflash. Do not interrupt the update process by starting the vehicle.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv60-range-inconsistency",
+      "make": "Genesis",
+      "model": "GV60",
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "Electric"
+      ],
+      "title": "Range Estimate Inconsistency",
+      "howToFix": "Precondition the battery and cabin while plugged in before departure. Use ECO mode and limit climate control usage in cold weather for maximum range. The BMS improves range predictions after learning driving patterns over several thousand miles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-12v-auxiliary-battery-drain-dead-battery-bricking",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Electrified GV70",
+        "GV70 2.5T",
+        "GV70 3.5T"
+      ],
+      "engines": [
+        "2.5T GDI I4",
+        "3.5T GDI V6",
+        "Dual-Motor Electric (Electrified GV70)"
+      ],
+      "title": "12V Auxiliary Battery Drain and Dead-Battery 'Bricking'",
+      "howToFix": "Have the dealer perform a parasitic-draw test and load-test the 12V battery; replace the battery if a cell is bad (often done under warranty). Keep the key fob out of the car when parked for long periods, and on cars that sit, use a battery tender or drive ~30 minutes weekly. On Electrified GV70s, confirm the ICCU recalls (025G / 24V-204 family) are completed, since ICCU failure is a major cause of repeat 12V deaths. Persistent draw with no obvious cause warrants module-by-module isolation by the dealer.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have the dealer perform a parasitic-draw test and load-test the 12V battery;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "On Electrified GV70s, confirm the ICCU recalls (025G / 24V-204 family) are completed, since ICCU failure is a major cause of repeat 12V deaths."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv70-12v-auxiliary-battery-drain-dead-battery-bricking--prescription-0-0--2-5t-gdi-i4",
+        "genesis-gv70-12v-auxiliary-battery-drain-dead-battery-bricking--prescription-0-0--3-5t-gdi-v6",
+        "genesis-gv70-12v-auxiliary-battery-drain-dead-battery-bricking--prescription-0-0--dual-motor-electric-electrified-gv70"
+      ]
+    },
+    {
+      "issueId": "genesis-gv70-8-speed-automatic-jerky-downshift-syndrome-throttle-response",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Advanced",
+        "Sport",
+        "Sport Prestige",
+        "Standard"
+      ],
+      "engines": [
+        "2.5L turbo I4 (Smartstream G2.5T)",
+        "3.5L twin-turbo V6 (Lambda II 3.5T)"
+      ],
+      "title": "8-Speed Automatic Jerky Downshift Syndrome (JDS) and Throttle Response Lag (Gasoline Models)",
+      "howToFix": "A 2023 technical bulletin covers replacing the transmission solenoids, resetting adaptive transmission values, running the oil-pressure characteristics input procedure, and TCM adaptive-value relearn. A powertrain/TCU software reflash to smooth shift and throttle mapping is done under warranty. In hardware cases, dealers have replaced the throttle body (and, for some, fuel injectors), which resolved the hesitation; a minority of intermittent cases traced to coolant leaks putting the car in limp mode were fixed by hose/radiator repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv70-8-speed-automatic-jerky-downshift-syndrome-throttle-response--prescription-0-0--2-5l-turbo-i4-smartstream-g2-5t",
+        "genesis-gv70-8-speed-automatic-jerky-downshift-syndrome-throttle-response--prescription-0-0--3-5l-twin-turbo-v6-lambda-ii-3-5t",
+        "genesis-gv70-8-speed-automatic-jerky-downshift-syndrome-throttle-response--prescription-1-0--2-5l-turbo-i4-smartstream-g2-5t",
+        "genesis-gv70-8-speed-automatic-jerky-downshift-syndrome-throttle-response--prescription-1-0--3-5l-twin-turbo-v6-lambda-ii-3-5t"
+      ]
+    },
+    {
+      "issueId": "genesis-gv70-brake-noise",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Brake Squeal and Dust",
+      "howToFix": "Replace the front brake pads with a low-dust ceramic compound. Clean and lubricate the brake caliper slide pins and pad contact points. Apply brake pad shim adhesive if shims are loose or missing.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv70-brake-noise--prescription-0-0--all-engines",
+        "genesis-gv70-brake-noise--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "genesis-gv70-c-not-cooling-weak-cooling-one-side",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "GV70 2.5T",
+        "GV70 3.5T"
+      ],
+      "engines": [
+        "2.5T GDI I4",
+        "3.5T GDI V6"
+      ],
+      "title": "A/C Not Cooling / Weak Cooling on One Side",
+      "howToFix": "Have the dealer leak-test and verify refrigerant charge first, then check the climate-control actuators/blend doors and compressor operation. Fixes range from recharging and sealing a leak to replacing a blend-door actuator or, in confirmed cases, the AC compressor. Repairs in the warranty window should be covered; out of warranty, expect compressor replacement to be the costliest path.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have the dealer leak-test and verify refrigerant charge first, then check the climate-control actuators/blend doors and compressor operation."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv70-c-not-cooling-weak-cooling-one-side--prescription-0-0--2-5t-gdi-i4",
+        "genesis-gv70-c-not-cooling-weak-cooling-one-side--prescription-0-0--3-5t-gdi-v6",
+        "genesis-gv70-c-not-cooling-weak-cooling-one-side--prescription-1-0--2-5t-gdi-i4",
+        "genesis-gv70-c-not-cooling-weak-cooling-one-side--prescription-1-0--3-5t-gdi-v6",
+        "genesis-gv70-c-not-cooling-weak-cooling-one-side--prescription-2-0--2-5t-gdi-i4",
+        "genesis-gv70-c-not-cooling-weak-cooling-one-side--prescription-2-0--3-5t-gdi-v6"
+      ]
+    },
+    {
+      "issueId": "genesis-gv70-forward-collision-avoidance-assist-phantom-unwanted-automati",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Advanced",
+        "Electrified GV70",
+        "Sport",
+        "Sport Prestige",
+        "Standard"
+      ],
+      "engines": [
+        "2.5L turbo I4 (Smartstream G2.5T)",
+        "3.5L twin-turbo V6 (Lambda II 3.5T)",
+        "Electrified GV70 dual-motor EV"
+      ],
+      "title": "Forward Collision-Avoidance Assist Phantom / Unwanted Automatic Emergency Braking",
+      "howToFix": "Dealers inspect and recalibrate or clean the front radar and windshield camera; a control-module software update is applied where available. When recalibration does not fully resolve it, owners reduce FCA warning sensitivity to 'late' or disable FCA in heavy traffic as a workaround. Most calibration/software work is covered under the new-vehicle warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers inspect and recalibrate or clean the front radar and windshield camera;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-fuel-pipe-to-rail-connection-leak-fire-risk",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "2.5T",
+        "3.5T",
+        "3.5T Sport"
+      ],
+      "engines": [
+        "2.5T GDI I4",
+        "3.5T GDI V6"
+      ],
+      "title": "Fuel Pipe-to-Rail Connection Leak Fire Risk",
+      "howToFix": "Check the VIN against NHTSA recall 26V-229 (Genesis 033G). Dealers will inspect and tighten the fuel pipe connection, or replace the fuel pipe as necessary, free of charge. Owner letters began mailing June 8, 2026. If you smell raw fuel, stop driving and have it inspected immediately rather than waiting for the recall appointment.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN against NHTSA recall 26V-229 (Genesis 033G)."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers will inspect and tighten the fuel pipe connection, or replace the fuel pipe as necessary, free of charge."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If you smell raw fuel, stop driving and have it inspected immediately rather than waiting for the recall appointment."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-headlight-assembly-moisture-condensation-buildup",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Advanced",
+        "Electrified GV70",
+        "Sport",
+        "Sport Prestige",
+        "Standard"
+      ],
+      "engines": [
+        "2.5L turbo I4 (Smartstream G2.5T)",
+        "3.5L twin-turbo V6 (Lambda II 3.5T)",
+        "Electrified GV70 dual-motor EV"
+      ],
+      "title": "Headlight Assembly Moisture and Condensation Buildup",
+      "howToFix": "Genesis addresses it via Technical Service Bulletin (TSB 22-BD-002G, also issued as 23-BD-002G / NHTSA 10230903) rather than a recall. Technicians run the headlights (high beam) for a minimum of 30 minutes; a small clearing mist is deemed normal, but persistent water droplets, streaks, or pooling indicate a failed seal and the assembly is replaced under the new-vehicle warranty. Out of warranty, a full LED assembly replacement is expensive.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-infotainment-freeze",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment Screen Freeze and Reboot",
+      "howToFix": "Hold the power/volume knob for 10 seconds to force a soft reset. Update to the latest software via OTA or dealer visit. Clear the navigation cache and reduce stored Bluetooth device pairings.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-low-pressure-fuel-pump-impeller-failure-causing-stalling",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023
+      ],
+      "trims": [
+        "2.5T",
+        "3.5T",
+        "3.5T Sport"
+      ],
+      "engines": [
+        "2.5T GDI I4",
+        "3.5T GDI V6"
+      ],
+      "title": "Low-Pressure Fuel Pump Impeller Failure Causing Stalling",
+      "howToFix": "Check the VIN against NHTSA recalls 23V-630 / 24V-282 (Genesis 016G/022G). The free remedy is replacement of the low-pressure fuel pump assembly using the recall service kit and tool per Genesis TSB 23-01-083G. Owners noticing stalling, hesitation, or hard starts in hot weather should have the recall completed before further driving.",
+      "dtcCodes": [
+        "P0087",
+        "P008A",
+        "P0230"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN against NHTSA recalls 23V-630 / 24V-282 (Genesis 016G/022G)."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087, P008A, P0230"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv70-low-pressure-fuel-pump-impeller-failure-causing-stalling--prescription-0-0--2-5t-gdi-i4",
+        "genesis-gv70-low-pressure-fuel-pump-impeller-failure-causing-stalling--prescription-0-0--3-5t-gdi-v6",
+        "genesis-gv70-low-pressure-fuel-pump-impeller-failure-causing-stalling--prescription-1-0--2-5t-gdi-i4",
+        "genesis-gv70-low-pressure-fuel-pump-impeller-failure-causing-stalling--prescription-1-0--3-5t-gdi-v6"
+      ]
+    },
+    {
+      "issueId": "genesis-gv70-paint-color-mismatch-between-plastic-trim-metal-body-panels",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Advanced",
+        "Electrified GV70",
+        "Sport",
+        "Sport Prestige",
+        "Standard"
+      ],
+      "engines": [
+        "2.5L turbo I4 (Smartstream G2.5T)",
+        "3.5L twin-turbo V6 (Lambda II 3.5T)",
+        "Electrified GV70 dual-motor EV"
+      ],
+      "title": "Paint Color Mismatch Between Plastic Trim and Metal Body Panels (Uyuni White)",
+      "howToFix": "When Genesis accepts the claim, the dealer body shop repaints or color-blends the mismatched panel to body color under the paint/finish warranty (some owners have had rear bumpers replaced). Many owners are told the difference is 'inherent' to the metal/plastic materials and are denied, in which case an independent body-shop repaint of the affected bumper or trim panel is the out-of-pocket remedy.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-panoramic-sunroof-headliner-rattle-wind-noise",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Electrified GV70",
+        "GV70 2.5T",
+        "GV70 3.5T"
+      ],
+      "engines": [
+        "2.5T GDI I4",
+        "3.5T GDI V6",
+        "Dual-Motor Electric (Electrified GV70)"
+      ],
+      "title": "Panoramic Sunroof / Headliner Rattle and Wind Noise",
+      "howToFix": "Have the dealer apply TSB 23-BD-014G: install the felt anti-rattle kit and the modified sunroof-frame bolts, and add foam/rubber padding behind the headliner where it contacts the sunroof frame. The repair typically requires removing the headliner and sunroof assembly and is covered under the new-vehicle warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv70-panoramic-sunroof-headliner-rattle-wind-noise--prescription-0-0--2-5t-gdi-i4",
+        "genesis-gv70-panoramic-sunroof-headliner-rattle-wind-noise--prescription-0-0--3-5t-gdi-v6",
+        "genesis-gv70-panoramic-sunroof-headliner-rattle-wind-noise--prescription-0-0--dual-motor-electric-electrified-gv70",
+        "genesis-gv70-panoramic-sunroof-headliner-rattle-wind-noise--prescription-1-0--2-5t-gdi-i4",
+        "genesis-gv70-panoramic-sunroof-headliner-rattle-wind-noise--prescription-1-0--3-5t-gdi-v6",
+        "genesis-gv70-panoramic-sunroof-headliner-rattle-wind-noise--prescription-1-0--dual-motor-electric-electrified-gv70"
+      ]
+    },
+    {
+      "issueId": "genesis-gv70-rear-differential-elsd-whine-repeat-carrier-failure",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "2.5T",
+        "3.5T Sport",
+        "3.5T Sport Prestige"
+      ],
+      "engines": [
+        "2.5T GDI I4",
+        "3.5T GDI V6"
+      ],
+      "title": "Rear Differential / eLSD Whine and Repeat Carrier Failure",
+      "howToFix": "Have the dealer perform TSB 23-DS-004G/-1: inspect and re-torque the differential carrier lock nut, road-test, and if noise persists replace the rear differential carrier assembly (and the eLSD-equipped carrier on Sport/3.5T) under the 5yr/60k powertrain warranty, followed by a rear-axle alignment. Because the same-design part can fail again, document each occurrence in writing for lemon-law leverage and ask whether an updated revision carrier is available before authorizing a like-for-like swap.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have the dealer perform TSB 23-DS-004G/-1: inspect and re-torque the differential carrier lock nut, road-test, and if noise persists replace the rear differential carrier assembly (and the eLSD-equipped carrier on Sport/3.5T) under the 5yr/60k powertrain warranty, followed by a rear-axle alignment."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-sunroof-drain-clog-causing-water-leak-into-cabin",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Electrified GV70",
+        "GV70 2.5T",
+        "GV70 3.5T"
+      ],
+      "engines": [
+        "2.5T GDI I4",
+        "3.5T GDI V6",
+        "Dual-Motor Electric (Electrified GV70)"
+      ],
+      "title": "Sunroof Drain Clog Causing Water Leak Into Cabin",
+      "howToFix": "Have the dealer clear the front and rear sunroof drain tubes and install the revised drain-plug design per the applicable TSB. If interior trim or the headliner is wet, ask the dealer to inspect for mold and dry/replace affected material. Owners in heavy-rain regions can periodically check that the drain channels are clear.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "If interior trim or the headliner is wet, ask the dealer to inspect for mold and dry/replace affected material."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners in heavy-rain regions can periodically check that the drain channels are clear."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-electrified-range",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "Electric"
+      ],
+      "title": "Electrified GV70 Range Inconsistency",
+      "howToFix": "Precondition the battery while plugged in before cold weather departures. Use ECO mode for maximum range. The BMS learns driving patterns over time and range estimates improve after 2,000-3,000 miles of ownership.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-iccu-failure-causing-loss-drive-power",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Electrified GV70",
+        "Electrified GV70 Advanced",
+        "Electrified GV70 Prestige"
+      ],
+      "engines": [
+        "Dual-Motor Electric (Electrified GV70)"
+      ],
+      "title": "ICCU Failure Causing Loss of Drive Power (Electrified GV70)",
+      "howToFix": "Verify the VIN against the ICCU recalls (Genesis 025G; NHTSA 24V-204 and its expansions). Dealers inspect and replace the ICCU and its fuse as necessary and apply updated ICCU software, free of charge. If you experience warning lights plus a power-reduction message, pull over and arrange transport rather than continuing to drive. A repeat dead-12V battery on an Electrified GV70 should trigger an ICCU diagnosis, not just a battery swap.",
+      "dtcCodes": [
+        "P1A9096"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify the VIN against the ICCU recalls (Genesis 025G;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers inspect and replace the ICCU and its fuse as necessary and apply updated ICCU software, free of charge."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "A repeat dead-12V battery on an Electrified GV70 should trigger an ICCU diagnosis, not just a battery swap."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P1A9096"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-instrument-cluster-blank-flickering-startup",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Electrified GV70",
+        "GV70 2.5T",
+        "GV70 3.5T"
+      ],
+      "engines": [
+        "2.5T GDI I4",
+        "3.5T GDI V6",
+        "Dual-Motor Electric (Electrified GV70)"
+      ],
+      "title": "Instrument Cluster Blank or Flickering at Startup",
+      "howToFix": "Check the VIN against Genesis recall 031G. The remedy is a free instrument-panel-display software update; on many vehicles it is delivered as an over-the-air (OTA) update, otherwise the dealer reflashes the cluster. If the cluster is blank, do not drive relying on the center screen; have the update applied.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN against Genesis recall 031G."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv70-transmission-harness-water-leak-causing-park-to-neutral-roll",
+      "make": "Genesis",
+      "model": "GV70",
+      "years": [
+        2024
+      ],
+      "trims": [
+        "2.5T",
+        "3.5T",
+        "3.5T Sport"
+      ],
+      "engines": [
+        "2.5T GDI I4",
+        "3.5T GDI V6"
+      ],
+      "title": "Transmission Harness Water Leak Causing Park-to-Neutral Rollaway",
+      "howToFix": "Check the VIN against NHTSA recall 24V-205 (Genesis 020G). Dealers inspect the transmission control harness and repair the connector or replace the harness and internal wiring as necessary, free of charge. Until repaired, always set the emergency/parking brake and turn the ignition off when parked.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN against NHTSA recall 24V-205 (Genesis 020G)."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers inspect the transmission control harness and repair the connector or replace the harness and internal wiring as necessary, free of charge."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv80-front-seat-belt-pretensioner-can-explode-project-metal-fragm",
+      "make": "Genesis",
+      "model": "GV80",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Seat Belt Pretensioner Can Explode and Project Metal Fragments (Recall NHTSA 23V094)",
+      "howToFix": "Free recall remedy: dealer installs a protective metal cap over the front pretensioners to contain any rupture. Verify VIN at NHTSA.gov under campaign 23V094; call Genesis at 855-371-9460 to schedule.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify VIN at NHTSA.gov under campaign 23V094;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv80-2-5l-t-gdi-cold-start-misfire-p0300-p0304",
+      "make": "Genesis",
+      "model": "GV80",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [
+        "2.5L T-GDI Theta III (Smartstream G2.5T)"
+      ],
+      "title": "2.5L T-GDI Cold-Start Misfire P0300-P0304 (Service Campaign 914G / TSB 25-01-051G)",
+      "howToFix": "Free dealer remedy under Service Campaign 914G / TSB 25-01-051G: ~30 minute ECM software reflash with improved misfire logic. Persistent misfire after reflash warrants coil/injector swap-test on the affected cylinder.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Persistent misfire after reflash warrants coil/injector swap-test on the affected cylinder."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv80-diesel-nox",
+      "make": "Genesis",
+      "model": "GV80",
+      "years": [
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "3.0L Diesel I6"
+      ],
+      "title": "Diesel NOx System Issues (International Markets)",
+      "howToFix": "Replace the NOx sensor and clear adaptation values. Use only manufacturer-approved DEF fluid. Update the ECU calibration for improved NOx system management. Avoid short trips that prevent the DPF from completing regeneration.",
+      "dtcCodes": [
+        "P20EE",
+        "P229F"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P20EE, P229F"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv80-diesel-nox--prescription-0-0--3-0l-diesel-i6"
+      ]
+    },
+    {
+      "issueId": "genesis-gv80-head-up-display-fades-eclipse-effect-before-total-failure",
+      "make": "Genesis",
+      "model": "GV80",
+      "years": [
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Head-Up Display Fades / 'Eclipse' Effect Before Total Failure",
+      "howToFix": "Rule out polarized sunglasses (which kill HUD visibility) and direct sun overheating of the projector. If fade persists when cool, request HUD projector module replacement under 5yr/60k bumper-to-bumper warranty; out of warranty, full unit replacement runs ~$1100-$2200 installed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv80-head-up-display-fades-eclipse-effect-before-total-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "genesis-gv80-infotainment-issues",
+      "make": "Genesis",
+      "model": "GV80",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment and Connected Services Issues",
+      "howToFix": "Update to the latest infotainment and Connected Services software. Disable wireless charging if phone overheating occurs and use a wired connection. Factory reset the head unit for persistent glitches.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv80-rear-differential-hum-whine-noise-from-improperly-torqued-pi",
+      "make": "Genesis",
+      "model": "GV80",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear Differential Hum/Whine Noise from Improperly Torqued Pinion Lock Nut (TSB 23-DS-004G)",
+      "howToFix": "Have dealer perform TSB 23-DS-004G inspection: install repair kit (2 bolts + 1 nut) and re-torque pinion lock nut first; replace rear differential assembly if noise persists. Repair is covered under Genesis 10yr/100k powertrain warranty - document the noise on a repair order before warranty expires.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have dealer perform TSB 23-DS-004G inspection: install repair kit (2 bolts + 1 nut) and re-torque pinion lock nut first;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv80-rear-differential-hum-whine-noise-from-improperly-torqued-pi--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "genesis-gv80-low-pressure-fuel-pump-impeller-deformation-causes-stalling",
+      "make": "Genesis",
+      "model": "GV80",
+      "years": [
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "2.5L T-GDI (Smartstream G2.5T)",
+        "3.5L Twin-Turbo (Lambda III)"
+      ],
+      "title": "Low-Pressure Fuel Pump Impeller Deformation Causes Stalling (Recall 022G / NHTSA 24V282)",
+      "howToFix": "Free recall remedy: Genesis dealer will replace the low-pressure fuel pump assembly. Owners should call Genesis at 855-371-9460 or check VIN at NHTSA.gov to confirm coverage under campaign 24V282 / Recall 022G.",
+      "dtcCodes": [
+        "P0087",
+        "P0230",
+        "P0231"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners should call Genesis at 855-371-9460 or check VIN at NHTSA.gov to confirm coverage under campaign 24V282 / Recall 022G."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087, P0230, P0231"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "genesis-gv80-low-pressure-fuel-pump-impeller-deformation-causes-stalling--prescription-0-0--2-5l-t-gdi-smartstream-g2-5t",
+        "genesis-gv80-low-pressure-fuel-pump-impeller-deformation-causes-stalling--prescription-0-0--3-5l-twin-turbo-lambda-iii"
+      ]
+    },
+    {
+      "issueId": "genesis-gv80-instrument-cluster-goes-blank-startup-software-logic-error",
+      "make": "Genesis",
+      "model": "GV80",
+      "years": [
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Instrument Cluster Goes Blank at Startup - Software Logic Error (Recall NHTSA 25V105)",
+      "howToFix": "Free recall remedy: Genesis dealer performs a software update to the cluster controller; no hardware replacement required. Confirm coverage via VIN lookup at NHTSA.gov under campaign 25V105.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm coverage via VIN lookup at NHTSA.gov under campaign 25V105."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "genesis-gv80-coupe-harsh-ride-impact-harshness-22-inch-wheels",
+      "make": "Genesis",
+      "model": "GV80 Coupe",
+      "years": [
+        2025
+      ],
+      "trims": [
+        "3.5T E-Supercharger AWD (22-inch wheels standard)"
+      ],
+      "engines": [],
+      "title": "Harsh ride and impact harshness on 22-inch wheels (E-Supercharger trim)",
+      "howToFix": "First, verify cold tire pressure matches door placard (typically 33-35 psi); many vehicles arrive over-inflated for transport. If still harsh, consider swapping to the 20-inch wheel/tire package (better sidewall absorption) or higher-sidewall winter set.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "First, verify cold tire pressure matches door placard (typically 33-35 psi);"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

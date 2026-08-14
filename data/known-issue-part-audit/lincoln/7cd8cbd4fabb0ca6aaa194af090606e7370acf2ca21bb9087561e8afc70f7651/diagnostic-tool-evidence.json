@@ -1,0 +1,436 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Lincoln",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 101,
+    "issuesWithDtcCodes": 23,
+    "uniqueDtcCount": 75,
+    "solutionInstructionCount": 114,
+    "dtcDispositionCount": 23,
+    "toolLinkedDispositionCount": 10,
+    "procedureNoToolDispositionCount": 89,
+    "unresolvedToolHoldCount": 38,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "lincoln-aviator-10r60-10r80-mht-harsh-delayed-shifts-from-sticking-valve-bod",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0729, P0731, P0732, P0733, P0734, P0735, P0736, P0751, P0752, P0756, P0757, P0761, P0762, P0766, P0767, P076F, P0771, P0772, P07D9, P07F6, P07F7, P2700, P2701, P2702, P2703, P2704, P2705, P2707, P2708",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-12v-battery-drain-repeated-dead-battery",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if state of charge does not change after charging or a BMS reset, continue the battery/BMS diagnostic path.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-12v-battery-drain-repeated-dead-battery",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not replace a latch, TCU, battery, or other module without a failed test, and do not present a maintainer as the repair for an unresolved drain.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-air-suspension-fault-vehicle-stuck-low-will-not-raise",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Use Ford Diagnosis and Repair System (FDRS) and select SUMA > Run All CM (Continuous Memory) DTCs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-air-suspension-fault-vehicle-stuck-low-will-not-raise",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If that test was run, clear the condition with SUMA > Transport and Factory Mode Deactivation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-air-suspension-fault-vehicle-stuck-low-will-not-raise",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If other DTCs or physical ride-height symptoms remain, follow Workshop Manual Section 204-05 normal diagnostics before selecting a part.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-air-suspension-fault-vehicle-stuck-low-will-not-raise",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1041, U2100",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-hybrid-regenerative-brake-pedal-pulsation-brake-bounce",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The TSB procedure is a coordinated flash: reprogram the PCM with the latest diagnostic-tool software, which also reprograms the ABS module.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-hybrid-regenerative-brake-pedal-pulsation-brake-bounce",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If pulsation remains or does not match the described condition, continue normal brake-system diagnosis rather than assuming warped rotors or replacing parts from this record.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-interior-dash-bezel-door-trim-console-rattles-buzzes",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Follow Ford Workshop Manual Section 415-00 Pinpoint Test E1.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-interior-dash-bezel-door-trim-console-rattles-buzzes",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Use its 100 Hz speaker test sample and set fade/balance to the passenger-front speaker.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-interior-dash-bezel-door-trim-console-rattles-buzzes",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the rattle is isolated to the passenger-door switch bezel, remove the bezel per WSM 501-11, apply Rotunda flock tape 164-R4903 in the SSM's U-shaped placement over the underside of the bezel and switch, reassemble, and rerun Pinpoint Test E1.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-interior-dash-bezel-door-trim-console-rattles-buzzes",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the noise remains, continue the remaining Pinpoint Test E steps before selecting another component.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-panoramic-sunroof-leaks-clogged-drains",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Document the entry location before drying or disassembly, then have the vehicle water-tested in controlled sections so the first wet point can be traced.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-phev-stop-safely-now-loss-motive-power-from-high-voltage-bat",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If P1A0C or Stop Safely Now occurs after a different sequence, retain a full vehicle scan and diagnose that event independently rather than assuming 22P16.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-phev-stop-safely-now-loss-motive-power-from-high-voltage-bat",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1A0C",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-power-liftgate-won-t-open-close",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For a matching SSM 49914 or 49015 software condition, use the latest Ford diagnostic software to reprogram the RGTM.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-power-liftgate-won-t-open-close",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the symptom does not match, continue Workshop Manual diagnosis of power, grounds, switches, latch, position sensing, struts, wiring, and obstruction detection before selecting a part.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-power-liftgate-won-t-open-close",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B144D, B144E, B1555, B1556",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-premature-front-wheel-hub-bearing-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not infer C0050 or C0040 without a scan.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-premature-front-wheel-hub-bearing-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "This record intentionally has no commerce link until diagnosis and VIN-specific fitment are known.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-rear-air-suspension",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1727, C1965",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-aviator-sync-3-infotainment-freezing-black-screen-reboots",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the screen, connector, software, power, network, or APIM evidence does not match these documents, continue normal diagnosis rather than replacing the module.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-continental-soft-close-door-cinch-motor-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for body/door module codes (these may not show on the dash).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-corsair-egr-valve-failure-causing-sudden-loss-drive-power",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If symptoms appear before the remedy, contact Ford at 1-866-436-7332 to request loaner/mobile diagnosis;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-ls-coolant-cross-leak-aj-v8",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0128, P1285",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-mkx-3.7l-water-pump-internal",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0217, P1285",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-mkz-3.5l-water-pump-internal-leak",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0217, P1285",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-mkz-hybrid-electric-power-steering",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C2007, U0131",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0128, P0217, P0302, P0303, P044C, P1026, P1285, P1299, P139A, P2457",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the 12V battery and charging system;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1676, P0A7F",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-navigator-air-ride-suspension-compressor-burnout-from-air-bag-leaks",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with soapy water at each air spring upper crimp before replacing the compressor.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-navigator-air-suspension-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1727, C1731, C1965",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-town-car-plastic-intake-manifold-coolant-crossover-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace any coolant-soaked coils and pressure-test the system afterward.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-town-car-coil-plug-ignition-coil-failure-misfires",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose by swapping the suspect coil to another cylinder and confirming the misfire code follows;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-town-car-air-suspension-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1727, C1965",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "lincoln-town-car-blend-door-actuator",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1342, B2477",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

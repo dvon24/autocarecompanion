@@ -1,0 +1,900 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "CUPRA",
+  "makeKey": "cupra",
+  "makeIndex": 9,
+  "totalMakes": 54,
+  "issueCount": 22,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 4,
+    "diagnosis-dependent": 3,
+    "recall/dealer": 3,
+    "service/tool/fluid": 5,
+    "no-commerce": 7
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 6,
+    "uniqueDtcCount": 12,
+    "instructionCount": 16,
+    "dtcDispositionCount": 6,
+    "toolLinkedCount": 2,
+    "procedureNoToolCount": 14,
+    "unresolvedToolHoldCount": 6
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "cupra-ateca-dq381-wet-clutch",
+      "make": "CUPRA",
+      "model": "Ateca",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "2.0 TSI 4Drive",
+        "VZ",
+        "VZN"
+      ],
+      "engines": [
+        "2.0 TSI (EA888 Gen 3)"
+      ],
+      "title": "Ateca DSG DQ381 (Wet-Clutch) Shudder / Hesitation",
+      "howToFix": "DSG oil + filter service (Mileage-based at 60,000 km; many service plans miss it) €180-€280 at independent. Severe shudder may need mechatronic refresh or new clutch packs (€1,200-€2,500).",
+      "dtcCodes": [
+        "P1735",
+        "P1736"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P1735, P1736"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "cupra-ateca-dq381-wet-clutch--prescription-0-0--2-0-tsi-ea888-gen-3"
+      ]
+    },
+    {
+      "issueId": "cupra-ateca-haldex-coupling",
+      "make": "CUPRA",
+      "model": "Ateca",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "2.0 TSI 4Drive",
+        "300hp",
+        "VZ",
+        "VZN"
+      ],
+      "engines": [
+        "2.0 TSI (EA888 Gen 3)"
+      ],
+      "title": "Ateca 4Drive Haldex 5 Coupling Service / Wear",
+      "howToFix": "Haldex oil + filter service €120-€220 at independent (€280-€400 dealer). Neglected couplings may need refresh (€600-€1,000) or replacement (€1,200-€1,800).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-born-12v-infotainment-glitches",
+      "make": "CUPRA",
+      "model": "Born",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Aurora Blue",
+        "e-Boost",
+        "V",
+        "VZ"
+      ],
+      "engines": [
+        "Electric"
+      ],
+      "title": "Born 12V Drain + MIB3 Infotainment Glitches (Shared with VW ID.3)",
+      "howToFix": "Ensure latest software (dealer check; some via OTA on newer cars). Hard-reset infotainment by holding power button 10+ seconds. 12V replacement covered under warranty for many VINs — request inspection.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Ensure latest software (dealer check;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "12V replacement covered under warranty for many VINs — request inspection."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-born-thermal-management",
+      "make": "CUPRA",
+      "model": "Born",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "e-Boost",
+        "V",
+        "VZ"
+      ],
+      "engines": [
+        "Electric"
+      ],
+      "title": "Born Thermal Management Software — Fast-Charge Throttling",
+      "howToFix": "Update software to 4.x (some via OTA, some dealer-only). Pre-condition battery before fast-charging using nav route planning. Confirm whether your VIN was built with heat-pump option (better thermal range).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm whether your VIN was built with heat-pump option (better thermal range)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-formentor-2.0-tsi-ea888-gen4-chain",
+      "make": "CUPRA",
+      "model": "Formentor",
+      "years": [
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "VZ",
+        "VZ5",
+        "VZN"
+      ],
+      "engines": [
+        "2.0 TSI (EA888 Gen 4)"
+      ],
+      "title": "Formentor 2.0 TSI HPFP Tappet Noise + Cold-Start Rattle Monitoring",
+      "howToFix": "HPFP tappet shim or pump replacement €350-€650. If chain rattle persists, dealer diagnostic is recommended before any €1,200-€2,500 chain replacement. Use VW 504.00 oil at 10,000 km max — extended-life intervals shorten chain life on this family.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "If chain rattle persists, dealer diagnostic is recommended before any €1,200-€2,500 chain replacement."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "cupra-formentor-2-0-tsi-ea888-gen4-chain--prescription-0-0--2-0-tsi-ea888-gen-4",
+        "cupra-formentor-2-0-tsi-ea888-gen4-chain--prescription-1-0--2-0-tsi-ea888-gen-4",
+        "cupra-formentor-2-0-tsi-ea888-gen4-chain--prescription-2-0--2-0-tsi-ea888-gen-4"
+      ]
+    },
+    {
+      "issueId": "cupra-formentor-2-0-tsi-ea888-oil-consumption-timing-chain-wear",
+      "make": "Cupra",
+      "model": "Formentor",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "2.0 TSI",
+        "2.0 TSI 310 PS",
+        "VZ"
+      ],
+      "engines": [
+        "2.0 TSI EA888 Gen 3/evo4"
+      ],
+      "title": "2.0 TSI EA888 oil consumption and timing-chain wear",
+      "howToFix": "Check oil level regularly between services and top up promptly with the correct VW 504.00/508.00-spec oil. Investigate persistent high consumption (worse than ~1 litre/1,000 km) via a dealer oil-consumption test; remedies range from PCV/oil-separator replacement to piston-ring/short-block work. Address any cold-start timing rattle promptly to avoid chain/tensioner failure. Walnut-blast carbon from intake valves if drivability/misfires appear.",
+      "dtcCodes": [
+        "P0016",
+        "P0341",
+        "P052E"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check oil level regularly between services and top up promptly with the correct VW 504.00/508.00-spec oil."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Investigate persistent high consumption (worse than ~1 litre/1,000 km) via a dealer oil-consumption test;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0341, P052E"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-formentor-dsg-dual-clutch-gearbox-failures-clutch-pack-mechatronic-fau",
+      "make": "Cupra",
+      "model": "Formentor",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "1.5 TSI DSG",
+        "2.0 TSI DSG",
+        "e-Hybrid"
+      ],
+      "engines": [
+        "1.4 TSI e-Hybrid EA211",
+        "1.5 TSI EA211 evo",
+        "2.0 TSI EA888"
+      ],
+      "title": "DSG dual-clutch gearbox failures: clutch pack / mechatronic faults causing limp mode",
+      "howToFix": "Have the gearbox scanned for fault codes (P175E00 indicates clutch pack 1). Remedy is typically replacement of the mechatronic control unit, or in worse cases the full DSG unit, performed under warranty. Owners should keep up with DSG fluid service intervals and avoid 'creeping' (holding the car on the throttle against the brake) to reduce clutch heat. If the warning appears, stop and restart - intermittent faults sometimes clear, but the car should still be diagnosed.",
+      "dtcCodes": [
+        "P175E00"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "If the warning appears, stop and restart - intermittent faults sometimes clear, but the car should still be diagnosed."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P175E00"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "cupra-formentor-dsg-dual-clutch-gearbox-failures-clutch-pack-mechatronic-fau--prescription-0-0--1-4-tsi-e-hybrid-ea211",
+        "cupra-formentor-dsg-dual-clutch-gearbox-failures-clutch-pack-mechatronic-fau--prescription-0-0--1-5-tsi-ea211-evo",
+        "cupra-formentor-dsg-dual-clutch-gearbox-failures-clutch-pack-mechatronic-fau--prescription-0-0--2-0-tsi-ea888"
+      ]
+    },
+    {
+      "issueId": "cupra-formentor-infotainment-system-freezes-blank-screens-software-crashes",
+      "make": "Cupra",
+      "model": "Formentor",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment system freezes, blank screens and software crashes",
+      "howToFix": "Perform a hard reset of the infotainment unit (hold the power/volume knob ~10-20 seconds, or follow Cupra's reset procedure). Book the car in for the latest MIB3 software at a Cupra dealer - newer builds improve stability. If freezes persist after updating, the head unit can be replaced under warranty. Where available, accept OTA updates as they are released.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "cupra-formentor-infotainment-system-freezes-blank-screens-software-crashes--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "cupra-formentor-keyless-entry-start-false-sos-roadside-assistance-calls",
+      "make": "Cupra",
+      "model": "Formentor",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Keyless entry/start and false SOS/roadside-assistance calls (electrical gremlins)",
+      "howToFix": "Update the relevant control-module software at a Cupra dealer, which resolves many false-warning and SOS cases. For keyless faults, try a fresh key-fob battery first; persistent non-detection or unintended locking is addressed by recalibrating or replacing the Kessy antenna/door handle sensors under warranty. Document any false emergency calls with the dealer so they can be logged and patched.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "cupra-formentor-keyless-entry-start-false-sos-roadside-assistance-calls--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "cupra-formentor-recall-heat-shield-mat-misfitted-brake-fluid-reservoir-can-m",
+      "make": "Cupra",
+      "model": "Formentor",
+      "years": [
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "DSG models with electromechanical brake servo"
+      ],
+      "engines": [],
+      "title": "RECALL: heat-shield mat misfitted — brake fluid reservoir can melt and leak",
+      "howToFix": "Free recall remedy at an authorised Cupra/Seat workshop: inspect the heat-shield mat installation, correct the heat-shield condition and fit an additional heat shield as required. Owners should check their VIN against the manufacturer/DVSA recall record.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Free recall remedy at an authorised Cupra/Seat workshop: inspect the heat-shield mat installation, correct the heat-shield condition and fit an additional heat shield as required."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners should check their VIN against the manufacturer/DVSA recall record."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-mqb-electric-handbrake",
+      "make": "CUPRA",
+      "model": "Formentor",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "V1",
+        "V2",
+        "VZ"
+      ],
+      "engines": [
+        "1.5 TSI",
+        "2.0 TSI"
+      ],
+      "title": "Formentor MQB Evo Electric Parking Brake Actuator Failure",
+      "howToFix": "Single actuator replacement €250-€450 incl. coding. If both fail at similar mileage (common), replacing as a pair is more cost-effective. Use the manual emergency release procedure (button in console + key) to free the car if stuck.",
+      "dtcCodes": [
+        "C1080",
+        "C108F"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1080, C108F"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "cupra-mqb-electric-handbrake--prescription-0-0--1-5-tsi",
+        "cupra-mqb-electric-handbrake--prescription-0-0--2-0-tsi"
+      ]
+    },
+    {
+      "issueId": "cupra-formentor-e-hybrid-charging-flap-actuator-sticks-fails-to-open",
+      "make": "Cupra",
+      "model": "Formentor",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "e-Hybrid"
+      ],
+      "engines": [
+        "1.4 TSI e-Hybrid EA211"
+      ],
+      "title": "e-Hybrid charging flap actuator sticks or fails to open",
+      "howToFix": "A temporary workaround owners report is to push firmly on the flap as if closing it while repeatedly locking/unlocking the car with the key fob, which can free the actuator. The proper fix is replacement of the charge-flap actuator element, which dealers have authorised under warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-formentor-front-parking-sensors-park-assist-fail-warm-weather-direct-s",
+      "make": "Cupra",
+      "model": "Formentor",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front parking sensors / Park Assist fail in warm weather and direct sun",
+      "howToFix": "Try a dealer software update first, as some cases trace to control-module calibration rather than physical sensor damage. Genuinely faulty sensors are replaced individually. Push back on warranty refusals where there is no visible impact damage, since the temperature-related pattern points to a system/software fault rather than stone chips.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "cupra-formentor-front-parking-sensors-park-assist-fail-warm-weather-direct-s--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "cupra-formentor-phev-12v-charging",
+      "make": "CUPRA",
+      "model": "Formentor",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "e-Hybrid"
+      ],
+      "engines": [
+        "1.4 TSI PHEV",
+        "1.5 TSI PHEV"
+      ],
+      "title": "Formentor e-Hybrid Charging Port + 12V Issues",
+      "howToFix": "Update vehicle software (dealer check; some markets had recall). Use a 12V battery maintainer for parked stretches over 1 week. Charging port latch under warranty for early VINs — file a claim.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Update vehicle software (dealer check;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-formentor-recall-rear-left-wheel-bearing-housing-may-fail",
+      "make": "Cupra",
+      "model": "Formentor",
+      "years": [
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "RECALL: rear left wheel bearing housing may fail (recall 42M7)",
+      "howToFix": "Free recall repair at an authorised Cupra/Seat dealer: inspection and replacement of the affected rear wheel bearing housing(s). Owners of cars from the affected April 2023 build window should have their VIN checked against recall 42M7.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Free recall repair at an authorised Cupra/Seat dealer: inspection and replacement of the affected rear wheel bearing housing(s)."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners of cars from the affected April 2023 build window should have their VIN checked against recall 42M7."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-leon-mk3-dq250-mechatronic",
+      "make": "CUPRA",
+      "model": "Leon",
+      "years": [
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Cupra",
+        "Cupra R",
+        "Cupra ST"
+      ],
+      "engines": [
+        "2.0 TSI (EA888 Gen 3)"
+      ],
+      "title": "Leon Mk3 Cupra DQ250 6-Speed DSG Mechatronic",
+      "howToFix": "DSG service every 60,000 km (oil + filter) €200-€350 — non-optional for longevity. Mechatronic refurb €1,400-€2,200, full replacement €2,500-€3,500. Many owners report transmission lasts 200,000+ km with strict service.",
+      "dtcCodes": [
+        "P0841",
+        "P0846",
+        "P189C"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P0841, P0846, P189C"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-raval-firm-ride-19-inch-wheels-jiggly-crashy-over-urban-surfaces",
+      "make": "CUPRA",
+      "model": "Raval",
+      "years": [
+        2026,
+        2027
+      ],
+      "trims": [
+        "VZ",
+        "VZ Extreme"
+      ],
+      "engines": [
+        "166kW e-motor (MEB Small / VZ)"
+      ],
+      "title": "Firm ride with 19-inch wheels — jiggly and crashy over urban surfaces",
+      "howToFix": "Specify 18-inch (or 17-inch where available) wheels — CUPRA confirms they fit even the VZ and meaningfully improve compliance. If you already own a 19-inch car, consider a 18-inch winter set with a taller-sidewall tyre. Always order the DCC adaptive dampers if you're staying on 19s.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-raval-front-fender-charging-port-forces-nose-parking-chargers",
+      "make": "CUPRA",
+      "model": "Raval",
+      "years": [
+        2026
+      ],
+      "trims": [
+        "Origin",
+        "V1",
+        "V2",
+        "VZ",
+        "VZ Extreme"
+      ],
+      "engines": [
+        "EV"
+      ],
+      "title": "Front-fender charging port forces nose-in parking at chargers",
+      "howToFix": "Survey your regular DC charging stops and confirm cable reach before committing. For home installation, position the wallbox toward the front of the parking spot. Carry knowledge of which network locations have longer cables (Tesla Superchargers V4, Ionity newer pedestals) for trips.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Survey your regular DC charging stops and confirm cable reach before committing."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-raval-modest-dc-fast-charging-peak-90-130-kw-well-below-class-lead",
+      "make": "CUPRA",
+      "model": "Raval",
+      "years": [
+        2026
+      ],
+      "trims": [
+        "Origin",
+        "V1",
+        "V2",
+        "VZ",
+        "VZ Extreme"
+      ],
+      "engines": [
+        "EV-155kW",
+        "EV-166kW",
+        "EV-210kW",
+        "EV-225kW",
+        "EV-85kW",
+        "EV-99kW"
+      ],
+      "title": "Modest DC fast-charging peak — 90-130 kW well below class leaders",
+      "howToFix": "Plan motorway routes around 350 kW stations only to maximise the peak window. Pre-condition the battery via the nav before arriving at a charger. Choose 17- or 18-inch wheels and a heat pump (if you regularly drive in winter) to mitigate range loss.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-raval-one-box-e-braking-system-inconsistent-under-hard-braking",
+      "make": "CUPRA",
+      "model": "Raval",
+      "years": [
+        2026,
+        2027
+      ],
+      "trims": [
+        "Origin",
+        "V1",
+        "V2",
+        "VZ",
+        "VZ Extreme"
+      ],
+      "engines": [],
+      "title": "One-box e-braking system inconsistent under hard braking",
+      "howToFix": "Insist on a thorough test drive including a hard-stop from highway speed before accepting delivery. Report any inconsistent pedal feel to your CUPRA dealer immediately — calibration updates are expected via OTA. Avoid heavy-braking situations until you understand the car's response.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Insist on a thorough test drive including a hard-stop from highway speed before accepting delivery."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Report any inconsistent pedal feel to your CUPRA dealer immediately — calibration updates are expected via OTA."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-raval-over-eager-driver-assistance-interventions",
+      "make": "CUPRA",
+      "model": "Raval",
+      "years": [
+        2026
+      ],
+      "trims": [
+        "Origin",
+        "V1",
+        "V2",
+        "VZ",
+        "VZ Extreme"
+      ],
+      "engines": [
+        "EV"
+      ],
+      "title": "Over-eager driver-assistance interventions (lane keep / driver monitoring)",
+      "howToFix": "Use the View customisation/profile menu to disable the systems you don't want at each start (EU regs prevent permanent disable). Keep the cabin camera lens clean. Report repeated phantom-AEB events to your dealer immediately for software diagnosis under warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Report repeated phantom-AEB events to your dealer immediately for software diagnosis under warranty."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "cupra-raval-touch-sensitive-sliders-climate-volume-are-easy-to-mis-press",
+      "make": "CUPRA",
+      "model": "Raval",
+      "years": [
+        2026
+      ],
+      "trims": [
+        "Origin",
+        "V1",
+        "V2",
+        "VZ",
+        "VZ Extreme"
+      ],
+      "engines": [
+        "EV"
+      ],
+      "title": "Touch-sensitive sliders for climate and volume are easy to mis-press",
+      "howToFix": "Use the tactile steering-wheel buttons where possible for volume and cruise. Pre-set climate before driving and rely on Auto mode. Watch for CUPRA OTA updates that add screen shortcuts; this is a fixed hardware design so no aftermarket fix is realistic.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

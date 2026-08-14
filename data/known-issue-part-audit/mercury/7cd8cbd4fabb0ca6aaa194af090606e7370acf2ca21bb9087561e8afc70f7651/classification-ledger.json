@@ -1,0 +1,617 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Mercury",
+  "makeKey": "mercury",
+  "makeIndex": 30,
+  "totalMakes": 54,
+  "issueCount": 14,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 6,
+    "diagnosis-dependent": 4,
+    "recall/dealer": 1,
+    "service/tool/fluid": 2,
+    "no-commerce": 1
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 3,
+    "uniqueDtcCount": 10,
+    "instructionCount": 15,
+    "dtcDispositionCount": 3,
+    "toolLinkedCount": 2,
+    "procedureNoToolCount": 15,
+    "unresolvedToolHoldCount": 1
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "mercury-cougar-3-8l-essex-v6-head-gasket-failure",
+      "make": "Mercury",
+      "model": "Cougar",
+      "years": [
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "3.8L Essex V6 Head Gasket Failure (MN12)",
+      "howToFix": "Replace both head gaskets with the updated/revised gasket design, resurface or replace warped heads, and replace head bolts. Engines that were severely overheated often need a rebuilt or used replacement engine instead.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-cougar-3-8l-essex-v6-head-gasket-failure--prescription-0-0--all-engines",
+        "mercury-cougar-3-8l-essex-v6-head-gasket-failure--prescription-1-0--all-engines",
+        "mercury-cougar-3-8l-essex-v6-head-gasket-failure--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "mercury-cougar-rapid-front-suspension-wear-ball-joints-strut-rod-bushings-c",
+      "make": "Mercury",
+      "model": "Cougar",
+      "years": [
+        1989,
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rapid Front Suspension Wear - Ball Joints, Strut Rod Bushings, Control Arms (MN12)",
+      "howToFix": "Replace complete control arms with new ball joints pre-installed (the community consensus is this is cheaper than pressing in joints), plus strut rod bushings and sway bar end links as a full front-end refresh, followed by an alignment.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "mercury-cougar-aod-transmission-overdrive-band-drum-failure",
+      "make": "Mercury",
+      "model": "Cougar",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993
+      ],
+      "trims": [],
+      "engines": [
+        "3.8L Essex V6",
+        "4.6L Modular V8",
+        "5.0L Windsor V8"
+      ],
+      "title": "AOD Transmission Overdrive Band and Drum Failure",
+      "howToFix": "Verify TV cable adjustment FIRST before any teardown - incorrect TV cable adjustment is the #1 killer of these transmissions. For rebuild, install upgraded wide-band overdrive servo, hardened sun shell, updated valve body, and consider full conversion to AODE/4R70W internals. Flush cooler lines and install auxiliary transmission cooler. Use Mercon V or Mercon ATF only.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify TV cable adjustment FIRST before any teardown - incorrect TV cable adjustment is the #1 killer of these transmissions."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-cougar-aod-transmission-overdrive-band-drum-failure--prescription-0-0--3-8l-essex-v6",
+        "mercury-cougar-aod-transmission-overdrive-band-drum-failure--prescription-0-0--4-6l-modular-v8",
+        "mercury-cougar-aod-transmission-overdrive-band-drum-failure--prescription-0-0--5-0l-windsor-v8",
+        "mercury-cougar-aod-transmission-overdrive-band-drum-failure--prescription-1-0--3-8l-essex-v6",
+        "mercury-cougar-aod-transmission-overdrive-band-drum-failure--prescription-1-0--4-6l-modular-v8",
+        "mercury-cougar-aod-transmission-overdrive-band-drum-failure--prescription-1-0--5-0l-windsor-v8"
+      ]
+    },
+    {
+      "issueId": "mercury-cougar-cd4e-automatic-transmission-failure",
+      "make": "Mercury",
+      "model": "Cougar",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "CD4E Automatic Transmission Failure (8th Gen)",
+      "howToFix": "Preserve all transmission codes and freeze-frame data, identify which gears are lost, test line pressure and solenoid circuits, verify fluid level and condition, and inspect the transmission tag and prior repairs. Follow the symptom- and build-specific Ford procedure before choosing a sensor, solenoid, valve-body repair, hard parts or a remanufactured unit. Do not buy a transmission or rebuild kit from this page; the failed CD4E path must be established first.",
+      "dtcCodes": [
+        "P0731",
+        "P0732",
+        "P0734",
+        "P0740",
+        "P0741",
+        "P0758"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Preserve all transmission codes and freeze-frame data, identify which gears are lost, test line pressure and solenoid circuits, verify fluid level and condition, and inspect the transmission tag and prior repairs."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0731, P0732, P0734, P0740, P0741, P0758"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "mercury-cougar-fuel-delivery-module-contamination-causing-stalling",
+      "make": "Mercury",
+      "model": "Cougar",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fuel Delivery Module Contamination Causing Stalling (Recall 04V421000)",
+      "howToFix": "Check the VIN for completion of recall 04V421000; if symptoms persist or the recall was never performed, replace the fuel delivery module (in-tank pump/filter assembly). Today this is a standard fuel pump module job at an independent shop.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN for completion of recall 04V421000;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-cougar-fuel-delivery-module-contamination-causing-stalling--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "mercury-cougar-intake-manifold-runner-control-failure-2-5l-v6",
+      "make": "Mercury",
+      "model": "Cougar",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Intake Manifold Runner Control (IMRC) Failure - 2.5L V6",
+      "howToFix": "Replace the broken plastic linkage bushings (a few dollars in parts), clean and re-seat the actuator's plastic gears, or replace the IMRC actuator assembly outright. Verify the linkage on both banks moves freely after repair.",
+      "dtcCodes": [
+        "P1518",
+        "P1519"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify the linkage on both banks moves freely after repair."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P1518, P1519"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-cougar-intake-manifold-runner-control-failure-2-5l-v6--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "mercury-cougar-power-window-regulator-relay-failures",
+      "make": "Mercury",
+      "model": "Cougar",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Window Regulator and Relay Failures (8th Gen)",
+      "howToFix": "Replace the failed window regulator as an assembly (with the motor if it is worn). For intermittent operation on both windows, clean or replace the corroded power window relay — forum members have restored function by opening the relay and cleaning its contacts.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-cougar-power-window-regulator-relay-failures--prescription-0-0--all-engines",
+        "mercury-cougar-power-window-regulator-relay-failures--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "mercury-cougar-premature-alternator-failure-buried-alternator-location-2-5l",
+      "make": "Mercury",
+      "model": "Cougar",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Premature Alternator Failure and Buried Alternator Location - 2.5L V6",
+      "howToFix": "Replace the alternator with a quality new or remanufactured unit rated for high heat (many owners avoid bargain reman units that fail quickly), and verify the battery cable routing and torque at the alternator per recall 01V031000. Budget extra labor time for the restricted access.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace the alternator with a quality new or remanufactured unit rated for high heat (many owners avoid bargain reman units that fail quickly), and verify the battery cable routing and torque at the alternator per recall 01V031000."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-cougar-premature-alternator-failure-buried-alternator-location-2-5l--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "mercury-sable-3-0l-vulcan-duratec-head-gasket-intake-timing-cover-gasket-c",
+      "make": "Mercury",
+      "model": "Sable",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "3.0L Vulcan/Duratec Head Gasket and Intake/Timing Cover Gasket Coolant Leaks",
+      "howToFix": "Keep the cooling system maintained — use the correct coolant, flush on schedule, avoid tap water, and ensure the radiator and fans work to prevent overheating. Replace failed head, intake manifold, or timing-cover gaskets; verify oil is not milky/contaminated. When servicing a Duratec head gasket, confirm the correct gasket for the block casting (F5DE vs XW4E).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "verify oil is not milky/contaminated."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "When servicing a Duratec head gasket, confirm the correct gasket for the block casting (F5DE vs XW4E)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-sable-3-0l-vulcan-duratec-head-gasket-intake-timing-cover-gasket-c--prescription-0-0--all-engines",
+        "mercury-sable-3-0l-vulcan-duratec-head-gasket-intake-timing-cover-gasket-c--prescription-1-0--all-engines",
+        "mercury-sable-3-0l-vulcan-duratec-head-gasket-intake-timing-cover-gasket-c--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "mercury-sable-ax4n-ax4s-automatic-transmission-premature-failure",
+      "make": "Mercury",
+      "model": "Sable",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "AX4N/AX4S Automatic Transmission Premature Failure",
+      "howToFix": "Service the transmission fluid (Mercon V required on 1998+ models) every 30,000-35,000 miles rather than the factory 60,000-mile interval; never use a non-Mercon V fluid. Inspect the pressure control (PCS) and torque converter clutch (TCC) solenoids for electrical faults. A failed torque converter runs about $1,800; a full rebuild/remanufactured unit is more. Updated remanufactured AX4N units address known weak points.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the pressure control (PCS) and torque converter clutch (TCC) solenoids for electrical faults."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "mercury-sable-lean-condition-codes-rough-idle-stalling",
+      "make": "Mercury",
+      "model": "Sable",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Lean-Condition Codes (P0171/P0174), Rough Idle and Stalling",
+      "howToFix": "Clean or replace the MAF sensor, inspect and replace the rotted PCV/cam-cover vent tubes and elbow adapters, and check for intake manifold gasket and brake-booster vacuum leaks. Verify fuel pressure/fuel pump output under load, clean the throttle body, and test the IAC valve. Inspect the EGR valve and gasket. Many owners resolve the codes by fixing the cracked PCV elbows alone.",
+      "dtcCodes": [
+        "P0171",
+        "P0174"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clean or replace the MAF sensor, inspect and replace the rotted PCV/cam-cover vent tubes and elbow adapters, and check for intake manifold gasket and brake-booster vacuum leaks."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify fuel pressure/fuel pump output under load, clean the throttle body, and test the IAC valve."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the EGR valve and gasket."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-sable-lean-condition-codes-rough-idle-stalling--prescription-0-0--all-engines",
+        "mercury-sable-lean-condition-codes-rough-idle-stalling--prescription-1-0--all-engines",
+        "mercury-sable-lean-condition-codes-rough-idle-stalling--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "mercury-sable-power-steering-pump-whine-leaks-rack-failure",
+      "make": "Mercury",
+      "model": "Sable",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Steering Pump Whine, Leaks and Rack Failure",
+      "howToFix": "Replace a leaking or noisy power steering pump and worn pressure/return hoses; replace the rack and pinion if it leaks or groans. After any repair, thoroughly bleed the system to remove trapped air. Keep the reservoir filled with the correct Mercon-spec power steering fluid to avoid pump damage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-sable-power-steering-pump-whine-leaks-rack-failure--prescription-0-0--all-engines",
+        "mercury-sable-power-steering-pump-whine-leaks-rack-failure--prescription-1-0--all-engines",
+        "mercury-sable-power-steering-pump-whine-leaks-rack-failure--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "mercury-sable-front-coil-spring-fracture-recall-04v332",
+      "make": "Mercury",
+      "model": "Sable",
+      "years": [
+        1999,
+        2000,
+        2001
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Coil Spring Fracture (Corrosion-Related) — Recall 04V332",
+      "howToFix": "Check the VIN and recall-completion history with Ford or a dealer before paid repair. If the recall remains incomplete, arrange the specified dealer remedy; if a spring is already fractured or contacting the tire, stop driving and tow the vehicle for inspection of both front springs, shields, tires and related damage. Confirm current assistance and VIN-specific parts before any paid work. Do not buy a spring or shield from this page; recall status, damage and fitment control the remedy.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the VIN and recall-completion history with Ford or a dealer before paid repair."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "if a spring is already fractured or contacting the tire, stop driving and tow the vehicle for inspection of both front springs, shields, tires and related damage."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm current assistance and VIN-specific parts before any paid work."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "mercury-sable-stuck-throttle-unintended-acceleration-from-fractured-cruise",
+      "make": "Mercury",
+      "model": "Sable",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Stuck Throttle / Unintended Acceleration from Fractured Cruise Control Cable Collar",
+      "howToFix": "If the throttle sticks, shift to neutral, apply steady firm braking, steer to a safe stop and switch the engine off only after control is secured. Check VIN, engine, plant and CSP 13B04 history, then inspect both collar retention tabs and cable ferrule. The program called for replacing a cable with a missing tab and installing a reinforcement clip. Do not buy a speed-control cable or clip from this page; affected-build status, current assistance and exact fitment must be confirmed first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check VIN, engine, plant and CSP 13B04 history, then inspect both collar retention tabs and cable ferrule."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "mercury-sable-stuck-throttle-unintended-acceleration-from-fractured-cruise--prescription-0-0--all-engines"
+      ]
+    }
+  ]
+}

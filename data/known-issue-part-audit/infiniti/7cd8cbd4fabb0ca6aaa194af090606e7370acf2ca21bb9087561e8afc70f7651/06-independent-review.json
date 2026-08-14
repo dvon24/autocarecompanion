@@ -1,0 +1,476 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Infiniti",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "b41cf92f5b0e416206cb9e0c10b3ee84c0617fafbb697c0e1e3b1dd4af11843c",
+    "02-fitment-worklist.json": "79d70a480aafcb4954ea9518583488200346a22db07b78f91a3f4795ef2fa15e",
+    "03-showmetheparts-evidence.json": "a023593371fd7e232454470de07de142df20bd385a0150ec3dcb6579b4f174db",
+    "04-part-proposals.json": "dc85459a7a920754c6143d420263e77a873cce1500c3d7b70e7cd6974358ad9a",
+    "05-direct-link-evidence.json": "aa498d9b058a076ec366ea3753bd9cd3a36c50288af40aab48ca0b1c8f73179c"
+  },
+  "supplementalArtifactSha256": {
+    "repair-role-decisions.json": "3ceb1b180f45a883a9030c926e65c0510a15cdd75ec406f190c970fd39c6b893",
+    "existing-public-claim-review.json": "9aafa8ac23e4b9bc3019b32ff0f57b43f998415d6a89e2c18e2959fe7ec0c9c2"
+  },
+  "proposalCount": 0,
+  "partRowCount": 0,
+  "tally": {
+    "approve": 0,
+    "block_wrong_role": 0,
+    "block_incomplete_scope": 0,
+    "block_ambiguous": 0,
+    "hold_no_exact_link": 0,
+    "hold_needs_manual": 0
+  },
+  "reconciliation": {
+    "sourceProposalCount": 0,
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "sourceIssueCount": 73,
+    "reviewedIssueCount": 73,
+    "sourceWorkItemCount": 134,
+    "reviewedWorkItemDispositionCount": 134,
+    "terminalWorkItemDispositionCount": 134,
+    "proposedWorkItemCount": 0,
+    "heldWorkItemCount": 134,
+    "workItemDispositionSha256": "796c672835f54b683260f1100fb2c4e936e6775a8993fdca8bdfd0c7aa3ccbf7",
+    "workItemDispositionReasonTally": {
+      "fitment-no-catalog": 33,
+      "fitment-unmapped": 101
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "exactProductLinkRowCount": 0,
+    "exactProductLinkCount": 0,
+    "noExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkCount": 0,
+    "listingTitleSourceCount": 0,
+    "itemSpecificsSourceCount": 0,
+    "observedListingTitlePresentCount": 0,
+    "recomputedTitleHashMatchCount": 0,
+    "matchedPartNumberMatchCount": 0,
+    "observedPartNumberFieldPresentCount": 0,
+    "observedPartNumberValuePresentCount": 0,
+    "observedPartNumberValueMatchCount": 0,
+    "urlProductIdMatchCount": 0,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 30,
+  "uniqueExistingClaimCount": 30,
+  "existingClaimTally": {
+    "preserve": 23,
+    "block": 7
+  },
+  "existingClaims": [
+    {
+      "workItemId": "infiniti-fx35-camshaft-crankshaft-position-sensor-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+      "partNumber": "235-1150",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The issue covers both camshaft and crankshaft sensors across ten model years, while the unscoped Walker 235-1150 card represents only one camshaft sensor. Current catalog evidence did not prove its role or full application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis is done by scanning for correlation or sensor circuit codes and monitoring live RPM/cam signals during crank and road test. Repair usually involves replacing one or both cam sensors and sometimes the crank sensor, preferably with OE-quality parts because low-cost sensors often cause repeat faults. Typical repair cost is about $150-$450 depending on how many sensors are replaced and labor rates.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/286737392841?_skw=Walker+Products+235-1150+Engine+Camshaft+Position+Sensor&hash=item42c2e164c9%3Ag%3Apn0AAeSwb5xoiSkj&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "infiniti-fx35-radiator-crack-and-coolant-transmission-cross-contamination--existing-fix-part-0-0--all-engines",
+      "issueId": "infiniti-fx35-radiator-crack-and-coolant-transmission-cross-contamination",
+      "partNumber": "221-3422",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "Denso 221-3422 matches the radiator role, but the card lacks transmission, drivetrain, and year qualifiers and was not confirmed across the 2003-2008 applications by the current catalog pass.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis includes checking the radiator and overflow bottle for oily residue, inspecting ATF for a milky appearance, and pressure-testing the cooling system. Repair typically requires replacing the radiator and thoroughly flushing the cooling and transmission systems; if contamination was severe, transmission repair or replacement may also be needed. Costs range from about $400 for early radiator replacement to $5,000+ if the transmission has been damaged.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/317884556502?_skw=Denso+221-3422+Radiator&hash=item4a036564d6%3Ag%3ALHQAAeSwvdxqV1D2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure",
+      "partNumber": "235-1085",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The article requires diagnosis of camshaft versus crankshaft sensors, but the public Walker 235-1085 card is an unscoped camshaft sensor. The catalog did not confirm the exact position or complete application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis is done by scanning for cam/crank correlation or sensor circuit faults and monitoring RPM/cam signals during cranking. Repair usually involves replacing the failed camshaft sensor(s) and/or crankshaft sensor with quality OEM-equivalent parts and clearing codes; access is generally straightforward compared with internal engine work. Typical repair cost is about $180 to $500 depending on how many sensors are replaced.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/407032359180?_skw=Walker+Products+235-1085+Engine+Camshaft+Position+Sensor&hash=item5ec504e90c%3Ag%3Akz8AAeSw7V9qQJ9e&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+      "partNumber": "235-1150",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The unscoped Walker 235-1150 camshaft-sensor card cannot cover either sensor position across all 2006-2010 applications without exact diagnostic and fitment evidence; the current catalog pass did not confirm it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Scan for stored fault codes and monitor cam/crank synchronization data while checking harness condition near the sensors. Repair typically involves replacing the failed camshaft position sensor(s) and sometimes the crankshaft position sensor with quality parts, then clearing codes and confirming proper restart behavior. Using OEM-supplier sensors is strongly preferred because cheap sensors often cause repeat failures.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/286737392841?_skw=Walker+Products+235-1150+Engine+Camshaft+Position+Sensor&hash=item42c2e164c9%3Ag%3Apn0AAeSwb5xoiSkj&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "infiniti-m37-camshaft-crankshaft-position-sensor-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+      "partNumber": "235-1386",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The issue spans camshaft and crankshaft sensor faults, while the existing Walker 235-1386 card is an unscoped crankshaft sensor. Current catalog evidence did not prove the diagnosed role or full fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis is done with a scan tool and live data to identify which sensor is dropping out, followed by checking connector condition and harness integrity. Repair involves replacing the failed camshaft or crankshaft position sensor with a quality OE-equivalent part and clearing codes; typical repair costs range from about $180-$450 depending on which sensor failed and labor access.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/257658125903?_skw=Walker+Products+235-1386+Engine+Crankshaft+Position+Sensor&hash=item3bfd9efe4f%3Ai%3A257658125903&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "infiniti-m56-radiator-cooling-fan-module-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "infiniti-m56-radiator-cooling-fan-module-failure",
+      "partNumber": "221-9285",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The issue can be a fan-control module fault, yet the card sells an entire Denso 221-9285 radiator without a diagnosis gate or enforceable application scope. Current evidence did not confirm that repair role.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis includes pressure-testing the cooling system, checking for seepage at radiator end tanks, and commanding fan operation with a scan tool. Repairs usually involve replacing the radiator and/or fan assembly, refilling with the correct Nissan/Infiniti blue coolant, and bleeding the system; typical cost ranges from about $700 to $1,800 depending on which components fail.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/317884621745?_skw=Denso+221-9285+Radiator&hash=item4a036663b1%3Ag%3AcSEAAeSwww5qV1C1&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-0--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "999MP-NS300P",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-1--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "999MP-CV0NS3 (current genuine supersession)",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-2--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "999MP-CSHNS3 (latest genuine supersession)",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-3--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "Aisin ATF-NS3",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-4--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "Idemitsu NS-3 CVTF",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-5--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "Valvoline CVT (NS-3 spec)",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-1-0--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "31726-28X0A",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-1-1--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "0440455",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-1-2--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "INEEDUP 044-0455 kit",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-1-3--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "JF017E/JF018E/RE0F10D filter kits",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-2-0--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "31728-28X0A",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-2-1--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "partNumber": "Included in JF017E/RE0F10D filter+gasket kits (e.g. MEMOEO/V",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-forward-emergency-braking-phantom-false-activation--existing-fix-part-0-0--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-forward-emergency-braking-phantom-false-activation",
+      "partNumber": "28438-5NA0C",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Keep the front camera window (behind the windshield) and front radar/emblem area clean and free of film, mud, snow or aftermarket tint. Have the dealer scan the ADAS modules and apply any camera/radar calibration or software update per TSB. If phantom braking persists, request a diagnosis of the radar/camera alignment; the FEB sensitivity setting can be reviewed but the system should not be defeated permanently.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-0--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "999M1QD35C",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-1--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "999M1ND35C (prior/alternate Infiniti Group 35 HC PN)",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-2--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "Interstate MTX-35 (Group 35 AGM, 650 CCA)",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-3--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "Duralast Platinum 35-AGM (650 CCA)",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-4--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "Interstate 35-AGM",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-5--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "ACDelco 35AGM",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-1-0--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "NOCO Genius1 (1A)",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-1-1--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "NOCO Genius2 (2A)",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-1-2--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "Battery Tender Junior 12V 0.75A (021-0123)",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-1-3--2-0l-vc-turbo-i4-kr20ddet",
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "partNumber": "CTEK MXS 5.0",
+      "engineWorkRow": "2.0L VC-Turbo I4 (KR20DDET)",
+      "verdict": "preserve",
+      "reason": "Frozen fixPart metadata is unverified and remains hidden by the canonical public-commerce guard; this review neither validates nor publishes it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "No verified public direct-product link is approved by this preservation decision."
+      }
+    },
+    {
+      "workItemId": "infiniti-qx60-power-steering-pump-whine--existing-fix-part-0-0--all-engines",
+      "issueId": "infiniti-qx60-power-steering-pump-whine",
+      "partNumber": "1H-72009",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "Cardone 1H-72009 matches the pump role, but the public card lacks exact engine, drivetrain, and year scope across 2013-2020 and the current catalog pass did not confirm full coverage.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Flush the power steering system and refill with Nissan PSF. Bleed air from the system by turning the wheel lock-to-lock several times with the engine running. Replace the pump if the noise persists after fluid service.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/357564625696?_skw=Cardone+1H-72009+Power+Steering+Pump&hash=item5340833320%3Ag%3AFs8AAeSwXdlouJXk&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    }
+  ],
+  "decisions": []
+}

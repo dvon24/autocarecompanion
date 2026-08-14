@@ -106,7 +106,10 @@ function buildManifest(snapshot, patch) {
   if (!snapshot || snapshot.snapshotKind !== 'known-issues-catalog-deeplinks') throw new Error('Invalid catalog snapshot');
   if (!patch || patch.patchKind !== 'known-issues-catalog-deeplink-decisions') throw new Error('Invalid decision patch');
   if (patch.snapshotHash !== snapshot.snapshotHash) throw new Error('Decision patch snapshotHash does not match snapshot');
-  if (!Array.isArray(patch.decisions) || patch.decisions.length === 0) throw new Error('Decision patch has no decisions');
+  if (!Array.isArray(patch.decisions)
+    || (patch.decisions.length === 0 && patch.auditOnlyNoWrites !== true)) {
+    throw new Error('Decision patch has no decisions');
+  }
   const schemaVersion = patch.schemaVersion || snapshot.schemaVersion || 1;
   if (schemaVersion >= 2 && (snapshot.schemaVersion !== 2 || snapshot.auditScope !== 'full-record')) {
     throw new Error('Schema v2 decisions require a schema v2 full-record snapshot');
@@ -137,6 +140,7 @@ function buildManifest(snapshot, patch) {
     batchId: patch.batchId,
     snapshotHash: snapshot.snapshotHash,
     researchedWith: 'Ultra subscription web research; no LLM API',
+    ...(patch.auditOnlyNoWrites === true ? { auditOnlyNoWrites: true } : {}),
     issues,
   };
   const errors = validateManifest(manifest);

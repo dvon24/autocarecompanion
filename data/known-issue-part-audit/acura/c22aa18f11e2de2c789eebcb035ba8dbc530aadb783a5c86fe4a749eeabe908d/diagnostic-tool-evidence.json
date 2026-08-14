@@ -10,9 +10,9 @@
     "uniqueDtcCount": 31,
     "solutionInstructionCount": 37,
     "dtcDispositionCount": 16,
-    "toolLinkedDispositionCount": 20,
+    "toolLinkedDispositionCount": 15,
     "procedureNoToolDispositionCount": 32,
-    "unresolvedToolHoldCount": 1,
+    "unresolvedToolHoldCount": 6,
     "uncoveredDiagnosticInstructionCount": 0
   },
   "makeToolLinks": [
@@ -20,8 +20,8 @@
       "toolId": "ancel-ad310",
       "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
       "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
-      "capability": "Generic OBD-II powertrain-code reading for canonical P-family DTCs.",
-      "restriction": "Does not establish body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
     },
     {
       "toolId": "fluke-15b-plus",
@@ -40,6 +40,13 @@
   ],
   "reusableReviewedTools": [
     {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
       "toolId": "battery-conductance-tester",
       "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
       "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
@@ -54,11 +61,11 @@
       "restriction": "Not inferred from a parasitic-drain symptom alone."
     },
     {
-      "toolId": "autoline-hypersmoke",
-      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
-      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
-      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
-      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
     },
     {
       "toolId": "otc-5630-fuel-pressure",
@@ -68,26 +75,71 @@
       "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
     },
     {
-      "toolId": "otc-5606-compression",
-      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
-      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
-      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
-      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
-    },
-    {
       "toolId": "otc-6977-cooling-pressure",
       "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
       "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
       "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
       "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
     }
   ],
   "holds": [
+    {
+      "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Pull codes with a Honda jumper or scan tool;",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0740, P0780, P1298, P1660",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "acura-integra-dc-distributor-internal-failure",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Pull DTCs first — codes P1381 (cylinder position sensor) and Code 22 commonly originate inside the distributor.",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "acura-integra-dc-distributor-internal-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1361, P1362, P1381, P1382",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
     {
       "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
       "source": "dtcCodes",
       "procedure": "scan-codes",
       "excerpt": "22, P1259",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0301, P0302, P0303, P3400",
       "reasonCode": "manufacturer-code-capability-unverified",
       "toolId": null,
       "productUrl": null

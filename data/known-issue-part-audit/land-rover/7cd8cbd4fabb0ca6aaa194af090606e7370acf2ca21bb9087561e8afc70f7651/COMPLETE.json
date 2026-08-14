@@ -1,0 +1,643 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-make-completion",
+  "status": "AUDIT_COMPLETE",
+  "auditComplete": true,
+  "releaseBlocked": true,
+  "completionState": "AUDIT_COMPLETE_RELEASE_BLOCKED",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "4cff935dcf1511ede81b784863562d839ebce270a5658bd4da8be1107a627fba",
+  "make": "Land Rover",
+  "makeKey": "land-rover",
+  "issueCount": 281,
+  "manifestFile": "08-guarded-manifest.json",
+  "manifestHash": "a6008f2b2b28dfe1b309737ed65f764f4c9f04ca920fc0facd05946a318bf608",
+  "artifactSha256": {
+    "00-make-source.json": "4cecfac1dfd8c54e0ad18f0dbb07a50a491d9c151e622759b4e77ee48a43ddbf",
+    "01-disposition-ledger.json": "bb42d708abf5e9a3a69a7ece20b99280ab5a63966058a174636e93606d56879c",
+    "02-fitment-worklist.json": "2906d6bdfd8f0855dc4d8aa84df3bf762491f66b9d5ebf46e57c506687af52f4",
+    "03-showmetheparts-evidence.json": "361beadcdb2e9a3d68d297ac2bc5241a77e87ea75921c2d84ad8693a089823d8",
+    "04-part-proposals.json": "9e34630b6ef1a3bba393779d2e3b16e85703e9adc5166591c4c5ecd2dc860eef",
+    "05-direct-link-evidence.json": "a6ef8d67a24296cda9b2ed1d9cfbc9f5bfd910fd4394694097d76381c760a532",
+    "06-independent-review.json": "03a0e3cf3e9a73902cfee301dea8610cf55020a5ad4a64e8473ee468e5144d8b",
+    "07-decision-patch.json": "f9f46022823b3d431781590c9c05f40e58b4d08aa0bc0b950d091d38dcf0e78b",
+    "08-guarded-manifest.json": "a6008f2b2b28dfe1b309737ed65f764f4c9f04ca920fc0facd05946a318bf608",
+    "reviewed-retailer-candidates.json": "42ce8ab709229e75e747a279ada427e05c62c556d00e96bc3eb3935f139b9143",
+    "classification-ledger.json": "bffa417629299ba9481d5909b600aacfa2bd722d74e7f91663b7faa4a9c8df62",
+    "checkpoint.json": "3f7125a6d40041e8c7146e38d4cb1dccc07324bb4b6ced3e9c3791f6cc0bd575",
+    "diagnostic-tool-evidence.json": "5e306a918fea38ef78550954d5929e3af8ec4953a0acc2777e85a615f042444c"
+  },
+  "diagnosticImplementationSha256": {
+    "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+    "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+    "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+    "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+    "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "diagnosticScope": {
+    "issueCount": 281,
+    "issuesWithDtcCodes": 23,
+    "uniqueDtcCount": 56,
+    "solutionInstructionCount": 183,
+    "dtcDispositionCount": 23,
+    "toolLinkedDispositionCount": 11,
+    "procedureNoToolDispositionCount": 137,
+    "unresolvedToolHoldCount": 58,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "diagnosticHolds": [
+    {
+      "issueId": "land-rover-defender-cooling-system-marginal-silted-radiator-weak-viscous-fan-ero",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Restorers overhaul the cooling system as a package rather than chasing one part: re-core or fit a new uprated radiator (and clean out the silt), fit a new genuine-spec thermostat, renew the water pump if there's any doubt about the impeller, and test/replace the viscous fan coupling.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-defender-14cux-hot-wire-efi-idle-stumble",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read the on-board two-digit fault codes first, then service the system as a whole instead of swapping parts blind: clean or replace the sticking stepper/idle-bypass valve, clean the hot-wire airflow meter element with proper electronics cleaner, replace the (cheap, frequently faulty) coolant temp sensor, ultrasonically clean/flow-test the injectors, and reset the stepper to the factory base (14CUX wants roughly 160-165 steps).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-defender-14cux-hot-wire-efi-idle-stumble",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "12, 14, 15, 17, 18, 19, 34, 36, 44, 45, 48",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-defender-rover-3-9-v8-slipped-cracked-cylinder-liners",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pressure-test the bores at operating temperature before reassembly to catch a cracked deck.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-defender-early-timing-belt-misalignment-belt-shred",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "They then halve the service discipline: change the belt and BOTH bearings at 36,000 miles or every 3-4 years for off-road/dusty/wading use rather than the OEM 72k, fit a known-brand belt (Gates/Dayco), set tension with the correct gauge/tool, and renew the crank front oil seal at the same time to keep oil off the new belt.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-defender-td5-head-gasket-failure-stretched-head-bolts-no-3-cylinder-t",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Bulletproof fit: skim/pressure-test the alloy head, then refit with a genuine multi-layer steel head gasket and a FRESH set of correctly torqued-and-angled stretch bolts (never reuse old ones).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-defender-oil-wicks-up-injector-harness-into-ecu-misfires-no-start-ran",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0201, P0202, P0203, P0204, P0205, P1340",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-defender-air-suspension-2020",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Recalibrate the system with JLR diagnostics if fault codes persist after cleaning.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-defender-air-suspension-2020",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A20",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-defender-pivi-pro-issues-2020",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not replace Pivi hardware or use device deletion/re-pairing as a universal repair without the applicable diagnostic result.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-discovery-air-suspension-compressor-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A20",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-discovery-terrain-response-fault-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A00, P1889, U0102",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-discovery-dpf-regen-2010",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a forced DPF regeneration using JLR diagnostic equipment.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-discovery-l462-air-suspension-2017",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Recalibrate the air suspension system using JLR Pathfinder diagnostics after sensor replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-discovery-l462-air-suspension-2017",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A20, C1A23",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-discovery-sport-9-speed-trans-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Record the exact shift behavior, temperature, warning and stored DTCs, then use the current VIN-applicable JLR/ZF diagnostic workflow.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-discovery-sport-9-speed-trans-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not prescribe a fluid change, valve-body replacement or software update from this page without the diagnostic result.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-discovery-sport-haldex-coupling-2015",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U0300",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-freelander-k-series-head-gasket-1997",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the head pressure-tested and skimmed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-freelander-head-gasket-2002",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have both cylinder heads pressure-tested and skimmed for flatness.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-air-spring-leak-2003",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A20",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-air-suspension-compressor-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Follow the current JLR procedure for the diagnosed generation and replace a relay or configure software only when that procedure requires it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-battery-drain-2013",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test battery state and capacity, charging performance and stabilized quiescent current, then use the current VIN-specific JLR workflow to identify any wake-up source or module condition.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-battery-drain-2013",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Apply software or replace a module only when the diagnostic result and current bulletin require it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-battery-drain-2013",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "This is a diagnostic/software remedy, so no universal retail part or charger is linked.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-evoque-incontrol-freeze-2016",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Apply a wired or over-the-air update only when directed, and diagnose the IMC before replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-evoque-incontrol-freeze-2016",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "This is primarily a software/diagnostic remedy;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-evoque-fuel-pump-2020",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0087, P0088, P0191",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-sport-air-suspension-2005",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Record the warning, ride-height behavior and DTCs, then follow the current VIN-specific JLR diagnostic path for leaks, compressor output, delivery or exhaust valves and the applicable valve block.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-sport-transfer-case-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1889, U0102",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-sport-epb-actuator-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Secure the vehicle if the parking brake will not apply or release, record the warning and DTCs, and follow the current VIN-specific JLR EPB diagnostic and calibration procedure.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "landrover-rangeroversport-pivi-pro-infotainment-freezing-2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1A6A, U0001, U0155",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "landrover-rangeroversport-water-intrusion-from-tailgate-2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U0140",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-velar-adblue-system-2018",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Record the exact warning, remaining restart distance, DTCs, DEF level and fluid quality, then follow the current VIN-specific JLR primary and secondary diagnostic path.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-range-rover-velar-adblue-system-2018",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "crusting is a diagnostic finding, not a universal cause, and no verified retail part is linked.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-i-front-outrigger-spring-hanger-weld-points-rot-out",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "When repairing in place, fabricate from original-gauge steel for dimensional accuracy, drill drain holes at the lowest point of any box section, and flood the inside of the repaired section with cavity wax (Dinitrol/Waxoyl) before closing it up.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-i-under-seat-fuel-tank-corrosion-sender-gauge-earth-fault",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pressure-test the tank;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-i-under-seat-fuel-tank-corrosion-sender-gauge-earth-fault",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For the gauge, add a dedicated earth wire from a sender retaining screw to clean chassis/seat-box metal (eyelet each end) — the proven cure for the erratic/empty reading — and clean all the tank-to-chassis bonding points.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-ii-block-cylinder-head-cracking-after-severe-overheat",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If a crack is suspected after an overheat, crack-test (dye-penetrant or pressure-test) the head and block before reassembly;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-ii-early-3-bearing-2-25-engine-rear-main-oil-leak-cracked-head",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "On a rebuild, source and pressure-test a good replacement (or recon) cylinder head and have valve-seat and surfacing work done, because a cracked head can't be saved.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-ii-poor-earths-grounds-positive-earth-system-causing-erratic-el",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The community fix is to add dedicated earth straps rather than trust the bodyshell: heavy-gauge straps from engine/gearbox to chassis, from the bulkhead to the chassis/battery, and from the radiator support to battery negative.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-ii-radiator-core-silting-furring-chronic-overheating",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Rule out gauge error (voltage stabiliser/sender) before condemning the radiator, as a flaky sender can mimic an overheat.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-ii-series-ii-bulkhead-post-door-post-rot-stripped-hinge-captive",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "the proven permanent fix is to cut out and weld in a new heavier-gauge door-post repair section (or a full door-post panel) with the correct door-seal lip, re-forming the hinge mounting and fitting fresh captive nuts (or helicoils where threads are salvageable).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-ii-three-bearing-crankshaft-big-end-main-bearing-knock-low-oil",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Drop the sump and plasti-gauge the bearings;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-ii-unprotected-dash-ammeter-carrying-full-charge-load-current",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The community fix is to take the heavy current out of the gauge: fit a remote/external shunt so only a small sample current flows through the ammeter, or convert to a voltmeter and remove the high-current path from behind the dash entirely.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-ii-weak-positive-earth-dynamo-charging-system",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Restorers do the polarity swap first (turn the battery round, sort the fuel gauge/ammeter), then fit either a modern alternator on a bracket or a stealth 'dynamator' — a 45A alternator built inside a dynamo case so it looks original.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iia-2-25-cylinder-head-cracks-between-valve-seats",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pressure-test the head before re-assembly rather than just fitting a gasket on a crack.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iia-bulkhead-footwells-rot-out",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For a true bulletproofing rebuild, restorers send the whole bulkhead away for 360-degree shot-blasting, replace footwells and lower sections in heavier-gauge or galvanised steel, then dunk-tank / epoxy-prime inside and out.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iia-instrument-voltage-stabiliser-failure-inaccurate-fuel-temper",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with an analogue voltmeter (a digital meter misreads the chopped output) — it should average ~10V steady at the gauge feed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iia-poor-earths-bad-grounding-root-cause-most-lucas-faults",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Add extra earth straps from each lamp/gauge cluster directly back to a clean common ground point.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iia-recirculating-ball-steering-box-wears-giving-vague-steering",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose in order: rule out the relay, swivel-pin preload, track-rod ends and wheel bearings FIRST, then set the steering-box backlash adjuster correctly (snug on-centre, free at the locks) with the box full of the right oil.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iia-rotten-bulkhead-footwells-door-pillars-top-rail-corrode-from",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Restorers do not patch a far-gone bulkhead cosmetically — they cut out the rotten footwells, pillars and top rail and let in NEW heavy-gauge steel sections fabricated in a jig, then hot-dip galvanize (or zinc-prime + epoxy) the whole shell so it 'lasts another 30 years.' The bulletproofing move on a full restoration is to fit a modern galvanized replacement bulkhead (e.g.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iia-series-iia-rear-crossmember-rots-out",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Restorers stress this must be done properly by a Land-Rover-familiar welder, not a backstreet patch - 'installing the weld-in crossmember is almost as much hell as doing a frame swap if you do it properly.' Where the rot has run forward into the rails as well, many owners conclude a full galvanised replacement chassis is the better-value bulletproofing - 'if you have the frame, change it, you will have an almost new vehicle afterwards.' Assess extent first with the classic hammer-tap test over the whole frame, then cavity-wax the inside of the new member.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iia-transfer-box-output-bearing-wear-rear-output-seal-flange-lea",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the leak source by isolating the transfer box (remove props) from the rear diff for whine.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iia-under-seat-fuel-tank-corrosion-rusted-failed-fuel-gauge-send",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Renew the sender unit (matched to the gauge — the correct unit reads roughly 240 ohms full / 30 ohms empty for the later sender) and clean its earth, and add an inline fuel filter/water trap to protect the pump and carb from any future debris.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iii-2-25-petrol-low-oil-pressure-from-worn-bearings-stuck-relief",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Bulletproofing discipline: strict oil-change intervals and a real mechanical oil-pressure gauge fitted in place of the idiot light so wear is caught early.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iii-bulkhead-top-rail-windscreen-hinge-corner-rot",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Remove the windscreen and frame, cut out the rotten top corners and top-rail sections, and weld in extended bulkhead repair panels (often hand-fabricated in heavier gauge for the upper sections), dressing the welds smooth.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "land-rover-series-iii-rear-crossmember-body-mount-rot",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Beware: pattern crossmembers are thinner-gauge than original with the same designed-in moisture traps, so wax the inside and underseal before fitting.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    }
+  ],
+  "productionApplied": false,
+  "productionWriteAuthorized": false,
+  "completionHash": "ad48f927488df49efb0ca4dc122684d5f638f8572e1c781dff81ad4e4f9da056"
+}

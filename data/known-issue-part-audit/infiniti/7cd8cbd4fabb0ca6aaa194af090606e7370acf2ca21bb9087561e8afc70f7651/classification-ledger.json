@@ -1,0 +1,3239 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Infiniti",
+  "makeKey": "infiniti",
+  "makeIndex": 19,
+  "totalMakes": 54,
+  "issueCount": 73,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 37,
+    "diagnosis-dependent": 15,
+    "recall/dealer": 5,
+    "service/tool/fluid": 5,
+    "no-commerce": 11
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 22,
+    "uniqueDtcCount": 35,
+    "instructionCount": 80,
+    "dtcDispositionCount": 22,
+    "toolLinkedCount": 19,
+    "procedureNoToolCount": 66,
+    "unresolvedToolHoldCount": 17
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "infiniti-ex35-oil-consumption",
+      "make": "Infiniti",
+      "model": "EX35",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [
+        "3.5L VQ35HR V6",
+        "VQ35HR"
+      ],
+      "title": "VQ35HR Oil Consumption",
+      "howToFix": "Perform an oil consumption test at the dealer to establish baseline usage. Replace valve stem seals if consumption exceeds 1 quart per 1,500 miles. Use quality 5W-30 synthetic oil and change every 5,000 miles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Perform an oil consumption test at the dealer to establish baseline usage."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-ex35-oil-consumption--prescription-0-0--3-5l-vq35hr-v6",
+        "infiniti-ex35-oil-consumption--prescription-0-0--vq35hr"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx35-brake-rotor-warping-front-brake-vibration",
+      "make": "Infiniti",
+      "model": "FX35",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Rotor Warping / Front Brake Vibration",
+      "howToFix": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify the condition with the driver and a road test."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-fx35-camshaft-crankshaft-position-sensor-failure",
+      "make": "Infiniti",
+      "model": "FX35",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Camshaft / Crankshaft Position Sensor Failure",
+      "howToFix": "Diagnosis is done by scanning for correlation or sensor circuit codes and monitoring live RPM/cam signals during crank and road test. Repair usually involves replacing one or both cam sensors and sometimes the crank sensor, preferably with OE-quality parts because low-cost sensors often cause repeat faults. Typical repair cost is about $150-$450 depending on how many sensors are replaced and labor rates.",
+      "dtcCodes": [
+        "P0335",
+        "P0340",
+        "P0345",
+        "P0725"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis is done by scanning for correlation or sensor circuit codes and monitoring live RPM/cam signals during crank and road test."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0335, P0340, P0345, P0725"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "communityRecommendations:2",
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "infiniti-fx35-camshaft-crankshaft-position-sensor-failure--existing-fix-part-0-0--all-engines",
+        "infiniti-fx35-camshaft-crankshaft-position-sensor-failure--prescription-0-0--all-engines",
+        "infiniti-fx35-camshaft-crankshaft-position-sensor-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx35-front-suspension-clunk-worn-control-arm-bushings",
+      "make": "Infiniti",
+      "model": "FX35",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Suspension Clunk / Worn Control Arm Bushings",
+      "howToFix": "Diagnosis involves checking for play in the lower control arms, tension/compression rods, ball joints, and sway bar links while the suspension is loaded. Repair usually means replacing the worn arm assemblies or bushings and then performing a four-wheel alignment. Typical cost is about $300-$1,000 depending on whether one side or multiple front suspension components are renewed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis involves checking for play in the lower control arms, tension/compression rods, ball joints, and sway bar links while the suspension is loaded."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "communityRecommendations:2"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx35-front-suspension-clunk-worn-control-arm-bushings--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx35-fuel-gauge-sending-unit-failure",
+      "make": "Infiniti",
+      "model": "FX35",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fuel Gauge Sending Unit Failure",
+      "howToFix": "Diagnosis involves comparing scan-tool fuel level data with actual tank fill amount and checking for sender-related codes. Repair typically requires replacing the affected fuel level sender or pump module assembly through the access panel under the rear seat/cargo area, depending on configuration. Typical cost is about $300-$800 using quality parts and new tank seal hardware.",
+      "dtcCodes": [
+        "P0461",
+        "P0462",
+        "P0463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis involves comparing scan-tool fuel level data with actual tank fill amount and checking for sender-related codes."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0461, P0462, P0463"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx35-fuel-gauge-sending-unit-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx35-radiator-crack-and-coolant-transmission-cross-contamination",
+      "make": "Infiniti",
+      "model": "FX35",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Radiator Crack and Coolant / Transmission Cross-Contamination",
+      "howToFix": "Diagnosis includes checking the radiator and overflow bottle for oily residue, inspecting ATF for a milky appearance, and pressure-testing the cooling system. Repair typically requires replacing the radiator and thoroughly flushing the cooling and transmission systems; if contamination was severe, transmission repair or replacement may also be needed. Costs range from about $400 for early radiator replacement to $5,000+ if the transmission has been damaged.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis includes checking the radiator and overflow bottle for oily residue, inspecting ATF for a milky appearance, and pressure-testing the cooling system."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1",
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "infiniti-fx35-radiator-crack-and-coolant-transmission-cross-contamination--existing-fix-part-0-0--all-engines",
+        "infiniti-fx35-radiator-crack-and-coolant-transmission-cross-contamination--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx35-timing-chain-guide-whine-from-front-cover",
+      "make": "Infiniti",
+      "model": "FX35",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Timing Chain Guide / Whine from Front Cover",
+      "howToFix": "Diagnosis usually starts by confirming a front-engine whine that changes with RPM and ruling out accessory bearings by removing the drive belts briefly. Repair typically involves removing the front timing cover and replacing the timing chain, guides, tensioners, and often cam/crank sprockets using updated parts; labor is substantial because of front cover access. Independent shop repair commonly runs about $1,500-$3,000 depending on how many timing components are replaced.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnosis usually starts by confirming a front-engine whine that changes with RPM and ruling out accessory bearings by removing the drive belts briefly."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx35-timing-chain-guide-whine-from-front-cover--prescription-0-0--all-engines",
+        "infiniti-fx35-timing-chain-guide-whine-from-front-cover--prescription-1-0--all-engines",
+        "infiniti-fx35-timing-chain-guide-whine-from-front-cover--prescription-2-0--all-engines",
+        "infiniti-fx35-timing-chain-guide-whine-from-front-cover--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx45-brake-rotor-warping-and-premature-front-brake-wear",
+      "make": "Infiniti",
+      "model": "FX45",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Rotor Warping and Premature Front Brake Wear",
+      "howToFix": "Diagnosis includes measuring rotor thickness variation, checking pad wear, and inspecting caliper slide movement. Repair typically involves replacing front rotors and pads together, cleaning/lubricating slide pins, and checking for sticking calipers or hub runout; premium coated rotors and quality ceramic pads usually last longer. Typical cost is about $350 to $900 for a proper front brake service.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis includes measuring rotor thickness variation, checking pad wear, and inspecting caliper slide movement."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Repair typically involves replacing front rotors and pads together, cleaning/lubricating slide pins, and checking for sticking calipers or hub runout;"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx45-brake-rotor-warping-and-premature-front-brake-wear--prescription-0-0--all-engines",
+        "infiniti-fx45-brake-rotor-warping-and-premature-front-brake-wear--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure",
+      "make": "Infiniti",
+      "model": "FX45",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Camshaft and Crankshaft Position Sensor Failure",
+      "howToFix": "Diagnosis is done by scanning for cam/crank correlation or sensor circuit faults and monitoring RPM/cam signals during cranking. Repair usually involves replacing the failed camshaft sensor(s) and/or crankshaft sensor with quality OEM-equivalent parts and clearing codes; access is generally straightforward compared with internal engine work. Typical repair cost is about $180 to $500 depending on how many sensors are replaced.",
+      "dtcCodes": [
+        "P0335",
+        "P0340",
+        "P0345"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis is done by scanning for cam/crank correlation or sensor circuit faults and monitoring RPM/cam signals during cranking."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0335, P0340, P0345"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "communityRecommendations:1",
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure--existing-fix-part-0-0--all-engines",
+        "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure--prescription-0-0--all-engines",
+        "infiniti-fx45-camshaft-and-crankshaft-position-sensor-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx45-front-suspension-control-arm-and-bushing-wear",
+      "make": "Infiniti",
+      "model": "FX45",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Suspension Control Arm and Bushing Wear",
+      "howToFix": "Diagnosis involves checking for play in the front suspension, inspecting cracked bushings, and verifying alignment angles and tire wear patterns. Repair typically includes replacing the worn control arm assemblies rather than pressing bushings individually, followed by a four-wheel alignment. Typical cost ranges from $500 to $1,400 depending on how many arms and links are replaced.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis involves checking for play in the front suspension, inspecting cracked bushings, and verifying alignment angles and tire wear patterns."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "communityRecommendations:2"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-fx45-fuel-level-sending-unit-failure",
+      "make": "Infiniti",
+      "model": "FX45",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fuel Level Sending Unit Failure",
+      "howToFix": "Diagnosis involves comparing scan tool fuel level data with actual tank fill amount and checking sender resistance through the fuel pump module circuit. Repair usually requires replacing the faulty fuel level sender or pump module assembly, depending on parts availability and condition of the rest of the unit. Typical cost is about $300 to $800 including labor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis involves comparing scan tool fuel level data with actual tank fill amount and checking sender resistance through the fuel pump module circuit."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx45-fuel-level-sending-unit-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx45-radiator-failure-causing-overheating",
+      "make": "Infiniti",
+      "model": "FX45",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [
+        "VK45DE"
+      ],
+      "title": "Radiator Failure Causing Overheating",
+      "howToFix": "Diagnosis includes pressure-testing the cooling system, checking for leaks at the radiator end tanks, and inspecting hoses, cap, and thermostat operation. Repair usually means replacing the radiator assembly and fresh coolant, with many owners also replacing upper/lower hoses and the thermostat at the same time. Typical total cost is about $450 to $950 depending on parts quality and labor rates.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis includes pressure-testing the cooling system, checking for leaks at the radiator end tanks, and inspecting hoses, cap, and thermostat operation."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "communityRecommendations:2"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx45-radiator-failure-causing-overheating--prescription-0-0--vk45de",
+        "infiniti-fx45-radiator-failure-causing-overheating--prescription-1-0--vk45de",
+        "infiniti-fx45-radiator-failure-causing-overheating--prescription-2-0--vk45de"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx45-timing-chain-guide-wear-and-chain-noise",
+      "make": "Infiniti",
+      "model": "FX45",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Timing Chain Guide Wear and Chain Noise",
+      "howToFix": "Diagnosis usually starts with confirming front cover chain noise during cold start and checking oil condition, oil pressure, and cam/crank correlation data. Repair typically involves replacing timing chain guides, tensioners, and often the primary chain while the front timing cover is removed; parts and labor are substantial because of the engine teardown. Typical repair cost runs about $1,800 to $3,500 depending on how many timing components are replaced.",
+      "dtcCodes": [
+        "P0011",
+        "P0021",
+        "P0340",
+        "P0345"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis usually starts with confirming front cover chain noise during cold start and checking oil condition, oil pressure, and cam/crank correlation data."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0011, P0021, P0340, P0345"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx45-timing-chain-guide-wear-and-chain-noise--prescription-0-0--all-engines",
+        "infiniti-fx45-timing-chain-guide-wear-and-chain-noise--prescription-1-0--all-engines",
+        "infiniti-fx45-timing-chain-guide-wear-and-chain-noise--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx50-brake-rotor-warping-brake-judder",
+      "make": "Infiniti",
+      "model": "FX50",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Rotor Warping / Brake Judder",
+      "howToFix": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify the condition with the driver and a road test."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components",
+      "make": "Infiniti",
+      "model": "FX50",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "EVAP Leak / Check Engine Light from Fuel Vapor Components",
+      "howToFix": "Diagnosis starts with reading EVAP-related codes, inspecting the fuel cap seal, and smoke-testing the EVAP system for leaks. Repairs may be as simple as replacing the gas cap or may require a purge/vent solenoid and hose replacement; typical cost runs from about $40 to $450 depending on the fault.",
+      "dtcCodes": [
+        "P0442",
+        "P0447",
+        "P0455",
+        "P0456"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis starts with reading EVAP-related codes, inspecting the fuel cap seal, and smoke-testing the EVAP system for leaks."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0442, P0447, P0455, P0456"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components--prescription-0-0--all-engines",
+        "infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components--prescription-1-0--all-engines",
+        "infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components--prescription-2-0--all-engines",
+        "infiniti-fx50-evap-leak-check-engine-light-from-fuel-vapor-components--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx50-premature-front-suspension-wear",
+      "make": "Infiniti",
+      "model": "FX50",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Premature Front Suspension Wear",
+      "howToFix": "Inspection should include checking upper and lower control arm bushings, ball joint play, sway bar links, and alignment angles. Repair commonly involves replacing worn control arms or links as complete assemblies, followed by a four-wheel alignment; typical cost is around $400-$1,500 depending on how many components are replaced.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspection should include checking upper and lower control arm bushings, ball joint play, sway bar links, and alignment angles."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx50-premature-front-suspension-wear--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx50-radiator-cooling-fan-related-overheating",
+      "make": "Infiniti",
+      "model": "FX50",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Radiator / Cooling Fan Related Overheating",
+      "howToFix": "Diagnosis should include pressure-testing the cooling system, checking for radiator tank leaks, verifying fan operation, and monitoring live coolant temperature data. Repairs may involve replacing the radiator, thermostat, hoses, or fan assembly and refilling with the correct coolant; total cost typically ranges from $300 to $1,400 depending on the failed component.",
+      "dtcCodes": [
+        "P0128",
+        "P0217",
+        "P0480",
+        "P0483"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis should include pressure-testing the cooling system, checking for radiator tank leaks, verifying fan operation, and monitoring live coolant temperature data."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0128, P0217, P0480, P0483"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx50-radiator-cooling-fan-related-overheating--prescription-0-0--all-engines",
+        "infiniti-fx50-radiator-cooling-fan-related-overheating--prescription-1-0--all-engines",
+        "infiniti-fx50-radiator-cooling-fan-related-overheating--prescription-2-0--all-engines",
+        "infiniti-fx50-radiator-cooling-fan-related-overheating--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx50-steering-lock-module-failure-no-start",
+      "make": "Infiniti",
+      "model": "FX50",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Steering Lock Module Failure / No-Start",
+      "howToFix": "Diagnosis typically includes checking for power at the steering lock unit, confirming Intelligent Key operation, and scanning BCM/IPDM-related faults. Repair usually involves replacing or bypassing the steering lock module depending on campaign/repair status, then performing key/immobilizer relearn if needed; typical repair cost is about $400-$1,200 depending on dealer programming and parts.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis typically includes checking for power at the steering lock unit, confirming Intelligent Key operation, and scanning BCM/IPDM-related faults."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems",
+      "make": "Infiniti",
+      "model": "FX50",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Sunroof Drain Leak Causing BCM/Electrical Problems",
+      "howToFix": "Diagnosis involves water testing the sunroof cassette drains, inspecting A-pillar and firewall drain routing, and checking under-carpet harnesses/modules for corrosion. Repair usually includes clearing or rerouting drains, replacing damaged connectors or modules, drying the interior thoroughly, and sometimes replacing the BCM or affected harness sections; costs range from about $150 for drain service to $1,500+ if electronics are damaged.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis involves water testing the sunroof cassette drains, inspecting A-pillar and firewall drain routing, and checking under-carpet harnesses/modules for corrosion."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 5,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems--prescription-0-0--all-engines",
+        "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems--prescription-1-0--all-engines",
+        "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems--prescription-2-0--all-engines",
+        "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems--prescription-3-0--all-engines",
+        "infiniti-fx50-sunroof-drain-leak-causing-bcm-electrical-problems--prescription-4-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-g35-oil-consumption-vq35de",
+      "make": "Infiniti",
+      "model": "G35",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [
+        "3.5L VQ35DE V6",
+        "VQ35DE"
+      ],
+      "title": "VQ35DE Oil Consumption",
+      "howToFix": "Replace valve stem seals and inspect piston rings. In severe cases, a short block replacement may be necessary. Use manufacturer-recommended 5W-30 oil and monitor consumption between changes.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace valve stem seals and inspect piston rings."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Use manufacturer-recommended 5W-30 oil and monitor consumption between changes."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-g35-oil-consumption-vq35de--prescription-0-0--3-5l-vq35de-v6",
+        "infiniti-g35-oil-consumption-vq35de--prescription-0-0--vq35de",
+        "infiniti-g35-oil-consumption-vq35de--prescription-1-0--3-5l-vq35de-v6",
+        "infiniti-g35-oil-consumption-vq35de--prescription-1-0--vq35de"
+      ]
+    },
+    {
+      "issueId": "infiniti-g35-steering-wheel-lock",
+      "make": "Infiniti",
+      "model": "G35",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Steering Wheel Lock Malfunction",
+      "howToFix": "Replace the steering lock actuator or have the dealer reprogram the BCM. Some owners bypass the lock mechanism entirely, though this may affect resale value. A TSB was issued for certain model years.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-g35-steering-wheel-lock--prescription-0-0--all-engines",
+        "infiniti-g35-steering-wheel-lock--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-g35-window-regulator-failure",
+      "make": "Infiniti",
+      "model": "G35",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Window Regulator Failure",
+      "howToFix": "Replace the window regulator assembly. Aftermarket regulators are available at lower cost than OEM. The repair involves removing the door panel and disconnecting the window motor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-g35-window-regulator-failure--prescription-0-0--all-engines",
+        "infiniti-g35-window-regulator-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-g37-concentric-slave-cylinder",
+      "make": "Infiniti",
+      "model": "G37",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [
+        "3.7L VQ37VHR V6"
+      ],
+      "title": "Concentric Slave Cylinder Failure (Manual)",
+      "howToFix": "Replace the concentric slave cylinder, which unfortunately requires transmission removal. Many owners upgrade to an aftermarket CSC with improved seals. Flush the clutch hydraulic system after replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-g37-concentric-slave-cylinder--prescription-0-0--3-7l-vq37vhr-v6",
+        "infiniti-g37-concentric-slave-cylinder--prescription-1-0--3-7l-vq37vhr-v6"
+      ]
+    },
+    {
+      "issueId": "infiniti-g37-galley-gasket-oil-leak",
+      "make": "Infiniti",
+      "model": "G37",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [
+        "3.7L VQ37VHR V6",
+        "VQ37VHR"
+      ],
+      "title": "Oil Gallery Gasket Leak",
+      "howToFix": "Replace the oil gallery gaskets, which requires removing the lower oil pan. Use updated Nissan/Infiniti gaskets that have improved sealing material. Clean all mating surfaces thoroughly before reinstalling.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-g37-galley-gasket-oil-leak--prescription-0-0--3-7l-vq37vhr-v6",
+        "infiniti-g37-galley-gasket-oil-leak--prescription-0-0--vq37vhr",
+        "infiniti-g37-galley-gasket-oil-leak--prescription-1-0--3-7l-vq37vhr-v6",
+        "infiniti-g37-galley-gasket-oil-leak--prescription-1-0--vq37vhr"
+      ]
+    },
+    {
+      "issueId": "infiniti-g37-steering-lock-malfunction",
+      "make": "Infiniti",
+      "model": "G37",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electronic Steering Lock Failure",
+      "howToFix": "Replace the steering lock actuator assembly. Nissan issued a voluntary service campaign for some VINs covering this repair. Check with the dealer for coverage before paying out of pocket.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check with the dealer for coverage before paying out of pocket."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-g37-steering-lock-malfunction--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m35-brake-rotor-warping-and-front-brake-vibration",
+      "make": "Infiniti",
+      "model": "M35",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Rotor Warping and Front Brake Vibration",
+      "howToFix": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify the condition with the driver and a road test."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure",
+      "make": "Infiniti",
+      "model": "M35",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Camshaft and Crankshaft Position Sensor Failure",
+      "howToFix": "Scan for stored fault codes and monitor cam/crank synchronization data while checking harness condition near the sensors. Repair typically involves replacing the failed camshaft position sensor(s) and sometimes the crankshaft position sensor with quality parts, then clearing codes and confirming proper restart behavior. Using OEM-supplier sensors is strongly preferred because cheap sensors often cause repeat failures.",
+      "dtcCodes": [
+        "P0335",
+        "P0340",
+        "P0345",
+        "P0725"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "Scan for stored fault codes and monitor cam/crank synchronization data while checking harness condition near the sensors."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0335, P0340, P0345, P0725"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure--existing-fix-part-0-0--all-engines",
+        "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure--prescription-0-0--all-engines",
+        "infiniti-m35-camshaft-and-crankshaft-position-sensor-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m35-dashboard-melting-and-cracking",
+      "make": "Infiniti",
+      "model": "M35",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Dashboard Melting and Cracking",
+      "howToFix": "Diagnosis is visual: inspect the dash surface for tackiness, warping, cracks, and reflected glare. Repair usually requires replacement of the dashboard pad or full upper dash assembly, as cleaning products do not permanently fix the material breakdown. Used parts may reduce cost, but many owners prefer a new OEM-style replacement due to fit and appearance concerns; labor is substantial because the dash must be removed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis is visual: inspect the dash surface for tackiness, warping, cracks, and reflected glare."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-m35-dashboard-melting-and-cracking--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m35-front-lower-control-arm-and-bushing-wear",
+      "make": "Infiniti",
+      "model": "M35",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Lower Control Arm and Bushing Wear",
+      "howToFix": "Inspect the front suspension for torn bushings, leaking hydraulic bushings, and play in the ball joints or control arms. Repair usually involves replacing the affected lower control arms and/or tension rods, followed by a four-wheel alignment. Aftermarket complete arm assemblies are popular because they save labor compared with pressing bushings separately.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the front suspension for torn bushings, leaking hydraulic bushings, and play in the ball joints or control arms."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-m35-fuel-gauge-sending-unit-failure",
+      "make": "Infiniti",
+      "model": "M35",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fuel Gauge Sending Unit Failure",
+      "howToFix": "Compare gauge behavior to actual fill volume and scan for fuel level sensor data if available. Repair typically requires replacement of the faulty fuel level sending unit or pump module assembly, depending on which side of the saddle tank is affected. Because tank access is labor-intensive, many owners replace related seals and inspect the pump assembly at the same time.",
+      "dtcCodes": [
+        "P0461",
+        "P0462",
+        "P0463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Compare gauge behavior to actual fill volume and scan for fuel level sensor data if available."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Because tank access is labor-intensive, many owners replace related seals and inspect the pump assembly at the same time."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0461, P0462, P0463"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-m35-fuel-gauge-sending-unit-failure--prescription-0-0--all-engines",
+        "infiniti-m35-fuel-gauge-sending-unit-failure--prescription-1-0--all-engines",
+        "infiniti-m35-fuel-gauge-sending-unit-failure--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m35-radiator-cracking-and-coolant-leaks",
+      "make": "Infiniti",
+      "model": "M35",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Radiator Cracking and Coolant Leaks",
+      "howToFix": "Pressure-test the cooling system and inspect the radiator end tanks, hose necks, and seams for seepage or dried coolant residue. Repair generally means replacing the radiator, refreshing upper and lower hoses if brittle, and refilling with the correct coolant while bleeding air from the system. If overheating occurred, the thermostat should also be checked or replaced as preventive maintenance.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure-test the cooling system and inspect the radiator end tanks, hose necks, and seams for seepage or dried coolant residue."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If overheating occurred, the thermostat should also be checked or replaced as preventive maintenance."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-m35-radiator-cracking-and-coolant-leaks--prescription-0-0--all-engines",
+        "infiniti-m35-radiator-cracking-and-coolant-leaks--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m37-brake-rotor-warping-front-brake-vibration",
+      "make": "Infiniti",
+      "model": "M37",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Rotor Warping / Front Brake Vibration",
+      "howToFix": "Verify the condition with the driver and a road test. Infiniti directs technicians to correct brake judder by machining the rotors with an approved on-car brake lathe. If a rotor is replaced, index it to the axle hub for minimum runout, tighten lug nuts evenly with a torque wrench, and burnish serviced brakes as specified in ITB00-024I.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify the condition with the driver and a road test."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-m37-camshaft-crankshaft-position-sensor-failure",
+      "make": "Infiniti",
+      "model": "M37",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Camshaft / Crankshaft Position Sensor Failure",
+      "howToFix": "Diagnosis is done with a scan tool and live data to identify which sensor is dropping out, followed by checking connector condition and harness integrity. Repair involves replacing the failed camshaft or crankshaft position sensor with a quality OE-equivalent part and clearing codes; typical repair costs range from about $180-$450 depending on which sensor failed and labor access.",
+      "dtcCodes": [
+        "P0335",
+        "P0340",
+        "P0345",
+        "P0365",
+        "P0390"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis is done with a scan tool and live data to identify which sensor is dropping out, followed by checking connector condition and harness integrity."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0335, P0340, P0345, P0365, P0390"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "infiniti-m37-camshaft-crankshaft-position-sensor-failure--existing-fix-part-0-0--all-engines",
+        "infiniti-m37-camshaft-crankshaft-position-sensor-failure--prescription-0-0--all-engines",
+        "infiniti-m37-camshaft-crankshaft-position-sensor-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m37-hvac-blower-motor-fan-speed-control-failure",
+      "make": "Infiniti",
+      "model": "M37",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "HVAC Blower Motor / Fan Speed Control Failure",
+      "howToFix": "Diagnosis includes checking blower power and ground, command signals from the HVAC control head, and current draw of the blower motor. Repair usually involves replacing the blower motor and, if needed, the blower control module/resistor equivalent; total cost is commonly about $250-$700 depending on parts source and labor time.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis includes checking blower power and ground, command signals from the HVAC control head, and current draw of the blower motor."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "communityRecommendations:2"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-m37-hvac-blower-motor-fan-speed-control-failure--prescription-0-0--all-engines",
+        "infiniti-m37-hvac-blower-motor-fan-speed-control-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m37-premature-front-suspension-wear",
+      "make": "Infiniti",
+      "model": "M37",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Premature Front Suspension Wear",
+      "howToFix": "A proper inspection checks for play in the front lower arms, compression/tension rods, ball joints, and sway bar links, followed by an alignment after repairs. Typical fixes include replacing worn control arms or tension rods in pairs; parts and labor usually total about $400-$1,200 depending on how many components are replaced and whether OEM or aftermarket parts are used.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "A proper inspection checks for play in the front lower arms, compression/tension rods, ball joints, and sway bar links, followed by an alignment after repairs."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-m37-steering-wheel-lock-failure-no-start",
+      "make": "Infiniti",
+      "model": "M37",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Steering Wheel Lock Failure / No-Start",
+      "howToFix": "Diagnosis typically confirms power and Intelligent Key operation but no start authorization, often with steering lock-related faults stored. Repair usually involves replacing the steering lock assembly or performing the Infiniti service campaign/TSB procedure, then reprogramming as needed; dealer repairs commonly run about $900-$1,500, while some independent shops may be lower if programming capability is available.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnosis typically confirms power and Intelligent Key operation but no start authorization, often with steering lock-related faults stored."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems",
+      "make": "Infiniti",
+      "model": "M37",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Sunroof Drain Leak Causing BCM/Electrical Problems",
+      "howToFix": "Diagnosis involves water testing the sunroof drains, inspecting A-pillar and firewall drain routing, and checking for corrosion at connectors and modules. Repair may include clearing or rerouting drains, replacing damaged hose sections, drying the interior, and repairing corroded wiring or modules; minor drain service can be under $250, but BCM/harness damage can push repairs into the $1,200-$3,000 range.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis involves water testing the sunroof drains, inspecting A-pillar and firewall drain routing, and checking for corrosion at connectors and modules."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems--prescription-0-0--all-engines",
+        "infiniti-m37-sunroof-drain-leak-causing-bcm-electrical-problems--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m56-front-lower-control-arm-tension-rod-bushing-wear",
+      "make": "Infiniti",
+      "model": "M56",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Lower Control Arm / Tension Rod Bushing Wear",
+      "howToFix": "Diagnosis involves inspecting the front suspension for torn bushings, checking for wheel movement under pry-bar load, and road-testing for brake shimmy or clunks. Repair usually means replacing the affected control arms or tension rods as complete assemblies, followed by a four-wheel alignment; typical cost is about $500 to $1,400 depending on how many arms are replaced and whether OEM or aftermarket parts are used.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis involves inspecting the front suspension for torn bushings, checking for wheel movement under pry-bar load, and road-testing for brake shimmy or clunks."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "communityRecommendations:1"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-m56-radiator-cooling-fan-module-failure",
+      "make": "Infiniti",
+      "model": "M56",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Radiator / Cooling Fan Module Failure",
+      "howToFix": "Diagnosis includes pressure-testing the cooling system, checking for seepage at radiator end tanks, and commanding fan operation with a scan tool. Repairs usually involve replacing the radiator and/or fan assembly, refilling with the correct Nissan/Infiniti blue coolant, and bleeding the system; typical cost ranges from about $700 to $1,800 depending on which components fail.",
+      "dtcCodes": [
+        "P0217",
+        "P0480",
+        "P0483"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis includes pressure-testing the cooling system, checking for seepage at radiator end tanks, and commanding fan operation with a scan tool."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0217, P0480, P0483"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0",
+        "communityRecommendations:2",
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "infiniti-m56-radiator-cooling-fan-module-failure--existing-fix-part-0-0--all-engines",
+        "infiniti-m56-radiator-cooling-fan-module-failure--prescription-0-0--all-engines",
+        "infiniti-m56-radiator-cooling-fan-module-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m56-steering-rack-power-steering-leak-and-noise",
+      "make": "Infiniti",
+      "model": "M56",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Steering Rack / Power Steering Leak and Noise",
+      "howToFix": "Diagnosis includes inspecting rack boots and hydraulic lines for fluid, checking reservoir level and condition, and listening for pump cavitation. Repair may involve replacing leaking pressure hoses or the steering rack assembly, then flushing and refilling with the correct fluid; costs typically range from about $300 for hose-related repairs to $1,800 for a rack replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis includes inspecting rack boots and hydraulic lines for fluid, checking reservoir level and condition, and listening for pump cavitation."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-m56-steering-rack-power-steering-leak-and-noise--prescription-0-0--all-engines",
+        "infiniti-m56-steering-rack-power-steering-leak-and-noise--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m56-timing-chain-guide-wear-chain-noise",
+      "make": "Infiniti",
+      "model": "M56",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Timing Chain Guide Wear / Chain Noise",
+      "howToFix": "Diagnosis starts with confirming cold-start rattle, checking oil condition/pressure, and scanning for cam/crank correlation codes. Repair typically involves replacing the timing chains, guides, and tensioners, and resealing the front cover; on this engine the labor is substantial, so total repair commonly runs from about $2,500 to $5,000 depending on parts replaced and shop rate.",
+      "dtcCodes": [
+        "P0011",
+        "P0021",
+        "P0335",
+        "P0340"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis starts with confirming cold-start rattle, checking oil condition/pressure, and scanning for cam/crank correlation codes."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0011, P0021, P0335, P0340"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 5,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-m56-timing-chain-guide-wear-chain-noise--prescription-0-0--all-engines",
+        "infiniti-m56-timing-chain-guide-wear-chain-noise--prescription-1-0--all-engines",
+        "infiniti-m56-timing-chain-guide-wear-chain-noise--prescription-2-0--all-engines",
+        "infiniti-m56-timing-chain-guide-wear-chain-noise--prescription-3-0--all-engines",
+        "infiniti-m56-timing-chain-guide-wear-chain-noise--prescription-4-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-m56-tpms-sensor-battery-failure",
+      "make": "Infiniti",
+      "model": "M56",
+      "years": [
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "TPMS Sensor Battery Failure",
+      "howToFix": "Diagnosis is performed with a TPMS scan tool to identify the dead or non-communicating sensor(s). Repair involves replacing the failed sensor(s), installing new seals if reusing serviceable hardware, and registering the IDs to the vehicle; typical cost is about $80 to $300 depending on how many sensors are replaced and whether programming is needed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnosis is performed with a TPMS scan tool to identify the dead or non-communicating sensor(s)."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-m56-tpms-sensor-battery-failure--prescription-0-0--all-engines",
+        "infiniti-m56-tpms-sensor-battery-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-q50-intouch-infotainment-lag",
+      "make": "Infiniti",
+      "model": "Q50",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "InTouch Infotainment System Lag and Freezing",
+      "howToFix": "Perform a system reset by holding the power button for 10 seconds. Update to the latest firmware via USB. In persistent cases, the infotainment module may need replacement. Some owners have had success with aftermarket head units.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-q50-intouch-infotainment-lag--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-q60-infotainment-issues",
+      "make": "Infiniti",
+      "model": "Q60",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "InTouch Infotainment Freezing and Slow Response",
+      "howToFix": "Update firmware to the latest version. Perform hard resets when screens freeze. Some owners upgrade to aftermarket Android Auto/CarPlay units for improved functionality.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-q60-infotainment-issues--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-q60-steering-feel-disconnect",
+      "make": "Infiniti",
+      "model": "Q60",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Direct Adaptive Steering Feel Disconnect",
+      "howToFix": "Switch to Sport+ steering mode for the most direct feel. Software updates from Infiniti have progressively improved the DAS calibration. Consider the non-DAS equipped models for a more traditional steering feel.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Switch to Sport+ steering mode for the most direct feel."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Consider the non-DAS equipped models for a more traditional steering feel."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-m-q70-timing-chain-tensioner",
+      "make": "Infiniti",
+      "model": "Q70",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [
+        "3.7L VQ37VHR V6"
+      ],
+      "title": "Timing Chain Tensioner Failure",
+      "howToFix": "Replace the primary timing chain tensioners and inspect the chains and guides. Use updated tensioner part numbers that feature improved check valve design. This repair requires removing the front timing cover.",
+      "dtcCodes": [
+        "P0011",
+        "P0021"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace the primary timing chain tensioners and inspect the chains and guides."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Use updated tensioner part numbers that feature improved check valve design."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0011, P0021"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-m-q70-timing-chain-tensioner--prescription-0-0--3-7l-vq37vhr-v6"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx50-premature-front-lower-control-2014",
+      "make": "Infiniti",
+      "model": "QX50",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [],
+      "engines": [
+        "3.7L VQ37VHR V6"
+      ],
+      "title": "Premature Front Lower Control Arm / Compression Rod Bushing Wear Causing Clunks and Tire Wear",
+      "howToFix": "Inspect front lower control arm bushings, compression rod bushings, ball joints, and sway bar links with the suspension loaded. Replace worn arms or bushings in pairs, then perform a four-wheel alignment and inspect tires for cupping or inner-edge wear. Many owners choose complete arm assemblies to reduce labor and avoid pressing bushings.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect front lower control arm bushings, compression rod bushings, ball joints, and sway bar links with the suspension loaded."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace worn arms or bushings in pairs, then perform a four-wheel alignment and inspect tires for cupping or inner-edge wear."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:2",
+        "communityRecommendations:3"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx50-premature-front-lower-control-2014--prescription-0-0--3-7l-vq37vhr-v6"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx50-steering-wheel-lock--2014",
+      "make": "Infiniti",
+      "model": "QX50",
+      "years": [
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [],
+      "engines": [
+        "3.7L VQ37VHR V6"
+      ],
+      "title": "Steering Wheel Lock / Ignition No-Start from Electronic Steering Lock Failure",
+      "howToFix": "Confirm battery voltage and key fob operation first, then scan BCM/IPDM/steering lock modules for communication or lock-status faults. Repair usually involves replacing or bypassing the failed electronic steering lock assembly depending on model applicability and local repair practice, followed by key/immobilizer relearn if required. Because symptoms mimic a weak battery or bad brake switch, proper diagnosis is important before replacing parts.",
+      "dtcCodes": [
+        "B2190",
+        "B2191",
+        "U1000"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm battery voltage and key fob operation first, then scan BCM/IPDM/steering lock modules for communication or lock-status faults."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Because symptoms mimic a weak battery or bad brake switch, proper diagnosis is important before replacing parts."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "B2190, B2191, U1000"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:2",
+        "communityRecommendations:3"
+      ],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-qx50-sunroof-drain-hvac-2014",
+      "make": "Infiniti",
+      "model": "QX50",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [],
+      "engines": [
+        "3.7L VQ37VHR V6"
+      ],
+      "title": "Sunroof Drain / HVAC Evaporator Water Intrusion Causing Wet Carpets and Electrical Faults",
+      "howToFix": "Inspect all four sunroof drains, drain grommets, A-pillar routing, and the HVAC evaporator drain for blockage or disconnection. Clear drains with low-pressure air or line, repair cracked hoses, and dry the carpet and underlayment thoroughly; if water reached connectors, inspect for corrosion and repair affected wiring. Many owners also modify or extend drain outlets to reduce repeat clogging.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect all four sunroof drains, drain grommets, A-pillar routing, and the HVAC evaporator drain for blockage or disconnection."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "if water reached connectors, inspect for corrosion and repair affected wiring."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:2",
+        "communityRecommendations:3"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-qx50-timing-chain-vvel-2014",
+      "make": "Infiniti",
+      "model": "QX50",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [],
+      "engines": [
+        "3.7L VQ37VHR V6"
+      ],
+      "title": "Timing Chain / VVEL Rattle and Front Timing Cover Oil Leaks on VQ37VHR",
+      "howToFix": "Inspect for oil seepage around the front timing cover, upper oil pan junction, and valve cover areas to confirm the leak source before authorizing repairs. If startup rattle is persistent or worsens, check chain tensioner operation and timing correlation, then reseal the front cover with OEM-equivalent RTV and replace worn guides/tensioners as needed. Because labor overlap is substantial, many owners replace the water pump, drive belt, and related seals during the same job.",
+      "dtcCodes": [
+        "P0011",
+        "P0021",
+        "P0340",
+        "P0345"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect for oil seepage around the front timing cover, upper oil pan junction, and valve cover areas to confirm the leak source before authorizing repairs."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If startup rattle is persistent or worsens, check chain tensioner operation and timing correlation, then reseal the front cover with OEM-equivalent RTV and replace worn guides/tensioners as needed."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0011, P0021, P0340, P0345"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:2",
+        "communityRecommendations:3"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx50-timing-chain-vvel-2014--prescription-0-0--3-7l-vq37vhr-v6",
+        "infiniti-qx50-timing-chain-vvel-2014--prescription-1-0--3-7l-vq37vhr-v6",
+        "infiniti-qx50-timing-chain-vvel-2014--prescription-2-0--3-7l-vq37vhr-v6",
+        "infiniti-qx50-timing-chain-vvel-2014--prescription-3-0--3-7l-vq37vhr-v6"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx50-cvt-shudder",
+      "make": "Infiniti",
+      "model": "QX50",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "VC-Turbo"
+      ],
+      "title": "CVT Shudder Under Light Acceleration",
+      "howToFix": "Perform a CVT fluid drain and refill with genuine Nissan NS-3 CVT fluid. A TCM recalibration at the dealer may resolve the issue. Severe cases may require valve body replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx50-cvt-shudder--prescription-0-0--vc-turbo"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx50-infotainment-lag",
+      "make": "Infiniti",
+      "model": "QX50",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment System Lag and Connectivity Issues",
+      "howToFix": "Update to the latest firmware via USB download from Infiniti. Perform a system reset by holding the power button. Clear paired Bluetooth devices and re-pair to resolve connectivity issues.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-qx50-vc-turbo-oil-consumption",
+      "make": "Infiniti",
+      "model": "QX50",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L VC-Turbo KR20DDET I4",
+        "KR20DDET"
+      ],
+      "title": "VC-Turbo Engine Oil Consumption",
+      "howToFix": "Monitor oil levels every 1,000 miles and top off as needed. Use only 0W-20 full synthetic oil meeting Nissan specifications. Infiniti has extended the powertrain warranty on some VINs to address this concern.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil levels every 1,000 miles and top off as needed."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-qx55-cvt-shudder-hesitation-overheating",
+      "make": "Infiniti",
+      "model": "QX55",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "ESSENTIAL",
+        "LUXE",
+        "PURE",
+        "SENSORY"
+      ],
+      "engines": [
+        "2.0L VC-Turbo I4 (KR20DDET)"
+      ],
+      "title": "CVT (Jatco Xtronic) Shudder, Hesitation and Overheating",
+      "howToFix": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid; heat is the primary enemy. A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement. Severe cases require a CVT rebuild or replacement. Frequent fluid checks and an auxiliary cooler help; avoid heavy towing.",
+      "dtcCodes": [
+        "P0776",
+        "P0868",
+        "P17F0",
+        "P17F1"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Start with a genuine Nissan NS-3 CVT fluid exchange and check for leaks or low fluid;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "A dealer scan for judder codes can call for a valve-body/pressure recalibration or valve-body replacement."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P0776, P0868, P17F0, P17F1"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1",
+        "fixParts:2"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 3,
+      "workItemIds": [
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-0--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-1--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-2--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-3--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-4--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-0-5--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-1-0--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-1-1--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-1-2--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-1-3--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-2-0--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--existing-fix-part-2-1--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-cvt-shudder-hesitation-overheating--prescription-0-0--2-0l-vc-turbo-i4-kr20ddet"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx55-engine-cooling-fan-runs-full-speed-loud-roaring-jet-engine-n",
+      "make": "Infiniti",
+      "model": "QX55",
+      "years": [
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Engine Cooling Fan Runs at Full Speed / Loud Roaring \"Jet Engine\" Noise (TSB ITB22-025A)",
+      "howToFix": "A qualified Infiniti technician should confirm both conditions and inspect the Denso part number on the cooling-fan assembly. ITB22-025A directs replacement of the engine cooling fan assembly when the installed part is outside the listed replacement set, and replacement plus configuration of the IPDM E/R when applicable.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "A qualified Infiniti technician should confirm both conditions and inspect the Denso part number on the cooling-fan assembly."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx55-engine-cooling-fan-runs-full-speed-loud-roaring-jet-engine-n--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx55-forward-emergency-braking-phantom-false-activation",
+      "make": "Infiniti",
+      "model": "QX55",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "ESSENTIAL",
+        "LUXE",
+        "SENSORY"
+      ],
+      "engines": [
+        "2.0L VC-Turbo I4 (KR20DDET)"
+      ],
+      "title": "Forward Emergency Braking (FEB) Phantom / False Activation",
+      "howToFix": "Keep the front camera window (behind the windshield) and front radar/emblem area clean and free of film, mud, snow or aftermarket tint. Have the dealer scan the ADAS modules and apply any camera/radar calibration or software update per TSB. If phantom braking persists, request a diagnosis of the radar/camera alignment; the FEB sensitivity setting can be reviewed but the system should not be defeated permanently.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have the dealer scan the ADAS modules and apply any camera/radar calibration or software update per TSB."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "If phantom braking persists, request a diagnosis of the radar/camera alignment;"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "infiniti-qx55-forward-emergency-braking-phantom-false-activation--existing-fix-part-0-0--2-0l-vc-turbo-i4-kr20ddet"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx55-infotainment-issues",
+      "make": "Infiniti",
+      "model": "QX55",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment System Freezing",
+      "howToFix": "Update to the latest infotainment firmware. Perform a factory reset if issues persist. Delete and re-pair all Bluetooth devices. Infiniti has released multiple software updates addressing stability.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-qx55-premature-12v-battery-failure-parasitic-drain",
+      "make": "Infiniti",
+      "model": "QX55",
+      "years": [
+        2022,
+        2023
+      ],
+      "trims": [
+        "ESSENTIAL",
+        "LUXE",
+        "PURE",
+        "SENSORY"
+      ],
+      "engines": [
+        "2.0L VC-Turbo I4 (KR20DDET)"
+      ],
+      "title": "Premature 12V Battery Failure / Parasitic Drain (No-Start, Warning Cascade)",
+      "howToFix": "Load-test the battery and charging system; replace with a correct OEM-spec Group 35/AGM battery if degraded. If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake. Reprogram/replace the battery and register it if the system requires. Address any charging (alternator) fault and keep the battery topped up on a maintainer during long storage.",
+      "dtcCodes": [
+        "P0562",
+        "P0563"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Load-test the battery and charging system;"
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "If the battery drains while parked, perform a parasitic-draw test to isolate a module (infotainment/telematics) staying awake."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0562, P0563"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 2,
+      "workItemIds": [
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-0--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-1--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-2--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-3--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-4--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-0-5--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-1-0--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-1-1--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-1-2--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--existing-fix-part-1-3--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--prescription-0-0--2-0l-vc-turbo-i4-kr20ddet",
+        "infiniti-qx55-premature-12v-battery-failure-parasitic-drain--prescription-1-0--2-0l-vc-turbo-i4-kr20ddet"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx55-vc-turbo-engine-main-link-bearing-failure",
+      "make": "Infiniti",
+      "model": "QX55",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "ESSENTIAL",
+        "LUXE",
+        "PURE",
+        "SENSORY"
+      ],
+      "engines": [
+        "2.0L VC-Turbo I4 (KR20DDET)"
+      ],
+      "title": "VC-Turbo Engine Main/Link Bearing Failure (Safety Recall)",
+      "howToFix": "Have the VIN checked for the recall. The remedy reprograms the ECM, scans for diagnostic codes, and inspects the oil pan for metal debris; if metal is found the engine is replaced free of charge. Owners should keep to strict oil-change intervals, use the correct 0W-20 spec oil, and stop driving immediately if knocking, ticking or metal in the oil is noticed. Because a warranty extension applies, keep all service records to protect coverage.",
+      "dtcCodes": [
+        "P0016",
+        "P0300",
+        "P1320"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Have the VIN checked for the recall."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "The remedy reprograms the ECM, scans for diagnostic codes, and inspects the oil pan for metal debris;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P0016, P0300, P1320"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1",
+        "fixParts:2"
+      ],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 3,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-qx55-vc-turbo-oil-consumption",
+      "make": "Infiniti",
+      "model": "QX55",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L VC-Turbo KR20DDET I4",
+        "KR20DDET"
+      ],
+      "title": "VC-Turbo Engine Oil Consumption",
+      "howToFix": "Monitor oil levels bi-weekly and top off with 0W-20 synthetic. Follow the Infiniti oil consumption test procedure if usage exceeds 1 quart per 3,000 miles. Warranty coverage may apply for excessive consumption.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil levels bi-weekly and top off with 0W-20 synthetic."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Follow the Infiniti oil consumption test procedure if usage exceeds 1 quart per 3,000 miles."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-qx55-front-passenger-door-latch-may-not-lock",
+      "make": "Infiniti",
+      "model": "QX55",
+      "years": [
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Passenger Door Latch May Not Lock (Safety Recall PC962)",
+      "howToFix": "Check the VIN through Infiniti or NHTSA. For an eligible vehicle, Infiniti campaign ITB23-013A directs the retailer to replace the passenger-side front door lock at no charge. The bulletin lists lock assembly 80500-9CM0A and three screws 80599-4AF0A for the campaign procedure.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN through Infiniti or NHTSA."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-qx60-cvt-failure",
+      "make": "Infiniti",
+      "model": "QX60",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "CVT Transmission Failure",
+      "howToFix": "Replace CVT fluid every 30,000 miles instead of the recommended 60,000. Add an auxiliary transmission cooler for towing. Nissan extended the CVT warranty to 84 months/84,000 miles on affected models.",
+      "dtcCodes": [
+        "P0868",
+        "P17F0"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P0868, P17F0"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx60-cvt-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx60-power-steering-pump-whine",
+      "make": "Infiniti",
+      "model": "QX60",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Steering Pump Whine",
+      "howToFix": "Flush the power steering system and refill with Nissan PSF. Bleed air from the system by turning the wheel lock-to-lock several times with the engine running. Replace the pump if the noise persists after fluid service.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "fixParts:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "infiniti-qx60-power-steering-pump-whine--existing-fix-part-0-0--all-engines",
+        "infiniti-qx60-power-steering-pump-whine--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx60-transmission-judder",
+      "make": "Infiniti",
+      "model": "QX60",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Transmission Judder at Low Speed",
+      "howToFix": "Have the dealer perform the CVT judder reprogram (TSB NTB15-024). A CVT fluid change with NS-3 fluid can also improve the condition. Drive the vehicle for 30 minutes after the fluid change to allow the TCM to relearn.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "infiniti-qx60-battery-drain-no-start-2022",
+      "make": "Infiniti",
+      "model": "QX60",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Battery Drain / No-Start from Telematics, Infotainment, or Control Module Sleep Issues",
+      "howToFix": "Perform a proper parasitic draw test after all modules should be asleep, then isolate the circuit causing excess current draw. Check for TSB/software updates for telematics/AV modules, test battery health, and inspect charging system output; some vehicles need module reprogramming, while others require battery replacement after repeated deep discharge damage. Document draw readings before replacing parts.",
+      "dtcCodes": [
+        "B26F2",
+        "U1000"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "parasitic-draw",
+          "toolId": "dc-clamp-meter-low-current",
+          "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Perform a proper parasitic draw test after all modules should be asleep, then isolate the circuit causing excess current draw."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check for TSB/software updates for telematics/AV modules, test battery health, and inspect charging system output;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "B26F2, U1000"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx60-battery-drain-no-start-2022--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx60-forward-collision-warning--2022",
+      "make": "Infiniti",
+      "model": "QX60",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Forward Collision Warning / Automatic Emergency Braking False Activation or Unexpected Braking",
+      "howToFix": "Scan the ADAS system for stored faults and verify radar/camera alignment, windshield condition, and front emblem/radar cleanliness. Infiniti service procedures typically involve checking for software updates, recalibrating the forward camera/radar, and replacing a faulty sensor only after alignment and aiming are confirmed. Owners should document the exact conditions when the event occurs to help reproduce the issue.",
+      "dtcCodes": [
+        "C1A12",
+        "C1A16",
+        "C1A20"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Scan the ADAS system for stored faults and verify radar/camera alignment, windshield condition, and front emblem/radar cleanliness."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Infiniti service procedures typically involve checking for software updates, recalibrating the forward camera/radar, and replacing a faulty sensor only after alignment and aiming are confirmed."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1A12, C1A16, C1A20"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx60-forward-collision-warning-2022--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx60-panoramic-moonroof-exploding-or-2022",
+      "make": "Infiniti",
+      "model": "QX60",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Panoramic Moonroof Exploding or Cracking Spontaneously",
+      "howToFix": "Inspect the glass carefully for impact point evidence and document the break pattern before replacement. Repair requires replacing the affected moonroof glass panel and checking frame alignment, seal fitment, and drain condition; if there is no impact evidence, owners should pursue warranty/goodwill review and file a safety complaint. Avoid driving with exposed broken glass until the panel is secured or replaced.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the glass carefully for impact point evidence and document the break pattern before replacement."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Repair requires replacing the affected moonroof glass panel and checking frame alignment, seal fitment, and drain condition;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx60-panoramic-moonroof-exploding-or-2022--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx60-rearview-camera-image-blank-2022",
+      "make": "Infiniti",
+      "model": "QX60",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rearview Camera Image Blank, Distorted, or Intermittent Due to Infotainment/Display Software",
+      "howToFix": "Confirm the concern by checking for intermittent camera loss, delayed display, or frozen image when selecting reverse. Inspect for open recalls and apply the latest AV/control unit software update per Infiniti/Nissan service procedure; if the issue persists, diagnose the display control unit, camera harness, and rear camera module for faults or poor connections. Vehicles still under recall/warranty should have the software remedy performed first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the concern by checking for intermittent camera loss, delayed display, or frozen image when selecting reverse."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect for open recalls and apply the latest AV/control unit software update per Infiniti/Nissan service procedure;"
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "if the issue persists, diagnose the display control unit, camera harness, and rear camera module for faults or poor connections."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx60-rearview-camera-image-blank-2022--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx-qx70-timing-chain",
+      "make": "Infiniti",
+      "model": "QX70",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [
+        "3.7L VQ37VHR V6"
+      ],
+      "title": "VQ37VHR Timing Chain Noise",
+      "howToFix": "Replace the timing chain, tensioners, and guides as a set. Use updated Nissan timing chain components with improved tensioner design. Ensure regular oil changes with quality synthetic oil to minimize chain wear.",
+      "dtcCodes": [
+        "P0011"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0011"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx-qx70-timing-chain--prescription-0-0--3-7l-vq37vhr-v6",
+        "infiniti-fx-qx70-timing-chain--prescription-1-0--3-7l-vq37vhr-v6",
+        "infiniti-fx-qx70-timing-chain--prescription-2-0--3-7l-vq37vhr-v6"
+      ]
+    },
+    {
+      "issueId": "infiniti-fx-qx70-transfer-case-seal-leak",
+      "make": "Infiniti",
+      "model": "QX70",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Transfer Case Output Seal Leak",
+      "howToFix": "Replace the transfer case output seals and inspect the transfer case fluid level. Refill with genuine Nissan transfer case fluid. Check the driveshaft joints for wear while the transfer case is accessible.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace the transfer case output seals and inspect the transfer case fluid level."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the driveshaft joints for wear while the transfer case is accessible."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-fx-qx70-transfer-case-seal-leak--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx80-timing-chain-stretch",
+      "make": "Infiniti",
+      "model": "QX80",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [
+        "5.6L VK56VD V8"
+      ],
+      "title": "VK56VD Timing Chain Stretch",
+      "howToFix": "Replace the timing chain, tensioners, and guides as a complete kit. This is a labor-intensive repair requiring significant engine disassembly. Strict adherence to 5,000-mile oil change intervals helps prevent premature chain wear.",
+      "dtcCodes": [
+        "P0011",
+        "P0300"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0011, P0300"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx80-timing-chain-stretch--prescription-0-0--5-6l-vk56vd-v8",
+        "infiniti-qx80-timing-chain-stretch--prescription-1-0--5-6l-vk56vd-v8",
+        "infiniti-qx80-timing-chain-stretch--prescription-2-0--5-6l-vk56vd-v8"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx80-hydraulic-body-motion-control-leak",
+      "make": "Infiniti",
+      "model": "QX80",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Hydraulic Body Motion Control System Leak",
+      "howToFix": "Inspect and replace leaking hydraulic lines and actuator seals. The HBMC fluid reservoir should be checked regularly. Complete system replacement is expensive but may be necessary if multiple components have failed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and replace leaking hydraulic lines and actuator seals."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "The HBMC fluid reservoir should be checked regularly."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "infiniti-qx80-hydraulic-body-motion-control-leak--prescription-0-0--all-engines",
+        "infiniti-qx80-hydraulic-body-motion-control-leak--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "infiniti-qx80-infotainment-lag",
+      "make": "Infiniti",
+      "model": "QX80",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment System Slow Response",
+      "howToFix": "Update to the latest available firmware. Reduce the number of paired Bluetooth devices. The 2025+ models received an updated system, but earlier models remain limited by hardware constraints.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

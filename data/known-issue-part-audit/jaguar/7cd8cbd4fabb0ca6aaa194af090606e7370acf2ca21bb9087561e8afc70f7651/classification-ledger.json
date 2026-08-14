@@ -1,0 +1,3564 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Jaguar",
+  "makeKey": "jaguar",
+  "makeIndex": 21,
+  "totalMakes": 54,
+  "issueCount": 63,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 37,
+    "diagnosis-dependent": 9,
+    "recall/dealer": 2,
+    "service/tool/fluid": 7,
+    "no-commerce": 8
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 26,
+    "uniqueDtcCount": 39,
+    "instructionCount": 52,
+    "dtcDispositionCount": 26,
+    "toolLinkedCount": 20,
+    "procedureNoToolCount": 41,
+    "unresolvedToolHoldCount": 17
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "jaguar-e-pace-9-speed-harsh-shift-2018",
+      "make": "Jaguar",
+      "model": "E-PACE",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L Ingenium Turbo I4"
+      ],
+      "title": "9-Speed Automatic Transmission Harsh Shifting",
+      "howToFix": "Update the TCM software to the latest JLR calibration, which significantly improves shift quality. Perform a fluid change if not done within the last 60,000 miles. If shifts remain harsh, the valve body may need inspection or replacement.",
+      "dtcCodes": [
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If shifts remain harsh, the valve body may need inspection or replacement."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-e-pace-incontrol-freeze-2018",
+      "make": "Jaguar",
+      "model": "E-PACE",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "InControl Touch Infotainment Freeze",
+      "howToFix": "Update to the latest InControl firmware version. If the base Touch system, consider upgrading to the Touch Pro head unit hardware. A factory reset via the settings menu can provide temporary relief. Avoid running navigation and Bluetooth audio simultaneously on base systems.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-e-pace-incontrol-freeze-2018--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-e-pace-panoramic-roof-leak-2018",
+      "make": "Jaguar",
+      "model": "E-PACE",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Panoramic Sunroof Water Leak into Cabin",
+      "howToFix": "Clear the sunroof drain tubes with compressed air or a flexible cleaning tool. Reseal the drain tube connections at the A-pillar. If the front seal is deformed, replace it with the updated JLR part. Inspect and clear all four drain outlets at the wheel wells.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and clear all four drain outlets at the wheel wells."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-e-pace-turbo-coolant-hose-ingenium-2018",
+      "make": "Jaguar",
+      "model": "E-PACE",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L Ingenium Turbo I4",
+        "Ingenium"
+      ],
+      "title": "Turbo Coolant Hose Failure on Ingenium Engine",
+      "howToFix": "Replace both turbo coolant hoses with updated high-temperature silicone versions from JLR. Inspect the turbo oil feed and return lines at the same time. Bleed the cooling system thoroughly after repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the turbo oil feed and return lines at the same time."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-e-pace-turbo-coolant-hose-ingenium-2018--prescription-0-0--2-0l-ingenium-turbo-i4",
+        "jaguar-e-pace-turbo-coolant-hose-ingenium-2018--prescription-0-0--ingenium"
+      ]
+    },
+    {
+      "issueId": "jaguar-f-pace-coolant-crossover-v6-2017",
+      "make": "Jaguar",
+      "model": "F-PACE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "S",
+        "SVR"
+      ],
+      "engines": [
+        "3.0L Supercharged V6",
+        "3.0L V6 Supercharged",
+        "5.0L V8 Supercharged"
+      ],
+      "title": "Coolant Crossover Pipe Leak on Supercharged V6",
+      "howToFix": "Replace the coolant crossover pipe O-rings and inspect the pipe for corrosion. Access requires partial supercharger disassembly. Use updated silicone O-rings rated for higher temperature. Pressure test the system after reassembly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace the coolant crossover pipe O-rings and inspect the pipe for corrosion."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Pressure test the system after reassembly."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-f-pace-coolant-crossover-v6-2017--prescription-0-0--3-0l-supercharged-v6",
+        "jaguar-f-pace-coolant-crossover-v6-2017--prescription-0-0--3-0l-v6-supercharged",
+        "jaguar-f-pace-coolant-crossover-v6-2017--prescription-0-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-f-pace-incontrol-freeze-2017",
+      "make": "Jaguar",
+      "model": "F-PACE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "InControl Touch Pro Infotainment System Freeze",
+      "howToFix": "Update the InControl software to the latest firmware version via USB or dealer update. If freezing persists, replace the infotainment head unit with the updated hardware revision. Clear the navigation cache and reduce the number of stored destinations.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-f-pace-incontrol-freeze-2017--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-f-pace-panoramic-roof-creak-2017",
+      "make": "Jaguar",
+      "model": "F-PACE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Panoramic Sunroof Creaking and Popping Noise",
+      "howToFix": "Apply silicone-based lubricant to the roof seal channels. If noise persists, have the dealer re-bond the glass panel to the frame using updated adhesive. In severe cases, the entire panoramic roof cassette may need replacement under warranty or extended coverage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-f-pace-rear-diff-bushing-2017",
+      "make": "Jaguar",
+      "model": "F-PACE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear Differential Mount Bushing Premature Wear",
+      "howToFix": "Replace the rear differential mount bushings. Use OEM rubber bushings for comfort or polyurethane aftermarket bushings for durability. Inspect the subframe mounts at the same time as they share similar stress patterns.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the subframe mounts at the same time as they share similar stress patterns."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-f-pace-rear-diff-bushing-2017--prescription-0-0--all-engines",
+        "jaguar-f-pace-rear-diff-bushing-2017--prescription-1-0--all-engines",
+        "jaguar-f-pace-rear-diff-bushing-2017--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-f-pace-water-pump-ingenium-2017",
+      "make": "Jaguar",
+      "model": "F-PACE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "25t",
+        "30t",
+        "R-Sport",
+        "S"
+      ],
+      "engines": [
+        "2.0L Ingenium Turbo I4",
+        "3.0L Ingenium Turbo I6"
+      ],
+      "title": "Ingenium Engine Water Pump Failure",
+      "howToFix": "Replace the water pump and thermostat assembly. Use the updated JLR part number with reinforced bearing and impeller. Flush the cooling system and refill with Jaguar-specified OAT coolant.",
+      "dtcCodes": [
+        "P26B7"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P26B7"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-f-pace-water-pump-ingenium-2017--prescription-0-0--2-0l-ingenium-turbo-i4",
+        "jaguar-f-pace-water-pump-ingenium-2017--prescription-0-0--3-0l-ingenium-turbo-i6",
+        "jaguar-f-pace-water-pump-ingenium-2017--prescription-1-0--2-0l-ingenium-turbo-i4",
+        "jaguar-f-pace-water-pump-ingenium-2017--prescription-1-0--3-0l-ingenium-turbo-i6"
+      ]
+    },
+    {
+      "issueId": "jaguar-f-pace-zf-8hp-valve-body-2017",
+      "make": "Jaguar",
+      "model": "F-PACE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L Ingenium Turbo I4",
+        "3.0L V6 Supercharged",
+        "5.0L V8 Supercharged"
+      ],
+      "title": "ZF 8HP Transmission Valve Body Malfunction",
+      "howToFix": "Replace the valve body assembly or have the mechatronic unit rebuilt by a ZF specialist. Perform a transmission fluid and filter change with ZF LifeguardFluid 8. Update the transmission control module software to the latest JLR calibration.",
+      "dtcCodes": [
+        "P0657",
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0657, P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-f-pace-zf-8hp-valve-body-2017--prescription-0-0--2-0l-ingenium-turbo-i4",
+        "jaguar-f-pace-zf-8hp-valve-body-2017--prescription-0-0--3-0l-v6-supercharged",
+        "jaguar-f-pace-zf-8hp-valve-body-2017--prescription-0-0--5-0l-v8-supercharged",
+        "jaguar-f-pace-zf-8hp-valve-body-2017--prescription-1-0--2-0l-ingenium-turbo-i4",
+        "jaguar-f-pace-zf-8hp-valve-body-2017--prescription-1-0--3-0l-v6-supercharged",
+        "jaguar-f-pace-zf-8hp-valve-body-2017--prescription-1-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-f-type-convertible-hydraulic-leak-2014",
+      "make": "Jaguar",
+      "model": "F-TYPE",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Convertible"
+      ],
+      "engines": [],
+      "title": "Convertible Top Hydraulic System Leak",
+      "howToFix": "Locate and repair the hydraulic leak — most commonly at the cylinder seals or line fittings. Refill the hydraulic system with the correct JLR-specified fluid. Replace the hydraulic pump if it has run dry. Lubricate all pivot points and guide rails during service.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-f-type-convertible-hydraulic-leak-2014--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-f-type-differential-whine-2014",
+      "make": "Jaguar",
+      "model": "F-TYPE",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "3.0L V6 Supercharged",
+        "5.0L V8 Supercharged"
+      ],
+      "title": "Rear Differential Whine and Bearing Noise",
+      "howToFix": "Replace the differential bearings and inspect the ring and pinion for wear patterns. If gear teeth are damaged, a complete differential rebuild or replacement is needed. Change the differential fluid to a high-quality 75W-90 GL-5 with limited-slip additive.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace the differential bearings and inspect the ring and pinion for wear patterns."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-f-type-differential-whine-2014--prescription-0-0--3-0l-v6-supercharged",
+        "jaguar-f-type-differential-whine-2014--prescription-0-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-f-type-supercharger-bearing-v8-2014",
+      "make": "Jaguar",
+      "model": "F-TYPE",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "R",
+        "R-Dynamic V8",
+        "SVR"
+      ],
+      "engines": [
+        "5.0L V8 Supercharged"
+      ],
+      "title": "Supercharger Bearing Noise on V8 Models",
+      "howToFix": "Replace the supercharger nose cone bearing assembly. In advanced cases, a full supercharger rebuild may be necessary. Use OEM bearings or a specialist rebuild kit from companies like RPi Engineering or Paramount Performance.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-f-type-supercharger-bearing-v8-2014--prescription-0-0--5-0l-v8-supercharged",
+        "jaguar-f-type-supercharger-bearing-v8-2014--prescription-1-0--5-0l-v8-supercharged",
+        "jaguar-f-type-supercharger-bearing-v8-2014--prescription-2-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-f-type-zf-8hp-valve-body-2014",
+      "make": "Jaguar",
+      "model": "F-TYPE",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L Ingenium Turbo I4",
+        "3.0L V6 Supercharged",
+        "5.0L V8 Supercharged"
+      ],
+      "title": "ZF 8HP Valve Body Wear",
+      "howToFix": "Replace or rebuild the valve body with updated solenoids. Perform a full transmission fluid and filter change with ZF LifeguardFluid 8. Update the TCM software to the latest sport calibration.",
+      "dtcCodes": [
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-f-type-zf-8hp-valve-body-2014--prescription-0-0--2-0l-ingenium-turbo-i4",
+        "jaguar-f-type-zf-8hp-valve-body-2014--prescription-0-0--3-0l-v6-supercharged",
+        "jaguar-f-type-zf-8hp-valve-body-2014--prescription-0-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-i-pace-12v-battery-drain-2019",
+      "make": "Jaguar",
+      "model": "I-PACE",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [
+        "Dual Electric Motor"
+      ],
+      "title": "12V Auxiliary Battery Drain",
+      "howToFix": "Update the vehicle software to the latest OTA version, which improves module sleep behavior. Replace the 12V battery with a genuine Jaguar AGM battery. If the issue persists, a dealer needs to identify and reprogram the module that is not sleeping. Connect a battery tender if the car sits for more than 5 days.",
+      "dtcCodes": [
+        "U0155"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "excerpt": "U0155"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-i-pace-12v-battery-drain-2019--prescription-0-0--dual-electric-motor"
+      ]
+    },
+    {
+      "issueId": "jaguar-i-pace-battery-conditioning-2019",
+      "make": "Jaguar",
+      "model": "I-PACE",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [
+        "Dual Electric Motor"
+      ],
+      "title": "Battery Conditioning Inefficiency in Cold Weather",
+      "howToFix": "Precondition the battery while still connected to the charger so the grid powers the heating rather than the battery. Schedule departure times in the app so conditioning starts before you leave. Update to the latest software which improves thermal management algorithms.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-i-pace-contactor-failure-2019",
+      "make": "Jaguar",
+      "model": "I-PACE",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "Dual Electric Motor"
+      ],
+      "title": "High-Voltage Contactor Failure Warning",
+      "howToFix": "Have the high-voltage system diagnosed at a JLR dealer with EV-certified technicians. Replace the affected contactor assembly within the battery junction box. This requires high-voltage safety procedures and is not a DIY repair.",
+      "dtcCodes": [
+        "P0AA6"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have the high-voltage system diagnosed at a JLR dealer with EV-certified technicians."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "excerpt": "P0AA6"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-i-pace-ota-update-issues-2019",
+      "make": "Jaguar",
+      "model": "I-PACE",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [
+        "Dual Electric Motor"
+      ],
+      "title": "OTA Software Update Failure and Glitches",
+      "howToFix": "Ensure the vehicle has stable WiFi and sufficient 12V battery charge before starting an OTA update. If an update fails, perform a hard reset of the infotainment system. Visit the dealer if the system is stuck in a boot loop. Report any post-update regressions to JLR for hotfix prioritization.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-s-type-electrical-gremlins-2000",
+      "make": "Jaguar",
+      "model": "S-TYPE",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electrical System Gremlins and Module Failures",
+      "howToFix": "Check all module locations for moisture ingress, particularly the driver footwell and trunk. Clean and reseal all CAN bus connectors with dielectric grease. Reprogram affected modules with the latest software. Replace the 12V battery if it is over 4 years old.",
+      "dtcCodes": [
+        "U0100",
+        "U0140",
+        "U0155"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check all module locations for moisture ingress, particularly the driver footwell and trunk."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "U0100, U0140, U0155"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-s-type-electrical-gremlins-2000--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-s-type-timing-chain-tensioner-v8-2000",
+      "make": "Jaguar",
+      "model": "S-TYPE",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [
+        "4.0L V8 AJ-V8",
+        "4.2L V8 AJ-V8",
+        "4.2L V8 Supercharged"
+      ],
+      "title": "Timing Chain Tensioner Failure on V8 Engine",
+      "howToFix": "Replace the timing chain tensioners, chains, and guides. On the S-TYPE, the engine does not need to come out but front-end disassembly is extensive. Use updated tensioner part numbers. Budget 18-24 hours of labor.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-s-type-timing-chain-tensioner-v8-2000--prescription-0-0--4-0l-v8-aj-v8",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000--prescription-0-0--4-2l-v8-aj-v8",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000--prescription-0-0--4-2l-v8-supercharged",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000--prescription-1-0--4-0l-v8-aj-v8",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000--prescription-1-0--4-2l-v8-aj-v8",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000--prescription-1-0--4-2l-v8-supercharged",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000--prescription-2-0--4-0l-v8-aj-v8",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000--prescription-2-0--4-2l-v8-aj-v8",
+        "jaguar-s-type-timing-chain-tensioner-v8-2000--prescription-2-0--4-2l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-s-type-transmission-valve-body-2000",
+      "make": "Jaguar",
+      "model": "S-TYPE",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [
+        "2.5L V6 Duratec",
+        "3.0L V6 Duratec",
+        "4.0L V8 AJ-V8",
+        "4.2L V8 AJ-V8"
+      ],
+      "title": "Automatic Transmission Valve Body Wear",
+      "howToFix": "Rebuild or replace the valve body. Change the transmission fluid and filter, which may temporarily improve shift quality. For the ZF 5HP/6HP, use only ZF-specified fluid. For the JF506E, a solenoid pack replacement often resolves the issue.",
+      "dtcCodes": [
+        "P0700",
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-s-type-transmission-valve-body-2000--prescription-0-0--2-5l-v6-duratec",
+        "jaguar-s-type-transmission-valve-body-2000--prescription-0-0--3-0l-v6-duratec",
+        "jaguar-s-type-transmission-valve-body-2000--prescription-0-0--4-0l-v8-aj-v8",
+        "jaguar-s-type-transmission-valve-body-2000--prescription-0-0--4-2l-v8-aj-v8",
+        "jaguar-s-type-transmission-valve-body-2000--prescription-1-0--2-5l-v6-duratec",
+        "jaguar-s-type-transmission-valve-body-2000--prescription-1-0--3-0l-v6-duratec",
+        "jaguar-s-type-transmission-valve-body-2000--prescription-1-0--4-0l-v8-aj-v8",
+        "jaguar-s-type-transmission-valve-body-2000--prescription-1-0--4-2l-v8-aj-v8"
+      ]
+    },
+    {
+      "issueId": "jaguar-x-type-alternator-failure-2002",
+      "make": "Jaguar",
+      "model": "X-TYPE",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L V6 Duratec",
+        "2.5L V6 Duratec",
+        "3.0L V6 Duratec"
+      ],
+      "title": "Alternator Premature Failure",
+      "howToFix": "Replace the alternator with a new or remanufactured unit. Test the battery and replace if it has been deeply discharged. The X-TYPE uses a Ford-pattern alternator, making aftermarket options widely available. Clear all fault codes after replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Test the battery and replace if it has been deeply discharged."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-x-type-alternator-failure-2002--prescription-0-0--2-0l-v6-duratec",
+        "jaguar-x-type-alternator-failure-2002--prescription-0-0--2-5l-v6-duratec",
+        "jaguar-x-type-alternator-failure-2002--prescription-0-0--3-0l-v6-duratec"
+      ]
+    },
+    {
+      "issueId": "jaguar-x-type-thermostat-housing-leak-2002",
+      "make": "Jaguar",
+      "model": "X-TYPE",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L V6 Duratec",
+        "2.5L V6 Duratec",
+        "3.0L V6 Duratec",
+        "Duratec V6"
+      ],
+      "title": "Thermostat Housing Coolant Leak",
+      "howToFix": "Replace the thermostat housing with an updated aluminum aftermarket version that eliminates the cracking issue. Replace the thermostat and O-ring at the same time. Flush and refill the cooling system with fresh coolant.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-0-0--2-0l-v6-duratec",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-0-0--2-5l-v6-duratec",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-0-0--3-0l-v6-duratec",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-0-0--duratec-v6",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-1-0--2-0l-v6-duratec",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-1-0--2-5l-v6-duratec",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-1-0--3-0l-v6-duratec",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-1-0--duratec-v6",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-2-0--2-0l-v6-duratec",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-2-0--2-5l-v6-duratec",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-2-0--3-0l-v6-duratec",
+        "jaguar-x-type-thermostat-housing-leak-2002--prescription-2-0--duratec-v6"
+      ]
+    },
+    {
+      "issueId": "jaguar-x-type-transfer-case-viscous-coupling-2002",
+      "make": "Jaguar",
+      "model": "X-TYPE",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L V6 Duratec",
+        "2.5L V6 Duratec",
+        "3.0L V6 Duratec"
+      ],
+      "title": "Transfer Case Viscous Coupling Failure in AWD System",
+      "howToFix": "Replace the transfer case viscous coupling and fluid. The transfer case must be removed from the vehicle. Use only OEM-spec silicone fluid for the viscous coupling. Inspect the transfer case chain and bearings during the service.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the transfer case chain and bearings during the service."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-x-type-window-regulator-2002",
+      "make": "Jaguar",
+      "model": "X-TYPE",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electric Window Regulator Failure",
+      "howToFix": "Replace the window regulator assembly. The X-TYPE shares the Ford Mondeo regulator design, making aftermarket parts widely available and affordable. Lubricate the window guide channels with silicone spray during installation.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-x-type-window-regulator-2002--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-xe-diesel-dpf-2017",
+      "make": "Jaguar",
+      "model": "XE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L Ingenium Diesel"
+      ],
+      "title": "Diesel Particulate Filter Clogging in Urban Use",
+      "howToFix": "Perform a forced regeneration via dealer diagnostic tool. If the DPF is over 80% blocked, professional chemical cleaning or DPF replacement is required. Change driving habits to include at least one weekly 20-minute highway run at 2,500+ RPM.",
+      "dtcCodes": [
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Perform a forced regeneration via dealer diagnostic tool."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xe-infotainment-freeze-2017",
+      "make": "Jaguar",
+      "model": "XE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment System Freeze and Reboot Loop",
+      "howToFix": "Update to the latest InControl firmware via dealer or USB. If the issue persists on pre-2020 hardware, the head unit may need replacement with the updated revision. A factory reset can provide temporary relief.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xe-infotainment-freeze-2017--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-xe-suspension-bushing-wear-2017",
+      "make": "Jaguar",
+      "model": "XE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front and Rear Suspension Bushing Premature Wear",
+      "howToFix": "Replace the affected suspension arm assemblies as the bushings are pressed and bonded in. Front lower control arms and rear toe links are the most common failures. Perform a four-wheel alignment after replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xe-water-pump-ingenium-2017",
+      "make": "Jaguar",
+      "model": "XE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "25t",
+        "30t",
+        "R-Sport",
+        "S"
+      ],
+      "engines": [
+        "2.0L Ingenium Turbo I4",
+        "3.0L V6 Supercharged"
+      ],
+      "title": "Ingenium Water Pump Premature Failure",
+      "howToFix": "Replace the water pump assembly with the updated JLR part. Include a new thermostat and coolant flush. Use OAT coolant only. Monitor coolant level closely for the first 500 miles after replacement.",
+      "dtcCodes": [
+        "P26B7"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor coolant level closely for the first 500 miles after replacement."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P26B7"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xe-water-pump-ingenium-2017--prescription-0-0--2-0l-ingenium-turbo-i4",
+        "jaguar-xe-water-pump-ingenium-2017--prescription-0-0--3-0l-v6-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xe-zf-8hp-harsh-shift-2017",
+      "make": "Jaguar",
+      "model": "XE",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L Ingenium Turbo I4",
+        "3.0L V6 Supercharged"
+      ],
+      "title": "ZF 8HP Harsh Shifting and Hesitation",
+      "howToFix": "Perform a transmission fluid and filter change with ZF LifeguardFluid 8. Reset the adaptive shift parameters via JLR diagnostic tool. Update the TCM software to the latest calibration. If harsh shifting persists, inspect the valve body solenoids.",
+      "dtcCodes": [
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Reset the adaptive shift parameters via JLR diagnostic tool."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If harsh shifting persists, inspect the valve body solenoids."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xf-crankcase-vent-valve-2009",
+      "make": "Jaguar",
+      "model": "XF",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [
+        "4.2L V8 NA",
+        "4.2L V8 Supercharged",
+        "5.0L V8 NA",
+        "5.0L V8 Supercharged"
+      ],
+      "title": "Crankcase Ventilation Valve Failure on AJ-V8",
+      "howToFix": "Replace the crankcase ventilation valve assembly. On the 5.0L, the valve is located on the rear of the engine and requires intake manifold removal on some models. Replace the intake manifold gaskets at the same time.",
+      "dtcCodes": [
+        "P0171",
+        "P0174"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0171, P0174"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xf-crankcase-vent-valve-2009--prescription-0-0--4-2l-v8-na",
+        "jaguar-xf-crankcase-vent-valve-2009--prescription-0-0--4-2l-v8-supercharged",
+        "jaguar-xf-crankcase-vent-valve-2009--prescription-0-0--5-0l-v8-na",
+        "jaguar-xf-crankcase-vent-valve-2009--prescription-0-0--5-0l-v8-supercharged",
+        "jaguar-xf-crankcase-vent-valve-2009--prescription-1-0--4-2l-v8-na",
+        "jaguar-xf-crankcase-vent-valve-2009--prescription-1-0--4-2l-v8-supercharged",
+        "jaguar-xf-crankcase-vent-valve-2009--prescription-1-0--5-0l-v8-na",
+        "jaguar-xf-crankcase-vent-valve-2009--prescription-1-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xf-diesel-dpf-regen-2009",
+      "make": "Jaguar",
+      "model": "XF",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [],
+      "engines": [
+        "2.2L Diesel I4",
+        "3.0L TDV6 Diesel"
+      ],
+      "title": "Diesel Particulate Filter Regeneration Failure",
+      "howToFix": "Perform a forced DPF regeneration via dealer diagnostic tool. If the DPF is heavily blocked, chemical cleaning or replacement is required. Adopt a driving pattern that includes regular highway runs of 20+ minutes at 2,500+ RPM to allow passive regeneration.",
+      "dtcCodes": [
+        "P244A",
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Perform a forced DPF regeneration via dealer diagnostic tool."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P244A, P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xf-timing-chain-tensioner-ajv8-2009",
+      "make": "Jaguar",
+      "model": "XF",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [
+        "4.2L V8 NA",
+        "4.2L V8 Supercharged",
+        "5.0L V8 NA",
+        "5.0L V8 Supercharged"
+      ],
+      "title": "Timing Chain Tensioner Failure on AJ-V8",
+      "howToFix": "Replace all four timing chain tensioners, both timing chains, and all chain guides. Use updated JLR tensioner part numbers. This is a major engine-out or front-cover-off job requiring 20+ hours labor. Do not delay once cold-start rattle is observed.",
+      "dtcCodes": [
+        "P0016",
+        "P0017",
+        "P0018",
+        "P0019"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017, P0018, P0019"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-0-0--4-2l-v8-na",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-0-0--4-2l-v8-supercharged",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-0-0--5-0l-v8-na",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-0-0--5-0l-v8-supercharged",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-1-0--4-2l-v8-na",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-1-0--4-2l-v8-supercharged",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-1-0--5-0l-v8-na",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-1-0--5-0l-v8-supercharged",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-2-0--4-2l-v8-na",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-2-0--4-2l-v8-supercharged",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-2-0--5-0l-v8-na",
+        "jaguar-xf-timing-chain-tensioner-ajv8-2009--prescription-2-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xf-window-regulator-2009",
+      "make": "Jaguar",
+      "model": "XF",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Window Regulator Cable and Motor Failure",
+      "howToFix": "Replace the window regulator assembly. Use OEM or quality aftermarket unit. Lubricate the window channel guides during installation. Check the window switch for burned contacts if the motor tests good.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the window switch for burned contacts if the motor tests good."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xf-window-regulator-2009--prescription-0-0--all-engines",
+        "jaguar-xf-window-regulator-2009--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-xf-turbo-coolant-hose-ingenium-2016",
+      "make": "Jaguar",
+      "model": "XF",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L Ingenium Turbo I4",
+        "Ingenium 2.0L"
+      ],
+      "title": "Turbo Coolant Hose Failure on Ingenium Engine",
+      "howToFix": "Replace both turbo coolant hoses with updated JLR parts that use higher-temperature silicone construction. Inspect the turbo oil lines at the same time. Top off coolant and bleed the system after replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the turbo oil lines at the same time."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xf-turbo-coolant-hose-ingenium-2016--prescription-0-0--2-0l-ingenium-turbo-i4",
+        "jaguar-xf-turbo-coolant-hose-ingenium-2016--prescription-0-0--ingenium-2-0l"
+      ]
+    },
+    {
+      "issueId": "jaguar-xf-zf-8hp-mechatronic-2016",
+      "make": "Jaguar",
+      "model": "XF",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [
+        "2.0L Ingenium Turbo I4",
+        "3.0L V6 Supercharged"
+      ],
+      "title": "ZF 8HP Mechatronic Unit Failure",
+      "howToFix": "Replace or rebuild the mechatronic unit assembly. A ZF-certified rebuild with updated solenoids is more cost-effective than a new unit. Perform a full fluid and filter service simultaneously. Reprogram the TCM after installation.",
+      "dtcCodes": [
+        "P0657",
+        "P0700",
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0657, P0700, P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xf-zf-8hp-mechatronic-2016--prescription-0-0--2-0l-ingenium-turbo-i4",
+        "jaguar-xf-zf-8hp-mechatronic-2016--prescription-0-0--3-0l-v6-supercharged",
+        "jaguar-xf-zf-8hp-mechatronic-2016--prescription-1-0--2-0l-ingenium-turbo-i4",
+        "jaguar-xf-zf-8hp-mechatronic-2016--prescription-1-0--3-0l-v6-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xj-air-suspension-compressor-2004",
+      "make": "Jaguar",
+      "model": "XJ",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [
+        "3.0L TDV6 Diesel",
+        "3.0L V6 Supercharged",
+        "4.2L V8 NA",
+        "4.2L V8 Supercharged",
+        "5.0L V8 NA",
+        "5.0L V8 Supercharged"
+      ],
+      "title": "Air Suspension Compressor Failure",
+      "howToFix": "Replace the air suspension compressor. Inspect all four air springs for leaks and replace any that are cracked or deflated. Check the valve block for internal leaks. Consider an Arnott or AMK aftermarket compressor for improved reliability.",
+      "dtcCodes": [
+        "C1A13",
+        "C1A20"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect all four air springs for leaks and replace any that are cracked or deflated."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the valve block for internal leaks."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1A13, C1A20"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xj-air-suspension-compressor-2004--prescription-0-0--3-0l-tdv6-diesel",
+        "jaguar-xj-air-suspension-compressor-2004--prescription-0-0--3-0l-v6-supercharged",
+        "jaguar-xj-air-suspension-compressor-2004--prescription-0-0--4-2l-v8-na",
+        "jaguar-xj-air-suspension-compressor-2004--prescription-0-0--4-2l-v8-supercharged",
+        "jaguar-xj-air-suspension-compressor-2004--prescription-0-0--5-0l-v8-na",
+        "jaguar-xj-air-suspension-compressor-2004--prescription-0-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xj-electrical-gremlins-bcm-2004",
+      "make": "Jaguar",
+      "model": "XJ",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electrical Gremlins from Body Control Module Issues",
+      "howToFix": "Have the BCM reprogrammed with the latest JLR software at a dealer. Check all ground connections for corrosion, especially the main chassis ground behind the engine. Replace the 12V battery with a genuine Jaguar-spec AGM battery. Avoid jump-starting without a proper battery management system.",
+      "dtcCodes": [
+        "U0140",
+        "U0155"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check all ground connections for corrosion, especially the main chassis ground behind the engine."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "U0140, U0155"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xj-electrical-gremlins-bcm-2004--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-xj-rear-main-seal-v8-2004",
+      "make": "Jaguar",
+      "model": "XJ",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [
+        "4.2L V8 NA",
+        "4.2L V8 Supercharged",
+        "5.0L V8 NA",
+        "5.0L V8 Supercharged",
+        "AJ-V8"
+      ],
+      "title": "Rear Main Seal Oil Leak on V8 Engines",
+      "howToFix": "Replace the rear main crankshaft seal. This requires transmission removal for access. Use the updated two-piece seal if available. Inspect the crankshaft seal surface for grooves and install a Speedi-Sleeve if wear is present.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the crankshaft seal surface for grooves and install a Speedi-Sleeve if wear is present."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xj-rear-main-seal-v8-2004--prescription-0-0--4-2l-v8-na",
+        "jaguar-xj-rear-main-seal-v8-2004--prescription-0-0--4-2l-v8-supercharged",
+        "jaguar-xj-rear-main-seal-v8-2004--prescription-0-0--5-0l-v8-na",
+        "jaguar-xj-rear-main-seal-v8-2004--prescription-0-0--5-0l-v8-supercharged",
+        "jaguar-xj-rear-main-seal-v8-2004--prescription-0-0--aj-v8"
+      ]
+    },
+    {
+      "issueId": "jaguar-xj-throttle-body-2004",
+      "make": "Jaguar",
+      "model": "XJ",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [
+        "4.2L V8 NA",
+        "4.2L V8 Supercharged"
+      ],
+      "title": "Electronic Throttle Body Failure",
+      "howToFix": "Do not follow this page’s former throttle-body cleaning procedure. For a 2004 XJ, Jaguar bulletin XJ303-10 explicitly prohibits electronic throttle-body cleaning. For any model year listed here, have a Jaguar-qualified technician read the stored faults and follow the VIN- and model-year-specific service information before servicing or replacing the assembly. Do not replace the throttle body solely from the symptoms formerly listed on this page.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "For any model year listed here, have a Jaguar-qualified technician read the stored faults and follow the VIN- and model-year-specific service information before servicing or replacing the assembly."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xj-supercharger-nose-cone-2010",
+      "make": "Jaguar",
+      "model": "XJ",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Supersport",
+        "XJR",
+        "XJR575"
+      ],
+      "engines": [
+        "5.0L V8 Supercharged"
+      ],
+      "title": "Supercharger Nose Cone Bearing Wear",
+      "howToFix": "Replace the supercharger nose cone bearing assembly and snout coupler. This can be done on-car by removing the supercharger lid. Use OEM JLR bearings or a specialist rebuild kit. Change the supercharger oil during reassembly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xj-supercharger-nose-cone-2010--prescription-0-0--5-0l-v8-supercharged",
+        "jaguar-xj-supercharger-nose-cone-2010--prescription-1-0--5-0l-v8-supercharged",
+        "jaguar-xj-supercharger-nose-cone-2010--prescription-2-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-headlamp-adjustment-mechanism-compliance-setup-issue",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2000
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Headlamp Adjustment Mechanism Compliance/Setup Issue",
+      "howToFix": "Check the VIN and recall-completion record. Jaguar's recall remedy was to send owners an owner's manual addendum containing instructions for operating the headlamp adjustment mechanism. If the lamps appear improperly aimed, use Jaguar service information or a qualified repair facility; the campaign does not prescribe replacing a headlamp part.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN and recall-completion record."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xk-limp-mode-and-sudden-loss-of-power",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Limp Mode and Sudden Loss of Power",
+      "howToFix": "Scan the PCM and throttle control system for stored faults, then inspect the electronic throttle body, accelerator pedal signals, battery voltage stability, and related wiring. Repairs can range from software updates and connector repair to throttle body or pedal assembly replacement depending on the fault source. Because limp mode can overlap with throttle-control issues, a full ETC diagnostic is needed before replacing parts.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Scan the PCM and throttle control system for stored faults, then inspect the electronic throttle body, accelerator pedal signals, battery voltage stability, and related wiring."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Because limp mode can overlap with throttle-control issues, a full ETC diagnostic is needed before replacing parts."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:2"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xk-non-serviceable-rear-propshaft-rubber-coupling-splitting",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Convertible",
+        "Coupe",
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "5.0L AJ133 (naturally aspirated)",
+        "5.0L AJ133 Supercharged"
+      ],
+      "title": "Non-Serviceable Rear Propshaft Rubber (Jurid) Coupling Splitting",
+      "howToFix": "Inspect the rubber coupling for cracking/splitting at every service. Accepted repairs are fitting a separately-sourced/cross-referenced Jurid coupling (available from independent Jaguar parts specialists) or replacing the complete propshaft assembly. Check and balance the shaft and inspect the center support bearing at the same time.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the rubber coupling for cracking/splitting at every service."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check and balance the shaft and inspect the center support bearing at the same time."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xk-passenger-seat-airbag-occupancy-sensor-failure",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Passenger Seat Airbag Occupancy Sensor Failure",
+      "howToFix": "Inspect the passenger seat occupancy sensor mat, seat wiring harness, and under-seat connectors for high resistance or intermittent contact. Repairs typically involve replacing the occupancy sensor or seat harness and then clearing/restoring the supplemental restraint system calibration. Repeated warning-light returns usually mean the sensor mat or connector needs replacement rather than another temporary connection repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the passenger seat occupancy sensor mat, seat wiring harness, and under-seat connectors for high resistance or intermittent contact."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:2"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xk-passenger-seat-airbag-occupancy-sensor-failure--prescription-0-0--all-engines",
+        "jaguar-xk-passenger-seat-airbag-occupancy-sensor-failure--prescription-1-0--all-engines",
+        "jaguar-xk-passenger-seat-airbag-occupancy-sensor-failure--prescription-2-0--all-engines",
+        "jaguar-xk-passenger-seat-airbag-occupancy-sensor-failure--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-unintended-acceleration-during-braking",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Unintended Acceleration During Braking",
+      "howToFix": "Check the VIN and recall-completion record. Jaguar dealers were instructed to inspect the accelerator pedal assembly and replace it free of charge if the affected condition was present.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the VIN and recall-completion record."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Jaguar dealers were instructed to inspect the accelerator pedal assembly and replace it free of charge if the affected condition was present."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xk-blocked-hvac-condensate-duckbill-drain-flooding-passenger-fo",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [
+        "Convertible",
+        "Coupe",
+        "XK",
+        "XKR"
+      ],
+      "engines": [
+        "4.2L AJ-V8"
+      ],
+      "title": "Blocked HVAC Condensate 'Duckbill' Drain Flooding Passenger Footwell",
+      "howToFix": "Clear or trim/modify the stuck duckbill drain valve on the HVAC unit and confirm free drainage; the guaranteed fix per the TSB involves dash access to replace the drain/duckbill with the updated part. Dry out the carpet/underlay, and inspect any water-affected under-dash modules. Also verify plenum/sunroof drains as a secondary water source.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clear or trim/modify the stuck duckbill drain valve on the HVAC unit and confirm free drainage;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dry out the carpet/underlay, and inspect any water-affected under-dash modules."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Also verify plenum/sunroof drains as a secondary water source."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [
+        "XK",
+        "XKR"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged"
+      ],
+      "title": "Cam (Valve) Cover Gasket Oil Leak on 4.2 AJ-V8",
+      "howToFix": "Replace both cam-cover gaskets and the bolt grommet seals using only genuine OE parts (e.g., RH cam-cover gasket Jaguar part AJ812399) — aftermarket gaskets are widely reported to leak, and over-torquing can micro-crack the cover. Apply oil-resistant RTV only where specified. Clean oil from the plug wells and inspect coils while the covers are off.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clean oil from the plug wells and inspect coils while the covers are off."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1",
+        "fixParts:2",
+        "fixParts:3"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 4,
+      "workItemIds": [
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-3--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-4--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-4--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-5--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-0-5--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-1-2--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-1-3--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-1-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-2-0--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-2-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-2-1--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-2-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-2-2--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-2-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-3-0--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-3-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-3-1--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-3-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-3-2--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--existing-fix-part-3-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--prescription-0-0--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--prescription-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--prescription-1-0--4-2l-aj-v8",
+        "jaguar-xk-cam-cover-gasket-oil-leak-4-2-aj-v8--prescription-1-0--4-2l-aj-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-center-touchscreen-blank-unresponsive",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged",
+        "5.0L AJ133 V8",
+        "5.0L AJ133 V8 Supercharged"
+      ],
+      "title": "Center Touchscreen Blank / Unresponsive (MOST-Ring Fault)",
+      "howToFix": "First try a hard reset (disconnect battery, briefly bridge the leads) and check fuses. Diagnose the MOST fiber-optic ring to find the module breaking it (touchscreen, DVD/nav head unit, Bluetooth or Sirius module) and repair/replace that node. A used replacement touchscreen is plug-and-play with no dealer programming, and an equivalent XF-era screen interchanges with the XK.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "First try a hard reset (disconnect battery, briefly bridge the leads) and check fuses."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose the MOST fiber-optic ring to find the module breaking it (touchscreen, DVD/nav head unit, Bluetooth or Sirius module) and repair/replace that node."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 2,
+      "workItemIds": [
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-0--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-1--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-2--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-3--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-3--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-4--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-4--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-4--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-4--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-5--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-5--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-5--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-5--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-6--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-6--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-6--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-0-6--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-0--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-1--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-2--4-2l-aj-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-2--5-0l-aj133-v8",
+        "jaguar-xk-center-touchscreen-blank-unresponsive--existing-fix-part-1-2--5-0l-aj133-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-convertible-roof-mechanism-2007",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "Convertible"
+      ],
+      "engines": [],
+      "title": "Convertible Roof Mechanism Failure",
+      "howToFix": "Diagnose the specific fault with JLR diagnostic software to identify the failed actuator or switch. Replace the hydraulic cylinder or microswitch as needed. Lubricate all pivot points and mechanism arms with white lithium grease. Recalibrate the roof position after any component replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose the specific fault with JLR diagnostic software to identify the failed actuator or switch."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xk-convertible-roof-mechanism-2007--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-electronic-parking-brake-motor-module-failure",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged",
+        "5.0L AJ133 V8",
+        "5.0L AJ133 V8 Supercharged"
+      ],
+      "title": "Electronic Parking Brake (EPB) Motor / Module Failure",
+      "howToFix": "Scan for EPB codes (e.g. C1785 motor interruption, C1799 Hall sensor circuit) and inspect the harness/connectors for chafe and corrosion before condemning parts. Repair typically means replacing the EPB motor/actuator assembly and, where present, the module — the switch is often wrongly blamed. Address a stuck-on brake promptly to avoid dragging pads and rear-caliper damage.",
+      "dtcCodes": [
+        "C1785",
+        "C1799"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Scan for EPB codes (e.g."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "C1785 motor interruption, C1799 Hall sensor circuit) and inspect the harness/connectors for chafe and corrosion before condemning parts."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1785, C1799"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1",
+        "fixParts:2",
+        "fixParts:3",
+        "fixParts:4"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 5,
+      "workItemIds": [
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-0--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-1--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-2--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-3--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-3--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-0-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-0--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-1--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-2--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-2--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-3--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-3--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-1-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-2-0--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-2-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-2-0--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-2-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-2-1--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-2-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-2-1--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-2-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-0--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-0--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-1--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-1--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-2--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-2--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-3--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-3--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-3-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-0--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-0--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-1--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-1--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-2--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-2--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-3--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-3--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--existing-fix-part-4-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--prescription-0-0--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--prescription-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--prescription-0-0--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--prescription-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--prescription-1-0--4-2l-aj-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--prescription-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--prescription-1-0--5-0l-aj133-v8",
+        "jaguar-xk-electronic-parking-brake-motor-module-failure--prescription-1-0--5-0l-aj133-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-front-lower-control-arm-hydrobush-failure",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged",
+        "5.0L AJ133 V8",
+        "5.0L AJ133 V8 Supercharged"
+      ],
+      "title": "Front Lower Control Arm Hydrobush Failure",
+      "howToFix": "Replace the affected lower control arm(s); on the curved front lower arm the OEM bush is Jaguar part C2P17090, though many shops fit the complete arm for reliability. Use genuine fluid-filled hydrobushes rather than cheap plain-rubber aftermarket bushes, which are inferior and short-lived. It is common and cost-effective to renew all four lower arms and align the car in one visit.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1",
+        "fixParts:2",
+        "fixParts:3"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 4,
+      "workItemIds": [
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-0--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-1--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-2--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-3--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-3--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-0-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-0--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-1--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-2--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-2--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-3--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-3--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-4--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-4--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-4--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-1-4--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-0--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-0--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-1--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-1--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-2--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-2--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-3--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-3--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-4--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-4--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-4--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-2-4--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-0--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-0--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-1--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-1--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-2--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-2--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-3--4-2l-aj-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-3--5-0l-aj133-v8",
+        "jaguar-xk-front-lower-control-arm-hydrobush-failure--existing-fix-part-3-3--5-0l-aj133-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-ignition-coil-plug-misfire",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged",
+        "5.0L AJ133 V8",
+        "5.0L AJ133 V8 Supercharged"
+      ],
+      "title": "Ignition Coil-on-Plug Misfire (Oil-Fouled Coils)",
+      "howToFix": "Read the misfire code to identify the cylinder, then swap the suspect coil to another cylinder to confirm the fault moves. Replace the failed coil (and spark plug); when an older high-mileage car drops one coil it is common to replace the full set and plugs together. If wells are oily, also renew the cam-cover gasket to stop recurring fouling.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304",
+        "P0305",
+        "P0306",
+        "P0307",
+        "P0308"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Read the misfire code to identify the cylinder, then swap the suspect coil to another cylinder to confirm the fault moves."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304, P0305, P0306, P0307, P0308"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1",
+        "fixParts:2"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 3,
+      "workItemIds": [
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-0--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-1--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-2--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-3--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-3--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-4--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-4--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-4--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-4--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-5--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-5--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-5--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-5--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-6--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-6--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-6--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-0-6--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-0--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-1--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-2--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-2--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-3--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-3--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-1-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-0--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-0--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-1--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-1--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-2--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-2--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-3--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-3--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--existing-fix-part-2-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-0-0--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-0-0--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-1-0--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-1-0--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-1-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-2-0--4-2l-aj-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-2-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-2-0--5-0l-aj133-v8",
+        "jaguar-xk-ignition-coil-plug-misfire--prescription-2-0--5-0l-aj133-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-parasitic-battery-drain",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged",
+        "5.0L AJ133 V8",
+        "5.0L AJ133 V8 Supercharged"
+      ],
+      "title": "Parasitic Battery Drain (Module Not Sleeping / BCM Fault)",
+      "howToFix": "Measure quiescent current after the car has gone to sleep, then use the fuse-pull method (allowing re-sleep between pulls) to isolate the circuit/module. Repair or replace the offending module (commonly the BCM) or the stuck accessory. Keep the car on a smart maintainer if it sits, and verify the battery itself is healthy before chasing the drain.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Keep the car on a smart maintainer if it sits, and verify the battery itself is healthy before chasing the drain."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 2,
+      "workItemIds": [
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-0--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-1--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-2--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-3--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-3--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-4--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-4--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-4--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-4--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-5--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-5--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-5--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-0-5--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-0--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-1--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-2--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-2--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-3--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-3--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--existing-fix-part-1-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--prescription-0-0--4-2l-aj-v8",
+        "jaguar-xk-parasitic-battery-drain--prescription-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-parasitic-battery-drain--prescription-0-0--5-0l-aj133-v8",
+        "jaguar-xk-parasitic-battery-drain--prescription-0-0--5-0l-aj133-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged",
+        "5.0L AJ133 V8",
+        "5.0L AJ133 V8 Supercharged"
+      ],
+      "title": "Plastic Crossover / Valley Coolant Pipe Splitting",
+      "howToFix": "Pressure-test the cooling system to locate the failed pipe, then replace the crossover/valley pipe(s) — many owners upgrade the 4.2 valley pipes to silicone. Given shared age, it is best practice to renew all accessible plastic cooling pipes and O-rings at once. On supercharged cars the blower must come off, driving labor up.",
+      "dtcCodes": [
+        "P0217"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure-test the cooling system to locate the failed pipe, then replace the crossover/valley pipe(s) — many owners upgrade the 4.2 valley pipes to silicone."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0217"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1",
+        "fixParts:2",
+        "fixParts:3"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 4,
+      "workItemIds": [
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-0--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-1--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-2--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-3--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-3--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-4--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-4--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-4--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-4--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-5--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-5--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-5--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-5--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-6--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-6--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-6--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-0-6--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-0--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-1--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-2--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-2--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-1-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-2-0--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-2-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-2-0--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-2-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-3-0--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-3-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-3-0--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--existing-fix-part-3-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--prescription-0-0--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--prescription-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--prescription-0-0--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--prescription-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--prescription-1-0--4-2l-aj-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--prescription-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--prescription-1-0--5-0l-aj133-v8",
+        "jaguar-xk-plastic-crossover-valley-coolant-pipe-splitting--prescription-1-0--5-0l-aj133-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-rear-differential-bearing-whine",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [
+        "XK",
+        "XKR"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged"
+      ],
+      "title": "Rear Differential Bearing Whine (Visteon Unit)",
+      "howToFix": "Confirm the diff (not a wheel bearing) is the source, then follow TSB JTB00175 — the official fix upgrades the differential along with driveshafts and propeller shaft to the more robust GKN parts. Because the genuine kit is very expensive, many owners fit a good used Jaguar S-Type differential as a cost-effective alternative. Fix output-seal leaks early to preserve the unit.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the diff (not a wheel bearing) is the source, then follow TSB JTB00175 — the official fix upgrades the differential along with driveshafts and propeller shaft to the more robust GKN parts."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1",
+        "fixParts:2",
+        "fixParts:3"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 4,
+      "workItemIds": [
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-1-2--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-1-3--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-1-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-2-0--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-2-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-2-1--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-2-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-3-0--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-3-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-3-1--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-3-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-3-2--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--existing-fix-part-3-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--prescription-0-0--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--prescription-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-rear-differential-bearing-whine--prescription-1-0--4-2l-aj-v8",
+        "jaguar-xk-rear-differential-bearing-whine--prescription-1-0--4-2l-aj-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8 Supercharged",
+        "5.0L AJ133 V8 Supercharged"
+      ],
+      "title": "Supercharger Nose-Cone Coupler / Isolator Breakdown",
+      "howToFix": "Rebuild/refurbish the supercharger nose cone with a new coupler and bearings (rather than replacing the whole blower), or fit an exchange reconditioned supercharger. Confirm the noise is the isolator (not the timing chain or serpentine tensioner) before disassembly. Catching it early prevents metal-to-metal drive fork damage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the noise is the isolator (not the timing chain or serpentine tensioner) before disassembly."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 2,
+      "workItemIds": [
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-0-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-0-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-1-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-1-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-1-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-1-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--existing-fix-part-1-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--prescription-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-supercharger-nose-cone-coupler-isolator-breakdown--prescription-0-0--5-0l-aj133-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-throttle-body-sensor-2007",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [
+        "4.2L V8 NA",
+        "4.2L V8 Supercharged",
+        "5.0L V8 NA",
+        "5.0L V8 Supercharged"
+      ],
+      "title": "Throttle Body Position Sensor Failure",
+      "howToFix": "Replace the throttle body assembly — the position sensor is not serviceable separately. Recalibrate the throttle position and idle using JLR diagnostic software after replacement. Clean the intake manifold of any carbon deposits during the service.",
+      "dtcCodes": [
+        "P2101",
+        "P2135"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Recalibrate the throttle position and idle using JLR diagnostic software after replacement."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2101, P2135"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xk-throttle-body-sensor-2007--prescription-0-0--4-2l-v8-na",
+        "jaguar-xk-throttle-body-sensor-2007--prescription-0-0--4-2l-v8-supercharged",
+        "jaguar-xk-throttle-body-sensor-2007--prescription-0-0--5-0l-v8-na",
+        "jaguar-xk-throttle-body-sensor-2007--prescription-0-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-timing-chain-tensioner-ajv8-2007",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [
+        "4.2L V8 NA",
+        "4.2L V8 Supercharged",
+        "5.0L V8 NA",
+        "5.0L V8 Supercharged"
+      ],
+      "title": "Timing Chain Tensioner Failure on AJ-V8",
+      "howToFix": "Replace all timing chain tensioners, chains, and guides with updated JLR parts. On the XK, access is achieved by removing the front cover with the engine in-frame. Budget 25+ hours labor. Use updated part numbers for improved tensioner oil retention.",
+      "dtcCodes": [
+        "P0016",
+        "P0017",
+        "P0018",
+        "P0019"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017, P0018, P0019"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-0-0--4-2l-v8-na",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-0-0--4-2l-v8-supercharged",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-0-0--5-0l-v8-na",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-0-0--5-0l-v8-supercharged",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-1-0--4-2l-v8-na",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-1-0--4-2l-v8-supercharged",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-1-0--5-0l-v8-na",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-1-0--5-0l-v8-supercharged",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-2-0--4-2l-v8-na",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-2-0--4-2l-v8-supercharged",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-2-0--5-0l-v8-na",
+        "jaguar-xk-timing-chain-tensioner-ajv8-2007--prescription-2-0--5-0l-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-tpms-sensor-under-seat-module-failure",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged",
+        "5.0L AJ133 V8",
+        "5.0L AJ133 V8 Supercharged"
+      ],
+      "title": "TPMS Sensor and Under-Seat Module Failure",
+      "howToFix": "Have a tire shop scan each wheel sensor for a signal; if one battery is dead, replace all four sensors as a set (a 15-minute drive above ~20 mph re-registers them). If the sensors are good but faults persist, replace the under-seat TPMS module — it is plug-and-play with no programming. Inspect the wheel-arch initiators for damage/corrosion.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have a tire shop scan each wheel sensor for a signal;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the wheel-arch initiators for damage/corrosion."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 2,
+      "workItemIds": [
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-0--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-1--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-2--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-3--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-3--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-4--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-4--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-4--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-4--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-5--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-5--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-5--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-0-5--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-0--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-1--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-2--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-2--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-3--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-3--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--existing-fix-part-1-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--prescription-0-0--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--prescription-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--prescription-0-0--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--prescription-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--prescription-1-0--4-2l-aj-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--prescription-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--prescription-1-0--5-0l-aj133-v8",
+        "jaguar-xk-tpms-sensor-under-seat-module-failure--prescription-1-0--5-0l-aj133-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [
+        "XK",
+        "XKR"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "4.2L AJ-V8 Supercharged"
+      ],
+      "title": "Variable Valve Timing (VVT) Solenoid Cold-Start Rattle",
+      "howToFix": "Verify with a scan and by checking cam movement with covers off; test solenoids for proper click/actuation. Replace the affected VVT solenoid(s) and cam phaser hardware, and use fresh oil of the correct grade — some owners find a switch to a quality 5W-40/synthetic reduces the rattle. Full VVT-related repairs can run well over a thousand USD due to access.",
+      "dtcCodes": [
+        "P1349",
+        "P1396"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify with a scan and by checking cam movement with covers off;"
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "test solenoids for proper click/actuation."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P1349, P1396"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0",
+        "fixParts:1",
+        "fixParts:2"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 3,
+      "workItemIds": [
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-0--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-1--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-2--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-2--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-3--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-3--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-4--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-4--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-5--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-5--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-6--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-0-6--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-1-0--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-1-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-1-1--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-1-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-2-0--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-2-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-2-1--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--existing-fix-part-2-1--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--prescription-0-0--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--prescription-0-0--4-2l-aj-v8-supercharged",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--prescription-1-0--4-2l-aj-v8",
+        "jaguar-xk-variable-valve-timing-solenoid-cold-start-rattle--prescription-1-0--4-2l-aj-v8-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Convertible",
+        "Coupe",
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "4.2L AJ-V8",
+        "5.0L AJ133 (naturally aspirated)",
+        "5.0L AJ133 Supercharged"
+      ],
+      "title": "ZF 6HP Automatic Transmission Mechatronic Bridge-Seal / Sealing-Sleeve Failure",
+      "howToFix": "Diagnose with live pressure/adaptation data before condemning the gearbox. In most cases the fix is replacing the mechatronic bridge-seal adapter plus the remaining sleeve/pin seals (sold as a kit) and a full fluid-and-filter (pan) service; more advanced cases need a remanufactured mechatronic/conductor plate. A complete transmission replacement is only warranted if internal clutches are burned.",
+      "dtcCodes": [
+        "P0715",
+        "P0730",
+        "P0748",
+        "P0778",
+        "P0868"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose with live pressure/adaptation data before condemning the gearbox."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0715, P0730, P0748, P0778, P0868"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin--prescription-0-0--4-2l-aj-v8",
+        "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin--prescription-0-0--5-0l-aj133-naturally-aspirated",
+        "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin--prescription-0-0--5-0l-aj133-supercharged",
+        "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin--prescription-1-0--4-2l-aj-v8",
+        "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin--prescription-1-0--5-0l-aj133-naturally-aspirated",
+        "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin--prescription-1-0--5-0l-aj133-supercharged",
+        "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin--prescription-2-0--4-2l-aj-v8",
+        "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin--prescription-2-0--5-0l-aj133-naturally-aspirated",
+        "jaguar-xk-zf-6hp-automatic-transmission-mechatronic-bridge-seal-sealin--prescription-2-0--5-0l-aj133-supercharged"
+      ]
+    },
+    {
+      "issueId": "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure",
+      "make": "Jaguar",
+      "model": "XK",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "XK",
+        "XKR",
+        "XKR-S"
+      ],
+      "engines": [
+        "5.0L AJ133 V8",
+        "5.0L AJ133 V8 Supercharged"
+      ],
+      "title": "5.0L AJ133 Water Pump Bearing and Seal Failure",
+      "howToFix": "Replace the water pump with the latest revised design that adds a more robust bearing and additional sealing. The current superseded OEM part number is AJ813909; Jaguar also began fitting the improved pump from the factory on later cars (XK from approx. VIN B46456). Refresh coolant and inspect the crossover/valley plastic pipe at the same time since it is the other common 5.0 cooling weak point. Typical independent-shop cost is a few hundred to well over a thousand USD depending on labor.",
+      "dtcCodes": [
+        "P00B7",
+        "P0217"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Refresh coolant and inspect the crossover/valley plastic pipe at the same time since it is the other common 5.0 cooling weak point."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P00B7, P0217"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "fixParts:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 1,
+      "workItemIds": [
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-0--5-0l-aj133-v8",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-0--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-1--5-0l-aj133-v8",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-1--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-2--5-0l-aj133-v8",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-2--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-3--5-0l-aj133-v8",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-3--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-4--5-0l-aj133-v8",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-4--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-5--5-0l-aj133-v8",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-5--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-6--5-0l-aj133-v8",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--existing-fix-part-0-6--5-0l-aj133-v8-supercharged",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--prescription-0-0--5-0l-aj133-v8",
+        "jaguar-xk-5-0l-aj133-water-pump-bearing-seal-failure--prescription-0-0--5-0l-aj133-v8-supercharged"
+      ]
+    }
+  ]
+}

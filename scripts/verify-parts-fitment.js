@@ -54,7 +54,11 @@ const {
 const PROJECT_ROOT = path.resolve(__dirname, '..');
 require('dotenv').config({ path: path.join(PROJECT_ROOT, '.env.local') });
 
-const CACHE_FILE = path.join(PROJECT_ROOT, 'data', '_smtp-cache.json');
+// A make audit may pin a fresh cache so an unauthenticated or interrupted run
+// cannot contaminate later evidence while older completed makes remain usable.
+const CACHE_FILE = process.env.SHOWMETHEPARTS_CACHE_FILE
+  ? path.resolve(PROJECT_ROOT, process.env.SHOWMETHEPARTS_CACHE_FILE)
+  : path.join(PROJECT_ROOT, 'data', '_smtp-cache.json');
 const SEED_CACHE_FILE = process.env.SHOWMETHEPARTS_SEED_CACHE
   ? path.resolve(process.env.SHOWMETHEPARTS_SEED_CACHE)
   : '';
@@ -520,6 +524,43 @@ async function verifyEntry(entry) {
   };
 }
 
+function worklistEvidenceIdentity(row) {
+  return {
+    id: row.id,
+    workItemId: row.workItemId,
+    prescriptionKey: row.prescriptionKey || null,
+    component: row.component || row.partTypeMatch || '',
+    repairRoleEvidence: row.repairRoleEvidence || row.prescription || null,
+    articleScope: row.articleScope || null,
+    existingFixParts: Array.isArray(row.existingFixParts) ? row.existingFixParts : [],
+    quotedPartNumber: row.partNumber || '',
+    partTypeMatch: row.partTypeMatch || '',
+    mappedFrom: row.mappedFrom || row.source || 'prescription',
+    engineMatch: row.engineMatch || null,
+  };
+}
+
+function catalogEvidenceIdentity(row) {
+  return {
+    id: row.id,
+    workItemId: row.workItemId,
+    prescriptionKey: row.prescriptionKey || null,
+    component: row.component || '',
+    repairRoleEvidence: row.repairRoleEvidence || null,
+    articleScope: row.articleScope || null,
+    existingFixParts: Array.isArray(row.existingFixParts) ? row.existingFixParts : [],
+    quotedPartNumber: row.quotedPartNumber || '',
+    partTypeMatch: row.partTypeMatch || '',
+    mappedFrom: row.mappedFrom || 'prescription',
+    engineMatch: row.engineMatch || null,
+  };
+}
+
+function canReuseEvidenceResult(entry, result) {
+  if (!result || typeof result !== 'object' || !String(result.verdict || '').trim()) return false;
+  return JSON.stringify(worklistEvidenceIdentity(entry)) === JSON.stringify(catalogEvidenceIdentity(result));
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const arg = (flag, fallback) => {
@@ -528,6 +569,7 @@ async function main() {
   };
   const inFile = arg('--in', 'data/_fitment-worklist.json');
   const outFile = arg('--out', 'data/_fitment-verdicts.json');
+  const preserveFrom = arg('--preserve-from', '');
   const limit = Number(arg('--limit', '0')) || Infinity;
   const concurrency = Math.max(1, Math.min(8, Number(arg('--concurrency', '4')) || 4));
   if (args.includes('--year-cap')) {
@@ -539,6 +581,21 @@ async function main() {
   console.log(`verifying ${entries.length} component prescriptions across every declared year`);
 
   const results = new Array(entries.length);
+  let resumedResultCount = 0;
+  if (preserveFrom) {
+    const prior = JSON.parse(fs.readFileSync(path.resolve(PROJECT_ROOT, preserveFrom), 'utf8'));
+    if (prior.source !== 'ShowMeTheParts subscription API' || prior.complete !== true || !Array.isArray(prior.results)) {
+      throw new Error('--preserve-from must be a complete ShowMeTheParts evidence artifact');
+    }
+    const priorByWorkItem = new Map(prior.results.map((result) => [result.workItemId, result]));
+    for (const [index, entry] of entries.entries()) {
+      const priorResult = priorByWorkItem.get(entry.workItemId);
+      if (!canReuseEvidenceResult(entry, priorResult)) continue;
+      results[index] = priorResult;
+      resumedResultCount += 1;
+    }
+    console.log(`preserved ${resumedResultCount}/${entries.length} exact-identity catalog results; querying ${entries.length - resumedResultCount}`);
+  }
   const writeReport = () => {
     const completed = results.filter(Boolean);
     const tally = completed.reduce((acc, r) => ({ ...acc, [r.verdict]: (acc[r.verdict] || 0) + 1 }), {});
@@ -546,6 +603,9 @@ async function main() {
       checkedAt: new Date().toISOString(),
       source: 'ShowMeTheParts subscription API',
       guardrail: 'Catalog fitment proves the part FITS. It never proves the part REPAIRS the issue.',
+      preservedFrom: preserveFrom || null,
+      preservedResultCount: resumedResultCount,
+      queriedResultCount: completed.length - resumedResultCount,
       complete: completed.length === entries.length,
       progress: `${completed.length}/${entries.length}`,
       tally,
@@ -554,11 +614,14 @@ async function main() {
     return tally;
   };
 
+  if (resumedResultCount) writeReport();
+
   let nextIndex = 0;
   const worker = async () => {
     while (nextIndex < entries.length) {
       const index = nextIndex++;
       const entry = entries[index];
+      if (results[index]) continue;
       const result = await verifyEntry(entry);
       results[index] = result;
       saveCache();
@@ -595,4 +658,11 @@ function serializeCandidate(p) {
   };
 }
 
-module.exports = { looserPartTypeTier, resolveModels, selectOrderedCategory, serializeCandidate, verifyEntry };
+module.exports = {
+  canReuseEvidenceResult,
+  looserPartTypeTier,
+  resolveModels,
+  selectOrderedCategory,
+  serializeCandidate,
+  verifyEntry,
+};

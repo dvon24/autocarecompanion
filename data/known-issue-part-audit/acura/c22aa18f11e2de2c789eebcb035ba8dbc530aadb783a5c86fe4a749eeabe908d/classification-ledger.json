@@ -15,10 +15,10 @@
     "no-commerce"
   ],
   "counts": {
-    "buyable": 30,
+    "buyable": 29,
     "diagnosis-dependent": 26,
-    "recall/dealer": 2,
-    "service/tool/fluid": 6,
+    "recall/dealer": 4,
+    "service/tool/fluid": 5,
     "no-commerce": 6
   },
   "diagnosticSummary": {
@@ -26,9 +26,9 @@
     "uniqueDtcCount": 31,
     "instructionCount": 37,
     "dtcDispositionCount": 16,
-    "toolLinkedCount": 20,
+    "toolLinkedCount": 15,
     "procedureNoToolCount": 32,
-    "unresolvedToolHoldCount": 1
+    "unresolvedToolHoldCount": 6
   },
   "unclassifiedCount": 0,
   "zeroUnclassified": true,
@@ -128,15 +128,11 @@
         }
       ],
       "existingCommerceClaimIds": [],
-      "disposition": "diagnosis-dependent",
-      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
       "prescriptionCount": 1,
       "existingFixPartCount": 0,
-      "workItemIds": [
-        "acura-cl-tl-1997-1999-ignition-switch-interlock-recall--prescription-0-0--2-2l-f22b1",
-        "acura-cl-tl-1997-1999-ignition-switch-interlock-recall--prescription-0-0--2-3l-f23a",
-        "acura-cl-tl-1997-1999-ignition-switch-interlock-recall--prescription-0-0--3-0l-v6-j30a"
-      ]
+      "workItemIds": []
     },
     {
       "issueId": "acura-ilx-dct-shudder-2013",
@@ -310,15 +306,16 @@
       "existingCommerceClaimIds": [
         "communityRecommendations:1"
       ],
-      "disposition": "buyable",
-      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
-      "prescriptionCount": 4,
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 5,
       "existingFixPartCount": 0,
       "workItemIds": [
         "acura-integra-da-cv-axle-outer-boot-tear--prescription-0-0--all-engines",
         "acura-integra-da-cv-axle-outer-boot-tear--prescription-1-0--all-engines",
         "acura-integra-da-cv-axle-outer-boot-tear--prescription-2-0--all-engines",
-        "acura-integra-da-cv-axle-outer-boot-tear--prescription-3-0--all-engines"
+        "acura-integra-da-cv-axle-outer-boot-tear--prescription-3-0--all-engines",
+        "acura-integra-da-cv-axle-outer-boot-tear--prescription-4-0--all-engines"
       ]
     },
     {
@@ -435,7 +432,7 @@
       ],
       "disposition": "diagnosis-dependent",
       "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
-      "prescriptionCount": 3,
+      "prescriptionCount": 4,
       "existingFixPartCount": 0,
       "workItemIds": [
         "acura-integra-da-ignitor-module-failure--prescription-0-0--1-7l-b17a1",
@@ -443,7 +440,9 @@
         "acura-integra-da-ignitor-module-failure--prescription-1-0--1-7l-b17a1",
         "acura-integra-da-ignitor-module-failure--prescription-1-0--1-8l-b18a1",
         "acura-integra-da-ignitor-module-failure--prescription-2-0--1-7l-b17a1",
-        "acura-integra-da-ignitor-module-failure--prescription-2-0--1-8l-b18a1"
+        "acura-integra-da-ignitor-module-failure--prescription-2-0--1-8l-b18a1",
+        "acura-integra-da-ignitor-module-failure--prescription-3-0--1-7l-b17a1",
+        "acura-integra-da-ignitor-module-failure--prescription-3-0--1-8l-b18a1"
       ]
     },
     {
@@ -534,12 +533,13 @@
         }
       ],
       "existingCommerceClaimIds": [],
-      "disposition": "buyable",
-      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
-      "prescriptionCount": 1,
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
       "existingFixPartCount": 0,
       "workItemIds": [
-        "acura-integra-da-pgm-fi-main-relay-hot-no-start--prescription-0-0--all-engines"
+        "acura-integra-da-pgm-fi-main-relay-hot-no-start--prescription-0-0--all-engines",
+        "acura-integra-da-pgm-fi-main-relay-hot-no-start--prescription-1-0--all-engines"
       ]
     },
     {
@@ -561,11 +561,12 @@
       "existingCommerceClaimIds": [],
       "disposition": "buyable",
       "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
-      "prescriptionCount": 2,
+      "prescriptionCount": 3,
       "existingFixPartCount": 0,
       "workItemIds": [
         "acura-integra-da-rear-quarter-rocker-panel-rust--prescription-0-0--all-engines",
-        "acura-integra-da-rear-quarter-rocker-panel-rust--prescription-1-0--all-engines"
+        "acura-integra-da-rear-quarter-rocker-panel-rust--prescription-1-0--all-engines",
+        "acura-integra-da-rear-quarter-rocker-panel-rust--prescription-2-0--all-engines"
       ]
     },
     {
@@ -628,20 +629,20 @@
       "diagnosticDispositions": [
         {
           "source": "solution",
-          "status": "tool-linked",
+          "status": "unresolved-tool-hold",
           "procedure": "scan-codes",
-          "toolId": "ancel-ad310",
-          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
-          "reasonCode": "dtc-family-capability-matched",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
           "excerpt": "Pull codes with a Honda jumper or scan tool;"
         },
         {
           "source": "dtcCodes",
-          "status": "tool-linked",
+          "status": "unresolved-tool-hold",
           "procedure": "scan-codes",
-          "toolId": "ancel-ad310",
-          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
-          "reasonCode": "dtc-family-capability-matched",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
           "excerpt": "P0740, P0780, P1298, P1660"
         }
       ],
@@ -683,20 +684,20 @@
       "diagnosticDispositions": [
         {
           "source": "solution",
-          "status": "tool-linked",
+          "status": "unresolved-tool-hold",
           "procedure": "scan-codes",
-          "toolId": "ancel-ad310",
-          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
-          "reasonCode": "dtc-family-capability-matched",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
           "excerpt": "Pull DTCs first — codes P1381 (cylinder position sensor) and Code 22 commonly originate inside the distributor."
         },
         {
           "source": "dtcCodes",
-          "status": "tool-linked",
+          "status": "unresolved-tool-hold",
           "procedure": "scan-codes",
-          "toolId": "ancel-ad310",
-          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
-          "reasonCode": "dtc-family-capability-matched",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
           "excerpt": "P1361, P1362, P1381, P1382"
         }
       ],
@@ -969,11 +970,14 @@
       "dtcCodes": [],
       "diagnosticDispositions": [],
       "existingCommerceClaimIds": [],
-      "disposition": "service/tool/fluid",
-      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
-      "prescriptionCount": 0,
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
       "existingFixPartCount": 0,
-      "workItemIds": []
+      "workItemIds": [
+        "acura-integra-turbo-heat-soak-2023--prescription-0-0--1-5l-l15ca-turbo-i4",
+        "acura-integra-turbo-heat-soak-2023--prescription-0-0--2-0l-k20c1-turbo-i4"
+      ]
     },
     {
       "issueId": "acura-legend-timing-belt-interference-engine",
@@ -1432,11 +1436,11 @@
         },
         {
           "source": "dtcCodes",
-          "status": "tool-linked",
+          "status": "unresolved-tool-hold",
           "procedure": "scan-codes",
-          "toolId": "ancel-ad310",
-          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
-          "reasonCode": "dtc-family-capability-matched",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
           "excerpt": "P0301, P0302, P0303, P3400"
         }
       ],
@@ -1704,7 +1708,7 @@
       "existingCommerceClaimIds": [],
       "disposition": "recall/dealer",
       "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
-      "prescriptionCount": 0,
+      "prescriptionCount": 1,
       "existingFixPartCount": 0,
       "workItemIds": []
     },
@@ -1750,7 +1754,7 @@
       ],
       "disposition": "diagnosis-dependent",
       "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
-      "prescriptionCount": 5,
+      "prescriptionCount": 6,
       "existingFixPartCount": 0,
       "workItemIds": [
         "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-0-0--3-0l-v6-c30a",
@@ -1762,7 +1766,9 @@
         "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-3-0--3-0l-v6-c30a",
         "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-3-0--3-2l-v6-c32b",
         "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-4-0--3-0l-v6-c30a",
-        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-4-0--3-2l-v6-c32b"
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-4-0--3-2l-v6-c32b",
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-5-0--3-0l-v6-c30a",
+        "acura-nsx-abs-alb-modulator-failure-1991-1999--prescription-5-0--3-2l-v6-c32b"
       ]
     },
     {
@@ -1858,11 +1864,17 @@
       ],
       "disposition": "diagnosis-dependent",
       "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
-      "prescriptionCount": 1,
+      "prescriptionCount": 4,
       "existingFixPartCount": 0,
       "workItemIds": [
         "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription-0-0--3-0l-v6-c30a-1995-1996",
-        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription-0-0--3-2l-v6-c32b-1997-1999"
+        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription-0-0--3-2l-v6-c32b-1997-1999",
+        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription-1-0--3-0l-v6-c30a-1995-1996",
+        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription-1-0--3-2l-v6-c32b-1997-1999",
+        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription-2-0--3-0l-v6-c30a-1995-1996",
+        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription-2-0--3-2l-v6-c32b-1997-1999",
+        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription-3-0--3-0l-v6-c30a-1995-1996",
+        "acura-nsx-t-targa-roof-seal-wind-noise-water-leak--prescription-3-0--3-2l-v6-c32b-1997-1999"
       ]
     },
     {
@@ -2129,14 +2141,15 @@
       ],
       "disposition": "buyable",
       "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
-      "prescriptionCount": 5,
+      "prescriptionCount": 6,
       "existingFixPartCount": 0,
       "workItemIds": [
         "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
         "acura-rl-c35a-timing-belt-tensioner-interference--prescription-1-0--3-5l-v6-c35a",
         "acura-rl-c35a-timing-belt-tensioner-interference--prescription-2-0--3-5l-v6-c35a",
         "acura-rl-c35a-timing-belt-tensioner-interference--prescription-3-0--3-5l-v6-c35a",
-        "acura-rl-c35a-timing-belt-tensioner-interference--prescription-4-0--3-5l-v6-c35a"
+        "acura-rl-c35a-timing-belt-tensioner-interference--prescription-4-0--3-5l-v6-c35a",
+        "acura-rl-c35a-timing-belt-tensioner-interference--prescription-5-0--3-5l-v6-c35a"
       ]
     },
     {
@@ -2706,13 +2719,11 @@
         }
       ],
       "existingCommerceClaimIds": [],
-      "disposition": "diagnosis-dependent",
-      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
       "prescriptionCount": 1,
       "existingFixPartCount": 0,
-      "workItemIds": [
-        "acura-tl-takata-front-airbag-inflator-2009--prescription-0-0--all-engines"
-      ]
+      "workItemIds": []
     },
     {
       "issueId": "acura-tlx-9speed-shudder-2015",

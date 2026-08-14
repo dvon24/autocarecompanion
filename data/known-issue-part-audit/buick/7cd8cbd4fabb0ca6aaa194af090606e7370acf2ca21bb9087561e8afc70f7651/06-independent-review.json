@@ -1,0 +1,261 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Buick",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "d1f87723aa96ecb94d89173962bb4406ce96373df34a36119e40954118c5d6fe",
+    "02-fitment-worklist.json": "63a3983dce0466c2d9ea2e5f463405f509ad5461729c4b83fec5e298732926d8",
+    "03-showmetheparts-evidence.json": "c948f840c377b7410ab1f7aedcfc8658a64af6a27e05738b6f8ece7967e5d156",
+    "04-part-proposals.json": "5c2b1f6fa017dc657f655009f4d189f0a2eadd69f7848e8dd0189b914754effc",
+    "05-direct-link-evidence.json": "dec7bdc5af6786b937a13b171e56e371407f8249f923662e3ec32ebdd19d0ac7"
+  },
+  "supplementalArtifactSha256": {
+    "06-independent-review.json": "90723ed93c73819bc65196369ca5cbae1709599364742b5be03e556cf57bb6c9",
+    "existing-public-claim-review.json": "8d08f69fbaf340d38d384d15fb1b9b41d82f7efb905d5087d379154c77975e23"
+  },
+  "proposalCount": 5,
+  "partRowCount": 7,
+  "tally": {
+    "approve": 5,
+    "block_wrong_role": 1,
+    "block_incomplete_scope": 0,
+    "block_ambiguous": 0,
+    "hold_no_exact_link": 1,
+    "hold_needs_manual": 0
+  },
+  "reconciliation": {
+    "sourceProposalCount": 5,
+    "sourcePartRowCount": 7,
+    "reviewedPartRowCount": 7,
+    "sourceIssueCount": 70,
+    "reviewedIssueCount": 70,
+    "sourceWorkItemCount": 101,
+    "reviewedWorkItemDispositionCount": 101,
+    "terminalWorkItemDispositionCount": 101,
+    "proposedWorkItemCount": 5,
+    "heldWorkItemCount": 96,
+    "workItemDispositionSha256": "3d56b4e4c10658f07af8597e98900a9c8de8d027ce155e9e71a814cb7a2b5e70",
+    "workItemDispositionReasonTally": {
+      "eligible-proposal": 5,
+      "fitment-confirmed": 5,
+      "fitment-no-catalog": 19,
+      "fitment-unmapped": 64,
+      "no-matching-part-type": 6,
+      "unsupported-catalog-application-restriction": 2
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 7,
+    "reviewedPartRowCount": 7,
+    "exactProductLinkRowCount": 6,
+    "exactProductLinkCount": 6,
+    "noExactProductLinkRowCount": 1,
+    "reviewedExactProductLinkRowCount": 6,
+    "reviewedExactProductLinkCount": 6,
+    "listingTitleSourceCount": 2,
+    "itemSpecificsSourceCount": 4,
+    "observedListingTitlePresentCount": 6,
+    "recomputedTitleHashMatchCount": 6,
+    "matchedPartNumberMatchCount": 6,
+    "observedPartNumberFieldPresentCount": 6,
+    "observedPartNumberValuePresentCount": 6,
+    "observedPartNumberValueMatchCount": 6,
+    "urlProductIdMatchCount": 6,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 5,
+  "uniqueExistingClaimCount": 5,
+  "existingClaimTally": {
+    "preserve": 0,
+    "block": 5
+  },
+  "existingClaims": [
+    {
+      "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
+      "issueId": "buick-enclave-loss-power-steering-assist",
+      "partNumber": "20-2403",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The legacy claim has no machine-enforceable fitment or persisted product-identity evidence; the newly reviewed scoped 20-2403 candidate must replace it through a guarded merge.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the power steering pump (and inspect/replace fluid and lines). Covered under GM Special Coverage for 10yr/150k mi on affected vehicles; otherwise replace the pump out of pocket.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/402797827561?_skw=Cardone+20-2403+Power+Steering+Pump&hash=item5dc89f15e9%3Ag%3AZRkAAOSwxLdge1JX&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
+      "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+      "partNumber": "WPGM-611V",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The legacy WPGM-611V claim is unscoped and lacks persisted product-identity evidence; the newly reviewed 2008-2017 candidate is the safe replacement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump (and thermostat/gasket as needed), then refill and bleed the cooling system. A relatively common, moderate-cost repair on these vehicles.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/137201131319?_skw=Aisin+WPGM-611V+Engine+Water+Pump&hash=item1ff1d31f37%3Ag%3AwbcAAeSwarpp01Vu&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "buick-lesabre-power-window-regulator-cable-failure",
+      "partNumber": "82-1005AR",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the failed window regulator assembly with an updated aftermarket unit (commonly available for $50-$100); the motor can usually be reused. Many owners replace regulators in remaining doors preemptively or keep a spare, since failures across all four windows are widely reported.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/298564951104?_skw=Cardone+82-1005AR+Window+Motor+and+Regulator+Assembly&hash=item4583db9c40%3Ag%3AaocAAeSwkOdqdNvH&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+      "partNumber": "FG0347",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the complete fuel pump module assembly (pump, sender, and strainer together) — the tank must be dropped on these cars. Replacing the whole module rather than just the pump fixes the erratic fuel gauge at the same time.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/157374965989?_skw=Delphi+FG0347+Fuel+Pump+Module+Assembly&hash=item24a44768e5%3Ag%3Aq2YAAeSw-Z1o5jlX&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
+      "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+      "partNumber": "DP986",
+      "engineWorkRow": "5.7L LT1 V8 (Gen II)",
+      "verdict": "block",
+      "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the Optispark with an AC Delco (vented) unit, and because the water pump has to come off to access it, replace the water pump at the same time. Ensure the distributor vent hoses are correctly routed and clear so condensation can escape. Rule out spark plug wires and plugs first, as those often mimic Optispark failure.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168593736460?_skw=Dayco+DP986+Engine+Water+Pump&hash=item2740f8430c%3Ag%3AW5wAAeSw-MdqdL0T&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "proposalId": "buick-enclave-loss-power-steering-assist--prescription-0-0--all-engines",
+      "issueId": "buick-enclave-loss-power-steering-assist",
+      "workItemId": "buick-enclave-loss-power-steering-assist--prescription-0-0--all-engines",
+      "model": "Enclave",
+      "partIndex": 0,
+      "partNumber": "20-2403",
+      "decision": "approve",
+      "reason": "The article directly prescribes the power-steering pump, and Cardone 20-2403 covers every reviewed 2008-2011 Enclave year with exact product identity.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the power steering pump after confirming pump wear; inspect the fluid and lines and check Special Coverage eligibility first.",
+        "catalog": "ShowMeTheParts confirms Cardone 20-2403 Power Steering Pump for every declared 2008-2011 Buick Enclave year.",
+        "directLink": "Exact product link: the recorded eBay item exposes Manufacturer Part Number 20-2403 and a matching Cardone power-steering-pump title."
+      }
+    },
+    {
+      "proposalId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines",
+      "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+      "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines",
+      "model": "Enclave",
+      "partIndex": 0,
+      "partNumber": "WPGM-611V",
+      "decision": "approve",
+      "reason": "The article directly prescribes the water pump, and Aisin WPGM-611V covers every reviewed 2008-2017 Enclave year with exact product identity.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the leaking water pump; replace the thermostat or gasket only as inspection requires, then refill and bleed the cooling system.",
+        "catalog": "ShowMeTheParts confirms Aisin WPGM-611V Engine Water Pump for every declared 2008-2017 Buick Enclave year.",
+        "directLink": "Exact product link: the eBay listing title identifies AISIN WPGM611V Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines",
+      "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+      "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines",
+      "model": "Enclave",
+      "partIndex": 1,
+      "partNumber": "DP532",
+      "decision": "approve",
+      "reason": "The Dayco alternate is the same directly prescribed water-pump role and covers every reviewed 2008-2017 Enclave year.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the leaking water pump; replace the thermostat or gasket only as inspection requires, then refill and bleed the cooling system.",
+        "catalog": "ShowMeTheParts confirms Dayco DP532 Engine Water Pump for every declared 2008-2017 Buick Enclave year.",
+        "directLink": "Exact product link: the eBay item exposes Manufacturer Part Number DP532 and a matching Dayco engine-water-pump title."
+      }
+    },
+    {
+      "proposalId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow--prescription-0-0--all-engines",
+      "issueId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow",
+      "workItemId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow--prescription-0-0--all-engines",
+      "model": "Encore",
+      "partIndex": 0,
+      "partNumber": "TL105K",
+      "decision": "block_wrong_role",
+      "reason": "Gates TL105K is a coolant/oil line kit, not the turbocharger assembly the repair branch says to replace, and its contents are not proven to equal every required seal, gasket, and hardware item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the failed turbocharger assembly together with the specified oil-feed, return, exhaust, coolant seals, gaskets, and related hardware after checking warranty-extension eligibility.",
+        "catalog": "ShowMeTheParts identifies TL105K only as a Turbocharger Coolant and Oil Supply / Return Line Kit for the reviewed Encore years.",
+        "directLink": "The eBay listing is an exact TL105K product, but exact identity does not establish the article's turbocharger-assembly repair role or full service kit."
+      }
+    },
+    {
+      "proposalId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak--prescription-0-0--5-7l-lt1-v8-gen-ii",
+      "issueId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak",
+      "workItemId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak--prescription-0-0--5-7l-lt1-v8-gen-ii",
+      "model": "Roadmaster",
+      "partIndex": 0,
+      "partNumber": "MS16134",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE Clevite MS16134 matches the prescribed intake-manifold-gasket role and reviewed LT1 scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Re-torque to specification first; if the leak persists, replace the intake-manifold gaskets and seals.",
+        "catalog": "ShowMeTheParts confirms MS16134 Engine Intake Manifold Gasket Set for 1994-1996 Roadmaster 5.7L LT1 applications.",
+        "directLink": "No exact product link was resolved, so this otherwise role-correct candidate remains held."
+      }
+    },
+    {
+      "proposalId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+      "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+      "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+      "model": "Roadmaster",
+      "partIndex": 0,
+      "partNumber": "DP986",
+      "decision": "approve",
+      "reason": "The article directly prescribes a complete water pump, and Dayco DP986 covers every reviewed 1994-1996 Roadmaster LT1 year.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the leaking water pump, or use the specified seal tool only when performing the separately described reseal procedure, then bleed trapped air.",
+        "catalog": "ShowMeTheParts confirms Dayco DP986 Engine Water Pump for every 1994-1996 Buick Roadmaster 5.7L LT1 cell.",
+        "directLink": "Exact product link: the eBay item exposes Manufacturer Part Number DP986 and a matching Dayco water-pump title."
+      }
+    },
+    {
+      "proposalId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+      "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+      "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+      "model": "Roadmaster",
+      "partIndex": 1,
+      "partNumber": "44038",
+      "decision": "approve",
+      "reason": "The Gates alternate is the same directly prescribed complete water pump and covers every reviewed 1994-1996 Roadmaster LT1 year.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the leaking water pump, or use the specified seal tool only when performing the separately described reseal procedure, then bleed trapped air.",
+        "catalog": "ShowMeTheParts confirms Gates 44038 Engine Water Pump for every 1994-1996 Buick Roadmaster 5.7L LT1 cell.",
+        "directLink": "Exact product link: the eBay item exposes Interchange Part Number 44038 and a matching Gates water-pump title."
+      }
+    }
+  ]
+}

@@ -1,0 +1,914 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Dodge",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "cde86204bc125da99eaba9ba2a1cff9832e2de42ae8a61d12ce441a6f1f088b4",
+    "02-fitment-worklist.json": "f98ae185fcbd3a1f918c8996c26097ac4ca35cc88295f54ae67223f87d887d02",
+    "03-showmetheparts-evidence.json": "b2afb6684a874da56e15d570850550140b072df2186a41b07459f36cff21acd0",
+    "04-part-proposals.json": "805761a857b163246b8a59b0fba8887a308b6eca3b04a9e4ee0167bb37f106ba",
+    "05-direct-link-evidence.json": "107d6acec3a86393903e1fcf7586c147f787f79f1b6e8f3af7ecfd8c0c1f93b9"
+  },
+  "supplementalArtifactSha256": {
+    "06-independent-review.json": "9dc63e55768cdff7fcf7cf8799f12da9c26e323a48943251e555387b66e93192",
+    "existing-public-claim-review.json": "e44404cfbda76e1812e2631a6785fb13568712ead9f1f3b0b9e0303268199932"
+  },
+  "proposalCount": 24,
+  "partRowCount": 39,
+  "tally": {
+    "approve": 14,
+    "block_wrong_role": 6,
+    "block_incomplete_scope": 15,
+    "block_ambiguous": 1,
+    "hold_no_exact_link": 3,
+    "hold_needs_manual": 0
+  },
+  "reconciliation": {
+    "sourceProposalCount": 24,
+    "sourcePartRowCount": 39,
+    "reviewedPartRowCount": 39,
+    "sourceIssueCount": 198,
+    "reviewedIssueCount": 198,
+    "sourceWorkItemCount": 633,
+    "reviewedWorkItemDispositionCount": 633,
+    "terminalWorkItemDispositionCount": 633,
+    "proposedWorkItemCount": 24,
+    "heldWorkItemCount": 609,
+    "workItemDispositionSha256": "f05782ef1f256678c63ee393de63cc7beff797232cdc25ed0437346543c7e3a3",
+    "workItemDispositionReasonTally": {
+      "eligible-proposal": 24,
+      "fitment-confirmed": 16,
+      "fitment-no-catalog": 166,
+      "fitment-unmapped": 375,
+      "incomplete-model-or-engine-coverage": 6,
+      "missing-or-risky-source-metadata": 1,
+      "no-matching-part-type": 31,
+      "no-primary": 1,
+      "placeholder-part-number": 1,
+      "unsupported-catalog-application-restriction": 12
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 39,
+    "reviewedPartRowCount": 39,
+    "exactProductLinkRowCount": 34,
+    "exactProductLinkCount": 34,
+    "noExactProductLinkRowCount": 5,
+    "reviewedExactProductLinkRowCount": 34,
+    "reviewedExactProductLinkCount": 34,
+    "listingTitleSourceCount": 23,
+    "itemSpecificsSourceCount": 11,
+    "observedListingTitlePresentCount": 34,
+    "recomputedTitleHashMatchCount": 34,
+    "matchedPartNumberMatchCount": 34,
+    "observedPartNumberFieldPresentCount": 34,
+    "observedPartNumberValuePresentCount": 34,
+    "observedPartNumberValueMatchCount": 34,
+    "urlProductIdMatchCount": 34,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 18,
+  "uniqueExistingClaimCount": 14,
+  "existingClaimTally": {
+    "preserve": 0,
+    "block": 18
+  },
+  "existingClaims": [
+    {
+      "workItemId": "dodge-avenger-alternator-2008--existing-fix-part-0-0--2-4l",
+      "issueId": "dodge-avenger-alternator-2008",
+      "partNumber": "210-4302",
+      "engineWorkRow": "2.4L",
+      "verdict": "block",
+      "reason": "The legacy 210-4302 link is unscoped, lacks persisted product-identity evidence, and the catalog does not cover the article's 2014 endpoint; the newly reviewed scoped candidate must replace it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace alternator. OE Denso or quality remanufactured unit recommended. Check serpentine belt and tensioner at the same time as a worn belt accelerates alternator bearing wear.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/364210804266?_skw=Denso+210-4302+Alternator&hash=item54cca7d62a%3Ag%3AJjMAAOSw2fRkMXU4&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-challenger-hemi-water-pump-premature-failure-coolant-leak--existing-fix-part-0-0--5-7l-hemi-v8",
+      "issueId": "dodge-challenger-hemi-water-pump-premature-failure-coolant-leak",
+      "partNumber": "WPCH-707V",
+      "engineWorkRow": "5.7L HEMI V8",
+      "verdict": "block",
+      "reason": "The unscoped WPCH-707V claim is absent for the Hellcat application, incomplete across the 6.4L years, and does not prove the metal-impeller construction recommended by the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnose first: with the engine off, check the water-pump pulley/shaft for play (rock it) and spin for roughness/grinding; inspect the pump body for a dried, thick glycol deposit trail (sign of a failed shaft seal — replacement is required), as distinct from a harmless light stain at the weep hole. Listen for a growl, squeal, or \"frog-croak\" bearing noise from the front of the engine, and watch for slowly rising coolant temp or a coolant smell. The repair is replacement of the water pump (the pump is not serviceable). When replacing, many owners and shops recommend a metal-impeller aftermarket pump (e.g., Gates) instead of another OEM plastic-impeller Mopar unit to avoid a repeat failure. Replace the thermostat and any brittle gaskets/hoses at the same time, refill with the correct OAT coolant, and bleed the system. If the impeller shed plastic before replacement, flush the cooling system thoroughly and inspect the radiator/thermostat for debris. Torque the pump mounting bolts to ~18 ft-lb on HEMI applications (verify per year/engine). Caught early (seal weep / bearing noise, no overheating), it is a straightforward cooling repair; caught late (impeller failure + overheat), it risks downstream engine damage — hence prompt attention to bearing noise or coolant loss.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/147472182806?_skw=Aisin+WPCH-707V+Engine+Water+Pump&hash=item225606ee16%3Ag%3AcCUAAeSw03hqWkOV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-challenger-hemi-water-pump-premature-failure-coolant-leak--existing-fix-part-0-0--6-4l-392-hemi-v8",
+      "issueId": "dodge-challenger-hemi-water-pump-premature-failure-coolant-leak",
+      "partNumber": "WPCH-707V",
+      "engineWorkRow": "6.4L (392) HEMI V8",
+      "verdict": "block",
+      "reason": "The unscoped WPCH-707V claim is absent for the Hellcat application, incomplete across the 6.4L years, and does not prove the metal-impeller construction recommended by the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnose first: with the engine off, check the water-pump pulley/shaft for play (rock it) and spin for roughness/grinding; inspect the pump body for a dried, thick glycol deposit trail (sign of a failed shaft seal — replacement is required), as distinct from a harmless light stain at the weep hole. Listen for a growl, squeal, or \"frog-croak\" bearing noise from the front of the engine, and watch for slowly rising coolant temp or a coolant smell. The repair is replacement of the water pump (the pump is not serviceable). When replacing, many owners and shops recommend a metal-impeller aftermarket pump (e.g., Gates) instead of another OEM plastic-impeller Mopar unit to avoid a repeat failure. Replace the thermostat and any brittle gaskets/hoses at the same time, refill with the correct OAT coolant, and bleed the system. If the impeller shed plastic before replacement, flush the cooling system thoroughly and inspect the radiator/thermostat for debris. Torque the pump mounting bolts to ~18 ft-lb on HEMI applications (verify per year/engine). Caught early (seal weep / bearing noise, no overheating), it is a straightforward cooling repair; caught late (impeller failure + overheat), it risks downstream engine damage — hence prompt attention to bearing noise or coolant loss.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/147472182806?_skw=Aisin+WPCH-707V+Engine+Water+Pump&hash=item225606ee16%3Ag%3AcCUAAeSw03hqWkOV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-challenger-hemi-water-pump-premature-failure-coolant-leak--existing-fix-part-0-0--6-2l-supercharged-hemi-v8-hellcat",
+      "issueId": "dodge-challenger-hemi-water-pump-premature-failure-coolant-leak",
+      "partNumber": "WPCH-707V",
+      "engineWorkRow": "6.2L Supercharged HEMI V8 (Hellcat)",
+      "verdict": "block",
+      "reason": "The unscoped WPCH-707V claim is absent for the Hellcat application, incomplete across the 6.4L years, and does not prove the metal-impeller construction recommended by the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnose first: with the engine off, check the water-pump pulley/shaft for play (rock it) and spin for roughness/grinding; inspect the pump body for a dried, thick glycol deposit trail (sign of a failed shaft seal — replacement is required), as distinct from a harmless light stain at the weep hole. Listen for a growl, squeal, or \"frog-croak\" bearing noise from the front of the engine, and watch for slowly rising coolant temp or a coolant smell. The repair is replacement of the water pump (the pump is not serviceable). When replacing, many owners and shops recommend a metal-impeller aftermarket pump (e.g., Gates) instead of another OEM plastic-impeller Mopar unit to avoid a repeat failure. Replace the thermostat and any brittle gaskets/hoses at the same time, refill with the correct OAT coolant, and bleed the system. If the impeller shed plastic before replacement, flush the cooling system thoroughly and inspect the radiator/thermostat for debris. Torque the pump mounting bolts to ~18 ft-lb on HEMI applications (verify per year/engine). Caught early (seal weep / bearing noise, no overheating), it is a straightforward cooling repair; caught late (impeller failure + overheat), it risks downstream engine damage — hence prompt attention to bearing noise or coolant loss.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/147472182806?_skw=Aisin+WPCH-707V+Engine+Water+Pump&hash=item225606ee16%3Ag%3AcCUAAeSw03hqWkOV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-challenger-sudden-alternator-failure-causing-stall-electrical-loss-fire--existing-fix-part-0-0--3-6l-v6-pentastar",
+      "issueId": "dodge-challenger-sudden-alternator-failure-causing-stall-electrical-loss-fire",
+      "partNumber": "210-1227",
+      "engineWorkRow": "3.6L V6 Pentastar",
+      "verdict": "block",
+      "reason": "The unscoped 210-1227 claim is catalog-confirmed only for the 3.6L application and is absent for the article's 5.7L application; this recall-first issue must not expose that retail link broadly.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If your VIN is covered by recall 14V634 or 17V435, the repair is FREE at any Dodge/Chrysler dealer regardless of mileage or age -- check your VIN at nhtsa.gov/recalls or call Stellantis/Chrysler customer care at 1-800-853-1403 (reference campaign P60 or T36). Under 14V634 the dealer replaces the alternator outright; under 17V435 the dealer first inspects the alternator part number and replaces it only if it is one of the suspect units. Out of warranty and not covered by the recall (e.g. some 5.7L or higher-amp configurations), a standard alternator replacement runs about 2 hours of labor: budget roughly $300-$600 for a quality remanufactured or new unit and $150-$400 in labor, with full RepairPal shop estimates of about $800-$1,180 for the era. Owner-reported real-world bills span $500 to $1,290 (the high end including a battery the failing alternator damaged). Because a failing diode can dump unregulated voltage or overheat the battery, have the battery load-tested at the same time and address any flickering-light, ABS/ESC-warning, or burning-smell symptoms immediately rather than waiting -- a fully shorted alternator is a fire and stall hazard. Verify any aftermarket replacement is rated for your car's amperage (160/180/220A) and EHPS load.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/365038209233?_skw=Denso+210-1227+Alternator&hash=item54fdf908d1%3Ag%3AQ0UAAOSwaV9mp9Of&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-challenger-sudden-alternator-failure-causing-stall-electrical-loss-fire--existing-fix-part-0-0--5-7l-v8-hemi",
+      "issueId": "dodge-challenger-sudden-alternator-failure-causing-stall-electrical-loss-fire",
+      "partNumber": "210-1227",
+      "engineWorkRow": "5.7L V8 HEMI",
+      "verdict": "block",
+      "reason": "The unscoped 210-1227 claim is catalog-confirmed only for the 3.6L application and is absent for the article's 5.7L application; this recall-first issue must not expose that retail link broadly.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If your VIN is covered by recall 14V634 or 17V435, the repair is FREE at any Dodge/Chrysler dealer regardless of mileage or age -- check your VIN at nhtsa.gov/recalls or call Stellantis/Chrysler customer care at 1-800-853-1403 (reference campaign P60 or T36). Under 14V634 the dealer replaces the alternator outright; under 17V435 the dealer first inspects the alternator part number and replaces it only if it is one of the suspect units. Out of warranty and not covered by the recall (e.g. some 5.7L or higher-amp configurations), a standard alternator replacement runs about 2 hours of labor: budget roughly $300-$600 for a quality remanufactured or new unit and $150-$400 in labor, with full RepairPal shop estimates of about $800-$1,180 for the era. Owner-reported real-world bills span $500 to $1,290 (the high end including a battery the failing alternator damaged). Because a failing diode can dump unregulated voltage or overheat the battery, have the battery load-tested at the same time and address any flickering-light, ABS/ESC-warning, or burning-smell symptoms immediately rather than waiting -- a fully shorted alternator is a fire and stall hazard. Verify any aftermarket replacement is rated for your car's amperage (160/180/220A) and EHPS load.",
+        "catalog": "Fitment work row ended with absent; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/365038209233?_skw=Denso+210-1227+Alternator&hash=item54fdf908d1%3Ag%3AQ0UAAOSwaV9mp9Of&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-charger-alternator-2011--existing-fix-part-0-0--all-engines",
+      "issueId": "dodge-charger-alternator-2011",
+      "partNumber": "210-1183",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The legacy 210-1183 claim is unscoped and appears only in a subset of the catalog engines represented by the article, so it can be shown for an unsupported HEMI application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace alternator with OEM or quality aftermarket unit. Have battery tested and replaced if damaged from undercharging. Check for excessive electrical draw from accessories. Consider higher-output alternator for vehicles with added electrical accessories.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/125841373229?_skw=Denso+210-1183+Alternator&hash=item1d4cbaf82d%3Ag%3AtO0AAOSwq5ZkHPS9&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-dakota-overdrive-solenoid-1997--existing-fix-part-0-0--all-engines",
+      "issueId": "dodge-dakota-overdrive-solenoid-1997",
+      "partNumber": "TE-26",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The unscoped TE-26 claim is catalog-confirmed only through 2003 while the article continues through 2011 and names multiple transmission families.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the overdrive solenoid and governor pressure solenoid as a pair — they are accessed by dropping the transmission pan and valve body. Use Mopar ATF+4 (68218058AC) exclusively. For the 42RE, the solenoid pack is inexpensive ($40-$80) but labor is 2-3 hours. For the 45RFE/545RFE, replace the entire solenoid block assembly. Regular fluid changes every 30,000 miles help prevent recurrence.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/205691141398?_skw=ATP+TE-26+Automatic+Transmission+Governor+Solenoid&hash=item2fe425bd16%3Ag%3AZH4AAeSwh5VqAisZ&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-durango-alternator-2011--existing-fix-part-0-0--all-engines",
+      "issueId": "dodge-durango-alternator-2011",
+      "partNumber": "210-1226",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The unscoped 210-1226 claim appears only for the 3.6L catalog application and can be shown for the article's unsupported V8 applications.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace alternator with OEM or quality aftermarket. Test battery condition as it may be damaged from undercharging. Consider higher-output alternator if aftermarket accessories installed.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/364192897691?_skw=Denso+210-1226+Alternator&hash=item54cb969a9b%3Ag%3AozEAAOSwrR1kHQD2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-durango-water-pump-2011--existing-fix-part-0-0--3-6l-pentastar-v6",
+      "issueId": "dodge-durango-water-pump-2011",
+      "partNumber": "WPCH-608V",
+      "engineWorkRow": "3.6L Pentastar V6",
+      "verdict": "block",
+      "reason": "The unscoped WPCH-608V claim is catalog-confirmed only for 2016-2021, leaving the article's 2011-2015 years unsupported; newly reviewed earlier-year candidates must remain separately scoped.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump when symptoms appear or preventatively during timing chain service. Replace thermostat at same time. Consider timing chain inspection if high mileage.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/236454621759?_skw=Aisin+WPCH-608V+Engine+Water+Pump&hash=item370dcb323f%3Ag%3A-aoAAeSwv9NpE8zn&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-grand-caravan-ps-pump-2008--existing-fix-part-0-0--all-engines",
+      "issueId": "dodge-grand-caravan-ps-pump-2008",
+      "partNumber": "20-1042",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The unscoped 20-1042 claim is not catalog-supported for the article's 2008-2010 years and lacks persisted direct-product identity evidence.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Flush the power steering system and refill with Mopar power steering fluid (MS-5931 spec). If the pump is whining, it is already worn internally and should be replaced (Mopar 68059524AD or equivalent remanufactured unit). Replace the reservoir cap as a standard practice during any PS service. A power steering pump replacement runs $250-$500 installed.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/306914335644?_skw=Cardone+20-1042+Power+Steering+Pump&hash=item4775851b9c%3Ag%3AU74AAeSwNw1p9i9M&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-intrepid-3-2l-3-5l-v6-timing-belt-tensioner-water-pump-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "dodge-intrepid-3-2l-3-5l-v6-timing-belt-tensioner-water-pump-failure",
+      "partNumber": "WP295K2A",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The unscoped WP295K2A kit is catalog-confirmed only for 1998-2004, while the article starts in 1993 and spans multiple engine applications.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, water pump, tensioner, and idler pulleys together as a kit every 60,000-100,000 miles, using metal (not plastic) pulleys. If the belt has already failed on a 1998+ engine, a compression/leak-down test is needed first — bent valves require cylinder head removal and valve work.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/127817855958?_skw=Dayco+WP295K2A+Engine+Timing+Belt+Kit+with+Water+Pump&hash=item1dc289b3d6%3Ag%3AWsoAAeSwSRNqOY9R&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-intrepid-camshaft-crankshaft-position-sensor-failure-intermittent-sta--existing-fix-part-0-0--all-engines",
+      "issueId": "dodge-intrepid-camshaft-crankshaft-position-sensor-failure-intermittent-sta",
+      "partNumber": "235-1061",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The unscoped 235-1061 crankshaft-sensor claim is not catalog-supported for the article's 2001-2004 endpoint and cannot represent both camshaft and crankshaft sensor branches without variant scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the failed camshaft and/or crankshaft position sensor and inspect the connector and wiring for heat damage; many shops replace both sensors together since they fail similarly. It is an inexpensive bolt-in repair once correctly diagnosed.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/198349967122?_skw=Walker+Products+235-1061+Engine+Crankshaft+Position+Sensor&hash=item2e2e944f12%3Ag%3AbcwAAeSw5-9qA1Vl&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-journey-alternator-2009--existing-fix-part-0-0--all-engines",
+      "issueId": "dodge-journey-alternator-2009",
+      "partNumber": "210-4326",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The unscoped 210-4326 claim is missing catalog support for the article's 2020 endpoint and does not preserve engine-specific application evidence.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test alternator output voltage and amperage to confirm failure. Replace alternator with quality rebuilt or new unit. Inspect serpentine belt and replace if necessary. Check battery condition - failing battery can damage alternator.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/327207583663?_skw=Denso+210-4326+Alternator&hash=item4c2f177faf%3Ag%3AW4AAAeSwrhNqV0Hm&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-journey-head-gasket-2013--existing-fix-part-0-0--2-4l-i4",
+      "issueId": "dodge-journey-head-gasket-2013",
+      "partNumber": "54664",
+      "engineWorkRow": "2.4L I4",
+      "verdict": "block",
+      "reason": "Although 54664 appears in the reviewed 2.4L years, the legacy claim has no machine-enforceable fitment or persisted exact-product identity; it must be reintroduced only through the guarded scoped path.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace head gasket which requires cylinder head removal. Have head inspected for warping and resurfaced if necessary. Replace thermostat and housing simultaneously. Check for additional engine damage from overheating.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-54664-Engine-Cylinder/dp/B074QZHPVT?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-journey-overheating-2009--existing-fix-part-0-0--all-engines",
+      "issueId": "dodge-journey-overheating-2009",
+      "partNumber": "THRCH-0002",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The unscoped THRCH-0002 thermostat appears only for the 2.4L catalog application and can be shown for unsupported V6 applications in the same article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Flush cooling system thoroughly to remove debris from thermostat housing port. Replace thermostat and housing gasket. In severe cases, thermostat housing replacement needed. Use only Mopar OAT coolant. Change coolant every 50,000 miles.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/147300900843?_skw=Aisin+THRCH-0002+Engine+Coolant+Thermostat&hash=item224bd15feb%3Ag%3AQwoAAOSwW5FoTUYa&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--existing-fix-part-0-0--2-0l-sohc-i4",
+      "issueId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure",
+      "partNumber": "BTC-003",
+      "engineWorkRow": "2.0L SOHC I4",
+      "verdict": "block",
+      "reason": "The legacy BTC-003 claim is unscoped and lacks persisted exact-listing identity evidence; its SOHC and DOHC application proof must be carried through a reviewed scoped replacement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, the hydraulic tensioner, and the water pump together at roughly 60,000-100,000 mile intervals (and by age on older cars). Inspect idler and cam/crank seals while apart. If a belt has already broken, a valve job or head replacement may be required.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/227162714670?_skw=Aisin+BTC-003+Engine+Timing+Belt+Tensioner+Hydraulic+Assembly&hash=item34e3f3f22e%3Ag%3AMogAAOSwMK1nYjJI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--existing-fix-part-0-0--2-0l-dohc-i4",
+      "issueId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure",
+      "partNumber": "BTC-003",
+      "engineWorkRow": "2.0L DOHC I4",
+      "verdict": "block",
+      "reason": "The legacy BTC-003 claim is unscoped and lacks persisted exact-listing identity evidence; its SOHC and DOHC application proof must be carried through a reviewed scoped replacement.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, the hydraulic tensioner, and the water pump together at roughly 60,000-100,000 mile intervals (and by age on older cars). Inspect idler and cam/crank seals while apart. If a belt has already broken, a valve job or head replacement may be required.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/227162714670?_skw=Aisin+BTC-003+Engine+Timing+Belt+Tensioner+Hydraulic+Assembly&hash=item34e3f3f22e%3Ag%3AMogAAOSwMK1nYjJI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "proposalId": "dodge-avenger-alternator-2008--prescription-0-0--2-4l",
+      "issueId": "dodge-avenger-alternator-2008",
+      "workItemId": "dodge-avenger-alternator-2008--prescription-0-0--2-4l",
+      "model": "Avenger",
+      "partIndex": 0,
+      "partNumber": "210-4302",
+      "decision": "approve",
+      "reason": "210-4302 matches the article's prescribed alternator role, has catalog-confirmed 2008-year/2009-year/2010-year/2011-year/2012-year/2013 2.4L fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace alternator. OE Denso or quality remanufactured unit recommended. Check serpentine belt and tensioner at the same time as a worn belt accelerates alternator bearing wear.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/358914408852?fits=Year%3A2008%7CEngine+-+Liter_Display%3A2.4L%7CModel%3AAvenger%7CMake%3ADodge&_skw=2008+Dodge+Avenger+2.4L+Denso+210-4302+Alternator&hash=item5390f74194%3Ag%3A5mAAAOSwMuBmprUT&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 358914408852. Observed title contains 210-4302. Observed title: Denso Reman Alternator for 07-17 Chrysler/Dodge/Jeep 210-4302."
+      }
+    },
+    {
+      "proposalId": "dodge-avenger-alternator-2008--prescription-0-0--2-4l",
+      "issueId": "dodge-avenger-alternator-2008",
+      "workItemId": "dodge-avenger-alternator-2008--prescription-0-0--2-4l",
+      "model": "Avenger",
+      "partIndex": 1,
+      "partNumber": "AL0011",
+      "decision": "hold_no_exact_link",
+      "reason": "AL0011 matches the prescribed alternator role within its recorded 2008-year/2009-year/2010-year/2011-year/2012-year/2013 2.4L scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace alternator. OE Denso or quality remanufactured unit recommended. Check serpentine belt and tensioner at the same time as a worn belt accelerates alternator bearing wear.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "dodge-durango-plenum-gasket-1998--prescription-1-0--5-2l-v8",
+      "issueId": "dodge-durango-plenum-gasket-1998",
+      "workItemId": "dodge-durango-plenum-gasket-1998--prescription-1-0--5-2l-v8",
+      "model": "Durango",
+      "partIndex": 0,
+      "partNumber": "MS16292",
+      "decision": "block_wrong_role",
+      "reason": "MS16292 is an intake-manifold gasket set, not the aftermarket M1 intake manifold prescribed by the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace plenum gasket using Felpro intake manifold gasket set: MS92844 (5.2L) or MS92845 (5.9L). Hughes Engines plenum plate fix eliminates the design flaw entirely. Some owners install aftermarket M1 intake manifold which eliminates the plenum gasket.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "dodge-durango-plenum-gasket-1998--prescription-1-0--5-9l-v8",
+      "issueId": "dodge-durango-plenum-gasket-1998",
+      "workItemId": "dodge-durango-plenum-gasket-1998--prescription-1-0--5-9l-v8",
+      "model": "Durango",
+      "partIndex": 0,
+      "partNumber": "MS16292",
+      "decision": "block_wrong_role",
+      "reason": "MS16292 is an intake-manifold gasket set, not the aftermarket M1 intake manifold prescribed by the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace plenum gasket using Felpro intake manifold gasket set: MS92844 (5.2L) or MS92845 (5.9L). Hughes Engines plenum plate fix eliminates the design flaw entirely. Some owners install aftermarket M1 intake manifold which eliminates the plenum gasket.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "dodge-durango-water-pump-2011--prescription-0-0--3-6l-pentastar-v6",
+      "issueId": "dodge-durango-water-pump-2011",
+      "workItemId": "dodge-durango-water-pump-2011--prescription-0-0--3-6l-pentastar-v6",
+      "model": "Durango",
+      "partIndex": 0,
+      "partNumber": "WPCH-605V",
+      "decision": "approve",
+      "reason": "WPCH-605V matches the article's prescribed water pump role, has catalog-confirmed 2011-year/2012-year/2013-year/2014-year/2015 3.6L Pentastar V6 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump when symptoms appear or preventatively during timing chain service. Replace thermostat at same time. Consider timing chain inspection if high mileage.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/147313098802?fits=Year%3A2011%7CEngine+-+Liter_Display%3A3.6L%7CModel%3ADurango%7CMake%3ADodge&_skw=2011+Dodge+Durango+3.6L+Aisin+WPCH-605V+Engine+Water+Pump&hash=item224c8b8032%3Ag%3AZJYAAOSwbf1oTVpo&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 147313098802. Observed title contains WPCH605V. Observed title: AISIN WORLD CORP. OF AMERICA WPCH605V Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "dodge-durango-water-pump-2011--prescription-0-0--3-6l-pentastar-v6",
+      "issueId": "dodge-durango-water-pump-2011",
+      "workItemId": "dodge-durango-water-pump-2011--prescription-0-0--3-6l-pentastar-v6",
+      "model": "Durango",
+      "partIndex": 1,
+      "partNumber": "DP1878",
+      "decision": "approve",
+      "reason": "DP1878 matches the article's prescribed water pump role, has catalog-confirmed 2011-year/2012-year/2013-year/2014-year/2015 3.6L Pentastar V6 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump when symptoms appear or preventatively during timing chain service. Replace thermostat at same time. Consider timing chain inspection if high mileage.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/388882212006?fits=Year%3A2011%7CEngine+-+Liter_Display%3A3.6L%7CModel%3ADurango%7CMake%3ADodge&_skw=2011+Dodge+Durango+3.6L+Dayco+DP1878+Engine+Water+Pump&hash=item5a8b2fa4a6%3Ag%3AaokAAOSwPppoT%7EYZ&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGYJc%2FJY4rcH3eWXisr9hu9tV%2BeDxFfoBAayJuolknSCnyipjbKTAa6fUBRmGngzKOpGrMv%2B06%2B7KFuRbTWSKJ1jOzvl85LsQI4pb5ByBWhffwh0S1ndzSVWZZka6tfZ16S1pRnptnp%2F0vUyCIBcTfZY1PPmRs%2FRYmy%2BkEWpaWqvZiTNnWdNuF%2BEKFtyshwY%2FOfM1Os7IIIr9xf68z7FJN9YXUMipu6BOc7kMAEIrKQPtGd66yUCY1f%2FpRTEga2K0WeakuAQ1VANlg6oJnUwxovYqSR5fK%2F4%2BrjEnsZ9SGgH3Gx989Gm8mOkKt1gHem3WjZOVvwa1wQPc5QMMfSPc0L3&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 388882212006. Observed title contains DP1878. Observed title: Engine Water Pump Dayco DP1878."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-0-0--3-3l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-0-0--3-3l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 0,
+      "partNumber": "WPCH-701V",
+      "decision": "hold_no_exact_link",
+      "reason": "WPCH-701V matches the prescribed water pump gates 43090 role within its recorded 2001-year/2002-year/2003-year/2004-year/2005-year/2006-year/2007 3.3L V6 scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-0-0--3-3l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-0-0--3-3l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 1,
+      "partNumber": "DP1440",
+      "decision": "approve",
+      "reason": "DP1440 matches the article's prescribed water pump gates 43090 role, has catalog-confirmed 2008-year/2009-year/2010 3.3L V6 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/198527039196?fits=Year%3A2008%7CEngine+-+Liter_Display%3A3.3L%7CModel%3AGrand+Caravan%7CMake%3ADodge&_skw=2008+Dodge+Grand+Caravan+3.3L+Dayco+DP1440+Engine+Water+Pump&hash=item2e392236dc%3Ai%3A198527039196&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 198527039196. Observed title contains DP1440. Observed title: Dayco DP1440 Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-0-0--3-8l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-0-0--3-8l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 0,
+      "partNumber": "WPCH-701V",
+      "decision": "hold_no_exact_link",
+      "reason": "WPCH-701V matches the prescribed water pump gates 43090 role within its recorded 2001-year/2002-year/2003-year/2004-year/2005-year/2006-year/2007 3.8L V6 scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-0-0--3-8l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-0-0--3-8l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 1,
+      "partNumber": "DP1440",
+      "decision": "approve",
+      "reason": "DP1440 matches the article's prescribed water pump gates 43090 role, has catalog-confirmed 2008-year/2009-year/2010 3.8L V6 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/198527039196?fits=Year%3A2008%7CEngine+-+Liter_Display%3A3.8L%7CModel%3AGrand+Caravan%7CMake%3ADodge&_skw=2008+Dodge+Grand+Caravan+3.8L+Dayco+DP1440+Engine+Water+Pump&hash=item2e392236dc%3Ai%3A198527039196&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 198527039196. Observed title contains DP1440. Observed title: Dayco DP1440 Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-1-0--3-3l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-1-0--3-3l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 0,
+      "partNumber": "THRCH-0005",
+      "decision": "approve",
+      "reason": "THRCH-0005 matches the article's prescribed thermostat role, has catalog-confirmed 2007-year/2008-year/2009-year/2010 3.3L V6 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/236913822425?fits=Year%3A2007%7CEngine+-+Liter_Display%3A3.3L%7CModel%3AGrand+Caravan%7CMake%3ADodge&_skw=2007+Dodge+Grand+Caravan+3.3L+Aisin+THRCH-0005+Engine+Coolant+Thermostat&hash=item37292a0ad9%3Ag%3A19sAAOSw%7EPNoTUZB&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 236913822425. Observed title contains THRCH0005. Observed title: AISIN WORLD CORP. OF AMERICA THRCH0005 Engine Coolant Thermostat."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-1-0--3-3l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-1-0--3-3l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 1,
+      "partNumber": "33952",
+      "decision": "approve",
+      "reason": "33952 matches the article's prescribed thermostat role, has catalog-confirmed 2001-year/2002-year/2003-year/2004-year/2005-year/2006 3.3L V6 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/318424918379?fits=Year%3A2001%7CEngine+-+Liter_Display%3A3.3L%7CModel%3AGrand+Caravan%7CMake%3ADodge&_skw=2001+Dodge+Grand+Caravan+3.3L+Gates+33952+Engine+Coolant+Thermostat&hash=item4a239aa96b%3Ag%3AfXwAAeSwcjdqJkv9&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 318424918379. Observed Manufacturer Part Number contains 33952. Observed title: Engine Coolant Thermostat GATES 33952 Compatible with Dodge Grand Caravan 01-06."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-1-0--3-8l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-1-0--3-8l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 0,
+      "partNumber": "THRCH-0005",
+      "decision": "approve",
+      "reason": "THRCH-0005 matches the article's prescribed thermostat role, has catalog-confirmed 2007-year/2008-year/2009-year/2010 3.8L V6 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/236913822425?fits=Year%3A2007%7CEngine+-+Liter_Display%3A3.8L%7CModel%3AGrand+Caravan%7CMake%3ADodge&_skw=2007+Dodge+Grand+Caravan+3.8L+Aisin+THRCH-0005+Engine+Coolant+Thermostat&hash=item37292a0ad9%3Ag%3A19sAAOSw%7EPNoTUZB&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 236913822425. Observed title contains THRCH0005. Observed title: AISIN WORLD CORP. OF AMERICA THRCH0005 Engine Coolant Thermostat."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-1-0--3-8l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-1-0--3-8l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 1,
+      "partNumber": "33952",
+      "decision": "approve",
+      "reason": "33952 matches the article's prescribed thermostat role, has catalog-confirmed 2001-year/2002-year/2003-year/2004-year/2005-year/2006 3.8L V6 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/318424918379?fits=Year%3A2001%7CEngine+-+Liter_Display%3A3.8L%7CModel%3AGrand+Caravan%7CMake%3ADodge&_skw=2001+Dodge+Grand+Caravan+3.8L+Gates+33952+Engine+Coolant+Thermostat&hash=item4a239aa96b%3Ag%3AfXwAAeSwcjdqJkv9&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 318424918379. Observed Manufacturer Part Number contains 33952. Observed title: Engine Coolant Thermostat GATES 33952 Compatible with Dodge Grand Caravan 01-06."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-2-0--3-3l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-2-0--3-3l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 0,
+      "partNumber": "221-7002",
+      "decision": "block_wrong_role",
+      "reason": "221-7002 is a complete radiator, not the radiator cap prescribed by this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/407124976426?fits=Year%3A2001%7CEngine+-+Liter_Display%3A3.3L%7CModel%3AGrand+Caravan%7CMake%3ADodge&_skw=2001+Dodge+Grand+Caravan+3.3L+Denso+221-7002+Radiator&hash=item5eca8a232a%3Ag%3Arc0AAeSw1XtponU1&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 407124976426. Observed title contains 221-7002. Observed title: DENSO 221-7002 Radiator, New OE Quality For Chrysler Town & Country 2004-2001,."
+      }
+    },
+    {
+      "proposalId": "dodge-grand-caravan-cooling-2001--prescription-2-0--3-8l-v6",
+      "issueId": "dodge-grand-caravan-cooling-2001",
+      "workItemId": "dodge-grand-caravan-cooling-2001--prescription-2-0--3-8l-v6",
+      "model": "Grand Caravan",
+      "partIndex": 0,
+      "partNumber": "221-7002",
+      "decision": "block_wrong_role",
+      "reason": "221-7002 is a complete radiator, not the radiator cap prescribed by this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump (Gates 43090 for 3.8L), thermostat (Stant 45359, 195F), and radiator cap as a set. Check fan relay (5149541AA) and fan module (5017407AB). Use Mopar OAT coolant (68048953AB) only.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/407124976426?fits=Year%3A2001%7CEngine+-+Liter_Display%3A3.8L%7CModel%3AGrand+Caravan%7CMake%3ADodge&_skw=2001+Dodge+Grand+Caravan+3.8L+Denso+221-7002+Radiator&hash=item5eca8a232a%3Ag%3Arc0AAeSw1XtponU1&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 407124976426. Observed title contains 221-7002. Observed title: DENSO 221-7002 Radiator, New OE Quality For Chrysler Town & Country 2004-2001,."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--prescription-0-0--2-0l-sohc-i4",
+      "issueId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure",
+      "workItemId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--prescription-0-0--2-0l-sohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "BTC-003",
+      "decision": "block_wrong_role",
+      "reason": "BTC-003 is a hydraulic timing-belt tensioner, not the timing belt represented by this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, the hydraulic tensioner, and the water pump together at roughly 60,000-100,000 mile intervals (and by age on older cars). Inspect idler and cam/crank seals while apart. If a belt has already broken, a valve job or head replacement may be required.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/227162714670?fits=Year%3A1995%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=1995+Dodge+Neon+2.0L+Aisin+BTC-003+Engine+Timing+Belt+Tensioner+Hydraulic+Assembly&hash=item34e3f3f22e%3Ag%3AMogAAOSwMK1nYjJI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 227162714670. Observed title contains BTC-003. Observed title: Engine Timing Belt Tensioner Hydraulic Assembly-Eng Code: ECB Aisin BTC-003."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--prescription-0-0--2-0l-dohc-i4",
+      "issueId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure",
+      "workItemId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--prescription-0-0--2-0l-dohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "BTC-003",
+      "decision": "block_wrong_role",
+      "reason": "BTC-003 is a hydraulic timing-belt tensioner, not the timing belt represented by this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, the hydraulic tensioner, and the water pump together at roughly 60,000-100,000 mile intervals (and by age on older cars). Inspect idler and cam/crank seals while apart. If a belt has already broken, a valve job or head replacement may be required.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/227162714670?fits=Year%3A1995%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=1995+Dodge+Neon+2.0L+Aisin+BTC-003+Engine+Timing+Belt+Tensioner+Hydraulic+Assembly&hash=item34e3f3f22e%3Ag%3AMogAAOSwMK1nYjJI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 227162714670. Observed title contains BTC-003. Observed title: Engine Timing Belt Tensioner Hydraulic Assembly-Eng Code: ECB Aisin BTC-003."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--prescription-1-0--2-0l-sohc-i4",
+      "issueId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure",
+      "workItemId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--prescription-1-0--2-0l-sohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "BTC-003",
+      "decision": "approve",
+      "reason": "BTC-003 matches the article's prescribed hydraulic tensioner role, has catalog-confirmed 1995-year/1996-year/1997-year/1998-year/1999 2.0L SOHC I4 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, the hydraulic tensioner, and the water pump together at roughly 60,000-100,000 mile intervals (and by age on older cars). Inspect idler and cam/crank seals while apart. If a belt has already broken, a valve job or head replacement may be required.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/227162714670?fits=Year%3A1995%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=1995+Dodge+Neon+2.0L+Aisin+BTC-003+Engine+Timing+Belt+Tensioner+Hydraulic+Assembly&hash=item34e3f3f22e%3Ag%3AMogAAOSwMK1nYjJI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 227162714670. Observed title contains BTC-003. Observed title: Engine Timing Belt Tensioner Hydraulic Assembly-Eng Code: ECB Aisin BTC-003."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--prescription-1-0--2-0l-dohc-i4",
+      "issueId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure",
+      "workItemId": "dodge-neon-interference-engine-timing-belt-hydraulic-tensioner-failure--prescription-1-0--2-0l-dohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "BTC-003",
+      "decision": "approve",
+      "reason": "BTC-003 matches the article's prescribed hydraulic tensioner role, has catalog-confirmed 1995-year/1996-year/1997-year/1998-year/1999 2.0L DOHC I4 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, the hydraulic tensioner, and the water pump together at roughly 60,000-100,000 mile intervals (and by age on older cars). Inspect idler and cam/crank seals while apart. If a belt has already broken, a valve job or head replacement may be required.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/227162714670?fits=Year%3A1995%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=1995+Dodge+Neon+2.0L+Aisin+BTC-003+Engine+Timing+Belt+Tensioner+Hydraulic+Assembly&hash=item34e3f3f22e%3Ag%3AMogAAOSwMK1nYjJI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 227162714670. Observed title contains BTC-003. Observed title: Engine Timing Belt Tensioner Hydraulic Assembly-Eng Code: ECB Aisin BTC-003."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-0-0--2-0l-sohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-0-0--2-0l-sohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "40245",
+      "decision": "block_incomplete_scope",
+      "reason": "40245 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/397714243900?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Continental+40245+Engine+Timing+Belt&hash=item5c999dc13c%3Ag%3AQeUAAeSwF%7EFptZ0s&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 397714243900. Observed Manufacturer Part Number contains 40245. Observed title: Continental Elite 40245 Automotive Timing Belt."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-0-0--2-0l-sohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-0-0--2-0l-sohc-i4",
+      "model": "Neon",
+      "partIndex": 1,
+      "partNumber": "95245K1",
+      "decision": "block_incomplete_scope",
+      "reason": "95245K1 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/153433231945?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Dayco+95245K1+Engine+Timing+Belt+Kit&hash=item23b9555249%3Ag%3A8cMAAOSwMnZclBv2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 153433231945. Observed title contains 95245K1. Observed title: NEW Dayco 95245K1 Timing Belt Kit Fits Chrysler Cirrus Neon Dodge Stratus Breeze."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-0-0--2-0l-dohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-0-0--2-0l-dohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "40245",
+      "decision": "block_incomplete_scope",
+      "reason": "40245 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/397714243900?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Continental+40245+Engine+Timing+Belt&hash=item5c999dc13c%3Ag%3AQeUAAeSwF%7EFptZ0s&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 397714243900. Observed Manufacturer Part Number contains 40245. Observed title: Continental Elite 40245 Automotive Timing Belt."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-0-0--2-0l-dohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-0-0--2-0l-dohc-i4",
+      "model": "Neon",
+      "partIndex": 1,
+      "partNumber": "95245K1",
+      "decision": "block_incomplete_scope",
+      "reason": "95245K1 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/153433231945?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Dayco+95245K1+Engine+Timing+Belt+Kit&hash=item23b9555249%3Ag%3A8cMAAOSwMnZclBv2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 153433231945. Observed title contains 95245K1. Observed title: NEW Dayco 95245K1 Timing Belt Kit Fits Chrysler Cirrus Neon Dodge Stratus Breeze."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-0-0--2-4l-turbo-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-0-0--2-4l-turbo-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "40265",
+      "decision": "block_incomplete_scope",
+      "reason": "40265 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/358753118719?fits=Year%3A2003%7CEngine+-+Liter_Display%3A2.4L%7CModel%3ANeon%7CMake%3ADodge&_skw=2003+Dodge+Neon+2.4L+Continental+40265+Engine+Timing+Belt&hash=item53875a29ff%3Ag%3AZuYAAeSw5nRqSFGN&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 358753118719. Observed Manufacturer Part Number contains 40265. Observed title: Continental 40265 Engine Timing Belt."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-0-0--2-4l-turbo-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-0-0--2-4l-turbo-i4",
+      "model": "Neon",
+      "partIndex": 1,
+      "partNumber": "95265K4",
+      "decision": "block_incomplete_scope",
+      "reason": "95265K4 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/257639560767?fits=Year%3A2003%7CEngine+-+Liter_Display%3A2.4L%7CModel%3ANeon%7CMake%3ADodge&_skw=2003+Dodge+Neon+2.4L+Dayco+95265K4+Engine+Timing+Belt+Kit&hash=item3bfc83b63f%3Ai%3A257639560767&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 257639560767. Observed title contains 95265K4. Observed title: Dayco 95265K4 Engine Timing Belt Kit For Select 03-10 Chrysler Dodge Jeep Models."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-1-0--2-0l-sohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-1-0--2-0l-sohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "WP245K1A",
+      "decision": "approve",
+      "reason": "WP245K1A matches the article's prescribed water pump role, has catalog-confirmed 2000-year/2001-year/2002 2.0L SOHC I4 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/127578211925?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Dayco+WP245K1A+Engine+Timing+Belt+Kit+with+Water+Pump&hash=item1db4410655%3Ag%3ARYwAAOSwDxFoSLYb&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 127578211925. Observed title contains WP245K1A. Observed title: Engine Timing Belt Kit with Water Pump-SOHC Dayco WP245K1A."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-1-0--2-0l-sohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-1-0--2-0l-sohc-i4",
+      "model": "Neon",
+      "partIndex": 1,
+      "partNumber": "41003",
+      "decision": "block_incomplete_scope",
+      "reason": "41003 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/277569741225?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Gates+41003+Engine+Water+Pump&hash=item40a07221a9%3Ag%3A1BEAAeSwJWxprEu4&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 277569741225. Observed Manufacturer Part Number contains 41003. Observed title: Gates 41003 Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-1-0--2-0l-dohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-1-0--2-0l-dohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "WP245K1A",
+      "decision": "block_ambiguous",
+      "reason": "WP245K1A is cataloged for the DOHC application, but the exact product listing identifies an SOHC kit, so product/application identity is contradictory.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/127578211925?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Dayco+WP245K1A+Engine+Timing+Belt+Kit+with+Water+Pump&hash=item1db4410655%3Ag%3ARYwAAOSwDxFoSLYb&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 127578211925. Observed title contains WP245K1A. Observed title: Engine Timing Belt Kit with Water Pump-SOHC Dayco WP245K1A."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-1-0--2-0l-dohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-1-0--2-0l-dohc-i4",
+      "model": "Neon",
+      "partIndex": 1,
+      "partNumber": "41003",
+      "decision": "block_incomplete_scope",
+      "reason": "41003 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/277569741225?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Gates+41003+Engine+Water+Pump&hash=item40a07221a9%3Ag%3A1BEAAeSwJWxprEu4&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 277569741225. Observed Manufacturer Part Number contains 41003. Observed title: Gates 41003 Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-1-0--2-4l-turbo-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-1-0--2-4l-turbo-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "WP265K4B",
+      "decision": "approve",
+      "reason": "WP265K4B matches the article's prescribed water pump role, has catalog-confirmed 2003-year/2004-year/2005 2.4L Turbo I4 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/317924344222?fits=Year%3A2003%7CEngine+-+Liter_Display%3A2.4L%7CModel%3ANeon%7CMake%3ADodge&_skw=2003+Dodge+Neon+2.4L+Dayco+WP265K4B+Engine+Timing+Belt+Kit+with+Water+Pump&hash=item4a05c4819e%3Ag%3AZE4AAOSw7otoT%7EW-&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 317924344222. Observed title contains WP265K4B. Observed title: Engine Timing Belt Kit with Water Pump-Turbo Dayco WP265K4B."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-1-0--2-4l-turbo-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-1-0--2-4l-turbo-i4",
+      "model": "Neon",
+      "partIndex": 1,
+      "partNumber": "43500",
+      "decision": "block_incomplete_scope",
+      "reason": "43500 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/267578095089?fits=Year%3A2003%7CEngine+-+Liter_Display%3A2.4L%7CModel%3ANeon%7CMake%3ADodge&_skw=2003+Dodge+Neon+2.4L+Gates+43500+Engine+Water+Pump&hash=item3e4ce5b5f1%3Ag%3AqhAAAeSwrL5pk1Bl&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGYEPID3XybeDYfCUYp9PbYXLMdLSvS09pniI84n%2FWfNn7Sg8tVNkQ%2FHVzSIC2C64%2FVuRSdWXnTQwWh7XNnOJQzc%2FJ2ko3Ruyqef8Rr8XvQpD3SqiCKFi9AXox4hks8953q%2BQb7KPVJN10xxXvvx27uuxL8hHexaI2UTxcEuADopLK3ETQz%2B%2B9qUtkYkiWRZEIyA%2FVMTkxR6%2F0mSRiTGhYg8Zdhzpy0LmzNY1I23G3Db3OK%2BPeHMBlqdT4OaByLTNDjojpqYzZQlKuZO4RjE2fYwKRUkhqJcB8rxZmwTspdOXgLTdFAB%2FIrTrgXnBE289VjcKMHhxaSbhLOyYfCJd4sc&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 267578095089. Observed Manufacturer Part Number contains 43500. Observed title: 43500 Gates Water Pump New for Chrysler PT Cruiser Dodge Neon 2003-2005."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-2-0--2-0l-sohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-2-0--2-0l-sohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "48011",
+      "decision": "block_incomplete_scope",
+      "reason": "48011 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/336638902605?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Continental+48011+Engine+Timing+Belt+Tensioner&hash=item4e613e014d%3Ag%3AOTAAAeSwjwJqN%7EJ0&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 336638902605. Observed Manufacturer Part Number contains 48011. Observed title: Engine Timing Belt Tensioner Continental  48011."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-2-0--2-0l-sohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-2-0--2-0l-sohc-i4",
+      "model": "Neon",
+      "partIndex": 1,
+      "partNumber": "T43132",
+      "decision": "block_incomplete_scope",
+      "reason": "T43132 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/395524219230?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Gates+T43132+Engine+Timing+Belt+Tensioner&hash=item5c1714a15e%3Ag%3A-5IAAeSw2Zdomgmd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 395524219230. Observed title contains T43132. Observed title: Engine Timing Belt Tensioner Gates T43132."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-2-0--2-0l-dohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-2-0--2-0l-dohc-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "48011",
+      "decision": "block_incomplete_scope",
+      "reason": "48011 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/336638902605?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Continental+48011+Engine+Timing+Belt+Tensioner&hash=item4e613e014d%3Ag%3AOTAAAeSwjwJqN%7EJ0&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 336638902605. Observed Manufacturer Part Number contains 48011. Observed title: Engine Timing Belt Tensioner Continental  48011."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-2-0--2-0l-dohc-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-2-0--2-0l-dohc-i4",
+      "model": "Neon",
+      "partIndex": 1,
+      "partNumber": "T43132",
+      "decision": "block_incomplete_scope",
+      "reason": "T43132 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/395524219230?fits=Year%3A2000%7CEngine+-+Liter_Display%3A2.0L%7CModel%3ANeon%7CMake%3ADodge&_skw=2000+Dodge+Neon+2.0L+Gates+T43132+Engine+Timing+Belt+Tensioner&hash=item5c1714a15e%3Ag%3A-5IAAeSw2Zdomgmd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 395524219230. Observed title contains T43132. Observed title: Engine Timing Belt Tensioner Gates T43132."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-2-0--2-4l-turbo-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-2-0--2-4l-turbo-i4",
+      "model": "Neon",
+      "partIndex": 0,
+      "partNumber": "48012",
+      "decision": "block_incomplete_scope",
+      "reason": "48012 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/373746464290?fits=Year%3A2003%7CEngine+-+Liter_Display%3A2.4L%7CModel%3ANeon%7CMake%3ADodge&_skw=2003+Dodge+Neon+2.4L+Continental+48012+Engine+Timing+Belt+Tensioner&hash=item5705067622%3Ag%3APY8AAOSwOIhhXHkP&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 373746464290. Observed Manufacturer Part Number contains 48012. Observed title: Engine Timing Belt Tensioner - Goodyear Gatorback 48012."
+      }
+    },
+    {
+      "proposalId": "dodge-neon-timing-belt-2000--prescription-2-0--2-4l-turbo-i4",
+      "issueId": "dodge-neon-timing-belt-2000",
+      "workItemId": "dodge-neon-timing-belt-2000--prescription-2-0--2-4l-turbo-i4",
+      "model": "Neon",
+      "partIndex": 1,
+      "partNumber": "T43131",
+      "decision": "block_incomplete_scope",
+      "reason": "T43131 does not prove the complete timing-belt, water-pump, tensioner, and idler-pulley kit explicitly required by the article for this work item.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace timing belt, water pump, tensioner, and idler pulleys as complete kit: Gates PowerGrip TCKWP245B (2.0L SOHC) or TCKWP265C (2.4L SRT-4). Service interval: 100,000 miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/236803464875?fits=Year%3A2003%7CEngine+-+Liter_Display%3A2.4L%7CModel%3ANeon%7CMake%3ADodge&_skw=2003+Dodge+Neon+2.4L+Gates+T43131+Engine+Timing+Belt+Tensioner&hash=item3722961eab%3Ag%3APS4AAOSwyWZoU0bV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 236803464875. Observed title contains T43131. Observed title: Engine Timing Belt Tensioner Gates T43131."
+      }
+    },
+    {
+      "proposalId": "dodge-ram-3500-steering-linkage-2003--prescription-0-0--all-engines",
+      "issueId": "dodge-ram-3500-steering-linkage-2003",
+      "workItemId": "dodge-ram-3500-steering-linkage-2003--prescription-0-0--all-engines",
+      "model": "Ram 3500",
+      "partIndex": 0,
+      "partNumber": "TA5722",
+      "decision": "approve",
+      "reason": "TA5722 matches the article's prescribed tie rod ends role, has catalog-confirmed 2003-year/2004-year/2005-year/2006-year/2007-year/2008 fitment, and has one exact part-number product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the tie rod ends, drag link, and track bar bushing. Inspect the ball joints and unit bearings. An upgraded steering stabilizer helps dampen oscillation but does not fix worn linkage. Ensure front-end alignment is correct after repairs.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/188709426783?fits=Year%3A2003%7CModel%3ARam+3500%7CMake%3ADodge&_skw=2003+Dodge+Ram+3500+Delphi+TA5722+Steering+Tie+Rod+End+Assembly&hash=item2beff5565f%3Ag%3ArCwAAeSwpktpbAPX&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 188709426783. Observed title contains TA5722. Observed title: Delphi Steering Tie Rod End Assembly for 2500, 3500, Ram 2500, Ram 3500 TA5722."
+      }
+    }
+  ]
+}

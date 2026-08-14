@@ -65,7 +65,7 @@ function sha256File(file) {
 }
 
 function makeKey(value) {
-  return String(value || '').trim().toLocaleLowerCase('en-US');
+  return baseMakeSlug(value);
 }
 
 function compareText(left, right) {
@@ -193,6 +193,8 @@ function auditRow(record, canonicalDisposition) {
     dtcCodes,
     diagnosticDispositions: diagnosticDispositionsForIssue(solution, dtcCodes, {
       engines: sortedStrings(record?.engines ?? record?.vehicle?.engines),
+      make: recordMake(record),
+      years: sortedYears(record?.years ?? record?.vehicle?.years),
     }),
     existingCommerceClaimIds: sortedStrings((record?.claims || []).map((claim) => claim?.claimId)),
     disposition: canonicalDisposition.disposition,
@@ -331,15 +333,19 @@ function verifyDiskHashMap(hashMap, root, label) {
 }
 
 function requireCompleteCheckpoint(outputRoot, makeEntry, makes, snapshotHash, projectRoot = PROJECT_ROOT) {
-  const files = checkpointFiles(outputRoot, makeEntry, makes, snapshotHash);
-  if (!fs.existsSync(files.complete)) {
-    throw new Error(`Cannot audit a later make: ${makeEntry.make} has no COMPLETE checkpoint for snapshot ${snapshotHash}.`);
+  const preferred = checkpointFiles(outputRoot, makeEntry, makes, snapshotHash);
+  const makeDirectory = path.dirname(preferred.directory);
+  const candidates = [];
+  if (fs.existsSync(preferred.complete)) candidates.push(preferred);
+  if (fs.existsSync(makeDirectory)) {
+    for (const entry of fs.readdirSync(makeDirectory, { withFileTypes: true })) {
+      if (!entry.isDirectory() || !HASH_RE.test(entry.name) || entry.name === snapshotHash) continue;
+      const candidate = checkpointFiles(outputRoot, makeEntry, makes, entry.name);
+      if (fs.existsSync(candidate.complete)) candidates.push(candidate);
+    }
   }
-  let checkpoint;
-  try {
-    checkpoint = JSON.parse(fs.readFileSync(files.complete, 'utf8'));
-  } catch (error) {
-    throw new Error(`Cannot audit a later make: ${makeEntry.make} checkpoint is unreadable (${error.message}).`);
+  if (!candidates.length) {
+    throw new Error(`Cannot audit a later make: ${makeEntry.make} has no COMPLETE checkpoint for snapshot ${snapshotHash}.`);
   }
   const requiredArtifacts = [
     '00-make-source.json',
@@ -351,74 +357,81 @@ function requireCompleteCheckpoint(outputRoot, makeEntry, makes, snapshotHash, p
     '06-independent-review.json',
     '07-decision-patch.json',
     '08-guarded-manifest.json',
+    'reviewed-retailer-candidates.json',
     'classification-ledger.json',
     'checkpoint.json',
     'diagnostic-tool-evidence.json',
   ];
-  const artifactFiles = Object.keys(checkpoint.artifactSha256 || {}).sort(compareText);
   const expectedFiles = [...requiredArtifacts].sort(compareText);
-  const completionBody = { ...checkpoint };
-  delete completionBody.completionHash;
-  const completionHash = canonicalHash(completionBody);
-  const completionStateMatchesRelease = checkpoint.releaseBlocked === true
-    ? checkpoint.completionState === 'AUDIT_COMPLETE_RELEASE_BLOCKED'
-    : checkpoint.releaseBlocked === false
-      && checkpoint.completionState === 'AUDIT_COMPLETE_RELEASE_READY';
-  if (checkpoint.schemaVersion !== 2
-    || checkpoint.artifactKind !== 'known-issue-make-completion'
-    || checkpoint.status !== 'AUDIT_COMPLETE'
-    || checkpoint.auditComplete !== true
-    || !completionStateMatchesRelease
-    || checkpoint.snapshotHash !== snapshotHash
-    || checkpoint.makeKey !== makeEntry.key
-    || checkpoint.manifestFile !== '08-guarded-manifest.json'
-    || !HASH_RE.test(checkpoint.makeSourceHash || '')
-    || !HASH_RE.test(checkpoint.manifestHash || '')
-    || JSON.stringify(artifactFiles) !== JSON.stringify(expectedFiles)
-    || requiredArtifacts.some((file) => !HASH_RE.test(checkpoint.artifactSha256[file] || ''))
-    || checkpoint.artifactSha256['08-guarded-manifest.json'] !== checkpoint.manifestHash
-    || Object.keys(checkpoint.artifactSha256 || {}).some((file) => path.basename(file).toUpperCase() === 'COMPLETE.JSON')
-    || !HASH_RE.test(checkpoint.completionHash || '')
-    || checkpoint.completionHash !== completionHash
-    || checkpoint.diagnosticScope?.issueCount !== checkpoint.issueCount
-    || checkpoint.diagnosticScope?.uncoveredDiagnosticInstructionCount !== 0
-    || checkpoint.productionApplied !== false
-    || checkpoint.productionWriteAuthorized !== false) {
-    throw new Error(`Cannot audit a later make: ${makeEntry.make} checkpoint is not a valid COMPLETE checkpoint.`);
-  }
-  try {
-    assertExactImplementationHashMap(
-      checkpoint.diagnosticImplementationSha256,
-      DIAGNOSTIC_IMPLEMENTATION_FILES,
-      'diagnosticImplementationSha256',
-    );
-    assertExactImplementationHashMap(
-      checkpoint.commercePipelineImplementationSha256,
-      COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
-      'commercePipelineImplementationSha256',
-    );
-    verifyDiskHashMap(checkpoint.artifactSha256, files.directory, 'artifactSha256');
-    verifyDiskHashMap(checkpoint.diagnosticImplementationSha256, projectRoot, 'diagnosticImplementationSha256');
-    verifyDiskHashMap(
-      checkpoint.commercePipelineImplementationSha256,
-      projectRoot,
-      'commercePipelineImplementationSha256',
-    );
-    const source = JSON.parse(fs.readFileSync(
-      resolveBoundFile(files.directory, '00-make-source.json', 'make source'),
-      'utf8',
-    ));
-    const { makeSourceHash, ...sourceBody } = source;
-    if (hashValue(sourceBody) !== makeSourceHash
-      || source.snapshotHash !== checkpoint.snapshotHash
-      || makeSourceHash !== checkpoint.makeSourceHash
-      || makeKey(source.make) !== makeEntry.key
-      || source.makeKey !== makeEntry.key) {
-      throw new Error('make source binding drifted on disk.');
+  const failures = [];
+  for (const files of candidates) {
+    try {
+      const checkpoint = JSON.parse(fs.readFileSync(files.complete, 'utf8'));
+      const artifactFiles = Object.keys(checkpoint.artifactSha256 || {}).sort(compareText);
+      const completionBody = { ...checkpoint };
+      delete completionBody.completionHash;
+      const completionHash = canonicalHash(completionBody);
+      const completionStateMatchesRelease = checkpoint.releaseBlocked === true
+        ? checkpoint.completionState === 'AUDIT_COMPLETE_RELEASE_BLOCKED'
+        : checkpoint.releaseBlocked === false
+          && checkpoint.completionState === 'AUDIT_COMPLETE_RELEASE_READY';
+      if (checkpoint.schemaVersion !== 2
+        || checkpoint.artifactKind !== 'known-issue-make-completion'
+        || checkpoint.status !== 'AUDIT_COMPLETE'
+        || checkpoint.auditComplete !== true
+        || !completionStateMatchesRelease
+        || checkpoint.snapshotHash !== path.basename(files.directory)
+        || checkpoint.makeKey !== makeEntry.key
+        || checkpoint.manifestFile !== '08-guarded-manifest.json'
+        || !HASH_RE.test(checkpoint.makeSourceHash || '')
+        || !HASH_RE.test(checkpoint.manifestHash || '')
+        || JSON.stringify(artifactFiles) !== JSON.stringify(expectedFiles)
+        || requiredArtifacts.some((file) => !HASH_RE.test(checkpoint.artifactSha256[file] || ''))
+        || checkpoint.artifactSha256['08-guarded-manifest.json'] !== checkpoint.manifestHash
+        || Object.keys(checkpoint.artifactSha256 || {}).some((file) => path.basename(file).toUpperCase() === 'COMPLETE.JSON')
+        || !HASH_RE.test(checkpoint.completionHash || '')
+        || checkpoint.completionHash !== completionHash
+        || checkpoint.diagnosticScope?.issueCount !== checkpoint.issueCount
+        || checkpoint.diagnosticScope?.uncoveredDiagnosticInstructionCount !== 0
+        || checkpoint.productionApplied !== false
+        || checkpoint.productionWriteAuthorized !== false) {
+        throw new Error('checkpoint contract mismatch');
+      }
+      assertExactImplementationHashMap(
+        checkpoint.diagnosticImplementationSha256,
+        DIAGNOSTIC_IMPLEMENTATION_FILES,
+        'diagnosticImplementationSha256',
+      );
+      assertExactImplementationHashMap(
+        checkpoint.commercePipelineImplementationSha256,
+        COMMERCE_PIPELINE_IMPLEMENTATION_FILES,
+        'commercePipelineImplementationSha256',
+      );
+      verifyDiskHashMap(checkpoint.artifactSha256, files.directory, 'artifactSha256');
+      verifyDiskHashMap(checkpoint.diagnosticImplementationSha256, projectRoot, 'diagnosticImplementationSha256');
+      verifyDiskHashMap(
+        checkpoint.commercePipelineImplementationSha256,
+        projectRoot,
+        'commercePipelineImplementationSha256',
+      );
+      const source = JSON.parse(fs.readFileSync(
+        resolveBoundFile(files.directory, '00-make-source.json', 'make source'),
+        'utf8',
+      ));
+      const { makeSourceHash, ...sourceBody } = source;
+      if (hashValue(sourceBody) !== makeSourceHash
+        || source.snapshotHash !== checkpoint.snapshotHash
+        || makeSourceHash !== checkpoint.makeSourceHash
+        || makeKey(source.make) !== makeEntry.key
+        || source.makeKey !== makeEntry.key) {
+        throw new Error('make source binding drifted on disk');
+      }
+      return;
+    } catch (error) {
+      failures.push(`${path.basename(files.directory)}: ${error.message}`);
     }
-  } catch (error) {
-    throw new Error(`Cannot audit a later make: ${makeEntry.make} checkpoint bindings are stale (${error.message}).`);
   }
+  throw new Error(`Cannot audit a later make: ${makeEntry.make} checkpoint is not a valid COMPLETE checkpoint (${failures.join('; ')}).`);
 }
 
 function buildMakeLedger({ snapshot, snapshotHash, makeEntry, makeIndex, makes, canonicalDispositionLedger }) {

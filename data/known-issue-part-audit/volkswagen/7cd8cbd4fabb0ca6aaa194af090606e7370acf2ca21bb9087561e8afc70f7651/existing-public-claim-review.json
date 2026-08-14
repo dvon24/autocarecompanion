@@ -1,0 +1,141 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-existing-public-claim-review",
+  "make": "Volkswagen",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "status": "REVIEWED_NOT_APPLIED",
+  "productionApplied": false,
+  "releaseBlocked": true,
+  "verifiedPublicClaimCount": 4,
+  "tally": {
+    "preserve_safe_public": 0,
+    "preserve_recall_information": 0,
+    "block_unsafe_public": 4
+  },
+  "decisions": [
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "partIndex": 0,
+      "component": "CCTA complete water-pump, thermostat, and housing module",
+      "partNumbers": [
+        "06H121026ED"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/188268876267",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": true
+        },
+        {
+          "url": "https://vw.oempartsonline.com/oem-parts/volkswagen-water-pump-assembly-6h121026ed",
+          "vendor": "VW OEM Parts Online",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The CCTA 06H121026ED module is a plausible repair-role match and both destinations are exact product pages, but its 2009-2017/2018 Limited scope exists only in prose. The stored part has no enforceable fitment or variant scope, so it can be shown to redesigned 2018-2021 DGUA vehicles where it is not the stated part.",
+      "sourceEvidence": {
+        "title": "EA888 Water Pump and Thermostat Housing Failure",
+        "howToFix": "Begin with a cold cooling-system pressure test and trace the leak before replacing parts. Ask a Volkswagen dealer to check the VIN for any applicable water-pump warranty extension. For the CCTA engine, the current genuine complete module is 06H-121-026-ED. On the redesigned DGUA Tiguan, the current thermostat/housing is 06L-121-111-P, which supersedes 06L-121-111-J, while the separate mechanical pump is 06L-121-012-L. Replace only the component confirmed to have failed. Refill with Volkswagen-approved G12Evo service coolant and verify the required quantity and bleed procedure. Confirm the VIN, engine code, and 2018 model generation before ordering."
+      }
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "partIndex": 1,
+      "component": "DGUA thermostat and housing assembly",
+      "partNumbers": [
+        "06L121111P",
+        "06L121111J (superseded)",
+        "06L121111M (superseded)"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/127032283453",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": true
+        },
+        {
+          "url": "https://vw.oempartsonline.com/oem-parts/volkswagen-thermostat-unit-6l121111p",
+          "vendor": "VW OEM Parts Online",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped.",
+      "sourceEvidence": {
+        "title": "EA888 Water Pump and Thermostat Housing Failure",
+        "howToFix": "Begin with a cold cooling-system pressure test and trace the leak before replacing parts. Ask a Volkswagen dealer to check the VIN for any applicable water-pump warranty extension. For the CCTA engine, the current genuine complete module is 06H-121-026-ED. On the redesigned DGUA Tiguan, the current thermostat/housing is 06L-121-111-P, which supersedes 06L-121-111-J, while the separate mechanical pump is 06L-121-012-L. Replace only the component confirmed to have failed. Refill with Volkswagen-approved G12Evo service coolant and verify the required quantity and bleed procedure. Confirm the VIN, engine code, and 2018 model generation before ordering."
+      }
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "partIndex": 2,
+      "component": "DGUA mechanical water pump",
+      "partNumbers": [
+        "06L121012L"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/318449950490",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": true
+        },
+        {
+          "url": "https://vw.oempartsonline.com/oem-parts/volkswagen-water-pump-6l121012l",
+          "vendor": "VW OEM Parts Online",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The DGUA mechanical pump 06L121012L is distinct from the thermostat housing and appears to have exact eBay and OEM-retailer links, but the required redesigned 2018-2021 DGUA scope is not encoded in fitment. It can therefore be exposed to the earlier CCTA application and must be held until variant gating is enforceable.",
+      "sourceEvidence": {
+        "title": "EA888 Water Pump and Thermostat Housing Failure",
+        "howToFix": "Begin with a cold cooling-system pressure test and trace the leak before replacing parts. Ask a Volkswagen dealer to check the VIN for any applicable water-pump warranty extension. For the CCTA engine, the current genuine complete module is 06H-121-026-ED. On the redesigned DGUA Tiguan, the current thermostat/housing is 06L-121-111-P, which supersedes 06L-121-111-J, while the separate mechanical pump is 06L-121-012-L. Replace only the component confirmed to have failed. Refill with Volkswagen-approved G12Evo service coolant and verify the required quantity and bleed procedure. Confirm the VIN, engine code, and 2018 model generation before ordering."
+      }
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "partIndex": 3,
+      "component": "Volkswagen G12Evo 50/50 ready-to-use coolant",
+      "partNumbers": [
+        "G12E0501GRTU",
+        "G-12E-050-1G-RTU"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/297773016717",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": true
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "G12Evo coolant is a service fluid rather than proof of which failed component repairs this mixed-generation issue, and the existing card has no enforceable application or quantity scope. It should be handled by service-fluid guidance, not presented as an unscoped verified repair part for every Tiguan year in the article.",
+      "sourceEvidence": {
+        "title": "EA888 Water Pump and Thermostat Housing Failure",
+        "howToFix": "Begin with a cold cooling-system pressure test and trace the leak before replacing parts. Ask a Volkswagen dealer to check the VIN for any applicable water-pump warranty extension. For the CCTA engine, the current genuine complete module is 06H-121-026-ED. On the redesigned DGUA Tiguan, the current thermostat/housing is 06L-121-111-P, which supersedes 06L-121-111-J, while the separate mechanical pump is 06L-121-012-L. Replace only the component confirmed to have failed. Refill with Volkswagen-approved G12Evo service coolant and verify the required quantity and bleed procedure. Confirm the VIN, engine code, and 2018 model generation before ordering."
+      }
+    }
+  ]
+}

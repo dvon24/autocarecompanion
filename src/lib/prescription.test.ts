@@ -28,6 +28,73 @@ test('enumerates every owner-buyable component in one repair clause', () => {
     extractPrescribedParts('Replace the water pump, thermostat, and upper radiator hose.'),
     ['water pump', 'thermostat', 'upper radiator hose'],
   );
+  assert.deepEqual(
+    extractPrescribedParts('Replace upper and lower ball joints.'),
+    ['upper ball joints', 'lower ball joints'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the camshaft synchronizer assembly along with the camshaft position sensor.'),
+    ['camshaft synchronizer', 'camshaft position sensor'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the complete intake manifold assembly with the updated design, along with a new thermostat, intake gaskets, heater hose O-rings, and fresh coolant.'),
+    ['intake manifold', 'thermostat', 'intake gaskets', 'heater hose o-rings'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the complete intake manifold assembly with the updated design that uses an aluminum coolant crossover, along with a new thermostat, intake gaskets, heater hose O-rings, and fresh coolant.'),
+    ['intake manifold', 'thermostat', 'intake gaskets', 'heater hose o-rings'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the failed exterior and/or interior door handle with an upgraded handle.'),
+    ['exterior door handle', 'interior door handle'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the DPFE sensor with the updated Motorcraft plastic-body unit.'),
+    ['dpfe sensor'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Always replace transmission fluid and filter simultaneously.'),
+    ['filter'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Press in a new upper ball joint using a ball-joint press.'),
+    ['upper ball joint'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the thermostat every ~2 years.'),
+    ['thermostat'],
+  );
+  const sensor = extractPrescriptionComponents('If the Bank 2 downstream O2 sensor is sluggish, replace it first.');
+  assert.deepEqual(sensor.map((part) => part.component), ['bank 2 downstream o2 sensor']);
+  assert.ok(sensor[0]?.diagnosisDependent);
+  assert.deepEqual(
+    extractPrescribedParts('If fluid is burnt, the torque converter (and often the pump stator support bushing) needs replacement.'),
+    ['torque converter', 'pump stator support bushing'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Bolt-on front drum-to-disc kits add vented rotors and calipers.'),
+    ['bolt-on front drum-to-disc kits'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts("Many restorers also fit an external top-oiler kit and switch to non-tabbed aftermarket valve covers."),
+    ['external top-oiler kit', 'non-tabbed aftermarket valve covers'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Reseal the housing with fresh butyl tape.'),
+    ['butyl tape'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the degas bottle and cracked quick-connect fittings.'),
+    ['degas bottle', 'quick-connect fittings'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the plastic hydraulic clutch line with a braided stainless steel line.'),
+    ['braided stainless steel line'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the plastic hydraulic clutch line with a braided stainless steel line; some also remove or adjust the over-center assist spring. Persistent cases point to a failing concentric slave cylinder, which requires transmission removal to replace.'),
+    ['braided stainless steel line', 'concentric slave cylinder'],
+  );
 });
 
 test('keeps repair-role evidence and diagnosis conditions per component', () => {
@@ -250,6 +317,31 @@ test('fix and rebuild helper paths bind negation to their own action', () => {
   assert.deepEqual(extractPrescribedParts('Do not rebuild the transmission with new clutch packs.'), []);
 });
 
+test('captures the remaining Acura owner-buyable branches without turning prose into prescriptions', () => {
+  const boot = extractPrescriptionComponents(
+    'If the boot has just torn and no debris entered the joint, regreasing and rebooting can work — a $10 boot kit versus a $60 replacement axle.',
+  );
+  assert.deepEqual(boot.map((part) => part.component), ['boot kit']);
+  assert.equal(boot[0]?.diagnosisDependent, true);
+
+  assert.deepEqual(
+    extractPrescribedParts('Aftermarket intercooler upgrades significantly reduce heat soak on the 1.5T.'),
+    ['aftermarket intercooler'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Use the exact butyl tape (0.5mm) and EPT sealer (3.0mm) called out in the service manual, plus sealant #08712-0004.'),
+    ['exact butyl tape 0.5mm', 'ept sealer 3.0mm', 'sealant 08712-0004'],
+  );
+  const heatSink = extractPrescriptionComponents('Civic/Integra units may require heat sink #30121-PM5-A02 for correct fitment.');
+  assert.deepEqual(heatSink.map((part) => part.component), ['heat sink 30121-pm5-a02']);
+  assert.equal(heatSink[0]?.diagnosisDependent, true);
+
+  assert.deepEqual(extractPrescribedParts('Avoid replacing the water pump but replace the thermostat.'), ['thermostat']);
+  assert.deepEqual(extractPrescribedParts('Repairs may not involve replacing the water pump.'), []);
+  assert.deepEqual(extractPrescribedParts('The price to replace the water pump is $900.'), []);
+  assert.deepEqual(extractPrescribedParts('Most owners use a specialist for the install.'), []);
+});
+
 test('keeps modal and passive prescriptions conditional and rejects imperative negation', () => {
   for (const source of [
     'You may need to replace the water pump.',
@@ -322,4 +414,311 @@ test('does not return a one-word phrase, which is too vague to query', () => {
 test('de-duplicates repeated prescriptions', () => {
   const p = extractPrescribedParts('Replace the water pump. Later, replace the water pump again if it weeps.');
   assert.equal(p.filter((x) => x === 'water pump').length, 1);
+});
+
+test('captures every Challenger driveshaft and front-suspension repair branch', () => {
+  const driveshaft = extractPrescriptionComponents(
+    'Replace failed U-joints with high-strength units like Spicer SPL70 or SPL90. '
+    + 'For repeated failures, upgrade to an aftermarket one-piece aluminum driveshaft from DSS, The Driveshaft Shop, or Tom Woods ($600-1,200). '
+    + 'If drag racing or running 500+ HP, a carbon fiber driveshaft ($1,500-2,500) is recommended.',
+  );
+  assert.equal(driveshaft[0]?.component, 'u-joints');
+  assert.ok(driveshaft.some((part) => part.component === 'aftermarket one-piece aluminum driveshaft'));
+  assert.ok(driveshaft.some((part) => part.component === 'carbon fiber driveshaft' && part.diagnosisDependent));
+  assert.ok(!driveshaft.some((part) => part.component === 'driveshaft shop'));
+
+  const suspension = extractPrescribedParts(
+    'If links are worn, replace the front sway-bar end links. '
+    + 'For noise that remains after the links, replace worn outer tie-rod ends, front control-arm bushings, and/or ball joints as inspection dictates.',
+  );
+  assert.deepEqual(suspension, [
+    'front sway-bar end links',
+    'outer tie-rod ends',
+    'front control-arm bushings',
+    'ball joints',
+  ]);
+});
+
+test('captures explicit Ford fit, conversion, body, and service-part branches', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Fit a high-efficiency aluminum radiator sized for the Bronco V8. Pair it with a 16-inch electric fan and a proper shroud.'),
+    ['high-efficiency aluminum radiator', '16-inch electric fan', 'shroud'],
+  );
+  assert.deepEqual(extractPrescribedParts('Replace both rear shock absorbers as a pair.'), ['rear shock absorbers']);
+  assert.deepEqual(extractPrescribedParts('Replace the window regulator assembly.'), ['window regulator']);
+  assert.deepEqual(
+    extractPrescribedParts('Replace all three timing chains, guides, tensioners, and sprockets.'),
+    ['three timing chains', 'guides', 'tensioners', 'sprockets'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Convert to a modern one-wire alternator. Run a properly sized charge cable straight to the battery.'),
+    ['modern one-wire alternator'],
+  );
+  assert.deepEqual(extractPrescribedParts('Installing an oil catch can on the intake tract reduces future buildup.'), ['oil catch can']);
+  assert.deepEqual(extractPrescribedParts('Install a Time-Sert thread repair insert in the damaged cylinder head.'), ['time-sert thread repair insert']);
+  assert.deepEqual(extractPrescribedParts('Replace the EGR cooler. Upgrade kits are available.'), ['egr cooler', 'upgrade kits']);
+});
+
+test('keeps Ford required-replacement prose conditional only when the source is conditional', () => {
+  const conditional = extractPrescriptionComponents('In severe cases, torque converter replacement required under warranty.');
+  assert.deepEqual(conditional.map((part) => part.component), ['torque converter']);
+  assert.equal(conditional[0]?.diagnosisDependent, true);
+
+  const unconditional = extractPrescriptionComponents('Complete timing chain replacement required.');
+  assert.deepEqual(unconditional.map((part) => part.component), ['timing chain']);
+  assert.equal(unconditional[0]?.diagnosisDependent, false);
+
+  const phaser = extractPrescriptionComponents('If noise is excessive, cam phaser replacement may be needed.');
+  assert.deepEqual(phaser.map((part) => part.component), ['cam phaser']);
+  assert.equal(phaser[0]?.diagnosisDependent, true);
+});
+
+test('does not turn a feature or installation location into a second Ford part', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Replace the regulator assembly. Aftermarket regulators with metal gears are available.'),
+    ['regulator'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Install a steel thread insert in the damaged cylinder head. Preventive installation of inserts on all cylinders is recommended.'),
+    ['steel thread insert'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the failed exterior handle and free the linkage.'),
+    ['exterior handle'],
+  );
+  assert.deepEqual(extractPrescribedParts('Use top-tier gasoline which contains enhanced additives.'), []);
+  assert.deepEqual(extractPrescribedParts('The fastener may require an EZ-out or head removal.'), []);
+});
+
+test('normalizes Ford repair lists without losing the actual part roles', () => {
+  const modules = extractPrescriptionComponents('Persistent failures may require APIM or camera module diagnosis and replacement.');
+  assert.deepEqual(modules.map((part) => part.component), ['apim', 'camera module']);
+  assert.ok(modules.every((part) => part.diagnosisDependent));
+
+  assert.deepEqual(
+    extractPrescribedParts('Repairs may include replacing the cruise control cable, cleaning or replacing the throttle body, and adjusting or replacing the accelerator cable/linkage.'),
+    ['cruise control cable', 'throttle body', 'accelerator cable/linkage'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace worn steering/suspension parts: track-bar and radius-arm bushings, ball joints, and tie-rod ends.'),
+    ['track-bar bushings', 'radius-arm bushings', 'ball joints', 'tie-rod ends'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Both the upper and lower roller assemblies should be replaced together.'),
+    ['upper roller', 'lower roller'],
+  );
+  assert.deepEqual(extractPrescribedParts('Replace the in-tank pump/sender module.'), ['in-tank pump/sender module']);
+  assert.deepEqual(extractPrescribedParts('Replace the exhaust flex pipe section.'), ['exhaust flex pipe section']);
+  assert.deepEqual(extractPrescribedParts('Replace the rear liftgate harness section.'), ['rear liftgate harness section']);
+  assert.deepEqual(extractPrescribedParts('Replace the instrument cluster assembly.'), ['instrument cluster']);
+});
+
+test('captures explicitly offered and functional Ford repair options', () => {
+  const kit = extractPrescriptionComponents('A thread repair kit can permanently restore the damaged threads.');
+  assert.deepEqual(kit.map((part) => part.component), ['thread repair kit']);
+  assert.equal(kit[0]?.diagnosisDependent, true);
+
+  assert.deepEqual(
+    extractPrescribedParts('Aftermarket auto start-stop eliminator devices are available that remember your preference.'),
+    ['aftermarket auto start-stop eliminator devices'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Aftermarket rebuilt rear axle assemblies are available and can be more economical.'),
+    ['aftermarket rebuilt rear axle'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Aftermarket latch assemblies are also available if out of recall coverage.'),
+    ['aftermarket latch'],
+  );
+  const heater = extractPrescriptionComponents('Consider an engine block heater to reduce cold-start enrichment.');
+  assert.deepEqual(heater.map((part) => part.component), ['engine block heater']);
+  assert.equal(heater[0]?.diagnosisDependent, true);
+
+  assert.deepEqual(extractPrescribedParts('Replace engine long block.'), ['engine long block']);
+  assert.deepEqual(extractPrescribedParts('Replace broken exhaust manifold studs.'), ['exhaust manifold studs']);
+  assert.deepEqual(extractPrescribedParts('Mechanics recommend replacing the wet belt preventively.'), ['wet belt']);
+  assert.deepEqual(extractPrescribedParts('Always install the updated one-piece Motorcraft replacement plug.'), ['one-piece motorcraft plug']);
+  assert.deepEqual(extractPrescribedParts('Ford sells a winter charge-port cover accessory.'), ['winter charge-port cover accessory']);
+  assert.deepEqual(extractPrescribedParts('Replace Firestone ATX Wilderness AT tires immediately.'), ['firestone atx wilderness at tires']);
+  assert.deepEqual(extractPrescribedParts('Installs a revised oil level dipstick.'), ['oil level dipstick']);
+
+  const converter = extractPrescriptionComponents('In severe cases, torque converter replacement may be necessary.');
+  assert.deepEqual(converter.map((part) => part.component), ['torque converter']);
+  assert.equal(converter[0]?.diagnosisDependent, true);
+
+  const axle = extractPrescriptionComponents('If the fluid does not resolve it, rear axle assembly replacement under warranty.');
+  assert.deepEqual(axle.map((part) => part.component), ['rear axle']);
+  assert.equal(axle[0]?.diagnosisDependent, true);
+
+  assert.deepEqual(
+    extractPrescribedParts('The accepted repair is a remanufactured head with updated valve seats.'),
+    ['remanufactured head'],
+  );
+  assert.deepEqual(extractPrescribedParts('The price of water pump replacement is $900.'), []);
+  assert.deepEqual(extractPrescribedParts('Pump replacement cost is $500.'), []);
+  assert.deepEqual(extractPrescribedParts('Ford agreed to cover replacement under warranty.'), []);
+  assert.deepEqual(extractPrescribedParts('Valve body replacement is needed in severe cases.'), ['valve body']);
+  assert.deepEqual(extractPrescribedParts('Torque converter replacement may be required.'), ['torque converter']);
+  assert.deepEqual(extractPrescribedParts('Reference the TSB for synchronizer ring replacement.'), ['synchronizer ring']);
+  assert.deepEqual(extractPrescribedParts('VCT solenoid replacement may help.'), ['vct solenoid']);
+  assert.deepEqual(
+    extractPrescribedParts('Ford covers short block and head gasket replacement under warranty.'),
+    ['short block', 'head gasket'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Repairs range from head gasket and cylinder head replacement to complete long-block replacement depending on severity.'),
+    ['head gasket', 'cylinder head', 'long block'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts("Install a cam phaser lockout kit that replaces the moving vanes with solid blocks, fixing valve timing."),
+    ['cam phaser lockout kit'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Cleaning intake-valve carbon can reduce consumption.'),
+    [],
+  );
+});
+
+test('captures Ford replacement-with, passive, failed-part, and repair-with branches', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Free replacement with MIC 2.0 hardtop under warranty.'),
+    ['mic 2.0 hardtop'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Complete soft top replacement under warranty for severe cases.'),
+    ['soft top'],
+  );
+  assert.deepEqual(extractPrescribedParts('A failed PTU must be replaced.'), ['ptu']);
+  assert.deepEqual(
+    extractPrescribedParts('If the rack itself has failed, replacement is necessary.'),
+    ['rack'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('The APIM is replaced under the extended warranty.'),
+    ['apim'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('The shift motor is the most commonly replaced component.'),
+    ['shift motor'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Repair the stripped port with a heli-coil-style thread insert designed for the job.'),
+    ['heli-coil-style thread insert'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replacement with an AGM battery has resolved the issue for many owners.'),
+    ['agm battery'],
+  );
+  assert.deepEqual(extractPrescribedParts('The damaged panel is replaced per the TSB.'), ['panel']);
+  assert.deepEqual(extractPrescribedParts('Some owners have had entire axle assemblies replaced.'), ['axle']);
+  assert.deepEqual(extractPrescribedParts('The APIM, which is replaced and reprogrammed at a dealer.'), ['apim']);
+  assert.deepEqual(extractPrescribedParts('Persistently weak batteries are replaced under warranty.'), ['batteries']);
+  assert.deepEqual(
+    extractPrescribedParts('Perforated subframes must be replaced with a sound used or new cradle.'),
+    ['subframes'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replacement cameras cost $100-300 for aftermarket or $200-400 for OEM.'),
+    ['cameras'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Aftermarket remanufactured battery packs are cheaper than dealer replacement.'),
+    ['aftermarket remanufactured battery packs'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Individual cell replacement at specialized hybrid shops is an option.'),
+    ['individual cell'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Severe cases involve PCV/valve-guide or short-block work.'),
+    ['pcv/valve guide', 'short block'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Advanced perforation usually requires frame section repair, shackle mount repair kits, or vehicle retirement.'),
+    ['shackle mount repair kits'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the distributor assembly. Remanufactured units are available. Ensure the O-ring seal is replaced.'),
+    ['distributor', 'o-ring seal'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('First, identify which actuator has failed. RepairPal estimates professional replacement.'),
+    ['actuator'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('The steering column assembly with motor costs $400-$800 for the part.'),
+    ['steering column'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Persistent freezing traces to a failing APIM, which is replaced and reprogrammed at a dealer.'),
+    ['apim'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Many owners retrofit later software or a replacement APIM.'),
+    ['apim'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Inspect hydraulic lines, cylinders, and the pump for leaks. Replace failed components.'),
+    ['hydraulic lines', 'cylinders', 'pump'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Common repairs are the low/reverse sprag, reverse/forward clutch packs, and valve-body/EPC solenoid rebuild.'),
+    ['low/reverse sprag', 'reverse/forward clutch packs', 'valve body/epc solenoid'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Surface rocker rust can be patched with reproduction repair panels.'),
+    ['reproduction repair panels'],
+  );
+  assert.deepEqual(extractPrescribedParts('Maintain oil changes and consider an oil catch can.'), ['oil catch can']);
+  assert.deepEqual(
+    extractPrescribedParts('Refresh the cooling system proactively: thermostat, radiator cap, water pump, hoses, and radiator as needed.'),
+    ['thermostat', 'radiator cap', 'water pump', 'hoses', 'radiator'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('DIY fix involves applying clear RTV silicone along the seam.'),
+    ['clear rtv silicone'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Confirmed head-gasket failure requires head removal, resurfacing check, and new gaskets.'),
+    ['gaskets'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Seal all roof plug holes with Dicor lap sealant or Eternabond RV roof tape.'),
+    ['dicor lap sealant', 'eternabond rv roof tape'],
+  );
+});
+
+test('captures Ford proactive, conditional software, and plural failed-component branches', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Have the oil pump belt and tensioner inspected. Replace the tensioner proactively at 60,000-80,000 miles.'),
+    ['tensioner'],
+  );
+  assert.deepEqual(extractPrescribedParts('Replace the 12V battery proactively every 3-4 years.'), ['12v battery']);
+  const tune = extractPrescriptionComponents('Aftermarket tune (SCT, Lund Racing) can address cold-start calibration but voids the warranty.');
+  assert.deepEqual(tune.map((part) => part.component), ['aftermarket tune']);
+  assert.equal(tune[0]?.diagnosisDependent, true);
+  const hydraulic = extractPrescriptionComponents('Inspect hydraulic lines, cylinders, and the pump for leaks. Replace failed components.');
+  assert.deepEqual(hydraulic.map((part) => part.component), ['hydraulic lines', 'cylinders', 'pump']);
+  assert.ok(hydraulic.every((part) => part.diagnosisDependent && part.condition === 'confirmed component failure'));
+  const cruise = extractPrescriptionComponents('Inspect the switch and connector. If the switch or connector shows heat damage, replace the affected components.');
+  assert.deepEqual(cruise.map((part) => part.component), ['switch', 'connector']);
+  assert.ok(cruise.every((part) => part.diagnosisDependent));
+  const catchCan = extractPrescriptionComponents('Reduce future buildup by fitting an oil catch can, using low-NOACK oil, and keeping up with oil changes.');
+  assert.deepEqual(catchCan.map((part) => part.component), ['oil catch can']);
+  assert.equal(catchCan[0]?.condition, 'optional prevention branch');
+});
+
+test('keeps integrated assembly qualifiers out of the part list and prefers exact material dimensions', () => {
+  assert.deepEqual(
+    extractPrescribedParts('Use a genuine Honda/Acura replacement hose with updated crimp fittings.'),
+    ['honda/acura hose'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Replace the high-pressure power steering hose assembly. Use a genuine Honda/Acura replacement hose with updated crimp fittings.'),
+    ['high-pressure power steering hose'],
+  );
+  assert.deepEqual(
+    extractPrescribedParts('Use the exact butyl tape (0.5mm) and EPT sealer (3.0mm) called out in the service manual, plus sealant #08712-0004. Most owners use a specialist for the install.'),
+    ['exact butyl tape 0.5mm', 'ept sealer 3.0mm', 'sealant 08712-0004'],
+  );
 });

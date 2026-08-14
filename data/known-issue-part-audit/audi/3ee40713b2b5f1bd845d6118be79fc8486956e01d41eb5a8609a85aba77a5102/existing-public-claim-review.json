@@ -1,0 +1,330 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-existing-public-claim-review",
+  "make": "Audi",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "status": "REVIEWED_NOT_APPLIED",
+  "productionApplied": false,
+  "releaseBlocked": true,
+  "verifiedPublicClaimCount": 15,
+  "tally": {
+    "preserve_safe_public": 1,
+    "preserve_recall_information": 6,
+    "block_unsafe_public": 8
+  },
+  "decisions": [
+    {
+      "issueId": "audi-a6-27t-ignition-coil-pack-2000",
+      "partIndex": 0,
+      "component": "APB engine ignition coil (confirmed failed cylinder only)",
+      "partNumbers": [
+        "058905105"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ecstuning.com/b-beru-parts/ignition-coil-priced-each/058905105~beu/",
+          "vendor": "ECS Tuning",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The APB coil is currently unscoped and can render for the later BEL engine even though the article requires engine-code confirmation and replacement only after a coil-swap diagnosis.",
+      "sourceEvidence": {
+        "title": "Cylinder Misfire Diagnosis and Ignition-Coil Failure — 2.7T APB/BEL",
+        "howToFix": "Read and record the cylinder-specific faults, inspect the spark plug and connector, then swap the suspect coil with a known-good cylinder. Replace a coil only if the misfire follows it; otherwise continue diagnosing the plug, injector, wiring, compression, or another cause. Confirm APB versus BEL by the engine-code label or VIN before ordering. One failed cylinder needs one coil. Six coils are installed, but replacing all six is optional maintenance, not the diagnostic conclusion."
+      }
+    },
+    {
+      "issueId": "audi-a6-27t-ignition-coil-pack-2000",
+      "partIndex": 1,
+      "component": "BEL engine ignition coil (confirmed failed cylinder only)",
+      "partNumbers": [
+        "06A905115D"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The BEL coil is currently unscoped and can render for the APB engine; it also requires a confirmed failed-cylinder diagnosis before purchase.",
+      "sourceEvidence": {
+        "title": "Cylinder Misfire Diagnosis and Ignition-Coil Failure — 2.7T APB/BEL",
+        "howToFix": "Read and record the cylinder-specific faults, inspect the spark plug and connector, then swap the suspect coil with a known-good cylinder. Replace a coil only if the misfire follows it; otherwise continue diagnosing the plug, injector, wiring, compression, or another cause. Confirm APB versus BEL by the engine-code label or VIN before ordering. One failed cylinder needs one coil. Six coils are installed, but replacing all six is optional maintenance, not the diagnostic conclusion."
+      }
+    },
+    {
+      "issueId": "audi-a6-28-v6-timing-belt-interference-failure",
+      "partIndex": 0,
+      "component": "Gates timing-belt kit with water pump for 1999 A6/A6 Quattro 2.8L",
+      "partNumbers": [
+        "Gates TCKWP297",
+        "Dayco WP297K1A",
+        "Continental PP297LK1"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/133866853021",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The live kit has no enforceable 1999-only fitment even though the article explicitly limits the confirmed Gates application and requires engine/VIN and service-history checks.",
+      "sourceEvidence": {
+        "title": "1999 A6 2.8L AHA Timing-Belt Service and Interference-Engine Risk",
+        "howToFix": "Verify the engine code and timing-belt service history before ordering. If the history is unknown, the belt is contaminated or damaged, the water pump leaks, or a qualified technician determines service is due, replace the belt as a coordinated service with the correct tensioning components and water pump rather than buying only a loose belt. Follow the AHA factory procedure for service position, cam/crank alignment, tensioning, torque, coolant refill, and final timing-mark verification; rotate the engine by hand as the procedure requires before starting. For the exact 1999 A6/A6 Quattro 2.8L application, Gates TCKWP297 is a catalog-confirmed quantity-one timing-belt kit with water pump. Confirm the VIN/engine and the box contents before installation. If the belt has already jumped or broken, test compression and mechanical timing before buying a maintenance kit because cylinder-head repair may also be required."
+      }
+    },
+    {
+      "issueId": "audi-a6-48v-mild-hybrid-2019",
+      "partIndex": 0,
+      "component": "48V belt starter generator and campaign hardware (VIN-specific dealer selection)",
+      "partNumbers": [],
+      "currentFitment": {},
+      "currentBuyLinks": [],
+      "recallFirst": true,
+      "verdict": "preserve_recall_information",
+      "reason": "This recall-first record has no retail link and explicitly directs VIN-specific dealer selection; preserving the information cannot create a buy button.",
+      "sourceEvidence": {
+        "title": "48V Belt Starter-Generator Warning and VIN-Specific Campaigns",
+        "howToFix": "Check the VIN with Audi for open 27H2, 20V-153, or 27BQ work before authorizing parts. Follow Audi's safety instructions for an open fire-risk campaign and have the dealer perform the remedy. For a warning outside an open campaign, use Audi ODIS-guided diagnosis and preserve the complete code, symptom number, and actual mode. U046900 or P0CA700 alone is not permission to order a starter generator. Audi must select the correct starter-alternator suffix and associated hardware by VIN and guided-test result. Do not buy any of the former Optima, ACDelco, Battery Tender, Denso, or Remy 12V products for this 48V fault."
+      }
+    },
+    {
+      "issueId": "audi-a6-electrical-issues-2005",
+      "partIndex": 0,
+      "component": "Genuine Audi front-left window regulator, motor not included",
+      "partNumbers": [
+        "4F0837461D",
+        "4F0837461C (previous revision)"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/353221471447",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        },
+        {
+          "url": "https://www.fcpeuro.com/products/audi-window-regulator-front-left-a6-quattro-a6-s6-vag-4f0837461d",
+          "vendor": "FCP Euro",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The front-left regulator links are unconditional and unscoped while the article requires fault isolation, exact door position, and VIN confirmation before ordering.",
+      "sourceEvidence": {
+        "title": "C6 A6 Front-Left Window Regulator Mechanical Failure",
+        "howToFix": "Confirm the failed function before ordering. If the glass still moves normally but one-touch operation is lost, perform the factory window base-position initialization. If the motor is silent, diagnose the fuse, switch, wiring, door control module, and motor. If the motor runs or the glass tilts, drops, binds, or makes cable/grinding noise, remove the door trim and inspect the front-left regulator, guides, and glass attachment. Replace the regulator only when its cable, pulley, rail, or carrier is damaged. Genuine Audi 4F0837461D is the front-left regulator and does not include the motor; transfer a known-good motor and follow the factory frame/glass alignment procedure. Confirm the VIN and left-front door position before ordering, reconnect the system safely because a side-airbag sensor is present in the door, and initialize one-touch/pinch-protection operation after installation."
+      }
+    },
+    {
+      "issueId": "audi-a6-front-suspension-multi-link-control-2000",
+      "partIndex": 0,
+      "component": "Delphi TC1400KIT complete front suspension control-arm kit",
+      "partNumbers": [
+        "Delphi TC1400KIT"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/388882205170",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The complete kit is unscoped in the live record although the reviewed application is only 1998-2001 and a full kit is appropriate only when inspection finds multiple worn components.",
+      "sourceEvidence": {
+        "title": "C5 A6 Front Multi-Link Ball-Joint and Bushing Wear",
+        "howToFix": "Road-test the vehicle and inspect every front link rather than ordering from the noise alone. Check ball-joint boots for damage or grease loss, check tie-rod and control-arm joints for visible or felt play using the factory procedure, and inspect bonded bushings for tearing, separation, or leakage. Replace the failed arm or link and any required one-time-use fasteners; replacing a complete set is reasonable only when inspection shows multiple worn components or when the owner deliberately chooses a full front refresh. Final-tighten bonded-rubber-bushing fasteners in the factory curb-weight/control position and perform or verify a wheel alignment after the repair. The linked Delphi TC1400KIT is a quantity-one complete front kit confirmed by Delphi and ShowMeTheParts only for 1998-2001 A6 and A6 Quattro applications. It is not verified here for 2002-2004 cars or the allroad, and those vehicles require VIN- and position-specific catalog selection."
+      }
+    },
+    {
+      "issueId": "audi-a6-gateway-module-liquid-2019",
+      "partIndex": 0,
+      "component": "Gateway control module protective-cover recall remedy",
+      "partNumbers": [],
+      "currentFitment": {},
+      "currentBuyLinks": [],
+      "recallFirst": true,
+      "verdict": "preserve_recall_information",
+      "reason": "This recall-first protective-cover remedy carries no retail link and tells the owner not to buy a gateway module or scanner as the recall fix.",
+      "sourceEvidence": {
+        "title": "Gateway Control Module Liquid-Ingress Recall 90V2 (22V-861)",
+        "howToFix": "Check the VIN in Audi's official recall lookup and have an authorized Audi dealer complete campaign 90V2 if it is open. The recall remedy is installation of a protective cover over the gateway control module at no charge. Do not buy a scanner, repair manual, or replacement gateway module as the recall fix. If warning messages or sudden reduced power occur, move out of traffic safely and arrange prompt dealer diagnosis; a module already affected by liquid requires vehicle-specific diagnosis and campaign or warranty handling."
+      }
+    },
+    {
+      "issueId": "audi-a6-headlight-switch-wiring-fire-recall",
+      "partIndex": 0,
+      "component": "Headlight-switch wiring recall remedy (JC or JN campaign-dependent)",
+      "partNumbers": [],
+      "currentFitment": {},
+      "currentBuyLinks": [],
+      "recallFirst": true,
+      "verdict": "preserve_recall_information",
+      "reason": "This recall-first dealer-remedy record contains no retail destination and preserves the VIN/campaign safety instruction.",
+      "sourceEvidence": {
+        "title": "Headlight-Switch Wiring Fire Recalls JC and JN",
+        "howToFix": "Check the VIN with Audi and have every open JC or JN campaign completed by an authorized dealer at no charge. The JC procedure installs protective material at the crossmember and inspects the wiring harness; the JN procedure reroutes the circuit with a jumper wiring harness. Do not buy a switch or generic harness as a substitute for the campaign remedy. If there is a burning-plastic odor, smoke, heat, or headlight-switch malfunction, stop safely, switch the vehicle off, exit, and contact emergency services if fire or smoke is present."
+      }
+    },
+    {
+      "issueId": "audi-a6-mmi-failure-2019",
+      "partIndex": 0,
+      "component": "Top MMI display and operating unit",
+      "partNumbers": [],
+      "currentFitment": {},
+      "currentBuyLinks": [],
+      "recallFirst": false,
+      "verdict": "preserve_safe_public",
+      "reason": "The record exposes no product link or universal part number and expressly requires VIN-specific ETKA selection after guided diagnosis, so it remains informational only.",
+      "sourceEvidence": {
+        "title": "2019 MIB2+ Lower MMI/HVAC Display Distortion or Flicker",
+        "howToFix": "Confirm that the vehicle is a 2019 A6 with MIB2+ and that the symptom matches the lower-screen distortion/flicker described in Audi TSB 2053875/1. Scan address 005F for U10E300 and complete Audi's guided diagnosis. For the documented condition, the TSB directs the technician to replace the top display and operating unit in the instrument panel. Audi instructs the parts department to use current ETKA information, including supersessions, so there is no safe universal part number or retail link for this record; select the unit by VIN. Other black-screen, reboot, camera, connectivity, or control faults require their own diagnosis rather than automatic display replacement."
+      }
+    },
+    {
+      "issueId": "audi-a6-pcv-valve-failure-2012",
+      "partIndex": 0,
+      "component": "Pressure-regulating valve repair kit",
+      "partNumbers": [
+        "06H198542A"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [],
+      "recallFirst": true,
+      "verdict": "preserve_recall_information",
+      "reason": "This recall-first service-action record has no retail link and limits the repair kit to the campaign inspection result rather than presenting blanket commerce.",
+      "sourceEvidence": {
+        "title": "Crankcase Pressure-Regulating Valve Service Action 17F9 (2.0T)",
+        "howToFix": "Check the VIN with Audi and ask whether service action 17F9 is applicable or already complete. The Audi procedure inspects the pressure-regulating valve and, when the inspection calls for it, installs repair kit 06H198542A. Do not order the former 06H103495AK search result, Dorman diaphragm, 3.0T valve-cover assembly, or catch can as the campaign remedy. A 3.0T A6 or a vehicle with ongoing drivability or oil-consumption symptoms requires a separate engine-specific diagnosis."
+      }
+    },
+    {
+      "issueId": "audi-a6-tie-rod-end-seal-failure-recall",
+      "partIndex": 0,
+      "component": "Tie-rod recall remedy (VIN and inspection determine the required assemblies)",
+      "partNumbers": [],
+      "currentFitment": {},
+      "currentBuyLinks": [],
+      "recallFirst": true,
+      "verdict": "preserve_recall_information",
+      "reason": "This recall-first record has no generic retail part or link and correctly requires VIN, steering-configuration, and dealer campaign selection.",
+      "sourceEvidence": {
+        "title": "Tie-Rod Seal Failure Recalls 99V-248 and 00V-414",
+        "howToFix": "Check the VIN with NHTSA and Audi for open recall 99V-248 or 00V-414 work and have an authorized dealer perform any open remedy at no charge. The recall history involves tie-rod replacement, not one generic retail outer end. If no campaign is open but looseness or boot damage is present, have a qualified shop inspect the complete inner and outer tie-rod assemblies on both sides, select the correct updated parts by VIN and steering configuration, replace only after diagnosis, and perform a wheel alignment. Do not drive a vehicle with measurable steering play until it is judged safe."
+      }
+    },
+    {
+      "issueId": "audi-a6-timing-chain-tensioner-2005",
+      "partIndex": 0,
+      "component": "Bank 2 (left) upper timing-chain tensioner",
+      "partNumbers": [
+        "06E109217AM",
+        "06E109217AH"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ecstuning.com/b-genuine-volkswagen-audi-parts/tensioner/06e109217am/",
+          "vendor": "ECS Tuning",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The bank-2 tensioner is currently unscoped despite a TSB-specific 2012-2015 condition and the requirement to replace both upper tensioners after confirming the exact symptom.",
+      "sourceEvidence": {
+        "title": "Brief Cold-Start Timing-Chain Rattle — C7 3.0 TFSI Upper Tensioners",
+        "howToFix": "First confirm that the complaint exactly matches the TSB: a one-to-three-second rattle on the first start of the day that stops as oil pressure builds. Confirm a 2012-2015 C7 A6, VIN, build date, and engine before ordering. For the TSB condition, replace both upper timing-chain tensioners: bank 2 or left uses current part 06E109217AM, superseding the TSB's 06E109217AH; bank 1 or right uses current part 06E109218AP, superseding 06E109218AJ. A 2011 A6 requires a VIN-specific Audi catalog lookup before part selection. Persistent warm-engine rattle, rough running, no-start, or cam-crank correlation faults do not match this TSB and require a separate timing-system diagnosis before parts are ordered."
+      }
+    },
+    {
+      "issueId": "audi-a6-timing-chain-tensioner-2005",
+      "partIndex": 1,
+      "component": "Bank 1 (right) upper timing-chain tensioner",
+      "partNumbers": [
+        "06E109218AP",
+        "06E109218AJ"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ecstuning.com/b-genuine-volkswagen-audi-parts/tensioner/06e109218ap/",
+          "vendor": "ECS Tuning",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The bank-1 tensioner is currently unscoped despite a TSB-specific 2012-2015 condition and the requirement to replace both upper tensioners after confirming the exact symptom.",
+      "sourceEvidence": {
+        "title": "Brief Cold-Start Timing-Chain Rattle — C7 3.0 TFSI Upper Tensioners",
+        "howToFix": "First confirm that the complaint exactly matches the TSB: a one-to-three-second rattle on the first start of the day that stops as oil pressure builds. Confirm a 2012-2015 C7 A6, VIN, build date, and engine before ordering. For the TSB condition, replace both upper timing-chain tensioners: bank 2 or left uses current part 06E109217AM, superseding the TSB's 06E109217AH; bank 1 or right uses current part 06E109218AP, superseding 06E109218AJ. A 2011 A6 requires a VIN-specific Audi catalog lookup before part selection. Persistent warm-engine rattle, rough running, no-start, or cam-crank correlation faults do not match this TSB and require a separate timing-system diagnosis before parts are ordered."
+      }
+    },
+    {
+      "issueId": "audi-a6-water-pump-failure-2005",
+      "partIndex": 0,
+      "component": "Beck/Arnley 131-2517 main engine water pump",
+      "partNumbers": [
+        "Beck/Arnley 131-2517"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/406894659815",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true,
+          "affiliate": false
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The live pump has no enforceable 2020-2024 A6 Quattro 2.0L scope and the article requires confirming that the recurring leak is from the main pump before purchase.",
+      "sourceEvidence": {
+        "title": "2020-2024 A6 2.0T Coolant-Pump Leak - Confirm Before Replacement",
+        "howToFix": "Follow Audi's diagnosis before ordering a pump: document the suspected leak, clean and dry the area, fill the cooling system to the maximum mark, drive a few miles, and inspect it again. If no leak returns, continue to observe without replacing parts. If the leak returns and is assigned to the main coolant pump, replace the component that is actually leaking. Confirm the vehicle is an A6 Quattro 2.0L and verify the current fitment by VIN before ordering; Audi also instructs technicians to check current ETKA and supersession information. The linked Beck/Arnley 131-2517 is a quantity-one main engine water-pump candidate verified by the ShowMeTheParts catalog for each 2020-2024 A6 Quattro 2.0L year. It is not the auxiliary HVAC pump and is not a diagnosis for every coolant warning."
+      }
+    },
+    {
+      "issueId": "audi-s8-turbo-oil-strainer-2013",
+      "partIndex": 0,
+      "component": "Turbocharger oil supply strainer (Revision G)",
+      "partNumbers": [
+        "079115175G"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [],
+      "recallFirst": true,
+      "verdict": "preserve_recall_information",
+      "reason": "This recall-first oil-strainer remedy has no retail link and correctly directs the owner to the free Audi campaign and extended-warranty path.",
+      "sourceEvidence": {
+        "title": "Turbocharger Oil Strainer Blockage and Engine Stall (4.0T NHTSA Recall)",
+        "howToFix": "RECALL REPAIR (FREE): Contact Audi dealer immediately for NHTSA Recall 22V178 (Audi recall 21H7). Dealer replaces oil strainer with updated larger-mesh version. WARRANTY EXTENSION: Turbocharger warranty extended to 10 years/120,000 miles. If turbo already damaged, contact Audi for warranty claim. TURBO REPLACEMENT: If turbocharger(s) damaged beyond recall coverage, expect $5,000-$10,000 per turbo ($10,000-$20,000 for pair on S8). PREVENTION: Premium 5W-40 synthetic oil changed every 5,000 miles. Never exceed 7,500-mile oil change intervals on the 4.0T."
+      }
+    }
+  ]
+}

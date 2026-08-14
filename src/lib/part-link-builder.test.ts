@@ -99,7 +99,7 @@ test('returns one link per vendor, not several from the same one', async () => {
     { partNumber: '11340054492' },
     [resolverReturning([
       { vendor: 'eBay', url: ebayUrl },
-      { vendor: 'eBay', url: 'https://www.ebay.com/itm/277072199375' },
+      { vendor: 'eBay.com', url: 'https://www.ebay.com/itm/277072199375' },
       { vendor: 'BMW Parts Deal', url: retailerUrl },
     ])],
   );

@@ -1,0 +1,1497 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Saturn",
+  "makeKey": "saturn",
+  "makeIndex": 44,
+  "totalMakes": 54,
+  "issueCount": 37,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 14,
+    "diagnosis-dependent": 10,
+    "recall/dealer": 8,
+    "service/tool/fluid": 2,
+    "no-commerce": 3
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 12,
+    "uniqueDtcCount": 25,
+    "instructionCount": 26,
+    "dtcDispositionCount": 12,
+    "toolLinkedCount": 12,
+    "procedureNoToolCount": 24,
+    "unresolvedToolHoldCount": 2
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "saturn-astra-1.8-timing-chain",
+      "make": "Saturn",
+      "model": "Astra",
+      "years": [
+        2008,
+        2009
+      ],
+      "trims": [
+        "XE 3-door",
+        "XE 5-door",
+        "XR 3-door",
+        "XR 5-door"
+      ],
+      "engines": [
+        "1.8L Z18XER"
+      ],
+      "title": "Astra 1.8L Z18XER Water Pump / Timing Chain Wear",
+      "howToFix": "Replace water pump WITH timing chain kit as preventive service ($1,200-$2,000 at independent specialist). Parts may need to be sourced through Opel/Vauxhall channels (UK, Germany). Catastrophic pump seize means head rebuild ($3,500+). Do not delay if there is any whining or coolant weep from the front of the engine.",
+      "dtcCodes": [
+        "P0008",
+        "P0016",
+        "P0335"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0016, P0335"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-astra-1-8-timing-chain--prescription-0-0--1-8l-z18xer"
+      ]
+    },
+    {
+      "issueId": "saturn-aura-2-4l-ecotec-excessive-oil-consumption",
+      "make": "Saturn",
+      "model": "Aura",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "2.4L Ecotec Excessive Oil Consumption",
+      "howToFix": "Monitor oil level frequently between changes and top off as needed; severe cases require piston/ring replacement or a short-block. Keeping to high-quality oil and regular change intervals helps. Some owners catch it early via the oil-life monitor and frequent checks.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil level frequently between changes and top off as needed;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Some owners catch it early via the oil-life monitor and frequent checks."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-aura-2-4l-ecotec-excessive-oil-consumption--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-aura-3-6l-random-multiple-cylinder-misfire",
+      "make": "Saturn",
+      "model": "Aura",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "3.6L Random/Multiple-Cylinder Misfire",
+      "howToFix": "Diagnose root cause: inspect/measure timing chain deviation first (since chains are a known weak point), then replace spark plugs and any failed ignition coils. Walnut-blast carbon from intake valves if buildup is present. Address timing chains if correlation codes accompany the misfire.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304",
+        "P0305",
+        "P0306"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnose root cause: inspect/measure timing chain deviation first (since chains are a known weak point), then replace spark plugs and any failed ignition coils."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304, P0305, P0306"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-aura-3-6l-random-multiple-cylinder-misfire--prescription-0-0--all-engines",
+        "saturn-aura-3-6l-random-multiple-cylinder-misfire--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-aura-3.6l-timing-chain",
+      "make": "Saturn",
+      "model": "Aura",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [
+        "XR",
+        "XR Special Edition"
+      ],
+      "engines": [
+        "3.6L LY7 V6"
+      ],
+      "title": "Aura 3.6L LY7 V6 Timing Chain Stretch",
+      "howToFix": "Full timing chain kit ($1,800-$3,000 at independent) including primary and secondary chains, all tensioners and guides. Switch to 5,000-7,500 mile dexos1 oil intervals. Catastrophic chain skip means cylinder head damage ($4,000+).",
+      "dtcCodes": [
+        "P0008",
+        "P0009",
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0009, P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-aura-3-6l-v6-stretched-timing-chains",
+      "make": "Saturn",
+      "model": "Aura",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "3.6L V6 (LY7) Stretched Timing Chains",
+      "howToFix": "Replace all three timing chains, tensioners, and guides (a major job). GM issued Special Coverage Adjustment #11340 (extending warranty to 10 years/120,000 miles on affected engines and requiring ECM reprogramming in some cases). Use the correct oil and change intervals to slow wear.",
+      "dtcCodes": [
+        "P0008",
+        "P0009",
+        "P0016",
+        "P0017",
+        "P0018",
+        "P0019"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0009, P0016, P0017, P0018, P0019"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-aura-3-6l-v6-stretched-timing-chains--prescription-0-0--all-engines",
+        "saturn-aura-3-6l-v6-stretched-timing-chains--prescription-1-0--all-engines",
+        "saturn-aura-3-6l-v6-stretched-timing-chains--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-aura-evap-canister-purge-valve-failure",
+      "make": "Saturn",
+      "model": "Aura",
+      "years": [
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "EVAP Canister Purge Valve Failure (Check Engine Light)",
+      "howToFix": "Confirm the gas cap is tight, inspect EVAP vacuum lines for cracks, then replace the canister purge solenoid/valve if it is stuck open. Replace the charcoal canister or fuel-tank pressure sensor if those are at fault.",
+      "dtcCodes": [
+        "P0442",
+        "P0455",
+        "P0496"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the gas cap is tight, inspect EVAP vacuum lines for cracks, then replace the canister purge solenoid/valve if it is stuck open."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0442, P0455, P0496"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-aura-evap-canister-purge-valve-failure--prescription-0-0--all-engines",
+        "saturn-aura-evap-canister-purge-valve-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-aura-premature-warped-front-brake-rotors",
+      "make": "Saturn",
+      "model": "Aura",
+      "years": [
+        2007,
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Premature Warped Front Brake Rotors",
+      "howToFix": "Replace the rotors and pads; many owners switched to higher-quality aftermarket rotors and pads to reduce recurrence. Proper lug-nut torque (even tightening) and avoiding overheating also helps. The underlying fix is upgraded rotors, as resurfacing alone tends to recur.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-aura-premature-warped-front-brake-rotors--prescription-0-0--all-engines",
+        "saturn-aura-premature-warped-front-brake-rotors--prescription-1-0--all-engines",
+        "saturn-aura-premature-warped-front-brake-rotors--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-aura-transmission-shift-cable-fracture",
+      "make": "Saturn",
+      "model": "Aura",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Transmission Shift Cable Fracture (Rollaway Risk)",
+      "howToFix": "Covered by recall (NHTSA 12V460000 installed a retainer over the cable end; 14V224000 replaced the shift cable assembly and mounting bracket at no charge). Out of warranty, the fix is to replace the shift cable/shifter cable bushing or full cable assembly; some cases are resolved by replacing the small worn plastic bushing where the cable connects to the transmission lever.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-aura-transmission-shift-cable-fracture--prescription-0-0--all-engines",
+        "saturn-aura-transmission-shift-cable-fracture--prescription-1-0--all-engines",
+        "saturn-aura-transmission-shift-cable-fracture--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-aura-body-control-module-connection-corrosion",
+      "make": "Saturn",
+      "model": "Aura",
+      "years": [
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Body Control Module Connection Corrosion (Brake Lights / Cruise)",
+      "howToFix": "Covered by NHTSA recall 14V252000 — dealers secured the wiring harness to the BCM with a spacer and applied dielectric lubricant to the connectors. Out of warranty, cleaning/repairing the BCM connector and applying dielectric grease addresses the high-resistance connection.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-aura-sudden-loss-electric-power-steering-assist",
+      "make": "Saturn",
+      "model": "Aura",
+      "years": [
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Sudden Loss of Electric Power Steering Assist",
+      "howToFix": "Covered by NHTSA recall 14V153000 — dealers replaced the torque sensor assembly, the EPS motor, and/or the EPS motor controller depending on build date, at no charge. Out of warranty, repair requires replacing the EPS torque sensor or steering column motor assembly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-aura-sudden-loss-electric-power-steering-assist--prescription-0-0--all-engines",
+        "saturn-aura-sudden-loss-electric-power-steering-assist--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-ion-2-2l-ecotec-timing-chain-stretch-tensioner-failure",
+      "make": "Saturn",
+      "model": "Ion",
+      "years": [
+        2003,
+        2004
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "2.2L Ecotec Timing Chain Stretch and Tensioner Failure",
+      "howToFix": "Replace the timing chain, tensioner, and guides with the updated parts at the first sign of rattle, before the chain jumps time. Addressing a startup or cold rattle early prevents a destroyed engine. Maintaining clean oil and regular changes reduces wear.",
+      "dtcCodes": [
+        "P0008",
+        "P0011",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0011, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-ion-2-2l-ecotec-timing-chain-stretch-tensioner-failure--prescription-0-0--all-engines",
+        "saturn-ion-2-2l-ecotec-timing-chain-stretch-tensioner-failure--prescription-1-0--all-engines",
+        "saturn-ion-2-2l-ecotec-timing-chain-stretch-tensioner-failure--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-ion-eps-failure-recall",
+      "make": "Saturn",
+      "model": "Ion",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [
+        "1",
+        "2",
+        "3",
+        "Quad Coupe",
+        "Red Line"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Ion Electric Power Steering Failure (NHTSA 14V-153)",
+      "howToFix": "Check VIN at NHTSA recall lookup (14V-153). Repair is free under recall. If you experience sudden loss of assist, control is still possible but steering becomes very heavy — pull over safely and request roadside assistance. Do not attempt independent repair until recall status is confirmed.",
+      "dtcCodes": [
+        "C0545",
+        "U0131"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check VIN at NHTSA recall lookup (14V-153)."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C0545, U0131"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-ion-ignition-switch-can-unexpectedly-shut-off-engine",
+      "make": "Saturn",
+      "model": "Ion",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Ignition Switch Can Unexpectedly Shut Off Engine (GM Defect Recall)",
+      "howToFix": "Free dealer replacement of the ignition switch under NHTSA recall 14V047000. As an interim measure GM advised owners to remove all extra weight and the fob from the key ring, using only the bare ignition key. Many cars have already had the recall performed; owners can verify completion via VIN at the GM/NHTSA recall lookup.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "owners can verify completion via VIN at the GM/NHTSA recall lookup."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-ion-ignition-switch-recall",
+      "make": "Saturn",
+      "model": "Ion",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [
+        "1",
+        "2",
+        "3",
+        "Quad Coupe",
+        "Red Line"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Ion Ignition Switch Recall (NHTSA 14V-047) — Same as Cobalt",
+      "howToFix": "Check VIN at NHTSA recalls lookup (14V-047). Dealer replaces ignition switch and (in many cases) provides new keys with shorter shanks. Until repaired, drive with only the ignition key on the ring (no extra keys/fobs/key ring weight). Free repair under recall.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check VIN at NHTSA recalls lookup (14V-047)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-ion-inaccurate-erratic-fuel-gauge",
+      "make": "Saturn",
+      "model": "Ion",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Inaccurate or Erratic Fuel Gauge (Fuel Level Sensor)",
+      "howToFix": "Replace the fuel level sensor/sending unit, which generally requires dropping the fuel tank and is most economically done as part of a fuel pump module replacement. Cleaning or adjusting the sender float is a temporary fix at best. A P0463 code points to the level sensor circuit.",
+      "dtcCodes": [
+        "P0463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-ion-inaccurate-erratic-fuel-gauge--prescription-0-0--all-engines",
+        "saturn-ion-inaccurate-erratic-fuel-gauge--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-ion-interior-door-panel-trim-rattles",
+      "make": "Saturn",
+      "model": "Ion",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Interior Door Panel and Trim Rattles",
+      "howToFix": "Remove the affected door panel and re-secure or re-glue the loose plastic reinforcement, add foam/felt to contact points, and check the window regulator and glass run channels. Tightening or padding the glovebox and trim clips resolves the other rattles. Largely a DIY fix.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Remove the affected door panel and re-secure or re-glue the loose plastic reinforcement, add foam/felt to contact points, and check the window regulator and glass run channels."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-ion-key-stuck-ignition-worn-lock-cylinder",
+      "make": "Saturn",
+      "model": "Ion",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Key Stuck in Ignition / Worn Lock Cylinder",
+      "howToFix": "Replace the ignition lock cylinder and/or worn key; if the interlock is the cause, replace the BTSI solenoid/switch. As a temporary workaround, ensure the shifter is fully in Park and gently jiggle the key. A locksmith or dealer can re-key a new cylinder to the existing key.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-ion-key-stuck-ignition-worn-lock-cylinder--prescription-0-0--all-engines",
+        "saturn-ion-key-stuck-ignition-worn-lock-cylinder--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-ion-sudden-loss-electric-power-steering-assist",
+      "make": "Saturn",
+      "model": "Ion",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Sudden Loss of Electric Power Steering Assist",
+      "howToFix": "Free replacement of the electric power steering motor under NHTSA recall 14V153000 (began July 2014). 2004-2007 Ions are covered by GM bulletin 14115; 2003 Ions received EPS motor replacement coverage for the life of the vehicle under bulletin 14119. Outside the recall, the fix is the same EPS motor/column assembly replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-ion-sudden-loss-electric-power-steering-assist--prescription-0-0--all-engines",
+        "saturn-ion-sudden-loss-electric-power-steering-assist--prescription-1-0--all-engines",
+        "saturn-ion-sudden-loss-electric-power-steering-assist--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-ion-vti-cvt-transmission-failure",
+      "make": "Saturn",
+      "model": "Ion",
+      "years": [
+        2003,
+        2004
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "VTi CVT Transmission Failure",
+      "howToFix": "Failed VTi units typically require full transmission replacement or rebuild; some intermittent no-drive cases were addressed by replacing the case cover assembly, torque converter, and oil cooler lines. The class-action settlement extended coverage to 5 years/75,000 miles from new. Many owners ultimately swap to the conventional automatic or buy a known-good unit.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 5,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-ion-vti-cvt-transmission-failure--prescription-0-0--all-engines",
+        "saturn-ion-vti-cvt-transmission-failure--prescription-1-0--all-engines",
+        "saturn-ion-vti-cvt-transmission-failure--prescription-2-0--all-engines",
+        "saturn-ion-vti-cvt-transmission-failure--prescription-3-0--all-engines",
+        "saturn-ion-vti-cvt-transmission-failure--prescription-4-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-outlook-power-steering-recall",
+      "make": "Saturn",
+      "model": "Outlook",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "AWD",
+        "XE",
+        "XR"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Outlook Power Steering Assist Loss — GM Special Coverage 14329",
+      "howToFix": "Confirm Special Coverage 14329 eligibility at any GM dealer with your VIN. If still within 10 years and 150,000 miles, remedy is free: dealer flushes power-steering system, replaces the PS pump, installs a new steering-gear valve housing. If out of the coverage window, expect $700-$1,400 for the same job at an independent.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Confirm Special Coverage 14329 eligibility at any GM dealer with your VIN."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-outlook-power-steering-recall--prescription-0-0--all",
+        "saturn-outlook-power-steering-recall--prescription-1-0--all",
+        "saturn-outlook-power-steering-recall--prescription-2-0--all"
+      ]
+    },
+    {
+      "issueId": "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi",
+      "make": "Saturn",
+      "model": "S-Series",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [
+        "1.9L L24 SOHC",
+        "1.9L L80 DOHC",
+        "1.9L LK0 SOHC",
+        "1.9L LL0 DOHC"
+      ],
+      "title": "DIS Ignition Module / Coil Pack Failure Causing Cylinder Misfires",
+      "howToFix": "Diagnose by swapping the suspect coil with a known-good cylinder coil — if the misfire follows the coil, replace it. Before condemning the coil pack, inspect and clean the ICM-to-transmission ground stud: remove the bolt, wire-brush the contact surface on the transmission case down to bare metal, apply dielectric grease, and reinstall. Also clean and grease the ICM connectors. If grounds and coil swap don't fix it, replace the full coil pack assembly (~$80-150). Always replace the spark plugs and plug wires at the same time — the OE Champion plugs are specified for this engine; aftermarket platinum/iridium can cause its own misfires on the waste-spark system. Torque coil bolts carefully; the aluminum threads strip easily.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose by swapping the suspect coil with a known-good cylinder coil — if the misfire follows the coil, replace it."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Before condemning the coil pack, inspect and clean the ICM-to-transmission ground stud: remove the bolt, wire-brush the contact surface on the transmission case down to bare metal, apply dielectric grease, and reinstall."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-0-0--1-9l-l24-sohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-0-0--1-9l-l80-dohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-0-0--1-9l-lk0-sohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-0-0--1-9l-ll0-dohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-1-0--1-9l-l24-sohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-1-0--1-9l-l80-dohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-1-0--1-9l-lk0-sohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-1-0--1-9l-ll0-dohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-2-0--1-9l-l24-sohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-2-0--1-9l-l80-dohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-2-0--1-9l-lk0-sohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-2-0--1-9l-ll0-dohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-3-0--1-9l-l24-sohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-3-0--1-9l-l80-dohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-3-0--1-9l-lk0-sohc",
+        "saturn-s-series-dis-ignition-module-coil-pack-failure-causing-cylinder-misfi--prescription-3-0--1-9l-ll0-dohc"
+      ]
+    },
+    {
+      "issueId": "saturn-s-series-intake-manifold-gasket-coolant-leak-cylinder-4",
+      "make": "Saturn",
+      "model": "S-Series",
+      "years": [
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [
+        "1.9L L24 SOHC",
+        "1.9L L80 DOHC",
+        "1.9L LL0 DOHC"
+      ],
+      "title": "Intake Manifold Gasket Coolant Leak at Cylinder #4 (DOHC 1.9L)",
+      "howToFix": "Replace the OE one-piece intake manifold gasket with Saturn's revised two-piece design (orange intake gasket + separate black coolant seal). Removal of the intake manifold also gives access to inspect and replace the brittle plastic coolant nipples that protrude from the manifold — these commonly snap off during service. Use new manifold bolts torqued to spec in the proper sequence. Total job is about 2-3 hours of labor. Always pressure-test the cooling system after the repair to verify the seal. While the intake is off, this is also a good time to clean the EGR passages, which are typically clogged on these engines.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Removal of the intake manifold also gives access to inspect and replace the brittle plastic coolant nipples that protrude from the manifold — these commonly snap off during service."
+        },
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Always pressure-test the cooling system after the repair to verify the seal."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-s-series-intake-manifold-gasket-coolant-leak-cylinder-4--prescription-0-0--1-9l-l24-sohc",
+        "saturn-s-series-intake-manifold-gasket-coolant-leak-cylinder-4--prescription-0-0--1-9l-l80-dohc",
+        "saturn-s-series-intake-manifold-gasket-coolant-leak-cylinder-4--prescription-0-0--1-9l-ll0-dohc"
+      ]
+    },
+    {
+      "issueId": "saturn-s-series-egr-valve-clogging-causing-p0401-p0404-p1404-codes",
+      "make": "Saturn",
+      "model": "S-Series",
+      "years": [
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [
+        "1.9L L24 SOHC",
+        "1.9L L80 DOHC",
+        "1.9L LL0 DOHC"
+      ],
+      "title": "EGR Valve Clogging Causing P0401/P0404/P1404 Codes",
+      "howToFix": "Remove the EGR valve and clean it: fill the valve body with carb cleaner, soak for 15 minutes, drain, and repeat 5-10 times. Use a T-handle Torx driver to manually work the pintle up and down to break free carbon deposits. Critically, also clean the EGR passages in the intake manifold and the supply tube/passage in the cylinder head — these are usually more clogged than the valve itself. A wire brush, pipe cleaners, and aerosol carb cleaner work well. If oil consumption is significant, expect the EGR to re-clog within 10,000-20,000 miles. Address oil consumption first for a lasting fix. Replacement EGR valves are inexpensive (~$50-80) but useless if the passages are not cleaned.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-sc-coupe-suicide-door-sag",
+      "make": "Saturn",
+      "model": "SC",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [
+        "SC1",
+        "SC2"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "SC Coupe Third (Suicide) Door Hinge Sag & Latch Wear",
+      "howToFix": "Hinge bushings replacement (~$30 parts, 1 hour labor). Door realignment ($60-$120 shop) often needed simultaneously. Latch wear requires latch assembly replacement (~$100-$200 part) or attempt cleaning and re-lubricating internal pawl. If the steel door pin is worn, replace the pin and bushing kit before more hinge damage occurs.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-sc-coupe-suicide-door-sag--prescription-0-0--all",
+        "saturn-sc-coupe-suicide-door-sag--prescription-1-0--all",
+        "saturn-sc-coupe-suicide-door-sag--prescription-2-0--all"
+      ]
+    },
+    {
+      "issueId": "saturn-sky-ignition-switch-recall",
+      "make": "Saturn",
+      "model": "Sky",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "Base",
+        "Red Line"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Sky Ignition Switch Recall (NHTSA 14V-047 — Same as Ion)",
+      "howToFix": "Check VIN at NHTSA recall lookup (14V-047). Free dealer ignition switch replacement under recall. Until repaired, drive with only the ignition key on the ring — no extra weight from fobs or key rings.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check VIN at NHTSA recall lookup (14V-047)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-sky-trunk-leak",
+      "make": "Saturn",
+      "model": "Sky",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "Base",
+        "Red Line",
+        "Ruby Red Limited Edition"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Sky Trunk Leak with Top Down (Kappa Platform)",
+      "howToFix": "Replace trunk seal if cracked ($60-$120 part); inspect annually. Use 3M weatherstrip adhesive to reseal. Always check spare-tire well after heavy rain. Confirm the top stowage drainage gutters are clear.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "inspect annually."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Always check spare-tire well after heavy rain."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the top stowage drainage gutters are clear."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-sky-trunk-leak--prescription-0-0--all",
+        "saturn-sky-trunk-leak--prescription-1-0--all"
+      ]
+    },
+    {
+      "issueId": "saturn-s-series-oil-consumption-dohc",
+      "make": "Saturn",
+      "model": "SL",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [
+        "SL2"
+      ],
+      "engines": [
+        "1.9L DOHC"
+      ],
+      "title": "S-Series 1.9L DOHC Oil Consumption (Coked Piston Rings)",
+      "howToFix": "Ring-cleaning treatments (BG EPR, Sea Foam soak) cycled through oil changes can sometimes free coked rings. If consumption is >1 qt/1,000 miles, ring/piston replacement (~$1,500-$2,500) is the durable fix. Many owners simply top off and run the car until something else fails — these engines often pass 250,000 miles even with consumption.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-s-series-oil-consumption-dohc--prescription-0-0--1-9l-dohc"
+      ]
+    },
+    {
+      "issueId": "saturn-s-series-valve-cover-leak-1.9",
+      "make": "Saturn",
+      "model": "SL",
+      "years": [
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000,
+        2001,
+        2002
+      ],
+      "trims": [
+        "Base",
+        "SL1",
+        "SL2"
+      ],
+      "engines": [
+        "1.9L DOHC",
+        "1.9L SOHC"
+      ],
+      "title": "S-Series 1.9L Valve Cover & Front Crank Seal Leaks",
+      "howToFix": "Valve cover gasket replacement DIY (~$30 part); use a torque wrench to spec (89 in-lbs) to avoid stripping. Front crank seal requires harmonic balancer removal — $200-$400 at independent. Replace the cam seals at the same time on DOHC. If valve cover bolt holes are stripped, time-serts ($60-$100) save the head.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-s-series-valve-cover-leak-1-9--prescription-0-0--1-9l-dohc",
+        "saturn-s-series-valve-cover-leak-1-9--prescription-0-0--1-9l-sohc",
+        "saturn-s-series-valve-cover-leak-1-9--prescription-1-0--1-9l-dohc",
+        "saturn-s-series-valve-cover-leak-1-9--prescription-1-0--1-9l-sohc"
+      ]
+    },
+    {
+      "issueId": "saturn-vue-front-subframe-lateral-link-corrosion-salt-belt-regions",
+      "make": "Saturn",
+      "model": "Vue",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Subframe / Lateral Link Corrosion in Salt-Belt Regions",
+      "howToFix": "Have the subframe, control arms, and rear lateral links inspected for structural rust, especially before purchase in salt-belt areas; corroded structural members must be replaced. Regular undercarriage washing and rust-inhibitor treatment can slow further corrosion on otherwise sound vehicles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Have the subframe, control arms, and rear lateral links inspected for structural rust, especially before purchase in salt-belt areas;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-vue-front-subframe-lateral-link-corrosion-salt-belt-regions--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-vue-ignition-key-can-be-removed-when-not-off-rollaway-recall",
+      "make": "Saturn",
+      "model": "Vue",
+      "years": [
+        2002,
+        2003,
+        2004
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Ignition Key Can Be Removed When Not in 'Off' — Rollaway Recall (14V490)",
+      "howToFix": "Under the recall, dealers inspect whether the key can be removed when the ignition is not in Off; if so, they replace the ignition lock cylinder and re-key it to the existing keys at no charge. Owners can verify open recalls by VIN on the NHTSA website and have the remedy performed free at any GM dealer.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Under the recall, dealers inspect whether the key can be removed when the ignition is not in Off;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Owners can verify open recalls by VIN on the NHTSA website and have the remedy performed free at any GM dealer."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-vue-vti-continuously-variable-transmission-failure",
+      "make": "Saturn",
+      "model": "Vue",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "VTi (VT25-E) Continuously Variable Transmission Failure",
+      "howToFix": "There was no durable repair; failed units were replaced with rebuilt/replacement transmissions costing roughly $3,500-$5,000. GM extended the powertrain warranty on VTi units to 5 years/75,000 miles and provided reimbursement under the class-action settlement. Many owners with later failures opted to replace the vehicle rather than the transmission given its high cost relative to resale value.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-vue-vti-cvt-failure",
+      "make": "Saturn",
+      "model": "Vue",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [
+        "Base",
+        "V6"
+      ],
+      "engines": [
+        "2.2L Ecotec"
+      ],
+      "title": "Vue VTi CVT Catastrophic Failure (2002-2005)",
+      "howToFix": "If still under the extended warranty, get it documented. If out of warranty, the practical options are: (1) used VTi CVT swap (~$1,200-$2,500 with risky reliability), (2) used 5-speed manual conversion ($1,500-$3,000 with parts hunt), or (3) part out / sell the vehicle. Aamco / GM dealers historically offered swap-with-Aisin-5-speed conversions but parts are hard to source.",
+      "dtcCodes": [
+        "P0700",
+        "P0716",
+        "P0740"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0700, P0716, P0740"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-vue-vti-cvt-failure--prescription-0-0--2-2l-ecotec"
+      ]
+    },
+    {
+      "issueId": "saturn-vue-3.5l-honda-timing-belt",
+      "make": "Saturn",
+      "model": "Vue",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [
+        "V6"
+      ],
+      "engines": [
+        "3.5L J35 (Honda V6)"
+      ],
+      "title": "Vue 3.5L Honda V6 Timing Belt Service Interval",
+      "howToFix": "Full timing belt + water pump + tensioner + idler service kit ($600-$1,000 at independent). Use OEM Honda or quality aftermarket Gates/Aisin parts. Do NOT exceed the interval — this is an interference design. Some owners replaced at 90,000 miles for extra margin.",
+      "dtcCodes": [
+        "P0335",
+        "P0340"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0335, P0340"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-vue-v6-valve-cover-gasket-oil-leak-soaking-coil-boots-misfires",
+      "make": "Saturn",
+      "model": "Vue",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "V6 Valve Cover Gasket Oil Leak Soaking Coil Boots → Misfires",
+      "howToFix": "Replace the leaking valve cover gaskets and clean oil from the spark plug tubes, then replace the oil-soaked coil boots (and plugs if fouled). Replacing only the boots without fixing the valve cover gasket leak leads to repeat failure, so address the gasket as the root cause.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304",
+        "P0305",
+        "P0306"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304, P0305, P0306"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-vue-v6-valve-cover-gasket-oil-leak-soaking-coil-boots-misfires--prescription-0-0--all-engines",
+        "saturn-vue-v6-valve-cover-gasket-oil-leak-soaking-coil-boots-misfires--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-vue-3-6l-high-feature-v6-timing-chain-stretch",
+      "make": "Saturn",
+      "model": "Vue",
+      "years": [
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "3.6L High Feature V6 (LY7) Timing Chain Stretch",
+      "howToFix": "Verify oil level and condition first; severely stretched chains require replacing the timing chains, tensioners, and guides as a complete set (often all three chains on this engine). Owners can reduce risk by using the correct dexos1-spec oil and changing it at conservative (e.g., ~5,000-mile) intervals rather than relying on the oil-life monitor's longer recommendations.",
+      "dtcCodes": [
+        "P0008",
+        "P0009",
+        "P0016",
+        "P0017",
+        "P0018",
+        "P0019"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify oil level and condition first;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners can reduce risk by using the correct dexos1-spec oil and changing it at conservative (e.g., ~5,000-mile) intervals rather than relying on the oil-life monitor's longer recommendations."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0009, P0016, P0017, P0018, P0019"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "saturn-vue-3-6l-high-feature-v6-timing-chain-stretch--prescription-0-0--all-engines",
+        "saturn-vue-3-6l-high-feature-v6-timing-chain-stretch--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "saturn-vue-automatic-transmission-park-pawl-casting-defect-recall",
+      "make": "Saturn",
+      "model": "Vue",
+      "years": [
+        2008
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Automatic Transmission Park Pawl Casting Defect Recall (08V200)",
+      "howToFix": "Under the recall, dealers replace the affected transmission at no charge to the owner. Owners of 2008 Vues should check their VIN against open recalls and, as a precaution, always set the parking brake when parking until the remedy is confirmed complete.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners of 2008 Vues should check their VIN against open recalls and, as a precaution, always set the parking brake when parking until the remedy is confirmed complete."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "saturn-vue-power-steering-line-nut-loosening-leak-fire-recall",
+      "make": "Saturn",
+      "model": "Vue",
+      "years": [
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Steering Line Nut Loosening — Leak and Fire Recall (08V470)",
+      "howToFix": "Under the recall, dealers inspect the power steering line nut; if no leak is present they tighten it, and if a leak is found they tighten the nut and top off/verify the fluid. Owners experiencing ongoing leaks or loss of assist outside the recall should have the pump, lines, and rack-and-pinion seals inspected for the leak source.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Under the recall, dealers inspect the power steering line nut;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "if no leak is present they tighten it, and if a leak is found they tighten the nut and top off/verify the fluid."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners experiencing ongoing leaks or loss of assist outside the recall should have the pump, lines, and rack-and-pinion seals inspected for the leak source."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

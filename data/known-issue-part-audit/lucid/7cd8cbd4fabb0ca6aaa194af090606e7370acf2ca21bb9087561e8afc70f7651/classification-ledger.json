@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Lucid",
+  "makeKey": "lucid",
+  "makeIndex": 27,
+  "totalMakes": 54,
+  "issueCount": 15,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 1,
+    "diagnosis-dependent": 2,
+    "recall/dealer": 3,
+    "service/tool/fluid": 1,
+    "no-commerce": 8
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 0,
+    "uniqueDtcCount": 0,
+    "instructionCount": 5,
+    "dtcDispositionCount": 0,
+    "toolLinkedCount": 0,
+    "procedureNoToolCount": 5,
+    "unresolvedToolHoldCount": 0
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "lucid-air-12v-drain",
+      "make": "Lucid",
+      "model": "Air",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Dream Edition",
+        "Grand Touring",
+        "Pure",
+        "Touring"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Air 12V Auxiliary Battery Drain (Sentry-Like Modes Enabled)",
+      "howToFix": "Disable Surveillance Mode for parking stretches over 1 week. Update to latest software. Use a 12V battery maintainer if storing more than 2 weeks. AGM 12V replacement under warranty for documented failures; out-of-warranty ~$300-$500 at Lucid service center.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-air-charging-led-indicator",
+      "make": "Lucid",
+      "model": "Air",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "all"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Air Charge Port LED Indicator Faults",
+      "howToFix": "Soft fix: power-cycle the charging session (unplug + replug). Hardware fix: charge port assembly module replacement under warranty. Out-of-warranty estimate $250-$500.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lucid-air-charging-led-indicator--prescription-0-0--all"
+      ]
+    },
+    {
+      "issueId": "lucid-air-infotainment-freezes",
+      "make": "Lucid",
+      "model": "Air",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Dream Edition",
+        "Grand Touring",
+        "Grand Touring Performance",
+        "Pure",
+        "Touring"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Air Infotainment / Center Display Freezes (Early Production)",
+      "howToFix": "Hard reset: hold both scroll wheels on steering wheel until reboot. Stay current on OTA updates. Severe cases require service center compute-stack replacement under warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-air-paint-quality-early-production",
+      "make": "Lucid",
+      "model": "Air",
+      "years": [
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Dream Edition",
+        "Grand Touring",
+        "Touring"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Air Paint Quality / Orange-Peel + Inclusions (Early Production)",
+      "howToFix": "Document with photos at delivery and during the first 90 days of ownership. Lucid customer service has approved goodwill repaints for documented quality issues. PPF on at-risk areas can prevent further damage but won't fix existing flaws.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-air-panoramic-roof",
+      "make": "Lucid",
+      "model": "Air",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Dream Edition",
+        "Grand Touring",
+        "Pure",
+        "Touring"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Air Panoramic Glass Roof Wind Noise / Seal Issues",
+      "howToFix": "Schedule Lucid service to inspect/adjust seal — adjustment or seal replacement covered under warranty. Severe water ingress (interior wetness) is a higher priority and may need full re-seal ($300-$600 out-of-warranty).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Schedule Lucid service to inspect/adjust seal — adjustment or seal replacement covered under warranty."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lucid-air-panoramic-roof--prescription-0-0--all",
+        "lucid-air-panoramic-roof--prescription-1-0--all"
+      ]
+    },
+    {
+      "issueId": "lucid-air-rear-motor-mount",
+      "make": "Lucid",
+      "model": "Air",
+      "years": [
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Dream Edition",
+        "Grand Touring",
+        "Grand Touring Performance"
+      ],
+      "engines": [
+        "Dual Motor"
+      ],
+      "title": "Air Rear Drive Unit Mount / Bushing Wear (Early Production)",
+      "howToFix": "Document the clunk with phone audio and schedule a Lucid service appointment — repairs covered under powertrain warranty (8 yr / 100,000 mi). Out-of-warranty mount/bushing replacement likely $400-$900.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lucid-air-rear-motor-mount--prescription-0-0--dual-motor"
+      ]
+    },
+    {
+      "issueId": "lucid-air-heat-pump-fault",
+      "make": "Lucid",
+      "model": "Air",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Grand Touring",
+        "Grand Touring Performance",
+        "Pure",
+        "Touring"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Air Heat Pump Fault Codes (Cold Weather)",
+      "howToFix": "Update to latest software. Pre-condition cabin and battery via app before driving in cold. Hardware faults (refrigerant leak, compressor failure) covered under bumper-to-bumper warranty — schedule Lucid service inspection.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Hardware faults (refrigerant leak, compressor failure) covered under bumper-to-bumper warranty — schedule Lucid service inspection."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-air-hv-harness-recall",
+      "make": "Lucid",
+      "model": "Air",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Dream Edition",
+        "Grand Touring"
+      ],
+      "engines": [
+        "Dual Motor"
+      ],
+      "title": "Lucid Air Webasto HVCH Recall (SR-24-04-0, Failure to Defrost)",
+      "howToFix": "Free recall remedy at Lucid Studio: software update to identify HVCH failure + warning, and Webasto HVCH replacement when failure is detected. Confirm VIN status via Lucid customer service or NHTSA recall lookup.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm VIN status via Lucid customer service or NHTSA recall lookup."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-gravity-electric-door-handles-fail-to-retract-present-latch-properly",
+      "make": "Lucid",
+      "model": "Gravity",
+      "years": [
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electric door handles fail to retract, present, or latch properly",
+      "howToFix": "Install latest OTA (V3.5.0 or later) which specifically addresses unintended repeated handle movements and adds faster door-opening response. If failures persist, request actuator inspection/replacement under warranty (4-year/50,000-mile basic). Interior manual emergency releases work as a backup. Note: Lucid has announced upcoming midsize models (starting with Cosmos) will use mechanical handles, indirectly acknowledging the design's reliability issues.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If failures persist, request actuator inspection/replacement under warranty (4-year/50,000-mile basic)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-gravity-hvac-auto-mode-buggy-screeching-passenger-vent-fan-blasts-se",
+      "make": "Lucid",
+      "model": "Gravity",
+      "years": [
+        2025,
+        2026
+      ],
+      "trims": [
+        "Grand Touring",
+        "Touring"
+      ],
+      "engines": [],
+      "title": "HVAC auto mode buggy: screeching passenger vent, fan blasts, settings don't persist",
+      "howToFix": "Install latest available software update — Lucid has acknowledged Gravity climate control issues and is rolling out refined fan-speed logic in upcoming OTA updates (3.3.20 addressed key fob/infotainment; climate refinements expected in a subsequent release per Electrek 12/22/2025). For the screeching passenger vent on fan levels 1-5, request blower-motor / vent actuator inspection under warranty. Manually set fan speed, vent direction, and defrost each drive until firmware fully resolves persistence and auto-mode behavior.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "For the screeching passenger vent on fan levels 1-5, request blower-motor / vent actuator inspection under warranty."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-gravity-key-fob-not-detected-key-not-detected-alerts-since-launch",
+      "make": "Lucid",
+      "model": "Gravity",
+      "years": [
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Key fob not detected / 'key not detected' alerts since launch",
+      "howToFix": "Update to the latest Gravity OTA (3.4.x or newer) and use the Lucid mobile app's wireless fob firmware update tool (each fob can be updated individually over Bluetooth without being near the vehicle). If failures persist, contact Lucid Customer Care to request a fob exchange. Mobile Key is expected Q3 2026 as a phone-based fallback.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-gravity-navigation-routes-wrong-false-turns-missed-addresses-gps-sen",
+      "make": "Lucid",
+      "model": "Gravity",
+      "years": [
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Navigation routes wrong: false turns, missed addresses, GPS sends drivers off-route",
+      "howToFix": "Keep software current (3.4+). As workaround, mirror Apple CarPlay/Android Auto (added in later OTAs) or run Google Maps on phone for routing. Report specific bad routes to Lucid Customer Care so they can be fed back to HERE.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-gravity-rearview-camera-blank-screen-reverse",
+      "make": "Lucid",
+      "model": "Gravity",
+      "years": [
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rearview camera blank screen in reverse (NHTSA 26V018)",
+      "howToFix": "Accept the free over-the-air update to software version 3.3.20 or later. If OTA fails, schedule a service visit with Lucid — flashing can be done in-shop.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-gravity-second-row-seat-belt-anchor-bracket-weld-failure",
+      "make": "Lucid",
+      "model": "Gravity",
+      "years": [
+        2025,
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Second-row seat belt anchor bracket weld failure (NHTSA 26V192)",
+      "howToFix": "Owner notification date in candidate says 'April 2026' but cars.com reports notification letters expected May 22, 2026. Consider updating to 'Owner notifications mailed May 2026' for accuracy.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lucid-gravity-incorrect-front-seat-backrest-covers-may-block-side-airbag-d",
+      "make": "Lucid",
+      "model": "Gravity",
+      "years": [
+        2026
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Incorrect front seat backrest covers may block side airbag deployment (NHTSA 25V855)",
+      "howToFix": "Dealer inspects and replaces the front seat backrest covers as necessary, free of charge per recall 25V855. Owner notifications mailed Feb 6, 2026. Call Lucid Customer Care 1-888-99-LUCID.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

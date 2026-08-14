@@ -69,6 +69,32 @@ test('browser exposes only the audited scanner and suppresses unknown manufactur
   );
 });
 
+test('browser suppresses generic scanners for manufacturer-specific and hybrid/EV powertrain codes', () => {
+  assert.deepEqual(
+    diagnosticToolsForIssue('', ['P17D0']).tools,
+    [],
+  );
+  assert.deepEqual(
+    diagnosticToolsForIssue('', ['P0A0F'], { engines: ['1.3L Turbo PHEV'] }).tools,
+    [],
+  );
+});
+
+test('Audi manufacturer and module codes select the exact reviewed VCDS interface only in supported context', () => {
+  assert.deepEqual(
+    diagnosticToolsForIssue('Scan with VCDS before repair.', ['P17D0'], { make: 'Audi', years: [2016], engines: ['2.0T'] }).tools.map((tool) => tool.id),
+    ['ross-tech-vcds-hex-v2'],
+  );
+  assert.deepEqual(
+    diagnosticToolsForIssue('', ['C1132'], { make: 'Audi', years: [2014], engines: ['4.0T'] }).tools.map((tool) => tool.id),
+    ['ross-tech-vcds-hex-v2'],
+  );
+  assert.deepEqual(diagnosticToolsForIssue('', ['P17D0'], { make: 'Acura', years: [2016] }).tools, []);
+  assert.deepEqual(diagnosticToolsForIssue('Scan with VCDS before repair.', [], { make: 'Acura', years: [2016] }).tools, []);
+  assert.deepEqual(diagnosticToolsForIssue('', ['P17D0'], { make: 'Audi', years: [1994] }).tools, []);
+  assert.deepEqual(diagnosticToolsForIssue('', ['P0A0F'], { make: 'Audi', years: [2022], engines: ['PHEV'] }).tools, []);
+});
+
 test('UI and audit recognize the same scan-code phrases and negation boundaries', () => {
   for (const phrase of [
     'Pull DTCs before replacement.',

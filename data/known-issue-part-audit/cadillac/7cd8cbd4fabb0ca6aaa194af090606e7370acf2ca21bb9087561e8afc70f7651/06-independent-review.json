@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Cadillac",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "2247de1417cc1614542251e99168c8f25a544ce2a82bb14e1be6787746220a9f",
+    "02-fitment-worklist.json": "8254e8915adfe11165bc28f7800b0f6db6680083fa32b8899dd29430c330a86e",
+    "03-showmetheparts-evidence.json": "b6ee178ffc79705b987c9969de51479c6985fe00b5665aff6af086311b7c2bf9",
+    "04-part-proposals.json": "864fe239a941fcdc996bf7844a3ce93897ea5ff702d8b6e4a7d5b51f13b20f99",
+    "05-direct-link-evidence.json": "09f29b78e181e03fc4004988acf8678edfbf036e27830f38fd8069c13ce8c01c"
+  },
+  "supplementalArtifactSha256": {
+    "06-independent-review.json": "7f37add0ac9e891bdc316e8fda5fddceca7a8ed826f79c4272d4cfb3be7dd8d2",
+    "existing-public-claim-review.json": "7210fa28f60af8e60cffe1c7a1708d85ae42bd3e5a33a10cefe40113bc5b56f1"
+  },
+  "proposalCount": 4,
+  "partRowCount": 5,
+  "tally": {
+    "approve": 1,
+    "block_wrong_role": 3,
+    "block_incomplete_scope": 1,
+    "block_ambiguous": 0,
+    "hold_no_exact_link": 0,
+    "hold_needs_manual": 0
+  },
+  "reconciliation": {
+    "sourceProposalCount": 4,
+    "sourcePartRowCount": 5,
+    "reviewedPartRowCount": 5,
+    "sourceIssueCount": 173,
+    "reviewedIssueCount": 173,
+    "sourceWorkItemCount": 219,
+    "reviewedWorkItemDispositionCount": 219,
+    "terminalWorkItemDispositionCount": 219,
+    "proposedWorkItemCount": 4,
+    "heldWorkItemCount": 215,
+    "workItemDispositionSha256": "ddc697c099c5bb97652ae6f58fc9f56590991b217193c657bac9c2e48028e244",
+    "workItemDispositionReasonTally": {
+      "eligible-proposal": 4,
+      "fitment-confirmed": 3,
+      "fitment-no-catalog": 40,
+      "fitment-unmapped": 162,
+      "no-matching-part-type": 8,
+      "unsupported-catalog-application-restriction": 2
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 5,
+    "reviewedPartRowCount": 5,
+    "exactProductLinkRowCount": 4,
+    "exactProductLinkCount": 4,
+    "noExactProductLinkRowCount": 1,
+    "reviewedExactProductLinkRowCount": 4,
+    "reviewedExactProductLinkCount": 4,
+    "listingTitleSourceCount": 0,
+    "itemSpecificsSourceCount": 4,
+    "observedListingTitlePresentCount": 4,
+    "recomputedTitleHashMatchCount": 4,
+    "matchedPartNumberMatchCount": 4,
+    "observedPartNumberFieldPresentCount": 4,
+    "observedPartNumberValuePresentCount": 4,
+    "observedPartNumberValueMatchCount": 4,
+    "urlProductIdMatchCount": 4,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 3,
+  "uniqueExistingClaimCount": 2,
+  "existingClaimTally": {
+    "preserve": 0,
+    "block": 3
+  },
+  "existingClaims": [
+    {
+      "workItemId": "cadillac-escalade-afm-lifter-2007--existing-fix-part-0-0--6-2l-l94-v8",
+      "issueId": "cadillac-escalade-afm-lifter-2007",
+      "partNumber": "213-1738",
+      "engineWorkRow": "6.2L L94 V8",
+      "verdict": "block",
+      "reason": "The article requires generation-specific compression, valve-motion, VLOM, bank, and VIN/EPC diagnosis, while the current lifter claim is unscoped and immediately linkable.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the engine, compression and valve motion before parts replacement. On Gen IV, follow the VLOM and all-AFM-lifter path only after confirmed collapse; on Gen V, follow the affected-bank lifter-and-guide path and replace the VLOM or camshaft only when GM diagnosis identifies damage. Use VIN/EPC service parts, never an AFM-delete product from this card.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Clevite-77-213-1738-Roller-Lifter/dp/B000C07XZI?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "cadillac-escalade-afm-lifter-2007--existing-fix-part-0-0--6-2l-l86-v8",
+      "issueId": "cadillac-escalade-afm-lifter-2007",
+      "partNumber": "213-1738",
+      "engineWorkRow": "6.2L L86 V8",
+      "verdict": "block",
+      "reason": "The article requires generation-specific compression, valve-motion, VLOM, bank, and VIN/EPC diagnosis, while the current lifter claim is unscoped and immediately linkable.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the engine, compression and valve motion before parts replacement. On Gen IV, follow the VLOM and all-AFM-lifter path only after confirmed collapse; on Gen V, follow the affected-bank lifter-and-guide path and replace the VLOM or camshaft only when GM diagnosis identifies damage. Use VIN/EPC service parts, never an AFM-delete product from this card.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Clevite-77-213-1738-Roller-Lifter/dp/B000C07XZI?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "cadillac-xts-water-pump-weep-hole-coolant-leak--existing-fix-part-0-0--3-6l-v6-lfx-lgx",
+      "issueId": "cadillac-xts-water-pump-weep-hole-coolant-leak",
+      "partNumber": "WPGM-611V",
+      "engineWorkRow": "3.6L V6 LFX/LGX",
+      "verdict": "block",
+      "reason": "The frozen article names ACDelco 19325605/252-962 after leak-source diagnosis, while the current unscoped Aisin WPGM-611V claim has no persisted fitment or exact product-identity evidence.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the source: clean the area and look for fresh coolant tracking from the weep hole below the water pump pulley (versus hose clamps or the radiator). Replace the water pump with a new OEM/ACDelco unit and gasket, refill with DEX-COOL, and pressure-test. Do NOT use stop-leak — it can clog the heater core and radiator. ACDelco Gold water pump PN 19325605 (aftermarket ACDelco 252-962 cross-reference); inspect the thermostat and upper/lower hoses while the system is open.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/137201131319?_skw=Aisin+WPGM-611V+Engine+Water+Pump&hash=item1ff1d31f37%3Ag%3AwbcAAeSwarpp01Vu&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "proposalId": "cadillac-catera-coolant-crossover-1997--prescription-0-0--3-0l-v6",
+      "issueId": "cadillac-catera-coolant-crossover-1997",
+      "workItemId": "cadillac-catera-coolant-crossover-1997--prescription-0-0--3-0l-v6",
+      "model": "Catera",
+      "partIndex": 0,
+      "partNumber": "33911",
+      "decision": "block_wrong_role",
+      "reason": "This repair branch prescribes the thermostat housing and coolant crossover pipe, while Gates 33911 is only the thermostat and cannot stand in for either failed housing component.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the thermostat housing and coolant crossover pipe, preferably with updated aluminum components where available.",
+        "catalog": "ShowMeTheParts identifies Gates 33911 as an Engine Coolant Thermostat, not the crossover pipe or replacement housing branch.",
+        "directLink": "The exact eBay product identity is for Gates 33911, but exact identity does not cure the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "cadillac-catera-coolant-crossover-1997--prescription-2-0--3-0l-v6",
+      "issueId": "cadillac-catera-coolant-crossover-1997",
+      "workItemId": "cadillac-catera-coolant-crossover-1997--prescription-2-0--3-0l-v6",
+      "model": "Catera",
+      "partIndex": 0,
+      "partNumber": "33911",
+      "decision": "approve",
+      "reason": "This separate branch explicitly says to replace the thermostat, and Gates 33911 covers every reviewed 1997-2001 Catera 3.0L year with exact product identity.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the thermostat at the same time as the housing/crossover repair, then flush the cooling system.",
+        "catalog": "ShowMeTheParts confirms Gates 33911 Engine Coolant Thermostat for every 1997-2001 Cadillac Catera 3.0L V6 cell.",
+        "directLink": "Exact product link: the eBay item exposes Manufacturer Part Number 33911 and a matching integrated-housing thermostat title."
+      }
+    },
+    {
+      "proposalId": "cadillac-eldorado-water-pump-drive-belt-tensioner-pulley-failure-causing-sudde--prescription-0-0--all-engines",
+      "issueId": "cadillac-eldorado-water-pump-drive-belt-tensioner-pulley-failure-causing-sudde",
+      "workItemId": "cadillac-eldorado-water-pump-drive-belt-tensioner-pulley-failure-causing-sudde--prescription-0-0--all-engines",
+      "model": "Eldorado",
+      "partIndex": 0,
+      "partNumber": "WPGM-705V",
+      "decision": "block_wrong_role",
+      "reason": "The article prescribes the water-pump drive belt and tensioner/cam-driven pulleys; WPGM-705V is a complete water pump and is not the failed part described.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water-pump drive belt and tensioner pulley, plus the cam-driven pulley only if damaged.",
+        "catalog": "ShowMeTheParts identifies WPGM-705V as an Engine Water Pump and covers only 1995-2002 of the article range.",
+        "directLink": "No exact product link was resolved, and a link would not cure the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "cadillac-eldorado-water-pump-drive-belt-tensioner-pulley-failure-causing-sudde--prescription-0-0--all-engines",
+      "issueId": "cadillac-eldorado-water-pump-drive-belt-tensioner-pulley-failure-causing-sudde",
+      "workItemId": "cadillac-eldorado-water-pump-drive-belt-tensioner-pulley-failure-causing-sudde--prescription-0-0--all-engines",
+      "model": "Eldorado",
+      "partIndex": 1,
+      "partNumber": "DP972",
+      "decision": "block_wrong_role",
+      "reason": "The linked DP972 is a complete water pump, not the prescribed drive belt or tensioner pulley, and it also omits the 1993-1994 article years.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water-pump drive belt and tensioner pulley, plus the cam-driven pulley only if damaged.",
+        "catalog": "ShowMeTheParts identifies Dayco DP972 as an Engine Water Pump for 1995-2002 Eldorado cells.",
+        "directLink": "The exact eBay listing is a DP972 water pump, which proves product identity but confirms the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "cadillac-fleetwood-cooling-system-1993--prescription-0-0--all-engines",
+      "issueId": "cadillac-fleetwood-cooling-system-1993",
+      "workItemId": "cadillac-fleetwood-cooling-system-1993--prescription-0-0--all-engines",
+      "model": "Fleetwood",
+      "partIndex": 0,
+      "partNumber": "33006",
+      "decision": "block_incomplete_scope",
+      "reason": "The thermostat is conditional on pressure-test diagnosis and engine, while Gates 33006 covers only 1990-1993 of the broad 1990-1996 multi-repair article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test first and replace only the failed component; use a thermostat with the water-pump branch as needed for the applicable engine.",
+        "catalog": "ShowMeTheParts confirms Gates 33006 only for 1990-1993 Fleetwood cells and does not establish the later LT1 years or diagnosis outcome.",
+        "directLink": "The eBay item is an exact Gates 33006 thermostat, but exact identity cannot fill the missing vehicle scope or diagnosis gate."
+      }
+    }
+  ]
+}

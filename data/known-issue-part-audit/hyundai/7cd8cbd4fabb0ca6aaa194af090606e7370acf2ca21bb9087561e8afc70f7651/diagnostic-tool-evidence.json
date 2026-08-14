@@ -1,0 +1,454 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Hyundai",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 242,
+    "issuesWithDtcCodes": 71,
+    "uniqueDtcCount": 88,
+    "solutionInstructionCount": 262,
+    "dtcDispositionCount": 71,
+    "toolLinkedDispositionCount": 63,
+    "procedureNoToolDispositionCount": 230,
+    "unresolvedToolHoldCount": 40,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "hyundai-accent-cvt-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-azera-timing-chain-tensioner-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the concern by verifying oil level/condition, scanning for cam/crank correlation codes such as P0016-P0019, and listening for front cover timing chain rattle on cold start;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-creta-intermittent-ac-cooling-loss-premature-compressor-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "leak-test the system.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-creta-7-speed-dry-dct-failures-1-4-t-gdi",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P060194",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-elantra-evaporative-emissions-purge-valve-2001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Avoid replacing parts blindly without leak testing because multiple small leaks can set similar codes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-elantra-dct-transmission-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the test reports no judder, the procedure ends.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-elantra-ivt-cvt-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-entourage-alternator-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The sliding door control module is the most common culprit — unplugging it overnight as a test confirms this.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-entourage-alternator-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0562, U1101",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-equus-air-suspension-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1611, C1614",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-equus-electronic-parking-brake-2011",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A Hyundai-specific scan tool or GDS is required to cycle the EPB actuator during brake pad replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-equus-electronic-parking-brake-2011",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Some aftermarket scan tools (Autel MaxiSys, Launch X431) support Hyundai EPB functions.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-equus-electronic-parking-brake-2011",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Never attempt to manually force the EPB piston back — use the scan tool retract function only.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-equus-electronic-parking-brake-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1200, C1201",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-equus-seat-motor-2011",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose which seat motor has failed using seat module scan data.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-hb20-1-0-tgdi-direct-injection-failure-causing-sudden-loss-power",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Outside warranty, direct-injection component replacement is substantially more expensive than on the aspirated engine, so a pre-purchase scan of injection fault history is advisable on used TGDI cars.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-i20-air-conditioning-compressor-evaporator-failures",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose before replacing the whole compressor: a failed compressor control valve or evaporator thermistor is a far cheaper fix and resolves many intermittent-cooling cases.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-ioniq-epb-autohold-malfunction-2017",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C2417",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-ioniq-hybrid-control-software-2019",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A1F, U1341",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-ioniq-5-iccu-failure-causing-loss-drive-power-turtle-mode-no-dc-fast",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Covered by NHTSA recall: dealers check for DTC P1A9096 — if absent they apply an ICCU software update to reduce overvoltage stress;",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-ioniq-5-iccu-failure-causing-loss-drive-power-turtle-mode-no-dc-fast",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1A9096",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-p0016-crank-cam-correlation-fault-from-stretched-timing-chai",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the intake OCV and replace if faulty.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-p0128-engine-not-reaching-operating-temp-from-stuck-open-the",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "gauge).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-p0128-engine-not-reaching-operating-temp-from-stuck-open-the",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the thermostat is fine, test/replace the ECT sensor.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-p0442-small-evap-leak-from-gas-cap-seal-nvld-sensor",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0442",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-p0455-gross-evap-leak-from-loose-failed-gas-cap-stuck-purge",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Smoke-test to find the gross leak.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-p0455-gross-evap-leak-from-loose-failed-gas-cap-stuck-purge",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0455",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-theta-ii-2-0t-2-4l-gdi-connecting-rod-bearing-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1326",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-mdps-electronic-power-steering-sudden-assist-loss-steering-l",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1101, C1260",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-fuel-injector-failure-causing-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the listed DTCs are absent or the vehicle is outside the range, the bulletin says to continue normal diagnosis instead.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-sonata-front-radar-forward-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a full scan for ADAS faults and complete static/dynamic calibration per Hyundai procedure;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-tucson-rear-diff-coupler-failure",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Diagnose with scan tool checking AWD coupling engagement.",
+      "reasonCode": "scanner-capability-needs-code-or-module",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-tucson-hybrid-phev-12v-battery-repeated-drain-no-start",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "persistent drain after the update warrants a parasitic-draw test and 12V battery replacement under warranty.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-tucson-hybrid-phev-12v-battery-repeated-drain-no-start",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1BB20",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-veloster-battery-drain-and-no-start-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "persistent draw requires isolating the offending circuit by fuse pull or current clamp testing.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-veloster-electric-power-steering-assist-2019",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1259, C2402, C2405",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-veloster-forward-collision-avoidance-driver-2019",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1604, C1620, U3000",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-veloster-smartstream-ivtcvt-hesitation-judder-2019",
+      "source": "solution",
+      "procedure": "vag-scan-codes",
+      "excerpt": "Scan the TCM/PCM for stored transmission codes and verify fluid condition, line pressure behavior, and software level.",
+      "reasonCode": "vag-vehicle-context-unproven",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-venue-cvt-judder-2020",
+      "source": "solution",
+      "procedure": "vag-scan-codes",
+      "excerpt": "Confirm the concern with a road test at low-speed takeoff and light-to-moderate throttle, then scan the TCM/PCM for stored or pending transmission-related codes and verify the IVT fluid level/condition using Hyundai service procedure.",
+      "reasonCode": "vag-vehicle-context-unproven",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "hyundai-veracruz-alternator-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the battery tested after alternator replacement, as overcharging may have damaged it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

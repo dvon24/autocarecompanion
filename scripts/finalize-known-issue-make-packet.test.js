@@ -89,9 +89,9 @@ function row(id, options = {}) {
     typicalMileageLow: null,
     typicalMileageHigh: null,
     citations: [{ type: options.legacyCitation ? 'article' : 'manual', title: 'Repair source', url: 'https://example.com/product/12345' }],
-    communityRecommendations: [],
+    communityRecommendations: options.communityRecommendations || [],
     fixParts: options.fixParts || [],
-    humanApproved: true,
+    humanApproved: options.humanApproved === undefined ? true : options.humanApproved,
     reportCount: 0,
     source: 'manual',
     status: 'published',
@@ -128,10 +128,10 @@ function exactLink(partNumber, item = '123456789012') {
   };
 }
 
-function fixture(recordCount = 70) {
+function fixture(recordCount = 70, fixtureOptions = {}) {
   const records = Array.from({ length: recordCount }, (_, index) => row(
     `acura-${String(index + 1).padStart(2, '0')}`,
-    index === 0 ? { legacyCitation: true, dtcCodes: ['22'] } : index === 1 ? {
+    index === 0 ? { legacyCitation: true, dtcCodes: ['22'], ...(fixtureOptions.firstRow || {}) } : index === 1 ? {
       fixParts: [{ component: 'Existing belt kit', oemPartNumber: 'OLD-1', buyLinks: [exactLink('OLD-1', '123456789013')] }],
     } : {},
   ));
@@ -402,7 +402,7 @@ test('finalizer selects approved primary but keeps release blocked by unapplied 
   assert.equal(result.manifest.issues[0].after.fixParts[0].aftermarketXref[0], 'ABC-123');
   assert.equal(result.manifest.issues[0].after.citations[0].type, 'article');
   assert.equal(result.patch.removalProposals[0].applied, false);
-  assert.equal(result.patch.status, 'REVIEW_READY_BLOCKED_EXISTING_CLAIMS');
+  assert.equal(result.patch.status, 'REVIEW_READY_RELEASE_BLOCKED');
   assert.equal(result.patch.auditComplete, true);
   assert.equal(result.patch.makeComplete, false);
   assert.equal(result.patch.releaseBlocked, true);
@@ -449,6 +449,25 @@ test('overlapping approved variants and non-product links fail closed', () => {
   assert.throws(() => finalizePacket(inputs, inputs.options), /not a verified product URL/);
 });
 
+test('approved parts are held outside the manifest when the frozen full record fails current publication guards', () => {
+  const inputs = fixture(70, {
+    firstRow: {
+      humanApproved: false,
+      communityRecommendations: [{
+        type: 'part', content: 'Legacy search recommendation',
+        affiliateUrl: 'https://www.amazon.com/s?k=legacy-part',
+      }],
+    },
+  });
+  const result = finalizePacket(inputs, inputs.options);
+  assert.equal(result.patch.decisions.length, 0);
+  assert.equal(result.manifest.issues.length, 0);
+  assert.equal(result.patch.auditOnlyNoWrites, true);
+  assert.equal(result.patch.releaseBlocked, true);
+  assert.ok(result.patch.releaseBlockers.some((row) => row.type === 'full-record-release-guard'));
+  assert.ok(result.reconciliation.reviewRows.some((row) => row.reconciliationStatus === 'release-held-full-record'));
+});
+
 test('persisted product identity requires an exact normalized part-number token', async (t) => {
   const rejectsObservedValue = (value) => {
     const inputs = fixture();
@@ -468,6 +487,41 @@ test('finalization derives make coverage from the frozen source rather than Acur
   const result = finalizePacket(inputs, inputs.options);
   assert.equal(result.reconciliation.counts.issueCount, 3);
   assert.equal(result.reconciliation.issueCoverage.length, 3);
+});
+
+test('a make with only terminal holds completes as an explicit blocked zero-write audit', () => {
+  const inputs = fixture();
+  inputs.proposals.proposals = [];
+  inputs.proposals.count = 0;
+  inputs.links.proposals = [];
+  inputs.links.count = 0;
+  inputs.review.proposalCount = 0;
+  inputs.review.partRowCount = 0;
+  inputs.review.decisions = [];
+  inputs.review.tally = {
+    approve: 0,
+    block_wrong_role: 0,
+    block_incomplete_scope: 0,
+    block_ambiguous: 0,
+    hold_no_exact_link: 0,
+    hold_needs_manual: 0,
+  };
+  inputs.review.reconciliation.sourceProposalCount = 0;
+  inputs.review.reconciliation.sourcePartRowCount = 0;
+  inputs.review.reconciliation.reviewedPartRowCount = 0;
+  for (const disposition of inputs.proposals.workItemDispositions) {
+    disposition.verdict = 'hold';
+    disposition.reasonCode = 'fitment-no-catalog';
+  }
+  inputs.links.workItemDispositions = JSON.parse(JSON.stringify(inputs.proposals.workItemDispositions));
+  inputs.links.linkEvidence = [];
+  inputs.options.recomputedProposals = JSON.parse(JSON.stringify(inputs.proposals));
+  const result = finalizePacket(inputs, inputs.options);
+  assert.equal(result.patch.auditOnlyNoWrites, true);
+  assert.equal(result.patch.releaseBlocked, true);
+  assert.equal(result.manifest.auditOnlyNoWrites, true);
+  assert.deepEqual(result.manifest.issues, []);
+  assert.equal(result.reconciliation.counts.changedIssueCount, 0);
 });
 
 test('scope overlap uses runtime-equivalent whole-token fitment matching', () => {
@@ -670,6 +724,75 @@ test('every approved row requires an exact affiliate-attributed product link', (
   strippedAffiliate.links.proposals[0].parts[0].buyLinks[0].url = 'https://www.ebay.com/itm/123456789012';
   strippedAffiliate.links.linkEvidence[0].links = strippedAffiliate.links.proposals[0].parts[0].buyLinks;
   assert.throws(() => finalizePacket(strippedAffiliate, strippedAffiliate.options), /missing affiliate attribution/);
+
+  const lookalikeHost = fixture();
+  lookalikeHost.links.proposals[0].parts[0].buyLinks[0].url = lookalikeHost.links.proposals[0].parts[0].buyLinks[0].url
+    .replace('www.ebay.com', 'ebay.example.com');
+  lookalikeHost.links.linkEvidence[0].links = lookalikeHost.links.proposals[0].parts[0].buyLinks;
+  assert.throws(() => finalizePacket(lookalikeHost, lookalikeHost.options), /verified product URL|vendor\/link mismatch/);
+
+  const wrongAffiliateOwner = fixture();
+  wrongAffiliateOwner.links.proposals[0].parts[0].buyLinks[0].url = wrongAffiliateOwner.links.proposals[0].parts[0].buyLinks[0].url
+    .replace('campid=5339164204', 'campid=9999999999')
+    .replace('mkrid=711-53200-19255-0', 'mkrid=999-99999-99999-0')
+    .replace('toolid=10049', 'toolid=99999');
+  wrongAffiliateOwner.links.linkEvidence[0].links = wrongAffiliateOwner.links.proposals[0].parts[0].buyLinks;
+  assert.throws(() => finalizePacket(wrongAffiliateOwner, wrongAffiliateOwner.options), /missing affiliate attribution/);
+
+  const directRetailer = fixture();
+  const directTitle = 'Advance Auto Parts ABC-123 exact product';
+  directRetailer.links.proposals[0].parts[0].buyLinks[0] = {
+    vendor: 'Advance Auto Parts',
+    url: 'https://shop.advanceautoparts.com/p/advance-abc-123/10023778-P',
+    linkType: 'product',
+    verified: true,
+    via: 'manual-retailer-page-review',
+    productIdentity: {
+      matchedPartNumber: 'ABC-123',
+      productId: '10023778-P',
+      listingTitleHash: crypto.createHash('sha256').update(directTitle).digest('hex'),
+      observedListingTitle: directTitle,
+      matchedPartNumberSource: 'listing-title',
+      observedPartNumberField: 'title',
+      observedPartNumberValue: directTitle,
+    },
+  };
+  directRetailer.links.linkEvidence[0].links = directRetailer.links.proposals[0].parts[0].buyLinks;
+  assert.doesNotThrow(() => finalizePacket(directRetailer, directRetailer.options));
+  directRetailer.links.proposals[0].parts[0].buyLinks[0].productIdentity.productId = '99999999-X';
+  directRetailer.links.linkEvidence[0].links = directRetailer.links.proposals[0].parts[0].buyLinks;
+  assert.throws(() => finalizePacket(directRetailer, directRetailer.options), /direct-retailer URL product ID/);
+});
+
+test('approved rows allow at most two URL- and vendor-distinct exact links', () => {
+  const directTitle = 'Advance Auto Parts ABC-123 exact product';
+  const directLink = {
+    vendor: 'Advance Auto Parts',
+    url: 'https://shop.advanceautoparts.com/p/advance-abc-123/10023778-P',
+    linkType: 'product', verified: true, via: 'manual-retailer-page-review',
+    productIdentity: {
+      matchedPartNumber: 'ABC-123', productId: '10023778-P',
+      listingTitleHash: crypto.createHash('sha256').update(directTitle).digest('hex'),
+      observedListingTitle: directTitle, matchedPartNumberSource: 'listing-title',
+      observedPartNumberField: 'title', observedPartNumberValue: directTitle,
+    },
+  };
+
+  const twoLinks = fixture();
+  twoLinks.links.proposals[0].parts[0].buyLinks.unshift(directLink);
+  twoLinks.links.linkEvidence[0].links = twoLinks.links.proposals[0].parts[0].buyLinks;
+  assert.doesNotThrow(() => finalizePacket(twoLinks, twoLinks.options));
+
+  const duplicateVendor = fixture();
+  duplicateVendor.links.proposals[0].parts[0].buyLinks.push(exactLink('ABC-123', '999999999999'));
+  duplicateVendor.links.linkEvidence[0].links = duplicateVendor.links.proposals[0].parts[0].buyLinks;
+  assert.throws(() => finalizePacket(duplicateVendor, duplicateVendor.options), /URL- and vendor-distinct/);
+
+  const threeLinks = fixture();
+  threeLinks.links.proposals[0].parts[0].buyLinks.unshift(directLink);
+  threeLinks.links.proposals[0].parts[0].buyLinks.push(exactLink('ABC-123', '999999999999'));
+  threeLinks.links.linkEvidence[0].links = threeLinks.links.proposals[0].parts[0].buyLinks;
+  assert.throws(() => finalizePacket(threeLinks, threeLinks.options), /two-link cap/);
 });
 
 test('fitment generator drift requires a rebuild before downstream review can finalize', () => {

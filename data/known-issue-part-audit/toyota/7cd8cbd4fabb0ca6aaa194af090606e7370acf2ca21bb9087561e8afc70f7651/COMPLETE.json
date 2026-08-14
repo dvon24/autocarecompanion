@@ -1,0 +1,1588 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-make-completion",
+  "status": "AUDIT_COMPLETE",
+  "auditComplete": true,
+  "releaseBlocked": true,
+  "completionState": "AUDIT_COMPLETE_RELEASE_BLOCKED",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "8456a88c76b3c39ac6696754501228c3b215244fd29fbc5b7843f11fb1fbb631",
+  "make": "Toyota",
+  "makeKey": "toyota",
+  "issueCount": 579,
+  "manifestFile": "08-guarded-manifest.json",
+  "manifestHash": "af4f52519d88a5c47f3f1f216c389885d93cf9a5ca7d4ebbbc23aae70e8a5f3a",
+  "artifactSha256": {
+    "00-make-source.json": "171dfc1e095c6c5c1fce8a9ec169545c3b483f297e7976e9871411b9a55e252e",
+    "01-disposition-ledger.json": "0f5537a35ed214f5faad83bd5743e55c8fd1f6738b129e9890655321a7a9137e",
+    "02-fitment-worklist.json": "0cc50c3bf3ce514db3aa7ba514dfd780c80afa83dcba77956ef7c8eb83e0956f",
+    "03-showmetheparts-evidence.json": "d490fcfb2ae039d6eaab6ffe6c8a5fc7a88623af048d092720702e5abf6c805b",
+    "04-part-proposals.json": "e507df6b219cbe77c9a5fb93b252e6cce45a7bd7e69d1da720f88cd7b8c06305",
+    "05-direct-link-evidence.json": "aa54415ba59dbe8416e0044c0a34e9badfb7eb6948353b9441b69f3c32f87022",
+    "06-independent-review.json": "c9ebe51623ff36c3422f30bb5f772c8de4b4302a63bdc3ef17b4bff58dbd5d2d",
+    "07-decision-patch.json": "d98ff21524d8fc8a9faf9bfa328f7fb099cc8e19bea2d6e964ffd9d8ec476bd7",
+    "08-guarded-manifest.json": "af4f52519d88a5c47f3f1f216c389885d93cf9a5ca7d4ebbbc23aae70e8a5f3a",
+    "reviewed-retailer-candidates.json": "0d4e5196055a3b87a83f84d37fdccd31c2543c9b98eb80f227b175611e399b98",
+    "classification-ledger.json": "17784eb287624b42ac41b45a386c1fd9b4f44d56734558743e2953b9273e639d",
+    "checkpoint.json": "63a4dae7db2f19794ac0db04d2d4c5b78007c839d2c8574b900ede912fe5bc6d",
+    "diagnostic-tool-evidence.json": "f843116539d81cd565617769b7dcbede2214b93b08c57d7518c7888d5ca1a175"
+  },
+  "diagnosticImplementationSha256": {
+    "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+    "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+    "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+    "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+    "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "diagnosticScope": {
+    "issueCount": 579,
+    "issuesWithDtcCodes": 169,
+    "uniqueDtcCount": 190,
+    "solutionInstructionCount": 714,
+    "dtcDispositionCount": 169,
+    "toolLinkedDispositionCount": 137,
+    "procedureNoToolDispositionCount": 583,
+    "unresolvedToolHoldCount": 163,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "diagnosticHolds": [
+    {
+      "issueId": "toyota-4runner-air-fuel-ratio-sensor-bank-1-sensor-1-failure-heater-circuit",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0125, P0135, P1130",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-abs-actuator-master-cylinder-assembly-failure-triggering-abs",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the fault is the actuator/accumulator (continuous pump run, pressure faults), replace the integrated ABS actuator with master cylinder assembly - OEM 47050-60080/47050-60081 (4th gen) - and bleed/initialize the system with a capable scan tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-abs-actuator-master-cylinder-assembly-failure-triggering-abs",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1245, C1246, C1252, C1256, C1391",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-brake-booster-master-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Repair usually involves replacing the brake booster assembly and/or master cylinder actuator unit, followed by brake bleeding with a scan tool-capable procedure and calibration of the brake system.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-brake-booster-master-2003",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1252, C1253, C1256, C1391",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-fuel-gauge-sending-unit-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Repair usually involves replacing the fuel level sender or pump module assembly, then confirming gauge operation over several fill cycles.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-high-mileage-harsh-jerky-automatic-shifting-from-valve-body",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for solenoid/pressure codes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-high-mileage-harsh-jerky-automatic-shifting-from-valve-body",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "a transmission pressure test confirms a stuck regulator.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-secondary-air-injection-pumpvalve-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0412, P0418, P0419, P1442, P2440, P2441, P2442, P2444, P2445",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-front-door-lock-actuator-failure-causing-doors-to-not-lock-u",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose which specific door is affected (a single failing door points to that door's actuator/latch, not the body control module).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-4runner-takata-airbag-2010",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0100, B0101, B0102",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-bz4x-12v-auxiliary-battery-premature-failure-no-start",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "some owners report dealers denying claims because the battery passes diagnostic testing.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-c-hr-cvt-variator-carrier-bearing-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose to isolate the noise to the CVT rather than a wheel bearing.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-chr-cvt-hesitation-2018",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-power-window-regulator-motor-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Secure loose glass before it can fall, then test switch command, power, ground, and voltage drop under load.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-intermediate-steering-shaft-clunk-2002",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not replace either prior shaft or buy the grease kit from this card without diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-p0011-intake-camshaft-over-advanced-from-clogged-vvt-i-oil-c",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Use T-SB-0269-10's Techstream VVT Control active test to determine whether the bulletin repair applies;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-2az-fe-excessive-oil-consumption-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not order pistons, rings, a gasket set, head bolts, plugs, or a catalyst before the test and teardown establish the exact repair.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-camshaft-crankshaft-position-sensor-failure-causing-stalling",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0335",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-dashboard-2018",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Avoid solvent or protectant experiments on the affected surface, and do not buy a dashboard cover from this card as a substitute for diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-p0606-ghost-ecm-pcm-code-disabling-vsc-trac-actually-rear-o2",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "otherwise continue repair-manual P0606 diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-persistent-musty-moldy-odor-from-c-vents-due-to-evaporator-m",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "constant odor or debris-driven odor may require separate repair-manual diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-p0016-crank-cam-correlation-fault-from-failed-vvt-i-camshaft",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose any stored P0016/P0012 separately under the repair manual rather than using this bulletin as proof of a broken phaser.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-brake-actuator-abs-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Treat red brake warnings or changed braking response as safety-critical and do not buy campaign kits, used actuators, scan tools, or fluid from this card.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-brake-actuator-abs-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1252, C1253, C1256, C1391",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-torque-converter-shudder--2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the gate does not match, continue normal vibration diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-torque-converter-shudder--2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For a matching condition, T-SB-0034-14 specifies torque-converter replacement, replacement of two pan magnets with four new magnets, required fluid/gaskets, ECM calibration update when not current, ECT reset and test drive.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-high-voltage-hybrid-battery-pack-degradation-weak-cell-failu",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A7F, P0A80",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-infotainment-2018",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the software is current, Toyota says the bulletin does not apply and normal diagnosis continues.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-infotainment-2018",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not replace the head unit, erase all pairings or assume a power-button reset is a repair unless the exact diagnostic procedure calls for it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-infotainment-2018",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B15E6, U0293, U1110",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-a25a-fks-cold-start-misfire-rough-running-from-exhaust-valve",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not substitute a generic P0300 diagnosis, assume intake carbon is the cause, or order an old/superseding part number from this card.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-a25a-fks-cold-start-misfire-rough-running-from-exhaust-valve",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P030000, P030027, P030100, P030200, P030300, P030400",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-transmission-2018",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Other symptoms, DTCs, leaks, or nonqualifying VINs require normal diagnosis rather than assuming this calibration applies.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-battery-drain-2018",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the 12-volt battery and charging system and measure key-off draw before assigning the cause.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-battery-drain-2018",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Continue normal parasitic-draw diagnosis when the vehicle, DCM firmware, DTC, or symptoms do not match.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-battery-drain-2018",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not replace a battery, relay, telematics module, or buy a maintainer from this card without diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-battery-drain-2018",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B15A804",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-a25a-electric-coolant-pump-leak-triggering-check-engine-ligh",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P26CA14, P26CA31",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-camry-driver-assist-braking-faults-ecb-smart-stop-system-malfuncti",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Stop using an assistance function that behaves unexpectedly and arrange prompt Toyota diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-celica-5s-fe-2-2l-head-gasket-failure-cylinder-head-warpage",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace the head gasket with the updated OEM gasket, have the head pressure-tested and resurfaced (machine work is usually needed), and renew the radiator, thermostat, and timing belt while apart.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-celica-pre-cat-failure-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if the engine has already ingested material, perform a compression/leak-down test and be prepared for engine rebuild or replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-distributor-failure-internal-ignition-coil-igniter-breakdown",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with a scan/code read (OBD-I code 14 or OBD-II P1300 point to the igniter circuit) and a warm-stall recreation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-distributor-failure-internal-ignition-coil-igniter-breakdown",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "14, P1300",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-egr-valve-vsv-carbon-clogging-causing-p0401-insufficient-flo",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the EGR VSV (vacuum switching valve) for correct operation and replace if it does not hold/switch vacuum.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-ecmpcm-failure-causing-harsh-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis typically starts by confirming erratic shift behavior, communication issues, or stored transmission/engine codes, then verifying ECM part number applicability.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-ecmpcm-failure-causing-harsh-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0750, P0753, P0755, P0758, P1760, P1780",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-vvt-i-camshaft-timing-oil-control-valve-failure-causing-p001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if the plunger is sticky or the solenoid fails a resistance/actuation test, replace it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-intake-manifold-gasket-vacuum-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis is usually confirmed by fuel-trim readings, smoke testing, or observing idle changes when carb-cleaner or propane is directed near the intake manifold sealing area.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-takata-front-airbag-inflator-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis is generally not symptom-based because the defect may not show warning signs before deployment.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-airbag-warning-light-from-2009",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1801, B1802",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-cvt-transmission-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace torque converter if diagnosed as failed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-cvt-transmission-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-front-suspension-squeak",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace strut mounts if diagnosed as failed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-cross-auto-stop-start-engine-fails-to-restart-during-wiper-use-low",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Stop operating it when steering assist, engine or Stop & Start malfunction warnings require it, and arrange Toyota diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-cross-blind-spot-monitor-false-alerts-intermittent-disable",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace or calibrate a sensor only after the exact VIN, side and diagnosed fault are confirmed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-cross-power-liftgate-unlatches-but-fails-to-raise",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have Toyota test 12-volt voltage, switches and sensors, spindle operation, wiring and stored body data before selecting a repair.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-cross-hybrid-12v-battery-parasitic-drain-no-start-after-sitting",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Preserve warning messages and test the 12-volt battery state of charge, capacity, terminals and charging voltage in READY mode before replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-corolla-cross-infotainment-lag-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Other camera, power, display or network faults require their own diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-crown-hybrid-system-warning-lamp-mil-freezing-temperatures",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1C8449, P300449",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-echo-rear-wheel-bearing-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0210",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-grand-highlander-hybrid-max-cold-start-camshaft-timing-dtc-p05ce-check-engine",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "dealers diagnose and apply the bulletin remedy (calibration/cam-timing related).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-grand-highlander-hybrid-max-cold-start-camshaft-timing-dtc-p05ce-check-engine",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Owners seeing the CEL should have the code read and reference the applicable TSB rather than just clearing it, since it can recur on cold starts until the bulletin remedy is applied.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-grand-highlander-hybrid-max-cold-start-camshaft-timing-dtc-p05ce-check-engine",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P05CE, P05CE00",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-grand-highlander-infotainment-bugs-2024",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "software updates are often free under warranty, while out-of-warranty diagnosis typically runs about $150-$250 and head unit replacement can exceed $1,200-$2,500.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-highlander-hybrid-battery-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Individual cell replacement is possible for DIY owners using load-tested cells.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-highlander-hybrid-brake-booster-abs-actuator-assembly-failure-c1391",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1252, C1256, C1391",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-highlander-hybrid-inverter-coolant-pump-failure-p0a05-p0a93",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A05, P0A93, P0A94",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-highlander-awd-rear-differential-coupling-bearing-noise",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose whether the noise is the bearings or the coupling.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-highlander-evap-purge-valve-charcoal-canister-failure-p0441-p0455-fuel",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the purge VSV and vent valve;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-highlander-ignition-coil-intake-pcv-failure-causing-random-misfire-p030",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose which cylinder(s) by reading codes;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-highlander-rear-cargo-hatch-water-leak",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Find the entry point with a controlled water test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-highlander-charging-system-malfunction-alternator-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Load-test the battery and measure charging voltage before condemning parts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-highlander-highway-wind-noise-sunroof-moonroof-rattle",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Costs are usually low ($0-$200) and largely labor/diagnostic;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-land-cruiser-fj40-body-tub-quarter-panel-rust",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Restorers cut out ALL the rot rather than coat over it, then weld in reproduction steel: CCOT/Specter/Aqualu 16-gauge quarter-panel patch panels and dogleg sections, new rocker/sill panels, and full replacement or fabricated floor pans (many builds upgrade to heavier diamond-plate floors).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-land-cruiser-center-diff-lock-1998",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1436, C1438",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-land-cruiser-air-pump-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Some owners delete the system entirely with aftermarket tune, though this prevents passing emissions in tested states.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-landcruiser-ahc-suspension-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with Toyota Techstream to identify which component has failed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-landcruiser-12-volt-battery-drain-and-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B15C3, C1241, U0140",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-landcruiser-driver-assistance-false-alerts-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A10, C1A11, C1AA6",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-mr2-4a-gze-supercharger-engagement-failures-bearing-wear",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose non-engagement at the SC clutch wiring, relay, and vacuum/ABV plumbing before condemning the blower;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-mr2-ignition-igniter-distributor-no-spark-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "replace the coil or distributor pickup if those test bad.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-mr2-t-bar-roof-water-leaks-pop-up-headlight-motor-faults",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For headlight motors, test the limit-switch diodes (they read differently when a headlight won't cycle);",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-mr2-coolant-pipe-hose-from-hell-failures",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Carefully re-bleed the system afterward and watch the temperature gauge closely for the first drives.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-paseo-alternator-1992",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Always replace the serpentine belt and test the battery when replacing the alternator.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-pickup-frame-rust-1990",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "use a hammer or pick test to identify soft spots, perforation, and delamination hidden under scale.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-pickup-frame-rust-1990",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If there is perforation, cracked mounts, or significant thinning, the only proper repair is sectioning in heavy-gauge frame repair plates by a qualified welder/fabricator or replacing the frame entirely with a rust-free southern/western donor, with repairs commonly running $2,000-$6,000+ and severely rusted trucks often being uneconomical to save.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-previa-head-gasket-failure-2tz-mid-engine",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace the head gasket with the OEM multi-layer steel gasket, resurface/pressure-test the head for warpage or cracks, and replace head bolts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-previa-ignition-misfires-distributor-cap-rotor-plug-wires-distribut",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If misfire persists after tune-up, test the igniter/ICM and wiring.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-prius-c-ac-compressor-2012",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1479, P0533",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-prius-c-cvt-judder-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The 12V battery should also be tested, as a weak 12V battery causes control system glitches that mimic transaxle judder.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-prius-c-cvt-judder-2012",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0AA6",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-prius-c-hybrid-battery-degradation-2012",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A80, P3000",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-prius-c-water-pump-inverter-2012",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A78, P0A93",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-prius-v-egr-cooler-crack-2012",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0401, P0402",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-ecm-failure-causing-harsh-2001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the bulletin gates are met, T-SB-0156-10 Rev2 directs ECM replacement, ECM learning through at least 20 minutes of normal city driving and a transaxle function test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-ecm-failure-causing-harsh-2001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "obtain a diagnosis and written estimate before repair.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-ecm-failure-causing-harsh-2001",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0750, P0753, P0755, P0758, P1760",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-2az-fe-cold-start-vvt-i-camshaft-gear-timing-rattle",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Persistent or worsening rattle, an oil-pressure warning or abnormal running needs prompt diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-drive-belt-tensioner-idler-pulley-bearing-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Use the repair manual for diagnosis, quantity and torque.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-evap-charcoal-canister--2001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if none are stored, active-test the purge VSV at warm idle;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-evap-charcoal-canister--2001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the gates are not met, the bulletin does not apply and normal EVAP diagnosis continues.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-evap-charcoal-canister--2001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "obtain a diagnosis and estimate first.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-front-strut-mount-spring-knock-clunk-over-bumps",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose mounts, bearings, links, joints and bushings separately if the noise or VIN does not match.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-rear-wheel-bearing-and-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "ZF4's coverage ended after nine years from first use and is expired for this model-year range, so obtain a diagnosis and written estimate before authorizing work.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-steering-intermediate-shaft-clunkknock-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The original basic-warranty period is expired, so obtain the diagnosis and written repair scope before approving parts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-sun-visor-drooping-falling-down-obstructing-driver-s-view",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "obtain a written diagnosis and quote.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-torque-converter-flex-lock-up-shudder-under-light-throttle",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The original powertrain warranty and ZH1 extension are expired, so request the diagnosis, calibration status and complete written scope before authorizing repair.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-entune-freeze-2016",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the software is already current, the faceplate is not listed or the symptom persists, continue the applicable audio/visual repair-manual diagnosis before considering hardware.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-entune-freeze-2016",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not buy a generic powertrain OBD scanner as the remedy for this multimedia condition.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-entune-freeze-2016",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B15E6, U1110",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-awd-binding-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the condition does not match, the bulletin says to continue normal diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-coolant-bypass-valve-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "T-SB-0112-24 Rev1 identifies updated hose assemblies 16260-F0300 for gasoline RAV4 and 16260-F0310 for RAV4 Hybrid/Prime, plus Toyota Super Long Life Coolant, but parts should not be ordered until the exact diagnostic and VIN gates are met.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-coolant-bypass-valve-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Otherwise continue cooling-system diagnosis;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-coolant-bypass-valve-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "an initial diagnostic fee may apply when the condition is not covered.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-coolant-bypass-valve-2019",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P268111, P268115",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-fuel-tank-refueling-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "T-SB-0109-20 Rev1 requires Techstream fuel-input checks, controlled refueling and, when needed, a drain/meter-reset test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-high-pressure-fuel-pump-corrosion-causing-gasoline-odor-fuel",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A nonmatching odor continues through normal diagnosis, and the owner may owe initial diagnostic fees.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-hybrid-battery-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the VIN and test gates match, Toyota directs replacement of the HV battery intake duct with revised part G92D1-42020, followed by confirmation that the noise is gone.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-hybrid-battery-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the fan is not the source, the bulletin does not apply and normal diagnosis continues.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-hybrid-engine-oil-fuel-dilution-a25a-fxs-thinning-oil",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Treat an Oil Pressure Low warning as a stop-and-diagnose condition.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-hybrid-engine-oil-fuel-dilution-a25a-fxs-thinning-oil",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "any internal coolant leak takes the vehicle outside this bulletin and must be diagnosed separately.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-hybrid-engine-oil-fuel-dilution-a25a-fxs-thinning-oil",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P05202A, P052477",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-hybrid-high-voltage-cable-connector-corrosion-causing-comple",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Warning messages or a no-start require prompt diagnosis;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-hybrid-high-voltage-cable-connector-corrosion-causing-comple",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0AA649, P1C8049",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-liftgate-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have Toyota test 12-volt voltage, switches, sensors, spindles, wiring and stored body data using the exact VIN configuration.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-pre-collision-system-toyota-safety-sense-phantom-braking",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Maintain control and arrange Toyota diagnosis of stored PCS, brake and chassis data.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-rear-differential-noise-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the gates are not met, continue normal diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-rear-differential-noise-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Switching Normal/Sport mode is described as a test aid, not a repair.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-battery-drain-dcm-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the firmware is current or the gate is not met, continue parasitic-draw and charging-system diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-battery-drain-dcm-2019",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B15A804",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-occupant-sensor-airbag-2020",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "that is a different circuit and requires its own diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-rav4-blind-spot-monitor-malfunction-warning-from-rear-bumper-rada",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the condition does not match, continue repair-manual diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-sequoia-ab60e-6-speed-torque-converter-lockup-shudder",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Early diagnosis prevents further transmission wear.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-sienna-evap-system-leak-detection-vapor-canister-fault",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Typical repairs (vent solenoid, purge VSV, leak-detection pump, or hoses) run roughly $150-$500 including diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-sienna-hybrid-battery-degradation-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A80, P3000",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-solara-convertible-top-motor-2004",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose whether the failure is electrical (motor, relay, switch) or hydraulic (pump, cylinder, line).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-cam-position-sensor-failure-no-start-no-spark",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pull Toyota flash codes via the diagnostic connector;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-cam-position-sensor-failure-no-start-no-spark",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "12, 13",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-chronic-overheating-from-air-pocket-prone-cooling-system-age",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Properly bleed the cooling system after any coolant work, replace the thermostat and aged radiator, renew or test the fan clutch, and ensure the factory fan shroud and ducting are present — a healthy stock system cools even modified engines.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-chronic-overheating-from-air-pocket-prone-cooling-system-age",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pressure-test and block-test (combustion gas test) if temperatures still climb, since persistent overheating usually means the head gasket is already compromised.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-progressive-power-steering-faults-rack-leaks",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For erratic assist, test the speed sensor and harness, or unplug the PPS solenoid connector as a accepted workaround (steering becomes moderately firmer at all speeds).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-abs-trac-accumulator-pump-actuator-failures",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose stored ABS/TRAC codes and pump operation;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-abs-trac-accumulator-pump-actuator-failures",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "depressurize the nitrogen accumulator before bleeding and use the ignition-on self-test bleeding procedure to purge trapped air.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-sequential-twin-turbo-system-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pressure-test the sequential system and vacuum-test each VSV and actuator per the wilbo666/TSRM diagnostic procedure;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-coolant-loss-2020",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test electric water pump for leaks (BMW 11518632586).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-coolant-loss-2020",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If coolant continues dropping, pressure test the charge air cooler for micro-cracks.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-supra-zf8-transmission-2020",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0741, P189C",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-t100-frame-rust-1993",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "use a hammer or pick test and measure metal thickness anywhere scaling or perforation is present.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tacoma-evaporative-emissions-leak-faults-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Clearing codes without smoke-testing often leads to repeat repairs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tacoma-front-wheel-bearing-and-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0200, C1238",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tacoma-p0011-bank-1-intake-cam-over-advanced-from-failed-vvt-i-oil",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "test the solenoid's resistance/operation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tacoma-p0302-cylinder-2-misfire-from-failed-ignition-coil",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Swap the cylinder 2 ignition coil with an adjacent cylinder and re-scan: if the misfire moves to that cylinder, replace the failed coil.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tacoma-spiral-cable-clock-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1181, B1801, B1811",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tacoma-2gr-fks-3-5l-v6-excessive-oil-consumption",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "First quantify consumption with a documented oil-consumption test (measured top-offs over a set mileage).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tacoma-driveline-vibration-deceleration-50-mph-rear-whine",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "otherwise costs are modest (parts plus diagnostic labor).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tacoma-p0303-cylinder-3-misfire-from-failed-ignition-coil-worn-plug",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Swap the cylinder 3 coil to an adjacent cylinder and re-scan;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tacoma-i-force-8-speed-automatic-transmission-failure-requiring-ful",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P07407F, P079571, P08BA71, P271371, P280771, P281671",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tercel-automatic-transmission-failure-1990",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Typical costs are about $300-$700 for diagnostic work and minor valve body/fluid repairs, $1,800-$3,000 for a proper rebuild, or $800-$1,500 for a used replacement transmission plus installation;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-tundra-turbocharger-electronic-wastegate-actuator-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0046, P0047, P0048, P0234, P0299",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-venza-hybrid-fuel-tank-underfills-inaccurate-fuel-gauge",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Toyota attributes part of the shortfall to an undocumented hybrid fuel reserve and advises refueling below ~1/4 tank so the gauge calibrates.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-venza-hybrid-fuel-tank-underfills-inaccurate-fuel-gauge",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Where the gauge or fill is clearly defective, dealers have replaced fuel tank/sender assemblies under the support program used for the RAV4 Hybrid.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "toyota-yaris-power-steering-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with Toyota Techstream to determine if the EPS motor or control module has failed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    }
+  ],
+  "productionApplied": false,
+  "productionWriteAuthorized": false,
+  "completionHash": "81b58ff12aec34ed6e0a2bf6ff46215ed6ee5a208ab0cbbb4c1c4dcad32f3a48"
+}

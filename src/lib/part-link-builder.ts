@@ -80,6 +80,13 @@ export interface BuildInput {
  */
 export type LinkResolver = (input: BuildInput) => Promise<LinkCandidate[]>;
 
+function productMerchantKey(link: Pick<BuiltLink, 'vendor' | 'url'>): string {
+  const host = new URL(link.url).hostname.toLowerCase().replace(/^www\./, '');
+  if (host === 'amazon.com' || host.endsWith('.amazon.com')) return 'amazon';
+  if (host === 'ebay.com' || host.endsWith('.ebay.com')) return 'ebay';
+  return link.vendor.toLowerCase().replace(/[^a-z0-9]/g, '');
+}
+
 /**
  * The gate is applied to every candidate, whatever produced it. A resolver
  * cannot opt out, and a hand-written link gets no special treatment.
@@ -152,7 +159,7 @@ export async function buildPartLinks(
         || createHash('sha256').update(observedListingTitle, 'utf8').digest('hex') !== candidate.listingTitleHash) continue;
       const link = acceptCandidate(candidate);
       if (!link) continue;
-      const vendorKey = link.vendor.toLowerCase();
+      const vendorKey = productMerchantKey(link);
       // One link per vendor: two eBay listings for the same part read as
       // padding, not as choice.
       if (seenUrl.has(link.url) || seenVendor.has(vendorKey)) continue;

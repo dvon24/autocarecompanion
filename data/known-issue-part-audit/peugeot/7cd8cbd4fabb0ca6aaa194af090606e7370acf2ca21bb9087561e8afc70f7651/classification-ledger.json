@@ -1,0 +1,2295 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Peugeot",
+  "makeKey": "peugeot",
+  "makeIndex": 36,
+  "totalMakes": 54,
+  "issueCount": 47,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 17,
+    "diagnosis-dependent": 9,
+    "recall/dealer": 5,
+    "service/tool/fluid": 11,
+    "no-commerce": 5
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 24,
+    "uniqueDtcCount": 25,
+    "instructionCount": 33,
+    "dtcDispositionCount": 24,
+    "toolLinkedCount": 24,
+    "procedureNoToolCount": 23,
+    "unresolvedToolHoldCount": 10
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "peugeot-2008-puretech-timing-chain",
+      "make": "Peugeot",
+      "model": "2008",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "Active",
+        "Allure",
+        "GT Line"
+      ],
+      "engines": [
+        "1.2L PureTech"
+      ],
+      "title": "PureTech 1.2 Wet Timing Belt Delamination",
+      "howToFix": "If an oil-pressure warning appears, stop the engine as soon as it is safe and do not continue driving until the lubrication system is checked. Identify engine and production date by VIN, inspect belt condition using the current Peugeot procedure, and when degradation is confirmed follow engine-specific instructions for the timing-belt system, oil pickup/lubrication circuit, oil and filter. Check Peugeot support eligibility and the service schedule. Do not buy a timing-belt kit from this page; production date, engine, diagnosis and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If an oil-pressure warning appears, stop the engine as soon as it is safe and do not continue driving until the lubrication system is checked."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Identify engine and production date by VIN, inspect belt condition using the current Peugeot procedure, and when degradation is confirmed follow engine-specific instructions for the timing-belt system, oil pickup/lubrication circuit, oil and filter."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check Peugeot support eligibility and the service schedule."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "production date, engine, diagnosis and VIN fitment must be established first."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-2008-e2008-range-issues",
+      "make": "Peugeot",
+      "model": "2008",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "GT Line"
+      ],
+      "engines": [
+        "Electric 50kWh"
+      ],
+      "title": "e-2008 Range Below Advertised",
+      "howToFix": "Perform a battery recalibration by fully charging then fully depleting the battery twice. Use eco mode and pre-condition while plugged in. A software update may improve BMS estimation accuracy.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-206-fuel-gauge-sender-unit-failure",
+      "make": "Peugeot",
+      "model": "206",
+      "years": [
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fuel Gauge Sender Unit Failure",
+      "howToFix": "Access the sender through the hatch under the rear seat cushion, clean and re-tension the connector terminals and inspect the wiring; if the float or resistive track is worn, replace the sender (or combined pump/sender) unit. No tank removal is required.",
+      "dtcCodes": [
+        "P0460"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Access the sender through the hatch under the rear seat cushion, clean and re-tension the connector terminals and inspect the wiring;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0460"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-206-ignition-coil-pack-failure",
+      "make": "Peugeot",
+      "model": "206",
+      "years": [
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Ignition Coil Pack Failure (Petrol TU Engines)",
+      "howToFix": "Replace the coil pack — OEM-quality (Sagem/Valeo/Bosch) units are strongly recommended over cheap aftermarket packs — along with spark plugs if worn. The job is a straightforward DIY or sub-one-hour shop task on these engines.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0304",
+        "P0351",
+        "P0352"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0304, P0351, P0352"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-206-ignition-coil-pack-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-206-rear-axle-torsion-beam-trailing-arm-bearing-wear",
+      "make": "Peugeot",
+      "model": "206",
+      "years": [
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear Axle Torsion Beam Trailing Arm Bearing Wear",
+      "howToFix": "If caught early, fit a trailing arm bearing and shaft repair kit; once the axle tube bearing surfaces are scored, the accepted fix is a fully reconditioned exchange rear axle from a specialist, followed by rear geometry/ride-height check. Repairing a seized, rusted original axle DIY is generally considered impractical.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "once the axle tube bearing surfaces are scored, the accepted fix is a fully reconditioned exchange rear axle from a specialist, followed by rear geometry/ride-height check."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-206-rear-axle-torsion-beam-trailing-arm-bearing-wear--prescription-0-0--all-engines",
+        "peugeot-206-rear-axle-torsion-beam-trailing-arm-bearing-wear--prescription-1-0--all-engines",
+        "peugeot-206-rear-axle-torsion-beam-trailing-arm-bearing-wear--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-206-anti-pollution-fault-warning-emissions-system-faults",
+      "make": "Peugeot",
+      "model": "206",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "'Anti-Pollution Fault' Warning — Emissions System Faults",
+      "howToFix": "Read the stored DTCs with PSA-capable diagnostics rather than guessing; the accepted fixes are replacing the specific failed component — most commonly an ignition coil pack or lambda sensor, cleaning or replacing the EGR valve, or replacing a misfire-damaged catalytic converter in advanced cases.",
+      "dtcCodes": [
+        "P0130",
+        "P0300",
+        "P0420"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "Read the stored DTCs with PSA-capable diagnostics rather than guessing;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0130, P0300, P0420"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-206-anti-pollution-fault-warning-emissions-system-faults--prescription-0-0--all-engines",
+        "peugeot-206-anti-pollution-fault-warning-emissions-system-faults--prescription-1-0--all-engines",
+        "peugeot-206-anti-pollution-fault-warning-emissions-system-faults--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-206-head-gasket-failure",
+      "make": "Peugeot",
+      "model": "206",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "XR",
+        "XT"
+      ],
+      "engines": [
+        "1.4L TU3",
+        "1.6L TU5"
+      ],
+      "title": "Head Gasket Failure",
+      "howToFix": "Replace the head gasket, machine the cylinder head surface if warped, and flush the cooling system. Inspect and replace the thermostat and water pump preventatively.",
+      "dtcCodes": [
+        "P0116",
+        "P0217"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and replace the thermostat and water pump preventatively."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0116, P0217"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-206-head-gasket-failure--prescription-0-0--1-4l-tu3",
+        "peugeot-206-head-gasket-failure--prescription-0-0--1-6l-tu5",
+        "peugeot-206-head-gasket-failure--prescription-1-0--1-4l-tu3",
+        "peugeot-206-head-gasket-failure--prescription-1-0--1-6l-tu5",
+        "peugeot-206-head-gasket-failure--prescription-2-0--1-4l-tu3",
+        "peugeot-206-head-gasket-failure--prescription-2-0--1-6l-tu5"
+      ]
+    },
+    {
+      "issueId": "peugeot-206-power-steering-pump-leak",
+      "make": "Peugeot",
+      "model": "206",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "GTi",
+        "XR",
+        "XT"
+      ],
+      "engines": [
+        "1.4L TU3",
+        "1.6L TU5"
+      ],
+      "title": "Power Steering Pump Leak",
+      "howToFix": "Replace the power steering pump seals or the complete pump assembly. Flush and refill the power steering fluid system.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-206-power-steering-pump-leak--prescription-0-0--1-4l-tu3",
+        "peugeot-206-power-steering-pump-leak--prescription-0-0--1-6l-tu5",
+        "peugeot-206-power-steering-pump-leak--prescription-1-0--1-4l-tu3",
+        "peugeot-206-power-steering-pump-leak--prescription-1-0--1-6l-tu5"
+      ]
+    },
+    {
+      "issueId": "peugeot-206-window-regulator-failure",
+      "make": "Peugeot",
+      "model": "206",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "GTi",
+        "XR",
+        "XT"
+      ],
+      "engines": [],
+      "title": "Window Regulator Failure",
+      "howToFix": "Replace the window regulator assembly. Upgraded aftermarket units with reinforced cables are available and recommended over OEM replacements.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-206-window-regulator-failure--prescription-0-0--all-engines",
+        "peugeot-206-window-regulator-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-206-bsi-body-control-unit-faults",
+      "make": "Peugeot",
+      "model": "206",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "BSI (Built-in Systems Interface) Body Control Unit Faults",
+      "howToFix": "First attempt the documented BSI reset (controlled battery disconnect/reboot sequence); persistent faults require repair of the unit's solder joints by a specialist or a replacement BSI that must be coded/cloned to the car. Address water ingress at the bonnet vent and plenum drains to prevent recurrence.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-206-com2000-indicator-wiper-stalk-unit-failure",
+      "make": "Peugeot",
+      "model": "206",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "COM2000 Indicator/Wiper Stalk Unit Failure",
+      "howToFix": "Replace the COM2000 unit (roughly £130-£180 for the part depending on trim, plus fitting behind the steering wheel); confident DIYers sometimes succeed in cleaning and re-greasing the internal contacts, but unit replacement is the accepted lasting fix.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-207-gearbox-bearing-noise",
+      "make": "Peugeot",
+      "model": "207",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Active",
+        "Allure",
+        "GTi"
+      ],
+      "engines": [
+        "1.4L EP3",
+        "1.6L EP6"
+      ],
+      "title": "Gearbox Input Shaft Bearing Noise",
+      "howToFix": "Replace the input shaft bearing. This requires gearbox removal but is significantly cheaper than a full gearbox replacement if caught early.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-207-gearbox-bearing-noise--prescription-0-0--1-4l-ep3",
+        "peugeot-207-gearbox-bearing-noise--prescription-0-0--1-6l-ep6"
+      ]
+    },
+    {
+      "issueId": "peugeot-207-timing-chain-tensioner",
+      "make": "Peugeot",
+      "model": "207",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "Active",
+        "Allure"
+      ],
+      "engines": [
+        "1.4L EP3",
+        "1.6L EP6"
+      ],
+      "title": "Timing Chain Tensioner Failure",
+      "howToFix": "Replace the timing chain, tensioner, and guides with the updated revision parts. Ensure correct oil specification (0W-30) is used to maintain hydraulic tensioner pressure.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-207-timing-chain-tensioner--prescription-0-0--1-4l-ep3",
+        "peugeot-207-timing-chain-tensioner--prescription-0-0--1-6l-ep6",
+        "peugeot-207-timing-chain-tensioner--prescription-1-0--1-4l-ep3",
+        "peugeot-207-timing-chain-tensioner--prescription-1-0--1-6l-ep6",
+        "peugeot-207-timing-chain-tensioner--prescription-2-0--1-4l-ep3",
+        "peugeot-207-timing-chain-tensioner--prescription-2-0--1-6l-ep6"
+      ]
+    },
+    {
+      "issueId": "peugeot-207-turbo-oil-leak",
+      "make": "Peugeot",
+      "model": "207",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "GTi"
+      ],
+      "engines": [
+        "1.6L EP6DT Turbo"
+      ],
+      "title": "Turbocharger Oil Leak",
+      "howToFix": "Replace the turbo oil feed and return lines with updated gaskets. If bearings are worn, a turbo rebuild or replacement is necessary. Use manufacturer-recommended oil change intervals.",
+      "dtcCodes": [
+        "P0299"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0299"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-207-turbo-oil-leak--prescription-0-0--1-6l-ep6dt-turbo"
+      ]
+    },
+    {
+      "issueId": "peugeot-208-dpf-issues-diesel",
+      "make": "Peugeot",
+      "model": "208",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Active",
+        "Allure"
+      ],
+      "engines": [
+        "1.5L BlueHDi",
+        "1.6L HDi"
+      ],
+      "title": "Diesel Particulate Filter Blockage",
+      "howToFix": "Perform a forced DPF regeneration using diagnostic equipment. For severely blocked filters, professional DPF cleaning or replacement is required. Advise regular motorway driving to allow passive regeneration.",
+      "dtcCodes": [
+        "P244A",
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Perform a forced DPF regeneration using diagnostic equipment."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P244A, P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-208-front-suspension-knocking-drop-links-anti-roll-bar-bushes-da",
+      "make": "Peugeot",
+      "model": "208",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Suspension Knocking — Drop Links, Anti-Roll Bar Bushes and Damper Knock",
+      "howToFix": "Inspect and replace worn drop links and anti-roll bar bushes first — a cheap job at any independent garage. If the knock persists, check strut top mounts and the dampers themselves, as 208 damper knock often requires new front shock absorbers.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Inspect and replace worn drop links and anti-roll bar bushes first — a cheap job at any independent garage."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the knock persists, check strut top mounts and the dampers themselves, as 208 damper knock often requires new front shock absorbers."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-208-front-suspension-knocking-drop-links-anti-roll-bar-bushes-da--prescription-0-0--all-engines",
+        "peugeot-208-front-suspension-knocking-drop-links-anti-roll-bar-bushes-da--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-208-puretech-timing-chain",
+      "make": "Peugeot",
+      "model": "208",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "Active",
+        "Allure",
+        "GT Line"
+      ],
+      "engines": [
+        "1.2L PureTech"
+      ],
+      "title": "PureTech 1.2 Wet Timing Belt Delamination",
+      "howToFix": "If an oil-pressure warning appears, stop the engine as soon as it is safe and do not continue driving until the lubrication system is checked. Identify the exact PureTech engine and production date by VIN; inspect belt condition using the current Peugeot procedure and, when degradation is confirmed, follow engine-specific instructions for the timing-belt system, oil pickup/lubrication circuit, oil and filter. Check Peugeot support eligibility and the vehicle service schedule. Do not buy a timing-belt kit from this page; production date, engine, diagnosis and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If an oil-pressure warning appears, stop the engine as soon as it is safe and do not continue driving until the lubrication system is checked."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "inspect belt condition using the current Peugeot procedure and, when degradation is confirmed, follow engine-specific instructions for the timing-belt system, oil pickup/lubrication circuit, oil and filter."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check Peugeot support eligibility and the vehicle service schedule."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "production date, engine, diagnosis and VIN fitment must be established first."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-208-adblue-scr-system-failure-bluehdi-diesels-urea-fault-start-p",
+      "make": "Peugeot",
+      "model": "208",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "AdBlue/SCR System Failure on BlueHDi Diesels — Urea Fault With Start-Prevention Countdown",
+      "howToFix": "Diagnose which SCR component failed — NOx sensors and the AdBlue injector should be checked first, but a dead in-tank pump means a replacement AdBlue tank assembly that must be coded and primed to the car. Independent specialists and aftermarket repair kits can substantially undercut dealer pricing; do not ignore the countdown, as the car will refuse to restart at zero.",
+      "dtcCodes": [
+        "P20E8",
+        "P20EE"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnose which SCR component failed — NOx sensors and the AdBlue injector should be checked first, but a dead in-tank pump means a replacement AdBlue tank assembly that must be coded and primed to the car."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P20E8, P20EE"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-208-eat6-eat8-automatic-gearbox-jerky-shifting-low-speed-hesitat",
+      "make": "Peugeot",
+      "model": "208",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "EAT6/EAT8 Automatic Gearbox Jerky Shifting and Low-Speed Hesitation",
+      "howToFix": "A dealer TCU software update and adaptation reset resolves most low-speed jerkiness, and a transmission fluid service helps on higher-mileage cars even though Peugeot calls the box sealed-for-life. Persistent flaring or slipping needs a gearbox specialist to inspect the valve body and clutches.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Persistent flaring or slipping needs a gearbox specialist to inspect the valve body and clutches."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-208-infotainment-freeze",
+      "make": "Peugeot",
+      "model": "208",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Allure",
+        "GT",
+        "GT Line"
+      ],
+      "engines": [],
+      "title": "Infotainment System Freeze and Reboot",
+      "howToFix": "Update the infotainment firmware to the latest version via dealer. Perform a hard reset by holding the power button for 10 seconds. Persistent cases may require NAC/SMEG unit replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-208-infotainment-freeze--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-208-e-208-battery-recalls-fire-risk-sudden-loss-drive",
+      "make": "Peugeot",
+      "model": "208",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "e-208 Battery Recalls — Fire Risk and Sudden Loss of Drive",
+      "howToFix": "All fixes are free dealer recall work: battery replacement/inspection for the 2020 fire-risk campaign and software updates for the battery control unit and AC compressor logic. Owners should run their VIN through Peugeot's recall checker and confirm campaigns KQJ, MF9 and MV4 have been completed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "All fixes are free dealer recall work: battery replacement/inspection for the 2020 fire-risk campaign and software updates for the battery control unit and AC compressor logic."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners should run their VIN through Peugeot's recall checker and confirm campaigns KQJ, MF9 and MV4 have been completed."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-208-e-208-onboard-charger-failure-ac-charging-stops-working",
+      "make": "Peugeot",
+      "model": "208",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "e-208 Onboard Charger (OBC) Failure — AC Charging Stops Working",
+      "howToFix": "Stellantis extended the OBC warranty to 4 years (from April 2021) and replaces failed Mahle units with a more reliable VMAX charger; outside warranty, a dealer-fitted new OBC or a cheaper remanufactured unit (e.g. ACtronics) is the fix. Owners with intermittent charging should have the OBC checked before the failure becomes total.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners with intermittent charging should have the OBC checked before the failure becomes total."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-208-e-208-onboard-charger-failure-ac-charging-stops-working--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-3008-1-6-thp-vti-timing-chain-stretch-tensioner-failure",
+      "make": "Peugeot",
+      "model": "3008",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.6 THP/VTi (Prince EP6) Timing Chain Stretch and Tensioner Failure",
+      "howToFix": "Replace the timing chain kit (chain, tensioner, guides, sprockets) with the latest revised parts as soon as cold-start rattle or cam/crank correlation codes appear. Frequent oil changes with the correct grade slow chain wear; some owners obtained goodwill or warranty repairs from Peugeot UK under the in-force TSB.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-3008-1-6-thp-vti-timing-chain-stretch-tensioner-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-3008-bsi-module-faults-causing-erratic-electrics",
+      "make": "Peugeot",
+      "model": "3008",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "BSI (Built-in Systems Interface) Module Faults Causing Erratic Electrics",
+      "howToFix": "First perform the official BSI reboot/hard-reset procedure (controlled battery disconnect) and verify the battery and alternator are healthy, as voltage problems mimic BSI failure. Persistent faults are fixed by specialist BSI board repair (about $100–200) or a replacement unit coded to the car; many faults after battery changes clear with a dealer diagnostic reset.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "First perform the official BSI reboot/hard-reset procedure (controlled battery disconnect) and verify the battery and alternator are healthy, as voltage problems mimic BSI failure."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "many faults after battery changes clear with a dealer diagnostic reset."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-3008-dpf-issues",
+      "make": "Peugeot",
+      "model": "3008",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Active",
+        "Allure",
+        "GT"
+      ],
+      "engines": [
+        "1.5L BlueHDi",
+        "1.6L HDi",
+        "2.0L BlueHDi"
+      ],
+      "title": "DPF Premature Blockage",
+      "howToFix": "Force a DPF regeneration via diagnostic tool, top up Eolys additive, and advise sustained motorway driving. Severe cases require professional DPF cleaning or replacement.",
+      "dtcCodes": [
+        "P244A",
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Force a DPF regeneration via diagnostic tool, top up Eolys additive, and advise sustained motorway driving."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P244A, P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-3008-rear-self-levelling-hydraulic-suspension-leaks",
+      "make": "Peugeot",
+      "model": "3008",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear Self-Levelling Hydraulic Suspension Leaks (3008 I, 2.0 HDi/HYbrid4)",
+      "howToFix": "The accepted fix in the owner community is to remove the hydraulic self-levelling unit entirely and convert to conventional rear shock absorbers (the dampers from the 1.6 model are a direct fit), a roughly half-hour job that saves several hundred pounds over replacing the hydraulic system. Repairing the OEM unit is possible but rarely worthwhile.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-3008-hybrid4-diesel-hybrid-system-battery-faults",
+      "make": "Peugeot",
+      "model": "3008",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "HYbrid4 Diesel-Hybrid System and Battery Faults",
+      "howToFix": "Always test and replace the 12V battery first, since many phantom hybrid faults disappear with a healthy auxiliary battery (a trickle charger helps cars used for short trips). Genuine HV pack failures are addressed with refurbished or repaired battery packs from hybrid specialists at a fraction of the new-unit price.",
+      "dtcCodes": [
+        "P15B3"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Always test and replace the 12V battery first, since many phantom hybrid faults disappear with a healthy auxiliary battery (a trickle charger helps cars used for short trips)."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P15B3"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-3008-hybrid4-diesel-hybrid-system-battery-faults--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-3008-1-2-puretech-wet-timing-belt-degradation",
+      "make": "Peugeot",
+      "model": "3008",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.2 PureTech Wet Timing Belt Degradation (Oil Contamination, Brake Assist Loss)",
+      "howToFix": "Under recall/campaign JZR dealers update belt-wear detection software, inspect, and replace the timing belt and brake vacuum pump if contaminated; the sump and oil pickup should be cleaned of belt debris. Outside the recall, replace the wet belt early (around 6 years/60k miles rather than the original 10-year schedule) and use only the specified PSA B71 2010 0W-30 oil with shortened oil-change intervals.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Under recall/campaign JZR dealers update belt-wear detection software, inspect, and replace the timing belt and brake vacuum pump if contaminated;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-3008-eat6-gearbox-shudder",
+      "make": "Peugeot",
+      "model": "3008",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Allure",
+        "GT",
+        "GT Line"
+      ],
+      "engines": [
+        "1.2L PureTech",
+        "1.6L THP",
+        "2.0L BlueHDi"
+      ],
+      "title": "EAT6 Automatic Gearbox Shudder",
+      "howToFix": "Perform a complete ATF drain and refill with the specified Aisin fluid. Update the TCM software to the latest calibration. Persistent cases may need torque converter replacement.",
+      "dtcCodes": [
+        "P0741"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0741"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-3008-eat6-gearbox-shudder--prescription-0-0--1-2l-puretech",
+        "peugeot-3008-eat6-gearbox-shudder--prescription-0-0--1-6l-thp",
+        "peugeot-3008-eat6-gearbox-shudder--prescription-0-0--2-0l-bluehdi"
+      ]
+    },
+    {
+      "issueId": "peugeot-3008-adblue-faults",
+      "make": "Peugeot",
+      "model": "3008",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Allure",
+        "GT",
+        "GT Line"
+      ],
+      "engines": [
+        "1.5L BlueHDi",
+        "2.0L BlueHDi"
+      ],
+      "title": "AdBlue System Malfunction",
+      "howToFix": "Replace the AdBlue quality sensor and injector nozzle. Flush the AdBlue lines to remove crystallization. Update SCR system software and reset counters.",
+      "dtcCodes": [
+        "P20EE",
+        "P2BAD"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P20EE, P2BAD"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-3008-adblue-faults--prescription-0-0--1-5l-bluehdi",
+        "peugeot-3008-adblue-faults--prescription-0-0--2-0l-bluehdi"
+      ]
+    },
+    {
+      "issueId": "peugeot-3008-i-cockpit-infotainment-touchscreen-black-screen-freezing",
+      "make": "Peugeot",
+      "model": "3008",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "i-Cockpit Infotainment (NAC) Touchscreen Black Screen / Freezing",
+      "howToFix": "First attempt a soft reset by holding the phone/source button for around 10 seconds; the lasting fix is a dealer (or USB self-service via Peugeot Update) NAC firmware update per the TSB. Units that remain unresponsive after reflashing require replacement of the touchscreen or NAC module.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-308-dpf-regen-issues",
+      "make": "Peugeot",
+      "model": "308",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Active",
+        "Allure"
+      ],
+      "engines": [
+        "1.5L BlueHDi",
+        "1.6L HDi",
+        "2.0L BlueHDi"
+      ],
+      "title": "DPF Regeneration Failure",
+      "howToFix": "Top up the Eolys DPF additive fluid, perform a forced regeneration, and clean the DPF pressure sensor pipes. Replace the DPF if soot loading exceeds recoverable levels.",
+      "dtcCodes": [
+        "P2002",
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2002, P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-308-dpf-regen-issues--prescription-0-0--1-5l-bluehdi",
+        "peugeot-308-dpf-regen-issues--prescription-0-0--1-6l-hdi",
+        "peugeot-308-dpf-regen-issues--prescription-0-0--2-0l-bluehdi"
+      ]
+    },
+    {
+      "issueId": "peugeot-308-egr-failure",
+      "make": "Peugeot",
+      "model": "308",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "Active",
+        "Allure",
+        "GT"
+      ],
+      "engines": [
+        "1.6L HDi",
+        "2.0L BlueHDi"
+      ],
+      "title": "EGR Valve Failure",
+      "howToFix": "Clean or replace the EGR valve. Install an EGR cooler bypass blanking kit if permitted in your region. Update the ECU software to revised EGR control maps.",
+      "dtcCodes": [
+        "P0401",
+        "P0403"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0401, P0403"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-308-egr-failure--prescription-0-0--1-6l-hdi",
+        "peugeot-308-egr-failure--prescription-0-0--2-0l-bluehdi",
+        "peugeot-308-egr-failure--prescription-1-0--1-6l-hdi",
+        "peugeot-308-egr-failure--prescription-1-0--2-0l-bluehdi"
+      ]
+    },
+    {
+      "issueId": "peugeot-308-1-6-hdi-turbocharger-failure-from-oil-starvation-sludge",
+      "make": "Peugeot",
+      "model": "308",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.6 HDi (DV6) Turbocharger Failure from Oil Starvation and Sludge",
+      "howToFix": "Replace the turbocharger together with new oil feed and return pipes and the banjo-bolt filter, drop and clean the sump and oil pickup, and flush the engine — about $1,200-2,600 all-in at an independent shop. Prevent recurrence with strictly shortened oil-change intervals using the correct low-SAPS oil and prompt attention to injector seal leaks.",
+      "dtcCodes": [
+        "P0299"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0299"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-308-1-6-thp-intake-valve-carbon-buildup",
+      "make": "Peugeot",
+      "model": "308",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.6 THP Intake Valve Carbon Buildup (Direct Injection)",
+      "howToFix": "Walnut-shell blasting of the intake ports and valves is the accepted fix (roughly $350-900 at independent specialists; dealer quotes can be far higher) and is worth repeating preventively every 50,000-60,000 km. Quality fuel and regular oil changes slow, but do not prevent, re-accumulation.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-308-1-6-thp-vti-timing-chain-stretch-cold-start-rattle",
+      "make": "Peugeot",
+      "model": "308",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.6 THP/VTi (EP6 'Prince') Timing Chain Stretch and Cold-Start Rattle",
+      "howToFix": "Replace the timing chain kit (chain, tensioner, guides, sprockets) with the latest revised parts as soon as rattle or cam/crank correlation faults appear — roughly $800-2,000 at an independent specialist. Shorten oil change intervals to about 6,000 miles/10,000 km with the correct low-SAPS 5W-30 to slow wear.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-308-1-6-thp-vti-timing-chain-stretch-cold-start-rattle--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-308-1-2-puretech-wet-timing-belt-degradation-oil-starvation",
+      "make": "Peugeot",
+      "model": "308",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.2 PureTech Wet Timing Belt Degradation and Oil Starvation",
+      "howToFix": "If an oil-pressure or braking-assistance warning appears, stop as soon as it is safe and have the vehicle inspected before further driving. Identify the exact engine and production date by VIN, inspect the belt using the current Peugeot procedure, and when degradation is confirmed follow engine-specific instructions for the timing-belt system, oil pickup/lubrication circuit, oil and filter. Check Peugeot support eligibility and the service schedule. Do not buy a timing-belt kit, vacuum pump or engine from this page; diagnosis, production date and VIN fitment must be established first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If an oil-pressure or braking-assistance warning appears, stop as soon as it is safe and have the vehicle inspected before further driving."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Identify the exact engine and production date by VIN, inspect the belt using the current Peugeot procedure, and when degradation is confirmed follow engine-specific instructions for the timing-belt system, oil pickup/lubrication circuit, oil and filter."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check Peugeot support eligibility and the service schedule."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "diagnosis, production date and VIN fitment must be established first."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-308-adblue-system-fault",
+      "make": "Peugeot",
+      "model": "308",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Active",
+        "Allure",
+        "GT"
+      ],
+      "engines": [
+        "1.5L BlueHDi",
+        "2.0L BlueHDi"
+      ],
+      "title": "AdBlue System Fault",
+      "howToFix": "Replace the NOx sensor and clean the AdBlue injector. Flush the AdBlue tank if crystallization is present. Reset the SCR system counters with diagnostic equipment.",
+      "dtcCodes": [
+        "P20EE",
+        "P2BAD"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Reset the SCR system counters with diagnostic equipment."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P20EE, P2BAD"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-308-adblue-system-fault--prescription-0-0--1-5l-bluehdi",
+        "peugeot-308-adblue-system-fault--prescription-0-0--2-0l-bluehdi"
+      ]
+    },
+    {
+      "issueId": "peugeot-308-eat6-automatic-gearbox-shudder-jerky-low-speed-shifting",
+      "make": "Peugeot",
+      "model": "308",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "EAT6 Automatic Gearbox Shudder and Jerky Low-Speed Shifting",
+      "howToFix": "First steps are a transmission fluid and filter change with the correct Aisin specification fluid plus a dealer TCU software update, which resolves many cases for a few hundred dollars. Persistent shudder points to the torque converter or valve body, which cost roughly $1,500-3,500 to repair or replace at an independent gearbox specialist.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-308-electric-parking-brake-faults-caliper-motor-switch-wiring",
+      "make": "Peugeot",
+      "model": "308",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electric Parking Brake (EPB) Faults — Caliper Motor, Switch and Wiring",
+      "howToFix": "Diagnose with a Peugeot-compatible scan tool first: a worn switch or weak battery is a cheap fix, while a failed caliper actuator motor requires a replacement motor or caliper followed by EPB recalibration. After any rear brake work, the actuators must be retracted and recalibrated electronically to avoid inducing the fault.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose with a Peugeot-compatible scan tool first: a worn switch or weak battery is a cheap fix, while a failed caliper actuator motor requires a replacement motor or caliper followed by EPB recalibration."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-308-electric-parking-brake-faults-caliper-motor-switch-wiring--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-5008-dpf-blockage",
+      "make": "Peugeot",
+      "model": "5008",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Active",
+        "Allure",
+        "GT"
+      ],
+      "engines": [
+        "1.5L BlueHDi",
+        "1.6L HDi",
+        "2.0L BlueHDi"
+      ],
+      "title": "DPF Blockage",
+      "howToFix": "Force DPF regeneration, ensure Eolys additive is topped up, and incorporate regular extended motorway drives. Replace the DPF if ash loading is beyond cleaning capability.",
+      "dtcCodes": [
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-5008-dpf-blockage--prescription-0-0--1-5l-bluehdi",
+        "peugeot-5008-dpf-blockage--prescription-0-0--1-6l-hdi",
+        "peugeot-5008-dpf-blockage--prescription-0-0--2-0l-bluehdi"
+      ]
+    },
+    {
+      "issueId": "peugeot-5008-suspension-creak",
+      "make": "Peugeot",
+      "model": "5008",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Active",
+        "Allure",
+        "GT"
+      ],
+      "engines": [],
+      "title": "Front Suspension Creak and Knock",
+      "howToFix": "Replace the anti-roll bar drop links and strut top mount bearings. Lubricate the spring seats if noise persists. Check for worn lower control arm bushings on higher-mileage vehicles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check for worn lower control arm bushings on higher-mileage vehicles."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-5008-suspension-creak--prescription-0-0--all-engines",
+        "peugeot-5008-suspension-creak--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-508-diesel-dpf",
+      "make": "Peugeot",
+      "model": "508",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Active",
+        "Allure"
+      ],
+      "engines": [
+        "1.6L HDi",
+        "2.0L BlueHDi"
+      ],
+      "title": "Diesel DPF Regeneration Issues",
+      "howToFix": "Perform forced DPF regeneration via diagnostic tool. Top up the Eolys additive system. For severely blocked units, professional off-car DPF cleaning is recommended before resorting to replacement.",
+      "dtcCodes": [
+        "P2002",
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Perform forced DPF regeneration via diagnostic tool."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2002, P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-partner-dpf-issues",
+      "make": "Peugeot",
+      "model": "Partner/Rifter",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Long",
+        "Standard"
+      ],
+      "engines": [
+        "1.5L BlueHDi",
+        "1.6L HDi"
+      ],
+      "title": "DPF Blockage in Commercial Use",
+      "howToFix": "Schedule regular forced DPF regenerations as part of fleet maintenance. Consider installing a DPF-friendly route into the daily schedule. Top up Eolys additive at each service.",
+      "dtcCodes": [
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "peugeot-partner-sliding-door-mechanism",
+      "make": "Peugeot",
+      "model": "Partner/Rifter",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Long",
+        "Standard"
+      ],
+      "engines": [],
+      "title": "Sliding Door Mechanism Failure",
+      "howToFix": "Clean and lubricate the door track and roller bearings. Replace worn rollers and the lower guide channel. Adjust the door catch striker plate alignment if the door does not latch correctly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-partner-sliding-door-mechanism--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "peugeot-rcz-timing-chain",
+      "make": "Peugeot",
+      "model": "RCZ",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "Base",
+        "GT Line",
+        "R"
+      ],
+      "engines": [
+        "1.6L THP"
+      ],
+      "title": "Timing Chain Tensioner Failure",
+      "howToFix": "Replace the timing chain, tensioner, guides, and sprockets with the latest revision parts. Maintain strict oil change intervals with the correct 0W-30 specification oil.",
+      "dtcCodes": [
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-rcz-timing-chain--prescription-0-0--1-6l-thp",
+        "peugeot-rcz-timing-chain--prescription-1-0--1-6l-thp",
+        "peugeot-rcz-timing-chain--prescription-2-0--1-6l-thp",
+        "peugeot-rcz-timing-chain--prescription-3-0--1-6l-thp"
+      ]
+    },
+    {
+      "issueId": "peugeot-rcz-turbo-oil-leak",
+      "make": "Peugeot",
+      "model": "RCZ",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "Base",
+        "GT Line",
+        "R"
+      ],
+      "engines": [
+        "1.6L THP"
+      ],
+      "title": "Turbocharger Oil Leak",
+      "howToFix": "Replace turbo oil feed/return lines and gaskets. Rebuild or replace the turbocharger if bearing play is detected. Ensure oil change intervals are not exceeded.",
+      "dtcCodes": [
+        "P0299"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0299"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "peugeot-rcz-turbo-oil-leak--prescription-0-0--1-6l-thp",
+        "peugeot-rcz-turbo-oil-leak--prescription-1-0--1-6l-thp"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1648 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Ford",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "3cf0d73de01d7d32e30b444d5341b6fe77b67272bd036e379d0c2b8aaff39bc8",
+    "02-fitment-worklist.json": "a3b0e48c24c65f9fe0877bf0f6c90ba0d49104828d8c566cc7bf4fa2a6013463",
+    "03-showmetheparts-evidence.json": "b301f95ccf6484e8843e6e038c3308e5723b7f009e7a4cbbf267271dec32b064",
+    "04-part-proposals.json": "8a47a236e37738635e46c640808262f0daac3f63d9c6ea47ed1436c3dfb83d05",
+    "05-direct-link-evidence.json": "17ff0c2f551229fc77ae376d3538649fa718afd4622b93b6ce7c5e64fcede8ec"
+  },
+  "supplementalArtifactSha256": {
+    "06-independent-review.json": "a0b0c1a92626743289beb3e5d5b6f34734ad73f10e2c95ebd6b76c710dc96265",
+    "existing-public-claim-review.json": "127df54d7013422ffa81b824d15921e850d1301a45fb4d4f3dbec2e0a91802ca"
+  },
+  "proposalCount": 48,
+  "partRowCount": 68,
+  "tally": {
+    "approve": 26,
+    "block_wrong_role": 7,
+    "block_incomplete_scope": 2,
+    "block_ambiguous": 2,
+    "hold_no_exact_link": 11,
+    "hold_needs_manual": 20
+  },
+  "reconciliation": {
+    "sourceProposalCount": 48,
+    "sourcePartRowCount": 68,
+    "reviewedPartRowCount": 68,
+    "sourceIssueCount": 558,
+    "reviewedIssueCount": 558,
+    "sourceWorkItemCount": 1744,
+    "reviewedWorkItemDispositionCount": 1744,
+    "terminalWorkItemDispositionCount": 1744,
+    "proposedWorkItemCount": 48,
+    "heldWorkItemCount": 1696,
+    "workItemDispositionSha256": "797db8beb6e732d452c2d2679ec162fb03573b718e43ea991c0db69c8d59b283",
+    "workItemDispositionReasonTally": {
+      "eligible-proposal": 48,
+      "fitment-confirmed": 31,
+      "fitment-no-catalog": 240,
+      "fitment-unmapped": 1197,
+      "incomplete-model-or-engine-coverage": 4,
+      "missing-or-risky-source-metadata": 5,
+      "no-matching-part-type": 159,
+      "no-primary": 5,
+      "unsupported-catalog-application-restriction": 54,
+      "year-sets-disagree-scope-likely-too-broad": 1
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 68,
+    "reviewedPartRowCount": 68,
+    "exactProductLinkRowCount": 50,
+    "exactProductLinkCount": 50,
+    "noExactProductLinkRowCount": 18,
+    "reviewedExactProductLinkRowCount": 50,
+    "reviewedExactProductLinkCount": 50,
+    "listingTitleSourceCount": 30,
+    "itemSpecificsSourceCount": 20,
+    "observedListingTitlePresentCount": 50,
+    "recomputedTitleHashMatchCount": 50,
+    "matchedPartNumberMatchCount": 50,
+    "observedPartNumberFieldPresentCount": 50,
+    "observedPartNumberValuePresentCount": 50,
+    "observedPartNumberValueMatchCount": 50,
+    "urlProductIdMatchCount": 50,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 41,
+  "uniqueExistingClaimCount": 25,
+  "existingClaimTally": {
+    "preserve": 1,
+    "block": 40
+  },
+  "existingClaims": [
+    {
+      "workItemId": "ford-bronco-intake-manifold-gasket-egr-tube-failures--existing-fix-part-0-0--5-0l-v8-302",
+      "issueId": "ford-bronco-intake-manifold-gasket-egr-tube-failures",
+      "partNumber": "MS15202P",
+      "engineWorkRow": "5.0L V8 (302)",
+      "verdict": "block",
+      "reason": "The unscoped MS15202P claim omits the 5.8L application and the catalog row carries a VIN-N restriction that the public vehicle context cannot enforce.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the leaking intake manifold gasket (and clean sealing surfaces). For EGR faults, replace the cracked EGR tube and/or EGR valve (often requires pulling the intake plenum for access) and inspect the DPFE sensor and vacuum lines; clear carbon from EGR passages. Confirm the repair by verifying vacuum and rechecking for stored EGR codes.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-MS15202P-Engine-Manifold/dp/B000CLKJHQ?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-bronco-intake-manifold-gasket-egr-tube-failures--existing-fix-part-0-0--5-8l-v8-351w",
+      "issueId": "ford-bronco-intake-manifold-gasket-egr-tube-failures",
+      "partNumber": "MS15202P",
+      "engineWorkRow": "5.8L V8 (351W)",
+      "verdict": "block",
+      "reason": "The unscoped MS15202P claim omits the 5.8L application and the catalog row carries a VIN-N restriction that the public vehicle context cannot enforce.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the leaking intake manifold gasket (and clean sealing surfaces). For EGR faults, replace the cracked EGR tube and/or EGR valve (often requires pulling the intake plenum for access) and inspect the DPFE sensor and vacuum lines; clear carbon from EGR passages. Confirm the repair by verifying vacuum and rechecking for stored EGR codes.",
+        "catalog": "Fitment work row ended with absent; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-MS15202P-Engine-Manifold/dp/B000CLKJHQ?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-edge-water-pump-failure-2015--existing-fix-part-0-0--ecoboost-2-0",
+      "issueId": "ford-edge-water-pump-failure-2015",
+      "partNumber": "43186WT",
+      "engineWorkRow": "EcoBoost 2.0",
+      "verdict": "block",
+      "reason": "The unscoped 43186WT claim is cataloged for a different engine application than the article's 2.0L failure and covers only part of the article's years.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump. Due to the internal location, this is a major repair requiring timing cover removal — labor is 8-12 hours. Parts cost $150-300 for the pump plus timing chain components. Total repair: $1,500-3,000 at an independent shop. If coolant has mixed with oil, the engine may need additional flushing or repair. Monitor oil color — milky oil indicates coolant contamination. Change oil more frequently and check coolant level regularly.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/406821399674?_skw=Gates+43186WT+Engine+Water+Pump&hash=item5eb871ec7a%3Ag%3ARhQAAOSwzh5oU3EK&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car--existing-fix-part-0-0--1-9l-cvh-sohc-i4",
+      "issueId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car",
+      "partNumber": "40194",
+      "engineWorkRow": "1.9L CVH SOHC I4",
+      "verdict": "block",
+      "reason": "The unscoped Continental 40194 claim covers only the 1.9L application through 1996 and does not cover either 2.0L application or the full article range.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt on schedule (and any belt of unknown age on a used purchase), ideally together with the tensioner and water pump since the pump is driven off the same area. Use the correct Zetec cam-alignment tooling when doing the DOHC engine so the cams are timed correctly on reassembly.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/298563759001?_skw=Continental+40194+Engine+Timing+Belt&hash=item4583c96b99%3Ag%3AO-UAAeSwARVqdEFI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car--existing-fix-part-0-0--2-0l-zetec-dohc-i4",
+      "issueId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car",
+      "partNumber": "40194",
+      "engineWorkRow": "2.0L Zetec DOHC I4",
+      "verdict": "block",
+      "reason": "The unscoped Continental 40194 claim covers only the 1.9L application through 1996 and does not cover either 2.0L application or the full article range.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt on schedule (and any belt of unknown age on a used purchase), ideally together with the tensioner and water pump since the pump is driven off the same area. Use the correct Zetec cam-alignment tooling when doing the DOHC engine so the cams are timed correctly on reassembly.",
+        "catalog": "Fitment work row ended with absent; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/298563759001?_skw=Continental+40194+Engine+Timing+Belt&hash=item4583c96b99%3Ag%3AO-UAAeSwARVqdEFI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car--existing-fix-part-0-0--2-0l-spi-sohc-i4",
+      "issueId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car",
+      "partNumber": "40194",
+      "engineWorkRow": "2.0L SPI SOHC I4",
+      "verdict": "block",
+      "reason": "The unscoped Continental 40194 claim covers only the 1.9L application through 1996 and does not cover either 2.0L application or the full article range.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt on schedule (and any belt of unknown age on a used purchase), ideally together with the tensioner and water pump since the pump is driven off the same area. Use the correct Zetec cam-alignment tooling when doing the DOHC engine so the cams are timed correctly on reassembly.",
+        "catalog": "Fitment work row ended with absent; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/298563759001?_skw=Continental+40194+Engine+Timing+Belt&hash=item4583c96b99%3Ag%3AO-UAAeSwARVqdEFI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-excursion-front-hub-bearing-2000--existing-fix-part-0-0--all-engines",
+      "issueId": "ford-excursion-front-hub-bearing-2000",
+      "partNumber": "BR930420",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "SKF BR930420 is a front 4WD hub application; the current unscoped two-vendor claim does not preserve the drivetrain and position restrictions needed for safe display.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the hub and bearing assembly. Use premium bearings rated for heavy-duty applications. Torque to spec (175 ft-lbs axle nut).",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/267721976102?_skw=SKF+BR930420+Wheel+Bearing+and+Hub+Assembly&hash=item3e55792926%3Ag%3AX1cAAeSwT3JqTyAl&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://www.amazon.com/SKF-BR930420-Wheel-Bearing-Assembly/dp/B000ELW7K6?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-explorer-3-5l-ecoboost-ignition-coil-spark-plug-misfire--existing-fix-part-0-0--3-5l-ecoboost-v6-twin-turbo",
+      "issueId": "ford-explorer-3-5l-ecoboost-ignition-coil-spark-plug-misfire",
+      "partNumber": "GN10237",
+      "engineWorkRow": "3.5L EcoBoost V6 (twin-turbo)",
+      "verdict": "block",
+      "reason": "The unscoped GN10237 row is cataloged for naturally aspirated applications and conflicts with the article's EcoBoost repair scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all six spark plugs with the updated Motorcraft SP-580 (supersedes SP-534, pre-gapped to ~0.032 in) and renew failed coil-on-plug units; do plugs as a set on or before the 60,000-100,000 mi interval (severe-duty/towing service much sooner). If misfires recur after coil/plug replacement, inspect for broken exhaust manifold studs/bolts and an exhaust leak at the head and replace the studs. Adding a catch can and the updated SP-580 plug reduces fouling on pre-2018 (DI-only) engines.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/334837805389?_skw=Delphi+GN10237+Ignition+Coil&hash=item4df5e3714d%3Ag%3AYkkAAOSwI6tkPrlr&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-explorer-4-0l-sohc-camshaft-position-sensor-synchronizer-failure-caus--existing-fix-part-0-0--4-0l-sohc-v6",
+      "issueId": "ford-explorer-4-0l-sohc-camshaft-position-sensor-synchronizer-failure-caus",
+      "partNumber": "235-1027",
+      "engineWorkRow": "4.0L SOHC V6",
+      "verdict": "block",
+      "reason": "Walker 235-1027 carries VIN, production-date, and market restrictions that are not represented by the unscoped public claim.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the camshaft synchronizer AND the camshaft position sensor as a set (do not reuse an old synchronizer with a new sensor). The synchronizer must be installed with a special alignment/synchronizer positioning tool (Ford 303-589 / equivalent) so the sensor vane is clocked correctly, or the engine will run poorly or throw the code again. Verify oil pump drive engagement and confirm no plastic debris fell into the timing area.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/205843739404?_skw=Walker+Products+235-1027+Engine+Camshaft+Position+Sensor&hash=item2fed3e330c%3Ag%3Aq8oAAeSw7mppt97w&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-explorer-4-0l-sohc-camshaft-position-sensor-synchronizer-failure-caus--existing-fix-part-0-0--4-0l-ohv-v6",
+      "issueId": "ford-explorer-4-0l-sohc-camshaft-position-sensor-synchronizer-failure-caus",
+      "partNumber": "235-1027",
+      "engineWorkRow": "4.0L OHV V6",
+      "verdict": "block",
+      "reason": "Walker 235-1027 carries VIN, production-date, and market restrictions that are not represented by the unscoped public claim.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the camshaft synchronizer AND the camshaft position sensor as a set (do not reuse an old synchronizer with a new sensor). The synchronizer must be installed with a special alignment/synchronizer positioning tool (Ford 303-589 / equivalent) so the sensor vane is clocked correctly, or the engine will run poorly or throw the code again. Verify oil pump drive engagement and confirm no plastic debris fell into the timing area.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/205843739404?_skw=Walker+Products+235-1027+Engine+Camshaft+Position+Sensor&hash=item2fed3e330c%3Ag%3Aq8oAAeSw7mppt97w&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan--existing-fix-part-0-0--4-0l-sohc-v6",
+      "issueId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan",
+      "partNumber": "221-9025",
+      "engineWorkRow": "4.0L SOHC V6",
+      "verdict": "block",
+      "reason": "The legacy 221-9025 row is unscoped and misses a 4.0L article year; the corrected packet introduces only the independently reviewed engine/year variants.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the radiator with a new unit (and inspect/replace the cooler lines). If coolant reached the transmission, flush the cooling system AND service the transmission immediately — drop the pan, replace fluid and filter, and flush the cooler circuit; heavy contamination requires a rebuild. Many owners bypass the internal cooler and install an external transmission cooler to prevent recurrence.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/125825697146?_skw=Denso+221-9025+Radiator&hash=item1d4bcbc57a%3Ag%3AU78AAeSwtkxpol8S&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan--existing-fix-part-0-0--4-6l-v8",
+      "issueId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan",
+      "partNumber": "221-9025",
+      "engineWorkRow": "4.6L V8",
+      "verdict": "block",
+      "reason": "The legacy 221-9025 row is unscoped and misses a 4.0L article year; the corrected packet introduces only the independently reviewed engine/year variants.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the radiator with a new unit (and inspect/replace the cooler lines). If coolant reached the transmission, flush the cooling system AND service the transmission immediately — drop the pan, replace fluid and filter, and flush the cooler circuit; heavy contamination requires a rebuild. Many owners bypass the internal cooler and install an external transmission cooler to prevent recurrence.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/125825697146?_skw=Denso+221-9025+Radiator&hash=item1d4bcbc57a%3Ag%3AU78AAeSwtkxpol8S&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-explorer-rear-wheel-bearing-and-2002--existing-fix-part-0-0--all-engines",
+      "issueId": "ford-explorer-rear-wheel-bearing-and-2002",
+      "partNumber": "BR930259K",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "SKF BR930259K carries a bearing-identification restriction that is absent from the article and cannot be enforced by the current vehicle selection.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Diagnosis involves road testing for speed-related growl, checking for wheel play, and isolating the noisy corner with chassis ears or by loading the vehicle in turns. Repair is replacement of the affected hub/bearing assembly, and many owners replace both rear sides if mileage is high. Alignment and inspection of tires and rear suspension components are recommended afterward to rule out other noise sources.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/407095261430?_skw=SKF+BR930259K+Wheel+Bearing+and+Hub+Assembly+Repair+Kit&hash=item5ec8c4b8f6%3Ai%3A407095261430&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-coil-plug-ignition-coil-failure-misfire-rough-idle--existing-fix-part-0-0--4-6l-v8",
+      "issueId": "ford-f-150-coil-plug-ignition-coil-failure-misfire-rough-idle",
+      "partNumber": "0221504704",
+      "engineWorkRow": "4.6L V8",
+      "verdict": "block",
+      "reason": "Bosch 0221504704 is unscoped across a broad F-150 year and engine range and lacks complete catalog coverage for the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the bad coil by swapping it to an adjacent cylinder and seeing if the misfire follows. Replace the failed coil (and its spark plug), apply dielectric grease to the boot to seal out moisture. If the same cylinder fails repeatedly, replace the valve-cover gasket and clean oil from the plug tube. Consider a full coil/plug set at high mileage.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Bosch-0221504704-Ignition-Coil-Pack/dp/B077P2111W?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-coil-plug-ignition-coil-failure-misfire-rough-idle--existing-fix-part-0-0--5-4l-triton-v8",
+      "issueId": "ford-f-150-coil-plug-ignition-coil-failure-misfire-rough-idle",
+      "partNumber": "0221504704",
+      "engineWorkRow": "5.4L Triton V8",
+      "verdict": "block",
+      "reason": "Bosch 0221504704 is unscoped across a broad F-150 year and engine range and lacks complete catalog coverage for the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the bad coil by swapping it to an adjacent cylinder and seeing if the misfire follows. Replace the failed coil (and its spark plug), apply dielectric grease to the boot to seal out moisture. If the same cylinder fails repeatedly, replace the valve-cover gasket and clean oil from the plug tube. Consider a full coil/plug set at high mileage.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Bosch-0221504704-Ignition-Coil-Pack/dp/B077P2111W?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-coil-plug-ignition-coil-failure-misfire-rough-idle--existing-fix-part-0-0--5-4l-triton-3v-v8",
+      "issueId": "ford-f-150-coil-plug-ignition-coil-failure-misfire-rough-idle",
+      "partNumber": "0221504704",
+      "engineWorkRow": "5.4L Triton 3V V8",
+      "verdict": "block",
+      "reason": "Bosch 0221504704 is unscoped across a broad F-150 year and engine range and lacks complete catalog coverage for the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the bad coil by swapping it to an adjacent cylinder and seeing if the misfire follows. Replace the failed coil (and its spark plug), apply dielectric grease to the boot to seal out moisture. If the same cylinder fails repeatedly, replace the valve-cover gasket and clean oil from the plug tube. Consider a full coil/plug set at high mileage.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Bosch-0221504704-Ignition-Coil-Pack/dp/B077P2111W?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-exhaust-manifold-studs-bolts-break-exhaust-leak-cold-start-t--existing-fix-part-0-0--5-4l-3v-2v-v8",
+      "issueId": "ford-f-150-exhaust-manifold-studs-bolts-break-exhaust-leak-cold-start-t",
+      "partNumber": "MS19261",
+      "engineWorkRow": "5.4L 3V/2V V8",
+      "verdict": "block",
+      "reason": "MAHLE MS19261 is limited by engine, VIN, and year application while the existing public claim is unscoped.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the leak (cold-start tick, soot/black streaking at the manifold flange). Replace broken studs/bolts with a hardware kit using anti-seize; studs snapped flush must be drilled out with a left-hand cobalt bit (often a 90-degree drill) and may require an EZ-out or, worst case, head removal. Inspect/replace the manifold gasket. Common parts: Dorman exhaust manifold hardware kits 03408 (gas V8) and 03430 (4.6/5.4 3V) plus OEM studs. Hardware $20-$60; professional repair commonly $300-$700, more if studs break flush or the manifold is cracked.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-MS19261-Exhaust-Manifold/dp/B006E0ORGI?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-exhaust-manifold-studs-bolts-break-exhaust-leak-cold-start-t--existing-fix-part-0-0--4-6l-v8",
+      "issueId": "ford-f-150-exhaust-manifold-studs-bolts-break-exhaust-leak-cold-start-t",
+      "partNumber": "MS19261",
+      "engineWorkRow": "4.6L V8",
+      "verdict": "block",
+      "reason": "MAHLE MS19261 is limited by engine, VIN, and year application while the existing public claim is unscoped.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the leak (cold-start tick, soot/black streaking at the manifold flange). Replace broken studs/bolts with a hardware kit using anti-seize; studs snapped flush must be drilled out with a left-hand cobalt bit (often a 90-degree drill) and may require an EZ-out or, worst case, head removal. Inspect/replace the manifold gasket. Common parts: Dorman exhaust manifold hardware kits 03408 (gas V8) and 03430 (4.6/5.4 3V) plus OEM studs. Hardware $20-$60; professional repair commonly $300-$700, more if studs break flush or the manifold is cracked.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-MS19261-Exhaust-Manifold/dp/B006E0ORGI?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-exhaust-manifold-studs-bolts-break-exhaust-leak-cold-start-t--existing-fix-part-0-0--3-5l-ecoboost-v6",
+      "issueId": "ford-f-150-exhaust-manifold-studs-bolts-break-exhaust-leak-cold-start-t",
+      "partNumber": "MS19261",
+      "engineWorkRow": "3.5L EcoBoost V6",
+      "verdict": "block",
+      "reason": "MAHLE MS19261 is limited by engine, VIN, and year application while the existing public claim is unscoped.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the leak (cold-start tick, soot/black streaking at the manifold flange). Replace broken studs/bolts with a hardware kit using anti-seize; studs snapped flush must be drilled out with a left-hand cobalt bit (often a 90-degree drill) and may require an EZ-out or, worst case, head removal. Inspect/replace the manifold gasket. Common parts: Dorman exhaust manifold hardware kits 03408 (gas V8) and 03430 (4.6/5.4 3V) plus OEM studs. Hardware $20-$60; professional repair commonly $300-$700, more if studs break flush or the manifold is cracked.",
+        "catalog": "Fitment work row ended with absent; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-MS19261-Exhaust-Manifold/dp/B006E0ORGI?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-exhaust-manifold-studs-bolts-break-exhaust-leak-cold-start-t--existing-fix-part-0-0--2-7l-ecoboost-v6",
+      "issueId": "ford-f-150-exhaust-manifold-studs-bolts-break-exhaust-leak-cold-start-t",
+      "partNumber": "MS19261",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "block",
+      "reason": "MAHLE MS19261 is limited by engine, VIN, and year application while the existing public claim is unscoped.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm the leak (cold-start tick, soot/black streaking at the manifold flange). Replace broken studs/bolts with a hardware kit using anti-seize; studs snapped flush must be drilled out with a left-hand cobalt bit (often a 90-degree drill) and may require an EZ-out or, worst case, head removal. Inspect/replace the manifold gasket. Common parts: Dorman exhaust manifold hardware kits 03408 (gas V8) and 03430 (4.6/5.4 3V) plus OEM studs. Hardware $20-$60; professional repair commonly $300-$700, more if studs break flush or the manifold is cracked.",
+        "catalog": "Fitment work row ended with absent; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-MS19261-Exhaust-Manifold/dp/B006E0ORGI?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-front-coil-spring-fractures-from-corrosion-snaps-punctures-f--existing-fix-part-0-0--4-6l-triton-v8",
+      "issueId": "ford-f-150-front-coil-spring-fractures-from-corrosion-snaps-punctures-f",
+      "partNumber": "81118",
+      "engineWorkRow": "4.6L Triton V8",
+      "verdict": "block",
+      "reason": "MOOG 81118 has no complete catalog evidence for the article's vehicle scope, so the unscoped verified link cannot be retained.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace both front coil springs (they are a matched pair) — corrosion-resistant/coated replacement springs are recommended. Inspect the shock/strut perch and lower control arm for damage from a spring that has already migrated. In the rust belt, coat new springs and inspect at every tire rotation. Any inner-edge tire scalloping on a truck that hasn't been aligned warrants a spring inspection.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/355809245412?_skw=Moog+Chassis+81118+Coil+Spring+Set&hash=item52d7e238e4%3Ag%3ANUMAAOSwQ4xmRARC&amdata=enc%3AAQALAAABAACCtXRWQnOEpyOqnQQ8KGaJTfE%2FkMplpuVwi9J18xPxPQs%2Frvu9q6G1G7a1F3%2BWc0UZBXk%2FyAQ2gGKG3P35qPGRKam10E5XnYY8EgxxvWRIvjt%2F7QpyMljQ3rkYR6yek9P2xBghIog2Uqgs9Gvw0tF8roK%2FkZq%2BKnMoCs1Lt%2F4DV215g0d%2BS7%2FTW3cTNjhKjfZwJslohsjJyZZseBqA7DmVKXjbcr0yvy3MNWPwHXpYPk2XLG%2BT8SOmXUtInjwL4%2FreaSqSFTmdQ8pyMphxk1KWCguo%2FxZQ8nH%2B9tqcP1OdLM8FH4f2N7KtwG1IIKY3XOSVZTiwZH065z%2FprK0TeOE%3D&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-front-coil-spring-fractures-from-corrosion-snaps-punctures-f--existing-fix-part-0-0--5-4l-triton-3v-v8",
+      "issueId": "ford-f-150-front-coil-spring-fractures-from-corrosion-snaps-punctures-f",
+      "partNumber": "81118",
+      "engineWorkRow": "5.4L Triton 3V V8",
+      "verdict": "block",
+      "reason": "MOOG 81118 has no complete catalog evidence for the article's vehicle scope, so the unscoped verified link cannot be retained.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace both front coil springs (they are a matched pair) — corrosion-resistant/coated replacement springs are recommended. Inspect the shock/strut perch and lower control arm for damage from a spring that has already migrated. In the rust belt, coat new springs and inspect at every tire rotation. Any inner-edge tire scalloping on a truck that hasn't been aligned warrants a spring inspection.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/355809245412?_skw=Moog+Chassis+81118+Coil+Spring+Set&hash=item52d7e238e4%3Ag%3ANUMAAOSwQ4xmRARC&amdata=enc%3AAQALAAABAACCtXRWQnOEpyOqnQQ8KGaJTfE%2FkMplpuVwi9J18xPxPQs%2Frvu9q6G1G7a1F3%2BWc0UZBXk%2FyAQ2gGKG3P35qPGRKam10E5XnYY8EgxxvWRIvjt%2F7QpyMljQ3rkYR6yek9P2xBghIog2Uqgs9Gvw0tF8roK%2FkZq%2BKnMoCs1Lt%2F4DV215g0d%2BS7%2FTW3cTNjhKjfZwJslohsjJyZZseBqA7DmVKXjbcr0yvy3MNWPwHXpYPk2XLG%2BT8SOmXUtInjwL4%2FreaSqSFTmdQ8pyMphxk1KWCguo%2FxZQ8nH%2B9tqcP1OdLM8FH4f2N7KtwG1IIKY3XOSVZTiwZH065z%2FprK0TeOE%3D&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-front-wheel-hub-bearing-assembly-failure-humming-noise-abs-l--existing-fix-part-0-0--2-7l-ecoboost-v6",
+      "issueId": "ford-f-150-front-wheel-hub-bearing-assembly-failure-humming-noise-abs-l",
+      "partNumber": "BR931016",
+      "engineWorkRow": "2.7L EcoBoost V6",
+      "verdict": "block",
+      "reason": "SKF BR931016 is not supported across the article's full application set and the current unscoped row loses drivetrain and hub-option restrictions.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm by checking for wheel-bearing play and locating the noise (worsens with speed, may change when loading the bearing in a turn). On 4WD, rule out IWE failure first (IWE grind often stops when 4WD is engaged; hub noise does not). Replace the complete hub/bearing assembly (bearing is not separately serviceable) and clear ABS codes. Torque axle nut and fasteners to spec.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/117334139310?_skw=SKF+BR931016+Wheel+Bearing+and+Hub+Assembly&hash=item1b51a8e1ae%3Ai%3A117334139310&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-front-wheel-hub-bearing-assembly-failure-humming-noise-abs-l--existing-fix-part-0-0--3-5l-ecoboost-v6",
+      "issueId": "ford-f-150-front-wheel-hub-bearing-assembly-failure-humming-noise-abs-l",
+      "partNumber": "BR931016",
+      "engineWorkRow": "3.5L EcoBoost V6",
+      "verdict": "block",
+      "reason": "SKF BR931016 is not supported across the article's full application set and the current unscoped row loses drivetrain and hub-option restrictions.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm by checking for wheel-bearing play and locating the noise (worsens with speed, may change when loading the bearing in a turn). On 4WD, rule out IWE failure first (IWE grind often stops when 4WD is engaged; hub noise does not). Replace the complete hub/bearing assembly (bearing is not separately serviceable) and clear ABS codes. Torque axle nut and fasteners to spec.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/117334139310?_skw=SKF+BR931016+Wheel+Bearing+and+Hub+Assembly&hash=item1b51a8e1ae%3Ai%3A117334139310&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f-150-front-wheel-hub-bearing-assembly-failure-humming-noise-abs-l--existing-fix-part-0-0--5-0l-ti-vct-v8",
+      "issueId": "ford-f-150-front-wheel-hub-bearing-assembly-failure-humming-noise-abs-l",
+      "partNumber": "BR931016",
+      "engineWorkRow": "5.0L Ti-VCT V8",
+      "verdict": "block",
+      "reason": "SKF BR931016 is not supported across the article's full application set and the current unscoped row loses drivetrain and hub-option restrictions.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm by checking for wheel-bearing play and locating the noise (worsens with speed, may change when loading the bearing in a turn). On 4WD, rule out IWE failure first (IWE grind often stops when 4WD is engaged; hub noise does not). Replace the complete hub/bearing assembly (bearing is not separately serviceable) and clear ABS codes. Torque axle nut and fasteners to spec.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/117334139310?_skw=SKF+BR931016+Wheel+Bearing+and+Hub+Assembly&hash=item1b51a8e1ae%3Ai%3A117334139310&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f150-spark-plug-blowout--existing-fix-part-0-0--4-6l-v8",
+      "issueId": "ford-f150-spark-plug-blowout",
+      "partNumber": "6747",
+      "engineWorkRow": "4.6L V8",
+      "verdict": "block",
+      "reason": "Bosch 6747 does not cover the article's 1998 endpoint and carries application variants that are absent from the unscoped claim.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If not yet blown out: Use anti-seize compound on spark plug threads, torque to spec (11-15 ft-lbs), and change plugs every 30k miles. If blown out: Install a Helicoil or Time-Sert thread repair kit ($50-150 DIY, $150-500 at shop). Preventive repair kits are also available to reinforce threads before failure.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/363018912886?_skw=Bosch+Spark+Plugs+6747+Spark+Plug&hash=item54859d0476%3Ag%3A0wYAAOSwLCxna-J7&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f150-spark-plug-blowout--existing-fix-part-0-0--5-4l-v8",
+      "issueId": "ford-f150-spark-plug-blowout",
+      "partNumber": "6747",
+      "engineWorkRow": "5.4L V8",
+      "verdict": "block",
+      "reason": "Bosch 6747 does not cover the article's 1998 endpoint and carries application variants that are absent from the unscoped claim.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If not yet blown out: Use anti-seize compound on spark plug threads, torque to spec (11-15 ft-lbs), and change plugs every 30k miles. If blown out: Install a Helicoil or Time-Sert thread repair kit ($50-150 DIY, $150-500 at shop). Preventive repair kits are also available to reinforce threads before failure.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/363018912886?_skw=Bosch+Spark+Plugs+6747+Spark+Plug&hash=item54859d0476%3Ag%3A0wYAAOSwLCxna-J7&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-f150-water-pump-2017--existing-fix-part-0-0--3-5l-ecoboost",
+      "issueId": "ford-f150-water-pump-2017",
+      "partNumber": "DP2263",
+      "engineWorkRow": "3.5L EcoBoost",
+      "verdict": "block",
+      "reason": "Dayco DP2263 lacks catalog support for the article's 2021 endpoint, so the unscoped verified row is incomplete.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace water pump when symptoms appear. Consider timing chain inspection/replacement at same time if high mileage. Replace thermostat while accessible. Ensure proper cooling system bleeding after repair.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/377401713902?_skw=Dayco+DP2263+Engine+Water+Pump&hash=item57dee524ee%3Ag%3AYjsAAOSwmwJoUAD-&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-fiesta-powershift-dps6-2011--existing-fix-part-0-0--1-6l-ti-vct",
+      "issueId": "ford-fiesta-powershift-dps6-2011",
+      "partNumber": "K70564-01",
+      "engineWorkRow": "1.6L Ti-VCT",
+      "verdict": "block",
+      "reason": "The Sachs K70564-01 claim conflicts with the DPS6 repair application and lacks the transmission-specific scope needed to distinguish it from manual and ST applications.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Check if your vehicle is covered under Ford's extended warranty or class-action settlement — many Fiestas qualify for free clutch and TCM replacement. If out of warranty, have the clutch assembly and TCM reprogrammed or replaced ($1,500-$3,500). Some owners have had success with multiple TCM reflashes to improve shift quality. As a last resort, some owners have converted to a manual transmission. Avoid the PowerShift entirely when purchasing a used Fiesta — manual transmission models are far more reliable.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Sachs-K70564-01-Clutch-Kit-Plus/dp/B088KRMTM7?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-five-hundred-wheel-bearing-2005--existing-fix-part-0-0--all-engines",
+      "issueId": "ford-five-hundred-wheel-bearing-2005",
+      "partNumber": "BR930704",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "SKF BR930704 is a rear AWD application without the sensor configuration described by the article, while the existing row is unscoped and presented as a front repair.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the hub and bearing assembly. The ABS sensor is integrated, so the tone ring alignment is automatic with a new assembly. Torque the axle nut to 233 ft-lbs.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/145827847609?_skw=SKF+BR930704+Wheel+Bearing+and+Hub+Assembly&hash=item21f4045db9%3Ag%3AbUcAAeSwzoRoYCU-&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-flex-water-pump-timing-chain-2009--existing-fix-part-0-0--3-5l-v6",
+      "issueId": "ford-flex-water-pump-timing-chain-2009",
+      "partNumber": "WPFD-609V",
+      "engineWorkRow": "3.5L V6",
+      "verdict": "block",
+      "reason": "The unscoped WPFD-609V row covers only a subset of the article's years and carries engine/application restrictions that are not enforced publicly.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Proactively replace the water pump and timing chain as preventive maintenance between 100,000-120,000 miles ($1,500-$2,500 labor-intensive job). Check oil regularly for milky appearance or coolant smell — catching it early can save the engine. If coolant is found in the oil, stop driving immediately and have it towed. Use only Ford-approved coolant to minimize seal degradation. Consider extended warranty coverage when purchasing a high-mileage Flex.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/136058054830?_skw=Aisin+WPFD-609V+Engine+Water+Pump&hash=item1fadb128ae%3Ag%3A5KAAAeSw4HJoW-4o&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-flex-water-pump-timing-chain-2009--existing-fix-part-0-0--3-5l-ecoboost",
+      "issueId": "ford-flex-water-pump-timing-chain-2009",
+      "partNumber": "WPFD-609V",
+      "engineWorkRow": "3.5L EcoBoost",
+      "verdict": "block",
+      "reason": "The unscoped WPFD-609V row covers only a subset of the article's years and carries engine/application restrictions that are not enforced publicly.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Proactively replace the water pump and timing chain as preventive maintenance between 100,000-120,000 miles ($1,500-$2,500 labor-intensive job). Check oil regularly for milky appearance or coolant smell — catching it early can save the engine. If coolant is found in the oil, stop driving immediately and have it towed. Use only Ford-approved coolant to minimize seal degradation. Consider extended warranty coverage when purchasing a high-mileage Flex.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/136058054830?_skw=Aisin+WPFD-609V+Engine+Water+Pump&hash=item1fadb128ae%3Ag%3A5KAAAeSw4HJoW-4o&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-freestar-ignition-coil-2004--existing-fix-part-0-0--3-9l-v6",
+      "issueId": "ford-freestar-ignition-coil-2004",
+      "partNumber": "178-8366",
+      "engineWorkRow": "3.9L V6",
+      "verdict": "block",
+      "reason": "The article describes six individual coil packs, while the catalog evidence identifies a different coil-pack configuration; the existing claim must remain blocked pending content correction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all six coil packs and spark plugs as a set for reliability. Use Motorcraft or quality aftermarket coils. Clear misfire codes after replacement.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/407011090423?_skw=Beck+Arnley+178-8366+Ignition+Coil&hash=item5ec3c05ff7%3Ag%3AsnIAAeSwGI5ofFWZ&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-freestar-ignition-coil-2004--existing-fix-part-0-0--4-2l-v6",
+      "issueId": "ford-freestar-ignition-coil-2004",
+      "partNumber": "178-8366",
+      "engineWorkRow": "4.2L V6",
+      "verdict": "block",
+      "reason": "The article describes six individual coil packs, while the catalog evidence identifies a different coil-pack configuration; the existing claim must remain blocked pending content correction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all six coil packs and spark plugs as a set for reliability. Use Motorcraft or quality aftermarket coils. Clear misfire codes after replacement.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/407011090423?_skw=Beck+Arnley+178-8366+Ignition+Coil&hash=item5ec3c05ff7%3Ag%3AsnIAAeSwGI5ofFWZ&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-freestyle-power-steering-pump-2005--existing-fix-part-0-0--all-engines",
+      "issueId": "ford-freestyle-power-steering-pump-2005",
+      "partNumber": "20-323",
+      "engineWorkRow": "",
+      "verdict": "preserve",
+      "reason": "Cardone 20-323 matches the prescribed power-steering pump, is catalog-confirmed for every 2005-2007 article year without an application restriction, and its existing exact eBay product link remains valid.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the power steering pump and flush the system. Inspect all hoses and the steering rack for leaks. Use Mercon V as the power steering fluid per Ford spec.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/257621154717?_skw=Cardone+20-323+Power+Steering+Pump&hash=item3bfb6adb9d%3Ag%3Aio4AAOSw8o9nFQng&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-mustang-46l-plastic-intake-manifold-2000--existing-fix-part-0-0--4-6l-sohc-v8",
+      "issueId": "ford-mustang-46l-plastic-intake-manifold-2000",
+      "partNumber": "MS16296",
+      "engineWorkRow": "4.6L SOHC V8",
+      "verdict": "block",
+      "reason": "MAHLE MS16296 carries VIN, package, location, and application restrictions that are absent from the unscoped claim.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and inspect the intake manifold crossover and thermostat housing area for cracks or seepage. The durable fix is replacement with the updated Ford or Dorman intake manifold design that uses an improved aluminum crossover. If overheating occurred, inspect coils, plugs, and head gaskets before returning the car to service.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-MS16296-Engine-Manifold/dp/B000CLCPYG?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-probe-power-window-motor-1993--existing-fix-part-0-0--all-engines",
+      "issueId": "ford-probe-power-window-motor-1993",
+      "partNumber": "47-1755",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "Cardone 47-1755 is a front-left window motor, but the article and existing row do not preserve the side and position restriction.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the window motor. The regulator usually survives and can be reused. Lubricate the window tracks with white lithium grease to reduce motor strain.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Cardone-47-1755-Remanufactured-Window-Motor/dp/B000C46O9A?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-ranger-plastic-thermostat-housing-cracks-2001--existing-fix-part-0-0--2-3l-duratec-i4",
+      "issueId": "ford-ranger-plastic-thermostat-housing-cracks-2001",
+      "partNumber": "THRFD-0014",
+      "engineWorkRow": "2.3L Duratec I4",
+      "verdict": "block",
+      "reason": "Aisin THRFD-0014 covers only a later/date-limited subset of the article, while the existing verified row is unscoped.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and inspect the thermostat housing, sensor seals, and nearby hose connections for seepage or cracks. Replace the housing assembly, thermostat, and O-rings with updated parts, then refill and properly bleed the cooling system. If overheating occurred, verify fan operation and check for head-gasket damage afterward.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/117205102560?_skw=Aisin+THRFD-0014+Engine+Coolant+Thermostat+Housing+Assembly&hash=item1b49f7efe0%3Ag%3AUugAAeSwG6RqeMce&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-transit-connect-a-c-compressor-failure-or-no-cool-condition-refrigerant-leak-compressor-damage--existing-fix-part-0-0--all-engines",
+      "issueId": "ford-transit-connect-a-c-compressor-failure-or-no-cool-condition-refrigerant-leak-compressor-damage",
+      "partNumber": "471-0919",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "Denso 471-0919 is limited to 2019-2021 2.5L vehicles without rear climate control, restrictions the unscoped public claim does not preserve.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Recover and measure refrigerant, leak-test with dye/nitrogen, and repair leaking components (O-rings/lines/condenser as needed). If compressor has failed internally, replace the compressor, receiver/drier (or desiccant), and expansion device as applicable, then flush lines and evacuate/recharge to spec.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/227383506664?_skw=Denso+471-0919+A%2FC+Compressor&hash=item34f11cf6e8%3Ag%3AaTgAAeSw2MxqV0IY&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-transit-connect-abs-wheel-speed-sensor-wiring-fault-abs-traction-control-lights-on--existing-fix-part-0-0--all-engines",
+      "issueId": "ford-transit-connect-abs-wheel-speed-sensor-wiring-fault-abs-traction-control-lights-on",
+      "partNumber": "SS20881",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "Delphi SS20881 is a rear-position sensor while the article instructs diagnosis of the affected corner; the unscoped row can expose the wrong position.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Scan ABS module for wheel speed sensor DTCs and view live wheel speed data to identify the affected corner. Clean/inspect tone rings (if applicable), repair wiring/connectors, or replace the wheel speed sensor; clear codes and verify on a road test.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/168562318001?_skw=Delphi+SS20881+ABS+Wheel+Speed+Sensor&hash=item273f18dab1%3Ag%3A8GsAAeSwDB5qZExM&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "ford-windstar-intake-gasket-1999--existing-fix-part-0-0--3-8l-v6",
+      "issueId": "ford-windstar-intake-gasket-1999",
+      "partNumber": "MIS16230-1",
+      "engineWorkRow": "3.8L V6",
+      "verdict": "block",
+      "reason": "MAHLE MIS16230-1 misses the article's 1999 endpoint and carries a VIN/application restriction that is absent from the unscoped claim.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace both upper and lower intake manifold gaskets. Use updated Fel-Pro gaskets. Flush the cooling system and change the oil if coolant contamination is found.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-MIS16230-1-Manifold-Installation/dp/B008PLEOW6?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "proposalId": "ford-aerostar-head-gasket-1990--prescription-2-0--3-0l-vulcan-v6",
+      "issueId": "ford-aerostar-head-gasket-1990",
+      "workItemId": "ford-aerostar-head-gasket-1990--prescription-2-0--3-0l-vulcan-v6",
+      "model": "Aerostar",
+      "partIndex": 0,
+      "partNumber": "33006",
+      "decision": "hold_no_exact_link",
+      "reason": "Gates 33006 is a thermostat in the prescribed repair role and is catalog-scoped to the recorded 3.0L years, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace head gaskets with Fel-Pro multi-layer steel (MLS) gaskets rather than OEM composite gaskets. Have the heads checked for warpage and resurfaced. Replace head bolts (torque-to-yield design). Flush the cooling system and replace the thermostat during the repair. If the 4.0L shows oil in coolant, check for cracked cylinder head (common on this engine).",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-aerostar-head-gasket-1990--prescription-2-0--4-0l-cologne-v6",
+      "issueId": "ford-aerostar-head-gasket-1990",
+      "workItemId": "ford-aerostar-head-gasket-1990--prescription-2-0--4-0l-cologne-v6",
+      "model": "Aerostar",
+      "partIndex": 0,
+      "partNumber": "THRFD-0008",
+      "decision": "approve",
+      "reason": "Aisin THRFD-0008 matches the prescribed thermostat role, is catalog-scoped to 1995-1997 4.0L applications, includes its seal, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace head gaskets with Fel-Pro multi-layer steel (MLS) gaskets rather than OEM composite gaskets. Have the heads checked for warpage and resurfaced. Replace head bolts (torque-to-yield design). Flush the cooling system and replace the thermostat during the repair. If the 4.0L shows oil in coolant, check for cracked cylinder head (common on this engine).",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/377305161936?fits=Year%3A1995%7CEngine+-+Liter_Display%3A4.0L%7CModel%3AAerostar%7CMake%3AFord&_skw=1995+Ford+Aerostar+4.0L+Aisin+THRFD-0008+Engine+Coolant+Thermostat&hash=item57d923e0d0%3Ag%3AX9cAAOSwQ0toTUY7&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 377305161936. Observed title contains THRFD0008. Observed title: AISIN WORLD CORP. OF AMERICA THRFD0008 Engine Coolant Thermostat."
+      }
+    },
+    {
+      "proposalId": "ford-aerostar-head-gasket-1990--prescription-2-0--4-0l-cologne-v6",
+      "issueId": "ford-aerostar-head-gasket-1990",
+      "workItemId": "ford-aerostar-head-gasket-1990--prescription-2-0--4-0l-cologne-v6",
+      "model": "Aerostar",
+      "partIndex": 1,
+      "partNumber": "TX 7 88D",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE TX 7 88D matches the thermostat role and covers the recorded 4.0L years, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace head gaskets with Fel-Pro multi-layer steel (MLS) gaskets rather than OEM composite gaskets. Have the heads checked for warpage and resurfaced. Replace head bolts (torque-to-yield design). Flush the cooling system and replace the thermostat during the repair. If the 4.0L shows oil in coolant, check for cracked cylinder head (common on this engine).",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-bronco-23l-ecoboost-coolant-intrusion-2021--prescription-0-0--2-3l-ecoboost-i4",
+      "issueId": "ford-bronco-23l-ecoboost-coolant-intrusion-2021",
+      "workItemId": "ford-bronco-23l-ecoboost-coolant-intrusion-2021--prescription-0-0--2-3l-ecoboost-i4",
+      "model": "Bronco",
+      "partIndex": 0,
+      "partNumber": "55526",
+      "decision": "hold_needs_manual",
+      "reason": "The article says the repair can require a head gasket, cylinder head, or complete long block depending on diagnosis; the public commerce surface cannot yet enforce that severity branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Technicians typically pressure-test the cooling system, inspect spark plugs for steam cleaning, and borescope cylinders for coolant intrusion. Repairs range from head gasket and cylinder head replacement to complete long-block replacement depending on severity. Monitoring coolant level and addressing misfires early can prevent more extensive damage.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-contour-alternator-failure-1995--prescription-0-0--2-0l",
+      "issueId": "ford-contour-alternator-failure-1995",
+      "workItemId": "ford-contour-alternator-failure-1995--prescription-0-0--2-0l",
+      "model": "Contour",
+      "partIndex": 0,
+      "partNumber": "210-5340",
+      "decision": "hold_no_exact_link",
+      "reason": "Denso 210-5340 matches the alternator role within its narrow 1999-2000 2.0L catalog scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the alternator. On V6 models, access requires removing the intake manifold or approaching from below. Use a high-quality rebuilt or new unit.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car--prescription-0-0--1-9l-cvh-sohc-i4",
+      "issueId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car",
+      "workItemId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car--prescription-0-0--1-9l-cvh-sohc-i4",
+      "model": "Escort",
+      "partIndex": 0,
+      "partNumber": "T194",
+      "decision": "approve",
+      "reason": "Gates T194 matches the scheduled timing-belt replacement role, is catalog-scoped to the recorded 1991-1996 1.9L application, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt on schedule (and any belt of unknown age on a used purchase), ideally together with the tensioner and water pump since the pump is driven off the same area. Use the correct Zetec cam-alignment tooling when doing the DOHC engine so the cams are timed correctly on reassembly.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/194897462206?_skw=1991+Ford+Escort+1.9L+Gates+T194+Engine+Timing+Belt&hash=item2d60cb43be%3Ag%3AUcIAAOSweiFiJnMM&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 194897462206. Observed Manufacturer Part Number contains T194. Observed title: Gates T194 AUTOMOTIVE TIMING BELT1996-1991 Ford, Escort, 4-Cyl. 1.9 L, Cam.."
+      }
+    },
+    {
+      "proposalId": "ford-expedition-54-cam-phaser-timing-2004--prescription-4-0--5-4l-v8-3v-triton",
+      "issueId": "ford-expedition-54-cam-phaser-timing-2004",
+      "workItemId": "ford-expedition-54-cam-phaser-timing-2004--prescription-4-0--5-4l-v8-3v-triton",
+      "model": "Expedition",
+      "partIndex": 0,
+      "partNumber": "601-2115",
+      "decision": "hold_needs_manual",
+      "reason": "The oil pump is prescribed only for engines over 80,000 miles with inadequate VCT oil pressure; that condition is not enforceable by the public part renderer.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Complete timing system overhaul: replace both VCT cam phasers, timing chains (primary and secondary), all chain guides, and tensioners as a complete kit. Motorcraft timing chain and phaser kit (TKIT-2004A-MGA or dealer equivalent) is recommended. Also replace the oil pump if over 80,000 miles - worn pump cannot supply adequate oil pressure for VCT system. Use 5W-20 full synthetic oil only. Change oil every 5,000 miles maximum. Labor: 12-16 hours on Expedition due to 4WD and engine mounts.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-intake-manifold-pcv-vacuum-leak-4-0l-sohc-causing-p0171-p017--prescription-1-0--4-0l-sohc-v6",
+      "issueId": "ford-explorer-intake-manifold-pcv-vacuum-leak-4-0l-sohc-causing-p0171-p017",
+      "workItemId": "ford-explorer-intake-manifold-pcv-vacuum-leak-4-0l-sohc-causing-p0171-p017--prescription-1-0--4-0l-sohc-v6",
+      "model": "Explorer",
+      "partIndex": 0,
+      "partNumber": "MS20462",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE MS20462 matches the prescribed intake-manifold gasket role and catalog scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Smoke-test the intake for leaks. Replace the brittle PCV elbow/hose and the upper intake manifold gaskets/O-rings; inspect the intake plenum for cracks. Clean the MAF and check for a leaking gasket at the throttle body. Address the DPFE/EGR at the same time if EGR codes are also present, then clear the adaptive fuel trims.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan--prescription-0-0--4-0l-sohc-v6",
+      "issueId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan",
+      "workItemId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan--prescription-0-0--4-0l-sohc-v6",
+      "model": "Explorer",
+      "partIndex": 0,
+      "partNumber": "221-9025",
+      "decision": "approve",
+      "reason": "Denso 221-9025 is the prescribed radiator, is limited to the catalog-confirmed 4.0L year cells, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the radiator with a new unit (and inspect/replace the cooler lines). If coolant reached the transmission, flush the cooling system AND service the transmission immediately — drop the pan, replace fluid and filter, and flush the cooler circuit; heavy contamination requires a rebuild. Many owners bypass the internal cooler and install an external transmission cooler to prevent recurrence.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/198520810500?fits=Year%3A2002%7CEngine+-+Liter_Display%3A4.0L%7CModel%3AExplorer%7CMake%3AFord&_skw=2002+Ford+Explorer+4.0L+Denso+221-9025+Radiator&hash=item2e38c32c04%3Ai%3A198520810500&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 198520810500. Observed title contains 221-9025. Observed title: DENSO 221-9025 Radiator For 02-05 Ford Mercury Explorer Mountaineer."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan--prescription-0-0--4-6l-v8",
+      "issueId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan",
+      "workItemId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan--prescription-0-0--4-6l-v8",
+      "model": "Explorer",
+      "partIndex": 0,
+      "partNumber": "221-9025",
+      "decision": "approve",
+      "reason": "Denso 221-9025 is the prescribed radiator, covers the recorded 2002-2005 4.6L cells, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the radiator with a new unit (and inspect/replace the cooler lines). If coolant reached the transmission, flush the cooling system AND service the transmission immediately — drop the pan, replace fluid and filter, and flush the cooler circuit; heavy contamination requires a rebuild. Many owners bypass the internal cooler and install an external transmission cooler to prevent recurrence.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/198520810500?fits=Year%3A2002%7CEngine+-+Liter_Display%3A4.6L%7CModel%3AExplorer%7CMake%3AFord&_skw=2002+Ford+Explorer+4.6L+Denso+221-9025+Radiator&hash=item2e38c32c04%3Ai%3A198520810500&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 198520810500. Observed title contains 221-9025. Observed title: DENSO 221-9025 Radiator For 02-05 Ford Mercury Explorer Mountaineer."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-internal-timing-chain-driven-water-pump-failure-leading-to-c--prescription-0-0--3-5l-cyclone-duratec-v6-naturally-aspirated",
+      "issueId": "ford-explorer-internal-timing-chain-driven-water-pump-failure-leading-to-c",
+      "workItemId": "ford-explorer-internal-timing-chain-driven-water-pump-failure-leading-to-c--prescription-0-0--3-5l-cyclone-duratec-v6-naturally-aspirated",
+      "model": "Explorer",
+      "partIndex": 0,
+      "partNumber": "WPZ-615V",
+      "decision": "approve",
+      "reason": "Aisin WPZ-615V matches the prescribed internal water-pump role, is restricted to its catalog-confirmed early 3.5L cells, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "At the first sign of a passenger-side coolant weep or low coolant, have the internal water pump replaced before coolant reaches the oil. Best practice is to replace the timing chain, guides and tensioners while the front of the engine is open. If oil is already milky, stop driving and tow it in, then flush the oil after repair. Some owners preemptively replace the pump around 100k miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/147467720350?fits=Year%3A2011%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AExplorer%7CMake%3AFord&_skw=2011+Ford+Explorer+3.5L+Aisin+WPZ-615V+Engine+Water+Pump&hash=item2255c2d69e%3Ag%3AcCUAAeSw03hqWkOV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 147467720350. Observed title contains WPZ615V. Observed title: AISIN WORLD CORP. OF AMERICA WPZ615V Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-internal-timing-chain-driven-water-pump-failure-leading-to-c--prescription-0-0--3-5l-cyclone-duratec-v6-naturally-aspirated",
+      "issueId": "ford-explorer-internal-timing-chain-driven-water-pump-failure-leading-to-c",
+      "workItemId": "ford-explorer-internal-timing-chain-driven-water-pump-failure-leading-to-c--prescription-0-0--3-5l-cyclone-duratec-v6-naturally-aspirated",
+      "model": "Explorer",
+      "partIndex": 1,
+      "partNumber": "42044",
+      "decision": "approve",
+      "reason": "Gates 42044 independently matches the internal water-pump role and its early 3.5L catalog cells, with an exact product page; it remains a reviewed non-primary option.",
+      "reviewedSourceEvidence": {
+        "howToFix": "At the first sign of a passenger-side coolant weep or low coolant, have the internal water pump replaced before coolant reaches the oil. Best practice is to replace the timing chain, guides and tensioners while the front of the engine is open. If oil is already milky, stop driving and tow it in, then flush the oil after repair. Some owners preemptively replace the pump around 100k miles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/406863827793?fits=Year%3A2011%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AExplorer%7CMake%3AFord&_skw=2011+Ford+Explorer+3.5L+Gates+42044+Engine+Water+Pump&hash=item5ebaf95351%3Ag%3AkuUAAOSw331oU2TV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 406863827793. Observed Manufacturer Part Number contains 42044. Observed title: Engine Water Pump-Water Pump(Standard) Gates 42044."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-internal-water-pump-failure--prescription-0-0--3-5l-v6",
+      "issueId": "ford-explorer-internal-water-pump-failure",
+      "workItemId": "ford-explorer-internal-water-pump-failure--prescription-0-0--3-5l-v6",
+      "model": "Explorer",
+      "partIndex": 0,
+      "partNumber": "WPZ-615V",
+      "decision": "approve",
+      "reason": "Aisin WPZ-615V matches the prescribed internal water-pump role, is scoped to the catalog-confirmed early 3.5L V6 years, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace internal water pump (requires removing timing cover). If coolant contaminated oil: complete engine oil flush and new oil/filter. If engine damage occurred: engine rebuild or replacement. Monitor coolant levels regularly as preventive measure.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/147467720350?fits=Year%3A2011%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AExplorer%7CMake%3AFord&_skw=2011+Ford+Explorer+3.5L+Aisin+WPZ-615V+Engine+Water+Pump&hash=item2255c2d69e%3Ag%3AcCUAAeSw03hqWkOV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 147467720350. Observed title contains WPZ615V. Observed title: AISIN WORLD CORP. OF AMERICA WPZ615V Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-internal-water-pump-failure--prescription-0-0--3-5l-v6",
+      "issueId": "ford-explorer-internal-water-pump-failure",
+      "workItemId": "ford-explorer-internal-water-pump-failure--prescription-0-0--3-5l-v6",
+      "model": "Explorer",
+      "partIndex": 1,
+      "partNumber": "42044",
+      "decision": "approve",
+      "reason": "Gates 42044 independently matches the internal water-pump role and early 3.5L V6 scope, with an exact product page; it remains a reviewed non-primary option.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace internal water pump (requires removing timing cover). If coolant contaminated oil: complete engine oil flush and new oil/filter. If engine damage occurred: engine rebuild or replacement. Monitor coolant levels regularly as preventive measure.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/406863827793?fits=Year%3A2011%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AExplorer%7CMake%3AFord&_skw=2011+Ford+Explorer+3.5L+Gates+42044+Engine+Water+Pump&hash=item5ebaf95351%3Ag%3AkuUAAOSw331oU2TV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 406863827793. Observed Manufacturer Part Number contains 42044. Observed title: Engine Water Pump-Water Pump(Standard) Gates 42044."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-internal-water-pump-failure--prescription-0-0--3-5l-ecoboost",
+      "issueId": "ford-explorer-internal-water-pump-failure",
+      "workItemId": "ford-explorer-internal-water-pump-failure--prescription-0-0--3-5l-ecoboost",
+      "model": "Explorer",
+      "partIndex": 0,
+      "partNumber": "WPZ-615V",
+      "decision": "approve",
+      "reason": "Aisin WPZ-615V matches the prescribed internal water-pump role, is scoped to the catalog-confirmed early 3.5L EcoBoost years, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace internal water pump (requires removing timing cover). If coolant contaminated oil: complete engine oil flush and new oil/filter. If engine damage occurred: engine rebuild or replacement. Monitor coolant levels regularly as preventive measure.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/147467720350?fits=Year%3A2011%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AExplorer%7CMake%3AFord&_skw=2011+Ford+Explorer+3.5L+Aisin+WPZ-615V+Engine+Water+Pump&hash=item2255c2d69e%3Ag%3AcCUAAeSw03hqWkOV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 147467720350. Observed title contains WPZ615V. Observed title: AISIN WORLD CORP. OF AMERICA WPZ615V Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-internal-water-pump-failure--prescription-0-0--3-5l-ecoboost",
+      "issueId": "ford-explorer-internal-water-pump-failure",
+      "workItemId": "ford-explorer-internal-water-pump-failure--prescription-0-0--3-5l-ecoboost",
+      "model": "Explorer",
+      "partIndex": 1,
+      "partNumber": "42044",
+      "decision": "approve",
+      "reason": "Gates 42044 independently matches the internal water-pump role and early 3.5L EcoBoost scope, with an exact product page; it remains a reviewed non-primary option.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace internal water pump (requires removing timing cover). If coolant contaminated oil: complete engine oil flush and new oil/filter. If engine damage occurred: engine rebuild or replacement. Monitor coolant levels regularly as preventive measure.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/406863827793?fits=Year%3A2011%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AExplorer%7CMake%3AFord&_skw=2011+Ford+Explorer+3.5L+Gates+42044+Engine+Water+Pump&hash=item5ebaf95351%3Ag%3AkuUAAOSw331oU2TV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 406863827793. Observed Manufacturer Part Number contains 42044. Observed title: Engine Water Pump-Water Pump(Standard) Gates 42044."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-sport-trac-cam-phaser-2007--prescription-1-0--4-0l-sohc",
+      "issueId": "ford-explorer-sport-trac-cam-phaser-2007",
+      "workItemId": "ford-explorer-sport-trac-cam-phaser-2007--prescription-1-0--4-0l-sohc",
+      "model": "Explorer Sport Trac",
+      "partIndex": 0,
+      "partNumber": "KTC1359",
+      "decision": "block_incomplete_scope",
+      "reason": "The repair explicitly requires updated Ford cam phasers plus chains, guides, and tensioners; the KTC1359 evidence proves a chain kit but not the required updated phasers or complete repair contents.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the cam phasers, timing chain, tensioners, and guides as a complete kit. This is a labor-intensive repair requiring removal of the front of the engine. Use updated Ford phasers.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/306958657164?fits=Year%3A2007%7CEngine+-+Liter_Display%3A4.0L%7CModel%3AExplorer+Sport+Trac%7CMake%3AFord&_skw=2007+Ford+Explorer+Sport+Trac+4.0L+Dayco+KTC1359+Engine+Timing+Chain+Kit&hash=item477829668c%3Ag%3AnBAAAeSwWptqOa4z&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 306958657164. Observed title contains KTC1359. Observed title: Dayco KTC1359 Engine Timing Chain Kit for Valve Train  ud."
+      }
+    },
+    {
+      "proposalId": "ford-explorer-sport-trac-cam-phaser-2007--prescription-1-0--4-0l-sohc",
+      "issueId": "ford-explorer-sport-trac-cam-phaser-2007",
+      "workItemId": "ford-explorer-sport-trac-cam-phaser-2007--prescription-1-0--4-0l-sohc",
+      "model": "Explorer Sport Trac",
+      "partIndex": 1,
+      "partNumber": "CHK159",
+      "decision": "block_incomplete_scope",
+      "reason": "The repair explicitly requires updated Ford cam phasers plus chains, guides, and tensioners; the CHK159 evidence does not prove those updated phasers or complete contents.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the cam phasers, timing chain, tensioners, and guides as a complete kit. This is a labor-intensive repair requiring removal of the front of the engine. Use updated Ford phasers.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/137544754094?fits=Year%3A2007%7CEngine+-+Liter_Display%3A4.0L%7CModel%3AExplorer+Sport+Trac%7CMake%3AFord&_skw=2007+Ford+Explorer+Sport+Trac+4.0L+Gates+CHK159+Engine+Timing+Chain+Kit&hash=item20064e63ae%3Ag%3AzW4AAeSw7V9qOT%7EQ&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 137544754094. Observed title contains CHK159. Observed title: GATES CHK159 Engine Timing Chain Kit."
+      }
+    },
+    {
+      "proposalId": "ford-f-150-5-4l-triton-3-valve-cam-phaser-timing-chain-death-rattle--prescription-5-0--5-4l-3v-triton-v8-24-valve",
+      "issueId": "ford-f-150-5-4l-triton-3-valve-cam-phaser-timing-chain-death-rattle",
+      "workItemId": "ford-f-150-5-4l-triton-3-valve-cam-phaser-timing-chain-death-rattle--prescription-5-0--5-4l-3v-triton-v8-24-valve",
+      "model": "F-150",
+      "partIndex": 0,
+      "partNumber": "601-2115",
+      "decision": "block_wrong_role",
+      "reason": "The article recommends an oil-pump upgrade as part of the permanent repair, while MAHLE 601-2115 is explicitly a standard-pressure, standard-volume pump.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the complete timing set: both cam phasers, primary and secondary timing chains, tensioners, guides, and VCT solenoids. Many owners also upgrade the oil pump and switch to a slightly heavier oil and shorter oil-change interval. A common permanent fix is a cam phaser 'lockout' kit that replaces the moving vanes with solid blocks, fixing valve timing and eliminating the failure (sacrifices VCT economy/smoothness). Critical: address at first rattle — running it risks catastrophic engine damage. OEM Ford cam phaser is 3R2Z-6A257-DA (per side); Cloyes 9-0753SK and Dorman repair kits are common full-kit cross-references. Parts $300-$900; full job with labor typically $1,500-$2,500.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-f-150-brake-line-hose-and-hydraulic-component-failure--prescription-2-0--all-engines",
+      "issueId": "ford-f-150-brake-line-hose-and-hydraulic-component-failure",
+      "workItemId": "ford-f-150-brake-line-hose-and-hydraulic-component-failure--prescription-2-0--all-engines",
+      "model": "F-150",
+      "partIndex": 0,
+      "partNumber": "MC391164",
+      "decision": "hold_needs_manual",
+      "reason": "The master cylinder is only one possible failed hydraulic component after leak and corrosion inspection; the public renderer cannot require confirmation of that branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Inspect all steel brake lines, rear flex hoses, calipers, ABS hydraulic components, and the master cylinder/booster interface for leaks or corrosion. Repairs commonly include replacing rusted lines with pre-bent or custom nickel-copper lines, new rear hoses, and sometimes a master cylinder and booster; typical cost is about $300-$1,500 depending on how much of the system is affected. Bleed the full system and verify ABS operation after repair.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/167821909042?fits=Year%3A2011%7CModel%3AF-150%7CMake%3AFord&_skw=2011+Ford+F-150+Raybestos+Brakes+MC391164+Brake+Master+Cylinder&hash=item2712f71c32%3Ag%3AA5IAAeSwVy9pFI7l&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 167821909042. Observed title contains MC391164. Observed title: Brake Master Cylinder-Element3 New Raybestos MC391164."
+      }
+    },
+    {
+      "proposalId": "ford-f-150-internal-radiator-transmission-cooler-fails-coolant-atf-cros--prescription-0-0--4-2l-essex-v6",
+      "issueId": "ford-f-150-internal-radiator-transmission-cooler-fails-coolant-atf-cros",
+      "workItemId": "ford-f-150-internal-radiator-transmission-cooler-fails-coolant-atf-cros--prescription-0-0--4-2l-essex-v6",
+      "model": "F-150",
+      "partIndex": 0,
+      "partNumber": "221-9022",
+      "decision": "approve",
+      "reason": "Denso 221-9022 matches the prescribed radiator role, is catalog-scoped to the 2005-2008 4.2L cells, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the radiator immediately and stop driving once cross-contamination is confirmed. Flush the cooling system thoroughly and do multiple transmission fluid/filter services (or a full flush) to purge coolant from the trans; inspect for internal transmission damage. Bypassing the radiator cooler with an external cooler prevents recurrence.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/389919583925?fits=Year%3A2005%7CEngine+-+Liter_Display%3A4.2L%7CModel%3AF-150%7CMake%3AFord&_skw=2005+Ford+F-150+4.2L+Denso+221-9022+Radiator&hash=item5ac904aeb5%3Ag%3AyXYAAeSwU9Bp55A7&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 389919583925. Observed title contains 221-9022. Observed title: New Radiator DENSO 221-9022 Ford F150, Expedition & Lincoln Navigator 2005-2008."
+      }
+    },
+    {
+      "proposalId": "ford-f-150-internal-radiator-transmission-cooler-fails-coolant-atf-cros--prescription-0-0--4-6l-triton-v8",
+      "issueId": "ford-f-150-internal-radiator-transmission-cooler-fails-coolant-atf-cros",
+      "workItemId": "ford-f-150-internal-radiator-transmission-cooler-fails-coolant-atf-cros--prescription-0-0--4-6l-triton-v8",
+      "model": "F-150",
+      "partIndex": 0,
+      "partNumber": "221-9022",
+      "decision": "approve",
+      "reason": "Denso 221-9022 matches the prescribed radiator role, is catalog-scoped to the 2005-2008 4.6L cells, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the radiator immediately and stop driving once cross-contamination is confirmed. Flush the cooling system thoroughly and do multiple transmission fluid/filter services (or a full flush) to purge coolant from the trans; inspect for internal transmission damage. Bypassing the radiator cooler with an external cooler prevents recurrence.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/389919583925?fits=Year%3A2005%7CEngine+-+Liter_Display%3A4.6L%7CModel%3AF-150%7CMake%3AFord&_skw=2005+Ford+F-150+4.6L+Denso+221-9022+Radiator&hash=item5ac904aeb5%3Ag%3AyXYAAeSwU9Bp55A7&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 389919583925. Observed title contains 221-9022. Observed title: New Radiator DENSO 221-9022 Ford F150, Expedition & Lincoln Navigator 2005-2008."
+      }
+    },
+    {
+      "proposalId": "ford-f-150-internal-radiator-transmission-cooler-fails-coolant-atf-cros--prescription-0-0--5-4l-triton-v8",
+      "issueId": "ford-f-150-internal-radiator-transmission-cooler-fails-coolant-atf-cros",
+      "workItemId": "ford-f-150-internal-radiator-transmission-cooler-fails-coolant-atf-cros--prescription-0-0--5-4l-triton-v8",
+      "model": "F-150",
+      "partIndex": 0,
+      "partNumber": "221-9022",
+      "decision": "approve",
+      "reason": "Denso 221-9022 matches the prescribed radiator role, is catalog-scoped to the 2005-2008 5.4L cells, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the radiator immediately and stop driving once cross-contamination is confirmed. Flush the cooling system thoroughly and do multiple transmission fluid/filter services (or a full flush) to purge coolant from the trans; inspect for internal transmission damage. Bypassing the radiator cooler with an external cooler prevents recurrence.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/389919583925?fits=Year%3A2005%7CEngine+-+Liter_Display%3A5.4L%7CModel%3AF-150%7CMake%3AFord&_skw=2005+Ford+F-150+5.4L+Denso+221-9022+Radiator&hash=item5ac904aeb5%3Ag%3AyXYAAeSwU9Bp55A7&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 389919583925. Observed title contains 221-9022. Observed title: New Radiator DENSO 221-9022 Ford F150, Expedition & Lincoln Navigator 2005-2008."
+      }
+    },
+    {
+      "proposalId": "ford-fiesta-wet-belt-timing-belt-degradation-clogging-oil-pump-pickup--prescription-0-0--1-0l-ecoboost-3-cylinder-turbo-belt-in-oil",
+      "issueId": "ford-fiesta-wet-belt-timing-belt-degradation-clogging-oil-pump-pickup",
+      "workItemId": "ford-fiesta-wet-belt-timing-belt-degradation-clogging-oil-pump-pickup--prescription-0-0--1-0l-ecoboost-3-cylinder-turbo-belt-in-oil",
+      "model": "Fiesta",
+      "partIndex": 0,
+      "partNumber": "T354HOB",
+      "decision": "approve",
+      "reason": "Gates T354HOB matches the prescribed belt-in-oil timing-belt role, is catalog-scoped to 2014-2017 1.0L EcoBoost applications, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the wet timing belt on a shortened interval (roughly every 6 years / 60,000 miles), and always use only the Ford-specified low-additive oil. At belt replacement, drop the sump and clean/replace the oil pump pickup screen and inspect for rubber debris. If low oil pressure or belt debris is found, replace the oil pump and pickup and flush the system; severe cases with bearing damage need engine replacement.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/117341499121?fits=Year%3A2014%7CEngine+-+Liter_Display%3A1.0L%7CModel%3AFiesta%7CMake%3AFord&_skw=2014+Ford+Fiesta+1.0L+Gates+T354HOB+Engine+Timing+Belt&hash=item1b52192ef1%3Ag%3AqNkAAeSwo8xpbXWm&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 117341499121. Observed title contains T354HOB. Observed title: Gates Engine Timing Belt for Ford EcoSport, Focus, Fiesta T354HOB."
+      }
+    },
+    {
+      "proposalId": "ford-flex-water-pump-timing-chain-2009--prescription-0-0--3-5l-v6",
+      "issueId": "ford-flex-water-pump-timing-chain-2009",
+      "workItemId": "ford-flex-water-pump-timing-chain-2009--prescription-0-0--3-5l-v6",
+      "model": "Flex",
+      "partIndex": 0,
+      "partNumber": "WP-1983",
+      "decision": "hold_no_exact_link",
+      "reason": "ASC WP-1983 matches the prescribed preventive water-pump role in its early 3.5L V6 scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Proactively replace the water pump and timing chain as preventive maintenance between 100,000-120,000 miles ($1,500-$2,500 labor-intensive job). Check oil regularly for milky appearance or coolant smell — catching it early can save the engine. If coolant is found in the oil, stop driving immediately and have it towed. Use only Ford-approved coolant to minimize seal degradation. Consider extended warranty coverage when purchasing a high-mileage Flex.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-flex-water-pump-timing-chain-2009--prescription-0-0--3-5l-ecoboost",
+      "issueId": "ford-flex-water-pump-timing-chain-2009",
+      "workItemId": "ford-flex-water-pump-timing-chain-2009--prescription-0-0--3-5l-ecoboost",
+      "model": "Flex",
+      "partIndex": 0,
+      "partNumber": "WP-1983",
+      "decision": "hold_no_exact_link",
+      "reason": "ASC WP-1983 matches the prescribed preventive water-pump role in its early 3.5L EcoBoost scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Proactively replace the water pump and timing chain as preventive maintenance between 100,000-120,000 miles ($1,500-$2,500 labor-intensive job). Check oil regularly for milky appearance or coolant smell — catching it early can save the engine. If coolant is found in the oil, stop driving immediately and have it towed. Use only Ford-approved coolant to minimize seal degradation. Consider extended warranty coverage when purchasing a high-mileage Flex.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-flex-water-pump-timing-chain-2009--prescription-1-0--3-5l-v6",
+      "issueId": "ford-flex-water-pump-timing-chain-2009",
+      "workItemId": "ford-flex-water-pump-timing-chain-2009--prescription-1-0--3-5l-v6",
+      "model": "Flex",
+      "partIndex": 0,
+      "partNumber": "KTC1346",
+      "decision": "approve",
+      "reason": "Dayco KTC1346 matches the prescribed timing-chain role, is restricted to the catalog-confirmed early 3.5L V6 cells and stated kit limitations, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Proactively replace the water pump and timing chain as preventive maintenance between 100,000-120,000 miles ($1,500-$2,500 labor-intensive job). Check oil regularly for milky appearance or coolant smell — catching it early can save the engine. If coolant is found in the oil, stop driving immediately and have it towed. Use only Ford-approved coolant to minimize seal degradation. Consider extended warranty coverage when purchasing a high-mileage Flex.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/127937285815?fits=Year%3A2009%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AFlex%7CMake%3AFord&_skw=2009+Ford+Flex+3.5L+Dayco+KTC1346+Engine+Timing+Chain+Kit&hash=item1dc9a80eb7%3Ag%3A360AAeSw60hqOiBj&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 127937285815. Observed title contains KTC1346. Observed title: Dayco KTC1346 Engine Timing Chain Kit for Valve Train  gg."
+      }
+    },
+    {
+      "proposalId": "ford-flex-water-pump-timing-chain-2009--prescription-1-0--3-5l-v6",
+      "issueId": "ford-flex-water-pump-timing-chain-2009",
+      "workItemId": "ford-flex-water-pump-timing-chain-2009--prescription-1-0--3-5l-v6",
+      "model": "Flex",
+      "partIndex": 1,
+      "partNumber": "CHK145",
+      "decision": "approve",
+      "reason": "Gates CHK145 independently matches the timing-chain role and early 3.5L V6 scope, with its VVT-sprocket exclusion recorded and an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Proactively replace the water pump and timing chain as preventive maintenance between 100,000-120,000 miles ($1,500-$2,500 labor-intensive job). Check oil regularly for milky appearance or coolant smell — catching it early can save the engine. If coolant is found in the oil, stop driving immediately and have it towed. Use only Ford-approved coolant to minimize seal degradation. Consider extended warranty coverage when purchasing a high-mileage Flex.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/318092183475?fits=Year%3A2009%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AFlex%7CMake%3AFord&_skw=2009+Ford+Flex+3.5L+Gates+CHK145+Engine+Timing+Chain+Kit&hash=item4a0fc587b3%3Ag%3A9YAAAeSwvw1qWkMw&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 318092183475. Observed title contains CHK145. Observed title: GATES CHK145 Engine Timing Chain Kit."
+      }
+    },
+    {
+      "proposalId": "ford-flex-water-pump-timing-chain-2009--prescription-1-0--3-5l-ecoboost",
+      "issueId": "ford-flex-water-pump-timing-chain-2009",
+      "workItemId": "ford-flex-water-pump-timing-chain-2009--prescription-1-0--3-5l-ecoboost",
+      "model": "Flex",
+      "partIndex": 0,
+      "partNumber": "KTC1346",
+      "decision": "approve",
+      "reason": "Dayco KTC1346 matches the prescribed timing-chain role, is restricted to the catalog-confirmed early 3.5L EcoBoost cells and stated kit limitations, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Proactively replace the water pump and timing chain as preventive maintenance between 100,000-120,000 miles ($1,500-$2,500 labor-intensive job). Check oil regularly for milky appearance or coolant smell — catching it early can save the engine. If coolant is found in the oil, stop driving immediately and have it towed. Use only Ford-approved coolant to minimize seal degradation. Consider extended warranty coverage when purchasing a high-mileage Flex.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/127937285815?fits=Year%3A2009%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AFlex%7CMake%3AFord&_skw=2009+Ford+Flex+3.5L+Dayco+KTC1346+Engine+Timing+Chain+Kit&hash=item1dc9a80eb7%3Ag%3A360AAeSw60hqOiBj&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 127937285815. Observed title contains KTC1346. Observed title: Dayco KTC1346 Engine Timing Chain Kit for Valve Train  gg."
+      }
+    },
+    {
+      "proposalId": "ford-flex-water-pump-timing-chain-2009--prescription-1-0--3-5l-ecoboost",
+      "issueId": "ford-flex-water-pump-timing-chain-2009",
+      "workItemId": "ford-flex-water-pump-timing-chain-2009--prescription-1-0--3-5l-ecoboost",
+      "model": "Flex",
+      "partIndex": 1,
+      "partNumber": "CHK145",
+      "decision": "approve",
+      "reason": "Gates CHK145 independently matches the timing-chain role and early 3.5L EcoBoost scope, with its VVT-sprocket exclusion recorded and an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Proactively replace the water pump and timing chain as preventive maintenance between 100,000-120,000 miles ($1,500-$2,500 labor-intensive job). Check oil regularly for milky appearance or coolant smell — catching it early can save the engine. If coolant is found in the oil, stop driving immediately and have it towed. Use only Ford-approved coolant to minimize seal degradation. Consider extended warranty coverage when purchasing a high-mileage Flex.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/318092183475?fits=Year%3A2009%7CEngine+-+Liter_Display%3A3.5L%7CModel%3AFlex%7CMake%3AFord&_skw=2009+Ford+Flex+3.5L+Gates+CHK145+Engine+Timing+Chain+Kit&hash=item4a0fc587b3%3Ag%3A9YAAAeSwvw1qWkMw&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 318092183475. Observed title contains CHK145. Observed title: GATES CHK145 Engine Timing Chain Kit."
+      }
+    },
+    {
+      "proposalId": "ford-freestyle-alternator-2005--prescription-0-0--all-engines",
+      "issueId": "ford-freestyle-alternator-2005",
+      "workItemId": "ford-freestyle-alternator-2005--prescription-0-0--all-engines",
+      "model": "Freestyle",
+      "partIndex": 0,
+      "partNumber": "AL0062",
+      "decision": "block_ambiguous",
+      "reason": "NTK AL0062 carries a without-auxiliary-A/C catalog restriction that is not represented in the article or runtime vehicle scope, so it cannot be safely exposed.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the alternator. Test for parasitic draw after replacement to ensure the issue is fully resolved. Replace the serpentine belt if worn.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-freestyle-alternator-2005--prescription-1-0--all-engines",
+      "issueId": "ford-freestyle-alternator-2005",
+      "workItemId": "ford-freestyle-alternator-2005--prescription-1-0--all-engines",
+      "model": "Freestyle",
+      "partIndex": 0,
+      "partNumber": "K060840",
+      "decision": "hold_needs_manual",
+      "reason": "The serpentine belt is prescribed only if inspection finds it worn; the public renderer cannot enforce that diagnosis condition.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the alternator. Test for parasitic draw after replacement to ensure the issue is fully resolved. Replace the serpentine belt if worn.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/406486938398?fits=Year%3A2005%7CModel%3AFreestyle%7CMake%3AFord&_skw=2005+Ford+Freestyle+Gates+K060840+Serpentine+Belt&hash=item5ea482731e%3Ag%3AH8kAAOSw1dFoU5r4&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 406486938398. Observed title contains K060840. Observed title: Serpentine Belt-Premium OE Micro-V Belt Gates K060840."
+      }
+    },
+    {
+      "proposalId": "ford-freestyle-power-steering-pump-2005--prescription-0-0--all-engines",
+      "issueId": "ford-freestyle-power-steering-pump-2005",
+      "workItemId": "ford-freestyle-power-steering-pump-2005--prescription-0-0--all-engines",
+      "model": "Freestyle",
+      "partIndex": 0,
+      "partNumber": "20-323",
+      "decision": "hold_needs_manual",
+      "reason": "The frozen article already has a safe exact eBay claim for Cardone 20-323; adding a second eBay listing would violate the vendor-distinct two-link policy, so the existing claim is preserved instead.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the power steering pump and flush the system. Inspect all hoses and the steering rack for leaks. Use Mercon V as the power steering fluid per Ford spec.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/226692318059?fits=Year%3A2005%7CModel%3AFreestyle%7CMake%3AFord&_skw=2005+Ford+Freestyle+Cardone+20-323+Power+Steering+Pump&hash=item34c7ea436b%3Ag%3ATPQAAeSwhmpoiDwy&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 226692318059. Observed Manufacturer Part Number contains 20-323. Observed title: Power Steering Pump 20-323 For 05-07 Mercury Montego Ford Freestyle Five Hundred."
+      }
+    },
+    {
+      "proposalId": "ford-fusion-15-ecoboost-coolant-intrusion-2014--prescription-1-0--1-5l-ecoboost",
+      "issueId": "ford-fusion-15-ecoboost-coolant-intrusion-2014",
+      "workItemId": "ford-fusion-15-ecoboost-coolant-intrusion-2014--prescription-1-0--1-5l-ecoboost",
+      "model": "Fusion",
+      "partIndex": 0,
+      "partNumber": "55346",
+      "decision": "hold_needs_manual",
+      "reason": "The TSB remedy can be short-block replacement or head-gasket work under coverage depending on diagnosis; a retail gasket cannot be shown without that repair determination.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Ford TSBs 19-2139 and 19-2375 cover short block and head gasket replacement under extended warranty (7 years/84,000 miles from warranty start date). Verify coverage at fordowner.com or call Ford Customer Relations 1-800-392-3673. Class action lawsuit for out-of-warranty reimbursement: lieffcabraser.com/defect/ford-coolant. Post-repair: Ford recommends monitoring coolant level and using only Motorcraft Orange coolant (VC-3-B).",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-mustang-40l-cologne-v6-thermostat-2005--prescription-0-0--4-0l-sohc-v6",
+      "issueId": "ford-mustang-40l-cologne-v6-thermostat-2005",
+      "workItemId": "ford-mustang-40l-cologne-v6-thermostat-2005--prescription-0-0--4-0l-sohc-v6",
+      "model": "Mustang",
+      "partIndex": 0,
+      "partNumber": "THRAZ-0007",
+      "decision": "block_wrong_role",
+      "reason": "The article prescribes the updated thermostat housing assembly, while THRAZ-0007 is a thermostat and seal rather than the housing assembly.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and inspect the thermostat housing assembly, crossover area, and sensor ports for seepage or crusted coolant residue. Replace the thermostat housing assembly with updated parts, install new seals, and refill/bleed the cooling system properly. If overheating occurred, verify there is no secondary damage such as a stuck thermostat or compromised temperature sensor.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/377170126473?fits=Year%3A2005%7CEngine+-+Liter_Display%3A4.0L%7CModel%3AMustang%7CMake%3AFord&_skw=2005+Ford+Mustang+4.0L+Aisin+THRAZ-0007+Engine+Coolant+Thermostat&hash=item57d1176689%3Ag%3AeVwAAOSw%7Eq9oTVoQ&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 377170126473. Observed title contains THRAZ0007. Observed title: AISIN WORLD CORP. OF AMERICA THRAZ0007 Engine Coolant Thermostat."
+      }
+    },
+    {
+      "proposalId": "ford-mustang-40l-cologne-v6-thermostat-2005--prescription-0-0--4-0l-sohc-v6",
+      "issueId": "ford-mustang-40l-cologne-v6-thermostat-2005",
+      "workItemId": "ford-mustang-40l-cologne-v6-thermostat-2005--prescription-0-0--4-0l-sohc-v6",
+      "model": "Mustang",
+      "partIndex": 1,
+      "partNumber": "33079",
+      "decision": "block_wrong_role",
+      "reason": "The article prescribes the updated thermostat housing assembly, while Gates 33079 is only a thermostat and does not replace the cracked housing.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and inspect the thermostat housing assembly, crossover area, and sensor ports for seepage or crusted coolant residue. Replace the thermostat housing assembly with updated parts, install new seals, and refill/bleed the cooling system properly. If overheating occurred, verify there is no secondary damage such as a stuck thermostat or compromised temperature sensor.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/406486944500?fits=Year%3A2005%7CEngine+-+Liter_Display%3A4.0L%7CModel%3AMustang%7CMake%3AFord&_skw=2005+Ford+Mustang+4.0L+Gates+33079+Engine+Coolant+Thermostat&hash=item5ea4828af4%3Ag%3ATIMAAOSwbitoU31a&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 406486944500. Observed Manufacturer Part Number contains 33079. Observed title: Engine Coolant Thermostat-OE Type Thermostat Gates 33079."
+      }
+    },
+    {
+      "proposalId": "ford-mustang-ecoboost-coolant-2015--prescription-1-0--2-3l-ecoboost",
+      "issueId": "ford-mustang-ecoboost-coolant-2015",
+      "workItemId": "ford-mustang-ecoboost-coolant-2015--prescription-1-0--2-3l-ecoboost",
+      "model": "Mustang",
+      "partIndex": 0,
+      "partNumber": "55503",
+      "decision": "hold_needs_manual",
+      "reason": "The repair requires test-confirmed coolant intrusion and may require either a head gasket or cylinder head; the public renderer cannot enforce that diagnostic branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Monitor coolant levels regularly. If coolant loss is detected without visible leaks, have compression and leak-down tests performed. Repair requires head gasket replacement or cylinder head replacement. Ford extended warranty coverage for some affected vehicles.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-mustang-ecoboost-head-gasket-failure-2015--prescription-0-0--2-3l-ecoboost",
+      "issueId": "ford-mustang-ecoboost-head-gasket-failure-2015",
+      "workItemId": "ford-mustang-ecoboost-head-gasket-failure-2015--prescription-0-0--2-3l-ecoboost",
+      "model": "Mustang",
+      "partIndex": 0,
+      "partNumber": "55503",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE 55503 matches the explicitly required head-gasket role and recorded 2.3L scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Head gasket replacement is required, which involves removing the cylinder head. Cost ranges from $1,500-3,000 for parts and labor at an independent shop, or $2,500-4,500 at a dealer. Some owners opt for upgraded multi-layer steel head gaskets and ARP head studs to prevent recurrence.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-mustang-p0016-bank-1-crank-cam-correlation-from-coyote-timing-chain--prescription-2-0--5-0l-coyote-v8",
+      "issueId": "ford-mustang-p0016-bank-1-crank-cam-correlation-from-coyote-timing-chain",
+      "workItemId": "ford-mustang-p0016-bank-1-crank-cam-correlation-from-coyote-timing-chain--prescription-2-0--5-0l-coyote-v8",
+      "model": "Mustang",
+      "partIndex": 0,
+      "partNumber": "KTC1371",
+      "decision": "hold_needs_manual",
+      "reason": "The chain kit is prescribed only after mechanical timing confirms chain stretch or worn guides/tensioners; the public renderer cannot enforce that diagnostic branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify actual mechanical timing before replacing parts. Start with an oil change and check oil level/pressure, then inspect/replace the Bank 1 VCT oil-control solenoid and camshaft/crankshaft position sensors if timing is confirmed good. If the timing chain is stretched or the tensioners/guides are worn (Coyote rattle), replace the timing chain kit, tensioners, guides, and cam phasers as a set (per the direction of TSB 12-03-01 for early cars). Do not continue driving with an active P0016 — a skipped chain will bend valves.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/307017114307?fits=Year%3A2011%7CEngine+-+Liter_Display%3A5.0L%7CModel%3AMustang%7CMake%3AFord&_skw=2011+Ford+Mustang+5.0L+Dayco+KTC1371+Engine+Timing+Chain+Kit&hash=item477ba562c3%3Ag%3AZZcAAeSwLLxqOa1w&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 307017114307. Observed title contains KTC1371. Observed title: Dayco KTC1371 Engine Timing Chain Kit for Valve Train  ln."
+      }
+    },
+    {
+      "proposalId": "ford-mustang-p0016-bank-1-crank-cam-correlation-from-coyote-timing-chain--prescription-2-0--5-0l-coyote-v8",
+      "issueId": "ford-mustang-p0016-bank-1-crank-cam-correlation-from-coyote-timing-chain",
+      "workItemId": "ford-mustang-p0016-bank-1-crank-cam-correlation-from-coyote-timing-chain--prescription-2-0--5-0l-coyote-v8",
+      "model": "Mustang",
+      "partIndex": 1,
+      "partNumber": "CHK156",
+      "decision": "hold_needs_manual",
+      "reason": "The chain kit is prescribed only after mechanical timing confirms chain stretch or worn guides/tensioners; the public renderer cannot enforce that diagnostic branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify actual mechanical timing before replacing parts. Start with an oil change and check oil level/pressure, then inspect/replace the Bank 1 VCT oil-control solenoid and camshaft/crankshaft position sensors if timing is confirmed good. If the timing chain is stretched or the tensioners/guides are worn (Coyote rattle), replace the timing chain kit, tensioners, guides, and cam phasers as a set (per the direction of TSB 12-03-01 for early cars). Do not continue driving with an active P0016 — a skipped chain will bend valves.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/178073678752?fits=Year%3A2015%7CEngine+-+Liter_Display%3A5.0L%7CModel%3AMustang%7CMake%3AFord&_skw=2015+Ford+Mustang+5.0L+Gates+CHK156+Engine+Timing+Chain+Kit&hash=item297604b3a0%3Ag%3A0X8AAeSwsttpFgW4&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 178073678752. Observed title contains CHK156. Observed title: GATES CHK156 Engine Timing Chain Kit."
+      }
+    },
+    {
+      "proposalId": "ford-probe-coolant-leak-1993--prescription-1-0--all-engines",
+      "issueId": "ford-probe-coolant-leak-1993",
+      "workItemId": "ford-probe-coolant-leak-1993--prescription-1-0--all-engines",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "33907",
+      "decision": "block_wrong_role",
+      "reason": "The proposal is for the prescribed thermostat housing, but Gates 33907 is only a thermostat and does not replace the leaking housing.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all coolant hoses and the thermostat housing. Upgrade to an aluminum thermostat housing if available. Replace the thermostat itself and flush the cooling system with fresh coolant.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/135042702974?fits=Year%3A1993%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+Gates+33907+Engine+Coolant+Thermostat&hash=item1f712c1e7e%3Ag%3ALYAAAOSwLeZffK79&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 135042702974. Observed Manufacturer Part Number contains 33907. Observed title: GATES OE STYLE PREMIUM ENGINE COOLANT THERMOSTAT 33907 ACURA DODGE FORD MAZDA."
+      }
+    },
+    {
+      "proposalId": "ford-probe-coolant-leak-1993--prescription-1-0--all-engines",
+      "issueId": "ford-probe-coolant-leak-1993",
+      "workItemId": "ford-probe-coolant-leak-1993--prescription-1-0--all-engines",
+      "model": "Probe",
+      "partIndex": 1,
+      "partNumber": "143-0724",
+      "decision": "block_wrong_role",
+      "reason": "The proposal is for the prescribed thermostat housing, but Beck Arnley 143-0724 is only a thermostat and seal and does not replace the housing.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all coolant hoses and the thermostat housing. Upgrade to an aluminum thermostat housing if available. Replace the thermostat itself and flush the cooling system with fresh coolant.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/376816545384?fits=Year%3A1993%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+Beck+Arnley+143-0724+Engine+Coolant+Thermostat&hash=item57bc042e68%3Ag%3A%7EeAAAeSw0OVpUs1S&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 376816545384. Observed title contains 143-0724. Observed title: Engine Coolant Thermostat - Beck/Arnley 143-0724."
+      }
+    },
+    {
+      "proposalId": "ford-probe-coolant-leak-1993--prescription-2-0--all-engines",
+      "issueId": "ford-probe-coolant-leak-1993",
+      "workItemId": "ford-probe-coolant-leak-1993--prescription-2-0--all-engines",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "33907",
+      "decision": "block_wrong_role",
+      "reason": "The article conditionally recommends an aluminum thermostat housing, while Gates 33907 is a thermostat and provides no housing or aluminum construction evidence.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all coolant hoses and the thermostat housing. Upgrade to an aluminum thermostat housing if available. Replace the thermostat itself and flush the cooling system with fresh coolant.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/135042702974?fits=Year%3A1993%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+Gates+33907+Engine+Coolant+Thermostat&hash=item1f712c1e7e%3Ag%3ALYAAAOSwLeZffK79&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 135042702974. Observed Manufacturer Part Number contains 33907. Observed title: GATES OE STYLE PREMIUM ENGINE COOLANT THERMOSTAT 33907 ACURA DODGE FORD MAZDA."
+      }
+    },
+    {
+      "proposalId": "ford-probe-coolant-leak-1993--prescription-2-0--all-engines",
+      "issueId": "ford-probe-coolant-leak-1993",
+      "workItemId": "ford-probe-coolant-leak-1993--prescription-2-0--all-engines",
+      "model": "Probe",
+      "partIndex": 1,
+      "partNumber": "143-0724",
+      "decision": "block_wrong_role",
+      "reason": "The article conditionally recommends an aluminum thermostat housing, while Beck Arnley 143-0724 is a thermostat and provides no housing or aluminum construction evidence.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all coolant hoses and the thermostat housing. Upgrade to an aluminum thermostat housing if available. Replace the thermostat itself and flush the cooling system with fresh coolant.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/376816545384?fits=Year%3A1993%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+Beck+Arnley+143-0724+Engine+Coolant+Thermostat&hash=item57bc042e68%3Ag%3A%7EeAAAeSw0OVpUs1S&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 376816545384. Observed title contains 143-0724. Observed title: Engine Coolant Thermostat - Beck/Arnley 143-0724."
+      }
+    },
+    {
+      "proposalId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail--prescription-0-0--2-5l-kl-de-v6",
+      "issueId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail",
+      "workItemId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail--prescription-0-0--2-5l-kl-de-v6",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "33907",
+      "decision": "hold_needs_manual",
+      "reason": "The thermostat is one of several cooling parts to replace only as inspection indicates; that condition is not enforceable by the public renderer.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Refresh the cooling system proactively: thermostat, radiator cap, water pump, hoses, and radiator as needed, and bleed air properly since the V6 is prone to air-lock. Diagnose a suspected head gasket with a combustion-gas (block) test or by watching for bubbles in the coolant. Confirmed head-gasket failure requires head removal, resurfacing check, and new gaskets. Address overheating immediately to avoid warping the heads.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/277475318380?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.5L+Gates+33907+Engine+Coolant+Thermostat&hash=item409ad15a6c%3Ag%3ADVUAAeSwk-RpA8O-&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 277475318380. Observed Manufacturer Part Number contains 33907. Observed title: Gates 33907 Engine Coolant Thermostat 170 Degree 319-170 (Pack Of 2)."
+      }
+    },
+    {
+      "proposalId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail--prescription-0-0--2-5l-kl-de-v6",
+      "issueId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail",
+      "workItemId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail--prescription-0-0--2-5l-kl-de-v6",
+      "model": "Probe",
+      "partIndex": 1,
+      "partNumber": "143-0724",
+      "decision": "hold_needs_manual",
+      "reason": "The thermostat is one of several cooling parts to replace only as inspection indicates; that condition is not enforceable by the public renderer.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Refresh the cooling system proactively: thermostat, radiator cap, water pump, hoses, and radiator as needed, and bleed air properly since the V6 is prone to air-lock. Diagnose a suspected head gasket with a combustion-gas (block) test or by watching for bubbles in the coolant. Confirmed head-gasket failure requires head removal, resurfacing check, and new gaskets. Address overheating immediately to avoid warping the heads.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/376816545384?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.5L+Beck+Arnley+143-0724+Engine+Coolant+Thermostat&hash=item57bc042e68%3Ag%3A%7EeAAAeSw0OVpUs1S&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 376816545384. Observed title contains 143-0724. Observed title: Engine Coolant Thermostat - Beck/Arnley 143-0724."
+      }
+    },
+    {
+      "proposalId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail--prescription-2-0--2-5l-kl-de-v6",
+      "issueId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail",
+      "workItemId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail--prescription-2-0--2-5l-kl-de-v6",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "DP517",
+      "decision": "hold_needs_manual",
+      "reason": "The water pump is prescribed only as inspection indicates, and the catalog notes a serpentine-belt-driven pump rather than proving the article's shared timing-service premise.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Refresh the cooling system proactively: thermostat, radiator cap, water pump, hoses, and radiator as needed, and bleed air properly since the V6 is prone to air-lock. Diagnose a suspected head gasket with a combustion-gas (block) test or by watching for bubbles in the coolant. Confirmed head-gasket failure requires head removal, resurfacing check, and new gaskets. Address overheating immediately to avoid warping the heads.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/158045606285?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.5L+Dayco+DP517+Engine+Water+Pump&hash=item24cc40918d%3Ag%3A66UAAeSw-lpqRXFK&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 158045606285. Observed Manufacturer Part Number contains DP517. Observed title: Dayco Engine Water Pump P N Dp517."
+      }
+    },
+    {
+      "proposalId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail--prescription-2-0--2-5l-kl-de-v6",
+      "issueId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail",
+      "workItemId": "ford-probe-cooling-system-neglect-leads-to-overheating-head-gasket-fail--prescription-2-0--2-5l-kl-de-v6",
+      "model": "Probe",
+      "partIndex": 1,
+      "partNumber": "42136",
+      "decision": "hold_needs_manual",
+      "reason": "The water pump is prescribed only as inspection indicates, and the 16 mm pulley-pilot restriction needs exact application confirmation before commerce.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Refresh the cooling system proactively: thermostat, radiator cap, water pump, hoses, and radiator as needed, and bleed air properly since the V6 is prone to air-lock. Diagnose a suspected head gasket with a combustion-gas (block) test or by watching for bubbles in the coolant. Confirmed head-gasket failure requires head removal, resurfacing check, and new gaskets. Address overheating immediately to avoid warping the heads.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/155139041794?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.5L+Gates+42136+Engine+Water+Pump&hash=item241f01ea02%3Ag%3Aa5wAAOSwS8ljDJ0f&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 155139041794. Observed Manufacturer Part Number contains 42136. Observed title: Engine Water Pump-Water Pump(Standard) Gates 42136."
+      }
+    },
+    {
+      "proposalId": "ford-probe-distributor-1993--prescription-0-0--2-0l-v6",
+      "issueId": "ford-probe-distributor-1993",
+      "workItemId": "ford-probe-distributor-1993--prescription-0-0--2-0l-v6",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "31-35430",
+      "decision": "block_ambiguous",
+      "reason": "The frozen article labels the 2.0L Probe engine as a V6, which conflicts with the vehicle application; the candidate cannot be safely scoped until that source metadata is corrected.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the distributor assembly. Remanufactured units are available. Ensure the O-ring seal is replaced to prevent oil leaks. Check the ignition wires and spark plugs at the same time.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/233554119291?fits=Year%3A1994%7CEngine+-+Liter_Display%3A2.0L%7CModel%3AProbe%7CMake%3AFord&_skw=1994+Ford+Probe+2.0L+Cardone+31-35430+Distributor&hash=item3660e90a7b%3Ag%3ArqAAAOSwK31ej3mS&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 233554119291. Observed title contains 31-35430. Observed title: REMAN A1 CARDONE DISTRIBUTOR FOR 1994 FORD PROBE 2.0L-L4 (PN 31-35430)."
+      }
+    },
+    {
+      "proposalId": "ford-probe-distributor-1993--prescription-0-0--2-5l-v6-kl",
+      "issueId": "ford-probe-distributor-1993",
+      "workItemId": "ford-probe-distributor-1993--prescription-0-0--2-5l-v6-kl",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "31-35601",
+      "decision": "approve",
+      "reason": "Cardone 31-35601 matches the prescribed distributor assembly, is catalog-scoped to 1993-1994 2.5L KL applications, includes the rotor, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the distributor assembly. Remanufactured units are available. Ensure the O-ring seal is replaced to prevent oil leaks. Check the ignition wires and spark plugs at the same time.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/256230278139?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.5L+Cardone+31-35601+Distributor&hash=item3ba883c3fb%3Ag%3AiScAAOSwzcFlD2HQ&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 256230278139. Observed title contains 31-35601. Observed title: Distributor Cardone 31-35601 Reman."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-1993--prescription-0-0--2-5l-kl-de-v6",
+      "issueId": "ford-probe-timing-belt-1993",
+      "workItemId": "ford-probe-timing-belt-1993--prescription-0-0--2-5l-kl-de-v6",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "TB214",
+      "decision": "approve",
+      "reason": "Continental TB214 matches the prescribed timing-belt role, covers the recorded 1993-1997 2.5L KL-DE application, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, tensioner, and idler pulleys at 60,000-mile intervals. Replace the water pump at the same time since it is driven by the timing belt. Budget for a complete timing belt kit.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/271054569922?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.5L+Continental+TB214+Engine+Timing+Belt&hash=item3f1c1c81c2%3Ag%3AiZgAAOxyrP9RanM2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 271054569922. Observed Manufacturer Part Number contains TB214. Observed title: NEW ENGINE TIMING BELT FORD PROBE MAZDA 626 MILLENIA MX-3 MX-6  TB214 T214."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-1993--prescription-0-0--2-5l-kl-de-v6",
+      "issueId": "ford-probe-timing-belt-1993",
+      "workItemId": "ford-probe-timing-belt-1993--prescription-0-0--2-5l-kl-de-v6",
+      "model": "Probe",
+      "partIndex": 1,
+      "partNumber": "95214K1",
+      "decision": "approve",
+      "reason": "Dayco 95214K1 matches the belt role and also contains the prescribed tensioner and idlers across the recorded 2.5L years, with an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, tensioner, and idler pulleys at 60,000-mile intervals. Replace the water pump at the same time since it is driven by the timing belt. Budget for a complete timing belt kit.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/197572165558?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.5L+Dayco+95214K1+Engine+Timing+Belt+Kit&hash=item2e0037ffb6%3Ag%3AuAMAAeSwP11odMOq&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 197572165558. Observed OE/OEM Part Number contains 95214K1. Observed title: Engine Timing Belt Kit For Mazda 323 MX-3 626 Millenia MX-6 Ford Probe 1992-2002."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-1993--prescription-3-0--2-5l-kl-de-v6",
+      "issueId": "ford-probe-timing-belt-1993",
+      "workItemId": "ford-probe-timing-belt-1993--prescription-3-0--2-5l-kl-de-v6",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "DP517",
+      "decision": "hold_needs_manual",
+      "reason": "The article ties water-pump replacement to the timing-belt service, while the catalog describes DP517 as serpentine-belt driven; the repair premise needs correction or confirmation first.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, tensioner, and idler pulleys at 60,000-mile intervals. Replace the water pump at the same time since it is driven by the timing belt. Budget for a complete timing belt kit.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/158045606285?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.5L+Dayco+DP517+Engine+Water+Pump&hash=item24cc40918d%3Ag%3A66UAAeSw-lpqRXFK&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 158045606285. Observed Manufacturer Part Number contains DP517. Observed title: Dayco Engine Water Pump P N Dp517."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-1993--prescription-3-0--2-5l-kl-de-v6",
+      "issueId": "ford-probe-timing-belt-1993",
+      "workItemId": "ford-probe-timing-belt-1993--prescription-3-0--2-5l-kl-de-v6",
+      "model": "Probe",
+      "partIndex": 1,
+      "partNumber": "42136",
+      "decision": "hold_needs_manual",
+      "reason": "The article ties water-pump replacement to the timing-belt service, while this row also carries a 16 mm pulley-pilot and limited-year application that needs exact confirmation.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt, tensioner, and idler pulleys at 60,000-mile intervals. Replace the water pump at the same time since it is driven by the timing belt. Budget for a complete timing belt kit.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/155139041794?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.5L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.5L+Gates+42136+Engine+Water+Pump&hash=item241f01ea02%3Ag%3Aa5wAAOSwS8ljDJ0f&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 155139041794. Observed Manufacturer Part Number contains 42136. Observed title: Engine Water Pump-Water Pump(Standard) Gates 42136."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-0-0--2-0l-fs-i4",
+      "issueId": "ford-probe-timing-belt-failure-destroys-2-0l-i4",
+      "workItemId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-0-0--2-0l-fs-i4",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "40228",
+      "decision": "approve",
+      "reason": "Continental 40228 matches the prescribed 2.0L interference-engine timing belt, covers 1993-1997 catalog cells, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt every 60k miles (or sooner given age-hardened rubber), and do the water pump, tensioner, idler, and cam/crank seals at the same time since they share access. On a 2.0L that has already jumped or snapped the belt, plan for a cylinder-head removal to replace bent valves, or an engine swap. Keep documentation of the last belt service given the cars' age.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/298376963947?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.0L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.0L+Continental+40228+Engine+Timing+Belt&hash=item4578a7276b%3Ag%3A3XcAAeSwaO1qHoEn&amdata=enc%3AAQALAAABEACCtXRWQnOEpyOqnQQ8KGbC5Z75dRKzpXpkVohCbCWp4zP7oiI%2BCaNEzUBe3MZ6mEL4Nmyv411sLJ8h0pL7VcSSnFXLFN3QMEW6pL%2Fu5sZNWZ73jc3WhmLn0whJltYfw4jFHMdmHayfUUpSW0va%2FxseQ7SbQWamQEcB5%2FkNvyaq1n1d8kwPAR%2BWiGVl7pOn8gjWX2dtdJelVMbIehswqjKT1lXALj1wJ1Y2E7l48mAk3FISOk0XNRHByrqfqKjVu%2F0eeMSuYehbymvfbYRB%2Beuk9F2ApQL070B7EPQ5xq7M6%2BrS6wl9b05Tjp0UtPJUz%2BYgqvZHrAbiwOzxiE5ZnQOgFybGXYamxAhAmXdHuNtv&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 298376963947. Observed Manufacturer Part Number contains 40228. Observed title: Continental Ag 40228 Continental Automotive Timing Belt."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-0-0--2-0l-fs-i4",
+      "issueId": "ford-probe-timing-belt-failure-destroys-2-0l-i4",
+      "workItemId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-0-0--2-0l-fs-i4",
+      "model": "Probe",
+      "partIndex": 1,
+      "partNumber": "95228K1",
+      "decision": "approve",
+      "reason": "Dayco 95228K1 matches the belt role and includes the prescribed tensioner, idler, and spring across 1993-1997 2.0L cells, with an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt every 60k miles (or sooner given age-hardened rubber), and do the water pump, tensioner, idler, and cam/crank seals at the same time since they share access. On a 2.0L that has already jumped or snapped the belt, plan for a cylinder-head removal to replace bent valves, or an engine swap. Keep documentation of the last belt service given the cars' age.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/389903534437?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.0L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.0L+Dayco+95228K1+Engine+Timing+Belt+Kit&hash=item5ac80fc965%3Ag%3ARQkAAeSwVtdn0ctc&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 389903534437. Observed title contains 95228K1. Observed title: Engine Timing Belt Kit Dayco 95228K1."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-1-0--2-0l-fs-i4",
+      "issueId": "ford-probe-timing-belt-failure-destroys-2-0l-i4",
+      "workItemId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-1-0--2-0l-fs-i4",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "DP406",
+      "decision": "hold_needs_manual",
+      "reason": "The article says the water pump shares timing-belt access, while the catalog calls DP406 serpentine-belt driven; the repair premise must be confirmed before commerce.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt every 60k miles (or sooner given age-hardened rubber), and do the water pump, tensioner, idler, and cam/crank seals at the same time since they share access. On a 2.0L that has already jumped or snapped the belt, plan for a cylinder-head removal to replace bent valves, or an engine swap. Keep documentation of the last belt service given the cars' age.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/166249785695?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.0L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.0L+Dayco+DP406+Engine+Water+Pump&hash=item26b542695f%3Ag%3AqDIAAOSwKJBoT-9a&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 166249785695. Observed Manufacturer Part Number contains DP406. Observed title: Engine Water Pump Dayco DP406."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-1-0--2-0l-fs-i4",
+      "issueId": "ford-probe-timing-belt-failure-destroys-2-0l-i4",
+      "workItemId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-1-0--2-0l-fs-i4",
+      "model": "Probe",
+      "partIndex": 1,
+      "partNumber": "42135",
+      "decision": "hold_needs_manual",
+      "reason": "The article says the water pump shares timing-belt access, but the proposal evidence does not establish that premise; hold until the repair branch is confirmed.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt every 60k miles (or sooner given age-hardened rubber), and do the water pump, tensioner, idler, and cam/crank seals at the same time since they share access. On a 2.0L that has already jumped or snapped the belt, plan for a cylinder-head removal to replace bent valves, or an engine swap. Keep documentation of the last belt service given the cars' age.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/286912567203?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.0L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.0L+Gates+42135+Engine+Water+Pump&hash=item42cd5257a3%3Ag%3AE3AAAOSwDfVoUwHh&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 286912567203. Observed Manufacturer Part Number contains 42135. Observed title: Engine Water Pump-Water Pump(Standard) Gates 42135."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-2-0--2-0l-fs-i4",
+      "issueId": "ford-probe-timing-belt-failure-destroys-2-0l-i4",
+      "workItemId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-2-0--2-0l-fs-i4",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "T41091",
+      "decision": "approve",
+      "reason": "Gates T41091 matches the prescribed timing-belt tensioner role, covers all recorded 1993-1997 2.0L cells, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt every 60k miles (or sooner given age-hardened rubber), and do the water pump, tensioner, idler, and cam/crank seals at the same time since they share access. On a 2.0L that has already jumped or snapped the belt, plan for a cylinder-head removal to replace bent valves, or an engine swap. Keep documentation of the last belt service given the cars' age.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/351152933050?fits=Year%3A1993%7CEngine+-+Liter_Display%3A2.0L%7CModel%3AProbe%7CMake%3AFord&_skw=1993+Ford+Probe+2.0L+Gates+T41091+Engine+Timing+Belt+Tensioner&hash=item51c25888ba%3Ag%3AtH4AAeSwQZBpS%7EkB&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 351152933050. Observed title contains T41091. Observed title: CARQUEST / GATES  T41091 Engine Timing Belt Tensioner."
+      }
+    },
+    {
+      "proposalId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-4-0--2-0l-fs-i4",
+      "issueId": "ford-probe-timing-belt-failure-destroys-2-0l-i4",
+      "workItemId": "ford-probe-timing-belt-failure-destroys-2-0l-i4--prescription-4-0--2-0l-fs-i4",
+      "model": "Probe",
+      "partIndex": 0,
+      "partNumber": "SK0090",
+      "decision": "hold_no_exact_link",
+      "reason": "Dayco SK0090 exactly matches the prescribed camshaft/crankshaft seal-kit role and recorded 2.0L scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the timing belt every 60k miles (or sooner given age-hardened rubber), and do the water pump, tensioner, idler, and cam/crank seals at the same time since they share access. On a 2.0L that has already jumped or snapped the belt, plan for a cylinder-head removal to replace bent valves, or an engine swap. Keep documentation of the last belt service given the cars' age.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-ranger-plastic-thermostat-housing-cracks-2001--prescription-1-0--2-3l-duratec-i4",
+      "issueId": "ford-ranger-plastic-thermostat-housing-cracks-2001",
+      "workItemId": "ford-ranger-plastic-thermostat-housing-cracks-2001--prescription-1-0--2-3l-duratec-i4",
+      "model": "Ranger",
+      "partIndex": 0,
+      "partNumber": "TI 200 90",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE TI 200 90 matches the separately prescribed thermostat role in its 2004-2006 2.3L scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and inspect the thermostat housing, sensor seals, and nearby hose connections for seepage or cracks. Replace the housing assembly, thermostat, and O-rings with updated parts, then refill and properly bleed the cooling system. If overheating occurred, verify fan operation and check for head-gasket damage afterward.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-ranger-plastic-thermostat-housing-cracks-2001--prescription-1-0--2-3l-duratec-i4",
+      "issueId": "ford-ranger-plastic-thermostat-housing-cracks-2001",
+      "workItemId": "ford-ranger-plastic-thermostat-housing-cracks-2001--prescription-1-0--2-3l-duratec-i4",
+      "model": "Ranger",
+      "partIndex": 1,
+      "partNumber": "34042",
+      "decision": "approve",
+      "reason": "Gates 34042 matches the separately prescribed electronically controlled thermostat and seal role across the recorded 2001-2006 2.3L cells, with an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system and inspect the thermostat housing, sensor seals, and nearby hose connections for seepage or cracks. Replace the housing assembly, thermostat, and O-rings with updated parts, then refill and properly bleed the cooling system. If overheating occurred, verify fan operation and check for head-gasket damage afterward.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/233955461237?fits=Year%3A2001%7CEngine+-+Liter_Display%3A2.3L%7CModel%3ARanger%7CMake%3AFord&_skw=2001+Ford+Ranger+2.3L+Gates+34042+Engine+Coolant+Thermostat&hash=item3678d50875%3Ag%3AXqAAAOSwZaBgayBh&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 233955461237. Observed Manufacturer Part Number contains 34042. Observed title: NEW GATES ENGINE COOLANT THERMOSTAT WITH HOUSING (PN 34042)."
+      }
+    },
+    {
+      "proposalId": "ford-taurus-vulcan-head-gasket-1996--prescription-0-0--all-engines",
+      "issueId": "ford-taurus-vulcan-head-gasket-1996",
+      "workItemId": "ford-taurus-vulcan-head-gasket-1996--prescription-0-0--all-engines",
+      "model": "Taurus",
+      "partIndex": 0,
+      "partNumber": "5891",
+      "decision": "hold_no_exact_link",
+      "reason": "MAHLE 5891 matches the required head-gasket role in its narrow 2006-2007 catalog scope, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm head gasket failure with a cooling-system pressure test, combustion-gas/block test, and compression or leak-down test, then inspect for coolant in the oil and external seepage at the head-to-block mating surface. Repair requires removing both cylinder heads, checking head and block deck flatness, machining the heads if needed, and installing new head gaskets with new torque-to-yield head bolts; it is also wise to replace the thermostat, water pump if suspect, and thoroughly flush contaminated oil and coolant. If the engine was severely overheated or bearing damage is present from coolant-contaminated oil, a complete engine replacement may be more cost-effective. Typical repair cost is about $1,500-$3,000 for head gasket service, or $3,000-$5,500 for a remanufactured engine installation.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-taurus-vulcan-head-gasket-1996--prescription-2-0--all-engines",
+      "issueId": "ford-taurus-vulcan-head-gasket-1996",
+      "workItemId": "ford-taurus-vulcan-head-gasket-1996--prescription-2-0--all-engines",
+      "model": "Taurus",
+      "partIndex": 0,
+      "partNumber": "THRFD-0004",
+      "decision": "hold_needs_manual",
+      "reason": "The thermostat is recommended only if inspection finds it suspect; the public renderer cannot enforce that condition.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm head gasket failure with a cooling-system pressure test, combustion-gas/block test, and compression or leak-down test, then inspect for coolant in the oil and external seepage at the head-to-block mating surface. Repair requires removing both cylinder heads, checking head and block deck flatness, machining the heads if needed, and installing new head gaskets with new torque-to-yield head bolts; it is also wise to replace the thermostat, water pump if suspect, and thoroughly flush contaminated oil and coolant. If the engine was severely overheated or bearing damage is present from coolant-contaminated oil, a complete engine replacement may be more cost-effective. Typical repair cost is about $1,500-$3,000 for head gasket service, or $3,000-$5,500 for a remanufactured engine installation.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/377170126503?fits=Year%3A2006%7CModel%3ATaurus%7CMake%3AFord&_skw=2006+Ford+Taurus+Aisin+THRFD-0004+Engine+Coolant+Thermostat&hash=item57d11766a7%3Ag%3AdkUAAOSw3yRoTVo5&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 377170126503. Observed title contains THRFD0004. Observed title: AISIN WORLD CORP. OF AMERICA THRFD0004 Engine Coolant Thermostat."
+      }
+    },
+    {
+      "proposalId": "ford-taurus-vulcan-head-gasket-1996--prescription-3-0--all-engines",
+      "issueId": "ford-taurus-vulcan-head-gasket-1996",
+      "workItemId": "ford-taurus-vulcan-head-gasket-1996--prescription-3-0--all-engines",
+      "model": "Taurus",
+      "partIndex": 0,
+      "partNumber": "WPFD-707V",
+      "decision": "hold_needs_manual",
+      "reason": "The water pump is recommended only if inspection finds it suspect, and no exact product page was resolved; the public renderer cannot enforce the condition.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm head gasket failure with a cooling-system pressure test, combustion-gas/block test, and compression or leak-down test, then inspect for coolant in the oil and external seepage at the head-to-block mating surface. Repair requires removing both cylinder heads, checking head and block deck flatness, machining the heads if needed, and installing new head gaskets with new torque-to-yield head bolts; it is also wise to replace the thermostat, water pump if suspect, and thoroughly flush contaminated oil and coolant. If the engine was severely overheated or bearing damage is present from coolant-contaminated oil, a complete engine replacement may be more cost-effective. Typical repair cost is about $1,500-$3,000 for head gasket service, or $3,000-$5,500 for a remanufactured engine installation.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-taurus-vulcan-head-gasket-1996--prescription-3-0--all-engines",
+      "issueId": "ford-taurus-vulcan-head-gasket-1996",
+      "workItemId": "ford-taurus-vulcan-head-gasket-1996--prescription-3-0--all-engines",
+      "model": "Taurus",
+      "partIndex": 1,
+      "partNumber": "DP964",
+      "decision": "hold_needs_manual",
+      "reason": "The water pump is recommended only if inspection finds it suspect; the public renderer cannot enforce that condition even though an exact listing exists.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Confirm head gasket failure with a cooling-system pressure test, combustion-gas/block test, and compression or leak-down test, then inspect for coolant in the oil and external seepage at the head-to-block mating surface. Repair requires removing both cylinder heads, checking head and block deck flatness, machining the heads if needed, and installing new head gaskets with new torque-to-yield head bolts; it is also wise to replace the thermostat, water pump if suspect, and thoroughly flush contaminated oil and coolant. If the engine was severely overheated or bearing damage is present from coolant-contaminated oil, a complete engine replacement may be more cost-effective. Typical repair cost is about $1,500-$3,000 for head gasket service, or $3,000-$5,500 for a remanufactured engine installation.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/158182784466?fits=Year%3A2006%7CModel%3ATaurus%7CMake%3AFord&_skw=2006+Ford+Taurus+Dayco+DP964+Engine+Water+Pump&hash=item24d46dbdd2%3Ai%3A158182784466&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 158182784466. Observed Manufacturer Part Number contains DP964. Observed title: Dayco Engine Water Pump P N Dp964."
+      }
+    },
+    {
+      "proposalId": "ford-transit-connect-ignition-coil-failure-and-misfires-2-5l-1-6l--prescription-0-0--all-engines",
+      "issueId": "ford-transit-connect-ignition-coil-failure-and-misfires-2-5l-1-6l",
+      "workItemId": "ford-transit-connect-ignition-coil-failure-and-misfires-2-5l-1-6l--prescription-0-0--all-engines",
+      "model": "Transit Connect",
+      "partIndex": 0,
+      "partNumber": "0221504706",
+      "decision": "hold_no_exact_link",
+      "reason": "Bosch 0221504706 matches the ignition-coil role in its recorded 2017-2018 application cells, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Scan for misfire counters and DTCs, then replace the failed ignition coil(s); replace spark plugs if worn or oil-fouled. If multiple coils show weakness, consider replacing the full set and verify no coolant/oil intrusion into plug wells.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "No exact product link was resolved; this candidate remains held."
+      }
+    },
+    {
+      "proposalId": "ford-transit-connect-ignition-coil-failure-and-misfires-2-5l-1-6l--prescription-0-0--all-engines",
+      "issueId": "ford-transit-connect-ignition-coil-failure-and-misfires-2-5l-1-6l",
+      "workItemId": "ford-transit-connect-ignition-coil-failure-and-misfires-2-5l-1-6l--prescription-0-0--all-engines",
+      "model": "Transit Connect",
+      "partIndex": 1,
+      "partNumber": "GN10507",
+      "decision": "approve",
+      "reason": "Delphi GN10507 matches the prescribed failed-coil role, is limited to the 2017-2018 catalog cells where the 2.5L application is present, and has an exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Scan for misfire counters and DTCs, then replace the failed ignition coil(s); replace spark plugs if worn or oil-fouled. If multiple coils show weakness, consider replacing the full set and verify no coolant/oil intrusion into plug wells.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/235161307333?fits=Year%3A2017%7CModel%3ATransit+Connect%7CMake%3AFord&_skw=2017+Ford+Transit+Connect+Delphi+GN10507+Ignition+Coil&hash=item36c0b4c8c5%3Ag%3AjigAAeSwupxqSOuq&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 235161307333. Observed title contains GN10507. Observed title: Delphi GN10507 Ignition Coil for Ford Transit Connect Fusion Lincoln MKZ Escape."
+      }
+    }
+  ]
+}

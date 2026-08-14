@@ -1,2 +1,7 @@
 # Raw primary-source captures are byte-pinned evidence, not hand-edited code.
 data/known-issue-*-evidence-*/*.html -diff
+
+# Audit packets are verified by SHA-256 recorded in COMPLETE.json. With
+# core.autocrlf=true a checkout would rewrite LF to CRLF and every recorded
+# hash would fail on Windows. Force LF so integrity checks are portable.
+data/known-issue-part-audit/** text eol=lf

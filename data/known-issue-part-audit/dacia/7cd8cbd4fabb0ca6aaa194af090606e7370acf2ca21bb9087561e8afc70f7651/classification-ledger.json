@@ -1,0 +1,524 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Dacia",
+  "makeKey": "dacia",
+  "makeIndex": 10,
+  "totalMakes": 54,
+  "issueCount": 10,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 2,
+    "diagnosis-dependent": 1,
+    "recall/dealer": 1,
+    "service/tool/fluid": 3,
+    "no-commerce": 3
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 4,
+    "uniqueDtcCount": 16,
+    "instructionCount": 8,
+    "dtcDispositionCount": 4,
+    "toolLinkedCount": 3,
+    "procedureNoToolCount": 7,
+    "unresolvedToolHoldCount": 2
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "dacia-duster-4x4-transfer-case",
+      "make": "Dacia",
+      "model": "Duster",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "4x4",
+        "Laureate",
+        "Prestige"
+      ],
+      "engines": [
+        "1.5 dCi",
+        "1.6 SCe"
+      ],
+      "title": "Duster 4x4 Transfer Case / Coupling Wear (Lock Mode)",
+      "howToFix": "Coupling oil change every 30,000 km (often overlooked — not in main service schedule). Coupling refresh service €150-€280 at independent. Replacement coupling €500-€900 if worn. Check whether prior owners did the oil service.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check whether prior owners did the oil service."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "dacia-duster-mk1-rear-suspension",
+      "make": "Dacia",
+      "model": "Duster",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "Access",
+        "Ambiance",
+        "Laureate"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Duster Mk1 Rear Anti-Roll Bar Drop Link / Bush Wear",
+      "howToFix": "Drop links + bushes both sides €40-€90 in parts, 1-2 hours labor (€80-€160). Use pattern parts — OEM offers no real durability advantage here. Aligned tracking after replacement recommended but not strictly needed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "dacia-duster-1.6-sce-h4m-chain",
+      "make": "Dacia",
+      "model": "Duster",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Access",
+        "Comfort",
+        "Essential",
+        "Prestige"
+      ],
+      "engines": [
+        "1.6 SCe (H4M)"
+      ],
+      "title": "Duster 1.6 SCe H4M Timing Chain Stretch",
+      "howToFix": "Full chain kit (chain, guides, tensioner) €700-€1,200. Use Renault-spec RN0700 5W-30 oil at 15,000 km max — longer intervals significantly accelerate chain wear. Replace at first persistent rattle.",
+      "dtcCodes": [
+        "P0008",
+        "P0009",
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0009, P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "dacia-duster-1.5-blue-dci-adblue",
+      "make": "Dacia",
+      "model": "Duster",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Comfort",
+        "Essential",
+        "Extreme",
+        "Prestige"
+      ],
+      "engines": [
+        "1.5 Blue dCi"
+      ],
+      "title": "Duster 1.5 Blue dCi AdBlue / SCR System Faults",
+      "howToFix": "NOx sensor replacement €300-€500. AdBlue heater + injector module €350-€700. AdBlue tank replacement €600-€1,200. Always top up AdBlue at every service to avoid crystallization. Some markets covered by Renault extended warranty — check records.",
+      "dtcCodes": [
+        "P204F",
+        "P207F",
+        "P20EE",
+        "P229F"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Some markets covered by Renault extended warranty — check records."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P204F, P207F, P20EE, P229F"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "dacia-duster-1-5-blue-dci-adblue--prescription-0-0--1-5-blue-dci",
+        "dacia-duster-1-5-blue-dci-adblue--prescription-1-0--1-5-blue-dci"
+      ]
+    },
+    {
+      "issueId": "dacia-logan-electrical-bcm",
+      "make": "Dacia",
+      "model": "Logan",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "Access",
+        "Ambiance",
+        "Laureate"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Logan Mk1 Body Control / Central Locking Electrical Faults",
+      "howToFix": "Check connectors first (clean, dielectric grease). UCH replacement €200-€400 if confirmed faulty. Many owners live with intermittent issues since the car still drives — costly to chase if non-safety-critical.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check connectors first (clean, dielectric grease)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "dacia-logan-sandero-clutch-wear",
+      "make": "Dacia",
+      "model": "Sandero",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "Access",
+        "Ambiance",
+        "Laureate"
+      ],
+      "engines": [
+        "1.2 16V",
+        "1.4 8V",
+        "1.5 dCi"
+      ],
+      "title": "Sandero / Logan Manual Clutch Premature Wear",
+      "howToFix": "Replacement clutch kit (cover, plate, release bearing) €350-€650 incl. labor. Consider uprated kits (Sachs SACHS Performance) if you do hilly or stop-start commuting — +€80-€150 in parts.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "dacia-sandero-duster-k9k-injectors",
+      "make": "Dacia",
+      "model": "Sandero",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Access",
+        "Ambiance",
+        "Laureate",
+        "Stepway"
+      ],
+      "engines": [
+        "1.5 dCi (K9K Bosch CP1)"
+      ],
+      "title": "Sandero / Duster 1.5 dCi K9K Bosch CP1 Injector Failure",
+      "howToFix": "Back-leak test at 80,000 km as a precaution. Single-injector replacement €250-€500. If pump has failed catastrophically, full system flush + replacement is the only safe option. Use only diesel from major-brand stations and add a fuel-system cleaner per service.",
+      "dtcCodes": [
+        "P0087",
+        "P0088",
+        "P0201",
+        "P0202",
+        "P0203",
+        "P0204"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Back-leak test at 80,000 km as a precaution."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087, P0088, P0201, P0202, P0203, P0204"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "dacia-sandero-duster-k9k-injectors--prescription-0-0--1-5-dci-k9k-bosch-cp1"
+      ]
+    },
+    {
+      "issueId": "dacia-sandero-mk2-power-steering-noise",
+      "make": "Dacia",
+      "model": "Sandero",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Access",
+        "Ambiance",
+        "Laureate",
+        "Stepway"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Sandero Mk2 Electric Power Steering Noise / Whine",
+      "howToFix": "Inspect first — sometimes loose mount bolts cause the noise (cheap fix). If motor wear confirmed, refurbished EPS column €250-€450; new €500-€900. Catch it before motor seizes (sudden assistance loss).",
+      "dtcCodes": [
+        "C0545",
+        "U0131"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect first — sometimes loose mount bolts cause the noise (cheap fix)."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C0545, U0131"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "dacia-1.0-tce-h4d-oil-consumption",
+      "make": "Dacia",
+      "model": "Sandero",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Comfort",
+        "Essential",
+        "Expression",
+        "Stepway"
+      ],
+      "engines": [
+        "1.0 TCe (H4D)"
+      ],
+      "title": "Dacia 1.0 TCe H4D 3-Cylinder Turbo Oil Consumption",
+      "howToFix": "Monitor oil monthly. If consumption exceeds 1L/3,000km, request Renault TSB inspection — some markets have offered partial-funded piston/ring replacement. Use Renault RN17 0W-20 oil at the strict 10,000 km interval, not extended.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil monthly."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If consumption exceeds 1L/3,000km, request Renault TSB inspection — some markets have offered partial-funded piston/ring replacement."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "dacia-1-0-tce-h4d-oil-consumption--prescription-0-0--1-0-tce-h4d"
+      ]
+    },
+    {
+      "issueId": "dacia-spring-12v-drain",
+      "make": "Dacia",
+      "model": "Spring",
+      "years": [
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Essential",
+        "Expression",
+        "Extreme"
+      ],
+      "engines": [
+        "Electric"
+      ],
+      "title": "Spring EV 12V Auxiliary Battery Drain",
+      "howToFix": "Check recall status (Dacia.co.uk/recall-campaigns lists current actions). Update vehicle software at dealer. Use 12V maintainer if leaving parked over 1 week. Some owners report success with a simple battery isolator switch on the 12V negative for storage stretches over a month. AGM replacement €100-€180 + €30-€60 coding.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check recall status (Dacia.co.uk/recall-campaigns lists current actions)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

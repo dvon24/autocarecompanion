@@ -1,0 +1,2076 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "chrysler-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "fb2200779542cd39738ea9fbdd9e40e78c6de38d640749b6dd4620a0bf07dd4a",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": true,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "62a7bbc50a7ff019f52070dc33833a8775c79cae6ad6036d83c2e48767c47a17",
+      "checkpoint.json": "1fee800d4df45572aa5c16cb61c7b98db70a49b482a0a78331d891d03d26e8e2",
+      "diagnostic-tool-evidence.json": "10b65e4857230d0f289c0e08c94fc6eaac10b70cbf6aa6dab1aa6ff81dbcf98f"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 140,
+      "issuesWithDtcCodes": 69,
+      "uniqueDtcCount": 85,
+      "solutionInstructionCount": 117,
+      "dtcDispositionCount": 69,
+      "toolLinkedDispositionCount": 60,
+      "procedureNoToolDispositionCount": 100,
+      "unresolvedToolHoldCount": 26,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "chrysler-200-oil-consumption-2015",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If test fails, engine long block replacement under extended warranty (7 years/100,000 miles).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-300-abs-module-2011",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0035, C0040, C0045, C0050",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-300-starter-2011",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test neutral safety switch.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-crossfire-sam-module-2004",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "U0155, U0164",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-auto-shutdown-relay-failure-cranks-but-won-t-start",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "42",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-automatic-idle-speed-motor-failure-rough-idle-stalling-hunti",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "25",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Rule out air in the cooling system and a stuck thermostat, which mimic an erratic gauge.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "22",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-distributor-hall-effect-pickup-heat-soak-failure-intermitten",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "On the 3.0L also test the coil and ignition control module before condemning the pickup.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-distributor-hall-effect-pickup-heat-soak-failure-intermitten",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "11",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-engine-controller-failure-no-start-stalling",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Pull stored fault codes via the key-on/off flash-code method to confirm a controller or driver fault, then replace the failed module (logic module, power module, SMEC, or SBEC) with a known-good or remanufactured unit and ensure clean grounds and battery voltage.",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-engine-controller-failure-no-start-stalling",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "37, 44",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-a604-ultradrive-limp-mode-torque-converter-clutch-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Read transmission fault codes first — limp-in is frequently a sensor (input/output speed) or wiring/voltage issue that can be fixed without a teardown;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-instrument-cluster-speedometer-odometer-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose whether the fault is the VSS (test/replace the speed sensor on the transaxle), the speedometer cable / odometer drive gear (replace worn gear or cable on cable clusters), or the cluster itself.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-instrument-cluster-speedometer-odometer-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "15",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lebaron-power-window-motor-1990",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The master window switch should also be tested as a potential cause.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lhs-35l-oil-consumption-1994",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If leak-down or compression testing shows worn piston rings or cylinder wear, the permanent fix is an engine overhaul or replacement short block/used engine, which commonly costs $2,500-$5,000+.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-lhs-intake-manifold-plenum-1999",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1004, P2004",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-pacifica-hybrid-battery-fire-2017",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Recall 72B provides free diagnostic software update and battery replacement if abnormality detected.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-pacifica-hybrid-trans-wiring-2017",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0741, P0751",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-prowler-fuel-gauge-reads-inaccurately-won-t-show-full",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "For the 'won't read full' complaint, install the released fuel control valve kit, Mopar PN 05093967AA.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-prowler-fuel-gauge-reads-inaccurately-won-t-show-full",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Do not judge the repair by bench-moving the sender by hand — this platform's gauge won't update that way.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-sebring-alternator-voltage-2001",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test alternator output and PCM voltage regulator function separately.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-town-country-ignition-2008",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "U0101",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-voyager-sliding-door-2020",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the specific failure point: latch mechanism (Dorman 940-100), track motor, or wiring.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "chrysler-voyager-sliding-door-2020",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1A48, B1A49",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [],
+  "removalProposals": [
+    {
+      "issueId": "chrysler-300-window-regulator-2011",
+      "workItemId": "chrysler-300-window-regulator-2011--existing-fix-part-0-0--all-engines",
+      "partNumber": "42-6004",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires a regulator-and-motor assembly and may require a door module, while the unscoped claim is only a window motor and has no confirmed catalog application."
+    },
+    {
+      "issueId": "chrysler-300m-35l-oil-sludge-1999",
+      "workItemId": "chrysler-300m-35l-oil-sludge-1999--existing-fix-part-0-0--3-5l-sohc-v6",
+      "partNumber": "PC272",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "PCV replacement is only one conditional step after sludge and oil-pressure diagnosis, and the unscoped PC272 claim was not confirmed by the catalog."
+    },
+    {
+      "issueId": "chrysler-300m-power-steering-1999",
+      "workItemId": "chrysler-300m-power-steering-1999--existing-fix-part-0-0--all-engines",
+      "partNumber": "21-5410",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The power-steering-pump claim lacks engine/application scope and the catalog did not confirm Cardone 21-5410 for the frozen article."
+    },
+    {
+      "issueId": "chrysler-crossfire-ac-interior-2004",
+      "workItemId": "chrysler-crossfire-ac-interior-2004--existing-fix-part-0-0--all-engines",
+      "partNumber": "471-1293",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The compressor is a prescribed repair, but the unscoped Denso 471-1293 claim was not confirmed for the frozen Crossfire application."
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-2l-i4",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-2l-turbo",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-5l-i4",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-5l-turbo",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--3-0l-v6",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+    },
+    {
+      "issueId": "chrysler-lebaron-power-window-motor-1990",
+      "workItemId": "chrysler-lebaron-power-window-motor-1990--existing-fix-part-0-0--all-engines",
+      "partNumber": "42-406",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped Cardone window-motor claim has no side/body/application evidence and the catalog did not confirm it for the frozen article."
+    },
+    {
+      "issueId": "chrysler-pacifica-tpms-sensor-2017",
+      "workItemId": "chrysler-pacifica-tpms-sensor-2017--existing-fix-part-0-0--all-engines",
+      "partNumber": "S5572B",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires TPMS sensor replacement and programming; a Bosch vehicle battery is the wrong repair role."
+    },
+    {
+      "issueId": "chrysler-prowler-3-5l-cam-crank-sensor-o-ring-valve-cover-oil-weeping",
+      "workItemId": "chrysler-prowler-3-5l-cam-crank-sensor-o-ring-valve-cover-oil-weeping--existing-fix-part-0-0--3-5l-sohc-v6",
+      "partNumber": "VS50248",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The valve-cover gasket is diagnosis-dependent and the unscoped MAHLE VS50248 claim was not confirmed by the catalog for the frozen Prowler application."
+    },
+    {
+      "issueId": "chrysler-pt-cruiser-ac-condenser-2001",
+      "workItemId": "chrysler-pt-cruiser-ac-condenser-2001--existing-fix-part-0-0--all-engines",
+      "partNumber": "477-0817",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The condenser is directly prescribed, but the unscoped Denso 477-0817 claim was not confirmed by the current all-year catalog run."
+    },
+    {
+      "issueId": "chrysler-pt-cruiser-overheating-2001",
+      "workItemId": "chrysler-pt-cruiser-overheating-2001--existing-fix-part-0-0--all-engines",
+      "partNumber": "31518",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "Radiator-cap replacement is one branch of a multi-cause overheating diagnosis, and Gates 31518 was not catalog-confirmed for the frozen vehicle scope."
+    },
+    {
+      "issueId": "chrysler-pt-cruiser-timing-belt-2001",
+      "workItemId": "chrysler-pt-cruiser-timing-belt-2001--existing-fix-part-0-0--2-4l-dohc-i4",
+      "partNumber": "CK265LK2",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article specifies generation-specific Gates complete kits, while Continental CK265LK2 is unscoped and was not confirmed for either reviewed engine/year branch."
+    },
+    {
+      "issueId": "chrysler-pt-cruiser-timing-belt-2001",
+      "workItemId": "chrysler-pt-cruiser-timing-belt-2001--existing-fix-part-0-0--2-4l-turbo-i4",
+      "partNumber": "CK265LK2",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article specifies generation-specific Gates complete kits, while Continental CK265LK2 is unscoped and was not confirmed for either reviewed engine/year branch."
+    },
+    {
+      "issueId": "chrysler-sebring-front-suspension-control-arm-1996",
+      "workItemId": "chrysler-sebring-front-suspension-control-arm-1996--existing-fix-part-0-0--all-engines",
+      "partNumber": "K7290",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The repair depends on the failed suspension component and side, while the unscoped MOOG bushing kit was not confirmed for the frozen application."
+    },
+    {
+      "issueId": "chrysler-sebring-window-regulator-failure-1996",
+      "workItemId": "chrysler-sebring-window-regulator-failure-1996--existing-fix-part-0-0--all-engines",
+      "partNumber": "RPACH-084",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The regulator assembly lacks side/body/application scope and Aisin RPACH-084 was not confirmed by the catalog for the frozen Sebring article."
+    },
+    {
+      "issueId": "chrysler-voyager-3-6l-pentastar-v6-oil-filter-housing-oil-cooler-assembly-cra",
+      "workItemId": "chrysler-voyager-3-6l-pentastar-v6-oil-filter-housing-oil-cooler-assembly-cra--existing-fix-part-0-0--3-6l-pentastar-v6",
+      "partNumber": "GS33753",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article prescribes a complete aluminum oil-filter housing/oil-cooler assembly, while MAHLE GS33753 is only a gasket set and is the wrong repair role."
+    }
+  ],
+  "releaseBlockers": [
+    {
+      "issueId": "chrysler-300-window-regulator-2011",
+      "workItemId": "chrysler-300-window-regulator-2011--existing-fix-part-0-0--all-engines",
+      "partNumber": "42-6004",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires a regulator-and-motor assembly and may require a door module, while the unscoped claim is only a window motor and has no confirmed catalog application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-300m-35l-oil-sludge-1999",
+      "workItemId": "chrysler-300m-35l-oil-sludge-1999--existing-fix-part-0-0--3-5l-sohc-v6",
+      "partNumber": "PC272",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "PCV replacement is only one conditional step after sludge and oil-pressure diagnosis, and the unscoped PC272 claim was not confirmed by the catalog.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-300m-power-steering-1999",
+      "workItemId": "chrysler-300m-power-steering-1999--existing-fix-part-0-0--all-engines",
+      "partNumber": "21-5410",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The power-steering-pump claim lacks engine/application scope and the catalog did not confirm Cardone 21-5410 for the frozen article.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-crossfire-ac-interior-2004",
+      "workItemId": "chrysler-crossfire-ac-interior-2004--existing-fix-part-0-0--all-engines",
+      "partNumber": "471-1293",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The compressor is a prescribed repair, but the unscoped Denso 471-1293 claim was not confirmed for the frozen Crossfire application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-2l-i4",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-2l-turbo",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-5l-i4",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-5l-turbo",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+      "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--3-0l-v6",
+      "partNumber": "TS10019",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-lebaron-power-window-motor-1990",
+      "workItemId": "chrysler-lebaron-power-window-motor-1990--existing-fix-part-0-0--all-engines",
+      "partNumber": "42-406",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The unscoped Cardone window-motor claim has no side/body/application evidence and the catalog did not confirm it for the frozen article.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-pacifica-tpms-sensor-2017",
+      "workItemId": "chrysler-pacifica-tpms-sensor-2017--existing-fix-part-0-0--all-engines",
+      "partNumber": "S5572B",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article requires TPMS sensor replacement and programming; a Bosch vehicle battery is the wrong repair role.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-prowler-3-5l-cam-crank-sensor-o-ring-valve-cover-oil-weeping",
+      "workItemId": "chrysler-prowler-3-5l-cam-crank-sensor-o-ring-valve-cover-oil-weeping--existing-fix-part-0-0--3-5l-sohc-v6",
+      "partNumber": "VS50248",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The valve-cover gasket is diagnosis-dependent and the unscoped MAHLE VS50248 claim was not confirmed by the catalog for the frozen Prowler application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-pt-cruiser-ac-condenser-2001",
+      "workItemId": "chrysler-pt-cruiser-ac-condenser-2001--existing-fix-part-0-0--all-engines",
+      "partNumber": "477-0817",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The condenser is directly prescribed, but the unscoped Denso 477-0817 claim was not confirmed by the current all-year catalog run.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-pt-cruiser-overheating-2001",
+      "workItemId": "chrysler-pt-cruiser-overheating-2001--existing-fix-part-0-0--all-engines",
+      "partNumber": "31518",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "Radiator-cap replacement is one branch of a multi-cause overheating diagnosis, and Gates 31518 was not catalog-confirmed for the frozen vehicle scope.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-pt-cruiser-timing-belt-2001",
+      "workItemId": "chrysler-pt-cruiser-timing-belt-2001--existing-fix-part-0-0--2-4l-dohc-i4",
+      "partNumber": "CK265LK2",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article specifies generation-specific Gates complete kits, while Continental CK265LK2 is unscoped and was not confirmed for either reviewed engine/year branch.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-pt-cruiser-timing-belt-2001",
+      "workItemId": "chrysler-pt-cruiser-timing-belt-2001--existing-fix-part-0-0--2-4l-turbo-i4",
+      "partNumber": "CK265LK2",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article specifies generation-specific Gates complete kits, while Continental CK265LK2 is unscoped and was not confirmed for either reviewed engine/year branch.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-sebring-front-suspension-control-arm-1996",
+      "workItemId": "chrysler-sebring-front-suspension-control-arm-1996--existing-fix-part-0-0--all-engines",
+      "partNumber": "K7290",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The repair depends on the failed suspension component and side, while the unscoped MOOG bushing kit was not confirmed for the frozen application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-sebring-window-regulator-failure-1996",
+      "workItemId": "chrysler-sebring-window-regulator-failure-1996--existing-fix-part-0-0--all-engines",
+      "partNumber": "RPACH-084",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The regulator assembly lacks side/body/application scope and Aisin RPACH-084 was not confirmed by the catalog for the frozen Sebring article.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "chrysler-voyager-3-6l-pentastar-v6-oil-filter-housing-oil-cooler-assembly-cra",
+      "workItemId": "chrysler-voyager-3-6l-pentastar-v6-oil-filter-housing-oil-cooler-assembly-cra--existing-fix-part-0-0--3-6l-pentastar-v6",
+      "partNumber": "GS33753",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The article prescribes a complete aluminum oil-filter housing/oil-cooler assembly, while MAHLE GS33753 is only a gasket set and is the wrong repair role.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "type": "no-reviewed-commerce-writes",
+      "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "fb2200779542cd39738ea9fbdd9e40e78c6de38d640749b6dd4620a0bf07dd4a",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "62a7bbc50a7ff019f52070dc33833a8775c79cae6ad6036d83c2e48767c47a17",
+        "checkpoint.json": "1fee800d4df45572aa5c16cb61c7b98db70a49b482a0a78331d891d03d26e8e2",
+        "diagnostic-tool-evidence.json": "10b65e4857230d0f289c0e08c94fc6eaac10b70cbf6aa6dab1aa6ff81dbcf98f"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 140,
+        "issuesWithDtcCodes": 69,
+        "uniqueDtcCount": 85,
+        "solutionInstructionCount": 117,
+        "dtcDispositionCount": 69,
+        "toolLinkedDispositionCount": 60,
+        "procedureNoToolDispositionCount": 100,
+        "unresolvedToolHoldCount": 26,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "chrysler-200-oil-consumption-2015",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If test fails, engine long block replacement under extended warranty (7 years/100,000 miles).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-300-abs-module-2011",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0035, C0040, C0045, C0050",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-300-starter-2011",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test neutral safety switch.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-crossfire-sam-module-2004",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "U0155, U0164",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-auto-shutdown-relay-failure-cranks-but-won-t-start",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "42",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-automatic-idle-speed-motor-failure-rough-idle-stalling-hunti",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "25",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Rule out air in the cooling system and a stuck thermostat, which mimic an erratic gauge.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "22",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-distributor-hall-effect-pickup-heat-soak-failure-intermitten",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "On the 3.0L also test the coil and ignition control module before condemning the pickup.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-distributor-hall-effect-pickup-heat-soak-failure-intermitten",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "11",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-engine-controller-failure-no-start-stalling",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Pull stored fault codes via the key-on/off flash-code method to confirm a controller or driver fault, then replace the failed module (logic module, power module, SMEC, or SBEC) with a known-good or remanufactured unit and ensure clean grounds and battery voltage.",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-engine-controller-failure-no-start-stalling",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "37, 44",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-a604-ultradrive-limp-mode-torque-converter-clutch-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Read transmission fault codes first — limp-in is frequently a sensor (input/output speed) or wiring/voltage issue that can be fixed without a teardown;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-instrument-cluster-speedometer-odometer-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose whether the fault is the VSS (test/replace the speed sensor on the transaxle), the speedometer cable / odometer drive gear (replace worn gear or cable on cable clusters), or the cluster itself.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-instrument-cluster-speedometer-odometer-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "15",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lebaron-power-window-motor-1990",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The master window switch should also be tested as a potential cause.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lhs-35l-oil-consumption-1994",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If leak-down or compression testing shows worn piston rings or cylinder wear, the permanent fix is an engine overhaul or replacement short block/used engine, which commonly costs $2,500-$5,000+.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-lhs-intake-manifold-plenum-1999",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1004, P2004",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-pacifica-hybrid-battery-fire-2017",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Recall 72B provides free diagnostic software update and battery replacement if abnormality detected.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-pacifica-hybrid-trans-wiring-2017",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0741, P0751",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-prowler-fuel-gauge-reads-inaccurately-won-t-show-full",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "For the 'won't read full' complaint, install the released fuel control valve kit, Mopar PN 05093967AA.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-prowler-fuel-gauge-reads-inaccurately-won-t-show-full",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Do not judge the repair by bench-moving the sender by hand — this platform's gauge won't update that way.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-sebring-alternator-voltage-2001",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test alternator output and PCM voltage regulator function separately.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-town-country-ignition-2008",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "U0101",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-voyager-sliding-door-2020",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the specific failure point: latch mechanism (Dorman 940-100), track motor, or wiring.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "chrysler-voyager-sliding-door-2020",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1A48, B1A49",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 140,
+      "reviewedProposalPartRows": 0,
+      "approvedRows": 0,
+      "selectedPrimaryRows": 0,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 0,
+      "heldProposalRows": 0,
+      "blockedExistingClaimRows": 19,
+      "changedIssueCount": 0,
+      "mergedStablePartCount": 0,
+      "manifestIssueCount": 0,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "8cfbf2ce267f271eb55b3169678fe20f0cd167a178e123e8bc7925d98d93faa8",
+      "01-disposition-ledger.json": "8cec98abf61dfb3c94db7e44b319a10d469d53e597a67b1411900c8c4b441ce3",
+      "02-fitment-worklist.json": "d1fb302ce92982f958254e9fafb32febdf0207b704d70c8812da82edd7166256",
+      "03-showmetheparts-evidence.json": "1d68fad35d3f42466d6a597872282ee87b28f9da1e5eeb86fa9c4a0494e28208",
+      "04-part-proposals.json": "b31b3aca20dc367bd805f34f58fa1a9ef1d23f7938d5a7f710f3bed89a85955c",
+      "05-direct-link-evidence.json": "113283cc76888b75c014bab6cca597fa6aa1422fda069cb3b28c4d62adf43145",
+      "06-independent-review.json": "fcaf040d4f7a16fadd2e8019717767193045651f15a77e3b4a0ef0c58e5d9dfe",
+      "classification-ledger.json": "62a7bbc50a7ff019f52070dc33833a8775c79cae6ad6036d83c2e48767c47a17",
+      "checkpoint.json": "1fee800d4df45572aa5c16cb61c7b98db70a49b482a0a78331d891d03d26e8e2",
+      "diagnostic-tool-evidence.json": "10b65e4857230d0f289c0e08c94fc6eaac10b70cbf6aa6dab1aa6ff81dbcf98f"
+    },
+    "reviewRows": [],
+    "removalProposals": [
+      {
+        "issueId": "chrysler-300-window-regulator-2011",
+        "workItemId": "chrysler-300-window-regulator-2011--existing-fix-part-0-0--all-engines",
+        "partNumber": "42-6004",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires a regulator-and-motor assembly and may require a door module, while the unscoped claim is only a window motor and has no confirmed catalog application."
+      },
+      {
+        "issueId": "chrysler-300m-35l-oil-sludge-1999",
+        "workItemId": "chrysler-300m-35l-oil-sludge-1999--existing-fix-part-0-0--3-5l-sohc-v6",
+        "partNumber": "PC272",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "PCV replacement is only one conditional step after sludge and oil-pressure diagnosis, and the unscoped PC272 claim was not confirmed by the catalog."
+      },
+      {
+        "issueId": "chrysler-300m-power-steering-1999",
+        "workItemId": "chrysler-300m-power-steering-1999--existing-fix-part-0-0--all-engines",
+        "partNumber": "21-5410",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The power-steering-pump claim lacks engine/application scope and the catalog did not confirm Cardone 21-5410 for the frozen article."
+      },
+      {
+        "issueId": "chrysler-crossfire-ac-interior-2004",
+        "workItemId": "chrysler-crossfire-ac-interior-2004--existing-fix-part-0-0--all-engines",
+        "partNumber": "471-1293",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The compressor is a prescribed repair, but the unscoped Denso 471-1293 claim was not confirmed for the frozen Crossfire application."
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-2l-i4",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-2l-turbo",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-5l-i4",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-5l-turbo",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--3-0l-v6",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice."
+      },
+      {
+        "issueId": "chrysler-lebaron-power-window-motor-1990",
+        "workItemId": "chrysler-lebaron-power-window-motor-1990--existing-fix-part-0-0--all-engines",
+        "partNumber": "42-406",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped Cardone window-motor claim has no side/body/application evidence and the catalog did not confirm it for the frozen article."
+      },
+      {
+        "issueId": "chrysler-pacifica-tpms-sensor-2017",
+        "workItemId": "chrysler-pacifica-tpms-sensor-2017--existing-fix-part-0-0--all-engines",
+        "partNumber": "S5572B",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires TPMS sensor replacement and programming; a Bosch vehicle battery is the wrong repair role."
+      },
+      {
+        "issueId": "chrysler-prowler-3-5l-cam-crank-sensor-o-ring-valve-cover-oil-weeping",
+        "workItemId": "chrysler-prowler-3-5l-cam-crank-sensor-o-ring-valve-cover-oil-weeping--existing-fix-part-0-0--3-5l-sohc-v6",
+        "partNumber": "VS50248",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The valve-cover gasket is diagnosis-dependent and the unscoped MAHLE VS50248 claim was not confirmed by the catalog for the frozen Prowler application."
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-ac-condenser-2001",
+        "workItemId": "chrysler-pt-cruiser-ac-condenser-2001--existing-fix-part-0-0--all-engines",
+        "partNumber": "477-0817",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The condenser is directly prescribed, but the unscoped Denso 477-0817 claim was not confirmed by the current all-year catalog run."
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-overheating-2001",
+        "workItemId": "chrysler-pt-cruiser-overheating-2001--existing-fix-part-0-0--all-engines",
+        "partNumber": "31518",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "Radiator-cap replacement is one branch of a multi-cause overheating diagnosis, and Gates 31518 was not catalog-confirmed for the frozen vehicle scope."
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-timing-belt-2001",
+        "workItemId": "chrysler-pt-cruiser-timing-belt-2001--existing-fix-part-0-0--2-4l-dohc-i4",
+        "partNumber": "CK265LK2",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article specifies generation-specific Gates complete kits, while Continental CK265LK2 is unscoped and was not confirmed for either reviewed engine/year branch."
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-timing-belt-2001",
+        "workItemId": "chrysler-pt-cruiser-timing-belt-2001--existing-fix-part-0-0--2-4l-turbo-i4",
+        "partNumber": "CK265LK2",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article specifies generation-specific Gates complete kits, while Continental CK265LK2 is unscoped and was not confirmed for either reviewed engine/year branch."
+      },
+      {
+        "issueId": "chrysler-sebring-front-suspension-control-arm-1996",
+        "workItemId": "chrysler-sebring-front-suspension-control-arm-1996--existing-fix-part-0-0--all-engines",
+        "partNumber": "K7290",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The repair depends on the failed suspension component and side, while the unscoped MOOG bushing kit was not confirmed for the frozen application."
+      },
+      {
+        "issueId": "chrysler-sebring-window-regulator-failure-1996",
+        "workItemId": "chrysler-sebring-window-regulator-failure-1996--existing-fix-part-0-0--all-engines",
+        "partNumber": "RPACH-084",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The regulator assembly lacks side/body/application scope and Aisin RPACH-084 was not confirmed by the catalog for the frozen Sebring article."
+      },
+      {
+        "issueId": "chrysler-voyager-3-6l-pentastar-v6-oil-filter-housing-oil-cooler-assembly-cra",
+        "workItemId": "chrysler-voyager-3-6l-pentastar-v6-oil-filter-housing-oil-cooler-assembly-cra--existing-fix-part-0-0--3-6l-pentastar-v6",
+        "partNumber": "GS33753",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article prescribes a complete aluminum oil-filter housing/oil-cooler assembly, while MAHLE GS33753 is only a gasket set and is the wrong repair role."
+      }
+    ],
+    "releaseBlockers": [
+      {
+        "issueId": "chrysler-300-window-regulator-2011",
+        "workItemId": "chrysler-300-window-regulator-2011--existing-fix-part-0-0--all-engines",
+        "partNumber": "42-6004",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires a regulator-and-motor assembly and may require a door module, while the unscoped claim is only a window motor and has no confirmed catalog application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-300m-35l-oil-sludge-1999",
+        "workItemId": "chrysler-300m-35l-oil-sludge-1999--existing-fix-part-0-0--3-5l-sohc-v6",
+        "partNumber": "PC272",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "PCV replacement is only one conditional step after sludge and oil-pressure diagnosis, and the unscoped PC272 claim was not confirmed by the catalog.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-300m-power-steering-1999",
+        "workItemId": "chrysler-300m-power-steering-1999--existing-fix-part-0-0--all-engines",
+        "partNumber": "21-5410",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The power-steering-pump claim lacks engine/application scope and the catalog did not confirm Cardone 21-5410 for the frozen article.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-crossfire-ac-interior-2004",
+        "workItemId": "chrysler-crossfire-ac-interior-2004--existing-fix-part-0-0--all-engines",
+        "partNumber": "471-1293",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The compressor is a prescribed repair, but the unscoped Denso 471-1293 claim was not confirmed for the frozen Crossfire application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-2l-i4",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-2l-turbo",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-5l-i4",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--2-5l-turbo",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "workItemId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h--existing-fix-part-0-0--3-0l-v6",
+        "partNumber": "TS10019",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article spans multiple 2.2L, 2.5L, and 3.0L applications, while the unscoped Delphi TS10019 claim was not confirmed for any reviewed slice.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-lebaron-power-window-motor-1990",
+        "workItemId": "chrysler-lebaron-power-window-motor-1990--existing-fix-part-0-0--all-engines",
+        "partNumber": "42-406",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The unscoped Cardone window-motor claim has no side/body/application evidence and the catalog did not confirm it for the frozen article.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-pacifica-tpms-sensor-2017",
+        "workItemId": "chrysler-pacifica-tpms-sensor-2017--existing-fix-part-0-0--all-engines",
+        "partNumber": "S5572B",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article requires TPMS sensor replacement and programming; a Bosch vehicle battery is the wrong repair role.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-prowler-3-5l-cam-crank-sensor-o-ring-valve-cover-oil-weeping",
+        "workItemId": "chrysler-prowler-3-5l-cam-crank-sensor-o-ring-valve-cover-oil-weeping--existing-fix-part-0-0--3-5l-sohc-v6",
+        "partNumber": "VS50248",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The valve-cover gasket is diagnosis-dependent and the unscoped MAHLE VS50248 claim was not confirmed by the catalog for the frozen Prowler application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-ac-condenser-2001",
+        "workItemId": "chrysler-pt-cruiser-ac-condenser-2001--existing-fix-part-0-0--all-engines",
+        "partNumber": "477-0817",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The condenser is directly prescribed, but the unscoped Denso 477-0817 claim was not confirmed by the current all-year catalog run.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-overheating-2001",
+        "workItemId": "chrysler-pt-cruiser-overheating-2001--existing-fix-part-0-0--all-engines",
+        "partNumber": "31518",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "Radiator-cap replacement is one branch of a multi-cause overheating diagnosis, and Gates 31518 was not catalog-confirmed for the frozen vehicle scope.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-timing-belt-2001",
+        "workItemId": "chrysler-pt-cruiser-timing-belt-2001--existing-fix-part-0-0--2-4l-dohc-i4",
+        "partNumber": "CK265LK2",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article specifies generation-specific Gates complete kits, while Continental CK265LK2 is unscoped and was not confirmed for either reviewed engine/year branch.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-timing-belt-2001",
+        "workItemId": "chrysler-pt-cruiser-timing-belt-2001--existing-fix-part-0-0--2-4l-turbo-i4",
+        "partNumber": "CK265LK2",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article specifies generation-specific Gates complete kits, while Continental CK265LK2 is unscoped and was not confirmed for either reviewed engine/year branch.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-sebring-front-suspension-control-arm-1996",
+        "workItemId": "chrysler-sebring-front-suspension-control-arm-1996--existing-fix-part-0-0--all-engines",
+        "partNumber": "K7290",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The repair depends on the failed suspension component and side, while the unscoped MOOG bushing kit was not confirmed for the frozen application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-sebring-window-regulator-failure-1996",
+        "workItemId": "chrysler-sebring-window-regulator-failure-1996--existing-fix-part-0-0--all-engines",
+        "partNumber": "RPACH-084",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The regulator assembly lacks side/body/application scope and Aisin RPACH-084 was not confirmed by the catalog for the frozen Sebring article.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "chrysler-voyager-3-6l-pentastar-v6-oil-filter-housing-oil-cooler-assembly-cra",
+        "workItemId": "chrysler-voyager-3-6l-pentastar-v6-oil-filter-housing-oil-cooler-assembly-cra--existing-fix-part-0-0--3-6l-pentastar-v6",
+        "partNumber": "GS33753",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The article prescribes a complete aluminum oil-filter housing/oil-cooler assembly, while MAHLE GS33753 is only a gasket set and is the wrong repair role.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "type": "no-reviewed-commerce-writes",
+        "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "chrysler-200-2-4l-tigershark-excessive-oil-consumption",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-62te-trans-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-9speed-trans-2015",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-ac-evaporator-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-cruise-control-cannot-be-cancelled",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-electrical-drain-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-first-generation-engine-stalling-low-speed-idle",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-oil-consumption-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-oil-filter-housing-leak-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-ps-rack-leak-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-random-deployment-active-head-restraints",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-throttle-stall-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-transmission-may-not-shift-into-park-2015-v6",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-zf-9-speed-harsh-rough-shifting-lurching-hesitation",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-200-zf-9-speed-transmission-unexpectedly-shifts-to-neutral",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-abs-module-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-alternator-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-control-arm-2011",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-cylinder-head-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-dash-warp-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-differential-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-evap-leak-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-evap-leak-detection-failure-triggers-p0455-p0456-often-misdi",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-exhaust-manifold-bolts-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-front-suspension-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-fuel-pump-relay-2011",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-hemi-lifter-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-oil-filter-housing-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-shifter-clip-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-shifter-rollaway-2012",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-starter-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-tipm-2011",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-water-pump-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300-window-regulator-2011",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-300-zf8-trans-2012",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300m-35l-oil-sludge-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-300m-power-steering-1999",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-300m-power-steering-rack-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-300m-trans-failure-1999",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-aspen-control-arm-bushing-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-aspen-hemi-exhaust-tick-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-aspen-hemi-tick-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-aspen-rear-diff-2007",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-aspen-tipm-2007",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-cirrus-engine-mount-wear-1995",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-cirrus-head-gasket-1995",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-cirrus-transmission-failure-1995",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-concorde-27l-sludge-1998",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-concorde-35l-timing-belt-1993",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-concorde-ps-hose-leak-1993",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-concorde-transmission-solenoid-1998",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-crossfire-ac-interior-2004",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-crossfire-egr-cat-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-crossfire-ignition-switch-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-crossfire-rear-spring-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-crossfire-sam-module-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-fifth-avenue-ac-compressor-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-fifth-avenue-ball-joint-wear-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-fifth-avenue-lean-burn-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-fifth-avenue-power-seat-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-fifth-avenue-transmission-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-a604-ultradrive-limp-mode-torque-converter-clutch-failure",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-auto-shutdown-relay-failure-cranks-but-won-t-start",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-automatic-idle-speed-motor-failure-rough-idle-stalling-hunti",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-automatic-trans-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-chronic-overheating-wrong-rotation-water-pump-cooling-system",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-convertible-top-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-coolant-temperature-sensor-failure-hot-stall-erratic-gauge-h",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-lebaron-distributor-hall-effect-pickup-heat-soak-failure-intermitten",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-engine-controller-failure-no-start-stalling",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-fuel-injector-leak-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-head-gasket-1990",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-hvac-blower-motor-resistor-failure-fan-works-only-high",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-instrument-cluster-speedometer-odometer-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-mitsubishi-3-0l-v6-valve-stem-seal-valve-guide-wear-oil-cons",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-power-window-motor-1990",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-lebaron-timing-belt-wear-breakage-stranding-no-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lebaron-turbocharger-bearing-seal-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lhs-35l-oil-consumption-1994",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lhs-intake-manifold-plenum-1999",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lhs-power-steering-leak-1999",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lhs-trans-failure-1994",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-lhs-transmission-41te-1994",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-new-yorker-electronic-suspension-1994",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-new-yorker-oil-leak-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-new-yorker-power-window-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-new-yorker-transmission-1994",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pacifica-ac-compressor-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pacifica-engine-stall-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pacifica-harsh-shift-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pacifica-hybrid-battery-fire-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pacifica-hybrid-trans-wiring-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pacifica-power-liftgate-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pacifica-sliding-door-2017",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pacifica-tpms-sensor-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-pacifica-uconnect-freeze-2017",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-3-5l-cam-crank-sensor-o-ring-valve-cover-oil-weeping",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-prowler-42le-shift-solenoid-pack-failure-limp-mode",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-cable-type-power-window-regulator-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-convertible-top-rear-window-separation-top-leaks",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-coolant-leak-1999",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-cooling-overheat-1997",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-door-speaker-foam-surround-deterioration",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-front-lower-ball-joint-separation",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-fuel-gauge-reads-inaccurately-won-t-show-full",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-paint-aluminum-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-pcm-internal-checksum-failure-obsolete-engine-computer",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-tank-fuel-pump-failure-no-rail-pressure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-transmission-adapt-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-prowler-transmission-overheat-1999",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-ac-condenser-2001",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-egr-valve-2001",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-head-gasket-2001",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-oil-sludge-2001",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-overheating-2001",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-timing-belt-2001",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-pt-cruiser-turbo-failure-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-sebring-2.7l-oil-sludge-engine-failure-2001",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-sebring-3.5l-head-gasket-overheating-2001",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-sebring-alternator-voltage-2001",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-sebring-convertible-water-leaks-1996",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-sebring-front-suspension-control-arm-1996",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-sebring-timing-chain-water-pump-2001",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-sebring-tipm-electrical-failure-2007",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-sebring-transmission-shifting-problems-2001",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-sebring-window-regulator-failure-1996",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-town-country-62te-trans-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-town-country-cooling-2001",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-town-country-ignition-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-town-country-sliding-door-2008",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-town-country-tipm-2008",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-voyager-3-6l-pentastar-v6-oil-filter-housing-oil-cooler-assembly-cra",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "chrysler-voyager-3-6l-pentastar-valvetrain-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-voyager-9speed-trans-2020",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-voyager-rear-hvac-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-voyager-second-row-seat-to-floor-latch-may-bind-open",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-voyager-side-curtain-airbag-defects-safety-recalls",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-voyager-sliding-door-2020",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-voyager-uconnect-screen-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "chrysler-voyager-windshield-wiper-arm-nuts-improperly-tightened",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

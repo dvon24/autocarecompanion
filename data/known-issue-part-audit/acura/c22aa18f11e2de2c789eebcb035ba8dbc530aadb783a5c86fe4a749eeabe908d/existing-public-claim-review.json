@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-existing-public-claim-review",
+  "make": "Acura",
+  "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
+  "status": "REVIEWED_NOT_APPLIED",
+  "productionApplied": false,
+  "releaseBlocked": true,
+  "verifiedPublicClaimCount": 3,
+  "tally": {
+    "preserve_safe_public": 0,
+    "preserve_recall_information": 0,
+    "block_unsafe_public": 3
+  },
+  "decisions": [
+    {
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "partIndex": 0,
+      "component": "Engine Timing Belt Kit",
+      "partNumbers": [
+        "TB184K1"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/276327487296?_skw=Continental+TB184K1+Engine+Timing+Belt+Kit&hash=item405666d740%3Ag%3AY3AAAOSwXfZlxpBT&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
+      "sourceEvidence": {
+        "title": "Timing belt failure on interference B18 engine bends valves",
+        "howToFix": "Replace the complete timing belt kit: belt, tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable.\nNon-VTEC LS (B18B1) timing belt part numbers are 14400-P7J-004 or 14400-PR4-A01, paired with the 19-tooth water pump 19200-P75-003 / 19200-PT5-000 / 19200-PT5-003. The VTEC GSR (B18C1) uses timing belt 14400-P72-004 / 14400-P72-014 paired with a 22-tooth water pump.\nDo NOT mix LS and GSR water pumps — the tooth counts differ (19T vs 22T) and the belts are different lengths.\nProfessional cost for preventive replacement: approximately $350-600. Post-failure repair (valve job / head rebuild) can reach $2,000-3,000+."
+      }
+    },
+    {
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "partIndex": 0,
+      "component": "Spark Plug",
+      "partNumbers": [
+        "9619"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/226904777924?_skw=Bosch+Spark+Plugs+9619+Spark+Plug&hash=item34d49424c4%3Ag%3A7B8AAeSwTU5okfxh&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale.",
+      "sourceEvidence": {
+        "title": "VCM-Related Oil Consumption, Spark Plug Fouling and Motor Mount Failure (J37 VCM Engine)",
+        "howToFix": "Replace failed hydraulic motor mounts (front + rear) and any oil-fouled plugs. Many owners install a VCM Tuner / S-VCM Controller to lock the engine in 6-cylinder mode and prevent recurrence. Monitor oil level monthly."
+      }
+    },
+    {
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "partIndex": 0,
+      "component": "Engine Timing Belt Kit with Water Pump",
+      "partNumbers": [
+        "PP211LK2"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/267324021898?_skw=Continental+PP211LK2+Engine+Timing+Belt+Kit+with+Water+Pump&hash=item3e3dc0dc8a%3Ag%3AVBcAAeSwrepoc%7Ep4&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2.",
+      "sourceEvidence": {
+        "title": "Timing belt + water pump + tensioner at 90k mi — G25A1 is interference, valves bend if it snaps",
+        "howToFix": "Full timing kit replacement: belt + hydraulic tensioner + water pump + idler + all front seals + accessory belts as one job. A complete Aisin or Allied Motor Parts kit for the G25A1 runs $150-250. Labor at an independent: $400-700. Total: $550-950. Dealer: $1,000-1,500. The job takes ~6-8 hours because the 5-cylinder is longitudinally mounted and accessory removal is fiddlier than a transverse V6. ONLY use the OEM Honda tensioner or Aisin — the import-brand tensioners on AliExpress / cheap Amazon kits routinely fail within 10k miles on this engine."
+      }
+    }
+  ]
+}

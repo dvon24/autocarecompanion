@@ -1,0 +1,886 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Nissan",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 353,
+    "issuesWithDtcCodes": 139,
+    "uniqueDtcCount": 133,
+    "solutionInstructionCount": 391,
+    "dtcDispositionCount": 139,
+    "toolLinkedDispositionCount": 105,
+    "procedureNoToolDispositionCount": 337,
+    "unresolvedToolHoldCount": 88,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "nissan-240sx-cooling-system-age-failure-cracked-plastic-overflow-tank-rad",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pressure-test the system to find leaks.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-240sx-mass-air-flow-sensor-failure-limp-mode-driveability",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "12",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-240sx-distributor-cam-angle-sensor-failure-internal-oil-leak",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "11, 21",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-300zx-automatic-climate-control-failures",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Run the climate control self-diagnostics to isolate the failed component, then replace the auto amplifier, blower amplifier, or blend door motor with a known-good used unit, or repair failed solder joints/transistors on the original board.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-300zx-hicas-four-wheel-steering-power-steering-control-module-fail",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Run the HICAS self-diagnostic to isolate the fault before throwing parts at it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-300zx-optical-crank-angle-sensor-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "11",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-350z-steering-lock-nats-2003",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1610, P1614",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-370z-brake-actuator-2009",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0045, C0050",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-370z-hatch-rear-cargo-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Remove rear cargo trim and perform a controlled water test to identify the leak path around the hatch seal, tail lamp gaskets, body seams, and vent flaps.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-370z-premature-battery-discharge--2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the battery fails testing or is original and aged, replace it with a quality AGM or OEM-spec unit and clean/tighten terminals.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-altima-front-wheel-bearing-and-2002",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1101, C1102, C1103, C1104",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-altima-brake-master-cylinder-internal-2005",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A scan tool ABS bleed may be needed if air entered the ABS hydraulic unit.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-altima-front-abs-wheel-speed-sensor-failure-triggering-abs-vdc-slip",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read ABS codes with an ABS-capable scanner to pinpoint the exact wheel before buying parts (a dirty tip or chafed wire can sometimes be cleaned/repaired instead of replaced).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-altima-front-abs-wheel-speed-sensor-failure-triggering-abs-vdc-slip",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1101, C1102, C1103, C1104",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-altima-p0741-torque-converter-clutch-stuck-off-from-jatco-cvt-locku",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test/replace the lockup (TCC) solenoid.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-altima-passenger-occupant-classification-sensor-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis requires a capable scan tool that can read SRS and OCS data, not just generic OBD-II codes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-altima-passenger-occupant-classification-sensor-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1018, B1020, B1034",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-altima-cvt-failure-2013",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-altima-electronic-power-steering-mounting-bolts-loosen-causing-stee",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not buy a steering rack, EPS unit, bolts, alignment service or diagnostic tool from this page;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-frontier-evap-canister-and-vent-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0440, P0442, P0446, P0455, P1490",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-frontier-intermittent-no-start-or-stall-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Begin with battery load testing, charging-system verification, and a scan for stored or pending codes in the ECM, BCM, and IPDM.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-frontier-intermittent-no-start-or-stall-2022",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0603, P0615, U1000",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-gt-r-parasitic-battery-drain-dead-battery-when-parked",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a parasitic-draw test to isolate the circuit;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-gt-r-parasitic-battery-drain-dead-battery-when-parked",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Owners commonly diagnose by pulling the 15A AUDIO fuse in the battery-room fuse box overnight.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-hardbody-timing-chain-guide-1990",
+      "source": "solution",
+      "procedure": "compression-test",
+      "excerpt": "if the chain has already jumped, perform a compression test and verify cam/crank timing before reassembly to rule out bent valves.",
+      "reasonCode": "gasoline-compression-application-unproven",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-juke-cvt-failure-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-kicks-cvt-overheating-2018",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-kicks-engine-noise-2018",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-leaf-chademo-quick-charge-port-failure-won-t-fast-charge",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Start by testing/replacing the 12V battery, which resolves many no-fast-charge and communication faults.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-leaf-passenger-airbag-occupant-classification-sensor-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for B1018/OCS codes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-leaf-passenger-airbag-occupant-classification-sensor-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1018, B1019",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-leaf-ptc-cabin-heater-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose whether the PTC element itself has failed (often indicated by a blown HV PTC fuse).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-maxima-cvt-belt-slip-2009",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0841, P0868, P17F0",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-murano-cvt-transmission-judder-slipping-premature-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-murano-transfer-case-seal-2003",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1710, C1715",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-murano-awd-transfer-case-failure-fluid-leak",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose early at the first sign of leaking or noise;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-murano-cvt-failure-2009",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-murano-oil-consumption-2009",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform Nissan oil consumption test per TSB NTB13-076.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-murano-passenger-airbag-occupant-classification-system-failure-reca",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "campaign eligibility, test result, seat configuration, calibration and VIN fitment must be established first.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-murano-battery-drain-and-no-start-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2601, U1000",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-murano-front-radarsensor-malfunctions-triggering-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "DTC state, manufacture date, diagnosis, calibration and VIN fitment must be established first.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-nv-fuel-sending-unit-failure-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Reset the fuel gauge after installation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-nv-fuel-sending-unit-failure-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Some owners install a secondary fuel level gauge as backup for commercial vehicles.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-pathfinder-cvt-failure-2013",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-pathfinder-cvt-judder-2013",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "diagnose any other code separately.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-pathfinder-timing-chain-2013",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0011, P0014, P0300, P0301, P0340, P34C4",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-pathfinder-rearview-camera-black-screen-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2A0A, U1000",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-pathfinder-9-speed-automatic-harsh-shifting-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Road testing under the same temperature and load conditions that trigger the complaint is important because some units behave normally once warm.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-pathfinder-9-speed-automatic-harsh-shifting-2022",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0729, P0730, P07A5, P17F0",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-pathfinder-auto-start-stop-system-failure-2022",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0615, P12A2, U1000",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-pathfinder-front-brake-rotor-warpingpulsation-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A proper diagnosis includes measuring rotor runout and thickness variation rather than assuming all vibration is suspension-related.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-quest-ac-rear-2011",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose whether the rear evaporator or expansion valve has failed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-quest-cvt-failure-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-clock-spring-spiral-2008",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1049, B1054",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-p0302-cylinder-2-misfire-from-worn-spark-plug-ignition-coil",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a coil swap-test and replace the coil if the misfire follows it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-p0303-cylinder-3-misfire-from-oil-fouled-coil",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the well is dry, treat as a standard coil/plug fault with a swap-test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-steering-column-lock--2008",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2190, B2191, B2192",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-awd-coupling-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have AWD system diagnosed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-cvt-failure-2014",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-cvt-overheating-from-inadequate-transmission-oil-cooler-caus",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0218, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-inaccurate-fuel-gauge-faulty-fuel-level-sender",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The fix is replacement of the in-tank fuel level sending unit (often part of the fuel pump module assembly), which restores correct gauge operation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-jatco-cvt-judder-shudder-slipping-complete-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0744, P1740, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-steering-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have EPS system diagnosed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-front-radar-automatic-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A12, C1A16, C1A70",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-rogue-liftgate-rear-hatch-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis usually includes scanning the body control/liftgate module, verifying latch adjustment, and replacing failed struts, latch assemblies, or the control unit if relearn procedures do not restore normal operation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-ga16de-oil-consumption-high-mileage",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "a compression/leak-down test distinguishes them.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-optical-crank-cam-angle-sensor-failure-inside-distributor-ca",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Diagnose the specific failure (pull codes, inspect the distributor cap interior for oil film indicating a failed shaft seal).",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-optical-crank-cam-angle-sensor-failure-inside-distributor-ca",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0335, P0340, P1335",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-cvt-failure-2013",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-p0171-system-too-lean-from-leaking-intake-manifold-gasket-cr",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Cleaning or replacing a dirty MAF is only warranted if the smoke test is clean and trims still read lean.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-p0741-torque-converter-clutch-stuck-off-from-cvt-lockup-sole",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Start with a Nissan CVT fluid diagnosis: if the NS-2/NS-3 fluid is burnt or overdue, perform a proper fluid exchange (correct fluid and fill level are critical).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-forward-emergency-braking-phantom-activation",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A14, C1B00",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-brake-light-switch-failure-no-brake-lights-won-t-shift-from",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1179, P0504",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-backup-camera-black-screen-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the problem is intermittent, reproducing it with video evidence can help speed diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-front-collision-warning--2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A04, C1A12, C1A16",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-intermittent-no-start-or-engine-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the battery fails testing or repeatedly drops below specification, replacement with the correct AGM/EFB type and battery registration/reset procedures may be required.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-intermittent-no-start-or-engine-2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2603, P0562",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-sentra-steering-wheel-clock-spring-2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1049, B1054",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-skyline-attesa-e-ts-hydraulic-pump-nitrogen-accumulator-failure",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Always check ATTESA fluid level in the trunk-mounted reservoir and pull fault codes before replacing parts.",
+      "reasonCode": "scanner-capability-needs-code-or-module",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-skyline-crank-angle-sensor-failure-hot-stalling-no-start",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Carry-out testing first, since ignition-harness faults can mimic CAS symptoms.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-stanza-alternator-failure-1990",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the new alternator output (should read 13.8-14.4V at the battery with engine running).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-titan-fuel-sending-unit-2004",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Reset the fuel gauge after installation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-titan-9-speed-automatic-transmission-harsh-2020",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0720, P0731, P0732, P0733, P0746, P0776, P17F0",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-titan-battery-drain-and-no-start-2020",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2601, U1000",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-titan-blind-spot-warning--2020",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1A16, C1A17, C1A18",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-versa-cvt-failure-2012",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-xterra-ecm-relay-engine-stalling",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For a completed or ineligible vehicle with a stall, preserve power-loss data and test ECM power, relay control, IPDM terminals, battery and grounds before replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "nissan-xterra-ecm-relay-engine-stalling",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "campaign status and exact electrical diagnosis must be established first.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

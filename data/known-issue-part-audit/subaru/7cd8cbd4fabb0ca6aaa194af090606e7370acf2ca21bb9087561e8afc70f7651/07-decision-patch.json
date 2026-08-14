@@ -1,0 +1,1789 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "subaru-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "ed88324797d5ac462254949977ed24219b42d3f3ba5d7ef53c3c7371dfac80eb",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": true,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "7dd6356d189d33bc58827354a1d600ae96db26f1fcdd9db09b864abc7322e57d",
+      "checkpoint.json": "6b83f7c2aa7dfd2d94aeef15f98ba98d74a47628d63dff6e2e9d4028e6505d1f",
+      "diagnostic-tool-evidence.json": "45ab890275d8a3ae4305bc24db4689291320b97daab50ed4ebde2558eddbc0d7"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 205,
+      "issuesWithDtcCodes": 73,
+      "uniqueDtcCount": 95,
+      "solutionInstructionCount": 208,
+      "dtcDispositionCount": 73,
+      "toolLinkedDispositionCount": 75,
+      "procedureNoToolDispositionCount": 178,
+      "unresolvedToolHoldCount": 28,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "subaru-ascent-cvt-hesitation-2019",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-crosstrek-cvt-chain-stretch-2013",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-crosstrek-wheel-bearing-2013",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0035, C0036",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-forester-ej255-turbo-piston-ringland-cracking-engine-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A cracked ringland is confirmed by a leakdown/compression test on the affected cylinder;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-forester-premature-front-rear-wheel-bearing-hub-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0040, C0045, C0050",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-forester-ac-compressor-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A/C clutch relay and pressure switch should be tested before assuming compressor failure.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-forester-brake-light-switch-silicone-contamination-no-start-stuck-par",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Out of warranty/recall, the switch itself is an inexpensive part (~$30-50) but diagnosis of a no-start or no-shift complaint is often misattributed to the battery, starter, or ignition before the switch is found.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-forester-cvt-failure-2014",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-forester-front-passenger-occupant-detection-system-sensor-mat-harness",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1760",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-forester-denso-low-pressure-tank-fuel-pump-failure-causing-sudden-sta",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "budget for intermittent stalling diagnosis since the failure can be load/temperature dependent and may not store a code.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-impreza-phase-i-ej25d-dohc-2-5l-internal-head-gasket-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace both head gaskets with updated multi-layer-steel gaskets, resurface/pressure-test the heads, and replace the timing belt, water pump, and thermostat while the front of the engine is open.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-impreza-cvt-failure-2012",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-legacy-cvt-failure-2010",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-legacy-thermo-control-valve-failure-2021",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis typically starts with scanning for cooling-system related DTCs and confirming abnormal coolant temperature behavior or heater output.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-outback-p0741-torque-converter-clutch-stuck-off-from-failed-lockup-s",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test the lockup solenoid;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-outback-cvt-valve-body-internal-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If you experience harsh/delayed engagement, flaring, jerking, or a transmission warning, scan for CVT codes and get it evaluated quickly.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-outback-cvt-valve-body-internal-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Out of warranty, a rebuilt/updated valve body is far cheaper than a complete CVT unit — get a diagnosis of the specific failed component before authorizing a full replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-outback-hvac-blower-motor-fan-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "test whether the fan runs on HIGH only (points to the resistor on manual systems, or the power transistor on auto-climate cars);",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-outback-hvac-blower-motor-fan-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Auto-climate cars with no fan and a dead A/C light may need control-head diagnosis.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-outback-sunroof-moonroof-drain-tube-clog-causing-interior-water-leak",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose by pouring a small amount of water into the sunroof channel corners and watching where it exits — it should drain out below each A-pillar/rocker, not into the cabin.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-fb25-oil-consumption-2011",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If consumption test confirms issue, piston ring replacement may be covered.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-fb25-cvt-2012",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-outback-c-condenser-refrigerant-line-leak-causing-loss-cooling",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Pressure-test/UV-dye the system to locate the leak, then replace the leaking A/C condenser (or repair the damaged line / failed O-ring), evacuate and recharge the system.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-outback-thermo-control-valve-failure-2020",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis usually begins with stored cooling-system related DTCs and confirmation of improper thermo control valve operation using scan data.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-solterra-interior-squeaks-rattles",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "document the source (video/audio) to speed diagnosis.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-wrx-secondary-air-injection-pump-2006",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis usually starts with scanning for secondary air system codes and commanding the pump/valves with a capable scan tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-wrx-sti-boost-leak-wastegate-2004",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Perform a boost leak test with a pressure tester ($30-$50 DIY tool).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "subaru-wrx-sti-intercooler-y-pipe-turbo-inlet-coupler-tearing-post-maf-air-leak-underboost",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Pressure test the charge system;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [],
+  "removalProposals": [],
+  "releaseBlockers": [
+    {
+      "type": "no-reviewed-commerce-writes",
+      "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "ed88324797d5ac462254949977ed24219b42d3f3ba5d7ef53c3c7371dfac80eb",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "7dd6356d189d33bc58827354a1d600ae96db26f1fcdd9db09b864abc7322e57d",
+        "checkpoint.json": "6b83f7c2aa7dfd2d94aeef15f98ba98d74a47628d63dff6e2e9d4028e6505d1f",
+        "diagnostic-tool-evidence.json": "45ab890275d8a3ae4305bc24db4689291320b97daab50ed4ebde2558eddbc0d7"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 205,
+        "issuesWithDtcCodes": 73,
+        "uniqueDtcCount": 95,
+        "solutionInstructionCount": 208,
+        "dtcDispositionCount": 73,
+        "toolLinkedDispositionCount": 75,
+        "procedureNoToolDispositionCount": 178,
+        "unresolvedToolHoldCount": 28,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "subaru-ascent-cvt-hesitation-2019",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-crosstrek-cvt-chain-stretch-2013",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-crosstrek-wheel-bearing-2013",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0035, C0036",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-forester-ej255-turbo-piston-ringland-cracking-engine-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A cracked ringland is confirmed by a leakdown/compression test on the affected cylinder;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-forester-premature-front-rear-wheel-bearing-hub-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0040, C0045, C0050",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-forester-ac-compressor-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A/C clutch relay and pressure switch should be tested before assuming compressor failure.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-forester-brake-light-switch-silicone-contamination-no-start-stuck-par",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Out of warranty/recall, the switch itself is an inexpensive part (~$30-50) but diagnosis of a no-start or no-shift complaint is often misattributed to the battery, starter, or ignition before the switch is found.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-forester-cvt-failure-2014",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-forester-front-passenger-occupant-detection-system-sensor-mat-harness",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1760",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-forester-denso-low-pressure-tank-fuel-pump-failure-causing-sudden-sta",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "budget for intermittent stalling diagnosis since the failure can be load/temperature dependent and may not store a code.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-impreza-phase-i-ej25d-dohc-2-5l-internal-head-gasket-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace both head gaskets with updated multi-layer-steel gaskets, resurface/pressure-test the heads, and replace the timing belt, water pump, and thermostat while the front of the engine is open.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-impreza-cvt-failure-2012",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-legacy-cvt-failure-2010",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-legacy-thermo-control-valve-failure-2021",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis typically starts with scanning for cooling-system related DTCs and confirming abnormal coolant temperature behavior or heater output.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-outback-p0741-torque-converter-clutch-stuck-off-from-failed-lockup-s",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test the lockup solenoid;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-outback-cvt-valve-body-internal-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If you experience harsh/delayed engagement, flaring, jerking, or a transmission warning, scan for CVT codes and get it evaluated quickly.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-outback-cvt-valve-body-internal-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Out of warranty, a rebuilt/updated valve body is far cheaper than a complete CVT unit — get a diagnosis of the specific failed component before authorizing a full replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-outback-hvac-blower-motor-fan-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "test whether the fan runs on HIGH only (points to the resistor on manual systems, or the power transistor on auto-climate cars);",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-outback-hvac-blower-motor-fan-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Auto-climate cars with no fan and a dead A/C light may need control-head diagnosis.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-outback-sunroof-moonroof-drain-tube-clog-causing-interior-water-leak",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose by pouring a small amount of water into the sunroof channel corners and watching where it exits — it should drain out below each A-pillar/rocker, not into the cabin.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-fb25-oil-consumption-2011",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If consumption test confirms issue, piston ring replacement may be covered.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-fb25-cvt-2012",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-outback-c-condenser-refrigerant-line-leak-causing-loss-cooling",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Pressure-test/UV-dye the system to locate the leak, then replace the leaking A/C condenser (or repair the damaged line / failed O-ring), evacuate and recharge the system.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-outback-thermo-control-valve-failure-2020",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis usually begins with stored cooling-system related DTCs and confirmation of improper thermo control valve operation using scan data.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-solterra-interior-squeaks-rattles",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "document the source (video/audio) to speed diagnosis.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-wrx-secondary-air-injection-pump-2006",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis usually starts with scanning for secondary air system codes and commanding the pump/valves with a capable scan tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-wrx-sti-boost-leak-wastegate-2004",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Perform a boost leak test with a pressure tester ($30-$50 DIY tool).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "subaru-wrx-sti-intercooler-y-pipe-turbo-inlet-coupler-tearing-post-maf-air-leak-underboost",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Pressure test the charge system;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 205,
+      "reviewedProposalPartRows": 0,
+      "approvedRows": 0,
+      "selectedPrimaryRows": 0,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 0,
+      "heldProposalRows": 0,
+      "blockedExistingClaimRows": 0,
+      "changedIssueCount": 0,
+      "mergedStablePartCount": 0,
+      "manifestIssueCount": 0,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "8edfbe89609e66b9168121df6ed10937e9f16287e29a01d76c59c26892ba2465",
+      "01-disposition-ledger.json": "687938b1c2d1fc0e61fe5ae8ec9b49c79d0261909a6949d8067648bed9a69ef9",
+      "02-fitment-worklist.json": "63ed2912da86fbf5a111ebfbf7dccee9845d2b245d76cb1321f38f5ec7f54f5e",
+      "03-showmetheparts-evidence.json": "73e40ce4a98c084a542f15c25e76403d95f594265eb8a39abe8c459505e705cd",
+      "04-part-proposals.json": "65c868445396699a642c00ca89928af6107993e9e0e9d4ba1e8a89f34d78ba4e",
+      "05-direct-link-evidence.json": "2cd7ae152a12d0698892195d40cd27254498f3ee2bd5a3be64da4d2753a20079",
+      "06-independent-review.json": "b25e965421066bc9b82796541fe1c3426f7f626238d3c1bcf0222ef16855efde",
+      "classification-ledger.json": "7dd6356d189d33bc58827354a1d600ae96db26f1fcdd9db09b864abc7322e57d",
+      "checkpoint.json": "6b83f7c2aa7dfd2d94aeef15f98ba98d74a47628d63dff6e2e9d4028e6505d1f",
+      "diagnostic-tool-evidence.json": "45ab890275d8a3ae4305bc24db4689291320b97daab50ed4ebde2558eddbc0d7"
+    },
+    "reviewRows": [],
+    "removalProposals": [],
+    "releaseBlockers": [
+      {
+        "type": "no-reviewed-commerce-writes",
+        "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "subaru-ascent-ac-condenser-leak-2019",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-battery-drain-2019",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-cvt-hesitation-2019",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-denso-low-pressure-fuel-pump-impeller-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-fa24f-pcv-hose-oil-fuel-hot-rubber-odor-under-hood",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-fuel-pump-recall-2019",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-open-tailgate-drains-12v-battery-hours",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-spontaneously-cracking-windshield",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-tr690-cvt-chain-slip-chain-guide-breakage",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-valve-body-failure-2019",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-ascent-windshield-crack-2019",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-baja-bed-rust-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-baja-head-gasket-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-baja-rear-strut-tower-2003",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-baja-turbo-failure-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-denso-low-pressure-fuel-pump-impeller-swelling",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-fa20-rough-idle-hunting-stall-ecm-reflash",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-fa20-valve-spring-fracture-stall-no-start",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-fa24-excessive-rtv-sealant-clogs-oil-pickup-engine-failure",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-fa24-oil-starvation-track-right-hand-cornering-pressure-drop",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-oil-consumption-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-rear-combination-lamp-capacitor-failure-turn-signal-inoperat",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-rear-diff-whine-2022",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-throwout-bearing-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-brz-valve-spring-recall-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-2-0l-manual-transmission-hesitation-lack-power-1500-3500-rpm",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-2019-left-rear-door-window-glass-improper-tempering",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-cvt-chain-stretch-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-cvt-hesitation-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-denso-low-pressure-fuel-pump-impeller-failure-causing-stall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-eyesight-phantom-pre-collision-braking",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-front-driveshaft-quench-crack-failure",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-infotainment-freeze-2018",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-oil-consumption-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-rear-brake-seize-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-starlink-gen-3-0-head-unit-freezing-reboots-audio-lockup",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-sunshine-orange-thin-paint-chipping-hood-roof",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-wheel-bearing-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-crosstrek-windshield-crack-2018",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-fb25-ac-compressor-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-fb25-battery-drain-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-fb25-cvt-2012",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-fb25-head-gasket-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-fb25-oil-consumption-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-fb25-starlink-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-fb25-suspension-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-fb25-windshield-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-ac-compressor-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-brake-light-switch-silicone-contamination-no-start-stuck-par",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-c-condenser-internal-corrosion-refrigerant-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-catalytic-converter-efficiency-failure-often-triggered-by-oi",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-cvt-failure-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-denso-low-pressure-tank-fuel-pump-failure-causing-sudden-sta",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-ej255-turbo-piston-ringland-cracking-engine-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-electric-power-steering-gearbox-corrosion-cracking-salt-belt",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-eyesight-false-phantom-automatic-emergency-braking",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-fb25-timing-chain-tensioner-cold-start-rattle",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-front-air-fuel-ratio-sensor-heater-circuit-failure-p0031-p00",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-front-cv-axle-boot-tearing-grease-leak-causing-clicking-turn",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-front-driveshaft-outer-race-crack-breakage",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-front-lower-control-arm-forward-bushing-premature-wear-steer",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-front-passenger-occupant-detection-system-sensor-mat-harness",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-head-gasket-1998",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-ignition-coil-failure-causing-misfire-hard-cold-weather-star",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-oil-consumption-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-pcv-valve-separation-causing-loss-power-engine-damage",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-power-liftgate-won-t-stay-open-drops-shut",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-premature-front-brake-rotor-warping-brake-judder-steering-wh",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-premature-front-rear-wheel-bearing-hub-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-premature-rear-tire-inner-edge-wear-from-excess-factory-rear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-rear-coil-spring-corrosion-fracture-spring-snaps-salt-belt-s",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-rear-suspension-clunk-2009",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-secondary-air-injection-pump-relay-failure-overheat-fire-ris",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-starlink-dcm-parasitic-battery-drain-after-3g-network-shutdo",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-starlink-infotainment-screen-freezing-rebooting-black-screen",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-sunroof-moonroof-water-leak-from-clogged-detached-drain-tube",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-takata-front-passenger-airbag-inflator-rupture-risk-safety-r",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-turbo-failure-from-clogged-oil-supply-banjo-bolt-filter",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-valve-cover-gasket-spark-plug-tube-seal-oil-leak-causing-mis",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-forester-windshield-crack-2019",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-head-gasket-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-automatic-awd-torque-bind-duty-c-solenoid-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-coil-spring-2008",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-cvt-failure-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-distributor-cap-rotor-ignition-moisture-misfire",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-front-wheel-bearing-hub-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-head-gasket-1999",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-interference-engine-timing-belt-neglect",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-phase-i-ej25d-dohc-2-5l-internal-head-gasket-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-rear-wheel-arch-rocker-panel-subframe-rust",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-trailing-arm-bushing-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-wheel-bearing-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-impreza-windshield-crack-2017",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-4eat-awd-torque-bind",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-battery-drain-and-no-start-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-cvt-failure-2010",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-ej25-dohc-internal-head-gasket-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-external-head-gasket-coolant-leak-wwp-99-campaign",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-front-wheel-bearing-wear-noise",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-head-gasket-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-infotainment-head-unit-freezing-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-interference-engine-neglected-timing-belt-destroys-valves",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-low-speed-brake-pedal-pulsation-2021",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-motorized-automatic-seat-belt-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-oil-consumption-2010",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-suspension-clunk-2010",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-thermo-control-valve-failure-2021",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-legacy-windshield-cracking-easily-and-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-loyale-head-gasket-1990",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-loyale-rust-1990",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-c-condenser-refrigerant-line-leak-causing-loss-cooling",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-catalytic-converter-front-exhaust-pipe-failure-triggering-p0",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-cvt-valve-body-internal-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-denso-fuel-pump-impeller-2020",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-driver-monitoring-system-and-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-exterior-paint-peeling-clear-coat-delamination",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-eyesight-unintended-phantom-automatic-emergency-braking",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-fa24-2-4l-turbo-direct-injection-intake-valve-carbon-buildup",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-fb25-cam-carrier-valve-cover-oil-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-front-propeller-shaft-separation-from-painted-center-support",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-front-rear-wheel-hub-bearing-failure-causing-droning-humming",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-harman-kardon-touchscreen-delamination-bubbling-ghost-touche",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-hvac-blower-motor-fan-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-inhibitor-switch-water-intrusion-disabling-reverse-lights-re",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-melting-sticky-dashboard-causing-glare",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-occupant-detection-system-sensor-failure-front-passenger-air",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-p0011-bank-1-intake-cam-timing-over-advanced-from-clogged-av",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-p0016-bank-1-crank-cam-correlation-fault-from-low-dirty-oil",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-p0430-bank-2-catalytic-converter-efficiency-loss-often-prece",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-p0442-small-evap-leak-from-gas-cap-o-ring-leaking-purge-vent",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-p0455-gross-evap-leak-from-failed-purge-control-solenoid-cha",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-p0741-torque-converter-clutch-stuck-off-from-failed-lockup-s",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-premature-rear-brake-pad-rotor-wear",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-rear-differential-driveline-carrier-bearing-whine",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-rear-gate-control-module-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-rear-high-mount-brake-light-gasket-failure-causing-cargo-are",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-rodent-chewed-wiring-causing-electrical-faults",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-seat-heater-failure-or-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-sunroof-moonroof-drain-tube-clog-causing-interior-water-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-takata-passenger-airbag-inflator-explosion-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-thermo-control-valve-failure-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-outback-windshield-wiper-motor-overheating-bottom-cover-melt-crash-f",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-12v-battery-drain-2023",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-charge-port-door-freezes-sticks-fails-to-lock-release",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-charging-issues-2023",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-dc-fast-charge-limit-2023",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-driver-side-mirror-vibrates-flutters-highway-speed-blurring",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-ev-system-malfunction-drive-start-control-warning-no-start-p",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-eyesight-lane-centering-ping-pongs-between-lane-markers",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-eyesight-phantom-braking-false-pre-collision-activation",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-firm-busy-ride-excessive-road-tire-noise",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-fragile-low-profile-oe-tires-no-spare-near-useless-sealant-m",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-hub-bolt-loose-2023",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-hub-bolt-recall-2023",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-hvac-electric-c-compressor-fault-disables-defroster-defogger",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-infotainment-head-unit-random-reboot-black-screen",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-interior-squeaks-rattles",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-real-world-highway-winter-range-falls-far-short-epa-rating",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-rearview-camera-freezes-goes-blank-reverse",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-regenerative-braking-severely-limited-cold-weather",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-solterra-connect-starlink-app-remote-climate-preconditioning",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-weak-cabin-heat-slow-warm-up-from-undersized-heat-pump",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-windshield-chips-cracks-easily-weeks-long-dealer-only-adas-c",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-solterra-wireless-apple-carplay-bluetooth-drops-out",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-sti-rod-bearing-2015",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-svx-automatic-transmission-1992",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-svx-window-regulator-1992",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-tribeca-cvt-2010",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-tribeca-head-gasket-2006",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-tribeca-oil-leak-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-tribeca-timing-chain-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-battery-drain-no-start-2022",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-brake-pedal-squeak--2022",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-clutch-judder-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-eyesight-driver-assist-disablement-and-2024",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-fa24-turbo-oil-feed-2022",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-firewall-spot-weld-cracking-and-2002",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-front-driveshaft-outer-race-quench-cracking-leading-to-fract",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-fuel-filler-neck-corrosion-2002",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-infotainment-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-manual-transmission-2nd-3rd-gear-synchro-grind-notchy-cold-s",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-oil-consumption-2015",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-power-steering-pump-and-2002",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-radiator-end-tank-cracking-2002",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-rear-differential-final-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-rev-hang-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-ringland-failure-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-secondary-air-injection-pump-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-air-injection-system-secondary-air-pump-valves-failure-p0410-p244x",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-avcs-solenoid-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-boost-leak-wastegate-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-brake-fade-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-catalytic-converter-efficiency-failure-p0420-on-stock-downpipe",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-hatchback-rear-strut-tower-cracking-seam-separation-gr-sti",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-intercooler-y-pipe-turbo-inlet-coupler-tearing-post-maf-air-leak-underboost",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-oil-starvation-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-power-steering-hose-line-leak-atf-on-exhaust-smoke-burning-smell",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-rear-diff-whine-2004",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-ringland-failure-2008",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-steering-rack-internal-leak-failure-heavy-steering-fluid-loss",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-throwout-bearing-2008",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-tumble-generator-valve-tgv-sensor-motor-fault-p2004-p2005-p2011-p2016",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-sti-wheel-bearing-premature-wear-humming-growling-play-at-hub",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-suspension-clunk-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "subaru-wrx-throw-out-bearing-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

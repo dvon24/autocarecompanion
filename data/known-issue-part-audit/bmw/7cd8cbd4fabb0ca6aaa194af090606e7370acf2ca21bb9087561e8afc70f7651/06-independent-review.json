@@ -1,0 +1,1340 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "BMW",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "98940cc2cd4435cbe3dbcfb7bcdbfcef671672113347d5d574175f3aeb1803bd",
+    "02-fitment-worklist.json": "d8d0f82f17c5ec7e9407fd0494bd3d623a431682882ea039307503487f786643",
+    "03-showmetheparts-evidence.json": "d365dc76c16b886db2d2d036f7b0c957c013b722bd79ded8adcfbb18695459e8",
+    "04-part-proposals.json": "4cd81298950061e3916a89a665416dab2bad1dd4c7c18bfb7143a81f2920b411",
+    "05-direct-link-evidence.json": "24bb25bf0b20aab96d8ca97189d1a611b4dcf2f4c2d715c92cccdf79f4fa0cbf"
+  },
+  "supplementalArtifactSha256": {
+    "06-independent-review.json": "8fb4b216e2f68078dab04fd0d8bc7e00a042dbfd5320f15047052f188603892c",
+    "existing-public-claim-review.json": "1f96ec121a3ad51dd25740ae124893d33ad015dc962d86afc6b07d65f8b2ffce"
+  },
+  "proposalCount": 8,
+  "partRowCount": 12,
+  "tally": {
+    "approve": 1,
+    "block_wrong_role": 3,
+    "block_incomplete_scope": 4,
+    "block_ambiguous": 0,
+    "hold_no_exact_link": 2,
+    "hold_needs_manual": 2
+  },
+  "reconciliation": {
+    "sourceProposalCount": 8,
+    "sourcePartRowCount": 12,
+    "reviewedPartRowCount": 12,
+    "sourceIssueCount": 385,
+    "reviewedIssueCount": 385,
+    "sourceWorkItemCount": 871,
+    "reviewedWorkItemDispositionCount": 871,
+    "terminalWorkItemDispositionCount": 871,
+    "proposedWorkItemCount": 8,
+    "heldWorkItemCount": 863,
+    "workItemDispositionSha256": "fc26991a265128b09544ee26be4830d9d666845f163386475e50be974a1535b2",
+    "workItemDispositionReasonTally": {
+      "eligible-proposal": 8,
+      "fitment-confirmed": 12,
+      "fitment-no-catalog": 184,
+      "fitment-unmapped": 615,
+      "incomplete-model-or-engine-coverage": 11,
+      "no-matching-part-type": 26,
+      "no-primary": 9,
+      "unsupported-catalog-application-restriction": 3,
+      "year-sets-disagree-scope-likely-too-broad": 3
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 12,
+    "reviewedPartRowCount": 12,
+    "exactProductLinkRowCount": 6,
+    "exactProductLinkCount": 6,
+    "noExactProductLinkRowCount": 6,
+    "reviewedExactProductLinkRowCount": 6,
+    "reviewedExactProductLinkCount": 6,
+    "listingTitleSourceCount": 3,
+    "itemSpecificsSourceCount": 3,
+    "observedListingTitlePresentCount": 6,
+    "recomputedTitleHashMatchCount": 6,
+    "matchedPartNumberMatchCount": 6,
+    "observedPartNumberFieldPresentCount": 6,
+    "observedPartNumberValuePresentCount": 6,
+    "observedPartNumberValueMatchCount": 6,
+    "urlProductIdMatchCount": 6,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 82,
+  "uniqueExistingClaimCount": 37,
+  "existingClaimTally": {
+    "preserve": 5,
+    "block": 77
+  },
+  "existingClaims": [
+    {
+      "workItemId": "bmw-m3-f80-injector-failure-2015--existing-fix-part-0-0--all-engines",
+      "issueId": "bmw-m3-f80-injector-failure-2015",
+      "partNumber": "62825",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "Bosch 62825 is unscoped while the article specifies different OEM and tuned-car injector numbers and requires diagnostic selection and coding.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace failed injectors with OEM updated version (BMW 13538616079, ~$80-$120/each). For tuned cars making higher boost, 1200cc S63TU-spec Bosch injectors (13647599876 / BOS-0261500136, ~$150-$200/each) provide 33% more fuel flow. Injector coding/adaptation via BMW diagnostic software is required after replacement. Professional installation $400-$800 for complete set.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Bosch-62825-Gasoline-Direct-Injector/dp/B00YITXHG8?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-m4-s55-injector-2015--existing-fix-part-0-0--s55",
+      "issueId": "bmw-m4-s55-injector-2015",
+      "partNumber": "62825",
+      "engineWorkRow": "S55",
+      "verdict": "block",
+      "reason": "The unscoped Bosch 62825 claim does not prove the S55 injector index/application or the article's six-injector repair requirements.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace all 6 injectors together to prevent repeat repairs. Perform walnut blast carbon cleaning on intake valves while injectors are removed (labor overlap saves $400-600). Use Top Tier gasoline to minimize carbon buildup. Add fuel system cleaner (Liqui Moly Valve Clean) every 5,000 miles to reduce carbon deposits. BMW parts are expensive; some shops use OEM Bosch injectors at lower cost. Labor is 4-6 hours for injector replacement.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/Bosch-62825-Gasoline-Direct-Injector/dp/B00YITXHG8?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x1-oil-filter-housing-gasket-2013--existing-fix-part-0-0--n20",
+      "issueId": "bmw-x1-oil-filter-housing-gasket-2013",
+      "partNumber": "B32688",
+      "engineWorkRow": "N20",
+      "verdict": "block",
+      "reason": "The article primarily prescribes the oil-filter-housing gasket and makes the oil-cooler gasket conditional; the current claim is unscoped across N20 and B48.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the oil filter housing gasket and clean all affected surfaces. Also inspect and replace the oil cooler gasket if present. Use only OEM-quality gaskets as aftermarket gaskets tend to fail prematurely. Typical repair takes 2-3 hours.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-B32688-Engine-Cooler/dp/B01GAHLQ9K?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x1-oil-filter-housing-gasket-2013--existing-fix-part-0-0--b48",
+      "issueId": "bmw-x1-oil-filter-housing-gasket-2013",
+      "partNumber": "B32688",
+      "engineWorkRow": "B48",
+      "verdict": "block",
+      "reason": "The article primarily prescribes the oil-filter-housing gasket and makes the oil-cooler gasket conditional; the current claim is unscoped across N20 and B48.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the oil filter housing gasket and clean all affected surfaces. Also inspect and replace the oil cooler gasket if present. Use only OEM-quality gaskets as aftermarket gaskets tend to fail prematurely. Typical repair takes 2-3 hours.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-B32688-Engine-Cooler/dp/B01GAHLQ9K?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x3-electric-water-pump-2011--existing-fix-part-0-0--all-engines",
+      "issueId": "bmw-x3-electric-water-pump-2011",
+      "partNumber": "DEP1038",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "DEP1038 is unscoped across a sixteen-year, multi-engine article and omits the separately prescribed thermostat.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat together, as they are part of the same cooling circuit and the thermostat often fails concurrently. Bleed the cooling system thoroughly after replacement. Some owners carry a spare pump due to the sudden failure nature.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/127935485294?_skw=Dayco+DEP1038+Electric+Engine+Water+Pump&hash=item1dc98c956e%3Ag%3AnCUAAeSwlv5qOa3J&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://www.amazon.com/Dayco-DEP1038-Water-Light-Truck/dp/B0CPTL7DTJ?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x3-valve-cover-gasket-2004--existing-fix-part-0-0--m54",
+      "issueId": "bmw-x3-valve-cover-gasket-2004",
+      "partNumber": "VS50711",
+      "engineWorkRow": "M54",
+      "verdict": "block",
+      "reason": "VS50711 is unscoped across M54 and N52 applications and does not cover the article's additional VANOS O-ring branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace valve cover gasket and VANOS solenoid o-rings ($300-500 independent shop, $700-1,000 dealer, $80-150 DIY parts). On M54 engines, also replace ignition coil boots if contaminated by oil ($50 additional). Use OEM BMW gasket or Victor Reinz brand - aftermarket quality matters for long-term seal. Relatively straightforward DIY repair - saves $200-400 in labor. YouTube and Bimmerfest have detailed model-specific guides. Monitor oil level weekly and top off as needed (1 quart low is OK, 2+ quarts low risks engine damage).",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-VS50711-Engine-Gasket/dp/B01GAHNGX4?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x3-valve-cover-gasket-2004--existing-fix-part-0-0--n52",
+      "issueId": "bmw-x3-valve-cover-gasket-2004",
+      "partNumber": "VS50711",
+      "engineWorkRow": "N52",
+      "verdict": "block",
+      "reason": "VS50711 is unscoped across M54 and N52 applications and does not cover the article's additional VANOS O-ring branch.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace valve cover gasket and VANOS solenoid o-rings ($300-500 independent shop, $700-1,000 dealer, $80-150 DIY parts). On M54 engines, also replace ignition coil boots if contaminated by oil ($50 additional). Use OEM BMW gasket or Victor Reinz brand - aftermarket quality matters for long-term seal. Relatively straightforward DIY repair - saves $200-400 in labor. YouTube and Bimmerfest have detailed model-specific guides. Monitor oil level weekly and top off as needed (1 quart low is OK, 2+ quarts low risks engine damage).",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-VS50711-Engine-Gasket/dp/B01GAHNGX4?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x3-valve-cover-gasket-2011--existing-fix-part-0-0--n20",
+      "issueId": "bmw-x3-valve-cover-gasket-2011",
+      "partNumber": "VS50711",
+      "engineWorkRow": "N20",
+      "verdict": "block",
+      "reason": "VS50711 is unscoped across N20 and B48 generations, and exact application for this later X3 article is not established.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the valve cover gasket. Inspect the valve cover for warping or cracks — if damaged, replace the entire cover assembly. Clean all oil residue from surrounding components. Use a torque wrench to prevent over-tightening which causes cover warping.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-VS50711-Engine-Gasket/dp/B01GAHNGX4?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x3-valve-cover-gasket-2011--existing-fix-part-0-0--b48",
+      "issueId": "bmw-x3-valve-cover-gasket-2011",
+      "partNumber": "VS50711",
+      "engineWorkRow": "B48",
+      "verdict": "block",
+      "reason": "VS50711 is unscoped across N20 and B48 generations, and exact application for this later X3 article is not established.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the valve cover gasket. Inspect the valve cover for warping or cracks — if damaged, replace the entire cover assembly. Clean all oil residue from surrounding components. Use a torque wrench to prevent over-tightening which causes cover warping.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.amazon.com/MAHLE-Original-VS50711-Engine-Gasket/dp/B01GAHNGX4?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x4-electric-water-pump-2015--existing-fix-part-0-0--all-engines",
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "partNumber": "DEP1038",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "DEP1038 is unscoped across the article's unknown engines and incomplete without the prescribed thermostat.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat as a pair. Bleed the cooling system completely after installation. Keep a close eye on coolant temperature gauge as early detection is key to preventing engine damage from overheating.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/127935485294?_skw=Dayco+DEP1038+Electric+Engine+Water+Pump&hash=item1dc98c956e%3Ag%3AnCUAAeSwlv5qOa3J&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://www.amazon.com/Dayco-DEP1038-Water-Light-Truck/dp/B0CPTL7DTJ?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-0--n52",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206859714",
+      "engineWorkRow": "N52",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-0--n62",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206859714",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-0--m57",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206859714",
+      "engineWorkRow": "M57",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-0--n55",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206859714",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-0--n63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206859714",
+      "engineWorkRow": "N63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-0--s63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206859714",
+      "engineWorkRow": "S63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-1--n52",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206799419 (superseded)",
+      "engineWorkRow": "N52",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-1--n62",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206799419 (superseded)",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-1--m57",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206799419 (superseded)",
+      "engineWorkRow": "M57",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-1--n55",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206799419 (superseded)",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-1--n63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206799419 (superseded)",
+      "engineWorkRow": "N63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-1--s63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206799419 (superseded)",
+      "engineWorkRow": "S63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-2--n52",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206789938 (superseded)",
+      "engineWorkRow": "N52",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-2--n62",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206789938 (superseded)",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-2--m57",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206789938 (superseded)",
+      "engineWorkRow": "M57",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-2--n55",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206789938 (superseded)",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-2--n63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206789938 (superseded)",
+      "engineWorkRow": "N63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-2--s63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37206789938 (superseded)",
+      "engineWorkRow": "S63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-3--n52",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226785506 (superseded)",
+      "engineWorkRow": "N52",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-3--n62",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226785506 (superseded)",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-3--m57",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226785506 (superseded)",
+      "engineWorkRow": "M57",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-3--n55",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226785506 (superseded)",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-3--n63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226785506 (superseded)",
+      "engineWorkRow": "N63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-3--s63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226785506 (superseded)",
+      "engineWorkRow": "S63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-4--n52",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226775479 (superseded)",
+      "engineWorkRow": "N52",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-4--n62",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226775479 (superseded)",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-4--m57",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226775479 (superseded)",
+      "engineWorkRow": "M57",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-4--n55",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226775479 (superseded)",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-4--n63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226775479 (superseded)",
+      "engineWorkRow": "N63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-air-suspension-compressor-2007--existing-fix-part-0-4--s63",
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "partNumber": "37226775479 (superseded)",
+      "engineWorkRow": "S63",
+      "verdict": "block",
+      "reason": "The air-supply assembly is diagnosis- and VIN-conditional, but the current public claim has no enforceable fitment or completed EHC diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-coolant-pipe-leak-2007--existing-fix-part-0-0--n62",
+      "issueId": "bmw-x5-coolant-pipe-leak-2007",
+      "partNumber": "11141439975",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The N62 transfer pipe is pressure-test- and VIN-conditional, while the current public claim has no machine-enforceable fitment or diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system cold and inspect the engine valley and all accessible connections to identify the exact leak before ordering parts. If inspection confirms the N62 transfer pipe and BMW ETK/AIR selects it for the VIN, replace pipe 11-14-1-439-975 with the required seals and one-time-use hardware from the VIN-specific repair diagram. Refill and bleed the cooling system with the specified coolant, repeat the pressure test, and verify stable temperature. Do not automatically replace an N63 pipe, thermostat, or unrelated hoses from this article.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/267652027149\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-coolant_pipe_flow-11141439975.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-coolant-pipe-leak-2007--existing-fix-part-0-0--n62tu",
+      "issueId": "bmw-x5-coolant-pipe-leak-2007",
+      "partNumber": "11141439975",
+      "engineWorkRow": "N62TU",
+      "verdict": "block",
+      "reason": "The N62 transfer pipe is pressure-test- and VIN-conditional, while the current public claim has no machine-enforceable fitment or diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Pressure-test the cooling system cold and inspect the engine valley and all accessible connections to identify the exact leak before ordering parts. If inspection confirms the N62 transfer pipe and BMW ETK/AIR selects it for the VIN, replace pipe 11-14-1-439-975 with the required seals and one-time-use hardware from the VIN-specific repair diagram. Refill and bleed the cooling system with the specified coolant, repeat the pressure test, and verify stable temperature. Do not automatically replace an N63 pipe, thermostat, or unrelated hoses from this article.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/267652027149\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-coolant_pipe_flow-11141439975.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-n63-oil-consumption-2010--existing-fix-part-0-0--n63",
+      "issueId": "bmw-x5-n63-oil-consumption-2010",
+      "partNumber": "11340054492",
+      "engineWorkRow": "N63",
+      "verdict": "block",
+      "reason": "Valve-stem seals are only one possible cause after formal oil-consumption diagnosis, yet the current claim is unscoped and immediately linkable.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Keep the oil at the correct approved level, inspect for external and turbo/ventilation-system leaks, and have a BMW center or qualified BMW specialist perform the applicable oil-consumption test and diagnostic checks. Ask the dealer to verify VIN-specific eligibility for the early N63 or N63TU1 settlement/service benefits before buying parts. Replace valve-stem seals only when testing and inspection confirm that repair path. The current BMW valve-seal kit is 11-34-0-054-492, which supersedes 11-34-0-039-494; BMW specifies two 16-seal kits for the V8, plus VIN-specific one-time-use gaskets, seals, injector hardware, oil, and filter. Turbo, oil-separator, ventilation-line, or engine replacement is conditional on the corresponding inspection result.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/227028512551\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-n63-oil-consumption-2010--existing-fix-part-0-0--n63tu1",
+      "issueId": "bmw-x5-n63-oil-consumption-2010",
+      "partNumber": "11340054492",
+      "engineWorkRow": "N63TU1",
+      "verdict": "block",
+      "reason": "Valve-stem seals are only one possible cause after formal oil-consumption diagnosis, yet the current claim is unscoped and immediately linkable.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Keep the oil at the correct approved level, inspect for external and turbo/ventilation-system leaks, and have a BMW center or qualified BMW specialist perform the applicable oil-consumption test and diagnostic checks. Ask the dealer to verify VIN-specific eligibility for the early N63 or N63TU1 settlement/service benefits before buying parts. Replace valve-stem seals only when testing and inspection confirm that repair path. The current BMW valve-seal kit is 11-34-0-054-492, which supersedes 11-34-0-039-494; BMW specifies two 16-seal kits for the V8, plus VIN-specific one-time-use gaskets, seals, injector hardware, oil, and filter. Turbo, oil-separator, ventilation-line, or engine replacement is conditional on the corresponding inspection result.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/227028512551\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-n63-oil-consumption-2010--existing-fix-part-0-1--n63",
+      "issueId": "bmw-x5-n63-oil-consumption-2010",
+      "partNumber": "11340039494 (superseded)",
+      "engineWorkRow": "N63",
+      "verdict": "block",
+      "reason": "Valve-stem seals are only one possible cause after formal oil-consumption diagnosis, yet the current claim is unscoped and immediately linkable.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Keep the oil at the correct approved level, inspect for external and turbo/ventilation-system leaks, and have a BMW center or qualified BMW specialist perform the applicable oil-consumption test and diagnostic checks. Ask the dealer to verify VIN-specific eligibility for the early N63 or N63TU1 settlement/service benefits before buying parts. Replace valve-stem seals only when testing and inspection confirm that repair path. The current BMW valve-seal kit is 11-34-0-054-492, which supersedes 11-34-0-039-494; BMW specifies two 16-seal kits for the V8, plus VIN-specific one-time-use gaskets, seals, injector hardware, oil, and filter. Turbo, oil-separator, ventilation-line, or engine replacement is conditional on the corresponding inspection result.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/227028512551\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-n63-oil-consumption-2010--existing-fix-part-0-1--n63tu1",
+      "issueId": "bmw-x5-n63-oil-consumption-2010",
+      "partNumber": "11340039494 (superseded)",
+      "engineWorkRow": "N63TU1",
+      "verdict": "block",
+      "reason": "Valve-stem seals are only one possible cause after formal oil-consumption diagnosis, yet the current claim is unscoped and immediately linkable.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Keep the oil at the correct approved level, inspect for external and turbo/ventilation-system leaks, and have a BMW center or qualified BMW specialist perform the applicable oil-consumption test and diagnostic checks. Ask the dealer to verify VIN-specific eligibility for the early N63 or N63TU1 settlement/service benefits before buying parts. Replace valve-stem seals only when testing and inspection confirm that repair path. The current BMW valve-seal kit is 11-34-0-054-492, which supersedes 11-34-0-039-494; BMW specifies two 16-seal kits for the V8, plus VIN-specific one-time-use gaskets, seals, injector hardware, oil, and filter. Turbo, oil-separator, ventilation-line, or engine replacement is conditional on the corresponding inspection result.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/227028512551\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-n63-oil-consumption-2010--existing-fix-part-0-2--n63",
+      "issueId": "bmw-x5-n63-oil-consumption-2010",
+      "partNumber": "Elring 199.440 (16-seal kit; order two)",
+      "engineWorkRow": "N63",
+      "verdict": "block",
+      "reason": "Valve-stem seals are only one possible cause after formal oil-consumption diagnosis, yet the current claim is unscoped and immediately linkable.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Keep the oil at the correct approved level, inspect for external and turbo/ventilation-system leaks, and have a BMW center or qualified BMW specialist perform the applicable oil-consumption test and diagnostic checks. Ask the dealer to verify VIN-specific eligibility for the early N63 or N63TU1 settlement/service benefits before buying parts. Replace valve-stem seals only when testing and inspection confirm that repair path. The current BMW valve-seal kit is 11-34-0-054-492, which supersedes 11-34-0-039-494; BMW specifies two 16-seal kits for the V8, plus VIN-specific one-time-use gaskets, seals, injector hardware, oil, and filter. Turbo, oil-separator, ventilation-line, or engine replacement is conditional on the corresponding inspection result.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/227028512551\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-n63-oil-consumption-2010--existing-fix-part-0-2--n63tu1",
+      "issueId": "bmw-x5-n63-oil-consumption-2010",
+      "partNumber": "Elring 199.440 (16-seal kit; order two)",
+      "engineWorkRow": "N63TU1",
+      "verdict": "block",
+      "reason": "Valve-stem seals are only one possible cause after formal oil-consumption diagnosis, yet the current claim is unscoped and immediately linkable.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Keep the oil at the correct approved level, inspect for external and turbo/ventilation-system leaks, and have a BMW center or qualified BMW specialist perform the applicable oil-consumption test and diagnostic checks. Ask the dealer to verify VIN-specific eligibility for the early N63 or N63TU1 settlement/service benefits before buying parts. Replace valve-stem seals only when testing and inspection confirm that repair path. The current BMW valve-seal kit is 11-34-0-054-492, which supersedes 11-34-0-039-494; BMW specifies two 16-seal kits for the V8, plus VIN-specific one-time-use gaskets, seals, injector hardware, oil, and filter. Turbo, oil-separator, ventilation-line, or engine replacement is conditional on the corresponding inspection result.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/227028512551\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-n63-timing-chain-2008--existing-fix-part-0-0--n63",
+      "issueId": "bmw-x5-n63-timing-chain-2008",
+      "partNumber": "",
+      "engineWorkRow": "N63",
+      "verdict": "preserve",
+      "reason": "This is a text-only, no-link warning that explicitly requires the ISTA elongation test and does not expose a retail product.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Check the VIN and service history with a BMW center, diagnose stored VANOS/camshaft faults first, and run BMW's ISTA timing-chain elongation test. If the result is 'Timing chain is OK,' do not replace parts on this claim. If it is 'not OK,' BMW SIB 11 16 14 directs replacement of both timing chains under the VIN-specific repair instruction, followed by the required oil/filter service, priming steps, programming, and shorter oil-service interval. A single tensioner 11-31-7-557-741 or a generic Cloyes kit is not the complete repair and must not be presented as what the owner needs. Tow the vehicle rather than driving it when severe mechanical noise, oil-pressure warnings, or loss of timing is present.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: []"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-oil-leaks-2000--existing-fix-part-0-0--m54",
+      "issueId": "bmw-x5-oil-leaks-2000",
+      "partNumber": "11120030496",
+      "engineWorkRow": "M54",
+      "verdict": "block",
+      "reason": "The gasket is conditional on leak-source and cover inspection, but the current public claim has no completed diagnosis gate or enforceable fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Clean the engine and trace the highest fresh-oil source before ordering a gasket. If the leak is at the M54 cylinder-head-cover perimeter or spark-plug-well seals, inspect the plastic cover for cracks, warpage, damaged fastener grommets, and crankcase-ventilation faults. Reuse the cover only if it passes inspection, then install VIN/production-confirmed gasket set 11-12-0-030-496 with the BMW-specified grommets and sealant locations and torque sequence. If the cover or another oil circuit is the source, select that separate repair instead.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/232691656138\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-set_of_profile_gaskets-11120030496.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-oil-leaks-2000--existing-fix-part-0-1--m54",
+      "issueId": "bmw-x5-oil-leaks-2000",
+      "partNumber": "11129070990 (earlier production; verify by VIN)",
+      "engineWorkRow": "M54",
+      "verdict": "block",
+      "reason": "The gasket is conditional on leak-source and cover inspection, but the current public claim has no completed diagnosis gate or enforceable fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Clean the engine and trace the highest fresh-oil source before ordering a gasket. If the leak is at the M54 cylinder-head-cover perimeter or spark-plug-well seals, inspect the plastic cover for cracks, warpage, damaged fastener grommets, and crankcase-ventilation faults. Reuse the cover only if it passes inspection, then install VIN/production-confirmed gasket set 11-12-0-030-496 with the BMW-specified grommets and sealant locations and torque sequence. If the cover or another oil circuit is the source, select that separate repair instead.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/232691656138\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-set_of_profile_gaskets-11120030496.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-oil-leaks-2000--existing-fix-part-0-2--m54",
+      "issueId": "bmw-x5-oil-leaks-2000",
+      "partNumber": "Beck Arnley 036-1771 (ShowMeTheParts part key 000642270)",
+      "engineWorkRow": "M54",
+      "verdict": "block",
+      "reason": "The gasket is conditional on leak-source and cover inspection, but the current public claim has no completed diagnosis gate or enforceable fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Clean the engine and trace the highest fresh-oil source before ordering a gasket. If the leak is at the M54 cylinder-head-cover perimeter or spark-plug-well seals, inspect the plastic cover for cracks, warpage, damaged fastener grommets, and crankcase-ventilation faults. Reuse the cover only if it passes inspection, then install VIN/production-confirmed gasket set 11-12-0-030-496 with the BMW-specified grommets and sealant locations and torque sequence. If the cover or another oil circuit is the source, select that separate repair instead.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/232691656138\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-set_of_profile_gaskets-11120030496.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-oil-leaks-2000--existing-fix-part-0-3--m54",
+      "issueId": "bmw-x5-oil-leaks-2000",
+      "partNumber": "MAHLE VS50448 (ShowMeTheParts part key 006469076; M54)",
+      "engineWorkRow": "M54",
+      "verdict": "block",
+      "reason": "The gasket is conditional on leak-source and cover inspection, but the current public claim has no completed diagnosis gate or enforceable fitment.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Clean the engine and trace the highest fresh-oil source before ordering a gasket. If the leak is at the M54 cylinder-head-cover perimeter or spark-plug-well seals, inspect the plastic cover for cracks, warpage, damaged fastener grommets, and crankcase-ventilation faults. Reuse the cover only if it passes inspection, then install VIN/production-confirmed gasket set 11-12-0-030-496 with the BMW-specified grommets and sealant locations and torque sequence. If the cover or another oil circuit is the source, select that separate repair instead.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/232691656138\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-set_of_profile_gaskets-11120030496.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-0--n52",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "27102449709",
+      "engineWorkRow": "N52",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-0--n62",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "27102449709",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-0--m57",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "27102449709",
+      "engineWorkRow": "M57",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-0--s63",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "27102449709",
+      "engineWorkRow": "S63",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-1--n52",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "27107568267 (superseded)",
+      "engineWorkRow": "N52",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-1--n62",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "27107568267 (superseded)",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-1--m57",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "27107568267 (superseded)",
+      "engineWorkRow": "M57",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-1--s63",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "27107568267 (superseded)",
+      "engineWorkRow": "S63",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-2--n52",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "S-TEC SP00228",
+      "engineWorkRow": "N52",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-2--n62",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "S-TEC SP00228",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-2--m57",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "S-TEC SP00228",
+      "engineWorkRow": "M57",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2000--existing-fix-part-0-2--s63",
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "partNumber": "S-TEC SP00228",
+      "engineWorkRow": "S63",
+      "verdict": "block",
+      "reason": "The ATC700 motor is VIN- and VTG-diagnosis-dependent, while the current public link can render before those conditions are met.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-exchange_servomotor-27102449709.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2007--existing-fix-part-0-0--all-engines",
+      "issueId": "bmw-x5-transfer-case-actuator-2007",
+      "partNumber": "83222409710",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "DTF-1 service is only selected after the SIB tire, fault, and clutch-deactivation tests; the public claim has no diagnosis gate or vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Follow BMW SIB 27 02 20 in order: verify all four tires for VIN-correct size, brand/application, axle placement, and wear; diagnose any powertrain faults; then use ISTA to temporarily deactivate the transfer-case clutch and road-test the complaint. Only if the shudder disappears with the VTG deactivated does BMW direct an ATX13-X oil change with DTF-1, followed by VTG calibration. The clutch plates can require up to 125 miles after the service to become fully saturated and smooth out. If the symptom remains, continue diagnosis rather than buying an actuator or transfer case. Part numbers for any further repair must be selected by VIN in ETK/AIR.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-dtf_1-83222409710.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-transfer-case-actuator-2007--existing-fix-part-0-1--all-engines",
+      "issueId": "bmw-x5-transfer-case-actuator-2007",
+      "partNumber": "83225A4F016 (current catalog supersession where applicable)",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "DTF-1 service is only selected after the SIB tire, fault, and clutch-deactivation tests; the public claim has no diagnosis gate or vehicle scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Follow BMW SIB 27 02 20 in order: verify all four tires for VIN-correct size, brand/application, axle placement, and wear; diagnose any powertrain faults; then use ISTA to temporarily deactivate the transfer-case clutch and road-test the complaint. Only if the shudder disappears with the VTG deactivated does BMW direct an ATX13-X oil change with DTF-1, followed by VTG calibration. The clutch plates can require up to 125 miles after the service to become fully saturated and smooth out. If the symptom remains, continue diagnosis rather than buying an actuator or transfer case. Part numbers for any further repair must be selected by VIN in ETK/AIR.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-dtf_1-83222409710.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-valve-stem-seals-2000--existing-fix-part-0-0--n62",
+      "issueId": "bmw-x5-valve-stem-seals-2000",
+      "partNumber": "11340029751",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The two-kit valve-seal repair is diagnosis- and VIN-conditional, while the current unscoped public claim can render before confirmation.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Measure oil consumption under consistent conditions, inspect for external leaks and crankcase-ventilation faults, check intake contamination, evaluate spark plugs and cylinders, and have a BMW-capable shop confirm the valve-stem-seal diagnosis. If the N62 seals are confirmed and BMW ETK/AIR selects 11-34-0-029-751 for the VIN, the 32-valve V8 requires two 16-seal kits, one for each bank. Use the BMW repair procedure and special tools, replace only the additional seals and one-time-use hardware identified by the VIN-specific diagram, then verify compression, oil use, and smoke after repair. Oil or an oil filter does not repair hardened valve-stem seals.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/277072199375\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-valve-stem-seals-2000--existing-fix-part-0-1--n62",
+      "issueId": "bmw-x5-valve-stem-seals-2000",
+      "partNumber": "Victor Reinz 12-37281-01 / 199.440 (16 seals; quantity 2)",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The two-kit valve-seal repair is diagnosis- and VIN-conditional, while the current unscoped public claim can render before confirmation.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Measure oil consumption under consistent conditions, inspect for external leaks and crankcase-ventilation faults, check intake contamination, evaluate spark plugs and cylinders, and have a BMW-capable shop confirm the valve-stem-seal diagnosis. If the N62 seals are confirmed and BMW ETK/AIR selects 11-34-0-029-751 for the VIN, the 32-valve V8 requires two 16-seal kits, one for each bank. Use the BMW repair procedure and special tools, replace only the additional seals and one-time-use hardware identified by the VIN-specific diagram, then verify compression, oil use, and smoke after repair. Oil or an oil filter does not repair hardened valve-stem seals.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/277072199375\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-valve-stem-seals-2000--existing-fix-part-0-2--n62",
+      "issueId": "bmw-x5-valve-stem-seals-2000",
+      "partNumber": "MAHLE SS46055 (ShowMeTheParts part key 006471628; N62/N62B48; 16 seals; quantity 2)",
+      "engineWorkRow": "N62",
+      "verdict": "block",
+      "reason": "The two-kit valve-seal repair is diagnosis- and VIN-conditional, while the current unscoped public claim can render before confirmation.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Measure oil consumption under consistent conditions, inspect for external leaks and crankcase-ventilation faults, check intake contamination, evaluate spark plugs and cylinders, and have a BMW-capable shop confirm the valve-stem-seal diagnosis. If the N62 seals are confirmed and BMW ETK/AIR selects 11-34-0-029-751 for the VIN, the 32-valve V8 requires two 16-seal kits, one for each bank. Use the BMW repair procedure and special tools, replace only the additional seals and one-time-use hardware identified by the VIN-specific diagram, then verify compression, oil use, and smoke after repair. Oil or an oil filter does not repair hardened valve-stem seals.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/277072199375\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":true},{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-vanos-solenoid-2000--existing-fix-part-0-0--n51",
+      "issueId": "bmw-x5-vanos-solenoid-2000",
+      "partNumber": "",
+      "engineWorkRow": "N51",
+      "verdict": "preserve",
+      "reason": "This is a recall-first, no-link dealer-remedy card that explicitly says not to buy a VANOS part first.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Enter the VIN in BMW's official recall lookup and have an authorized BMW center complete recall 23V-707 if it is open. BMW's procedure is inspection-dependent: intact affected bolts are replaced; if bolts are loose or broken, the affected VANOS adjustment unit is replaced, and missing fragments must be recovered. The recall repair is free, so do not buy a solenoid or VANOS part first. If the VIN is outside the recall or a fault remains after the remedy, use BMW-capable diagnostics to test oil supply and pressure, wiring, sensors, control solenoids, adjustment units, and mechanical timing before selecting a part. If the engine runs roughly, makes unusual mechanical noise, loses power, or stalls, move out of traffic safely, stop driving, and contact BMW for transport guidance.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: []"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-vanos-solenoid-2000--existing-fix-part-0-0--n52k",
+      "issueId": "bmw-x5-vanos-solenoid-2000",
+      "partNumber": "",
+      "engineWorkRow": "N52K",
+      "verdict": "preserve",
+      "reason": "This is a recall-first, no-link dealer-remedy card that explicitly says not to buy a VANOS part first.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Enter the VIN in BMW's official recall lookup and have an authorized BMW center complete recall 23V-707 if it is open. BMW's procedure is inspection-dependent: intact affected bolts are replaced; if bolts are loose or broken, the affected VANOS adjustment unit is replaced, and missing fragments must be recovered. The recall repair is free, so do not buy a solenoid or VANOS part first. If the VIN is outside the recall or a fault remains after the remedy, use BMW-capable diagnostics to test oil supply and pressure, wiring, sensors, control solenoids, adjustment units, and mechanical timing before selecting a part. If the engine runs roughly, makes unusual mechanical noise, loses power, or stalls, move out of traffic safely, stop driving, and contact BMW for transport guidance.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: []"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-vanos-solenoid-2000--existing-fix-part-0-0--n52t",
+      "issueId": "bmw-x5-vanos-solenoid-2000",
+      "partNumber": "",
+      "engineWorkRow": "N52T",
+      "verdict": "preserve",
+      "reason": "This is a recall-first, no-link dealer-remedy card that explicitly says not to buy a VANOS part first.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Enter the VIN in BMW's official recall lookup and have an authorized BMW center complete recall 23V-707 if it is open. BMW's procedure is inspection-dependent: intact affected bolts are replaced; if bolts are loose or broken, the affected VANOS adjustment unit is replaced, and missing fragments must be recovered. The recall repair is free, so do not buy a solenoid or VANOS part first. If the VIN is outside the recall or a fault remains after the remedy, use BMW-capable diagnostics to test oil supply and pressure, wiring, sensors, control solenoids, adjustment units, and mechanical timing before selecting a part. If the engine runs roughly, makes unusual mechanical noise, loses power, or stalls, move out of traffic safely, stop driving, and contact BMW for transport guidance.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: []"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-vanos-solenoid-2000--existing-fix-part-0-0--n55",
+      "issueId": "bmw-x5-vanos-solenoid-2000",
+      "partNumber": "",
+      "engineWorkRow": "N55",
+      "verdict": "preserve",
+      "reason": "This is a recall-first, no-link dealer-remedy card that explicitly says not to buy a VANOS part first.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Enter the VIN in BMW's official recall lookup and have an authorized BMW center complete recall 23V-707 if it is open. BMW's procedure is inspection-dependent: intact affected bolts are replaced; if bolts are loose or broken, the affected VANOS adjustment unit is replaced, and missing fragments must be recovered. The recall repair is free, so do not buy a solenoid or VANOS part first. If the VIN is outside the recall or a fault remains after the remedy, use BMW-capable diagnostics to test oil supply and pressure, wiring, sensors, control solenoids, adjustment units, and mechanical timing before selecting a part. If the engine runs roughly, makes unusual mechanical noise, loses power, or stalls, move out of traffic safely, stop driving, and contact BMW for transport guidance.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: []"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-water-pump-2007--existing-fix-part-0-0--n55",
+      "issueId": "bmw-x5-water-pump-2007",
+      "partNumber": "11515A05704",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The N55 pump is ISTA- and VIN-conditional, but the current public claim lacks an enforceable completed-diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If the engine-temperature warning appears, stop safely, shut the engine off, and tow the vehicle if normal temperature cannot be confirmed. When cool, check coolant level and leaks, read BMW-specific faults, verify pump power/ground and communication, and run the ISTA coolant-pump activation/test plan. If those tests confirm the pump and BMW ETK/AIR selects 11-51-5-A05-704 for the VIN, replace it using the BMW procedure, select the thermostat separately only if testing or preventive planning justifies it, vacuum-fill or bleed the system as specified, and verify commanded pump operation and stable temperature. Do not use a fixed-mileage rule or this part number for an N52, N63, or F15 without VIN confirmation.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-water-pump-2007--existing-fix-part-0-1--n55",
+      "issueId": "bmw-x5-water-pump-2007",
+      "partNumber": "11517632426 (superseded)",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The N55 pump is ISTA- and VIN-conditional, but the current public claim lacks an enforceable completed-diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If the engine-temperature warning appears, stop safely, shut the engine off, and tow the vehicle if normal temperature cannot be confirmed. When cool, check coolant level and leaks, read BMW-specific faults, verify pump power/ground and communication, and run the ISTA coolant-pump activation/test plan. If those tests confirm the pump and BMW ETK/AIR selects 11-51-5-A05-704 for the VIN, replace it using the BMW procedure, select the thermostat separately only if testing or preventive planning justifies it, vacuum-fill or bleed the system as specified, and verify commanded pump operation and stable temperature. Do not use a fixed-mileage rule or this part number for an N52, N63, or F15 without VIN confirmation.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-water-pump-2007--existing-fix-part-0-2--n55",
+      "issueId": "bmw-x5-water-pump-2007",
+      "partNumber": "11517586925 (superseded where cataloged)",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The N55 pump is ISTA- and VIN-conditional, but the current public claim lacks an enforceable completed-diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If the engine-temperature warning appears, stop safely, shut the engine off, and tow the vehicle if normal temperature cannot be confirmed. When cool, check coolant level and leaks, read BMW-specific faults, verify pump power/ground and communication, and run the ISTA coolant-pump activation/test plan. If those tests confirm the pump and BMW ETK/AIR selects 11-51-5-A05-704 for the VIN, replace it using the BMW procedure, select the thermostat separately only if testing or preventive planning justifies it, vacuum-fill or bleed the system as specified, and verify commanded pump operation and stable temperature. Do not use a fixed-mileage rule or this part number for an N52, N63, or F15 without VIN confirmation.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-water-pump-2007--existing-fix-part-0-3--n55",
+      "issueId": "bmw-x5-water-pump-2007",
+      "partNumber": "Pierburg 7.07223.10.0",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The N55 pump is ISTA- and VIN-conditional, but the current public claim lacks an enforceable completed-diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If the engine-temperature warning appears, stop safely, shut the engine off, and tow the vehicle if normal temperature cannot be confirmed. When cool, check coolant level and leaks, read BMW-specific faults, verify pump power/ground and communication, and run the ISTA coolant-pump activation/test plan. If those tests confirm the pump and BMW ETK/AIR selects 11-51-5-A05-704 for the VIN, replace it using the BMW procedure, select the thermostat separately only if testing or preventive planning justifies it, vacuum-fill or bleed the system as specified, and verify commanded pump operation and stable temperature. Do not use a fixed-mileage rule or this part number for an N52, N63, or F15 without VIN confirmation.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-water-pump-2007--existing-fix-part-0-4--n55",
+      "issueId": "bmw-x5-water-pump-2007",
+      "partNumber": "Beck Arnley 131-2529 (ShowMeTheParts part key 008063502; xDrive35i)",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The N55 pump is ISTA- and VIN-conditional, but the current public claim lacks an enforceable completed-diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If the engine-temperature warning appears, stop safely, shut the engine off, and tow the vehicle if normal temperature cannot be confirmed. When cool, check coolant level and leaks, read BMW-specific faults, verify pump power/ground and communication, and run the ISTA coolant-pump activation/test plan. If those tests confirm the pump and BMW ETK/AIR selects 11-51-5-A05-704 for the VIN, replace it using the BMW procedure, select the thermostat separately only if testing or preventive planning justifies it, vacuum-fill or bleed the system as specified, and verify commanded pump operation and stable temperature. Do not use a fixed-mileage rule or this part number for an N52, N63, or F15 without VIN confirmation.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-x5-water-pump-2007--existing-fix-part-0-5--n55",
+      "issueId": "bmw-x5-water-pump-2007",
+      "partNumber": "Gates 41504E (ShowMeTheParts part key 005252528)",
+      "engineWorkRow": "N55",
+      "verdict": "block",
+      "reason": "The N55 pump is ISTA- and VIN-conditional, but the current public claim lacks an enforceable completed-diagnosis gate.",
+      "reviewedSourceEvidence": {
+        "howToFix": "If the engine-temperature warning appears, stop safely, shut the engine off, and tow the vehicle if normal temperature cannot be confirmed. When cool, check coolant level and leaks, read BMW-specific faults, verify pump power/ground and communication, and run the ISTA coolant-pump activation/test plan. If those tests confirm the pump and BMW ETK/AIR selects 11-51-5-A05-704 for the VIN, replace it using the BMW procedure, select the thermostat separately only if testing or preventive planning justifies it, vacuum-fill or bleed the system as specified, and verify commanded pump operation and stable temperature. Do not use a fixed-mileage rule or this part number for an N52, N63, or F15 without VIN confirmation.",
+        "catalog": "Fitment work row ended with unmapped; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html\",\"vendor\":\"BMW Parts Deal\",\"linkType\":\"product\",\"verified\":true,\"affiliate\":false}]"
+      }
+    },
+    {
+      "workItemId": "bmw-z4-g29-b58-water-pump-2019--existing-fix-part-0-0--b48",
+      "issueId": "bmw-z4-g29-b58-water-pump-2019",
+      "partNumber": "41236",
+      "engineWorkRow": "B48",
+      "verdict": "block",
+      "reason": "The unscoped Gates 41236 claim spans both B48 and B58 while the article names different OEM pumps and requires a pump-and-thermostat repair bundle.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Preventative replacement recommended at 60,000 miles. Always replace water pump and thermostat together - they share labor overlap and frequently fail concurrently. B48 sDrive30i: Water pump BMW 11518632586 ($300-$450), Thermostat BMW 11538685978 ($100-$150). B58 M40i: Water pump BMW 11518650986 ($350-$500), Thermostat BMW 11538685978 ($100-$150). Mishimoto offers performance water pump alternatives for B58 with improved impeller design. Replace 3 O-rings between thermostat and pump housing, plus 2 O-rings on coolant tube to head. Must replace water pump mounting bolts (torque-to-yield). Labor: 3-4 hours. FCP Euro lifetime warranty kits available. Also inspect plastic cylinder head coolant outlet adapter - known to shear off causing massive coolant leak.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/307097412482?_skw=Gates+41236+Engine+Water+Pump&hash=item47806ea382%3Ag%3AKUwAAeSwhQNqbHzL&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "bmw-z4-g29-b58-water-pump-2019--existing-fix-part-0-0--b58",
+      "issueId": "bmw-z4-g29-b58-water-pump-2019",
+      "partNumber": "41236",
+      "engineWorkRow": "B58",
+      "verdict": "block",
+      "reason": "The unscoped Gates 41236 claim spans both B48 and B58 while the article names different OEM pumps and requires a pump-and-thermostat repair bundle.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Preventative replacement recommended at 60,000 miles. Always replace water pump and thermostat together - they share labor overlap and frequently fail concurrently. B48 sDrive30i: Water pump BMW 11518632586 ($300-$450), Thermostat BMW 11538685978 ($100-$150). B58 M40i: Water pump BMW 11518650986 ($350-$500), Thermostat BMW 11538685978 ($100-$150). Mishimoto offers performance water pump alternatives for B58 with improved impeller design. Replace 3 O-rings between thermostat and pump housing, plus 2 O-rings on coolant tube to head. Must replace water pump mounting bolts (torque-to-yield). Labor: 3-4 hours. FCP Euro lifetime warranty kits available. Also inspect plastic cylinder head coolant outlet adapter - known to shear off causing massive coolant leak.",
+        "catalog": "Fitment work row ended with confirmed; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/307097412482?_skw=Gates+41236+Engine+Water+Pump&hash=item47806ea382%3Ag%3AKUwAAeSwhQNqbHzL&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    }
+  ],
+  "decisions": [
+    {
+      "proposalId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-0-0--b58-3-0l-turbo-i6",
+      "issueId": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "workItemId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-0-0--b58-3-0l-turbo-i6",
+      "model": "M240i",
+      "partIndex": 0,
+      "partNumber": "VS50975",
+      "decision": "hold_no_exact_link",
+      "reason": "The MAHLE gasket matches the prescribed repair role and reviewed B58 application slice, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the valve-cover gasket; replace the whole cover only if the integrated PCV/cover is separately found to have failed.",
+        "catalog": "ShowMeTheParts lists MAHLE VS50975 Engine Valve Cover Gasket for the reviewed 2017-2021 BMW M240i B58 cells.",
+        "directLink": "No exact product link was resolved for MAHLE VS50975; this primary remains held."
+      }
+    },
+    {
+      "proposalId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-0-0--b58-3-0l-turbo-i6",
+      "issueId": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "workItemId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-0-0--b58-3-0l-turbo-i6",
+      "model": "M240i",
+      "partIndex": 1,
+      "partNumber": "036-2093",
+      "decision": "approve",
+      "reason": "The Beck Arnley gasket set is the component directly prescribed by this repair branch and is narrowed to the catalog-confirmed M240i B58 application years.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the valve-cover gasket after confirming the leak source.",
+        "catalog": "ShowMeTheParts lists Beck Arnley 036-2093 Engine Valve Cover Gasket Set for the reviewed 2017-2021 BMW M240i B58 cells.",
+        "directLink": "Exact eBay product identity for Beck Arnley 036-2093 is recorded in stage 05 with listing-title PN evidence and a matching item ID."
+      }
+    },
+    {
+      "proposalId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-2-0--b58-3-0l-turbo-i6",
+      "issueId": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "workItemId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-2-0--b58-3-0l-turbo-i6",
+      "model": "M240i",
+      "partIndex": 0,
+      "partNumber": "VS50975",
+      "decision": "block_wrong_role",
+      "reason": "This branch concerns replacement of the complete valve-cover/PCV assembly when that assembly fails; a loose gasket is not the prescribed complete assembly.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Some owners replace the entire valve-cover assembly when the integrated PCV valve also fails.",
+        "catalog": "VS50975 is an Engine Valve Cover Gasket, not a complete valve cover with integrated PCV.",
+        "directLink": "No exact product link exists, and exact identity would not cure the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-2-0--b58-3-0l-turbo-i6",
+      "issueId": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "workItemId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-2-0--b58-3-0l-turbo-i6",
+      "model": "M240i",
+      "partIndex": 1,
+      "partNumber": "036-2093",
+      "decision": "block_wrong_role",
+      "reason": "The exact linked Beck Arnley row is still only a gasket set, while this separate conditional branch calls for the complete valve-cover/PCV assembly.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the entire valve-cover assembly only when the integrated PCV or cover is also found to have failed.",
+        "catalog": "Beck Arnley 036-2093 is cataloged as an Engine Valve Cover Gasket Set, not the complete assembly.",
+        "directLink": "The eBay page is an exact 036-2093 product, but exact identity does not establish the required complete-assembly repair role."
+      }
+    },
+    {
+      "proposalId": "bmw-m5-radiator-end-tank-and-2000--prescription-2-0--4-9l-s62-v8",
+      "issueId": "bmw-m5-radiator-end-tank-and-2000",
+      "workItemId": "bmw-m5-radiator-end-tank-and-2000--prescription-2-0--4-9l-s62-v8",
+      "model": "M5",
+      "partIndex": 0,
+      "partNumber": "34791",
+      "decision": "hold_no_exact_link",
+      "reason": "The Gates thermostat matches the article's optional full-cooling-system refresh branch and the complete reviewed S62 year slice, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "After replacing the failed tank or radiator, many owners proactively refresh hoses, cap, thermostat, water pump, and coolant to reduce repeat cooling failures.",
+        "catalog": "ShowMeTheParts lists Gates 34791 Engine Coolant Thermostat for every reviewed 2000-2003 BMW M5 4.9L S62 V8 year.",
+        "directLink": "No exact product link was resolved for Gates 34791; the thermostat remains held rather than receiving a search or category URL."
+      }
+    },
+    {
+      "proposalId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure--prescription-1-0--s63-4-4l-twin-turbo-v8-s63tu",
+      "issueId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure",
+      "workItemId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure--prescription-1-0--s63-4-4l-twin-turbo-v8-s63tu",
+      "model": "M6",
+      "partIndex": 0,
+      "partNumber": "TM 27 101",
+      "decision": "hold_needs_manual",
+      "reason": "The article specifically calls for an OEM thermostat, while the catalog row is labeled MAHLE and covers only 2012-2013; OEM-equivalent status and an exact product identity both remain unproven.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the failed electric water pump and/or electronic thermostat with OEM units.",
+        "catalog": "ShowMeTheParts lists MAHLE TM 27 101 Engine Coolant Thermostat only for the reviewed 2012-2013 M6 S63 cells and does not establish BMW OEM-unit identity.",
+        "directLink": "No exact product link was resolved for MAHLE TM 27 101, and the OEM requirement needs manual confirmation."
+      }
+    },
+    {
+      "proposalId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure--prescription-1-0--s63-4-4l-twin-turbo-v8-s63tu",
+      "issueId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure",
+      "workItemId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure--prescription-1-0--s63-4-4l-twin-turbo-v8-s63tu",
+      "model": "M6",
+      "partIndex": 1,
+      "partNumber": "34245",
+      "decision": "block_wrong_role",
+      "reason": "The exact Gates listing is an aftermarket thermostat, but this repair branch expressly calls for an OEM unit; exact product identity does not satisfy that repair role.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the failed electric water pump and/or electronic thermostat with OEM units.",
+        "catalog": "ShowMeTheParts lists Gates 34245 for the reviewed 2012-2019 M6 S63 cells, but the catalog row does not make it a BMW OEM unit.",
+        "directLink": "Stage 05 records an exact Gates 34245 eBay product, but it is blocked because the article's OEM-unit requirement is not met."
+      }
+    },
+    {
+      "proposalId": "bmw-m6-s63-high-pressure-fuel-pump-fuel-injector-cold-start-misfire--prescription-0-0--s63-4-4l-twin-turbo-v8-s63tu",
+      "issueId": "bmw-m6-s63-high-pressure-fuel-pump-fuel-injector-cold-start-misfire",
+      "workItemId": "bmw-m6-s63-high-pressure-fuel-pump-fuel-injector-cold-start-misfire--prescription-0-0--s63-4-4l-twin-turbo-v8-s63tu",
+      "model": "M6",
+      "partIndex": 0,
+      "partNumber": "62830",
+      "decision": "hold_needs_manual",
+      "reason": "The article requires diagnosis of the affected injector plus matching index-code selection and coding; the generic catalog row covers only 2012-2013 and has no exact product link or recorded index evidence.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test cold-start rail pressure and replace only confirmed injector faults with the correct matching index code, then code the injectors.",
+        "catalog": "ShowMeTheParts lists Bosch 62830 Fuel Injector for only the reviewed 2012-2013 M6 S63 cells; it does not prove injector index compatibility for the full article.",
+        "directLink": "No exact product link was resolved for Bosch 62830, and index-code identity remains unproven."
+      }
+    },
+    {
+      "proposalId": "bmw-x3-electric-water-pump-2011--prescription-0-0--all-engines",
+      "issueId": "bmw-x3-electric-water-pump-2011",
+      "workItemId": "bmw-x3-electric-water-pump-2011--prescription-0-0--all-engines",
+      "model": "X3",
+      "partIndex": 0,
+      "partNumber": "DP1892",
+      "decision": "block_incomplete_scope",
+      "reason": "The article requires replacing the electric water pump and thermostat together across an engine-unspecified 2011-2026 X3 range; this row supplies only a pump, covers only 2011-2012, and has no exact product link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat together because they share the cooling circuit and commonly fail concurrently.",
+        "catalog": "ShowMeTheParts lists Dayco DP1892 Engine Water Pump only for 2011-2012 and does not prove the thermostat or the article's remaining engines and years.",
+        "directLink": "No exact product link was resolved; even an exact DP1892 page would not complete the prescribed pair or unresolved vehicle scope."
+      }
+    },
+    {
+      "proposalId": "bmw-x4-electric-water-pump-2015--prescription-0-0--all-engines",
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "workItemId": "bmw-x4-electric-water-pump-2015--prescription-0-0--all-engines",
+      "model": "X4",
+      "partIndex": 0,
+      "partNumber": "DEP1038",
+      "decision": "block_incomplete_scope",
+      "reason": "The article requires a pump-and-thermostat pair across a broad engine-unspecified X4 range; this row supplies only a water pump and proves only 2015-2018 catalog cells.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat as a pair.",
+        "catalog": "ShowMeTheParts lists Dayco DEP1038 only for selected X4 years and does not establish the thermostat or every engine/application in the article.",
+        "directLink": "The eBay listing records exact DEP1038 item-specific PN evidence, but the repair bundle and complete vehicle scope remain incomplete."
+      }
+    },
+    {
+      "proposalId": "bmw-x4-electric-water-pump-2015--prescription-0-0--all-engines",
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "workItemId": "bmw-x4-electric-water-pump-2015--prescription-0-0--all-engines",
+      "model": "X4",
+      "partIndex": 1,
+      "partNumber": "41504E",
+      "decision": "block_incomplete_scope",
+      "reason": "The linked Gates pump does not supply the separately prescribed thermostat and the evidence does not prove every engine/application in the article's 2015-2023 scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat as a pair.",
+        "catalog": "ShowMeTheParts lists Gates 41504E for selected X4 years only; the article is not engine-scoped and the thermostat branch is absent.",
+        "directLink": "The eBay listing is an exact Gates 41504E product, but exact identity cannot complete the required pump-and-thermostat repair or missing application scope."
+      }
+    },
+    {
+      "proposalId": "bmw-x4-electric-water-pump-2015--prescription-1-0--all-engines",
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "workItemId": "bmw-x4-electric-water-pump-2015--prescription-1-0--all-engines",
+      "model": "X4",
+      "partIndex": 0,
+      "partNumber": "34245",
+      "decision": "block_incomplete_scope",
+      "reason": "The thermostat is cataloged only for 2021-2023, while the proposal's pump candidates cover only 2015-2018; the required pump-and-thermostat pair has no reviewed overlapping application and the article is not engine-scoped.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat as a pair.",
+        "catalog": "ShowMeTheParts lists Gates 34245 Engine Coolant Thermostat for 2021-2023, but no reviewed pump proposal covers those same cells and the exact engine/application remains unresolved.",
+        "directLink": "Stage 05 records an exact Gates 34245 eBay product, but exact identity cannot cure the missing paired-pump and engine-scope evidence."
+      }
+    }
+  ]
+}

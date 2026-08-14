@@ -1,0 +1,2917 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "jeep-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "11876ef3a6204358b1fae69302fbb620fe88bdda3259a267d15a709d7c3de3d4",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": true,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "26fea675acd6bfbee6874592da2842b11fb1321dee56287053761583b3c2e680",
+      "checkpoint.json": "b05148731493d2ca72dff50d18723f9245ab041051298afa15b646481acb005a",
+      "diagnostic-tool-evidence.json": "5fb441db5077e8af8d092f2b6a40f555faa4006806b35120f34cbbf2fe3f70f7"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 247,
+      "issuesWithDtcCodes": 104,
+      "uniqueDtcCount": 163,
+      "solutionInstructionCount": 353,
+      "dtcDispositionCount": 104,
+      "toolLinkedDispositionCount": 88,
+      "procedureNoToolDispositionCount": 290,
+      "unresolvedToolHoldCount": 79,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "jeep-avenger-adas-camera-failure-2023",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "U0428",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-avenger-start-stop-malfunction-2023",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0606, P1A0F",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-cherokee-cracked-exhaust-manifold-4-0l-i6",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis is confirmed by a loud tick that appears under acceleration and quiets at idle.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-cherokee-kl-sunroof-drain-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test each drain by pouring water into sunroof corners.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-cj-7-body-tub-floor-pans-rockers-firewall-rust",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The community fix is die-stamped factory-gauge replacement panels rather than hand-formed patches: EDP-coated front and rear floor pans, rockers, wheelhouses and cowl repair sections (Key Parts/Quadratec, Classic 2 Current Fabrication) welded in after the rot is cut back to clean steel.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-comanche-floor-pan-rust-1990",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Any rust-through or heavily scaled structural metal should be cut back to solid steel and repaired with welded replacement floor pans, patch panels, or fabricated 16-18 gauge steel sections;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-compass-cvt-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-compass-ac-evaporator-leak-2017",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Evacuate, vacuum test for leaks, and recharge with R-1234yf.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-gladiator-elocker-actuator-2020",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Diagnose with scan tool to confirm actuator motor circuit fault.",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-gladiator-elocker-actuator-2020",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C2120, C212A",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-gladiator-tpms-sensor-failure-2020",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1001, C2116",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-4-0l-inline-6-cylinder-head-cracks-between-cylinders-3-4-cau",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "For a misfire, follow the factory diagnostic path and use compression and leak-down results rather than assigning the code to the head.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-airbag-clockspring-failure-causing-srs-light-inoperative-hor",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Record the exact active and stored DTCs, follow the model-year circuit tree, and test the horn and steering-wheel functions independently before condemning the clockspring.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-airbag-clockspring-failure-causing-srs-light-inoperative-hor",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If circuit testing confirms the clockspring/steering-control assembly, select the replacement by VIN, model year, steering-wheel controls, steering-angle-sensor configuration, and current Mopar supersession.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-powertrain-control-module-failure-causing-intermittent-warm",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose by elimination after CKP, fuel pump, and grounds are ruled out.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-tank-fuel-pump-module-failure-fuel-level-sending-unit-fault",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Fuel-pressure test before replacing.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-45rfe-545rfe-automatic-transmission-overheating-torque-conve",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Read digits three through six of the TCM barcode;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-45rfe-545rfe-automatic-transmission-overheating-torque-conve",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If the vehicle or controller date is outside scope, the bulletin does not apply and the transmission complaint needs its normal diagnostic path.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-45rfe-545rfe-automatic-transmission-overheating-torque-conve",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "For an in-scope vehicle, use the bulletin's P0868/gear-ratio decision path and compare desired, scan-reported actual, and mechanically measured line pressure with correct fluid level and temperature.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-45rfe-545rfe-automatic-transmission-overheating-torque-conve",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0731, P0732, P0733, P0734, P0735, P0736, P0868, P1736",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-evap-leak-detection-pump-failure-triggers-p0455-p0456-often",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose before replacing parts.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-w5a580-5-speed-automatic-limp-mode-harsh-shift-from-conducto",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan for transmission codes;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-6l-pentastar-excessive-oil-consumption-linked-to-pcv-syste",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If the vehicle passes the test, do not replace PCV parts for this concern.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-6l-pentastar-excessive-oil-consumption-linked-to-pcv-syste",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If the PCV system is correct, record a cylinder-compression test and perform a leak-down test using the applicable service specifications.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-6l-pentastar-excessive-oil-consumption-linked-to-pcv-syste",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Also diagnose any visible external leak separately.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-6l-pentastar-excessive-oil-consumption-linked-to-pcv-syste",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Do not order a PCV valve, revised hose, or catch can from oil use alone, and do not treat P052E or P0300 as part of this card without an actual scan and code-specific diagnosis.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-5-7l-hemi-mds-lifter-collapse-camshaft-lobe-wear",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose ignition and injector causes for the affected cylinder, then perform factory compression and cylinder-leakage testing as indicated.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-air-suspension-2011",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "then use a capable scan tool to run the Air Mass and Air Ride Height routines and follow the DTC-specific tree.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-air-suspension-2011",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A completely depleted system requires the specified refill equipment, scan-tool procedure, and purity-class-5 nitrogen;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-center-high-mount-stop-lamp-liftgate-wiring-grommet-water-le",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "test one region at a time with an appropriate low-pressure stream or fan spray;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-early-3-6l-pentastar-left-cylinder-head-valve-seat-guide-wea",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose by pulling misfire codes on even-numbered (left-bank) cylinders and performing a leak-down/compression test;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-electronic-throttle-control-warning-light-throttle-body-fail",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose prerequisite five-volt-supply, throttle-position, accelerator-pedal, or other active faults in the order specified by the current factory procedure for that VIN and engine.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-electronic-throttle-control-warning-light-throttle-body-fail",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace and relearn a throttle body only when the applicable test condemns it;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-transfer-case-actuator-motor-failure-triggering-service-4wd",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan for transfer-case actuator/control codes (e.g., C140F) before parts replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-transfer-case-actuator-motor-failure-triggering-service-4wd",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C140F",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-0l-ecodiesel-bosch-cp4-high-pressure-fuel-pump-failure-sen",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "FCA's procedure is condition-dependent: a vehicle delivered in good running condition receives the campaign HPFP and associated non-contaminated-system service, while a non-running vehicle is diagnosed for pump failure and, when contamination is confirmed, receives the pump, in-tank modules, filters, injectors, rails, high-pressure tubes, fuel-system cleaning, and other campaign items specified for that vehicle.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-body-control-module-electrical-faults-causing-uconnect-reboo",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Start with a complete vehicle scan and save active, stored, and environmental data before clearing anything.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-body-control-module-electrical-faults-causing-uconnect-reboo",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace and VIN-configure a BCM, radio, IBS, or battery only when the component-specific test proves it failed.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-stop-start-auxiliary-battery-failure-disabling-auto-start-st",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test both the main and auxiliary batteries;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-catalyst-efficiency-codes-p0420-p0430-often-o2-sensor-overse",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If P0420/P0430 returns, exhaust restriction or loss of power remains, or other DTCs are present, continue with the current factory catalyst, fuel-control, misfire, exhaust-leak, and sensor diagnostics for the exact vehicle.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-front-wheel-speed-sensor-failure-triggering-abs-esp-bas-trac",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Read the ABS module and compare individual wheel-speed live data to isolate the affected circuit.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-cherokee-parasitic-battery-drain-ignition-off-draw-causing-dead-batte",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A battery test/replacement may be needed if the original was repeatedly deep-cycled.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grandcherokee-4xe-high-voltage-batterycharging-system-2022",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Diagnose with a scan tool capable of reading hybrid control modules, then inspect for active recalls, battery pack faults, coolant heater issues, and software updates.",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grandcherokee-4xe-high-voltage-batterycharging-system-2022",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0A0A, P0BBD, P1E15, U11E9",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grandcherokee-power-liftgate-opens-or-2022",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1A35, B1A36",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grandcherokee-second-row-seat-side-airbag-2022",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1B02, B1B06, B1B0D, U0151",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-ambient-interior-lighting-flickering-or-complete-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B2209, U0300",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-second-row-power-seat-memory-malfunction-seat-fails-to-return-to-position",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1A77, B1A78, U0140",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-tailgate-power-cinch-latch-failure-tailgate-won-t-latch-or-open",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1046, B104A",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-transfer-case-encoder-motor-failure-4wd-mode-stuck",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1204, C1209, C121C, U0101",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-360-camera-glitch-2022",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1A54, B1A55, U1424",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-airbag-recall",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B0100, B0101, B0102",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-battery-drain-no-start-due-to-telematics-or-module-staying-awake-parasitic-draw",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Perform a parasitic draw test with an ammeter and use a scan tool to identify modules staying awake;",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-battery-drain-no-start-due-to-telematics-or-module-staying-awake-parasitic-draw",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B210D, P0562, U0100, U11E9",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-electronic-stability-control-abs-warning-with-wheel-speed-sensor-or-tone-ring-fa",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C003A, C003B, C0040, C0041, C0045",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-eps-rack-failure-2022",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0545, C2101, C2102, U0131",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-uconnect-freeze-2022",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1A13, U0184, U1424",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-zf-8-speed-8hp-harsh-shifting-delayed-engagement-software-adaptation-issues",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P17F0",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-patriot-cvt-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-renegade-fuel-level-sending-unit-failure-inaccurate-frozen-fuel-gauge",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Perform electrical pinpoint diagnostics from the sending unit through the Body Control Module to the cluster.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-renegade-fuel-level-sending-unit-failure-inaccurate-frozen-fuel-gauge",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The accepted repair is replacing the fuel level sending unit (often supplied as part of the in-tank fuel pump/sender module), after which the gauge reads correctly.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-renegade-hvac-blend-door-actuator-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the failed actuator by circuit test/observation, then replace the affected blend-door actuator motor.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-renegade-power-transfer-unit-rear-drive-unit-failure-awd-driveline-wh",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose whether noise originates at the PTU or the rear drive unit.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-renegade-power-transfer-unit-rear-drive-unit-failure-awd-driveline-wh",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1252, C221B, C2270",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-dana-35-rear-axle-shaft-c-clip-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "a broken shaft requires pulling the diff cover to retrieve the clip and inner stub.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-clock-spring-failure-causing-2000",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis usually starts by confirming loss of horn/cruise functions and scanning the airbag module for driver squib or clock spring circuit faults.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-clock-spring-failure-causing-2000",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1B02, B1B06",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-fuel-filler-check-valve-2005",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis is based on repeat refueling shutoff/blowback behavior with no external filler obstruction.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-electronic-sway-bar-disconnect-failure-water-ingress-corrosi",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Diagnose with a scan tool for sway-bar/4WD fault codes and inspect the actuator connector for green corrosion and water intrusion.",
+        "reasonCode": "scanner-capability-needs-code-or-module",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-evap-leak-detection-pump-esim-module-failure-triggers-p0455",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose in order of cost.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-front-wheel-hub-bearing-assembly-failure-grinding-abs-light",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0040, C0045, C0050, C0055",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-steering-column-clockspring-failure-airbag-warning-light-dea",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C2205, P0579, P0581, U1109",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-steering-stabilizer-2007",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace steering stabilizer as part of death wobble diagnosis.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-3-6l-pwm-electric-cooling-fan-failure-overheating-p0480",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test by idling with A/C on and confirming high-speed fan engagement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-8hp-8-speed-automatic-harsh-jerky-shifting-delayed-engagemen",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If shifting faults persist, diagnose the valve body and shift solenoids;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-etorque-belt-starter-generator-48v-power-pack-failure-chargi",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0562, P0563, P1AF0",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-uconnect-4-5-touchscreen-freezing-reboot-loops-backup-camera",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B2204, U0184, U110E",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-4xe-repeated-12v-battery-drain-complete-electrical-shutdown",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test the 12V auxiliary battery and charging system;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "jeep-wrangler-4xe-repeated-12v-battery-drain-complete-electrical-shutdown",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0AA6, P1AF0, U0100",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [],
+  "removalProposals": [],
+  "releaseBlockers": [
+    {
+      "type": "no-reviewed-commerce-writes",
+      "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "11876ef3a6204358b1fae69302fbb620fe88bdda3259a267d15a709d7c3de3d4",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "26fea675acd6bfbee6874592da2842b11fb1321dee56287053761583b3c2e680",
+        "checkpoint.json": "b05148731493d2ca72dff50d18723f9245ab041051298afa15b646481acb005a",
+        "diagnostic-tool-evidence.json": "5fb441db5077e8af8d092f2b6a40f555faa4006806b35120f34cbbf2fe3f70f7"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 247,
+        "issuesWithDtcCodes": 104,
+        "uniqueDtcCount": 163,
+        "solutionInstructionCount": 353,
+        "dtcDispositionCount": 104,
+        "toolLinkedDispositionCount": 88,
+        "procedureNoToolDispositionCount": 290,
+        "unresolvedToolHoldCount": 79,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "jeep-avenger-adas-camera-failure-2023",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "U0428",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-avenger-start-stop-malfunction-2023",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0606, P1A0F",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-cherokee-cracked-exhaust-manifold-4-0l-i6",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis is confirmed by a loud tick that appears under acceleration and quiets at idle.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-cherokee-kl-sunroof-drain-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test each drain by pouring water into sunroof corners.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-cj-7-body-tub-floor-pans-rockers-firewall-rust",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The community fix is die-stamped factory-gauge replacement panels rather than hand-formed patches: EDP-coated front and rear floor pans, rockers, wheelhouses and cowl repair sections (Key Parts/Quadratec, Classic 2 Current Fabrication) welded in after the rot is cut back to clean steel.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-comanche-floor-pan-rust-1990",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Any rust-through or heavily scaled structural metal should be cut back to solid steel and repaired with welded replacement floor pans, patch panels, or fabricated 16-18 gauge steel sections;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-compass-cvt-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-compass-ac-evaporator-leak-2017",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Evacuate, vacuum test for leaks, and recharge with R-1234yf.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-gladiator-elocker-actuator-2020",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Diagnose with scan tool to confirm actuator motor circuit fault.",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-gladiator-elocker-actuator-2020",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C2120, C212A",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-gladiator-tpms-sensor-failure-2020",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1001, C2116",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-4-0l-inline-6-cylinder-head-cracks-between-cylinders-3-4-cau",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "For a misfire, follow the factory diagnostic path and use compression and leak-down results rather than assigning the code to the head.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-airbag-clockspring-failure-causing-srs-light-inoperative-hor",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Record the exact active and stored DTCs, follow the model-year circuit tree, and test the horn and steering-wheel functions independently before condemning the clockspring.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-airbag-clockspring-failure-causing-srs-light-inoperative-hor",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If circuit testing confirms the clockspring/steering-control assembly, select the replacement by VIN, model year, steering-wheel controls, steering-angle-sensor configuration, and current Mopar supersession.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-powertrain-control-module-failure-causing-intermittent-warm",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose by elimination after CKP, fuel pump, and grounds are ruled out.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-tank-fuel-pump-module-failure-fuel-level-sending-unit-fault",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Fuel-pressure test before replacing.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-45rfe-545rfe-automatic-transmission-overheating-torque-conve",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Read digits three through six of the TCM barcode;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-45rfe-545rfe-automatic-transmission-overheating-torque-conve",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If the vehicle or controller date is outside scope, the bulletin does not apply and the transmission complaint needs its normal diagnostic path.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-45rfe-545rfe-automatic-transmission-overheating-torque-conve",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "For an in-scope vehicle, use the bulletin's P0868/gear-ratio decision path and compare desired, scan-reported actual, and mechanically measured line pressure with correct fluid level and temperature.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-45rfe-545rfe-automatic-transmission-overheating-torque-conve",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0731, P0732, P0733, P0734, P0735, P0736, P0868, P1736",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-evap-leak-detection-pump-failure-triggers-p0455-p0456-often",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose before replacing parts.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-w5a580-5-speed-automatic-limp-mode-harsh-shift-from-conducto",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan for transmission codes;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-3-6l-pentastar-excessive-oil-consumption-linked-to-pcv-syste",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If the vehicle passes the test, do not replace PCV parts for this concern.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-3-6l-pentastar-excessive-oil-consumption-linked-to-pcv-syste",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If the PCV system is correct, record a cylinder-compression test and perform a leak-down test using the applicable service specifications.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-3-6l-pentastar-excessive-oil-consumption-linked-to-pcv-syste",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Also diagnose any visible external leak separately.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-3-6l-pentastar-excessive-oil-consumption-linked-to-pcv-syste",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Do not order a PCV valve, revised hose, or catch can from oil use alone, and do not treat P052E or P0300 as part of this card without an actual scan and code-specific diagnosis.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-5-7l-hemi-mds-lifter-collapse-camshaft-lobe-wear",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose ignition and injector causes for the affected cylinder, then perform factory compression and cylinder-leakage testing as indicated.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-air-suspension-2011",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "then use a capable scan tool to run the Air Mass and Air Ride Height routines and follow the DTC-specific tree.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-air-suspension-2011",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A completely depleted system requires the specified refill equipment, scan-tool procedure, and purity-class-5 nitrogen;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-center-high-mount-stop-lamp-liftgate-wiring-grommet-water-le",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "test one region at a time with an appropriate low-pressure stream or fan spray;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-early-3-6l-pentastar-left-cylinder-head-valve-seat-guide-wea",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose by pulling misfire codes on even-numbered (left-bank) cylinders and performing a leak-down/compression test;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-electronic-throttle-control-warning-light-throttle-body-fail",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose prerequisite five-volt-supply, throttle-position, accelerator-pedal, or other active faults in the order specified by the current factory procedure for that VIN and engine.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-electronic-throttle-control-warning-light-throttle-body-fail",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace and relearn a throttle body only when the applicable test condemns it;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-transfer-case-actuator-motor-failure-triggering-service-4wd",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan for transfer-case actuator/control codes (e.g., C140F) before parts replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-transfer-case-actuator-motor-failure-triggering-service-4wd",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C140F",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-3-0l-ecodiesel-bosch-cp4-high-pressure-fuel-pump-failure-sen",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "FCA's procedure is condition-dependent: a vehicle delivered in good running condition receives the campaign HPFP and associated non-contaminated-system service, while a non-running vehicle is diagnosed for pump failure and, when contamination is confirmed, receives the pump, in-tank modules, filters, injectors, rails, high-pressure tubes, fuel-system cleaning, and other campaign items specified for that vehicle.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-body-control-module-electrical-faults-causing-uconnect-reboo",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Start with a complete vehicle scan and save active, stored, and environmental data before clearing anything.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-body-control-module-electrical-faults-causing-uconnect-reboo",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace and VIN-configure a BCM, radio, IBS, or battery only when the component-specific test proves it failed.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-stop-start-auxiliary-battery-failure-disabling-auto-start-st",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test both the main and auxiliary batteries;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-catalyst-efficiency-codes-p0420-p0430-often-o2-sensor-overse",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If P0420/P0430 returns, exhaust restriction or loss of power remains, or other DTCs are present, continue with the current factory catalyst, fuel-control, misfire, exhaust-leak, and sensor diagnostics for the exact vehicle.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-front-wheel-speed-sensor-failure-triggering-abs-esp-bas-trac",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Read the ABS module and compare individual wheel-speed live data to isolate the affected circuit.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-cherokee-parasitic-battery-drain-ignition-off-draw-causing-dead-batte",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A battery test/replacement may be needed if the original was repeatedly deep-cycled.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grandcherokee-4xe-high-voltage-batterycharging-system-2022",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Diagnose with a scan tool capable of reading hybrid control modules, then inspect for active recalls, battery pack faults, coolant heater issues, and software updates.",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grandcherokee-4xe-high-voltage-batterycharging-system-2022",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0A0A, P0BBD, P1E15, U11E9",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grandcherokee-power-liftgate-opens-or-2022",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1A35, B1A36",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grandcherokee-second-row-seat-side-airbag-2022",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1B02, B1B06, B1B0D, U0151",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-ambient-interior-lighting-flickering-or-complete-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B2209, U0300",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-second-row-power-seat-memory-malfunction-seat-fails-to-return-to-position",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1A77, B1A78, U0140",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-tailgate-power-cinch-latch-failure-tailgate-won-t-latch-or-open",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1046, B104A",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-transfer-case-encoder-motor-failure-4wd-mode-stuck",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1204, C1209, C121C, U0101",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-360-camera-glitch-2022",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1A54, B1A55, U1424",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-airbag-recall",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B0100, B0101, B0102",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-battery-drain-no-start-due-to-telematics-or-module-staying-awake-parasitic-draw",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Perform a parasitic draw test with an ammeter and use a scan tool to identify modules staying awake;",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-battery-drain-no-start-due-to-telematics-or-module-staying-awake-parasitic-draw",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B210D, P0562, U0100, U11E9",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-electronic-stability-control-abs-warning-with-wheel-speed-sensor-or-tone-ring-fa",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C003A, C003B, C0040, C0041, C0045",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-eps-rack-failure-2022",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0545, C2101, C2102, U0131",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-uconnect-freeze-2022",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1A13, U0184, U1424",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-grand-wagoneer-zf-8-speed-8hp-harsh-shifting-delayed-engagement-software-adaptation-issues",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P17F0",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-patriot-cvt-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-renegade-fuel-level-sending-unit-failure-inaccurate-frozen-fuel-gauge",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Perform electrical pinpoint diagnostics from the sending unit through the Body Control Module to the cluster.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-renegade-fuel-level-sending-unit-failure-inaccurate-frozen-fuel-gauge",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The accepted repair is replacing the fuel level sending unit (often supplied as part of the in-tank fuel pump/sender module), after which the gauge reads correctly.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-renegade-hvac-blend-door-actuator-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the failed actuator by circuit test/observation, then replace the affected blend-door actuator motor.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-renegade-power-transfer-unit-rear-drive-unit-failure-awd-driveline-wh",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose whether noise originates at the PTU or the rear drive unit.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-renegade-power-transfer-unit-rear-drive-unit-failure-awd-driveline-wh",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1252, C221B, C2270",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-dana-35-rear-axle-shaft-c-clip-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "a broken shaft requires pulling the diff cover to retrieve the clip and inner stub.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-clock-spring-failure-causing-2000",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis usually starts by confirming loss of horn/cruise functions and scanning the airbag module for driver squib or clock spring circuit faults.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-clock-spring-failure-causing-2000",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1B02, B1B06",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-fuel-filler-check-valve-2005",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis is based on repeat refueling shutoff/blowback behavior with no external filler obstruction.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-electronic-sway-bar-disconnect-failure-water-ingress-corrosi",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Diagnose with a scan tool for sway-bar/4WD fault codes and inspect the actuator connector for green corrosion and water intrusion.",
+          "reasonCode": "scanner-capability-needs-code-or-module",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-evap-leak-detection-pump-esim-module-failure-triggers-p0455",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose in order of cost.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-front-wheel-hub-bearing-assembly-failure-grinding-abs-light",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0040, C0045, C0050, C0055",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-steering-column-clockspring-failure-airbag-warning-light-dea",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C2205, P0579, P0581, U1109",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-steering-stabilizer-2007",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace steering stabilizer as part of death wobble diagnosis.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-3-6l-pwm-electric-cooling-fan-failure-overheating-p0480",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test by idling with A/C on and confirming high-speed fan engagement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-8hp-8-speed-automatic-harsh-jerky-shifting-delayed-engagemen",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If shifting faults persist, diagnose the valve body and shift solenoids;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-etorque-belt-starter-generator-48v-power-pack-failure-chargi",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0562, P0563, P1AF0",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-uconnect-4-5-touchscreen-freezing-reboot-loops-backup-camera",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B2204, U0184, U110E",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-4xe-repeated-12v-battery-drain-complete-electrical-shutdown",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test the 12V auxiliary battery and charging system;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "jeep-wrangler-4xe-repeated-12v-battery-drain-complete-electrical-shutdown",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0AA6, P1AF0, U0100",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 247,
+      "reviewedProposalPartRows": 0,
+      "approvedRows": 0,
+      "selectedPrimaryRows": 0,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 0,
+      "heldProposalRows": 0,
+      "blockedExistingClaimRows": 0,
+      "changedIssueCount": 0,
+      "mergedStablePartCount": 0,
+      "manifestIssueCount": 0,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "147342bc55f763362a68cffdf2c106c4adfb1d1f454fb986206c07834ee0b0e4",
+      "01-disposition-ledger.json": "142b90cb1498277c4bcf2b2c3ed9bbe151130e6258296176cbf56b28ca36cd1c",
+      "02-fitment-worklist.json": "d9b252ad4619e0fd0ca85d47ceb443b3e17b715be47dfcfabaeeac8d27fa4035",
+      "03-showmetheparts-evidence.json": "8880247aa803f439d1f2f0d31f6d9774374f4412ce9d03a7885acdb16852770e",
+      "04-part-proposals.json": "0c285469f87146c5da9d4ab6be85b1dca34b77191e48f32f26b7eb4e64581ec5",
+      "05-direct-link-evidence.json": "965ce08124a221159c87a1b44c2ffcbb025873f9a4f11bc4caa2a6a159ce1368",
+      "06-independent-review.json": "0358ec41b0af1a4a929bede5b385a7b774e23c34f08445c4a19e03a8c46eda32",
+      "classification-ledger.json": "26fea675acd6bfbee6874592da2842b11fb1321dee56287053761583b3c2e680",
+      "checkpoint.json": "b05148731493d2ca72dff50d18723f9245ab041051298afa15b646481acb005a",
+      "diagnostic-tool-evidence.json": "5fb441db5077e8af8d092f2b6a40f555faa4006806b35120f34cbbf2fe3f70f7"
+    },
+    "reviewRows": [],
+    "removalProposals": [],
+    "releaseBlockers": [
+      {
+        "type": "no-reviewed-commerce-writes",
+        "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "jeep-avenger-adas-camera-failure-2023",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-avenger-ev-charge-port-issue-2023",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-avenger-infotainment-reboot-2023",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-avenger-start-stop-malfunction-2023",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-avenger-steering-rack-defect-2023",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-cracked-exhaust-manifold-4-0l-i6",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-crankshaft-position-sensor-failure-causes-intermittent-no-st",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-death-wobble",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-9speed-trans-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-brake-wear-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-can-bus-2014",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-engine-stalling-2014",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-headlight-condensation-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-liftgate-fire-2014",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-oil-consumption-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-oil-filter-housing-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-ptu-failure-2014",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-shifter-rollaway-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-sunroof-drain-2014",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-kl-tipm-fuel-pump-2014",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-oil-filter-adapter-o-ring-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-rear-main-seal-oil-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cherokee-rear-unibody-frame-rail-floor-pan-rocker-rust",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cj-7-amc-20-rear-axle-weak-two-piece-axle-shafts",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cj-7-body-tub-floor-pans-rockers-firewall-rust",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cj-7-carter-bbd-carburetor-emissions-vacuum-maze",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cj-7-frame-rot-rear-spring-hangers-shackle-mounts-skid-plate-area",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cj-7-vague-steering-death-wobble-from-worn-linkage-geometry",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-cj-7-weak-light-duty-manual-transmissions",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-comanche-40l-exhaust-manifold-crack-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-comanche-floor-pan-rust-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-comanche-renix-fuel-injection-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-commander-cooling-overheating",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-commander-electrical-gremlins",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-commander-engine-stalling",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-commander-transmission-overheating",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-compass-9speed-transmission",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-compass-ac-evaporator-leak-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-compass-cvt-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-compass-electrical-stalling",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-compass-liftgate-strut-failure-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-compass-oil-filter-housing-leak-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-compass-oil-pump-stalling",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-compass-thermostat-housing-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-compass-windshield-stress-crack-2017",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-gladiator-clutch-hydraulic-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-gladiator-clutch-recall-fire",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-gladiator-death-wobble",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-gladiator-elocker-actuator-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-gladiator-frame-weld-rust",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-gladiator-instrument-cluster-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-gladiator-rear-window-leak-2020",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-gladiator-tpms-sensor-failure-2020",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-gladiator-transmission-auto-park",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-0l-ecodiesel-bosch-cp4-high-pressure-fuel-pump-failure-sen",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-0l-ecodiesel-def-tank-heater-pump-failure-triggering-limp",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-0l-ecodiesel-egr-cooler-internal-crack-allowing-coolant-in",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-0l-ecodiesel-oil-cooler-failure-causing-oil-coolant-cross",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-6l-pentastar-excessive-oil-consumption-linked-to-pcv-syste",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-6l-pentastar-oil-filter-housing-oil-cooler-assembly-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-6l-pentastar-oil-pan-gasket-oil-pressure-sensor-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-6l-pentastar-plastic-oil-filter-housing-oil-cooler-assembl",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-3-6l-pentastar-upgrade-rocker-arm-intake-camshaft-lobe-wear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-4-0l-inline-6-cylinder-head-cracks-between-cylinders-3-4-cau",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-4-0l-oil-filter-adapter-housing-o-ring-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-4-7l-v8-crankshaft-position-sensor-failure-causing-hot-resta",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-45rfe-545rfe-automatic-transmission-overheating-torque-conve",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-4xe-2-0l-turbo-engine-sand-casting-debris-causing-catastroph",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-4xe-high-voltage-battery-cell-separator-defect-causing-fire",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-5-7l-hemi-exhaust-manifold-bolt-stud-failure-causing-exhaust",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-5-7l-hemi-mds-lifter-collapse-camshaft-lobe-wear",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-air-suspension-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-airbag-clockspring-failure-causing-srs-light-inoperative-hor",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-alternator-2011",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-body-control-module-electrical-faults-causing-uconnect-reboo",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-body-unibody-rust-through-rocker-panels-rear-wheel-arches-fl",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-c-condenser-refrigerant-leak-causing-warm-air-compressor-cut",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-capless-fuel-filler-neck-failure-causing-pump-repeatedly-cli",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-catalyst-efficiency-codes-p0420-p0430-often-o2-sensor-overse",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-center-high-mount-stop-lamp-liftgate-wiring-grommet-water-le",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-dual-pane-panoramic-sunroof-water-leak-into-headliner-pillar",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-early-3-6l-pentastar-left-cylinder-head-failure-overheated-v",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-early-3-6l-pentastar-left-cylinder-head-valve-seat-guide-wea",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-electronic-throttle-control-warning-light-throttle-body-fail",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-evap-leak-detection-pump-failure-triggers-p0455-p0456-often",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-front-blower-motor-resistor-failure-hvac-fan-works-only-high",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-front-lower-control-arm-bushing-sway-bar-link-wear-causing-f",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-front-rear-differential-pinion-seal-leak-gear-whine",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-front-wheel-hub-bearing-assembly-failure-causing-highway-spe",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-front-wheel-speed-sensor-failure-triggering-abs-esp-bas-trac",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-fuel-level-sending-unit-failure-causing-inaccurate-gauge-ser",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-heater-core-leak-clog-causing-sweet-coolant-smell-foggy-wind",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-hemi-tick-2011",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-hid-xenon-headlight-low-beam-dimming-bulb-failure-internal-l",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-hydraulic-engine-mount-failure-causing-idle-vibration-clunk",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-ignition-switch-lock-cylinder-wear-causing-key-stuck-unexpec",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-instrument-cluster-gauge-dropout-dimming-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-internal-radiator-transmission-cooler-failure-cross-contamin",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-l-etorque-2021",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-l-infotainment-uconnect5-2021",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-l-panoramic-roof-leak-2021",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-loss-steering-control-upper-control-arm-pinch-bolt-intermedi",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-monostable-electronic-shifter-rollaway",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-nv247-quadra-trac-ii-nv242-transfer-case-fluid-leak-overheat",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-p0171-system-too-lean-from-3-6l-pentastar-intake-manifold-ga",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-p0442-small-evap-leak-from-failed-esim-degraded-gas-cap-seal",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-panoramic-sunroof-spontaneous-shattering-explosion-while-dri",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-parasitic-battery-drain-ignition-off-draw-causing-dead-batte",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-powertrain-control-module-failure-causing-intermittent-warm",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-rear-driveshaft-cv-joint-slip-yoke-grease-migration-causing",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-rear-mounted-fuel-tank-rupture-fire-risk-rear-impacts",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-rearview-backup-camera-image-fails-to-display-reverse",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-second-row-head-restraints-may-not-lock-upright",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-stop-start-auxiliary-battery-failure-disabling-auto-start-st",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-stuck-open-thermostat-causing-p0128-poor-heat-reduced-fuel-e",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-sudden-alternator-failure-causing-stall-fire-risk",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-sunroof-panoramic-roof-drain-tube-clog-causing-interior-wate",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-tank-fuel-pump-module-failure-fuel-level-sending-unit-fault",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-tipm",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-transfer-case-actuator-motor-failure-triggering-service-4wd",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-transmission-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-uconnect-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-w5a580-5-speed-automatic-limp-mode-harsh-shift-from-conducto",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-cherokee-water-pump-2011",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-360-camera-glitch-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-active-noise-cancellation-anc-system-producing-drone-or-buzz",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-air-suspension-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-airbag-recall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-ambient-interior-lighting-flickering-or-complete-failure",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-battery-drain-no-start-due-to-telematics-or-module-staying-awake-parasitic-draw",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-cooling-fan-module-failure-overheating-warning",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-electronic-stability-control-abs-warning-with-wheel-speed-sensor-or-tone-ring-fa",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-eps-rack-failure-2022",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-front-brake-rotor-warping-brake-pulsation-premature-rotor-runout",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-fuel-injector-leak-fuel-smell-in-engine-bay-3-0l-hurricane",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-fuel-system-fault-stalling-or-no-start-related-to-low-pressure-fuel-pump-module",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-hurricane-oil-consumption-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-hvac-a-c-refrigerant-leak-from-rear-a-c-lines-or-fittings-loss-of-cooling",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-pano-sunroof-leak-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-power-running-board-deployable-side-step-failure-to-deploy-retract",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-quarter-window-trim",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-rear-coil-spring-separation-break-rear-suspension-spring-fracture",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-rear-differential-pinion-bearing-noise-whine",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-second-row-power-seat-memory-malfunction-seat-fails-to-return-to-position",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-tailgate-power-cinch-latch-failure-tailgate-won-t-latch-or-open",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-transfer-case-encoder-motor-failure-4wd-mode-stuck",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-uconnect-freeze-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grand-wagoneer-zf-8-speed-8hp-harsh-shifting-delayed-engagement-software-adaptation-issues",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-4xe-high-voltage-batterycharging-system-2022",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-blend-door-hvac-2000",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-exhaust-manifold-bolt-failure-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-front-brake-rotor-warping-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-front-differential-cv-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-loss-of-drive-power-2022",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-power-liftgate-opens-or-2022",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-power-window-regulator-failure-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-rear-coil-spring-separationcollapse-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-grandcherokee-second-row-seat-side-airbag-2022",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-liberty-37-engine-issues",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-liberty-ball-joint-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-liberty-rust-corrosion",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-liberty-transfer-case-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-liberty-window-regulator-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-patriot-cvt-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-patriot-engine-overheating",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-patriot-oil-consumption",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-patriot-suspension-clunk",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-patriot-thermostat-housing-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-renegade-9speed-transmission",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-renegade-auto-stop-start-disabled-battery-ibs-sensor-failures",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-renegade-electrical-infotainment",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-renegade-engine-oil-consumption",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-renegade-fuel-level-sending-unit-failure-inaccurate-frozen-fuel-gauge",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-renegade-hvac-blend-door-actuator-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-renegade-panoramic-my-sky-sunroof-water-leaks",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-renegade-power-loss-stalling",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-renegade-power-transfer-unit-rear-drive-unit-failure-awd-driveline-wh",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wagoneer-air-suspension-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wagoneer-electrical-battery-drain",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wagoneer-etorque-stalling",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wagoneer-rearview-camera-recall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-2-0l-turbo-coolant-leak-from-y-fitting-reservoir-coolant-inl",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-3-6l-pentastar-plastic-oil-cooler-filter-housing-cracking-oi",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-3-6l-pentastar-rocker-arm-lifter-needle-bearing-failure-valv",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-3-6l-pentastar-v6-left-cylinder-head-failure-engine-tick",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-3-6l-pwm-electric-cooling-fan-failure-overheating-p0480",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-3-8l-v6-excessive-oil-consumption",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-4-0l-0331-cylinder-head-casting-cracking-between-3-4-cylinde",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-4-0l-crankshaft-position-sensor-thermal-failure-random-stall",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-4-0l-oil-filter-adapter-housing-o-ring-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-4-0l-two-piece-rear-main-seal-oil-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-4-0l-valve-cover-gasket-oil-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-42rle-4-speed-automatic-torque-converter-shudder",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-4xe-engine-sand-casting-contamination-loss-propulsion-engine",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-4xe-repeated-12v-battery-drain-complete-electrical-shutdown",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-8hp-8-speed-automatic-harsh-jerky-shifting-delayed-engagemen",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-aluminum-body-panel-door-hinge-galvanic-corrosion",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-auto-start-stop-2018",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-blower-motor-resistor-and-2000",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-body-tub-floor-pan-body-mount-rust",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-catalytic-converter-failure-and-2000",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-clock-spring-failure-causing-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-clutch-2018",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-dana-30-front-ball-joint-wear-clunking-wandering-steering-vi",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-dana-35-rear-axle-shaft-c-clip-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-death-wobble-violent-front-end-shaking-highway-speed",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-driveshaft-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-electric-hydraulic-power-steering-pump-wiring-overheat-fire",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-electronic-sway-bar-disconnect-failure-water-ingress-corrosi",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-electronic-throttle-control-limp-mode-red-lightning-bolt",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-etorque-belt-starter-generator-48v-power-pack-failure-chargi",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-evap-leak-detection-pump-esim-module-failure-triggers-p0455",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-exhaust-manifold-cracking-on-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-front-frame-rust-and-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-front-wheel-hub-bearing-assembly-failure-grinding-abs-light",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-fuel-filler-check-valve-2005",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-fuel-level-sender-failure-inaccurate-stuck-fuel-gauge",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-hardtop-freedom-panel-water-leaks-onto-windshield-header-rad",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-hardtop-leaks-2018",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-hardtop-rear-tempered-glass-spontaneous-shattering",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-heater-core-leak-coolant-smell-fogged-windshield",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-hvac-blend-door-actuator-failure-clicking-noise-stuck-cabin",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-ignition-coil-rail-failure-2000",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-jk-instrument-cluster-gauge-needle-sticking-cluster-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-manual-transmission-clutch-pressure-plate-overheating-fire-r",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-np231-transfer-case-rear-output-shaft-seal-slip-yoke-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-nsg370-6-speed-manual-first-gear-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-oil-consumption-2012",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-opdacamshaft-synchronizer-failure-causing-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-p0011-intake-cam-timing-over-advanced-from-stuck-oil-control",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-p0430-failed-driver-side-catalytic-converter-pentastar-3-8l",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-p0442-small-evap-leak-from-loose-gas-cap-cracked-canister-ve",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-power-window-master-switch-regulator-failure-water-intrusion",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-radiator-end-tank-cracking-2000",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-soft-top-header-warp-wind-noise-leaks-zipper-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-steering-column-clockspring-failure-airbag-warning-light-dea",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-steering-gear-box-loose-play-highway-wandering",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-steering-stabilizer-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-tank-fuel-pump-module-failure-whine-hard-start-no-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-throttle-position-sensor-failure-erratic-idle-stalling-shift",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-tipm-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-tipm-failure-fuel-pump-relay-random-electrical-faults",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-uconnect-4-5-touchscreen-freezing-reboot-loops-backup-camera",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-uconnect-8-4-touchscreen-delamination-bubbling-ghost-touches",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-upper-oil-pan-gasket-leak-mimicking-rear-main-seal",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-windshield-cracks-chips-far-too-easily",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "jeep-wrangler-wrangler-4xe-phev-high-voltage-battery-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

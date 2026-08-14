@@ -66,6 +66,38 @@ test('recall/dealer prescriptions stay in the ledger and never enter commerce so
   assert.equal(packet.ledger[0]!.existingFixPartCount, 1);
   assert.deepEqual(packet.ledger[0]!.workItemIds, []);
   assert.deepEqual(packet.entries, []);
+
+  for (const [id, solution] of [
+    ['interlock', 'Check the recall. If yes, schedule the free dealer fix — they replace the interlock assembly.'],
+    ['takata', 'Verify recall completion by VIN. If open, the fix is replacement of the affected inflator or airbag module at no charge through an Acura dealer.'],
+    ['used-buyer-warning', 'Check VIN status and have the inflator replaced if the recall is open. Owners buying used vehicles should verify recall completion before purchase.'],
+    ['conditional-recall', 'Free recall remedy: dealers replace the brake master cylinder and, if it leaked into the booster, replace the brake booster as well, at no cost.'],
+  ]) {
+    const recall = buildFitmentPacket([{ ...record, id, solution, fixParts: [] }], 'Acura');
+    assert.equal(recall.ledger[0]!.disposition, 'recall/dealer', id);
+    assert.deepEqual(recall.entries, [], id);
+  }
+});
+
+test('a retail branch outside recall coverage does not source the dealer recall parts', () => {
+  const packet = buildFitmentPacket([{
+    ...base,
+    id: 'ford-mixed-recall-retail',
+    solution: 'Free recall remedy: dealers replace the latches and install water shields. Aftermarket latch assemblies are also available if out of recall coverage.',
+    fixParts: [],
+  }], 'Acura');
+  assert.equal(packet.ledger[0]!.disposition, 'buyable');
+  assert.deepEqual(new Set(packet.entries.map((entry) => entry.component)), new Set(['latches']));
+  assert.ok(packet.entries.every((entry) => /aftermarket latch assemblies are also available/i.test(entry.repairRoleEvidence)));
+
+  const damaged = buildFitmentPacket([{
+    ...base,
+    id: 'ford-recall-with-damaged-owner-components',
+    solution: 'Verify recall completion. If the switch or connector shows heat damage, replace the affected components; out-of-pocket repair may be required.',
+    fixParts: [],
+  }], 'Acura');
+  assert.equal(damaged.ledger[0]!.disposition, 'diagnosis-dependent');
+  assert.deepEqual(new Set(damaged.entries.map((entry) => entry.component)), new Set(['switch', 'connector']));
 });
 
 test('software and warranty language cannot suppress a separate conditional replacement', () => {
@@ -87,4 +119,19 @@ test('software and warranty language cannot suppress a separate conditional repl
   }], 'Acura');
   assert.equal(campaign.ledger[0]!.disposition, 'diagnosis-dependent');
   assert.deepEqual(new Set(campaign.entries.map((entry) => entry.component)), new Set(['torque converter']));
+});
+
+test('a non-delegated aftermarket branch survives a dealer campaign without sourcing the campaign work', () => {
+  const packet = buildFitmentPacket([{
+    ...base,
+    id: 'acura-idle-stop-campaign',
+    solution: "Have dealer perform the software update and starter inspection under the service campaign. To avoid recurrence, defeat Idle-Stop with the dash button each drive or install an aftermarket auto-disable module.",
+    fixParts: [],
+  }], 'Acura');
+  assert.equal(packet.ledger[0]!.disposition, 'buyable');
+  assert.deepEqual(packet.entries.map((entry) => entry.component), [
+    'aftermarket auto-disable module',
+    'aftermarket auto-disable module',
+  ]);
+  assert.ok(packet.entries.every((entry) => !/starter|software/i.test(entry.component)));
 });

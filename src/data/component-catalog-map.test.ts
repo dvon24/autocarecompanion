@@ -129,3 +129,11 @@ test('Acura repair components map to catalog families without a generic fallback
   assert.equal(mapComponent('quality pads')?.partTypeMatch, 'brake pad');
   assert.equal(mapComponent('full compressor')?.partTypeMatch, 'compressor');
 });
+
+test('Challenger suspension phrases map exactly while a complete driveshaft fails closed', () => {
+  assert.equal(mapComponent('front sway-bar end links')?.partTypeMatch, 'stabilizer bar link');
+  assert.equal(mapComponent('outer tie-rod ends')?.partTypeMatch, 'tie rod');
+  assert.equal(mapComponent('front control-arm bushings')?.partTypeMatch, 'control arm bushing');
+  assert.equal(mapComponent('ball joints')?.partTypeMatch, 'ball joint');
+  assert.equal(mapComponent('aftermarket one-piece aluminum driveshaft'), null);
+});

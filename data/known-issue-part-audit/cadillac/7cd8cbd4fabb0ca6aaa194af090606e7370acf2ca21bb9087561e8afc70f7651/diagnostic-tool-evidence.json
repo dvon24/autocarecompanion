@@ -1,0 +1,661 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Cadillac",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 173,
+    "issuesWithDtcCodes": 57,
+    "uniqueDtcCount": 106,
+    "solutionInstructionCount": 206,
+    "dtcDispositionCount": 57,
+    "toolLinkedDispositionCount": 37,
+    "procedureNoToolDispositionCount": 163,
+    "unresolvedToolHoldCount": 63,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "cadillac-celestiq-software-integration-2024",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The concierge service team can remotely diagnose many issues.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-celestiq-software-integration-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U0140",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-celestiq-suspension-calibration-2024",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The suspension system can be recalibrated using GM diagnostic tools.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-celestiq-suspension-calibration-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0710",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-ct5-10l80-harsh-shift-p2812-p2814",
+      "source": "solution",
+      "procedure": "vag-scan-codes",
+      "excerpt": "Scan the TCM;",
+      "reasonCode": "vag-vehicle-context-unproven",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-ct5-10l80-harsh-shift-p2812-p2814",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if P2812 or P2814 is set, follow SI diagnostics for the line pressure solenoid circuit.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-ct5-electric-water-pump-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose by scanning for coolant temp DTCs and observing the false-high oil pressure indication, which is a hallmark of this specific failure mode.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-ct5-premature-12v-battery-drain-parasitic-draw",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a parasitic-draw test: with everything asleep, pull fuses one at a time to isolate the offending circuit.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-ctsv-mag-ride-2009",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Continue normal service-information diagnosis if the connector path does not resolve the message or DTC.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-ctsv-mag-ride-2009",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0575, C0580, C0585, C0590",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-northstar-oil-consumption-1994",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not begin the normal test before 4,000 miles unless use exceeds one quart per 1,000 miles.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-northstar-oil-consumption-1994",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the measured result exceeds the applicable GM guideline, continue with the model-specific Service Information diagnosis;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-dts-northstar-head-bolt-pull-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "on Northstar engines, a positive test usually indicates pulled head-bolt threads rather than a simple gasket defect.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-dts-northstar-oil-leak-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not order parts from this diagnosis-only card.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-dts-steering-column-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test all column functions after replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-eldorado-abs-traction-1992",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Bleed the ABS system using a scan tool to cycle the pump and valves.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-eldorado-abs-traction-1992",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0265, C0267",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-eldorado-crankshaft-position-sensor-failure-causing-intermittent-stal",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace both crankshaft position sensors (A and B) together, then perform the CKP system variation relearn with a Tech II-type scan tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-elr-12v-battery-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the AGM battery and charging state, preserve DTC and low-voltage history, and diagnose the source of discharge before replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-elr-charging-system-2014",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0D22, P0D26, P0D58, P0D59, P1EDC, P1EDD",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-elr-engine-forced-to-run-by-fuel-engine-maintenance-mode-after-s",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read the Driver Information Center message and follow the owner-information prompts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-elr-engine-forced-to-run-by-fuel-engine-maintenance-mode-after-s",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the vehicle only when behavior falls outside the documented mode or occurs with warning messages or DTCs;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-elr-gas-engine-engages-prematurely-before-ev-range-is-used-up",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Seek qualified diagnosis when the engine behavior falls outside documented conditions or accompanies a warning or DTC;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-elr-service-high-voltage-charging-system-message-from-low-batter",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0DAA",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-elr-sudden-total-loss-electrical-power-while-driving",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Capture freeze-frame/history data immediately after an event before clearing anything, and document each occurrence for GM, since the lack of stored codes makes a contemporaneous log the best diagnostic lever.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-elr-battery-degradation-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have abrupt range loss, warning messages, charging faults or reduced propulsion diagnosed separately.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escalade-air-suspension-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0696, C0711",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escalade-transfer-case-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the specific failure.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escalade-afm-lifter-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "on Gen V, follow the affected-bank lifter-and-guide path and replace the VLOM or camshaft only when GM diagnosis identifies damage.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escalade-transmission-shudder-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A returning concern requires normal diagnosis rather than automatic converter replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escalade-esv-transfer-case-2002",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "After replacement, a transfer case relearn procedure must be performed with a scan tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escalade-esv-transfer-case-2002",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0327, C0387",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escalade-esv-air-suspension-2002",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0696, C0711",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escalade-esv-air-ride-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0696, C0711",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escaladeesv-10-speed-10l8010l90-harsh-shifting-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Continue normal diagnosis if the concern remains;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escaladeesv-intermittent-no-start-battery-drain-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Repair confirmed high resistance, then test the battery.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escaladeesv-oled-curved-display-blackout-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1A62, U023C",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escaladeesv-super-cruise-and-driver-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the code does not move to history, continue Service Information diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-escaladeesv-super-cruise-and-driver-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U1624",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-fleetwood-rear-air-spring-1993",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the warning remains on for seven minutes, have the 1994 Fleetwood Electronic Level Control system diagnosed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-lyriq-12v-battery-drain-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "otherwise continue normal service-information diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-lyriq-12v-battery-drain-2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P2C8A, P2C8B, U3577, U3578, U3579, U357A, U357B, U357C, U357D, U357E, U357F, U3580, U35AF",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-lyriq-charge-port-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the door will not respond to either action or charging itself fails, have Cadillac diagnose that separate symptom.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-lyriq-rear-camera-glitch-2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1325",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-seville-ecs-strut-1998",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0577",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-srx-liftgate-2010",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not replace the actuator or pump without diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xt4-infotainment-issues-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If it is U146/V146 or later, stop and diagnose through current service information.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-hid-xenon-headlight-ballast-failure-housing-moisture",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose by swapping the D3S bulb side-to-side;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-hid-xenon-headlight-ballast-failure-housing-moisture",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1019, B2615",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-hvac-blend-door-actuator-clicking-blower-resistor-no-heat",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For no/limited fan: test the blower motor resistor/control module and the blower motor itself;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-hvac-blend-door-actuator-clicking-blower-resistor-no-heat",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0263, B0408, B0418",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-magnetic-ride-control-strut-shock-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace a shock only when diagnosis confirms an actual failure.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-parasitic-battery-drain-modules-not-entering-sleep-mode",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a parasitic-draw test (normal is under ~50mA once modules sleep, roughly 30-40 seconds after lockup) and pull-fuse isolation to find the circuit that stays awake.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-parasitic-battery-drain-modules-not-entering-sleep-mode",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U1524, U1530, U1540",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-passenger-presence-system-fault-passenger-airbag-light",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Diagnose with a scan tool for airbag/occupant-classification codes.",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-passenger-presence-system-fault-passenger-airbag-light",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0081, B0083",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-rear-air-suspension-sudden-collapse",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Diagnose with a scan tool for leveling-system codes and a smoke/soap test of the air springs and lines.",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-rear-air-suspension-sudden-collapse",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0561, C0615, C0620",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-safety-alert-seat-haptic-motor-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the seat hardware checks out, scan the BCM for driver-assist codes and update software, since a glitch can mimic the failure.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-safety-alert-seat-haptic-motor-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B101D, U0073",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-water-pump-weep-hole-coolant-leak",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace the water pump with a new OEM/ACDelco unit and gasket, refill with DEX-COOL, and pressure-test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-service-power-steering-message",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0475, C056D, U0131",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "cadillac-xts-torque-converter-transmission-shudder",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If diagnosis confirms the bulletin valve-body condition, follow current SI for both upper and lower valve-body replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

@@ -1,0 +1,2865 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "volkswagen-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "0e7ac8b21a04d8972d34ad36dbfddb80fb3f786dd27386cdab3fdc653d60dd36",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": true,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "001f563a4b56c55929a21a53367a01a7cbc06e200a758b00e63bc6d57743d9a5",
+      "checkpoint.json": "776315508404435f2aca63ee5efbab7c0f2c341e22e520cfafbd88560fc60b7c",
+      "diagnostic-tool-evidence.json": "5edb55666a4e7dd3f5effe05519086364fafcfb2ea41d93228856c9cd136cc35"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 329,
+      "issuesWithDtcCodes": 136,
+      "uniqueDtcCount": 135,
+      "solutionInstructionCount": 283,
+      "dtcDispositionCount": 136,
+      "toolLinkedDispositionCount": 153,
+      "procedureNoToolDispositionCount": 226,
+      "unresolvedToolHoldCount": 40,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "volkswagen-arteon-infotainment-2019",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Dealers typically charge 1.0-2.0 hours diagnostic labor ($150-$400), while software updates are often covered under warranty;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-beetle-overheating-drops-valve-seats-warps-magnesium-case",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Bulletproofing upgrades restorers fit: a larger doghouse or external/remote oil cooler with a full-flow oil filter, a deep-finned aluminum sump plate for extra oil capacity and cooling, and — critically — a real cylinder-head-temp and oil-temp gauge so you catch trouble before it cracks a case.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-beetle-weak-6-volt-system-failing-generator-leaves-dim-lights-slow",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Purists who keep 6V should at minimum rebuild or replace the generator and regulator, fit a heavy-duty 6V battery and big-gauge battery/ground cables, and refresh all ground straps.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-bus-3-cylinder-overheating-dropped-valve-seats",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Restorers fit a cylinder-head temperature gauge and keep heads under ~400 F;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-cabrio-top-mechanism-1995",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "After repairs, water-test the roof with low-pressure hose spray and treat/condition any reusable seals, but replace seals that are flattened or cracked.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-caddy-tdi-fuel-injector-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with live data / injector return-flow ('back-leak') test to identify the failing injector(s).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-cc-ea888-2-0-tsi-excessive-oil-consumption-from-low-tension-pis",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Have the workshop perform a documented oil-consumption test (VW has a service procedure measuring consumption over a set interval).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-cc-ignition-coil-pack-failure-causing-misfires-power-loss",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the misfiring cylinder via the stored cylinder-specific code (coil-swap test confirms a bad coil).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-corrado-vr6-chain-tensioner-1992",
+        "source": "solution",
+        "procedure": "compression-test",
+        "excerpt": "if the chain has already skipped, perform a compression test and inspect for bent valves before proceeding.",
+        "reasonCode": "gasoline-compression-application-unproven",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-eos-2-0-tsi-high-pressure-fuel-pump-cam-follower-wear-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "replace the high-pressure pump if internal failure is confirmed by fuel-pressure testing.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "vw-eos-roof-microswitch-2007",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test the full cycle.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-gol-i-motion-automated-manual-gearbox-harsh-shifts-engagement-fa",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "perform the clutch basic-setting/adaptation procedure with a VW-compatible scan tool after any clutch or actuator work.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-golf-1-9-tdi-vnt-turbo-actuator-sticking-maf-sensor-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "replace with an OEM/quality unit (cheap aftermarket MAFs read poorly).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-golf-r-engine-coolant-temperature-sensor-inaccurate-temp-gauge",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan for coolant-flow/temperature codes (e.g.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-golf-r-dq381-7-speed-dsg-intermittent-neutral-drop-free-revving",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Perform DSG-specific diagnostics with VCDS/ODIS and data-logging of engine-speed and gearbox signals;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-jetta-power-window-regulator-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "test the window switch and motor before reassembly.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-jetta-1-9-tdi-timing-belt-failure-interference-engine",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "On a suspected slip or after any belt event, borescope/leak-down test before restarting.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-jetta-heated-seat-element-overheating-and-burn-through",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis usually confirms a failed seat heater element or damaged thermostat/control circuit in the seat cushion or backrest.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-karmann-ghia-3-cylinder-runs-hot-drops-exhaust-valve",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Restorers fit a head-temperature gauge with the sender on #3 (and often a dipstick or sump oil-temp gauge), set the valves cold to spec every ~3,000 miles, and dial in correct timing and a slightly rich-of-lean mixture (a CHT-guided carb tune).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-new-beetle-coil-pack-failure-1998",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan the engine computer for misfire faults (typically P0300-P0304), then identify the weak cylinder by reviewing misfire counters or swapping the suspected coil to another cylinder to see if the misfire follows.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-new-beetle-engine-coolant-temperature-sensor-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "if the temperature behavior persists, test the thermostat next, as a stuck thermostat produces similar symptoms.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-new-beetle-engine-coolant-temperature-sensor-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0117, P0118, P0128",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "vw-new-beetle-abs-module-2000",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Requires bleeding with a scan tool after replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-new-beetle-timing-chain-25l-2005",
+        "source": "solution",
+        "procedure": "compression-test",
+        "excerpt": "If the chain has already jumped time, perform a compression test and inspect for valve damage before reassembly.",
+        "reasonCode": "gasoline-compression-application-unproven",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "vw-passat-timing-belt-failure-1998",
+        "source": "solution",
+        "procedure": "compression-test",
+        "excerpt": "if the belt has already skipped, perform a compression test and cylinder head inspection because bent valves are common on these interference engines.",
+        "reasonCode": "gasoline-compression-application-unproven",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "vw-phaeton-touareg-brake-light-switch-2004",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test all affected systems after replacement: brake lights, cruise control, shift interlock.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "vw-routan-steering-clockspring-2009",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "After replacement, the airbag warning light may need to be reset with a scan tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "vw-routan-transmission-shudder-2009",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Some owners report improvement with a transmission adaptation reset (done with a scan tool).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-scirocco-sporadic-abs-esp-traction-control-warning-lights",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan with VAG diagnostics to read the stored ABS/ESP code first.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-scirocco-7-speed-dsg-dry-clutch-mechatronic-failure-juddering",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with VAG-specific scan tooling.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-t-cross-start-stop-system-fails-causes-stalling",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Have the battery capacity and the battery management sensor tested with VW diagnostics.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-t-roc-water-ingress-into-footwells-cabin",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the entry point with a water/hose test.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-taos-12v-battery-parasitic-drain-repeated-dead-battery",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis starts with a parasitic-draw test to find the module that fails to sleep;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-taos-ea211-1-5t-coolant-loss-from-water-pump-thermostat-housing-l",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Insist on a documented diagnosis under powertrain warranty rather than accepting repeated coolant top-offs.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-taos-engine-stalls-when-coming-to-stop-awd-ecu-software-defect",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "an out-of-warranty diagnostic/reflash would be minor.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Begin with a cold cooling-system pressure test and trace the leak before replacing parts.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "vw-touareg-abs-module-2004",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The system requires bleeding with a diagnostic tool (VCDS or VW scan tool) after replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-touareg-dpf-clogging-egr-induced-limp-mode",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the regen chain: replace faulty DPF differential-pressure or exhaust-temperature sensors and clean/replace a sticking EGR valve, then run a forced/service regeneration with a diagnostic tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-touran-1-5-tsi-evo-kangarooing-hesitation-stalling",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "There is no universally effective fix, so test-drive thoroughly and document complaints while in warranty.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "volkswagen-up-asg-automated-manual-gearbox-jerky-shifts-won-t-pull-away-re",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Have the actuator and clutch travel re-adapted (basic settings) with VW-capable diagnostics;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [],
+  "removalProposals": [
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-0-0--ea888",
+      "partNumber": "06H121026ED",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The CCTA 06H121026ED module is a plausible repair-role match and both destinations are exact product pages, but its 2009-2017/2018 Limited scope exists only in prose. The stored part has no enforceable fitment or variant scope, so it can be shown to redesigned 2018-2021 DGUA vehicles where it is not the stated part."
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-0--ea888",
+      "partNumber": "06L121111P",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped."
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-1--ea888",
+      "partNumber": "06L121111J (superseded)",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped."
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-2--ea888",
+      "partNumber": "06L121111M (superseded)",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped."
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-2-0--ea888",
+      "partNumber": "06L121012L",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The DGUA mechanical pump 06L121012L is distinct from the thermostat housing and appears to have exact eBay and OEM-retailer links, but the required redesigned 2018-2021 DGUA scope is not encoded in fitment. It can therefore be exposed to the earlier CCTA application and must be held until variant gating is enforceable."
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-3-0--ea888",
+      "partNumber": "G12E0501GRTU",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "G12Evo coolant is a service fluid rather than proof of which failed component repairs this mixed-generation issue, and the existing card has no enforceable application or quantity scope. It should be handled by service-fluid guidance, not presented as an unscoped verified repair part for every Tiguan year in the article."
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-3-1--ea888",
+      "partNumber": "G-12E-050-1G-RTU",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "G12Evo coolant is a service fluid rather than proof of which failed component repairs this mixed-generation issue, and the existing card has no enforceable application or quantity scope. It should be handled by service-fluid guidance, not presented as an unscoped verified repair part for every Tiguan year in the article."
+    }
+  ],
+  "releaseBlockers": [
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-0-0--ea888",
+      "partNumber": "06H121026ED",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The CCTA 06H121026ED module is a plausible repair-role match and both destinations are exact product pages, but its 2009-2017/2018 Limited scope exists only in prose. The stored part has no enforceable fitment or variant scope, so it can be shown to redesigned 2018-2021 DGUA vehicles where it is not the stated part.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-0--ea888",
+      "partNumber": "06L121111P",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-1--ea888",
+      "partNumber": "06L121111J (superseded)",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-2--ea888",
+      "partNumber": "06L121111M (superseded)",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-2-0--ea888",
+      "partNumber": "06L121012L",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The DGUA mechanical pump 06L121012L is distinct from the thermostat housing and appears to have exact eBay and OEM-retailer links, but the required redesigned 2018-2021 DGUA scope is not encoded in fitment. It can therefore be exposed to the earlier CCTA application and must be held until variant gating is enforceable.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-3-0--ea888",
+      "partNumber": "G12E0501GRTU",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "G12Evo coolant is a service fluid rather than proof of which failed component repairs this mixed-generation issue, and the existing card has no enforceable application or quantity scope. It should be handled by service-fluid guidance, not presented as an unscoped verified repair part for every Tiguan year in the article.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-3-1--ea888",
+      "partNumber": "G-12E-050-1G-RTU",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "G12Evo coolant is a service fluid rather than proof of which failed component repairs this mixed-generation issue, and the existing card has no enforceable application or quantity scope. It should be handled by service-fluid guidance, not presented as an unscoped verified repair part for every Tiguan year in the article.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "type": "no-reviewed-commerce-writes",
+      "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "0e7ac8b21a04d8972d34ad36dbfddb80fb3f786dd27386cdab3fdc653d60dd36",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "001f563a4b56c55929a21a53367a01a7cbc06e200a758b00e63bc6d57743d9a5",
+        "checkpoint.json": "776315508404435f2aca63ee5efbab7c0f2c341e22e520cfafbd88560fc60b7c",
+        "diagnostic-tool-evidence.json": "5edb55666a4e7dd3f5effe05519086364fafcfb2ea41d93228856c9cd136cc35"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 329,
+        "issuesWithDtcCodes": 136,
+        "uniqueDtcCount": 135,
+        "solutionInstructionCount": 283,
+        "dtcDispositionCount": 136,
+        "toolLinkedDispositionCount": 153,
+        "procedureNoToolDispositionCount": 226,
+        "unresolvedToolHoldCount": 40,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "volkswagen-arteon-infotainment-2019",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Dealers typically charge 1.0-2.0 hours diagnostic labor ($150-$400), while software updates are often covered under warranty;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-beetle-overheating-drops-valve-seats-warps-magnesium-case",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Bulletproofing upgrades restorers fit: a larger doghouse or external/remote oil cooler with a full-flow oil filter, a deep-finned aluminum sump plate for extra oil capacity and cooling, and — critically — a real cylinder-head-temp and oil-temp gauge so you catch trouble before it cracks a case.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-beetle-weak-6-volt-system-failing-generator-leaves-dim-lights-slow",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Purists who keep 6V should at minimum rebuild or replace the generator and regulator, fit a heavy-duty 6V battery and big-gauge battery/ground cables, and refresh all ground straps.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-bus-3-cylinder-overheating-dropped-valve-seats",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Restorers fit a cylinder-head temperature gauge and keep heads under ~400 F;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-cabrio-top-mechanism-1995",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "After repairs, water-test the roof with low-pressure hose spray and treat/condition any reusable seals, but replace seals that are flattened or cracked.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-caddy-tdi-fuel-injector-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with live data / injector return-flow ('back-leak') test to identify the failing injector(s).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-cc-ea888-2-0-tsi-excessive-oil-consumption-from-low-tension-pis",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Have the workshop perform a documented oil-consumption test (VW has a service procedure measuring consumption over a set interval).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-cc-ignition-coil-pack-failure-causing-misfires-power-loss",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the misfiring cylinder via the stored cylinder-specific code (coil-swap test confirms a bad coil).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-corrado-vr6-chain-tensioner-1992",
+          "source": "solution",
+          "procedure": "compression-test",
+          "excerpt": "if the chain has already skipped, perform a compression test and inspect for bent valves before proceeding.",
+          "reasonCode": "gasoline-compression-application-unproven",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-eos-2-0-tsi-high-pressure-fuel-pump-cam-follower-wear-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "replace the high-pressure pump if internal failure is confirmed by fuel-pressure testing.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "vw-eos-roof-microswitch-2007",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test the full cycle.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-gol-i-motion-automated-manual-gearbox-harsh-shifts-engagement-fa",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "perform the clutch basic-setting/adaptation procedure with a VW-compatible scan tool after any clutch or actuator work.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-golf-1-9-tdi-vnt-turbo-actuator-sticking-maf-sensor-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "replace with an OEM/quality unit (cheap aftermarket MAFs read poorly).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-golf-r-engine-coolant-temperature-sensor-inaccurate-temp-gauge",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan for coolant-flow/temperature codes (e.g.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-golf-r-dq381-7-speed-dsg-intermittent-neutral-drop-free-revving",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Perform DSG-specific diagnostics with VCDS/ODIS and data-logging of engine-speed and gearbox signals;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-jetta-power-window-regulator-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "test the window switch and motor before reassembly.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-jetta-1-9-tdi-timing-belt-failure-interference-engine",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "On a suspected slip or after any belt event, borescope/leak-down test before restarting.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-jetta-heated-seat-element-overheating-and-burn-through",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis usually confirms a failed seat heater element or damaged thermostat/control circuit in the seat cushion or backrest.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-karmann-ghia-3-cylinder-runs-hot-drops-exhaust-valve",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Restorers fit a head-temperature gauge with the sender on #3 (and often a dipstick or sump oil-temp gauge), set the valves cold to spec every ~3,000 miles, and dial in correct timing and a slightly rich-of-lean mixture (a CHT-guided carb tune).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-new-beetle-coil-pack-failure-1998",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan the engine computer for misfire faults (typically P0300-P0304), then identify the weak cylinder by reviewing misfire counters or swapping the suspected coil to another cylinder to see if the misfire follows.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-new-beetle-engine-coolant-temperature-sensor-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "if the temperature behavior persists, test the thermostat next, as a stuck thermostat produces similar symptoms.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-new-beetle-engine-coolant-temperature-sensor-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0117, P0118, P0128",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "vw-new-beetle-abs-module-2000",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Requires bleeding with a scan tool after replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-new-beetle-timing-chain-25l-2005",
+          "source": "solution",
+          "procedure": "compression-test",
+          "excerpt": "If the chain has already jumped time, perform a compression test and inspect for valve damage before reassembly.",
+          "reasonCode": "gasoline-compression-application-unproven",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "vw-passat-timing-belt-failure-1998",
+          "source": "solution",
+          "procedure": "compression-test",
+          "excerpt": "if the belt has already skipped, perform a compression test and cylinder head inspection because bent valves are common on these interference engines.",
+          "reasonCode": "gasoline-compression-application-unproven",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "vw-phaeton-touareg-brake-light-switch-2004",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test all affected systems after replacement: brake lights, cruise control, shift interlock.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "vw-routan-steering-clockspring-2009",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "After replacement, the airbag warning light may need to be reset with a scan tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "vw-routan-transmission-shudder-2009",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Some owners report improvement with a transmission adaptation reset (done with a scan tool).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-scirocco-sporadic-abs-esp-traction-control-warning-lights",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan with VAG diagnostics to read the stored ABS/ESP code first.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-scirocco-7-speed-dsg-dry-clutch-mechatronic-failure-juddering",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with VAG-specific scan tooling.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-t-cross-start-stop-system-fails-causes-stalling",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Have the battery capacity and the battery management sensor tested with VW diagnostics.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-t-roc-water-ingress-into-footwells-cabin",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the entry point with a water/hose test.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-taos-12v-battery-parasitic-drain-repeated-dead-battery",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis starts with a parasitic-draw test to find the module that fails to sleep;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-taos-ea211-1-5t-coolant-loss-from-water-pump-thermostat-housing-l",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Insist on a documented diagnosis under powertrain warranty rather than accepting repeated coolant top-offs.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-taos-engine-stalls-when-coming-to-stop-awd-ecu-software-defect",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "an out-of-warranty diagnostic/reflash would be minor.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Begin with a cold cooling-system pressure test and trace the leak before replacing parts.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "vw-touareg-abs-module-2004",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The system requires bleeding with a diagnostic tool (VCDS or VW scan tool) after replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-touareg-dpf-clogging-egr-induced-limp-mode",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the regen chain: replace faulty DPF differential-pressure or exhaust-temperature sensors and clean/replace a sticking EGR valve, then run a forced/service regeneration with a diagnostic tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-touran-1-5-tsi-evo-kangarooing-hesitation-stalling",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "There is no universally effective fix, so test-drive thoroughly and document complaints while in warranty.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "volkswagen-up-asg-automated-manual-gearbox-jerky-shifts-won-t-pull-away-re",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Have the actuator and clutch travel re-adapted (basic settings) with VW-capable diagnostics;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 329,
+      "reviewedProposalPartRows": 0,
+      "approvedRows": 0,
+      "selectedPrimaryRows": 0,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 0,
+      "heldProposalRows": 0,
+      "blockedExistingClaimRows": 7,
+      "changedIssueCount": 0,
+      "mergedStablePartCount": 0,
+      "manifestIssueCount": 0,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "d883d478f60a37007c6a54321c05af140158e5b61e975a1342cd1b565cbf46c2",
+      "01-disposition-ledger.json": "4821309fc1f1747e75bbc03aee0ad2cd3dfb1342da450637b5dd533c59aae5ec",
+      "02-fitment-worklist.json": "380ad53825d5e7f0d871f91baaa3727df3581ea6fa6bc5cf1d76ffd8765cb532",
+      "03-showmetheparts-evidence.json": "83900cf5278b516d62f55a6566b2cab8fe3ac2a722d6fddc6786a2b94c9d597b",
+      "04-part-proposals.json": "5bfc2faf4efc1fdbde8b2e6f12c93b3a903fce40f88c7cb7a06fc4e6d183d611",
+      "05-direct-link-evidence.json": "494aa2937784fa525c88aeea09e8955bce81bd68ea08841b42d1d7a44580c703",
+      "06-independent-review.json": "467cae5e0ed427beaa99dcba1bb877ddfb432d8fbaf80eb47c9fb4e16534417f",
+      "classification-ledger.json": "001f563a4b56c55929a21a53367a01a7cbc06e200a758b00e63bc6d57743d9a5",
+      "checkpoint.json": "776315508404435f2aca63ee5efbab7c0f2c341e22e520cfafbd88560fc60b7c",
+      "diagnostic-tool-evidence.json": "5edb55666a4e7dd3f5effe05519086364fafcfb2ea41d93228856c9cd136cc35"
+    },
+    "reviewRows": [],
+    "removalProposals": [
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-0-0--ea888",
+        "partNumber": "06H121026ED",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The CCTA 06H121026ED module is a plausible repair-role match and both destinations are exact product pages, but its 2009-2017/2018 Limited scope exists only in prose. The stored part has no enforceable fitment or variant scope, so it can be shown to redesigned 2018-2021 DGUA vehicles where it is not the stated part."
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-0--ea888",
+        "partNumber": "06L121111P",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped."
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-1--ea888",
+        "partNumber": "06L121111J (superseded)",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped."
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-2--ea888",
+        "partNumber": "06L121111M (superseded)",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped."
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-2-0--ea888",
+        "partNumber": "06L121012L",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The DGUA mechanical pump 06L121012L is distinct from the thermostat housing and appears to have exact eBay and OEM-retailer links, but the required redesigned 2018-2021 DGUA scope is not encoded in fitment. It can therefore be exposed to the earlier CCTA application and must be held until variant gating is enforceable."
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-3-0--ea888",
+        "partNumber": "G12E0501GRTU",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "G12Evo coolant is a service fluid rather than proof of which failed component repairs this mixed-generation issue, and the existing card has no enforceable application or quantity scope. It should be handled by service-fluid guidance, not presented as an unscoped verified repair part for every Tiguan year in the article."
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-3-1--ea888",
+        "partNumber": "G-12E-050-1G-RTU",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "G12Evo coolant is a service fluid rather than proof of which failed component repairs this mixed-generation issue, and the existing card has no enforceable application or quantity scope. It should be handled by service-fluid guidance, not presented as an unscoped verified repair part for every Tiguan year in the article."
+      }
+    ],
+    "releaseBlockers": [
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-0-0--ea888",
+        "partNumber": "06H121026ED",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The CCTA 06H121026ED module is a plausible repair-role match and both destinations are exact product pages, but its 2009-2017/2018 Limited scope exists only in prose. The stored part has no enforceable fitment or variant scope, so it can be shown to redesigned 2018-2021 DGUA vehicles where it is not the stated part.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-0--ea888",
+        "partNumber": "06L121111P",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-1--ea888",
+        "partNumber": "06L121111J (superseded)",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-1-2--ea888",
+        "partNumber": "06L121111M (superseded)",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The DGUA thermostat/housing 06L121111P is a plausible exact product, but its redesigned 2018-2021 scope is recorded only in the note. With no enforceable fitment or variant scope, the public card can show it to 2009-2017 CCTA vehicles, so the otherwise useful eBay plus OEM-retailer pair must remain blocked until scoped.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-2-0--ea888",
+        "partNumber": "06L121012L",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The DGUA mechanical pump 06L121012L is distinct from the thermostat housing and appears to have exact eBay and OEM-retailer links, but the required redesigned 2018-2021 DGUA scope is not encoded in fitment. It can therefore be exposed to the earlier CCTA application and must be held until variant gating is enforceable.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-3-0--ea888",
+        "partNumber": "G12E0501GRTU",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "G12Evo coolant is a service fluid rather than proof of which failed component repairs this mixed-generation issue, and the existing card has no enforceable application or quantity scope. It should be handled by service-fluid guidance, not presented as an unscoped verified repair part for every Tiguan year in the article.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "workItemId": "volkswagen-tiguan-water-pump-failure-2009--existing-fix-part-3-1--ea888",
+        "partNumber": "G-12E-050-1G-RTU",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "G12Evo coolant is a service fluid rather than proof of which failed component repairs this mixed-generation issue, and the existing card has no enforceable application or quantity scope. It should be handled by service-fluid guidance, not presented as an unscoped verified repair part for every Tiguan year in the article.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "type": "no-reviewed-commerce-writes",
+        "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "volkswagen-arteon-7-speed-dq381-dsg-mechatronics-failure-low-speed-shudder",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-arteon-brake-booster-pressure-input-rod-connection-may-detach",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-arteon-ea888-direct-injection-carbon-buildup-intake-valves",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-arteon-ea888-excessive-oil-consumption",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-arteon-infotainment-2019",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-arteon-rear-wheel-carrier-bearing-housing-breakage",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-arteon-rearview-camera-black-screen-image-failure",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-arteon-water-pump-2019",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-12v-battery-drain-no-start-linked-to-start-stop-parasitic-dr",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-2-0t-ea888-intake-valve-carbon-buildup-causing-cold-start-mi",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-3-6l-vr6-water-pump-thermostat-housing-coolant-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-cross-sport-infotainment-freezing-2020",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-cross-sport-turbo-lag-hesitation-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-cross-sport-water-intrusion-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-engine-compartment-fuse-box-relay-defect-causing-inadvertent",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-front-assist-aeb-phantom-braking-nhtsa-engineering-analysis",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-front-door-wiring-harness-fretting-corrosion-causing-unexpec",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-fuel-pump-failure-2018",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-infotainment-freeze-2018",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-rear-ac-blower-2018",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-sunroof-cracking-2018",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-transmission-8speed-2018",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-transmission-shudder-2018",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-vr6-timing-chain-2018",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-atlas-water-intrusion-2018",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-bosch-009-distributor-flat-spot-hesitation-just-off-idle",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-door-handle-breakage-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-ignition-coil-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-intake-manifold-flap-2012",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-overheating-drops-valve-seats-warps-magnesium-case",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-rusted-out-heater-channels-floor-pans-destroy-car-s-structur",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-single-circuit-master-cylinder-skinny-front-drums-one-leak-f",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-swing-axle-rear-suspension-jacks-snaps-into-lift-off-overste",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-timing-chain-25l-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-timing-chain-tensioner-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-turbo-wastegate-2012",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-water-pump-leak-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-weak-6-volt-system-failing-generator-leaves-dim-lights-slow",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-beetle-worn-king-pin-link-pin-front-beam-causes-wandering-vague-ste",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-bus-3-cylinder-overheating-dropped-valve-seats",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-bus-inadequate-front-drum-brakes-single-circuit-master-cylinder",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-bus-perished-rubber-fuel-lines-engine-bay-fire-risk",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-bus-structural-rust-outriggers-jacking-points-cab-floor",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-bus-type-4-d-jetronic-fuel-injection-gremlins",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-bus-weak-6-volt-electrical-charging-system",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-bus-worn-steering-box-causing-wander-vague-steering",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cabrio-coil-pack-failure-1999",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cabrio-top-mechanism-1995",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-caddy-dpf-blockage-from-short-journey-urban-use",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-caddy-dq200-7-speed-dsg-mechatronic-unit-failure",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-caddy-dual-mass-flywheel-clutch-judder-failure-tdi-manuals",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-caddy-egr-valve-failure-limp-mode-after-ea189-dieselgate-emissions",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-caddy-egr-valve-sticking-clogging-causing-insufficient-flow-fault",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-caddy-heater-blower-only-works-highest-speed",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-caddy-tdi-fuel-injector-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-caddy-water-pump-failure-coolant-loss",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-carbon-buildup-intake-valves",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-dsg-failure-2009",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-ea888-2-0-tsi-excessive-oil-consumption-from-low-tension-pis",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-ignition-coil-pack-failure-causing-misfires-power-loss",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-interior-water-intrusion-comfort-control-module-water-damage",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-pcv-valve-oil-separator-diaphragm-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-rear-multi-link-suspension-clunk-from-worn-control-arm-bushi",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-steering-wheel-clock-spring-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-timing-chain-2009",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-cc-water-pump-2009",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-corrado-g60-supercharger-1990",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-corrado-vr6-chain-tensioner-1992",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-2-0-tsi-fsi-carbon-buildup-intake-valves",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-2-0-tsi-high-pressure-fuel-pump-cam-follower-wear-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-2-0-tsi-water-pump-plastic-thermostat-housing-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-airbag-clock-spring-contamination-disabled-driver-airbag-hor",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-convertible-top-hydraulic-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-dsg-mechatronic-unit-clutch-pack-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-ea888-gen-2-2-0-tsi-excessive-oil-consumption",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-sunroof-drain-2007",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-timing-chain-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eos-wind-deflector-mesh-tearing-roof-sensor-wire-break-splice-m3",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eurovan-auto-trans-failure-1993",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-eurovan-cooling-system-1997",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-fox-cooling-system-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-fox-fuel-injection-1990",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gol-chronic-starter-motor-failure-gol-g6-1-6-undersized-9-tooth",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gol-ea111-1-0-engine-excessive-oil-consumption-lubrication-failu",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gol-front-door-window-regulator-failure-glass-drops-inside-door",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gol-i-motion-automated-manual-gearbox-harsh-shifts-engagement-fa",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gol-recall-crankshaft-pulley-can-loosen-killing-power-steering-a",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gol-recall-left-front-suspension-ball-joint-nuts-improperly-fast",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-1-9-tdi-vnt-turbo-actuator-sticking-maf-sensor-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-carbon-buildup-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-central-locking-vacuum-pump-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-dsg-mechatronic-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-plastic-coolant-flange-blue-temperature-sensor-leaking-rear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-dq381-7-speed-dsg-intermittent-neutral-drop-free-revving",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-dq381-7-speed-dsg-mechatronic-failure-limp-mode",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-ea888-pcv-crankcase-ventilation-failure-causing-high-oil-con",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-ea888-pcv-valve-oil-separator-diaphragm-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-ea888-timing-chain-stretch-tensioner-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-engine-coolant-temperature-sensor-inaccurate-temp-gauge",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-evap-n80-purge-valve-failure-large-small-leak-codes",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-front-control-arm-bushing-strut-mount-creak-knock",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-is38-turbocharger-wastegate-rattle-electronic-actuator-failu",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-mk8-mib3-infotainment-bugs-capacitive-touch-control-failures",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-mk8-mib3-infotainment-lag-freezing-haptic-steering-controls",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-r-radiator-improperly-attached-to-intercooler-coolant-hose-dam",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-structural-rust-sills-wheel-arches-jacking-points-front-susp",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-timing-chain-tensioner-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-vr6-coil-pack-casing-cracking-causing-misfires",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-vr6-timing-chain-guide-tensioner-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-golf-water-pump-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gti-idle-stabilizer-valve-fouling-causing-rough-idle-stalling",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gti-plastic-coolant-flange-blue-temperature-sensor-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gti-power-window-regulator-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gti-vr6-plastic-coolant-crack-pipe-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gti-vr6-timing-chain-guide-tensioner-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-gti-vr6-water-pump-plastic-impeller-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-3-12v-auxiliary-battery-drains-flat-car-dead-after-sitting-few",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-3-clunk-click-from-rear-when-pulling-away",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-3-dc-rapid-charging-failures-handshake-errors-refused-charge-s",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-3-electric-drive-system-fault-sudden-reduced-power-car-shuts-d",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-3-high-voltage-battery-module-overheat-fire-risk-recall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-3-infotainment-freezing-black-screens-laggy-touchscreen",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-3-optional-heat-pump-delivers-poor-cold-weather-efficiency-stu",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-3-rear-drum-brakes-corroding-binding-from-low-mechanical-use",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-4-charge-port-door-actuator-solenoid-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-4-electronic-door-handle-water-intrusion-causing-doors-to-open",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-4-high-voltage-battery-cell-module-fire-risk-range-loss",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-4-onboard-charger-condensation-failure-stopping-12v-charging",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-4-panoramic-glass-roof-creaking-squeaking-cold-weather",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-4-panoramic-roof-sunshade-insufficiently-fire-retardant",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-4-pulse-inverter-hv-battery-management-reset-causing-sudden-lo",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-4-rearview-camera-image-fails-to-display-reverse",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-buzz-12v-battery-drain-2025",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-buzz-infotainment-freeze-2025",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id-buzz-software-updates-2025",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id4-12v-battery-drain-2021",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id4-charging-issues-2021",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-id4-infotainment-software-2021",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-1-9-tdi-timing-belt-failure-interference-engine",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-abs-control-module-and-low-speed-false-abs-activation",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-airbag-warning-light-crash-sensor-and-non-deployment-concerns",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-brake-light-switch-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-coolant-temperature-sensor-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-fuel-pump-and-fuel-leak-stalling-issues",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-hazard-flasher-switch-relay-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-heated-seat-element-overheating-and-burn-through",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-ignition-coil-pack-failure-causing-misfires",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-power-window-regulator-clip-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-power-window-regulator-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-vr6-plastic-coolant-flange-crack-pipe-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-jetta-vr6-timing-chain-guide-tensioner-rattle",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-karmann-ghia-3-cylinder-runs-hot-drops-exhaust-valve",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-karmann-ghia-all-drum-brakes-that-fade-no-stopping-power-way-it-s-driven",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-karmann-ghia-floor-pan-frame-head-rust-under-battery-pedals",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-karmann-ghia-heater-channel-sill-rot-structural-rust-that-totals-ghia-bod",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-karmann-ghia-points-condenser-ignition-that-strands-you-plus-weak-6v-elec",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-karmann-ghia-swing-axle-rear-suspension-oversteer-rear-wheel-tuck",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-karmann-ghia-worn-link-pin-king-pin-front-beam-vague-steering-uneven-tyre",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-new-beetle-09g-automatic-transmission-limp-mode-valve-body-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-new-beetle-1-9-tdi-dual-mass-flywheel-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-new-beetle-coil-pack-failure-1998",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-new-beetle-door-lock-module-central-locking-microswitch-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-new-beetle-engine-coolant-temperature-sensor-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-new-beetle-instrument-cluster-gauge-stepper-motor-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-new-beetle-timing-chain-25l-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-new-beetle-water-leak-into-footwell-from-clogged-cowl-sunroof-drains",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-new-beetle-window-regulator-2000",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-passat-camshaft-adjuster-2008",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-passat-dpf-clogging-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-passat-dsg-shudder-2012",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-passat-oil-consumption-2012",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-passat-pcv-valve-failure-2006",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-passat-timing-chain-stretch-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-passat-timing-chain-tensioner-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-passat-trunk-latch-failure-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-phaeton-3-0-v6-tdi-intake-manifold-swirl-flap-carbon-clogging",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-phaeton-3-0-v6-tdi-timing-chain-tensioner-rattle-cold-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-phaeton-air-suspension-failure-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-phaeton-clogged-plenum-scuttle-drains-causing-cabin-water-intrusion",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-phaeton-coolant-pipe-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-phaeton-power-trunk-boot-lid-actuator-control-module-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-phaeton-secondary-air-injection-pump-failure-v8-w12",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-phaeton-w12-ignition-coil-failure-causing-misfires-rough-running",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-polo-1-2-tsi-timing-chain-stretch-tensioner-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-polo-b-pillar-trim-fastening-defect-affecting-side-airbag-deploym",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-polo-digital-instrument-cluster-software-failure-blank-panel-afte",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-polo-door-lock-module-central-locking-microswitch-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-polo-dq200-7-speed-dry-clutch-dsg-mechatronic-clutch-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-polo-rear-seat-belt-buckle-can-unlatch-itself",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-rabbit-ignition-coil-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-rabbit-oil-leak-valve-cover-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-rabbit-window-regulator-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-scirocco-1-4-tsi-twincharger-supercharger-bypass-changeover-valve-mag",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-scirocco-2-0-tdi-diesel-particulate-filter-egr-clogging",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-scirocco-2-0-tdi-dual-mass-flywheel-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-scirocco-2-0-tsi-direct-injection-carbon-build-up-intake-valves",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-scirocco-2-0-tsi-timing-chain-tensioner-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-scirocco-7-speed-dsg-dry-clutch-mechatronic-failure-juddering",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-scirocco-ea888-water-pump-thermostat-housing-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-scirocco-electric-fuel-filler-flap-will-not-open",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-scirocco-sporadic-abs-esp-traction-control-warning-lights",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-cross-1-0-tsi-wet-timing-belt-service-interval-critical-to-avoid-b",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-cross-1-5-tsi-ea211-evo-act-cylinder-deactivation-shudder-oil-cons",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-cross-curtain-airbag-gas-generator-weld-defect",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-cross-dq200-7-speed-dry-dual-clutch-juddering-hesitation-low-speed",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-cross-infotainment-electrical-software-glitches",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-cross-instrument-cluster-software-fault-disables-seatbelt-reminder",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-cross-start-stop-system-fails-causes-stalling",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-roc-1-5-tsi-evo-kangarooing-cold-start-judder-hesitation",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-roc-7-speed-dq200-dry-clutch-dsg-jerky-shifts-shudder-hesitation",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-roc-engine-cover-fire-hazard-recall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-roc-front-right-seatbelt-retractor-recall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-roc-infotainment-freezing-rebooting",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-roc-interior-dashboard-door-trim-rattles-squeaks",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-roc-tdi-diesel-dpf-clogging-egr-contamination-short-journeys",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-t-roc-water-ingress-into-footwells-cabin",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-12v-battery-parasitic-drain-repeated-dead-battery",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-acceleration-hesitation-throttle-lag-from-standstill",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-dsg-shudder-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-ea211-1-5t-coolant-loss-from-water-pump-thermostat-housing-l",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-ea211-engine-noise-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-engine-stalls-when-coming-to-stop-awd-ecu-software-defect",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-fuel-delivery-module-failure-causing-sudden-power-loss",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-infotainment-bugs-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-intake-valve-carbon-buildup-gdi-1-5-tsi",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-premature-rear-brake-pad-wear",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-rear-suspension-knuckle-cracking-fracture",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-rearview-camera-image-fails-to-display-emmc-infotainment-mem",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-taos-underhood-fuel-supply-quick-connector-detachment-fuel-leak",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-tiguan-dsg-mechatronic-2009",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-tiguan-oil-leak-valve-cover-2009",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-tiguan-panoramic-sunroof-2018",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-tiguan-rear-hatch-wiring-2009",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-tiguan-sunroof-drain-clog-2009",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-tiguan-timing-chain-tensioner-2009",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "volkswagen-touareg-3-0-tdi-engine-valley-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-adblue-scr-system-fault-no-start-countdown-lockout",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-air-suspension-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-blocked-sunroof-drains-causing-passenger-footwell-water-leak",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-dpf-clogging-egr-induced-limp-mode",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-driveshaft-center-support-bearing-carrier-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-electronic-parking-brake-actuator-module-electrical-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-fuel-filter-flange-cracking-fuel-leak-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-transfer-case-2004",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-v6-tdi-fuel-system-2009",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touareg-v6-tdi-timing-chain-tensioner-failure-chain-stretch",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touran-1-4-tsi-timing-chain-stretch-tensioner-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touran-1-5-tsi-evo-kangarooing-hesitation-stalling",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touran-1-6-2-0-tdi-egr-valve-failure-worsened-by-dieselgate-emissio",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touran-diesel-particulate-filter-clogging-tdi-models",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touran-dq200-7-speed-dry-clutch-dsg-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touran-front-anti-roll-bar-drop-link-wear-suspension-knocking",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-touran-water-ingress-to-footwell-via-blocked-plenum-sunroof-drains",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-up-asg-automated-manual-gearbox-jerky-shifts-won-t-pull-away-re",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-up-daytime-running-light-sidelight-bulb-failures",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-up-e-up-high-voltage-battery-short-circuit-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-up-manual-gearbox-difficulty-selecting-1st-reverse-when-cold-be",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-up-panoramic-sunroof-front-panel-debonding-detachment",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-up-premature-manual-clutch-wear-failure-low-mileage",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-up-rear-drum-brakes-seize-wheel-cylinders-stick-after-standing",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-up-rear-wheel-arch-fuel-filler-corrosion",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "volkswagen-up-water-leak-into-footwells",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-20t-carbon-buildup-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-20t-dsg-mechatronic-2008",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-20t-hpfp-2008",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-20t-ignition-coils-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-20t-pcv-valve-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-20t-timing-chain-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-20t-turbo-failure-2008",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-20t-water-pump-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-arteon-panoramic-sunroof-creak-2019",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-arteon-turbo-coolant-line-2019",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-atlas-cross-sport-panoramic-roof-creak-2020",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-atlas-cross-sport-transmission-shudder-2020",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-cabrio-ignition-switch-1995",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-cabrio-window-regulator-1995",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-cc-cam-follower-wear-2009",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-cc-sunroof-drain-clog-2009",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-corrado-headliner-sag-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-corrado-window-regulator-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-eos-roof-microswitch-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-eos-water-leak-roof-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-eurovan-cylinder-head-crack-1997",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-eurovan-power-window-regulator-1993",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-fox-cv-joint-boot-1990",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-fox-exhaust-manifold-crack-1990",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-fox-ignition-coil-failure-1987",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-alltrack-haldex-2017",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-alltrack-panoramic-sunroof-2017",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-alltrack-rear-hatch-wiring-2017",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-alltrack-turbo-failure-2017",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-alltrack-water-pump-2017",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-mk4-window-regulator-1999",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-mk7-water-pump-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-r-carbon-buildup-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-r-haldex-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-r-rear-diff-failure-2015",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-r-turbo-diverter-valve-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-r-turbo-failure-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-golf-r-water-pump-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-gti-carbon-buildup-intake-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-gti-dsg-mechatronic-unit-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-gti-mk8-infotainment-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-gti-rear-main-seal-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-gti-timing-chain-tensioner-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-gti-turbo-diverter-valve-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-gti-water-pump-housing-2006",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-id-buzz-charge-port-lid-2024",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-id-buzz-sliding-door-2024",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-id4-heat-pump-failure-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-id4-rear-window-defroster-2021",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-jetta-25-intake-manifold-2005",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-new-beetle-abs-module-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-new-beetle-oil-leak-valve-cover-1998",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-passat-18t-oil-sludge-1998",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-passat-timing-belt-failure-1998",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-phaeton-touareg-brake-light-switch-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-phaeton-transmission-valve-body-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-rabbit-ignition-coil-crack-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-rabbit-pcv-valve-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-routan-ignition-switch-2009",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-routan-steering-clockspring-2009",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-routan-tipm-failure-2009",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-routan-transmission-shudder-2009",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-taos-ac-compressor-noise-2022",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-taos-rear-drum-brake-noise-2022",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-touareg-abs-module-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "vw-touareg-coolant-pipe-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

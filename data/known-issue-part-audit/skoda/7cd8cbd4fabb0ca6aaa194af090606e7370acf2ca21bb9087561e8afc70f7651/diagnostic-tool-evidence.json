@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Skoda",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 60,
+    "issuesWithDtcCodes": 30,
+    "uniqueDtcCount": 50,
+    "solutionInstructionCount": 52,
+    "dtcDispositionCount": 30,
+    "toolLinkedDispositionCount": 23,
+    "procedureNoToolDispositionCount": 33,
+    "unresolvedToolHoldCount": 26,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "skoda-fabia-mk1-ignition-coil-pack-misfire",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read for cylinder misfire codes (P0300-P0304).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-abs-pump-control-module-internal-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Fault-read the ABS module;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-abs-pump-control-module-internal-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "00301, 01201, C1810",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-1-6-tdi-diesel-injector-fuel-system-faults",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with live fuel-system data and codes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-7-speed-dsg-mechatronic-jerky-shifting-faults",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the gearbox fault-read first;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-7-speed-dsg-mechatronic-jerky-shifting-faults",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P17BF, P189C",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-1-2-tsi-ea111-timing-chain-stretch-tensioner-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Any cold-start rattle should be diagnosed immediately and the car not driven hard until fixed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-7-speed-dsg-dry-clutch-mechatronic-failures",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the gearbox fault-read (P189C00 / pressure-loss codes are common).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-7-speed-dsg-dry-clutch-mechatronic-failures",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P17BF, P189C",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-spurious-dashboard-warning-lights-abs-wheel-speed-sensor-fau",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Read the stored fault codes with an OBD-II/VAG scanner to identify the offending wheel.",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-fabia-spurious-dashboard-warning-lights-abs-wheel-speed-sensor-fau",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1041, P1857",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-kodiaq-dsg-hesitation",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1735, P1736",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-kodiaq-dpf-clogging-adblue-scr-system-faults-2-0-tdi-diesels",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "AdBlue faults require diagnosing and replacing the specific failed component (NOx sensor, urea injector or pump) and topping up/correcting AdBlue.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-kodiaq-dsg-dual-clutch-transmission-jerking-mechatronic-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P17BF, P189C",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-kodiaq-general-electrical-faults-central-locking-sensors-climate-co",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with VAG-specific equipment to isolate the failed sensor, module or actuator;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-octavia-abs-esp-brake-pressure-sensor-fault-mk2",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "01130, 01435",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-octavia-dq200-7-speed-dry-clutch-dsg-mechatronic-clutch-pack-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the gearbox fault-read promptly at first sign of juddering or gear-selection errors.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-octavia-dq200-7-speed-dry-clutch-dsg-mechatronic-clutch-pack-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P172A, P17BF, P189C",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-octavia-dsg-mechatronic",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P174F, P176B, P17D6, P17D7, P17D8, P17E1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-octavia-1-6-tdi-diesel-injector-egr-valve-failures",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with a fault reader to identify the specific injector or EGR fault.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-scala-7-speed-dsg-jerky-shifts-mechatronic-failure",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Read fault codes before deciding.",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-scala-7-speed-dsg-jerky-shifts-mechatronic-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P189C",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-scala-air-conditioning-weak-intermittent-cooling-compressor-conden",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "recharge if low and leak-test the condenser.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-superb-7-speed-dry-clutch-dsg-mechatronic-clutch-pack-failures",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the box diagnosed for stored mechatronic codes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-superb-7-speed-dry-clutch-dsg-mechatronic-clutch-pack-failures",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P17BF",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "skoda-superb-p2015-intake-manifold-swirl-flap-actuator-failure",
+      "source": "solution",
+      "procedure": "vag-scan-codes",
+      "excerpt": "Diagnose with VCDS to confirm P2015 / 008213.",
+      "reasonCode": "vag-vehicle-context-unproven",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

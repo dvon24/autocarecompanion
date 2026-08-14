@@ -10,6 +10,7 @@
  */
 
 const PROCEDURE_TOOL_IDS = Object.freeze({
+  'vag-scan-codes': 'ross-tech-vcds-hex-v2',
   'parasitic-draw': 'dc-clamp-meter-low-current',
   'battery-state-of-health': 'battery-conductance-tester',
   'smoke-test': 'autoline-hypersmoke',
@@ -23,6 +24,7 @@ const PROCEDURE_TOOL_IDS = Object.freeze({
 /** Exact product-identity pages only; no search or category URLs. */
 const TOOL_PRODUCT_URLS = Object.freeze({
   'ancel-ad310': 'https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20',
+  'ross-tech-vcds-hex-v2': 'https://store.ross-tech.com/shop/vchv2_ent/',
   'autel-mk808s': 'https://www.amazon.com/Autel-Scanner-MaxiCOM-MK808S-Bi-Directional/dp/B094QTNWYQ?tag=au7o-20',
   'dc-clamp-meter-low-current': 'https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20',
   'battery-conductance-tester': 'https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20',
@@ -34,14 +36,68 @@ const TOOL_PRODUCT_URLS = Object.freeze({
   'otc-5610-oil-pressure': 'https://www.otctools.com/products/transmissionengine-oil-pressure-kit',
 });
 
+const TOOL_REVIEW_EVIDENCE = Object.freeze({
+  'ancel-ad310': {
+    manufacturerEvidenceUrl: 'https://www.ancel.com/products/ancel-ad310',
+    capability: 'Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.',
+    restriction: 'Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility.',
+  },
+  'ross-tech-vcds-hex-v2': {
+    manufacturerEvidenceUrl: 'https://www.ross-tech.com/vcds/hex-v2.php',
+    capability: 'Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.',
+    restriction: 'Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here.',
+  },
+  'battery-conductance-tester': {
+    manufacturerEvidenceUrl: 'https://www.ancel.com/products/ancel-ba101',
+    capability: 'Battery state of health, CCA and internal-resistance analysis.',
+    restriction: 'Not a true resistive battery load tester; load-test wording is an unresolved-tool hold.',
+  },
+  'dc-clamp-meter-low-current': {
+    manufacturerEvidenceUrl: 'https://meters.uni-trend.com/product/ut210-series',
+    capability: 'Low-current DC clamp measurement for explicit parasitic-draw procedures.',
+    restriction: 'Not inferred from a parasitic-drain symptom alone.',
+  },
+  'autoline-hypersmoke': {
+    manufacturerEvidenceUrl: 'https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine',
+    capability: 'Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.',
+    restriction: 'Only shown when the How-to-Fix explicitly prescribes a smoke test.',
+  },
+  'otc-5630-fuel-pressure': {
+    manufacturerEvidenceUrl: 'https://www.otctools.com/products/fuel-pressure-tester-kit',
+    capability: '0-100 psi fuel-system pressure testing with a relief valve and brass fittings.',
+    restriction: 'Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context.',
+  },
+  'otc-5606-compression': {
+    manufacturerEvidenceUrl: 'https://www.otctools.com/products/compression-tester-kit',
+    capability: '0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.',
+    restriction: 'Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context.',
+  },
+  'otc-6977-cooling-pressure': {
+    manufacturerEvidenceUrl: 'https://www.otctools.com/products/universal-cooling-system-pressure-test-kit',
+    capability: 'Cooling-system pressure testing through supplied hose and cap adapters.',
+    restriction: 'Owner must confirm an included adapter matches the vehicle before buying.',
+  },
+  'fluke-15b-plus': {
+    manufacturerEvidenceUrl: 'https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus',
+    capability: 'AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.',
+    restriction: 'Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter.',
+  },
+  'otc-5610-oil-pressure': {
+    manufacturerEvidenceUrl: 'https://www.otctools.com/products/transmissionengine-oil-pressure-kit',
+    capability: 'Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.',
+    restriction: 'Owner must confirm the correct engine-port adapter and factory pressure specification.',
+  },
+});
+
 const PROCEDURE_PATTERNS = Object.freeze([
-  ['parasitic-draw', /\b(?:perform(?:ing)?|run(?:ning)?|do(?:ing)?|conduct(?:ing)?) (?:an? )?parasitic (?:draw|drain)(?: test)?\b|\b(?:measure|test|check|diagnose) (?:for )?(?:the )?parasitic (?:draw|drain)\b|\bcurrent draw test\b|\blow-current (?:dc )?clamp meter\b/i],
-  ['battery-state-of-health', /\b(?:perform|run|do|conduct) (?:an? )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance) test\b|\btest (?:the )?battery(?:'s)? (?:state[- ]of[- ]health|conductance|cca|internal resistance)\b/i],
+  ['vag-scan-codes', /\b(?:use|connect|scan with|diagnose with|check with|read with) (?:an? )?(?:ross-tech )?(?:vcds|vag-com)(?: scan tool| interface| cable)?\b|\b(?:test|check|measure|confirm|log)[^.!?;]{0,80}\b(?:with|using) (?:vcds|vag-com)\b|\b(?:vcds|vag-com) (?:scan|autoscan|auto-scan|fault-code scan|diagnostic scan)\b|\b(?:vag|factory)[- ]capable scan tool\b|\bscan (?:the )?(?:tcm|transmission control module|cluster module|address [0-9a-f]{2,4})\b/i],
+  ['parasitic-draw', /\b(?:perform(?:ing)?|run(?:ning)?|do(?:ing)?|conduct(?:ing)?) (?:an? )?parasitic (?:draw|drain)(?: test)?\b|\b(?:measure|test|check|diagnose) (?:for )?(?:the )?parasitic (?:draw|drain)\b|\bparasitic (?:draw|drain) (?:test|measurement)\b|\bcurrent draw test\b|\blow-current (?:dc )?clamp meter\b/i],
+  ['battery-state-of-health', /\b(?:perform|run|do|conduct) (?:an? )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance) test\b|\bbattery (?:state[- ]of[- ]health|conductance|cca|internal resistance) testing\b|\btest (?:the )?battery(?:'s)? (?:state[- ]of[- ]health|conductance|cca|internal resistance)\b/i],
   ['smoke-test', /\b(?:perform|run|do|conduct|use) (?:an? )?(?:automotive )?smoke test\b|\bsmoke[- ]test (?:the )?(?:evap|intake|vacuum|exhaust|turbo|boost|system)\b|\buse (?:an? )?(?:automotive )?smoke machine\b/i],
   ['fuel-pressure', /\b(?:perform|run|do|conduct) (?:an? )?fuel[- ]pressure test\b|\b(?:check|measure|test) (?:the )?fuel pressure (?:with|using)\b|\b(?:connect|install|use) (?:an? )?fuel[- ]pressure (?:tester|gauge)\b/i],
   ['compression-test', /\b(?:perform|run|do|conduct) (?:an? )?(?:engine |cylinder )?compression test\b|\b(?:check|measure|test) (?:the )?(?:engine |cylinder )?compression (?:with|using)\b|\buse (?:an? )?compression tester\b/i],
-  ['cooling-pressure-test', /\b(?:perform|run|do|conduct) (?:an? )?(?:cooling[- ]system|coolant|radiator) pressure test\b|\bpressure[- ]test (?:the )?(?:cooling system|radiator)\b|\buse (?:an? )?(?:cooling[- ]system|coolant|radiator) pressure tester\b/i],
-  ['multimeter-basic', /\b(?:test|check|measure|verify|diagnose)[^.!?;]{0,80}\b(?:with|using) (?:an? )?(?:digital )?multimeter\b|\b(?:multimeter|voltmeter|ohmmeter) (?:check|test|measurement)\b|\buse (?:an? )?(?:digital )?(?:multimeter|voltmeter|ohmmeter)\b/i],
+  ['cooling-pressure-test', /\b(?:perform|run|do|conduct) (?:an? )?(?:cooling[- ]system|coolant|radiator) pressure test\b|\bpressure[- ]test (?:the )?(?:cooling system|radiator)\b|\b(?:cooling[- ]system|coolant system|radiator)[^.!?;]{0,90}\b(?:pressure[- ]tested|pressure[- ]test the system)\b|\buse (?:an? )?(?:cooling[- ]system|coolant|radiator) pressure tester\b/i],
+  ['multimeter-basic', /\b(?:test|check|measure|verify|diagnose)[^.!?;]{0,80}\b(?:with|using) (?:an? )?(?:digital )?multimeter\b|\b(?:connect|attach) (?:an? )?(?:digital )?(?:multimeter|voltmeter|ohmmeter)\b|\b(?:multimeter|voltmeter|ohmmeter) (?:check|test|measurement)\b|\buse (?:an? )?(?:digital )?(?:multimeter|voltmeter|ohmmeter)\b/i],
   ['oil-pressure', /\b(?:perform|run|do|conduct) (?:an? )?(?:mechanical )?oil[- ]pressure test\b|\b(?:check|measure|test) (?:the )?oil pressure (?:with|using)\b|\b(?:connect|install|use) (?:an? )?(?:mechanical )?oil[- ]pressure (?:tester|gauge)\b|\boil[- ]pressure gauge (?:will|can) confirm\b/i],
   ['scan-codes', /\b(?:use|connect|diagnose with) (?:an? )?(?:scan tool|scanner)\b|\b(?:check|read|retrieve|scan for|pull) (?:for )?(?:the )?(?:(?:honda|acura|manufacturer(?:-specific)?) )?(?:stored )?(?:fault )?(?:code|codes|dtc|dtcs)\b/i],
 ]);
@@ -98,16 +154,46 @@ function codeFamilyOf(code) {
   return /^[PBCU][0-3][0-9A-F]{3}$/.test(normalized) ? normalized[0] : null;
 }
 
-function scannerToolIdForCodes(codes) {
+function supportedVagContext(context = {}) {
+  const make = String(context.make || '').trim().toLowerCase();
+  const years = (context.years || []).filter(Number.isInteger);
+  return /^(?:audi|volkswagen|vw)$/.test(make)
+    && years.length > 0
+    && years.every((year) => year >= 1995);
+}
+
+function scannerToolIdForCodes(codes, context = {}) {
   const normalized = [...new Set((Array.isArray(codes) ? codes : []).map((code) => String(code).trim()).filter(Boolean))];
   if (normalized.length === 0) return { toolId: null, families: [], reasonCode: 'scanner-capability-needs-code-or-module' };
   const families = normalized.map(codeFamilyOf);
   if (families.some((family) => family === null)) {
+    if (supportedVagContext(context)) {
+      return { toolId: 'ross-tech-vcds-hex-v2', families: families.filter(Boolean), reasonCode: 'vag-manufacturer-code-capability-matched' };
+    }
     return { toolId: null, families: families.filter(Boolean), reasonCode: 'manufacturer-code-capability-unverified' };
   }
+  const canonicalCodes = normalized.map((code) => code.toUpperCase());
+  if (canonicalCodes.some((code) => code[0] === 'P' && /[13]/.test(code[1]))) {
+    if (supportedVagContext(context)) {
+      return { toolId: 'ross-tech-vcds-hex-v2', families: [...new Set(families)], reasonCode: 'vag-manufacturer-code-capability-matched' };
+    }
+    return { toolId: null, families: [...new Set(families)], reasonCode: 'manufacturer-code-capability-unverified' };
+  }
+  const engines = (context.engines || []).map((engine) => String(engine).toLowerCase());
+  const hybridOrElectricApplication = engines.some((engine) => /\b(?:hybrid|phev|electric|bev|ev|fuel cell)\b/.test(engine));
+  const hybridOrElectricCode = canonicalCodes.some((code) => /^P0[A-F]/.test(code));
+  if (hybridOrElectricApplication || hybridOrElectricCode) {
+    return { toolId: null, families: [...new Set(families)], reasonCode: 'hybrid-ev-scanner-capability-unverified' };
+  }
   const unique = [...new Set(families)];
+  if (unique.some((family) => family !== 'P')) {
+    if (supportedVagContext(context)) {
+      return { toolId: 'ross-tech-vcds-hex-v2', families: unique, reasonCode: 'vag-control-module-capability-matched' };
+    }
+    return { toolId: null, families: unique, reasonCode: 'non-powertrain-module-capability-unverified' };
+  }
   return {
-    toolId: unique.every((family) => family === 'P') ? 'ancel-ad310' : 'autel-mk808s',
+    toolId: 'ancel-ad310',
     families: unique,
     reasonCode: 'dtc-family-capability-matched',
   };
@@ -116,6 +202,11 @@ function scannerToolIdForCodes(codes) {
 function toolIdForProcedure(procedure, context = {}) {
   const toolId = PROCEDURE_TOOL_IDS[procedure] || null;
   if (!toolId) return { toolId: null, reasonCode: 'procedure-tool-unresolved' };
+  if (toolId === 'ross-tech-vcds-hex-v2') {
+    return supportedVagContext(context)
+      ? { toolId, reasonCode: 'explicit-vag-procedure-tool-matched' }
+      : { toolId: null, reasonCode: 'vag-vehicle-context-unproven' };
+  }
   const engines = (context.engines || []).map((engine) => String(engine).toLowerCase());
   if (toolId === 'otc-5606-compression') {
     const provenGasoline = engines.length > 0
@@ -178,7 +269,7 @@ function diagnosticDispositionsForIssue(solution, dtcCodes, context = {}) {
     if (matched.length > 0) {
       for (const procedure of matched) {
         if (procedure === 'scan-codes') {
-          const scanner = scannerToolIdForCodes(scannerCodes);
+          const scanner = scannerToolIdForCodes(scannerCodes, context);
           dispositions.push({
             source: 'solution',
             status: scanner.toolId ? 'tool-linked' : 'unresolved-tool-hold',
@@ -229,7 +320,7 @@ function diagnosticDispositionsForIssue(solution, dtcCodes, context = {}) {
 
   const codes = [...new Set((Array.isArray(dtcCodes) ? dtcCodes : []).map((code) => String(code).trim()).filter(Boolean))];
   if (codes.length > 0) {
-    const scanner = scannerToolIdForCodes([...codes, ...inlineCodes]);
+    const scanner = scannerToolIdForCodes([...codes, ...inlineCodes], context);
     dispositions.push({
       source: 'dtcCodes',
       status: scanner.toolId ? 'tool-linked' : 'unresolved-tool-hold',
@@ -247,6 +338,7 @@ module.exports = {
   PROCEDURE_PATTERNS,
   PROCEDURE_TOOL_IDS,
   TOOL_PRODUCT_URLS,
+  TOOL_REVIEW_EVIDENCE,
   codeFamilyOf,
   diagnosticDispositionsForIssue,
   diagnosticProcedureIsNegated,

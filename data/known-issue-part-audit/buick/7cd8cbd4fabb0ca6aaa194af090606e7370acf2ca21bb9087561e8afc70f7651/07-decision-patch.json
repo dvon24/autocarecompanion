@@ -1,0 +1,1341 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "buick-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "a80413cabaa17257a2a68f7aecf21ab8102b3e8aee5dff9480a654bcddf1e714",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": false,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "0448d06e76e1f8c1ddbd94e9dfcef98e9272d5bae248f5a8b66cf77d12e0f2ff",
+      "checkpoint.json": "087daa67e3f87c66d9e740f1f12121cdc40601aab86ecb1e5a5ca37370d76dc9",
+      "diagnostic-tool-evidence.json": "550d5ab412d683be36063c99f3463156f8255c4a507cef487ef54c0f9990068c"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 70,
+      "issuesWithDtcCodes": 24,
+      "uniqueDtcCount": 35,
+      "solutionInstructionCount": 59,
+      "dtcDispositionCount": 24,
+      "toolLinkedDispositionCount": 22,
+      "procedureNoToolDispositionCount": 45,
+      "unresolvedToolHoldCount": 16,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "buick-enclave-excessive-oil-consumption-engine-failure-3-6l",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose per GM PIP5084;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-encore-excessive-oil-consumption",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose and repair the PCV/camshaft cover system, which is a common contributor.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-encore-encore-gx-three-cylinder-turbo-stalling-low-oil-pressure-ecm",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose stalling/power-loss with a scan tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-encore-encore-gx-transmission-shudder-jerking-solenoid-faults",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Diagnose with a scan tool for solenoid and torque-converter fault codes.",
+        "reasonCode": "scanner-capability-needs-code-or-module",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-lacrosse-intermittent-low-beam-headlight-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the headlight wiring, the underhood bussed electrical center/relays, and the headlamp switch/connectors for heat damage and loose terminals;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-lesabre-electronic-climate-control-programmer-blower-control-module",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose by powering the blower motor directly;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replacing the whole module rather than just the pump fixes the erratic fuel gauge at the same time.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-lucerne-instrument-cluster-hard-to-read-daylight",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The replacement is easier to read in daylight, though it still does not fully illuminate during the day.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-lucerne-rear-air-self-leveling-suspension-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the specific failure point: replace leaking air shocks, the height sensor, or the air compressor (the relief valve is integral to the compressor, so a stuck valve means a full compressor replacement).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-lucerne-throttle-body-throttle-position-sensor-causing-reduced-engin",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1516, P2101, P2135",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-regal-excessive-oil-consumption-2-4l-ecotec",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "GM TSB diagnostic involves an oil consumption test;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-regal-sudden-loss-electric-power-steering-assist",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Non-recall failures require diagnosis of the steering rack motor/module and replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-regal-sudden-loss-electric-power-steering-assist",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P3055, P3056",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-roadmaster-4l60e-automatic-transmission-wear",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1870",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-roadmaster-fuel-pump-tank-check-valve-failure-causing-hard-starting-low",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The sending unit shares the module, so a weak float/gauge reading often accompanies pump wear.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0300, P1345",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [
+    {
+      "id": "buick-enclave-loss-power-steering-assist",
+      "disposition": "replace",
+      "decision": "Keyed-merge only independently approved primary parts with exact direct-product links.",
+      "evidence": [
+        {
+          "label": "Power Steering Pump exact product",
+          "url": "https://www.ebay.com/itm/276980073360?fits=Year%3A2008%7CModel%3AEnclave%7CMake%3ABuick&_skw=2008+Buick+Enclave+Cardone+20-2403+Power+Steering+Pump&hash=item407d4c8390%3Ag%3A71gAAOSw-bxn4-ph&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
+        }
+      ],
+      "mergeFixParts": [
+        {
+          "component": "Power Steering Pump",
+          "part": {
+            "component": "Power Steering Pump",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "20-2403"
+            ],
+            "note": "Cardone 20-2403. The article directly prescribes the power-steering pump, and Cardone 20-2403 covers every reviewed 2008-2011 Enclave year with exact product identity.",
+            "buyLinks": [
+              {
+                "vendor": "eBay",
+                "url": "https://www.ebay.com/itm/276980073360?fits=Year%3A2008%7CModel%3AEnclave%7CMake%3ABuick&_skw=2008+Buick+Enclave+Cardone+20-2403+Power+Steering+Pump&hash=item407d4c8390%3Ag%3A71gAAOSw-bxn4-ph&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": true,
+                "productIdentity": {
+                  "matchedPartNumber": "20-2403",
+                  "productId": "276980073360",
+                  "listingTitleHash": "e5de42b6afacc4c365eec4c6c4b4365daeb411b964e96971bbcf5f41240b21bd",
+                  "observedListingTitle": "Cardone 20-2403 Power Steering Pump GMC Chevy Buick Saturn 2007-2017",
+                  "matchedPartNumberSource": "item-specifics",
+                  "observedPartNumberField": "Manufacturer Part Number",
+                  "observedPartNumberValue": "20-2403"
+                }
+              }
+            ],
+            "fitment": {
+              "years": [
+                2008,
+                2009,
+                2010,
+                2011
+              ],
+              "catalogModels": [
+                "ENCLAVE"
+              ]
+            },
+            "variants": [],
+            "verified": true,
+            "provenance": "ShowMeTheParts fitment + independent review buick-enclave-loss-power-steering-assist--prescription-0-0--all-engines (buick-enclave-loss-power-steering-assist--prescription-0-0--all-engines::0)"
+          }
+        }
+      ],
+      "contentUpdatedOn": "2026-08-13",
+      "contentUpdateSummary": "Added independently reviewed, vehicle-scoped repair-part links."
+    },
+    {
+      "id": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+      "disposition": "replace",
+      "decision": "Keyed-merge only independently approved primary parts with exact direct-product links.",
+      "evidence": [
+        {
+          "label": "Engine Water Pump exact product",
+          "url": "https://www.ebay.com/itm/227414656496?fits=Year%3A2008%7CModel%3AEnclave%7CMake%3ABuick&_skw=2008+Buick+Enclave+Aisin+WPGM-611V+Engine+Water+Pump&hash=item34f2f845f0%3Ag%3A2koAAOSwvdpoTVph&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
+        }
+      ],
+      "mergeFixParts": [
+        {
+          "component": "Engine Water Pump",
+          "part": {
+            "component": "Engine Water Pump",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "WPGM-611V"
+            ],
+            "note": "Aisin WPGM-611V. The article directly prescribes the water pump, and Aisin WPGM-611V covers every reviewed 2008-2017 Enclave year with exact product identity.",
+            "buyLinks": [
+              {
+                "vendor": "eBay",
+                "url": "https://www.ebay.com/itm/227414656496?fits=Year%3A2008%7CModel%3AEnclave%7CMake%3ABuick&_skw=2008+Buick+Enclave+Aisin+WPGM-611V+Engine+Water+Pump&hash=item34f2f845f0%3Ag%3A2koAAOSwvdpoTVph&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": true,
+                "productIdentity": {
+                  "matchedPartNumber": "WPGM611V",
+                  "productId": "227414656496",
+                  "listingTitleHash": "fe7be48f38dc4cac41197f1cc6cce438bddda5a2e380212fa27eb3695e5bd013",
+                  "observedListingTitle": "AISIN WORLD CORP. OF AMERICA WPGM611V Engine Water Pump",
+                  "matchedPartNumberSource": "listing-title",
+                  "observedPartNumberField": "title",
+                  "observedPartNumberValue": "AISIN WORLD CORP. OF AMERICA WPGM611V Engine Water Pump"
+                }
+              }
+            ],
+            "fitment": {
+              "years": [
+                2008,
+                2009,
+                2010,
+                2011,
+                2012,
+                2013,
+                2014,
+                2015,
+                2016,
+                2017
+              ],
+              "catalogModels": [
+                "ENCLAVE"
+              ]
+            },
+            "variants": [],
+            "verified": true,
+            "provenance": "ShowMeTheParts fitment + independent review buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines (buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines::0)"
+          }
+        }
+      ],
+      "contentUpdatedOn": "2026-08-13",
+      "contentUpdateSummary": "Added independently reviewed, vehicle-scoped repair-part links."
+    },
+    {
+      "id": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+      "disposition": "replace",
+      "decision": "Keyed-merge only independently approved primary parts with exact direct-product links.",
+      "evidence": [
+        {
+          "label": "Engine Water Pump exact product",
+          "url": "https://www.ebay.com/itm/376413535873?fits=Year%3A1994%7CEngine+-+Liter_Display%3A5.7L%7CModel%3ARoadmaster%7CMake%3ABuick&_skw=1994+Buick+Roadmaster+5.7L+Dayco+DP986+Engine+Water+Pump&hash=item57a3febe81%3Ag%3AN-kAAeSwW8JoJH-r&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
+        }
+      ],
+      "mergeFixParts": [
+        {
+          "component": "Engine Water Pump",
+          "part": {
+            "component": "Engine Water Pump",
+            "oemPartNumber": "",
+            "aftermarketXref": [
+              "DP986"
+            ],
+            "note": "Dayco DP986. The article directly prescribes a complete water pump, and Dayco DP986 covers every reviewed 1994-1996 Roadmaster LT1 year.",
+            "buyLinks": [
+              {
+                "vendor": "eBay",
+                "url": "https://www.ebay.com/itm/376413535873?fits=Year%3A1994%7CEngine+-+Liter_Display%3A5.7L%7CModel%3ARoadmaster%7CMake%3ABuick&_skw=1994+Buick+Roadmaster+5.7L+Dayco+DP986+Engine+Water+Pump&hash=item57a3febe81%3Ag%3AN-kAAeSwW8JoJH-r&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+                "linkType": "product",
+                "verified": true,
+                "affiliate": true,
+                "productIdentity": {
+                  "matchedPartNumber": "DP986",
+                  "productId": "376413535873",
+                  "listingTitleHash": "8ece81742085d0a5081f89c96a2044bae6cc8b8f9e04098e3c4ae85438aae3de",
+                  "observedListingTitle": "DP986 Dayco Water Pump for Chevy Buick Commercial Chassis Cadillac Fleetwood",
+                  "matchedPartNumberSource": "item-specifics",
+                  "observedPartNumberField": "Manufacturer Part Number",
+                  "observedPartNumberValue": "DP986"
+                }
+              }
+            ],
+            "fitment": {
+              "years": [
+                1994,
+                1995,
+                1996
+              ],
+              "engines": [
+                "5.7L LT1 V8 (Gen II)"
+              ],
+              "catalogModels": [
+                "ROADMASTER"
+              ]
+            },
+            "variants": [],
+            "verified": true,
+            "provenance": "ShowMeTheParts fitment + independent review buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii (buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii::0)"
+          }
+        }
+      ],
+      "contentUpdatedOn": "2026-08-13",
+      "contentUpdateSummary": "Added independently reviewed, vehicle-scoped repair-part links."
+    }
+  ],
+  "removalProposals": [
+    {
+      "issueId": "buick-enclave-loss-power-steering-assist",
+      "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
+      "partNumber": "20-2403",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The legacy claim has no machine-enforceable fitment or persisted product-identity evidence; the newly reviewed scoped 20-2403 candidate must replace it through a guarded merge."
+    },
+    {
+      "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+      "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
+      "partNumber": "WPGM-611V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The legacy WPGM-611V claim is unscoped and lacks persisted product-identity evidence; the newly reviewed 2008-2017 candidate is the safe replacement."
+    },
+    {
+      "issueId": "buick-lesabre-power-window-regulator-cable-failure",
+      "workItemId": "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines",
+      "partNumber": "82-1005AR",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application."
+    },
+    {
+      "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+      "workItemId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines",
+      "partNumber": "FG0347",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment."
+    },
+    {
+      "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+      "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
+      "partNumber": "DP986",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge."
+    }
+  ],
+  "releaseBlockers": [
+    {
+      "issueId": "buick-enclave-loss-power-steering-assist",
+      "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
+      "partNumber": "20-2403",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The legacy claim has no machine-enforceable fitment or persisted product-identity evidence; the newly reviewed scoped 20-2403 candidate must replace it through a guarded merge.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+      "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
+      "partNumber": "WPGM-611V",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The legacy WPGM-611V claim is unscoped and lacks persisted product-identity evidence; the newly reviewed 2008-2017 candidate is the safe replacement.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "buick-lesabre-power-window-regulator-cable-failure",
+      "workItemId": "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines",
+      "partNumber": "82-1005AR",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+      "workItemId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines",
+      "partNumber": "FG0347",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+      "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
+      "partNumber": "DP986",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+      "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+      "type": "authoritative-selected-vehicle-context-required",
+      "dimensions": [
+        "engines"
+      ],
+      "reason": "Do not render scoped commerce until the selected vehicle context is authoritative and durable."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "a80413cabaa17257a2a68f7aecf21ab8102b3e8aee5dff9480a654bcddf1e714",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "0448d06e76e1f8c1ddbd94e9dfcef98e9272d5bae248f5a8b66cf77d12e0f2ff",
+        "checkpoint.json": "087daa67e3f87c66d9e740f1f12121cdc40601aab86ecb1e5a5ca37370d76dc9",
+        "diagnostic-tool-evidence.json": "550d5ab412d683be36063c99f3463156f8255c4a507cef487ef54c0f9990068c"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 70,
+        "issuesWithDtcCodes": 24,
+        "uniqueDtcCount": 35,
+        "solutionInstructionCount": 59,
+        "dtcDispositionCount": 24,
+        "toolLinkedDispositionCount": 22,
+        "procedureNoToolDispositionCount": 45,
+        "unresolvedToolHoldCount": 16,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "buick-enclave-excessive-oil-consumption-engine-failure-3-6l",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose per GM PIP5084;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-encore-excessive-oil-consumption",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose and repair the PCV/camshaft cover system, which is a common contributor.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-encore-encore-gx-three-cylinder-turbo-stalling-low-oil-pressure-ecm",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose stalling/power-loss with a scan tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-encore-encore-gx-transmission-shudder-jerking-solenoid-faults",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Diagnose with a scan tool for solenoid and torque-converter fault codes.",
+          "reasonCode": "scanner-capability-needs-code-or-module",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-lacrosse-intermittent-low-beam-headlight-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the headlight wiring, the underhood bussed electrical center/relays, and the headlamp switch/connectors for heat damage and loose terminals;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-lesabre-electronic-climate-control-programmer-blower-control-module",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose by powering the blower motor directly;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replacing the whole module rather than just the pump fixes the erratic fuel gauge at the same time.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-lucerne-instrument-cluster-hard-to-read-daylight",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The replacement is easier to read in daylight, though it still does not fully illuminate during the day.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-lucerne-rear-air-self-leveling-suspension-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the specific failure point: replace leaking air shocks, the height sensor, or the air compressor (the relief valve is integral to the compressor, so a stuck valve means a full compressor replacement).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-lucerne-throttle-body-throttle-position-sensor-causing-reduced-engin",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1516, P2101, P2135",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-regal-excessive-oil-consumption-2-4l-ecotec",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "GM TSB diagnostic involves an oil consumption test;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-regal-sudden-loss-electric-power-steering-assist",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Non-recall failures require diagnosis of the steering rack motor/module and replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-regal-sudden-loss-electric-power-steering-assist",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P3055, P3056",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-roadmaster-4l60e-automatic-transmission-wear",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1870",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-roadmaster-fuel-pump-tank-check-valve-failure-causing-hard-starting-low",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The sending unit shares the module, so a weak float/gauge reading often accompanies pump wear.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0300, P1345",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 70,
+      "reviewedProposalPartRows": 7,
+      "approvedRows": 5,
+      "selectedPrimaryRows": 3,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 2,
+      "heldProposalRows": 2,
+      "blockedExistingClaimRows": 5,
+      "changedIssueCount": 3,
+      "mergedStablePartCount": 3,
+      "manifestIssueCount": 3,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "7ea183bbd16d3832a19dc9a71255f78035c5fbd8bc42bb661623e6733510b1b4",
+      "01-disposition-ledger.json": "d1f87723aa96ecb94d89173962bb4406ce96373df34a36119e40954118c5d6fe",
+      "02-fitment-worklist.json": "63a3983dce0466c2d9ea2e5f463405f509ad5461729c4b83fec5e298732926d8",
+      "03-showmetheparts-evidence.json": "c948f840c377b7410ab1f7aedcfc8658a64af6a27e05738b6f8ece7967e5d156",
+      "04-part-proposals.json": "5c2b1f6fa017dc657f655009f4d189f0a2eadd69f7848e8dd0189b914754effc",
+      "05-direct-link-evidence.json": "dec7bdc5af6786b937a13b171e56e371407f8249f923662e3ec32ebdd19d0ac7",
+      "06-independent-review.json": "01bfc0b2196f5900957213c03e56cc7fac45a046b3b4095bbf464763464c5ebf",
+      "classification-ledger.json": "0448d06e76e1f8c1ddbd94e9dfcef98e9272d5bae248f5a8b66cf77d12e0f2ff",
+      "checkpoint.json": "087daa67e3f87c66d9e740f1f12121cdc40601aab86ecb1e5a5ca37370d76dc9",
+      "diagnostic-tool-evidence.json": "550d5ab412d683be36063c99f3463156f8255c4a507cef487ef54c0f9990068c"
+    },
+    "reviewRows": [
+      {
+        "proposalId": "buick-enclave-loss-power-steering-assist--prescription-0-0--all-engines",
+        "partIndex": 0,
+        "issueId": "buick-enclave-loss-power-steering-assist",
+        "workItemId": "buick-enclave-loss-power-steering-assist--prescription-0-0--all-engines",
+        "model": "Enclave",
+        "partNumber": "20-2403",
+        "verdict": "approve",
+        "reconciliationStatus": "selected-primary",
+        "reason": "The article directly prescribes the power-steering pump, and Cardone 20-2403 covers every reviewed 2008-2011 Enclave year with exact product identity."
+      },
+      {
+        "proposalId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines",
+        "partIndex": 0,
+        "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+        "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines",
+        "model": "Enclave",
+        "partNumber": "WPGM-611V",
+        "verdict": "approve",
+        "reconciliationStatus": "selected-primary",
+        "reason": "The article directly prescribes the water pump, and Aisin WPGM-611V covers every reviewed 2008-2017 Enclave year with exact product identity."
+      },
+      {
+        "proposalId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines",
+        "partIndex": 1,
+        "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+        "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines",
+        "model": "Enclave",
+        "partNumber": "DP532",
+        "verdict": "approve",
+        "reconciliationStatus": "excluded-non-primary",
+        "reason": "The Dayco alternate is the same directly prescribed water-pump role and covers every reviewed 2008-2017 Enclave year."
+      },
+      {
+        "proposalId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow--prescription-0-0--all-engines",
+        "partIndex": 0,
+        "issueId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow",
+        "workItemId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow--prescription-0-0--all-engines",
+        "model": "Encore",
+        "partNumber": "TL105K",
+        "verdict": "block_wrong_role",
+        "reconciliationStatus": "held",
+        "reason": "Gates TL105K is a coolant/oil line kit, not the turbocharger assembly the repair branch says to replace, and its contents are not proven to equal every required seal, gasket, and hardware item."
+      },
+      {
+        "proposalId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak--prescription-0-0--5-7l-lt1-v8-gen-ii",
+        "partIndex": 0,
+        "issueId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak",
+        "workItemId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak--prescription-0-0--5-7l-lt1-v8-gen-ii",
+        "model": "Roadmaster",
+        "partNumber": "MS16134",
+        "verdict": "hold_no_exact_link",
+        "reconciliationStatus": "held",
+        "reason": "MAHLE Clevite MS16134 matches the prescribed intake-manifold-gasket role and reviewed LT1 scope, but no exact direct product page was resolved."
+      },
+      {
+        "proposalId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+        "partIndex": 0,
+        "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+        "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+        "model": "Roadmaster",
+        "partNumber": "DP986",
+        "verdict": "approve",
+        "reconciliationStatus": "selected-primary",
+        "reason": "The article directly prescribes a complete water pump, and Dayco DP986 covers every reviewed 1994-1996 Roadmaster LT1 year."
+      },
+      {
+        "proposalId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+        "partIndex": 1,
+        "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+        "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+        "model": "Roadmaster",
+        "partNumber": "44038",
+        "verdict": "approve",
+        "reconciliationStatus": "excluded-non-primary",
+        "reason": "The Gates alternate is the same directly prescribed complete water pump and covers every reviewed 1994-1996 Roadmaster LT1 year."
+      }
+    ],
+    "removalProposals": [
+      {
+        "issueId": "buick-enclave-loss-power-steering-assist",
+        "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
+        "partNumber": "20-2403",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The legacy claim has no machine-enforceable fitment or persisted product-identity evidence; the newly reviewed scoped 20-2403 candidate must replace it through a guarded merge."
+      },
+      {
+        "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+        "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
+        "partNumber": "WPGM-611V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The legacy WPGM-611V claim is unscoped and lacks persisted product-identity evidence; the newly reviewed 2008-2017 candidate is the safe replacement."
+      },
+      {
+        "issueId": "buick-lesabre-power-window-regulator-cable-failure",
+        "workItemId": "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines",
+        "partNumber": "82-1005AR",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application."
+      },
+      {
+        "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+        "workItemId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines",
+        "partNumber": "FG0347",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment."
+      },
+      {
+        "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+        "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
+        "partNumber": "DP986",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge."
+      }
+    ],
+    "releaseBlockers": [
+      {
+        "issueId": "buick-enclave-loss-power-steering-assist",
+        "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
+        "partNumber": "20-2403",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The legacy claim has no machine-enforceable fitment or persisted product-identity evidence; the newly reviewed scoped 20-2403 candidate must replace it through a guarded merge.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+        "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
+        "partNumber": "WPGM-611V",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The legacy WPGM-611V claim is unscoped and lacks persisted product-identity evidence; the newly reviewed 2008-2017 candidate is the safe replacement.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "buick-lesabre-power-window-regulator-cable-failure",
+        "workItemId": "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines",
+        "partNumber": "82-1005AR",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+        "workItemId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines",
+        "partNumber": "FG0347",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+        "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
+        "partNumber": "DP986",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+        "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+        "type": "authoritative-selected-vehicle-context-required",
+        "dimensions": [
+          "engines"
+        ],
+        "reason": "Do not render scoped commerce until the selected vehicle context is authoritative and durable."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "buick-3800-lower-intake-gasket-lesabre",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-3800-lower-intake-gasket-park-avenue",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-cascada-1.6t-timing-chain",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-6t70-6t75-transmission-wave-plate-failure",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-excessive-oil-consumption-engine-failure-3-6l",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-hvac-blend-door-actuator-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-loss-power-steering-assist",
+        "disposition": "buyable",
+        "commerceAction": "guarded-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-power-steering-recall",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-rear-c-evaporator-corrosion-refrigerant-leaks",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-stretched-worn-timing-chain-3-6l-v6",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-timing-chain-2008-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-torque-converter-clutch-shudder",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+        "disposition": "buyable",
+        "commerceAction": "guarded-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-1.4-turbo-timing-chain",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-6t40-automatic-transmission-hard-shifting-shudder-slipping",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-encore-gx-three-cylinder-turbo-stalling-low-oil-pressure-ecm",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-encore-gx-transmission-shudder-jerking-solenoid-faults",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-engine-stalling-sudden-power-loss-while-driving",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-evap-purge-pump-failure-warranty-extension",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-excessive-oil-consumption",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-gx-1.2-1.3-turbo-shudder",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-gx-ecm-ignition-timing-fault-causing-engine-knock-after-auto-st",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-gx-electronic-brake-boost-sensor-connection-failure-loss-power",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-gx-false-shift-to-park-warning-park-switch-failure",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-gx-incorrect-catalytic-converter-installed-factory",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-gx-instrument-panel-display-goes-blank-while-driving",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-pcv-camshaft-cover-diaphragm-failure-tea-kettle-whistle",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow",
+        "disposition": "buyable",
+        "commerceAction": "proposal-held"
+      },
+      {
+        "issueId": "buick-envision-top-end-engine-ticking-from-hydraulic-lash-adjusters",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lacrosse-3-6l-v6-timing-chain-stretch-wear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lacrosse-3-8l-v6-lower-intake-manifold-gasket-plastic-coolant-elbow-l",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lacrosse-3.6l-timing-chain",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lacrosse-driver-door-wiring-splice-corrosion",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lacrosse-eassist-12v-battery-drain-service-battery-charging-system-wa",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lacrosse-electronic-power-steering-connector-corrosion-loss-assist",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lacrosse-hvac-blower-motor-climate-control-module-failures",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lacrosse-intermittent-low-beam-headlight-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lacrosse-rear-suspension-toe-link-may-loosen-fracture",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lesabre-electronic-climate-control-programmer-blower-control-module",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lesabre-front-strut-mount-bearing-wear-clunking-popping-over-bumps-t",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lesabre-fuel-pressure-regulator-diaphragm-leak-fire-risk-recall",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lesabre-pass-key-anti-theft-system-fault-security-light-engine-crank",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lesabre-plastic-upper-intake-manifold-degradation-causing-coolant-le",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lesabre-power-window-regulator-cable-failure",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "buick-lucerne-fuel-pump-relay-overheats-melts-fuse-box",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lucerne-heated-windshield-washer-fluid-module-fire-risk",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lucerne-ignition-switch-can-slip-out-run-position",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lucerne-instrument-cluster-hard-to-read-daylight",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lucerne-intermediate-steering-shaft-clunk-during-slow-turns",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lucerne-northstar-4-6l-v8-head-gasket-head-bolt-thread-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lucerne-northstar-head-bolt",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lucerne-rear-air-self-leveling-suspension-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-lucerne-throttle-body-throttle-position-sensor-causing-reduced-engin",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-regal-2.0t-timing-chain-ltg",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-regal-6t70-6t40-automatic-transmission-shudder-slipping-hard-shift",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-regal-aisin-af40-transmission",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-regal-carbon-buildup-intake-valves",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-regal-excessive-oil-consumption-2-4l-ecotec",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-regal-loss-power-brake-assist-ebcm-software-defect",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-regal-rear-suspension-toe-link-corrosion-fracture",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-regal-sudden-loss-electric-power-steering-assist",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-regal-timing-chain-tensioner-failure-2-0t-turbo",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-roadmaster-4l60e-automatic-transmission-wear",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-roadmaster-abs-hydraulic-modulator-corrosion-front-brake-fluid-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-roadmaster-estate-wagon-rear-self-leveling-air-shock-compressor-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-roadmaster-fuel-pump-tank-check-valve-failure-causing-hard-starting-low",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "proposal-held"
+      },
+      {
+        "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "guarded-fixparts-change"
+      }
+    ]
+  }
+}

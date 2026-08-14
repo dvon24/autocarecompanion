@@ -1,0 +1,3550 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Lexus",
+  "makeKey": "lexus",
+  "makeIndex": 25,
+  "totalMakes": 54,
+  "issueCount": 77,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 40,
+    "diagnosis-dependent": 19,
+    "recall/dealer": 2,
+    "service/tool/fluid": 3,
+    "no-commerce": 13
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 20,
+    "uniqueDtcCount": 41,
+    "instructionCount": 78,
+    "dtcDispositionCount": 20,
+    "toolLinkedCount": 10,
+    "procedureNoToolCount": 69,
+    "unresolvedToolHoldCount": 19
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "lexus-ct-hybrid-battery-degradation-2011",
+      "make": "Lexus",
+      "model": "CT",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "CT200h"
+      ],
+      "engines": [
+        "1.8L 2ZR-FXE Hybrid"
+      ],
+      "title": "Hybrid Battery Pack Degradation",
+      "howToFix": "Replace the hybrid battery pack with a new or refurbished unit. The CT200h battery is the same as the third-generation Prius, so aftermarket options are plentiful and affordable. Refurbished packs from Green Bean Battery or hybrid specialists cost $1,200-$2,000 installed.",
+      "dtcCodes": [
+        "P0A80",
+        "P3000",
+        "P3006"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P0A80, P3000, P3006"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ct-hybrid-battery-degradation-2011--prescription-0-0--1-8l-2zr-fxe-hybrid"
+      ]
+    },
+    {
+      "issueId": "lexus-ct-water-pump-failure-2011",
+      "make": "Lexus",
+      "model": "CT",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "CT200h"
+      ],
+      "engines": [
+        "1.8L 2ZR-FXE Hybrid"
+      ],
+      "title": "Electric Water Pump Premature Failure",
+      "howToFix": "Replace the electric water pump assembly. Use the OEM Toyota/Lexus part for the hybrid cooling circuit. After replacement, bleed the hybrid cooling system thoroughly to remove air pockets. Check the coolant level in both the engine and hybrid cooling circuits.",
+      "dtcCodes": [
+        "P0A93"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the coolant level in both the engine and hybrid cooling circuits."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "excerpt": "P0A93"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ct-water-pump-failure-2011--prescription-0-0--1-8l-2zr-fxe-hybrid"
+      ]
+    },
+    {
+      "issueId": "lexus-es-dashboard-melt-2007",
+      "make": "Lexus",
+      "model": "ES",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "ES350"
+      ],
+      "engines": [
+        "3.5L 2GR-FE"
+      ],
+      "title": "Dashboard Melting and Sticky Surface",
+      "howToFix": "Have a Lexus dealer verify the VIN and inspect the dashboard condition. The published ZLD and ZLZ coverage periods were time-limited, so this page does not promise a free repair in 2026; ask Lexus whether any current assistance applies before authorizing dashboard replacement. Avoid solvent or coating experiments that could worsen the surface. No universal retail part or dealer-only remedy is asserted.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have a Lexus dealer verify the VIN and inspect the dashboard condition."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-es-oil-consumption-2gr-2007",
+      "make": "Lexus",
+      "model": "ES",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "ES350"
+      ],
+      "engines": [
+        "2GR-FE",
+        "3.5L 2GR-FE",
+        "3.5L 2GR-FKS"
+      ],
+      "title": "Excessive Oil Consumption 2GR-FE Engine",
+      "howToFix": "Perform an oil consumption test at the dealer to document the rate. If consuming more than 1 quart per 1,200 miles, the repair involves replacing piston rings and possibly pistons. Use 0W-20 synthetic oil and check levels every 1,000 miles. Some owners switch to 5W-30 for reduced consumption.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Perform an oil consumption test at the dealer to document the rate."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Use 0W-20 synthetic oil and check levels every 1,000 miles."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-es-oil-consumption-2gr-2007--prescription-0-0--2gr-fe",
+        "lexus-es-oil-consumption-2gr-2007--prescription-0-0--3-5l-2gr-fe",
+        "lexus-es-oil-consumption-2gr-2007--prescription-0-0--3-5l-2gr-fks",
+        "lexus-es-oil-consumption-2gr-2007--prescription-1-0--2gr-fe",
+        "lexus-es-oil-consumption-2gr-2007--prescription-1-0--3-5l-2gr-fe",
+        "lexus-es-oil-consumption-2gr-2007--prescription-1-0--3-5l-2gr-fks"
+      ]
+    },
+    {
+      "issueId": "lexus-es300h-hybrid-battery-degradation-2013",
+      "make": "Lexus",
+      "model": "ES",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "ES300h"
+      ],
+      "engines": [
+        "2.5L 2AR-FXE Hybrid"
+      ],
+      "title": "Hybrid Battery Pack Degradation",
+      "howToFix": "Replace the hybrid battery pack with a new or refurbished unit. Lexus dealers charge $3,000-$5,000 for a new pack. Aftermarket refurbished packs from companies like Green Bean Battery or Dorman cost $1,500-$2,500 installed. Individual cell replacement is also possible for partial degradation.",
+      "dtcCodes": [
+        "P0A80",
+        "P3000"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P0A80, P3000"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-es300h-hybrid-battery-degradation-2013--prescription-0-0--2-5l-2ar-fxe-hybrid",
+        "lexus-es300h-hybrid-battery-degradation-2013--prescription-1-0--2-5l-2ar-fxe-hybrid"
+      ]
+    },
+    {
+      "issueId": "lexus-es-brake-actuator-noise-2019",
+      "make": "Lexus",
+      "model": "ES",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "ES250",
+        "ES300h",
+        "ES350"
+      ],
+      "engines": [
+        "2.5L A25A-FKS",
+        "2.5L A25A-FXS Hybrid",
+        "3.5L 2GR-FKS"
+      ],
+      "title": "Brake Actuator Buzzing and Grinding Noise",
+      "howToFix": "Lexus released a software update (TSB) to modify the brake actuator operation and reduce noise. Visit the dealer for the ECU reflash. Some noise may persist at very low speeds as this is inherent to the brake-by-wire design. Adding sound deadening material around the actuator can further reduce cabin intrusion.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-es-brake-actuator-noise-2019--prescription-0-0--2-5l-a25a-fks",
+        "lexus-es-brake-actuator-noise-2019--prescription-0-0--2-5l-a25a-fxs-hybrid",
+        "lexus-es-brake-actuator-noise-2019--prescription-0-0--3-5l-2gr-fks"
+      ]
+    },
+    {
+      "issueId": "lexus-es300-1mz-fe-v6-engine-oil-sludge-failure",
+      "make": "Lexus",
+      "model": "ES300",
+      "years": [
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [
+        "1MZ-FE 3.0L V6"
+      ],
+      "title": "1MZ-FE V6 Engine Oil Sludge Failure",
+      "howToFix": "If oil gelling or sludge is suspected, stop driving when an oil-pressure warning, abnormal engine noise or loss of oil pressure is present and have the engine inspected under current VIN-specific Lexus service information. The Lexus special policy was historical, so this page does not promise a free repair in 2026. Do not use chemical flushes, repeated 1,000-2,000-mile flushing intervals, a viscosity change or a universal teardown instruction from this page. Follow the owner-manual oil specification and maintenance schedule unless current Lexus service information directs otherwise. No universal retail part or dealer-only remedy is asserted.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If oil gelling or sludge is suspected, stop driving when an oil-pressure warning, abnormal engine noise or loss of oil pressure is present and have the engine inspected under current VIN-specific Lexus service information."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-gs-dashboard-melt-2006",
+      "make": "Lexus",
+      "model": "GS",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "GS300",
+        "GS350",
+        "GS430",
+        "GS450h",
+        "GS460"
+      ],
+      "engines": [
+        "3.0L 3GR-FSE",
+        "3.5L 2GR-FSE",
+        "3.5L 2GR-FSE Hybrid",
+        "4.3L 3UZ-FE",
+        "4.6L 1UR-FSE"
+      ],
+      "title": "Dashboard Melting and Sticky Surface",
+      "howToFix": "Lexus Customer Support Program ZE7 covers dashboard replacement. Contact your dealer or Lexus customer support at 1-800-255-3987. The entire dashboard assembly and associated trim panels are replaced with redesigned materials.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-gs-dashboard-melt-2006--prescription-0-0--3-0l-3gr-fse",
+        "lexus-gs-dashboard-melt-2006--prescription-0-0--3-5l-2gr-fse",
+        "lexus-gs-dashboard-melt-2006--prescription-0-0--3-5l-2gr-fse-hybrid",
+        "lexus-gs-dashboard-melt-2006--prescription-0-0--4-3l-3uz-fe",
+        "lexus-gs-dashboard-melt-2006--prescription-0-0--4-6l-1ur-fse",
+        "lexus-gs-dashboard-melt-2006--prescription-1-0--3-0l-3gr-fse",
+        "lexus-gs-dashboard-melt-2006--prescription-1-0--3-5l-2gr-fse",
+        "lexus-gs-dashboard-melt-2006--prescription-1-0--3-5l-2gr-fse-hybrid",
+        "lexus-gs-dashboard-melt-2006--prescription-1-0--4-3l-3uz-fe",
+        "lexus-gs-dashboard-melt-2006--prescription-1-0--4-6l-1ur-fse"
+      ]
+    },
+    {
+      "issueId": "lexus-gs-steering-rack-leak-2006",
+      "make": "Lexus",
+      "model": "GS",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "GS300",
+        "GS350",
+        "GS430",
+        "GS460"
+      ],
+      "engines": [
+        "3.0L 3GR-FSE",
+        "3.5L 2GR-FSE",
+        "4.3L 3UZ-FE",
+        "4.6L 1UR-FSE"
+      ],
+      "title": "Power Steering Rack Seal Leak",
+      "howToFix": "Replace the power steering rack assembly. Remanufactured racks are available from Maval and Cardone at significant savings over new OEM. Perform a complete power steering fluid flush after installation. Inspect tie rods and replace if worn.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect tie rods and replace if worn."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-gs-steering-rack-leak-2006--prescription-0-0--3-0l-3gr-fse",
+        "lexus-gs-steering-rack-leak-2006--prescription-0-0--3-5l-2gr-fse",
+        "lexus-gs-steering-rack-leak-2006--prescription-0-0--4-3l-3uz-fe",
+        "lexus-gs-steering-rack-leak-2006--prescription-0-0--4-6l-1ur-fse",
+        "lexus-gs-steering-rack-leak-2006--prescription-1-0--3-0l-3gr-fse",
+        "lexus-gs-steering-rack-leak-2006--prescription-1-0--3-5l-2gr-fse",
+        "lexus-gs-steering-rack-leak-2006--prescription-1-0--4-3l-3uz-fe",
+        "lexus-gs-steering-rack-leak-2006--prescription-1-0--4-6l-1ur-fse"
+      ]
+    },
+    {
+      "issueId": "lexus-gs-water-pump-failure-2013",
+      "make": "Lexus",
+      "model": "GS",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "GS200t",
+        "GS300",
+        "GS350"
+      ],
+      "engines": [
+        "2.0L 8AR-FTS Turbo",
+        "3.5L 2GR-FKS"
+      ],
+      "title": "Water Pump Premature Failure",
+      "howToFix": "Replace the water pump assembly and thermostat together as a preventive measure. Use OEM or high-quality aftermarket parts (Aisin brand is the OEM supplier). Replace the serpentine belt and tensioner at the same time if they show wear.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-gs-water-pump-failure-2013--prescription-0-0--2-0l-8ar-fts-turbo",
+        "lexus-gs-water-pump-failure-2013--prescription-0-0--3-5l-2gr-fks",
+        "lexus-gs-water-pump-failure-2013--prescription-1-0--2-0l-8ar-fts-turbo",
+        "lexus-gs-water-pump-failure-2013--prescription-1-0--3-5l-2gr-fks",
+        "lexus-gs-water-pump-failure-2013--prescription-2-0--2-0l-8ar-fts-turbo",
+        "lexus-gs-water-pump-failure-2013--prescription-2-0--3-5l-2gr-fks",
+        "lexus-gs-water-pump-failure-2013--prescription-3-0--2-0l-8ar-fts-turbo",
+        "lexus-gs-water-pump-failure-2013--prescription-3-0--3-5l-2gr-fks"
+      ]
+    },
+    {
+      "issueId": "lexus-gs300-2jz-ge-timing-belt-service-interval-confusion-interference-e",
+      "make": "Lexus",
+      "model": "GS300",
+      "years": [
+        1993,
+        1994,
+        1995,
+        1996,
+        1997
+      ],
+      "trims": [],
+      "engines": [
+        "2JZ-GE 3.0L I6"
+      ],
+      "title": "2JZ-GE Timing Belt Service - Interval Confusion and Interference Engine Risk",
+      "howToFix": "Replace the timing belt at 90,000 miles per Lexus factory schedule (do not stretch to Supra's 110k interval on a Lexus chassis). Replace the hydraulic tensioner, idler pulley, water pump, thermostat, drive belts, and front cam/crank seals at the same time - labor to access these parts is the bulk of the job. Use OEM Aisin or Toyota/Mitsuboshi belt. Verify cam and crank timing marks at TDC #1 before reinstalling covers, and rotate the engine two full revolutions by hand to confirm no valve-to-piston contact before cranking with the starter.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify cam and crank timing marks at TDC #1 before reinstalling covers, and rotate the engine two full revolutions by hand to confirm no valve-to-piston contact before cranking with the starter."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 7,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-gs300-2jz-ge-timing-belt-service-interval-confusion-interference-e--prescription-0-0--2jz-ge-3-0l-i6",
+        "lexus-gs300-2jz-ge-timing-belt-service-interval-confusion-interference-e--prescription-1-0--2jz-ge-3-0l-i6",
+        "lexus-gs300-2jz-ge-timing-belt-service-interval-confusion-interference-e--prescription-2-0--2jz-ge-3-0l-i6",
+        "lexus-gs300-2jz-ge-timing-belt-service-interval-confusion-interference-e--prescription-3-0--2jz-ge-3-0l-i6",
+        "lexus-gs300-2jz-ge-timing-belt-service-interval-confusion-interference-e--prescription-4-0--2jz-ge-3-0l-i6",
+        "lexus-gs300-2jz-ge-timing-belt-service-interval-confusion-interference-e--prescription-5-0--2jz-ge-3-0l-i6",
+        "lexus-gs300-2jz-ge-timing-belt-service-interval-confusion-interference-e--prescription-6-0--2jz-ge-3-0l-i6"
+      ]
+    },
+    {
+      "issueId": "lexus-gs300-front-lower-control-arm-bushing-failure",
+      "make": "Lexus",
+      "model": "GS300",
+      "years": [
+        1993,
+        1994,
+        1995,
+        1996,
+        1997
+      ],
+      "trims": [],
+      "engines": [
+        "2JZ-GE 3.0L I6"
+      ],
+      "title": "Front Lower Control Arm Bushing Failure",
+      "howToFix": "Inspect the lower control arm bushings with a pry bar - any visible cracking, separation between the rubber and inner sleeve, or excessive deflection means replace. Remove the lower control arm (disconnect ball joint, sway-bar end link, and the two pivot bolts). Press out the worn bushings and press in OEM-rubber or polyurethane replacements (SuperPro SPF3163K is sized specifically for the 1993-1997 GS300). Reinstall, torque pivot bolts to spec with the suspension loaded at ride height (to avoid pre-loading the new bushings), and perform a four-wheel alignment.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the lower control arm bushings with a pry bar - any visible cracking, separation between the rubber and inner sleeve, or excessive deflection means replace."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-gx-center-diff-actuator-2003",
+      "make": "Lexus",
+      "model": "GX",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [
+        "GX470"
+      ],
+      "engines": [
+        "4.7L 2UZ-FE"
+      ],
+      "title": "Center Differential Lock Actuator Failure",
+      "howToFix": "Replace the center differential lock actuator motor. The actuator is accessible from under the vehicle on the transfer case. Use the OEM Toyota actuator for reliability. After replacement, verify engagement by testing in a straight line at low speed on a loose surface.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "After replacement, verify engagement by testing in a straight line at low speed on a loose surface."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-gx-center-diff-actuator-2003--prescription-0-0--4-7l-2uz-fe",
+        "lexus-gx-center-diff-actuator-2003--prescription-1-0--4-7l-2uz-fe"
+      ]
+    },
+    {
+      "issueId": "lexus-gx-secondary-air-pump-2003",
+      "make": "Lexus",
+      "model": "GX",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [
+        "GX470"
+      ],
+      "engines": [
+        "4.7L 2UZ-FE"
+      ],
+      "title": "Secondary Air Injection Pump Failure",
+      "howToFix": "Replace the secondary air injection pump and switching valves. Clean or replace the air injection check valves. Clear codes and verify operation. Some owners in non-emissions-testing states choose to bypass the system entirely with a tune.",
+      "dtcCodes": [
+        "P2440",
+        "P2441",
+        "P2442"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clean or replace the air injection check valves."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clear codes and verify operation."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Some owners in non-emissions-testing states choose to bypass the system entirely with a tune."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2440, P2441, P2442"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-gx-secondary-air-pump-2003--prescription-0-0--4-7l-2uz-fe",
+        "lexus-gx-secondary-air-pump-2003--prescription-1-0--4-7l-2uz-fe",
+        "lexus-gx-secondary-air-pump-2003--prescription-2-0--4-7l-2uz-fe"
+      ]
+    },
+    {
+      "issueId": "lexus-gx-ahc-suspension-leak-2010",
+      "make": "Lexus",
+      "model": "GX",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "GX460"
+      ],
+      "engines": [
+        "4.6L 1UR-FE"
+      ],
+      "title": "AHC (Adaptive Hydraulic) Suspension Leak",
+      "howToFix": "Replace the leaking KDSS actuator(s) and hydraulic lines. Refill and bleed the system with the correct Toyota KDSS fluid. Both front and rear actuators should be inspected even if only one is leaking. Some owners disconnect the KDSS system and install conventional sway bars.",
+      "dtcCodes": [
+        "C1435",
+        "C1436"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Both front and rear actuators should be inspected even if only one is leaking."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1435, C1436"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-gx-ahc-suspension-leak-2010--prescription-0-0--4-6l-1ur-fe",
+        "lexus-gx-ahc-suspension-leak-2010--prescription-1-0--4-6l-1ur-fe",
+        "lexus-gx-ahc-suspension-leak-2010--prescription-2-0--4-6l-1ur-fe"
+      ]
+    },
+    {
+      "issueId": "lexus-is-alternator-failure-from-age-2001",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [
+        "3.0L 2JZ-GE"
+      ],
+      "title": "Alternator Failure from Age and Oil Contamination Leading to Charging Loss",
+      "howToFix": "Test charging voltage at idle and under load, and inspect for oil leakage from the valve cover or power steering area that may have reached the alternator. Replace the alternator with a quality OEM or Denso unit and correct any fluid leaks that contributed to failure. The battery should be load-tested afterward because repeated deep discharge can damage it.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Test charging voltage at idle and under load, and inspect for oil leakage from the valve cover or power steering area that may have reached the alternator."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "The battery should be load-tested afterward because repeated deep discharge can damage it."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-is-alternator-failure-from-age-2001--prescription-0-0--3-0l-2jz-ge"
+      ]
+    },
+    {
+      "issueId": "lexus-is-lcd-climate-control-and-2001",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "LCD Climate Control and Radio Display Pixel Failure",
+      "howToFix": "Verify the issue is in the display unit rather than a fuse or backlighting power supply. Repair options include sending the unit to a specialist for LCD/pixel repair, replacing the display assembly with a known-good unit, or converting to an aftermarket audio/HVAC solution where applicable. Used units can fail the same way, so rebuilt parts are often preferred.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify the issue is in the display unit rather than a fuse or backlighting power supply."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-is-lower-ball-joint-wear-2001",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Lower Ball Joint Wear or Separation Risk in Front Suspension",
+      "howToFix": "Inspect front lower ball joints for play during any suspension or brake service, especially on higher-mileage cars or vehicles with unknown history. Replace worn joints promptly with OEM-quality parts and inspect adjacent components such as tie rods, control arm bushings, and front tires for secondary damage. An alignment should follow replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect front lower ball joints for play during any suspension or brake service, especially on higher-mileage cars or vehicles with unknown history."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace worn joints promptly with OEM-quality parts and inspect adjacent components such as tie rods, control arm bushings, and front tires for secondary damage."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-is-lower-ball-joint-wear-2001--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-is-valve-cover-gasket-leaks-2001",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005
+      ],
+      "trims": [],
+      "engines": [
+        "3.0L 2JZ-GE"
+      ],
+      "title": "Valve Cover Gasket Leaks Causing Oil Smell and Misfire Risk",
+      "howToFix": "Confirm the leak source by cleaning the engine and inspecting around the valve cover perimeter and spark plug wells. Replace both valve cover gaskets, spark plug tube seals, and related grommets; many owners also replace the PCV valve at the same time to reduce crankcase pressure. If misfires are present, inspect and replace oil-soaked coil boots or plugs.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304",
+        "P0305",
+        "P0306"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the leak source by cleaning the engine and inspecting around the valve cover perimeter and spark plug wells."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If misfires are present, inspect and replace oil-soaked coil boots or plugs."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304, P0305, P0306"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 6,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-is-valve-cover-gasket-leaks-2001--prescription-0-0--3-0l-2jz-ge",
+        "lexus-is-valve-cover-gasket-leaks-2001--prescription-1-0--3-0l-2jz-ge",
+        "lexus-is-valve-cover-gasket-leaks-2001--prescription-2-0--3-0l-2jz-ge",
+        "lexus-is-valve-cover-gasket-leaks-2001--prescription-3-0--3-0l-2jz-ge",
+        "lexus-is-valve-cover-gasket-leaks-2001--prescription-4-0--3-0l-2jz-ge",
+        "lexus-is-valve-cover-gasket-leaks-2001--prescription-5-0--3-0l-2jz-ge"
+      ]
+    },
+    {
+      "issueId": "lexus-is-dashboard-melt-2006",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [
+        "IS F",
+        "IS250",
+        "IS350"
+      ],
+      "engines": [
+        "2.5L 4GR-FSE",
+        "3.5L 2GR-FSE",
+        "5.0L 2UR-GSE"
+      ],
+      "title": "Dashboard Melting and Sticky Surface",
+      "howToFix": "Obtain dashboard replacement under the Lexus Customer Support Program ZE7 extended warranty. If coverage has expired, request goodwill assistance from Lexus corporate. Aftermarket dash covers provide a temporary cosmetic fix but do not resolve the underlying material breakdown.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-is-dashboard-melt-2006--prescription-0-0--2-5l-4gr-fse",
+        "lexus-is-dashboard-melt-2006--prescription-0-0--3-5l-2gr-fse",
+        "lexus-is-dashboard-melt-2006--prescription-0-0--5-0l-2ur-gse"
+      ]
+    },
+    {
+      "issueId": "lexus-is-transmission-harsh-shift-2014",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "IS200t",
+        "IS300",
+        "IS350"
+      ],
+      "engines": [
+        "2.0L 8AR-FTS Turbo",
+        "3.5L 2GR-FKS",
+        "3.5L 2GR-FSE"
+      ],
+      "title": "8-Speed Automatic Harsh Shifting",
+      "howToFix": "Visit the dealer for a transmission ECU reprogramming that smooths shift points and torque converter lockup behavior. Perform a transmission fluid drain-and-fill with Toyota WS fluid every 40,000 miles. If harsh shifting persists after the reflash, the valve body may need replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-is-transmission-harsh-shift-2014--prescription-0-0--2-0l-8ar-fts-turbo",
+        "lexus-is-transmission-harsh-shift-2014--prescription-0-0--3-5l-2gr-fks",
+        "lexus-is-transmission-harsh-shift-2014--prescription-0-0--3-5l-2gr-fse"
+      ]
+    },
+    {
+      "issueId": "lexus-is-carbon-buildup-turbo-2016",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "IS200t",
+        "IS300"
+      ],
+      "engines": [
+        "2.0L 8AR-FTS Turbo"
+      ],
+      "title": "Carbon Buildup on Intake Valves (2.0T)",
+      "howToFix": "Perform a walnut shell blasting of the intake valves to remove carbon deposits. This requires removing the intake manifold and using specialized media blasting equipment. Plan to repeat every 40,000-60,000 miles. Using a quality catch can helps slow the buildup rate.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-is-fuel-pump-recall-2018",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "IS300",
+        "IS350"
+      ],
+      "engines": [
+        "2.0L 8AR-FTS Turbo",
+        "3.5L 2GR-FKS"
+      ],
+      "title": "Fuel Pump Impeller Failure (Recall)",
+      "howToFix": "Replace the fuel pump assembly at any Lexus dealer free of charge under recall 20V-863. The dealer replaces the entire fuel pump with an updated unit that uses a redesigned impeller. If you have not received a recall notice, contact your dealer with your VIN to verify eligibility.",
+      "dtcCodes": [
+        "P0087",
+        "P0230"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "If you have not received a recall notice, contact your dealer with your VIN to verify eligibility."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087, P0230"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-is-front-door-trim--2023",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Door Trim / Inner Garnish Rattle at Speaker Area",
+      "howToFix": "Technicians usually road-test the vehicle to isolate the exact door and trim contact point, then remove the affected door panel and apply anti-rattle felt, foam tape, or updated insulators at the speaker grille, garnish, or clip interfaces. Broken or loose retaining clips should be replaced, and the panel should be reinstalled with proper torque and alignment. If the noise is audio-induced, verify the speaker fasteners and harness routing before reassembly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Technicians usually road-test the vehicle to isolate the exact door and trim contact point, then remove the affected door panel and apply anti-rattle felt, foam tape, or updated insulators at the speaker grille, garnish, or clip interfaces."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the noise is audio-induced, verify the speaker fasteners and harness routing before reassembly."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-is-front-door-trim-2023--prescription-0-0--all-engines",
+        "lexus-is-front-door-trim-2023--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-is-lexus-safety-system-false-2023",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Lexus Safety System+ False Forward Collision / PCS Warnings from Dirty or Misaligned Sensors",
+      "howToFix": "Inspect and clean the front radar emblem area and windshield camera zone first, then scan for stored ADAS-related codes. If warnings persist, perform radar/camera aiming and calibration, especially after windshield replacement, bumper repair, or alignment work. Replace the affected sensor only after confirming power, communication, and calibration status.",
+      "dtcCodes": [
+        "C1A10",
+        "C1A11",
+        "C1A47",
+        "C1AA0"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and clean the front radar emblem area and windshield camera zone first, then scan for stored ADAS-related codes."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1A10, C1A11, C1A47, C1AA0"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-is-lexus-safety-system-false-2023--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-is-premature-front-brake-squeal-2023",
+      "make": "Lexus",
+      "model": "IS",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Premature Front Brake Squeal / Groan at Low Speed",
+      "howToFix": "Inspect pad thickness, rotor finish, and hardware condition first. Dealers or independent shops typically clean and lubricate pad ears/shims, resurface or replace rotors if glazing is present, and install revised pads or shims if available. If the vehicle has F SPORT brakes, verify correct pad compound and bedding procedure after service.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect pad thickness, rotor finish, and hardware condition first."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the vehicle has F SPORT brakes, verify correct pad compound and bedding procedure after service."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-is-premature-front-brake-squeal-2023--prescription-0-0--all-engines",
+        "lexus-is-premature-front-brake-squeal-2023--prescription-1-0--all-engines",
+        "lexus-is-premature-front-brake-squeal-2023--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-lc-infotainment-lag-2018",
+      "make": "Lexus",
+      "model": "LC",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "LC500",
+        "LC500h"
+      ],
+      "engines": [
+        "3.5L 8GR-FXS Hybrid",
+        "5.0L 2UR-GSE"
+      ],
+      "title": "Infotainment System Lag and Touchpad Issues",
+      "howToFix": "Update to the latest infotainment software version. The 2022+ LC received a touchscreen update that significantly improves usability. For pre-2022 models, use Apple CarPlay (added 2020) or voice commands to minimize touchpad interaction.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-ls-noncompliant-aftermarket-corner-bumper-lamp-assemblies",
+      "make": "Lexus",
+      "model": "LS",
+      "years": [
+        2001
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Noncompliant Aftermarket Corner/Bumper Lamp Assemblies",
+      "howToFix": "Inspect the vehicle for non-OEM or aftermarket front corner/bumper lamp assemblies, especially SaberSport units covered by the recall. Replace recalled or poor-quality lamps with OEM-equivalent assemblies, confirm bulb seating and aiming, and check for water intrusion or melted sockets. Costs vary depending on whether only the lamp housing or also bulbs and connectors need replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the vehicle for non-OEM or aftermarket front corner/bumper lamp assemblies, especially SaberSport units covered by the recall."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace recalled or poor-quality lamps with OEM-equivalent assemblies, confirm bulb seating and aiming, and check for water intrusion or melted sockets."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ls-noncompliant-aftermarket-corner-bumper-lamp-assemblies--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-ls-side-curtain-knee-airbag-inflator-defect",
+      "make": "Lexus",
+      "model": "LS",
+      "years": [
+        2004
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Side/Curtain/Knee Airbag Inflator Defect",
+      "howToFix": "Verify recall completion for campaign 06V096000 through Lexus or NHTSA using the VIN. If incomplete, the remedy is replacement of the affected air bag inflator/module assemblies by a dealer at no charge; out-of-pocket repair outside recall can be expensive because it may involve side, curtain, or knee airbag modules and related trim removal. If the airbag warning light is on, scan the SRS system before replacing parts to confirm whether the recalled inflator or another component is at fault.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify recall completion for campaign 06V096000 through Lexus or NHTSA using the VIN."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the airbag warning light is on, scan the SRS system before replacing parts to confirm whether the recalled inflator or another component is at fault."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:2"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ls-side-curtain-knee-airbag-inflator-defect--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-ls-air-suspension-failure-2007",
+      "make": "Lexus",
+      "model": "LS",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "LS460",
+        "LS460L",
+        "LS600h",
+        "LS600hL"
+      ],
+      "engines": [
+        "4.6L 1UR-FSE",
+        "5.0L 2UR-FSE Hybrid"
+      ],
+      "title": "Air Suspension Strut and Compressor Failure",
+      "howToFix": "Replace failed air struts with new OEM or aftermarket units from Arnott or Suncore. Replace the compressor if it no longer maintains pressure. For a permanent fix, some owners convert to conventional coilover suspension using kits from Strutmasters or BC Racing, which eliminates future air suspension issues.",
+      "dtcCodes": [
+        "C1714",
+        "C1715",
+        "C1760"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "excerpt": "C1714, C1715, C1760"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ls-air-suspension-failure-2007--prescription-0-0--4-6l-1ur-fse",
+        "lexus-ls-air-suspension-failure-2007--prescription-0-0--5-0l-2ur-fse-hybrid",
+        "lexus-ls-air-suspension-failure-2007--prescription-1-0--4-6l-1ur-fse",
+        "lexus-ls-air-suspension-failure-2007--prescription-1-0--5-0l-2ur-fse-hybrid"
+      ]
+    },
+    {
+      "issueId": "lexus-ls-headlight-self-leveling-2007",
+      "make": "Lexus",
+      "model": "LS",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "LS460",
+        "LS460L",
+        "LS600h",
+        "LS600hL"
+      ],
+      "engines": [
+        "4.6L 1UR-FSE",
+        "5.0L 2UR-FSE Hybrid"
+      ],
+      "title": "Self-Leveling Headlight System Failure",
+      "howToFix": "Replace the failed headlight leveling sensor(s). There are typically 3-4 sensors on the LS — two front and one or two rear. Use OEM sensors as aftermarket alternatives have poor fitment. Recalibrate the headlight system with a Lexus diagnostic scan tool after replacement.",
+      "dtcCodes": [
+        "B1601",
+        "B1602"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Recalibrate the headlight system with a Lexus diagnostic scan tool after replacement."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "excerpt": "B1601, B1602"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ls-headlight-self-leveling-2007--prescription-0-0--4-6l-1ur-fse",
+        "lexus-ls-headlight-self-leveling-2007--prescription-0-0--5-0l-2ur-fse-hybrid",
+        "lexus-ls-headlight-self-leveling-2007--prescription-1-0--4-6l-1ur-fse",
+        "lexus-ls-headlight-self-leveling-2007--prescription-1-0--5-0l-2ur-fse-hybrid"
+      ]
+    },
+    {
+      "issueId": "lexus-ls500-infotainment-lag-2018",
+      "make": "Lexus",
+      "model": "LS",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "LS500",
+        "LS500h"
+      ],
+      "engines": [
+        "3.5L 8GR-FXS Hybrid",
+        "3.5L V35A-FTS Twin-Turbo"
+      ],
+      "title": "Infotainment System Lag and Touchpad Frustration",
+      "howToFix": "Update to the latest infotainment software at the dealer, which improves responsiveness somewhat. Lexus has released multiple software updates since 2018. The 2022+ models received a touchscreen that partially addresses the issue. For older models, using voice commands or Apple CarPlay/Android Auto bypasses the native interface.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-ls400-engine-ecu-ecm-electrolytic-capacitor-leakage",
+      "make": "Lexus",
+      "model": "LS400",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "4.0L 1UZ-FE V8"
+      ],
+      "title": "Engine ECU/ECM electrolytic capacitor leakage (age-related)",
+      "howToFix": "Recap the ECU: desolder all the aged electrolytic capacitors, neutralize/clean any acid residue on the board, and install new low-ESR 105C-rated Japanese capacitors (Rubycon, Nichicon, Panasonic, Nippon Chemi-Con). 1990-92 boards use ~10-11 capacitors; 1993-94 use ~8. This is fine-pitch SMD work, not a first-time soldering job; many owners send the unit to a specialist recap/rebuild service instead.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-ls400-front-lower-ball-joint-wear-separation",
+      "make": "Lexus",
+      "model": "LS400",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "4.0L 1UZ-FE V8"
+      ],
+      "title": "Front lower ball joint wear and (rarely) separation",
+      "howToFix": "Inspect the lower (and upper) ball joints for play at each service; replace worn joints in pairs. Use quality OEM/Aisin or reputable brands (Moog, 555) rather than the cheapest aftermarket, given the safety role. On many LS400s the ball joint is integral to the lower control arm, so a control-arm assembly may be required.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the lower (and upper) ball joints for play at each service;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ls400-front-lower-ball-joint-wear-separation--prescription-0-0--4-0l-1uz-fe-v8"
+      ]
+    },
+    {
+      "issueId": "lexus-ls400-oil-leaks-from-cam-crank-seals-valve-cover-gaskets-timing-co",
+      "make": "Lexus",
+      "model": "LS400",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "4.0L 1UZ-FE V8",
+        "4.0L 1UZ-FE VVT-i V8"
+      ],
+      "title": "Oil leaks from cam/crank seals, valve-cover gaskets, and timing cover",
+      "howToFix": "Replace the valve-cover gaskets (and spark-plug tube seals) for the top-end weep. For front-cover/crank/cam seal leaks, the timing belt and covers must come off — replace all three front oil seals together while access is open, ideally bundled with the timing-belt service to save labor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ls400-oil-leaks-from-cam-crank-seals-valve-cover-gaskets-timing-co--prescription-0-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-oil-leaks-from-cam-crank-seals-valve-cover-gaskets-timing-co--prescription-0-0--4-0l-1uz-fe-vvt-i-v8",
+        "lexus-ls400-oil-leaks-from-cam-crank-seals-valve-cover-gaskets-timing-co--prescription-1-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-oil-leaks-from-cam-crank-seals-valve-cover-gaskets-timing-co--prescription-1-0--4-0l-1uz-fe-vvt-i-v8"
+      ]
+    },
+    {
+      "issueId": "lexus-ls400-starter-motor-failure-buried-under-intake-manifold",
+      "make": "Lexus",
+      "model": "LS400",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "4.0L 1UZ-FE V8"
+      ],
+      "title": "Starter motor failure buried under the intake manifold",
+      "howToFix": "Remove the intake manifold and replace the starter (a Denso reman/OEM unit is preferred for longevity). Owners are strongly advised to replace the heater control valve and any brittle vacuum/coolant hoses while the manifold is off, since access is otherwise costly to repeat. Use new intake and throttle-body gaskets on reassembly.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ls400-starter-motor-failure-buried-under-intake-manifold--prescription-0-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-starter-motor-failure-buried-under-intake-manifold--prescription-1-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-starter-motor-failure-buried-under-intake-manifold--prescription-2-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-starter-motor-failure-buried-under-intake-manifold--prescription-3-0--4-0l-1uz-fe-v8"
+      ]
+    },
+    {
+      "issueId": "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v",
+      "make": "Lexus",
+      "model": "LS400",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "4.0L 1UZ-FE V8",
+        "4.0L 1UZ-FE VVT-i V8"
+      ],
+      "title": "Timing belt / water pump service — interference risk on 1998-2000 VVT-i",
+      "howToFix": "Replace the timing belt as a full kit at the interval: belt, both idler bearings, tensioner, and the water pump (driven by the belt). Inspect and replace the front crank and cam oil seals while the covers are off. Use OEM/Aisin or Gates components.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and replace the front crank and cam oil seals while the covers are off."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 5,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-0-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-0-0--4-0l-1uz-fe-vvt-i-v8",
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-1-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-1-0--4-0l-1uz-fe-vvt-i-v8",
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-2-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-2-0--4-0l-1uz-fe-vvt-i-v8",
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-3-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-3-0--4-0l-1uz-fe-vvt-i-v8",
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-4-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-timing-belt-water-pump-service-interference-risk-1998-2000-v--prescription-4-0--4-0l-1uz-fe-vvt-i-v8"
+      ]
+    },
+    {
+      "issueId": "lexus-ls400-variable-assist-power-steering-pump-hose-leaks",
+      "make": "Lexus",
+      "model": "LS400",
+      "years": [
+        1990,
+        1991,
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "Base"
+      ],
+      "engines": [
+        "4.0L 1UZ-FE V8"
+      ],
+      "title": "Variable-assist power-steering pump/hose leaks (can kill the alternator)",
+      "howToFix": "Replace the leaking power-steering pump seals and/or pressure hoses and clean up contamination promptly. If the alternator has been soaked/fouled, replace it (OEM/Denso reman). Address the leak first so a new alternator isn't ruined, and use the correct ATF (not conventional PS fluid).",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-ls400-variable-assist-power-steering-pump-hose-leaks--prescription-0-0--4-0l-1uz-fe-v8",
+        "lexus-ls400-variable-assist-power-steering-pump-hose-leaks--prescription-1-0--4-0l-1uz-fe-v8"
+      ]
+    },
+    {
+      "issueId": "lexus-lx-ahc-suspension-failure-2008",
+      "make": "Lexus",
+      "model": "LX",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "LX570"
+      ],
+      "engines": [
+        "5.7L 3UR-FE"
+      ],
+      "title": "AHC (Active Height Control) Suspension Failure",
+      "howToFix": "Replace failed AHC components — actuators, accumulator, or hydraulic lines as needed. A complete AHC overhaul runs $3,000-$6,000 at the dealer. Alternatively, convert to a conventional spring suspension using aftermarket kits that eliminate all hydraulic components.",
+      "dtcCodes": [
+        "C1714",
+        "C1715"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1714, C1715"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-lx-center-diff-lock-actuator-2008",
+      "make": "Lexus",
+      "model": "LX",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "LX570"
+      ],
+      "engines": [
+        "5.7L 3UR-FE"
+      ],
+      "title": "Center Differential Lock Actuator Failure",
+      "howToFix": "Replace the center differential lock actuator motor assembly on the transfer case. The OEM Toyota part is recommended. After installation, perform a system initialization using a Toyota/Lexus diagnostic scanner. Test engagement on a loose surface in a straight line.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "After installation, perform a system initialization using a Toyota/Lexus diagnostic scanner."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Test engagement on a loose surface in a straight line."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-lx-center-diff-lock-actuator-2008--prescription-0-0--5-7l-3ur-fe"
+      ]
+    },
+    {
+      "issueId": "lexus-lx-123-inch-infotainment-lexus-2022",
+      "make": "Lexus",
+      "model": "LX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "12.3-inch Infotainment / Lexus Interface Screen Freezing, Rebooting, or Going Blank",
+      "howToFix": "Confirm software version and check for Lexus multimedia service bulletins or over-the-air/dealer updates. If the issue persists, dealers typically perform head-unit software reprogramming, inspect battery voltage and module communication faults, and replace the display/audio head unit only if updates do not resolve the problem. Owners should record when the failure occurs, especially if wireless phone projection is active.",
+      "dtcCodes": [
+        "U0155",
+        "U0235"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Confirm software version and check for Lexus multimedia service bulletins or over-the-air/dealer updates."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the issue persists, dealers typically perform head-unit software reprogramming, inspect battery voltage and module communication faults, and replace the display/audio head unit only if updates do not resolve the problem."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "U0155, U0235"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-lx-123-inch-infotainment-lexus-2022--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-lx-brake-pedal-vibration--2022",
+      "make": "Lexus",
+      "model": "LX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Pedal Vibration / Front Brake Rotor Warping and Premature Brake Pulsation",
+      "howToFix": "Road-test the vehicle to confirm pulsation, then measure rotor runout and thickness variation. Dealers or independent shops typically resurface or replace front rotors and pads; if the problem recurs, verify caliper slide operation, wheel torque uniformity, and bedding-in procedure. Upgraded pad compounds or higher-quality replacement rotors are often suggested by owners who experienced repeat issues.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Road-test the vehicle to confirm pulsation, then measure rotor runout and thickness variation."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "if the problem recurs, verify caliper slide operation, wheel torque uniformity, and bedding-in procedure."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-lx-brake-pedal-vibration-2022--prescription-0-0--all-engines",
+        "lexus-lx-brake-pedal-vibration-2022--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-lx-front-occupant-classification--2022",
+      "make": "Lexus",
+      "model": "LX",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Occupant Classification / Airbag Sensor Fault Triggering SRS Warning and Airbag Recall Repairs",
+      "howToFix": "Scan the SRS system with a Toyota/Lexus-capable diagnostic tool and inspect the passenger seat weight/occupant classification components, seat harnesses, and any applicable recall campaign status by VIN. Dealers typically perform recall remedies, recalibration, or replacement of affected seat sensor/airbag-related parts, then clear codes and verify the occupant detection status with a seat calibration procedure. If the warning returns, wiring under the seat and connector tension should be checked carefully.",
+      "dtcCodes": [
+        "B1650",
+        "B1780",
+        "B1795"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Scan the SRS system with a Toyota/Lexus-capable diagnostic tool and inspect the passenger seat weight/occupant classification components, seat harnesses, and any applicable recall campaign status by VIN."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers typically perform recall remedies, recalibration, or replacement of affected seat sensor/airbag-related parts, then clear codes and verify the occupant detection status with a seat calibration procedure."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the warning returns, wiring under the seat and connector tension should be checked carefully."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "B1650, B1780, B1795"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-lx-front-occupant-classification-2022--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-lx-power-tailgate-rear-2022",
+      "make": "Lexus",
+      "model": "LX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Tailgate / Rear Hatch Fails to Open or Close Properly Due to Latch or Strut/Module Faults",
+      "howToFix": "Inspect for stored body or back-door control codes, verify latch alignment, and test the power back-door motor/strut operation and anti-pinch sensors. Dealers may update control software, adjust the latch/striker, or replace the latch assembly or powered support components. If the hatch is intermittently reported open, check for water intrusion or connector issues in the rear door area.",
+      "dtcCodes": [
+        "B2220",
+        "B2222"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect for stored body or back-door control codes, verify latch alignment, and test the power back-door motor/strut operation and anti-pinch sensors."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the hatch is intermittently reported open, check for water intrusion or connector issues in the rear door area."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "B2220, B2222"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-lx-power-tailgate-rear-2022--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-lx-v35a-fts-34l-twin-turbo-v6-2022",
+      "make": "Lexus",
+      "model": "LX",
+      "years": [
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [
+        "3.4L twin-turbo V6 (V35A-FTS)"
+      ],
+      "title": "V35A-FTS 3.4L Twin-Turbo V6 Main Bearing / Engine Failure Risk Covered by Toyota-Lexus Recall",
+      "howToFix": "Check VIN for open engine recall/campaign status immediately. If symptoms such as knocking, low oil pressure warnings, or misfire/limp mode appear, the vehicle should not be driven until inspected; dealers may perform engine inspection and, where required by campaign procedure, short-block or complete engine replacement. Oil filter inspection for metallic debris and oil pressure verification are key diagnostic steps.",
+      "dtcCodes": [
+        "P0016",
+        "P0300",
+        "P0524"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check VIN for open engine recall/campaign status immediately."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If symptoms such as knocking, low oil pressure warnings, or misfire/limp mode appear, the vehicle should not be driven until inspected;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "dealers may perform engine inspection and, where required by campaign procedure, short-block or complete engine replacement."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Oil filter inspection for metallic debris and oil pressure verification are key diagnostic steps."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016, P0300, P0524"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-nx-infotainment-lag-2015",
+      "make": "Lexus",
+      "model": "NX",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [
+        "NX200t",
+        "NX300",
+        "NX300h"
+      ],
+      "engines": [
+        "2.0L 8AR-FTS Turbo",
+        "2.5L 2AR-FXE Hybrid"
+      ],
+      "title": "Infotainment System Lag and Touchpad Issues",
+      "howToFix": "Update the navigation and multimedia software to the latest version at the dealer. The 2018+ models received improved software. If available, use Apple CarPlay or Android Auto (added in 2020 update) to bypass the native interface. Voice commands work more reliably than the touchpad for most functions.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-nx-cvt-drone-2022",
+      "make": "Lexus",
+      "model": "NX",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "NX250",
+        "NX350h"
+      ],
+      "engines": [
+        "2.5L A25A-FKS",
+        "2.5L A25A-FXS Hybrid"
+      ],
+      "title": "CVT Drone and Rubber Band Effect",
+      "howToFix": "This is largely a design characteristic of the CVT, though software updates have improved the shift simulation logic. Visit the dealer for the latest ECU calibration. Using Sport mode provides more responsive behavior with simulated shift points that reduce the rubber band feeling.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-rc-carbon-buildup-turbo-2016",
+      "make": "Lexus",
+      "model": "RC",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "RC200t",
+        "RC300"
+      ],
+      "engines": [
+        "2.0L 8AR-FTS Turbo"
+      ],
+      "title": "Carbon Buildup on Intake Valves (2.0T)",
+      "howToFix": "Walnut shell blasting of intake valves every 40,000-60,000 miles. Install an oil catch can to reduce the rate of carbon accumulation. Use top-tier fuel to minimize deposit formation.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303",
+        "P0304"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303, P0304"
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rc-carbon-buildup-turbo-2016--prescription-0-0--2-0l-8ar-fts-turbo"
+      ]
+    },
+    {
+      "issueId": "lexus-rc-battery-discharge-and-no-start-2023",
+      "make": "Lexus",
+      "model": "RC",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Battery Discharge and No-Start from DCM/Telematics Module Staying Awake",
+      "howToFix": "Confirm the complaint with a battery state-of-health test and a parasitic draw test after all modules should be asleep. If draw remains elevated, inspect DCM/telematics operation, software level, and related fuses/connectors; dealers typically apply software updates or replace the affected module if current draw remains out of spec. Battery replacement alone is often only a temporary fix unless the root parasitic draw is corrected.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "parasitic-draw",
+          "toolId": "dc-clamp-meter-low-current",
+          "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Confirm the complaint with a battery state-of-health test and a parasitic draw test after all modules should be asleep."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If draw remains elevated, inspect DCM/telematics operation, software level, and related fuses/connectors;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rc-battery-discharge-and-no-start-2023--prescription-0-0--all-engines",
+        "lexus-rc-battery-discharge-and-no-start-2023--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-rc-brake-pedal-vibration-or-2023",
+      "make": "Lexus",
+      "model": "RC",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Pedal Vibration or Pulsation from Front Rotor Thickness Variation",
+      "howToFix": "Road-test to confirm pulsation and measure rotor runout and thickness variation with a dial indicator/micrometer. If out of spec, resurface or replace rotors and pads as a set, clean hub mating surfaces, and properly torque wheels to prevent recurrence. A proper bed-in procedure for new pads/rotors helps reduce repeat complaints.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Road-test to confirm pulsation and measure rotor runout and thickness variation with a dial indicator/micrometer."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rc-brake-pedal-vibration-or-2023--prescription-0-0--all-engines",
+        "lexus-rc-brake-pedal-vibration-or-2023--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-rc-infotainment-screen-freezing-carplayandroid-2023",
+      "make": "Lexus",
+      "model": "RC",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment Screen Freezing, CarPlay/Android Auto Disconnects, and Audio Rebooting",
+      "howToFix": "Verify whether the problem occurs with both wired and wireless phone connections and check for multimedia software updates. Dealers typically update the head unit software, reset the multimedia system, and inspect USB ports/cables; if the issue persists, they may replace the head unit or related interface hardware. Using a high-quality certified cable often reduces disconnect complaints.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify whether the problem occurs with both wired and wireless phone connections and check for multimedia software updates."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers typically update the head unit software, reset the multimedia system, and inspect USB ports/cables;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rc-infotainment-screen-freezing-carplayandroid-2023--prescription-0-0--all-engines",
+        "lexus-rc-infotainment-screen-freezing-carplayandroid-2023--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-rc-interior-rattle-and-buzzing-2023",
+      "make": "Lexus",
+      "model": "RC",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Interior Rattle and Buzzing from Door Panels, Dash, and Rear Trim at Highway Speeds",
+      "howToFix": "Technicians usually need a ride-along to isolate the exact source, then remove trim panels and apply felt tape, foam isolators, or revised clips where panels contact each other. Re-torquing loose fasteners and checking for items in the trunk/rear shelf area can eliminate many noises. Because the problem is often intermittent, documenting road speed, temperature, and road surface helps diagnosis.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Re-torquing loose fasteners and checking for items in the trunk/rear shelf area can eliminate many noises."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Because the problem is often intermittent, documenting road speed, temperature, and road surface helps diagnosis."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rc-interior-rattle-and-buzzing-2023--prescription-0-0--all-engines",
+        "lexus-rc-interior-rattle-and-buzzing-2023--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-power-steering-pressure-hose-2000",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Steering Pressure Hose Leak and Pump Whine from Fluid Loss",
+      "howToFix": "Inspect the pressure hose, return lines, reservoir, and pump area for wetness, then confirm whether the leak is from the crimped hose section or a fitting. Replace the leaking hose or line assembly, refill with the correct fluid, and bleed the system fully; if the pump has been noisy for long, inspect for internal damage. Cleaning the subframe and alternator area is important because leaked fluid can spread widely.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the pressure hose, return lines, reservoir, and pump area for wetness, then confirm whether the leak is from the crimped hose section or a fitting."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "if the pump has been noisy for long, inspect for internal damage."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-power-steering-pressure-hose-2000--prescription-0-0--all-engines",
+        "lexus-rx-power-steering-pressure-hose-2000--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-u140eu151e-automatic-transmission-failure-2000",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003
+      ],
+      "trims": [],
+      "engines": [
+        "3.0L 1MZ-FE V6"
+      ],
+      "title": "U140E/U151E Automatic Transmission Failure from Burned Planetary Gearset and Delayed Engagement",
+      "howToFix": "Diagnosis usually starts with checking fluid condition, line pressure behavior, and whether engagement delay or flare shifts are present when warm. In most cases, fluid changes do not cure an already failing unit; the durable fix is a quality rebuild or replacement transmission, often with updated hard parts and careful inspection of the cooler and valve body. Many owners also add an auxiliary transmission cooler after replacement to reduce repeat failures.",
+      "dtcCodes": [
+        "P0753",
+        "P0758",
+        "P0773",
+        "P0780"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis usually starts with checking fluid condition, line pressure behavior, and whether engagement delay or flare shifts are present when warm."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "the durable fix is a quality rebuild or replacement transmission, often with updated hard parts and careful inspection of the cooler and valve body."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0753, P0758, P0773, P0780"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-u140eu151e-automatic-transmission-failure-2000--prescription-0-0--3-0l-1mz-fe-v6",
+        "lexus-rx-u140eu151e-automatic-transmission-failure-2000--prescription-1-0--3-0l-1mz-fe-v6",
+        "lexus-rx-u140eu151e-automatic-transmission-failure-2000--prescription-2-0--3-0l-1mz-fe-v6"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-rear-main-seal--2004",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [
+        "3.3L 3MZ-FE V6"
+      ],
+      "title": "Rear Main Seal / Engine Oil Leak at Timing Cover and Lower Engine Seals",
+      "howToFix": "Clean the engine thoroughly and use dye or UV tracing to identify the true source, since valve cover, timing cover, and rear main leaks can be misidentified. Repair involves replacing the failed seal or resealing the timing cover, often while addressing nearby components with overlapping labor. If the leak is minor, some owners monitor oil level until the leak worsens enough to justify the labor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the leak is minor, some owners monitor oil level until the leak worsens enough to justify the labor."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-rear-main-seal-2004--prescription-0-0--3-3l-3mz-fe-v6",
+        "lexus-rx-rear-main-seal-2004--prescription-1-0--3-3l-3mz-fe-v6",
+        "lexus-rx-rear-main-seal-2004--prescription-2-0--3-3l-3mz-fe-v6"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-steering-intermediate-shaft-clunk-2004",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Steering Intermediate Shaft Clunk and Loose Steering Feel Over Bumps",
+      "howToFix": "Road test over small road imperfections to reproduce the column knock, then isolate the sound from the shaft, rack mounts, and front suspension links. Replacement of the intermediate steering shaft is the usual fix; some vehicles also need inspection of rack bushings and front stabilizer links if multiple noises are present. An alignment is not always required but front-end inspection should accompany the repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Road test over small road imperfections to reproduce the column knock, then isolate the sound from the shaft, rack mounts, and front suspension links."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "some vehicles also need inspection of rack bushings and front stabilizer links if multiple noises are present."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "An alignment is not always required but front-end inspection should accompany the repair."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-steering-intermediate-shaft-clunk-2004--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-dashboard-melt-2007",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "RX350",
+        "RX450h"
+      ],
+      "engines": [
+        "3.5L 2GR-FE",
+        "3.5L 2GR-FXE Hybrid"
+      ],
+      "title": "Dashboard Melting and Sticky Surface",
+      "howToFix": "Dashboard replacement under Lexus Customer Support Program ZE7. The RX was one of the first models covered due to the high volume of complaints. Contact your Lexus dealer or call 1-800-255-3987 for eligibility verification.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-dashboard-melt-2007--prescription-0-0--3-5l-2gr-fe",
+        "lexus-rx-dashboard-melt-2007--prescription-0-0--3-5l-2gr-fxe-hybrid"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-oil-consumption-2gr-2007",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "RX350"
+      ],
+      "engines": [
+        "2GR-FE",
+        "3.5L 2GR-FE",
+        "3.5L 2GR-FKS"
+      ],
+      "title": "Excessive Oil Consumption 2GR Engine",
+      "howToFix": "Dealer oil consumption test to document the rate. If excessive, piston ring replacement is the definitive fix under Toyota TSB. Check and clean the PCV valve as a first step. Monitor oil level weekly and keep a log of consumption for warranty claims.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Dealer oil consumption test to document the rate."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check and clean the PCV valve as a first step."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil level weekly and keep a log of consumption for warranty claims."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-oil-consumption-2gr-2007--prescription-0-0--2gr-fe",
+        "lexus-rx-oil-consumption-2gr-2007--prescription-0-0--3-5l-2gr-fe",
+        "lexus-rx-oil-consumption-2gr-2007--prescription-0-0--3-5l-2gr-fks"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-ac-evaporator-leak-2010",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "RX350",
+        "RX450h"
+      ],
+      "engines": [
+        "3.5L 2GR-FE",
+        "3.5L 2GR-FXE Hybrid"
+      ],
+      "title": "AC Evaporator Core Refrigerant Leak",
+      "howToFix": "Replace the AC evaporator core and receiver/drier. This requires full dashboard removal, which is 8-12 hours of labor. Recharge the system with the correct amount of R-134a refrigerant. Replacing the expansion valve at the same time is recommended while the dash is apart.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-ac-evaporator-leak-2010--prescription-0-0--3-5l-2gr-fe",
+        "lexus-rx-ac-evaporator-leak-2010--prescription-0-0--3-5l-2gr-fxe-hybrid",
+        "lexus-rx-ac-evaporator-leak-2010--prescription-1-0--3-5l-2gr-fe",
+        "lexus-rx-ac-evaporator-leak-2010--prescription-1-0--3-5l-2gr-fxe-hybrid",
+        "lexus-rx-ac-evaporator-leak-2010--prescription-2-0--3-5l-2gr-fe",
+        "lexus-rx-ac-evaporator-leak-2010--prescription-2-0--3-5l-2gr-fxe-hybrid"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-water-pump-failure-2010",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "RX350",
+        "RX450h"
+      ],
+      "engines": [
+        "3.5L 2GR-FE",
+        "3.5L 2GR-FKS",
+        "3.5L 2GR-FXE Hybrid"
+      ],
+      "title": "Water Pump Premature Failure",
+      "howToFix": "Replace the water pump and thermostat assembly. Use OEM Aisin or Denso parts for reliability. Replace the drive belt and tensioner at the same time. Flush the cooling system with new Toyota Super Long Life Coolant during the repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-water-pump-failure-2010--prescription-0-0--3-5l-2gr-fe",
+        "lexus-rx-water-pump-failure-2010--prescription-0-0--3-5l-2gr-fks",
+        "lexus-rx-water-pump-failure-2010--prescription-0-0--3-5l-2gr-fxe-hybrid",
+        "lexus-rx-water-pump-failure-2010--prescription-1-0--3-5l-2gr-fe",
+        "lexus-rx-water-pump-failure-2010--prescription-1-0--3-5l-2gr-fks",
+        "lexus-rx-water-pump-failure-2010--prescription-1-0--3-5l-2gr-fxe-hybrid",
+        "lexus-rx-water-pump-failure-2010--prescription-2-0--3-5l-2gr-fe",
+        "lexus-rx-water-pump-failure-2010--prescription-2-0--3-5l-2gr-fks",
+        "lexus-rx-water-pump-failure-2010--prescription-2-0--3-5l-2gr-fxe-hybrid",
+        "lexus-rx-water-pump-failure-2010--prescription-3-0--3-5l-2gr-fe",
+        "lexus-rx-water-pump-failure-2010--prescription-3-0--3-5l-2gr-fks",
+        "lexus-rx-water-pump-failure-2010--prescription-3-0--3-5l-2gr-fxe-hybrid"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-transmission-shudder-2016",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "RX350",
+        "RX350L"
+      ],
+      "engines": [
+        "3.5L 2GR-FKS"
+      ],
+      "title": "8-Speed Automatic Transmission Shudder",
+      "howToFix": "Perform a transmission fluid drain-and-fill with Toyota WS ATF, which resolves the shudder in most cases. Severe cases may require a torque converter replacement. Do not flush — only drain and refill. Plan to change the fluid every 30,000-40,000 miles despite the \"lifetime\" fluid claim.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-transmission-shudder-2016--prescription-0-0--3-5l-2gr-fks"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-12v-battery-discharge-and-2023",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "12V Battery Discharge and No-Start from Telematics/DCM Staying Awake",
+      "howToFix": "Diagnosis should start with a battery state-of-health test and a parasitic draw test after all modules are expected to sleep. Dealers typically check for applicable software updates or service bulletins addressing DCM/module sleep behavior, then recharge or replace the battery if it has been damaged by repeated deep discharge. If draw remains high, isolate the offending circuit and verify telematics, gateway, and body ECU software calibration levels.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "parasitic-draw",
+          "toolId": "dc-clamp-meter-low-current",
+          "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Diagnosis should start with a battery state-of-health test and a parasitic draw test after all modules are expected to sleep."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers typically check for applicable software updates or service bulletins addressing DCM/module sleep behavior, then recharge or replace the battery if it has been damaged by repeated deep discharge."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If draw remains high, isolate the offending circuit and verify telematics, gateway, and body ECU software calibration levels."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-12v-battery-discharge-and-2023--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-brake-pedal-vibrationgrinding-and-2023",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Pedal Vibration/Grinding and Extended Stopping Feel from ABS Actuator Software Logic",
+      "howToFix": "Road-test the vehicle on the same surface conditions to reproduce the concern and scan the brake/ABS system for stored codes. Dealers should check for calibration updates to the skid control ECU/ABS software and inspect wheel-speed sensor tone rings, tire size uniformity, and suspension components that could trigger false wheel-slip detection. If no hardware fault is found, software reprogramming is the most common corrective path.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Road-test the vehicle on the same surface conditions to reproduce the concern and scan the brake/ABS system for stored codes."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dealers should check for calibration updates to the skid control ECU/ABS software and inspect wheel-speed sensor tone rings, tire size uniformity, and suspension components that could trigger false wheel-slip detection."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-rx-front-camera-millimeter-wave-2023",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front Camera / Millimeter-Wave Radar Misalignment Causing PCS and Driver-Assist Warnings",
+      "howToFix": "Inspect the windshield camera area and front radar emblem area for dirt, condensation, damage, or non-OEM replacement parts. Perform a scan for ADAS-related DTCs, then complete static/dynamic calibration of the forward recognition camera and millimeter-wave radar if alignment is out of spec. If warnings persist, dealers may apply software updates or replace a faulty sensor/module after confirming power, ground, and network integrity.",
+      "dtcCodes": [
+        "C1A10",
+        "C1A11",
+        "C1A14",
+        "C1AA0"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the windshield camera area and front radar emblem area for dirt, condensation, damage, or non-OEM replacement parts."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Perform a scan for ADAS-related DTCs, then complete static/dynamic calibration of the forward recognition camera and millimeter-wave radar if alignment is out of spec."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1A10, C1A11, C1A14, C1AA0"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-front-camera-millimeter-wave-2023--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-rx-infotainment-screen-freezing-wireless-2023",
+      "make": "Lexus",
+      "model": "RX",
+      "years": [
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Infotainment Screen Freezing, Wireless CarPlay/Android Auto Dropouts, and Rebooting Head Unit",
+      "howToFix": "First verify the head unit has the latest Lexus Interface software and update the connected phone OS. Delete and re-pair the phone, test both wireless and wired connections, and check for TSBs or dealer software campaigns addressing multimedia instability. If the unit continues freezing or rebooting, dealers may replace the display/audio ECU or related USB hub after documenting the failure.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "First verify the head unit has the latest Lexus Interface software and update the connected phone OS."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Delete and re-pair the phone, test both wireless and wired connections, and check for TSBs or dealer software campaigns addressing multimedia instability."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-rx-infotainment-screen-freezing-wireless-2023--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "lexus-sc-ac-compressor-failure-2002",
+      "make": "Lexus",
+      "model": "SC",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "SC430"
+      ],
+      "engines": [
+        "4.3L 3UZ-FE"
+      ],
+      "title": "AC Compressor Clutch and Bearing Failure",
+      "howToFix": "Replace the AC compressor, receiver/drier, and expansion valve. Flush the entire AC system to remove any metal debris from the failed compressor. Recharge with R-134a refrigerant. If debris is found, the condenser should also be replaced to prevent contaminating the new compressor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-sc-ac-compressor-failure-2002--prescription-0-0--4-3l-3uz-fe",
+        "lexus-sc-ac-compressor-failure-2002--prescription-1-0--4-3l-3uz-fe",
+        "lexus-sc-ac-compressor-failure-2002--prescription-2-0--4-3l-3uz-fe"
+      ]
+    },
+    {
+      "issueId": "lexus-sc-dashboard-melt-2002",
+      "make": "Lexus",
+      "model": "SC",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "SC430"
+      ],
+      "engines": [
+        "4.3L 3UZ-FE"
+      ],
+      "title": "Dashboard Melting and Sticky Surface",
+      "howToFix": "Dashboard replacement under Lexus Customer Support Program ZE7. The SC430 is covered under the same program as the ES, IS, and RX. Contact Lexus corporate if the dealer is unresponsive.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-sc-dashboard-melt-2002--prescription-0-0--4-3l-3uz-fe"
+      ]
+    },
+    {
+      "issueId": "lexus-sc-timing-belt-service-2002",
+      "make": "Lexus",
+      "model": "SC",
+      "years": [
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "SC430"
+      ],
+      "engines": [
+        "3UZ-FE",
+        "4.3L 3UZ-FE"
+      ],
+      "title": "Timing Belt Service Critical Interval",
+      "howToFix": "Replace the timing belt, tensioner, idler pulleys, and water pump as a complete kit every 90,000 miles or 9 years, whichever comes first. Age-based replacement is particularly important for SC430s that accumulate low annual mileage, as the belt rubber degrades with age regardless of mileage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:0"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-sc-timing-belt-service-2002--prescription-0-0--3uz-fe",
+        "lexus-sc-timing-belt-service-2002--prescription-0-0--4-3l-3uz-fe",
+        "lexus-sc-timing-belt-service-2002--prescription-1-0--3uz-fe",
+        "lexus-sc-timing-belt-service-2002--prescription-1-0--4-3l-3uz-fe",
+        "lexus-sc-timing-belt-service-2002--prescription-2-0--3uz-fe",
+        "lexus-sc-timing-belt-service-2002--prescription-2-0--4-3l-3uz-fe",
+        "lexus-sc-timing-belt-service-2002--prescription-3-0--3uz-fe",
+        "lexus-sc-timing-belt-service-2002--prescription-3-0--4-3l-3uz-fe"
+      ]
+    },
+    {
+      "issueId": "lexus-sc300-a340e-automatic-transmission-wear",
+      "make": "Lexus",
+      "model": "SC300",
+      "years": [
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "SC300 (automatic)"
+      ],
+      "engines": [
+        "2JZ-GE 3.0L I6"
+      ],
+      "title": "A340E Automatic Transmission Wear (Overdrive Slip / Torque-Converter Shudder)",
+      "howToFix": "Perform a proper fluid and filter service using Toyota Type T-IV ATF as preventive care. If shudder/slip is already present, address the torque converter, valve body, and shift solenoids; a full A340E rebuild (roughly $1,800-$2,500) is the fix for advanced wear.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-sc300-distributor-cap-rotor-cracking-ignition-misfire",
+      "make": "Lexus",
+      "model": "SC300",
+      "years": [
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997
+      ],
+      "trims": [
+        "SC300 (non-VVT-i)"
+      ],
+      "engines": [
+        "2JZ-GE 3.0L I6 (non-VVT-i)"
+      ],
+      "title": "Distributor Cap & Rotor Cracking / Ignition Misfire (Non-VVT-i 1992-1997)",
+      "howToFix": "Replace the distributor cap and rotor (or a good remanufactured distributor if the shaft/bearing is worn); replace the valve cover gasket and spark-plug tube seals if oil is present in the plug wells, and inspect/clean the throttle body. Replace brittle plug wires as preventive maintenance.",
+      "dtcCodes": [
+        "P0300",
+        "P0301"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "replace the valve cover gasket and spark-plug tube seals if oil is present in the plug wells, and inspect/clean the throttle body."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 5,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-sc300-distributor-cap-rotor-cracking-ignition-misfire--prescription-0-0--2jz-ge-3-0l-i6-non-vvt-i",
+        "lexus-sc300-distributor-cap-rotor-cracking-ignition-misfire--prescription-1-0--2jz-ge-3-0l-i6-non-vvt-i",
+        "lexus-sc300-distributor-cap-rotor-cracking-ignition-misfire--prescription-2-0--2jz-ge-3-0l-i6-non-vvt-i",
+        "lexus-sc300-distributor-cap-rotor-cracking-ignition-misfire--prescription-3-0--2jz-ge-3-0l-i6-non-vvt-i",
+        "lexus-sc300-distributor-cap-rotor-cracking-ignition-misfire--prescription-4-0--2jz-ge-3-0l-i6-non-vvt-i"
+      ]
+    },
+    {
+      "issueId": "lexus-sc300-front-lower-control-arm-bushing-ball-joint-wear",
+      "make": "Lexus",
+      "model": "SC300",
+      "years": [
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "SC300",
+        "SC400"
+      ],
+      "engines": [
+        "2JZ-GE 3.0L I6"
+      ],
+      "title": "Front Lower Control Arm Bushing & Ball Joint Wear (Clunk Over Bumps)",
+      "howToFix": "Replace worn bushings (OEM rubber or polyurethane) to eliminate the clunk; if the integral ball joint is also worn, replace the complete lower control arm assembly (later-gen Supra arms interchange; note JZA70 arms do NOT fit). Do both sides and align afterward.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-sc300-front-lower-control-arm-bushing-ball-joint-wear--prescription-0-0--2jz-ge-3-0l-i6"
+      ]
+    },
+    {
+      "issueId": "lexus-sc300-power-steering-pump-seal-leak-contaminating-alternator",
+      "make": "Lexus",
+      "model": "SC300",
+      "years": [
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "SC300"
+      ],
+      "engines": [
+        "2JZ-GE 3.0L I6"
+      ],
+      "title": "Power Steering Pump Seal Leak Contaminating the Alternator",
+      "howToFix": "Reseal or replace the power steering pump before fluid reaches the alternator; clean/inspect the alternator, and replace it if already fluid-soaked. Address the pressure control valve if it is the leak source. Doing both the pump and alternator together is common practice when the alternator is contaminated.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "clean/inspect the alternator, and replace it if already fluid-soaked."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-sc300-power-steering-pump-seal-leak-contaminating-alternator--prescription-0-0--2jz-ge-3-0l-i6"
+      ]
+    },
+    {
+      "issueId": "lexus-sc300-power-window-regulator-nylon-carrier-failure",
+      "make": "Lexus",
+      "model": "SC300",
+      "years": [
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "SC300",
+        "SC400"
+      ],
+      "engines": [
+        "2JZ-GE 3.0L I6"
+      ],
+      "title": "Power Window Regulator Nylon Carrier Failure",
+      "howToFix": "Replace the window regulator (OEM or quality aftermarket); replace the dried/worn outer window sweeps to reduce drag. Temporary adhesive/J-B Weld repairs of the carrier are known to fail after only a handful of cycles; durable DIY fixes reinforce the nylon carrier with drilled holes and metal.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-sc300-power-window-regulator-nylon-carrier-failure--prescription-0-0--2jz-ge-3-0l-i6"
+      ]
+    },
+    {
+      "issueId": "lexus-sc300-vvt-i-cam-gear-o-ring-intake-cam-seal-oil-leak",
+      "make": "Lexus",
+      "model": "SC300",
+      "years": [
+        1998,
+        1999,
+        2000
+      ],
+      "trims": [
+        "SC300 (VVT-i)"
+      ],
+      "engines": [
+        "2JZ-GE VVT-i 3.0L I6"
+      ],
+      "title": "VVT-i Cam Gear O-Ring / Intake Cam Seal Oil Leak (1998-2000 VVT-i 2JZ-GE)",
+      "howToFix": "Replace the VVT-i cam gear O-ring (aftermarket Viton/FKM rebuild kit) and/or the front intake camshaft oil seal. Inspect the timing-belt-area seals at the same time and replace the timing belt if due since access overlaps. Use OEM or high-temp Viton seals to prevent recurrence. Dealers typically only sell the complete VVT-i gear (~$350) rather than the O-ring alone.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the timing-belt-area seals at the same time and replace the timing belt if due since access overlaps."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 5,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "lexus-sc300-vvt-i-cam-gear-o-ring-intake-cam-seal-oil-leak--prescription-0-0--2jz-ge-vvt-i-3-0l-i6",
+        "lexus-sc300-vvt-i-cam-gear-o-ring-intake-cam-seal-oil-leak--prescription-1-0--2jz-ge-vvt-i-3-0l-i6",
+        "lexus-sc300-vvt-i-cam-gear-o-ring-intake-cam-seal-oil-leak--prescription-2-0--2jz-ge-vvt-i-3-0l-i6",
+        "lexus-sc300-vvt-i-cam-gear-o-ring-intake-cam-seal-oil-leak--prescription-3-0--2jz-ge-vvt-i-3-0l-i6",
+        "lexus-sc300-vvt-i-cam-gear-o-ring-intake-cam-seal-oil-leak--prescription-4-0--2jz-ge-vvt-i-3-0l-i6"
+      ]
+    },
+    {
+      "issueId": "lexus-sc400-climate-control-lcd-pixel-fade-dim-backlighting",
+      "make": "Lexus",
+      "model": "SC400",
+      "years": [
+        1992,
+        1993,
+        1994,
+        1995,
+        1996,
+        1997,
+        1998,
+        1999
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Climate Control LCD Pixel Fade and Dim Backlighting",
+      "howToFix": "Remove the climate control unit (held in by trim clips and two screws) and either send it to a specialist like Tanin Auto Electronix for LCD/bulb refurbishment, or DIY the repair using a replacement LCD screen and LED bulb kit. The fix typically restores full functionality with a lifetime warranty from reputable rebuilders. Avoid generic 12V replacement bulbs as they produce uneven brightness compared to the rest of the dash.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-ux-cvt-hesitation-2019",
+      "make": "Lexus",
+      "model": "UX",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "UX200",
+        "UX250h"
+      ],
+      "engines": [
+        "2.0L M20A-FKS",
+        "2.0L M20A-FXS Hybrid"
+      ],
+      "title": "CVT Hesitation and Sluggish Response",
+      "howToFix": "Update to the latest transmission ECU calibration at the dealer, which improves tip-in response. Use Sport mode for situations requiring quicker response. The UX250h hybrid has better low-speed response than the UX200 due to the electric motor providing instant torque.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "lexus-ux-infotainment-lag-2019",
+      "make": "Lexus",
+      "model": "UX",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "UX200",
+        "UX250h"
+      ],
+      "engines": [
+        "2.0L M20A-FKS",
+        "2.0L M20A-FXS Hybrid"
+      ],
+      "title": "Infotainment System Lag and Touchpad Frustration",
+      "howToFix": "Update infotainment software to the latest version. The 2020+ models can have Apple CarPlay/Android Auto added, which dramatically improves the user experience. Use voice commands for navigation and phone functions to avoid the touchpad entirely.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

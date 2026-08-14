@@ -1,0 +1,166 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-repair-role-decisions",
+  "make": "BMW",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "status": "REVIEWED_NOT_APPLIED",
+  "productionApplied": false,
+  "decisions": [
+    {
+      "proposalId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-0-0--b58-3-0l-turbo-i6",
+      "issueId": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "partIndex": 0,
+      "partNumber": "VS50975",
+      "decision": "hold_no_exact_link",
+      "reason": "The MAHLE gasket matches the prescribed repair role and reviewed B58 application slice, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the valve-cover gasket; replace the whole cover only if the integrated PCV/cover is separately found to have failed.",
+        "catalog": "ShowMeTheParts lists MAHLE VS50975 Engine Valve Cover Gasket for the reviewed 2017-2021 BMW M240i B58 cells.",
+        "directLink": "No exact product link was resolved for MAHLE VS50975; this primary remains held."
+      }
+    },
+    {
+      "proposalId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-0-0--b58-3-0l-turbo-i6",
+      "issueId": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "partIndex": 1,
+      "partNumber": "036-2093",
+      "decision": "approve",
+      "reason": "The Beck Arnley gasket set is the component directly prescribed by this repair branch and is narrowed to the catalog-confirmed M240i B58 application years.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the valve-cover gasket after confirming the leak source.",
+        "catalog": "ShowMeTheParts lists Beck Arnley 036-2093 Engine Valve Cover Gasket Set for the reviewed 2017-2021 BMW M240i B58 cells.",
+        "directLink": "Exact eBay product identity for Beck Arnley 036-2093 is recorded in stage 05 with listing-title PN evidence and a matching item ID."
+      }
+    },
+    {
+      "proposalId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-2-0--b58-3-0l-turbo-i6",
+      "issueId": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "partIndex": 0,
+      "partNumber": "VS50975",
+      "decision": "block_wrong_role",
+      "reason": "This branch concerns replacement of the complete valve-cover/PCV assembly when that assembly fails; a loose gasket is not the prescribed complete assembly.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Some owners replace the entire valve-cover assembly when the integrated PCV valve also fails.",
+        "catalog": "VS50975 is an Engine Valve Cover Gasket, not a complete valve cover with integrated PCV.",
+        "directLink": "No exact product link exists, and exact identity would not cure the wrong repair role."
+      }
+    },
+    {
+      "proposalId": "bmw-m240i-b58-valve-cover-gasket-2017--prescription-2-0--b58-3-0l-turbo-i6",
+      "issueId": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "partIndex": 1,
+      "partNumber": "036-2093",
+      "decision": "block_wrong_role",
+      "reason": "The exact linked Beck Arnley row is still only a gasket set, while this separate conditional branch calls for the complete valve-cover/PCV assembly.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the entire valve-cover assembly only when the integrated PCV or cover is also found to have failed.",
+        "catalog": "Beck Arnley 036-2093 is cataloged as an Engine Valve Cover Gasket Set, not the complete assembly.",
+        "directLink": "The eBay page is an exact 036-2093 product, but exact identity does not establish the required complete-assembly repair role."
+      }
+    },
+    {
+      "proposalId": "bmw-m5-radiator-end-tank-and-2000--prescription-2-0--4-9l-s62-v8",
+      "issueId": "bmw-m5-radiator-end-tank-and-2000",
+      "partIndex": 0,
+      "partNumber": "34791",
+      "decision": "hold_no_exact_link",
+      "reason": "The Gates thermostat matches the article's optional full-cooling-system refresh branch and the complete reviewed S62 year slice, but no exact direct product page was resolved.",
+      "reviewedSourceEvidence": {
+        "howToFix": "After replacing the failed tank or radiator, many owners proactively refresh hoses, cap, thermostat, water pump, and coolant to reduce repeat cooling failures.",
+        "catalog": "ShowMeTheParts lists Gates 34791 Engine Coolant Thermostat for every reviewed 2000-2003 BMW M5 4.9L S62 V8 year.",
+        "directLink": "No exact product link was resolved for Gates 34791; the thermostat remains held rather than receiving a search or category URL."
+      }
+    },
+    {
+      "proposalId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure--prescription-1-0--s63-4-4l-twin-turbo-v8-s63tu",
+      "issueId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure",
+      "partIndex": 0,
+      "partNumber": "TM 27 101",
+      "decision": "hold_needs_manual",
+      "reason": "The article specifically calls for an OEM thermostat, while the catalog row is labeled MAHLE and covers only 2012-2013; OEM-equivalent status and an exact product identity both remain unproven.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the failed electric water pump and/or electronic thermostat with OEM units.",
+        "catalog": "ShowMeTheParts lists MAHLE TM 27 101 Engine Coolant Thermostat only for the reviewed 2012-2013 M6 S63 cells and does not establish BMW OEM-unit identity.",
+        "directLink": "No exact product link was resolved for MAHLE TM 27 101, and the OEM requirement needs manual confirmation."
+      }
+    },
+    {
+      "proposalId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure--prescription-1-0--s63-4-4l-twin-turbo-v8-s63tu",
+      "issueId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure",
+      "partIndex": 1,
+      "partNumber": "34245",
+      "decision": "block_wrong_role",
+      "reason": "The exact Gates listing is an aftermarket thermostat, but this repair branch expressly calls for an OEM unit; exact product identity does not satisfy that repair role.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the failed electric water pump and/or electronic thermostat with OEM units.",
+        "catalog": "ShowMeTheParts lists Gates 34245 for the reviewed 2012-2019 M6 S63 cells, but the catalog row does not make it a BMW OEM unit.",
+        "directLink": "Stage 05 records an exact Gates 34245 eBay product, but it is blocked because the article's OEM-unit requirement is not met."
+      }
+    },
+    {
+      "proposalId": "bmw-m6-s63-high-pressure-fuel-pump-fuel-injector-cold-start-misfire--prescription-0-0--s63-4-4l-twin-turbo-v8-s63tu",
+      "issueId": "bmw-m6-s63-high-pressure-fuel-pump-fuel-injector-cold-start-misfire",
+      "partIndex": 0,
+      "partNumber": "62830",
+      "decision": "hold_needs_manual",
+      "reason": "The article requires diagnosis of the affected injector plus matching index-code selection and coding; the generic catalog row covers only 2012-2013 and has no exact product link or recorded index evidence.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Test cold-start rail pressure and replace only confirmed injector faults with the correct matching index code, then code the injectors.",
+        "catalog": "ShowMeTheParts lists Bosch 62830 Fuel Injector for only the reviewed 2012-2013 M6 S63 cells; it does not prove injector index compatibility for the full article.",
+        "directLink": "No exact product link was resolved for Bosch 62830, and index-code identity remains unproven."
+      }
+    },
+    {
+      "proposalId": "bmw-x3-electric-water-pump-2011--prescription-0-0--all-engines",
+      "issueId": "bmw-x3-electric-water-pump-2011",
+      "partIndex": 0,
+      "partNumber": "DP1892",
+      "decision": "block_incomplete_scope",
+      "reason": "The article requires replacing the electric water pump and thermostat together across an engine-unspecified 2011-2026 X3 range; this row supplies only a pump, covers only 2011-2012, and has no exact product link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat together because they share the cooling circuit and commonly fail concurrently.",
+        "catalog": "ShowMeTheParts lists Dayco DP1892 Engine Water Pump only for 2011-2012 and does not prove the thermostat or the article's remaining engines and years.",
+        "directLink": "No exact product link was resolved; even an exact DP1892 page would not complete the prescribed pair or unresolved vehicle scope."
+      }
+    },
+    {
+      "proposalId": "bmw-x4-electric-water-pump-2015--prescription-0-0--all-engines",
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "partIndex": 0,
+      "partNumber": "DEP1038",
+      "decision": "block_incomplete_scope",
+      "reason": "The article requires a pump-and-thermostat pair across a broad engine-unspecified X4 range; this row supplies only a water pump and proves only 2015-2018 catalog cells.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat as a pair.",
+        "catalog": "ShowMeTheParts lists Dayco DEP1038 only for selected X4 years and does not establish the thermostat or every engine/application in the article.",
+        "directLink": "The eBay listing records exact DEP1038 item-specific PN evidence, but the repair bundle and complete vehicle scope remain incomplete."
+      }
+    },
+    {
+      "proposalId": "bmw-x4-electric-water-pump-2015--prescription-0-0--all-engines",
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "partIndex": 1,
+      "partNumber": "41504E",
+      "decision": "block_incomplete_scope",
+      "reason": "The linked Gates pump does not supply the separately prescribed thermostat and the evidence does not prove every engine/application in the article's 2015-2023 scope.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat as a pair.",
+        "catalog": "ShowMeTheParts lists Gates 41504E for selected X4 years only; the article is not engine-scoped and the thermostat branch is absent.",
+        "directLink": "The eBay listing is an exact Gates 41504E product, but exact identity cannot complete the required pump-and-thermostat repair or missing application scope."
+      }
+    },
+    {
+      "proposalId": "bmw-x4-electric-water-pump-2015--prescription-1-0--all-engines",
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "partIndex": 0,
+      "partNumber": "34245",
+      "decision": "block_incomplete_scope",
+      "reason": "The thermostat is cataloged only for 2021-2023, while the proposal's pump candidates cover only 2015-2018; the required pump-and-thermostat pair has no reviewed overlapping application and the article is not engine-scoped.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the electric water pump and thermostat as a pair.",
+        "catalog": "ShowMeTheParts lists Gates 34245 Engine Coolant Thermostat for 2021-2023, but no reviewed pump proposal covers those same cells and the exact engine/application remains unresolved.",
+        "directLink": "Stage 05 records an exact Gates 34245 eBay product, but exact identity cannot cure the missing paired-pump and engine-scope evidence."
+      }
+    }
+  ]
+}

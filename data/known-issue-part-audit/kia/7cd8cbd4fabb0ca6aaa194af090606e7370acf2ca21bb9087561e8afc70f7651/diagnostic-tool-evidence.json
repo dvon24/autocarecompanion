@@ -1,0 +1,625 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Kia",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 247,
+    "issuesWithDtcCodes": 69,
+    "uniqueDtcCount": 90,
+    "solutionInstructionCount": 277,
+    "dtcDispositionCount": 69,
+    "toolLinkedDispositionCount": 51,
+    "procedureNoToolDispositionCount": 236,
+    "unresolvedToolHoldCount": 59,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "kia-amanti-alternator-2004",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the battery as well since an overcharging alternator may have damaged it.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-borrego-transfer-case-2009",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0327, P1875",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-cadenza-transmission-hesitation-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Some owners report improved behavior after an \"adaptive learn\" reset performed with the KDS scan tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-carnival-engine-stalling-unexpected-loss-motive-power-while-driving",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Stalls under powertrain warranty (10yr/100k mi) should be diagnosed and repaired at no cost;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-carnival-second-row-captain-s-chair-detaches-iihs-side-crash-test",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Note the model still rated poor overall in the IIHS updated side test due to safety-cage intrusion and injury measures.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-carnival-12v-parasitic-battery-drain-while-parked",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The repair updates both required CCU software events with the Kia Diagnostic System;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-ev6-brake-lights-fail-to-illuminate-during-i-pedal-one-pedal-reg",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The software update is performed through Kia’s diagnostic system;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-ev6-power-tailgate-liftgate-intermittently-stops-working",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace failed strut/motor or repair the wiring as diagnosed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-forte-connecting-rod-bearing-failure-causing-engine-seizure-sudden",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1326",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-forte-cvt-judder",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-adas-calibration-fault-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1559, C1564, C1611, U3000",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-brake-booster-vacuum-pump-noise-and-reduced-brake-assist-1-6t",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1260, C1261",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-dct-hesitation-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Kia's procedure repeats the creep measurement five times and replaces the dual-clutch assembly only when the test indicates replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-dct-hesitation-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "This is a fitment- and diagnostic-dependent internal transmission repair, so no retail clutch kit or universal ATF is recommended.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-forward-collision-avoidance-assist-fca-phantom-braking-events",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1696, C1697",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-hvac-blower-motor-noise-failure-squeal-rattle-intermittent-fan",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if speed control is erratic, test/replace the blower resistor or blower control module as applicable.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-infotainment-blackout-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Disconnect the phone and disable wireless CarPlay/Android Auto to test if the issue is phone-related.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-infotainment-blackout-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1609, U1110",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-rear-wheel-bearing-premature-failure-and-humming-noise",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1234, C1235",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-smartstream-g2-5-gdi-engine-piston-ring-oil-consumption-issue",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Kia dealerships perform an oil consumption test over 3,000-mile intervals per TSB ENG 023.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-transmission-control-unit-tcu-software-fault-causing-harsh-upshifts-or-limp-mode-8-speed-at",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Kia dealers perform TCU reprogramming via KDS (Kia Diagnostic System) using updated calibration files per TSB TR-004 and related bulletins.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-trunk-latch-sticking-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1352",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k5-windshield-optical-rain-sensor-bracket-detachment-adas-auto-wipers-inoperative",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Reinstall and calibrate the front camera using Kia scan tool procedures;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-k900-air-suspension-2015",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1611",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-morning-cold-start-delay-no-start-after-overnight-parking",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If delayed cold starts persist after the update, test fuel-rail pressure hold-down;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-niro-c-compressor-condenser-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the system leak-tested and the failed component (compressor, condenser, evaporator, or high-pressure line) replaced and recharged.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-niro-dct-judder-hybrid",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0741, P0920",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-niro-ev-onboard-charger-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0401, P0402, P0403, P0404",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-optima-power-door-lock-and-door-latch-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis should focus on the door latch/actuator assembly, lock rods, wiring in the door jamb, and the central locking switch/module.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-optima-oil-consumption",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Piston ring replacement if test confirms excessive consumption.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-ray-first-generation-ray-ev-board-charger-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Used buyers should test AC slow charging to full before purchase and budget for an OBC repair on any high-mileage example.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-rio-timing-belt-neglect-leading-2001",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the belt has already failed, a compression or leak-down test is needed to determine whether valves were bent.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-rio-12v-battery-drain-and-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1102, U0155",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-rio-cvtivt-hesitation-jerking-and-2021",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if shudder, slip, or delayed engagement remains, deeper diagnosis of the IVT assembly may be required.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-rio-forward-collision-avoidance-assist--2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1604, C1611, U3000",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-seltos-1-6l-turbo-7-speed-dry-dct-overheating-shudder-hesitation",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0741, P0868, P17BF",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-seltos-cvt-hesitation",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-seltos-piston-ring-oil-consumption",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1327",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-seltos-stalling-fire-hazard-unrepaired-still-symptomatic-2021-2023",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1327",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sorento-awd-coupling-failure-2011",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "After replacement, perform an AWD system relearn procedure with a KDS (Kia Diagnostic System) scan tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sorento-awd-coupling-failure-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1513, C1515, P0734",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sorento-catalytic-converter-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose root cause of catalytic converter failure first.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sorento-p0300-random-multiple-misfire-from-theta-ii-gdi-ignition-coi",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Read freeze-frame and pull coils/plugs first — replace worn spark plugs (typically due ~90-105k mi) and any weak coil.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sorento-p0302-cylinder-2-misfire-from-ignition-coil-spark-plug-gdi-c",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the cylinder-2 injector and run a compression/leak-down test if the misfire persists.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sorento-p0430-catalyst-efficiency-below-threshold-lambda-v6-failed-c",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnostically swap the Bank 1 and Bank 2 O2 sensors — if the fault moves to P0420, the sensor is bad and should be replaced;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-soul-motor-driven-power-steering-flexible-coupling-noise",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the noise diagnosed against CHA074 and the exact VIN.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-soul-7-speed-dual-clutch-judder-premature-clutch-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Kia creep-test diagnosis;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-soul-piston-ring-oil-consumption",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1327",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sportage-air-bag-malfunction-non-deployment-or-unintended-deployment",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "costs typically range from $150 for diagnosis/sensor work to $2,000+ if multiple air bag components require replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sportage-electrical-harness-overheating-headlight-failure-and-fire-risk",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis should focus on the front lighting circuits, main harness sections, grounds, fuse/relay boxes, and any heat-damaged connectors.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with a system pressure/leak (dye or electronic) test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sportage-differential-coupling-noise-2017",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a coupling relearn procedure with the Kia Diagnostic System after replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sportage-differential-coupling-noise-2017",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1513, C1515",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sportage-excessive-oil-consumption",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Document consumption with a Kia oil-consumption test (typically ~1 qt per 1,000 miles triggers coverage).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sportage-excessive-oil-consumption",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1326",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-sportage-infotainment-reboot-2020",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U1110",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-stinger-turbo-oil-feed-pipe-leak",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Do not infer P0234/P0299, turbocharger damage or a need for generic gaskets or a boost gauge from this recall.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-telluride-8-speed-automatic-torque-converter-shudder-re-acceleration-h",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Dealers diagnose via campaign lookup;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "kia-telluride-c-compressor-failure-no-cold-air",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose for refrigerant leak vs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

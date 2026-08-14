@@ -1,0 +1,2558 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Renault",
+  "makeKey": "renault",
+  "makeIndex": 41,
+  "totalMakes": 54,
+  "issueCount": 55,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 20,
+    "diagnosis-dependent": 20,
+    "recall/dealer": 8,
+    "service/tool/fluid": 6,
+    "no-commerce": 1
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 14,
+    "uniqueDtcCount": 23,
+    "instructionCount": 53,
+    "dtcDispositionCount": 14,
+    "toolLinkedCount": 13,
+    "procedureNoToolCount": 42,
+    "unresolvedToolHoldCount": 12
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "renault-captur-0-9-1-2-tce-timing-chain-premature-stretch-tensioner-guide-f",
+      "make": "Renault",
+      "model": "Captur",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "0.9/1.2 TCe Timing Chain Premature Stretch and Tensioner/Guide Failure",
+      "howToFix": "Replace the complete timing chain kit (chain, tensioner, guides and sprockets) at the first sign of rattle, and verify the chain oil jet is clear during the job. Strict, shortened oil change intervals with the correct specification oil are the accepted prevention; Renault has contributed goodwill (e.g. 75%) on some out-of-warranty failures.",
+      "dtcCodes": [
+        "P0016"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace the complete timing chain kit (chain, tensioner, guides and sprockets) at the first sign of rattle, and verify the chain oil jet is clear during the job."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0016"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-captur-0-9-1-2-tce-timing-chain-premature-stretch-tensioner-guide-f--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-captur-1-2-tce-excessive-oil-consumption-motorgate-piston-ring-defe",
+      "make": "Renault",
+      "model": "Captur",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.2 TCe (H5Ft) Excessive Oil Consumption — \"Motorgate\" Piston Ring Defect",
+      "howToFix": "Renault's procedure is an ECU software update that raises intake manifold pressure to reduce oil ingestion; if consumption remains above 0.25 L/1,000 km the piston rings must be replaced, and severely worn engines need a rebuild or replacement. Owners should check oil every 1,000 km, keep documented top-up records to support goodwill claims, and avoid 2012-2016 cars without service history.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners should check oil every 1,000 km, keep documented top-up records to support goodwill claims, and avoid 2012-2016 cars without service history."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-captur-1-2-tce-excessive-oil-consumption-motorgate-piston-ring-defe--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-captur-1-5-dci-dpf-egr-clogging-adblue-scr-faults-short-trip-cars",
+      "make": "Renault",
+      "model": "Captur",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.5 dCi DPF/EGR Clogging and AdBlue SCR Faults on Short-Trip Cars",
+      "howToFix": "A forced regeneration via diagnostic tool or a professional DPF clean usually restores a clogged filter, with EGR valve cleaning or replacement done at the same time; fully blocked filters or failed SCR components (injector, NOx sensor) must be replaced. Prevention is a 20-30 minute sustained-speed motorway run every 300-400 km of urban use and keeping AdBlue topped up with fresh fluid.",
+      "dtcCodes": [
+        "P2002"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "A forced regeneration via diagnostic tool or a professional DPF clean usually restores a clogged filter, with EGR valve cleaning or replacement done at the same time;"
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2002"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-captur-1-5-dci-dpf-egr-clogging-adblue-scr-faults-short-trip-cars--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-captur-cabin-water-ingress-through-door-seals-blocked-sill-drains",
+      "make": "Renault",
+      "model": "Captur",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Cabin Water Ingress Through Door Seals and Blocked Sill Drains",
+      "howToFix": "Trace the entry point with a hose test, then re-seat or replace the failed door weatherstrips, clear the sill weep holes and rubber bungs, and reseal the bulkhead-to-sill joint where needed. Carpets and underlay must be lifted and fully dried to protect wiring and prevent mould.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Trace the entry point with a hose test, then re-seat or replace the failed door weatherstrips, clear the sill weep holes and rubber bungs, and reseal the bulkhead-to-sill joint where needed."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-captur-cabin-water-ingress-through-door-seals-blocked-sill-drains--prescription-0-0--all-engines",
+        "renault-captur-cabin-water-ingress-through-door-seals-blocked-sill-drains--prescription-1-0--all-engines",
+        "renault-captur-cabin-water-ingress-through-door-seals-blocked-sill-drains--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-captur-edc-transmission-shudder",
+      "make": "Renault",
+      "model": "Captur",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression",
+        "Iconic"
+      ],
+      "engines": [
+        "0.9L TCe",
+        "1.3L TCe",
+        "1.5L dCi"
+      ],
+      "title": "EDC 6DCT250 Wet Dual-Clutch Shudder and Jerky Engagement",
+      "howToFix": "Perform EDC clutch adaptation reset via diagnostic tool. Replace the clutch pack assembly if wear is beyond adaptation range. Update the TCU software to the latest calibration.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Perform EDC clutch adaptation reset via diagnostic tool."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-captur-edc-transmission-shudder--prescription-0-0--0-9l-tce",
+        "renault-captur-edc-transmission-shudder--prescription-0-0--1-3l-tce",
+        "renault-captur-edc-transmission-shudder--prescription-0-0--1-5l-dci"
+      ]
+    },
+    {
+      "issueId": "renault-captur-tce-turbo-issues",
+      "make": "Renault",
+      "model": "Captur",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Dynamique",
+        "Iconic"
+      ],
+      "engines": [
+        "0.9L TCe",
+        "1.3L TCe"
+      ],
+      "title": "TCe Turbocharger Issues",
+      "howToFix": "Replace the turbo wastegate actuator if rattling. For oil seal leaks, a turbo rebuild or replacement is required. Ensure correct oil specification and change intervals are maintained.",
+      "dtcCodes": [
+        "P0234",
+        "P0299"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0234, P0299"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-captur-tce-turbo-issues--prescription-0-0--0-9l-tce",
+        "renault-captur-tce-turbo-issues--prescription-0-0--1-3l-tce"
+      ]
+    },
+    {
+      "issueId": "renault-captur-infotainment",
+      "make": "Renault",
+      "model": "Captur",
+      "years": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Iconic"
+      ],
+      "engines": [],
+      "title": "Infotainment System Glitches",
+      "howToFix": "Perform a factory reset of the infotainment system. Update to the latest firmware version at the dealer. Clear Bluetooth pairings and re-pair devices. Replace the head unit if hardware failure is confirmed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-captur-infotainment--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-captur-e-tech-hybrid-gearbox-input-shaft-o-ring-oil-leak",
+      "make": "Renault",
+      "model": "Captur",
+      "years": [
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "E-Tech Hybrid Gearbox Input-Shaft O-Ring Oil Leak (155,825-Vehicle Recall)",
+      "howToFix": "Under the recall, dealers leak-test the hollow primary shaft seal and replace the original O-ring with an improved X-ring seal free of charge (about 30 minutes if no damage has occurred). If oil has already contaminated the electric motor or sensor, the affected components or the complete gearbox must be replaced; cars built after September 2022 have the improved seal from the factory.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Under the recall, dealers leak-test the hollow primary shaft seal and replace the original O-ring with an improved X-ring seal free of charge (about 30 minutes if no damage has occurred)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-captur-electronic-parking-brake-fails-to-auto-engage-actuator-senso",
+      "make": "Renault",
+      "model": "Captur",
+      "years": [
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electronic Parking Brake Fails to Auto-Engage — Actuator Sensor Recall (RAPEX 37/2025)",
+      "howToFix": "This is a free safety recall: dealers inspect the actuator position sensor alignment and stop-pin position and perform the prescribed corrective action or software update. Owners of affected VINs are contacted by Renault; until the fix, leaving the car in gear and confirming the brake indicator illuminates is advised.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "This is a free safety recall: dealers inspect the actuator position sensor alignment and stop-pin position and perform the prescribed corrective action or software update."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-clio-ignition-coil-failure",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression"
+      ],
+      "engines": [
+        "1.2L D4F",
+        "1.4L K4J",
+        "1.6L K4M"
+      ],
+      "title": "Ignition Coil Pack Failure",
+      "howToFix": "Replace the faulty coil pack. It is recommended to replace all coil packs simultaneously and use OEM Sagem units. Inspect and replace spark plugs at the same time.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and replace spark plugs at the same time."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-clio-ignition-coil-failure--prescription-0-0--1-2l-d4f",
+        "renault-clio-ignition-coil-failure--prescription-0-0--1-4l-k4j",
+        "renault-clio-ignition-coil-failure--prescription-0-0--1-6l-k4m",
+        "renault-clio-ignition-coil-failure--prescription-1-0--1-2l-d4f",
+        "renault-clio-ignition-coil-failure--prescription-1-0--1-4l-k4j",
+        "renault-clio-ignition-coil-failure--prescription-1-0--1-6l-k4m",
+        "renault-clio-ignition-coil-failure--prescription-2-0--1-2l-d4f",
+        "renault-clio-ignition-coil-failure--prescription-2-0--1-4l-k4j",
+        "renault-clio-ignition-coil-failure--prescription-2-0--1-6l-k4m"
+      ]
+    },
+    {
+      "issueId": "renault-clio-timing-belt-tensioner",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression"
+      ],
+      "engines": [
+        "1.2L D4F",
+        "1.4L K4J",
+        "1.6L K4M"
+      ],
+      "title": "Timing Belt Tensioner Failure",
+      "howToFix": "Replace the timing belt, tensioner, idler pulley, and water pump as a complete kit every 72,000 miles or 5 years, whichever comes first. Do not skip the water pump replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-clio-timing-belt-tensioner--prescription-0-0--1-2l-d4f",
+        "renault-clio-timing-belt-tensioner--prescription-0-0--1-4l-k4j",
+        "renault-clio-timing-belt-tensioner--prescription-0-0--1-6l-k4m",
+        "renault-clio-timing-belt-tensioner--prescription-1-0--1-2l-d4f",
+        "renault-clio-timing-belt-tensioner--prescription-1-0--1-4l-k4j",
+        "renault-clio-timing-belt-tensioner--prescription-1-0--1-6l-k4m",
+        "renault-clio-timing-belt-tensioner--prescription-2-0--1-2l-d4f",
+        "renault-clio-timing-belt-tensioner--prescription-2-0--1-4l-k4j",
+        "renault-clio-timing-belt-tensioner--prescription-2-0--1-6l-k4m",
+        "renault-clio-timing-belt-tensioner--prescription-3-0--1-2l-d4f",
+        "renault-clio-timing-belt-tensioner--prescription-3-0--1-4l-k4j",
+        "renault-clio-timing-belt-tensioner--prescription-3-0--1-6l-k4m"
+      ]
+    },
+    {
+      "issueId": "renault-clio-1-5-dci-egr-valve-sticking-clogging",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.5 dCi EGR Valve Sticking and Clogging",
+      "howToFix": "Remove and thoroughly clean the EGR valve and its housing of carbon; if the valve is physically worn or its tip has broken off, replace it. Persistent codes after replacement point to EGR wiring, vacuum lines, or the position sensor, which should be checked before fitting another valve.",
+      "dtcCodes": [
+        "P2413"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Persistent codes after replacement point to EGR wiring, vacuum lines, or the position sensor, which should be checked before fitting another valve."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2413"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-clio-1-5-dci-fuel-injector-injection-pump-failure",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.5 dCi (K9K) Fuel Injector and Injection Pump Failure",
+      "howToFix": "Replace the failed injector(s) with units coded to the ECU and renew the fuel filter; some injectors can be professionally refurbished. If the high-pressure pump has shed debris, the accepted fix is replacing the pump, rail, and all four injectors and flushing the fuel system, otherwise contamination causes repeat failures.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-clio-1-5-dci-fuel-injector-injection-pump-failure--prescription-0-0--all-engines",
+        "renault-clio-1-5-dci-fuel-injector-injection-pump-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-clio-electric-power-steering-column-failure",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electric Power Steering (EPS) Column Failure",
+      "howToFix": "Clean and remake the EPS motor ground connections first; if the column itself has failed, fit a remanufactured or repaired EPS column (around £800 plus VAT and coding for a new unit; remanufactured units are cheaper). Clio V owners should check the DVSA/EU recall status and have the column replaced free by Renault if affected.",
+      "dtcCodes": [
+        "C1608"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Clio V owners should check the DVSA/EU recall status and have the column replaced free by Renault if affected."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1608"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-clio-electric-power-steering-column-failure--prescription-0-0--all-engines",
+        "renault-clio-electric-power-steering-column-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-clio-gearbox-bearing",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression",
+        "RS"
+      ],
+      "engines": [
+        "1.2L D4F",
+        "1.5L dCi",
+        "1.6L K4M"
+      ],
+      "title": "Gearbox Bearing Failure",
+      "howToFix": "Replace the differential bearings and inspect the crown wheel and pinion for damage. A gearbox oil change with GL-5 75W-80 at 60,000 mile intervals can extend bearing life.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace the differential bearings and inspect the crown wheel and pinion for damage."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-clio-gearbox-bearing--prescription-0-0--1-2l-d4f",
+        "renault-clio-gearbox-bearing--prescription-0-0--1-5l-dci",
+        "renault-clio-gearbox-bearing--prescription-0-0--1-6l-k4m"
+      ]
+    },
+    {
+      "issueId": "renault-clio-keycard-not-detected-card-reader-failure",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Keycard Not Detected / Card Reader Failure",
+      "howToFix": "Fit a fresh CR2032 battery first, then have a diagnostic check confirm whether the reader actually detects card insertion before buying anything. Replace the failed keycard (auto locksmiths are far cheaper than dealers) or, if the reader is at fault, replace the card reader module.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Fit a fresh CR2032 battery first, then have a diagnostic check confirm whether the reader actually detects card insertion before buying anything."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-clio-keycard-not-detected-card-reader-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-clio-1-2-petrol-valve-cotter-defect-engine-destruction",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2010,
+        2011
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.2 Petrol Valve Cotter Defect — Engine Destruction (DVSA Recall)",
+      "howToFix": "The recall remedy is free replacement of the valve cotters by a Renault dealer; owners of 2010-2011 1.2 Clios should check the recall status by VIN on the GOV.UK recall checker. If the failure has already occurred, the engine requires rebuild or replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "owners of 2010-2011 1.2 Clios should check the recall status by VIN on the GOV.UK recall checker."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-clio-tce-turbo-coolant-leak",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Dynamique",
+        "Iconic"
+      ],
+      "engines": [
+        "0.9L TCe",
+        "1.0L TCe",
+        "1.3L TCe"
+      ],
+      "title": "TCe Turbo Coolant Leak",
+      "howToFix": "Replace the turbo coolant lines with updated metal fittings where available. Replace the thermostat housing assembly. Pressure test the cooling system after repair to verify no further leaks.",
+      "dtcCodes": [
+        "P0116",
+        "P0217"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "tool-linked",
+          "procedure": "cooling-pressure-test",
+          "toolId": "otc-6977-cooling-pressure",
+          "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+          "reasonCode": "explicit-procedure-tool-matched",
+          "excerpt": "Pressure test the cooling system after repair to verify no further leaks."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0116, P0217"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-clio-tce-turbo-coolant-leak--prescription-0-0--0-9l-tce",
+        "renault-clio-tce-turbo-coolant-leak--prescription-0-0--1-0l-tce",
+        "renault-clio-tce-turbo-coolant-leak--prescription-0-0--1-3l-tce",
+        "renault-clio-tce-turbo-coolant-leak--prescription-1-0--0-9l-tce",
+        "renault-clio-tce-turbo-coolant-leak--prescription-1-0--1-0l-tce",
+        "renault-clio-tce-turbo-coolant-leak--prescription-1-0--1-3l-tce"
+      ]
+    },
+    {
+      "issueId": "renault-clio-edc-dual-clutch-gearbox-judder-tcu-faults-clutch-failure",
+      "make": "Renault",
+      "model": "Clio",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "EDC Dual-Clutch Gearbox Judder, TCU Faults and Clutch Failure",
+      "howToFix": "First step is a dealer software update with clutch touch-point relearn and adaptive reset, which cures many judder complaints; TCU replacement fixed others under Renault goodwill. Worn clutch packs or mechatronic faults require replacement of the clutch pack or repair of the mechatronic unit at a gearbox specialist.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-clio-edc-dual-clutch-gearbox-judder-tcu-faults-clutch-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-kadjar-dpf-regeneration",
+      "make": "Renault",
+      "model": "Kadjar",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression",
+        "Signature"
+      ],
+      "engines": [
+        "1.5L dCi",
+        "1.7L Blue dCi"
+      ],
+      "title": "DPF Regeneration Failure",
+      "howToFix": "Perform a forced regeneration via diagnostic tool. Incorporate a weekly 20-minute motorway drive at 2500+ RPM. Clean the DPF pressure differential sensor pipes.",
+      "dtcCodes": [
+        "P2002",
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Perform a forced regeneration via diagnostic tool."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2002, P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-koleos-2-0-dci-diesel-particulate-filter-blockage",
+      "make": "Renault",
+      "model": "Koleos",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "2.0 dCi diesel particulate filter (DPF) blockage",
+      "howToFix": "Take the vehicle on periodic longer motorway drives at moderate-to-high RPM to allow passive/active regeneration; verify the differential-pressure and exhaust-temp sensors are working. A clogged filter can often be professionally cleaned (~€100); a destroyed DPF requires replacement (£1,300-£2,000+).",
+      "dtcCodes": [
+        "P2002",
+        "P244A",
+        "P244B",
+        "P2463"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "verify the differential-pressure and exhaust-temp sensors are working."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P2002, P244A, P244B, P2463"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-koleos-2-0-dci-diesel-particulate-filter-blockage--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-koleos-2-5-petrol-timing-chain-stretch-oil-consumption",
+      "make": "Renault",
+      "model": "Koleos",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "2.5 petrol (QR25DE/2TR) timing chain stretch and oil consumption",
+      "howToFix": "Maintain strict oil-change intervals with the correct viscosity and monitor oil level between changes. Investigate any cold-start rattle promptly; a stretched chain requires replacement of the chain, tensioner and guides, and heavy oil burning may need a ring/top-end rebuild.",
+      "dtcCodes": [
+        "P0011",
+        "P0014",
+        "P0340"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Maintain strict oil-change intervals with the correct viscosity and monitor oil level between changes."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0011, P0014, P0340"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 4,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-koleos-2-5-petrol-timing-chain-stretch-oil-consumption--prescription-0-0--all-engines",
+        "renault-koleos-2-5-petrol-timing-chain-stretch-oil-consumption--prescription-1-0--all-engines",
+        "renault-koleos-2-5-petrol-timing-chain-stretch-oil-consumption--prescription-2-0--all-engines",
+        "renault-koleos-2-5-petrol-timing-chain-stretch-oil-consumption--prescription-3-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-koleos-awd-rear-differential-transfer-case-internal-failure",
+      "make": "Renault",
+      "model": "Koleos",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "AWD rear differential / transfer case internal failure (2.0 dCi 4x4)",
+      "howToFix": "Check rear differential and transfer-case oil level and condition regularly from around 60,000 km, and change the diff fluid on a strict interval. Inspect for metal contamination early; once gears are damaged the differential (and sometimes the coupling/transfer unit) must be rebuilt or replaced.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check rear differential and transfer-case oil level and condition regularly from around 60,000 km, and change the diff fluid on a strict interval."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect for metal contamination early;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-koleos-cvt-judder",
+      "make": "Renault",
+      "model": "Koleos",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression",
+        "Initiale Paris"
+      ],
+      "engines": [
+        "2.0L dCi",
+        "2.5L QR25"
+      ],
+      "title": "CVT Judder and Slipping",
+      "howToFix": "Perform a complete CVT fluid exchange with genuine Renault NS-2 or NS-3 fluid. Replace the CVT belt and pulleys if slip is confirmed. Update CVT control module software.",
+      "dtcCodes": [
+        "P0730",
+        "P0868"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0730, P0868"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-koleos-cvt-judder--prescription-0-0--2-0l-dci",
+        "renault-koleos-cvt-judder--prescription-0-0--2-5l-qr25",
+        "renault-koleos-cvt-judder--prescription-1-0--2-0l-dci",
+        "renault-koleos-cvt-judder--prescription-1-0--2-5l-qr25"
+      ]
+    },
+    {
+      "issueId": "renault-koleos-x-tronic-cvt-transmission-failure",
+      "make": "Renault",
+      "model": "Koleos",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "X-Tronic CVT transmission failure (slipping, shuddering, high revs)",
+      "howToFix": "Replace CVT fluid every ~60,000-80,000 km (sooner for heavy city/stop-start use) with the correct Renault/Jatco NS-3 spec fluid, and inspect for coolant cross-contamination at the cooler. Early intervention (fluid + cooler) can prevent failure; once the belt/valve body is damaged, a transmission rebuild or replacement is required.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace CVT fluid every ~60,000-80,000 km (sooner for heavy city/stop-start use) with the correct Renault/Jatco NS-3 spec fluid, and inspect for coolant cross-contamination at the cooler."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-koleos-x-tronic-cvt-transmission-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-koleos-front-lower-suspension-arm-fracture",
+      "make": "Renault",
+      "model": "Koleos",
+      "years": [
+        2011
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Front lower suspension arm fracture (2011 recall)",
+      "howToFix": "Have the recall remedy performed at a Renault dealer (free of charge) — the faulty lower suspension arm is replaced. Owners of 2011 units should verify via VIN that the recall has been completed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners of 2011 units should verify via VIN that the recall has been completed."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-koleos-infotainment-freeze",
+      "make": "Renault",
+      "model": "Koleos",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Dynamique",
+        "Initiale Paris"
+      ],
+      "engines": [],
+      "title": "Infotainment System Freeze",
+      "howToFix": "Update R-Link 2 to the latest firmware version. Perform a factory reset and re-pair all devices. Replace the head unit if hardware degradation is confirmed via diagnostic testing.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Replace the head unit if hardware degradation is confirmed via diagnostic testing."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-koleos-infotainment-freeze--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-kwid-air-conditioning-failure-refrigerant-hose-leak-early-compres",
+      "make": "Renault",
+      "model": "Kwid",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Air Conditioning Failure — Refrigerant Hose Leak and Early Compressor Faults",
+      "howToFix": "Have the system leak-tested with UV dye or an electronic sniffer before paying for repeat recharges — check the known trouble spot where the hose runs below/near the engine. Replace the leaking hose and recharge with the correct refrigerant quantity; if the compressor only cools at high RPM or is noisy, test compressor output pressure and replace the compressor if it is worn. On cars still in the 3-year factory warranty, insist on warranty coverage since early compressor failure is well documented.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Have the system leak-tested with UV dye or an electronic sniffer before paying for repeat recharges — check the known trouble spot where the hose runs below/near the engine."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "if the compressor only cools at high RPM or is noisy, test compressor output pressure and replace the compressor if it is worn."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-kwid-air-conditioning-failure-refrigerant-hose-leak-early-compres--prescription-0-0--all-engines",
+        "renault-kwid-air-conditioning-failure-refrigerant-hose-leak-early-compres--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-kwid-brake-judder-fade-from-undersized-solid-front-discs",
+      "make": "Renault",
+      "model": "Kwid",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Judder and Fade from Undersized Solid Front Discs (Pre-Facelift)",
+      "howToFix": "On pre-facelift cars with pedal pulsation, replace (not machine) the warped front discs and pads as an axle set — aftermarket ventilated-disc kits for the facelift hub are sold in Brazil, but the straightforward fix is new quality solid discs and pads matched to the original 215 mm spec. Use engine braking on long descents to limit heat buildup. If vibration persists after new discs, have hub runout and wheel bearing seating checked, as improper mounting also causes judder.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If vibration persists after new discs, have hub runout and wheel bearing seating checked, as improper mounting also causes judder."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-kwid-brake-judder-fade-from-undersized-solid-front-discs--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-kwid-heavy-squeaky-clutch-reverse-gear-grinding",
+      "make": "Renault",
+      "model": "Kwid",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Heavy, Squeaky Clutch and Reverse-Gear Grinding",
+      "howToFix": "Lubricating the old clutch cable quiets the squeak only for a few days — the documented lasting fix is replacing the clutch kit (disc, pressure plate, release bearing) together with a new clutch cable and checking the release fork for deformation. For hard reverse engagement, fully depress the clutch and pause briefly (or pass through a forward gear first) per Renault's own quick guide; persistent grinding after a new clutch indicates the cable/fork repair was incomplete. Total gearbox failures on cars in warranty should be replaced by Renault under warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Lubricating the old clutch cable quiets the squeak only for a few days — the documented lasting fix is replacing the clutch kit (disc, pressure plate, release bearing) together with a new clutch cable and checking the release fork for deformation."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-kwid-heavy-squeaky-clutch-reverse-gear-grinding--prescription-0-0--all-engines",
+        "renault-kwid-heavy-squeaky-clutch-reverse-gear-grinding--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-kwid-launch-era-recall-brake-component-cracks-fuel-line-perforati",
+      "make": "Renault",
+      "model": "Kwid",
+      "years": [
+        2017,
+        2018
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Launch-Era Recall: Brake Component Cracks and Fuel Line Perforation",
+      "howToFix": "Check the chassis number against the recall (Renault Brazil recall portal or 0800 055 5615) and have the recall service performed free of charge at a Renault dealer: inspection and replacement of brake components (up to 1 day) and inspection/repositioning or replacement of the fuel tube (about 1 hour). On any used 2017-2018 Kwid purchase, confirm recall completion — open recalls are still performed at no cost.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Check the chassis number against the recall (Renault Brazil recall portal or 0800 055 5615) and have the recall service performed free of charge at a Renault dealer: inspection and replacement of brake components (up to 1 day) and inspection/repositioning or replacement of the fuel tube (about 1 hour)."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "On any used 2017-2018 Kwid purchase, confirm recall completion — open recalls are still performed at no cost."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-kwid-steering-column-support-bracket-breakage",
+      "make": "Renault",
+      "model": "Kwid",
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Steering Column Support Bracket Breakage",
+      "howToFix": "Have the steering column support inspected immediately at any sign of play, clunking, or noise from the column — this is a drive-safety item. The fix is replacement of the column support or, in most documented cases, the complete electric power steering column assembly. Owners of 2017-2019 cars have had partial success obtaining goodwill (cortesia) coverage from Renault Brazil even outside warranty by registering complaints through Renault customer service and Procon/Reclame Aqui; document the defect with photos before repair.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Have the steering column support inspected immediately at any sign of play, clunking, or noise from the column — this is a drive-safety item."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-kwid-steering-column-support-bracket-breakage--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-kwid-rear-axle-support-cracking-2025-safety-recall",
+      "make": "Renault",
+      "model": "Kwid",
+      "years": [
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear Axle Support Cracking — 2025 Safety Recall (2021-2023 Production)",
+      "howToFix": "Check the chassis directly with Renault Brazil and schedule the no-cost campaign. Renault specifies inspection and replacement of components when necessary, with an estimated service time from 30 minutes to eight hours. If handling changes, rear noise or visible damage occurs before inspection, stop driving and arrange qualified assessment. Do not buy an axle support or related suspension parts from this page; chassis eligibility and Renault’s VIN-specific campaign action must be confirmed first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the chassis directly with Renault Brazil and schedule the no-cost campaign."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Renault specifies inspection and replacement of components when necessary, with an estimated service time from 30 minutes to eight hours."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If handling changes, rear noise or visible damage occurs before inspection, stop driving and arrange qualified assessment."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-megane-1-5-dci-turbocharger-failure-from-oil-starvation",
+      "make": "Renault",
+      "model": "Megane",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.5 dCi (K9K) Turbocharger Failure from Oil Starvation",
+      "howToFix": "Replace the turbocharger together with new oil feed and return pipes, drop the sump to clean the oil pickup strainer, and perform an oil and filter flush — fitting only the turbo guarantees a repeat failure. Stick to shortened oil-change intervals (10,000 km or less) with the correct low-ash C3 oil.",
+      "dtcCodes": [
+        "P0234",
+        "P0299"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0234, P0299"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-megane-injection-fault",
+      "make": "Renault",
+      "model": "Megane",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression",
+        "GT"
+      ],
+      "engines": [
+        "1.5L dCi",
+        "1.6L K4M"
+      ],
+      "title": "Injection System Fault Warning",
+      "howToFix": "Diagnose with Renault CLIP or compatible diagnostic tool to identify the specific fault code. Common fixes include crankshaft sensor replacement, throttle body cleaning, and fuel pressure regulator replacement.",
+      "dtcCodes": [
+        "P0120",
+        "P0190",
+        "P0335"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose with Renault CLIP or compatible diagnostic tool to identify the specific fault code."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0120, P0190, P0335"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-megane-injection-fault--prescription-0-0--1-5l-dci",
+        "renault-megane-injection-fault--prescription-0-0--1-6l-k4m",
+        "renault-megane-injection-fault--prescription-1-0--1-5l-dci",
+        "renault-megane-injection-fault--prescription-1-0--1-6l-k4m"
+      ]
+    },
+    {
+      "issueId": "renault-megane-keycard-card-not-detected-uch-body-control-module-failures",
+      "make": "Renault",
+      "model": "Megane",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Keycard 'Card Not Detected' and UCH Body Control Module Failures (Mégane II)",
+      "howToFix": "Replace or repair the keycard (re-solder the transponder coil) and clean or replace the card reader; persistent multi-system faults need the UCH repaired by a specialist (around $65-150 mail-order) or replaced and recoded. Used UCH units must be programmed to the car.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-megane-rear-caliper-handbrake-mechanism-seizure-handbrake-won-t-hol",
+      "make": "Renault",
+      "model": "Megane",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rear Caliper Handbrake Mechanism Seizure — Handbrake Won't Hold or Binds (Mégane II)",
+      "howToFix": "Free off and lubricate the caliper handbrake mechanism and sliders if caught early; most lasting fixes require new rear handbrake cables and replacement (or refurbished) rear calipers, followed by cable adjustment.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-megane-rear-caliper-handbrake-mechanism-seizure-handbrake-won-t-hol--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-megane-timing-belt",
+      "make": "Renault",
+      "model": "Megane",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression",
+        "GT"
+      ],
+      "engines": [
+        "1.5 dCi",
+        "1.5L dCi",
+        "1.6L K4M",
+        "2.0L F4R"
+      ],
+      "title": "K9K 1.5 dCi Timing Belt Failure from Misaligned Fuel Pump Pulley",
+      "howToFix": "Replace the timing belt kit at reduced intervals (every 60,000 miles). Inspect and replace the front crankshaft seal to prevent oil contamination. Include the water pump in the replacement.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and replace the front crankshaft seal to prevent oil contamination."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-megane-timing-belt--prescription-0-0--1-5-dci",
+        "renault-megane-timing-belt--prescription-0-0--1-5l-dci",
+        "renault-megane-timing-belt--prescription-0-0--1-6l-k4m",
+        "renault-megane-timing-belt--prescription-0-0--2-0l-f4r",
+        "renault-megane-timing-belt--prescription-1-0--1-5-dci",
+        "renault-megane-timing-belt--prescription-1-0--1-5l-dci",
+        "renault-megane-timing-belt--prescription-1-0--1-6l-k4m",
+        "renault-megane-timing-belt--prescription-1-0--2-0l-f4r"
+      ]
+    },
+    {
+      "issueId": "renault-megane-window-regulator",
+      "make": "Renault",
+      "model": "Megane",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression"
+      ],
+      "engines": [],
+      "title": "Window Regulator Failure",
+      "howToFix": "Replace the window regulator assembly. Aftermarket regulators with improved cable routing are available. Lubricate the window channels to reduce motor strain.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-megane-window-regulator--prescription-0-0--all-engines",
+        "renault-megane-window-regulator--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-megane-edc-dual-clutch-gearbox-judder-clutch-pack-wear-mechatronic",
+      "make": "Renault",
+      "model": "Megane",
+      "years": [
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "EDC Dual-Clutch Gearbox Judder, Clutch Pack Wear and Mechatronic/TCU Failure (Mégane III/IV)",
+      "howToFix": "Mild judder is sometimes cured by a TCM/TCU reprogram and adaptation reset; worn clutch packs need replacement (roughly $1,000-2,000), and mechatronic or TCU failures require unit repair or replacement at $1,500-3,000. Keep to Renault's fluid-change and software-update schedule.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-megane-edc-dual-clutch-gearbox-judder-clutch-pack-wear-mechatronic--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-megane-fuel-supply-hose-leak-official-uk-recall-r-2020-189",
+      "make": "Renault",
+      "model": "Megane",
+      "years": [
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Fuel Supply Hose Leak — Official UK Recall R/2020/189 (Mégane IV)",
+      "howToFix": "Renault dealers replace the fuel supply pipe free of charge under the recall. Owners of 2018-2019 build cars should check their VIN against the DVSA/Renault recall database and have the work done immediately if outstanding.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners of 2018-2019 build cars should check their VIN against the DVSA/Renault recall database and have the work done immediately if outstanding."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-megane-etech-software-bugs",
+      "make": "Renault",
+      "model": "Megane E-Tech",
+      "years": [
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Equilibre",
+        "Iconic",
+        "Techno"
+      ],
+      "engines": [
+        "Electric 40kWh",
+        "Electric 60kWh"
+      ],
+      "title": "Software Bugs and OTA Update Issues",
+      "howToFix": "Visit the dealer for a full software reflash if OTA updates fail. Report specific bugs to Renault for inclusion in future patches. Perform a hard reset of the infotainment system as a temporary workaround.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-sandero-1-6-8v-k7m-head-gasket-failure-excessive-oil-consumption",
+      "make": "Renault",
+      "model": "Sandero",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.6 8V K7M Head Gasket Failure and Excessive Oil Consumption",
+      "howToFix": "Check the oil level frequently — every fuel stop on affected cars — and investigate any consumption beyond roughly 0.5 L between services. Confirmed cases require head gasket replacement, with the head checked for flatness and resurfaced if needed; replace valve stem seals while the head is off if smoke persists. A head gasket job on the K7M is mechanically simple and affordable at Brazilian independent shops compared with dealers. Using the correct 10W-40/15W-40 viscosity specified for the K7M matters, since thinner oils worsen consumption on this engine.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the oil level frequently — every fuel stop on affected cars — and investigate any consumption beyond roughly 0.5 L between services."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirmed cases require head gasket replacement, with the head checked for flatness and resurfaced if needed;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-sandero-1-6-8v-k7m-head-gasket-failure-excessive-oil-consumption--prescription-0-0--all-engines",
+        "renault-sandero-1-6-8v-k7m-head-gasket-failure-excessive-oil-consumption--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-sandero-steering-column-bearing-wear-causing-play-knocking-steering",
+      "make": "Renault",
+      "model": "Sandero",
+      "years": [
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Steering Column Bearing Wear Causing Play and Knocking in the Steering Wheel",
+      "howToFix": "Confirm the diagnosis by checking for free rotation play at the steering wheel with the front wheels held still — wear in the column bearing produces play and noise at the column itself rather than at the rack or tie rods (rule those out first, especially on cars covered by the steering recalls). Replace the steering column upper bearing; the part costs little and the job is a few hours' labor at an independent shop. Replacing the entire column assembly is unnecessary in the typical case and should only be needed if the shaft splines or tube are themselves damaged.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Confirm the diagnosis by checking for free rotation play at the steering wheel with the front wheels held still — wear in the column bearing produces play and noise at the column itself rather than at the rack or tie rods (rule those out first, especially on cars covered by the steering recalls)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-sandero-steering-column-bearing-wear-causing-play-knocking-steering--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-sandero-official-steering-safety-recalls-ball-joints-steering-box-hy",
+      "make": "Renault",
+      "model": "Sandero",
+      "years": [
+        2012,
+        2016,
+        2017
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Official Steering Safety Recalls: Ball Joints, Steering Box, and Hydraulic Hose",
+      "howToFix": "Check the chassis directly on Renault Brazil’s recall page and have every applicable campaign completed at no cost. Renault specifies steering-box inspection/replacement, steering-box inspection with axial-joint replacement when necessary, low-pressure-hose inspection/replacement, and fastener inspection/replacement according to the matching chassis campaign. Treat sudden stiffness, fluid loss, play or steering-control change as urgent. Do not buy a steering box, axial joint, hose or fasteners from this page; chassis eligibility and Renault’s campaign action must be confirmed first.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the chassis directly on Renault Brazil’s recall page and have every applicable campaign completed at no cost."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Renault specifies steering-box inspection/replacement, steering-box inspection with axial-joint replacement when necessary, low-pressure-hose inspection/replacement, and fastener inspection/replacement according to the matching chassis campaign."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-sandero-official-steering-safety-recalls-ball-joints-steering-box-hy--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-sandero-easy-r-automated-manual-gearbox-clutch-actuator-failures",
+      "make": "Renault",
+      "model": "Sandero",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Easy-R Automated Manual Gearbox Clutch and Actuator Failures",
+      "howToFix": "There is no recall; repairs are owner-paid out of warranty. Premature judder requires replacement of the clutch kit (disc, pressure plate, release bearing) with the updated parts. Actuator faults require recalibration or replacement of the clutch/shift actuator module — independent transmission specialists in Brazil charge roughly half of dealer prices (around R$3,000 vs R$5,500+). After any clutch or actuator work, the system must be relearned/calibrated with a Renault-compatible scan tool (CLIP). Buyers of used 2015-2019 Sandero with Easy-R should test for takeoff shudder and hesitant engagement before purchase, and budget for actuator and clutch service life far shorter than a conventional manual.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "After any clutch or actuator work, the system must be relearned/calibrated with a Renault-compatible scan tool (CLIP)."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Buyers of used 2015-2019 Sandero with Easy-R should test for takeoff shudder and hesitant engagement before purchase, and budget for actuator and clutch service life far shorter than a conventional manual."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-sandero-easy-r-automated-manual-gearbox-clutch-actuator-failures--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-sandero-1-0-sce-valve-cover-oil-leak-soaking-spark-plug-wells-coils",
+      "make": "Renault",
+      "model": "Sandero",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "1.0 SCe Valve Cover Oil Leak Soaking Spark Plug Wells and Coils",
+      "howToFix": "Replace or reseal the valve cover with an updated gasket/sealant, clean the spark plug wells, and replace oil-fouled spark plugs and any saturated ignition coils. Inspect the timing cover joint at the same time, as it is a secondary leak point on the same engine. The job is inexpensive at an independent shop; the main cost driver is replacement coils if oil has damaged them. For 2020-build cars, check the official Renault recall portal (renault.com.br/recall) for the open oil-feed-orifice lubrication recall, which is repaired free of charge.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the timing cover joint at the same time, as it is a secondary leak point on the same engine."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "For 2020-build cars, check the official Renault recall portal (renault.com.br/recall) for the open oil-feed-orifice lubrication recall, which is repaired free of charge."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-sandero-1-0-sce-valve-cover-oil-leak-soaking-spark-plug-wells-coils--prescription-0-0--all-engines",
+        "renault-sandero-1-0-sce-valve-cover-oil-leak-soaking-spark-plug-wells-coils--prescription-1-0--all-engines",
+        "renault-sandero-1-0-sce-valve-cover-oil-leak-soaking-spark-plug-wells-coils--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-scenic-injector-leak-diesel",
+      "make": "Renault",
+      "model": "Scenic",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression"
+      ],
+      "engines": [
+        "1.5L dCi",
+        "1.7L Blue dCi"
+      ],
+      "title": "dCi Diesel Injector Copper Washer Leak",
+      "howToFix": "Replace the copper injector sealing washers and clean the injector seats. If the injector body is leaking, replace the injector. Use a torque wrench to tighten to the correct specification.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-scenic-injector-leak-diesel--prescription-0-0--1-5l-dci",
+        "renault-scenic-injector-leak-diesel--prescription-0-0--1-7l-blue-dci",
+        "renault-scenic-injector-leak-diesel--prescription-1-0--1-5l-dci",
+        "renault-scenic-injector-leak-diesel--prescription-1-0--1-7l-blue-dci"
+      ]
+    },
+    {
+      "issueId": "renault-scenic-parking-brake-failure",
+      "make": "Renault",
+      "model": "Scenic",
+      "years": [
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Dynamique",
+        "Expression",
+        "Signature"
+      ],
+      "engines": [],
+      "title": "Electric Parking Brake Failure",
+      "howToFix": "Replace the parking brake motor on the affected caliper. Update the parking brake ECU software. If both sides are affected, replace both caliper motors simultaneously.",
+      "dtcCodes": [
+        "C1126"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "excerpt": "C1126"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-scenic-parking-brake-failure--prescription-0-0--all-engines",
+        "renault-scenic-parking-brake-failure--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-twizy-12v-battery-discharge-and-no-start",
+      "make": "Renault",
+      "model": "Twizy",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "12V Battery Discharge and No-Start",
+      "howToFix": "Diagnosis starts with checking resting 12V voltage and load-testing the auxiliary battery; anything significantly below about 12.4V after charging usually points to replacement. Inspect battery terminals, ground points, and DC-DC charging operation, then replace the 12V battery if weak; typical battery cost is about $80-$180, with total repair usually $100-$250 including labor. If the battery repeatedly goes flat, owners also check for charger/DC-DC faults and use a maintenance charger during storage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis starts with checking resting 12V voltage and load-testing the auxiliary battery;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect battery terminals, ground points, and DC-DC charging operation, then replace the 12V battery if weak;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If the battery repeatedly goes flat, owners also check for charger/DC-DC faults and use a maintenance charger during storage."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-twizy-12v-battery-discharge-and-no-start--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-twizy-brake-seizure-and-uneven-pad-wear",
+      "make": "Renault",
+      "model": "Twizy",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Brake Seizure and Uneven Pad Wear",
+      "howToFix": "Inspect pad thickness, rotor condition, caliper piston movement, and slide pin lubrication on all corners. Repairs usually involve cleaning and lubricating hardware, replacing seized pins or calipers, and fitting new pads/rotors if corrosion is advanced; expect about $150-$350 for service work, or $300-$700 if calipers and discs are needed.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect pad thickness, rotor condition, caliper piston movement, and slide pin lubrication on all corners."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-twizy-brake-seizure-and-uneven-pad-wear--prescription-0-0--all-engines",
+        "renault-twizy-brake-seizure-and-uneven-pad-wear--prescription-1-0--all-engines",
+        "renault-twizy-brake-seizure-and-uneven-pad-wear--prescription-2-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-twizy-door-window-and-latch-water-ingress-problems",
+      "make": "Renault",
+      "model": "Twizy",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Door, Window, and Latch Water Ingress Problems",
+      "howToFix": "Inspect door hinges, latch alignment, striker position, and the condition of seals and window panels. Repairs usually involve adjusting the latch/striker, replacing worn seals or fasteners, and lubricating hinges and locks; costs are often $50-$250 for adjustment and minor parts, but damaged door hardware can push repairs toward $400 or more.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect door hinges, latch alignment, striker position, and the condition of seals and window panels."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-twizy-door-window-and-latch-water-ingress-problems--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "renault-twizy-on-board-charger-failure-or-charge-interruption",
+      "make": "Renault",
+      "model": "Twizy",
+      "years": [
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "On-Board Charger Failure or Charge Interruption",
+      "howToFix": "Diagnosis involves confirming mains supply quality, inspecting the integrated charge cable and plug for heat damage, checking the charge inlet and wiring for corrosion, and scanning Renault-specific EV modules for charger faults. Repairs range from cleaning connections or replacing the charge cable components to replacing the on-board charger assembly; minor fixes may cost $150-$400, while charger replacement can run roughly $1,000-$2,500 depending on parts source and labor.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Diagnosis involves confirming mains supply quality, inspecting the integrated charge cable and plug for heat damage, checking the charge inlet and wiring for corrosion, and scanning Renault-specific EV modules for charger faults."
+        }
+      ],
+      "existingCommerceClaimIds": [
+        "communityRecommendations:1"
+      ],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-zoe-battery-degradation",
+      "make": "Renault",
+      "model": "Zoe",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "GT Line",
+        "Iconic",
+        "Play"
+      ],
+      "engines": [
+        "Electric 22kWh",
+        "Electric 41kWh",
+        "Electric 52kWh"
+      ],
+      "title": "Battery Capacity Degradation",
+      "howToFix": "Monitor battery health via the Renault Z.E. app or OBD diagnostic tool. Avoid frequent rapid charging and keep charge between 20-80% for daily use. Battery lease customers can request replacement when capacity drops below 75%.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor battery health via the Renault Z.E."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "app or OBD diagnostic tool."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "renault-zoe-charging-system",
+      "make": "Renault",
+      "model": "Zoe",
+      "years": [
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "GT Line",
+        "Iconic",
+        "Play"
+      ],
+      "engines": [
+        "Electric 22kWh",
+        "Electric 41kWh",
+        "Electric 52kWh"
+      ],
+      "title": "Charging System Failure",
+      "howToFix": "Clean the charging port connector pins. Check for software updates to the Chameleon charger module. Replace the on-board charger unit if it consistently overheats or refuses to charge.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check for software updates to the Chameleon charger module."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "renault-zoe-charging-system--prescription-0-0--electric-22kwh",
+        "renault-zoe-charging-system--prescription-0-0--electric-41kwh",
+        "renault-zoe-charging-system--prescription-0-0--electric-52kwh"
+      ]
+    }
+  ]
+}

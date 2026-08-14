@@ -25,12 +25,49 @@ test('links only a tool explicitly required by the solution', () => {
 
 test('DTC family chooses a capable scanner and unknown codes fail closed', () => {
   assert.equal(scannerToolIdForCodes(['P0300', 'P0700']).toolId, 'ancel-ad310');
-  assert.equal(scannerToolIdForCodes(['U1000']).toolId, 'autel-mk808s');
+  assert.equal(scannerToolIdForCodes(['U1000']).toolId, null);
+  assert.equal(scannerToolIdForCodes(['U1000']).reasonCode, 'non-powertrain-module-capability-unverified');
   assert.equal(scannerToolIdForCodes(['22', 'P1259']).toolId, null);
 
   const held = diagnosticDispositionsForIssue('Pull codes with a scan tool.', ['22', 'P1259']);
   assert.equal(held.every((item) => item.status === 'unresolved-tool-hold'), true);
   assert.equal(held.every((item) => item.reasonCode === 'manufacturer-code-capability-unverified'), true);
+});
+
+test('generic scanner recommendations fail closed for manufacturer and hybrid/EV powertrain codes', () => {
+  assert.deepEqual(scannerToolIdForCodes(['P17D0']), {
+    toolId: null,
+    families: ['P'],
+    reasonCode: 'manufacturer-code-capability-unverified',
+  });
+  assert.deepEqual(scannerToolIdForCodes(['P0A0F'], { engines: ['1.3L Turbo PHEV'] }), {
+    toolId: null,
+    families: ['P'],
+    reasonCode: 'hybrid-ev-scanner-capability-unverified',
+  });
+  const rows = diagnosticDispositionsForIssue('', ['P0A0F'], { engines: ['1.3L Turbo PHEV'] });
+  assert.equal(rows[0]?.status, 'unresolved-tool-hold');
+  assert.equal(rows[0]?.toolId, null);
+});
+
+test('reviewed Audi context selects VCDS for manufacturer and control-module codes', () => {
+  assert.equal(scannerToolIdForCodes(['P17D0'], { make: 'Audi', years: [2016] }).toolId, 'ross-tech-vcds-hex-v2');
+  assert.equal(scannerToolIdForCodes(['C1132'], { make: 'Audi', years: [2014] }).toolId, 'ross-tech-vcds-hex-v2');
+  assert.equal(scannerToolIdForCodes(['P17D0'], { make: 'Acura', years: [2016] }).toolId, null);
+  assert.equal(scannerToolIdForCodes(['P17D0'], { make: 'Audi', years: [1994] }).toolId, null);
+  assert.deepEqual(proceduresInSolution('Scan with VCDS before repair.'), ['vag-scan-codes']);
+  assert.deepEqual(proceduresInSolution('Use a VAG-capable scan tool to identify address 03.'), ['vag-scan-codes']);
+  assert.deepEqual(proceduresInSolution('Scan the TCM and retain the printout.'), ['vag-scan-codes']);
+});
+
+test('explicit multimeter and parasitic-draw noun forms resolve without symptom inference', () => {
+  assert.deepEqual(proceduresInSolution('Connect a multimeter to terminals 1 and 2.'), ['multimeter-basic']);
+  assert.deepEqual(proceduresInSolution('Begin with a parasitic draw measurement after sleep.'), ['parasitic-draw']);
+});
+
+test('explicit passive cooling-pressure and battery-SOH testing forms resolve', () => {
+  assert.deepEqual(proceduresInSolution('Have the cooling system pressure-tested.'), ['cooling-pressure-test']);
+  assert.deepEqual(proceduresInSolution('Begin with battery state-of-health testing.'), ['battery-state-of-health']);
 });
 
 test('inline manufacturer codes override an otherwise generic P-code scanner choice', () => {

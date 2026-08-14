@@ -1,0 +1,1024 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "3ee40713b2b5f1bd845d6118be79fc8486956e01d41eb5a8609a85aba77a5102",
+  "make": "Alfa Romeo",
+  "makeKey": "alfa-romeo",
+  "makeIndex": 0,
+  "totalMakes": 1,
+  "issueCount": 22,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 8,
+    "diagnosis-dependent": 9,
+    "recall/dealer": 3,
+    "service/tool/fluid": 2,
+    "no-commerce": 0
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 7,
+    "uniqueDtcCount": 7,
+    "instructionCount": 18,
+    "dtcDispositionCount": 7,
+    "toolLinkedCount": 5,
+    "procedureNoToolCount": 14,
+    "unresolvedToolHoldCount": 6
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "alfa-romeo-4c-suspension-bushing",
+      "make": "Alfa Romeo",
+      "model": "4C",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Base",
+        "Launch Edition",
+        "Spider"
+      ],
+      "engines": [
+        "1.75L Turbo I4"
+      ],
+      "title": "Suspension Bushing Premature Wear",
+      "howToFix": "Replace worn bushings with polyurethane or spherical upgrades for improved longevity. Perform a full alignment after bushing replacement. Track-focused owners should inspect bushings every 10,000 miles.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Track-focused owners should inspect bushings every 10,000 miles."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-4c-suspension-bushing--prescription-0-0--1-75l-turbo-i4"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-4c-tct-shudder",
+      "make": "Alfa Romeo",
+      "model": "4C",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "Base",
+        "Launch Edition",
+        "Spider"
+      ],
+      "engines": [
+        "1.75L Turbo I4"
+      ],
+      "title": "TCT Dual-Clutch Transmission Shudder",
+      "howToFix": "Perform a TCT clutch adaptation reset using Alfa Romeo diagnostic software (WiTech). If shudder persists after adaptation, the clutch pack assembly requires replacement.",
+      "dtcCodes": [
+        "P0730"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Perform a TCT clutch adaptation reset using Alfa Romeo diagnostic software (WiTech)."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0730"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-4c-tct-shudder--prescription-0-0--1-75l-turbo-i4"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-brake-squeal",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Base",
+        "Quadrifoglio",
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L Twin-Turbo V6"
+      ],
+      "title": "Front Brake Squeal and Dust",
+      "howToFix": "Replace the OEM brake pads with a ceramic compound alternative for reduced noise and dust. Clean and lubricate the caliper slide pins and apply anti-squeal shims. The Quadrifoglio Brembo calipers need specific QV pads.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-brake-squeal--prescription-0-0--2-0l-turbo-i4",
+        "alfa-romeo-giulia-brake-squeal--prescription-0-0--2-9l-twin-turbo-v6",
+        "alfa-romeo-giulia-brake-squeal--prescription-1-0--2-0l-turbo-i4",
+        "alfa-romeo-giulia-brake-squeal--prescription-1-0--2-9l-twin-turbo-v6"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-contaminated-brake-clutch-fluid",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Contaminated Brake/Clutch Fluid (Reduced Braking)",
+      "howToFix": "Under the recall, dealers inspect the braking system and replace the affected brake/clutch fluid and components as necessary, free of charge. Out of warranty, a full brake fluid flush with the correct DOT-spec fluid and seal inspection is the remedy.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Under the recall, dealers inspect the braking system and replace the affected brake/clutch fluid and components as necessary, free of charge."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Out of warranty, a full brake fluid flush with the correct DOT-spec fluid and seal inspection is the remedy."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "alfa-romeo-giulia-electrical-faults-from-water-intrusion-bcm-failure",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Electrical Faults from Water Intrusion / BCM Failure",
+      "howToFix": "Fix the water-intrusion source first (reseal bulkhead gasket, reattach fresh-air vent, clear the A/C drain) before replacing electronics. A water-damaged BCM must be replaced and re-programmed with a proxy alignment (not plug-and-play); used modules often require harness re-pinning. Dry and inspect the footwell wiring loom.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dry and inspect the footwell wiring loom."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-electrical-faults-from-water-intrusion-bcm-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-infotainment-reboot",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Base",
+        "Quadrifoglio",
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L Twin-Turbo V6"
+      ],
+      "title": "Infotainment System Random Reboots",
+      "howToFix": "Update the Uconnect software to the latest version. Perform a factory reset if issues persist. Some units require hardware replacement of the head unit.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-infotainment-reboot--prescription-0-0--2-0l-turbo-i4",
+        "alfa-romeo-giulia-infotainment-reboot--prescription-0-0--2-9l-twin-turbo-v6"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-interior-cabin-water-leaks",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Interior/Cabin Water Leaks (Cowl, Bulkhead, A/C Drain)",
+      "howToFix": "Identify the source: reseal the bulkhead gasket, reattach the fresh-air inlet vent, clear or extend the A/C evaporator drain tube, and confirm cowl drains are unobstructed. Dry the carpet and underlayment thoroughly and inspect any footwell electronics for water damage.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Identify the source: reseal the bulkhead gasket, reattach the fresh-air inlet vent, clear or extend the A/C evaporator drain tube, and confirm cowl drains are unobstructed."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Dry the carpet and underlayment thoroughly and inspect any footwell electronics for water damage."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-interior-cabin-water-leaks--prescription-0-0--all-engines",
+        "alfa-romeo-giulia-interior-cabin-water-leaks--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-jerky-hunting-transmission-low-speed",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Jerky / Hunting Transmission at Low Speed (ZF 8-Speed)",
+      "howToFix": "Have the dealer open a case to apply ECM/TCM software updates and reprogramming, which smooths shift quality for many owners. As a workaround, disable auto stop-start and use Normal/All-Weather modes for low-speed driving; ensure the car is fully warmed up. Verify transmission fluid level/condition if symptoms persist.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Verify transmission fluid level/condition if symptoms persist."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "alfa-romeo-giulia-low-pressure-fuel-pump-failure",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Low-Pressure Fuel Pump Failure (Sudden Power Loss)",
+      "howToFix": "Under recall 25V586, dealers replace the fuel delivery module (fuel pump assembly) free of charge. Owners experiencing stalling, hard starts, or P0087 low fuel rail pressure codes should have the fuel pump tested for pressure dropout and replaced. Out of warranty, fuel pump module replacement typically runs in the listed range.",
+      "dtcCodes": [
+        "P0087"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Owners experiencing stalling, hard starts, or P0087 low fuel rail pressure codes should have the fuel pump tested for pressure dropout and replaced."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-low-pressure-fuel-pump-failure--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-parasitic-battery-drain-ibs-stop-start-faults",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Parasitic Battery Drain / IBS & Stop-Start Faults",
+      "howToFix": "Replace a faulty Intelligent Battery Sensor (IBS) with the revised part, which has resolved intermittent drain for many owners. Address any BCM water damage and apply available software updates to correct charging/sleep logic; verify with a parasitic-draw test and replace the battery if internally damaged.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "verify with a parasitic-draw test and replace the battery if internally damaged."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-parasitic-battery-drain-ibs-stop-start-faults--prescription-0-0--all-engines",
+        "alfa-romeo-giulia-parasitic-battery-drain-ibs-stop-start-faults--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-stall",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Base",
+        "Quadrifoglio",
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L Twin-Turbo V6"
+      ],
+      "title": "Low-Pressure Fuel Pump Failure Causing Stall (Recall 25V-586)",
+      "howToFix": "Have the ECM and wiring harness inspected at an Alfa Romeo dealer. FCA has issued TSB 18-024-17 REV.A addressing the wiring harness routing. ECM replacement with updated software may be required.",
+      "dtcCodes": [
+        "P0087",
+        "P0191",
+        "P0230"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Have the ECM and wiring harness inspected at an Alfa Romeo dealer."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087, P0191, P0230"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-stall--prescription-0-0--2-0l-turbo-i4",
+        "alfa-romeo-giulia-stall--prescription-0-0--2-9l-twin-turbo-v6"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-timing-chain-rattle-oil-pump-bolt-loosening",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Timing Chain Rattle / Oil Pump Bolt Loosening (2.0T)",
+      "howToFix": "Diagnose the rattle source: tighten/replace the wastegate actuator if loose, or replace the timing chain assembly and camshaft actuators (variable valve timing solenoids) if the chain has stretched. For affected early engines, inspect/re-torque or replace the oil pump with the updated part. Maintain shorter oil-change intervals (around 6,000 miles) with correct-spec oil.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Diagnose the rattle source: tighten/replace the wastegate actuator if loose, or replace the timing chain assembly and camshaft actuators (variable valve timing solenoids) if the chain has stretched."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "For affected early engines, inspect/re-torque or replace the oil pump with the updated part."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 5,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-timing-chain-rattle-oil-pump-bolt-loosening--prescription-0-0--all-engines",
+        "alfa-romeo-giulia-timing-chain-rattle-oil-pump-bolt-loosening--prescription-1-0--all-engines",
+        "alfa-romeo-giulia-timing-chain-rattle-oil-pump-bolt-loosening--prescription-2-0--all-engines",
+        "alfa-romeo-giulia-timing-chain-rattle-oil-pump-bolt-loosening--prescription-3-0--all-engines",
+        "alfa-romeo-giulia-timing-chain-rattle-oil-pump-bolt-loosening--prescription-4-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-transfer-case-noise",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4"
+      ],
+      "title": "Q4 AWD Transfer Case Jolting and Resonance Rumble",
+      "howToFix": "Drain and refill the transfer case with the correct Alfa Romeo-specified fluid. If noise persists, the transfer case clutch pack assembly needs replacement. FCA extended warranty coverage for some VINs.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-transfer-case-noise--prescription-0-0--2-0l-turbo-i4"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-turbo-coolant-leak",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Base",
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4"
+      ],
+      "title": "Turbo Coolant Line Leak",
+      "howToFix": "Replace the turbo coolant lines with updated Mopar parts that use improved fittings. Check the coolant level and top off with the correct FCA MS-90032 coolant. Pressure test the system after repair.",
+      "dtcCodes": [
+        "P0217"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check the coolant level and top off with the correct FCA MS-90032 coolant."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "Pressure test the system after repair."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0217"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-giulia-turbo-coolant-leak--prescription-0-0--2-0l-turbo-i4"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-giulia-rearview-camera-blank-inverted-image",
+      "make": "Alfa Romeo",
+      "model": "Giulia",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Rearview Camera Blank/Inverted Image (Infotainment Recall)",
+      "howToFix": "Under recall 25V667, dealers inspect and replace the radio/head unit as necessary and update the rearview-camera software, free of charge. For general freezes, owners report a long-press on the volume knob can reboot the unit; vehicles built after March 2025 already have the updated hardware/software.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Under recall 25V667, dealers inspect and replace the radio/head unit as necessary and update the rearview-camera software, free of charge."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "alfa-romeo-stelvio-infotainment-crash",
+      "make": "Alfa Romeo",
+      "model": "Stelvio",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Base",
+        "Quadrifoglio",
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L Twin-Turbo V6"
+      ],
+      "title": "Infotainment System Crash and Black Screen",
+      "howToFix": "Update the Uconnect software to the latest firmware version. Perform a master reset from the settings menu. If the issue recurs, the head unit hardware may need replacement under warranty.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-stelvio-infotainment-crash--prescription-0-0--2-0l-turbo-i4",
+        "alfa-romeo-stelvio-infotainment-crash--prescription-0-0--2-9l-twin-turbo-v6"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-stelvio-stall",
+      "make": "Alfa Romeo",
+      "model": "Stelvio",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Base",
+        "Quadrifoglio",
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L Twin-Turbo V6"
+      ],
+      "title": "Low-Pressure Fuel Pump Failure Causing Stall (Recall 25V-667)",
+      "howToFix": "Inspect and repair the ECM harness per FCA TSB 18-024-17 REV.A. Clean and reseal all engine bay ground points. ECM replacement with updated calibration may be needed for persistent cases.",
+      "dtcCodes": [
+        "P0087",
+        "P0191",
+        "P0230"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect and repair the ECM harness per FCA TSB 18-024-17 REV.A."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0087, P0191, P0230"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-stelvio-stall--prescription-0-0--2-0l-turbo-i4",
+        "alfa-romeo-stelvio-stall--prescription-0-0--2-9l-twin-turbo-v6"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-stelvio-sunroof-rattle",
+      "make": "Alfa Romeo",
+      "model": "Stelvio",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Quadrifoglio",
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L Twin-Turbo V6"
+      ],
+      "title": "Panoramic Sunroof Rattle and Wind Noise",
+      "howToFix": "Adjust the sunroof alignment via the adjustment bolts on the guide rails. Replace the weatherstrip seal if it is compressed or damaged. Apply felt tape to contact points between the glass and frame.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-stelvio-sunroof-rattle--prescription-0-0--2-0l-turbo-i4",
+        "alfa-romeo-stelvio-sunroof-rattle--prescription-0-0--2-9l-twin-turbo-v6",
+        "alfa-romeo-stelvio-sunroof-rattle--prescription-1-0--2-0l-turbo-i4",
+        "alfa-romeo-stelvio-sunroof-rattle--prescription-1-0--2-9l-twin-turbo-v6",
+        "alfa-romeo-stelvio-sunroof-rattle--prescription-2-0--2-0l-turbo-i4",
+        "alfa-romeo-stelvio-sunroof-rattle--prescription-2-0--2-9l-twin-turbo-v6"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-stelvio-transfer-case-leak",
+      "make": "Alfa Romeo",
+      "model": "Stelvio",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Base",
+        "Quadrifoglio",
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4",
+        "2.9L Twin-Turbo V6"
+      ],
+      "title": "Transfer Case Fluid Leak",
+      "howToFix": "Replace the leaking transfer case seal or gasket. Refill with the correct Alfa Romeo transfer case fluid. Inspect the transfer case internals for damage if the fluid level was critically low.",
+      "dtcCodes": [
+        "P17D0"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect the transfer case internals for damage if the fluid level was critically low."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "excerpt": "P17D0"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-stelvio-transfer-case-leak--prescription-0-0--2-0l-turbo-i4",
+        "alfa-romeo-stelvio-transfer-case-leak--prescription-0-0--2-9l-twin-turbo-v6",
+        "alfa-romeo-stelvio-transfer-case-leak--prescription-1-0--2-0l-turbo-i4",
+        "alfa-romeo-stelvio-transfer-case-leak--prescription-1-0--2-9l-twin-turbo-v6"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-stelvio-turbo-oil-leak",
+      "make": "Alfa Romeo",
+      "model": "Stelvio",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Base",
+        "Ti",
+        "Ti Sport",
+        "Veloce"
+      ],
+      "engines": [
+        "2.0L Turbo I4"
+      ],
+      "title": "Turbo Oil Line Leak",
+      "howToFix": "Replace the turbo oil line banjo bolt crush washers with new copper washers. Torque to specification (25 Nm). If the oil line itself is damaged, replace with the updated Mopar part number.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "alfa-romeo-stelvio-turbo-oil-leak--prescription-0-0--2-0l-turbo-i4"
+      ]
+    },
+    {
+      "issueId": "alfa-romeo-tonale-infotainment-bugs",
+      "make": "Alfa Romeo",
+      "model": "Tonale",
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Sprint",
+        "Ti",
+        "Veloce"
+      ],
+      "engines": [
+        "1.3L Turbo PHEV",
+        "2.0L Turbo I4"
+      ],
+      "title": "Infotainment Software Bugs",
+      "howToFix": "Install all available OTA updates. Perform a system reset by holding the power button for 15 seconds. Visit the dealer for a full software reflash if OTA updates do not resolve the issue.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "alfa-romeo-tonale-phev-charging",
+      "make": "Alfa Romeo",
+      "model": "Tonale",
+      "years": [
+        2023,
+        2024,
+        2025,
+        2026
+      ],
+      "trims": [
+        "Sprint",
+        "Ti",
+        "Veloce"
+      ],
+      "engines": [
+        "1.3L Turbo PHEV"
+      ],
+      "title": "PHEV Charging System Issues",
+      "howToFix": "Reset the charging schedule in the vehicle settings. Update the PHEV control module software at the dealer. If the onboard charger module has failed, it requires replacement.",
+      "dtcCodes": [
+        "P0A0F"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "unresolved-tool-hold",
+          "procedure": "scan-codes",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "excerpt": "P0A0F"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

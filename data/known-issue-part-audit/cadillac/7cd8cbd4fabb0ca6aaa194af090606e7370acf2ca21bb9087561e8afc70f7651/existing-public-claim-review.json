@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-existing-public-claim-review",
+  "make": "Cadillac",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "status": "REVIEWED_NOT_APPLIED",
+  "productionApplied": false,
+  "releaseBlocked": true,
+  "verifiedPublicClaimCount": 2,
+  "tally": {
+    "preserve_safe_public": 0,
+    "preserve_recall_information": 0,
+    "block_unsafe_public": 2
+  },
+  "decisions": [
+    {
+      "issueId": "cadillac-escalade-afm-lifter-2007",
+      "partIndex": 0,
+      "component": "Engine Valve Lifter",
+      "partNumbers": [
+        "213-1738"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.amazon.com/Clevite-77-213-1738-Roller-Lifter/dp/B000C07XZI?tag=au7o-20",
+          "vendor": "Amazon",
+          "linkType": "product",
+          "verified": true
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The article requires generation-specific compression, valve-motion, VLOM, bank, and VIN/EPC diagnosis, while the current lifter claim is unscoped and immediately linkable.",
+      "sourceEvidence": {
+        "title": "Confirmed AFM Lifter Collapse Requires Generation-Specific Diagnosis",
+        "howToFix": "Confirm the engine, compression and valve motion before parts replacement. On Gen IV, follow the VLOM and all-AFM-lifter path only after confirmed collapse; on Gen V, follow the affected-bank lifter-and-guide path and replace the VLOM or camshaft only when GM diagnosis identifies damage. Use VIN/EPC service parts, never an AFM-delete product from this card."
+      }
+    },
+    {
+      "issueId": "cadillac-xts-water-pump-weep-hole-coolant-leak",
+      "partIndex": 0,
+      "component": "Engine Water Pump",
+      "partNumbers": [
+        "WPGM-611V"
+      ],
+      "currentFitment": {},
+      "currentBuyLinks": [
+        {
+          "url": "https://www.ebay.com/itm/137201131319?_skw=Aisin+WPGM-611V+Engine+Water+Pump&hash=item1ff1d31f37%3Ag%3AwbcAAeSwarpp01Vu&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+          "vendor": "eBay",
+          "linkType": "product",
+          "verified": true
+        }
+      ],
+      "recallFirst": false,
+      "verdict": "block_unsafe_public",
+      "reason": "The frozen article names ACDelco 19325605/252-962 after leak-source diagnosis, while the current unscoped Aisin WPGM-611V claim has no persisted fitment or exact product-identity evidence.",
+      "sourceEvidence": {
+        "title": "Water Pump Weep-Hole Coolant Leak (3.6L V6)",
+        "howToFix": "Confirm the source: clean the area and look for fresh coolant tracking from the weep hole below the water pump pulley (versus hose clamps or the radiator). Replace the water pump with a new OEM/ACDelco unit and gasket, refill with DEX-COOL, and pressure-test. Do NOT use stop-leak — it can clog the heater core and radiator. ACDelco Gold water pump PN 19325605 (aftermarket ACDelco 252-962 cross-reference); inspect the thermostat and upper/lower hoses while the system is open."
+      }
+    }
+  ]
+}

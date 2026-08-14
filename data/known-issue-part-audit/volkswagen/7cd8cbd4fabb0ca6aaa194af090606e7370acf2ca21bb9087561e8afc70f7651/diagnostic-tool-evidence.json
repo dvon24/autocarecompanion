@@ -1,0 +1,454 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Volkswagen",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 329,
+    "issuesWithDtcCodes": 136,
+    "uniqueDtcCount": 135,
+    "solutionInstructionCount": 283,
+    "dtcDispositionCount": 136,
+    "toolLinkedDispositionCount": 153,
+    "procedureNoToolDispositionCount": 226,
+    "unresolvedToolHoldCount": 40,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "volkswagen-arteon-infotainment-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Dealers typically charge 1.0-2.0 hours diagnostic labor ($150-$400), while software updates are often covered under warranty;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-beetle-overheating-drops-valve-seats-warps-magnesium-case",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Bulletproofing upgrades restorers fit: a larger doghouse or external/remote oil cooler with a full-flow oil filter, a deep-finned aluminum sump plate for extra oil capacity and cooling, and — critically — a real cylinder-head-temp and oil-temp gauge so you catch trouble before it cracks a case.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-beetle-weak-6-volt-system-failing-generator-leaves-dim-lights-slow",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Purists who keep 6V should at minimum rebuild or replace the generator and regulator, fit a heavy-duty 6V battery and big-gauge battery/ground cables, and refresh all ground straps.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-bus-3-cylinder-overheating-dropped-valve-seats",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Restorers fit a cylinder-head temperature gauge and keep heads under ~400 F;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-cabrio-top-mechanism-1995",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "After repairs, water-test the roof with low-pressure hose spray and treat/condition any reusable seals, but replace seals that are flattened or cracked.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-caddy-tdi-fuel-injector-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with live data / injector return-flow ('back-leak') test to identify the failing injector(s).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-cc-ea888-2-0-tsi-excessive-oil-consumption-from-low-tension-pis",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the workshop perform a documented oil-consumption test (VW has a service procedure measuring consumption over a set interval).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-cc-ignition-coil-pack-failure-causing-misfires-power-loss",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the misfiring cylinder via the stored cylinder-specific code (coil-swap test confirms a bad coil).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-corrado-vr6-chain-tensioner-1992",
+      "source": "solution",
+      "procedure": "compression-test",
+      "excerpt": "if the chain has already skipped, perform a compression test and inspect for bent valves before proceeding.",
+      "reasonCode": "gasoline-compression-application-unproven",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-eos-2-0-tsi-high-pressure-fuel-pump-cam-follower-wear-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "replace the high-pressure pump if internal failure is confirmed by fuel-pressure testing.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "vw-eos-roof-microswitch-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the full cycle.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-gol-i-motion-automated-manual-gearbox-harsh-shifts-engagement-fa",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "perform the clutch basic-setting/adaptation procedure with a VW-compatible scan tool after any clutch or actuator work.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-golf-1-9-tdi-vnt-turbo-actuator-sticking-maf-sensor-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "replace with an OEM/quality unit (cheap aftermarket MAFs read poorly).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-golf-r-engine-coolant-temperature-sensor-inaccurate-temp-gauge",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for coolant-flow/temperature codes (e.g.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-golf-r-dq381-7-speed-dsg-intermittent-neutral-drop-free-revving",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform DSG-specific diagnostics with VCDS/ODIS and data-logging of engine-speed and gearbox signals;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-jetta-power-window-regulator-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "test the window switch and motor before reassembly.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-jetta-1-9-tdi-timing-belt-failure-interference-engine",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "On a suspected slip or after any belt event, borescope/leak-down test before restarting.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-jetta-heated-seat-element-overheating-and-burn-through",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis usually confirms a failed seat heater element or damaged thermostat/control circuit in the seat cushion or backrest.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-karmann-ghia-3-cylinder-runs-hot-drops-exhaust-valve",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Restorers fit a head-temperature gauge with the sender on #3 (and often a dipstick or sump oil-temp gauge), set the valves cold to spec every ~3,000 miles, and dial in correct timing and a slightly rich-of-lean mixture (a CHT-guided carb tune).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-new-beetle-coil-pack-failure-1998",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan the engine computer for misfire faults (typically P0300-P0304), then identify the weak cylinder by reviewing misfire counters or swapping the suspected coil to another cylinder to see if the misfire follows.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-new-beetle-engine-coolant-temperature-sensor-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if the temperature behavior persists, test the thermostat next, as a stuck thermostat produces similar symptoms.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-new-beetle-engine-coolant-temperature-sensor-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0117, P0118, P0128",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "vw-new-beetle-abs-module-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Requires bleeding with a scan tool after replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-new-beetle-timing-chain-25l-2005",
+      "source": "solution",
+      "procedure": "compression-test",
+      "excerpt": "If the chain has already jumped time, perform a compression test and inspect for valve damage before reassembly.",
+      "reasonCode": "gasoline-compression-application-unproven",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "vw-passat-timing-belt-failure-1998",
+      "source": "solution",
+      "procedure": "compression-test",
+      "excerpt": "if the belt has already skipped, perform a compression test and cylinder head inspection because bent valves are common on these interference engines.",
+      "reasonCode": "gasoline-compression-application-unproven",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "vw-phaeton-touareg-brake-light-switch-2004",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test all affected systems after replacement: brake lights, cruise control, shift interlock.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "vw-routan-steering-clockspring-2009",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "After replacement, the airbag warning light may need to be reset with a scan tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "vw-routan-transmission-shudder-2009",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Some owners report improvement with a transmission adaptation reset (done with a scan tool).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-scirocco-sporadic-abs-esp-traction-control-warning-lights",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan with VAG diagnostics to read the stored ABS/ESP code first.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-scirocco-7-speed-dsg-dry-clutch-mechatronic-failure-juddering",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with VAG-specific scan tooling.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-t-cross-start-stop-system-fails-causes-stalling",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the battery capacity and the battery management sensor tested with VW diagnostics.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-t-roc-water-ingress-into-footwells-cabin",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the entry point with a water/hose test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-taos-12v-battery-parasitic-drain-repeated-dead-battery",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis starts with a parasitic-draw test to find the module that fails to sleep;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-taos-ea211-1-5t-coolant-loss-from-water-pump-thermostat-housing-l",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Insist on a documented diagnosis under powertrain warranty rather than accepting repeated coolant top-offs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-taos-engine-stalls-when-coming-to-stop-awd-ecu-software-defect",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "an out-of-warranty diagnostic/reflash would be minor.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-tiguan-water-pump-failure-2009",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Begin with a cold cooling-system pressure test and trace the leak before replacing parts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "vw-touareg-abs-module-2004",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The system requires bleeding with a diagnostic tool (VCDS or VW scan tool) after replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-touareg-dpf-clogging-egr-induced-limp-mode",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the regen chain: replace faulty DPF differential-pressure or exhaust-temperature sensors and clean/replace a sticking EGR valve, then run a forced/service regeneration with a diagnostic tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-touran-1-5-tsi-evo-kangarooing-hesitation-stalling",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "There is no universally effective fix, so test-drive thoroughly and document complaints while in warranty.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "volkswagen-up-asg-automated-manual-gearbox-jerky-shifts-won-t-pull-away-re",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the actuator and clutch travel re-adapted (basic settings) with VW-capable diagnostics;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

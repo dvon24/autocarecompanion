@@ -1,0 +1,2899 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "kia-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "da9c631431fc3d0d53fe9501416123e86b545bb1aef24f48e1325434de41eb36",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": true,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "0ffd07496cabd3144c7d6e9df7fb36a7840fb6fea4b4365416f3acb6ff63a8d0",
+      "checkpoint.json": "5a58e7eab6cd0042952f33c3da2b18d1a992044b537c602bb4d3a7519053d20d",
+      "diagnostic-tool-evidence.json": "8e03ec75b78a17b795eacc96b5daf6c829e5cc45ec00c5b80cc14119d0e93f27"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 247,
+      "issuesWithDtcCodes": 69,
+      "uniqueDtcCount": 90,
+      "solutionInstructionCount": 277,
+      "dtcDispositionCount": 69,
+      "toolLinkedDispositionCount": 51,
+      "procedureNoToolDispositionCount": 236,
+      "unresolvedToolHoldCount": 59,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "kia-amanti-alternator-2004",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test the battery as well since an overcharging alternator may have damaged it.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-borrego-transfer-case-2009",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C0327, P1875",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-cadenza-transmission-hesitation-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Some owners report improved behavior after an \"adaptive learn\" reset performed with the KDS scan tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-carnival-engine-stalling-unexpected-loss-motive-power-while-driving",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Stalls under powertrain warranty (10yr/100k mi) should be diagnosed and repaired at no cost;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-carnival-second-row-captain-s-chair-detaches-iihs-side-crash-test",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Note the model still rated poor overall in the IIHS updated side test due to safety-cage intrusion and injury measures.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-carnival-12v-parasitic-battery-drain-while-parked",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The repair updates both required CCU software events with the Kia Diagnostic System;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-ev6-brake-lights-fail-to-illuminate-during-i-pedal-one-pedal-reg",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "The software update is performed through Kia’s diagnostic system;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-ev6-power-tailgate-liftgate-intermittently-stops-working",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Replace failed strut/motor or repair the wiring as diagnosed.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-forte-connecting-rod-bearing-failure-causing-engine-seizure-sudden",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1326",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-forte-cvt-judder",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-adas-calibration-fault-2021",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1559, C1564, C1611, U3000",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-brake-booster-vacuum-pump-noise-and-reduced-brake-assist-1-6t",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1260, C1261",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-dct-hesitation-2021",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Kia's procedure repeats the creep measurement five times and replaces the dual-clutch assembly only when the test indicates replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-dct-hesitation-2021",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "This is a fitment- and diagnostic-dependent internal transmission repair, so no retail clutch kit or universal ATF is recommended.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-forward-collision-avoidance-assist-fca-phantom-braking-events",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1696, C1697",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-hvac-blower-motor-noise-failure-squeal-rattle-intermittent-fan",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "if speed control is erratic, test/replace the blower resistor or blower control module as applicable.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-infotainment-blackout-2021",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Disconnect the phone and disable wireless CarPlay/Android Auto to test if the issue is phone-related.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-infotainment-blackout-2021",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1609, U1110",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-rear-wheel-bearing-premature-failure-and-humming-noise",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1234, C1235",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-smartstream-g2-5-gdi-engine-piston-ring-oil-consumption-issue",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Kia dealerships perform an oil consumption test over 3,000-mile intervals per TSB ENG 023.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-transmission-control-unit-tcu-software-fault-causing-harsh-upshifts-or-limp-mode-8-speed-at",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Kia dealers perform TCU reprogramming via KDS (Kia Diagnostic System) using updated calibration files per TSB TR-004 and related bulletins.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-trunk-latch-sticking-2021",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1352",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k5-windshield-optical-rain-sensor-bracket-detachment-adas-auto-wipers-inoperative",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Reinstall and calibrate the front camera using Kia scan tool procedures;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-k900-air-suspension-2015",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1611",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-morning-cold-start-delay-no-start-after-overnight-parking",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If delayed cold starts persist after the update, test fuel-rail pressure hold-down;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-niro-c-compressor-condenser-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Have the system leak-tested and the failed component (compressor, condenser, evaporator, or high-pressure line) replaced and recharged.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-niro-dct-judder-hybrid",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0741, P0920",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-niro-ev-onboard-charger-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0401, P0402, P0403, P0404",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-optima-power-door-lock-and-door-latch-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis should focus on the door latch/actuator assembly, lock rods, wiring in the door jamb, and the central locking switch/module.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-optima-oil-consumption",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Piston ring replacement if test confirms excessive consumption.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-ray-first-generation-ray-ev-board-charger-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Used buyers should test AC slow charging to full before purchase and budget for an OBC repair on any high-mileage example.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-rio-timing-belt-neglect-leading-2001",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If the belt has already failed, a compression or leak-down test is needed to determine whether valves were bent.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-rio-12v-battery-drain-and-2021",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1102, U0155",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-rio-cvtivt-hesitation-jerking-and-2021",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "if shudder, slip, or delayed engagement remains, deeper diagnosis of the IVT assembly may be required.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-rio-forward-collision-avoidance-assist--2021",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1604, C1611, U3000",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-seltos-1-6l-turbo-7-speed-dry-dct-overheating-shudder-hesitation",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0741, P0868, P17BF",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-seltos-cvt-hesitation",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-seltos-piston-ring-oil-consumption",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1327",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-seltos-stalling-fire-hazard-unrepaired-still-symptomatic-2021-2023",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1327",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sorento-awd-coupling-failure-2011",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "After replacement, perform an AWD system relearn procedure with a KDS (Kia Diagnostic System) scan tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sorento-awd-coupling-failure-2011",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1513, C1515, P0734",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sorento-catalytic-converter-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose root cause of catalytic converter failure first.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sorento-p0300-random-multiple-misfire-from-theta-ii-gdi-ignition-coi",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Read freeze-frame and pull coils/plugs first — replace worn spark plugs (typically due ~90-105k mi) and any weak coil.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sorento-p0302-cylinder-2-misfire-from-ignition-coil-spark-plug-gdi-c",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test the cylinder-2 injector and run a compression/leak-down test if the misfire persists.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sorento-p0430-catalyst-efficiency-below-threshold-lambda-v6-failed-c",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnostically swap the Bank 1 and Bank 2 O2 sensors — if the fault moves to P0420, the sensor is bad and should be replaced;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-soul-motor-driven-power-steering-flexible-coupling-noise",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Have the noise diagnosed against CHA074 and the exact VIN.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-soul-7-speed-dual-clutch-judder-premature-clutch-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Kia creep-test diagnosis;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-soul-piston-ring-oil-consumption",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1327",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sportage-air-bag-malfunction-non-deployment-or-unintended-deployment",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "costs typically range from $150 for diagnosis/sensor work to $2,000+ if multiple air bag components require replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sportage-electrical-harness-overheating-headlight-failure-and-fire-risk",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis should focus on the front lighting circuits, main harness sections, grounds, fuse/relay boxes, and any heat-damaged connectors.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with a system pressure/leak (dye or electronic) test.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sportage-differential-coupling-noise-2017",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Perform a coupling relearn procedure with the Kia Diagnostic System after replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sportage-differential-coupling-noise-2017",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1513, C1515",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sportage-excessive-oil-consumption",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Document consumption with a Kia oil-consumption test (typically ~1 qt per 1,000 miles triggers coverage).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sportage-excessive-oil-consumption",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1326",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-sportage-infotainment-reboot-2020",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "U1110",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-stinger-turbo-oil-feed-pipe-leak",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Do not infer P0234/P0299, turbocharger damage or a need for generic gaskets or a boost gauge from this recall.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-telluride-8-speed-automatic-torque-converter-shudder-re-acceleration-h",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Dealers diagnose via campaign lookup;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "kia-telluride-c-compressor-failure-no-cold-air",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose for refrigerant leak vs.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [],
+  "removalProposals": [
+    {
+      "issueId": "kia-rio-front-coil-spring-fracture-2006",
+      "workItemId": "kia-rio-front-coil-spring-fracture-2006--existing-fix-part-0-0--all-engines",
+      "partNumber": "81234",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The MOOG 81234 front spring set has no enforceable trim, suspension, transmission, or year scope across 2006-2011, and the current catalog pass did not confirm full application coverage."
+    },
+    {
+      "issueId": "kia-rio-intermittent-no-start-or-engine-2021",
+      "workItemId": "kia-rio-intermittent-no-start-or-engine-2021--existing-fix-part-0-0--1-6l-gamma-i4",
+      "partNumber": "235-1456",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "Walker 235-1456 is an older Hyundai/Kia sensor application and the current catalog pass did not confirm it for the 2021-2023 Rio 1.6L scope; the existing two retailer links must be held."
+    },
+    {
+      "issueId": "kia-rio-timing-belt-neglect-leading-2001",
+      "workItemId": "kia-rio-timing-belt-neglect-leading-2001--existing-fix-part-0-0--1-6l-dohc-i4",
+      "partNumber": "T41031",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The issue prescribes a complete interference-engine timing service, while Gates T41031 is only a tensioner and the current catalog did not confirm its complete 2001-2005 application."
+    },
+    {
+      "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+      "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--2-4l-theta-ii-gdi-i4-g4kj",
+      "partNumber": "9047",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch."
+    },
+    {
+      "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+      "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--2-0l-theta-ii-turbo-gdi-i4",
+      "partNumber": "9047",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch."
+    },
+    {
+      "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+      "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--3-3l-lambda-ii-v6",
+      "partNumber": "9047",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch."
+    },
+    {
+      "issueId": "kia-spectra-ignition-coil-2000",
+      "workItemId": "kia-spectra-ignition-coil-2000--existing-fix-part-0-0--all-engines",
+      "partNumber": "178-8281",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The Beck/Arnley 178-8281 coil is applied across a ten-year unscoped article with changing engine/ignition applications, and the current catalog pass did not prove full coverage."
+    },
+    {
+      "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+      "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--2-4l-gdi",
+      "partNumber": "477-0853",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it."
+    },
+    {
+      "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+      "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--2-0l-gdi",
+      "partNumber": "477-0853",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it."
+    },
+    {
+      "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+      "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--1-6l-turbo-gdi",
+      "partNumber": "477-0853",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it."
+    }
+  ],
+  "releaseBlockers": [
+    {
+      "issueId": "kia-rio-front-coil-spring-fracture-2006",
+      "workItemId": "kia-rio-front-coil-spring-fracture-2006--existing-fix-part-0-0--all-engines",
+      "partNumber": "81234",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The MOOG 81234 front spring set has no enforceable trim, suspension, transmission, or year scope across 2006-2011, and the current catalog pass did not confirm full application coverage.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "kia-rio-intermittent-no-start-or-engine-2021",
+      "workItemId": "kia-rio-intermittent-no-start-or-engine-2021--existing-fix-part-0-0--1-6l-gamma-i4",
+      "partNumber": "235-1456",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "Walker 235-1456 is an older Hyundai/Kia sensor application and the current catalog pass did not confirm it for the 2021-2023 Rio 1.6L scope; the existing two retailer links must be held.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "kia-rio-timing-belt-neglect-leading-2001",
+      "workItemId": "kia-rio-timing-belt-neglect-leading-2001--existing-fix-part-0-0--1-6l-dohc-i4",
+      "partNumber": "T41031",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The issue prescribes a complete interference-engine timing service, while Gates T41031 is only a tensioner and the current catalog did not confirm its complete 2001-2005 application.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+      "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--2-4l-theta-ii-gdi-i4-g4kj",
+      "partNumber": "9047",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+      "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--2-0l-theta-ii-turbo-gdi-i4",
+      "partNumber": "9047",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+      "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--3-3l-lambda-ii-v6",
+      "partNumber": "9047",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "kia-spectra-ignition-coil-2000",
+      "workItemId": "kia-spectra-ignition-coil-2000--existing-fix-part-0-0--all-engines",
+      "partNumber": "178-8281",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "The Beck/Arnley 178-8281 coil is applied across a ten-year unscoped article with changing engine/ignition applications, and the current catalog pass did not prove full coverage.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+      "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--2-4l-gdi",
+      "partNumber": "477-0853",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+      "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--2-0l-gdi",
+      "partNumber": "477-0853",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+      "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--1-6l-turbo-gdi",
+      "partNumber": "477-0853",
+      "action": "hold-for-explicit-reviewed-removal",
+      "applied": false,
+      "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it.",
+      "type": "unapplied-existing-claim-removal"
+    },
+    {
+      "type": "no-reviewed-commerce-writes",
+      "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "da9c631431fc3d0d53fe9501416123e86b545bb1aef24f48e1325434de41eb36",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "0ffd07496cabd3144c7d6e9df7fb36a7840fb6fea4b4365416f3acb6ff63a8d0",
+        "checkpoint.json": "5a58e7eab6cd0042952f33c3da2b18d1a992044b537c602bb4d3a7519053d20d",
+        "diagnostic-tool-evidence.json": "8e03ec75b78a17b795eacc96b5daf6c829e5cc45ec00c5b80cc14119d0e93f27"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 247,
+        "issuesWithDtcCodes": 69,
+        "uniqueDtcCount": 90,
+        "solutionInstructionCount": 277,
+        "dtcDispositionCount": 69,
+        "toolLinkedDispositionCount": 51,
+        "procedureNoToolDispositionCount": 236,
+        "unresolvedToolHoldCount": 59,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "kia-amanti-alternator-2004",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test the battery as well since an overcharging alternator may have damaged it.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-borrego-transfer-case-2009",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C0327, P1875",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-cadenza-transmission-hesitation-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Some owners report improved behavior after an \"adaptive learn\" reset performed with the KDS scan tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-carnival-engine-stalling-unexpected-loss-motive-power-while-driving",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Stalls under powertrain warranty (10yr/100k mi) should be diagnosed and repaired at no cost;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-carnival-second-row-captain-s-chair-detaches-iihs-side-crash-test",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Note the model still rated poor overall in the IIHS updated side test due to safety-cage intrusion and injury measures.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-carnival-12v-parasitic-battery-drain-while-parked",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The repair updates both required CCU software events with the Kia Diagnostic System;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-ev6-brake-lights-fail-to-illuminate-during-i-pedal-one-pedal-reg",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "The software update is performed through Kia’s diagnostic system;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-ev6-power-tailgate-liftgate-intermittently-stops-working",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Replace failed strut/motor or repair the wiring as diagnosed.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-forte-connecting-rod-bearing-failure-causing-engine-seizure-sudden",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1326",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-forte-cvt-judder",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-adas-calibration-fault-2021",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1559, C1564, C1611, U3000",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-brake-booster-vacuum-pump-noise-and-reduced-brake-assist-1-6t",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1260, C1261",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-dct-hesitation-2021",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Kia's procedure repeats the creep measurement five times and replaces the dual-clutch assembly only when the test indicates replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-dct-hesitation-2021",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "This is a fitment- and diagnostic-dependent internal transmission repair, so no retail clutch kit or universal ATF is recommended.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-forward-collision-avoidance-assist-fca-phantom-braking-events",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1696, C1697",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-hvac-blower-motor-noise-failure-squeal-rattle-intermittent-fan",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "if speed control is erratic, test/replace the blower resistor or blower control module as applicable.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-infotainment-blackout-2021",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Disconnect the phone and disable wireless CarPlay/Android Auto to test if the issue is phone-related.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-infotainment-blackout-2021",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1609, U1110",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-rear-wheel-bearing-premature-failure-and-humming-noise",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1234, C1235",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-smartstream-g2-5-gdi-engine-piston-ring-oil-consumption-issue",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Kia dealerships perform an oil consumption test over 3,000-mile intervals per TSB ENG 023.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-transmission-control-unit-tcu-software-fault-causing-harsh-upshifts-or-limp-mode-8-speed-at",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Kia dealers perform TCU reprogramming via KDS (Kia Diagnostic System) using updated calibration files per TSB TR-004 and related bulletins.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-trunk-latch-sticking-2021",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1352",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k5-windshield-optical-rain-sensor-bracket-detachment-adas-auto-wipers-inoperative",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Reinstall and calibrate the front camera using Kia scan tool procedures;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-k900-air-suspension-2015",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1611",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-morning-cold-start-delay-no-start-after-overnight-parking",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If delayed cold starts persist after the update, test fuel-rail pressure hold-down;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-niro-c-compressor-condenser-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Have the system leak-tested and the failed component (compressor, condenser, evaporator, or high-pressure line) replaced and recharged.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-niro-dct-judder-hybrid",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0741, P0920",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-niro-ev-onboard-charger-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0401, P0402, P0403, P0404",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-optima-power-door-lock-and-door-latch-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis should focus on the door latch/actuator assembly, lock rods, wiring in the door jamb, and the central locking switch/module.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-optima-oil-consumption",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Piston ring replacement if test confirms excessive consumption.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-ray-first-generation-ray-ev-board-charger-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Used buyers should test AC slow charging to full before purchase and budget for an OBC repair on any high-mileage example.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-rio-timing-belt-neglect-leading-2001",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If the belt has already failed, a compression or leak-down test is needed to determine whether valves were bent.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-rio-12v-battery-drain-and-2021",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1102, U0155",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-rio-cvtivt-hesitation-jerking-and-2021",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "if shudder, slip, or delayed engagement remains, deeper diagnosis of the IVT assembly may be required.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-rio-forward-collision-avoidance-assist--2021",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1604, C1611, U3000",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-seltos-1-6l-turbo-7-speed-dry-dct-overheating-shudder-hesitation",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0741, P0868, P17BF",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-seltos-cvt-hesitation",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0700, P0730, P0740, P0868, P17F0, P17F1",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-seltos-piston-ring-oil-consumption",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1327",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-seltos-stalling-fire-hazard-unrepaired-still-symptomatic-2021-2023",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1327",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sorento-awd-coupling-failure-2011",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "After replacement, perform an AWD system relearn procedure with a KDS (Kia Diagnostic System) scan tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sorento-awd-coupling-failure-2011",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1513, C1515, P0734",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sorento-catalytic-converter-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose root cause of catalytic converter failure first.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sorento-p0300-random-multiple-misfire-from-theta-ii-gdi-ignition-coi",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Read freeze-frame and pull coils/plugs first — replace worn spark plugs (typically due ~90-105k mi) and any weak coil.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sorento-p0302-cylinder-2-misfire-from-ignition-coil-spark-plug-gdi-c",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test the cylinder-2 injector and run a compression/leak-down test if the misfire persists.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sorento-p0430-catalyst-efficiency-below-threshold-lambda-v6-failed-c",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnostically swap the Bank 1 and Bank 2 O2 sensors — if the fault moves to P0420, the sensor is bad and should be replaced;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-soul-motor-driven-power-steering-flexible-coupling-noise",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Have the noise diagnosed against CHA074 and the exact VIN.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-soul-7-speed-dual-clutch-judder-premature-clutch-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Kia creep-test diagnosis;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-soul-piston-ring-oil-consumption",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1327",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sportage-air-bag-malfunction-non-deployment-or-unintended-deployment",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "costs typically range from $150 for diagnosis/sensor work to $2,000+ if multiple air bag components require replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sportage-electrical-harness-overheating-headlight-failure-and-fire-risk",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis should focus on the front lighting circuits, main harness sections, grounds, fuse/relay boxes, and any heat-damaged connectors.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with a system pressure/leak (dye or electronic) test.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sportage-differential-coupling-noise-2017",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Perform a coupling relearn procedure with the Kia Diagnostic System after replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sportage-differential-coupling-noise-2017",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1513, C1515",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sportage-excessive-oil-consumption",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Document consumption with a Kia oil-consumption test (typically ~1 qt per 1,000 miles triggers coverage).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sportage-excessive-oil-consumption",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1326",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-sportage-infotainment-reboot-2020",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "U1110",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-stinger-turbo-oil-feed-pipe-leak",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Do not infer P0234/P0299, turbocharger damage or a need for generic gaskets or a boost gauge from this recall.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-telluride-8-speed-automatic-torque-converter-shudder-re-acceleration-h",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Dealers diagnose via campaign lookup;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "kia-telluride-c-compressor-failure-no-cold-air",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose for refrigerant leak vs.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 247,
+      "reviewedProposalPartRows": 0,
+      "approvedRows": 0,
+      "selectedPrimaryRows": 0,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 0,
+      "heldProposalRows": 0,
+      "blockedExistingClaimRows": 10,
+      "changedIssueCount": 0,
+      "mergedStablePartCount": 0,
+      "manifestIssueCount": 0,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "f48e3024f398a9177fc2446cf66155538b6f08e35ada69b6074e4d6b54728dbe",
+      "01-disposition-ledger.json": "1568c1d6d26a80e276e9dd167f8dcceed614d5335b7355603a43b572f1713ef1",
+      "02-fitment-worklist.json": "a5b50b3347ec7ce2091acbac8ef468f8ad24b4b1fe14132812de8cb04261480a",
+      "03-showmetheparts-evidence.json": "96227e9ba8628af12c20689e6c3c8eb11ba2a235b1a5bab8d77f252a92befa11",
+      "04-part-proposals.json": "d27669b94a9990f63cae56ed405a5fd8b358d15e3beb193d794a0055d300dc67",
+      "05-direct-link-evidence.json": "9f45128b22ed412d4f033b0907e448a5d18b916cd8ce4172b70a15ecfaa977c3",
+      "06-independent-review.json": "890781fb1daff8f075b768389f7a429667a6a569958f449fbb04baff5968d40d",
+      "classification-ledger.json": "0ffd07496cabd3144c7d6e9df7fb36a7840fb6fea4b4365416f3acb6ff63a8d0",
+      "checkpoint.json": "5a58e7eab6cd0042952f33c3da2b18d1a992044b537c602bb4d3a7519053d20d",
+      "diagnostic-tool-evidence.json": "8e03ec75b78a17b795eacc96b5daf6c829e5cc45ec00c5b80cc14119d0e93f27"
+    },
+    "reviewRows": [],
+    "removalProposals": [
+      {
+        "issueId": "kia-rio-front-coil-spring-fracture-2006",
+        "workItemId": "kia-rio-front-coil-spring-fracture-2006--existing-fix-part-0-0--all-engines",
+        "partNumber": "81234",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The MOOG 81234 front spring set has no enforceable trim, suspension, transmission, or year scope across 2006-2011, and the current catalog pass did not confirm full application coverage."
+      },
+      {
+        "issueId": "kia-rio-intermittent-no-start-or-engine-2021",
+        "workItemId": "kia-rio-intermittent-no-start-or-engine-2021--existing-fix-part-0-0--1-6l-gamma-i4",
+        "partNumber": "235-1456",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "Walker 235-1456 is an older Hyundai/Kia sensor application and the current catalog pass did not confirm it for the 2021-2023 Rio 1.6L scope; the existing two retailer links must be held."
+      },
+      {
+        "issueId": "kia-rio-timing-belt-neglect-leading-2001",
+        "workItemId": "kia-rio-timing-belt-neglect-leading-2001--existing-fix-part-0-0--1-6l-dohc-i4",
+        "partNumber": "T41031",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The issue prescribes a complete interference-engine timing service, while Gates T41031 is only a tensioner and the current catalog did not confirm its complete 2001-2005 application."
+      },
+      {
+        "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+        "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--2-4l-theta-ii-gdi-i4-g4kj",
+        "partNumber": "9047",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch."
+      },
+      {
+        "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+        "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--2-0l-theta-ii-turbo-gdi-i4",
+        "partNumber": "9047",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch."
+      },
+      {
+        "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+        "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--3-3l-lambda-ii-v6",
+        "partNumber": "9047",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch."
+      },
+      {
+        "issueId": "kia-spectra-ignition-coil-2000",
+        "workItemId": "kia-spectra-ignition-coil-2000--existing-fix-part-0-0--all-engines",
+        "partNumber": "178-8281",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The Beck/Arnley 178-8281 coil is applied across a ten-year unscoped article with changing engine/ignition applications, and the current catalog pass did not prove full coverage."
+      },
+      {
+        "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+        "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--2-4l-gdi",
+        "partNumber": "477-0853",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it."
+      },
+      {
+        "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+        "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--2-0l-gdi",
+        "partNumber": "477-0853",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it."
+      },
+      {
+        "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+        "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--1-6l-turbo-gdi",
+        "partNumber": "477-0853",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it."
+      }
+    ],
+    "releaseBlockers": [
+      {
+        "issueId": "kia-rio-front-coil-spring-fracture-2006",
+        "workItemId": "kia-rio-front-coil-spring-fracture-2006--existing-fix-part-0-0--all-engines",
+        "partNumber": "81234",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The MOOG 81234 front spring set has no enforceable trim, suspension, transmission, or year scope across 2006-2011, and the current catalog pass did not confirm full application coverage.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "kia-rio-intermittent-no-start-or-engine-2021",
+        "workItemId": "kia-rio-intermittent-no-start-or-engine-2021--existing-fix-part-0-0--1-6l-gamma-i4",
+        "partNumber": "235-1456",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "Walker 235-1456 is an older Hyundai/Kia sensor application and the current catalog pass did not confirm it for the 2021-2023 Rio 1.6L scope; the existing two retailer links must be held.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "kia-rio-timing-belt-neglect-leading-2001",
+        "workItemId": "kia-rio-timing-belt-neglect-leading-2001--existing-fix-part-0-0--1-6l-dohc-i4",
+        "partNumber": "T41031",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The issue prescribes a complete interference-engine timing service, while Gates T41031 is only a tensioner and the current catalog did not confirm its complete 2001-2005 application.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+        "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--2-4l-theta-ii-gdi-i4-g4kj",
+        "partNumber": "9047",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+        "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--2-0l-theta-ii-turbo-gdi-i4",
+        "partNumber": "9047",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+        "workItemId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo--existing-fix-part-0-0--3-3l-lambda-ii-v6",
+        "partNumber": "9047",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The P0303 article is diagnosis-dependent and spans three distinct engines, while the unscoped Champion 9047 plug card cannot be assumed to fit every engine or repair the most-common failed-coil branch.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "kia-spectra-ignition-coil-2000",
+        "workItemId": "kia-spectra-ignition-coil-2000--existing-fix-part-0-0--all-engines",
+        "partNumber": "178-8281",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "The Beck/Arnley 178-8281 coil is applied across a ten-year unscoped article with changing engine/ignition applications, and the current catalog pass did not prove full coverage.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+        "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--2-4l-gdi",
+        "partNumber": "477-0853",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+        "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--2-0l-gdi",
+        "partNumber": "477-0853",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+        "workItemId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor--existing-fix-part-0-0--1-6l-turbo-gdi",
+        "partNumber": "477-0853",
+        "action": "hold-for-explicit-reviewed-removal",
+        "applied": false,
+        "reason": "DENSO 477-0853 is attached to a build-date-sensitive TSB article spanning three engines and six model years without enforceable build or HVAC qualifiers; current catalog evidence did not confirm it.",
+        "type": "unapplied-existing-claim-removal"
+      },
+      {
+        "type": "no-reviewed-commerce-writes",
+        "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "kia-amanti-ac-compressor-clutch-2004",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-amanti-alternator-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-amanti-power-steering-leak-2004",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-amanti-timing-belt-tensioner-2004",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-amanti-transmission-failure-2004",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-borrego-frame-rust-2009",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-borrego-power-steering-cooler-2009",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-borrego-timing-chain-2009",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-borrego-transfer-case-2009",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-cadenza-gdi-engine-knock-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-cadenza-panoramic-sunroof-2014",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-cadenza-transmission-hesitation-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-12v-parasitic-battery-drain-while-parked",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-3-5l-v6-cold-start-ticking-valve-train-rattle",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-8-speed-automatic-transmission-torque-converter-shudder-hars",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-blind-spot-view-monitor-camera-blank-distorted-feed",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-c-compressor-premature-failure-weak-cooling",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-carnival-hybrid-loss-power-limited-acceleration",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-clear-coat-delamination-paint-peeling-chipping",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-engine-stalling-unexpected-loss-motive-power-while-driving",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-excessive-engine-oil-consumption-3-5l-lambda-iii-gdi-v6",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-high-pressure-fuel-crossover-pipe-fuel-rail-leak-fire-risk",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-idle-stop-go-phantom-activation-engine-shuts-off",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-infotainment-connectivity-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-instrument-cluster-goes-blank-while-driving",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-musty-moldy-odor-from-c-vents",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-panoramic-sunroof-drain-clog-causing-wet-headliner-interior",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-phantom-braking-forward-collision-avoidance-assist-false-act",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-premature-front-brake-rotor-warping-pedal-pulsation",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-roof-molding-loosens-detaches",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-second-row-captain-s-chair-detaches-iihs-side-crash-test",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-second-third-row-seat-belt-buckle-anchor-bolts-non-compliant",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-sedona-battery-drain",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-sliding-door-auto-reverse-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-sliding-door-latch-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-tow-hitch-fire-risk-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-wind-noise-air-leak-from-front-door-window-seals-above-45-mp",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-windshield-cracking-2022",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-carnival-wireless-qi-charging-pad-overheats-phones-stops-charging",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-brake-lights-fail-to-illuminate-during-i-pedal-one-pedal-reg",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-brake-rotor-corrosion-pitting-from-low-regen-braking-use",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-charge-port-door-stuck",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-electric-c-compressor-failure-long-national-parts-backorder",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-flush-door-handles-freeze-fail-to-present-open-cold-weather",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-forward-collision-avoidance-assist-phantom-braking-false-war",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-front-suspension-clunk-knock-over-bumps",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-heat-pump-cold-weather",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-iccu-12v-battery-drain",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-infotainment-reboots-apple-carplay-android-auto-disconnects",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-level-2-ac-home-charging-interruptions-from-charge-handle-ov",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-meridian-premium-audio-defect-out-phase-subwoofer-failing-am",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-panoramic-roof-sunroof-rattle-creak",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-power-tailgate-liftgate-intermittently-stops-working",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-premature-inner-edge-rear-tire-wear-from-negative-camber",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-rear-inner-drive-shaft-fracture-from-improperly-heat-treated",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-rear-motor-bearing-noise",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-reduced-dc-fast-charging-speed-cold-weather",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-severe-highway-vibration-from-loose-acoustic-foam-inside-oe",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-shift-by-wire-rollaway-risk-park",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev6-spontaneous-windshield-cracking-acoustic-laminated-glass",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev9-iccu-failure-2024",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev9-instrument-panel-blank-2024",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev9-software-update-issues-2024",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ev9-wiper-failure-snow-2024",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-abs-hecu-brake-fluid-leak-causing-electrical-short-engine-ba",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-airbag-control-unit-electrical-fault-airbags-may-not-deploy",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-clear-coat-paint-peeling-flaking",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-connecting-rod-bearing-failure-causing-engine-seizure-sudden",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-cvt-judder",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-engine-knocking-nu-gdi",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-front-strut-bearing-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-headlight-condensation",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-motor-driven-power-steering-flexible-coupler-knocking-clunki",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-forte-premature-low-beam-headlight-burnout-from-melting-connector",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-adas-calibration-fault-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-battery-drain-no-start-after-sitting-telematics-module-sleep-issue",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-brake-booster-vacuum-pump-noise-and-reduced-brake-assist-1-6t",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-dct-hesitation-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-dct-oil-pump-failure",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-door-handle-lock-actuator-failure-door-won-t-open-or-won-t-lock-unlock",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-electronic-parking-brake-epb-warning-auto-hold-malfunction",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-forward-collision-avoidance-assist-fca-phantom-braking-events",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-front-suspension-strut-mount-bearing-noise-creak-pop-while-turning",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-fuel-tank-expansion",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-heated-and-ventilated-seat-malfunction-element-failure-or-fan-noise",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-hvac-blower-motor-noise-failure-squeal-rattle-intermittent-fan",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-infotainment-blackout-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-paint-chipping-and-clear-coat-peeling-hood-and-roof-panel",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-panoramic-sunroof-rattle-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-rear-wheel-bearing-premature-failure-and-humming-noise",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-smartstream-g2-5-gdi-engine-piston-ring-oil-consumption-issue",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-steering-column-intermediate-shaft-clunk-or-knock-low-speed-turns",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-theta-ii-knock-sensor-2021",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-transmission-control-unit-tcu-software-fault-causing-harsh-upshifts-or-limp-mode-8-speed-at",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-trunk-latch-sticking-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-turbocharger-oil-feed-return-leak-1-6t-causing-burning-oil-smell-smoke",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-windshield-optical-rain-sensor-bracket-detachment-adas-auto-wipers-inoperative",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k5-wireless-phone-charging-pad-overheating-and-device-damage",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k900-air-suspension-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k900-drl-led-module-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k900-engine-bearing-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k900-infotainment-freeze-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-k900-transmission-harsh-shift-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-morning-cold-start-delay-no-start-after-overnight-parking",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-morning-crankshaft-rear-main-seal-oil-leak-between-engine-transmissi",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-morning-drive-belt-cricket-squeal-from-solid-alternator-pulley",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-morning-fuel-leveling-hose-cracking-fuel-leak-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-morning-manual-transmission-clutch-judder-rapid-clutch-flywheel-wear",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-morning-pcv-valve-plastic-needle-wear-oil-ingestion-white-exhaust-sm",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-12v-battery-premature-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-braking-power-loss",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-c-compressor-condenser-failure",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-dct-judder-hybrid",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-ev-onboard-charger-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-ev-phev-charge-port-door-lock-actuator-sticking-door-won-t-o",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-exhaust-heat-recovery-system-bypass-valve-stuck-closed-causi",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-hydraulic-clutch-actuator-fluid-leak-causing-engine-compartm",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-infotainment-screen-freezing-random-reboots-black-screen",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-niro-power-relay-assembly-overheating-rear-seat-fire-risk",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-airbag-control-unit",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-automatic-transmission-speed-sensor-and-shift-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-brake-switch-failure-causing-inoperative-brake-lamps-and-shift-issues",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-crankshaft-position-sensor-failure-causing-stall-or-no-start",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-dct-clutch-judder",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-electrical-system-voltage-loss-and-accessory-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-front-subframe-corrosion-and-suspension-collapse",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-headlight-dimming-and-lighting-circuit-malfunction",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-hybrid-battery-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-oil-consumption",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-power-door-lock-and-door-latch-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-steering-lock-module-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-optima-theta-ii-engine-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ray-1-0-kappa-engine-oil-seepage-plastic-coolant-hose-leaks",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ray-2023-ray-ev-integrated-charging-control-unit-overcurrent-slo",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ray-drive-belt-cricket-chirp-from-solid-alternator-pulley",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ray-early-ray-engine-stall-c-ecu-climate-control-logic-error",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ray-ecu-software-defect-causing-engine-stall-while-driving",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-ray-first-generation-ray-ev-board-charger-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-12v-battery-drain-and-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-ac-compressor-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-brake-light-switch-failure-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-cvtivt-hesitation-jerking-and-2021",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-engine-stall-fuel-injector",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-evaporative-emissions-leak-from-2001",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-forward-collision-avoidance-assist--2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-front-coil-spring-fracture-2006",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "kia-rio-hecu-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-ignition-coil-and-plug-2001",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-intermittent-no-start-or-engine-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "kia-rio-rearview-camera-black-screen-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-steering-vibration-tire-wear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-rio-timing-belt-neglect-leading-2001",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "kia-sedona-alternator-overheating-2002",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sedona-power-sliding-door-cable",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sedona-sliding-door-latch-2002",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sedona-transmission-shudder",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-seltos-1-6l-turbo-7-speed-dry-dct-overheating-shudder-hesitation",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-seltos-cvt-hesitation",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-seltos-instrument-cluster-blank",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-seltos-isg-oil-pump-overheat",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-seltos-led-headlight-drl-fog-lamp-internal-condensation",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-seltos-missing-engine-immobilizer-kia-boys-usb-theft-vulnerability",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-seltos-piston-ring-oil-consumption",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-seltos-side-curtain-airbag-inadvertent-deployment",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-seltos-stalling-fire-hazard-unrepaired-still-symptomatic-2021-2023",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sephia-clutch-hydraulic-1994",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sephia-head-gasket-1994",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sephia-rear-wheel-bearing-1994",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sephia-timing-belt-failure-1994",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-awd-coupling-failure-2011",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-catalytic-converter-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-dct-oil-pump-failure",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-hecu-fire-risk",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-high-pressure-fuel-pipe-fuel-rail-leak-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-hvac-blower-motor-resistor-harness-overheating-fire",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-loss-low-beam-headlights-taillights-from-bdc-software-fault",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-oil-pan-gasket-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-p0011-intake-cam-timing-over-advanced-from-failed-sludged-oi",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-p0016-crank-cam-correlation-from-clogged-ocv-stretched-timin",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-p0300-random-multiple-misfire-from-theta-ii-gdi-ignition-coi",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-p0301-cylinder-1-misfire-from-failed-ignition-coil-fouled-sp",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-p0302-cylinder-2-misfire-from-ignition-coil-spark-plug-gdi-c",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-p0303-cylinder-3-misfire-from-failed-ignition-coil-gdi-carbo",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "kia-sorento-p0430-catalyst-efficiency-below-threshold-lambda-v6-failed-c",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-p0442-small-evap-leak-from-loose-gas-cap-failing-purge-contr",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-p0455-gross-evap-leak-from-gas-cap-purge-solenoid-canister-c",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-rear-ac-evaporator-2016",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-steering-coupler-clunk",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-sunroof-rattle-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sorento-theta-ii-engine-seizure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-soul-7-speed-dual-clutch-judder-premature-clutch-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-soul-abs-hecu-module-brake-fluid-leak-causing-engine-compartment",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-soul-catalytic-converter-engine-damage",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-soul-electric-motor-bearing-ev",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-soul-motor-driven-power-steering-flexible-coupling-noise",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-soul-panoramic-sunroof-spontaneous-shattering",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-soul-piston-ring-oil-consumption",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-soul-steering-pinion-separation",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-spectra-alternator-failure-2000",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-spectra-catalytic-converter-2000",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-spectra-engine-mount-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-spectra-ignition-coil-2000",
+        "disposition": "buyable",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "kia-spectra-timing-belt-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-4wd-front-hub-vacuum-engagement-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-6-speed-automatic-harsh-shifting-valve-body-wear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-air-bag-malfunction-non-deployment-or-unintended-deployment",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-brake-line-corrosion-and-hydraulic-brake-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-cooling-fan-blade-deformation-and-breakage",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-differential-coupling-noise-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-electrical-harness-overheating-headlight-failure-and-fire-risk",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-excessive-oil-consumption",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-fuel-tank-rust-leaks-and-gas-fume-intrusion",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-hecu-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-iccu-failure-12v-battery-drain",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-infotainment-reboot-2020",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-oil-pump-isg-overheat",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-rear-differential-mount-bushings",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-severe-frame-and-underbody-rust",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-sunroof-crack-2017",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-theta-ii-engine-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-tow-hitch-harness-module-fire-risk",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-turbo-oil-line-leak-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-sportage-weak-c-cooling-from-condenser-leak-compressor",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "existing-claim-removal-held"
+      },
+      {
+        "issueId": "kia-stinger-abs-hydraulic-electronic-control-unit-engine-bay-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-stinger-carbon-buildup-gdi",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-stinger-dct-shift-harshness",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-stinger-front-brake-rotor-pulsation-premature-brake-wear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-stinger-front-wiring-harness-chafe-short-circuit-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-stinger-inaccurate-fuel-gauge-from-instrument-cluster-software-error",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-stinger-interior-rattles",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-stinger-oil-pressure-switch-leak-oil-pressure-warning-light",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-stinger-panoramic-sunroof-popping-creaking-rattle",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-stinger-turbo-oil-feed-pipe-leak",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-8-speed-automatic-torque-converter-shudder-re-acceleration-h",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-c-compressor-failure-no-cold-air",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-door-belt-molding-delamination-detachment",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-driveshaft-rollaway",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-engine-valve-spring-fracture-loss-motive-power",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-headliner-sag-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-incorrect-spare-tire-impairing-abs-traction-control",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-infotainment-uvo-touchscreen-freezing-random-reboot",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-oil-dilution-2020",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-paint-bubbling-2020",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-seat-motor-fire",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-third-row-latch-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-tow-hitch-harness-fire",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "kia-telluride-windshield-cracking",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

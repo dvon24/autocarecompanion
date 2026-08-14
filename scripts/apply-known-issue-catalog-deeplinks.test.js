@@ -358,6 +358,9 @@ test('product URL validation accepts item pages and rejects search variants', ()
 test('vendor validation catches mislabeled marketplace links', () => {
   assert.equal(vendorMatchesUrl('eBay', 'https://www.ebay.com/itm/123456789012'), true);
   assert.equal(vendorMatchesUrl('eBay', 'https://www.ebay.co.uk/itm/197173644995'), true);
+  assert.equal(vendorMatchesUrl('eBay', 'https://ebay.example.com/itm/123456789012'), false);
+  assert.match(productUrlError('https://ebay.example.com/itm/123456789012') || '', /URL|product|marketplace|host/i);
+  assert.equal(vendorMatchesUrl('Amazon', 'https://amazon.example.com/dp/B012345678'), false);
   assert.equal(vendorMatchesUrl('Amazon', 'https://www.ebay.com/itm/123456789012'), false);
   assert.equal(vendorMatchesUrl('WheelerFleet', 'https://www.wheelerfleet.com/product/123'), true);
 });
@@ -404,6 +407,15 @@ test('the applicator loader rejects a truncated schema-v3 reviewed batch before 
   } finally {
     fs.rmSync(directory, { recursive: true, force: true });
   }
+});
+
+test('an explicit audit-only manifest may record zero writes but cannot hide issues', () => {
+  const manifest = fullRecordManifest();
+  manifest.auditOnlyNoWrites = true;
+  manifest.issues = [];
+  assert.deepEqual(validateManifest(manifest), []);
+  manifest.issues = fullRecordManifest().issues;
+  assert.ok(validateManifest(manifest).some((error) => error.includes('cannot contain issues')));
 });
 
 test('make release evidence recomputes manifest, completion, artifact, snapshot, and git bindings', () => {
@@ -667,6 +679,27 @@ test('recall-first and non-commerce dispositions reject retail links', () => {
   const errors = validateManifest(manifest);
   assert.ok(errors.some((error) => /recall-first/.test(error)));
   assert.ok(errors.some((error) => /cannot retain commerce/.test(error)));
+});
+
+test('full-record manifests cap each part at two vendor-distinct product links', () => {
+  const two = fullRecordManifest();
+  two.issues[0].after.fixParts[0].buyLinks.unshift({
+    vendor: 'Example', url: 'https://www.example.com/product/pump-06h121026', linkType: 'product', verified: true,
+  });
+  assert.deepEqual(validateManifest(two), []);
+
+  const duplicateVendor = fullRecordManifest();
+  duplicateVendor.issues[0].after.fixParts[0].buyLinks.push({
+    vendor: 'eBay.com', url: 'https://www.ebay.com/itm/999999999999', linkType: 'product', verified: true,
+  });
+  assert.ok(validateManifest(duplicateVendor).some((error) => /URL- and vendor-distinct/.test(error)));
+
+  const three = fullRecordManifest();
+  three.issues[0].after.fixParts[0].buyLinks.push(
+    { vendor: 'Example', url: 'https://www.example.com/product/pump-06h121026', linkType: 'product', verified: true },
+    { vendor: 'Amazon', url: 'https://www.amazon.com/dp/B0ABC12345', linkType: 'product', verified: true },
+  );
+  assert.ok(validateManifest(three).some((error) => /two-link cap/.test(error)));
 });
 
 test('meaningful changes require a public correction notice', () => {

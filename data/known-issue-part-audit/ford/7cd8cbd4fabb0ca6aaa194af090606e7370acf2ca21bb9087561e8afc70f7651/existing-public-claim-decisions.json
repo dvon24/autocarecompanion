@@ -1,0 +1,160 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-existing-public-claim-decisions",
+  "make": "Ford",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "status": "REVIEWED_NOT_APPLIED",
+  "productionApplied": false,
+  "decisions": [
+    {
+      "issueId": "ford-bronco-intake-manifold-gasket-egr-tube-failures",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "The unscoped MS15202P claim omits the 5.8L application and the catalog row carries a VIN-N restriction that the public vehicle context cannot enforce."
+    },
+    {
+      "issueId": "ford-edge-water-pump-failure-2015",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "The unscoped 43186WT claim is cataloged for a different engine application than the article's 2.0L failure and covers only part of the article's years."
+    },
+    {
+      "issueId": "ford-escort-timing-belt-is-age-interval-wear-item-that-can-strand-car",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "The unscoped Continental 40194 claim covers only the 1.9L application through 1996 and does not cover either 2.0L application or the full article range."
+    },
+    {
+      "issueId": "ford-excursion-front-hub-bearing-2000",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "SKF BR930420 is a front 4WD hub application; the current unscoped two-vendor claim does not preserve the drivetrain and position restrictions needed for safe display."
+    },
+    {
+      "issueId": "ford-explorer-3-5l-ecoboost-ignition-coil-spark-plug-misfire",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "The unscoped GN10237 row is cataloged for naturally aspirated applications and conflicts with the article's EcoBoost repair scope."
+    },
+    {
+      "issueId": "ford-explorer-4-0l-sohc-camshaft-position-sensor-synchronizer-failure-caus",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "Walker 235-1027 carries VIN, production-date, and market restrictions that are not represented by the unscoped public claim."
+    },
+    {
+      "issueId": "ford-explorer-internal-radiator-transmission-cooler-rupture-causing-coolan",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "The legacy 221-9025 row is unscoped and misses a 4.0L article year; the corrected packet introduces only the independently reviewed engine/year variants."
+    },
+    {
+      "issueId": "ford-explorer-rear-wheel-bearing-and-2002",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "SKF BR930259K carries a bearing-identification restriction that is absent from the article and cannot be enforced by the current vehicle selection."
+    },
+    {
+      "issueId": "ford-f-150-coil-plug-ignition-coil-failure-misfire-rough-idle",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "Bosch 0221504704 is unscoped across a broad F-150 year and engine range and lacks complete catalog coverage for the article."
+    },
+    {
+      "issueId": "ford-f-150-exhaust-manifold-studs-bolts-break-exhaust-leak-cold-start-t",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "MAHLE MS19261 is limited by engine, VIN, and year application while the existing public claim is unscoped."
+    },
+    {
+      "issueId": "ford-f-150-front-coil-spring-fractures-from-corrosion-snaps-punctures-f",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "MOOG 81118 has no complete catalog evidence for the article's vehicle scope, so the unscoped verified link cannot be retained."
+    },
+    {
+      "issueId": "ford-f-150-front-wheel-hub-bearing-assembly-failure-humming-noise-abs-l",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "SKF BR931016 is not supported across the article's full application set and the current unscoped row loses drivetrain and hub-option restrictions."
+    },
+    {
+      "issueId": "ford-f150-spark-plug-blowout",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "Bosch 6747 does not cover the article's 1998 endpoint and carries application variants that are absent from the unscoped claim."
+    },
+    {
+      "issueId": "ford-f150-water-pump-2017",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "Dayco DP2263 lacks catalog support for the article's 2021 endpoint, so the unscoped verified row is incomplete."
+    },
+    {
+      "issueId": "ford-fiesta-powershift-dps6-2011",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "The Sachs K70564-01 claim conflicts with the DPS6 repair application and lacks the transmission-specific scope needed to distinguish it from manual and ST applications."
+    },
+    {
+      "issueId": "ford-five-hundred-wheel-bearing-2005",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "SKF BR930704 is a rear AWD application without the sensor configuration described by the article, while the existing row is unscoped and presented as a front repair."
+    },
+    {
+      "issueId": "ford-flex-water-pump-timing-chain-2009",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "The unscoped WPFD-609V row covers only a subset of the article's years and carries engine/application restrictions that are not enforced publicly."
+    },
+    {
+      "issueId": "ford-freestar-ignition-coil-2004",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "The article describes six individual coil packs, while the catalog evidence identifies a different coil-pack configuration; the existing claim must remain blocked pending content correction."
+    },
+    {
+      "issueId": "ford-freestyle-power-steering-pump-2005",
+      "partIndex": 0,
+      "verdict": "preserve_safe_public",
+      "reason": "Cardone 20-323 matches the prescribed power-steering pump, is catalog-confirmed for every 2005-2007 article year without an application restriction, and its existing exact eBay product link remains valid."
+    },
+    {
+      "issueId": "ford-mustang-46l-plastic-intake-manifold-2000",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "MAHLE MS16296 carries VIN, package, location, and application restrictions that are absent from the unscoped claim."
+    },
+    {
+      "issueId": "ford-probe-power-window-motor-1993",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "Cardone 47-1755 is a front-left window motor, but the article and existing row do not preserve the side and position restriction."
+    },
+    {
+      "issueId": "ford-ranger-plastic-thermostat-housing-cracks-2001",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "Aisin THRFD-0014 covers only a later/date-limited subset of the article, while the existing verified row is unscoped."
+    },
+    {
+      "issueId": "ford-transit-connect-a-c-compressor-failure-or-no-cool-condition-refrigerant-leak-compressor-damage",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "Denso 471-0919 is limited to 2019-2021 2.5L vehicles without rear climate control, restrictions the unscoped public claim does not preserve."
+    },
+    {
+      "issueId": "ford-transit-connect-abs-wheel-speed-sensor-wiring-fault-abs-traction-control-lights-on",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "Delphi SS20881 is a rear-position sensor while the article instructs diagnosis of the affected corner; the unscoped row can expose the wrong position."
+    },
+    {
+      "issueId": "ford-windstar-intake-gasket-1999",
+      "partIndex": 0,
+      "verdict": "block_unsafe_public",
+      "reason": "MAHLE MIS16230-1 misses the article's 1999 endpoint and carries a VIN/application restriction that is absent from the unscoped claim."
+    }
+  ]
+}

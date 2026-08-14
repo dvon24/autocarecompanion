@@ -1,0 +1,2785 @@
+{
+  "schemaVersion": 2,
+  "patchKind": "known-issues-catalog-deeplink-decisions",
+  "batchId": "mercedes-benz-parts-7cd8cbd4fabb",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "makeSourceHash": "8ec521bb7eeec673236b7a0f7fcb01375c6cf8ba31c3d5fa02980e12a97236b8",
+  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "auditComplete": true,
+  "makeComplete": false,
+  "releaseBlocked": true,
+  "productionApplied": false,
+  "auditOnlyNoWrites": true,
+  "diagnosticReconciliation": {
+    "status": "RECONCILED",
+    "artifactSha256": {
+      "classification-ledger.json": "293b77694729f3393f6d9520f6d2452590d42be6e6dd7adc17453a2c0bff72bb",
+      "checkpoint.json": "02737e68296dd4b1d3827a4dacc17024ad4cacf5d92e2cdc9e990f4a4f5451fa",
+      "diagnostic-tool-evidence.json": "cfef810ab23dcac1960f25c5eedc8b6bef2174e011661c99a9a26159304daf6c"
+    },
+    "implementationSha256": {
+      "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+      "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+      "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+      "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+      "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+    },
+    "scope": {
+      "issueCount": 253,
+      "issuesWithDtcCodes": 79,
+      "uniqueDtcCount": 100,
+      "solutionInstructionCount": 243,
+      "dtcDispositionCount": 79,
+      "toolLinkedDispositionCount": 68,
+      "procedureNoToolDispositionCount": 184,
+      "unresolvedToolHoldCount": 70,
+      "uncoveredDiagnosticInstructionCount": 0
+    },
+    "holds": [
+      {
+        "issueId": "mercedes-benz-a-class-diesel-particulate-filter-blockage-limp-mode-short-trips",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If that fails, a workshop performs a forced/static regeneration via diagnostics.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-a-class-rearview-camera-blank-no-image",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "both remedies are software/VIN controlled unless separate diagnosis proves hardware failure.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-amggt-12v-battery-drain-and-2024",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Dealers often address this with software updates, battery testing/replacement, and in some cases replacement of a module that remains awake.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-amggt-mbux-instrument-cluster-2024",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "the official remedy is VIN-controlled software unless separate diagnosis establishes an unrelated hardware fault.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-amg-gt-4-door-48v-battery-2019",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the 48V battery state of health with Mercedes Star Diagnostics.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-amg-gt-4-door-48v-battery-2019",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-amg-gt-4-door-rear-axle-steering-fault-2019",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If the combination does not match exactly, follow the guided test.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-b-class-dct-shudder-2013",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Start with a DCT adaptation reset via Mercedes XENTRY diagnostic tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-b-class-electronic-parking-brake-actuator-malfunction",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Fault-read the EPB control module with XENTRY/STAR.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-b-class-om651-diesel-dpf-egr-clogging",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose and fix any underlying cause (failed glow plugs, leaking injectors, faulty differential-pressure sensor) before replacing the filter.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-b-class-electric-drive-motor-noise-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose whether the noise is from the motor bearings or reduction gear.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-c-class-hvac-blend-door-duo-valve-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose by listening for the duo-valve solenoids clicking with key on (firewall, driver side).",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-c-class-sunroof-drain-clog-2008",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If electronics are damaged, dry the area thoroughly and test all modules.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-c-class-48v-mild-hybrid-integrated-2022",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-c-class-front-seat-occupant-classification-2022",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B1022F0",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-cla-auxiliary-battery-malfunction-warning",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test and replace the auxiliary battery (a low-cost part located near/behind the engine bay fuse area);",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-cla-auxiliary-battery-malfunction-warning",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "9062",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-cls-class-48-volt-integrated-starter-generator-2019",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-cls-class-mbux-instrument-cluster-2019",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Battery voltage should also be tested because low system voltage can trigger false MBUX faults.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-e-class-48v-integrated-starter-generator--2021",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-e-class-fuel-pump-delivery-module-2021",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0087, P025A, P0627",
+        "reasonCode": "hybrid-ev-scanner-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-eqc-12v-auxiliary-battery-malfunction-drain",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If resting voltage is low (<12.2V) or faults persist after charging, replace the auxiliary battery with the correct AGM spec, then clear fault codes with a diagnostic tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-eqs-electric-drivetrain-software-fault-causing-sudden-loss-propu",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If propulsion is lost or drivetrain warnings appear, move to a safe location when possible and arrange qualified diagnosis.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-eqs-12v-battery-drain-2022",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Mercedes dealers can test for excessive parasitic draw from modules failing to enter sleep mode.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-g-class-9g-tronic-amg-speedshift-harsh-jerky-shifting-requiring-adap",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Record the exact shift, gear, temperature, drive mode and load, preserve the initial quick test, EEPROM and transmission-health data, and compare with a like vehicle where appropriate.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-g-class-m177-4-0l-twin-turbo-v8-excessive-oil-consumption-cylinder-s",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with an oil-consumption test and leak-down/compression test;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gla-12v-battery-parasitic-drain-no-start-after-sitting",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Preserve the initial quick test and onboard electrical data before charging or disconnecting the battery.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gla-12v-battery-parasitic-drain-no-start-after-sitting",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "separately test battery health after charging.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gla-7g-dct-dual-clutch-transmission-shudder-mechatronics-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0741, P17BF, P2729",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gla-diesel-egr-dpf-clogging-adblue-system-faults",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "SCR faults require diagnosing and replacing NOx sensors, the SCR/AdBlue metering/dosing unit, or clearing crystallization, then resetting the no-start countdown via XENTRY.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gla-rear-differential-carrier-whine-clunk-4matic-models",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose by rear diff fluid condition first;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-glb-rearview-camera-fails-to-display-due-to-software-error",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "recall eligibility and any hardware diagnosis are VIN-specific.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-glc-diesel-timing-chain-tensioner-seal-oil-leak-chain-stretch",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Address associated diesel items (swirl flap actuator, injectors, EGR/DPF, oil-cooler gasket) as diagnosed.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-glc-48v-mild-hybrid-integrated-starter-generator-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the 48V circuit;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gle-auxiliary-12v-battery-failure-triggering-auxiliary-battery-m",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "After replacement no coding is required on most years, though a battery reset via diagnostic scanner clears residual faults.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gle-diesel-adblue-scr-nox-sensor-fault-triggering-restart-countd",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Scan with XENTRY/compatible tool and read live NOx sensor, dosing, and SCR temperature data to pinpoint the failed component.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gle-diesel-adblue-scr-nox-sensor-fault-triggering-restart-countd",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "diagnosis + sensor + reset typically $400-1,200.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gle-electric-power-steering-sudden-loss-assist-power-steering-ma",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with XENTRY for C15xx EPS codes;",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gle-electric-power-steering-sudden-loss-assist-power-steering-ma",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C1511, C1525, C1532",
+        "reasonCode": "non-powertrain-module-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gle-plug-hybrid-charging-interruption-won-t-charge-faults",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test on a known-good EVSE/wallbox to rule out supply phase-imbalance.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gle-power-liftgate-spindle-drive-control-module-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "B224E49",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-gle-air-suspension-compressor-2016",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Leak-test all four air springs and replace any that are leaking.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-gle-comand-mbux-freeze-2016",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Disconnect phone to test if the issue is CarPlay/Android Auto related.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-gle-diesel-dpf-issues-2016",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Force a DPF regeneration cycle using a diagnostic tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gle-48v-mild-hybrid-isg-48v-battery-malfunction-causing-sudden-p",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P1AFA, U10F3, U11C3",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-gle-m256-inline-6-oil-filter-housing-oil-cooler-electric-coolant",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Test the electric coolant pump(s) and replace failing units.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-gls-48v-battery-drain-2020",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-m-class-722-9-7g-tronic-conductor-plate-failure-limp-mode",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with a Mercedes STAR (or equivalent) scanner.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-m-class-722-9-7g-tronic-conductor-plate-failure-limp-mode",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "After installation the stored transmission and body codes MUST be cleared with the scanner or the car will remain in limp mode.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-m-class-brake-booster-integrated-brake-light-switch-causing-esp-crui",
+        "source": "solution",
+        "procedure": "scan-codes",
+        "excerpt": "Read fault codes with a capable scan tool to distinguish the brake-switch/booster signal fault from ABS pump or wheel-speed-sensor faults.",
+        "reasonCode": "scanner-capability-needs-code-or-module",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-m-class-rear-tail-lamp-seal-water-intrusion-destroying-rear-sam-lift",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Dry out the area, then test and replace the rear SAM, rear fuse box, power lift-gate control module and/or hydraulic pump as needed.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-m-class-om642-oil-cooler-leak-2006",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Do not replace the oil cooler unless separate diagnosis proves it faulty.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-s-class-magic-body-control-camera-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Recalibrate the Magic Body Control camera with XENTRY diagnostic tools.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-s-class-48v-mild-hybrid-battery-2021",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-sl-class-convertible-top-hydraulic-2003",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with Star Diagnostics to identify the specific failed component in the sequence.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-sl-class-convertible-soft-top-alignment-latch-2022",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Water testing can help isolate whether the leak is from the header seal, side glass alignment, or drain routing.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-slc-crankcase-ventilation-pcv-valve-failure",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P052E, P052E71",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-slc-m276-v6-camshaft-adjuster-cold-start-rattle",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "P001177, P0016, P0017, P002177",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-slc-om651-diesel-intake-swirl-flap-failure-injector-issues",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "For injector faults, have injectors flow-tested and replaced individually as needed and use quality fuel with periodic injector-cleaning additives.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-slc-om651-diesel-intake-swirl-flap-failure-injector-issues",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose with a Mercedes-capable scan tool before parts replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-slc-speed-sensitive-power-steering-solenoid-failure-heavy-steeri",
+        "source": "dtcCodes",
+        "procedure": "scan-codes",
+        "excerpt": "C198B00",
+        "reasonCode": "manufacturer-code-capability-unverified",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-slk-class-7g-tronic-conductor-plate-speed-sensor-failure",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnosis involves scanning the transmission control module for speed sensor and gear ratio faults, then confirming fluid condition and connector integrity.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-slk-slc-water-leaks-into-trunk-spare-wheel-well-from-blocked-drains",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Owners diagnose the entry point by drying the boot and pouring water over the rear of the car to find the ingress point.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-slk-slc-m271-camshaft-adjuster-magnet-solenoid-failure-oil-intrusion",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A quick diagnostic is swapping intake/exhaust magnets to see if the fault code follows the part.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-722-6-automatic-transmission-conductor-plate-failure-limp-mo",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "On the 722.6 the conductor plate does not require programming, but transmission fault codes must be cleared with a scan tool afterward or the van stays in limp mode.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-diesel-particulate-filter-clogging-from-short-trip-urban-use",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "If caught early, drive at highway speed for 20-30 minutes at higher RPM to trigger passive regeneration, or perform a forced/active regeneration with a compatible scan tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-sprinter-def-adblue-system-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the specific failed component with Star Diagnostics — the system has multiple failure points.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-sprinter-def-adblue-system-2014",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "A full SCR reset with Star Diagnostics is required after component replacement.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-v-class-adblue-scr-system-faults-triggering-limp-mode-no-start-count",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "Diagnose the specific fault: replace the failed NOx sensor (genuine/OE recommended) or repair the AdBlue dosing/heater/pump as required, top up with fresh AdBlue, then clear codes and reset the SCR warning scenario (e.g.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      },
+      {
+        "issueId": "mercedes-benz-v-class-dpf-regeneration-failure-blockage",
+        "source": "solution",
+        "procedure": "unresolved-diagnostic-instruction",
+        "excerpt": "if blocked, run a forced/active regeneration with a diagnostic tool.",
+        "reasonCode": "instruction-does-not-identify-safe-tool",
+        "toolId": null,
+        "productUrl": null
+      }
+    ]
+  },
+  "commercePipelineImplementationSha256": {
+    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+    "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+    "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+    "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+    "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+    "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+    "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+    "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+    "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+    "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+    "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+    "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+    "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+    "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+    "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+    "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+    "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+    "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+    "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+    "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+    "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+    "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+    "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+    "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+    "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+    "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+    "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+    "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+    "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+    "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+    "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+    "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+    "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+    "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+    "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+    "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+    "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+    "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+    "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+    "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+    "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+    "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+    "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+    "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+    "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+    "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+    "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+    "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+    "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+    "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+    "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+    "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+  },
+  "decisions": [],
+  "removalProposals": [],
+  "releaseBlockers": [
+    {
+      "type": "no-reviewed-commerce-writes",
+      "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+    }
+  ],
+  "reconciliation": {
+    "schemaVersion": 2,
+    "artifactKind": "known-issue-make-parts-reconciliation",
+    "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+    "makeSourceHash": "8ec521bb7eeec673236b7a0f7fcb01375c6cf8ba31c3d5fa02980e12a97236b8",
+    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "auditComplete": true,
+    "makeComplete": false,
+    "releaseBlocked": true,
+    "productionApplied": false,
+    "diagnosticReconciliation": {
+      "status": "RECONCILED",
+      "artifactSha256": {
+        "classification-ledger.json": "293b77694729f3393f6d9520f6d2452590d42be6e6dd7adc17453a2c0bff72bb",
+        "checkpoint.json": "02737e68296dd4b1d3827a4dacc17024ad4cacf5d92e2cdc9e990f4a4f5451fa",
+        "diagnostic-tool-evidence.json": "cfef810ab23dcac1960f25c5eedc8b6bef2174e011661c99a9a26159304daf6c"
+      },
+      "implementationSha256": {
+        "scripts/build-known-issue-diagnostic-evidence.js": "da464e99e7909f6f4029aa94323d1f55a737f8a11895b6e903ec00adb7f47e52",
+        "scripts/rebuild-known-issue-classification-ledger.js": "ea88e1547e579de709eb7d6ecc33627ef31f9663be44b0fc000b3d39a73b6787",
+        "src/lib/diagnostic-procedures.js": "c46a28fc5ae9b10b192990a59622c92b92d9e6118f671935fa8bab47e636c615",
+        "src/data/diagnostic-tools.ts": "0363f9b05bd536573c8f7fcc355863810bee6c133a7c4c7c0e07cc9db8b8e4a1",
+        "src/components/known-issues/IssueDiagnosticTools.tsx": "787a73180573f40ff6addcf36cff2bbd866479a0875c380fc178ae6b97d498f5",
+        "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+        "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+        "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+        "src/app/garage/[id]/maintenance/page.tsx": "f8ca4cc0eee666519cf9e38baf5b3249328d37b10e1443a4b105e91f3c159c5e",
+        "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
+      },
+      "scope": {
+        "issueCount": 253,
+        "issuesWithDtcCodes": 79,
+        "uniqueDtcCount": 100,
+        "solutionInstructionCount": 243,
+        "dtcDispositionCount": 79,
+        "toolLinkedDispositionCount": 68,
+        "procedureNoToolDispositionCount": 184,
+        "unresolvedToolHoldCount": 70,
+        "uncoveredDiagnosticInstructionCount": 0
+      },
+      "holds": [
+        {
+          "issueId": "mercedes-benz-a-class-diesel-particulate-filter-blockage-limp-mode-short-trips",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If that fails, a workshop performs a forced/static regeneration via diagnostics.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-a-class-rearview-camera-blank-no-image",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "both remedies are software/VIN controlled unless separate diagnosis proves hardware failure.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-amggt-12v-battery-drain-and-2024",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Dealers often address this with software updates, battery testing/replacement, and in some cases replacement of a module that remains awake.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-amggt-mbux-instrument-cluster-2024",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "the official remedy is VIN-controlled software unless separate diagnosis establishes an unrelated hardware fault.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-amg-gt-4-door-48v-battery-2019",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the 48V battery state of health with Mercedes Star Diagnostics.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-amg-gt-4-door-48v-battery-2019",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-amg-gt-4-door-rear-axle-steering-fault-2019",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If the combination does not match exactly, follow the guided test.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-b-class-dct-shudder-2013",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Start with a DCT adaptation reset via Mercedes XENTRY diagnostic tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-b-class-electronic-parking-brake-actuator-malfunction",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Fault-read the EPB control module with XENTRY/STAR.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-b-class-om651-diesel-dpf-egr-clogging",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose and fix any underlying cause (failed glow plugs, leaking injectors, faulty differential-pressure sensor) before replacing the filter.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-b-class-electric-drive-motor-noise-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose whether the noise is from the motor bearings or reduction gear.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-c-class-hvac-blend-door-duo-valve-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose by listening for the duo-valve solenoids clicking with key on (firewall, driver side).",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-c-class-sunroof-drain-clog-2008",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If electronics are damaged, dry the area thoroughly and test all modules.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-c-class-48v-mild-hybrid-integrated-2022",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-c-class-front-seat-occupant-classification-2022",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B1022F0",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-cla-auxiliary-battery-malfunction-warning",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test and replace the auxiliary battery (a low-cost part located near/behind the engine bay fuse area);",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-cla-auxiliary-battery-malfunction-warning",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "9062",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-cls-class-48-volt-integrated-starter-generator-2019",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-cls-class-mbux-instrument-cluster-2019",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Battery voltage should also be tested because low system voltage can trigger false MBUX faults.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-e-class-48v-integrated-starter-generator--2021",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-e-class-fuel-pump-delivery-module-2021",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0087, P025A, P0627",
+          "reasonCode": "hybrid-ev-scanner-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-eqc-12v-auxiliary-battery-malfunction-drain",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If resting voltage is low (<12.2V) or faults persist after charging, replace the auxiliary battery with the correct AGM spec, then clear fault codes with a diagnostic tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-eqs-electric-drivetrain-software-fault-causing-sudden-loss-propu",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If propulsion is lost or drivetrain warnings appear, move to a safe location when possible and arrange qualified diagnosis.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-eqs-12v-battery-drain-2022",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Mercedes dealers can test for excessive parasitic draw from modules failing to enter sleep mode.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-g-class-9g-tronic-amg-speedshift-harsh-jerky-shifting-requiring-adap",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Record the exact shift, gear, temperature, drive mode and load, preserve the initial quick test, EEPROM and transmission-health data, and compare with a like vehicle where appropriate.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-g-class-m177-4-0l-twin-turbo-v8-excessive-oil-consumption-cylinder-s",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with an oil-consumption test and leak-down/compression test;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gla-12v-battery-parasitic-drain-no-start-after-sitting",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Preserve the initial quick test and onboard electrical data before charging or disconnecting the battery.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gla-12v-battery-parasitic-drain-no-start-after-sitting",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "separately test battery health after charging.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gla-7g-dct-dual-clutch-transmission-shudder-mechatronics-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0741, P17BF, P2729",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gla-diesel-egr-dpf-clogging-adblue-system-faults",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "SCR faults require diagnosing and replacing NOx sensors, the SCR/AdBlue metering/dosing unit, or clearing crystallization, then resetting the no-start countdown via XENTRY.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gla-rear-differential-carrier-whine-clunk-4matic-models",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose by rear diff fluid condition first;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-glb-rearview-camera-fails-to-display-due-to-software-error",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "recall eligibility and any hardware diagnosis are VIN-specific.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-glc-diesel-timing-chain-tensioner-seal-oil-leak-chain-stretch",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Address associated diesel items (swirl flap actuator, injectors, EGR/DPF, oil-cooler gasket) as diagnosed.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-glc-48v-mild-hybrid-integrated-starter-generator-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the 48V circuit;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gle-auxiliary-12v-battery-failure-triggering-auxiliary-battery-m",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "After replacement no coding is required on most years, though a battery reset via diagnostic scanner clears residual faults.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gle-diesel-adblue-scr-nox-sensor-fault-triggering-restart-countd",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Scan with XENTRY/compatible tool and read live NOx sensor, dosing, and SCR temperature data to pinpoint the failed component.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gle-diesel-adblue-scr-nox-sensor-fault-triggering-restart-countd",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "diagnosis + sensor + reset typically $400-1,200.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gle-electric-power-steering-sudden-loss-assist-power-steering-ma",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with XENTRY for C15xx EPS codes;",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gle-electric-power-steering-sudden-loss-assist-power-steering-ma",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C1511, C1525, C1532",
+          "reasonCode": "non-powertrain-module-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gle-plug-hybrid-charging-interruption-won-t-charge-faults",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test on a known-good EVSE/wallbox to rule out supply phase-imbalance.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gle-power-liftgate-spindle-drive-control-module-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "B224E49",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-gle-air-suspension-compressor-2016",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Leak-test all four air springs and replace any that are leaking.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-gle-comand-mbux-freeze-2016",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Disconnect phone to test if the issue is CarPlay/Android Auto related.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-gle-diesel-dpf-issues-2016",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Force a DPF regeneration cycle using a diagnostic tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gle-48v-mild-hybrid-isg-48v-battery-malfunction-causing-sudden-p",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P1AFA, U10F3, U11C3",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-gle-m256-inline-6-oil-filter-housing-oil-cooler-electric-coolant",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Test the electric coolant pump(s) and replace failing units.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-gls-48v-battery-drain-2020",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-m-class-722-9-7g-tronic-conductor-plate-failure-limp-mode",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with a Mercedes STAR (or equivalent) scanner.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-m-class-722-9-7g-tronic-conductor-plate-failure-limp-mode",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "After installation the stored transmission and body codes MUST be cleared with the scanner or the car will remain in limp mode.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-m-class-brake-booster-integrated-brake-light-switch-causing-esp-crui",
+          "source": "solution",
+          "procedure": "scan-codes",
+          "excerpt": "Read fault codes with a capable scan tool to distinguish the brake-switch/booster signal fault from ABS pump or wheel-speed-sensor faults.",
+          "reasonCode": "scanner-capability-needs-code-or-module",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-m-class-rear-tail-lamp-seal-water-intrusion-destroying-rear-sam-lift",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Dry out the area, then test and replace the rear SAM, rear fuse box, power lift-gate control module and/or hydraulic pump as needed.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-m-class-om642-oil-cooler-leak-2006",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Do not replace the oil cooler unless separate diagnosis proves it faulty.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-s-class-magic-body-control-camera-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Recalibrate the Magic Body Control camera with XENTRY diagnostic tools.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-s-class-48v-mild-hybrid-battery-2021",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P0A0F, P0A1A, P0B2900, P0CA700",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-sl-class-convertible-top-hydraulic-2003",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with Star Diagnostics to identify the specific failed component in the sequence.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-sl-class-convertible-soft-top-alignment-latch-2022",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Water testing can help isolate whether the leak is from the header seal, side glass alignment, or drain routing.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-slc-crankcase-ventilation-pcv-valve-failure",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P052E, P052E71",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-slc-m276-v6-camshaft-adjuster-cold-start-rattle",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "P001177, P0016, P0017, P002177",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-slc-om651-diesel-intake-swirl-flap-failure-injector-issues",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "For injector faults, have injectors flow-tested and replaced individually as needed and use quality fuel with periodic injector-cleaning additives.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-slc-om651-diesel-intake-swirl-flap-failure-injector-issues",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose with a Mercedes-capable scan tool before parts replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-slc-speed-sensitive-power-steering-solenoid-failure-heavy-steeri",
+          "source": "dtcCodes",
+          "procedure": "scan-codes",
+          "excerpt": "C198B00",
+          "reasonCode": "manufacturer-code-capability-unverified",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-slk-class-7g-tronic-conductor-plate-speed-sensor-failure",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnosis involves scanning the transmission control module for speed sensor and gear ratio faults, then confirming fluid condition and connector integrity.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-slk-slc-water-leaks-into-trunk-spare-wheel-well-from-blocked-drains",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Owners diagnose the entry point by drying the boot and pouring water over the rear of the car to find the ingress point.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-slk-slc-m271-camshaft-adjuster-magnet-solenoid-failure-oil-intrusion",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A quick diagnostic is swapping intake/exhaust magnets to see if the fault code follows the part.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-sprinter-722-6-automatic-transmission-conductor-plate-failure-limp-mo",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "On the 722.6 the conductor plate does not require programming, but transmission fault codes must be cleared with a scan tool afterward or the van stays in limp mode.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-sprinter-diesel-particulate-filter-clogging-from-short-trip-urban-use",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "If caught early, drive at highway speed for 20-30 minutes at higher RPM to trigger passive regeneration, or perform a forced/active regeneration with a compatible scan tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-sprinter-def-adblue-system-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the specific failed component with Star Diagnostics — the system has multiple failure points.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-sprinter-def-adblue-system-2014",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "A full SCR reset with Star Diagnostics is required after component replacement.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-v-class-adblue-scr-system-faults-triggering-limp-mode-no-start-count",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "Diagnose the specific fault: replace the failed NOx sensor (genuine/OE recommended) or repair the AdBlue dosing/heater/pump as required, top up with fresh AdBlue, then clear codes and reset the SCR warning scenario (e.g.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        },
+        {
+          "issueId": "mercedes-benz-v-class-dpf-regeneration-failure-blockage",
+          "source": "solution",
+          "procedure": "unresolved-diagnostic-instruction",
+          "excerpt": "if blocked, run a forced/active regeneration with a diagnostic tool.",
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "toolId": null,
+          "productUrl": null
+        }
+      ]
+    },
+    "commercePipelineImplementationSha256": {
+      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
+      "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
+      "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
+      "src/lib/prescription.ts": "59dfa46e3c6860253d3eb97cf44a33dbc2dbec7624957b821dee78d9e1f7e678",
+      "src/lib/known-issue-fitment-worklist.ts": "f831c9f85925de32760f30002d831b8cde49d66eb8631807f69a494a3456dd64",
+      "src/data/component-catalog-map.ts": "6e2eb528d8b925a8670bd1ffa47cde9b00efb9db63ec0e5ec299fdab612fb4c8",
+      "scripts/build-fitment-worklist.ts": "6c196ecb96891dcde6aac3e63ccfb7f06e70b236881963175607b5ff6b5d8372",
+      "scripts/showmetheparts-known-issue-candidates.js": "e4b092f1685e0a24da8749c4cabcab00d353705f104443a886efbbd4dfdcf12a",
+      "scripts/verify-parts-fitment.js": "8bb649108255c280efc8fdc7460e9483238466deaf6070c85568fded515ee5b5",
+      "scripts/build-part-proposals.ts": "bcb5647f2d5d2beee45703570dda18cddf4fa511262dd575b0f43f5b546a2c91",
+      "src/lib/part-recommendation.ts": "040ee0b8dcc043443d7bd13c6752697b09979234fe19fa46c156652494721700",
+      "src/data/replacement-part-suppliers.ts": "9b7d5a8a720ec9211c028275e56791c369fbaea9ef7282b6ebb2476d0fd2a44a",
+      "src/lib/aftermarket-tier.ts": "f3482790db72e23e86306734dd3f6f6dff9417dde76f41a5a3e81808451753a1",
+      "src/lib/vendor-catalog.ts": "24fa215e5a215b45388bd2a20a74928ad4bcc16ee05e7551bc1866fe43cc171b",
+      "src/data/aftermarket-brands.ts": "6c0b2708ec29bee973792ddf4bf09833a0ebc9cbcc40bc5702cf7b7f2e276749",
+      "src/lib/part-proposal-coverage.ts": "92a550d974f97f900a29e13428045b622f56c88286a9d18909ee6f94ea43313c",
+      "src/lib/part-type-evidence.ts": "045becd23e277f7f62032037125a2c764441ecd00952efa59d6a121c2029628a",
+      "src/lib/catalog-candidate-safety.ts": "ab49ffc047c2ba4395275670ad0f9ff28ad4ef51bcd7532ba6d92505a17d59dd",
+      "scripts/build-known-issue-part-links.ts": "36f01de9368bc08fb5acf17464aa169b01bca0c4b800c3fe3a3bfc1cd78f5e58",
+      "scripts/merge-reviewed-retailer-links.ts": "8b1e18d3aa0d10714c9c7df990ffcbb3d4b1e9a2d415ab8590a6764cedad37f5",
+      "scripts/build-quoted-part-retailer-queue.ts": "9c57bfa1d3a8c0e45ceb50a3636a8e78f6c08978b129a98e45f60d0e0bb95017",
+      "scripts/review-quoted-part-direct-links.ts": "4aeff90c112a05c4df8b37642adcdee6342ba533068232053be2c6422d1a04af",
+      "scripts/build-quoted-part-commerce-gap-summary.ts": "c538d8a8d4693d3733cd6804654292537d9719ea376681e30cd01e2aabfaf7f4",
+      "scripts/build-reviewed-quoted-part-proposals.ts": "f99b0d8dba26f1291aff919c6955e581dac81696ea6e49ec35f9e94536961ffb",
+      "scripts/build-quoted-part-repair-role-review.ts": "0a55a31c027752abca1b6a9e2af3cc80ea87ce38583556d9d41bc30658012475",
+      "scripts/build-existing-public-claim-review.ts": "95db841349f45428e11c85cfb422f407864407756a0e7c1725c4ca4e1c1ffaea",
+      "scripts/build-standard-quoted-part-stage.ts": "fe263210b689b2699819eae8cdb89b4d500882d2266a5ad9c387b2359a385615",
+      "scripts/build-standard-independent-review.ts": "11c676d9fbdcdf793bf137271d625e20b87b0800c8fb63ac08e087c8a151e807",
+      "src/lib/part-link-builder.ts": "0326b38adaa6a368faf843d7f3cacc3d8b70af8ed1edbeee03976074f7877a6d",
+      "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
+      "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
+      "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
+      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
+      "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
+      "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
+      "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
+      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
+      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
+      "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
+      "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
+      "src/lib/vendor-link-validator.ts": "38d8aef7200e18f5b1fe70df526e8ba20a1937cd840f6706c7f401e8bc472b5b",
+      "src/lib/vision-related-issue-parts.ts": "a26401513cf082e4128598284458069788e396ea2447cced1426c5de757bebf3",
+      "src/lib/vision-vehicle-context.ts": "615666736be7f2265d173d120a904241fd72a968d5050097e66ccbf9aba6c66e",
+      "src/components/known-issues/KnownIssueCard.tsx": "1481d93f6957eddaef528b5c31cba705665ae916c42adc0e7abf974c291a1e9e",
+      "src/components/known-issues/CategorySection.tsx": "9b8850d4dee106327351597528e44a7bbde73adc689d1c0e75a22d9a042a48d1",
+      "src/components/known-issues/ArticleIssuesList.tsx": "eb51760c9dcc1b6d6d84abdd193ee24b4f4dd0ec7d47c9afafd90dd2e186c4e5",
+      "src/contexts/AppContext.tsx": "8f3503c7fea8140bc371bcf377fedb06b074d2abf098ebf86be549ae43d8f715",
+      "src/lib/known-issue-trim-filter.ts": "9b413162dbe0a0ac04aff28fa7dbce40634582c0a93129cbfa39b742c119191c",
+      "src/components/known-issues/KnownIssuesBriefing.tsx": "0127c5068feb43519852915fea96de872b09743e8de24378f43b701be0d258ec",
+      "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528",
+      "src/components/vehicle/VisionResultCard.tsx": "ddc556507814d37e803329bad010a6d7294ec7034767ac7df2e5b1780b3b574a",
+      "src/components/diagnose/TapToIdentifyPhoto.tsx": "af09c67570a73d8286c455a0c3b604c8f2fd2c88e305fa7bdd44f5cb2e500c5c",
+      "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
+      "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
+      "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
+      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    },
+    "counts": {
+      "issueCount": 253,
+      "reviewedProposalPartRows": 0,
+      "approvedRows": 0,
+      "selectedPrimaryRows": 0,
+      "releaseHeldFullRecordRows": 0,
+      "excludedApprovedNonPrimaryRows": 0,
+      "heldProposalRows": 0,
+      "blockedExistingClaimRows": 0,
+      "changedIssueCount": 0,
+      "mergedStablePartCount": 0,
+      "manifestIssueCount": 0,
+      "overlappingSelectedScopeCount": 0
+    },
+    "inputSha256": {
+      "00-make-source.json": "c0293f3156afc06522f0e9676078d488b6226d68a33f469fb114f6c557347530",
+      "01-disposition-ledger.json": "191ebaab3605f9a90fe9a3edbde20dbe11247686c724cc44434f2027235d164e",
+      "02-fitment-worklist.json": "c50caa3d37ad094331f48920487b25234ead6e864fa8eade9f010356979cc0ff",
+      "03-showmetheparts-evidence.json": "5ad88f9d6bfaf8a144bd2fe5398309c6436e2552c2930651a7d843db38e185b3",
+      "04-part-proposals.json": "c685475fd547892b3ca55af2a0ca3ee73e0dbf57a9d1a23e9833936f81bf4b60",
+      "05-direct-link-evidence.json": "03afa8f4c2c32400ea860dc11c64021928ff4a080a7284e22ccbc1204728cb5b",
+      "06-independent-review.json": "ac2b390f9004403a07d7e20d48b1fa5fae5a051bfee2259297893ebcd5b3d1ba",
+      "classification-ledger.json": "293b77694729f3393f6d9520f6d2452590d42be6e6dd7adc17453a2c0bff72bb",
+      "checkpoint.json": "02737e68296dd4b1d3827a4dacc17024ad4cacf5d92e2cdc9e990f4a4f5451fa",
+      "diagnostic-tool-evidence.json": "cfef810ab23dcac1960f25c5eedc8b6bef2174e011661c99a9a26159304daf6c"
+    },
+    "reviewRows": [],
+    "removalProposals": [],
+    "releaseBlockers": [
+      {
+        "type": "no-reviewed-commerce-writes",
+        "reason": "The make audit completed with explicit holds only; there is no reviewed part-link write to release."
+      }
+    ],
+    "issueCoverage": [
+      {
+        "issueId": "mercedes-a-class-dct-transmission-shudder-2019",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-a-class-mbux-software-bugs-2019",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-a-class-suspension-strut-noise-2019",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-amg-gt-4-door-48v-battery-2019",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-amg-gt-4-door-air-suspension-compressor-2019",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-amg-gt-4-door-rear-axle-steering-fault-2019",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-amg-gt-transmission-mount-failure-2016",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-b-class-dct-shudder-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-b-class-electric-drive-motor-noise-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-b-class-turbo-oil-leak-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-a-class-c-drain-hose-water-ingress-into-footwell",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-a-class-diesel-particulate-filter-blockage-limp-mode-short-trips",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-a-class-front-axle-integral-carrier-corrosion",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-a-class-m282-1-3l-intake-valve-carbon-buildup",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-a-class-m282-thermostat-housing-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-a-class-rearview-camera-blank-no-image",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-amggt-12v-battery-drain-and-2024",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-amggt-mbux-instrument-cluster-2024",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-amggt-rear-axle-steering-driver-2024",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-b-class-electronic-parking-brake-actuator-malfunction",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-b-class-m270-timing-chain-stretch-cold-start-rattle",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-b-class-om651-diesel-dpf-egr-clogging",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-b-class-panoramic-sunroof-drain-clog-water-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-b-class-plastic-thermostat-housing-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-b-class-tailgate-boot-lock-actuator-electrical-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-c-class-48v-mild-hybrid-integrated-2022",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-c-class-722-6-5g-tronic-conductor-plate-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-c-class-biodegradable-engine-wiring-harness-insulation-breakdown",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-c-class-driver-assistance-sensor-misalignment-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-c-class-front-seat-occupant-classification-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-c-class-hvac-blend-door-duo-valve-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-c-class-mbux-instrument-cluster-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-c-class-premature-front-brake-squeal-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cla-7g-dct-dual-clutch-transmission-shudder-mechatronics-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cla-auxiliary-battery-malfunction-warning",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cla-m270-m274-camshaft-breakage-from-defective-weld-safety-recal",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cla-panoramic-roof-front-panel-detachment-safety-recall",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cla-premature-rear-brake-wear-caliper-piston-sticking",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cla-water-leaks-into-trunk-rear-footwell",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cls-class-48-volt-integrated-starter-generator-2019",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cls-class-front-brake-squeal-and-2019",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cls-class-mbux-instrument-cluster-2019",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-cls-class-panoramic-sunroof-creaking-popping-2019",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-e-class-48v-integrated-starter-generator--2021",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-e-class-fuel-pump-delivery-module-2021",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-e-class-mbux-instrument-cluster-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqc-12v-auxiliary-battery-malfunction-drain",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqc-electric-drive-module-coolant-leak",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqc-electric-power-steering-wiring-harness-water-ingress-short-c",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqc-heavy-cold-weather-range-loss-inefficient-heat-pump",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqc-high-voltage-battery-housing-corrosion-from-inadequate-seali",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqc-inconsistent-brake-by-wire-pedal-feel",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqc-side-impact-crash-sensor-connector-not-latched",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqs-airmatic-air-suspension-clunks-premature-rear-shock-damper-w",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqs-battery-management-system-software-overload-triggers-high-vo",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqs-electric-drivetrain-software-fault-causing-sudden-loss-propu",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqs-flush-retractable-door-handles-fail-to-present-locking-owner",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqs-mbux-hyperscreen-freezing-blackouts-random-reboots",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-eqs-recurring-battery-malfunction-do-not-tow-warning-front-motor",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-g-class-9g-tronic-amg-speedshift-harsh-jerky-shifting-requiring-adap",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-g-class-body-tailgate-underbody-frame-corrosion",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-g-class-front-axle-wiring-harness-chafe-against-oil-cooler-causing-a",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-g-class-fuel-pump-impeller-deformation-causing-loss-drive-power",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-g-class-m157-5-5l-biturbo-v8-cylinder-scoring-camshaft-adjuster-wear",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-g-class-m177-4-0l-twin-turbo-v8-excessive-oil-consumption-cylinder-s",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-g-class-om642-3-0l-v6-diesel-oil-cooler-seal-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-g-class-om642-diesel-intake-manifold-swirl-flap-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gla-12v-battery-parasitic-drain-no-start-after-sitting",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gla-7g-dct-dual-clutch-transmission-shudder-mechatronics-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gla-diesel-egr-dpf-clogging-adblue-system-faults",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gla-m270-m274-timing-chain-stretch-tensioner-wear",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gla-mbux-comand-infotainment-black-screen-reboot",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gla-panoramic-sunroof-spontaneous-shattering-front-roof-panel-de",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gla-rear-differential-carrier-whine-clunk-4matic-models",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glb-carbon-buildup-intake-valves-causing-rough-idle-power-loss",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glb-emergency-call-system-disabled-by-communication-module-sim-s",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glb-esp-abs-control-unit-damage-disabling-stability-control-anti",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glb-front-axle-carrier-corrosion-failure",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glb-m260-cylinder-head-exhaust-valve-seat-guide-wear",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glb-rearview-camera-fails-to-display-due-to-software-error",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glb-water-intrusion-into-front-footwells-causing-blank-instrumen",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glc-48v-mild-hybrid-integrated-starter-generator-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glc-cold-start-camshaft-adjuster-rattle",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glc-crankcase-vent-valve-failure-engine-harness-oil-contaminatio",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glc-diesel-timing-chain-tensioner-seal-oil-leak-chain-stretch",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glc-fuel-pump-shutdown-causing-loss-drive-power",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glc-rear-brake-squeal-premature-rear-pad-wear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-glc-steering-coupling-bolt-loosening-loss-steering-control",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-48v-mild-hybrid-isg-48v-battery-malfunction-causing-sudden-p",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-9g-tronic-harsh-shifting-delayed-engagement-from-valve-body",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-auxiliary-12v-battery-failure-triggering-auxiliary-battery-m",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-c-drain-hose-water-intrusion-into-front-footwells",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-diesel-adblue-scr-nox-sensor-fault-triggering-restart-countd",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-electric-power-steering-sudden-loss-assist-power-steering-ma",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-esp-software-non-conformance-nhtsa-recall-21v-071",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-front-lower-control-arm-bushing-wear-causing-clunk-steering",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-front-radar-sensor-fault-disabling-distronic-active-brake-as",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-hydraulic-engine-transmission-mount-collapse-causing-idle-vi",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-m256-inline-6-oil-filter-housing-oil-cooler-electric-coolant",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-m264-2-0l-turbo-timing-chain-tensioner-wear-chain-rattle",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-m276-v6-camshaft-adjuster-wear-cold-start-rattle",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-m278-4-7l-twin-turbo-v8-timing-chain-tensioner-camshaft-adju",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-multibeam-led-headlight-condensation-seal-failure-killing-in",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-om651-diesel-turbo-bearing-collapse-egr-cooler-coolant-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-panoramic-sunroof-drain-clog-seal-failure-causing-water-leak",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-plug-hybrid-charging-interruption-won-t-charge-faults",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gle-power-liftgate-spindle-drive-control-module-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gls-48v-ground-connection-overheating-fire-risk",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gls-4matic-transfer-case-bearing-wear-whine-drivetrain-lock-up-r",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gls-engine-stall-from-transmission-control-unit-software",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gls-m256-engine-excessive-oil-consumption-piston-ring-wear",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gls-mbux-infotainment-freezing-black-screen-random-reboots",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gls-om656-diesel-cp4-high-pressure-fuel-pump-sensitivity-injecto",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-gls-om656-diesel-emissions-system-clogging-limp-mode",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-m-class-722-9-7g-tronic-conductor-plate-failure-limp-mode",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-m-class-brake-booster-integrated-brake-light-switch-causing-esp-crui",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-m-class-front-control-arm-bushing-ball-joint-wear",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-m-class-m276-v6-timing-chain-tensioner-rattle-cold-start",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-m-class-om642-diesel-intake-swirl-flap-linkage-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-m-class-rear-tail-lamp-seal-water-intrusion-destroying-rear-sam-lift",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sl-class-12v-batterypower-management-faults-2022",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sl-class-convertible-soft-top-alignment-latch-2022",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sl-class-front-brake-squeal-and-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sl-class-rear-axle-steering-control-unitsoftwa-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-airscarf-heated-seat-wiring-connector-melt-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-battery-voltage-and-electronic-module-faults",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-crankcase-ventilation-pcv-valve-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-m274-2-0l-turbo-piston-wrist-pin-failure",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-m276-v6-camshaft-adjuster-cold-start-rattle",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-m276-v6-oil-cooler-front-timing-cover-seal-oil-leaks",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-om651-diesel-intake-swirl-flap-failure-injector-issues",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-om651-diesel-timing-chain-stretch",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-panoramic-varo-roof-hydraulic-or-latch-malfunction",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-rear-subframe-corrosion-and-cracking",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-speed-sensitive-power-steering-solenoid-failure-heavy-steeri",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slc-thermostat-coolant-pump-housing-leaks",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-class-7g-tronic-conductor-plate-speed-sensor-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-class-balance-shaft-sprocket-wear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-class-crankshaft-position-sensor-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-class-front-sam-water-intrusion-electrical-faults",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-class-rear-subframe-corrosion",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-class-roof-hydraulic-cylinder-leaks",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-slc-7g-tronic-conductor-plate-valve-body-failure-causing-limp-mo",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-slc-central-locking-pse-vacuum-pump-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-slc-m271-camshaft-adjuster-magnet-solenoid-failure-oil-intrusion",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-slc-r170-tail-lamp-socket-thermal-deformation",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-slk-slc-water-leaks-into-trunk-spare-wheel-well-from-blocked-drains",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-722-6-automatic-transmission-conductor-plate-failure-limp-mo",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-diesel-particulate-filter-clogging-from-short-trip-urban-use",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-egr-valve-egr-cooler-carbon-clogging",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-intake-manifold-swirl-flap-linkage-breakage",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-om642-harmonic-balancer-crankshaft-pulley-rubber-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-om642-v6-oil-cooler-seal-leak",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-rear-wheel-arch-body-seam-corrosion",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-sprinter-turbocharger-vnt-actuator-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-v-class-7g-tronic-automatic-gearbox-jerky-harsh-shifts",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-v-class-adblue-scr-system-faults-triggering-limp-mode-no-start-count",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-v-class-diesel-injector-seal-failure-carbon-build-up",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-v-class-dpf-regeneration-failure-blockage",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-v-class-electric-sliding-door-failure",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-v-class-front-wheel-bearing-retaining-clip-defect",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-v-class-om651-diesel-timing-chain-rattle-wear",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-benz-v-class-om654-coolant-pump-vacuum-to-coolant-leak",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-c-class-7g-tronic-valve-body-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-c-class-cam-adjuster-solenoid-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-c-class-door-lock-actuator-2008",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-c-class-m274-turbo-wastegate-rattle-2015",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-c-class-sam-module-failure-2001",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-c-class-sunroof-drain-clog-2008",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-c-class-w204-rear-subframe-cracking-2008",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-cla-comand-freeze-2014",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-cla-front-strut-noise-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-cla-m270-turbo-oil-leak-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-cls-class-7g-tronic-valve-body-2005",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-cls-class-air-suspension-failure-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-cls-class-crankshaft-position-sensor-2012",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-cls-class-led-headlight-ballast-2012",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-cls-class-m272-balance-shaft-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-e-class-7g-conductor-plate-2003",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-e-class-air-suspension-w212-2010",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-e-class-comand-infotainment-freeze-2010",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-e-class-crankshaft-position-sensor-2010",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-e-class-m272-balance-shaft-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-e-class-om642-oil-cooler-leak-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqb-brake-pedal-regen-inconsistency-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqb-infotainment-lag-crash-2022",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqb-range-below-rated-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqe-charging-speed-inconsistency-2023",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqe-software-update-failure-2023",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqe-suv-air-suspension-fault-2023",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqe-suv-ota-update-brick-2023",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqs-12v-battery-drain-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqs-range-degradation-cold-2022",
+        "disposition": "recall/dealer",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqs-rear-axle-steering-fault-2022",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-eqs-suv-air-suspension-compressor-noise-2023",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-g-class-comand-mbux-freeze-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-g-class-door-hinge-sag-2019",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-g-class-front-axle-seal-leak-2000",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-g-class-steering-damper-wear-2000",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-g-class-transfer-case-fluid-leak-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gl-class-air-suspension-compressor-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gl-class-om642-oil-cooler-leak-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gl-class-tailgate-strut-failure-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gl-class-transfer-case-actuator-2007",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gla-transfer-case-noise-awd-2015",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gla-turbo-coolant-line-leak-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gla-water-pump-failure-2015",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-glb-8g-dct-shudder-2020",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-glb-mbux-freeze-2020",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-glb-panoramic-roof-creak-2020",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-glc-9g-tronic-harsh-shifting-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-glc-air-suspension-compressor-2020",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-glc-mbux-infotainment-freeze-2020",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-glc-panoramic-sunroof-creak-2016",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gle-air-suspension-compressor-2016",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gle-comand-mbux-freeze-2016",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gle-diesel-dpf-issues-2016",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gle-rear-differential-leak-2016",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gle-transfer-case-actuator-2016",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-glk-class-diesel-injector-leak-2010",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-glk-class-strut-mount-noise-2010",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gls-48v-battery-drain-2020",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gls-9g-tronic-harsh-shift-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gls-air-suspension-failure-2017",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-gls-panoramic-sunroof-water-leak-2020",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-m-class-air-suspension-failure-2006",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-m-class-m272-balance-shaft-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-m-class-om642-oil-cooler-leak-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-m-class-transfer-case-chain-wear-2006",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-maybach-s-class-air-suspension-degradation-2021",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-maybach-s-class-fragrance-system-malfunction-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-maybach-s-class-rear-entertainment-freeze-2021",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-metris-sliding-door-cable-failure-2016",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-metris-transmission-harsh-shift-2016",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-s-class-48v-mild-hybrid-battery-2021",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-s-class-abc-hydraulic-leak-2000",
+        "disposition": "no-commerce",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-s-class-air-suspension-compressor-2006",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-s-class-comand-head-unit-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-s-class-magic-body-control-camera-2014",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-s-class-power-steering-pump-leak-2000",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-s-class-seat-control-module-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-sl-class-abc-hydraulic-leak-2003",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-sl-class-comand-freeze-2013",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-sl-class-convertible-top-hydraulic-2003",
+        "disposition": "service/tool/fluid",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-sl-class-variator-chain-noise-2013",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-slk-slc-m271-timing-chain-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-slk-slc-m272-balance-shaft-2005",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-slk-slc-vario-roof-hydraulic-2005",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-sprinter-def-adblue-system-2014",
+        "disposition": "diagnosis-dependent",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-sprinter-diesel-injector-failure-2010",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-sprinter-glow-plug-failure-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-sprinter-sliding-door-roller-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      },
+      {
+        "issueId": "mercedes-sprinter-turbo-resonator-crack-2007",
+        "disposition": "buyable",
+        "commerceAction": "no-fixparts-change"
+      }
+    ]
+  }
+}

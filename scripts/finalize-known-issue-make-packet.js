@@ -47,6 +47,7 @@ const PACKET_FILES = [
   '06-independent-review.json',
   '07-decision-patch.json',
   '08-guarded-manifest.json',
+  'reviewed-retailer-candidates.json',
 ];
 const DIAGNOSTIC_ARTIFACT_FILES = [
   'classification-ledger.json',
@@ -65,7 +66,15 @@ const REVIEW_DECISIONS = new Set([
 const EXISTING_CLAIM_VERDICTS = new Set(['preserve', 'block']);
 const REVIEW_EVIDENCE_FIELDS = ['howToFix', 'catalog', 'directLink'];
 const REVIEW_READY_STATUS = 'REVIEW_READY_RECONCILED';
-const REVIEW_BLOCKED_STATUS = 'REVIEW_READY_BLOCKED_EXISTING_CLAIMS';
+const REVIEW_BLOCKED_STATUS = 'REVIEW_READY_RELEASE_BLOCKED';
+// Public EPN identifiers currently owned by au7o. A campaign change is a code
+// and review event: update this contract, regenerate the make packet, and let
+// the implementation hash invalidate every older completion.
+const EBAY_AFFILIATE_IDENTITY = Object.freeze({
+  mkrid: '711-53200-19255-0',
+  campid: '5339164204',
+  toolids: new Set(['10001', '10049']),
+});
 
 function clone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -214,12 +223,18 @@ function observedEvidenceHasExactPartNumber(observedValue, expectedPartNumber) {
 
 function isEbayAffiliateProductUrl(value) {
   const url = new URL(value);
-  if (!/(?:^|\.)ebay\./i.test(url.hostname)) return false;
+  if (!vendorMatchesUrl('eBay', value)) return false;
   return url.searchParams.get('mkevt') === '1'
     && url.searchParams.get('mkcid') === '1'
-    && Boolean(url.searchParams.get('mkrid'))
-    && Boolean(url.searchParams.get('campid'))
-    && Boolean(url.searchParams.get('toolid'));
+    && url.searchParams.get('mkrid') === EBAY_AFFILIATE_IDENTITY.mkrid
+    && url.searchParams.get('campid') === EBAY_AFFILIATE_IDENTITY.campid
+    && EBAY_AFFILIATE_IDENTITY.toolids.has(url.searchParams.get('toolid'));
+}
+
+function productLinkMerchantKey(link) {
+  if (vendorMatchesUrl('eBay', link.url)) return 'ebay';
+  if (vendorMatchesUrl('Amazon', link.url)) return 'amazon';
+  return String(link.vendor || '').toLowerCase().replace(/[^a-z0-9]/g, '');
 }
 
 function partNumberFor(part) {
@@ -402,8 +417,9 @@ function recomputeFitmentPacket(sourceFile, make) {
   }
 }
 
-function recomputeProposalArtifact(sourceFile, evidenceFile) {
+function recomputeProposalArtifact(sourceFile, evidenceFile, packetDirectory) {
   const directory = fs.mkdtempSync(path.join(os.tmpdir(), 'au7o-proposal-recompute-'));
+  const baseOutput = path.join(directory, '04-base-part-proposals.json');
   const output = path.join(directory, '04-part-proposals.json');
   try {
     childProcess.execFileSync(process.execPath, [
@@ -411,7 +427,27 @@ function recomputeProposalArtifact(sourceFile, evidenceFile) {
       path.join(PROJECT_ROOT, 'scripts', 'build-part-proposals.ts'),
       path.relative(PROJECT_ROOT, evidenceFile),
       '--snapshot', path.relative(PROJECT_ROOT, sourceFile),
-      '--out', output,
+      '--out', baseOutput,
+    ], { cwd: PROJECT_ROOT, stdio: ['ignore', 'pipe', 'pipe'] });
+    const quotedProposals = packetDirectory
+      ? path.join(packetDirectory, '04b-reviewed-quoted-part-proposals.json')
+      : '';
+    const quotedReview = packetDirectory
+      ? path.join(packetDirectory, '06b-quoted-part-repair-role-review.json')
+      : '';
+    const hasQuotedProposals = Boolean(quotedProposals && fs.existsSync(quotedProposals));
+    const hasQuotedReview = Boolean(quotedReview && fs.existsSync(quotedReview));
+    if (hasQuotedProposals !== hasQuotedReview) {
+      throw new Error('Supplemental quoted-PN proposals and repair-role review must be present together');
+    }
+    if (!hasQuotedProposals) return readJson(baseOutput);
+    childProcess.execFileSync(process.execPath, [
+      require.resolve('tsx/cli'),
+      path.join(PROJECT_ROOT, 'scripts', 'build-standard-quoted-part-stage.ts'),
+      '--base', baseOutput,
+      '--quoted-proposals', quotedProposals,
+      '--repair-role-review', quotedReview,
+      '--out-proposals', output,
     ], { cwd: PROJECT_ROOT, stdio: ['ignore', 'pipe', 'pipe'] });
     return readJson(output);
   } finally {
@@ -477,11 +513,21 @@ function validateExactProductLink(part, review) {
   }
   const links = part.buyLinks || [];
   if (!links.length) throw new Error(`${reviewKey(review)}: approved row has no direct link`);
+  if (links.length > 2) throw new Error(`${reviewKey(review)}: approved row exceeds the two-link cap`);
+  const seenUrls = new Set();
+  const seenMerchants = new Set();
   for (const link of links) {
     if (link.linkType !== 'product' || link.verified !== true || productUrlError(link.url)) {
       throw new Error(`${reviewKey(review)}: approved link is not a verified product URL`);
     }
     if (!vendorMatchesUrl(link.vendor, link.url)) throw new Error(`${reviewKey(review)}: vendor/link mismatch`);
+    const canonicalUrl = new URL(link.url).toString();
+    const merchantKey = productLinkMerchantKey(link);
+    if (seenUrls.has(canonicalUrl) || seenMerchants.has(merchantKey)) {
+      throw new Error(`${reviewKey(review)}: approved links must be URL- and vendor-distinct`);
+    }
+    seenUrls.add(canonicalUrl);
+    seenMerchants.add(merchantKey);
     const identity = link.productIdentity;
     const observedTitle = String(identity?.observedListingTitle || '').trim();
     const observedField = String(identity?.observedPartNumberField || '').trim();
@@ -502,7 +548,7 @@ function validateExactProductLink(part, review) {
       throw new Error(`${reviewKey(review)}: observed listing title does not contain the matched part number`);
     }
     const url = new URL(link.url);
-    if (/(?:^|\.)ebay\./i.test(url.hostname)) {
+    if (vendorMatchesUrl('eBay', link.url)) {
       if (!isEbayAffiliateProductUrl(link.url)) {
         throw new Error(`${reviewKey(review)}: eBay product URL is missing affiliate attribution`);
       }
@@ -510,6 +556,8 @@ function validateExactProductLink(part, review) {
       if (pathItemId !== String(identity.productId)) {
         throw new Error(`${reviewKey(review)}: eBay URL item ID does not match resolver evidence`);
       }
+    } else if (!observedEvidenceHasExactPartNumber(decodeURIComponent(url.pathname), identity.productId)) {
+      throw new Error(`${reviewKey(review)}: direct-retailer URL product ID does not match resolver evidence`);
     }
   }
 }
@@ -517,6 +565,9 @@ function validateExactProductLink(part, review) {
 function finalPart(candidate) {
   const { part, review, proposal } = candidate;
   const partNumber = partNumberFor(part);
+  const provenancePrefix = proposal.sourceEvidence?.kind === 'article-quoted-part-number'
+    ? 'Article-quoted part number + independent fitment and repair-role review'
+    : 'ShowMeTheParts fitment + independent review';
   return {
     component: part.component,
     oemPartNumber: part.oemPartNumber || '',
@@ -533,7 +584,7 @@ function finalPart(candidate) {
     fitment: clone(part.fitment || {}),
     variants: [],
     verified: true,
-    provenance: `ShowMeTheParts fitment + independent review ${proposal.proposalId}`,
+    provenance: `${provenancePrefix} ${proposal.proposalId}`,
   };
 }
 
@@ -910,13 +961,13 @@ function finalizePacket(inputs, options = {}) {
   const sourceRecords = new Map(source.records.map((record) => [record.id, record]));
   const reviewedOn = String(source.globalGeneratedAt || '').slice(0, 10);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(reviewedOn)) throw new Error('Make source has no deterministic review date');
-  const decisions = [];
+  const stagedDecisions = [];
   for (const [issueId, mergeFixParts] of [...mergesByIssue].sort(([left], [right]) => left.localeCompare(right))) {
     const record = sourceRecords.get(issueId);
     if (!record) throw new Error(`${issueId}: approved row is outside make source`);
     const componentKeys = mergeFixParts.map((merge) => componentKey(merge.component));
     if (new Set(componentKeys).size !== componentKeys.length) throw new Error(`${issueId}: duplicate stable component merge`);
-    decisions.push({
+    stagedDecisions.push({
       id: issueId,
       disposition: 'replace',
       decision: 'Keyed-merge only independently approved primary parts with exact direct-product links.',
@@ -929,7 +980,40 @@ function finalizePacket(inputs, options = {}) {
       contentUpdateSummary: 'Added independently reviewed, vehicle-scoped repair-part links.',
     });
   }
-  if (!decisions.length) throw new Error('No approved primary rows change fixParts');
+  // A part-link review is not a full-record content review. Some frozen rows
+  // still contain legacy citations, approval flags, community search links, or
+  // other data that the current manifest schema correctly refuses to publish.
+  // Never weaken that persistent guard just to stage a part. Instead, probe the
+  // exact keyed merge through the existing validator and retain rejected rows
+  // as explicit release blockers while allowing the make audit to complete.
+  const decisions = [];
+  const fullRecordGuardHolds = [];
+  for (const decision of stagedDecisions) {
+    try {
+      buildManifest(source, {
+        schemaVersion: 2,
+        patchKind: 'known-issues-catalog-deeplink-decisions',
+        batchId: `${source.makeKey}-parts-guard-probe`,
+        snapshotHash: source.snapshotHash,
+        decisions: [decision],
+      });
+      decisions.push(decision);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      fullRecordGuardHolds.push({
+        issueId: decision.id,
+        type: 'full-record-release-guard',
+        reason: 'The reviewed part is staged, but the frozen issue does not satisfy the current full-record publication contract. A separate full-record review is required before this part can enter a release manifest.',
+        validationErrors: message.replace(/^Built manifest is invalid:\s*/, '').split('; '),
+      });
+    }
+  }
+  const guardedIssueIds = new Set(fullRecordGuardHolds.map((row) => row.issueId));
+  for (const row of reviewRows) {
+    if (row.reconciliationStatus === 'selected-primary' && guardedIssueIds.has(row.issueId)) {
+      row.reconciliationStatus = 'release-held-full-record';
+    }
+  }
   const removalProposals = [];
   for (const claim of review.existingClaims || []) {
     if (claim.verdict !== 'block') continue;
@@ -957,6 +1041,11 @@ function finalizePacket(inputs, options = {}) {
   const releaseBlockers = [
     ...removalProposals.map((row) => ({ ...row, type: 'unapplied-existing-claim-removal' })),
     ...contextBlockers,
+    ...fullRecordGuardHolds,
+    ...(approvedPrimary.length === 0 ? [{
+      type: 'no-reviewed-commerce-writes',
+      reason: 'The make audit completed with explicit holds only; there is no reviewed part-link write to release.',
+    }] : []),
   ];
   const releaseBlocked = releaseBlockers.length > 0;
   const reviewStatus = releaseBlocked ? REVIEW_BLOCKED_STATUS : REVIEW_READY_STATUS;
@@ -971,6 +1060,7 @@ function finalizePacket(inputs, options = {}) {
     makeComplete: !releaseBlocked,
     releaseBlocked,
     productionApplied: false,
+    auditOnlyNoWrites: decisions.length === 0,
     diagnosticReconciliation: clone(diagnosticReconciliation),
     commercePipelineImplementationSha256: clone(options.commercePipelineImplementationSha256 || {}),
     decisions,
@@ -994,6 +1084,7 @@ function finalizePacket(inputs, options = {}) {
     validateUnrelatedCommerce(record.fixParts || [], manifestIssue.after.fixParts || [], patchDecision.mergeFixParts.map((merge) => merge.component), manifestIssue.id);
   }
   const changed = new Set(decisions.map((decision) => decision.id));
+  const releaseHeld = new Set(fullRecordGuardHolds.map((row) => row.issueId));
   const heldIssues = new Set(reviewRows.filter((row) => row.reconciliationStatus === 'held').map((row) => row.issueId));
   const removalIssues = new Set(removalProposals.map((row) => row.issueId));
   const issueCoverage = ledger.issues.map((issue) => ({
@@ -1001,6 +1092,8 @@ function finalizePacket(inputs, options = {}) {
     disposition: issue.disposition,
     commerceAction: changed.has(issue.issueId)
       ? 'guarded-fixparts-change'
+      : releaseHeld.has(issue.issueId)
+        ? 'approved-fixparts-release-held'
       : removalIssues.has(issue.issueId)
         ? 'existing-claim-removal-held'
         : heldIssues.has(issue.issueId)
@@ -1028,6 +1121,7 @@ function finalizePacket(inputs, options = {}) {
       reviewedProposalPartRows: reviewRows.length,
       approvedRows: reviewRows.filter((row) => row.verdict === 'approve').length,
       selectedPrimaryRows: reviewRows.filter((row) => row.reconciliationStatus === 'selected-primary').length,
+      releaseHeldFullRecordRows: reviewRows.filter((row) => row.reconciliationStatus === 'release-held-full-record').length,
       excludedApprovedNonPrimaryRows: reviewRows.filter((row) => row.reconciliationStatus === 'excluded-non-primary').length,
       heldProposalRows: reviewRows.filter((row) => row.reconciliationStatus === 'held').length,
       blockedExistingClaimRows: removalProposals.length,
@@ -1318,7 +1412,7 @@ function main() {
   const implementationSha256 = sha256Files(PROJECT_ROOT, DIAGNOSTIC_IMPLEMENTATION_FILES);
   const commercePipelineImplementationSha256 = sha256Files(PROJECT_ROOT, COMMERCE_PIPELINE_IMPLEMENTATION_FILES);
   const recomputedFitment = recomputeFitmentPacket(sourceFile, make);
-  const recomputedProposals = recomputeProposalArtifact(sourceFile, path.join(directory, files.evidence));
+  const recomputedProposals = recomputeProposalArtifact(sourceFile, path.join(directory, files.evidence), directory);
   const result = finalizePacket(inputs, {
     make,
     inputSha256,

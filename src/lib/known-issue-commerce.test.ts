@@ -158,6 +158,8 @@ test('accepts verified-retailer product pages the generic path rule misses', () 
     'https://www.partcatalog.com/walker-235-1456-engine-crankshaft-position-sensor.html',
     'https://www.summitracing.com/parts/mah-vs50109',
     'https://www.raybestospowertrain.com/steel-clutch-packs/000601',
+    'https://www.mishimoto.com/dodge-challenger-aluminum-radiator-2009-2016.html',
+    'https://www.moparpartsgiant.com/parts/mopar-radiator-engine-cooling~68050126ab.html',
   ]) {
     assert.equal(isKnownIssueProductUrl(url), true, `should accept ${url}`);
   }
@@ -172,6 +174,7 @@ test('allowlisting a host does not allowlist its category, search or lookalike U
     'https://www.densoproducts.com/collections/condensers',
     'https://www.partcatalog.com/',
     'https://www.raybestospowertrain.com/automatic-transmission/clutch-packs',
+    'https://www.mishimoto.com/collections/radiators',
     // A lookalike domain must not inherit the allowlist.
     'https://partshawk.evil.com/delphi-ss10867-abs-wheel-speed-sensor.html',
     // http is refused on every host, allowlisted or not.

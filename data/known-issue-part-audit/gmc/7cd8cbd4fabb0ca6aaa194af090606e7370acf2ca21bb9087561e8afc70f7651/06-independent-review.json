@@ -1,0 +1,320 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "GMC",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "e315b59bece03d967d2fb4f1747ffac0345ae3afa23be9f681e8ddc19f301879",
+    "02-fitment-worklist.json": "06d04740ffbe6ba63809f5c0b2762bf459428a3afda11a90be74841c9504360c",
+    "03-showmetheparts-evidence.json": "6a7d1d6f64832af12436e473421c76523fa5e6d2db91fd237144da3af0c51549",
+    "04-part-proposals.json": "dec9517e41a5c1d5325253ceaa187a6998eec822d23b099eb4fdb6aa9cb48175",
+    "05-direct-link-evidence.json": "951fa55d1a4582ad67434d5b1274980d743e269105994ed341bd9b4f74c2457f"
+  },
+  "supplementalArtifactSha256": {
+    "repair-role-decisions.json": "3d4a6158353ac2d8eb4eaec092df4e21e995e6b82414185824e1b9e0563f04e1",
+    "existing-public-claim-review.json": "3266034eec28598ff14df19534aaf6e0f9821eae051b7d03fccac802b6036e42"
+  },
+  "proposalCount": 0,
+  "partRowCount": 0,
+  "tally": {
+    "approve": 0,
+    "block_wrong_role": 0,
+    "block_incomplete_scope": 0,
+    "block_ambiguous": 0,
+    "hold_no_exact_link": 0,
+    "hold_needs_manual": 0
+  },
+  "reconciliation": {
+    "sourceProposalCount": 0,
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "sourceIssueCount": 173,
+    "reviewedIssueCount": 173,
+    "sourceWorkItemCount": 450,
+    "reviewedWorkItemDispositionCount": 450,
+    "terminalWorkItemDispositionCount": 450,
+    "proposedWorkItemCount": 0,
+    "heldWorkItemCount": 450,
+    "workItemDispositionSha256": "4c63d9b5b08fc767422e5ff10964871f4eb0fb58607ccd73ab7c5db76d239e27",
+    "workItemDispositionReasonTally": {
+      "fitment-no-catalog": 135,
+      "fitment-unmapped": 315
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 0,
+    "reviewedPartRowCount": 0,
+    "exactProductLinkRowCount": 0,
+    "exactProductLinkCount": 0,
+    "noExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkCount": 0,
+    "listingTitleSourceCount": 0,
+    "itemSpecificsSourceCount": 0,
+    "observedListingTitlePresentCount": 0,
+    "recomputedTitleHashMatchCount": 0,
+    "matchedPartNumberMatchCount": 0,
+    "observedPartNumberFieldPresentCount": 0,
+    "observedPartNumberValuePresentCount": 0,
+    "observedPartNumberValueMatchCount": 0,
+    "urlProductIdMatchCount": 0,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 18,
+  "uniqueExistingClaimCount": 7,
+  "existingClaimTally": {
+    "preserve": 0,
+    "block": 18
+  },
+  "existingClaims": [
+    {
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-5l-i4-lcv",
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "partNumber": "K700902",
+      "engineWorkRow": "2.5L I4 LCV",
+      "verdict": "block",
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace front stabilizer bar end links (Moog K750744, or OEM GM 23377014). Inspect and replace ball joints if play detected (Moog K500119 lower ball joint). Upper strut mount replacement if clunk is isolated to strut area (GM 84131517). Torque all suspension fasteners to spec — loose bolts cause clunking symptoms.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/178299247770?_skw=Moog+Chassis+K700902+Suspension+Stabilizer+Bar+Link&hash=item2983769c9a%3Ag%3AtKYAAeSwqMFqUIU6&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--3-6l-v6-lgz",
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "partNumber": "K700902",
+      "engineWorkRow": "3.6L V6 LGZ",
+      "verdict": "block",
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace front stabilizer bar end links (Moog K750744, or OEM GM 23377014). Inspect and replace ball joints if play detected (Moog K500119 lower ball joint). Upper strut mount replacement if clunk is isolated to strut area (GM 84131517). Torque all suspension fasteners to spec — loose bolts cause clunking symptoms.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/178299247770?_skw=Moog+Chassis+K700902+Suspension+Stabilizer+Bar+Link&hash=item2983769c9a%3Ag%3AtKYAAeSwqMFqUIU6&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-8l-duramax-lwn",
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "partNumber": "K700902",
+      "engineWorkRow": "2.8L Duramax LWN",
+      "verdict": "block",
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace front stabilizer bar end links (Moog K750744, or OEM GM 23377014). Inspect and replace ball joints if play detected (Moog K500119 lower ball joint). Upper strut mount replacement if clunk is isolated to strut area (GM 84131517). Torque all suspension fasteners to spec — loose bolts cause clunking symptoms.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/178299247770?_skw=Moog+Chassis+K700902+Suspension+Stabilizer+Bar+Link&hash=item2983769c9a%3Ag%3AtKYAAeSwqMFqUIU6&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-canyon-front-suspension-clunk-2015--existing-fix-part-0-0--2-7l-turbo-luf",
+      "issueId": "gmc-canyon-front-suspension-clunk-2015",
+      "partNumber": "K700902",
+      "engineWorkRow": "2.7L Turbo LUF",
+      "verdict": "block",
+      "reason": "The existing unscoped K700902 claim conflicts with the repair text, which names Moog K750744 or GM 23377014, and the current catalog pass does not confirm K700902 for every declared application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace front stabilizer bar end links (Moog K750744, or OEM GM 23377014). Inspect and replace ball joints if play detected (Moog K500119 lower ball joint). Upper strut mount replacement if clunk is isolated to strut area (GM 84131517). Torque all suspension fasteners to spec — loose bolts cause clunking symptoms.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/178299247770?_skw=Moog+Chassis+K700902+Suspension+Stabilizer+Bar+Link&hash=item2983769c9a%3Ag%3AtKYAAeSwqMFqUIU6&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-envoy-4-2l-crankshaft-sensor-2002--existing-fix-part-0-0--4-2l-i6-ll8",
+      "issueId": "gmc-envoy-4-2l-crankshaft-sensor-2002",
+      "partNumber": "235-1078",
+      "engineWorkRow": "4.2L I6 LL8",
+      "verdict": "block",
+      "reason": "The existing unscoped 235-1078 claim is not one of the article-prescribed ACDelco 213-3521 or Delphi SS11378 options, and current catalog evidence does not establish complete application coverage.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace crankshaft position sensor (ACDelco 213-3521 or Delphi SS11378). Clear codes and test. If stalling continues, inspect camshaft position sensor (ACDelco 213-3522) as secondary cause. Verify PCM software is current — older PCM calibrations make the engine overly sensitive to sensor signal dropout.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/383326820944?_skw=Walker+Products+235-1078+Engine+Crankshaft+Position+Sensor&hash=item59400f1a50%3Ag%3AuecAAOSw4fZbVCuI&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true},{\"url\":\"https://www.amazon.com/Walker-Products-235-1078-Crankshaft-Position/dp/B00T1BVAG2?tag=au7o-20\",\"vendor\":\"Amazon\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--5-3l-v8",
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "partNumber": "THRGM-0002",
+      "engineWorkRow": "5.3L V8",
+      "verdict": "block",
+      "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify actual coolant temperature with a scan tool vs. the gauge to separate a bad ECT sensor from a bad thermostat. If the engine won't reach ~195-210°F, replace the thermostat (and housing/gasket, commonly sold as an assembly) with an OEM-spec unit and refill/bleed the cooling system. Replace the ECT sensor if data shows an implausible reading.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/287200558443?_skw=Aisin+THRGM-0002+Engine+Coolant+Thermostat&hash=item42de7cbd6b%3Ag%3AZkMAAOSwjFpoTUY3&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--6-2l-v8",
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "partNumber": "THRGM-0002",
+      "engineWorkRow": "6.2L V8",
+      "verdict": "block",
+      "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify actual coolant temperature with a scan tool vs. the gauge to separate a bad ECT sensor from a bad thermostat. If the engine won't reach ~195-210°F, replace the thermostat (and housing/gasket, commonly sold as an assembly) with an OEM-spec unit and refill/bleed the cooling system. Replace the ECT sensor if data shows an implausible reading.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/287200558443?_skw=Aisin+THRGM-0002+Engine+Coolant+Thermostat&hash=item42de7cbd6b%3Ag%3AZkMAAOSwjFpoTUY3&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th--existing-fix-part-0-0--4-3l-v6",
+      "issueId": "gmc-sierra-1500-p0128-engine-never-reaches-operating-temp-from-stuck-open-th",
+      "partNumber": "THRGM-0002",
+      "engineWorkRow": "4.3L V6",
+      "verdict": "block",
+      "reason": "The thermostat repair is conditional on scan-data diagnosis, while the existing THRGM-0002 card is unconditional, unscoped, and not confirmed across the article's engine applications by the current catalog pass.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Verify actual coolant temperature with a scan tool vs. the gauge to separate a bad ECT sensor from a bad thermostat. If the engine won't reach ~195-210°F, replace the thermostat (and housing/gasket, commonly sold as an assembly) with an OEM-spec unit and refill/bleed the cooling system. Replace the ECT sensor if data shows an implausible reading.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/287200558443?_skw=Aisin+THRGM-0002+Engine+Coolant+Thermostat&hash=item42de7cbd6b%3Ag%3AZkMAAOSwjFpoTUY3&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-sierra-ac-compressor-failure--existing-fix-part-0-0--all-engines",
+      "issueId": "gmc-sierra-ac-compressor-failure",
+      "partNumber": "471-1021",
+      "engineWorkRow": "",
+      "verdict": "block",
+      "reason": "The unscoped 471-1021 compressor claim does not prove complete year, engine, refrigerant-system, or catastrophic-failure application coverage, and the current catalog pass cannot confirm it.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace A/C compressor with revised GM part. Flush A/C system and replace expansion valve, receiver/dryer, and condenser if compressor failed catastrophically. Replace A/C clutch assembly. Repair refrigerant leaks and recharge system.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/318123524429?_skw=Denso+471-1021+A%2FC+Compressor&hash=item4a11a3c14d%3Ag%3ArXwAAeSwqNVqV0KD&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--2-4l-ecotec-i4-laf-lea",
+      "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+      "partNumber": "WPGM-700",
+      "engineWorkRow": "2.4L Ecotec I4 (LAF/LEA)",
+      "verdict": "block",
+      "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump (OEM/ACDelco) along with the coolant and inspect the thermostat and hoses. Given the timing-cover location, professional replacement is recommended; refill and bleed the cooling system afterward.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/166864993030?_skw=Aisin+WPGM-700+Engine+Water+Pump&hash=item26d9edbb06%3Ag%3AY-UAAOSwc7RnYjMH&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-0l-v6-lf1",
+      "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+      "partNumber": "WPGM-700",
+      "engineWorkRow": "3.0L V6 (LF1)",
+      "verdict": "block",
+      "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump (OEM/ACDelco) along with the coolant and inspect the thermostat and hoses. Given the timing-cover location, professional replacement is recommended; refill and bleed the cooling system afterward.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/166864993030?_skw=Aisin+WPGM-700+Engine+Water+Pump&hash=item26d9edbb06%3Ag%3AY-UAAOSwc7RnYjMH&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-terrain-water-pump-failure-coolant-leak--existing-fix-part-0-0--3-6l-v6-lfx",
+      "issueId": "gmc-terrain-water-pump-failure-coolant-leak",
+      "partNumber": "WPGM-700",
+      "engineWorkRow": "3.6L V6 (LFX)",
+      "verdict": "block",
+      "reason": "The unscoped WPGM-700 water-pump claim is not confirmed across all declared Terrain years and engine applications by the current catalog evidence, so it cannot remain a blanket public buy link.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump (OEM/ACDelco) along with the coolant and inspect the thermostat and hoses. Given the timing-cover location, professional replacement is recommended; refill and bleed the cooling system afterward.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/166864993030?_skw=Aisin+WPGM-700+Engine+Water+Pump&hash=item26d9edbb06%3Ag%3AY-UAAOSwc7RnYjMH&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--4-8l-v8",
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "partNumber": "WPGM-609V",
+      "engineWorkRow": "4.8L V8",
+      "verdict": "block",
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump (ACDelco Professional water pump for the applicable V8) with a new gasket, and refill with GM DEXCOOL. Because the serpentine belt, thermostat, and hoses are already accessed during the job, it is recommended to replace the thermostat and inspect the belt at the same time. Catch the weep-hole leak early to avoid an overheating event and possible head-gasket damage.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/327207587319?_skw=Aisin+WPGM-609V+Engine+Water+Pump&hash=item4c2f178df7%3Ag%3AfwcAAOSwtctoTVpd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--5-3l-v8",
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "partNumber": "WPGM-609V",
+      "engineWorkRow": "5.3L V8",
+      "verdict": "block",
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump (ACDelco Professional water pump for the applicable V8) with a new gasket, and refill with GM DEXCOOL. Because the serpentine belt, thermostat, and hoses are already accessed during the job, it is recommended to replace the thermostat and inspect the belt at the same time. Catch the weep-hole leak early to avoid an overheating event and possible head-gasket damage.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/327207587319?_skw=Aisin+WPGM-609V+Engine+Water+Pump&hash=item4c2f178df7%3Ag%3AfwcAAOSwtctoTVpd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-0l-v8",
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "partNumber": "WPGM-609V",
+      "engineWorkRow": "6.0L V8",
+      "verdict": "block",
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump (ACDelco Professional water pump for the applicable V8) with a new gasket, and refill with GM DEXCOOL. Because the serpentine belt, thermostat, and hoses are already accessed during the job, it is recommended to replace the thermostat and inspect the belt at the same time. Catch the weep-hole leak early to avoid an overheating event and possible head-gasket damage.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/327207587319?_skw=Aisin+WPGM-609V+Engine+Water+Pump&hash=item4c2f178df7%3Ag%3AfwcAAOSwtctoTVpd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss--existing-fix-part-0-0--6-2l-v8",
+      "issueId": "gmc-yukon-water-pump-weep-hole-leak-coolant-loss",
+      "partNumber": "WPGM-609V",
+      "engineWorkRow": "6.2L V8",
+      "verdict": "block",
+      "reason": "The article requires the applicable V8 pump, but the existing WPGM-609V claim has no enforceable engine scope and current catalog evidence does not prove it for every declared application.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump (ACDelco Professional water pump for the applicable V8) with a new gasket, and refill with GM DEXCOOL. Because the serpentine belt, thermostat, and hoses are already accessed during the job, it is recommended to replace the thermostat and inspect the belt at the same time. Catch the weep-hole leak early to avoid an overheating event and possible head-gasket damage.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/327207587319?_skw=Aisin+WPGM-609V+Engine+Water+Pump&hash=item4c2f178df7%3Ag%3AfwcAAOSwtctoTVpd&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--5-3l-v8",
+      "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+      "partNumber": "MS19936",
+      "engineWorkRow": "5.3L V8",
+      "verdict": "block",
+      "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace broken manifold bolts/studs and install updated hardware; resurface or replace the exhaust manifold if warped. Inspect for missing bolt heads and use proper extraction methods; replace manifold gaskets if applicable for the engine/year.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/327291605382?_skw=MAHLE+Clevite+MS19936+Exhaust+Manifold+Gasket+Set&hash=item4c34199186%3Ag%3AYO8AAeSwB-dqbxjv&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    },
+    {
+      "workItemId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick--existing-fix-part-0-0--6-2l-v8",
+      "issueId": "gmc-yukon-xl-cracked-exhaust-manifold-bolts-manifold-leak-5-3l-6-2l-v8-causing-cold-start-tick",
+      "partNumber": "MS19936",
+      "engineWorkRow": "6.2L V8",
+      "verdict": "block",
+      "reason": "The repair centers on broken bolts and conditionally required manifold or gaskets; the unscoped MS19936 gasket-set card is not a universal repair and current catalog evidence does not establish complete 5.3L/6.2L coverage.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace broken manifold bolts/studs and install updated hardware; resurface or replace the exhaust manifold if warped. Inspect for missing bolt heads and use proper extraction methods; replace manifold gaskets if applicable for the engine/year.",
+        "catalog": "Fitment work row ended with no-catalog; no broader fitment is inferred.",
+        "directLink": "Existing verified public claim reviewed explicitly: [{\"url\":\"https://www.ebay.com/itm/327291605382?_skw=MAHLE+Clevite+MS19936+Exhaust+Manifold+Gasket+Set&hash=item4c34199186%3Ag%3AYO8AAeSwB-dqbxjv&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049\",\"vendor\":\"eBay\",\"linkType\":\"product\",\"verified\":true}]"
+      }
+    }
+  ],
+  "decisions": []
+}

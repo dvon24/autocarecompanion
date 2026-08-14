@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "known-issue-part-independent-review",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Fiat",
+  "reviewedArtifacts": [
+    "01-disposition-ledger.json",
+    "02-fitment-worklist.json",
+    "03-showmetheparts-evidence.json",
+    "04-part-proposals.json",
+    "05-direct-link-evidence.json"
+  ],
+  "reviewedArtifactSha256": {
+    "01-disposition-ledger.json": "fa90bfb835fb6a3c83db71b2be9c3c8ef31e5e13cb77e5135f0b102584415e0a",
+    "02-fitment-worklist.json": "0fd56abae18404fac4915b62b5f3d65fa79e38cf7b9bea3c128a0c90f520849b",
+    "03-showmetheparts-evidence.json": "aac67fb4c20f3a5fa60e23ba92129cabecce76f5746c74ef8e0c9d01a27216d7",
+    "04-part-proposals.json": "f0b5767ecb4313ae35cf1db1200bcf4832c42f744a1fac5e3f8bc4d26b2ed970",
+    "05-direct-link-evidence.json": "fb0a0be17cbd7f19ebec74b86958e74ef44a58ca9e96bc0a49c26bb194473370"
+  },
+  "supplementalArtifactSha256": {
+    "06-independent-review.json": "27d3c70583f56eedc53198da806091dac0d1664d74667d72bc104914f4c76421",
+    "existing-public-claim-review.json": "fc43ab591adbe6d73322dca2b943690247cfede2e30a10480213a535e83372b4"
+  },
+  "proposalCount": 2,
+  "partRowCount": 3,
+  "tally": {
+    "approve": 1,
+    "block_wrong_role": 0,
+    "block_incomplete_scope": 0,
+    "block_ambiguous": 0,
+    "hold_no_exact_link": 0,
+    "hold_needs_manual": 2
+  },
+  "reconciliation": {
+    "sourceProposalCount": 2,
+    "sourcePartRowCount": 3,
+    "reviewedPartRowCount": 3,
+    "sourceIssueCount": 42,
+    "reviewedIssueCount": 42,
+    "sourceWorkItemCount": 68,
+    "reviewedWorkItemDispositionCount": 68,
+    "terminalWorkItemDispositionCount": 68,
+    "proposedWorkItemCount": 2,
+    "heldWorkItemCount": 66,
+    "workItemDispositionSha256": "bbb48c960ba07cef7cfb9272693c6cc9525ad8ab49267c2ac44ef56a6be24d10",
+    "workItemDispositionReasonTally": {
+      "eligible-proposal": 2,
+      "fitment-no-catalog": 19,
+      "fitment-unmapped": 46,
+      "no-matching-part-type": 1
+    },
+    "missingIssues": [],
+    "missingWorkItemDispositions": [],
+    "duplicateWorkItemDispositions": [],
+    "missing": [],
+    "duplicates": [],
+    "complete": true
+  },
+  "productIdentityReconciliation": {
+    "sourcePartRowCount": 3,
+    "reviewedPartRowCount": 3,
+    "exactProductLinkRowCount": 3,
+    "exactProductLinkCount": 3,
+    "noExactProductLinkRowCount": 0,
+    "reviewedExactProductLinkRowCount": 3,
+    "reviewedExactProductLinkCount": 3,
+    "listingTitleSourceCount": 2,
+    "itemSpecificsSourceCount": 1,
+    "observedListingTitlePresentCount": 3,
+    "recomputedTitleHashMatchCount": 3,
+    "matchedPartNumberMatchCount": 3,
+    "observedPartNumberFieldPresentCount": 3,
+    "observedPartNumberValuePresentCount": 3,
+    "observedPartNumberValueMatchCount": 3,
+    "urlProductIdMatchCount": 3,
+    "invalidRows": [],
+    "complete": true
+  },
+  "existingClaimWorkRowCount": 0,
+  "uniqueExistingClaimCount": 0,
+  "existingClaimTally": {
+    "preserve": 0,
+    "block": 0
+  },
+  "existingClaims": [],
+  "decisions": [
+    {
+      "proposalId": "fiat-500x-water-pump--prescription-0-0--2-4l-tigershark",
+      "issueId": "fiat-500x-water-pump",
+      "workItemId": "fiat-500x-water-pump--prescription-0-0--2-4l-tigershark",
+      "model": "500X",
+      "partIndex": 0,
+      "partNumber": "WPCH-603V",
+      "decision": "hold_needs_manual",
+      "reason": "WPCH-603V is catalog-fit for the reviewed 2.4L 500X years, but neither the catalog note nor the exact listing proves the updated metal-impeller design explicitly recommended by the article.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump with an updated design featuring a metal impeller. Replace the thermostat and coolant at the same time. Pressure test the cooling system after repair.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/147487275197?fits=Year%3A2016%7CEngine+-+Liter_Display%3A2.4L%7CModel%3A500X%7CMake%3AFiat&_skw=2016+Fiat+500X+2.4L+Aisin+WPCH-603V+Engine+Water+Pump&hash=item2256ed38bd%3Ag%3AcCUAAeSw03hqWkOV&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 147487275197. Observed title contains WPCH603V. Observed title: AISIN WORLD CORP. OF AMERICA WPCH603V Engine Water Pump."
+      }
+    },
+    {
+      "proposalId": "fiat-500x-water-pump--prescription-0-0--2-4l-tigershark",
+      "issueId": "fiat-500x-water-pump",
+      "workItemId": "fiat-500x-water-pump--prescription-0-0--2-4l-tigershark",
+      "model": "500X",
+      "partIndex": 1,
+      "partNumber": "DP1016",
+      "decision": "hold_needs_manual",
+      "reason": "DP1016 is an exact catalog-fit water pump, but its catalog and product evidence does not establish the metal-impeller construction required by the repair recommendation.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump with an updated design featuring a metal impeller. Replace the thermostat and coolant at the same time. Pressure test the cooling system after repair.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/800030260467?fits=Year%3A2016%7CEngine+-+Liter_Display%3A2.4L%7CModel%3A500X%7CMake%3AFiat&_skw=2016+Fiat+500X+2.4L+Dayco+DP1016+Engine+Water+Pump&hash=itemba4584fcf3%3Ag%3AiBIAAOSwunpoT%7ExY&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 800030260467. Observed title contains DP1016. Observed title: Engine Water Pump-Natural Dayco DP1016."
+      }
+    },
+    {
+      "proposalId": "fiat-500x-water-pump--prescription-1-0--2-4l-tigershark",
+      "issueId": "fiat-500x-water-pump",
+      "workItemId": "fiat-500x-water-pump--prescription-1-0--2-4l-tigershark",
+      "model": "500X",
+      "partIndex": 0,
+      "partNumber": "34845",
+      "decision": "approve",
+      "reason": "Gates 34845 matches the prescribed same-time thermostat role, has catalog-confirmed 2016-2018 2.4L fitment with OE temperature and seal evidence, and has one exact product page.",
+      "reviewedSourceEvidence": {
+        "howToFix": "Replace the water pump with an updated design featuring a metal impeller. Replace the thermostat and coolant at the same time. Pressure test the cooling system after repair.",
+        "catalog": "Article-quoted part number with independently narrowed vehicle fitment.",
+        "directLink": "Exact product link https://www.ebay.com/itm/377168092475?fits=Year%3A2016%7CEngine+-+Liter_Display%3A2.4L%7CModel%3A500X%7CMake%3AFiat&_skw=2016+Fiat+500X+2.4L+Gates+34845+Engine+Coolant+Thermostat&hash=item57d0f85d3b%3Ag%3AsN4AAeSwhkpp3Qjv&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049. Product ID 377168092475. Observed Manufacturer Part Number contains 34845. Observed title: Engine Coolant Thermostat-Integrated Housing Thermostat Gates 34845."
+      }
+    }
+  ]
+}

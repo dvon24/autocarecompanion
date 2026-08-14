@@ -11,11 +11,21 @@
 const CAMPAIGN_ID = process.env.NEXT_PUBLIC_EBAY_CAMPAIGN_ID;
 // US rotation id. EPN attributes clicks with mkevt/mkcid/mkrid/campid params.
 const MKRID = process.env.NEXT_PUBLIC_EBAY_MKRID || '711-53200-19255-0';
+const EBAY_DOMAINS = new Set([
+  'ebay.com', 'ebay.ca', 'ebay.co.uk', 'ebay.com.au', 'ebay.de', 'ebay.fr',
+  'ebay.it', 'ebay.es', 'ebay.at', 'ebay.be', 'ebay.ch', 'ebay.ie', 'ebay.nl', 'ebay.pl',
+]);
+
+function isEbayHost(hostname: string): boolean {
+  const host = hostname.toLowerCase().replace(/^www\./, '');
+  return [...EBAY_DOMAINS].some((domain) => host === domain || host.endsWith(`.${domain}`));
+}
 
 export function ebayAffiliate(url: string, customId?: string): string {
-  if (!CAMPAIGN_ID || !url || !/(^|\.)ebay\.[a-z.]+/i.test(url)) return url;
+  if (!CAMPAIGN_ID || !url) return url;
   try {
     const u = new URL(url);
+    if (u.protocol !== 'https:' || !isEbayHost(u.hostname)) return url;
     // Don't double-tag (resolver links are already tagged).
     if (u.searchParams.has('campid')) return url;
     u.searchParams.set('mkevt', '1');

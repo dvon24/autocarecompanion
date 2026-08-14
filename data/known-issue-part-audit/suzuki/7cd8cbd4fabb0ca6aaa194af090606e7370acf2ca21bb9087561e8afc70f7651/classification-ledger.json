@@ -1,0 +1,846 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-classification-ledger",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Suzuki",
+  "makeKey": "suzuki",
+  "makeIndex": 48,
+  "totalMakes": 54,
+  "issueCount": 18,
+  "classifications": [
+    "buyable",
+    "diagnosis-dependent",
+    "recall/dealer",
+    "service/tool/fluid",
+    "no-commerce"
+  ],
+  "counts": {
+    "buyable": 4,
+    "diagnosis-dependent": 2,
+    "recall/dealer": 2,
+    "service/tool/fluid": 3,
+    "no-commerce": 7
+  },
+  "diagnosticSummary": {
+    "issueWithDtcCount": 4,
+    "uniqueDtcCount": 13,
+    "instructionCount": 17,
+    "dtcDispositionCount": 4,
+    "toolLinkedCount": 4,
+    "procedureNoToolCount": 16,
+    "unresolvedToolHoldCount": 1
+  },
+  "unclassifiedCount": 0,
+  "zeroUnclassified": true,
+  "rows": [
+    {
+      "issueId": "suzuki-across-rav4-phev-12v-drain",
+      "make": "Suzuki",
+      "model": "Across",
+      "years": [
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "trims": [
+        "Plug-in Hybrid"
+      ],
+      "engines": [
+        "2.5 PHEV"
+      ],
+      "title": "Across PHEV 12V Auxiliary Battery Drain (Toyota RAV4 PHEV Rebadge)",
+      "howToFix": "Request a Toyota or Suzuki dealer to apply TSB 0095-20 firmware update and verify DC-DC ground connection (T-SB-0007-21). Use a 12V battery maintainer for parked stretches over 1 week. AGM 12V replacement around £200-£300 at independent. Symptoms typically appear at 10,000-30,000 miles per Toyota field data.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Request a Toyota or Suzuki dealer to apply TSB 0095-20 firmware update and verify DC-DC ground connection (T-SB-0007-21)."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-alto-wagon-r-valve-clearance",
+      "make": "Suzuki",
+      "model": "Alto",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020
+      ],
+      "trims": [
+        "GA",
+        "GL",
+        "GLX"
+      ],
+      "engines": [
+        "1.0 K10B"
+      ],
+      "title": "Alto / Wagon R K10B Valve Clearance Service (Shim-Under-Bucket)",
+      "howToFix": "Valve clearance check + adjustment at 96,000 km is in the service book — confirm it has been done. £200-£400 labor + shims. If skipped repeatedly, eventually a leak-down test will reveal valve burn — head rebuild £700-£1,200.",
+      "dtcCodes": [
+        "P0300",
+        "P0301",
+        "P0302",
+        "P0303"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Valve clearance check + adjustment at 96,000 km is in the service book — confirm it has been done."
+        },
+        {
+          "source": "solution",
+          "status": "unresolved-tool-hold",
+          "procedure": "unresolved-diagnostic-instruction",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "instruction-does-not-identify-safe-tool",
+          "excerpt": "If skipped repeatedly, eventually a leak-down test will reveal valve burn — head rebuild £700-£1,200."
+        },
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0300, P0301, P0302, P0303"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-grand-vitara-v6-timing-chain-tensioner-rattle",
+      "make": "Suzuki",
+      "model": "Grand Vitara",
+      "years": [
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "V6 (H25A/H27A) Timing Chain Tensioner Rattle",
+      "howToFix": "Replace the No. 1 timing chain tensioner per the Suzuki TSB; if any wear is evident on the chain, sprockets or guides, replace the full timing chain kit (chain, sprockets, guides/dampers and tensioners) as an assembly. The job requires removing the front of the engine/timing cover and is labor-intensive (roughly 8+ hours flat-rate). Use an OEM or quality timing kit and set timing precisely to avoid valve-to-piston contact.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 2,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "suzuki-grand-vitara-v6-timing-chain-tensioner-rattle--prescription-0-0--all-engines",
+        "suzuki-grand-vitara-v6-timing-chain-tensioner-rattle--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "suzuki-grand-vitara-n32a-timing-chain",
+      "make": "Suzuki",
+      "model": "Grand Vitara",
+      "years": [
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015
+      ],
+      "trims": [
+        "Limited",
+        "Luxury",
+        "Premium",
+        "XL-7"
+      ],
+      "engines": [
+        "3.2 N32A V6"
+      ],
+      "title": "Grand Vitara 3.2 V6 N32A Timing Chain Cover Gasket + Tensioner Issues",
+      "howToFix": "Cover gasket + tensioner refresh €600-€1,000. Full multi-chain kit (chains, tensioners, guides) €1,500-€2,800. Use 5W-30 dexos1 spec, stick to 8,000 km intervals. Severe chain skip means valve damage and rebuild.",
+      "dtcCodes": [
+        "P0008",
+        "P0009",
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0009, P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-grand-vitara-occupant-classification-system-sensor-mat-failure-unwanted-p",
+      "make": "Suzuki",
+      "model": "Grand Vitara",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Occupant Classification System (OCS) Sensor Mat Failure / Unwanted Passenger Airbag Deployment (Recall 13V405000)",
+      "howToFix": "Under NHTSA recall 13V405000, Suzuki dealers replace the front passenger seat cushion assembly (which includes the OCS sensor mat) at no charge. Owners should check by VIN whether their vehicle was remedied and watch for an illuminated passenger airbag on/off indicator that does not match the seat occupant.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners should check by VIN whether their vehicle was remedied and watch for an illuminated passenger airbag on/off indicator that does not match the seat occupant."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-grand-vitara-power-steering-pump-belt-tensioner-pulley-plastic-deteriorat",
+      "make": "Suzuki",
+      "model": "Grand Vitara",
+      "years": [
+        2006
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Power Steering Pump Belt Tensioner Pulley Plastic Deterioration / Sudden Loss of Power Steering",
+      "howToFix": "Have the recall (Suzuki campaign #4009 / 2010 and 2018 actions) completed at a Suzuki dealer, which replaces the power steering pump drive belt tension adjuster pulley free of charge with the corrected all-metal design. Out of scope, replace the deteriorated plastic-wrapped pulley with the updated metal pulley and inspect/replace the belt.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Out of scope, replace the deteriorated plastic-wrapped pulley with the updated metal pulley and inspect/replace the belt."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 3,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "suzuki-grand-vitara-power-steering-pump-belt-tensioner-pulley-plastic-deteriorat--prescription-0-0--all-engines",
+        "suzuki-grand-vitara-power-steering-pump-belt-tensioner-pulley-plastic-deteriorat--prescription-1-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "suzuki-grand-vitara-premature-low-beam-headlight-failure-melted-headlight-connec",
+      "make": "Suzuki",
+      "model": "Grand Vitara",
+      "years": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Premature Low-Beam Headlight Failure and Melted Headlight Connectors",
+      "howToFix": "Replace failed bulbs with quality H7 bulbs and inspect the socket/connector for heat damage; if the connector or pigtail is melted, replace the headlight socket/pigtail (and adapter) rather than just the bulb. Some owners upgrade to a higher-temperature ceramic connector or replace the headlight assembly. Check ground connections and the headlight circuit for high resistance.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Replace failed bulbs with quality H7 bulbs and inspect the socket/connector for heat damage;"
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check ground connections and the headlight circuit for high resistance."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "suzuki-grand-vitara-premature-low-beam-headlight-failure-melted-headlight-connec--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "suzuki-grand-vitara-drive-belt-tension-adjuster-pulley-spring-break",
+      "make": "Suzuki",
+      "model": "Grand Vitara",
+      "years": [
+        2009,
+        2010,
+        2011
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Drive Belt Tension Adjuster Pulley Spring Break (Recall 11V055000)",
+      "howToFix": "Under NHTSA recall 11V055000, Suzuki dealers replace the drive belt tension adjuster pulley free of charge. If out of warranty/recall scope, replace the failed tensioner pulley and inspect the serpentine belt for damage from a thrown/slipped belt.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "If out of warranty/recall scope, replace the failed tensioner pulley and inspect the serpentine belt for damage from a thrown/slipped belt."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "diagnosis-dependent",
+      "dispositionReason": "At least one replacement is conditional on a stated diagnostic result.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "suzuki-grand-vitara-drive-belt-tension-adjuster-pulley-spring-break--prescription-0-0--all-engines"
+      ]
+    },
+    {
+      "issueId": "suzuki-grand-vitara-manual-transmission-gear-shift-rear-shaft-can-break",
+      "make": "Suzuki",
+      "model": "Grand Vitara",
+      "years": [
+        2009,
+        2010,
+        2011,
+        2012,
+        2013
+      ],
+      "trims": [],
+      "engines": [],
+      "title": "Manual Transmission Gear Shift Rear Shaft Can Break (Recall 17V085000)",
+      "howToFix": "Under NHTSA recall 17V085000, authorized Suzuki dealers replace the gear shift rear shaft free of charge. Owners with affected manual-transmission Grand Vitaras should verify recall completion by VIN; if the shaft has already broken, replacing the shift linkage rear shaft restores gear selection.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Owners with affected manual-transmission Grand Vitaras should verify recall completion by VIN;"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "recall/dealer",
+      "dispositionReason": "The prescribed remedy is dealer, campaign, recall, or software work.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-jimny-mk3-king-pin-wear",
+      "make": "Suzuki",
+      "model": "Jimny",
+      "years": [
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "JLX",
+        "JX",
+        "SZ3",
+        "SZ4"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Jimny Mk3 King-Pin Bearing Wear (Front Axle Solid)",
+      "howToFix": "King-pin bearing kit (both sides) £100-£200 in parts; £350-£600 labor at a specialist. Use Suzuki/OEM bearings — pattern parts wear faster. Replace tracking-related components at same time (track-rod ends, drag link) since the front end is opened up.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "suzuki-jimny-mk3-king-pin-wear--prescription-0-0--all"
+      ]
+    },
+    {
+      "issueId": "suzuki-jimny-mk3-rust-chassis",
+      "make": "Suzuki",
+      "model": "Jimny",
+      "years": [
+        1998,
+        1999,
+        2000,
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018
+      ],
+      "trims": [
+        "JLX",
+        "JX",
+        "SZ3",
+        "SZ4"
+      ],
+      "engines": [
+        "1.3 M13A"
+      ],
+      "title": "Jimny Mk3 Chassis / Sill Corrosion (Salt-Belt)",
+      "howToFix": "Annual chassis inspection from year 7 in salt regions. Underseal/wax-cavity treatment is worth the cost. Chassis patch welding £400-£900 depending on extent. Rotted sills failing MOT can be repaired but full chassis replacement is rarely economical.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Annual chassis inspection from year 7 in salt regions."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-jimny-mk4-rust",
+      "make": "Suzuki",
+      "model": "Jimny",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "trims": [
+        "Commercial",
+        "Pro",
+        "SZ4",
+        "SZ5"
+      ],
+      "engines": [
+        "1.5 K15B"
+      ],
+      "title": "Jimny Mk4 Rear Wheel Arch / Tailgate Corrosion",
+      "howToFix": "Inspect arches and tailgate inner skin annually after year 2. Underseal proactively at year 3 in salt regions. Suzuki UK has done some goodwill repairs for in-warranty cases — request inspection at dealer. Patch repair £300-£600 per arch; tailgate replacement £800-£1,500.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Inspect arches and tailgate inner skin annually after year 2."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "professional-or-dealer-test",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-delegates-procedure",
+          "excerpt": "Suzuki UK has done some goodwill repairs for in-warranty cases — request inspection at dealer."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-swift-mk3-aircon-condenser",
+      "make": "Suzuki",
+      "model": "Swift",
+      "years": [
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010
+      ],
+      "trims": [
+        "Base",
+        "GL",
+        "GLX",
+        "Sport"
+      ],
+      "engines": [
+        "all"
+      ],
+      "title": "Swift Mk3 A/C Condenser Stone Damage / Corrosion",
+      "howToFix": "Replacement condenser £80-£150 part, £150-£300 labor + regas (£60-£100). Some owners fit a mesh stone guard from £20 to protect the new condenser. Check for damage at MOT.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check for damage at MOT."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-swift-k12b-timing-chain",
+      "make": "Suzuki",
+      "model": "Swift",
+      "years": [
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017
+      ],
+      "trims": [
+        "Sport",
+        "SZ2",
+        "SZ3",
+        "SZ4"
+      ],
+      "engines": [
+        "1.2 K12B"
+      ],
+      "title": "Swift 1.2 K12B Timing Chain Stretch / Tensioner Wear",
+      "howToFix": "Full timing chain kit (chain, tensioner, guides) replacement £400-£700 (~€450-€800) at an independent. Use full-synthetic 5W-30, ILSAC GF-5 or higher; stick to 10,000 km intervals max for short-trip use.",
+      "dtcCodes": [
+        "P0008",
+        "P0009",
+        "P0016",
+        "P0017"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0008, P0009, P0016, P0017"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "no-commerce",
+      "dispositionReason": "No positive owner-buyable repair prescription was found.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-swift-sport-zc33s-clutch",
+      "make": "Suzuki",
+      "model": "Swift",
+      "years": [
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Sport"
+      ],
+      "engines": [
+        "1.4 BoosterJet K14C"
+      ],
+      "title": "Swift Sport ZC33S Clutch Judder / Premature Wear",
+      "howToFix": "Replacement clutch kit (cover, plate, release bearing) £500-£900 incl. labor. Some specialists offer uprated kits (Helix, Sachs Performance) at +£100. DMF retrofit is debated — adds NVH improvement but doubles cost. Drive with measured launches.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [],
+      "existingCommerceClaimIds": [],
+      "disposition": "buyable",
+      "dispositionReason": "The solution prescribes an owner-buyable component or existing commerce requires re-review.",
+      "prescriptionCount": 1,
+      "existingFixPartCount": 0,
+      "workItemIds": [
+        "suzuki-swift-sport-zc33s-clutch--prescription-0-0--1-4-boosterjet-k14c"
+      ]
+    },
+    {
+      "issueId": "suzuki-sx4-1.9-ddis-egr-dpf",
+      "make": "Suzuki",
+      "model": "SX4",
+      "years": [
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014
+      ],
+      "trims": [
+        "AWD",
+        "Base",
+        "GL",
+        "GLX"
+      ],
+      "engines": [
+        "1.9 DDiS (Fiat 8V 939A)"
+      ],
+      "title": "SX4 1.9 DDiS EGR + DPF Issues (Fiat-Sourced Diesel)",
+      "howToFix": "EGR clean: £150-£300. DPF forced regen (dealer): £80-£150 if not yet collapsed; full DPF replacement £700-£1,400. Drive at sustained 70+ mph for 20+ min monthly to enable passive regen. Many independents will EGR/DPF delete + remap — illegal in most markets.",
+      "dtcCodes": [
+        "P0401",
+        "P2002",
+        "P2452",
+        "P2453",
+        "P2459"
+      ],
+      "diagnosticDispositions": [
+        {
+          "source": "dtcCodes",
+          "status": "tool-linked",
+          "procedure": "scan-codes",
+          "toolId": "ancel-ad310",
+          "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+          "reasonCode": "dtc-family-capability-matched",
+          "excerpt": "P0401, P2002, P2452, P2453, P2459"
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-vitara-m16a-oil-consumption",
+      "make": "Suzuki",
+      "model": "Vitara",
+      "years": [
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022
+      ],
+      "trims": [
+        "S",
+        "SZ-T",
+        "SZ4",
+        "SZ5"
+      ],
+      "engines": [
+        "1.6 M16A"
+      ],
+      "title": "Vitara 1.6 M16A Oil Consumption",
+      "howToFix": "Monitor oil monthly. Top-up only with matching grade (5W-30 ILSAC GF-5+). Heavy consumption (>1L/5,000km) warrants valve-seal/ring inspection — engine flush + Italian tune-up sometimes restores ring sealing temporarily.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Monitor oil monthly."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Heavy consumption (>1L/5,000km) warrants valve-seal/ring inspection — engine flush + Italian tune-up sometimes restores ring sealing temporarily."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    },
+    {
+      "issueId": "suzuki-vitara-1.4-boosterjet-oil-dilution",
+      "make": "Suzuki",
+      "model": "Vitara",
+      "years": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "trims": [
+        "Allgrip",
+        "Sport",
+        "SZ-T",
+        "SZ5"
+      ],
+      "engines": [
+        "1.4 BoosterJet K14C"
+      ],
+      "title": "Vitara 1.4 BoosterJet Oil Dilution (Short-Trip Use)",
+      "howToFix": "Check oil monthly — note any rise above max. Take a 30-minute fully-warmed-up drive weekly to boil off fuel. Persistent dilution means oil change every 5,000 km not 10,000. Pre-2022 K14C: use API SP-rated 5W-30 (better than original SN spec). 2022+ K14D: use 0W-20 API SP per updated Suzuki spec. Severe dilution (oil level rising 5mm+) warrants injector leakage or piston-ring inspection.",
+      "dtcCodes": [],
+      "diagnosticDispositions": [
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Check oil monthly — note any rise above max."
+        },
+        {
+          "source": "solution",
+          "status": "procedure-no-tool",
+          "procedure": "inspection-or-monitoring",
+          "toolId": null,
+          "productUrl": null,
+          "reasonCode": "article-prescribes-observation-not-instrument",
+          "excerpt": "Severe dilution (oil level rising 5mm+) warrants injector leakage or piston-ring inspection."
+        }
+      ],
+      "existingCommerceClaimIds": [],
+      "disposition": "service/tool/fluid",
+      "dispositionReason": "The remedy is a service, tool, consumable, or fluid procedure rather than a repair part.",
+      "prescriptionCount": 0,
+      "existingFixPartCount": 0,
+      "workItemIds": []
+    }
+  ]
+}

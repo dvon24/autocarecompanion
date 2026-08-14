@@ -1,0 +1,1552 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Chevrolet",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 552,
+    "issuesWithDtcCodes": 268,
+    "uniqueDtcCount": 232,
+    "solutionInstructionCount": 589,
+    "dtcDispositionCount": 268,
+    "toolLinkedDispositionCount": 210,
+    "procedureNoToolDispositionCount": 485,
+    "unresolvedToolHoldCount": 162,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "chevrolet-avalanche-4l60e-transmission-3-4-clutch-failure-slipping",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0741, P0748, P1870",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-avalanche-abs-unwanted-activation-2002",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0045, C0050",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-avalanche-unwanted-low-speed-abs-activation-recall-05v379",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0045",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-blazer-electric-shift-transfer-case-encoder-motor-tccm-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose whether the encoder motor runs when a shift is commanded;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-blazer-kelsey-hayes-abs-wheel-speed-sensor-ebcm-faults-corroded-gro",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0227, C0265",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-blazer-np8-push-button-4wd-transfer-case-encoder-motor-selector-fai",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Diagnose with a scanner (encoder position codes).",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-blazer-np8-push-button-4wd-transfer-case-encoder-motor-selector-fai",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "codes must be cleared with a scan tool after replacement or the case may not shift correctly.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-blazer-np8-push-button-4wd-transfer-case-encoder-motor-selector-fai",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0327",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-blazer-start-stop-battery-2019",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "After replacement, a battery sensor reset via a scan tool is required.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-blazer-start-stop-battery-2019",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0562, U0100",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-blazer-s10-transfer-case-1990",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the system by engaging 4WD on a loose surface.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-blazer-s10-cpi-leak-1992",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test for leaks with a fuel pressure gauge before closing up.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-bolt-ev-battery-degradation-2017",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A80, P1E00",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-bolt-ev-battery-fire-recall-2017",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A80, P1E00, P1FFF",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-bolt-ev-cabin-heater-2017",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose heater control module and PTC heater element.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-bolt-ev-infotainment-ghosting-2017",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U0151, U0155",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-ck-1500-fuel-pump-failure-1990",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Because sender failure is common, replacing the full module usually restores both fuel delivery and gauge accuracy;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-ck-2500-fuel-pump-1990",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "on dual-tank trucks, also test the tank selector valve for proper switching and fuel flow because a failed valve can mimic pump failure and cause starvation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-ck-2500-65l-diesel-injection-pump-1992",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "a known-good remote-mounted PMD test module is often the quickest confirmation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-c10-external-regulator-generator-alternator-charging-points-igni",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "run the proper 12-gauge switched feed to the HEI.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-unreliable-breaker-point-ignition-weak-factory-coil-feed",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Before converting an old distributor, do the 'wiggle test' on the shaft;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-lt1-optispark-distributor-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "16, 36, 42, P0300",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-4l60e-automatic-transmission-3-4-clutch-pack-sun-shell-failu",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0748, P0756, P1870",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-c-condenser-refrigerant-leak",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pressure/UV-dye test to locate the leak.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-front-wheel-bearing-hub-assembly-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0045",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-hvac-blend-door-actuator-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0408, B0423",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-l99-afm-lifter-failure-2010",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis usually starts with a persistent misfire, ticking, and cylinder-specific contribution loss;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-l99-afm-lifter-failure-2010",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0300, P0301, P0304, P0306, P0307, P3400, P3497",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-reduced-engine-power-limp-mode-from-throttle-body-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for P2135 (and related P2101/pedal codes).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-reduced-engine-power-limp-mode-from-throttle-body-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1516, P2101, P2135",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-timing-chain-stretch-and-2010",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for correlation codes and compare camshaft actual vs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-mylink-hmi-infotainment-module-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U0028, U0100",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-camaro-fuel-pump-high-pressure-fuel-pump-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose fuel-rail pressure with a scan tool;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-camaro-cooling-system-overheating",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Coolant system pressure test to find leaks.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-camaro-airbag-emblem-separation",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0100, B0101, B0102",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-cavalier-pass-lock-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2960",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-cobalt-front-hub-bearing-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-cobalt-power-steering-failure-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545, C0710",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-colorado-abs-module-wheel-2004",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan the EBCM for wheel speed sensor data and compare all four wheel speeds during a slow stop.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-colorado-abs-module-wheel-2004",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0050, C0245",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-colorado-blower-motor-resistor-and-2004",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the new resistor fails again quickly, the blower motor should be amperage-tested and replaced if current draw is excessive.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-colorado-passlock-ignition-switch-failure-2004",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2960, B3031, B3055",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-colorado-diesel-emissions-2016",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If DEF quality warning appears, have system diagnosed - may need sensor replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-corvette-cooling-fan-relay-failure-late-fan-engagement",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test and replace the failed cooling fan relay and/or coolant temperature sensor — both are inexpensive parts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-corvette-digital-lcd-instrument-cluster-scrambling-backlight-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For fuel-gauge creep and wrong FUEL RATE readings, repair the ground wire at the center lock pillar on coupes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-corvette-tank-fuel-pump-fuel-sending-unit-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "replace the fuel-level sending unit if gauge readings are off.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-cruze-pcv-valve-cover-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0106, P0171, P0300, P1101",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-front-wheel-bearing-and-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-hvac-blend-door-actuator-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0229, B0414, B0424",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-passenger-presence-system-failure-2005",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0081, B0092, B0098",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-brake-pressure-modulator-valve-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0245, C0265",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-p0430-bank-2-catalytic-converter-efficiency-loss-v6-equinox",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Compare Bank 2 upstream vs downstream O2 sensor data on a scan tool — a downstream sensor that switches rapidly with the upstream one indicates a worn converter;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-2-4l-ecotec-excessive-oil-consumption",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have an oil-consumption test performed (documented quart-per-mile measurement) to qualify for goodwill/settlement coverage.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-p0442-small-evap-leak-from-gas-cap-seal-purge-vent-solenoid",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace the purge or vent solenoid only if the smoke test localizes the leak there;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-p0700-transmission-fault-flag-from-6t40-6t45-tcc-solenoid",
+      "source": "solution",
+      "procedure": "vag-scan-codes",
+      "excerpt": "Scan the TCM (not just generic powertrain codes) to retrieve the companion code — most commonly P0741 on this platform, or a shift-solenoid code.",
+      "reasonCode": "vag-vehicle-context-unproven",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-turbo-wastegate-regulator-solenoid-failure-causing-overboost",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Clear codes and re-test boost.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-turbo-wastegate-regulator-solenoid-failure-causing-overboost",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0101, P0234, P0299, P0506, P1101",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-1-5l-turbo-coolant-loss-overheating",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0101, P0299, P1101",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-1-6l-diesel-nox-sensor-failure-def-system-faults-causing-red",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan and record all emissions DTCs (e.g., P11DB, P249D) and freeze-frame data.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-1-6l-diesel-nox-sensor-failure-def-system-faults-causing-red",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P11DB, P249D",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-inaccurate-fuel-gauge-fuel-level-sender-misreading",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose by graphing fuel-level sender voltage vs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-equinox-panoramic-sunroof-drain-tube-clog-disconnect-causing-water-c",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Re-test by flooding each drain corner with water and confirming it exits underneath.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-equinox-ev-software-glitch-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U0100, U0140",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-express-stabilitrak-2008",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for specific wheel speed sensor codes to identify which corner has failed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-express-stabilitrak-2008",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0045, C0050, C0561, C0562",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-hhr-inaccurate-fluctuating-fuel-gauge",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "This restores accurate gauge readings.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-hhr-passlock-anti-theft-system-no-start",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2960, B3033",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-hhr-sudden-loss-electric-power-steering-assist",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545, C0550",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-hhr-power-steering-failure-2006",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-hhr-transmission-shift-cable-rollaway-recall-harsh-shifting",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1811",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-impala-4t65e-failure-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0741, P0742, P0751, P1811",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-impala-passlock-security-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2960, P1626, P1631",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-impala-ignition-switch-recall-2003",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0100, B1000, U1000",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-impala-erratic-fuel-gauge-from-faulty-fuel-level-sensor-sending-uni",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "gauge: an erratic/fluctuating needle points to the fuel level sensor/sending unit, while a gauge that won't rest at E (key off) or reach F (full tank) points to the gauge/cluster.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-impala-front-abs-wheel-speed-sensor-wiring-harness-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0045, C0050",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-impala-reduced-engine-power-service-stabilitrak-from-throttle-body",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for throttle/pedal DTCs before replacing parts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-malibu-hazard-warning-switch-causing-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis is usually straightforward when turn signals work intermittently and the fault changes when the hazard switch is pressed or wiggled.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-malibu-passlock-anti-theft-system-causing-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2958, B2960, B3031",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-malibu-body-control-module-and-2004",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1001, U1000, U1064",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-malibu-front-wheel-bearing-and-2004",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-malibu-ac-compressor-clutch-2008",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0408, P0533",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-malibu-eps-motor-failure-2008",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545, C0710, U0073",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-malibu-power-steering-motor-2013",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the EPS motor and torque sensor diagnosed with a scan tool — the module stores specific fault codes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-malibu-power-steering-motor-2013",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545, C0710, U0073",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-monte-carlo-abs-module-2000",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Bleeding the ABS system requires a scan tool to cycle the pump and valves.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-monte-carlo-abs-module-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0265, C0267, C0269",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-s-10-4wd-front-axle-vacuum-actuator-engagement-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the vacuum circuit and replace the failed actuator, cracked vacuum lines, and/or transfer-case vacuum switch.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-s-10-4l60e-automatic-transmission-3-4-clutch-sunshell-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0748, P0756, P1870",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-s-10-4-3l-vortec-csfi-spider-injector-poppet-valve-leaking-cloggi",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A spider-plug/fuel-pressure test isolates a leaking poppet before replacement.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-fuel-pump-control-module-corrosion-crank-no-start",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0230, P023F, P0628, U0109",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-6-6l-duramax-lml-bosch-cp4-2-fuel-pump-failure-whole-fuel-sy",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0087, P0088, P0093, P128F",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-brake-vacuum-pump-failure-hard-brake-pedal",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1429",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-temporary-loss-electric-power-steering-assist",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545, U0428",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-4l60e-automatic-transmission-3-4-clutch-pack-sun-shell-failu",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0729, P0731, P0732, P0733, P0734, P0748, P1870",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-passlock-anti-theft-crank-no-start",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B2960, B3031, B3033",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado1500-blend-door-hvac-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B0229, B0414, B0424",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado1500-front-wheel-hub-bearing-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado1500-transfer-case-encoder-motor-2000",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0321, C0327, C0374, C0550",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-oil-pressure-sending-unit-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the gauge itself doesn't respond when the sensor is unplugged, the instrument-cluster stepper motor is the culprit instead.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-oil-pressure-sending-unit-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Don't replace the oil pump on a bad-reading gauge alone.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-5-3l-v8-collapsed-failed-lifter-causing-ticking-cylinder-mis",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with a running-compression test on the misfiring cylinder (an AFM lifter that stays below ~25 PSI regardless of solenoid command is collapsed).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-brake-vacuum-pump-degradation-reducing-power-brake-assist",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Out-of-recall vehicles experiencing a hard pedal should have the vacuum pump tested and replaced if output is low, and the oil change interval kept current to limit sludge.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-service-stabilitrak-service-traction-control-reduced-engine",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Scan for stored codes (commonly P2138 and related APP/throttle codes) and read live throttle/pedal data.",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-service-stabilitrak-service-traction-control-reduced-engine",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0561, P2135, P2138",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-sudden-loss-electric-power-steering-assist-eps-rack-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545, U0131",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-2-7l-turbomax-lifter-failure-intake-valve-carbon-buildup-hig",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose lifter/misfire with a scan tool;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-auto-stop-start-quits-working-from-battery-state-charge-faul",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Load-test the battery and clean/tighten the terminals and negative ground.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-3-0l-duramax-service-emission-system-limp-mode-from-def-nox",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for the specific reductant/NOx code before parts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-3-0l-duramax-service-emission-system-limp-mode-from-def-nox",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P11D2, P203F, P204F, P20EE",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-3-0l-duramax-engine-coolant-control-valve-failure",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Scan for codes (P1098 / P26BB are commonly reported);",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-1500-3-0l-duramax-engine-coolant-control-valve-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1098, P26BB",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-2500hd-transfer-case-encoder-1999",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "After replacement, use a scan tool to relearn the encoder motor position.",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-2500hd-transfer-case-encoder-1999",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0327, C0387, C0569",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-3500hd-glow-plug",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace glow plug controller module if diagnostics indicate module failure.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-silverado-3500hd-allison-tcm-2006",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0880, U0101",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-3500hd-def-system",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose specific DEF component failure.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-silverado-3500hd-def-system",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Clear adaptation values with scan tool.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-silverado-3500hd-def-system-2011",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the specific fault code to determine which DEF component failed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-silverado-ev-charging-fault-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0AF0, P0D00",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-silverado-ev-propulsion-reduced-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A09, P1E00",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-sonic-14t-pcv-valve-cover-2012",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0106, P0171, P0299, P0507, P1101",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-sonic-check-engine-electrical-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the specific DTC codes read with a proper scan tool (not just a basic code reader).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-sonic-transmission-turbine-shaft-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If transmission slipping or shuddering begins, have it diagnosed immediately before complete failure occurs.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-ss-electric-power-steering-failure-2014",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545, C0710",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-suburban-4l60e-transmission-3-4-clutch-failure-loss-3rd-4th",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0748, P1870",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-suburban-front-wheel-hub-bearing-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-suburban-vortec-v8-cold-start-piston-slap",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Persistent, worsening, or hot-running knock should be diagnosed to rule out a real bearing/rod knock;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-suburban-reduced-engine-power-throttle-body-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1516, P2101, P2135",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-suburban-steering-column-lock-2015",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A scan tool is needed to program the new module to the BCM after installation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-suburban-steering-column-lock-2015",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B1325, B2958, U0140",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-4l60e-automatic-transmission-3-4-clutch-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan for solenoid/pressure codes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-4l60e-automatic-transmission-3-4-clutch-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0218, P0748, P0756, P0894, P1870",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-4l60e-transmission-loss-reverse",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose first with a line-pressure test in reverse to separate hydraulic (valve body/servo) from mechanical (sunshell/clutch) causes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-4l60e-transmission-loss-reverse",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0894, P1870",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-csfi-spider-poppet-fuel-injector-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with a fuel-pressure gauge (pressure that bleeds down after shutoff points to leaking poppets).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-ebcm-abs-module-failure-corroded-ground",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0110, C0265",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-reduced-engine-power-limp-mode-electronic-throttle-system",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Retrieve codes to isolate the branch: P1515/P1516 point at the TAC/throttle actuator, P2135/P0120-series at the TPS/APP correlation.",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-reduced-engine-power-limp-mode-electronic-throttle-system",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0120, P1515, P1516, P2101, P2135",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-fuel-level-sensor-sending-unit-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "First rule out a blown fuel-gauge/sender fuse and attempt a scan-tool sensor recalibration.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-fuel-level-sensor-sending-unit-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the gauge is still erratic, replace the fuel level sending unit — on high-mileage trucks replace the complete in-tank fuel pump module (ACDelco/Delphi module) since the pump often follows.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tahoe-hvac-blend-mode-door-actuator-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if gears merely lost sync a scan-tool relearn can sometimes clear it without parts.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-tracker-4wd-actuator",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test 4WD engagement monthly to keep actuator exercised.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-trailblazer-infotainment-freeze-2021",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U0184",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-traverse-loss-power-steering-assist-from-hydraulic-power-steering-pum",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose the hydraulic power steering system for pressure loss;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-traverse-c-condenser-refrigerant-line-leak-causing-loss-cooling",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the system evacuated and dye/pressure leak-tested.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-traverse-hvac-blend-door-actuator-failure-warm-air-one-side-inconsist",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose and replace the failed HVAC blend door actuator(s) for the affected zone, then recalibrate the climate system.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-traverse-intermittent-no-crank-no-start-from-connector-x203-wake-up-f",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "the second bulletin addresses the no-crank codes with module diagnosis and reprogramming.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-traverse-intermittent-no-crank-no-start-from-connector-x203-wake-up-f",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P135A, P135B, P16A7, P16AF",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-traverse-service-stabilitrak-traction-control-warnings-reduced-power",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Always pull DTCs first — wheel speed sensor codes point to a sensor/tone-ring replacement, while misfire codes (P0300-series) mean the StabiliTrak light is secondary and the misfire/ignition cause must be fixed.",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-traverse-service-stabilitrak-traction-control-warnings-reduced-power",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Resist clearing the light without diagnosis;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-traverse-service-stabilitrak-traction-control-warnings-reduced-power",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0035, C0040, C0045, P0301, P0302, P0303, P0304",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-trax-11-inch-infotainment-screen-freezing-2024",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "if the concern persists, diagnosis focuses on display, radio, or communication faults on the infotainment network.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-trax-12-volt-battery-drain-or-2024",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Repeated jump-starting without root-cause diagnosis can mask the actual draw problem.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-trax-rearview-camera-image-missing-2024",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis should include verifying camera power/ground, coax or video signal integrity, and whether the issue is isolated to the camera or part of a broader infotainment dropout.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-trax-rearview-camera-image-missing-2024",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If software updates do not resolve it, dealers may replace the camera or radio/display components depending on test results.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-trax-rearview-camera-image-missing-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "B127B, B127E",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-uplander-power-steering",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C0545, C0550",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-volt-120v-charging-cord-overheating-melting-plug",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "GM ran a customer-satisfaction service campaign (11888, not a formal safety recall) replacing the original 120V EVSE on affected 2011-2012 Volts (US and Canada) with an upgraded 14-gauge unit, free of charge.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevrolet-volt-gen-1-reduced-propulsion-power-hv-battery-low-voltage-cell-b",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A7F",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-volt-battery-coolant-heater-2011",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0AA6, P1E00",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-volt-becm-power-loss-2016",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0A1F, P1E00",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "chevy-volt-shift-to-park-2016",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P1F11",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}

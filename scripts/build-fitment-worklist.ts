@@ -57,7 +57,9 @@ if (snapshotFile) (async () => {
     snapshotHash: string;
     records: FrozenIssueRecord[];
   };
-  if (snapshot.snapshotKind !== 'known-issues-catalog-deeplinks') throw new Error('Invalid frozen snapshot kind');
+  if (!['known-issues-catalog-deeplinks', 'known-issue-make-source'].includes(snapshot.snapshotKind)) {
+    throw new Error('Invalid frozen snapshot kind');
+  }
   if (!/^[a-f0-9]{64}$/i.test(snapshot.snapshotHash || '')) throw new Error('Frozen snapshot has no valid snapshotHash');
   const packet = buildFitmentPacket(snapshot.records, make);
   if (!packet.ledger.length) throw new Error(`Frozen snapshot has no published ${make} issues`);

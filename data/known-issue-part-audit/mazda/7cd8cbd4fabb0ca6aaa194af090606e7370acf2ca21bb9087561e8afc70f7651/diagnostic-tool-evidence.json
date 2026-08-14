@@ -1,0 +1,679 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-diagnostic-tool-evidence",
+  "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
+  "make": "Mazda",
+  "status": "IN_PROGRESS",
+  "scope": {
+    "issueCount": 259,
+    "issuesWithDtcCodes": 71,
+    "uniqueDtcCount": 76,
+    "solutionInstructionCount": 251,
+    "dtcDispositionCount": 71,
+    "toolLinkedDispositionCount": 63,
+    "procedureNoToolDispositionCount": 194,
+    "unresolvedToolHoldCount": 65,
+    "uncoveredDiagnosticInstructionCount": 0
+  },
+  "makeToolLinks": [
+    {
+      "toolId": "ancel-ad310",
+      "productUrl": "https://www.amazon.com/ANCEL-AD310-Enhanced-Universal-Diagnostic/dp/B01G5EA74I?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ad310",
+      "capability": "Generic OBD-II powertrain-code reading for canonical generic P-family DTCs.",
+      "restriction": "Does not establish manufacturer-specific, body, chassis, network, hybrid/EV, or exact-vehicle compatibility."
+    },
+    {
+      "toolId": "dc-clamp-meter-low-current",
+      "productUrl": "https://www.amazon.com/UNI-T-Digital-Handheld-Resistance-Capacitance/dp/B0188WD1NE?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://meters.uni-trend.com/product/ut210-series",
+      "capability": "Low-current DC clamp measurement for explicit parasitic-draw procedures.",
+      "restriction": "Not inferred from a parasitic-drain symptom alone."
+    },
+    {
+      "toolId": "fluke-15b-plus",
+      "productUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "manufacturerEvidenceUrl": "https://www.fluke.com/en-us/product/electrical-testing/digital-multimeters/fluke-15b-plus",
+      "capability": "AC/DC voltage and current, resistance, continuity, capacitance, frequency and diode tests.",
+      "restriction": "Not a waveform scope and not inferred when the article does not explicitly prescribe a multimeter."
+    }
+  ],
+  "reusableReviewedTools": [
+    {
+      "toolId": "autoline-hypersmoke",
+      "productUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "manufacturerEvidenceUrl": "https://www.autolinepro.com/products/autoline-pro-hypersmoke-machine",
+      "capability": "Smoke testing for EVAP, vacuum, intake, exhaust and turbo/boost leaks, with a dedicated 0-1 psi EVAP mode.",
+      "restriction": "Only shown when the How-to-Fix explicitly prescribes a smoke test."
+    },
+    {
+      "toolId": "battery-conductance-tester",
+      "productUrl": "https://www.amazon.com/ANCEL-BA101-Professional-Automotive-Motorcycle/dp/B01M0ARG3X?tag=au7o-20",
+      "manufacturerEvidenceUrl": "https://www.ancel.com/products/ancel-ba101",
+      "capability": "Battery state of health, CCA and internal-resistance analysis.",
+      "restriction": "Not a true resistive battery load tester; load-test wording is an unresolved-tool hold."
+    },
+    {
+      "toolId": "otc-5606-compression",
+      "productUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/compression-tester-kit",
+      "capability": "0-300 psi compression testing on gasoline engines with 10, 12, 14 and 18 mm adapters.",
+      "restriction": "Requires explicitly proven gasoline-engine context; suppressed for diesel, EV and unknown engine context."
+    },
+    {
+      "toolId": "otc-5610-oil-pressure",
+      "productUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/transmissionengine-oil-pressure-kit",
+      "capability": "Mechanical engine/transmission oil-pressure testing with 0-100 psi and 0-400 psi gauges and 13 adapters.",
+      "restriction": "Owner must confirm the correct engine-port adapter and factory pressure specification."
+    },
+    {
+      "toolId": "otc-5630-fuel-pressure",
+      "productUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/fuel-pressure-tester-kit",
+      "capability": "0-100 psi fuel-system pressure testing with a relief valve and brass fittings.",
+      "restriction": "Requires proven compatible low-pressure gasoline application; suppressed for diesel, direct-injection high-pressure rail, flex-fuel and unknown engine context."
+    },
+    {
+      "toolId": "otc-6977-cooling-pressure",
+      "productUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "manufacturerEvidenceUrl": "https://www.otctools.com/products/universal-cooling-system-pressure-test-kit",
+      "capability": "Cooling-system pressure testing through supplied hose and cap adapters.",
+      "restriction": "Owner must confirm an included adapter matches the vehicle before buying."
+    },
+    {
+      "toolId": "ross-tech-vcds-hex-v2",
+      "productUrl": "https://store.ross-tech.com/shop/vchv2_ent/",
+      "manufacturerEvidenceUrl": "https://www.ross-tech.com/vcds/hex-v2.php",
+      "capability": "Licensed VCDS interface for diagnostic-capable Volkswagen/Audi Group passenger cars, including manufacturer-specific control-module diagnostics.",
+      "restriction": "Limited to supported VAG vehicles and VIN count; 1990-1994 applications require separate legacy/adapter review, and hybrid/EV coverage remains fail-closed here."
+    }
+  ],
+  "holds": [
+    {
+      "issueId": "mazda-626-cd4e-4-speed-automatic-transmission-premature-failure",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0730, P0733, P0741, P1744",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-626-distributor-failure-1993",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "The ignition control module (ICM) should also be tested, as it can cause similar symptoms.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Always retract the EPB using the maintenance/service mode (scan tool or owner's-manual procedure) before rear pad service.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+      "source": "solution",
+      "procedure": "scan-codes",
+      "excerpt": "Diagnose with a scanner for C2005 / C112A-type motor-position codes, then inspect the actuator connector for bent or corroded pins (a frequently overlooked fix) before condemning the motor.",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-5-electronic-parking-brake-actuator-connector-malfunction",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C112A, C2005",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-5-i-stop-agm-battery-premature-failure-start-stop-system-malfu",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "After replacement the battery must be registered/i-stop re-initialized (disconnect-and-relearn or scan tool) so the charging system manages it correctly.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-5-skyactiv-g-2-5t-cracked-cylinder-head-coolant-leak",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P111A",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-50-cylinder-deactivation-solenoid-failure-metal-shavings-oil",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P3400",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-60-keyless-entry-fails-to-unlock-door-re-locks-touch",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "First replace the fob coin-cell batteries (both keys) and re-test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-60-wireless-qi-charger-overheating-won-t-fast-charge-phone",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If red flashing continues, test another compatible cool device under the same conditions.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-60-wireless-qi-charger-overheating-won-t-fast-charge-phone",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the indicator is solid red, or a verified compatible device still fails after the conditions are met, have Mazda diagnose the charger by VIN.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-12v-battery-drain-warning",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the VIN is not covered or the drain remains, fully charge the 12V battery, test its condition and charging strategy, measure key-off current only after all modules have had time to sleep, and isolate the circuit that remains awake.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-12v-battery-drain-warning",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace the 12V battery only if it fails the appropriate test, using the exact installed specification for that powertrain and completing any required battery initialisation.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-12v-battery-drain-warning",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Repeatedly discharged batteries should be tested because deep discharge can cause permanent capacity loss.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-diesel-clunk-vibration-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "An OBD scanner or oil-and-filter bundle is not the repair for either condition.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-phev-charging-fault-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If safe and permitted by the manual, retry once after waiting and test a known-good compatible charging point to isolate the supply from the vehicle.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-phev-charging-fault-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A red indicator, charge warning, repeated failure on multiple known-good stations, or damaged port requires an authorised high-voltage diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-phev-ev-range-accuracy-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If usable energy or actual EV distance falls abruptly under comparable conditions, charge disappears while parked, a warning appears, or EV mode repeatedly cancels without a documented reason, ask Mazda for campaign status, high-voltage-battery state-of-health data, charging history, relevant DTCs, and BECM diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-phev-insulation-resistance-recall-as007a",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If P0AA6:00 remains after the campaign software is completed, Mazda's bulletin says the vehicle must be diagnosed for a genuine insulation fault rather than assuming every recurrence is false detection.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-phev-insulation-resistance-recall-as007a",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0AA6:00",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-phev-transmission-jerk-2022",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Scan all powertrain modules and complete only the Mazda-directed programming, initial learning, or adaptation procedure that applies to that VIN.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-software-warnings-recall-ar058a",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose any remaining instrument blackout, low-12V warning, no-restart, or drivability symptom under its own stored faults and applicable campaign;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-sticky-notchy-steering-rack",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If symptoms remain after the recall, return for steering diagnosis rather than assuming a full rack is required.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-infotainment-lag-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For wired testing, use the correct USB port and a known-good Apple-approved or phone-manufacturer-approved data cable;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx60-infotainment-lag-2023",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "test another compatible phone to separate a phone problem from a vehicle problem.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-70-12v-battery-drain-dead-battery-while-parked",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have the battery fully charged and tested with Mazda's specified procedure;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-70-engine-malfunction-have-engine-inspected-warning-from-c-refr",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0531",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-70-hybrid-system-malfunction-warning-engine-stall-power-loss",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis and reprogramming are covered under the hybrid/powertrain warranty;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-70-inaccurate-fuel-gauge-reading",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Until repaired, refuel earlier than the gauge suggests.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-70-phantom-braking-false-smart-brake-support-activation",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Mazda Connect can turn SBS off as a temporary risk-control choice while arranging diagnosis, but that removes collision-mitigation assistance and is not a repair.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-70-phev-fails-to-charge-charger-shows-service-fault",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "a red vehicle indicator or a fault that persists after the manual checks requires Mazda diagnosis.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-70-phev-fails-to-charge-charger-shows-service-fault",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "A trained repairer should read charging-system faults and determine whether the problem follows the supply equipment or the vehicle before naming an OBC, inlet, lead-acid battery, or cable.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-70-sudden-unintended-low-speed-acceleration-forward-lurch",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnosis and reprogramming are covered under warranty;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx9-rear-diff-coupling-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Reset the coupling adaptation with a Mazda scan tool after service.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx9-rear-diff-coupling-2007",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1288, P1889",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-90-48v-mhev-battery-cell-imbalance-engine-malfunction-light-los",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0DAB",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx-90-inaccurate-fuel-gauge-causing-unexpected-stalling-recall-782",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Until repaired, refuel earlier than the gauge suggests and track mileage rather than relying on the gauge or range-to-empty estimate.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-cx90-transmission-jerkiness-2024",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "P0700, P0730, P0741, P0751",
+      "reasonCode": "hybrid-ev-scanner-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda3-purge-valve-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "run the KOEO EVAP test;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda3-purge-valve-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "locate other leaks with the specified detector or smoke-test process;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda3-purge-valve-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "and test purge-valve gas tightness.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda3-purge-valve-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "For P0441, run Mazda's KOER purge-flow self-test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda3-purge-valve-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace the purge solenoid only if it fails the stated sealing or flow test, then repeat the EVAP test.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda3-carbon-buildup-di-2012",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If the freeze-frame pattern does not match, follow normal misfire diagnosis for ignition coils, plugs, injectors, compression, vacuum leaks, fuel quality, and other causes.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda3-infotainment-crash-2014",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "If neither bulletin applies, follow Mazda's symptom diagnosis rather than ordering a used or generic CMU from this card.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda3-infotainment-crash-2014",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "U3000:49",
+      "reasonCode": "manufacturer-code-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda6-alternator-failure-2003",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test the battery and replace if it has been deeply discharged.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mazda6-melting-sticky-dashboard-crash-pad",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "diagnosis, current coverage and the VIN-specific service part must be confirmed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-speed3-turbo-failure-2007",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Perform a boost leak test with a pressurized adapter at every 30,000-mile interval.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-miata-crank-angle-sensor-o-ring-valve-cover-gasket-oil-leaks",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose by sliding cardboard under the engine and noting where drips land — rear means CAS O-ring, front means front crank seal, sides/top means valve cover.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-miata-crankshaft-thrust-bearing-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose by measuring crankshaft endplay with a dial indicator at the front pulley while an assistant works the clutch pedal: more than ~0.008 in.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mpv-sliding-door",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose specific component — motor, cable, or latch.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mx5-miata-nc-power-steering-2006",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with a Mazda scan tool to identify the specific failed component (sensor, module, or motor).",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-mx5-miata-nc-power-steering-2006",
+      "source": "dtcCodes",
+      "procedure": "scan-codes",
+      "excerpt": "C1515, C1516, C1530",
+      "reasonCode": "non-powertrain-module-capability-unverified",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-protege-alternator-failure-1995",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Test output voltage at the battery (should be 13.8-14.4V) and load test the battery, which may have been damaged by the failing alternator.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx-7-degraded-chassis-engine-grounds-3-800-rpm-hesitation",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Clean and refresh every factory ground point (shock tower, starter/bell-housing, ECU grounds), protect them with dielectric grease, and add supplemental 8-10 gauge ground straps from the engine and chassis to the battery negative — forum consensus is this cures the hesitation about 90% of the time.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx-7-turbo-ii-wastegate-flapper-undersizing-boost-creep-overboost",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Until fixed, keep the exhaust restriction stock and watch a known-accurate boost gauge.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx-7-apex-seal-failure-loss-compression",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with a rotary compression test (a rotary-specific tester reading all three faces per rotor;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx-7-clogged-catalytic-converter-raising-exhaust-gas-temps-killin",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace a clogged cat with a fresh high-flow catalytic converter (or a test/replacement pipe where legal) and correct any upstream oil or fuel cause so the new unit isn't destroyed.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx-7-hot-start-flooding-from-leaking-fuel-injectors",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Have injectors flow-tested and cleaned if budget is tight, but old injector tips typically need replacement on a 20+ year old FD.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx-7-sequential-twin-turbo-system-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Pressure-test the vacuum system to locate leaks.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx-7-sequential-twin-turbo-system-failure",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Bench-test each solenoid for proper actuation;",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx-8-ignition-coil-spark-plug-rapid-wear-causing-misfires",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Diagnose with misfire codes P0300-P0304 before replacing.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx-8-undersized-factory-battery-parasitic-drain",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Replace with a higher-capacity battery (many owners fit a ~640 CCA unit of the same case dimensions), use a battery tender when parked, and diagnose/repair any abnormal parasitic draw or a failing alternator.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    },
+    {
+      "issueId": "mazda-rx8-catalytic-converter-clog-2004",
+      "source": "solution",
+      "procedure": "unresolved-diagnostic-instruction",
+      "excerpt": "Some owners use high-flow aftermarket cats or test pipes for track use.",
+      "reasonCode": "instruction-does-not-identify-safe-tool",
+      "toolId": null,
+      "productUrl": null
+    }
+  ]
+}
