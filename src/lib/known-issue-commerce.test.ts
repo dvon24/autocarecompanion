@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { getKnownIssueCommerce, hasKnownIssueCommerce, isKnownIssueProductUrl } from './known-issue-commerce';
+import {
+  getKnownIssueCommerce,
+  hasKnownIssueCommerce,
+  isKnownIssueProductUrl,
+  vendorMatchesProductUrl,
+} from './known-issue-commerce';
 
 type Commerce = Parameters<typeof getKnownIssueCommerce>[0];
 
@@ -160,6 +165,9 @@ test('accepts verified-retailer product pages the generic path rule misses', () 
     'https://www.raybestospowertrain.com/steel-clutch-packs/000601',
     'https://www.mishimoto.com/dodge-challenger-aluminum-radiator-2009-2016.html',
     'https://www.moparpartsgiant.com/parts/mopar-radiator-engine-cooling~68050126ab.html',
+    'https://www.acurapartswarehouse.com/oem/acura~belt~timing~125ru26~unitta~14400-p7j-004.html',
+    'https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html',
+    'https://www.partsgeek.com/mygskkp-acura-mdx-timing-belt-kit-and-water-pump.html',
   ]) {
     assert.equal(isKnownIssueProductUrl(url), true, `should accept ${url}`);
   }
@@ -175,6 +183,11 @@ test('allowlisting a host does not allowlist its category, search or lookalike U
     'https://www.partcatalog.com/',
     'https://www.raybestospowertrain.com/automatic-transmission/clutch-packs',
     'https://www.mishimoto.com/collections/radiators',
+    'https://www.acurapartswarehouse.com/acura-parts/',
+    'https://www.acurapartswarehouse.com/oem/acura~timing~belt.html',
+    'https://www.partsgeek.com/catalog/acura/integra/driveshaft_-ar-_axle/wheel_hub.html',
+    'https://www.partsgeek.com/abcdefg-search.html?q=wheel+hub',
+    'https://partsgeek.evil.com/6rf5vft-acura-integra-wheel-hub-assembly.html',
     // A lookalike domain must not inherit the allowlist.
     'https://partshawk.evil.com/delphi-ss10867-abs-wheel-speed-sensor.html',
     // http is refused on every host, allowlisted or not.
@@ -182,4 +195,28 @@ test('allowlisting a host does not allowlist its category, search or lookalike U
   ]) {
     assert.equal(isKnownIssueProductUrl(url), false, `should reject ${url}`);
   }
+});
+
+test('verified Acura OEM and PartsGeek labels match only their exact merchant hosts', () => {
+  assert.equal(
+    vendorMatchesProductUrl(
+      'Acura Parts Warehouse',
+      'https://www.acurapartswarehouse.com/oem/acura~belt~timing~125ru26~unitta~14400-p7j-004.html',
+    ),
+    true,
+  );
+  assert.equal(
+    vendorMatchesProductUrl(
+      'PartsGeek',
+      'https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html',
+    ),
+    true,
+  );
+  assert.equal(
+    vendorMatchesProductUrl(
+      'Acura Parts Warehouse',
+      'https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html',
+    ),
+    false,
+  );
 });

@@ -28,6 +28,11 @@ test('accepts product-detail URLs and rejects marketplace searches', () => {
   assert.equal(isKnownIssueProductUrl('https://www.mishimoto.com/collections/radiators'), false);
   assert.equal(isKnownIssueProductUrl('https://www.moparpartsgiant.com/parts/mopar-radiator-engine-cooling~68050126ab.html'), true);
   assert.equal(vendorMatchesProductUrl('Mopar Parts Giant', 'https://www.moparpartsgiant.com/parts/mopar-radiator-engine-cooling~68050126ab.html'), true);
+  assert.equal(isKnownIssueProductUrl('https://www.acurapartswarehouse.com/oem/acura~belt~timing~125ru26~unitta~14400-p7j-004.html'), true);
+  assert.equal(vendorMatchesProductUrl('Acura Parts Warehouse', 'https://www.acurapartswarehouse.com/oem/acura~belt~timing~125ru26~unitta~14400-p7j-004.html'), true);
+  assert.equal(isKnownIssueProductUrl('https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html'), true);
+  assert.equal(vendorMatchesProductUrl('PartsGeek', 'https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html'), true);
+  assert.equal(isKnownIssueProductUrl('https://www.partsgeek.com/catalog/acura/integra/driveshaft_-ar-_axle/wheel_hub.html'), false);
   assert.equal(isKnownIssueProductUrl('https://store.ross-tech.com/shop/vchv2_ent/'), true);
   assert.equal(vendorMatchesProductUrl('Ross-Tech', 'https://store.ross-tech.com/shop/vchv2_ent/'), true);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/search?q=11340029751'), false);

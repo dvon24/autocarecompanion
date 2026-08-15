@@ -1,0 +1,524 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-human-search-evaluation-summary",
+  "make": "Acura",
+  "status": "EVALUATED_NOT_APPLIED",
+  "productionApplied": false,
+  "sourceWorkbook": {
+    "name": "Acura .xlsx",
+    "sha256": "ce366512385ffc99ed5d80db1fcb692a094a72595c01ecfef1ec315467c19c15",
+    "sheet": "Sheet1",
+    "range": "A1:O54",
+    "rowCount": 53
+  },
+  "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
+  "summary": {
+    "benchmarkIssueCount": 53,
+    "humanLinkIssueCount": 38,
+    "humanCandidateCount": 66,
+    "productGateAcceptedCount": 58,
+    "productGateRejectedCount": 8,
+    "vendorGateAcceptedCount": 56,
+    "vendorGateRejectedCount": 10,
+    "foreignAffiliateRemovedCount": 6,
+    "humanLinkIssuesWithProposal": 5,
+    "humanLinkIssuesWithAutomatedExactLink": 5,
+    "humanLinkIssueProposalRecall": 0.13157894736842105,
+    "humanLinkIssueExactLinkRecall": 0.13157894736842105,
+    "retailerOverlapIssueCount": 5,
+    "retailerCounts": {
+      "ebay.com": 18,
+      "shop.advanceautoparts.com": 3,
+      "amazon.com": 6,
+      "innovativemounts.com": 1,
+      "autozone.com": 6,
+      "acurapartswarehouse.com": 17,
+      "partsgeek.com": 4,
+      "coyotedirect.com": 2,
+      "rockauto.com": 3,
+      "vcmtuner.com": 1,
+      "walmart.com": 1,
+      "dashskin.com": 1,
+      "oemacuraparts.com": 1,
+      "shop.redline360.com": 2
+    },
+    "candidateLaneCounts": {
+      "repair-part": 58,
+      "service-fluid": 2,
+      "diagnostic-tool": 2,
+      "unknown": 4
+    },
+    "assessmentCounts": {
+      "unreviewed": 45,
+      "fluid-lane": 1,
+      "known-mismatch": 12,
+      "tool-lane": 1,
+      "promising": 2,
+      "non-product": 4,
+      "content-correction": 1
+    },
+    "releaseDecisionCounts": {
+      "hold": 52,
+      "reject": 14
+    },
+    "reasonCodeCounts": {
+      "manual-identity-role-fitment-review-required": 45,
+      "route-to-service-fluid-lane": 1,
+      "partial-fitment-needs-variant-scope": 3,
+      "route-to-diagnostic-tool-lane": 1,
+      "repair-role-or-fitment-mismatch": 8,
+      "exact-product-candidate-needs-pipeline-binding": 2,
+      "non-product-url": 4,
+      "wrong-tool-capability": 1,
+      "authoritative-spec-conflict": 1
+    }
+  },
+  "guardrail": "Human search results are discovery candidates, not ground truth. Every candidate remains held or rejected until exact repair role, product identity and full vehicle application are independently reviewed.",
+  "issueGapCount": 33,
+  "issueGaps": [
+    {
+      "sourceRow": 2,
+      "issueId": "acura-cl-3-0cl-1997-1999-transmission-slipping",
+      "title": "3.0CL automatic transmission slips and fails — flush is forbidden, filter is not serviceable",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 5,
+      "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "title": "4-speed automatic: shift solenoid failure causes D4 light flash, missed shifts, and limp mode",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 6,
+      "issueId": "acura-integra-b-series-motor-mount-failure",
+      "title": "Engine motor mounts crack and collapse — drivetrain vibration + clunk on shifts",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 7,
+      "issueId": "acura-integra-dc-ignition-switch-contact-pitting",
+      "title": "Ignition switch contact pitting causes engine to die when key released",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 8,
+      "issueId": "acura-integra-da-ignitor-module-failure",
+      "title": "Ignitor / ignition control module inside the distributor fails — intermittent or no-start",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 9,
+      "issueId": "acura-integra-dc-distributor-internal-failure",
+      "title": "Internal distributor failure causing stalling, no-start, and misfires",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 10,
+      "issueId": "acura-integra-da-cv-axle-outer-boot-tear",
+      "title": "Outer CV joint boot tears leading to joint failure and clicking",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 11,
+      "issueId": "acura-integra-da-passenger-cowl-water-leak-blower-motor",
+      "title": "Passenger-side cowl seal leak floods blower motor and floor pan",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 12,
+      "issueId": "acura-integra-da-pgm-fi-main-relay-hot-no-start",
+      "title": "PGM-FI main relay solder joint cracks cause hot-weather no-start",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 3
+    },
+    {
+      "sourceRow": 13,
+      "issueId": "acura-integra-dc-rear-lca-bolt-seizure",
+      "title": "Rear lower control arm bolts seize and shear inside bushing sleeves",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 15,
+      "issueId": "acura-integra-da-rear-wheel-bearing-hum",
+      "title": "Rear wheel bearing hum from press-in hub assembly",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 16,
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "title": "Timing belt failure on interference B18 engine bends valves",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 4
+    },
+    {
+      "sourceRow": 17,
+      "issueId": "acura-integra-turbo-heat-soak-2023",
+      "title": "Turbo Heat Soak and Power Loss in Hot Weather",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 18,
+      "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+      "title": "VTEC oil pressure switch failure (Code 22 / P1259) on GS-R and Type R",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 19,
+      "issueId": "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure",
+      "title": "ALB/ABS Pump Motor Overrun and Accumulator Failure",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 20,
+      "issueId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi",
+      "title": "C32A1 Head Gasket Failure at Rear Cylinders (#3 and #6) Due to Open-Deck Vibration",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 3
+    },
+    {
+      "sourceRow": 21,
+      "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+      "title": "Fan Control Unit Cracked Solder Joints (Service News B98-05-00) Cause Cooling Fan and A/C Compressor to Operate Erratically or Not at All",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 3
+    },
+    {
+      "sourceRow": 22,
+      "issueId": "acura-legend-pgm-fi-main-relay-solder-cracks-cause-hot-soak-no-start",
+      "title": "PGM-FI Main Relay Solder Cracks Cause Hot-Soak No-Start",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 23,
+      "issueId": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s",
+      "title": "Power Steering High-Pressure Hose Crimp Leak and Internal Hose Sloughing",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 24,
+      "issueId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks",
+      "title": "Sunroof Drain Tube Clogs Cause Footwell and Trunk Water Leaks",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 25,
+      "issueId": "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks",
+      "title": "Valve Cover Gasket and Spark Plug Tube Seal Oil Leaks (Especially Rear Bank)",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 28,
+      "issueId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick",
+      "title": "Power Steering High-Pressure Hose Cracking and Rack 'Morning Sickness' (2001-2013 MDX)",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 30,
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "title": "VCM-Related Oil Consumption, Spark Plug Fouling and Motor Mount Failure (J37 VCM Engine)",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 36,
+      "issueId": "acura-rdx-ac-compressor-failure-2013",
+      "title": "AC Compressor Clutch and Bearing Failure",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 38,
+      "issueId": "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+      "title": "Distributor shaft seal leaks oil into cap, causes misfires (P0300-P0304) on 3.5L C35A",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 39,
+      "issueId": "acura-rl-shawd-system-noise-2005",
+      "title": "SH-AWD Torque Transfer Unit / Rear Differential Clutch Noise",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 43,
+      "issueId": "acura-slx-rear-differential-transfer-case-trooper-inheritance",
+      "title": "Rear differential whine + transfer case (BW4422) failures inherited from Isuzu Trooper platform",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 45,
+      "issueId": "acura-tl-auto-trans-3rd-gear-2004",
+      "title": "Automatic Transmission 3rd Gear Failure",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 46,
+      "issueId": "acura-tl-brake-pedal-vibration-and-2009",
+      "title": "Brake Pedal Vibration and Premature Front Brake Rotor Warping",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 47,
+      "issueId": "acura-tl-dashboard-crack-2004",
+      "title": "Dashboard Surface Cracking and Melting",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 2
+    },
+    {
+      "sourceRow": 49,
+      "issueId": "acura-tl-power-steering-hose-leak-2004",
+      "title": "Power Steering High-Pressure Hose Leak",
+      "pipelineDisposition": "buyable",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 50,
+      "issueId": "acura-tlx-9speed-shudder-2015",
+      "title": "9-Speed Automatic Transmission Shudder and Harsh Shifting",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 1
+    },
+    {
+      "sourceRow": 52,
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "title": "Type S Brembo Front Brake Squeal and Premature Pad Wear",
+      "pipelineDisposition": "diagnosis-dependent",
+      "humanCandidateCount": 4
+    }
+  ],
+  "sourceCorrectionHolds": [
+    {
+      "sourceRow": 50,
+      "issueId": "acura-tlx-9speed-shudder-2015",
+      "title": "9-Speed Automatic Transmission Shudder and Harsh Shifting",
+      "reasonCode": "authoritative-spec-conflict",
+      "authoritativeSources": [
+        "https://static.nhtsa.gov/odi/tsbs/2017/MC-10117999-9999.pdf",
+        "https://static.nhtsa.gov/odi/tsbs/2016/MC-10116773-9999.pdf"
+      ]
+    },
+    {
+      "sourceRow": 52,
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "title": "Type S Brembo Front Brake Squeal and Premature Pad Wear",
+      "reasonCode": "authoritative-spec-conflict",
+      "authoritativeSources": [
+        "https://www.acura.ca/-/media/Brands/Acura/Models/TLX/2021/PDF-Files/MY21_tlx_specs_en.pdf?rev=6c4b187b5b1447af8aadf805a5a31d1e"
+      ]
+    }
+  ],
+  "heldOrRejectedSpecialLanes": [
+    {
+      "sourceRow": 5,
+      "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "candidateIndex": 0,
+      "vendor": "Amazon",
+      "candidateLane": "service-fluid",
+      "discoveryAssessment": "fluid-lane",
+      "releaseDecision": "hold",
+      "reasonCode": "route-to-service-fluid-lane"
+    },
+    {
+      "sourceRow": 6,
+      "issueId": "acura-integra-b-series-motor-mount-failure",
+      "candidateIndex": 0,
+      "vendor": "Amazon",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "hold",
+      "reasonCode": "partial-fitment-needs-variant-scope"
+    },
+    {
+      "sourceRow": 6,
+      "issueId": "acura-integra-b-series-motor-mount-failure",
+      "candidateIndex": 1,
+      "vendor": "Innovative Mounts",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "hold",
+      "reasonCode": "partial-fitment-needs-variant-scope"
+    },
+    {
+      "sourceRow": 7,
+      "issueId": "acura-integra-dc-ignition-switch-contact-pitting",
+      "candidateIndex": 0,
+      "vendor": "Amazon",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "hold",
+      "reasonCode": "partial-fitment-needs-variant-scope"
+    },
+    {
+      "sourceRow": 8,
+      "issueId": "acura-integra-da-ignitor-module-failure",
+      "candidateIndex": 0,
+      "vendor": "Amazon",
+      "candidateLane": "diagnostic-tool",
+      "discoveryAssessment": "tool-lane",
+      "releaseDecision": "hold",
+      "reasonCode": "route-to-diagnostic-tool-lane"
+    },
+    {
+      "sourceRow": 9,
+      "issueId": "acura-integra-dc-distributor-internal-failure",
+      "candidateIndex": 0,
+      "vendor": "Amazon",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "reject",
+      "reasonCode": "repair-role-or-fitment-mismatch"
+    },
+    {
+      "sourceRow": 19,
+      "issueId": "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure",
+      "candidateIndex": 0,
+      "vendor": "Acura Parts Warehouse",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "reject",
+      "reasonCode": "repair-role-or-fitment-mismatch"
+    },
+    {
+      "sourceRow": 21,
+      "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+      "candidateIndex": 0,
+      "vendor": "RockAuto",
+      "candidateLane": "unknown",
+      "discoveryAssessment": "non-product",
+      "releaseDecision": "reject",
+      "reasonCode": "non-product-url"
+    },
+    {
+      "sourceRow": 21,
+      "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+      "candidateIndex": 1,
+      "vendor": "RockAuto",
+      "candidateLane": "unknown",
+      "discoveryAssessment": "non-product",
+      "releaseDecision": "reject",
+      "reasonCode": "non-product-url"
+    },
+    {
+      "sourceRow": 24,
+      "issueId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks",
+      "candidateIndex": 0,
+      "vendor": "Amazon",
+      "candidateLane": "diagnostic-tool",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "reject",
+      "reasonCode": "wrong-tool-capability"
+    },
+    {
+      "sourceRow": 28,
+      "issueId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick",
+      "candidateIndex": 0,
+      "vendor": "Acura Parts Warehouse",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "reject",
+      "reasonCode": "repair-role-or-fitment-mismatch"
+    },
+    {
+      "sourceRow": 38,
+      "issueId": "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+      "candidateIndex": 0,
+      "vendor": "Acura Parts Warehouse",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "reject",
+      "reasonCode": "repair-role-or-fitment-mismatch"
+    },
+    {
+      "sourceRow": 39,
+      "issueId": "acura-rl-shawd-system-noise-2005",
+      "candidateIndex": 0,
+      "vendor": "eBay",
+      "candidateLane": "unknown",
+      "discoveryAssessment": "non-product",
+      "releaseDecision": "reject",
+      "reasonCode": "non-product-url"
+    },
+    {
+      "sourceRow": 42,
+      "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "candidateIndex": 1,
+      "vendor": "RockAuto",
+      "candidateLane": "unknown",
+      "discoveryAssessment": "non-product",
+      "releaseDecision": "reject",
+      "reasonCode": "non-product-url"
+    },
+    {
+      "sourceRow": 45,
+      "issueId": "acura-tl-auto-trans-3rd-gear-2004",
+      "candidateIndex": 0,
+      "vendor": "PartsGeek",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "reject",
+      "reasonCode": "repair-role-or-fitment-mismatch"
+    },
+    {
+      "sourceRow": 49,
+      "issueId": "acura-tl-power-steering-hose-leak-2004",
+      "candidateIndex": 0,
+      "vendor": "OEM Acura Parts",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "reject",
+      "reasonCode": "repair-role-or-fitment-mismatch"
+    },
+    {
+      "sourceRow": 50,
+      "issueId": "acura-tlx-9speed-shudder-2015",
+      "candidateIndex": 0,
+      "vendor": "Advance Auto Parts",
+      "candidateLane": "service-fluid",
+      "discoveryAssessment": "content-correction",
+      "releaseDecision": "reject",
+      "reasonCode": "authoritative-spec-conflict"
+    },
+    {
+      "sourceRow": 52,
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "candidateIndex": 0,
+      "vendor": "shop.redline360.com",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "reject",
+      "reasonCode": "repair-role-or-fitment-mismatch"
+    },
+    {
+      "sourceRow": 52,
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "candidateIndex": 1,
+      "vendor": "shop.redline360.com",
+      "candidateLane": "repair-part",
+      "discoveryAssessment": "known-mismatch",
+      "releaseDecision": "reject",
+      "reasonCode": "repair-role-or-fitment-mismatch"
+    }
+  ]
+}

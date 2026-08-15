@@ -85,14 +85,14 @@ const partKey = (name: string) => `part:${norm(name)}`;
 // Only these are real parts RETAILERS — a "verified" buy link must land on one
 // of them (a page on edmunds.com / carsandbids.com / a dealer blog is NOT a buy
 // link, even though it mentions the PN).
-const RETAILER_HOST = /(^|\.)(amazon\.[a-z.]+|rockauto\.com|ebay\.[a-z.]+|autozone\.com|oreillyauto\.com|napaonline\.com|summitracing\.com|partsgeek\.com|1aauto\.com|carid\.com|walmart\.com|moparpartsgiant\.com|gmpartsgiant\.com|mopar\.com|advanceautoparts\.com|americanmuscle\.com|tirerack\.com|simpleautoparts\.com|rockauto\.ca)$/i;
+const RETAILER_HOST = /(^|\.)(amazon\.[a-z.]+|rockauto\.com|ebay\.[a-z.]+|autozone\.com|oreillyauto\.com|napaonline\.com|summitracing\.com|partsgeek\.com|acurapartswarehouse\.com|1aauto\.com|carid\.com|walmart\.com|moparpartsgiant\.com|gmpartsgiant\.com|mopar\.com|advanceautoparts\.com|americanmuscle\.com|tirerack\.com|simpleautoparts\.com|rockauto\.ca)$/i;
 
 /** A real retailer PRODUCT page — on an allowlisted store, NOT a search results
  *  page, and NOT a bare category/landing page. We require a product SIGNAL:
  *  the part number appears in the URL, or the path matches a known product-page
  *  pattern (/dp/, /itm/, /moreinfo, /product/, …). A live category page like
  *  moparpartsgiant.com/oem-dodge-challenger-differential.html is NOT the part. */
-function isRetailerProductUrl(u: string, partNumber?: string): boolean {
+export function isRetailerProductUrl(u: string, partNumber?: string): boolean {
   if (!/^https?:\/\//i.test(u)) return false;
   let host = '', path = '';
   try { const url = new URL(u); host = url.hostname; path = url.pathname.toLowerCase(); } catch { return false; }
@@ -103,6 +103,10 @@ function isRetailerProductUrl(u: string, partNumber?: string): boolean {
   // product SIGNAL: the exact PN in the URL...
   const pn = (partNumber || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   if (pn.length >= 5 && u.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pn)) return true;
+  if (/^(?:www\.)?partsgeek\.com$/i.test(host)
+    && /^\/[a-z0-9]{7}-[a-z0-9][a-z0-9-]+\.html$/i.test(path)) return true;
+  if (/^(?:www\.)?acurapartswarehouse\.com$/i.test(host)
+    && /^\/oem\/acura~(?=[^/]*\d)[a-z0-9~.-]+\.html$/i.test(path)) return true;
   // ...or a real product-page path (not a bare category .html landing page).
   // `oem-parts` = the OEM-store product path (store.mopar.com / moparpartsgiant /
   // gmpartsgiant use /oem-parts/<name>-<pn>) — a real product page even when the
@@ -141,6 +145,7 @@ const VENDOR_LABELS: Array<[RegExp, string]> = [
   [/summitracing\.com/i, 'Summit Racing'],
   [/moparpartsgiant\.com|mopar/i, 'Mopar'],
   [/gmpartsgiant\.com|gmparts/i, 'GM Parts'],
+  [/acurapartswarehouse\.com/i, 'Acura Parts Warehouse'],
   [/parts\.|partsgiant/i, 'OEM Parts'],
 ];
 function vendorFromUrl(u: string): string {
@@ -251,8 +256,6 @@ export async function getCachedVerifiedPart(
   return best;
 }
 
-const RECENT_MS = 1000 * 60 * 60 * 24 * 30; // don't re-warm the same part within 30d
-
 /**
  * A-STANDARD single-part verify — the known-issues audit's Gate-4 discipline
  * applied to one part: web-search, the PN must come FROM a real product page (not
@@ -275,13 +278,16 @@ Vehicle: ${vehicle}
 Component: ${partName}${specLine}
 
 RULES (a wrong-fitment or wrong-spec deep link converts then refunds — correctness is the product):
+- LANE FIRST: this verifier is for a buyable REPAIR PART. If the article/request is actually asking for a diagnostic tool, service fluid, dealer procedure, software update, recall remedy, or shop service, return status "drop" here so the dedicated tool/fluid/dealer lane can handle it. Never misfile a multimeter, scan tool, fluid, or service procedure as a fixPart.
 - COMPONENT FIDELITY: find the correct OEM part number for THIS EXACT component. Verify the part TYPE matches (a drain plug is not a fluid; a seal is not a plug; a fill plug is not a drain plug). NEVER borrow a sibling/related part's number.
 - STANDARD CONFIGURATION, NOT AN OPTIONAL UPGRADE PACKAGE: default to the part for the STANDARD factory configuration. This matters most for AIR FILTERS: return the standard air-BOX PANEL filter, NOT a cold-air-intake / performance-intake / open-element filter tied to an optional package (e.g. a Mopar T/A, Shaker CAI, or Scat-Pack cold-air element) — those are a DIFFERENT part for intake hardware most owners don't have, and they dominate search results. Only return the package/intake filter if the request explicitly names that intake. Same principle for any part with a base-vs-package split (brakes, wheels, exhaust): base unless asked.
 - SPEC MATCH: FIRST determine the correct factory specification for this component on THIS exact vehicle (e.g. the exact gear-oil viscosity — 75W-140 vs 75W-85 is NOT interchangeable). The product you link MUST match that spec. A product with a different viscosity/grade/type is WRONG — reject it.
+- SOURCE-OF-TRUTH CHECK: verify the repair role and any safety-critical application/specification against an authoritative manufacturer catalog, service bulletin, or equivalent primary source. Matching a mistaken article is not sufficient; if primary documentation conflicts with the article, return status "drop" and name the conflict in "caveat" for editorial correction.
 - AVAILABILITY: the product must be CURRENTLY AVAILABLE for sale. Do NOT link a discontinued/out-of-stock page.
 - SUPERSESSION IS NORMAL, NOT A REASON TO DROP: OEM part numbers get superseded constantly. If the spec'd PN is superseded/obsolete BUT a correct-spec product IS for sale (under the superseding PN, or as the same fluid/part sold by brand — e.g. a "Mopar 75W-85 gear oil" listing), you MUST verify with THAT available product and note the supersession in "caveat". Only "drop" if NO correct-spec product exists for sale at ANY retailer. Finding a live, in-stock, correct-spec product page and still returning "drop" because the original PN is obsolete is a BUG — surface the available product.
 - The part number MUST come FROM a real product page you actually opened via search — NOT from memory.
-- DEEP LINKS (multi-vendor): find a verified product page on AS MANY stores as you can actually confirm — Amazon, RockAuto, eBay, the OEM catalog (Mopar eStore / MoparPartsGiant / GM Parts Giant), AutoZone, etc. EACH url must be a real, in-stock, correct-spec PRODUCT page for THIS exact part (same standard). Include ONLY vendors you actually verified; omit any you couldn't. NEVER a search-results url, category/landing page, or homepage.
+- RETAILER ORDER: search the OEM/manufacturer catalog first, then an established direct parts retailer (for example a make-specific Parts Warehouse, NAPA, Advance, AutoZone, PartsGeek, or the component manufacturer), then eBay/Amazon for an exact vendor-distinct alternate. Prefer one trustworthy direct/OEM primary plus one exact marketplace alternate; do not fill both slots with eBay merely because it always returns a result.
+- DEEP LINKS (multi-vendor): include up to two verified, vendor-distinct product pages in that order. EACH URL must be a real, in-stock, correct-spec PRODUCT page for THIS exact part. Include ONLY vendors you actually verified; omit any you couldn't. NEVER a search-results URL, category/landing page, or homepage.
 - If you CANNOT find this component's own part number AND at least one real, in-stock, correct-spec product page, return status "drop" with empty fields. Do NOT substitute a different part's number or a search link.
 - aftermarket: up to 2 equivalents (brand + their OWN part number), found by APPLICATION/fitment — not by converting the OEM number.
 

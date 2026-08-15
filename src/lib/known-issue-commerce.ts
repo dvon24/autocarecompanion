@@ -196,6 +196,15 @@ const VERIFIED_RETAILER_PATTERNS: Array<[RegExp, RegExp]> = [
   // Official Mishimoto product pages use a descriptive root slug rather than
   // a /product/ segment. Requiring a digit keeps category/editorial roots out.
   [/^mishimoto\.com$/, /^\/(?=[a-z0-9-]*\d)[a-z0-9][a-z0-9-]+\.html$/i],
+  // acurapartswarehouse.com/oem/acura~belt~timing~...~14400-p7j-004.html
+  // Genuine OEM detail pages expose one Acura part number, price and explicit
+  // vehicle fitment. Require the exact host, /oem/acura~ namespace, a numeric
+  // identity in the slug and a terminal .html page.
+  [/^acurapartswarehouse\.com$/, /^\/oem\/acura~(?=[^/]*\d)[a-z0-9~.-]+\.html$/i],
+  // partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html
+  // PartsGeek's seven-character offer key identifies a single purchasable row;
+  // catalog/make/search routes use a different shape and remain rejected above.
+  [/^partsgeek\.com$/, /^\/[a-z0-9]{7}-[a-z0-9][a-z0-9-]+\.html$/i],
   // transpartswarehouse.com was a candidate here and is deliberately NOT listed:
   // its product URL did not survive a live fetch. The bar for this list is a
   // page we actually retrieved, not one that merely looks right.

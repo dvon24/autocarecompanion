@@ -4,7 +4,7 @@ type: 'feature'
 created: '2026-08-12'
 status: 'in-review'
 baseline_commit: '013e4ef338fc3d2c42b8cc39f5fde43d6203755e'
-review_loop_iteration: 5
+review_loop_iteration: 6
 context: []
 ---
 
@@ -69,6 +69,9 @@ context: []
 - [x] [Review][Patch] Bind negation to fix/rebuild actions and keep a dealer campaign from suppressing a separate conditional repair [src/lib/prescription.ts:42]
 - [x] [Review][Patch] Bind every 03 evidence row to the exact 02 component/role/scope row and validate every approved primary or alternate direct link [scripts/finalize-known-issue-make-packet.js:240]
 - [x] [Review][Patch] Require actual eBay affiliate parameters before persisting affiliate:true and bind every direct release dependency named by the spec [scripts/known-issue-completion-contract.js:13]
+- [x] [Review][Patch] Admit only product-specific Acura Parts Warehouse and PartsGeek URL shapes while continuing to reject search, catalog, HTTP, and lookalike-host paths [src/lib/known-issue-commerce.ts:196]
+- [x] [Review][Patch] Bind Devon's 53-row Acura workbook as a non-production discovery benchmark, strip foreign Amazon attribution, and measure candidate, retailer, and proposal/link recall without converting human search results into approvals [scripts/evaluate-known-issue-human-search-benchmark.ts:1]
+- [x] [Review][Patch] Classify repair part vs diagnostic tool vs service fluid before searching, prefer OEM/direct-retailer primary plus exact eBay alternate, and hold article/link conflicts against authoritative service documentation [src/lib/verified-parts.ts:277]
 
 **Acceptance Criteria:**
 - Given a make snapshot, when reconciled, then every published issue and existing commerce claim has exactly one disposition and zero rows are missing, duplicated, or stale.
@@ -120,6 +123,19 @@ context: []
   and the completion contract includes the audit/schema/supplier/resolver/tier
   dependencies. Acura is being deterministically rebuilt from the same frozen
   source with no production authority or deployment.
+- 2026-08-15: Devon's 53-row Acura workbook was imported as a hash-bound,
+  non-production discovery benchmark containing 66 normalized candidate URLs.
+  The current automated packet had proposals and exact links for only 5 of the
+  38 issues where the human search found a candidate (13.2% issue recall).
+  Verified product-shape support for Acura Parts Warehouse and PartsGeek raises
+  structural URL acceptance from 37 to 58 candidates, but all 66 remain held
+  or rejected pending exact role, product identity, authoritative specification,
+  and full-application review. Six foreign Amazon tags are removed, diagnostic
+  tools and service fluids are routed outside fixParts, and the TLX nine-speed
+  ATF row is explicitly held for an Acura Type 3.1 source correction. The
+  2021–25 TLX Type S brake row is also held because its frozen 2.4L/3.5L scope
+  conflicts with Acura's 2.0T/3.0T specification and Type S Brembo application.
+  No production write or deployment is authorized.
 
 ## Verification
 
