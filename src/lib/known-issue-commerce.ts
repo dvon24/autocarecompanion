@@ -1,6 +1,7 @@
 import type { KnownIssue } from '@/schemas/knownIssue.schema';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
 import { isPublicWebHostname } from '@/lib/external-http-url';
+import { matchesVerifiedRetailerProductPath } from '@/lib/verified-retailer-product';
 
 export type KnownIssueFixPart = NonNullable<KnownIssue['fixParts']>[number];
 
@@ -145,73 +146,16 @@ export function isKnownIssueProductUrl(value: string): boolean {
   const detailMatch = path.match(/\/(?:product|products|part|parts|item|items|sku|p)\/([^/]+)(?:\/|$)/i);
   if (detailMatch) {
     const slug = detailMatch[1];
-    if (/\d{3,}/.test(slug) || (slug.length >= 12 && /[-_.]/.test(slug))) return true;
+    const hasSkuToken = (slug.match(/[a-z0-9]+/gi) || []).some((token) => /[a-z]/i.test(token) && /\d/.test(token));
+    const startsWithModelYear = /^(?:19|20)\d{2}(?:[-_.]|$)/.test(slug);
+    const hasNonYearId = (slug.match(/\d{3,}/g) || []).some((token) => !/^(?:19|20)\d{2}$/.test(token));
+    if (!startsWithModelYear && (hasNonYearId || hasSkuToken || (slug.length >= 12 && /[-_.]/.test(slug)))) {
+      return true;
+    }
+    if (startsWithModelYear && hasSkuToken) return true;
   }
 
-  return matchesVerifiedHostPattern(host, path);
-}
-
-/**
- * Named retailers whose product URLs do not fit the generic pattern above.
- *
- * WHY AN ALLOWLIST RATHER THAN A LOOSER GENERIC RULE
- * --------------------------------------------------
- * The generic rule wants a /product|part|item|sku|p/ segment. Several genuine
- * retailers do not use one — they put the product slug at the root, or behind a
- * category path — so real detail pages were being rejected. Measured over a
- * link-audit run, 2 of 14 parts (~14%) were lost for that reason alone,
- * including Denso 477-0771: a real part with three live product pages, one of
- * them on DENSO'S OWN SITE, and no link on our page as a result.
- *
- * Each entry below was confirmed by fetching a real URL on that host and seeing
- * the part number in the page. Loosening the generic rule instead would admit
- * every unknown host with a similar path shape, which is the trade this
- * deliberately refuses: a false negative hides a CTA, a false positive sells
- * the wrong thing.
- *
- * The per-host patterns still have to identify ONE product. Category and
- * search paths on these same hosts fall through to the rejections above, which
- * run first.
- */
-const VERIFIED_RETAILER_PATTERNS: Array<[RegExp, RegExp]> = [
-  // Official VCDS HEX-V2 Enthusiast product page.
-  [/^store\.ross-tech\.com$/, /^\/shop\/vchv2_ent\/?$/i],
-  // partshawk.com/delphi-ss10867-abs-wheel-speed-sensor.html
-  [/^partshawk\.com$/, /^\/[a-z0-9-]*\d[a-z0-9-]*\.html$/i],
-  // densoproducts.com/denso-477-0771-ac-condenser — the manufacturer's own page
-  [/^densoproducts\.com$/, /^\/denso-[a-z0-9-]*\d[a-z0-9-]*$/i],
-  // zoro.com/denso-ac-condenser-477-0771-477-0771/i/G5915145/
-  [/^zoro\.com$/, /\/i\/[a-z0-9]+\/?$/i],
-  // partcatalog.com/walker-235-1456-engine-crankshaft-position-sensor.html
-  [/^partcatalog\.com$/, /^\/[a-z0-9-]*\d[a-z0-9-]*\.html$/i],
-  // summitracing.com/parts/mah-vs50109 — note these render the part number in
-  // JavaScript, so they still have to clear the separate identity check that
-  // the link auditor applies before a URL is stored.
-  [/^summitracing\.com$/, /^\/parts\/(?=[a-z0-9-]*\d)[a-z0-9][a-z0-9-]+$/i],
-  // raybestospowertrain.com/steel-clutch-packs/000601 — the manufacturer's own
-  // product page. Trade-channel transmission parts are largely absent from
-  // consumer retail, so the maker's page is often the only real destination.
-  [/^raybestospowertrain\.com$/, /^\/[a-z0-9-]+\/\d{4,}$/i],
-  // mishimoto.com/dodge-challenger-aluminum-radiator-2009-2016.html
-  // Official Mishimoto product pages use a descriptive root slug rather than
-  // a /product/ segment. Requiring a digit keeps category/editorial roots out.
-  [/^mishimoto\.com$/, /^\/(?=[a-z0-9-]*\d)[a-z0-9][a-z0-9-]+\.html$/i],
-  // acurapartswarehouse.com/oem/acura~belt~timing~...~14400-p7j-004.html
-  // Genuine OEM detail pages expose one Acura part number, price and explicit
-  // vehicle fitment. Require the exact host, /oem/acura~ namespace, a numeric
-  // identity in the slug and a terminal .html page.
-  [/^acurapartswarehouse\.com$/, /^\/oem\/acura~(?=[^/]*\d)[a-z0-9~.-]+\.html$/i],
-  // partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html
-  // PartsGeek's seven-character offer key identifies a single purchasable row;
-  // catalog/make/search routes use a different shape and remain rejected above.
-  [/^partsgeek\.com$/, /^\/[a-z0-9]{7}-[a-z0-9][a-z0-9-]+\.html$/i],
-  // transpartswarehouse.com was a candidate here and is deliberately NOT listed:
-  // its product URL did not survive a live fetch. The bar for this list is a
-  // page we actually retrieved, not one that merely looks right.
-];
-
-function matchesVerifiedHostPattern(host: string, path: string): boolean {
-  return VERIFIED_RETAILER_PATTERNS.some(([hostRe, pathRe]) => hostRe.test(host) && pathRe.test(path));
+  return matchesVerifiedRetailerProductPath(host, path);
 }
 
 /**

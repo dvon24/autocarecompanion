@@ -185,8 +185,11 @@ test('allowlisting a host does not allowlist its category, search or lookalike U
     'https://www.mishimoto.com/collections/radiators',
     'https://www.acurapartswarehouse.com/acura-parts/',
     'https://www.acurapartswarehouse.com/oem/acura~timing~belt.html',
+    'https://www.acurapartswarehouse.com/oem/acura~integra~2000.html',
+    'https://www.acurapartswarehouse.com/oem/acura~tlx~2021~parts.html',
     'https://www.partsgeek.com/catalog/acura/integra/driveshaft_-ar-_axle/wheel_hub.html',
     'https://www.partsgeek.com/abcdefg-search.html?q=wheel+hub',
+    'https://www.autopartsprime.com/p/2008-acura-tl-dash-panels',
     'https://partsgeek.evil.com/6rf5vft-acura-integra-wheel-hub-assembly.html',
     // A lookalike domain must not inherit the allowlist.
     'https://partshawk.evil.com/delphi-ss10867-abs-wheel-speed-sensor.html',

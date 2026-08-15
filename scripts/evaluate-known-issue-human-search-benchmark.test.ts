@@ -1,5 +1,9 @@
 import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import path from 'node:path';
 import test from 'node:test';
+import { isKnownIssueProductUrl } from '../src/lib/known-issue-commerce';
+import { matchesVerifiedRetailerProductPath } from '../src/lib/verified-retailer-product';
 import {
   compactHumanSearchEvaluation,
   evaluateHumanSearchBenchmark,
@@ -113,4 +117,22 @@ test('counts structurally blocked pages and vendor mismatches separately', () =>
   assert.equal(result.summary.productGateAcceptedCount, 1);
   assert.equal(result.summary.vendorGateAcceptedCount, 0);
   assert.equal(result.summary.productGateRejectedCount, 1);
+});
+
+test('keeps all 17 frozen Acura OEM PDPs while rejecting model/year pages', () => {
+  const file = path.join(
+    process.cwd(),
+    'data/known-issue-part-audit/acura/c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d/human-search-benchmark.json',
+  );
+  const frozen = JSON.parse(fs.readFileSync(file, 'utf8')) as HumanSearchBenchmark;
+  const urls = frozen.rows.flatMap((row) => row.candidates)
+    .map((candidate) => candidate.normalizedUrl)
+    .filter((url) => new URL(url).hostname.replace(/^www\./, '') === 'acurapartswarehouse.com');
+  assert.equal(urls.length, 17);
+  assert.equal(urls.every((value) => {
+    const url = new URL(value);
+    return matchesVerifiedRetailerProductPath(url.hostname, url.pathname);
+  }), true);
+  assert.equal(isKnownIssueProductUrl('https://www.acurapartswarehouse.com/oem/acura~integra~2000.html'), false);
+  assert.equal(isKnownIssueProductUrl('https://www.acurapartswarehouse.com/oem/acura~tlx~2021~parts.html'), false);
 });

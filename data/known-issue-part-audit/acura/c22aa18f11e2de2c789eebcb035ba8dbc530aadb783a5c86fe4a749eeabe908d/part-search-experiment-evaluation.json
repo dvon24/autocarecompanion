@@ -1,0 +1,1687 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-search-experiment-evaluation",
+  "make": "Acura",
+  "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
+  "status": "DISCOVERY_EXPERIMENT_COMPLETE_REVIEW_REQUIRED",
+  "productionApplied": false,
+  "metricDefinition": "Historical frozen-search benchmark over all 38 issues: strict component recall requires at least one direct product URL whose observed title or path identifies the prescribed component. Source-correction-held issues remain in this already-collected comparison but are excluded from operational searching. This metric does not prove product identity, repair role, year/trim/engine fitment, availability, or publishability.",
+  "recommendedTemplate": "devon",
+  "nextStep": "INDEPENDENT_DISCOVERY_AUDIT",
+  "sourceCorrectionHeldIssueIds": [
+    "acura-tlx-9speed-shudder-2015",
+    "acura-tlx-brake-noise-aspec-2018"
+  ],
+  "templateResults": [
+    {
+      "template": "devon",
+      "queryCount": 38,
+      "directProductQueryCount": 33,
+      "strictComponentMatchedIssueCount": 26,
+      "strictComponentRecall": 0.6842105263157895,
+      "directProductCount": 112,
+      "strictComponentProductCount": 70,
+      "strictComponentPrecision": 0.625,
+      "missedIssueIds": [
+        "acura-integra-dc-ignition-switch-contact-pitting",
+        "acura-integra-dc-vtec-oil-pressure-switch-code22",
+        "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure",
+        "acura-rdx-ac-compressor-failure-2013",
+        "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+        "acura-rl-shawd-system-noise-2005",
+        "acura-rsx-ac-compressor-clutch-2002",
+        "acura-slx-rear-differential-transfer-case-trooper-inheritance",
+        "acura-tl-auto-trans-3rd-gear-2004",
+        "acura-tl-dashboard-crack-2004",
+        "acura-tlx-9speed-shudder-2015",
+        "acura-tlx-brake-noise-aspec-2018"
+      ]
+    },
+    {
+      "template": "precision",
+      "queryCount": 38,
+      "directProductQueryCount": 32,
+      "strictComponentMatchedIssueCount": 24,
+      "strictComponentRecall": 0.631578947368421,
+      "directProductCount": 110,
+      "strictComponentProductCount": 56,
+      "strictComponentPrecision": 0.509090909090909,
+      "missedIssueIds": [
+        "acura-integra-dc-ignition-switch-contact-pitting",
+        "acura-integra-dc-vtec-oil-pressure-switch-code22",
+        "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure",
+        "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+        "acura-rl-shawd-system-noise-2005",
+        "acura-rl-c35a-timing-belt-tensioner-interference",
+        "acura-rsx-ac-compressor-clutch-2002",
+        "acura-slx-rear-differential-transfer-case-trooper-inheritance",
+        "acura-tl-auto-trans-3rd-gear-2004",
+        "acura-tl-dashboard-crack-2004",
+        "acura-tl-power-steering-hose-leak-2004",
+        "acura-tlx-9speed-shudder-2015",
+        "acura-tlx-brake-noise-aspec-2018",
+        "acura-tsx-ac-compressor-clutch-2004"
+      ]
+    }
+  ],
+  "queryResults": [
+    {
+      "issueId": "acura-cl-3-0cl-1997-1999-transmission-slipping",
+      "workItemId": "acura-cl-3-0cl-1997-1999-transmission-slipping--prescription-0-0--3-0l-v6-j30a1",
+      "expectedComponent": "torque converter",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1997-1999 Acura CL — 3.0CL torque converter us",
+      "queryIndex": 0,
+      "searchResultCount": 14,
+      "directProductCount": 3,
+      "strictComponentProductCount": 3,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "26000-PAA-305 Genuine Acura Torque Converter Assembly",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~converter~assy~torque~26000-PAA-305.html"
+        },
+        {
+          "title": "26000-P8A-305 Genuine Acura Converter Assembly, Torque",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~converter~assy~torque~26000-p8a-305.html"
+        },
+        {
+          "title": "26000-P8C-315 Genuine Acura Torque Converter Assembly",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~converter~assy~torque~26000-p8c-315.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-cl-3-0cl-1997-1999-transmission-slipping",
+      "workItemId": "acura-cl-3-0cl-1997-1999-transmission-slipping--prescription-0-0--3-0l-v6-j30a1",
+      "expectedComponent": "torque converter",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1997-1999 Acura CL — 3.0CL 3.0L V6 J30A1 torque converter us",
+      "queryIndex": 1,
+      "searchResultCount": 18,
+      "directProductCount": 2,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "26000-P8A-305 Genuine Acura Converter Assembly, Torque",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~converter~assy~torque~26000-p8a-305.html"
+        },
+        {
+          "title": "26000-PAA-305 Genuine Acura Torque Converter Assembly",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~converter~assy~torque~26000-PAA-305.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "workItemId": "acura-integra-dc-automatic-transmission-shift-solenoid--prescription-0-0--b18b1",
+      "expectedComponent": "lock-up solenoid",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1994-1999 Acura Integra — LS, GS, RS, Special Edition lock-up solenoid us",
+      "queryIndex": 2,
+      "searchResultCount": 19,
+      "directProductCount": 5,
+      "strictComponentProductCount": 4,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "28300-P24-J01 Genuine Acura Solenoid Assembly, Lock-Up (Keihin)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~solenoid~assy~lock~up~keihin~28300-p24-j01.html"
+        },
+        {
+          "title": "28300-P24-J01 Genuine Acura Solenoid Assembly, Lock-Up (Keihin)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~solenoid~assy~lock~up~keihin~28300-P24-J01.html"
+        },
+        {
+          "title": "39550-SR3-901 Genuine Acura Part",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~solenoid~assy~at~shift~lock~shindengen~39550-sr3-901.html"
+        },
+        {
+          "title": "1994-1999 Acura integra lock up control solenoid valve | eBay",
+          "url": "https://www.ebay.com/itm/374968590557"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "workItemId": "acura-integra-dc-automatic-transmission-shift-solenoid--prescription-0-0--b18b1",
+      "expectedComponent": "lock-up solenoid",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1994-1999 Acura Integra — LS, GS, RS, Special Edition B18B1 lock-up solenoid us",
+      "queryIndex": 3,
+      "searchResultCount": 23,
+      "directProductCount": 3,
+      "strictComponentProductCount": 3,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "28300-P24-J01 Genuine Acura Solenoid Assembly, Lock-Up (Keihin)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~solenoid~assy~lock~up~keihin~28300-p24-j01.html"
+        },
+        {
+          "title": "28300-P24-J01 Genuine Acura Solenoid Assembly, Lock-Up (Keihin)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~solenoid~assy~lock~up~keihin~28300-P24-J01.html"
+        },
+        {
+          "title": "1994-1999 Acura integra lock up control solenoid valve | eBay",
+          "url": "https://www.ebay.com/itm/374968590557"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-b-series-motor-mount-failure",
+      "workItemId": "acura-integra-b-series-motor-mount-failure--prescription-0-0--1-7l-b17a1",
+      "expectedComponent": "motor mounts",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1990-2001 Acura Integra — RS, LS, GS, GS-R, Type R (1997-1998, 2000-2001) motor mounts us",
+      "queryIndex": 4,
+      "searchResultCount": 24,
+      "directProductCount": 3,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1994-2001 Acura Integra Engine Mount - API 5899-07552199 - Front Left Upper - PartsGeek.com",
+          "url": "https://www.partsgeek.com/rpblw1f-acura-integra-engine-mount.html"
+        },
+        {
+          "title": "5x Engine Motor & Transmission Mount for Acura Integra 1994 95-01 1.8L Manual | eBay",
+          "url": "https://www.ebay.com/itm/165634658216"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-b-series-motor-mount-failure",
+      "workItemId": "acura-integra-b-series-motor-mount-failure--prescription-0-0--1-7l-b17a1",
+      "expectedComponent": "motor mounts",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1990-2001 Acura Integra — RS, LS, GS, GS-R, Type R (1997-1998, 2000-2001) 1.7L B17A1 motor mounts us",
+      "queryIndex": 5,
+      "searchResultCount": 22,
+      "directProductCount": 5,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1994-2001 Acura Integra Engine Mount - API 5899-07552199 - Front Left Upper - PartsGeek.com",
+          "url": "https://www.partsgeek.com/rpblw1f-acura-integra-engine-mount.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-ignition-switch-contact-pitting",
+      "workItemId": "acura-integra-dc-ignition-switch-contact-pitting--prescription-0-0--all-engines",
+      "expectedComponent": "ignition switch electrical portion",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1994-1999 Acura Integra ignition switch electrical portion us",
+      "queryIndex": 6,
+      "searchResultCount": 18,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-integra-dc-ignition-switch-contact-pitting",
+      "workItemId": "acura-integra-dc-ignition-switch-contact-pitting--prescription-0-0--all-engines",
+      "expectedComponent": "ignition switch electrical portion",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1994-1999 Acura Integra ignition switch electrical portion us",
+      "queryIndex": 7,
+      "searchResultCount": 18,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-integra-da-ignitor-module-failure",
+      "workItemId": "acura-integra-da-ignitor-module-failure--prescription-0-0--1-7l-b17a1",
+      "expectedComponent": "ignitor",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1990-1993 Acura Integra — RS, LS, GS, GS-R ignitor us",
+      "queryIndex": 8,
+      "searchResultCount": 27,
+      "directProductCount": 8,
+      "strictComponentProductCount": 5,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "06302-PT3-000 Genuine Acura Igniter Unit Kit (Nec/Elesys)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~igniter~unit~kit~nec~elesys~06302-pt3-000.html"
+        },
+        {
+          "title": "30120-PT3-003 Genuine Acura Ignition Module Compatible",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~igniter~unit~oki~30120-pt3-003.html"
+        },
+        {
+          "title": "30130-PR4-A02 Genuine Acura Igniter Assembly",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~igniter~assy~30130-pr4-a02.html"
+        },
+        {
+          "title": "UNIT ASSY,IGNITER 30130PR4A02 | Honda Parts | PartSouq",
+          "url": "https://partsouq.com/shop/product/30130PR4A02-honda-unit-assy-igniter/16228266"
+        },
+        {
+          "title": "30130-P75-006 Genuine Acura Igniter Unit (Tec)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~igniter~unit~tec~30130-p75-006.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-ignitor-module-failure",
+      "workItemId": "acura-integra-da-ignitor-module-failure--prescription-0-0--1-7l-b17a1",
+      "expectedComponent": "ignitor",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1990-1993 Acura Integra — RS, LS, GS, GS-R 1.7L B17A1 ignitor us",
+      "queryIndex": 9,
+      "searchResultCount": 19,
+      "directProductCount": 5,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "UNIT ASSY,IGNITER 30130PR4A02 | Honda Parts | PartSouq",
+          "url": "https://partsouq.com/shop/product/30130PR4A02-honda-unit-assy-igniter/16228266"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-distributor-internal-failure",
+      "workItemId": "acura-integra-dc-distributor-internal-failure--prescription-0-0--b18b1",
+      "expectedComponent": "distributor",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1994-1999 Acura Integra distributor us",
+      "queryIndex": 10,
+      "searchResultCount": 30,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1994-2001 Acura Integra Ignition Distributor - Replacement 905-035 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/dmf13j4-acura-integra-ignition-distributor.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-distributor-internal-failure",
+      "workItemId": "acura-integra-dc-distributor-internal-failure--prescription-0-0--b18b1",
+      "expectedComponent": "distributor",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1994-1999 Acura Integra B18B1 distributor us",
+      "queryIndex": 11,
+      "searchResultCount": 29,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "ACURA INTEGRA 1.8L B18B 90-91 IGNITION DISTRIBUTOR – AJP Distributors",
+          "url": "https://ajpdistributors.com/products/acura-integra-1-8l-b18b-90-91-ignition-distributor"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-cv-axle-outer-boot-tear",
+      "workItemId": "acura-integra-da-cv-axle-outer-boot-tear--prescription-0-0--all-engines",
+      "expectedComponent": "outer CV boot kit",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1990-1993 Acura Integra outer CV boot kit us",
+      "queryIndex": 12,
+      "searchResultCount": 15,
+      "directProductCount": 2,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1990-2001 Acura Integra CV Boot - Dorman 614-700 - Front Outer - PartsGeek.com",
+          "url": "https://www.partsgeek.com/qj97kh7-acura-integra-cv-boot-kit.html"
+        },
+        {
+          "title": "44333-SK7-J13 Genuine Acura Boot, Outboard",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~boot~outboard~44333-sk7-j13.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-cv-axle-outer-boot-tear",
+      "workItemId": "acura-integra-da-cv-axle-outer-boot-tear--prescription-0-0--all-engines",
+      "expectedComponent": "outer CV boot kit",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1990-1993 Acura Integra outer CV boot kit us",
+      "queryIndex": 13,
+      "searchResultCount": 15,
+      "directProductCount": 2,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1990-2001 Acura Integra CV Boot - Dorman 614-700 - Front Outer - PartsGeek.com",
+          "url": "https://www.partsgeek.com/qj97kh7-acura-integra-cv-boot-kit.html"
+        },
+        {
+          "title": "44333-SK7-J13 Genuine Acura Boot, Outboard",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~boot~outboard~44333-sk7-j13.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-passenger-cowl-water-leak-blower-motor",
+      "workItemId": "acura-integra-da-passenger-cowl-water-leak-blower-motor--prescription-0-0--all-engines",
+      "expectedComponent": "cowl grommet seal 91608-SJ6-003",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1990-1993 Acura Integra cowl grommet seal 91608-SJ6-003 us",
+      "queryIndex": 14,
+      "searchResultCount": 20,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "91608-SJ6-003 Genuine Acura Screw Rivet Boot",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~boot~screw~rivet~91608-sj6-003.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-passenger-cowl-water-leak-blower-motor",
+      "workItemId": "acura-integra-da-passenger-cowl-water-leak-blower-motor--prescription-0-0--all-engines",
+      "expectedComponent": "cowl grommet seal 91608-SJ6-003",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1990-1993 Acura Integra cowl grommet seal 91608-SJ6-003 us",
+      "queryIndex": 15,
+      "searchResultCount": 20,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "91608-SJ6-003 Genuine Acura Screw Rivet Boot",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~boot~screw~rivet~91608-sj6-003.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-pgm-fi-main-relay-hot-no-start",
+      "workItemId": "acura-integra-da-pgm-fi-main-relay-hot-no-start--prescription-0-0--all-engines",
+      "expectedComponent": "main relay",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1990-1993 Acura Integra main relay us",
+      "queryIndex": 16,
+      "searchResultCount": 17,
+      "directProductCount": 2,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1990-1993 Acura Integra Main Relay - Standard Motor Products RY-168 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/9yd25kc-acura-integra-main-relay.html"
+        },
+        {
+          "title": "1990-1993 Acura Integra Main Relay - Standard Motor Products RY168T - PartsGeek.com",
+          "url": "https://www.partsgeek.com/5g7j2r5-acura-integra-main-relay.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-pgm-fi-main-relay-hot-no-start",
+      "workItemId": "acura-integra-da-pgm-fi-main-relay-hot-no-start--prescription-0-0--all-engines",
+      "expectedComponent": "main relay",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1990-1993 Acura Integra main relay us",
+      "queryIndex": 17,
+      "searchResultCount": 17,
+      "directProductCount": 2,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1990-1993 Acura Integra Main Relay - Standard Motor Products RY-168 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/9yd25kc-acura-integra-main-relay.html"
+        },
+        {
+          "title": "1990-1993 Acura Integra Main Relay - Standard Motor Products RY168T - PartsGeek.com",
+          "url": "https://www.partsgeek.com/5g7j2r5-acura-integra-main-relay.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-rear-lca-bolt-seizure",
+      "workItemId": "acura-integra-dc-rear-lca-bolt-seizure--prescription-0-0--all-engines",
+      "expectedComponent": "rear lower control arm bolts",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1994-2001 Acura Integra rear lower control arm bolts us",
+      "queryIndex": 18,
+      "searchResultCount": 24,
+      "directProductCount": 6,
+      "strictComponentProductCount": 4,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "Acura Integra Rear Lower Control Arm Bolt Suspension Hardware 1994-2001 OEM | eBay",
+          "url": "https://www.ebay.com/itm/235588759290"
+        },
+        {
+          "title": "Precision Works Rear Lower Control Arm Replacement Bolt Kit (EG / DC) – Pressure Racing LLC",
+          "url": "https://pressureracing.com/products/precision-works-rear-lower-control-arm-replacement-bolt-kit-eg-dc"
+        },
+        {
+          "title": "Acura Integra Rear Lower Control Arm Bolt Suspension Hardware 1994-2001 OEM | eBay",
+          "url": "https://www.ebay.com/itm/236349756168"
+        },
+        {
+          "title": "Acura Integra Rear Lower Control Arm Bolt Suspension Hardware 1994-2001 OEM | eBay",
+          "url": "https://www.ebay.com/itm/235564258843"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-rear-lca-bolt-seizure",
+      "workItemId": "acura-integra-dc-rear-lca-bolt-seizure--prescription-0-0--all-engines",
+      "expectedComponent": "rear lower control arm bolts",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1994-2001 Acura Integra rear lower control arm bolts us",
+      "queryIndex": 19,
+      "searchResultCount": 24,
+      "directProductCount": 6,
+      "strictComponentProductCount": 4,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "Acura Integra Rear Lower Control Arm Bolt Suspension Hardware 1994-2001 OEM | eBay",
+          "url": "https://www.ebay.com/itm/235588759290"
+        },
+        {
+          "title": "Precision Works Rear Lower Control Arm Replacement Bolt Kit (EG / DC) – Pressure Racing LLC",
+          "url": "https://pressureracing.com/products/precision-works-rear-lower-control-arm-replacement-bolt-kit-eg-dc"
+        },
+        {
+          "title": "Acura Integra Rear Lower Control Arm Bolt Suspension Hardware 1994-2001 OEM | eBay",
+          "url": "https://www.ebay.com/itm/236349756168"
+        },
+        {
+          "title": "Acura Integra Rear Lower Control Arm Bolt Suspension Hardware 1994-2001 OEM | eBay",
+          "url": "https://www.ebay.com/itm/235564258843"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-rear-wheel-bearing-hum",
+      "workItemId": "acura-integra-da-rear-wheel-bearing-hum--prescription-0-0--all-engines",
+      "expectedComponent": "rear pre-pressed hub",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1990-1993 Acura Integra rear pre-pressed hub us",
+      "queryIndex": 20,
+      "searchResultCount": 16,
+      "directProductCount": 5,
+      "strictComponentProductCount": 3,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1990-1993 Acura Integra Wheel Hub Assembly - GMB 735-0367 - Rear - PartsGeek.com",
+          "url": "https://www.partsgeek.com/p7fg936-acura-integra-wheel-hub-assembly.html"
+        },
+        {
+          "title": "Acura, Honda (Wagon) Wheel Bearing and Hub Assembly - Rear | 9230014 | GSP North America",
+          "url": "https://www.gsplatinamerica.com/product/9230014"
+        },
+        {
+          "title": "1990-1993 Acura Integra Wheel Hub Assembly - WJB WA513033 - Rear - PartsGeek.com",
+          "url": "https://www.partsgeek.com/s4blldb-acura-integra-wheel-hub-assembly.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-da-rear-wheel-bearing-hum",
+      "workItemId": "acura-integra-da-rear-wheel-bearing-hum--prescription-0-0--all-engines",
+      "expectedComponent": "rear pre-pressed hub",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1990-1993 Acura Integra rear pre-pressed hub us",
+      "queryIndex": 21,
+      "searchResultCount": 16,
+      "directProductCount": 5,
+      "strictComponentProductCount": 3,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1990-1993 Acura Integra Wheel Hub Assembly - GMB 735-0367 - Rear - PartsGeek.com",
+          "url": "https://www.partsgeek.com/p7fg936-acura-integra-wheel-hub-assembly.html"
+        },
+        {
+          "title": "Acura, Honda (Wagon) Wheel Bearing and Hub Assembly - Rear | 9230014 | GSP North America",
+          "url": "https://www.gsplatinamerica.com/product/9230014"
+        },
+        {
+          "title": "1990-1993 Acura Integra Wheel Hub Assembly - WJB WA513033 - Rear - PartsGeek.com",
+          "url": "https://www.partsgeek.com/s4blldb-acura-integra-wheel-hub-assembly.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "workItemId": "acura-integra-dc-timing-belt-interference-failure--prescription-0-0--b18b1",
+      "expectedComponent": "timing belt kit",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1994-2001 Acura Integra timing belt kit us",
+      "queryIndex": 22,
+      "searchResultCount": 31,
+      "directProductCount": 4,
+      "strictComponentProductCount": 4,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "Gates TCK247 Engine Timing Belt Component Kit + Cross Reference | FinditParts",
+          "url": "https://www.finditparts.com/products/346576/gates-tck247"
+        },
+        {
+          "title": "Gates Acura B18C VTEC Replacement Timing Belt & Water Pump Kit – JD-Tuning.com",
+          "url": "https://jd-tuning.com/products/gates-acura-b18c-vtec-replacement-timing-belt-water-pump-kit"
+        },
+        {
+          "title": "1994-2001 Acura Integra Timing Belt - Replacement 298-023 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/9nfbr31-acura-integra-timing-belt-kit-and-water-pump.html"
+        },
+        {
+          "title": "1994-2001 Acura Integra Timing Belt - ContiTech TB247LK1 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/7v8jd38-acura-integra-timing-belt-kit.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "workItemId": "acura-integra-dc-timing-belt-interference-failure--prescription-0-0--b18b1",
+      "expectedComponent": "timing belt kit",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1994-2001 Acura Integra B18B1 timing belt kit us",
+      "queryIndex": 23,
+      "searchResultCount": 29,
+      "directProductCount": 6,
+      "strictComponentProductCount": 6,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1990-2001 Acura Integra Timing Belt - ContiTech W0133-1619347 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/8lj2td3-acura-integra-timing-belt-kit.html"
+        },
+        {
+          "title": "GATES Honda Racing Timing Belt KIT B20B B20 VTEC GSR B18C — BattleBorn SpeedShop",
+          "url": "https://www.battlebornspeedshop.com/products/gates-honda-racing-timing-belt-kit-b20b-b20-vtec-gsr-b18c"
+        },
+        {
+          "title": "94-01 For Acura Integra Complete Timing Belt + Water Pump Kit B18B1 NON VTEC | eBay",
+          "url": "https://www.ebay.com/itm/202705580966"
+        },
+        {
+          "title": "APDTY 172618 Timing Belt Kit DOHC B18B1 Eng. – Auto Parts Direct To You",
+          "url": "https://apdty.com/products/apd-172618"
+        },
+        {
+          "title": "1996-2001 Acura Integra Timing Belt - AISIN W0133-2202875 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/pbqw6yq-acura-integra-timing-belt-kit-and-water-pump.html"
+        },
+        {
+          "title": "GATES Honda Racing Timing Belt KIT B20B B20 VTEC GSR B18C - High-Performance Brake Pads & Fittings from StopTech, Hawk Performance, and EBC",
+          "url": "https://www.fittingsperfor.com/product/gates-honda-racing-timing-belt-kit-b20b-b20-vtec-gsr-b18c/"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-turbo-heat-soak-2023",
+      "workItemId": "acura-integra-turbo-heat-soak-2023--prescription-0-0--1-5l-l15ca-turbo-i4",
+      "expectedComponent": "aftermarket intercooler",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2023-2026 Acura Integra — A-Spec, A-Spec Technology, Type S aftermarket intercooler us",
+      "queryIndex": 24,
+      "searchResultCount": 23,
+      "directProductCount": 8,
+      "strictComponentProductCount": 8,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "RV6 Intercooler | Unity Perf. – Unity Performance",
+          "url": "https://unity-performance.com/products/rv6-intercooler-23-civic-type-r-fl5-23-integra-type-s-de5-1"
+        },
+        {
+          "title": "2023+ Acura Integra 1.5T Intercooler Upgrade- PRL Motorsports – Panda Motorworks",
+          "url": "https://www.pandamotorworks.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "title": "2023+ Acura Integra 1.5T Intercooler Upgrade - PRL Motorsports",
+          "url": "https://prlmotorsports.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "title": "2023+ Acura Integra 1.5T Intercooler Upgrade – JD-Tuning.com",
+          "url": "https://jd-tuning.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "title": "27WON Front Mount Intercooler | 11th Gen – Unity Performance",
+          "url": "https://unity-performance.com/products/27won-intercooler-11th-gen"
+        },
+        {
+          "title": "MDR Industries 2023+ Type-R/Type-S Billet Tube & Fin Front Mount Inter",
+          "url": "https://shop.mdrindustries.com/products/mdr-industries-2023-type-r-type-s-billet-tube-fin-front-mount-intercooler-upgrade"
+        },
+        {
+          "title": "MDR Industries 2023+ Type-R/Type-S Billet Bar and Plate Front Mount In",
+          "url": "https://shop.mdrindustries.com/products/mdr-industries-billet-front-mount-intercooler"
+        },
+        {
+          "title": "2023+ FL5 Honda Civic Type R/24+ DE5 Acura Integra Type S Intercooler – PWR Advanced Cooling Technology USA",
+          "url": "https://pwrna.com/products/2023-fl5-honda-civic-type-r-2024-de5-acura-integra-type-s-intercooler"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-turbo-heat-soak-2023",
+      "workItemId": "acura-integra-turbo-heat-soak-2023--prescription-0-0--1-5l-l15ca-turbo-i4",
+      "expectedComponent": "aftermarket intercooler",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2023-2026 Acura Integra — A-Spec, A-Spec Technology, Type S 1.5L L15CA Turbo I4 aftermarket intercooler us",
+      "queryIndex": 25,
+      "searchResultCount": 21,
+      "directProductCount": 8,
+      "strictComponentProductCount": 8,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "2023+ Acura Integra 1.5T Intercooler Upgrade- PRL Motorsports – Panda Motorworks",
+          "url": "https://www.pandamotorworks.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "title": "2023+ Acura Integra 1.5T Intercooler Upgrade – JD-Tuning.com",
+          "url": "https://jd-tuning.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "title": "2023+ Acura Integra 1.5T Intercooler Upgrade - PRL Motorsports",
+          "url": "https://prlmotorsports.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "title": "2023+ Acura Integra 1.5T Intercooler Upgrade - PRL Motorsports – SpeedFactoryRacing",
+          "url": "https://www.speedfactoryracing.net/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "title": "PRL Motorsports® (23+) Acura Integra 1.5L intercooler Upgrade – 10 Second Racing",
+          "url": "https://10secondracing.com/products/prl-motorsports%C2%AE-23-acura-integra-1-5l-high-capacity-intercooler-upgrade"
+        },
+        {
+          "title": "Performance Intercooler Kit, fits Honda Civic 1.5T / Si 2022+ | Mishimoto",
+          "url": "https://www.mishimoto.com/fits/acura/integra/2024-2026/p/MMINT-CIV-22KBKWBK/performance-intercooler-kit-black-black-fits-honda-civic-si-2022.html"
+        },
+        {
+          "title": "PRL Motorsports PRL 2023-2025 Integra 1.5T Intercooler Upgrade – AHC Garage",
+          "url": "https://www.ahcgarage.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "title": "2023+ Acura Integra 1.5T High Volume Intercooler Outlet | PRL Motorsports",
+          "url": "https://prlmotorsports.com/products/2023-acura-integra-1-5t-high-volume-intercooler-outlet"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+      "workItemId": "acura-integra-dc-vtec-oil-pressure-switch-code22--prescription-0-0--b18c1",
+      "expectedComponent": "VTEC oil pressure switch",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1994-2001 Acura Integra — GS-R, Type R VTEC oil pressure switch us",
+      "queryIndex": 26,
+      "searchResultCount": 22,
+      "directProductCount": 3,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+      "workItemId": "acura-integra-dc-vtec-oil-pressure-switch-code22--prescription-0-0--b18c1",
+      "expectedComponent": "VTEC oil pressure switch",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1994-2001 Acura Integra — GS-R, Type R B18C1 VTEC oil pressure switch us",
+      "queryIndex": 27,
+      "searchResultCount": 24,
+      "directProductCount": 3,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure",
+      "workItemId": "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure--prescription-1-0--c32a1",
+      "expectedComponent": "ABS pump accumulator assembly",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1991-1995 Acura Legend ABS pump accumulator assembly us",
+      "queryIndex": 28,
+      "searchResultCount": 16,
+      "directProductCount": 1,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure",
+      "workItemId": "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure--prescription-1-0--c32a1",
+      "expectedComponent": "ABS pump accumulator assembly",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1991-1995 Acura Legend C32A1 ABS pump accumulator assembly us",
+      "queryIndex": 29,
+      "searchResultCount": 18,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi",
+      "workItemId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi--prescription-0-0--c32a",
+      "expectedComponent": "head gaskets",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1991-1995 Acura Legend head gaskets us",
+      "queryIndex": 30,
+      "searchResultCount": 25,
+      "directProductCount": 8,
+      "strictComponentProductCount": 7,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1991-1995 Acura Legend Head Gasket - Original W0133-1602832 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/x1knvzl-acura-legend-head-gasket-set.html"
+        },
+        {
+          "title": "1991-1995 Acura Legend Head Gasket - Replacement 598-014 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/1f57b6b-acura-legend-head-gasket-set.html"
+        },
+        {
+          "title": "1991-1995 Acura Legend Head Gasket - Victor Reinz 02-10839-01 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/9gdt5hb-acura-legend-head-gasket-set.html"
+        },
+        {
+          "title": "12261-PY3-003 Genuine Acura Part",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~gasket~r~cylinder~head~ishino~gasket~12261-py3-003.html"
+        },
+        {
+          "title": "12251-PY3-003 Genuine Acura Part",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~gasket~l~cylinder~head~ishino~gasket~12251-py3-003.html"
+        },
+        {
+          "title": "1991-1995 Acura Legend Head Gasket - APEX AHS1028 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/179nl36-acura-legend-head-gasket-set.html"
+        },
+        {
+          "title": "1991-1995 Acura Legend Head Gasket - Felpro 9032 PT - Right - PartsGeek.com",
+          "url": "https://www.partsgeek.com/dfssq9f-acura-legend-head-gasket.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi",
+      "workItemId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi--prescription-0-0--c32a",
+      "expectedComponent": "head gaskets",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1991-1995 Acura Legend C32A head gaskets us",
+      "queryIndex": 31,
+      "searchResultCount": 22,
+      "directProductCount": 4,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1991-1995 Acura Legend Head Gasket - Replacement 598-014 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/1f57b6b-acura-legend-head-gasket-set.html"
+        },
+        {
+          "title": "1991-1995 Acura Legend Head Gasket - Original W0133-1602832 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/x1knvzl-acura-legend-head-gasket-set.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+      "workItemId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c--prescription-0-0--c32a1",
+      "expectedComponent": "fan control unit",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1991-1993 Acura Legend fan control unit us",
+      "queryIndex": 32,
+      "searchResultCount": 27,
+      "directProductCount": 3,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "37735-PY3A-905 Fan Control Module OEM | Acura Legend - Module Mechanics",
+          "url": "https://modulemechanics.com/product/37735-py3a-905-fan-control-module-oem-acura-legend/"
+        },
+        {
+          "title": "1991-1995 ACURA LEGEND COOLING FAN CONTROL MODULE 37735-PY3-901 | eBay",
+          "url": "https://www.ebay.com/itm/406185808345"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+      "workItemId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c--prescription-0-0--c32a1",
+      "expectedComponent": "fan control unit",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1991-1993 Acura Legend C32A1 fan control unit us",
+      "queryIndex": 33,
+      "searchResultCount": 25,
+      "directProductCount": 2,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "37735-PY3A-905 Fan Control Module OEM | Acura Legend - Module Mechanics",
+          "url": "https://modulemechanics.com/product/37735-py3a-905-fan-control-module-oem-acura-legend/"
+        },
+        {
+          "title": "1991-1995 ACURA LEGEND COOLING FAN CONTROL MODULE 37735-PY3-901 | eBay",
+          "url": "https://www.ebay.com/itm/406185808345"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-pgm-fi-main-relay-solder-cracks-cause-hot-soak-no-start",
+      "workItemId": "acura-legend-pgm-fi-main-relay-solder-cracks-cause-hot-soak-no-start--prescription-0-0--c32a1",
+      "expectedComponent": "PGM-FI main relay Omron",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1991-1995 Acura Legend PGM-FI main relay Omron us",
+      "queryIndex": 34,
+      "searchResultCount": 21,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1991-1995 Acura Legend Main Relay - Standard Motor Products RY-340 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/p2x64df-acura-legend-main-relay.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-pgm-fi-main-relay-solder-cracks-cause-hot-soak-no-start",
+      "workItemId": "acura-legend-pgm-fi-main-relay-solder-cracks-cause-hot-soak-no-start--prescription-0-0--c32a1",
+      "expectedComponent": "PGM-FI main relay Omron",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1991-1995 Acura Legend C32A1 PGM-FI main relay Omron us",
+      "queryIndex": 35,
+      "searchResultCount": 21,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1991-1995 Acura Legend Main Relay - Standard Motor Products RY-340 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/p2x64df-acura-legend-main-relay.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s",
+      "workItemId": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s--prescription-0-0--c32a1",
+      "expectedComponent": "power steering high-pressure hose",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1991-1995 Acura Legend power steering high-pressure hose us",
+      "queryIndex": 36,
+      "searchResultCount": 15,
+      "directProductCount": 4,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "53713-SP0-A01 Genuine Acura Power Steering Pressure Feed Hose",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~hose~feed~53713-sp0-a01.html"
+        },
+        {
+          "title": "91-95 Legend Power Steering High Pressure Feed Hose Pipe Line From Pump OEM | eBay",
+          "url": "https://www.ebay.com/itm/163711951312"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s",
+      "workItemId": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s--prescription-0-0--c32a1",
+      "expectedComponent": "power steering high-pressure hose",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1991-1995 Acura Legend C32A1 power steering high-pressure hose us",
+      "queryIndex": 37,
+      "searchResultCount": 18,
+      "directProductCount": 5,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "53713-SP0-A01 Genuine Acura Power Steering Pressure Feed Hose",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~hose~feed~53713-sp0-a01.html"
+        },
+        {
+          "title": "91-95 Legend Power Steering High Pressure Feed Hose Pipe Line From Pump OEM | eBay",
+          "url": "https://www.ebay.com/itm/163711951312"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks",
+      "workItemId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks--prescription-0-0--c32a1",
+      "expectedComponent": "sunroof drain tubes",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1991-1995 Acura Legend sunroof drain tubes us",
+      "queryIndex": 38,
+      "searchResultCount": 23,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "70050-SP0-000 Genuine Acura Tube, Front Drain Vinyl (Sunroof)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~tube~fr~drain~vinyl~sunroof~70050-sp0-000.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks",
+      "workItemId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks--prescription-0-0--c32a1",
+      "expectedComponent": "sunroof drain tubes",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1991-1995 Acura Legend C32A1 sunroof drain tubes us",
+      "queryIndex": 39,
+      "searchResultCount": 25,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "70050-SP0-000 Genuine Acura Tube, Front Drain Vinyl (Sunroof)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~tube~fr~drain~vinyl~sunroof~70050-sp0-000.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks",
+      "workItemId": "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks--prescription-0-0--c32a1",
+      "expectedComponent": "valve cover gaskets",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1991-1995 Acura Legend valve cover gaskets us",
+      "queryIndex": 40,
+      "searchResultCount": 15,
+      "directProductCount": 4,
+      "strictComponentProductCount": 3,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1991-1995 Acura Legend Valve Cover Gasket - Original W0133-1633505 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/ryhrtk1-acura-legend-valve-cover-gasket-set.html"
+        },
+        {
+          "title": "12341-PY3-000 Genuine Acura Engine Valve Cover Gasket",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~gasket~cylinder~head~cover~12341-py3-000.html"
+        },
+        {
+          "title": "1991-1995 Acura Legend Valve Cover Gasket - Felpro VS 50448 R - PartsGeek.com",
+          "url": "https://www.partsgeek.com/4rhsdbr-acura-legend-valve-cover-gasket-set.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks",
+      "workItemId": "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks--prescription-0-0--c32a1",
+      "expectedComponent": "valve cover gaskets",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1991-1995 Acura Legend C32A1 valve cover gaskets us",
+      "queryIndex": 41,
+      "searchResultCount": 19,
+      "directProductCount": 7,
+      "strictComponentProductCount": 4,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1991-1995 Acura Legend Valve Cover Gasket - Original W0133-1633505 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/ryhrtk1-acura-legend-valve-cover-gasket-set.html"
+        },
+        {
+          "title": "Timing Belt Kit Water Pump Valve Cover Gasket Fit Acura Legend 2-Door – Mizumo Auto",
+          "url": "https://mizumoauto.com/products/mizumo-auto-ma-4216963948-timing-belt-kit-water-pump-valve-cover-gasket-fit-acura-legend-2-door-3-2l-c32a1"
+        },
+        {
+          "title": "12341-PY3-000 Genuine Acura Engine Valve Cover Gasket",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~gasket~cylinder~head~cover~12341-py3-000.html"
+        },
+        {
+          "title": "1995 Acura Legend 3.2L Engine Valve Cover Gasket with Grommets - VC282GZE5",
+          "url": "https://www.enginepartsonly.com/products/1995-acura-legend-3-2l-engine-valve-cover-gasket-with-grommets-vc282gze5.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick",
+      "workItemId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick--prescription-0-0--j35a3",
+      "expectedComponent": "power steering high-pressure hose",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2001-2013 Acura MDX power steering high-pressure hose us",
+      "queryIndex": 42,
+      "searchResultCount": 29,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "Sunsong 3403765 Power Steering Pressure Line Hose Assembly + Cross Reference | FinditParts",
+          "url": "https://www.finditparts.com/products/12635446/sunsong-3403765"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick",
+      "workItemId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick--prescription-0-0--j35a3",
+      "expectedComponent": "power steering high-pressure hose",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2001-2013 Acura MDX J35A3 power steering high-pressure hose us",
+      "queryIndex": 43,
+      "searchResultCount": 26,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "Sunsong 3403765 Power Steering Pressure Line Hose Assembly + Cross Reference | FinditParts",
+          "url": "https://www.finditparts.com/products/12635446/sunsong-3403765"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a3-v6",
+      "expectedComponent": "timing belt kit",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2001-2006 Acura MDX — Base, Touring timing belt kit us",
+      "queryIndex": 44,
+      "searchResultCount": 25,
+      "directProductCount": 4,
+      "strictComponentProductCount": 4,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "Gates 01-03 Acura CL/01-02 MDX/00-03 TL / 03-04 Honda Pilot Timing Bel",
+          "url": "https://streetdrivenperformance.net/products/gates-01-03-acura-cl-01-02-mdx-00-03-tl-03-04-honda-pilot-timing-belt-kit-w-water-pump"
+        },
+        {
+          "title": "Timing Belt Kit Water Pump Fit 03-17 Acura Honda J30A4 J32A3 J35A6 J35 – Mizumo Auto",
+          "url": "https://mizumoauto.com/products/mizumo-auto-ma-4216893375-timing-belt-kit-water-pump-fit-03-17-acura-honda-j30a4-j32a3-j35a6-j35a7-j37a1"
+        },
+        {
+          "title": "2001-2002 Acura MDX Timing Belt - Replacement AP REPA319806 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/wkpjfjk-acura-mdx-timing-belt-kit.html"
+        },
+        {
+          "title": "Gates 97-03 Acura CL/01-02 MDX/99-03 TL / 98-02 Honda Accord/03-04 Pil",
+          "url": "https://streetdrivenperformance.net/products/gates-97-03-acura-cl-01-02-mdx-99-03-tl-98-02-honda-accord-03-04-pilot-timing-belt-component-kit"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "workItemId": "acura-mdx-timing-belt-tensioner-2001--prescription-4-0--3-5l-j35a3-v6",
+      "expectedComponent": "timing belt kit",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2001-2006 Acura MDX — Base, Touring 3.5L J35A3 V6 timing belt kit us",
+      "queryIndex": 45,
+      "searchResultCount": 12,
+      "directProductCount": 2,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "2001-2002 Acura MDX Timing Belt - Replacement 298-017 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/fp8whxr-acura-mdx-timing-belt-kit-and-water-pump.html"
+        },
+        {
+          "title": "J32A2, J32A1, J35A1, J35A3, J35A4 Timing Belt Kit with Water Pump – Prank Parts",
+          "url": "https://prankparts.com/products/j32a2-j32a1-j35a1-j35a3-j35a4-timing-belt-kit-with-water-pump"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "workItemId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--prescription-2-0--j37a1",
+      "expectedComponent": "vcm tuner / s-vcm controller",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2010-2013 Acura MDX vcm tuner / s-vcm controller us",
+      "queryIndex": 46,
+      "searchResultCount": 27,
+      "directProductCount": 3,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "VCMTUNER II | Advanced VCM Controller for Honda & Acura 2007+",
+          "url": "https://www.vcmtuner.com/products/vcmtuner-ii-honda-3-5l-i-vtec-disable-vcm-eco-mode?variant=7016471593017"
+        },
+        {
+          "title": "S-VCM Controller - Variable Cylinder Management VCM Disabler",
+          "url": "https://campingrandy.com/products/S-VCM-Controller-VCM-Disabler-p369729001"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "workItemId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--prescription-2-0--j37a1",
+      "expectedComponent": "vcm tuner / s-vcm controller",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2010-2013 Acura MDX J37A1 vcm tuner / s-vcm controller us",
+      "queryIndex": 47,
+      "searchResultCount": 22,
+      "directProductCount": 5,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "VCMTUNER II | Advanced VCM Controller for Honda & Acura 2007+",
+          "url": "https://www.vcmtuner.com/products/vcmtuner-ii-honda-3-5l-i-vtec-disable-vcm-eco-mode?variant=7016471593017"
+        },
+        {
+          "title": "S-VCM Controller - Variable Cylinder Management VCM Disabler",
+          "url": "https://campingrandy.com/products/S-VCM-Controller-VCM-Disabler-p369729001"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-rdx-ac-compressor-failure-2013",
+      "workItemId": "acura-rdx-ac-compressor-failure-2013--prescription-0-0--3-5l-j35z2-v6",
+      "expectedComponent": "AC compressor assembly",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2013-2018 Acura RDX — Base, Technology, AcuraWatch Plus AC compressor assembly us",
+      "queryIndex": 48,
+      "searchResultCount": 11,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-rdx-ac-compressor-failure-2013",
+      "workItemId": "acura-rdx-ac-compressor-failure-2013--prescription-0-0--3-5l-j35z2-v6",
+      "expectedComponent": "AC compressor assembly",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2013-2018 Acura RDX — Base, Technology, AcuraWatch Plus 3.5L J35Z2 V6 AC compressor assembly us",
+      "queryIndex": 49,
+      "searchResultCount": 14,
+      "directProductCount": 3,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "2016-2018 Acura RDX A/C Compressor - Nissens 890904 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/fwyxj6b-acura-rdx-ac-compressor.html"
+        },
+        {
+          "title": "2013-2015 Acura RDX A/C Compressor - Nissens 890881 - PartsGeek.com",
+          "url": "https://www.partsgeek.com/pqy694x-acura-rdx-ac-compressor.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+      "workItemId": "acura-rl-c35a-distributor-shaft-seal-oil-leak--prescription-0-0--3-5l-v6-c35a",
+      "expectedComponent": "distributor",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1996-2004 Acura RL — Base distributor us",
+      "queryIndex": 50,
+      "searchResultCount": 25,
+      "directProductCount": 7,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+      "workItemId": "acura-rl-c35a-distributor-shaft-seal-oil-leak--prescription-0-0--3-5l-v6-c35a",
+      "expectedComponent": "distributor",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1996-2004 Acura RL — Base 3.5L V6 C35A distributor us",
+      "queryIndex": 51,
+      "searchResultCount": 25,
+      "directProductCount": 7,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-rl-shawd-system-noise-2005",
+      "workItemId": "acura-rl-shawd-system-noise-2005--prescription-1-0--3-5l-j35a8-v6",
+      "expectedComponent": "SH-AWD electromagnetic actuators",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2005-2012 Acura RL — Base, Technology, Advance SH-AWD electromagnetic actuators us",
+      "queryIndex": 52,
+      "searchResultCount": 22,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-rl-shawd-system-noise-2005",
+      "workItemId": "acura-rl-shawd-system-noise-2005--prescription-1-0--3-5l-j35a8-v6",
+      "expectedComponent": "SH-AWD electromagnetic actuators",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2005-2012 Acura RL — Base, Technology, Advance 3.5L J35A8 V6 SH-AWD electromagnetic actuators us",
+      "queryIndex": 53,
+      "searchResultCount": 11,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "workItemId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
+      "expectedComponent": "timing belt",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1996-1999 Acura RL — Base timing belt us",
+      "queryIndex": 54,
+      "searchResultCount": 28,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "14400-P5A-004 Genuine Acura Timing Belt (197Ru24 B-366) (Unitta)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~belt~timing~197ru24~b~366~unitta~14400-p5a-004.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "workItemId": "acura-rl-c35a-timing-belt-tensioner-interference--prescription-0-0--3-5l-v6-c35a",
+      "expectedComponent": "timing belt",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1996-1999 Acura RL — Base 3.5L V6 C35A timing belt us",
+      "queryIndex": 55,
+      "searchResultCount": 24,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "workItemId": "acura-rsx-ac-compressor-clutch-2002--prescription-0-0--2-0l-k20a2-i4",
+      "expectedComponent": "ac compressor clutch",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2002-2006 Acura RSX — Base, Type-S ac compressor clutch us",
+      "queryIndex": 56,
+      "searchResultCount": 25,
+      "directProductCount": 2,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "workItemId": "acura-rsx-ac-compressor-clutch-2002--prescription-0-0--2-0l-k20a2-i4",
+      "expectedComponent": "ac compressor clutch",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2002-2006 Acura RSX — Base, Type-S 2.0L K20A2 I4 ac compressor clutch us",
+      "queryIndex": 57,
+      "searchResultCount": 23,
+      "directProductCount": 2,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-slx-rear-differential-transfer-case-trooper-inheritance",
+      "workItemId": "acura-slx-rear-differential-transfer-case-trooper-inheritance--prescription-0-0--3-2l-v6-6vd1",
+      "expectedComponent": "remanufactured rear axle",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1996-1999 Acura SLX — Base, Premium remanufactured rear axle us",
+      "queryIndex": 58,
+      "searchResultCount": 22,
+      "directProductCount": 4,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-slx-rear-differential-transfer-case-trooper-inheritance",
+      "workItemId": "acura-slx-rear-differential-transfer-case-trooper-inheritance--prescription-0-0--3-2l-v6-6vd1",
+      "expectedComponent": "remanufactured rear axle",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1996-1999 Acura SLX — Base, Premium 3.2L V6 6VD1 remanufactured rear axle us",
+      "queryIndex": 59,
+      "searchResultCount": 20,
+      "directProductCount": 5,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tl-auto-trans-3rd-gear-2004",
+      "workItemId": "acura-tl-auto-trans-3rd-gear-2004--prescription-0-0--3-2l-j32a3-v6",
+      "expectedComponent": "upgraded 3rd gear clutch pack",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2004-2008 Acura TL — Base, Type-S upgraded 3rd gear clutch pack us",
+      "queryIndex": 60,
+      "searchResultCount": 17,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tl-auto-trans-3rd-gear-2004",
+      "workItemId": "acura-tl-auto-trans-3rd-gear-2004--prescription-0-0--3-2l-j32a3-v6",
+      "expectedComponent": "upgraded 3rd gear clutch pack",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2004-2008 Acura TL — Base, Type-S 3.2L J32A3 V6 upgraded 3rd gear clutch pack us",
+      "queryIndex": 61,
+      "searchResultCount": 20,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tl-brake-pedal-vibration-and-2009",
+      "workItemId": "acura-tl-brake-pedal-vibration-and-2009--prescription-0-0--all-engines",
+      "expectedComponent": "front brake rotors",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2009-2014 Acura TL front brake rotors us",
+      "queryIndex": 62,
+      "searchResultCount": 18,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "45251-TK4-A00 Genuine Acura Front Disc Brake Rotor (17In)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~disk~fr~brake~17in~45251-tk4-a00.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-tl-brake-pedal-vibration-and-2009",
+      "workItemId": "acura-tl-brake-pedal-vibration-and-2009--prescription-0-0--all-engines",
+      "expectedComponent": "front brake rotors",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2009-2014 Acura TL front brake rotors us",
+      "queryIndex": 63,
+      "searchResultCount": 18,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "45251-TK4-A00 Genuine Acura Front Disc Brake Rotor (17In)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~disk~fr~brake~17in~45251-tk4-a00.html"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-tl-dashboard-crack-2004",
+      "workItemId": "acura-tl-dashboard-crack-2004--prescription-0-0--3-2l-j32a3-v6",
+      "expectedComponent": "dashboard assembly",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2004-2008 Acura TL — Base, Type-S dashboard assembly us",
+      "queryIndex": 64,
+      "searchResultCount": 28,
+      "directProductCount": 1,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tl-dashboard-crack-2004",
+      "workItemId": "acura-tl-dashboard-crack-2004--prescription-0-0--3-2l-j32a3-v6",
+      "expectedComponent": "dashboard assembly",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2004-2008 Acura TL — Base, Type-S 3.2L J32A3 V6 dashboard assembly us",
+      "queryIndex": 65,
+      "searchResultCount": 20,
+      "directProductCount": 3,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tl-power-steering-hose-leak-2004",
+      "workItemId": "acura-tl-power-steering-hose-leak-2004--prescription-0-0--3-2l-j32a3-v6",
+      "expectedComponent": "high-pressure power steering hose",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2004-2008 Acura TL — Base, Type-S high-pressure power steering hose us",
+      "queryIndex": 66,
+      "searchResultCount": 28,
+      "directProductCount": 5,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "07-08 Acura TL Base A/T type Power Steering High Pressure Feed Hose used, OEM | eBay",
+          "url": "https://www.ebay.com/itm/165760490151"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-tl-power-steering-hose-leak-2004",
+      "workItemId": "acura-tl-power-steering-hose-leak-2004--prescription-0-0--3-2l-j32a3-v6",
+      "expectedComponent": "high-pressure power steering hose",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2004-2008 Acura TL — Base, Type-S 3.2L J32A3 V6 high-pressure power steering hose us",
+      "queryIndex": 67,
+      "searchResultCount": 24,
+      "directProductCount": 3,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tlx-9speed-shudder-2015",
+      "workItemId": "acura-tlx-9speed-shudder-2015--prescription-0-0--3-5l-j35y6-v6",
+      "expectedComponent": "torque converter",
+      "searchEligibility": "source-correction-hold",
+      "template": "devon",
+      "query": "2015-2020 Acura TLX — Base, Technology, Advance, A-Spec torque converter us",
+      "queryIndex": 68,
+      "searchResultCount": 18,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tlx-9speed-shudder-2015",
+      "workItemId": "acura-tlx-9speed-shudder-2015--prescription-0-0--3-5l-j35y6-v6",
+      "expectedComponent": "torque converter",
+      "searchEligibility": "source-correction-hold",
+      "template": "precision",
+      "query": "2015-2020 Acura TLX — Base, Technology, Advance, A-Spec 3.5L J35Y6 V6 torque converter us",
+      "queryIndex": 69,
+      "searchResultCount": 13,
+      "directProductCount": 0,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "workItemId": "acura-tlx-brake-noise-aspec-2018--prescription-0-0--2-4l-k24w7-i4",
+      "expectedComponent": "Type S Brembo front brake pads",
+      "searchEligibility": "source-correction-hold",
+      "template": "devon",
+      "query": "2021-2025 Acura TLX — A-Spec, Type S, Type S PMC Type S Brembo front brake pads us",
+      "queryIndex": 70,
+      "searchResultCount": 24,
+      "directProductCount": 2,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "workItemId": "acura-tlx-brake-noise-aspec-2018--prescription-0-0--2-4l-k24w7-i4",
+      "expectedComponent": "Type S Brembo front brake pads",
+      "searchEligibility": "source-correction-hold",
+      "template": "precision",
+      "query": "2021-2025 Acura TLX — A-Spec, Type S, Type S PMC 2.4L K24W7 I4 Type S Brembo front brake pads us",
+      "queryIndex": 71,
+      "searchResultCount": 24,
+      "directProductCount": 1,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "workItemId": "acura-tsx-ac-compressor-clutch-2004--prescription-0-0--2-4l-k24a2-i4",
+      "expectedComponent": "ac compressor clutch",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "2004-2014 Acura TSX — Base, Technology, Special Edition ac compressor clutch us",
+      "queryIndex": 72,
+      "searchResultCount": 26,
+      "directProductCount": 1,
+      "strictComponentProductCount": 1,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "PHILTOP 208520 Air Conditioner AC Compressor with Clutch for Acura TSX 2004-2008",
+          "url": "https://www.philtop-auto.com/product/philtop-208520-air-conditioner-ac-compressor-with-clutch-for-acura-tsx-2004-2008"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "workItemId": "acura-tsx-ac-compressor-clutch-2004--prescription-0-0--2-4l-k24a2-i4",
+      "expectedComponent": "ac compressor clutch",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "2004-2014 Acura TSX — Base, Technology, Special Edition 2.4L K24A2 I4 ac compressor clutch us",
+      "queryIndex": 73,
+      "searchResultCount": 23,
+      "directProductCount": 2,
+      "strictComponentProductCount": 0,
+      "strictComponentMatched": false,
+      "matchingProducts": []
+    },
+    {
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "workItemId": "acura-vigor-g25a1-timing-belt-interference--prescription-6-0--2-5l-i5-g25a1",
+      "expectedComponent": "timing kit",
+      "searchEligibility": "eligible",
+      "template": "devon",
+      "query": "1992-1994 Acura Vigor — LS, GS timing kit us",
+      "queryIndex": 74,
+      "searchResultCount": 25,
+      "directProductCount": 7,
+      "strictComponentProductCount": 4,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "Gates Engine Timing Belt Kit with Water Pump – FR SPORT",
+          "url": "https://frsport.com/products/gates-tckwp211a-engine-timing-belt-kit-water-pump"
+        },
+        {
+          "title": "Dayco Engine Timing Belt Kit 95211K1 – FR SPORT",
+          "url": "https://frsport.com/products/dayco-engine-timing-belt-kit-95211k1"
+        },
+        {
+          "title": "Gates Timing Belt Component Kit for 1992-1994 Acura Vigor 2.5L L5 - Engine zb | eBay",
+          "url": "https://www.ebay.com/itm/389881286642"
+        },
+        {
+          "title": "Engine Timing Belt Kit Fits 92-98 Acura TL Vigor 2.5L 20V SOHC G25A1 G25A4 | eBay",
+          "url": "https://www.ebay.com/itm/257193969203"
+        }
+      ]
+    },
+    {
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "workItemId": "acura-vigor-g25a1-timing-belt-interference--prescription-6-0--2-5l-i5-g25a1",
+      "expectedComponent": "timing kit",
+      "searchEligibility": "eligible",
+      "template": "precision",
+      "query": "1992-1994 Acura Vigor — LS, GS 2.5L I5 G25A1 timing kit us",
+      "queryIndex": 75,
+      "searchResultCount": 25,
+      "directProductCount": 6,
+      "strictComponentProductCount": 2,
+      "strictComponentMatched": true,
+      "matchingProducts": [
+        {
+          "title": "1992 Acura Vigor 2.5L Timing Belt & Component Kit",
+          "url": "https://partsology.com/products/timing-belt-kit-acura-tl-vigor-92-98-2-5l-tbk253-1"
+        },
+        {
+          "title": "Timing Belt Kit for Acura 1992-98 2.5L L5",
+          "url": "https://partsology.com/products/timing-belt-kit-acura-tl-vigor-92-98-2-5l-tbk253"
+        }
+      ]
+    }
+  ]
+}

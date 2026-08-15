@@ -20,7 +20,7 @@
     "04-part-proposals.json": "d40054dfd134c139e6b2a02b53b082b3765a37ec6577de69065584d82aaaaa82",
     "05-direct-link-evidence.json": "d15e6feba886aa22d30ff8f818915c0e1b1ae813753cf84bce20954d525edaf6",
     "06-independent-review.json": "b0743dabc56368fef79d6971187c4503952cbaa8ec7523bea9035057d340e28f",
-    "07-decision-patch.json": "048bbfd241d4c355e702816898c8a6fb70c7e6bf67029ea081fdf6187ed83295",
+    "07-decision-patch.json": "a41e68cdddbbaeca5e06e6e3c7336a76bf36a1ad7c99b2fbae8de54ba48efcca",
     "08-guarded-manifest.json": "c4168ecf8c4c026ce3ceeb5535eef7a2539d94b712388dd1cb3e0f1fbc718fe3",
     "reviewed-retailer-candidates.json": "4863a4c7125da157500fb0fd82dcc4fc6cbb1fcd76c2cf9fdd93a56d28a7f61a",
     "classification-ledger.json": "09a21538cc19103ab90a296fb40153dba09e6eb22aea67cec7d07d061433e5d5",
@@ -40,7 +40,7 @@
     "src/components/vehicle/VehicleDashboard.tsx": "853aeb031614ee04997bf20c3dd0d2598fc8e818799b5a44de308c65e61cf528"
   },
   "commercePipelineImplementationSha256": {
-    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
+    "scripts/known-issue-completion-contract.js": "e24efa98d05f9668a28350b429fbc993677c30d812b1abec649c2fd97a0c5720",
     "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
     "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
     "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
@@ -75,13 +75,20 @@
     "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
     "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
     "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
-    "src/lib/verified-parts.ts": "30de95008fb208e0f422a98f3eec477ad1240ec2290082b1511bab43bad92f46",
+    "src/lib/verified-parts.ts": "185fb0be5b1f80ea0aee27afd03dd782691126d06377495540695149f5e79f38",
     "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
     "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
     "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
     "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
     "src/lib/reviewed-vehicle-context.ts": "7206374c4f0fadbd687734e2f945e8525ca25581308ae8087d8aec1d9fa2fe8d",
-    "src/lib/known-issue-commerce.ts": "67fb8fbb29bf74360bea4d9ee2e30c2e177c0945aacc722ba0d1ac4717f1fa06",
+    "src/lib/known-issue-commerce.ts": "4a974ed84cb2455d85b053eae603d345c9ea212b551ef6301a9267c60dc2f78f",
+    "src/lib/verified-retailer-product.ts": "10b1ed44bce72abb86f1cdec015e4fedf3e82626425be1f9206ff992db812db9",
+    "src/lib/known-issue-part-search.ts": "5733938b9e20bf27d2f62388ad6ddb9a2edc352263ed32ca15c5f196483d9080",
+    "scripts/build-known-issue-part-search-queue.ts": "2f73d82912fd6df59f70dc0529c87e73d4281a26f84b370cc171c8596bc5d280",
+    "scripts/review-known-issue-part-search-results.ts": "7676818ba9899f26e93a6cf5109c2f2366732dd6386a1a3009b09f561e3b32f8",
+    "scripts/evaluate-known-issue-part-search-lane.ts": "98c3143c326c394e6bbcfd62aa69201aaf4f1ca4ce691b555fa0c6033e0310b9",
+    "scripts/evaluate-known-issue-part-search-experiment.ts": "e9c07245e9127c15b57a898936c26290283727ffd59a411a223db837d72e8964",
+    "scripts/discover-known-issue-part-search-results.ts": "4c66c825add6b5c16e28f50461400d9afbec753e490daa810f08c9ebfb254610",
     "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
     "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
     "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
@@ -171,5 +178,5 @@
   ],
   "productionApplied": false,
   "productionWriteAuthorized": false,
-  "completionHash": "e5b0723387e6c7a01df14ebf2830401d13ff466d09b88a0a1d6f7df179ec88c1"
+  "completionHash": "9ff5659d4b1edc23ee64a9d0c11816633716c2277dced719846eba1dfd27ffd5"
 }

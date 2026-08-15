@@ -22,6 +22,14 @@ test('accepts exact Acura OEM and PartsGeek product pages in the web verifier', 
 test('does not turn retailer categories or lookalike hosts into verified products', () => {
   assert.equal(isRetailerProductUrl('https://www.acurapartswarehouse.com/acura-parts/'), false);
   assert.equal(
+    isRetailerProductUrl('https://www.acurapartswarehouse.com/oem/acura~integra~2000.html'),
+    false,
+  );
+  assert.equal(
+    isRetailerProductUrl('https://www.acurapartswarehouse.com/oem/acura~tlx~2021~parts.html'),
+    false,
+  );
+  assert.equal(
     isRetailerProductUrl(
       'https://acurapartswarehouse.example.com/oem/acura~belt~timing~14400-p7j-004.html',
       '14400-P7J-004',

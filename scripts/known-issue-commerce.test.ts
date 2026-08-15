@@ -30,6 +30,8 @@ test('accepts product-detail URLs and rejects marketplace searches', () => {
   assert.equal(vendorMatchesProductUrl('Mopar Parts Giant', 'https://www.moparpartsgiant.com/parts/mopar-radiator-engine-cooling~68050126ab.html'), true);
   assert.equal(isKnownIssueProductUrl('https://www.acurapartswarehouse.com/oem/acura~belt~timing~125ru26~unitta~14400-p7j-004.html'), true);
   assert.equal(vendorMatchesProductUrl('Acura Parts Warehouse', 'https://www.acurapartswarehouse.com/oem/acura~belt~timing~125ru26~unitta~14400-p7j-004.html'), true);
+  assert.equal(isKnownIssueProductUrl('https://www.acurapartswarehouse.com/oem/acura~integra~2000.html'), false);
+  assert.equal(isKnownIssueProductUrl('https://www.acurapartswarehouse.com/oem/acura~tlx~2021~parts.html'), false);
   assert.equal(isKnownIssueProductUrl('https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html'), true);
   assert.equal(vendorMatchesProductUrl('PartsGeek', 'https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html'), true);
   assert.equal(isKnownIssueProductUrl('https://www.partsgeek.com/catalog/acura/integra/driveshaft_-ar-_axle/wheel_hub.html'), false);
@@ -42,6 +44,8 @@ test('accepts product-detail URLs and rejects marketplace searches', () => {
   assert.equal(isKnownIssueProductUrl('https://retailer.example/search%2Fbrakes-11340029751'), false);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/parts/11340029751?s=brakes'), false);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/orders/11340029751'), false);
+  assert.equal(isKnownIssueProductUrl('https://www.autopartsprime.com/p/2008-acura-tl-dash-panels'), false);
+  assert.equal(isKnownIssueProductUrl('https://retailer.com/product/2008-acura-tl-water-pump-WP1234'), true);
   assert.equal(isKnownIssueProductUrl('https://127.0.0.1/product/11340029751'), false);
   assert.equal(isKnownIssueProductUrl('https://parts.internal/product/11340029751'), false);
   assert.equal(isKnownIssueProductUrl('javascript:alert(1)'), false);

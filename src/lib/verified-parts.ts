@@ -25,6 +25,7 @@ import { ebayAffiliate } from './ebay-affiliate';
 import { checkLinkLive } from './vendor-link-validator';
 import { getVehicleSpecs } from './maintenance';
 import { canonicalSlug } from './part-vocabulary';
+import { matchesVerifiedRetailerProductPath } from './verified-retailer-product';
 
 /** The authoritative factory spec string for a part (fluids especially), from
  *  the spec DB — passed to the verifier so it matches the RIGHT product (e.g.
@@ -103,10 +104,7 @@ export function isRetailerProductUrl(u: string, partNumber?: string): boolean {
   // product SIGNAL: the exact PN in the URL...
   const pn = (partNumber || '').toLowerCase().replace(/[^a-z0-9]/g, '');
   if (pn.length >= 5 && u.toLowerCase().replace(/[^a-z0-9]/g, '').includes(pn)) return true;
-  if (/^(?:www\.)?partsgeek\.com$/i.test(host)
-    && /^\/[a-z0-9]{7}-[a-z0-9][a-z0-9-]+\.html$/i.test(path)) return true;
-  if (/^(?:www\.)?acurapartswarehouse\.com$/i.test(host)
-    && /^\/oem\/acura~(?=[^/]*\d)[a-z0-9~.-]+\.html$/i.test(path)) return true;
+  if (matchesVerifiedRetailerProductPath(host, path)) return true;
   // ...or a real product-page path (not a bare category .html landing page).
   // `oem-parts` = the OEM-store product path (store.mopar.com / moparpartsgiant /
   // gmpartsgiant use /oem-parts/<name>-<pn>) — a real product page even when the
