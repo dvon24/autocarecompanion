@@ -723,6 +723,55 @@ test('schema v2 requires every public field plus published human approval', () =
   assert.ok(validateManifest(notPublished).some((error) => /status must remain published/.test(error)));
 });
 
+test('schema v2 grandfathers frozen legacy approval metadata only for an exact reviewed fixPart removal', () => {
+  const row = baseRow();
+  row.source = 'legacy-owner-report';
+  row.humanApproved = false;
+  row.communityRecommendations = [];
+  row.fixParts = [
+    { component: 'Unsafe legacy pump', oemPartNumber: 'BAD-1', buyLinks: [{ vendor: 'eBay', url: 'https://www.ebay.com/itm/123456789012', linkType: 'product', verified: true }] },
+    { component: 'Unrelated safe part', oemPartNumber: 'KEEP-1', buyLinks: [] },
+  ];
+  const after = fullRecordSnapshot(row);
+  const frozenFixParts = fullRecordSnapshot(row).fixParts;
+  after.fixParts = [frozenFixParts[1]];
+  after.contentUpdatedOn = '2026-08-16';
+  after.contentUpdateSummary = 'Removed an independently reviewed unsafe legacy repair-part link.';
+  const manifest = {
+    schemaVersion: 2,
+    auditScope: 'full-record',
+    manifestKind: 'known-issues-catalog-deeplinks',
+    batchId: 'reviewed-removal',
+    issues: [{
+      id: row.id,
+      disposition: 'replace',
+      decision: 'Remove the exact reviewed legacy fixPart.',
+      evidence: [{ label: 'Independent repair-role review' }],
+      before: {
+        ...fullRecordHashes(row),
+        claimIds: claimIdsForRow(row),
+        reviewedFixPartsSnapshot: frozenFixParts,
+        reviewedDropFixPartClaimIds: ['fixParts:0'],
+      },
+      after,
+    }],
+  };
+  assert.deepEqual(validateManifest(manifest), []);
+  assert.equal(evaluateRows([row], manifest).state, 'before');
+
+  const addedCommerce = JSON.parse(JSON.stringify(manifest));
+  addedCommerce.issues[0].after.fixParts.push(row.fixParts[0]);
+  assert.ok(validateManifest(addedCommerce).some((error) => /invalid after\.source|humanApproved/.test(error)));
+
+  const changedArticle = JSON.parse(JSON.stringify(manifest));
+  changedArticle.issues[0].after.solution = 'Changed without a full-record review.';
+  assert.ok(validateManifest(changedArticle).some((error) => /invalid after\.source|humanApproved/.test(error)));
+
+  const forgedSnapshot = JSON.parse(JSON.stringify(manifest));
+  forgedSnapshot.issues[0].before.reviewedFixPartsSnapshot[0].oemPartNumber = 'FORGED-1';
+  assert.ok(validateManifest(forgedSnapshot).some((error) => /invalid after\.source|humanApproved/.test(error)));
+});
+
 test('schema v2 grandfathers only byte-preserved legacy citation types', () => {
   const row = baseRow();
   row.citations = [{ type: 'article', title: 'Legacy published source', url: 'https://example.com/product/12345' }];

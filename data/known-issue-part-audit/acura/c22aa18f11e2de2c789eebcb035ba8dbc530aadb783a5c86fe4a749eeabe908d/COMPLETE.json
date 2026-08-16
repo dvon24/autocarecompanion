@@ -3,15 +3,15 @@
   "artifactKind": "known-issue-make-completion",
   "status": "AUDIT_COMPLETE",
   "auditComplete": true,
-  "releaseBlocked": true,
-  "completionState": "AUDIT_COMPLETE_RELEASE_BLOCKED",
+  "releaseBlocked": false,
+  "completionState": "AUDIT_COMPLETE_RELEASE_READY",
   "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
   "makeSourceHash": "0ad64fb7c24ed71366109b31404c6b11f4d794a8def7ca55f3a06850baab5228",
   "make": "Acura",
   "makeKey": "acura",
   "issueCount": 70,
   "manifestFile": "08-guarded-manifest.json",
-  "manifestHash": "c4168ecf8c4c026ce3ceeb5535eef7a2539d94b712388dd1cb3e0f1fbc718fe3",
+  "manifestHash": "df33ec230dda306a6ad0510f86d9a03d1c8d5fbe808c456d43e3e2f3ee5f0847",
   "artifactSha256": {
     "00-make-source.json": "a1f69107cdad861b2324532e62926eaa533c26001d6c1c47e767ca76ff38a3f6",
     "01-disposition-ledger.json": "6a139668579a7ed5cd02f0f65da97df608f348103ab7961196bd98f48a51ef36",
@@ -20,8 +20,8 @@
     "04-part-proposals.json": "d40054dfd134c139e6b2a02b53b082b3765a37ec6577de69065584d82aaaaa82",
     "05-direct-link-evidence.json": "d15e6feba886aa22d30ff8f818915c0e1b1ae813753cf84bce20954d525edaf6",
     "06-independent-review.json": "b0743dabc56368fef79d6971187c4503952cbaa8ec7523bea9035057d340e28f",
-    "07-decision-patch.json": "a41e68cdddbbaeca5e06e6e3c7336a76bf36a1ad7c99b2fbae8de54ba48efcca",
-    "08-guarded-manifest.json": "c4168ecf8c4c026ce3ceeb5535eef7a2539d94b712388dd1cb3e0f1fbc718fe3",
+    "07-decision-patch.json": "eed67f44489215ee722b76fd8dcfcb55527bee1401f3a9e9d9ddc05b38db29a5",
+    "08-guarded-manifest.json": "df33ec230dda306a6ad0510f86d9a03d1c8d5fbe808c456d43e3e2f3ee5f0847",
     "reviewed-retailer-candidates.json": "4863a4c7125da157500fb0fd82dcc4fc6cbb1fcd76c2cf9fdd93a56d28a7f61a",
     "classification-ledger.json": "09a21538cc19103ab90a296fb40153dba09e6eb22aea67cec7d07d061433e5d5",
     "checkpoint.json": "7e38bf61114d2daac50689d8d883765a02b11fefd9493d83331da117372fe19f",
@@ -41,8 +41,8 @@
   },
   "commercePipelineImplementationSha256": {
     "scripts/known-issue-completion-contract.js": "e24efa98d05f9668a28350b429fbc993677c30d812b1abec649c2fd97a0c5720",
-    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
-    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/finalize-known-issue-make-packet.js": "867ff612bcd1db562120aa5c6c51c8c12b423d74aedbefffd620431068132916",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "fa648add449d573f8f006b43c43543aedc49baf59375cc6acc614b553e8a4789",
     "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
     "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
     "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
@@ -107,7 +107,7 @@
     "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
     "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
     "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
-    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    "scripts/build-known-issue-deeplink-manifest.js": "c19cf5a6ff4fc9bae5a2326a5d629b94db729c38f99dd212613c2f4b91c0d678"
   },
   "diagnosticScope": {
     "issueCount": 70,
@@ -178,5 +178,5 @@
   ],
   "productionApplied": false,
   "productionWriteAuthorized": false,
-  "completionHash": "9ff5659d4b1edc23ee64a9d0c11816633716c2277dced719846eba1dfd27ffd5"
+  "completionHash": "570b32f7173156b7cddf2d190d9e984b4fde51ac8d51078222a7f93ea1aa0283"
 }

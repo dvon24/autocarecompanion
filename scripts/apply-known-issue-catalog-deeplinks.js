@@ -621,6 +621,30 @@ function validateCitation(citation, pathName, errors) {
   }
 }
 
+function isExactReviewedFixPartRemoval(issue) {
+  const snapshot = issue?.before?.reviewedFixPartsSnapshot;
+  const claimIds = issue?.before?.reviewedDropFixPartClaimIds;
+  if (!Array.isArray(snapshot) || !Array.isArray(claimIds) || claimIds.length === 0
+    || new Set(claimIds).size !== claimIds.length
+    || hashValue(stableValue(snapshot)) !== issue.before.fixPartsHash) return false;
+  let indexes;
+  try {
+    indexes = new Set(claimIds.map((claimId) => {
+      const match = /^fixParts:(\d+)$/.exec(claimId);
+      if (!match) throw new Error('invalid claim id');
+      return Number(match[1]);
+    }));
+  } catch {
+    return false;
+  }
+  if ([...indexes].some((index) => index < 0 || index >= snapshot.length)) return false;
+  const expectedFixParts = snapshot.filter((_, index) => !indexes.has(index));
+  if (hashValue(stableValue(expectedFixParts)) !== hashValue(stableValue(issue.after?.fixParts))) return false;
+  const allowedChanges = new Set(['fixParts', 'contentUpdatedOn', 'contentUpdateSummary']);
+  return FULL_RECORD_FIELDS.every((field) => allowedChanges.has(field)
+    || hashValue(stableValue(issue.after?.[field])) === issue.before[`${field}Hash`]);
+}
+
 function validateFullRecordIssue(issue, prefix, errors) {
   for (const field of FULL_RECORD_FIELDS) {
     if (!Object.prototype.hasOwnProperty.call(issue.before, `${field}Hash`) || !HASH_RE.test(issue.before[`${field}Hash`] || '')) {
@@ -629,6 +653,7 @@ function validateFullRecordIssue(issue, prefix, errors) {
     if (!Object.prototype.hasOwnProperty.call(issue.after, field)) errors.push(`${prefix}: missing after.${field}`);
   }
   const after = issue.after;
+  const exactReviewedRemoval = isExactReviewedFixPartRemoval(issue);
   for (const field of ['make', 'model', 'category', 'title', 'description', 'solution', 'severity', 'confidence', 'source', 'status', 'lastReportedByOwners', 'reviewedOn', 'contentUpdatedOn', 'contentUpdateSummary']) {
     if (typeof after[field] !== 'string') errors.push(`${prefix}: after.${field} must be a string`);
   }
@@ -639,12 +664,18 @@ function validateFullRecordIssue(issue, prefix, errors) {
   if (!CATEGORY_VALUES.has(after.category)) errors.push(`${prefix}: invalid after.category`);
   if (!LEVEL_VALUES.has(after.severity)) errors.push(`${prefix}: invalid after.severity`);
   if (!LEVEL_VALUES.has(after.confidence)) errors.push(`${prefix}: invalid after.confidence`);
-  if (!SOURCE_VALUES.has(after.source)) errors.push(`${prefix}: invalid after.source`);
+  if (!SOURCE_VALUES.has(after.source)
+    && !(exactReviewedRemoval && hashValue(stableValue(after.source)) === issue.before.sourceHash)) {
+    errors.push(`${prefix}: invalid after.source`);
+  }
   const validStatus = after.status === 'published';
   if (!validStatus) {
     errors.push(`${prefix}: after.status must remain published; use a separately reviewed archival workflow for removals`);
   }
-  if (after.humanApproved !== true) errors.push(`${prefix}: after.humanApproved must be true`);
+  if (after.humanApproved !== true
+    && !(exactReviewedRemoval && hashValue(stableValue(after.humanApproved)) === issue.before.humanApprovedHash)) {
+    errors.push(`${prefix}: after.humanApproved must be true`);
+  }
   if (!Number.isInteger(after.reportCount) || after.reportCount < 0) errors.push(`${prefix}: after.reportCount must be a non-negative integer`);
   for (const field of FULL_NULLABLE_INTEGER_FIELDS) {
     if (after[field] !== null && (!Number.isInteger(after[field]) || after[field] < 0)) {
@@ -815,7 +846,8 @@ function beforeErrors(row, issue) {
   const actual = issueUsesFullRecord(issue) ? fullRecordHashes(row) : beforeHashes(row);
   const errors = [];
   for (const [key, expected] of Object.entries(issue.before)) {
-    if (key !== 'claimIds' && actual[key] !== expected) errors.push(key);
+    if (!['claimIds', 'reviewedFixPartsSnapshot', 'reviewedDropFixPartClaimIds'].includes(key)
+      && actual[key] !== expected) errors.push(key);
   }
   if (!jsonEqual(claimIdsForRow(row), issue.before.claimIds)) errors.push('claimIds');
   return errors;

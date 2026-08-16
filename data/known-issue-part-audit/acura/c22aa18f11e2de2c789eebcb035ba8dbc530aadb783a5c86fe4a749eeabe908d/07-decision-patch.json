@@ -4,10 +4,10 @@
   "batchId": "acura-parts-c22aa18f11e2",
   "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
   "makeSourceHash": "0ad64fb7c24ed71366109b31404c6b11f4d794a8def7ca55f3a06850baab5228",
-  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "status": "REVIEW_READY_RECONCILED",
   "auditComplete": true,
-  "makeComplete": false,
-  "releaseBlocked": true,
+  "makeComplete": true,
+  "releaseBlocked": false,
   "productionApplied": false,
   "auditOnlyNoWrites": false,
   "diagnosticReconciliation": {
@@ -99,8 +99,8 @@
   },
   "commercePipelineImplementationSha256": {
     "scripts/known-issue-completion-contract.js": "e24efa98d05f9668a28350b429fbc993677c30d812b1abec649c2fd97a0c5720",
-    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
-    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/finalize-known-issue-make-packet.js": "867ff612bcd1db562120aa5c6c51c8c12b423d74aedbefffd620431068132916",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "fa648add449d573f8f006b43c43543aedc49baf59375cc6acc614b553e8a4789",
     "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
     "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
     "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
@@ -165,67 +165,24 @@
     "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
     "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
     "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
-    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    "scripts/build-known-issue-deeplink-manifest.js": "c19cf5a6ff4fc9bae5a2326a5d629b94db729c38f99dd212613c2f4b91c0d678"
   },
   "decisions": [
     {
-      "id": "acura-integra-da-distributor-internal-oil-leak",
+      "id": "acura-integra-dc-timing-belt-interference-failure",
       "disposition": "replace",
-      "decision": "Keyed-merge only independently approved primary parts with exact direct-product links.",
+      "decision": "Remove only independently reviewed unsafe legacy fixParts; preserve every unrelated claim byte-for-byte.",
       "evidence": [
         {
-          "label": "Distributor exact product",
-          "url": "https://www.ebay.com/itm/401988622225?fits=Year%3A1992%7CEngine+-+Liter_Display%3A1.7L%7CModel%3AIntegra%7CMake%3AAcura&_skw=1992+Acura+Integra+1.7L+Cardone+31-17407+Distributor&hash=item5d98639791%3Ag%3AdmYAAOSw-%7Etd7AE2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
-        }
-      ],
-      "mergeFixParts": [
-        {
-          "component": "Distributor",
-          "part": {
-            "component": "Distributor",
-            "oemPartNumber": "",
-            "aftermarketXref": [
-              "31-17407"
-            ],
-            "note": "Cardone 31-17407. The article explicitly prescribes a complete distributor; the Cardone distributor is scoped only to the catalog-confirmed 1992-1993 1.7L variant and has an exact direct listing.",
-            "buyLinks": [
-              {
-                "vendor": "eBay",
-                "url": "https://www.ebay.com/itm/401988622225?fits=Year%3A1992%7CEngine+-+Liter_Display%3A1.7L%7CModel%3AIntegra%7CMake%3AAcura&_skw=1992+Acura+Integra+1.7L+Cardone+31-17407+Distributor&hash=item5d98639791%3Ag%3AdmYAAOSw-%7Etd7AE2&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
-                "linkType": "product",
-                "verified": true,
-                "affiliate": true,
-                "productIdentity": {
-                  "matchedPartNumber": "31-17407",
-                  "productId": "401988622225",
-                  "listingTitleHash": "c0a55656053eb24c8624f2907a0ef0ffe4e1e5fe50739cf504f2916ce9480853",
-                  "observedListingTitle": "Ignition Distributor - Professionals Choice 31-17407",
-                  "matchedPartNumberSource": "listing-title",
-                  "observedPartNumberField": "title",
-                  "observedPartNumberValue": "Ignition Distributor - Professionals Choice 31-17407"
-                }
-              }
-            ],
-            "fitment": {
-              "years": [
-                1992,
-                1993
-              ],
-              "engines": [
-                "1.7L B17A1"
-              ],
-              "catalogModels": [
-                "INTEGRA"
-              ]
-            },
-            "variants": [],
-            "verified": true,
-            "provenance": "ShowMeTheParts fitment + independent review acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1 (acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1::0)"
-          }
+          "label": "Engine Timing Belt Kit reviewed legacy-claim removal",
+          "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim."
         }
       ],
       "contentUpdatedOn": "2026-08-12",
-      "contentUpdateSummary": "Added independently reviewed, vehicle-scoped repair-part links."
+      "contentUpdateSummary": "Removed independently reviewed unsafe or unscoped repair-part links.",
+      "dropFixPartClaimIds": [
+        "fixParts:0"
+      ]
     },
     {
       "id": "acura-legend-timing-belt-interference-engine",
@@ -284,96 +241,87 @@
       ],
       "contentUpdatedOn": "2026-08-12",
       "contentUpdateSummary": "Added independently reviewed, vehicle-scoped repair-part links."
+    },
+    {
+      "id": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "disposition": "replace",
+      "decision": "Remove only independently reviewed unsafe legacy fixParts; preserve every unrelated claim byte-for-byte.",
+      "evidence": [
+        {
+          "label": "Spark Plug reviewed legacy-claim removal",
+          "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale."
+        }
+      ],
+      "contentUpdatedOn": "2026-08-12",
+      "contentUpdateSummary": "Removed independently reviewed unsafe or unscoped repair-part links.",
+      "dropFixPartClaimIds": [
+        "fixParts:0"
+      ]
+    },
+    {
+      "id": "acura-vigor-g25a1-timing-belt-interference",
+      "disposition": "replace",
+      "decision": "Remove only independently reviewed unsafe legacy fixParts; preserve every unrelated claim byte-for-byte.",
+      "evidence": [
+        {
+          "label": "Engine Timing Belt Kit with Water Pump reviewed legacy-claim removal",
+          "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2."
+        }
+      ],
+      "contentUpdatedOn": "2026-08-12",
+      "contentUpdateSummary": "Removed independently reviewed unsafe or unscoped repair-part links.",
+      "dropFixPartClaimIds": [
+        "fixParts:0"
+      ]
     }
   ],
   "removalProposals": [
     {
       "issueId": "acura-integra-dc-timing-belt-interference-failure",
       "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18b1",
+      "workItemIds": [
+        "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18b1",
+        "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c1",
+        "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c5"
+      ],
+      "existingPartIndex": 0,
+      "claimId": "fixParts:0",
+      "component": "Engine Timing Belt Kit",
       "partNumber": "TB184K1",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim."
-    },
-    {
-      "issueId": "acura-integra-dc-timing-belt-interference-failure",
-      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c1",
-      "partNumber": "TB184K1",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim."
-    },
-    {
-      "issueId": "acura-integra-dc-timing-belt-interference-failure",
-      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c5",
-      "partNumber": "TB184K1",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
+      "action": "remove-reviewed-unsafe-claim",
+      "applied": true,
       "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim."
     },
     {
       "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
       "workItemId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1",
+      "workItemIds": [
+        "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1"
+      ],
+      "existingPartIndex": 0,
+      "claimId": "fixParts:0",
+      "component": "Spark Plug",
       "partNumber": "9619",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
+      "action": "remove-reviewed-unsafe-claim",
+      "applied": true,
       "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale."
     },
     {
       "issueId": "acura-vigor-g25a1-timing-belt-interference",
       "workItemId": "acura-vigor-g25a1-timing-belt-interference--existing-fix-part-0-0--2-5l-i5-g25a1",
+      "workItemIds": [
+        "acura-vigor-g25a1-timing-belt-interference--existing-fix-part-0-0--2-5l-i5-g25a1"
+      ],
+      "existingPartIndex": 0,
+      "claimId": "fixParts:0",
+      "component": "Engine Timing Belt Kit with Water Pump",
       "partNumber": "PP211LK2",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
+      "action": "remove-reviewed-unsafe-claim",
+      "applied": true,
       "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2."
     }
   ],
-  "releaseBlockers": [
-    {
-      "issueId": "acura-integra-dc-timing-belt-interference-failure",
-      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18b1",
-      "partNumber": "TB184K1",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
-      "type": "unapplied-existing-claim-removal"
-    },
-    {
-      "issueId": "acura-integra-dc-timing-belt-interference-failure",
-      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c1",
-      "partNumber": "TB184K1",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
-      "type": "unapplied-existing-claim-removal"
-    },
-    {
-      "issueId": "acura-integra-dc-timing-belt-interference-failure",
-      "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c5",
-      "partNumber": "TB184K1",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
-      "type": "unapplied-existing-claim-removal"
-    },
-    {
-      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
-      "workItemId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1",
-      "partNumber": "9619",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale.",
-      "type": "unapplied-existing-claim-removal"
-    },
-    {
-      "issueId": "acura-vigor-g25a1-timing-belt-interference",
-      "workItemId": "acura-vigor-g25a1-timing-belt-interference--existing-fix-part-0-0--2-5l-i5-g25a1",
-      "partNumber": "PP211LK2",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2.",
-      "type": "unapplied-existing-claim-removal"
-    },
+  "releaseHolds": [
     {
       "issueId": "acura-integra-da-distributor-internal-oil-leak",
       "workItemId": "acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1",
@@ -381,18 +329,19 @@
       "dimensions": [
         "engines"
       ],
-      "reason": "Do not render scoped commerce until the selected vehicle context is authoritative and durable."
+      "reason": "The independently reviewed candidate remains held until selected vehicle context is authoritative and durable."
     }
   ],
+  "releaseBlockers": [],
   "reconciliation": {
     "schemaVersion": 2,
     "artifactKind": "known-issue-make-parts-reconciliation",
     "snapshotHash": "c22aa18f11e2de2c789eebcb035ba8dbc530aadb783a5c86fe4a749eeabe908d",
     "makeSourceHash": "0ad64fb7c24ed71366109b31404c6b11f4d794a8def7ca55f3a06850baab5228",
-    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "status": "REVIEW_READY_RECONCILED",
     "auditComplete": true,
-    "makeComplete": false,
-    "releaseBlocked": true,
+    "makeComplete": true,
+    "releaseBlocked": false,
     "productionApplied": false,
     "diagnosticReconciliation": {
       "status": "RECONCILED",
@@ -483,8 +432,8 @@
     },
     "commercePipelineImplementationSha256": {
       "scripts/known-issue-completion-contract.js": "e24efa98d05f9668a28350b429fbc993677c30d812b1abec649c2fd97a0c5720",
-      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
-      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/finalize-known-issue-make-packet.js": "867ff612bcd1db562120aa5c6c51c8c12b423d74aedbefffd620431068132916",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "fa648add449d573f8f006b43c43543aedc49baf59375cc6acc614b553e8a4789",
       "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
       "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
       "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
@@ -549,20 +498,22 @@
       "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
       "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
       "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
-      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+      "scripts/build-known-issue-deeplink-manifest.js": "c19cf5a6ff4fc9bae5a2326a5d629b94db729c38f99dd212613c2f4b91c0d678"
     },
     "counts": {
       "issueCount": 70,
       "reviewedProposalPartRows": 54,
       "approvedRows": 6,
-      "selectedPrimaryRows": 2,
+      "selectedPrimaryRows": 1,
+      "releaseHeldContextRows": 1,
       "releaseHeldFullRecordRows": 0,
       "excludedApprovedNonPrimaryRows": 4,
       "heldProposalRows": 48,
       "blockedExistingClaimRows": 5,
-      "changedIssueCount": 2,
-      "mergedStablePartCount": 2,
-      "manifestIssueCount": 2,
+      "changedExistingClaimCount": 3,
+      "changedIssueCount": 4,
+      "mergedStablePartCount": 1,
+      "manifestIssueCount": 4,
       "overlappingSelectedScopeCount": 0
     },
     "inputSha256": {
@@ -586,7 +537,7 @@
         "model": "Integra",
         "partNumber": "31-17407",
         "verdict": "approve",
-        "reconciliationStatus": "selected-primary",
+        "reconciliationStatus": "release-held-context",
         "reason": "The article explicitly prescribes a complete distributor; the Cardone distributor is scoped only to the catalog-confirmed 1992-1993 1.7L variant and has an exact direct listing."
       },
       {
@@ -1177,90 +1128,49 @@
       {
         "issueId": "acura-integra-dc-timing-belt-interference-failure",
         "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18b1",
+        "workItemIds": [
+          "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18b1",
+          "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c1",
+          "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c5"
+        ],
+        "existingPartIndex": 0,
+        "claimId": "fixParts:0",
+        "component": "Engine Timing Belt Kit",
         "partNumber": "TB184K1",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim."
-      },
-      {
-        "issueId": "acura-integra-dc-timing-belt-interference-failure",
-        "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c1",
-        "partNumber": "TB184K1",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim."
-      },
-      {
-        "issueId": "acura-integra-dc-timing-belt-interference-failure",
-        "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c5",
-        "partNumber": "TB184K1",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
+        "action": "remove-reviewed-unsafe-claim",
+        "applied": true,
         "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim."
       },
       {
         "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
         "workItemId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1",
+        "workItemIds": [
+          "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1"
+        ],
+        "existingPartIndex": 0,
+        "claimId": "fixParts:0",
+        "component": "Spark Plug",
         "partNumber": "9619",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
+        "action": "remove-reviewed-unsafe-claim",
+        "applied": true,
         "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale."
       },
       {
         "issueId": "acura-vigor-g25a1-timing-belt-interference",
         "workItemId": "acura-vigor-g25a1-timing-belt-interference--existing-fix-part-0-0--2-5l-i5-g25a1",
+        "workItemIds": [
+          "acura-vigor-g25a1-timing-belt-interference--existing-fix-part-0-0--2-5l-i5-g25a1"
+        ],
+        "existingPartIndex": 0,
+        "claimId": "fixParts:0",
+        "component": "Engine Timing Belt Kit with Water Pump",
         "partNumber": "PP211LK2",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
+        "action": "remove-reviewed-unsafe-claim",
+        "applied": true,
         "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2."
       }
     ],
-    "releaseBlockers": [
-      {
-        "issueId": "acura-integra-dc-timing-belt-interference-failure",
-        "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18b1",
-        "partNumber": "TB184K1",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
-        "type": "unapplied-existing-claim-removal"
-      },
-      {
-        "issueId": "acura-integra-dc-timing-belt-interference-failure",
-        "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c1",
-        "partNumber": "TB184K1",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
-        "type": "unapplied-existing-claim-removal"
-      },
-      {
-        "issueId": "acura-integra-dc-timing-belt-interference-failure",
-        "workItemId": "acura-integra-dc-timing-belt-interference-failure--existing-fix-part-0-0--b18c5",
-        "partNumber": "TB184K1",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The live unscoped claim is labeled as the repair kit, but the article requires a complete kit with water pump and warns that LS and GSR belt/pump combinations differ; TB184K1 explicitly excludes the water pump and catalog applications prove only LS/RS/GS/Special Edition, not a safe all-engine claim.",
-        "type": "unapplied-existing-claim-removal"
-      },
-      {
-        "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
-        "workItemId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f--existing-fix-part-0-0--j37a1",
-        "partNumber": "9619",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "Bosch 9619 fits and is the right product type, but the article prescribes plugs only when they are oil-fouled; the existing unconditional card has no diagnosis gate and therefore becomes a blanket sale.",
-        "type": "unapplied-existing-claim-removal"
-      },
-      {
-        "issueId": "acura-vigor-g25a1-timing-belt-interference",
-        "workItemId": "acura-vigor-g25a1-timing-belt-interference--existing-fix-part-0-0--2-5l-i5-g25a1",
-        "partNumber": "PP211LK2",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The Continental kit fits and includes pump/seals, but the article mandates OEM Honda or Aisin for the tensioner and describes a complete job including hydraulic tensioner, idler, and accessory belts; the catalog does not establish those contents for PP211LK2.",
-        "type": "unapplied-existing-claim-removal"
-      },
+    "releaseHolds": [
       {
         "issueId": "acura-integra-da-distributor-internal-oil-leak",
         "workItemId": "acura-integra-da-distributor-internal-oil-leak--prescription-0-0--1-7l-b17a1",
@@ -1268,9 +1178,10 @@
         "dimensions": [
           "engines"
         ],
-        "reason": "Do not render scoped commerce until the selected vehicle context is authoritative and durable."
+        "reason": "The independently reviewed candidate remains held until selected vehicle context is authoritative and durable."
       }
     ],
+    "releaseBlockers": [],
     "issueCoverage": [
       {
         "issueId": "acura-cl-3-0cl-1997-1999-transmission-slipping",
@@ -1305,7 +1216,7 @@
       {
         "issueId": "acura-integra-da-distributor-internal-oil-leak",
         "disposition": "buyable",
-        "commerceAction": "guarded-fixparts-change"
+        "commerceAction": "approved-fixparts-context-held"
       },
       {
         "issueId": "acura-integra-da-ignitor-module-failure",
@@ -1360,7 +1271,7 @@
       {
         "issueId": "acura-integra-dc-timing-belt-interference-failure",
         "disposition": "buyable",
-        "commerceAction": "existing-claim-removal-held"
+        "commerceAction": "guarded-fixparts-change"
       },
       {
         "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
@@ -1465,7 +1376,7 @@
       {
         "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
         "disposition": "buyable",
-        "commerceAction": "existing-claim-removal-held"
+        "commerceAction": "guarded-fixparts-change"
       },
       {
         "issueId": "acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling",
@@ -1610,7 +1521,7 @@
       {
         "issueId": "acura-vigor-g25a1-timing-belt-interference",
         "disposition": "buyable",
-        "commerceAction": "existing-claim-removal-held"
+        "commerceAction": "guarded-fixparts-change"
       },
       {
         "issueId": "acura-zdx-charging-speed-inconsistency-2024",

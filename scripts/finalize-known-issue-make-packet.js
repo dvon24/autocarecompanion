@@ -892,6 +892,43 @@ function validateUnrelatedCommerce(beforeParts, afterParts, mergedComponents, is
   }
 }
 
+function reviewedRemovalActions(review, workItemMap, sourceRecords) {
+  const actions = new Map();
+  for (const claim of review.existingClaims || []) {
+    if (claim.verdict !== 'block') continue;
+    const workItem = workItemMap.get(claim.workItemId);
+    const record = sourceRecords.get(claim.issueId);
+    const index = workItem?.existingPartIndex;
+    const part = Number.isInteger(index) ? record?.fixParts?.[index] : null;
+    if (!workItem || workItem.issueId !== claim.issueId || !part
+      || normalizedPartNumber(partNumberFor(part)) !== normalizedPartNumber(claim.partNumber)) {
+      throw new Error(`${claim.workItemId}: blocked existing claim is not bound to an exact frozen fixPart`);
+    }
+    const key = `${claim.issueId}::${index}`;
+    const existing = actions.get(key);
+    if (existing && (existing.partNumber !== claim.partNumber
+      || componentKey(existing.component) !== componentKey(part.component))) {
+      throw new Error(`${claim.workItemId}: blocked existing claim rows disagree`);
+    }
+    const action = existing || {
+      issueId: claim.issueId,
+      workItemId: claim.workItemId,
+      workItemIds: [],
+      existingPartIndex: index,
+      claimId: `fixParts:${index}`,
+      component: part.component,
+      partNumber: claim.partNumber,
+      action: 'remove-reviewed-unsafe-claim',
+      applied: true,
+      reason: claim.reason,
+    };
+    action.workItemIds.push(claim.workItemId);
+    actions.set(key, action);
+  }
+  return [...actions.values()].sort((left, right) =>
+    left.issueId.localeCompare(right.issueId) || left.existingPartIndex - right.existingPartIndex);
+}
+
 function finalizePacket(inputs, options = {}) {
   const {
     source, ledger, worklist, evidence, proposals, links, review,
@@ -909,7 +946,8 @@ function finalizePacket(inputs, options = {}) {
   );
   const proposalMap = new Map(links.proposals.map((proposal) => [proposal.proposalId, proposal]));
   const workItemMap = new Map(worklist.entries.map((entry) => [entry.workItemId, entry]));
-  const approvedPrimary = [];
+  const sourceRecords = new Map(source.records.map((record) => [record.id, record]));
+  const reviewedApprovedPrimary = [];
   const reviewRows = [];
   for (const decision of review.decisions) {
     const proposal = proposalMap.get(decision.proposalId);
@@ -940,7 +978,7 @@ function finalizePacket(inputs, options = {}) {
       validateExactProductLink(part, decision);
     }
     if (decision.decision === 'approve' && part.role === 'primary') {
-      approvedPrimary.push({ proposal, part, review: decision });
+      reviewedApprovedPrimary.push({ proposal, part, review: decision });
       reconciliationStatus = 'selected-primary';
     } else if (decision.decision === 'approve') {
       reconciliationStatus = 'excluded-non-primary';
@@ -957,17 +995,39 @@ function finalizePacket(inputs, options = {}) {
       reason: decision.reason,
     });
   }
+  const resolveContext = options.resolveReviewedVehicleContext || runtimeContextResolver();
+  const approvedPrimary = [];
+  const releaseHolds = [];
+  for (const candidate of reviewedApprovedPrimary) {
+    const { proposal, part, review: decision } = candidate;
+    const scopedDimensions = ['engines', 'drivetrains', 'transmissions']
+      .filter((field) => (part.fitment?.[field] || []).length > 0);
+    if (scopedDimensions.length && !reviewedRuntimeContextCovers(source, proposal, part, resolveContext)) {
+      releaseHolds.push({
+        issueId: proposal.id,
+        workItemId: proposal.proposalId,
+        type: 'authoritative-selected-vehicle-context-required',
+        dimensions: scopedDimensions,
+        reason: 'The independently reviewed candidate remains held until selected vehicle context is authoritative and durable.',
+      });
+      const row = reviewRows.find((entry) => entry.proposalId === decision.proposalId
+        && entry.partNumber === decision.partNumber);
+      if (row) row.reconciliationStatus = 'release-held-context';
+      continue;
+    }
+    approvedPrimary.push(candidate);
+  }
   const mergesByIssue = consolidateCandidates(approvedPrimary);
-  const sourceRecords = new Map(source.records.map((record) => [record.id, record]));
+  const removalProposals = reviewedRemovalActions(review, workItemMap, sourceRecords);
   const reviewedOn = String(source.globalGeneratedAt || '').slice(0, 10);
   if (!/^\d{4}-\d{2}-\d{2}$/.test(reviewedOn)) throw new Error('Make source has no deterministic review date');
-  const stagedDecisions = [];
+  const stagedByIssue = new Map();
   for (const [issueId, mergeFixParts] of [...mergesByIssue].sort(([left], [right]) => left.localeCompare(right))) {
     const record = sourceRecords.get(issueId);
     if (!record) throw new Error(`${issueId}: approved row is outside make source`);
     const componentKeys = mergeFixParts.map((merge) => componentKey(merge.component));
     if (new Set(componentKeys).size !== componentKeys.length) throw new Error(`${issueId}: duplicate stable component merge`);
-    stagedDecisions.push({
+    stagedByIssue.set(issueId, {
       id: issueId,
       disposition: 'replace',
       decision: 'Keyed-merge only independently approved primary parts with exact direct-product links.',
@@ -980,6 +1040,33 @@ function finalizePacket(inputs, options = {}) {
       contentUpdateSummary: 'Added independently reviewed, vehicle-scoped repair-part links.',
     });
   }
+  for (const removal of removalProposals) {
+    const reviewedMerges = mergesByIssue.get(removal.issueId) || [];
+    const replacement = reviewedMerges.find((merge) =>
+      componentKey(merge.component) === componentKey(removal.component));
+    if (replacement) {
+      removal.action = 'replaced-by-reviewed-keyed-merge';
+      continue;
+    }
+    const decision = stagedByIssue.get(removal.issueId) || {
+      id: removal.issueId,
+      disposition: 'replace',
+      decision: 'Remove only independently reviewed unsafe legacy fixParts; preserve every unrelated claim byte-for-byte.',
+      evidence: [],
+      contentUpdatedOn: reviewedOn,
+      contentUpdateSummary: 'Removed independently reviewed unsafe or unscoped repair-part links.',
+    };
+    decision.dropFixPartClaimIds = [...new Set([
+      ...(decision.dropFixPartClaimIds || []),
+      removal.claimId,
+    ])].sort();
+    decision.evidence.push({
+      label: `${removal.component} reviewed legacy-claim removal`,
+      reason: removal.reason,
+    });
+    stagedByIssue.set(removal.issueId, decision);
+  }
+  const stagedDecisions = [...stagedByIssue.values()].sort((left, right) => left.id.localeCompare(right.id));
   // A part-link review is not a full-record content review. Some frozen rows
   // still contain legacy citations, approval flags, community search links, or
   // other data that the current manifest schema correctly refuses to publish.
@@ -1014,35 +1101,9 @@ function finalizePacket(inputs, options = {}) {
       row.reconciliationStatus = 'release-held-full-record';
     }
   }
-  const removalProposals = [];
-  for (const claim of review.existingClaims || []) {
-    if (claim.verdict !== 'block') continue;
-    removalProposals.push({
-      issueId: claim.issueId,
-      workItemId: claim.workItemId,
-      partNumber: claim.partNumber,
-      action: 'hold-for-explicit-reviewed-removal',
-      applied: false,
-      reason: claim.reason,
-    });
-  }
-  const resolveContext = options.resolveReviewedVehicleContext || runtimeContextResolver();
-  const contextBlockers = approvedPrimary.flatMap(({ proposal, part }) => {
-    const scopedDimensions = ['engines', 'drivetrains', 'transmissions']
-      .filter((field) => (part.fitment?.[field] || []).length > 0);
-    return scopedDimensions.length && !reviewedRuntimeContextCovers(source, proposal, part, resolveContext) ? [{
-      issueId: proposal.id,
-      workItemId: proposal.proposalId,
-      type: 'authoritative-selected-vehicle-context-required',
-      dimensions: scopedDimensions,
-      reason: 'Do not render scoped commerce until the selected vehicle context is authoritative and durable.',
-    }] : [];
-  });
   const releaseBlockers = [
-    ...removalProposals.map((row) => ({ ...row, type: 'unapplied-existing-claim-removal' })),
-    ...contextBlockers,
     ...fullRecordGuardHolds,
-    ...(approvedPrimary.length === 0 ? [{
+    ...(decisions.length === 0 ? [{
       type: 'no-reviewed-commerce-writes',
       reason: 'The make audit completed with explicit holds only; there is no reviewed part-link write to release.',
     }] : []),
@@ -1065,6 +1126,7 @@ function finalizePacket(inputs, options = {}) {
     commercePipelineImplementationSha256: clone(options.commercePipelineImplementationSha256 || {}),
     decisions,
     removalProposals,
+    releaseHolds,
     releaseBlockers,
   };
   const manifest = buildManifest(source, patch);
@@ -1081,12 +1143,21 @@ function finalizePacket(inputs, options = {}) {
     const record = sourceRecords.get(manifestIssue.id);
     const patchDecision = decisions.find((decision) => decision.id === manifestIssue.id);
     if (sameJson(record.fixParts || [], manifestIssue.after.fixParts || [])) throw new Error(`${manifestIssue.id}: manifest row does not change fixParts`);
-    validateUnrelatedCommerce(record.fixParts || [], manifestIssue.after.fixParts || [], patchDecision.mergeFixParts.map((merge) => merge.component), manifestIssue.id);
+    const removedComponents = removalProposals
+      .filter((row) => row.issueId === manifestIssue.id && row.action === 'remove-reviewed-unsafe-claim')
+      .map((row) => row.component);
+    validateUnrelatedCommerce(
+      record.fixParts || [],
+      manifestIssue.after.fixParts || [],
+      [...(patchDecision.mergeFixParts || []).map((merge) => merge.component), ...removedComponents],
+      manifestIssue.id,
+    );
   }
   const changed = new Set(decisions.map((decision) => decision.id));
   const releaseHeld = new Set(fullRecordGuardHolds.map((row) => row.issueId));
   const heldIssues = new Set(reviewRows.filter((row) => row.reconciliationStatus === 'held').map((row) => row.issueId));
   const removalIssues = new Set(removalProposals.map((row) => row.issueId));
+  const contextHeldIssues = new Set(releaseHolds.map((row) => row.issueId));
   const issueCoverage = ledger.issues.map((issue) => ({
     issueId: issue.issueId,
     disposition: issue.disposition,
@@ -1094,8 +1165,10 @@ function finalizePacket(inputs, options = {}) {
       ? 'guarded-fixparts-change'
       : releaseHeld.has(issue.issueId)
         ? 'approved-fixparts-release-held'
+      : contextHeldIssues.has(issue.issueId)
+        ? 'approved-fixparts-context-held'
       : removalIssues.has(issue.issueId)
-        ? 'existing-claim-removal-held'
+        ? 'reviewed-existing-claim-change'
         : heldIssues.has(issue.issueId)
           ? 'proposal-held'
           : 'no-fixparts-change',
@@ -1121,18 +1194,21 @@ function finalizePacket(inputs, options = {}) {
       reviewedProposalPartRows: reviewRows.length,
       approvedRows: reviewRows.filter((row) => row.verdict === 'approve').length,
       selectedPrimaryRows: reviewRows.filter((row) => row.reconciliationStatus === 'selected-primary').length,
+      releaseHeldContextRows: reviewRows.filter((row) => row.reconciliationStatus === 'release-held-context').length,
       releaseHeldFullRecordRows: reviewRows.filter((row) => row.reconciliationStatus === 'release-held-full-record').length,
       excludedApprovedNonPrimaryRows: reviewRows.filter((row) => row.reconciliationStatus === 'excluded-non-primary').length,
       heldProposalRows: reviewRows.filter((row) => row.reconciliationStatus === 'held').length,
-      blockedExistingClaimRows: removalProposals.length,
+      blockedExistingClaimRows: (review.existingClaims || []).filter((row) => row.verdict === 'block').length,
+      changedExistingClaimCount: removalProposals.length,
       changedIssueCount: decisions.length,
-      mergedStablePartCount: decisions.reduce((sum, decision) => sum + decision.mergeFixParts.length, 0),
+      mergedStablePartCount: decisions.reduce((sum, decision) => sum + (decision.mergeFixParts || []).length, 0),
       manifestIssueCount: manifest.issues.length,
       overlappingSelectedScopeCount: 0,
     },
     inputSha256: options.inputSha256 || {},
     reviewRows,
     removalProposals,
+    releaseHolds,
     releaseBlockers,
     issueCoverage,
   };

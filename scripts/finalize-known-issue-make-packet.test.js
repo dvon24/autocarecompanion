@@ -132,7 +132,7 @@ function fixture(recordCount = 70, fixtureOptions = {}) {
   const records = Array.from({ length: recordCount }, (_, index) => row(
     `acura-${String(index + 1).padStart(2, '0')}`,
     index === 0 ? { legacyCitation: true, dtcCodes: ['22'], ...(fixtureOptions.firstRow || {}) } : index === 1 ? {
-      fixParts: [{ component: 'Existing belt kit', oemPartNumber: 'OLD-1', buyLinks: [exactLink('OLD-1', '123456789013')] }],
+      fixParts: [{ component: 'Engine Water Pump', oemPartNumber: 'OLD-1', buyLinks: [exactLink('OLD-1', '123456789013')] }],
     } : {},
   ));
   const globalBody = {
@@ -148,12 +148,12 @@ function fixture(recordCount = 70, fixtureOptions = {}) {
   const source = buildMakeSource(global, 'Acura');
   const primary = {
     role: 'primary', component: 'Engine Water Pump', supplier: 'Aisin', oemPartNumber: '',
-    aftermarketXref: ['ABC-123'], fitment: { years: [2020], engines: ['2.0L I4'] },
+    aftermarketXref: ['ABC-123'], fitment: { years: [2020], engines: [] },
     buyLinks: [exactLink('ABC-123')], note: 'Fitment evidence', verified: false,
   };
   const alternate = {
     role: 'alternate', component: 'Engine Water Pump', supplier: 'Other', oemPartNumber: '',
-    aftermarketXref: ['ALT-456'], fitment: { years: [2020], engines: ['2.0L I4'] },
+    aftermarketXref: ['ALT-456'], fitment: { years: [2020], engines: [] },
     buyLinks: [exactLink('ALT-456', '123456789014')], note: 'Alternate', verified: false,
   };
   const held = {
@@ -181,7 +181,7 @@ function fixture(recordCount = 70, fixtureOptions = {}) {
       { workItemId: 'work-1', issueId: records[0].id, source: 'prescription', model: 'Example' },
       {
         workItemId: 'existing-1', issueId: records[1].id, source: 'existing-fix-part', model: 'Example',
-        partNumber: 'OLD-1', declaredEngine: '',
+        partNumber: 'OLD-1', declaredEngine: '', existingPartIndex: 0,
       },
     ],
   };
@@ -386,7 +386,7 @@ test('make source is a deterministic exact 70-record subset with full-field proo
   assert.deepEqual(buildMakeSource({ ...reorderedBody, snapshotHash: hashValue(reorderedBody) }, 'Acura').recordIds, inputs.source.recordIds);
 });
 
-test('finalizer selects approved primary but keeps release blocked by unapplied existing claims', () => {
+test('finalizer releases approved parts and applies independently reviewed existing-claim removals', () => {
   const inputs = fixture();
   const result = finalizePacket(inputs, inputs.options);
   assert.equal(result.reconciliation.counts.issueCount, 70);
@@ -395,17 +395,20 @@ test('finalizer selects approved primary but keeps release blocked by unapplied 
   assert.equal(result.reconciliation.counts.excludedApprovedNonPrimaryRows, 1);
   assert.equal(result.reconciliation.counts.heldProposalRows, 1);
   assert.equal(result.reconciliation.counts.blockedExistingClaimRows, 1);
-  assert.equal(result.reconciliation.counts.changedIssueCount, 1);
-  assert.equal(result.manifest.issues.length, 1);
+  assert.equal(result.reconciliation.counts.changedExistingClaimCount, 1);
+  assert.equal(result.reconciliation.counts.changedIssueCount, 2);
+  assert.equal(result.manifest.issues.length, 2);
   assert.deepEqual(validateManifest(result.manifest), []);
   assert.equal(result.manifest.issues[0].after.fixParts.length, 1);
   assert.equal(result.manifest.issues[0].after.fixParts[0].aftermarketXref[0], 'ABC-123');
   assert.equal(result.manifest.issues[0].after.citations[0].type, 'article');
-  assert.equal(result.patch.removalProposals[0].applied, false);
-  assert.equal(result.patch.status, 'REVIEW_READY_RELEASE_BLOCKED');
+  assert.equal(result.manifest.issues[1].after.fixParts.length, 0);
+  assert.equal(result.patch.removalProposals[0].applied, true);
+  assert.equal(result.patch.removalProposals[0].action, 'remove-reviewed-unsafe-claim');
+  assert.equal(result.patch.status, 'REVIEW_READY_RECONCILED');
   assert.equal(result.patch.auditComplete, true);
-  assert.equal(result.patch.makeComplete, false);
-  assert.equal(result.patch.releaseBlocked, true);
+  assert.equal(result.patch.makeComplete, true);
+  assert.equal(result.patch.releaseBlocked, false);
   assert.equal(result.patch.productionApplied, false);
   assert.equal(result.reconciliation.diagnosticReconciliation.scope.uncoveredDiagnosticInstructionCount, 0);
   assert.equal(result.reconciliation.diagnosticReconciliation.holds[0].issueId, 'acura-01');
@@ -426,10 +429,58 @@ test('finalizer selects approved primary but keeps release blocked by unapplied 
   assert.equal(complete.schemaVersion, 2);
   const { completionHash, ...completionBody } = complete;
   assert.equal(completionHash, canonicalHash(completionBody));
-  assert.equal(complete.completionState, 'AUDIT_COMPLETE_RELEASE_BLOCKED');
-  assert.equal(complete.releaseBlocked, true);
+  assert.equal(complete.completionState, 'AUDIT_COMPLETE_RELEASE_READY');
+  assert.equal(complete.releaseBlocked, false);
   assert.equal(complete.productionApplied, false);
   assert.equal(complete.manifestHash, artifactSha256['08-guarded-manifest.json']);
+});
+
+test('approved engine-scoped rows remain held without blocking reviewed removals', () => {
+  const inputs = fixture();
+  inputs.links.proposals[0].parts[0].fitment.engines = ['2.0L I4'];
+  inputs.links.linkEvidence[0].input.engine = '2.0L I4';
+  inputs.proposals.proposals[0].parts[0].fitment.engines = ['2.0L I4'];
+  inputs.options.recomputedProposals = JSON.parse(JSON.stringify(inputs.proposals));
+  const result = finalizePacket(inputs, inputs.options);
+  assert.equal(result.patch.releaseBlocked, false);
+  assert.equal(result.patch.makeComplete, true);
+  assert.equal(result.patch.releaseHolds.length, 1);
+  assert.equal(result.patch.releaseHolds[0].type, 'authoritative-selected-vehicle-context-required');
+  assert.equal(result.reconciliation.counts.releaseHeldContextRows, 1);
+  assert.equal(result.manifest.issues.length, 1);
+  assert.equal(result.manifest.issues[0].id, 'acura-02');
+  assert.equal(result.manifest.issues[0].after.fixParts.length, 0);
+});
+
+test('a reviewed keyed merge replaces the exact blocked legacy claim without a second removal', () => {
+  const inputs = fixture();
+  const targetId = inputs.source.records[1].id;
+  inputs.ledger.issues[0].workItemIds = [];
+  inputs.ledger.issues[1].workItemIds = ['work-1', 'existing-1'];
+  inputs.worklist.entries[0].issueId = targetId;
+  inputs.proposals.proposals[0].id = targetId;
+  inputs.links.proposals[0].id = targetId;
+  inputs.links.linkEvidence.forEach((row) => { row.issueId = targetId; });
+  inputs.review.decisions.forEach((row) => { row.issueId = targetId; });
+  inputs.options.recomputedProposals = JSON.parse(JSON.stringify(inputs.proposals));
+  const result = finalizePacket(inputs, inputs.options);
+  assert.equal(result.patch.releaseBlocked, false);
+  assert.equal(result.manifest.issues.length, 1);
+  assert.equal(result.manifest.issues[0].id, targetId);
+  assert.equal(result.manifest.issues[0].after.fixParts.length, 1);
+  assert.equal(result.manifest.issues[0].after.fixParts[0].aftermarketXref[0], 'ABC-123');
+  assert.equal(result.patch.removalProposals.length, 1);
+  assert.equal(result.patch.removalProposals[0].action, 'replaced-by-reviewed-keyed-merge');
+  assert.equal(result.patch.decisions[0].dropFixPartClaimIds, undefined);
+});
+
+test('blocked existing-claim removals require an exact frozen fixPart index', () => {
+  const inputs = fixture();
+  delete inputs.worklist.entries[1].existingPartIndex;
+  assert.throws(
+    () => finalizePacket(inputs, inputs.options),
+    /blocked existing claim is not bound to an exact frozen fixPart/,
+  );
 });
 
 test('overlapping approved variants and non-product links fail closed', () => {
@@ -460,9 +511,10 @@ test('approved parts are held outside the manifest when the frozen full record f
     },
   });
   const result = finalizePacket(inputs, inputs.options);
-  assert.equal(result.patch.decisions.length, 0);
-  assert.equal(result.manifest.issues.length, 0);
-  assert.equal(result.patch.auditOnlyNoWrites, true);
+  assert.equal(result.patch.decisions.length, 1);
+  assert.equal(result.manifest.issues.length, 1);
+  assert.equal(result.manifest.issues[0].id, 'acura-02');
+  assert.equal(result.patch.auditOnlyNoWrites, false);
   assert.equal(result.patch.releaseBlocked, true);
   assert.ok(result.patch.releaseBlockers.some((row) => row.type === 'full-record-release-guard'));
   assert.ok(result.reconciliation.reviewRows.some((row) => row.reconciliationStatus === 'release-held-full-record'));
@@ -509,6 +561,8 @@ test('a make with only terminal holds completes as an explicit blocked zero-writ
   inputs.review.reconciliation.sourceProposalCount = 0;
   inputs.review.reconciliation.sourcePartRowCount = 0;
   inputs.review.reconciliation.reviewedPartRowCount = 0;
+  inputs.review.existingClaims[0].verdict = 'preserve';
+  inputs.review.existingClaimTally = { preserve: 1, block: 0 };
   for (const disposition of inputs.proposals.workItemDispositions) {
     disposition.verdict = 'hold';
     disposition.reasonCode = 'fitment-no-catalog';

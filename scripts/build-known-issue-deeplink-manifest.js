@@ -121,15 +121,20 @@ function buildManifest(snapshot, patch) {
     ids.add(decision.id);
     const record = records.get(decision.id);
     if (!record) throw new Error(`Decision id not found in snapshot: ${decision.id}`);
+    const before = {
+      ...(schemaVersion >= 2 ? fullRecordHashes(record) : beforeHashes(record)),
+      claimIds: clone(record.before.claimIds),
+    };
+    if (schemaVersion >= 2 && (decision.dropFixPartClaimIds || []).length > 0) {
+      before.reviewedFixPartsSnapshot = clone(fullRecordSnapshot(record).fixParts || []);
+      before.reviewedDropFixPartClaimIds = clone(decision.dropFixPartClaimIds);
+    }
     return {
       id: decision.id,
       disposition: decision.disposition,
       decision: decision.decision,
       evidence: decision.evidence,
-      before: {
-        ...(schemaVersion >= 2 ? fullRecordHashes(record) : beforeHashes(record)),
-        claimIds: clone(record.before.claimIds),
-      },
+      before,
       after: applyDecision(record, decision, schemaVersion),
     };
   });

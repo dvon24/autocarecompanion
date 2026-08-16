@@ -4,10 +4,10 @@
   "batchId": "buick-parts-7cd8cbd4fabb",
   "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
   "makeSourceHash": "a80413cabaa17257a2a68f7aecf21ab8102b3e8aee5dff9480a654bcddf1e714",
-  "status": "REVIEW_READY_RELEASE_BLOCKED",
+  "status": "REVIEW_READY_RECONCILED",
   "auditComplete": true,
-  "makeComplete": false,
-  "releaseBlocked": true,
+  "makeComplete": true,
+  "releaseBlocked": false,
   "productionApplied": false,
   "auditOnlyNoWrites": false,
   "diagnosticReconciliation": {
@@ -188,9 +188,9 @@
     ]
   },
   "commercePipelineImplementationSha256": {
-    "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
-    "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
-    "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+    "scripts/known-issue-completion-contract.js": "e24efa98d05f9668a28350b429fbc993677c30d812b1abec649c2fd97a0c5720",
+    "scripts/finalize-known-issue-make-packet.js": "867ff612bcd1db562120aa5c6c51c8c12b423d74aedbefffd620431068132916",
+    "scripts/apply-known-issue-catalog-deeplinks.js": "fa648add449d573f8f006b43c43543aedc49baf59375cc6acc614b553e8a4789",
     "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
     "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
     "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
@@ -223,13 +223,20 @@
     "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
     "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
     "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
-    "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+    "src/lib/verified-parts.ts": "185fb0be5b1f80ea0aee27afd03dd782691126d06377495540695149f5e79f38",
     "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
     "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
     "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
     "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
-    "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
-    "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+    "src/lib/reviewed-vehicle-context.ts": "7206374c4f0fadbd687734e2f945e8525ca25581308ae8087d8aec1d9fa2fe8d",
+    "src/lib/known-issue-commerce.ts": "4a974ed84cb2455d85b053eae603d345c9ea212b551ef6301a9267c60dc2f78f",
+    "src/lib/verified-retailer-product.ts": "10b1ed44bce72abb86f1cdec015e4fedf3e82626425be1f9206ff992db812db9",
+    "src/lib/known-issue-part-search.ts": "5733938b9e20bf27d2f62388ad6ddb9a2edc352263ed32ca15c5f196483d9080",
+    "scripts/build-known-issue-part-search-queue.ts": "2f73d82912fd6df59f70dc0529c87e73d4281a26f84b370cc171c8596bc5d280",
+    "scripts/review-known-issue-part-search-results.ts": "7676818ba9899f26e93a6cf5109c2f2366732dd6386a1a3009b09f561e3b32f8",
+    "scripts/evaluate-known-issue-part-search-lane.ts": "98c3143c326c394e6bbcfd62aa69201aaf4f1ca4ce691b555fa0c6033e0310b9",
+    "scripts/evaluate-known-issue-part-search-experiment.ts": "e9c07245e9127c15b57a898936c26290283727ffd59a411a223db837d72e8964",
+    "scripts/discover-known-issue-part-search-results.ts": "4c66c825add6b5c16e28f50461400d9afbec753e490daa810f08c9ebfb254610",
     "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
     "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
     "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
@@ -248,7 +255,7 @@
     "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
     "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
     "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
-    "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+    "scripts/build-known-issue-deeplink-manifest.js": "c19cf5a6ff4fc9bae5a2326a5d629b94db729c38f99dd212613c2f4b91c0d678"
   },
   "decisions": [
     {
@@ -374,154 +381,127 @@
       "contentUpdateSummary": "Added independently reviewed, vehicle-scoped repair-part links."
     },
     {
-      "id": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+      "id": "buick-lesabre-power-window-regulator-cable-failure",
       "disposition": "replace",
-      "decision": "Keyed-merge only independently approved primary parts with exact direct-product links.",
+      "decision": "Remove only independently reviewed unsafe legacy fixParts; preserve every unrelated claim byte-for-byte.",
       "evidence": [
         {
-          "label": "Engine Water Pump exact product",
-          "url": "https://www.ebay.com/itm/376413535873?fits=Year%3A1994%7CEngine+-+Liter_Display%3A5.7L%7CModel%3ARoadmaster%7CMake%3ABuick&_skw=1994+Buick+Roadmaster+5.7L+Dayco+DP986+Engine+Water+Pump&hash=item57a3febe81%3Ag%3AN-kAAeSwW8JoJH-r&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
-        }
-      ],
-      "mergeFixParts": [
-        {
-          "component": "Engine Water Pump",
-          "part": {
-            "component": "Engine Water Pump",
-            "oemPartNumber": "",
-            "aftermarketXref": [
-              "DP986"
-            ],
-            "note": "Dayco DP986. The article directly prescribes a complete water pump, and Dayco DP986 covers every reviewed 1994-1996 Roadmaster LT1 year.",
-            "buyLinks": [
-              {
-                "vendor": "eBay",
-                "url": "https://www.ebay.com/itm/376413535873?fits=Year%3A1994%7CEngine+-+Liter_Display%3A5.7L%7CModel%3ARoadmaster%7CMake%3ABuick&_skw=1994+Buick+Roadmaster+5.7L+Dayco+DP986+Engine+Water+Pump&hash=item57a3febe81%3Ag%3AN-kAAeSwW8JoJH-r&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
-                "linkType": "product",
-                "verified": true,
-                "affiliate": true,
-                "productIdentity": {
-                  "matchedPartNumber": "DP986",
-                  "productId": "376413535873",
-                  "listingTitleHash": "8ece81742085d0a5081f89c96a2044bae6cc8b8f9e04098e3c4ae85438aae3de",
-                  "observedListingTitle": "DP986 Dayco Water Pump for Chevy Buick Commercial Chassis Cadillac Fleetwood",
-                  "matchedPartNumberSource": "item-specifics",
-                  "observedPartNumberField": "Manufacturer Part Number",
-                  "observedPartNumberValue": "DP986"
-                }
-              }
-            ],
-            "fitment": {
-              "years": [
-                1994,
-                1995,
-                1996
-              ],
-              "engines": [
-                "5.7L LT1 V8 (Gen II)"
-              ],
-              "catalogModels": [
-                "ROADMASTER"
-              ]
-            },
-            "variants": [],
-            "verified": true,
-            "provenance": "ShowMeTheParts fitment + independent review buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii (buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii::0)"
-          }
+          "label": "Window Motor and Regulator Assembly reviewed legacy-claim removal",
+          "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application."
         }
       ],
       "contentUpdatedOn": "2026-08-13",
-      "contentUpdateSummary": "Added independently reviewed, vehicle-scoped repair-part links."
+      "contentUpdateSummary": "Removed independently reviewed unsafe or unscoped repair-part links.",
+      "dropFixPartClaimIds": [
+        "fixParts:0"
+      ]
+    },
+    {
+      "id": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+      "disposition": "replace",
+      "decision": "Remove only independently reviewed unsafe legacy fixParts; preserve every unrelated claim byte-for-byte.",
+      "evidence": [
+        {
+          "label": "Fuel Pump Module Assembly reviewed legacy-claim removal",
+          "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment."
+        }
+      ],
+      "contentUpdatedOn": "2026-08-13",
+      "contentUpdateSummary": "Removed independently reviewed unsafe or unscoped repair-part links.",
+      "dropFixPartClaimIds": [
+        "fixParts:0"
+      ]
+    },
+    {
+      "id": "buick-roadmaster-optispark-distributor-failure-lt1",
+      "disposition": "replace",
+      "decision": "Remove only independently reviewed unsafe legacy fixParts; preserve every unrelated claim byte-for-byte.",
+      "evidence": [
+        {
+          "label": "Engine Water Pump reviewed legacy-claim removal",
+          "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge."
+        }
+      ],
+      "contentUpdatedOn": "2026-08-13",
+      "contentUpdateSummary": "Removed independently reviewed unsafe or unscoped repair-part links.",
+      "dropFixPartClaimIds": [
+        "fixParts:0"
+      ]
     }
   ],
   "removalProposals": [
     {
       "issueId": "buick-enclave-loss-power-steering-assist",
       "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
+      "workItemIds": [
+        "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines"
+      ],
+      "existingPartIndex": 0,
+      "claimId": "fixParts:0",
+      "component": "Power Steering Pump",
       "partNumber": "20-2403",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
+      "action": "replaced-by-reviewed-keyed-merge",
+      "applied": true,
       "reason": "The legacy claim has no machine-enforceable fitment or persisted product-identity evidence; the newly reviewed scoped 20-2403 candidate must replace it through a guarded merge."
     },
     {
       "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
       "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
+      "workItemIds": [
+        "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines"
+      ],
+      "existingPartIndex": 0,
+      "claimId": "fixParts:0",
+      "component": "Engine Water Pump",
       "partNumber": "WPGM-611V",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
+      "action": "replaced-by-reviewed-keyed-merge",
+      "applied": true,
       "reason": "The legacy WPGM-611V claim is unscoped and lacks persisted product-identity evidence; the newly reviewed 2008-2017 candidate is the safe replacement."
     },
     {
       "issueId": "buick-lesabre-power-window-regulator-cable-failure",
       "workItemId": "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines",
+      "workItemIds": [
+        "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines"
+      ],
+      "existingPartIndex": 0,
+      "claimId": "fixParts:0",
+      "component": "Window Motor and Regulator Assembly",
       "partNumber": "82-1005AR",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
+      "action": "remove-reviewed-unsafe-claim",
+      "applied": true,
       "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application."
     },
     {
       "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
       "workItemId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines",
+      "workItemIds": [
+        "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines"
+      ],
+      "existingPartIndex": 0,
+      "claimId": "fixParts:0",
+      "component": "Fuel Pump Module Assembly",
       "partNumber": "FG0347",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
+      "action": "remove-reviewed-unsafe-claim",
+      "applied": true,
       "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment."
     },
     {
       "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
       "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
+      "workItemIds": [
+        "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii"
+      ],
+      "existingPartIndex": 0,
+      "claimId": "fixParts:0",
+      "component": "Engine Water Pump",
       "partNumber": "DP986",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
+      "action": "remove-reviewed-unsafe-claim",
+      "applied": true,
       "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge."
     }
   ],
-  "releaseBlockers": [
-    {
-      "issueId": "buick-enclave-loss-power-steering-assist",
-      "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
-      "partNumber": "20-2403",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The legacy claim has no machine-enforceable fitment or persisted product-identity evidence; the newly reviewed scoped 20-2403 candidate must replace it through a guarded merge.",
-      "type": "unapplied-existing-claim-removal"
-    },
-    {
-      "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
-      "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
-      "partNumber": "WPGM-611V",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The legacy WPGM-611V claim is unscoped and lacks persisted product-identity evidence; the newly reviewed 2008-2017 candidate is the safe replacement.",
-      "type": "unapplied-existing-claim-removal"
-    },
-    {
-      "issueId": "buick-lesabre-power-window-regulator-cable-failure",
-      "workItemId": "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines",
-      "partNumber": "82-1005AR",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application.",
-      "type": "unapplied-existing-claim-removal"
-    },
-    {
-      "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
-      "workItemId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines",
-      "partNumber": "FG0347",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment.",
-      "type": "unapplied-existing-claim-removal"
-    },
-    {
-      "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
-      "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
-      "partNumber": "DP986",
-      "action": "hold-for-explicit-reviewed-removal",
-      "applied": false,
-      "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge.",
-      "type": "unapplied-existing-claim-removal"
-    },
+  "releaseHolds": [
     {
       "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
       "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
@@ -529,18 +509,19 @@
       "dimensions": [
         "engines"
       ],
-      "reason": "Do not render scoped commerce until the selected vehicle context is authoritative and durable."
+      "reason": "The independently reviewed candidate remains held until selected vehicle context is authoritative and durable."
     }
   ],
+  "releaseBlockers": [],
   "reconciliation": {
     "schemaVersion": 2,
     "artifactKind": "known-issue-make-parts-reconciliation",
     "snapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651",
     "makeSourceHash": "a80413cabaa17257a2a68f7aecf21ab8102b3e8aee5dff9480a654bcddf1e714",
-    "status": "REVIEW_READY_RELEASE_BLOCKED",
+    "status": "REVIEW_READY_RECONCILED",
     "auditComplete": true,
-    "makeComplete": false,
-    "releaseBlocked": true,
+    "makeComplete": true,
+    "releaseBlocked": false,
     "productionApplied": false,
     "diagnosticReconciliation": {
       "status": "RECONCILED",
@@ -720,9 +701,9 @@
       ]
     },
     "commercePipelineImplementationSha256": {
-      "scripts/known-issue-completion-contract.js": "7c26d615920c36861568cdd6021bd62363b6e77522c404ce6bd078378280fab3",
-      "scripts/finalize-known-issue-make-packet.js": "3e96e071846f0c4cdb6e0b9909bd2a7ef81fda291dc8b5c426e92d6d71ecb0b3",
-      "scripts/apply-known-issue-catalog-deeplinks.js": "9fe1b75b20d25c26973de6717b77fd1da0388cf9959ca9a6291ad9134be54e15",
+      "scripts/known-issue-completion-contract.js": "e24efa98d05f9668a28350b429fbc993677c30d812b1abec649c2fd97a0c5720",
+      "scripts/finalize-known-issue-make-packet.js": "867ff612bcd1db562120aa5c6c51c8c12b423d74aedbefffd620431068132916",
+      "scripts/apply-known-issue-catalog-deeplinks.js": "fa648add449d573f8f006b43c43543aedc49baf59375cc6acc614b553e8a4789",
       "scripts/audit-known-issue-catalog-deeplinks.js": "e7ef697aca184cc1515cf1fa217fa013da8646da6c27bd819021e78122fd41f8",
       "scripts/build-known-issue-part-audit-ledger.js": "44e4f5a3ea48208410165b0475e800237fd4769da34f9c9e32a07768f3020a2e",
       "public/data/ymmt.json": "a05b331834b6f4c71af58663a5a1f104e215bab2402c612026a1344386130139",
@@ -755,13 +736,20 @@
       "src/lib/resolve-part-link.ts": "6347247f284208aa9308ac049414e4f2059b7904c7905cc0b4727e8892acf84b",
       "src/data/supplies-catalog.ts": "0b3a19ef1d63e716038acc3ba9e9e5de53fa035640749102624c27d2af244fe8",
       "src/lib/part-vocabulary.ts": "b129d5b5f2eed99510eba47ff0b12187c44adfbe7fdacf1acaa29250a38cf5aa",
-      "src/lib/verified-parts.ts": "97a4bf766a95a1e822644be6d61b058a536ecba13f794f33a61eee8281873229",
+      "src/lib/verified-parts.ts": "185fb0be5b1f80ea0aee27afd03dd782691126d06377495540695149f5e79f38",
       "src/lib/ebay-part-link-resolver.ts": "d42b71c98936edcd82a54e264ca7ee97420f54f425b77c82fc37fdba6a49831e",
       "src/lib/ebay-resolver.ts": "7a9292bfe7fd059a6afc3d0781fff04eddb5e650c4c18f7bf0212dfb91bbf03c",
       "src/lib/known-issue-part-fitment.ts": "b9ae909dda5fc7e238df59b14bf0460422246e055badf8ee4ebc4b4da7f3af81",
       "src/schemas/knownIssue.schema.ts": "59656aecdd79444049ffb7c263212ecb1bbb465847c81112e014d08ccff0bb94",
-      "src/lib/reviewed-vehicle-context.ts": "c5323e2fee3af556360dd009103e68c4edb12850ceaaafbc5212180be5d3b022",
-      "src/lib/known-issue-commerce.ts": "2a030b6b04dd6f22c54186ee21271d3d497993f86c28cbf983c490f7cbaa6dca",
+      "src/lib/reviewed-vehicle-context.ts": "7206374c4f0fadbd687734e2f945e8525ca25581308ae8087d8aec1d9fa2fe8d",
+      "src/lib/known-issue-commerce.ts": "4a974ed84cb2455d85b053eae603d345c9ea212b551ef6301a9267c60dc2f78f",
+      "src/lib/verified-retailer-product.ts": "10b1ed44bce72abb86f1cdec015e4fedf3e82626425be1f9206ff992db812db9",
+      "src/lib/known-issue-part-search.ts": "5733938b9e20bf27d2f62388ad6ddb9a2edc352263ed32ca15c5f196483d9080",
+      "scripts/build-known-issue-part-search-queue.ts": "2f73d82912fd6df59f70dc0529c87e73d4281a26f84b370cc171c8596bc5d280",
+      "scripts/review-known-issue-part-search-results.ts": "7676818ba9899f26e93a6cf5109c2f2366732dd6386a1a3009b09f561e3b32f8",
+      "scripts/evaluate-known-issue-part-search-lane.ts": "98c3143c326c394e6bbcfd62aa69201aaf4f1ca4ce691b555fa0c6033e0310b9",
+      "scripts/evaluate-known-issue-part-search-experiment.ts": "e9c07245e9127c15b57a898936c26290283727ffd59a411a223db837d72e8964",
+      "scripts/discover-known-issue-part-search-results.ts": "4c66c825add6b5c16e28f50461400d9afbec753e490daa810f08c9ebfb254610",
       "src/lib/external-http-url.ts": "45dd7c4d1eeba815ef549d733a41e8c0dfcea050b7391a21401b1a6a16551c92",
       "src/lib/ebay-affiliate.ts": "9d07300cb6c19ba269b4404ffb1cf925480c918668c9baded22dd79c29194a00",
       "src/lib/vendor-resolver.ts": "3c9b5424d05acf10ce3664cb8f96325b4031db1e4fa3386431406a7721366a0b",
@@ -780,20 +768,22 @@
       "src/components/diagnose/LiveCameraShutter.tsx": "9637f73674314c7e82b1f33cf9e9bd001753721c1bd595ab8f850845d0e2a013",
       "src/app/api/vision/route.ts": "6eaaad073fdba5a64b01bd2906200fe56978b5e1be94afbffc7ce102a6545b64",
       "src/app/api/vision/identify/route.ts": "901f451e6c0fb78d6ef26825c9375f3722eeda967bd9668981f9e179e49c5aaa",
-      "scripts/build-known-issue-deeplink-manifest.js": "06c36b52c3dee253d4d37c8012c9abd055c391e7239b52a7793c8d7e28a00940"
+      "scripts/build-known-issue-deeplink-manifest.js": "c19cf5a6ff4fc9bae5a2326a5d629b94db729c38f99dd212613c2f4b91c0d678"
     },
     "counts": {
       "issueCount": 70,
       "reviewedProposalPartRows": 7,
       "approvedRows": 5,
-      "selectedPrimaryRows": 3,
+      "selectedPrimaryRows": 2,
+      "releaseHeldContextRows": 1,
       "releaseHeldFullRecordRows": 0,
       "excludedApprovedNonPrimaryRows": 2,
       "heldProposalRows": 2,
       "blockedExistingClaimRows": 5,
-      "changedIssueCount": 3,
-      "mergedStablePartCount": 3,
-      "manifestIssueCount": 3,
+      "changedExistingClaimCount": 5,
+      "changedIssueCount": 5,
+      "mergedStablePartCount": 2,
+      "manifestIssueCount": 5,
       "overlappingSelectedScopeCount": 0
     },
     "inputSha256": {
@@ -872,7 +862,7 @@
         "model": "Roadmaster",
         "partNumber": "DP986",
         "verdict": "approve",
-        "reconciliationStatus": "selected-primary",
+        "reconciliationStatus": "release-held-context",
         "reason": "The article directly prescribes a complete water pump, and Dayco DP986 covers every reviewed 1994-1996 Roadmaster LT1 year."
       },
       {
@@ -891,90 +881,75 @@
       {
         "issueId": "buick-enclave-loss-power-steering-assist",
         "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
+        "workItemIds": [
+          "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines"
+        ],
+        "existingPartIndex": 0,
+        "claimId": "fixParts:0",
+        "component": "Power Steering Pump",
         "partNumber": "20-2403",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
+        "action": "replaced-by-reviewed-keyed-merge",
+        "applied": true,
         "reason": "The legacy claim has no machine-enforceable fitment or persisted product-identity evidence; the newly reviewed scoped 20-2403 candidate must replace it through a guarded merge."
       },
       {
         "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
         "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
+        "workItemIds": [
+          "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines"
+        ],
+        "existingPartIndex": 0,
+        "claimId": "fixParts:0",
+        "component": "Engine Water Pump",
         "partNumber": "WPGM-611V",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
+        "action": "replaced-by-reviewed-keyed-merge",
+        "applied": true,
         "reason": "The legacy WPGM-611V claim is unscoped and lacks persisted product-identity evidence; the newly reviewed 2008-2017 candidate is the safe replacement."
       },
       {
         "issueId": "buick-lesabre-power-window-regulator-cable-failure",
         "workItemId": "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines",
+        "workItemIds": [
+          "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines"
+        ],
+        "existingPartIndex": 0,
+        "claimId": "fixParts:0",
+        "component": "Window Motor and Regulator Assembly",
         "partNumber": "82-1005AR",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
+        "action": "remove-reviewed-unsafe-claim",
+        "applied": true,
         "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application."
       },
       {
         "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
         "workItemId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines",
+        "workItemIds": [
+          "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines"
+        ],
+        "existingPartIndex": 0,
+        "claimId": "fixParts:0",
+        "component": "Fuel Pump Module Assembly",
         "partNumber": "FG0347",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
+        "action": "remove-reviewed-unsafe-claim",
+        "applied": true,
         "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment."
       },
       {
         "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
         "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
+        "workItemIds": [
+          "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii"
+        ],
+        "existingPartIndex": 0,
+        "claimId": "fixParts:0",
+        "component": "Engine Water Pump",
         "partNumber": "DP986",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
+        "action": "remove-reviewed-unsafe-claim",
+        "applied": true,
         "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge."
       }
     ],
-    "releaseBlockers": [
-      {
-        "issueId": "buick-enclave-loss-power-steering-assist",
-        "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
-        "partNumber": "20-2403",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The legacy claim has no machine-enforceable fitment or persisted product-identity evidence; the newly reviewed scoped 20-2403 candidate must replace it through a guarded merge.",
-        "type": "unapplied-existing-claim-removal"
-      },
-      {
-        "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
-        "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
-        "partNumber": "WPGM-611V",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The legacy WPGM-611V claim is unscoped and lacks persisted product-identity evidence; the newly reviewed 2008-2017 candidate is the safe replacement.",
-        "type": "unapplied-existing-claim-removal"
-      },
-      {
-        "issueId": "buick-lesabre-power-window-regulator-cable-failure",
-        "workItemId": "buick-lesabre-power-window-regulator-cable-failure--existing-fix-part-0-0--all-engines",
-        "partNumber": "82-1005AR",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The current 82-1005AR claim has no door or side scope even though regulator assemblies are position-specific, so it can expose a wrong application.",
-        "type": "unapplied-existing-claim-removal"
-      },
-      {
-        "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
-        "workItemId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure--existing-fix-part-0-0--all-engines",
-        "partNumber": "FG0347",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "FG0347 was confirmed only for 2000-2005 while the frozen issue spans earlier years; the unscoped public claim can therefore show outside proven fitment.",
-        "type": "unapplied-existing-claim-removal"
-      },
-      {
-        "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
-        "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
-        "partNumber": "DP986",
-        "action": "hold-for-explicit-reviewed-removal",
-        "applied": false,
-        "reason": "The legacy DP986 claim lacks persisted engine/year fitment and product-identity evidence; the newly reviewed 1994-1996 LT1 candidate must replace it through the guarded merge.",
-        "type": "unapplied-existing-claim-removal"
-      },
+    "releaseHolds": [
       {
         "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
         "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
@@ -982,9 +957,10 @@
         "dimensions": [
           "engines"
         ],
-        "reason": "Do not render scoped commerce until the selected vehicle context is authoritative and durable."
+        "reason": "The independently reviewed candidate remains held until selected vehicle context is authoritative and durable."
       }
     ],
+    "releaseBlockers": [],
     "issueCoverage": [
       {
         "issueId": "buick-3800-lower-intake-gasket-lesabre",
@@ -1204,12 +1180,12 @@
       {
         "issueId": "buick-lesabre-power-window-regulator-cable-failure",
         "disposition": "buyable",
-        "commerceAction": "existing-claim-removal-held"
+        "commerceAction": "guarded-fixparts-change"
       },
       {
         "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
         "disposition": "buyable",
-        "commerceAction": "existing-claim-removal-held"
+        "commerceAction": "guarded-fixparts-change"
       },
       {
         "issueId": "buick-lucerne-fuel-pump-relay-overheats-melts-fuse-box",
@@ -1329,12 +1305,12 @@
       {
         "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
         "disposition": "buyable",
-        "commerceAction": "existing-claim-removal-held"
+        "commerceAction": "guarded-fixparts-change"
       },
       {
         "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
         "disposition": "diagnosis-dependent",
-        "commerceAction": "guarded-fixparts-change"
+        "commerceAction": "approved-fixparts-context-held"
       }
     ]
   }
