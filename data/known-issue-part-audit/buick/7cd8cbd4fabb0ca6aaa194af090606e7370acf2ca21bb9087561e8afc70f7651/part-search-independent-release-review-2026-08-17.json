@@ -1,0 +1,1056 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "known-issue-part-search-independent-release-review",
+  "reviewDate": "2026-08-17",
+  "make": "Buick",
+  "reviewer": "Codex independent release-review lane",
+  "status": "COMPLETE_REVIEW_RELEASE_BLOCKED",
+  "productionApplied": false,
+  "releaseRecommendation": "DO_NOT_ADMIT_RAW_DISCOVERY_ROWS",
+  "writeOutcome": "NO_GUARDED_MANIFEST_OR_DATABASE_WRITE_GENERATED",
+  "guardrail": {
+    "approvedUrlCount": 0,
+    "approvedPlacementCount": 0,
+    "statement": "No raw-held row gains release authority from this report; only later exact-evidence approval bound to a fresh production before-state may enter a guarded manifest."
+  },
+  "freshProductionBinding": {
+    "snapshotHash": "c5c4f801ea0e1a46307c880772ebe140ae4989b909703ab326f0281e46fd6b8f",
+    "externalBytesSha256": "68772cb383f1ad58bb44fdac95910abbcd47e6cd69e87dcf9df78981b20a27c9",
+    "artifactPath": null,
+    "commandDescription": "Read-only fresh production inventory snapshot for this make; exact command retained by the release lane, secret values not recorded.",
+    "secretValuesRecorded": false,
+    "inventoryState": "FRESH_PRODUCTION_READ_BOUND_EXTERNALLY; REVIEW_GENERATED_ZERO_APPROVALS; INVENTORY_UNCHANGED_BY_THIS_REVIEW"
+  },
+  "methodology": {
+    "requiredEvidence": [
+      "direct PDP",
+      "exact product identity/part number",
+      "repair role",
+      "full YMMT/engine scope",
+      "current availability",
+      "vendor distinctness",
+      "existing-link preservation"
+    ],
+    "failClosed": true,
+    "discoveryTitleOrQueryIsFitmentEvidence": false,
+    "independence": "Fresh live response evidence was reviewed; prior candidate verdicts were not inherited."
+  },
+  "reasonCatalog": {
+    "RETRIEVAL_FAILED": "Live retrieval failed; PDP identity, availability, and exact fitment are unverified.",
+    "NON_PDP_URL": "URL is a search/category/catalog surface, not a stable PDP.",
+    "HTTP_403_UNREVIEWABLE": "Live retrieval returned HTTP 403; PDP and current fitment/availability are not independently reviewable.",
+    "HTTP_404_UNREVIEWABLE": "Live retrieval returned HTTP 404; the listing is not a current PDP.",
+    "NON_PRODUCT_MAINTENANCE_RESPONSE": "URL returned a maintenance page rather than product detail.",
+    "STALE_OR_UNAVAILABLE_PDP": "Structured Product availability is Discontinued, OutOfStock, or SoldOut.",
+    "PRODUCT_IDENTITY_NOT_OBSERVED": "Response exposes no stable product identity.",
+    "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN": "Observed product identity does not prove every bound year/make/model/trim/engine and repair-role dimension; discovery title/query inference is forbidden.",
+    "QUEUE_BINDING_MISSING": "Placement has no exact workItemId in the frozen queue.",
+    "SOURCE_RECORD_BINDING_MISSING": "Placement has no exact issueId in the frozen make source."
+  },
+  "inputBindings": [
+    {
+      "path": "data/known-issue-part-audit/buick/7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651/part-search-codex-discovery.json",
+      "byteLength": 52898,
+      "sha256": "d106214de5bffa4242c15adca646104b101230b54edcd7bdb990d6b70274f8b0",
+      "declaredSnapshotHash": "7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651"
+    },
+    {
+      "path": "data/known-issue-part-audit/buick/7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651/part-search-queue.json",
+      "byteLength": 151888,
+      "sha256": "8f2909cf0171bd90726c52d111ad94b5b2473b40e7993ff60a7643acc9dc1d8c"
+    },
+    {
+      "path": "data/known-issue-part-audit/buick/7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651/00-make-source.json",
+      "byteLength": 613946,
+      "sha256": "7ea183bbd16d3832a19dc9a71255f78035c5fbd8bc42bb661623e6733510b1b4"
+    },
+    {
+      "path": "data/known-issue-part-audit/buick/7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651/existing-public-claim-review.json",
+      "byteLength": 6545,
+      "sha256": "8d08f69fbaf340d38d384d15fb1b9b41d82f7efb905d5087d379154c77975e23"
+    },
+    {
+      "path": "data/known-issue-part-audit/buick/7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651/existing-public-claim-decisions.json",
+      "byteLength": 1900,
+      "sha256": "39db2ef7b4a3287db338e66f5629c6135d45fa9991964a4abfbb397230cf3238"
+    },
+    {
+      "path": "data/known-issue-part-audit/buick/7cd8cbd4fabb0ca6aaa194af090606e7370acf2ca21bb9087561e8afc70f7651/reviewed-retailer-candidates.json",
+      "byteLength": 7892,
+      "sha256": "fc20b0d139e10b60c8ec297f4a2b3611277cd58a4ce2e719af10a5a7ea355f9e"
+    }
+  ],
+  "reconciliation": {
+    "queueWorkItems": 101,
+    "discoveryWorkItems": 101,
+    "queueWithoutDiscovery": [],
+    "discoveryWithoutQueue": [],
+    "distinctUrls": 15,
+    "placements": 27,
+    "distinctIssues": 16,
+    "mappedPlacements": 27
+  },
+  "retrievalRun": {
+    "startedAt": "2026-08-17T19:31:16.486Z",
+    "completedAt": "2026-08-17T19:31:20.708Z",
+    "method": "curl 8.21.0 redirect-following GET; browser UA; response bodies/headers hashed"
+  },
+  "tally": {
+    "urls": {
+      "total": 15,
+      "BLOCK": 8,
+      "HOLD": 7
+    },
+    "placements": {
+      "total": 27,
+      "BLOCK": 14,
+      "HOLD": 13
+    },
+    "httpStatus": {
+      "200": 8,
+      "403": 7
+    },
+    "urlReasonCodes": {
+      "HTTP_403_UNREVIEWABLE": 7,
+      "NON_PRODUCT_MAINTENANCE_RESPONSE": 1,
+      "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN": 7
+    },
+    "placementReasonCodes": {
+      "HTTP_403_UNREVIEWABLE": 12,
+      "NON_PRODUCT_MAINTENANCE_RESPONSE": 2,
+      "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN": 13
+    },
+    "vendorUrlCounts": {
+      "autozone.com": 1,
+      "shop.advanceautoparts.com": 1,
+      "napaonline.com": 1,
+      "parts.gmparts.com": 1,
+      "partsgeek.com": 3,
+      "traction.com": 1,
+      "discountautoparts.com": 1,
+      "airsuspension.com": 1,
+      "strutmasters.com": 2,
+      "maxpeedingrods.com": 1,
+      "gmpartsgiant.com": 1,
+      "finditparts.com": 1
+    }
+  },
+  "existingClaimPreservation": [
+    {
+      "issueId": "buick-enclave-hvac-blend-door-actuator-failure",
+      "sourceRecordSha256": "4201b17a0d8ace9e09893a8479298d22a2718a3d4b36f2e05ecc0d15cb977e02",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-enclave-loss-power-steering-assist",
+      "sourceRecordSha256": "6534dd5153f1672224983e1d5e7f1d77951e39bbc071a7a6d44bb4bcf8ecedce",
+      "existingFixPartsSha256": "225a266c103f2ebaecace0b36b2198723b7498bc62c47e57f3f270c67f0f189c",
+      "existingProductUrls": [
+        "https://www.ebay.com/itm/402797827561?_skw=Cardone+20-2403+Power+Steering+Pump&hash=item5dc89f15e9%3Ag%3AZRkAAOSwxLdge1JX&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
+      ],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+      "sourceRecordSha256": "903fc4165a8385e1e7b39cf3e5bc5490822b67723482d63f641734b44f04f060",
+      "existingFixPartsSha256": "842918fe0a39fba2855d2600efbc2440afb5b29a110806247a11b47a62500827",
+      "existingProductUrls": [
+        "https://www.ebay.com/itm/137201131319?_skw=Aisin+WPGM-611V+Engine+Water+Pump&hash=item1ff1d31f37%3Ag%3AwbcAAeSwarpp01Vu&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
+      ],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-encore-evap-purge-pump-failure-warranty-extension",
+      "sourceRecordSha256": "e84189c4a98d56132531770768388a89c0fef4678d9806d1215108f8eabaf958",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-encore-excessive-oil-consumption",
+      "sourceRecordSha256": "76477d5b5c23feb6a348c8be4d16c79074897e4e1e4ea8705945df2f8c528b3f",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-encore-pcv-camshaft-cover-diaphragm-failure-tea-kettle-whistle",
+      "sourceRecordSha256": "4418bee78da11424beb177f401e06134433242af4fa62d2d255dc14165ad8884",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow",
+      "sourceRecordSha256": "3289671bc4ab9b5900d85602315b53477c48b164b3c339e696085fd57af6b47e",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-lacrosse-3-6l-v6-timing-chain-stretch-wear",
+      "sourceRecordSha256": "055cddb19c0eb62bb4bb0e6fd45c115ede0f77f41deaa44e0e239ead14ec9825",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-lesabre-front-strut-mount-bearing-wear-clunking-popping-over-bumps-t",
+      "sourceRecordSha256": "d71c23f91c6b142fa011c1ff73b2111ccc8284f42a2dd4b867dae05c67c8d47d",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-lesabre-plastic-upper-intake-manifold-degradation-causing-coolant-le",
+      "sourceRecordSha256": "445c75c27dc5f79aa3ebfdb9eaec6c2c19ae09ff1c95c0fa283f6015d73220d0",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-lucerne-rear-air-self-leveling-suspension-failure",
+      "sourceRecordSha256": "78f9659ed3c187c99602766548c9e43e0bdbd7c2340040bbd98dba14fa270447",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-roadmaster-estate-wagon-rear-self-leveling-air-shock-compressor-failure",
+      "sourceRecordSha256": "38b1f447b3a47d19e7b5ebfd695513132501319aa2e7b9b6dde982b7bb60eb31",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-roadmaster-fuel-pump-tank-check-valve-failure-causing-hard-starting-low",
+      "sourceRecordSha256": "86125bab52ff5b42f77b2597a0c1f0705029ee49d7f7ddf1fd854dde7a0b6111",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak",
+      "sourceRecordSha256": "844bc1eb756c82475c6d0008d8aa51d6bd0282042a5ef3c6659bce02d71ba821",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+      "sourceRecordSha256": "a260b5e2ce38a06aef62407e86f914f2ccac9c99c9878966a520021554f2a5b9",
+      "existingFixPartsSha256": "1d52d26ab9105a00df2d06d94798ed24a29c898e04d8217739897f89fc7c6b26",
+      "existingProductUrls": [
+        "https://www.ebay.com/itm/168593736460?_skw=Dayco+DP986+Engine+Water+Pump&hash=item2740f8430c%3Ag%3AW5wAAeSw-MdqdL0T&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049"
+      ],
+      "decision": "PRESERVE_UNCHANGED"
+    },
+    {
+      "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+      "sourceRecordSha256": "1cc60654004805a553e7e124f421974c733389b8b2d1176388d8f326bf0de32e",
+      "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "existingProductUrls": [],
+      "decision": "PRESERVE_UNCHANGED"
+    }
+  ],
+  "urlReviews": [
+    {
+      "urlReviewId": "53687c63d70e1ca6c370a993933b0a8fcfaf1d8e7596fa117ed593bc9e52c576",
+      "url": "https://parts.gmparts.com/product/gm-genuine-parts-evaporative-emission-canister-purge-pump-25207556",
+      "host": "parts.gmparts.com",
+      "vendorKey": "parts.gmparts.com",
+      "discoveryTitle": "GM Genuine 25207556 Evaporative Emission Canister Purge Pump",
+      "directPdpUrlShape": true,
+      "verdict": "BLOCK",
+      "reasonCode": "HTTP_403_UNREVIEWABLE",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.289Z",
+        "curlExitCode": 0,
+        "httpStatus": 403,
+        "effectiveUrl": "https://parts.gmparts.com/product/gm-genuine-parts-evaporative-emission-canister-purge-pump-25207556",
+        "contentType": "text/html",
+        "responseByteLength": 479,
+        "responseBodySha256": "a97451d155dc8053572575b99612fc3b1bf674ae433abe3c231f45111540eb1b",
+        "responseHeadersSha256": "b4a05b26be86d683c8f7a1e7ec6e8b8f29d2e3e1a986daec9f10ddff5e37028b"
+      },
+      "observedIdentity": {
+        "pageTitle": "Access Denied",
+        "h1": "Access Denied",
+        "product": null,
+        "evidenceSha256": "28809188a6f3326aea7fac1b2db2ed57b48bf5eb97b6f9709ee9451045538d08"
+      },
+      "placements": [
+        {
+          "bindingSha256": "8ce48f8ac3053c995864ca04641fc89fe03dc50c4e7bf02aba7f37d41e9b1c75",
+          "ordinal": 5,
+          "workItemId": "buick-encore-evap-purge-pump-failure-warranty-extension--prescription-0-0--all-engines",
+          "issueId": "buick-encore-evap-purge-pump-failure-warranty-extension",
+          "component": "evap purge pump",
+          "declaredEngine": null,
+          "queueEntrySha256": "a9531b71dfd753376621a51e855e752f7a41a5be8f031b7553a86f999e25a39b",
+          "sourceRecordSha256": "e84189c4a98d56132531770768388a89c0fef4678d9806d1215108f8eabaf958",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "9b4da5eb4044ee71db81720b5576398b0e990b22e393f26c8b840c81d0539f9a",
+      "url": "https://shop.advanceautoparts.com/p/cardone-remanufactured-power-steering-pump-20-2403/10393238-P",
+      "host": "shop.advanceautoparts.com",
+      "vendorKey": "shop.advanceautoparts.com",
+      "discoveryTitle": "Cardone 20-2403 Remanufactured Power Steering Pump",
+      "directPdpUrlShape": true,
+      "verdict": "BLOCK",
+      "reasonCode": "NON_PRODUCT_MAINTENANCE_RESPONSE",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:16.519Z",
+        "curlExitCode": 0,
+        "httpStatus": 200,
+        "effectiveUrl": "https://shop.advanceautoparts.com/p/cardone-remanufactured-power-steering-pump-20-2403/10393238-P",
+        "contentType": "text/html",
+        "responseByteLength": 6138,
+        "responseBodySha256": "8ead004c163d0954b5c344b74e1e619c856ada747b93c0c1534f6b60fbb205bb",
+        "responseHeadersSha256": "c09c35e1fea20e2f9200094b40f494615bd6f3ffab4bba0a04b41c107e64ff24"
+      },
+      "observedIdentity": {
+        "pageTitle": "Advance Auto Parts - Down for Maintenance",
+        "h1": null,
+        "product": null,
+        "evidenceSha256": "6ed19b244f952446817e83eccb4b1e4dc24ff2462c16835617d259547e111cb1"
+      },
+      "placements": [
+        {
+          "bindingSha256": "d40b737c530542cf5513de5bd6938c49c1a078571ce7fda7eebea13b5737ddf7",
+          "ordinal": 1,
+          "workItemId": "buick-enclave-loss-power-steering-assist--existing-fix-part-0-0--all-engines",
+          "issueId": "buick-enclave-loss-power-steering-assist",
+          "component": "Power Steering Pump",
+          "declaredEngine": null,
+          "queueEntrySha256": "fe4175e09ab782ef3f7effae5e15e4963c93ec86a5fd0bffb2261e51b457f557",
+          "sourceRecordSha256": "6534dd5153f1672224983e1d5e7f1d77951e39bbc071a7a6d44bb4bcf8ecedce",
+          "existingFixPartsSha256": "225a266c103f2ebaecace0b36b2198723b7498bc62c47e57f3f270c67f0f189c",
+          "verdict": "BLOCK",
+          "reasonCode": "NON_PRODUCT_MAINTENANCE_RESPONSE"
+        },
+        {
+          "bindingSha256": "ead41b052b454264511a7e5cf7f9ac924aae31caf7569a131ecf13176e1a76de",
+          "ordinal": 2,
+          "workItemId": "buick-enclave-loss-power-steering-assist--prescription-0-0--all-engines",
+          "issueId": "buick-enclave-loss-power-steering-assist",
+          "component": "power steering pump",
+          "declaredEngine": null,
+          "queueEntrySha256": "45960da715b25e91a59e682deb6bda7e066b317e25e680a99b25e554ada1ca01",
+          "sourceRecordSha256": "6534dd5153f1672224983e1d5e7f1d77951e39bbc071a7a6d44bb4bcf8ecedce",
+          "existingFixPartsSha256": "225a266c103f2ebaecace0b36b2198723b7498bc62c47e57f3f270c67f0f189c",
+          "verdict": "BLOCK",
+          "reasonCode": "NON_PRODUCT_MAINTENANCE_RESPONSE"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "0b26eb53deeb8d616cfb6ed206289b7792b27cb01e967fa3a4c2c3bf1aa8187d",
+      "url": "https://www.airsuspension.com/products/arnott-new-air-suspension-compressor-06-11-cadillac-dts-buick-lucerne",
+      "host": "www.airsuspension.com",
+      "vendorKey": "airsuspension.com",
+      "discoveryTitle": "Arnott P-2982 Air Suspension Compressor - 2006-2011 Buick Lucerne",
+      "directPdpUrlShape": true,
+      "verdict": "HOLD",
+      "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.334Z",
+        "curlExitCode": 0,
+        "httpStatus": 200,
+        "effectiveUrl": "https://www.airsuspension.com/products/arnott-new-air-suspension-compressor-06-11-cadillac-dts-buick-lucerne",
+        "contentType": "text/html; charset=utf-8",
+        "responseByteLength": 275010,
+        "responseBodySha256": "378f608c78e595a5503c06942013cf6ef01e461472bac7f992238348894cddd2",
+        "responseHeadersSha256": "5de9244084bf2d553e1f0f485170bf8a463d57f5b18b30ab405185f43b378af4"
+      },
+      "observedIdentity": {
+        "pageTitle": "Arnott New Air Suspension Compressor - 06-11 Cadillac DTS/ Buick Lucerne | AirSuspension.com",
+        "h1": "Arnott New Air Suspension Compressor - 06-11 Cadillac DTS/ Buick Lucerne",
+        "product": {
+          "name": "Arnott New Air Suspension Compressor - 06-11 Cadillac DTS/ Buick Lucerne",
+          "sku": "P-2982",
+          "mpn": null,
+          "availability": null
+        },
+        "evidenceSha256": "6a9f856a50ef1b7bd3833eee0bd078dc6d22a6042d8a0e839ef80f94e0f3d501"
+      },
+      "placements": [
+        {
+          "bindingSha256": "1784b1f626a599673f6a29a5ed163933c2c46d3ef4f77692d6473496c5c02fed",
+          "ordinal": 15,
+          "workItemId": "buick-lucerne-rear-air-self-leveling-suspension-failure--prescription-2-0--all-engines",
+          "issueId": "buick-lucerne-rear-air-self-leveling-suspension-failure",
+          "component": "air compressor",
+          "declaredEngine": null,
+          "queueEntrySha256": "0fa03648884c97782f4beb19daf3559ae32c177c4c48fe278fc7ded59fbf5b4d",
+          "sourceRecordSha256": "78f9659ed3c187c99602766548c9e43e0bdbd7c2340040bbd98dba14fa270447",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        },
+        {
+          "bindingSha256": "d81344c69c88332735ca1a6e244c4408e3a36be7aa340daa15089eb76d2d84f4",
+          "ordinal": 16,
+          "workItemId": "buick-lucerne-rear-air-self-leveling-suspension-failure--prescription-3-0--all-engines",
+          "issueId": "buick-lucerne-rear-air-self-leveling-suspension-failure",
+          "component": "compressor",
+          "declaredEngine": null,
+          "queueEntrySha256": "daad022325b45971fb7b5c5c72e075f80dead469e537be34086467ce564fa5c7",
+          "sourceRecordSha256": "78f9659ed3c187c99602766548c9e43e0bdbd7c2340040bbd98dba14fa270447",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "7efe2b36cfa651e72d7c24e3399a592f5556befba0371ef65a6ad2f5cf747fa7",
+      "url": "https://www.autozone.com/p/duralast-hvac-blend-door-actuator-604-140/469659",
+      "host": "www.autozone.com",
+      "vendorKey": "autozone.com",
+      "discoveryTitle": "Dorman 604-140 HVAC Blend Door Actuator",
+      "directPdpUrlShape": true,
+      "verdict": "BLOCK",
+      "reasonCode": "HTTP_403_UNREVIEWABLE",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:16.617Z",
+        "curlExitCode": 0,
+        "httpStatus": 403,
+        "effectiveUrl": "https://www.autozone.com/p/duralast-hvac-blend-door-actuator-604-140/469659",
+        "contentType": "text/html;charset=utf-8",
+        "responseByteLength": 850,
+        "responseBodySha256": "692cc5990f3ad0468db5e8804d9c6f6715f4900baaf54ca7adfb016c0bee3558",
+        "responseHeadersSha256": "e275ec28205d1c9b9fada4b24ed2f9943822da612e12d660970de16d16775d25"
+      },
+      "observedIdentity": {
+        "pageTitle": "autozone.com",
+        "h1": null,
+        "product": null,
+        "evidenceSha256": "b056a1ca3303e26d775276777c4cffaa3d70b0609f5dc50f79fb29577340fc0f"
+      },
+      "placements": [
+        {
+          "bindingSha256": "42154cc74e5e2c29b9630681e64fb35c2125903073f7aef4be64ee533f47e266",
+          "ordinal": 0,
+          "workItemId": "buick-enclave-hvac-blend-door-actuator-failure--prescription-0-0--all-engines",
+          "issueId": "buick-enclave-hvac-blend-door-actuator-failure",
+          "component": "blend-door actuator",
+          "declaredEngine": null,
+          "queueEntrySha256": "1660b5eea09fe4942d762bc5a0debc7076c0bc41987709f582bcca8552c3c4ae",
+          "sourceRecordSha256": "4201b17a0d8ace9e09893a8479298d22a2718a3d4b36f2e05ecc0d15cb977e02",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "8bc31ba3cd42335dfc1a86e6aa1961c6bed0880d5413104287c5247278bcb847",
+      "url": "https://www.discountautoparts.com/p/D0188-P372527-dorman-upper-intake-manifold-1996-2005-buick-lesabre-w01331683270.html",
+      "host": "www.discountautoparts.com",
+      "vendorKey": "discountautoparts.com",
+      "discoveryTitle": "1996-2005 Buick LeSabre Dorman Upper Intake Manifold",
+      "directPdpUrlShape": true,
+      "verdict": "HOLD",
+      "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.699Z",
+        "curlExitCode": 0,
+        "httpStatus": 200,
+        "effectiveUrl": "https://www.discountautoparts.com/p/D0188-P372527-dorman-upper-intake-manifold-1996-2005-buick-lesabre-w01331683270.html",
+        "contentType": "text/html; charset=UTF-8",
+        "responseByteLength": 39864,
+        "responseBodySha256": "c03d57571b0aee2d7fb321848378a590af703deb9ed1158521c60d470c17cdc1",
+        "responseHeadersSha256": "535d1096d71b7180181251a0f289b55ff651bceb990eae03b7dc7fd4f02b3cb2"
+      },
+      "observedIdentity": {
+        "pageTitle": "Dorman - Upper Intake Manifold - 1996 - 2005 Buick LeSabre - W0133-1683270",
+        "h1": "Dorman - Upper Intake Manifold - 1996 - 2005 Buick LeSabre - W0133-1683270",
+        "product": null,
+        "evidenceSha256": "3600dbafc25fd4c40d8589511fcbad362cc369f2b6ae22a8d3834c17d121a424"
+      },
+      "placements": [
+        {
+          "bindingSha256": "fe19bfb0c2bb7cf43456a76499ebcda8a1827c336e55ed9675a14b3ed968359c",
+          "ordinal": 14,
+          "workItemId": "buick-lesabre-plastic-upper-intake-manifold-degradation-causing-coolant-le--prescription-0-0--all-engines",
+          "issueId": "buick-lesabre-plastic-upper-intake-manifold-degradation-causing-coolant-le",
+          "component": "upper intake manifold",
+          "declaredEngine": null,
+          "queueEntrySha256": "07568c6fb43e50fdcfbff9548b957c7fd26b2fb7e5619c79fa8bcde326a5da81",
+          "sourceRecordSha256": "445c75c27dc5f79aa3ebfdb9eaec6c2c19ae09ff1c95c0fa283f6015d73220d0",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "caa9acc221025b6d47a1f48af18396cd6a5dbf1c6e5e127a394954ef01287972",
+      "url": "https://www.finditparts.com/products/4558640/acdelco-252-700",
+      "host": "www.finditparts.com",
+      "vendorKey": "finditparts.com",
+      "discoveryTitle": "ACDelco 252-700 Engine Water Pump",
+      "directPdpUrlShape": true,
+      "verdict": "HOLD",
+      "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.866Z",
+        "curlExitCode": 0,
+        "httpStatus": 200,
+        "effectiveUrl": "https://www.finditparts.com/products/4558640/acdelco-252-700",
+        "contentType": "text/html; charset=utf-8",
+        "responseByteLength": 343521,
+        "responseBodySha256": "fbafec410a7d08cef279c9689db119e7ae680f0cfc5d8aad0b367df72923ec6a",
+        "responseHeadersSha256": "72a84a167b8702faa82b601c0102d25f3782e55ef2763b939f1e0e5e4851e1fc"
+      },
+      "observedIdentity": {
+        "pageTitle": "ACDelco 252-700 Engine Water Pump + Cross Reference | FinditParts",
+        "h1": "ACDELCO 252-700 Water Pump",
+        "product": {
+          "name": "ACDelco 252-700 Water Pump",
+          "sku": "252700",
+          "mpn": "252-700",
+          "availability": "http://schema.org/InStock"
+        },
+        "evidenceSha256": "ea94882f92687950a7be52bc9a669bd6f8217097321859c7186318fde3286014"
+      },
+      "placements": [
+        {
+          "bindingSha256": "e3ede4cd6b147803f1e8c9ce6383183723136222ccc8075f5415278a673740c1",
+          "ordinal": 23,
+          "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--existing-fix-part-0-0--5-7l-lt1-v8-gen-ii",
+          "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+          "component": "Engine Water Pump",
+          "declaredEngine": "5.7L LT1 V8 (Gen II)",
+          "queueEntrySha256": "18bab6030a52352a50b3e643f0cea6ad1fe87e98dabaa32c60ad958e10d7bc5f",
+          "sourceRecordSha256": "a260b5e2ce38a06aef62407e86f914f2ccac9c99c9878966a520021554f2a5b9",
+          "existingFixPartsSha256": "1d52d26ab9105a00df2d06d94798ed24a29c898e04d8217739897f89fc7c6b26",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        },
+        {
+          "bindingSha256": "a6bfd504c24684336ee3082df5f913723c08f0cccb7a62b34fb316c9f7c20b88",
+          "ordinal": 24,
+          "workItemId": "buick-roadmaster-optispark-distributor-failure-lt1--prescription-1-0--5-7l-lt1-v8-gen-ii",
+          "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+          "component": "water pump",
+          "declaredEngine": "5.7L LT1 V8 (Gen II)",
+          "queueEntrySha256": "5dd61451db6a745bd4831dfe820453dcea45d88cd0d3c74117845252996b02f4",
+          "sourceRecordSha256": "a260b5e2ce38a06aef62407e86f914f2ccac9c99c9878966a520021554f2a5b9",
+          "existingFixPartsSha256": "1d52d26ab9105a00df2d06d94798ed24a29c898e04d8217739897f89fc7c6b26",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        },
+        {
+          "bindingSha256": "38326692a86c57247b53dfd1e3953a77b08b5d36f8e76095d9148499f5aec7b6",
+          "ordinal": 25,
+          "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-0-0--5-7l-lt1-v8-gen-ii",
+          "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+          "component": "water pump",
+          "declaredEngine": "5.7L LT1 V8 (Gen II)",
+          "queueEntrySha256": "f9c9199651cebcee26491d0b95cf459bffa40033f2b5a1df12075dcd320dda46",
+          "sourceRecordSha256": "1cc60654004805a553e7e124f421974c733389b8b2d1176388d8f326bf0de32e",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        },
+        {
+          "bindingSha256": "ec99e7a9b7be1c10fa1c54bdc69701076cf2b54eb0ba9e8891b6f51ba039b51c",
+          "ordinal": 26,
+          "workItemId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove--prescription-1-0--5-7l-lt1-v8-gen-ii",
+          "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+          "component": "pump",
+          "declaredEngine": "5.7L LT1 V8 (Gen II)",
+          "queueEntrySha256": "f2e27656109e4fef31c4fbd8b2e782dd74e5da2f077c4d279059fb12ab80e13f",
+          "sourceRecordSha256": "1cc60654004805a553e7e124f421974c733389b8b2d1176388d8f326bf0de32e",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "bd62727dec72fd4527cf10401abb2e86534a19e1155eeb5dacc378f776449458",
+      "url": "https://www.gmpartsgiant.com/parts/gm-gasket-kit-12524653.html",
+      "host": "www.gmpartsgiant.com",
+      "vendorKey": "gmpartsgiant.com",
+      "discoveryTitle": "Genuine GM 12524653 Intake Manifold Gasket Kit",
+      "directPdpUrlShape": true,
+      "verdict": "HOLD",
+      "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:19.229Z",
+        "curlExitCode": 0,
+        "httpStatus": 200,
+        "effectiveUrl": "https://www.gmpartsgiant.com/parts/gm-gasket-kit-12524653.html",
+        "contentType": "text/html; charset=utf-8",
+        "responseByteLength": 165185,
+        "responseBodySha256": "ad63e4571b47627071f14057334a103dc2868da8d68e87649aed2e9adc9ad71c",
+        "responseHeadersSha256": "6759a2a6baa439a7ec7b8aaf353452c4b2a1419be0e60c8ad122ee93e314ce9a"
+      },
+      "observedIdentity": {
+        "pageTitle": "12524653 - Genuine GM Intake Manifold Gasket Kit",
+        "h1": "GM 12524653 Intake Manifold Gasket Kit",
+        "product": {
+          "name": "GM 12524653",
+          "sku": "12524653",
+          "mpn": "12524653",
+          "availability": "https://schema.org/InStock"
+        },
+        "evidenceSha256": "1912587b446a5976f88c32f527b0db15ef8f01d23c84a773fa47837a5e6fa69b"
+      },
+      "placements": [
+        {
+          "bindingSha256": "5de698dddf59dfa71bd3ef8cae3b0fb587c5c4c921547e8ee464e5f2f616b135",
+          "ordinal": 22,
+          "workItemId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak--prescription-0-0--5-7l-lt1-v8-gen-ii",
+          "issueId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak",
+          "component": "intake manifold gaskets",
+          "declaredEngine": "5.7L LT1 V8 (Gen II)",
+          "queueEntrySha256": "6d32dfa8c6e627b88846d809cb1902309f526fe24fe74c39b33cf5f839863b3b",
+          "sourceRecordSha256": "844bc1eb756c82475c6d0008d8aa51d6bd0282042a5ef3c6659bce02d71ba821",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "00862a02f0759f5a6d96e1e25d0e3f14ba42928d8a2518a656a7a2bd82592541",
+      "url": "https://www.maxpeedingrods.com/product/fuel-pump-module-assembly-for-buick-roadmaster-57l-v8-1994-1996-19179521.html",
+      "host": "www.maxpeedingrods.com",
+      "vendorKey": "maxpeedingrods.com",
+      "discoveryTitle": "1994-1996 Buick Roadmaster 5.7L Fuel Pump Module 19179521",
+      "directPdpUrlShape": true,
+      "verdict": "HOLD",
+      "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:20.708Z",
+        "curlExitCode": 0,
+        "httpStatus": 200,
+        "effectiveUrl": "https://www.maxpeedingrods.com/product/fuel-pump-module-assembly-for-buick-roadmaster-57l-v8-1994-1996-19179521.html",
+        "contentType": "text/html; charset=utf-8",
+        "responseByteLength": 5693821,
+        "responseBodySha256": "7068f0771b94d3919993c6fec98ffc860b841ce294a88da5ae188b782ebee8a9",
+        "responseHeadersSha256": "e050128527bdee78f3ee5d058da87d14550b50c80c4b0ebd6052dd4299666105"
+      },
+      "observedIdentity": {
+        "pageTitle": "Fuel Pump Module Assembly compatible for Buick Roadmaster 5.7L V8 1994-1996 19179521-Maxpeedingrods",
+        "h1": "Fuel Pump Module Assembly compatible for Buick Roadmaster 5.7L V8 1994-1996 19179521",
+        "product": null,
+        "evidenceSha256": "6be1788fc7df38b655762260198e0bb6d07b9717f298ba0ee1b66736216106e9"
+      },
+      "placements": [
+        {
+          "bindingSha256": "aa79c3503142311dd0ebef640095b9b40d53e1fe22303399c820998087c7cb6c",
+          "ordinal": 21,
+          "workItemId": "buick-roadmaster-fuel-pump-tank-check-valve-failure-causing-hard-starting-low--prescription-0-0--5-7l-lt1-v8-gen-ii",
+          "issueId": "buick-roadmaster-fuel-pump-tank-check-valve-failure-causing-hard-starting-low",
+          "component": "in-tank fuel pump/sending-unit module",
+          "declaredEngine": "5.7L LT1 V8 (Gen II)",
+          "queueEntrySha256": "dfc34886613eb75af9ed95cef488c9e313f6c3702e5e25edfa25df826f4e0e07",
+          "sourceRecordSha256": "86125bab52ff5b42f77b2597a0c1f0705029ee49d7f7ddf1fd854dde7a0b6111",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "780ea571fc644c30e24146398fbe604a6c248b38522404fb051ed40b5e03b7cc",
+      "url": "https://www.napaonline.com/en/p/AISWPGM611V",
+      "host": "www.napaonline.com",
+      "vendorKey": "napaonline.com",
+      "discoveryTitle": "AISIN WPGM-611V Engine Water Pump",
+      "directPdpUrlShape": true,
+      "verdict": "BLOCK",
+      "reasonCode": "HTTP_403_UNREVIEWABLE",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:16.486Z",
+        "curlExitCode": 0,
+        "httpStatus": 403,
+        "effectiveUrl": "https://www.napaonline.com/en/p/AISWPGM611V",
+        "contentType": "text/html; charset=UTF-8",
+        "responseByteLength": 5670,
+        "responseBodySha256": "f3c8383c35350f64ee836a1f8e87edcb1aeb60b499e6799f2dc346e334b5a754",
+        "responseHeadersSha256": "d295c6d9fac823895ef0ff3769eb890e0a8fe62fc905e462d5c384f1bb56d03e"
+      },
+      "observedIdentity": {
+        "pageTitle": "Just a moment...",
+        "h1": null,
+        "product": null,
+        "evidenceSha256": "2d4b7aff8ef6f6fa6c1995abdc6b710e5fc5b33080df1ded96aaff826f4401fe"
+      },
+      "placements": [
+        {
+          "bindingSha256": "2c438d1b3255d1021fea3e59e6302702ab0dc6331ebb10a045451f2a07c6e524",
+          "ordinal": 3,
+          "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--existing-fix-part-0-0--all-engines",
+          "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+          "component": "Engine Water Pump",
+          "declaredEngine": null,
+          "queueEntrySha256": "dc776d068e511a17ce06cf8efe0bf5b2c529bfa013e650c0042929650685fcaa",
+          "sourceRecordSha256": "903fc4165a8385e1e7b39cf3e5bc5490822b67723482d63f641734b44f04f060",
+          "existingFixPartsSha256": "842918fe0a39fba2855d2600efbc2440afb5b29a110806247a11b47a62500827",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        },
+        {
+          "bindingSha256": "c4b2b7cbf5eba1a2dc1e83b49b74da004fb94643b388fb424059beba84742058",
+          "ordinal": 4,
+          "workItemId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6--prescription-0-0--all-engines",
+          "issueId": "buick-enclave-water-pump-leak-coolant-loss-3-6l-v6",
+          "component": "water pump",
+          "declaredEngine": null,
+          "queueEntrySha256": "cccdbf1dc5e5ebedd378d9e85f7e0c6f4d1ecb8341a6c6d38f8a068be23dbd15",
+          "sourceRecordSha256": "903fc4165a8385e1e7b39cf3e5bc5490822b67723482d63f641734b44f04f060",
+          "existingFixPartsSha256": "842918fe0a39fba2855d2600efbc2440afb5b29a110806247a11b47a62500827",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "8032be0e396a8e04a2807726150b50d9c8a82f8df1dc8c56dcd855028f35b999",
+      "url": "https://www.partsgeek.com/mm91353-buick-lesabre-strut-mount.html",
+      "host": "www.partsgeek.com",
+      "vendorKey": "partsgeek.com",
+      "discoveryTitle": "2000-2005 Buick LeSabre Front Upper Strut Mount - DIY Solutions SHO00713",
+      "directPdpUrlShape": true,
+      "verdict": "BLOCK",
+      "reasonCode": "HTTP_403_UNREVIEWABLE",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.069Z",
+        "curlExitCode": 0,
+        "httpStatus": 403,
+        "effectiveUrl": "https://www.partsgeek.com/mm91353-buick-lesabre-strut-mount.html",
+        "contentType": "text/html; charset=UTF-8",
+        "responseByteLength": 5777,
+        "responseBodySha256": "c68712817227a8681cf2452d2e99850f774affd318f84fad2901f2456472d545",
+        "responseHeadersSha256": "dc9b2d919eec23fc0381652aee4db0873ae3e12abb54d35b37b3c9fa4b5cc558"
+      },
+      "observedIdentity": {
+        "pageTitle": "Just a moment...",
+        "h1": null,
+        "product": null,
+        "evidenceSha256": "2d4b7aff8ef6f6fa6c1995abdc6b710e5fc5b33080df1ded96aaff826f4401fe"
+      },
+      "placements": [
+        {
+          "bindingSha256": "17a714b1a51d1456e02bd1d6d1bfd67005ad3496a85a4c9011abe0e1686f6803",
+          "ordinal": 13,
+          "workItemId": "buick-lesabre-front-strut-mount-bearing-wear-clunking-popping-over-bumps-t--prescription-0-0--all-engines",
+          "issueId": "buick-lesabre-front-strut-mount-bearing-wear-clunking-popping-over-bumps-t",
+          "component": "front strut mounts",
+          "declaredEngine": null,
+          "queueEntrySha256": "da93ed930d6a7a8068ba2befda049912af61d9d40c22010f6afc2fafeb85367e",
+          "sourceRecordSha256": "d71c23f91c6b142fa011c1ff73b2111ccc8284f42a2dd4b867dae05c67c8d47d",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "9e83a09105d690e15dfc786e099d443e067c5ed5433eb94665d27f16241c0cd7",
+      "url": "https://www.partsgeek.com/r7w1s23-buick-encore-valve-cover.html",
+      "host": "www.partsgeek.com",
+      "vendorKey": "partsgeek.com",
+      "discoveryTitle": "2013-2021 Buick Encore Valve Cover - Replacement AP",
+      "directPdpUrlShape": true,
+      "verdict": "BLOCK",
+      "reasonCode": "HTTP_403_UNREVIEWABLE",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.237Z",
+        "curlExitCode": 0,
+        "httpStatus": 403,
+        "effectiveUrl": "https://www.partsgeek.com/r7w1s23-buick-encore-valve-cover.html",
+        "contentType": "text/html; charset=UTF-8",
+        "responseByteLength": 5774,
+        "responseBodySha256": "f1c331be773d75cee134388a2e46afeb49eba870ecc7b42f3e8707fad5768d46",
+        "responseHeadersSha256": "eb93d7d956cd9b6ae1334168c9a72b151061434ef0567f150f516c43a1136db0"
+      },
+      "observedIdentity": {
+        "pageTitle": "Just a moment...",
+        "h1": null,
+        "product": null,
+        "evidenceSha256": "2d4b7aff8ef6f6fa6c1995abdc6b710e5fc5b33080df1ded96aaff826f4401fe"
+      },
+      "placements": [
+        {
+          "bindingSha256": "fad8e86458562848cc94d16b9e4755b918d6368e6ea9f2478d53cc03c8557bd3",
+          "ordinal": 6,
+          "workItemId": "buick-encore-excessive-oil-consumption--prescription-0-0--all-engines",
+          "issueId": "buick-encore-excessive-oil-consumption",
+          "component": "valve cover",
+          "declaredEngine": null,
+          "queueEntrySha256": "2b30c7e8fa114d716a44d45b2c090b4dabf86e63db9ec3e81ceb16eb995acc1b",
+          "sourceRecordSha256": "76477d5b5c23feb6a348c8be4d16c79074897e4e1e4ea8705945df2f8c528b3f",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        },
+        {
+          "bindingSha256": "62f4259ecb26bc05efdad62408823015ff77b77620fa33f6196d0ce9a9d33c8b",
+          "ordinal": 7,
+          "workItemId": "buick-encore-pcv-camshaft-cover-diaphragm-failure-tea-kettle-whistle--prescription-0-0--all-engines",
+          "issueId": "buick-encore-pcv-camshaft-cover-diaphragm-failure-tea-kettle-whistle",
+          "component": "camshaft cover",
+          "declaredEngine": null,
+          "queueEntrySha256": "5f0c9df7626ceebf285e7688f651e50f5f0076cb031c9dacebfa7f02ac20f6f5",
+          "sourceRecordSha256": "4418bee78da11424beb177f401e06134433242af4fa62d2d255dc14165ad8884",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        },
+        {
+          "bindingSha256": "2324e18526a884df486095fbb19989031f34e1b2b4e6f751ee58fa983b5a87ae",
+          "ordinal": 8,
+          "workItemId": "buick-encore-pcv-camshaft-cover-diaphragm-failure-tea-kettle-whistle--prescription-1-0--all-engines",
+          "issueId": "buick-encore-pcv-camshaft-cover-diaphragm-failure-tea-kettle-whistle",
+          "component": "cover",
+          "declaredEngine": null,
+          "queueEntrySha256": "bb482bc08f78d8c7e076fbe5dac6fc673bcaadb6155d40d51b3531bdf6463d36",
+          "sourceRecordSha256": "4418bee78da11424beb177f401e06134433242af4fa62d2d255dc14165ad8884",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "11ce4e8fec74e3785e44c161a42f69d943cdf37f216dbba0580c12417be0b8e1",
+      "url": "https://www.partsgeek.com/w38gf7h-buick-lacrosse-timing-chain-kit.html",
+      "host": "www.partsgeek.com",
+      "vendorKey": "partsgeek.com",
+      "discoveryTitle": "2010-2012 Buick LaCrosse Timing Chain Kit - ACDelco 12700436",
+      "directPdpUrlShape": true,
+      "verdict": "BLOCK",
+      "reasonCode": "HTTP_403_UNREVIEWABLE",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.238Z",
+        "curlExitCode": 0,
+        "httpStatus": 403,
+        "effectiveUrl": "https://www.partsgeek.com/w38gf7h-buick-lacrosse-timing-chain-kit.html",
+        "contentType": "text/html; charset=UTF-8",
+        "responseByteLength": 5795,
+        "responseBodySha256": "918742b619e661f7d62396abc4d020e9ff1adfaab02bb21138f93d77877e3529",
+        "responseHeadersSha256": "0c488664d8082bb338d40946d7b8c1c6b2ca9daf42071506900eea4b11b3d9c7"
+      },
+      "observedIdentity": {
+        "pageTitle": "Just a moment...",
+        "h1": null,
+        "product": null,
+        "evidenceSha256": "2d4b7aff8ef6f6fa6c1995abdc6b710e5fc5b33080df1ded96aaff826f4401fe"
+      },
+      "placements": [
+        {
+          "bindingSha256": "081eb7bef1c5459215098f6f1f34bd2bb80369161703174440b7908184de7733",
+          "ordinal": 10,
+          "workItemId": "buick-lacrosse-3-6l-v6-timing-chain-stretch-wear--prescription-0-0--all-engines",
+          "issueId": "buick-lacrosse-3-6l-v6-timing-chain-stretch-wear",
+          "component": "timing chains",
+          "declaredEngine": null,
+          "queueEntrySha256": "f8c63f76b6ec1ed26aa0bb3e4618af92199de9cee2e66ec16836e27a301e7be5",
+          "sourceRecordSha256": "055cddb19c0eb62bb4bb0e6fd45c115ede0f77f41deaa44e0e239ead14ec9825",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        },
+        {
+          "bindingSha256": "f5e8a24e09a8ea82c3fdca32986df6ce1cfeede584cc2675f4c3758fd78e94a0",
+          "ordinal": 11,
+          "workItemId": "buick-lacrosse-3-6l-v6-timing-chain-stretch-wear--prescription-1-0--all-engines",
+          "issueId": "buick-lacrosse-3-6l-v6-timing-chain-stretch-wear",
+          "component": "guides",
+          "declaredEngine": null,
+          "queueEntrySha256": "81113de3adcd806d034c08457f896420f2de4934e250dd5e797679bbe894e8b2",
+          "sourceRecordSha256": "055cddb19c0eb62bb4bb0e6fd45c115ede0f77f41deaa44e0e239ead14ec9825",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        },
+        {
+          "bindingSha256": "d935487348496a561c2b17047eac23d9e2667467582fe1e26730cf9724b71693",
+          "ordinal": 12,
+          "workItemId": "buick-lacrosse-3-6l-v6-timing-chain-stretch-wear--prescription-2-0--all-engines",
+          "issueId": "buick-lacrosse-3-6l-v6-timing-chain-stretch-wear",
+          "component": "tensioners",
+          "declaredEngine": null,
+          "queueEntrySha256": "5e196643093ea876eebe3483eed397229fb1bfff6b4db941c288e7e7c6a61a47",
+          "sourceRecordSha256": "055cddb19c0eb62bb4bb0e6fd45c115ede0f77f41deaa44e0e239ead14ec9825",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "095270bf8d181d8892e90743a99682986be7a72cf69da924e0b80cb3f9c5730e",
+      "url": "https://www.strutmasters.com/products/1991-1996-buick-roadmaster-wagon-rear-air-shock-conversion-kit-cadr3",
+      "host": "www.strutmasters.com",
+      "vendorKey": "strutmasters.com",
+      "discoveryTitle": "1991-1996 Buick Roadmaster Wagon Rear Air Shock Conversion Kit CADR3",
+      "directPdpUrlShape": true,
+      "verdict": "HOLD",
+      "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.721Z",
+        "curlExitCode": 0,
+        "httpStatus": 200,
+        "effectiveUrl": "https://www.strutmasters.com/products/1991-1996-buick-roadmaster-wagon-rear-air-shock-conversion-kit-cadr3",
+        "contentType": "text/html; charset=utf-8",
+        "responseByteLength": 420981,
+        "responseBodySha256": "62db421dc13b773982db20fe2a882cd22ef966fee0c5bf906bb451ea2ed5b437",
+        "responseHeadersSha256": "79fad3d7d9d9ea81b39f0c511ec984942edecdbbd7e010dbdb1d4fd9e569ac7a"
+      },
+      "observedIdentity": {
+        "pageTitle": "1991-1996 Buick Roadmaster Wagon Rear Air Shock Conversion Kit (CADR3) – 1991 Buick Roadmaster – Strutmasters",
+        "h1": "1991-1996 Buick Roadmaster Wagon Rear Air Shock Conversion Kit (CADR3)",
+        "product": {
+          "name": "1991-1996 Buick Roadmaster Wagon Rear Air Shock Conversion Kit (CADR3)",
+          "sku": "CADR3.1",
+          "mpn": null,
+          "availability": "http://schema.org/InStock"
+        },
+        "evidenceSha256": "1babd34ae7b775b0e7d2de50b0b42a961b538fa196729cb9c8f47a5ce3e72330"
+      },
+      "placements": [
+        {
+          "bindingSha256": "3b36c7d946e39afff47d86c746086697dbe9ef3a855eb3a57a48ae0a94547899",
+          "ordinal": 18,
+          "workItemId": "buick-roadmaster-estate-wagon-rear-self-leveling-air-shock-compressor-failure--prescription-0-0--all-engines",
+          "issueId": "buick-roadmaster-estate-wagon-rear-self-leveling-air-shock-compressor-failure",
+          "component": "passive gas shocks",
+          "declaredEngine": null,
+          "queueEntrySha256": "789a2427c69b0ce232d2d539f34c69e562f213ff98fd571066e37f2290d75f0a",
+          "sourceRecordSha256": "38b1f447b3a47d19e7b5ebfd695513132501319aa2e7b9b6dde982b7bb60eb31",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        },
+        {
+          "bindingSha256": "aa499d8e427a5cd0c58aa007c4df1ca7df0fdf8a60886b48f3532577c6680326",
+          "ordinal": 19,
+          "workItemId": "buick-roadmaster-estate-wagon-rear-self-leveling-air-shock-compressor-failure--prescription-1-0--all-engines",
+          "issueId": "buick-roadmaster-estate-wagon-rear-self-leveling-air-shock-compressor-failure",
+          "component": "conversion kit",
+          "declaredEngine": null,
+          "queueEntrySha256": "1140879507c918415c7e95fb8cb743dbe33b079358e2aa5cee998cbc632d7f4f",
+          "sourceRecordSha256": "38b1f447b3a47d19e7b5ebfd695513132501319aa2e7b9b6dde982b7bb60eb31",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        },
+        {
+          "bindingSha256": "5f1501f00ca2d78675839ceee99e34646ef5e009b6a6a0a15c59bca431de701d",
+          "ordinal": 20,
+          "workItemId": "buick-roadmaster-estate-wagon-rear-self-leveling-air-shock-compressor-failure--prescription-5-0--all-engines",
+          "issueId": "buick-roadmaster-estate-wagon-rear-self-leveling-air-shock-compressor-failure",
+          "component": "conventional shocks",
+          "declaredEngine": null,
+          "queueEntrySha256": "e658452d0e8f8da2aac81bd7380aac2ae71d1de6495c61f93ee4dbb38ed93f42",
+          "sourceRecordSha256": "38b1f447b3a47d19e7b5ebfd695513132501319aa2e7b9b6dde982b7bb60eb31",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "f18952733f2b9a91bafe0479c899b56caba1a1d51717a9dcb8a2bf188e12edee",
+      "url": "https://www.strutmasters.com/products/2006-2011-buick-lucerne-4-wheel-air-suspension-conversion-kit-cl14f",
+      "host": "www.strutmasters.com",
+      "vendorKey": "strutmasters.com",
+      "discoveryTitle": "2006-2011 Buick Lucerne Strutmasters Air Suspension Conversion Kit CL14F",
+      "directPdpUrlShape": true,
+      "verdict": "HOLD",
+      "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.741Z",
+        "curlExitCode": 0,
+        "httpStatus": 200,
+        "effectiveUrl": "https://www.strutmasters.com/products/2006-2011-buick-lucerne-4-wheel-air-suspension-conversion-kit-cl14f",
+        "contentType": "text/html; charset=utf-8",
+        "responseByteLength": 466740,
+        "responseBodySha256": "460c033417675f38f858e6c9543e00993bc7c4f18f38a6075e1737739082c0ac",
+        "responseHeadersSha256": "5b421c050b7f40a5e269483d3093c014bff46f050073ac04bcccc05e710d26c8"
+      },
+      "observedIdentity": {
+        "pageTitle": "2006-2011 Buick Lucerne 4 Wheel Air Suspension Conversion Kit (CL14F) – 2006 Buick Lucerne – Strutmasters",
+        "h1": "2006-2011 Buick Lucerne 4 Wheel Air Suspension Conversion Kit (CL14F)",
+        "product": {
+          "name": "2006-2011 Buick Lucerne 4 Wheel Air Suspension Conversion Kit (CL14F)",
+          "sku": "CL14F",
+          "mpn": null,
+          "availability": "http://schema.org/InStock"
+        },
+        "evidenceSha256": "97be12afe455c1af31ef9a7517d789bd45b7fa399eda0d7670a942b8fc7a3a02"
+      },
+      "placements": [
+        {
+          "bindingSha256": "f7bd2d9e3e49ecd828667da1b0799964c6e146d1af1d0315ed9e0285514f2d6f",
+          "ordinal": 17,
+          "workItemId": "buick-lucerne-rear-air-self-leveling-suspension-failure--prescription-4-0--all-engines",
+          "issueId": "buick-lucerne-rear-air-self-leveling-suspension-failure",
+          "component": "conventional non-air shocks/coils",
+          "declaredEngine": null,
+          "queueEntrySha256": "537a63076acf63763707b92c5d21e3a7f8072df010c8ef4e3cabfee93a96e37e",
+          "sourceRecordSha256": "78f9659ed3c187c99602766548c9e43e0bdbd7c2340040bbd98dba14fa270447",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "HOLD",
+          "reasonCode": "EXACT_YMMT_ENGINE_SCOPE_NOT_PROVEN"
+        }
+      ]
+    },
+    {
+      "urlReviewId": "346a3386d4660fa5ec0b26c19b846fd661ae7397800ea1aed87b1260ac88d9d4",
+      "url": "https://www.traction.com/en/p/turbo-oil-feed-return-line-gattl105k",
+      "host": "www.traction.com",
+      "vendorKey": "traction.com",
+      "discoveryTitle": "Gates TL105K Turbo Oil Feed/Return Line",
+      "directPdpUrlShape": true,
+      "verdict": "BLOCK",
+      "reasonCode": "HTTP_403_UNREVIEWABLE",
+      "retrieval": {
+        "retrievedAt": "2026-08-17T19:31:18.069Z",
+        "curlExitCode": 0,
+        "httpStatus": 403,
+        "effectiveUrl": "https://www.traction.com/en/p/turbo-oil-feed-return-line-gattl105k",
+        "contentType": "text/html; charset=UTF-8",
+        "responseByteLength": 5764,
+        "responseBodySha256": "3e0e87f97500e3044ea2c224868d703cf48607deb72120b3c9f81b2f6a1b793c",
+        "responseHeadersSha256": "56f4da29f237165a3759a26b8b66d4ca164a9ae6bd95d555b2cf0dff94f2d4fe"
+      },
+      "observedIdentity": {
+        "pageTitle": "Just a moment...",
+        "h1": null,
+        "product": null,
+        "evidenceSha256": "2d4b7aff8ef6f6fa6c1995abdc6b710e5fc5b33080df1ded96aaff826f4401fe"
+      },
+      "placements": [
+        {
+          "bindingSha256": "ce792a08af27cf7641c700c77dda69b47ee321cec016c0b9a1e71d01b762bfbc",
+          "ordinal": 9,
+          "workItemId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow--prescription-0-0--all-engines",
+          "issueId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow",
+          "component": "turbo oil feed pipe seals",
+          "declaredEngine": null,
+          "queueEntrySha256": "6d72426e8536a86b2547c6dc46d1cccc5a7c812943ff12d19cbc43adfe45062c",
+          "sourceRecordSha256": "3289671bc4ab9b5900d85602315b53477c48b164b3c339e696085fd57af6b47e",
+          "existingFixPartsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "verdict": "BLOCK",
+          "reasonCode": "HTTP_403_UNREVIEWABLE"
+        }
+      ]
+    }
+  ]
+}

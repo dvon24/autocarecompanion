@@ -69,6 +69,32 @@ test('browser exposes only the audited scanner and suppresses unknown manufactur
   );
 });
 
+test('browser never exposes a generic OBD-II reader for pre-1996 or mixed-era Acura context', () => {
+  assert.deepEqual(
+    diagnosticToolsForIssue('Pull DTCs before replacement.', ['P0300'], { make: 'Acura', years: [1994] }).tools,
+    [],
+  );
+  assert.deepEqual(
+    diagnosticToolsForIssue('Pull DTCs before replacement.', ['P0300'], {
+      make: 'Acura',
+      years: [1994, 1995, 1996, 1997, 1998, 1999],
+    }).tools,
+    [],
+  );
+  assert.deepEqual(
+    diagnosticToolsForIssue('Pull DTCs before replacement.', ['P0300'], { make: 'Acura', years: [1996] }).tools.map((tool) => tool.id),
+    ['ancel-ad310'],
+  );
+});
+
+test('the Integra distributor scanner stays suppressed in every diagnostic era', () => {
+  const solution = 'Pull DTCs first — codes P1381 and Code 22 commonly originate inside the distributor.';
+  const dtcCodes = ['P1361', 'P1362', 'P1381', 'P1382'];
+  for (const years of [[1994], [1995], [1996], [1999], [1994, 1995, 1996, 1997, 1998, 1999]]) {
+    assert.deepEqual(diagnosticToolsForIssue(solution, dtcCodes, { make: 'Acura', years }).tools, [], years.join(','));
+  }
+});
+
 test('browser suppresses generic scanners for manufacturer-specific and hybrid/EV powertrain codes', () => {
   assert.deepEqual(
     diagnosticToolsForIssue('', ['P17D0']).tools,
@@ -78,9 +104,31 @@ test('browser suppresses generic scanners for manufacturer-specific and hybrid/E
     diagnosticToolsForIssue('', ['P0A0F'], { engines: ['1.3L Turbo PHEV'] }).tools,
     [],
   );
+  assert.deepEqual(
+    diagnosticToolsForIssue('', ['P17D0'], { make: 'Audi', years: [2022], engines: ['2.0L PHEV'] }).tools,
+    [],
+  );
 });
 
 test('Audi manufacturer and module codes select the exact reviewed VCDS interface only in supported context', () => {
+  assert.deepEqual(
+    diagnosticToolsForIssue('Scan with VCDS before repair.', [], {
+      make: 'Audi', years: [2016], engines: ['2.0T'],
+    }).tools.map((tool) => tool.id),
+    ['ross-tech-vcds-hex-v2'],
+  );
+  assert.deepEqual(
+    diagnosticToolsForIssue('Scan with VCDS before repair.', ['P0300'], {
+      make: 'Audi', years: [2016], engines: ['2.0T'],
+    }).tools.map((tool) => tool.id),
+    ['ross-tech-vcds-hex-v2'],
+  );
+  assert.deepEqual(
+    diagnosticToolsForIssue('Scan with VCDS before repair.', ['P0A0F'], {
+      make: 'Audi', years: [2022], engines: [],
+    }).tools,
+    [],
+  );
   assert.deepEqual(
     diagnosticToolsForIssue('Scan with VCDS before repair.', ['P17D0'], { make: 'Audi', years: [2016], engines: ['2.0T'] }).tools.map((tool) => tool.id),
     ['ross-tech-vcds-hex-v2'],
@@ -91,6 +139,12 @@ test('Audi manufacturer and module codes select the exact reviewed VCDS interfac
   );
   assert.deepEqual(diagnosticToolsForIssue('', ['P17D0'], { make: 'Acura', years: [2016] }).tools, []);
   assert.deepEqual(diagnosticToolsForIssue('Scan with VCDS before repair.', [], { make: 'Acura', years: [2016] }).tools, []);
+  assert.deepEqual(
+    diagnosticToolsForIssue('Scan with VCDS before repair.', [], {
+      make: 'Audi', years: [2022], engines: ['2.0L PHEV'],
+    }).tools,
+    [],
+  );
   assert.deepEqual(diagnosticToolsForIssue('', ['P17D0'], { make: 'Audi', years: [1994] }).tools, []);
   assert.deepEqual(diagnosticToolsForIssue('', ['P0A0F'], { make: 'Audi', years: [2022], engines: ['PHEV'] }).tools, []);
 });

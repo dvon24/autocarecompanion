@@ -36,7 +36,7 @@ export function issueHasDiagnosticToolInput(solution?: string | null, dtcCodes?:
 }
 
 export function IssueDiagnosticTools({ solution, dtcCodes, engines, make, years }: IssueDiagnosticToolsProps) {
-  const { procedures, families, hasUnknownCode, tools } = diagnosticToolsForIssue(
+  const { procedures, codes, families, scannerReasonCode, tools } = diagnosticToolsForIssue(
     solution,
     dtcCodes,
     { engines: engines || [], make: make || undefined, years: years || [] },
@@ -44,7 +44,8 @@ export function IssueDiagnosticTools({ solution, dtcCodes, engines, make, years 
 
   // If the issue names codes, the reader also needs something that can READ
   // them — and for a body or network code that is emphatically not a $20 reader.
-  if (tools.length === 0) return null;
+  const scannerRequested = Boolean(dtcCodes?.length) || procedures.includes('scan-codes');
+  if (tools.length === 0 && !scannerRequested) return null;
   const nonPowertrain = families.filter((f) => f !== 'P');
   // Whether the ARTICLE asked for a test, versus us offering a reader because
   // the page happens to name a code. The two justify different claims.
@@ -59,6 +60,25 @@ export function IssueDiagnosticTools({ solution, dtcCodes, engines, make, years 
     }
   });
   const hasScannerRecommendation = tools.some((tool) => tool.kind === 'scanner');
+  const scannerGuidance = (() => {
+    if (!scannerRequested || hasScannerRecommendation) return null;
+    if (scannerReasonCode === 'pre-obd2-reader-incompatible') {
+      return 'This selection predates universal OBD-II. Use the vehicle-specific OBD1 code-retrieval procedure; an OBD-II reader is not recommended.';
+    }
+    if (scannerReasonCode === 'mixed-obd-era-requires-year') {
+      return 'This issue spans pre-1996 OBD1 and 1996+ OBD-II vehicles. Select the exact year and use that year\'s code-retrieval procedure; no universal scanner recommendation is safe.';
+    }
+    if (scannerReasonCode === 'manufacturer-code-capability-unverified') {
+      return 'At least one named code is manufacturer-specific. No scanner recommendation is shown because family-level coverage cannot prove that a tool can read that exact code.';
+    }
+    if (scannerReasonCode === 'hybrid-ev-scanner-capability-unverified') {
+      return 'No scanner recommendation is shown because hybrid/EV powertrain coverage has not been proven for this exact code and vehicle.';
+    }
+    if (scannerReasonCode === 'non-powertrain-module-capability-unverified') {
+      return 'This issue requires body, chassis, or network-module coverage that has not been proven for a specific scanner.';
+    }
+    return 'The article calls for code retrieval, but no scanner recommendation is shown until the exact code, module, and vehicle coverage are proven.';
+  })();
 
   return (
     <div className="rounded-lg border border-[#D8D1C3] bg-[#EFEDE6] p-3">
@@ -66,7 +86,11 @@ export function IssueDiagnosticTools({ solution, dtcCodes, engines, make, years 
         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
-        {matchedProcedure ? 'What you need to diagnose it' : 'What reads this code'}
+        {matchedProcedure
+          ? 'What you need to diagnose it'
+          : codes.length > 0
+            ? 'What reads this code'
+            : 'How to retrieve the code'}
       </h4>
       <p className="mb-3 text-xs leading-relaxed text-[#475569]">
         {matchedProcedure
@@ -74,48 +98,54 @@ export function IssueDiagnosticTools({ solution, dtcCodes, engines, make, years 
           // actually calls for one. Saying it on a page that already carries a
           // confirmed part would contradict the repair sitting right below it.
           ? 'The fix here starts with a test, not a part — which repair you need depends on what the test finds.'
-          : 'This issue is identified by a stored code. To confirm it is what your car actually has, you need a scanner that can read it.'}
+          : hasScannerRecommendation
+            ? 'This issue is identified by a stored code. To confirm it is what your car actually has, you need a scanner that can read it.'
+            : codes.length > 0
+              ? 'This issue names stored codes, but the correct retrieval method and tool depend on the exact diagnostic era, vehicle, and module.'
+              : 'The article calls for code retrieval, but the correct method and tool depend on the exact diagnostic era, vehicle, and module.'}
         {nonPowertrain.length > 0 && (
           <span className="mt-1 block text-[#64748B]">
             This issue involves {nonPowertrain.join('/')} codes, which a basic engine-code reader
             cannot see.
           </span>
         )}
-        {!hasUnknownCode && hasScannerRecommendation && families.length > 0 && (
+        {hasScannerRecommendation && families.length > 0 && (
           <span className="mt-1 block text-[#64748B]">
             The recommended scanner supports these code families; confirm your exact year, model and module coverage before buying.
           </span>
         )}
-        {hasUnknownCode && (
+        {scannerGuidance && (
           <span className="mt-1 block text-[#64748B]">
-            At least one code uses a manufacturer-specific format. No scanner recommendation is shown because family-level coverage cannot prove it can read that code.
+            {scannerGuidance}
           </span>
         )}
       </p>
 
-      <ul className="space-y-2">
-        {tools.map((tool) => (
-          <li key={tool.id} className="flex items-start justify-between gap-3">
-            <div className="min-w-0">
-              <p className="text-sm font-medium text-[#0B1220]">{tool.name}</p>
-              <p className="text-xs leading-relaxed text-[#475569]">{tool.features[0]}</p>
-            </div>
-            <div className="flex shrink-0 flex-col items-end gap-1">
-              <span className="text-xs font-semibold text-[#0B1220]">{tool.priceRange}</span>
-              {tool.productUrl && (
-                <a
-                  href={tool.productUrl}
-                  target="_blank"
-                  rel="noopener noreferrer sponsored"
-                  className="rounded-md bg-[#0B1220] px-2.5 py-1 text-xs font-medium text-white hover:opacity-90"
-                >
-                  View
-                </a>
-              )}
-            </div>
-          </li>
-        ))}
-      </ul>
+      {tools.length > 0 && (
+        <ul className="space-y-2">
+          {tools.map((tool) => (
+            <li key={tool.id} className="flex items-start justify-between gap-3">
+              <div className="min-w-0">
+                <p className="text-sm font-medium text-[#0B1220]">{tool.name}</p>
+                <p className="text-xs leading-relaxed text-[#475569]">{tool.features[0]}</p>
+              </div>
+              <div className="flex shrink-0 flex-col items-end gap-1">
+                <span className="text-xs font-semibold text-[#0B1220]">{tool.priceRange}</span>
+                {tool.productUrl && (
+                  <a
+                    href={tool.productUrl}
+                    target="_blank"
+                    rel="noopener noreferrer sponsored"
+                    className="rounded-md bg-[#0B1220] px-2.5 py-1 text-xs font-medium text-white hover:opacity-90"
+                  >
+                    View
+                  </a>
+                )}
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {hasAmazonAffiliateLinks && (
         <p className="mt-2 text-[11px] font-medium text-[#64748B]">

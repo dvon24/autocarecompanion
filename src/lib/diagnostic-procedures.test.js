@@ -3,6 +3,7 @@ const assert = require('node:assert/strict');
 const test = require('node:test');
 const {
   diagnosticDispositionsForIssue,
+  diagnosticEraForYears,
   proceduresInSolution,
   scannerToolIdForCodes,
 } = require('./diagnostic-procedures');
@@ -34,6 +35,28 @@ test('DTC family chooses a capable scanner and unknown codes fail closed', () =>
   assert.equal(held.every((item) => item.reasonCode === 'manufacturer-code-capability-unverified'), true);
 });
 
+test('generic OBD-II commerce follows the selected diagnostic era', () => {
+  assert.equal(diagnosticEraForYears([]), 'unknown');
+  assert.equal(diagnosticEraForYears([1994, 1995]), 'obd1');
+  assert.equal(diagnosticEraForYears([1994, 1996]), 'mixed');
+  assert.equal(diagnosticEraForYears([1996, 1999]), 'obd2');
+  assert.deepEqual(scannerToolIdForCodes(['P0300'], { make: 'Acura', years: [1994] }), {
+    toolId: null,
+    families: ['P'],
+    reasonCode: 'pre-obd2-reader-incompatible',
+  });
+  assert.deepEqual(scannerToolIdForCodes(['P0300'], { make: 'Acura', years: [1994, 1995, 1996, 1997, 1998, 1999] }), {
+    toolId: null,
+    families: ['P'],
+    reasonCode: 'mixed-obd-era-requires-year',
+  });
+  assert.equal(
+    scannerToolIdForCodes([], { make: 'Acura', years: [1994] }).reasonCode,
+    'pre-obd2-reader-incompatible',
+  );
+  assert.equal(scannerToolIdForCodes(['P0300'], { make: 'Acura', years: [1996] }).toolId, 'ancel-ad310');
+});
+
 test('generic scanner recommendations fail closed for manufacturer and hybrid/EV powertrain codes', () => {
   assert.deepEqual(scannerToolIdForCodes(['P17D0']), {
     toolId: null,
@@ -41,6 +64,15 @@ test('generic scanner recommendations fail closed for manufacturer and hybrid/EV
     reasonCode: 'manufacturer-code-capability-unverified',
   });
   assert.deepEqual(scannerToolIdForCodes(['P0A0F'], { engines: ['1.3L Turbo PHEV'] }), {
+    toolId: null,
+    families: ['P'],
+    reasonCode: 'hybrid-ev-scanner-capability-unverified',
+  });
+  assert.deepEqual(scannerToolIdForCodes(['P17D0'], {
+    make: 'Audi',
+    years: [2022],
+    engines: ['2.0L PHEV'],
+  }), {
     toolId: null,
     families: ['P'],
     reasonCode: 'hybrid-ev-scanner-capability-unverified',
@@ -55,6 +87,13 @@ test('reviewed Audi context selects VCDS for manufacturer and control-module cod
   assert.equal(scannerToolIdForCodes(['C1132'], { make: 'Audi', years: [2014] }).toolId, 'ross-tech-vcds-hex-v2');
   assert.equal(scannerToolIdForCodes(['P17D0'], { make: 'Acura', years: [2016] }).toolId, null);
   assert.equal(scannerToolIdForCodes(['P17D0'], { make: 'Audi', years: [1994] }).toolId, null);
+  const hybridRows = diagnosticDispositionsForIssue(
+    'Scan with VCDS before repair.',
+    ['P0A0F'],
+    { make: 'Audi', years: [2022] },
+  );
+  assert.equal(hybridRows.every((row) => row.status === 'unresolved-tool-hold'), true);
+  assert.equal(hybridRows.every((row) => row.reasonCode === 'hybrid-ev-scanner-capability-unverified'), true);
   assert.deepEqual(proceduresInSolution('Scan with VCDS before repair.'), ['vag-scan-codes']);
   assert.deepEqual(proceduresInSolution('Use a VAG-capable scan tool to identify address 03.'), ['vag-scan-codes']);
   assert.deepEqual(proceduresInSolution('Scan the TCM and retain the printout.'), ['vag-scan-codes']);

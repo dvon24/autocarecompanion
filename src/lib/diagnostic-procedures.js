@@ -154,6 +154,15 @@ function codeFamilyOf(code) {
   return /^[PBCU][0-3][0-9A-F]{3}$/.test(normalized) ? normalized[0] : null;
 }
 
+function diagnosticEraForYears(years) {
+  const selected = (Array.isArray(years) ? years : []).filter(Number.isInteger);
+  if (selected.length === 0) return 'unknown';
+  const hasObd1 = selected.some((year) => year < 1996);
+  const hasObd2 = selected.some((year) => year >= 1996);
+  if (hasObd1 && hasObd2) return 'mixed';
+  return hasObd1 ? 'obd1' : 'obd2';
+}
+
 function supportedVagContext(context = {}) {
   const make = String(context.make || '').trim().toLowerCase();
   const years = (context.years || []).filter(Number.isInteger);
@@ -162,28 +171,49 @@ function supportedVagContext(context = {}) {
     && years.every((year) => year >= 1995);
 }
 
+function hybridOrElectricContext(context = {}) {
+  return (context.engines || [])
+    .map((engine) => String(engine).toLowerCase())
+    .some((engine) => /\b(?:hybrid|phev|electric|bev|ev|fuel cell)\b/.test(engine));
+}
+
 function scannerToolIdForCodes(codes, context = {}) {
   const normalized = [...new Set((Array.isArray(codes) ? codes : []).map((code) => String(code).trim()).filter(Boolean))];
-  if (normalized.length === 0) return { toolId: null, families: [], reasonCode: 'scanner-capability-needs-code-or-module' };
+  const diagnosticEra = diagnosticEraForYears(context.years);
+  if (normalized.length === 0) {
+    if (diagnosticEra === 'obd1') return { toolId: null, families: [], reasonCode: 'pre-obd2-reader-incompatible' };
+    if (diagnosticEra === 'mixed') return { toolId: null, families: [], reasonCode: 'mixed-obd-era-requires-year' };
+    return { toolId: null, families: [], reasonCode: 'scanner-capability-needs-code-or-module' };
+  }
   const families = normalized.map(codeFamilyOf);
+  const canonicalCodes = normalized.map((code) => code.toUpperCase());
+  const reviewedVagContext = supportedVagContext(context);
+  const hybridOrElectricApplication = hybridOrElectricContext(context);
+  const hybridOrElectricCode = canonicalCodes.some((code) => /^P0[A-F]/.test(code));
+  const requiresVagCapability = reviewedVagContext && (
+    families.some((family) => family === null || family !== 'P')
+    || canonicalCodes.some((code) => code[0] === 'P' && /[13]/.test(code[1]))
+  );
+  if (!requiresVagCapability && diagnosticEra === 'obd1') {
+    return { toolId: null, families: families.filter(Boolean), reasonCode: 'pre-obd2-reader-incompatible' };
+  }
+  if (!requiresVagCapability && diagnosticEra === 'mixed') {
+    return { toolId: null, families: families.filter(Boolean), reasonCode: 'mixed-obd-era-requires-year' };
+  }
+  if (hybridOrElectricApplication || hybridOrElectricCode) {
+    return { toolId: null, families: [...new Set(families)], reasonCode: 'hybrid-ev-scanner-capability-unverified' };
+  }
   if (families.some((family) => family === null)) {
-    if (supportedVagContext(context)) {
+    if (reviewedVagContext) {
       return { toolId: 'ross-tech-vcds-hex-v2', families: families.filter(Boolean), reasonCode: 'vag-manufacturer-code-capability-matched' };
     }
     return { toolId: null, families: families.filter(Boolean), reasonCode: 'manufacturer-code-capability-unverified' };
   }
-  const canonicalCodes = normalized.map((code) => code.toUpperCase());
   if (canonicalCodes.some((code) => code[0] === 'P' && /[13]/.test(code[1]))) {
-    if (supportedVagContext(context)) {
+    if (reviewedVagContext) {
       return { toolId: 'ross-tech-vcds-hex-v2', families: [...new Set(families)], reasonCode: 'vag-manufacturer-code-capability-matched' };
     }
     return { toolId: null, families: [...new Set(families)], reasonCode: 'manufacturer-code-capability-unverified' };
-  }
-  const engines = (context.engines || []).map((engine) => String(engine).toLowerCase());
-  const hybridOrElectricApplication = engines.some((engine) => /\b(?:hybrid|phev|electric|bev|ev|fuel cell)\b/.test(engine));
-  const hybridOrElectricCode = canonicalCodes.some((code) => /^P0[A-F]/.test(code));
-  if (hybridOrElectricApplication || hybridOrElectricCode) {
-    return { toolId: null, families: [...new Set(families)], reasonCode: 'hybrid-ev-scanner-capability-unverified' };
   }
   const unique = [...new Set(families)];
   if (unique.some((family) => family !== 'P')) {
@@ -203,9 +233,11 @@ function toolIdForProcedure(procedure, context = {}) {
   const toolId = PROCEDURE_TOOL_IDS[procedure] || null;
   if (!toolId) return { toolId: null, reasonCode: 'procedure-tool-unresolved' };
   if (toolId === 'ross-tech-vcds-hex-v2') {
-    return supportedVagContext(context)
+    return supportedVagContext(context) && !hybridOrElectricContext(context)
       ? { toolId, reasonCode: 'explicit-vag-procedure-tool-matched' }
-      : { toolId: null, reasonCode: 'vag-vehicle-context-unproven' };
+      : { toolId: null, reasonCode: hybridOrElectricContext(context)
+        ? 'hybrid-ev-scanner-capability-unverified'
+        : 'vag-vehicle-context-unproven' };
   }
   const engines = (context.engines || []).map((engine) => String(engine).toLowerCase());
   if (toolId === 'otc-5606-compression') {
@@ -280,7 +312,12 @@ function diagnosticDispositionsForIssue(solution, dtcCodes, context = {}) {
             excerpt: clause,
           });
         } else {
-          const selected = toolIdForProcedure(procedure, context);
+          const codeSelection = procedure === 'vag-scan-codes' && scannerCodes.length > 0
+            ? scannerToolIdForCodes(scannerCodes, context)
+            : null;
+          const selected = codeSelection && !codeSelection.toolId
+            ? codeSelection
+            : toolIdForProcedure(procedure, context);
           dispositions.push({
             source: 'solution',
             status: selected.toolId ? 'tool-linked' : 'unresolved-tool-hold',
@@ -340,6 +377,7 @@ module.exports = {
   TOOL_PRODUCT_URLS,
   TOOL_REVIEW_EVIDENCE,
   codeFamilyOf,
+  diagnosticEraForYears,
   diagnosticDispositionsForIssue,
   diagnosticProcedureIsNegated,
   inlineManufacturerCodes,

@@ -419,6 +419,7 @@ export interface DiagnosticToolSelection {
   codes: string[];
   families: CodeFamily[];
   hasUnknownCode: boolean;
+  scannerReasonCode: string;
   tools: DiagnosticTool[];
 }
 
@@ -428,9 +429,12 @@ function toolMatchesVehicleContext(tool: DiagnosticTool, context: DiagnosticVehi
   if (tool.id === 'ross-tech-vcds-hex-v2') {
     const make = String(context.make || '').trim().toLowerCase();
     const years = (context.years || []).filter(Number.isInteger);
+    const hybridOrElectricApplication = engines.some((engine) =>
+      /\b(?:hybrid|phev|electric|bev|ev|fuel cell)\b/.test(engine));
     return /^(?:audi|volkswagen|vw)$/.test(make)
       && years.length > 0
-      && years.every((year) => year >= 1995);
+      && years.every((year) => year >= 1995)
+      && !hybridOrElectricApplication;
   }
   if (tool.id === 'otc-5606-compression') {
     return engines.length > 0
@@ -455,6 +459,7 @@ export function toolsForProcedures(
     .filter((t) => {
       if (!t.procedures.some((p) => wanted.has(p))) return false;
       if (t.kind !== 'scanner') return true;
+      if (t.id === 'ross-tech-vcds-hex-v2' && wanted.has('vag-scan-codes')) return true;
       return families.length > 0 && families.every((family) => t.codeFamilies.includes(family));
     })
     .filter((tool) => toolMatchesVehicleContext(tool, context))
@@ -474,6 +479,7 @@ export function diagnosticToolsForIssue(
   const shared = require('../lib/diagnostic-procedures') as {
     scannerToolIdForCodes(value: string[], vehicle: DiagnosticVehicleContext): {
       toolId: string | null;
+      reasonCode: string;
     };
   };
   const procedures = proceduresInSolution(solution);
@@ -485,14 +491,25 @@ export function diagnosticToolsForIssue(
   const families = [...new Set(
     parsedFamilies.filter((family): family is CodeFamily => family !== null),
   )];
-  const tools = toolsForProcedures(
+  let tools = toolsForProcedures(
     procedures.filter((procedure) => procedure !== 'scan-codes'),
     hasUnknownCode ? [] : families,
     context,
   );
+  if (codes.length > 0 && scannerSelection.toolId === null) {
+    tools = tools.filter((tool) => tool.kind !== 'scanner');
+  }
   const scanner = hasUnknownCode
     ? undefined
     : diagnosticTools.find((tool) => tool.id === scannerSelection.toolId);
-  if (scanner && !tools.some((tool) => tool.id === scanner.id)) tools.push(scanner);
-  return { procedures, codes, families, hasUnknownCode, tools };
+  const hasProcedureScanner = tools.some((tool) => tool.kind === 'scanner');
+  if (scanner && !hasProcedureScanner) tools.push(scanner);
+  return {
+    procedures,
+    codes,
+    families,
+    hasUnknownCode,
+    scannerReasonCode: scannerSelection.reasonCode,
+    tools,
+  };
 }
