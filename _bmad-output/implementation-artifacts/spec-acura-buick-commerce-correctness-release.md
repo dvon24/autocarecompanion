@@ -2,7 +2,7 @@
 title: 'Acura and Buick commerce-correctness release'
 type: 'bugfix'
 created: '2026-08-17'
-status: 'in-progress'
+status: 'done'
 baseline_commit: '3a572d8c45021ef797cb8d32818ef4cb887b2cfa'
 review_loop_iteration: 1
 context:
@@ -57,8 +57,8 @@ context:
 - [x] Freeze fresh Acura/Buick production rows and reconcile all 301 held placements into an immutable review ledger.
 - [x] Validate exact product identity, repair role, scope, URL/vendor safety, existing-link preservation, and two-link maximum.
 - [x] Build deterministic guarded manifests/completions from approved rows; keep every hold/reject unapplied. (The fresh pool produced zero approvals, so the deterministic outcome is no new manifest or database write.)
-- [ ] Run focused tests, TypeScript, ESLint, diff checks, dry-run/apply preflight, then apply and deploy only the approved Acura/Buick release.
-- [ ] Verify exact production after-state and public rendering for OBD1, OBD2, mixed-year, primary-link, alternate-link, and hidden-fitment cases.
+- [x] Run focused tests, TypeScript, ESLint, diff checks, and release preflight, then deploy only the approved Acura/Buick release. (The zero-approval review produced no manifest, so the database apply stage was an explicit no-op.)
+- [x] Verify exact production after-state and public rendering for OBD1, OBD2, mixed-year, approved-link, and hidden-fitment cases. (No alternate link was approved by the frozen review pool.)
 
 **Acceptance Criteria:**
 - Given the 1994–99 Integra distributor issue, when no year or a 1994–95 year is selected, then no AD310 purchase link renders.
@@ -72,6 +72,7 @@ context:
 - 2026-08-17: Added an explicit OBD-era boundary to the shared scanner resolver and guidance-only rendering for pre-1996, mixed-era, and unproven manufacturer-code contexts. The selected year continues to flow through both public issue renderers; without a selected year, the article's full year range is evaluated and mixed-era commerce fails closed.
 - 2026-08-17: Closed adversarial review findings by applying hybrid/EV suppression before VAG manufacturer-code selection, restoring supported no-code VCDS instructions, and making scan-procedure-only guidance avoid claiming the article named a code.
 - 2026-08-17: Completed independent review of all 156 distinct raw-discovery URLs and 301 placements. The terminal result is 0 approved, 70 held, and 86 blocked URLs; therefore no new guarded manifest or database write was generated. The three previously approved links remain the exact deployed Acura/Buick release.
+- 2026-08-17: Pushed release commit `6d5f5cfc` to `origin/codex/release-reviewed-makes` and deployed it to Vercel production (`dpl_PDDJFQFkqxRnXDqxeKc13EgcKMZ4`, aliased to `https://au7o.io`). Public and read-only production verification passed.
 
 ## Verification
 
@@ -102,5 +103,14 @@ context:
 
 - `node --test src/lib/diagnostic-procedures.test.js` — 13/13 passed.
 - `..\..\node_modules\.bin\tsx.cmd --test src/data/diagnostic-tools.test.ts src/components/known-issues/IssueDiagnosticTools.test.tsx` — 26/26 passed.
-- Commerce/fitment/finalizer/applicator focused suites — 160/160 passed.
+- Commerce/fitment/finalizer/applicator focused suites — 170/170 passed on the clean release branch.
 - Affected-file ESLint, `tsc --noEmit --incremental false`, and `git diff --check` — clean (line-ending conversion warnings only).
+
+### 2026-08-17 — Production release closure
+
+- Clean release commit `6d5f5cfc` was pushed to `origin/codex/release-reviewed-makes` and Vercel production deployment `dpl_PDDJFQFkqxRnXDqxeKc13EgcKMZ4` completed with `READY`; `https://au7o.io` points to that deployment.
+- The Vercel production build compiled, type-checked, generated all 1,535 static pages, and deployed successfully. The earlier local build reached static generation but could not access the production database from the local environment; the configured Vercel environment completed the same stage.
+- Public Acura Integra verification passed for the mixed-year article, 1994 OBD1 selection, and 1996 manufacturer-code selection: truthful era/capability guidance rendered and no AD310 link appeared on the tested issue card.
+- Public Acura Legend verification preserved the reviewed WPH-008 evidence while correctly hiding its link until the required 2.7L engine context is known.
+- Public Buick Enclave verification rendered exact eBay PDP links for Cardone 20-2403 and Aisin WPGM-611V on their respective 2008 issue cards.
+- Fresh post-deploy read-only snapshots are content-identical to the bound before-state after excluding the generated timestamp/hash envelope. Normalized content hashes remained `15ae5daa4a99bc791d406671ff0af1d3ab3eb73e6eb903060dd376b12d107180` for Acura and `c36ab7ebe23acbad1f6fdc212d8dcab2ee0ffb2c3e4f68b4ff274d99edfa3184` for Buick, proving that no Acura/Buick database row changed during this release.
