@@ -25,6 +25,9 @@ export function vendorMatchesProductUrl(vendor: string, value: string): boolean 
   const normalizedVendor = vendor.trim().toLowerCase();
   if (marketplace === 'amazon') return /^(amazon|amazon\.com)$/i.test(normalizedVendor);
   if (marketplace === 'ebay') return /^(ebay|ebay\.com)$/i.test(normalizedVendor);
+  if (marketplace === 'direct' && /^(rockauto|rockauto\.com)$/i.test(normalizedVendor)) {
+    return new URL(value).hostname.toLowerCase().replace(/^www\./, '') === 'rockauto.com';
+  }
   if (/(amazon|ebay|rockauto)/i.test(normalizedVendor)) return false;
 
   // A verified flag alone must not let an unrelated retailer label point at
@@ -98,15 +101,23 @@ export function isKnownIssueProductUrl(value: string): boolean {
     return /\/itm\/(?:[^/]+\/)?\d{9,15}(?:\/|$)/i.test(path);
   }
 
-  // RockAuto's public partsearch/catalog URLs are search results, not a stable
-  // offer for one exact product. Keep them out of Known Issue repair CTAs.
-  if (host === 'rockauto.com' || host.endsWith('.rockauto.com')) return false;
+  // RockAuto search/catalog URLs are not offers. A moreinfo URL is one exact
+  // catalog product and is accepted only when its product, vehicle and part-
+  // type identifiers are all present.
+  if (host === 'rockauto.com' || host.endsWith('.rockauto.com')) {
+    return path === '/en/moreinfo.php'
+      && /^\d+$/.test(url.searchParams.get('pk') || '')
+      && /^\d+$/.test(url.searchParams.get('cc') || '')
+      && /^\d+$/.test(url.searchParams.get('pt') || '');
+  }
 
   // Do not let lookalike marketplace domains fall through to the generic
   // direct-retailer rule below.
   if (hostLabels.some((label) => ['amazon', 'ebay', 'rockauto'].includes(label))) return false;
 
+  const verifiedHostProduct = matchesVerifiedHostPattern(host, path);
   if (
+    !verifiedHostProduct &&
     /\/(?:search|search-results|partsearch|parts-search|category|categories|catalog|collections?|sch|s)(?:\/|$)/i.test(path)
   ) return false;
 
@@ -134,7 +145,7 @@ export function isKnownIssueProductUrl(value: string): boolean {
     if (/\d{3,}/.test(slug) || (slug.length >= 12 && /[-_.]/.test(slug))) return true;
   }
 
-  return matchesVerifiedHostPattern(host, path);
+  return verifiedHostProduct;
 }
 
 /**
@@ -160,6 +171,17 @@ export function isKnownIssueProductUrl(value: string): boolean {
  * run first.
  */
 const VERIFIED_RETAILER_PATTERNS: Array<[RegExp, RegExp]> = [
+  // Retailer-specific product detail shapes verified during the corrected
+  // Acura review. Every pattern identifies one item; search/category roots on
+  // the same hosts remain blocked by the structural checks above.
+  [/^innovativemounts\.com$/, /^\/collections\/[a-z0-9-]+\/products\/[a-z0-9-]+$/i],
+  [/^sixityauto\.com$/, /^\/[a-z0-9-]*\d[a-z0-9-]*\.html$/i],
+  [/^buyautoparts\.com$/, /^\/buynow\/[a-z0-9_-]*\d[a-z0-9_-]*$/i],
+  [/^acurapartswarehouse\.com$/, /^\/oem\/acura~[a-z0-9~_-]*\d[a-z0-9~_-]*\.html$/i],
+  [/^partsgeek\.com$/, /^\/[a-z0-9]{7}-[a-z0-9-]+\.html$/i],
+  [/^kseriesparts\.com$/, /^\/plm-bolt-lca-eg-dc\.html$/i],
+  [/^walmart\.com$/, /^\/ip\/(?:[a-z0-9-]+\/)?\d{6,}$/i],
+  [/^acuraautomotiveparts\.org$/, /^\/oem-parts\/acura-[a-z0-9-]*\d[a-z0-9-]*$/i],
   // partshawk.com/delphi-ss10867-abs-wheel-speed-sensor.html
   [/^partshawk\.com$/, /^\/[a-z0-9-]*\d[a-z0-9-]*\.html$/i],
   // densoproducts.com/denso-477-0771-ac-condenser — the manufacturer's own page

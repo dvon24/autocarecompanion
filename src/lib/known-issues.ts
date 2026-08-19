@@ -582,11 +582,14 @@ export const getAllKnownIssueSlugs = cache(
 // each called getKnownIssuesForArticle for the same params, doubling DB load on every
 // render/build (2026-06-12 review finding).
 export const getKnownIssuesForArticle = cache(
-  unstable_cache(getKnownIssuesForArticleImpl, ['ki-article'], { revalidate: 3600 }),
+  // Versioned for the 2026-08-19 Acura fitment release. Vercel's Data Cache
+  // persists across deployments, so a new deployment alone does not expose a
+  // verified catalog correction until the previous one-hour entry expires.
+  unstable_cache(getKnownIssuesForArticleImpl, ['ki-article-v3'], { revalidate: 3600 }),
 );
 
 export const getArticleDates = cache(
-  unstable_cache(getArticleDatesImpl, ['ki-article-dates'], { revalidate: 3600 }),
+  unstable_cache(getArticleDatesImpl, ['ki-article-dates-v3'], { revalidate: 3600 }),
 );
 export const getRelatedVehicles = cache(
   unstable_cache(getRelatedVehiclesImpl, ['ki-related-vehicles'], { revalidate: 3600 }),

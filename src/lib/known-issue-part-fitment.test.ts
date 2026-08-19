@@ -21,6 +21,13 @@ test('public commerce hides scoped parts when a required vehicle dimension is un
   assert.equal(partCanBeShownForVehicle(undefined, { year: 2020 }), true);
 });
 
+test('a generic article shows reviewed scoped parts with their visible fitment label', () => {
+  assert.equal(
+    partCanBeShownForVehicle({ years: [1994, 1995], engines: ['1.8L'] }, {}),
+    true,
+  );
+});
+
 test('a declared year scope excludes vehicles outside it', () => {
   const fitment = { years: [2009, 2010, 2011, 2012, 2013] };
   assert.equal(partFitsVehicle(fitment, { year: 2011 }), 'fits');

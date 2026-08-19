@@ -1,0 +1,1885 @@
+{
+  "schemaVersion": 1,
+  "make": "Acura",
+  "reviewedOn": "2026-08-19",
+  "source": {
+    "workbook": "C:\\Users\\devon\\OneDrive\\Acura .xlsx",
+    "correctedReview": "outputs/01a012e3-30b5-7f61-84e7-43b9e1789304/Acura-full-corrected-link-review.xlsx",
+    "method": "$review-part-fitment-links"
+  },
+  "counts": {
+    "suppliedOccurrences": 66,
+    "existingPreservedOccurrences": 3,
+    "reviewedOccurrences": 63,
+    "keptOccurrences": 36,
+    "replacedOccurrences": 25,
+    "approvedReviewedOccurrences": 61,
+    "heldOccurrences": 2,
+    "reviewedIssues": 36,
+    "contentCorrectionIssues": 12
+  },
+  "holds": [
+    {
+      "index": 40,
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "reason": "The destination does not support the issue vehicle. More importantly, the 2010–2013 MDX J37 is not a VCM application, so a VCM-disabler link should not be published here."
+    },
+    {
+      "index": 41,
+      "issueId": "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+      "reason": "Vehicle fitment alone is not enough. How to Fix requires the complete distributor assembly; the supplied link is unrelated to the ignition repair."
+    }
+  ],
+  "contentCorrections": [
+    {
+      "issueId": "acura-integra-dc-rear-lca-bolt-seizure",
+      "notes": [
+        "The generic M10x1.25 wording in How to Fix should be removed; multiple rear-LCA bolt sizes/locations exist. Use the vehicle-specific kit and verify the seized location.",
+        "The generic M10x1.25 wording in How to Fix should be removed; multiple rear-LCA bolt sizes/locations exist."
+      ]
+    },
+    {
+      "issueId": "acura-integra-turbo-heat-soak-2023",
+      "notes": [
+        "Type S began with model year 2024, not 2023. Split 1.5T and Type S fitment and correct the heading."
+      ]
+    },
+    {
+      "issueId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi",
+      "notes": [
+        "The replacement set is a complete 1991–1995 fitment match, but its gasket construction should be verified if the editorial copy continues to require MLS specifically."
+      ]
+    },
+    {
+      "issueId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks",
+      "notes": [
+        "Add a caution to use controlled pressure so the drain tube is not blown off its fitting."
+      ]
+    },
+    {
+      "issueId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick",
+      "notes": [
+        "Split this issue by MDX generation. One hose link cannot cover 2001–2013; 2003–2006 still needs its own verified high-pressure line."
+      ]
+    },
+    {
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "notes": [
+        "If “genuine Honda/Acura only” is intended literally, use dealer-branded components; AISIN is OE-component/OE-equivalent, not Acura-branded."
+      ]
+    },
+    {
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "notes": [
+        "The mount failure/oil-consumption topic can remain, but remove the VCM claim; the 2010–2013 J37 MDX is not a VCM application.",
+        "Rewrite this issue: remove “VCM-related,” remove the tuner recommendation, and treat J37 oil consumption/piston-ring fouling and active motor mounts as separate repair paths."
+      ]
+    },
+    {
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "notes": [
+        "Remove “AISIN TKH-022”; no verified AISIN TKH-022 application was found for the C35A RL. Describe the required components and approved brands without that unsupported part number."
+      ]
+    },
+    {
+      "issueId": "acura-tl-power-steering-hose-leak-2004",
+      "notes": [
+        "Add recall/VIN eligibility before purchase; the campaign did not cover every 2008 configuration."
+      ]
+    },
+    {
+      "issueId": "acura-tlx-9speed-shudder-2015",
+      "notes": [
+        "Correct How to Fix from Honda DW-1 to Acura ATF Type 3.1 for the V6 9-speed. Also scope the issue to 3.5L/9AT; the 2.4L DCT uses different fluid."
+      ]
+    },
+    {
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "notes": [
+        "Scope this Brembo issue to Type S / Type S PMC. A-Spec does not use the Type S Brembo front system.",
+        "Scope this Brembo issue to Type S / Type S PMC.",
+        "Scope this Brembo issue to Type S / Type S PMC rather than A-Spec."
+      ]
+    },
+    {
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "notes": [
+        "The G25A1 uses a belt tensioner/adjuster; remove the unsupported “hydraulic tensioner” wording. No complete AISIN kit for this application was verified.",
+        "Remove the unsupported claim that an AISIN complete kit is available unless a specific current application can be verified.",
+        "No complete AISIN kit was verified; present exact components separately and retain the OEM/AISIN-quality warning for the tensioner."
+      ]
+    }
+  ],
+  "occurrences": [
+    {
+      "index": 1,
+      "originalCell": "N2",
+      "issueId": "acura-cl-3-0cl-1997-1999-transmission-slipping",
+      "ymmt": "1997–1999 Acura CL — 3.0CL",
+      "issueTitle": "3.0CL automatic transmission slips and fails — flush is forbidden, filter is not serviceable",
+      "howToFix": "If symptoms appear, immediately switch to ONLY Acura/Honda ATF (never Dextron substitute) and start a regular drain-and-refill schedule at every engine oil change interval (6 months). Do NOT power-flush — this transmission has effectively no serviceable filter and pressurized flushing forces debris through tight passages. If slipping has already started, a transmission specialist (not a quick-lube) needs to drop the pan to check for clutch material in the fluid. Once debris is visible, only a rebuild fixes it ($2,500-3,500). Replacements/rebuilds may need a fresh torque converter — the original is a known weak point. Add an aftermarket transmission cooler at rebuild time; the factory cooling is undersized.",
+      "howToFixHash": "c379fefebbfbd3887469b70d6b611c83f8a17ab732bdeb66ad99f74c1a75231d",
+      "suppliedUrl": "https://www.ebay.com/itm/323616838086",
+      "vendor": "ebay.com",
+      "destinationProduct": "Set of 7 Genuine Honda ATF DW-1, part 08200-9008, for Acura CL / Honda Civic",
+      "linkRole": "Repair fluid",
+      "correctedDecision": "keep",
+      "fitmentScope": "Honda/Acura automatics requiring ATF-Z1 or DW-1; listing explicitly names Acura CL.",
+      "reason": "How to Fix requires ONLY Acura/Honda ATF. The destination sells genuine Honda 08200-9008 ATF and names the Acura CL.",
+      "approvedDestinations": [
+        {
+          "label": "Set of 7 Genuine Honda ATF DW-1, part 08200-9008, for Acura CL / Honda Civic",
+          "url": "https://www.ebay.com/itm/323616838086"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/323616838086"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 2,
+      "originalCell": "N2",
+      "issueId": "acura-cl-3-0cl-1997-1999-transmission-slipping",
+      "ymmt": "1997–1999 Acura CL — 3.0CL",
+      "issueTitle": "3.0CL automatic transmission slips and fails — flush is forbidden, filter is not serviceable",
+      "howToFix": "If symptoms appear, immediately switch to ONLY Acura/Honda ATF (never Dextron substitute) and start a regular drain-and-refill schedule at every engine oil change interval (6 months). Do NOT power-flush — this transmission has effectively no serviceable filter and pressurized flushing forces debris through tight passages. If slipping has already started, a transmission specialist (not a quick-lube) needs to drop the pan to check for clutch material in the fluid. Once debris is visible, only a rebuild fixes it ($2,500-3,500). Replacements/rebuilds may need a fresh torque converter — the original is a known weak point. Add an aftermarket transmission cooler at rebuild time; the factory cooling is undersized.",
+      "howToFixHash": "c379fefebbfbd3887469b70d6b611c83f8a17ab732bdeb66ad99f74c1a75231d",
+      "suppliedUrl": "https://shop.advanceautoparts.com/p/castrol-transmax-atf-import-multi-vehicle-transmission-fluid-1-quart-15b868/8140016-P",
+      "vendor": "shop.advanceautoparts.com",
+      "destinationProduct": "Castrol Transmax Import Multi-Vehicle ATF, 1 quart, part 15B868",
+      "linkRole": "Repair fluid",
+      "correctedDecision": "replace",
+      "fitmentScope": "Retailer recommends Honda/Acura ATF-Z1 and DW-1 applications except CVTs, but this is not genuine Honda/Acura fluid.",
+      "reason": "The fluid is relevant, but How to Fix explicitly requires ONLY Acura/Honda ATF. Replace it with the verified genuine Honda listing rather than suppressing the opportunity.",
+      "approvedDestinations": [
+        {
+          "label": "Genuine Honda ATF DW-1 service fluid",
+          "url": "https://www.ebay.com/itm/323616838086"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://shop.advanceautoparts.com/p/castrol-transmax-atf-import-multi-vehicle-transmission-fluid-1-quart-15b868/8140016-P"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 3,
+      "originalCell": "N5",
+      "issueId": "acura-integra-dc-automatic-transmission-shift-solenoid",
+      "ymmt": "1994–1999 Acura Integra — LS, GS, RS, Special Edition",
+      "issueTitle": "4-speed automatic: shift solenoid failure causes D4 light flash, missed shifts, and limp mode",
+      "howToFix": "Drain-and-fill with Honda ATF-Z1/DW-1 (NEVER use generic Dexron — it will destroy the clutches). \nThe transmission fluid in the Integra 4AT's are supposed to be changed every 3 years/36,000 mi. It can cook and wear out just like the oil in your engine.\n Pull codes with a Honda jumper or scan tool; the lock-up and shift solenoids are external, three-bolt parts accessible from the engine bay and often just need cleaning. \nA screwed up lock-up solenoid will give you a general CEL #70 (Automatic Transaxle); the solenoid is totally accessible from the engine bay and costs less than $200 to replace. It's held in place by three bolts.",
+      "howToFixHash": "7fc844d435b5fdd401d4b3409eea1ac7b3f845bf1cc46e01fa9af1edca43876e",
+      "suppliedUrl": "https://www.amazon.com/dp/B01ATJJCTQ/ref=nosim?tag=spendyappus3-20",
+      "vendor": "amazon.com",
+      "destinationProduct": "Genuine Honda 08200-9008 ATF DW-1 (ATF-Z1), 2 quarts",
+      "linkRole": "Repair fluid",
+      "correctedDecision": "keep",
+      "fitmentScope": "Honda/Acura automatics requiring ATF-Z1 or DW-1; the issue is specifically the Integra four-speed automatic.",
+      "reason": "How to Fix explicitly begins with a Honda ATF-Z1/DW-1 drain-and-fill. The destination is that genuine Honda fluid.",
+      "approvedDestinations": [
+        {
+          "label": "Genuine Honda 08200-9008 ATF DW-1 (ATF-Z1), 2 quarts",
+          "url": "https://www.amazon.com/dp/B01ATJJCTQ"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.amazon.com/dp/B01ATJJCTQ"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 4,
+      "originalCell": "N6",
+      "issueId": "acura-integra-b-series-motor-mount-failure",
+      "ymmt": "1990–2001 Acura Integra — RS, LS, GS, GS-R, Type R (1997-1998, 2000-2001)",
+      "issueTitle": "Engine motor mounts crack and collapse — drivetrain vibration + clunk on shifts",
+      "howToFix": "Replace mounts one at a time as they fail, not all four preemptively (the front and side mounts can last 200k+). Diagnose by having a helper rev the engine in neutral while you look — a healthy mount holds the engine still; a dead one lets the engine rock 1-2 inches. Common pattern: rear mount + passenger-side mount are the first two to need replacement, and both are visible from above without lifting. Aftermarket options range from cheap rubber ($30 each) to Energy Suspension polyurethane ($60-100, transmits more vibration but lasts forever) to Innovative Mounts billet ($100-200, used for tracked cars). For a daily-driver Integra, OEM Honda rubber or Cardone is the right balance. Total cost replacing rear + side: $80-300 in parts, 2-3 hours of labor.",
+      "howToFixHash": "fa4c5940ba51a5a3c9fb47d88c8c2b6e07e787e436d5d69b3cd0a7950140cd1a",
+      "suppliedUrl": "https://www.amazon.com/dp/B07517BZH5/ref=nosim?tag=spendyappus3-20",
+      "vendor": "amazon.com",
+      "destinationProduct": "ENA engine motor and transmission mount set of 5 for Acura Integra 1.8L",
+      "linkRole": "Repair parts",
+      "correctedDecision": "keep",
+      "fitmentScope": "1994–2002 Integra 1.8L automatic. Does not cover 1990–1993 or manual/Type R; confirm vehicle fitment.",
+      "reason": "The destination sells the mounts called for by the repair. Keep it with limited year/transmission scope and present the kit only when multiple mounts have failed.",
+      "approvedDestinations": [
+        {
+          "label": "ENA engine motor and transmission mount set of 5 for Acura Integra 1.8L",
+          "url": "https://www.amazon.com/dp/B07517BZH5"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.amazon.com/dp/B07517BZH5"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 5,
+      "originalCell": "N6",
+      "issueId": "acura-integra-b-series-motor-mount-failure",
+      "ymmt": "1990–2001 Acura Integra — RS, LS, GS, GS-R, Type R (1997-1998, 2000-2001)",
+      "issueTitle": "Engine motor mounts crack and collapse — drivetrain vibration + clunk on shifts",
+      "howToFix": "Replace mounts one at a time as they fail, not all four preemptively (the front and side mounts can last 200k+). Diagnose by having a helper rev the engine in neutral while you look — a healthy mount holds the engine still; a dead one lets the engine rock 1-2 inches. Common pattern: rear mount + passenger-side mount are the first two to need replacement, and both are visible from above without lifting. Aftermarket options range from cheap rubber ($30 each) to Energy Suspension polyurethane ($60-100, transmits more vibration but lasts forever) to Innovative Mounts billet ($100-200, used for tracked cars). For a daily-driver Integra, OEM Honda rubber or Cardone is the right balance. Total cost replacing rear + side: $80-300 in parts, 2-3 hours of labor.",
+      "howToFixHash": "fa4c5940ba51a5a3c9fb47d88c8c2b6e07e787e436d5d69b3cd0a7950140cd1a",
+      "suppliedUrl": "https://innovativemounts.com/collections/94-01-acura-integra/products/94-01-integra-replacement-engine-mount-kit-b-d-series-automatic-hydro",
+      "vendor": "innovativemounts.com",
+      "destinationProduct": "Innovative Mounts 40153 replacement engine-mount kit",
+      "linkRole": "Repair parts",
+      "correctedDecision": "keep",
+      "fitmentScope": "1994–2001 Integra DC; automatic chassis; B/D-series; automatic hydraulic transmission; 3-bolt timing-side post. Performance bushings may add vibration; 2-bolt variant is 40156.",
+      "reason": "How to Fix explicitly names Innovative Mounts. The destination is the direct replacement kit; narrower fitment requires a note, not suppression.",
+      "approvedDestinations": [
+        {
+          "label": "Innovative Mounts 40153 replacement engine-mount kit",
+          "url": "https://innovativemounts.com/collections/94-01-acura-integra/products/94-01-integra-replacement-engine-mount-kit-b-d-series-automatic-hydro"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://innovativemounts.com/collections/94-01-acura-integra/products/94-01-integra-replacement-engine-mount-kit-b-d-series-automatic-hydro"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 6,
+      "originalCell": "N7",
+      "issueId": "acura-integra-dc-ignition-switch-contact-pitting",
+      "ymmt": "1994–1999 Acura Integra",
+      "issueTitle": "Ignition switch contact pitting causes engine to die when key released",
+      "howToFix": "Replace the ignition switch electrical portion (not the cylinder/lock) — it unbolts from the back of the steering column lock housing with two screws. OEM Honda part is the most reliable choice. \nThe issue is starting the car and it dies as soon as you let go of the key. After research, it became obvious it was an ignition switch issue.\n Check the under-hood main fuse and the ignition fuses before condemning the switch. Budget $50-150 for parts and 1 hour labor.",
+      "howToFixHash": "40011fa40a2558ac06b48bdc1dc342a95ecef410e7621028d014e4acc6f9a1c5",
+      "suppliedUrl": "https://www.amazon.com/dp/B0DB238PJZ/ref=nosim?tag=spendyappus3-20",
+      "vendor": "amazon.com",
+      "destinationProduct": "A-Premium five-blade ignition starter switch",
+      "linkRole": "Repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "1998–1999 Integra only; five terminals; bolt-on electrical switch; no keys. More links are needed for 1994–1997.",
+      "reason": "The product is the electrical ignition switch called for by the repair, not the lock cylinder. It is valid for the 1998–1999 subset.",
+      "approvedDestinations": [
+        {
+          "label": "A-Premium five-blade ignition starter switch",
+          "url": "https://www.amazon.com/dp/B0DB238PJZ"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.amazon.com/dp/B0DB238PJZ"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 7,
+      "originalCell": "N8",
+      "issueId": "acura-integra-da-ignitor-module-failure",
+      "ymmt": "1990–1993 Acura Integra — RS, LS, GS, GS-R",
+      "issueTitle": "Ignitor / ignition control module inside the distributor fails — intermittent or no-start",
+      "howToFix": "Test the ignitor before replacing — a multimeter check at the coil primary terminals while cranking will confirm whether the module is sending pulse to the coil. If no pulse: replace. OEM Honda module $80-150, aftermarket (Beck Arnley, Delphi) $30-80. The module sits inside the distributor cap; replacement requires removing the cap and rotor, unscrewing 2 mounting screws, and transferring the heat sink if present (Civic/Integra units may require heat sink #30121-PM5-A02 for correct fitment). Inspect the inside of the distributor cap and rotor for moisture or corrosion while you're in there — a cracked cap allows water in and causes premature module failure on the replacement. Replace cap + rotor at the same time as a preventive measure.",
+      "howToFixHash": "c1b958eeb2b1741e855efc0a1a54a340969072739469d5f036307961115e0090",
+      "suppliedUrl": "https://www.amazon.com/gp/aw/d/B01ISAMUA6/?_encoding=UTF8&pd_rd_plhdr=t&aaxitk=fe86b462330dee4d40ad46f63a1334d1&hsa_cr_id=0&qid=1786727337&sr=1-1-9e67e56a-6f64-441f-a281-df67fc737124&i=aps&aref=f0RxgTwj4j&ref_=sbx_s_sparkle_sbtcd_asin_0_img&pd_rd_w=EFX9b&content-id=amzn1.sym.8de9b3d5-f5c5-40e9-9b39-d65f08d6ea68%3Aamzn1.sym.8de9b3d5-f5c5-40e9-9b39-d65f08d6ea68&pf_rd_p=8de9b3d5-f5c5-40e9-9b39-d65f08d6ea68&pf_rd_r=TTR0PCNM81HG3Y50ANN7&pd_rd_wg=P6XCz&pd_rd_r=7db95d58-f814-43ee-9df0-eb4fba18fdec&linkCode=ll2&tag=spendyappus3-20&th=1",
+      "vendor": "amazon.com",
+      "destinationProduct": "AstroAI digital multimeter for voltage, current, resistance, continuity, and diode testing",
+      "linkRole": "Diagnostic tool explicitly required",
+      "correctedDecision": "keep",
+      "fitmentScope": "Universal electrical diagnostic tool; not vehicle-specific.",
+      "reason": "This is not an unrelated OBD link. How to Fix specifically requires a multimeter test before replacing the ignitor.",
+      "approvedDestinations": [
+        {
+          "label": "AstroAI digital multimeter for voltage, current, resistance, continuity, and diode testing",
+          "url": "https://www.amazon.com/dp/B01ISAMUA6"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.amazon.com/dp/B01ISAMUA6"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 8,
+      "originalCell": "N8",
+      "issueId": "acura-integra-da-ignitor-module-failure",
+      "ymmt": "1990–1993 Acura Integra — RS, LS, GS, GS-R",
+      "issueTitle": "Ignitor / ignition control module inside the distributor fails — intermittent or no-start",
+      "howToFix": "Test the ignitor before replacing — a multimeter check at the coil primary terminals while cranking will confirm whether the module is sending pulse to the coil. If no pulse: replace. OEM Honda module $80-150, aftermarket (Beck Arnley, Delphi) $30-80. The module sits inside the distributor cap; replacement requires removing the cap and rotor, unscrewing 2 mounting screws, and transferring the heat sink if present (Civic/Integra units may require heat sink #30121-PM5-A02 for correct fitment). Inspect the inside of the distributor cap and rotor for moisture or corrosion while you're in there — a cracked cap allows water in and causes premature module failure on the replacement. Replace cap + rotor at the same time as a preventive measure.",
+      "howToFixHash": "c1b958eeb2b1741e855efc0a1a54a340969072739469d5f036307961115e0090",
+      "suppliedUrl": "https://www.ebay.com/itm/188106903511?_skw=Acura+Integra&itmmeta=01M00M53DV2YHYNWS868RCA4AJ&hash=item2bcc0b8fd7:g:Q~0AAeSwGYJp2bp1&itmprp=enc%3AAQALAAAA8DKQclQvzFwZQpmMrsO4Lup475dCOju90rRk%2FKB3mWAS50Ny1t0NKRSEDV5RyWn2mqrXUVQ4oE--0Y33yoRWshhHPQNJDmSslRO4TDeRn%2FgJLgRtsYLd6Bkh5gEjnrdNH4dxyvJE4KgYd%2BwLqbe9XBIrViE0ctUif9QUWMOus25ZxhOozCKGiZ%2BUJvVWwvsiYdTh7XNm0uPYRI%2BKvy6iXq8077Ap20W044xbXnF3%2Fn9Vk7MkD2tE5yafgm5bJcbtQsndYrWFknhVoZmsip3VRMqRX8Ks%2F1t%2FeaFrIPWJQAbJOsTglAN4g2wxA4NxJdn50w%3D%3D%7Ctkp%3ABFBMireUlIBo",
+      "vendor": "ebay.com",
+      "destinationProduct": "Ignition Control Module / ICM, 30120-PM5-A01 / 30120-PR3-003 cross-reference",
+      "linkRole": "Repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "Listing states Integra 1988–1993, covering this issue’s 1990–1993 range. Confirm the original connector and part number.",
+      "reason": "The destination is the ignitor/ICM How to Fix says to replace after a failed pulse test, and the listed range covers the issue.",
+      "approvedDestinations": [
+        {
+          "label": "Ignition Control Module / ICM, 30120-PM5-A01 / 30120-PR3-003 cross-reference",
+          "url": "https://www.ebay.com/itm/188106903511"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/188106903511"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 9,
+      "originalCell": "N9",
+      "issueId": "acura-integra-dc-distributor-internal-failure",
+      "ymmt": "1994–1999 Acura Integra",
+      "issueTitle": "Internal distributor failure causing stalling, no-start, and misfires",
+      "howToFix": "Pull DTCs first — codes P1381 (cylinder position sensor) and Code 22 commonly originate inside the distributor. \nP1381 is the cylinder position sensor code, located inside the distributor.\n Replace the complete OEM distributor assembly (avoid cheap aftermarket — many fail within months). OBD1 (94-95) and OBD2 (96-99) distributors are not interchangeable. \nIt is worth noting that the distributor plugs are different for each obd generation. So the obd1, and obd2 have different harness plugs.\n Budget $250-550 for a quality unit installed.",
+      "howToFixHash": "cbf9b1f59e36bf871fc723d506f79ad4db48c212717b5c628b5d2e078131cc6f",
+      "suppliedUrl": "https://www.amazon.com/dp/B00EQDYT7M/ref=nosim?tag=spendyappus3-20",
+      "vendor": "amazon.com",
+      "destinationProduct": "ENA ignition coil pack, replacement for UF89 / 30510-PT2-006",
+      "linkRole": "Different ignition component",
+      "correctedDecision": "replace",
+      "fitmentScope": "The coil lists many 1992–2001 Integra applications, but it is only a coil. Complete distributor selection must match engine, trim, connector, and OBD generation.",
+      "reason": "How to Fix calls for the complete distributor assembly. The destination sells only the internal ignition coil, so it does not perform the prescribed repair.",
+      "approvedDestinations": [
+        {
+          "label": "Non-VTEC 1994–1999 (verify TD-85U/connector)",
+          "url": "https://www.partsgeek.com/dmf13j4-acura-integra-ignition-distributor.html"
+        },
+        {
+          "label": "GS-R 1994–1995",
+          "url": "https://www.partsgeek.com/x8pnhnn-acura-integra-ignition-distributor.html"
+        },
+        {
+          "label": "GS-R 1996–1999 / Type R 1998–1999, 9-pin",
+          "url": "https://www.partsgeek.com/qzmf1wp-acura-integra-ignition-distributor.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.amazon.com/dp/B00EQDYT7M"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 10,
+      "originalCell": "N10",
+      "issueId": "acura-integra-da-cv-axle-outer-boot-tear",
+      "ymmt": "1990–1993 Acura Integra",
+      "issueTitle": "Outer CV joint boot tears leading to joint failure and clicking",
+      "howToFix": "If the boot has just torn and no elements got into the joint, regreasing and rebooting can work — a $10 boot kit vs. a $60 replacement axle is the tradeoff.\n \nReman axles run around $50 each and boot kits about $25 — AutoZone and similar carry both for the 1992 Integra 1.8L DOHC.\n \nPack outer CV joint boot with molybdenum disulfide grease, lube the spider and inside bore of rollers, ensure rollers are aligned with marks made at disassembly and install with the high side of rollers facing outward.\n Use new boot clamps (low-profile metal bands included in kit). Most owners simply swap the full reman half-shaft for under $100/side — quicker than rebooting. Always replace the axle nut and use a new transaxle retaining ring.",
+      "howToFixHash": "dccda6fa9367cf9f04f7f2ae6b1dd9e48db4ebf53ba212bce43f314f5a62d031",
+      "suppliedUrl": "https://www.autozone.com/p/beck-arnley-cv-joint-boot-kit-103-2314/503932?productPartGroupId=azpg2188&productBrandId=BBGB&productPositionId=23&productUniqueId=9153521897",
+      "vendor": "autozone.com",
+      "destinationProduct": "Beck/Arnley 103-2314 solid CV-joint boot kit",
+      "linkRole": "Wrong-position repair part",
+      "correctedDecision": "replace",
+      "fitmentScope": "Broad Integra fitment, but catalog data identifies 103-2314 as a front INNER CV boot. The issue calls for the OUTER boot.",
+      "reason": "Year/make/model fitment alone is insufficient. The destination sells an inner boot while How to Fix addresses a torn outer boot.",
+      "approvedDestinations": [
+        {
+          "label": "Front outer boot, 1990–2001 Integra",
+          "url": "https://www.sixityauto.com/dorman-front-outer-cv-joint-boot-kit-for-1990-2001-acura-integra-2101172973.html"
+        },
+        {
+          "label": "Complete front axle pair, 1990–1993 Integra",
+          "url": "https://www.buyautoparts.com/buynow/90-90136_2d"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.autozone.com/p/beck-arnley-cv-joint-boot-kit-103-2314/503932",
+        "https://www.suspension.com/spc/beckarnley-103-2314"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 11,
+      "originalCell": "N12",
+      "issueId": "acura-integra-da-pgm-fi-main-relay-hot-no-start",
+      "ymmt": "1990–1993 Acura Integra",
+      "issueTitle": "PGM-FI main relay solder joint cracks cause hot-weather no-start",
+      "howToFix": "Replacing the main relay is one of the easiest repairs on the Integra; it is located under the driver's-side dash, near the hood release lever and to the right of the parking brake pedal — unbolt the mounting bracket (10mm), unplug the harness, and plug in the new relay.\n \nUse a quality replacement — the DA-chassis OEM part number is typically 39400-PM6-003 (verify with your VIN at an Acura dealer or parts store, as several supersessions exist). Reputable aftermarket cross-references include Standard Motor Products RY-passenger-style relays, Beck/Arnley, and Denso. Expect to pay $25-$80 for the part and avoid the cheapest generic relays — reliability matters.\n \nResoldering the cracked joints on the existing relay's circuit board has been done successfully by many owners, but requires skill with a soldering iron and may not be permanent — a new aftermarket relay is the more reliable repair.",
+      "howToFixHash": "e1070153dec4df1940f182eb3a0a163d5769c008d006a353472f75ce42fdb2da",
+      "suppliedUrl": "https://www.ebay.com/itm/205831259710",
+      "vendor": "ebay.com",
+      "destinationProduct": "1990–1993 Acura Integra PGM-FI main relay",
+      "linkRole": "Repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "Exact 1990–1993 Integra application.",
+      "reason": "The destination is the main relay named in How to Fix and its title matches the complete issue year range.",
+      "approvedDestinations": [
+        {
+          "label": "1990–1993 Acura Integra PGM-FI main relay",
+          "url": "https://www.ebay.com/itm/205831259710"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/205831259710"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 12,
+      "originalCell": "N12",
+      "issueId": "acura-integra-da-pgm-fi-main-relay-hot-no-start",
+      "ymmt": "1990–1993 Acura Integra",
+      "issueTitle": "PGM-FI main relay solder joint cracks cause hot-weather no-start",
+      "howToFix": "Replacing the main relay is one of the easiest repairs on the Integra; it is located under the driver's-side dash, near the hood release lever and to the right of the parking brake pedal — unbolt the mounting bracket (10mm), unplug the harness, and plug in the new relay.\n \nUse a quality replacement — the DA-chassis OEM part number is typically 39400-PM6-003 (verify with your VIN at an Acura dealer or parts store, as several supersessions exist). Reputable aftermarket cross-references include Standard Motor Products RY-passenger-style relays, Beck/Arnley, and Denso. Expect to pay $25-$80 for the part and avoid the cheapest generic relays — reliability matters.\n \nResoldering the cracked joints on the existing relay's circuit board has been done successfully by many owners, but requires skill with a soldering iron and may not be permanent — a new aftermarket relay is the more reliable repair.",
+      "howToFixHash": "e1070153dec4df1940f182eb3a0a163d5769c008d006a353472f75ce42fdb2da",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~relay~assy~power~micro~iso~omron~39794-sda-a03.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 39794-SDA-A03 power relay / HVAC blower motor relay",
+      "linkRole": "Wrong system and years",
+      "correctedDecision": "replace",
+      "fitmentScope": "2004–2026 micro ISO power relay; not the 1990–1993 Integra PGM-FI main relay.",
+      "reason": "The product page identifies an HVAC/blower power relay and later fitment, so it cannot repair the hot-soak PGM-FI main-relay failure.",
+      "approvedDestinations": [
+        {
+          "label": "PGM-FI main relay 39400-SH3-003",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~relay~assy~main~rz~0063~pgm~fi~mitsuba~39400-sh3-003.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~relay~assy~power~micro~iso~omron~39794-sda-a03.html",
+        "https://www.acurapartswarehouse.com/oem/acura~relay~assy~main~rz~0063~pgm~fi~mitsuba~39400-sh3-003.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 13,
+      "originalCell": "N13",
+      "issueId": "acura-integra-dc-rear-lca-bolt-seizure",
+      "ymmt": "1994–2001 Acura Integra",
+      "issueTitle": "Rear lower control arm bolts seize and shear inside bushing sleeves",
+      "howToFix": "Soak bolts with penetrating fluid (PB Blaster/Kroil) for days before attempting removal; heat the bushing sleeve with a torch. If the bolt shears, the only fix is to cut the bushing out and drill/punch the remaining sleeve from the subframe ear. \nWhen you are down there and replacing rusted bolts, if they are rusted on bad enough you might have to break the welded nut they go into on the front side of the subframe and trailing arms. You can get matching sized nuts and washers.\n Replace with OEM Honda bolts (M10x1.25, ~$4-9 each from the dealer). \nDiameter = 10mm, Pitch = 1.25.",
+      "howToFixHash": "7248ea0d2d97a17f19f318e119701b8d50f70a26f747e0d1cd68a1c3edd5a44b",
+      "suppliedUrl": "https://www.ebay.com/itm/176902349950",
+      "vendor": "ebay.com",
+      "destinationProduct": "Used OEM 1994–2001 Integra rear LCA frame-mount bolt",
+      "linkRole": "Correct location, unsuitable used hardware",
+      "correctedDecision": "replace",
+      "fitmentScope": "Correct vehicle/location, but used corrosion-prone hardware is not appropriate for replacing a seized bolt.",
+      "reason": "The title matches the failed LCA bolt, but this repair should use new hardware. Replace the used fastener with a new vehicle-specific bolt kit.",
+      "approvedDestinations": [
+        {
+          "label": "New rear lower-control-arm bolt kit",
+          "url": "https://www.kseriesparts.com/PLM-BOLT-LCA-EG-DC.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/176902349950",
+        "https://www.kseriesparts.com/PLM-BOLT-LCA-EG-DC.html"
+      ],
+      "contentCorrection": "The generic M10x1.25 wording in How to Fix should be removed; multiple rear-LCA bolt sizes/locations exist. Use the vehicle-specific kit and verify the seized location."
+    },
+    {
+      "index": 14,
+      "originalCell": "N13",
+      "issueId": "acura-integra-dc-rear-lca-bolt-seizure",
+      "ymmt": "1994–2001 Acura Integra",
+      "issueTitle": "Rear lower control arm bolts seize and shear inside bushing sleeves",
+      "howToFix": "Soak bolts with penetrating fluid (PB Blaster/Kroil) for days before attempting removal; heat the bushing sleeve with a torch. If the bolt shears, the only fix is to cut the bushing out and drill/punch the remaining sleeve from the subframe ear. \nWhen you are down there and replacing rusted bolts, if they are rusted on bad enough you might have to break the welded nut they go into on the front side of the subframe and trailing arms. You can get matching sized nuts and washers.\n Replace with OEM Honda bolts (M10x1.25, ~$4-9 each from the dealer). \nDiameter = 10mm, Pitch = 1.25.",
+      "howToFixHash": "7248ea0d2d97a17f19f318e119701b8d50f70a26f747e0d1cd68a1c3edd5a44b",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~bolt~flg~14x105~90118-t20-a00.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 90118-T20-A00 flange bolt, 14x105",
+      "linkRole": "Wrong-generation fastener",
+      "correctedDecision": "replace",
+      "fitmentScope": "T20/current-generation hardware; not verified for the 1994–2001 Integra rear LCA.",
+      "reason": "The part number and product page do not match the issue generation. Use a direct 1994–2001 Integra rear-LCA bolt kit.",
+      "approvedDestinations": [
+        {
+          "label": "New rear lower-control-arm bolt kit",
+          "url": "https://www.kseriesparts.com/PLM-BOLT-LCA-EG-DC.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~bolt~flg~14x105~90118-t20-a00.html",
+        "https://www.kseriesparts.com/PLM-BOLT-LCA-EG-DC.html"
+      ],
+      "contentCorrection": "The generic M10x1.25 wording in How to Fix should be removed; multiple rear-LCA bolt sizes/locations exist."
+    },
+    {
+      "index": 15,
+      "originalCell": "N15",
+      "issueId": "acura-integra-da-rear-wheel-bearing-hum",
+      "ymmt": "1990–1993 Acura Integra",
+      "issueTitle": "Rear wheel bearing hum from press-in hub assembly",
+      "howToFix": "This is an advanced DIY job. Some owners replace the rear as a complete pre-pressed hub assembly (commonly $80-$120 from aftermarket suppliers), which avoids press work; others source just the bearing/race and press it into the spindle/knuckle using a hydraulic shop press (or have a machine shop do it). Front bearings on the DA always require pressing into the knuckle.\n Quality replacement brands include SKF, Timken, FAG, Koyo and NSK (the latter two are often OEM suppliers to Honda).\n Rear bearings are a bit more expensive but easier to access than the fronts.\n Budget $40-$120 per bearing/assembly plus press/labor; total shop cost typically $200-$450 per corner.",
+      "howToFixHash": "870d218a04fcdecf1e11701b6c07b5916ef587f7df1af6608d2f6b0cd7da09b0",
+      "suppliedUrl": "https://www.ebay.com/itm/389293965680",
+      "vendor": "ebay.com",
+      "destinationProduct": "MOOG rear wheel bearing and hub assembly for 1990–1993 Acura Integra",
+      "linkRole": "Repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "Exact 1990–1993 Integra rear position.",
+      "reason": "The destination title identifies the complete rear wheel hub/bearing assembly for the exact issue years.",
+      "approvedDestinations": [
+        {
+          "label": "MOOG rear wheel bearing and hub assembly for 1990–1993 Acura Integra",
+          "url": "https://www.ebay.com/itm/389293965680"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/389293965680"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 16,
+      "originalCell": "N15",
+      "issueId": "acura-integra-da-rear-wheel-bearing-hum",
+      "ymmt": "1990–1993 Acura Integra",
+      "issueTitle": "Rear wheel bearing hum from press-in hub assembly",
+      "howToFix": "This is an advanced DIY job. Some owners replace the rear as a complete pre-pressed hub assembly (commonly $80-$120 from aftermarket suppliers), which avoids press work; others source just the bearing/race and press it into the spindle/knuckle using a hydraulic shop press (or have a machine shop do it). Front bearings on the DA always require pressing into the knuckle.\n Quality replacement brands include SKF, Timken, FAG, Koyo and NSK (the latter two are often OEM suppliers to Honda).\n Rear bearings are a bit more expensive but easier to access than the fronts.\n Budget $40-$120 per bearing/assembly plus press/labor; total shop cost typically $200-$450 per corner.",
+      "howToFixHash": "870d218a04fcdecf1e11701b6c07b5916ef587f7df1af6608d2f6b0cd7da09b0",
+      "suppliedUrl": "https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html",
+      "vendor": "partsgeek.com",
+      "destinationProduct": "DriveBolt NT513033 rear wheel hub assembly",
+      "linkRole": "Repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "1990–1993 Acura Integra, rear.",
+      "reason": "The destination is the complete rear hub/bearing assembly specified by How to Fix and matches the issue years and position.",
+      "approvedDestinations": [
+        {
+          "label": "DriveBolt NT513033 rear wheel hub assembly",
+          "url": "https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.partsgeek.com/6rf5vft-acura-integra-wheel-hub-assembly.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 17,
+      "originalCell": "N16",
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "ymmt": "1994–2001 Acura Integra",
+      "issueTitle": "Timing belt failure on interference B18 engine bends valves",
+      "howToFix": "Replace the complete timing belt kit: belt, tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable.\nNon-VTEC LS (B18B1) timing belt part numbers are 14400-P7J-004 or 14400-PR4-A01, paired with the 19-tooth water pump 19200-P75-003 / 19200-PT5-000 / 19200-PT5-003. The VTEC GSR (B18C1) uses timing belt 14400-P72-004 / 14400-P72-014 paired with a 22-tooth water pump.\nDo NOT mix LS and GSR water pumps — the tooth counts differ (19T vs 22T) and the belts are different lengths.\nProfessional cost for preventive replacement: approximately $350-600. Post-failure repair (valve job / head rebuild) can reach $2,000-3,000+.",
+      "howToFixHash": "93ed0fb63201985db871a1ae84a9871a200fbf39f0f181a6b7c985dec69528f7",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~belt~timing~125ru26~unitta~14400-p7j-004.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 14400-P7J-004 timing belt, 125RU26",
+      "linkRole": "Repair component",
+      "correctedDecision": "keep",
+      "fitmentScope": "Non-VTEC B18B1 applications (RS/LS/GS subset); not GS-R/Type R.",
+      "reason": "This is the genuine timing belt called for by the repair. Keep it with engine-specific scope and pair it with the matching pump, tensioner, spring, and seals.",
+      "approvedDestinations": [
+        {
+          "label": "Genuine Acura 14400-P7J-004 timing belt, 125RU26",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~belt~timing~125ru26~unitta~14400-p7j-004.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~belt~timing~125ru26~unitta~14400-p7j-004.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 18,
+      "originalCell": "N16",
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "ymmt": "1994–2001 Acura Integra",
+      "issueTitle": "Timing belt failure on interference B18 engine bends valves",
+      "howToFix": "Replace the complete timing belt kit: belt, tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable.\nNon-VTEC LS (B18B1) timing belt part numbers are 14400-P7J-004 or 14400-PR4-A01, paired with the 19-tooth water pump 19200-P75-003 / 19200-PT5-000 / 19200-PT5-003. The VTEC GSR (B18C1) uses timing belt 14400-P72-004 / 14400-P72-014 paired with a 22-tooth water pump.\nDo NOT mix LS and GSR water pumps — the tooth counts differ (19T vs 22T) and the belts are different lengths.\nProfessional cost for preventive replacement: approximately $350-600. Post-failure repair (valve job / head rebuild) can reach $2,000-3,000+.",
+      "howToFixHash": "93ed0fb63201985db871a1ae84a9871a200fbf39f0f181a6b7c985dec69528f7",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~water~pump~yamada~19200-p75-003.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 19200-P75-003 19-tooth water pump",
+      "linkRole": "Repair component",
+      "correctedDecision": "keep",
+      "fitmentScope": "Non-VTEC B18B1 applications; pair only with the correct 19-tooth/non-VTEC timing setup.",
+      "reason": "The water pump is explicitly part of the complete timing service. It is valid for the non-VTEC subset, not every trim in the issue heading.",
+      "approvedDestinations": [
+        {
+          "label": "Genuine Acura 19200-P75-003 19-tooth water pump",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~water~pump~yamada~19200-p75-003.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~water~pump~yamada~19200-p75-003.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 19,
+      "originalCell": "N16",
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "ymmt": "1994–2001 Acura Integra",
+      "issueTitle": "Timing belt failure on interference B18 engine bends valves",
+      "howToFix": "Replace the complete timing belt kit: belt, tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable.\nNon-VTEC LS (B18B1) timing belt part numbers are 14400-P7J-004 or 14400-PR4-A01, paired with the 19-tooth water pump 19200-P75-003 / 19200-PT5-000 / 19200-PT5-003. The VTEC GSR (B18C1) uses timing belt 14400-P72-004 / 14400-P72-014 paired with a 22-tooth water pump.\nDo NOT mix LS and GSR water pumps — the tooth counts differ (19T vs 22T) and the belts are different lengths.\nProfessional cost for preventive replacement: approximately $350-600. Post-failure repair (valve job / head rebuild) can reach $2,000-3,000+.",
+      "howToFixHash": "93ed0fb63201985db871a1ae84a9871a200fbf39f0f181a6b7c985dec69528f7",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~belt~timing~126ru26~unitta~14400-p72-004.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 14400-P72-004 timing belt, 126RU26",
+      "linkRole": "Repair component",
+      "correctedDecision": "keep",
+      "fitmentScope": "VTEC B18C1/B18C5 applications (GS-R/Type R); requires the matching 22-tooth water-pump setup.",
+      "reason": "This genuine timing belt is valid for the VTEC subset. Scope it by engine rather than discarding it because the issue heading includes non-VTEC trims.",
+      "approvedDestinations": [
+        {
+          "label": "Genuine Acura 14400-P72-004 timing belt, 126RU26",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~belt~timing~126ru26~unitta~14400-p72-004.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~belt~timing~126ru26~unitta~14400-p72-004.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 20,
+      "originalCell": "N16",
+      "issueId": "acura-integra-dc-timing-belt-interference-failure",
+      "ymmt": "1994–2001 Acura Integra",
+      "issueTitle": "Timing belt failure on interference B18 engine bends valves",
+      "howToFix": "Replace the complete timing belt kit: belt, tensioner, tensioner spring, water pump, cam and crank seals, and balance shaft belt where applicable.\nNon-VTEC LS (B18B1) timing belt part numbers are 14400-P7J-004 or 14400-PR4-A01, paired with the 19-tooth water pump 19200-P75-003 / 19200-PT5-000 / 19200-PT5-003. The VTEC GSR (B18C1) uses timing belt 14400-P72-004 / 14400-P72-014 paired with a 22-tooth water pump.\nDo NOT mix LS and GSR water pumps — the tooth counts differ (19T vs 22T) and the belts are different lengths.\nProfessional cost for preventive replacement: approximately $350-600. Post-failure repair (valve job / head rebuild) can reach $2,000-3,000+.",
+      "howToFixHash": "93ed0fb63201985db871a1ae84a9871a200fbf39f0f181a6b7c985dec69528f7",
+      "suppliedUrl": "https://www.ebay.com/itm/357804360277",
+      "vendor": "ebay.com",
+      "destinationProduct": "KAC timing-belt and water-pump set for B18C1/B18C5, 19200-P72-003 cross-reference",
+      "linkRole": "Partial repair kit",
+      "correctedDecision": "keep",
+      "fitmentScope": "1994–2001 Integra GS-R / Type R VTEC only. Listing includes belt and pump but not every tensioner, spring, idler, and seal in How to Fix.",
+      "reason": "The destination supplies two explicitly required repair components and fits the VTEC engines. Keep it as a partial kit with an additional-parts warning.",
+      "approvedDestinations": [
+        {
+          "label": "KAC timing-belt and water-pump set for B18C1/B18C5, 19200-P72-003 cross-reference",
+          "url": "https://www.ebay.com/itm/357804360277"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/357804360277"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 21,
+      "originalCell": "N17",
+      "issueId": "acura-integra-turbo-heat-soak-2023",
+      "ymmt": "2023–2026 Acura Integra — A-Spec, A-Spec Technology, Type S",
+      "issueTitle": "Turbo Heat Soak and Power Loss in Hot Weather",
+      "howToFix": "Allow 2-3 minutes of gentle driving between spirited runs to cool the intake charge. Ensure the intercooler fins are clean and unobstructed by debris. Aftermarket intercooler upgrades significantly reduce heat soak on the 1.5T. The Type S 2.0T is less affected due to its larger factory intercooler but still benefits from airflow improvements.",
+      "howToFixHash": "28e31603307b1f546cd2e84a9e65dc3dc46e3b5f420289d2a16c9303d6f125f6",
+      "suppliedUrl": "https://www.ebay.com/itm/397147044145",
+      "vendor": "ebay.com",
+      "destinationProduct": "Stock-style replacement intercooler, CAC010216 / 19710-64A-A01 cross-reference",
+      "linkRole": "Stock replacement, not heat-soak upgrade",
+      "correctedDecision": "replace",
+      "fitmentScope": "Standard 1.5T core; listing overstates Type S compatibility.",
+      "reason": "How to Fix calls for a larger aftermarket intercooler to reduce heat soak. A stock-equivalent core does not perform that prescribed upgrade.",
+      "approvedDestinations": [
+        {
+          "label": "1.5T Base/A-Spec/Technology",
+          "url": "https://prlmotorsports.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "label": "Type S (2024+)",
+          "url": "https://prlmotorsports.com/products/2024-2026-acura-integra-de5-type-s-tube-and-fin-intercooler-upgrade"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/397147044145",
+        "https://prlmotorsports.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+      ],
+      "contentCorrection": "Type S began with model year 2024, not 2023. Split 1.5T and Type S fitment and correct the heading."
+    },
+    {
+      "index": 22,
+      "originalCell": "N17",
+      "issueId": "acura-integra-turbo-heat-soak-2023",
+      "ymmt": "2023–2026 Acura Integra — A-Spec, A-Spec Technology, Type S",
+      "issueTitle": "Turbo Heat Soak and Power Loss in Hot Weather",
+      "howToFix": "Allow 2-3 minutes of gentle driving between spirited runs to cool the intake charge. Ensure the intercooler fins are clean and unobstructed by debris. Aftermarket intercooler upgrades significantly reduce heat soak on the 1.5T. The Type S 2.0T is less affected due to its larger factory intercooler but still benefits from airflow improvements.",
+      "howToFixHash": "28e31603307b1f546cd2e84a9e65dc3dc46e3b5f420289d2a16c9303d6f125f6",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~intercooler~19710-64a-a01.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 19710-64A-A01 stock intercooler",
+      "linkRole": "Stock replacement, not heat-soak upgrade",
+      "correctedDecision": "replace",
+      "fitmentScope": "2023–2026 1.5T Base/A-Spec/Technology; product-page fitment excludes Type S.",
+      "reason": "The genuine stock intercooler is a valid collision/failed-core replacement, but it does not satisfy the performance upgrade prescribed for heat soak.",
+      "approvedDestinations": [
+        {
+          "label": "1.5T Base/A-Spec/Technology",
+          "url": "https://prlmotorsports.com/products/2023-acura-integra-1-5t-intercooler-upgrade"
+        },
+        {
+          "label": "Type S (2024+)",
+          "url": "https://prlmotorsports.com/products/2024-2026-acura-integra-de5-type-s-tube-and-fin-intercooler-upgrade"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~intercooler~19710-64a-a01.html",
+        "https://prlmotorsports.com/products/2024-2026-acura-integra-de5-type-s-tube-and-fin-intercooler-upgrade"
+      ],
+      "contentCorrection": "Type S began with model year 2024, not 2023. Split 1.5T and Type S fitment and correct the heading."
+    },
+    {
+      "index": 23,
+      "originalCell": "N18",
+      "issueId": "acura-integra-dc-vtec-oil-pressure-switch-code22",
+      "ymmt": "1994–2001 Acura Integra — GS-R, Type R",
+      "issueTitle": "VTEC oil pressure switch failure (Code 22 / P1259) on GS-R and Type R",
+      "howToFix": "Verify oil level and condition first — \nif the code is still present after checking, make sure there is plenty of oil and then reset the ECU\n. The switch is the green-plug sensor on top of the VTEC solenoid; replace with OEM Honda part. \nReplace the switch. It's the green plug located on the vtec solenoid.\n If the code returns after replacement, install a mechanical oil pressure gauge — \na worn oil pump or internal leak can cause low pressure that triggers the code; an oil pressure gauge will confirm\n. Switch is ~$70 OEM.",
+      "howToFixHash": "ed6586e78c01427e30bfce7f78eadbe21afe954ca197b536cbd0c0ca475ab700",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~switch~oil~pressure~tec~37240-pt0-014.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 37240-PT0-014 engine oil-pressure switch",
+      "linkRole": "Wrong pressure switch",
+      "correctedDecision": "replace",
+      "fitmentScope": "Main engine oil-pressure sender; not the green-plug VTEC valve-timing oil-pressure switch.",
+      "reason": "How to Fix addresses the VTEC oil-pressure switch. The supplied part is a different oil-pressure switch even though it fits some Integras.",
+      "approvedDestinations": [
+        {
+          "label": "VTEC valve-timing oil-pressure switch 37250-PR3-003",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~switch~assy~valve~timing~oilpressure~37250-pr3-003.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~switch~oil~pressure~tec~37240-pt0-014.html",
+        "https://www.acurapartswarehouse.com/oem/acura~switch~assy~valve~timing~oilpressure~37250-pr3-003.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 24,
+      "originalCell": "N19",
+      "issueId": "acura-legend-alb-abs-pump-motor-overrun-accumulator-failure",
+      "ymmt": "1991–1995 Acura Legend",
+      "issueTitle": "ALB/ABS Pump Motor Overrun and Accumulator Failure",
+      "howToFix": "Rebuild the pump motor (clean commutator, replace brushes — DIY for $30) or replace pump/accumulator assembly. Verify brake fluid is at MAX line first since low fluid triggers identical symptoms.",
+      "howToFixHash": "093292d513311e312199e349c14591391c0bbb3bab9b557ab560249b755151c9",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~control~unit~a~l~b~39790-sd4-013.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 39790-SD4-013 ALB control unit",
+      "linkRole": "Wrong ALB/ABS component",
+      "correctedDecision": "replace",
+      "fitmentScope": "Electronic control unit; the repair calls for the pump motor or pump/accumulator assembly.",
+      "reason": "The destination is an ALB controller, not the hydraulic pump assembly whose motor overruns or accumulator loses pressure.",
+      "approvedDestinations": [
+        {
+          "label": "ABS pump assembly 57310-SP0-A04",
+          "url": "https://partsouq.com/shop/product/57310SP0A04-honda-pump-assy-abs/16256129"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~control~unit~a~l~b~39790-sd4-013.html",
+        "https://partsouq.com/shop/product/57310SP0A04-honda-pump-assy-abs/16256129"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 25,
+      "originalCell": "N20",
+      "issueId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi",
+      "ymmt": "1991–1995 Acura Legend",
+      "issueTitle": "C32A1 Head Gasket Failure at Rear Cylinders (#3 and #6) Due to Open-Deck Vibration",
+      "howToFix": "Replace head gaskets with updated multi-layer steel (MLS) gaskets, resurface heads, and torque to spec. A long-term fix sometimes pursued in the enthusiast community is swapping to a later C-series engine (e.g., C35A from a 1996+ RL) which uses improved gasket technology.",
+      "howToFixHash": "6ad0830256a4bb5594181119089bc0e8a9b14d7216744cdcf4588a4d20a032b9",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~gasket~kit~a~061a1-ph7-t61.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 061A1-PH7-T61 gasket kit A",
+      "linkRole": "Wrong-generation gasket kit",
+      "correctedDecision": "replace",
+      "fitmentScope": "Product page fits 1987 Legend, not the 1991–1995 C32A1 issue range.",
+      "reason": "The gasket kit is the correct kind of product but has incompatible model-year fitment.",
+      "approvedDestinations": [
+        {
+          "label": "1991–1995 Acura Legend head-gasket set",
+          "url": "https://www.partsgeek.com/1f57b6b-acura-legend-head-gasket-set.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~gasket~kit~a~061a1-ph7-t61.html",
+        "https://www.partsgeek.com/1f57b6b-acura-legend-head-gasket-set.html"
+      ],
+      "contentCorrection": "The replacement set is a complete 1991–1995 fitment match, but its gasket construction should be verified if the editorial copy continues to require MLS specifically."
+    },
+    {
+      "index": 26,
+      "originalCell": "N20",
+      "issueId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi",
+      "ymmt": "1991–1995 Acura Legend",
+      "issueTitle": "C32A1 Head Gasket Failure at Rear Cylinders (#3 and #6) Due to Open-Deck Vibration",
+      "howToFix": "Replace head gaskets with updated multi-layer steel (MLS) gaskets, resurface heads, and torque to spec. A long-term fix sometimes pursued in the enthusiast community is swapping to a later C-series engine (e.g., C35A from a 1996+ RL) which uses improved gasket technology.",
+      "howToFixHash": "6ad0830256a4bb5594181119089bc0e8a9b14d7216744cdcf4588a4d20a032b9",
+      "suppliedUrl": "https://coyotedirect.com/products/mahle-original-acura-legend-95-91-cylinder-head-gasket-left?srsltid=AfmBOooeYvRZamkGjAVfw0pUHAlsQAMDJWC-LS8aLHFfnih6GxSqwbeQ",
+      "vendor": "coyotedirect.com",
+      "destinationProduct": "MAHLE Original left cylinder-head gasket for 1991–1995 Acura Legend",
+      "linkRole": "Repair component — left bank",
+      "correctedDecision": "keep",
+      "fitmentScope": "1991–1995 Legend; left bank only. Pair with the right gasket and supporting seals/fasteners.",
+      "reason": "The destination explicitly matches the issue vehicle and supplies one of the two head gaskets required by the repair.",
+      "approvedDestinations": [
+        {
+          "label": "MAHLE Original left cylinder-head gasket for 1991–1995 Acura Legend",
+          "url": "https://coyotedirect.com/products/mahle-original-acura-legend-95-91-cylinder-head-gasket-left?srsltid=AfmBOooeYvRZamkGjAVfw0pUHAlsQAMDJWC-LS8aLHFfnih6GxSqwbeQ"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://coyotedirect.com/products/mahle-original-acura-legend-95-91-cylinder-head-gasket-left"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 27,
+      "originalCell": "N20",
+      "issueId": "acura-legend-c32a1-head-gasket-failure-rear-cylinders-due-to-open-deck-vi",
+      "ymmt": "1991–1995 Acura Legend",
+      "issueTitle": "C32A1 Head Gasket Failure at Rear Cylinders (#3 and #6) Due to Open-Deck Vibration",
+      "howToFix": "Replace head gaskets with updated multi-layer steel (MLS) gaskets, resurface heads, and torque to spec. A long-term fix sometimes pursued in the enthusiast community is swapping to a later C-series engine (e.g., C35A from a 1996+ RL) which uses improved gasket technology.",
+      "howToFixHash": "6ad0830256a4bb5594181119089bc0e8a9b14d7216744cdcf4588a4d20a032b9",
+      "suppliedUrl": "https://coyotedirect.com/products/mahle-original-acura-legend-95-91-cylinder-head-gasket-right",
+      "vendor": "coyotedirect.com",
+      "destinationProduct": "MAHLE Original right cylinder-head gasket for 1991–1995 Acura Legend",
+      "linkRole": "Repair component — right bank",
+      "correctedDecision": "keep",
+      "fitmentScope": "1991–1995 Legend; right bank only. Pair with the left gasket and supporting seals/fasteners.",
+      "reason": "The destination explicitly matches the issue vehicle and supplies the companion head gasket required for the two-bank repair.",
+      "approvedDestinations": [
+        {
+          "label": "MAHLE Original right cylinder-head gasket for 1991–1995 Acura Legend",
+          "url": "https://coyotedirect.com/products/mahle-original-acura-legend-95-91-cylinder-head-gasket-right"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://coyotedirect.com/products/mahle-original-acura-legend-95-91-cylinder-head-gasket-right"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 28,
+      "originalCell": "N21",
+      "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+      "ymmt": "1991–1993 Acura Legend",
+      "issueTitle": "Fan Control Unit Cracked Solder Joints (Service News B98-05-00) Cause Cooling Fan and A/C Compressor to Operate Erratically or Not at All",
+      "howToFix": "Pull the fan control unit from under the passenger carpet and reflow the cracked solder joints (10+ joints typically affected) with a soldering iron, or replace the unit. DIY repair is well documented and effectively free.",
+      "howToFixHash": "481d0d755a5bca5c9fcb8b8aaae71bdbbae867b69236fe78cfe63235a72da7e3",
+      "suppliedUrl": "https://www.rockauto.com/en/catalog/acura,1991,legend,3.2l+v6,1000696,cooling+system,cooling+fan+control+module,12955",
+      "vendor": "rockauto.com",
+      "destinationProduct": "RockAuto 1991 Legend cooling-fan-control-module category",
+      "linkRole": "Catalog page without verified exact module",
+      "correctedDecision": "replace",
+      "fitmentScope": "The category surfaces relay-style alternatives; it does not establish the exact 37735-PY3-901 printed-circuit module.",
+      "reason": "For this solder-joint failure, the link should land on the specific fan control unit rather than a category whose displayed alternative is a different device.",
+      "approvedDestinations": [
+        {
+          "label": "Radiator-fan control unit 37735-PY3-901",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~control~unit~radiator~fan~37735-py3-901.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.rockauto.com/en/catalog/acura,1991,legend,3.2l+v6,1000696,cooling+system,cooling+fan+control+module,12955",
+        "https://www.acurapartswarehouse.com/oem/acura~control~unit~radiator~fan~37735-py3-901.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 29,
+      "originalCell": "N21",
+      "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+      "ymmt": "1991–1993 Acura Legend",
+      "issueTitle": "Fan Control Unit Cracked Solder Joints (Service News B98-05-00) Cause Cooling Fan and A/C Compressor to Operate Erratically or Not at All",
+      "howToFix": "Pull the fan control unit from under the passenger carpet and reflow the cracked solder joints (10+ joints typically affected) with a soldering iron, or replace the unit. DIY repair is well documented and effectively free.",
+      "howToFixHash": "481d0d755a5bca5c9fcb8b8aaae71bdbbae867b69236fe78cfe63235a72da7e3",
+      "suppliedUrl": "https://www.rockauto.com/en/moreinfo.php?pk=13048585&cc=1000696&pt=12955&jsn=8",
+      "vendor": "rockauto.com",
+      "destinationProduct": "WELLS 6H1514 relay-style cooling-fan control product",
+      "linkRole": "Wrong fan-control component",
+      "correctedDecision": "replace",
+      "fitmentScope": "Connector/blade relay-style product; not the Legend 37735-PY3-901 control unit with the known solder-joint failure.",
+      "reason": "The destination’s specifications describe a relay, while How to Fix concerns the dedicated printed-circuit fan control unit.",
+      "approvedDestinations": [
+        {
+          "label": "Radiator-fan control unit 37735-PY3-901",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~control~unit~radiator~fan~37735-py3-901.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.rockauto.com/en/moreinfo.php?pk=13048585&cc=1000696&pt=12955&jsn=8",
+        "https://www.acurapartswarehouse.com/oem/acura~control~unit~radiator~fan~37735-py3-901.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 30,
+      "originalCell": "N21",
+      "issueId": "acura-legend-fan-control-unit-cracked-solder-joints-cause-cooling-fan-c-c",
+      "ymmt": "1991–1993 Acura Legend",
+      "issueTitle": "Fan Control Unit Cracked Solder Joints (Service News B98-05-00) Cause Cooling Fan and A/C Compressor to Operate Erratically or Not at All",
+      "howToFix": "Pull the fan control unit from under the passenger carpet and reflow the cracked solder joints (10+ joints typically affected) with a soldering iron, or replace the unit. DIY repair is well documented and effectively free.",
+      "howToFixHash": "481d0d755a5bca5c9fcb8b8aaae71bdbbae867b69236fe78cfe63235a72da7e3",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~control~unit~radiator~fan~37735-py3-901.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 37735-PY3-901 radiator fan control unit",
+      "linkRole": "Repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "1991–1995 Acura Legend.",
+      "reason": "This is the exact fan control module associated with the issue and matches the full issue range.",
+      "approvedDestinations": [
+        {
+          "label": "Genuine Acura 37735-PY3-901 radiator fan control unit",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~control~unit~radiator~fan~37735-py3-901.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~control~unit~radiator~fan~37735-py3-901.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 31,
+      "originalCell": "N22",
+      "issueId": "acura-legend-pgm-fi-main-relay-solder-cracks-cause-hot-soak-no-start",
+      "ymmt": "1991–1995 Acura Legend",
+      "issueTitle": "PGM-FI Main Relay Solder Cracks Cause Hot-Soak No-Start",
+      "howToFix": "Pull the relay, open the case, reflow all solder joints with a fine-tip iron (free fix). Or replace with OEM Omron unit ($50-100). Aftermarket relays often fail again quickly.",
+      "howToFixHash": "15e9467cb2b7b9617d2dafc40b0a53c066640c1442b0cdea82fc902f999185be",
+      "suppliedUrl": "https://www.ebay.com/itm/298542241599?_skw=Acura+Legend&itmmeta=01M00Q8BHDPW95R67CJNACMP3K&hash=item458281173f%3Ag%3AW1cAAeSwrndqagV9&itmprp=enc%3AAQALAAAA8DKQclQvzFwZQpmMrsO4Luqw85JU16pOCHiECr4%2F0roa9gCFwgcrFYbBNbz%2BBKrx25MDk0Gdm5754%2FVJu2lBvpyGbFTvOkREQG87Uy0I44A75uC1RuS0z6a9BT07lccxGNiKEIRhAaaN9D2LqPnPg%2BbJv39ngq5yy%2Bvc%2Fg%2F4FuSUQDInB2W0ec0Ab8J6qTS6qNjlaxHb9MzOLFsfT%2B0vKIWXDv8R8kERyp%2FB067UABPWKzMVtYP%2Fa%2FRX0Fyoql9xb8pKhGJTU552%2BQo52noac51aAm%2FrCYjWe4AI1v6WB%2FfIA8VngRx4oo%2FBEtIngUF8jA%3D%3D%7Ctkp%3ABk9SR_S4oZeAaA&fits=ake%3AAcura%7Codel%3ALegend",
+      "vendor": "ebay.com",
+      "destinationProduct": "Rostra main relay for 1991–1995 Acura Legend 3.2L V6",
+      "linkRole": "Repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "Exact 1991–1995 Legend application.",
+      "reason": "The destination title matches the PGM-FI main relay repair and the entire issue year range.",
+      "approvedDestinations": [
+        {
+          "label": "Rostra main relay for 1991–1995 Acura Legend 3.2L V6",
+          "url": "https://www.ebay.com/itm/298542241599"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/298542241599"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 32,
+      "originalCell": "N22",
+      "issueId": "acura-legend-pgm-fi-main-relay-solder-cracks-cause-hot-soak-no-start",
+      "ymmt": "1991–1995 Acura Legend",
+      "issueTitle": "PGM-FI Main Relay Solder Cracks Cause Hot-Soak No-Start",
+      "howToFix": "Pull the relay, open the case, reflow all solder joints with a fine-tip iron (free fix). Or replace with OEM Omron unit ($50-100). Aftermarket relays often fail again quickly.",
+      "howToFixHash": "15e9467cb2b7b9617d2dafc40b0a53c066640c1442b0cdea82fc902f999185be",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~relay~assy~main~rz~0063~pgm~fi~mitsuba~39400-sh3-003.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 39400-SH3-003 PGM-FI main relay",
+      "linkRole": "Correct system, wrong Legend years",
+      "correctedDecision": "replace",
+      "fitmentScope": "Fits 1986–1990 Legend and 1990–1993 Integra; not 1991–1995 Legend.",
+      "reason": "The component type is correct, but the product-page fitment excludes the issue generation.",
+      "approvedDestinations": [
+        {
+          "label": "1991–1995 Acura Legend PGM-FI main relay",
+          "url": "https://www.ebay.com/itm/298542241599"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~relay~assy~main~rz~0063~pgm~fi~mitsuba~39400-sh3-003.html",
+        "https://www.ebay.com/itm/298542241599"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 33,
+      "originalCell": "N23",
+      "issueId": "acura-legend-power-steering-high-pressure-hose-crimp-leak-internal-hose-s",
+      "ymmt": "1991–1995 Acura Legend",
+      "issueTitle": "Power Steering High-Pressure Hose Crimp Leak and Internal Hose Sloughing",
+      "howToFix": "Replace the high-pressure hose with OEM Honda part and flush the entire PS system with fresh Honda PSF (NOT generic ATF or universal PSF — Honda systems specifically require Honda PSF). Replace return hose at the same time.",
+      "howToFixHash": "7b6d38e28a5bf2b3b7afd7f34bd13d0655e93e5c2ac18c1947cd82c1740fcbe2",
+      "suppliedUrl": "https://www.ebay.com/itm/186367531604?_skw=Acura+Legend&itmmeta=01M00QAPPQ25485J899G2JXM02&hash=item2b645eda54%3Ag%3AOTMAAOSwAhxjolho&itmprp=enc%3AAQALAAAA0DKQclQvzFwZQpmMrsO4LuqW0QZgzTPNlfRNhreTJWMSkzL%2F1P2lZOB0NzJY0iw%2FVH5ZfK1lGLhVIMdXiX3qOTAmUrKM13gsoEVhUGcblIlUxEqY9WyRrVFy7hOsOedTRQBJJnjEqdNDJwJ8vyZspz2qM%2F2ioi1RidLCsj1guVHSM%2FX%2FM2Pykj%2BUJl04xXfWl6iNpVUx0LHWREm9BV6L69rmhBfZVF1HCMR2iqI7ia1Z%2BE51SS%2B4cb7ocbiJCpQhvvqQeOiNEh58mzFHe5IaRpE%3D%7Ctkp%3ABk9SR8LrqpeAaA&fits=ake%3AAcura%7Codel%3ALegend",
+      "vendor": "ebay.com",
+      "destinationProduct": "Power-steering return-line hose assembly for 1991–1995 Acura Legend",
+      "linkRole": "Companion repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "1991–1995 Legend return hose. It does not replace the failed high-pressure hose.",
+      "reason": "How to Fix explicitly says to replace the return hose at the same time. Keep this link as a companion item and add a separate high-pressure-hose link.",
+      "approvedDestinations": [
+        {
+          "label": "Power-steering return-line hose assembly for 1991–1995 Acura Legend",
+          "url": "https://www.ebay.com/itm/186367531604"
+        }
+      ],
+      "supplementalDestinations": [
+        {
+          "label": "High-pressure feed hose reference 53713-SP0-A01",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~hose~feed~53713-sp0-a01.html",
+          "commerceApproved": true
+        }
+      ],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/186367531604",
+        "https://www.acurapartswarehouse.com/oem/acura~hose~feed~53713-sp0-a01.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 34,
+      "originalCell": "N24",
+      "issueId": "acura-legend-sunroof-drain-tube-clogs-cause-footwell-trunk-water-leaks",
+      "ymmt": "1991–1995 Acura Legend",
+      "issueTitle": "Sunroof Drain Tube Clogs Cause Footwell and Trunk Water Leaks",
+      "howToFix": "Open the sunroof and locate the four drain holes at the corners of the tray. Clear with compressed air or thin trimmer line, then flush with water. If tubes are split, headliner removal is required to replace them.",
+      "howToFixHash": "dc55885a42d6b508e000249e2235fe89cd9ddbbe6fa9245c56767a1d14f10fee",
+      "suppliedUrl": "https://www.amazon.com/dp/B0DSW7R4VN/ref=nosim?tag=spendyappus3-20",
+      "vendor": "amazon.com",
+      "destinationProduct": "WOLFBOX MegaFlow cordless compressed-air duster",
+      "linkRole": "Service tool explicitly named",
+      "correctedDecision": "keep",
+      "fitmentScope": "Universal drain-clearing tool; use controlled/low pressure.",
+      "reason": "How to Fix specifically calls for compressed air or trimmer line to clear sunroof drains. This is not an unrelated diagnostic link.",
+      "approvedDestinations": [
+        {
+          "label": "WOLFBOX MegaFlow cordless compressed-air duster",
+          "url": "https://www.amazon.com/dp/B0DSW7R4VN"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.amazon.com/dp/B0DSW7R4VN"
+      ],
+      "contentCorrection": "Add a caution to use controlled pressure so the drain tube is not blown off its fitting."
+    },
+    {
+      "index": 35,
+      "originalCell": "N25",
+      "issueId": "acura-legend-valve-cover-gasket-spark-plug-tube-seal-oil-leaks",
+      "ymmt": "1991–1995 Acura Legend",
+      "issueTitle": "Valve Cover Gasket and Spark Plug Tube Seal Oil Leaks (Especially Rear Bank)",
+      "howToFix": "Replace both valve cover gaskets, all six spark plug tube seals, and the half-moon seals at the same time. Use OEM Honda gaskets — aftermarket gaskets often leak again within 30k miles.",
+      "howToFixHash": "837cedf2c69580629d5fc96caa59ae98ec4dcb5cea061a6e00ffa5f02b3bcf4f",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~gasket~set~head~cover~12030-py3-000.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 12030-PY3-000 head/valve-cover gasket set",
+      "linkRole": "Repair component",
+      "correctedDecision": "keep",
+      "fitmentScope": "1992–1995 Legend; quantity two for both banks. 1991 needs a separate verified application.",
+      "reason": "The destination supplies the valve-cover gasket set named in How to Fix. Keep it with year and quantity limits and verify tube/half-moon seals are included or added separately.",
+      "approvedDestinations": [
+        {
+          "label": "Genuine Acura 12030-PY3-000 head/valve-cover gasket set",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~gasket~set~head~cover~12030-py3-000.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~gasket~set~head~cover~12030-py3-000.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 36,
+      "originalCell": "N28",
+      "issueId": "acura-mdx-power-steering-high-pressure-hose-cracking-rack-morning-sick",
+      "ymmt": "2001–2013 Acura MDX",
+      "issueTitle": "Power Steering High-Pressure Hose Cracking and Rack 'Morning Sickness' (2001-2013 MDX)",
+      "howToFix": "Replace high-pressure hose with OEM (~$150 part, ~3 hrs labor; subframe must be lowered). Use ONLY Honda PSF - no universal/ATF. For morning sickness, replace the steering rack with a reman unit; do not band-aid with stop-leak additives.",
+      "howToFixHash": "263ff0d10c260ec08e40c7e8a1074cb4bc387763c401579e9996c0f704faafae",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~tube~suction~53731-stx-a00.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 53731-STX-A00 power-steering suction tube",
+      "linkRole": "Wrong hose side",
+      "correctedDecision": "replace",
+      "fitmentScope": "Low-pressure suction tube; not the leaking high-pressure feed hose.",
+      "reason": "The destination is a suction-side component while How to Fix specifically requires the high-pressure hose assembly.",
+      "approvedDestinations": [
+        {
+          "label": "2001–2002 OEM feed hose reference",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~hose~power~steering~feed~53713-s3v-a01.html"
+        },
+        {
+          "label": "2007–2009 OEM feed hose",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~hose~power~steering~feed~lh~53713-stx-a01.html"
+        },
+        {
+          "label": "2007–2013 aftermarket pressure line",
+          "url": "https://www.walmart.com/ip/340514101"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~tube~suction~53731-stx-a00.html"
+      ],
+      "contentCorrection": "Split this issue by MDX generation. One hose link cannot cover 2001–2013; 2003–2006 still needs its own verified high-pressure line."
+    },
+    {
+      "index": 37,
+      "originalCell": "N29",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "ymmt": "2001–2006 Acura MDX — Base, Touring",
+      "issueTitle": "Timing Belt Tensioner and Water Pump Failure",
+      "howToFix": "Replace the timing belt, tensioner, water pump, and all idler pulleys as a complete kit at 105,000 miles or 7 years, whichever comes first. Use a genuine Honda/Acura timing belt kit. Never reuse the old tensioner even if it appears functional. This is a critical interference engine — a broken belt destroys the valves.",
+      "howToFixHash": "ddeb4106444e486decf803495d23566d5616aa54b81922c872427995756bddd2",
+      "suppliedUrl": "https://www.partsgeek.com/mygskkp-acura-mdx-timing-belt-kit-and-water-pump.html?srsltid=AfmBOoqu_Iwn9dlmFogote0TyUj-5lIe_in76Us8DldsgqVgMn5mIzrS",
+      "vendor": "partsgeek.com",
+      "destinationProduct": "Autopart Premium APTBK037 timing-belt/water-pump kit",
+      "linkRole": "Repair kit with incomplete range/brand conflict",
+      "correctedDecision": "replace",
+      "fitmentScope": "Fits 2003–2013, so it covers only the 2003–2006 subset of this issue. It is not genuine Honda/Acura as the copy currently requires.",
+      "reason": "The kit has the right component set, but the supplied page misses 2001–2002 and conflicts with the repair’s explicit brand requirement. Replace with year-scoped AISIN OE-component kits.",
+      "approvedDestinations": [
+        {
+          "label": "2001–2002 AISIN TKH-001",
+          "url": "https://www.partsgeek.com/mp51pvg-acura-mdx-timing-belt-kit.html"
+        },
+        {
+          "label": "2003–2006 AISIN TKH-002",
+          "url": "https://www.partsgeek.com/53mg86p-acura-mdx-timing-belt-kit.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.partsgeek.com/mygskkp-acura-mdx-timing-belt-kit-and-water-pump.html",
+        "https://www.partsgeek.com/mp51pvg-acura-mdx-timing-belt-kit.html",
+        "https://www.partsgeek.com/53mg86p-acura-mdx-timing-belt-kit.html"
+      ],
+      "contentCorrection": "If “genuine Honda/Acura only” is intended literally, use dealer-branded components; AISIN is OE-component/OE-equivalent, not Acura-branded."
+    },
+    {
+      "index": 38,
+      "originalCell": "N29",
+      "issueId": "acura-mdx-timing-belt-tensioner-2001",
+      "ymmt": "2001–2006 Acura MDX — Base, Touring",
+      "issueTitle": "Timing Belt Tensioner and Water Pump Failure",
+      "howToFix": "Replace the timing belt, tensioner, water pump, and all idler pulleys as a complete kit at 105,000 miles or 7 years, whichever comes first. Use a genuine Honda/Acura timing belt kit. Never reuse the old tensioner even if it appears functional. This is a critical interference engine — a broken belt destroys the valves.",
+      "howToFixHash": "ddeb4106444e486decf803495d23566d5616aa54b81922c872427995756bddd2",
+      "suppliedUrl": "https://www.ebay.com/itm/287522435018?fits=Model%3AMDX%7CMake%3AAcura&_skw=2001%E2%80%932006+Acura+MDX+%E2%80%94+Base%2C+Touring+Timing+Belt+Tensioner+and+Water+Pump+us&itmmeta=01M00QR0VMVRQ5WP2H0PXRD988&hash=item42f1ac2fca:g:kRAAAeSwtBlqfahO&itmprp=enc%3AAQALAAABEGfYFPkwiKCW4ZNSs2u11xA4nvXF6WDLN%2BduKPzTrtH52pANXTmqAZe3dkRm9SyGTjt1pCf4E7bgJ%2Fl19hN7zamql0DHx%2FR5ad2tGJM%2ByNM0Ndvw%2FDUHKiYSx6CV7gQZj2CivIBXxlfuUO8NWhVO7vZTK%2FWCNxMD63iN00cKGbGgI099hs1Dv4Lcp%2F4nNLBbJwiovdh7TjdEeyB%2B0hVzRSwixg3WaeYLWQJpVUTbNbjq%2BXJa%2F4fkNkldbsg1GBnFhXBnVDLxZEmhoeT5%2BDFFesb%2FeBnCFy0XVTF30q32UJP2t%2B61g0tojyLbPAo96zOINjp%2FcZZW6FvX5ecRRp0SWTYxlS%2Fu2yfiR80Z%2BMoRvSho%7Ctkp%3ABlBMUISO4JeAaA",
+      "vendor": "ebay.com",
+      "destinationProduct": "Generic TCKWP329 timing-belt and water-pump kit",
+      "linkRole": "Repair kit with brand conflict",
+      "correctedDecision": "replace",
+      "fitmentScope": "Title claims MDX fitment but does not establish genuine Honda/Acura or AISIN components; year-specific application must be split.",
+      "reason": "The repair explicitly prioritizes genuine/OE-quality components on an interference engine. Replace the generic kit with verified AISIN kits for 2001–2002 and 2003–2006.",
+      "approvedDestinations": [
+        {
+          "label": "2001–2002 AISIN TKH-001",
+          "url": "https://www.partsgeek.com/mp51pvg-acura-mdx-timing-belt-kit.html"
+        },
+        {
+          "label": "2003–2006 AISIN TKH-002",
+          "url": "https://www.partsgeek.com/53mg86p-acura-mdx-timing-belt-kit.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/287522435018",
+        "https://www.partsgeek.com/53mg86p-acura-mdx-timing-belt-kit.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 39,
+      "originalCell": "N30",
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "ymmt": "2010–2013 Acura MDX",
+      "issueTitle": "VCM-Related Oil Consumption, Spark Plug Fouling and Motor Mount Failure (J37 VCM Engine)",
+      "howToFix": "Replace failed hydraulic motor mounts (front + rear) and any oil-fouled plugs. Many owners install a VCM Tuner / S-VCM Controller to lock the engine in 6-cylinder mode and prevent recurrence. Monitor oil level monthly.",
+      "howToFixHash": "f743a216239dafd8326f76ec267af20b005eba7524cc0016a77ff7554505dbe4",
+      "suppliedUrl": "https://www.ebay.com/itm/365317124289?_skw=2013+Acura+MDX&itmmeta=01M00QWDKBH9BJRFMFP1ZJD6XB&hash=item550e98f0c1%3Ag%3AzuIAAeSw2MxqXGp%7E&itmprp=enc%3AAQALAAAA8DKQclQvzFwZQpmMrsO4LurHECBkiwV3Hzqxd7ufVFOqsc%2FGk3%2BlaO%2FJBQXSHg9hEObn%2BlbqiNK4j9tm%2FRLx%2Bp0IthxrpBP5qZkpc1UV1AA8Uk%2B9DpFa1ELxaeAb84GWI4vUiceXlptNSXtnu2VXNuJarwE%2FzmbwYpcnqb0ankDOGD5v6AdXo07mE2dU68PrwKEdsebgK9OSwMhVA2SaF7gx74UA5zY5Jq7wKaUv831KCxaKjHrC7oL%2BFgcpwuggxyLG3gGVyiZH3DL4QR9c%2F35MfoZKLrLIvOTt6UBBrA%2BlFM9z9xLgMGc273H9C0E7jA%3D%3D%7Ctkp%3ABk9SR-zZ8ZeAaA&fits=Year%3A2013%7CMake%3AAcura%7CModel%3AMDX",
+      "vendor": "ebay.com",
+      "destinationProduct": "Four-piece engine and transmission mount set for 2007–2013 Acura MDX 3.7L",
+      "linkRole": "Repair parts",
+      "correctedDecision": "keep",
+      "fitmentScope": "Includes hydraulic front and rear engine mounts plus companion mounts; valid for the issue’s 2010–2013 subset. Automatic transmission only.",
+      "reason": "How to Fix explicitly calls for failed hydraulic front and rear mounts. The listing identifies both positions and covers 2010–2013.",
+      "approvedDestinations": [
+        {
+          "label": "Four-piece engine and transmission mount set for 2007–2013 Acura MDX 3.7L",
+          "url": "https://www.ebay.com/itm/365317124289"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/365317124289"
+      ],
+      "contentCorrection": "The mount failure/oil-consumption topic can remain, but remove the VCM claim; the 2010–2013 J37 MDX is not a VCM application."
+    },
+    {
+      "index": 40,
+      "originalCell": "N30",
+      "issueId": "acura-mdx-vcm-related-oil-consumption-spark-plug-fouling-motor-mount-f",
+      "ymmt": "2010–2013 Acura MDX",
+      "issueTitle": "VCM-Related Oil Consumption, Spark Plug Fouling and Motor Mount Failure (J37 VCM Engine)",
+      "howToFix": "Replace failed hydraulic motor mounts (front + rear) and any oil-fouled plugs. Many owners install a VCM Tuner / S-VCM Controller to lock the engine in 6-cylinder mode and prevent recurrence. Monitor oil level monthly.",
+      "howToFixHash": "f743a216239dafd8326f76ec267af20b005eba7524cc0016a77ff7554505dbe4",
+      "suppliedUrl": "https://www.vcmtuner.com/products/vcmtuner-ii-honda-3-5l-i-vtec-disable-vcm-eco-mode?variant=7016471593017",
+      "vendor": "vcmtuner.com",
+      "destinationProduct": "VCMTUNER II controller for supported 3.5L VCM vehicles",
+      "linkRole": "Incompatible device / issue-content conflict",
+      "correctedDecision": "hold",
+      "fitmentScope": "The product fitment lists MDX 2014+ 3.5L, not 2010–2013 3.7L.",
+      "reason": "The destination does not support the issue vehicle. More importantly, the 2010–2013 MDX J37 is not a VCM application, so a VCM-disabler link should not be published here.",
+      "approvedDestinations": [],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.vcmtuner.com/products/vcmtuner-ii-honda-3-5l-i-vtec-disable-vcm-eco-mode",
+        "https://svcmcontroller.com/"
+      ],
+      "contentCorrection": "Rewrite this issue: remove “VCM-related,” remove the tuner recommendation, and treat J37 oil consumption/piston-ring fouling and active motor mounts as separate repair paths."
+    },
+    {
+      "index": 41,
+      "originalCell": "N38",
+      "issueId": "acura-rl-c35a-distributor-shaft-seal-oil-leak",
+      "ymmt": "1996–2004 Acura RL — Base",
+      "issueTitle": "Distributor shaft seal leaks oil into cap, causes misfires (P0300-P0304) on 3.5L C35A",
+      "howToFix": "There is no replaceable seal inside the distributor — the seal is between the rotating shaft and the bearing inside the cast housing. The only fix is replacing the whole distributor assembly. OEM Honda runs $400-700; Cardone remanufactured runs $150-250. While the distributor is out, also replace the distributor cap, rotor, and ignition wires — they're cheap and you're already at the parts. Inspect the cap and rotor on the old unit for oil contamination to confirm distributor was the source. If you also see leaks elsewhere (figure-8 cooler seal, oil filter housing), address those at the same time — they share access path. Total job: 2-3 hours independent shop.",
+      "howToFixHash": "4a8b90e9ac0e9d9aeb50d02cae35f35de752d3c50251cbeda87729095226d350",
+      "suppliedUrl": "https://www.acurapartswarehouse.com/oem/acura~shaft~assy~balance~13400-p5a-000.html",
+      "vendor": "acurapartswarehouse.com",
+      "destinationProduct": "Genuine Acura 13400-P5A-000 balance-shaft assembly",
+      "linkRole": "Wrong engine component",
+      "correctedDecision": "hold",
+      "fitmentScope": "Fits 1996–2004 RL but is a balance shaft, not a distributor.",
+      "reason": "Vehicle fitment alone is not enough. How to Fix requires the complete distributor assembly; the supplied link is unrelated to the ignition repair.",
+      "approvedDestinations": [],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~shaft~assy~front~balance~13400-p5a-000.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 42,
+      "originalCell": "N39",
+      "issueId": "acura-rl-shawd-system-noise-2005",
+      "ymmt": "2005–2012 Acura RL — Base, Technology, Advance",
+      "issueTitle": "SH-AWD Torque Transfer Unit / Rear Differential Clutch Noise",
+      "howToFix": "Drain and refill the rear differential with Honda Dual Pump II fluid — do NOT use conventional gear oil. If noise persists after fluid change, the rear differential unit needs rebuilding with new clutch packs. Replace the electromagnetic actuators if they are not engaging properly. Regular fluid changes every 30,000 miles prevent premature clutch pack wear.",
+      "howToFixHash": "2f02ea3838b6b1ab7e47e2dce5e7e01cc6030baabfbd538b20422c3d1665556a",
+      "suppliedUrl": "https://www.ebay.com/p/1117868069",
+      "vendor": "ebay.com",
+      "destinationProduct": "eBay product page for Honda Dual Pump Fluid II 08200-9007 (now missing)",
+      "linkRole": "Correct fluid identity, dead destination",
+      "correctedDecision": "replace",
+      "fitmentScope": "The product identity is correct for the rear differential, but the supplied URL currently returns a missing-page error.",
+      "reason": "How to Fix explicitly requires Honda Dual Pump II. Preserve the revenue opportunity by replacing the dead URL with a current exact product listing.",
+      "approvedDestinations": [
+        {
+          "label": "Honda Dual Pump Fluid II 08200-9007",
+          "url": "https://www.ebay.com/itm/236103804518"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/236103804518",
+        "https://www.acurapartswarehouse.com/oem/acura~fluid~dpf~ii~08200-9007.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 43,
+      "originalCell": "N40",
+      "issueId": "acura-rl-c35a-timing-belt-tensioner-interference",
+      "ymmt": "1996–1999 Acura RL — Base",
+      "issueTitle": "Timing belt + hydraulic tensioner replacement at 90k mi / 72 months — interference engine",
+      "howToFix": "Replace the timing belt + hydraulic tensioner + water pump + all front seals + idler pulley as a complete kit. Aisin sells a TKH-022 complete kit covering all of these for ~$200-300 — vs $1,200-1,800 in labor at an independent shop. Insist on the OEM Honda OR Aisin tensioner specifically — cheap aftermarket tensioners are the #1 cause of premature post-replacement failures on this engine. Total at indie shop: $1,400-2,000. Dealer: $2,000-2,800. Never use a generic 'timing belt only' service — replacing the belt without the water pump or tensioner is a guarantee of a second teardown within 30,000 miles.",
+      "howToFixHash": "6650e986de6d03c8ad192485b2fda194aee46c8bb4518bb680ac1d33ddd95ffa",
+      "suppliedUrl": "https://www.ebay.com/itm/177132735698",
+      "vendor": "ebay.com",
+      "destinationProduct": "Timing-belt and water-pump kit for 1996–2004 Acura RL (out of stock; component brand not established)",
+      "linkRole": "Repair kit, unavailable / unverified tensioner",
+      "correctedDecision": "replace",
+      "fitmentScope": "Vehicle range matches, but the listing is out of stock and does not verify the Honda/AISIN tensioner demanded by the repair.",
+      "reason": "Replace the unavailable, unverified kit with an in-stock complete kit whose page lists belt, tensioner, idler, hydraulic damper, water pump, and front seals.",
+      "approvedDestinations": [
+        {
+          "label": "1996–2004 Acura RL timing-belt and water-pump kit",
+          "url": "https://www.partsgeek.com/zlc9khm-acura-rl-timing-belt-kit-and-water-pump.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/177132735698",
+        "https://www.partsgeek.com/zlc9khm-acura-rl-timing-belt-kit-and-water-pump.html"
+      ],
+      "contentCorrection": "Remove “AISIN TKH-022”; no verified AISIN TKH-022 application was found for the C35A RL. Describe the required components and approved brands without that unsupported part number."
+    },
+    {
+      "index": 44,
+      "originalCell": "N42",
+      "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "ymmt": "2002–2006 Acura RSX — Base, Type-S",
+      "issueTitle": "AC Compressor Clutch Bearing Failure",
+      "howToFix": "Replace the AC compressor clutch assembly or the full compressor. Replace the serpentine belt and tensioner if damaged. Evacuate and recharge the system. Use a Denso or OEM replacement compressor for best longevity.",
+      "howToFixHash": "aee26c17844783e7b7294dcc861efc6c02ae927d94a65bd03ac30061e93367cd",
+      "suppliedUrl": "https://www.ebay.com/itm/134915227285?_skw=Acura+RSX&itmmeta=01M02BJF98WFYC8FWVFD17NAJ5&hash=item1f6992fe95%3Ag%3AH7cAAOSwenplur0k&itmprp=enc%3AAQALAAAA8DKQclQvzFwZQpmMrsO4LuoIUE1nzVEwt7bwhCmu6g4oDOjok42nJ7ozPMVFpuFBgswP%2BDBeEMJWjsS%2BNdjuFPguXKXJT9NNhbwWLVrlr0IqSyaSRjNeSrCvCwJf8jRJORW%2BFH8881JkSFecC8%2BCqe0ESHhY78GIzLLXaS%2FfpoIopd%2FL7noyyakr0SwskCGiDpaCbkBltjswdvmT3%2F5VvpqEEVKyKEAGcMZKuMR3Xj1RMxqJFwapNkPleyoxDYqLuie%2FsjsAIJ7JRcWMW8GL8lHgyoAABO9aWJYNXcOAOE%2FZ8B9KRItlOLxTRYNSNTSpow%3D%3D%7Ctkp%3ABk9SR7L1ycuAaA&fits=ake%3AAcura%7Codel%3ARSX",
+      "vendor": "ebay.com",
+      "destinationProduct": "RYC AI54N new A/C compressor kit for Acura RSX 2.0L",
+      "linkRole": "Repair kit",
+      "correctedDecision": "keep",
+      "fitmentScope": "Compatibility table covers 2002–2006 Base and Type-S despite the shorter title. Aftermarket RYC, not Denso/OEM.",
+      "reason": "The destination supplies the full compressor called for by How to Fix and covers the issue range. Keep it as a budget aftermarket option while presenting Denso/OEM as the preferred longevity tier.",
+      "approvedDestinations": [
+        {
+          "label": "RYC AI54N new A/C compressor kit for Acura RSX 2.0L",
+          "url": "https://www.ebay.com/itm/134915227285"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/134915227285"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 45,
+      "originalCell": "N42",
+      "issueId": "acura-rsx-ac-compressor-clutch-2002",
+      "ymmt": "2002–2006 Acura RSX — Base, Type-S",
+      "issueTitle": "AC Compressor Clutch Bearing Failure",
+      "howToFix": "Replace the AC compressor clutch assembly or the full compressor. Replace the serpentine belt and tensioner if damaged. Evacuate and recharge the system. Use a Denso or OEM replacement compressor for best longevity.",
+      "howToFixHash": "aee26c17844783e7b7294dcc861efc6c02ae927d94a65bd03ac30061e93367cd",
+      "suppliedUrl": "https://www.rockauto.com/en/moreinfo.php?pk=10685380&cc=1432639&pt=17507&jsn=11",
+      "vendor": "rockauto.com",
+      "destinationProduct": "GPD 9642544A A/C compressor-and-condenser component kit",
+      "linkRole": "Repair kit",
+      "correctedDecision": "keep",
+      "fitmentScope": "2002–2006 Acura RSX 2.0L; includes new compressor, condenser, receiver/drier, expansion valve, and seals.",
+      "reason": "This kit directly performs the prescribed compressor replacement and includes supporting A/C components useful for a contaminated or seized system.",
+      "approvedDestinations": [
+        {
+          "label": "GPD 9642544A A/C compressor-and-condenser component kit",
+          "url": "https://www.rockauto.com/en/moreinfo.php?pk=10685380&cc=1432639&pt=17507&jsn=11"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.rockauto.com/en/moreinfo.php?pk=10685380&cc=1432639&pt=17507&jsn=11",
+        "https://www.partsgeek.com/rt7twz6-acura-rsx-ac-compressor-and-condenser-kit.html"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 46,
+      "originalCell": "N43",
+      "issueId": "acura-slx-rear-differential-transfer-case-trooper-inheritance",
+      "ymmt": "1996–1999 Acura SLX — Base, Premium",
+      "issueTitle": "Rear differential whine + transfer case (BW4422) failures inherited from Isuzu Trooper platform",
+      "howToFix": "REAR DIFF: If whine is noticed early, change the gear oil to fresh 80W-90 GL-5 and run a friction modifier. This will not stop existing wear but can slow it. Once whine is pronounced, the only durable fix is a remanufactured rear axle assembly ($800-1,400) or a rebuild of the existing ring and pinion ($1,200-2,000 at a specialist). TRANSFER CASE: Verify the manufacturer-spec fluid is being used — DO NOT default to motor oil or ATF without confirming. Check fluid level every oil change. If the case is whining or has external leaks, source the correct Borg-Warner rebuild kit by part number from your vehicle's exact model year + transmission combination — multiple BW transfer case variants were used across SLX/Trooper years and the parts are NOT interchangeable.",
+      "howToFixHash": "d32d78ca5b9080d95935e2f21cc60c60242867162fcc77604c8ea1eae35332bf",
+      "suppliedUrl": "https://www.autozone.com/p/lucas-oil-products-gear-oil-10043/693858?productPartGroupId=azpg7838&productBrandId=DGGX&productUniqueId=429404745",
+      "vendor": "autozone.com",
+      "destinationProduct": "Lucas 10043 synthetic-blend 80W-90 API GL-5 gear oil",
+      "linkRole": "Rear-differential repair fluid",
+      "correctedDecision": "keep",
+      "fitmentScope": "Rear differential only. Product is GL-5 and formulated for limited-slip differentials; do not present it as transfer-case fluid.",
+      "reason": "How to Fix explicitly calls for fresh 80W-90 GL-5 plus friction modifier for the rear differential. The product page meets that fluid role and notes limited-slip use.",
+      "approvedDestinations": [
+        {
+          "label": "Lucas 10043 synthetic-blend 80W-90 API GL-5 gear oil",
+          "url": "https://www.autozone.com/p/lucas-oil-products-gear-oil-10043/693858?productPartGroupId=azpg7838&productBrandId=DGGX&productUniqueId=429404745"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.autozone.com/p/lucas-oil-products-gear-oil-10043/693858"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 47,
+      "originalCell": "N43",
+      "issueId": "acura-slx-rear-differential-transfer-case-trooper-inheritance",
+      "ymmt": "1996–1999 Acura SLX — Base, Premium",
+      "issueTitle": "Rear differential whine + transfer case (BW4422) failures inherited from Isuzu Trooper platform",
+      "howToFix": "REAR DIFF: If whine is noticed early, change the gear oil to fresh 80W-90 GL-5 and run a friction modifier. This will not stop existing wear but can slow it. Once whine is pronounced, the only durable fix is a remanufactured rear axle assembly ($800-1,400) or a rebuild of the existing ring and pinion ($1,200-2,000 at a specialist). TRANSFER CASE: Verify the manufacturer-spec fluid is being used — DO NOT default to motor oil or ATF without confirming. Check fluid level every oil change. If the case is whining or has external leaks, source the correct Borg-Warner rebuild kit by part number from your vehicle's exact model year + transmission combination — multiple BW transfer case variants were used across SLX/Trooper years and the parts are NOT interchangeable.",
+      "howToFixHash": "d32d78ca5b9080d95935e2f21cc60c60242867162fcc77604c8ea1eae35332bf",
+      "suppliedUrl": "https://shop.advanceautoparts.com/p/valvoline-high-performance-transmission-differential-gear-oil-conventional-80w-90-1-quart-vv831/7070003-P",
+      "vendor": "shop.advanceautoparts.com",
+      "destinationProduct": "Valvoline High Performance conventional 80W-90 gear oil",
+      "linkRole": "Rear-differential repair fluid",
+      "correctedDecision": "keep",
+      "fitmentScope": "Rear differential only; confirm GL-5 on the live label and add friction modifier if not already included. Not approved for the transfer case.",
+      "reason": "The product is the 80W-90 gear oil named for the rear-differential service. The repair text itself requires separate transfer-case specification verification.",
+      "approvedDestinations": [
+        {
+          "label": "Valvoline High Performance conventional 80W-90 gear oil",
+          "url": "https://shop.advanceautoparts.com/p/valvoline-high-performance-transmission-differential-gear-oil-conventional-80w-90-1-quart-vv831/7070003-P"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://shop.advanceautoparts.com/p/valvoline-high-performance-transmission-differential-gear-oil-conventional-80w-90-1-quart-vv831/7070003-P"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 48,
+      "originalCell": "N45",
+      "issueId": "acura-tl-auto-trans-3rd-gear-2004",
+      "ymmt": "2004–2008 Acura TL — Base, Type-S",
+      "issueTitle": "Automatic Transmission 3rd Gear Failure",
+      "howToFix": "Rebuild or replace the transmission with upgraded 3rd gear clutch pack and updated valve body. Use only Honda DW-1 ATF. Install an aftermarket transmission cooler to reduce operating temperatures. Change ATF every 30,000 miles to extend the life of the rebuilt unit.",
+      "howToFixHash": "af409bb6dd67f68e29f1c66b747b9d9d3fb6fcc05780270c5182e09185bf0363",
+      "suppliedUrl": "https://www.partsgeek.com/5cvlft1-acura-tl-clutch-kit.html?srsltid=AfmBOorf7kqPFlHEHeFatVdIYh-dv4WfU6rWoVE74xvwvDJH6OldlV10",
+      "vendor": "partsgeek.com",
+      "destinationProduct": "LUK 08-047 manual-transmission clutch kit",
+      "linkRole": "Wrong transmission component",
+      "correctedDecision": "replace",
+      "fitmentScope": "Manual clutch kit; the issue is an automatic-transmission 3rd-gear failure.",
+      "reason": "The product page identifies a manual clutch, pressure plate, and release bearing. It cannot repair the automatic clutch pack/valve-body failure.",
+      "approvedDestinations": [
+        {
+          "label": "Genuine Honda DW-1 service fluid",
+          "url": "https://www.ebay.com/itm/323616838086"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.partsgeek.com/5cvlft1-acura-tl-clutch-kit.html",
+        "https://www.ebay.com/itm/323616838086"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 49,
+      "originalCell": "N46",
+      "issueId": "acura-tl-brake-pedal-vibration-and-2009",
+      "ymmt": "2009–2014 Acura TL",
+      "issueTitle": "Brake Pedal Vibration and Premature Front Brake Rotor Warping",
+      "howToFix": "Inspect rotor thickness variation, pad condition, caliper slide movement, and wheel torque. Replace or machine rotors if within spec, install quality pads, and service caliper hardware to prevent uneven pad contact. Proper wheel lug torque and a careful pad bedding procedure help reduce recurrence.",
+      "howToFixHash": "074785e56be011ac9f87c53adbd33516cdd04c27548d9c44feedb4bde4ba991b",
+      "suppliedUrl": "https://www.ebay.com/itm/356262718039?_skw=Acura+TL&itmmeta=01M02JDVJ3C3NCJG0V7HCETSB8&hash=item52f2e9aa57%3Ag%3AzOcAAeSwNlxqSYsF&itmprp=enc%3AAQALAAAA4DKQclQvzFwZQpmMrsO4LuopDQWYOVMveYpPUWtH%2F0mLXtiyMm7MjJgKSXDeb3Jq6c8AYZ3ryCr92UGQfyG6sex0v1mDJSrBWqRr6zatDFl%2BV%2BJFTf%2BrTqt4ZUTAzhneTyO8eTBkron%2BHYAG57%2FJ%2BPRLvxPv4431FuT26JMCSeOSweyeZeUThUglfTNrpJYrhb6i7f0SxDzOyNEKLs%2Fvn85g4M654fi3g5AswwtTQ5%2Bop3QIxOTgoPG8ECoawfC7lAI0GtvLGrQMUsBhxNhZtt201Y0h%2FiFQEnZ3AGBOttqM%7Ctkp%3ABFBMnLm30oBo&fits=ake%3AAcura%7Codel%3ATL",
+      "vendor": "ebay.com",
+      "destinationProduct": "Front and rear brake rotors and pads kit for 2009–2014 Acura TL",
+      "linkRole": "Repair parts",
+      "correctedDecision": "keep",
+      "fitmentScope": "2009–2014 TL; full-car kit includes the front axle targeted by the issue. Confirm engine/drivetrain option in compatibility table.",
+      "reason": "The destination supplies the rotors and quality pads called for by How to Fix. A full front-and-rear package remains valid even though the symptom is front rotor warping.",
+      "approvedDestinations": [
+        {
+          "label": "Front and rear brake rotors and pads kit for 2009–2014 Acura TL",
+          "url": "https://www.ebay.com/itm/356262718039"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/356262718039"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 50,
+      "originalCell": "N46",
+      "issueId": "acura-tl-brake-pedal-vibration-and-2009",
+      "ymmt": "2009–2014 Acura TL",
+      "issueTitle": "Brake Pedal Vibration and Premature Front Brake Rotor Warping",
+      "howToFix": "Inspect rotor thickness variation, pad condition, caliper slide movement, and wheel torque. Replace or machine rotors if within spec, install quality pads, and service caliper hardware to prevent uneven pad contact. Proper wheel lug torque and a careful pad bedding procedure help reduce recurrence.",
+      "howToFixHash": "074785e56be011ac9f87c53adbd33516cdd04c27548d9c44feedb4bde4ba991b",
+      "suppliedUrl": "https://www.walmart.com/ip/Front-and-Rear-Brake-Pad-and-Rotor-Kit-Compatible-with-2009-2014-Acura-TL-2010-2011-2012-2013/1767785388?classType=REGULAR",
+      "vendor": "walmart.com",
+      "destinationProduct": "Detroit Axle front and rear brake-pad and rotor kit",
+      "linkRole": "Repair parts",
+      "correctedDecision": "keep",
+      "fitmentScope": "2009–2014 Acura TL; full-car kit includes the required front rotors/pads.",
+      "reason": "The product title and live page match the issue vehicle and contain the prescribed replacement parts.",
+      "approvedDestinations": [
+        {
+          "label": "Detroit Axle front and rear brake-pad and rotor kit",
+          "url": "https://www.walmart.com/ip/Front-and-Rear-Brake-Pad-and-Rotor-Kit-Compatible-with-2009-2014-Acura-TL-2010-2011-2012-2013/1767785388?classType=REGULAR"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.walmart.com/ip/1767785388"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 51,
+      "originalCell": "N47",
+      "issueId": "acura-tl-dashboard-crack-2004",
+      "ymmt": "2004–2008 Acura TL — Base, Type-S",
+      "issueTitle": "Dashboard Surface Cracking and Melting",
+      "howToFix": "Replace the dashboard assembly with a new unit — Acura extended a warranty program covering dashboard replacement at no cost for affected VINs. Contact your Acura dealer to check eligibility. Aftermarket dashboard covers can mitigate the cosmetic issue but do not fix the underlying material degradation. Use a windshield sunshade to slow progression.",
+      "howToFixHash": "2b7acb73b8bb96d244c759dec3f318f747af5bcafe4e9689c40228ff58b29c2b",
+      "suppliedUrl": "https://dashskin.com/products/04-08-acura-tl-dash-cover?srsltid=AfmBOoq5Bb7wNUy5zq9XDWbFmqVp6p5OOAPq1yofRaFnjzWM9lojL8Uj",
+      "vendor": "dashskin.com",
+      "destinationProduct": "DashSkin molded dash cover for 2004–2008 Acura TL",
+      "linkRole": "Cosmetic mitigation",
+      "correctedDecision": "keep",
+      "fitmentScope": "2004–2008 TL. This covers the cracked dash; it does not replace the degraded dashboard assembly.",
+      "reason": "How to Fix explicitly says aftermarket covers can mitigate the cosmetic issue. Keep the link with a clear mitigation—not repair—label and dealer eligibility reminder.",
+      "approvedDestinations": [
+        {
+          "label": "DashSkin molded dash cover for 2004–2008 Acura TL",
+          "url": "https://dashskin.com/products/04-08-acura-tl-dash-cover?srsltid=AfmBOoq5Bb7wNUy5zq9XDWbFmqVp6p5OOAPq1yofRaFnjzWM9lojL8Uj"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://dashskin.com/products/04-08-acura-tl-dash-cover"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 52,
+      "originalCell": "N47",
+      "issueId": "acura-tl-dashboard-crack-2004",
+      "ymmt": "2004–2008 Acura TL — Base, Type-S",
+      "issueTitle": "Dashboard Surface Cracking and Melting",
+      "howToFix": "Replace the dashboard assembly with a new unit — Acura extended a warranty program covering dashboard replacement at no cost for affected VINs. Contact your Acura dealer to check eligibility. Aftermarket dashboard covers can mitigate the cosmetic issue but do not fix the underlying material degradation. Use a windshield sunshade to slow progression.",
+      "howToFixHash": "2b7acb73b8bb96d244c759dec3f318f747af5bcafe4e9689c40228ff58b29c2b",
+      "suppliedUrl": "https://www.ebay.com/itm/324617799263?fits=Year%3A2006%7CModel%3ATL%7CMake%3AAcura&_skw=2006+acura+tl+dashboard&itmmeta=01M02JGKDWCYMEJR6BY8KSEQGR&hash=item4b94ba865f:g:dGEAAOSwf-VWXytE&itmprp=enc%3AAQALAAAA0LB2JXbe%2Bh2pdWBqbR2c2DvUWcqfp7waxco5mNLPHnGL3Mqq%2BbNdiIxkQPO597NAmYAQXiJub8ggWySKh%2B%2FvcfdJO2TjQEZ4YGKepQ0b7r7Gd0KgCKK35aXMNbFxYo0pUiK2Sz4qlT%2FXhK7idUl3Fb7vNAfHcH7NqEV4f6azb8GKbBfnJACOnTdudOL%2FKt0mwXYIeNhn3BziCO6NsOb0%2FzMLmP9y9Guy5p0dmE4XN7fv7Ehpny0OsXi1%2FFqy21WZDHbZEDyA6NrYG1sXgWvFF74%3D%7Ctkp%3ABlBMUIa3wtKAaA",
+      "vendor": "ebay.com",
+      "destinationProduct": "Black PolyCarpet dashboard cover for 2004–2008 Acura TL",
+      "linkRole": "Cosmetic mitigation",
+      "correctedDecision": "keep",
+      "fitmentScope": "2004–2008 TL; cosmetic cover only.",
+      "reason": "The destination is an exact-year dashboard cover, one of the mitigation products explicitly allowed by How to Fix.",
+      "approvedDestinations": [
+        {
+          "label": "Black PolyCarpet dashboard cover for 2004–2008 Acura TL",
+          "url": "https://www.ebay.com/itm/324617799263"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/324617799263"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 53,
+      "originalCell": "N49",
+      "issueId": "acura-tl-power-steering-hose-leak-2004",
+      "ymmt": "2004–2008 Acura TL — Base, Type-S",
+      "issueTitle": "Power Steering High-Pressure Hose Leak",
+      "howToFix": "Replace the high-pressure power steering hose assembly. Use a genuine Honda/Acura replacement hose with updated crimp fittings. Flush the power steering system with Honda PSF and bleed air from the system. Inspect the power steering pump for damage from running low on fluid.",
+      "howToFixHash": "6629ff138b7b52210d411114f66f9d28e85aa971403d5275d2d21f1a19c304c0",
+      "suppliedUrl": "https://www.oemacuraparts.com/oem-parts/acura-power-steering-return-hose-53734sepa01",
+      "vendor": "oemacuraparts.com",
+      "destinationProduct": "Genuine Acura 53734-SEP-A01 power-steering return hose",
+      "linkRole": "Wrong hose side",
+      "correctedDecision": "replace",
+      "fitmentScope": "Low-pressure return hose; the issue and repair call for the high-pressure feed hose.",
+      "reason": "The link is power-steering related but does not replace the failed pressure hose. Use year/VIN-scoped genuine feed-hose links and retain the recall check.",
+      "approvedDestinations": [
+        {
+          "label": "2004–2006 genuine feed/pressure hose 53713-SEP-305",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~hose~comp~p~s~feed~53713-sep-305.html"
+        },
+        {
+          "label": "2007–2008 genuine feed/pressure hose 53713-SEP-A14",
+          "url": "https://www.acuraautomotiveparts.org/oem-parts/acura-pressure-hose-53713sepa14"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://static.nhtsa.gov/odi/rcl/2008/RCRIT-08V091-5036.pdf",
+        "https://www.acurapartswarehouse.com/oem/acura~hose~comp~p~s~feed~53713-sep-305.html"
+      ],
+      "contentCorrection": "Add recall/VIN eligibility before purchase; the campaign did not cover every 2008 configuration."
+    },
+    {
+      "index": 54,
+      "originalCell": "N50",
+      "issueId": "acura-tlx-9speed-shudder-2015",
+      "ymmt": "2015–2020 Acura TLX — Base, Technology, Advance, A-Spec",
+      "issueTitle": "9-Speed Automatic Transmission Shudder and Harsh Shifting",
+      "howToFix": "Perform a transmission fluid drain and refill with Honda DW-1 ATF. Update the transmission control module (TCM) to the latest calibration from Acura, which improves shift logic and torque converter lockup mapping. Severe cases may require torque converter replacement.",
+      "howToFixHash": "a612d70fedfee193dca52d7b310bf82947a51635bf6b55d1e5839b940c0f4afb",
+      "suppliedUrl": "https://shop.advanceautoparts.com/p/valvoline-dex-merc-automatic-transmission-fluid-1-gallon-773636/8150022-P",
+      "vendor": "shop.advanceautoparts.com",
+      "destinationProduct": "Valvoline DEX/MERC automatic-transmission fluid",
+      "linkRole": "Wrong transmission fluid",
+      "correctedDecision": "replace",
+      "fitmentScope": "Dexron/Mercon fluid; not approved for the TLX ZF 9-speed.",
+      "reason": "The 9-speed requires Acura ATF Type 3.1. The supplied fluid and the current DW-1 wording are both wrong for this transmission.",
+      "approvedDestinations": [
+        {
+          "label": "Genuine Acura ATF Type 3.1 08200-9017",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~atf~type~3~1~08200-9017.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.acurapartswarehouse.com/oem/acura~atf~type~3~1~08200-9017.html",
+        "https://static.nhtsa.gov/odi/tsbs/2016/SB-10084004-2280.pdf"
+      ],
+      "contentCorrection": "Correct How to Fix from Honda DW-1 to Acura ATF Type 3.1 for the V6 9-speed. Also scope the issue to 3.5L/9AT; the 2.4L DCT uses different fluid."
+    },
+    {
+      "index": 55,
+      "originalCell": "N52",
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "ymmt": "2021–2025 Acura TLX — A-Spec, Type S, Type S PMC",
+      "issueTitle": "Type S Brembo Front Brake Squeal and Premature Pad Wear",
+      "howToFix": "Clean and re-lubricate the caliper slide pins with high-temperature silicone grease. Replace the OEM pads with a ceramic compound pad that offers similar performance with less noise. Apply anti-squeal shims if missing from the factory. Inspect and replace caliper bracket hardware if corroded.",
+      "howToFixHash": "b68790add337d3cb602b03f39c9888bf047064368ee96766246075e5cd1c7dcd",
+      "suppliedUrl": "https://shop.redline360.com/products/ebc-redstuff-ceramic-brake-pads-acura-tlx-2-4-3-5-15-20-front-or-rear",
+      "vendor": "shop.redline360.com",
+      "destinationProduct": "EBC Redstuff ceramic pads for 2015–2020 TLX 2.4/3.5",
+      "linkRole": "Wrong generation/brake system",
+      "correctedDecision": "replace",
+      "fitmentScope": "First-generation 2015–2020 TLX, not the 2021–2025 Type S Brembo front brake.",
+      "reason": "The product link’s fitment predates the issue generation. Replace it with a verified 2021–2025 3.0L front ceramic pad set.",
+      "approvedDestinations": [
+        {
+          "label": "Acura TLX Type S front brake-pad set",
+          "url": "https://www.partsgeek.com/5pylrvd-acura-tlx-brake-pad-set.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.partsgeek.com/5pylrvd-acura-tlx-brake-pad-set.html"
+      ],
+      "contentCorrection": "Scope this Brembo issue to Type S / Type S PMC. A-Spec does not use the Type S Brembo front system."
+    },
+    {
+      "index": 56,
+      "originalCell": "N52",
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "ymmt": "2021–2025 Acura TLX — A-Spec, Type S, Type S PMC",
+      "issueTitle": "Type S Brembo Front Brake Squeal and Premature Pad Wear",
+      "howToFix": "Clean and re-lubricate the caliper slide pins with high-temperature silicone grease. Replace the OEM pads with a ceramic compound pad that offers similar performance with less noise. Apply anti-squeal shims if missing from the factory. Inspect and replace caliper bracket hardware if corroded.",
+      "howToFixHash": "b68790add337d3cb602b03f39c9888bf047064368ee96766246075e5cd1c7dcd",
+      "suppliedUrl": "https://shop.redline360.com/products/ebc-redstuff-ceramic-brake-pads-acura-tlx-2-4-3-5-15-20-front-or-rear?variant=39950482309200",
+      "vendor": "shop.redline360.com",
+      "destinationProduct": "EBC Redstuff ceramic pads for 2015–2020 TLX 2.4/3.5 (variant)",
+      "linkRole": "Wrong generation/brake system",
+      "correctedDecision": "replace",
+      "fitmentScope": "First-generation 2015–2020 TLX, not the 2021–2025 Type S Brembo front brake.",
+      "reason": "Changing the storefront variant does not fix the year/system mismatch. Use the verified Type S front pad part.",
+      "approvedDestinations": [
+        {
+          "label": "Acura TLX Type S front brake-pad set",
+          "url": "https://www.partsgeek.com/5pylrvd-acura-tlx-brake-pad-set.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.partsgeek.com/5pylrvd-acura-tlx-brake-pad-set.html"
+      ],
+      "contentCorrection": "Scope this Brembo issue to Type S / Type S PMC. A-Spec does not use the Type S Brembo front system."
+    },
+    {
+      "index": 57,
+      "originalCell": "N52",
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "ymmt": "2021–2025 Acura TLX — A-Spec, Type S, Type S PMC",
+      "issueTitle": "Type S Brembo Front Brake Squeal and Premature Pad Wear",
+      "howToFix": "Clean and re-lubricate the caliper slide pins with high-temperature silicone grease. Replace the OEM pads with a ceramic compound pad that offers similar performance with less noise. Apply anti-squeal shims if missing from the factory. Inspect and replace caliper bracket hardware if corroded.",
+      "howToFixHash": "b68790add337d3cb602b03f39c9888bf047064368ee96766246075e5cd1c7dcd",
+      "suppliedUrl": "https://www.autozone.com/p/duralast-disc-brake-pad-set-d2102/1115972",
+      "vendor": "autozone.com",
+      "destinationProduct": "Duralast D2102 ceramic brake pads",
+      "linkRole": "Wrong axle for Type S issue",
+      "correctedDecision": "replace",
+      "fitmentScope": "Catalog position is rear for the relevant TLX application; the issue concerns front Brembo pads.",
+      "reason": "The ceramic compound is relevant, but the product position is not. Replace it with the 2021–2025 3.0L front set.",
+      "approvedDestinations": [
+        {
+          "label": "Acura TLX Type S front brake-pad set",
+          "url": "https://www.partsgeek.com/5pylrvd-acura-tlx-brake-pad-set.html"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.autozone.com/p/duralast-disc-brake-pad-set-d2102/1115972",
+        "https://www.partsgeek.com/5pylrvd-acura-tlx-brake-pad-set.html"
+      ],
+      "contentCorrection": "Scope this Brembo issue to Type S / Type S PMC."
+    },
+    {
+      "index": 58,
+      "originalCell": "N52",
+      "issueId": "acura-tlx-brake-noise-aspec-2018",
+      "ymmt": "2021–2025 Acura TLX — A-Spec, Type S, Type S PMC",
+      "issueTitle": "Type S Brembo Front Brake Squeal and Premature Pad Wear",
+      "howToFix": "Clean and re-lubricate the caliper slide pins with high-temperature silicone grease. Replace the OEM pads with a ceramic compound pad that offers similar performance with less noise. Apply anti-squeal shims if missing from the factory. Inspect and replace caliper bracket hardware if corroded.",
+      "howToFixHash": "b68790add337d3cb602b03f39c9888bf047064368ee96766246075e5cd1c7dcd",
+      "suppliedUrl": "https://www.autozone.com/p/powerstop-disc-brake-pad-set-z23-2418/1548387",
+      "vendor": "autozone.com",
+      "destinationProduct": "PowerStop Z23-2418 carbon-fiber ceramic performance brake pads",
+      "linkRole": "Repair parts",
+      "correctedDecision": "keep",
+      "fitmentScope": "Front axle; 2021–2025 TLX 3.0L / Type S, including 2023 Type S PMC according to fitment cross-check.",
+      "reason": "The live page identifies the front position, ceramic formula, hardware, and lubricant; external fitment confirms the Type S application.",
+      "approvedDestinations": [
+        {
+          "label": "PowerStop Z23-2418 carbon-fiber ceramic performance brake pads",
+          "url": "https://www.autozone.com/p/powerstop-disc-brake-pad-set-z23-2418/1548387"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.autozone.com/p/powerstop-disc-brake-pad-set-z23-2418/1548387",
+        "https://www.partsgeek.com/5pylrvd-acura-tlx-brake-pad-set.html"
+      ],
+      "contentCorrection": "Scope this Brembo issue to Type S / Type S PMC rather than A-Spec."
+    },
+    {
+      "index": 59,
+      "originalCell": "N53",
+      "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "ymmt": "2004–2014 Acura TSX — Base, Technology, Special Edition",
+      "issueTitle": "AC Compressor Clutch Failure",
+      "howToFix": "Replace the AC compressor clutch assembly or the entire compressor unit. Replace the serpentine belt if scored or damaged from the seized bearing. Evacuate and recharge the AC system. Install a new receiver/drier to prevent moisture contamination.",
+      "howToFixHash": "768d904271cd746c340e6a654ac366ea03b846c8fcdba358b08578952afecb78",
+      "suppliedUrl": "https://www.autozone.com/p/four-seasons-a-c-compressor-57886/313683?searchText=ac+compressor&productPartGroupId=azpg1012&productBrandId=BBRN&productUniqueId=9235528382",
+      "vendor": "autozone.com",
+      "destinationProduct": "Four Seasons 57886 remanufactured A/C compressor with clutch",
+      "linkRole": "Repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "2004–2008 TSX 2.4L with HS110R compressor only; not 2009–2014 or 3.5L.",
+      "reason": "The compressor and clutch are exactly what How to Fix calls for. Keep it with the application range established by the manufacturer catalog.",
+      "approvedDestinations": [
+        {
+          "label": "Four Seasons 57886 remanufactured A/C compressor with clutch",
+          "url": "https://www.autozone.com/p/four-seasons-a-c-compressor-57886/313683?searchText=ac+compressor&productPartGroupId=azpg1012&productBrandId=BBRN&productUniqueId=9235528382"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.autozone.com/p/four-seasons-a-c-compressor-57886/313683",
+        "https://www.partcatalog.com/products/four-seasons-57886-a-c-compressor"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 60,
+      "originalCell": "N53",
+      "issueId": "acura-tsx-ac-compressor-clutch-2004",
+      "ymmt": "2004–2014 Acura TSX — Base, Technology, Special Edition",
+      "issueTitle": "AC Compressor Clutch Failure",
+      "howToFix": "Replace the AC compressor clutch assembly or the entire compressor unit. Replace the serpentine belt if scored or damaged from the seized bearing. Evacuate and recharge the AC system. Install a new receiver/drier to prevent moisture contamination.",
+      "howToFixHash": "768d904271cd746c340e6a654ac366ea03b846c8fcdba358b08578952afecb78",
+      "suppliedUrl": "https://www.ebay.com/itm/227440422982?_skw=Acura+TSX&itmmeta=01M02KK8G61JX24NW3925X66QB&hash=item34f4817046%3Ag%3ANrcAAeSwYJFqXzgF&itmprp=enc%3AAQALAAAA8DKQclQvzFwZQpmMrsO4Lur70c03lhNzsVYPKI9VE9oVWUjrU2O7IgHZQgL0oCfGXw8ANikP3dMI%2Fj809i2pLsjYWOXS1j8CXO4OLZ%2F4%2BpEYrCDYZ4lxA60ANzRVg7JCDd4OxNexZ5oSIRhjCnxnNfJQEZtHgoGogFd4fhWSWwzKXb1l5C6wwQWfamkBGX9C6MQbP%2FXmch%2BMpLwuWqd7yxlnTVndUQEJ4fvNXwqR46elN0duYN0gxK%2BwpIrbHtyELGOwjZ1m907Oj%2F%2BHAqY8%2FyRIH8m%2BJ97D%2B2yvGV53b%2B65T7i4t3k0OFxFLFUFb7aU%2FA%3D%3D%7Ctkp%3ABk9SR6qIzdOAaA&fits=ake%3AAcura%7Codel%3ATSX",
+      "vendor": "ebay.com",
+      "destinationProduct": "New CO 10849T A/C compressor with clutch",
+      "linkRole": "Repair part",
+      "correctedDecision": "keep",
+      "fitmentScope": "2004–2008 Acura TSX 2.4L only; not 2009–2014 or V6.",
+      "reason": "The destination title and compatibility table match the compressor/clutch repair for the first-generation 2.4L subset.",
+      "approvedDestinations": [
+        {
+          "label": "New CO 10849T A/C compressor with clutch",
+          "url": "https://www.ebay.com/itm/227440422982"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/227440422982"
+      ],
+      "contentCorrection": ""
+    },
+    {
+      "index": 61,
+      "originalCell": "N54",
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "ymmt": "1992–1994 Acura Vigor — LS, GS",
+      "issueTitle": "Timing belt + water pump + tensioner at 90k mi — G25A1 is interference, valves bend if it snaps",
+      "howToFix": "Full timing kit replacement: belt + hydraulic tensioner + water pump + idler + all front seals + accessory belts as one job. A complete Aisin or Allied Motor Parts kit for the G25A1 runs $150-250. Labor at an independent: $400-700. Total: $550-950. Dealer: $1,000-1,500. The job takes ~6-8 hours because the 5-cylinder is longitudinally mounted and accessory removal is fiddlier than a transverse V6. ONLY use the OEM Honda tensioner or Aisin — the import-brand tensioners on AliExpress / cheap Amazon kits routinely fail within 10k miles on this engine.",
+      "howToFixHash": "b5bdd4df72ad39ec801e51daefd8bb6f917f5b4975a90bd9997d47bc5ad4d3f2",
+      "suppliedUrl": "https://www.autozone.com/p/duralast-engine-timing-belt-kit-with-water-pump-wp211k1a/162705?productPartGroupId=azpg1446&productBrandId=CFHH&productUniqueId=1968879237",
+      "vendor": "autozone.com",
+      "destinationProduct": "Duralast WP211K1A timing-belt kit with water pump",
+      "linkRole": "Partial/conditional repair kit",
+      "correctedDecision": "keep",
+      "fitmentScope": "Catalog application is 1992–1994 Vigor; kit includes water pump, belt, and cam-belt tensioner. Verify the supplied tensioner manufacturer before use.",
+      "reason": "The destination is a fitment-correct multi-component timing kit, not an irrelevant part. Keep it conditionally, but do not represent its tensioner as OEM/AISIN without proof; source 14510-PV0-003 separately if the strict requirement remains.",
+      "approvedDestinations": [
+        {
+          "label": "Duralast WP211K1A timing-belt kit with water pump",
+          "url": "https://www.autozone.com/p/duralast-engine-timing-belt-kit-with-water-pump-wp211k1a/162705?productPartGroupId=azpg1446&productBrandId=CFHH&productUniqueId=1968879237"
+        }
+      ],
+      "supplementalDestinations": [
+        {
+          "label": "Genuine tensioner reference 14510-PV0-003 (discontinued)",
+          "url": "https://www.acurapartswarehouse.com/oem/acura~adjuster~timing~belt~14510-pv0-003.html",
+          "commerceApproved": false
+        }
+      ],
+      "evidenceUrls": [
+        "https://www.autozone.com/p/duralast-engine-timing-belt-kit-with-water-pump-wp211k1a/162705",
+        "https://www.thewrenchmonkey.ca/auto-parts/acura/vigor/1992/engine/engine-timing-belt-kit-with-water-pump"
+      ],
+      "contentCorrection": "The G25A1 uses a belt tensioner/adjuster; remove the unsupported “hydraulic tensioner” wording. No complete AISIN kit for this application was verified."
+    },
+    {
+      "index": 62,
+      "originalCell": "N54",
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "ymmt": "1992–1994 Acura Vigor — LS, GS",
+      "issueTitle": "Timing belt + water pump + tensioner at 90k mi — G25A1 is interference, valves bend if it snaps",
+      "howToFix": "Full timing kit replacement: belt + hydraulic tensioner + water pump + idler + all front seals + accessory belts as one job. A complete Aisin or Allied Motor Parts kit for the G25A1 runs $150-250. Labor at an independent: $400-700. Total: $550-950. Dealer: $1,000-1,500. The job takes ~6-8 hours because the 5-cylinder is longitudinally mounted and accessory removal is fiddlier than a transverse V6. ONLY use the OEM Honda tensioner or Aisin — the import-brand tensioners on AliExpress / cheap Amazon kits routinely fail within 10k miles on this engine.",
+      "howToFixHash": "b5bdd4df72ad39ec801e51daefd8bb6f917f5b4975a90bd9997d47bc5ad4d3f2",
+      "suppliedUrl": "https://www.partsgeek.com/lj2xkhb-acura-vigor-timing-belt.html?srsltid=AfmBOoqN5hJiC4MC9dIDgWHaMx8lqHXEedSeJVp6Y-0Ki-_zq8NmneM5",
+      "vendor": "partsgeek.com",
+      "destinationProduct": "Autopart Premium APTBT015 113-tooth engine timing belt",
+      "linkRole": "Repair component only",
+      "correctedDecision": "keep",
+      "fitmentScope": "1992–1994 Vigor LS/GS 2.5L. Belt only; water pump, tensioner, seals, and accessory belts are still required.",
+      "reason": "The timing belt is explicitly part of the repair and the page matches the exact engine years. Keep it as a component link, not a complete-kit solution.",
+      "approvedDestinations": [
+        {
+          "label": "Autopart Premium APTBT015 113-tooth engine timing belt",
+          "url": "https://www.partsgeek.com/lj2xkhb-acura-vigor-timing-belt.html?srsltid=AfmBOoqN5hJiC4MC9dIDgWHaMx8lqHXEedSeJVp6Y-0Ki-_zq8NmneM5"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.partsgeek.com/lj2xkhb-acura-vigor-timing-belt.html"
+      ],
+      "contentCorrection": "Remove the unsupported claim that an AISIN complete kit is available unless a specific current application can be verified."
+    },
+    {
+      "index": 63,
+      "originalCell": "N54",
+      "issueId": "acura-vigor-g25a1-timing-belt-interference",
+      "ymmt": "1992–1994 Acura Vigor — LS, GS",
+      "issueTitle": "Timing belt + water pump + tensioner at 90k mi — G25A1 is interference, valves bend if it snaps",
+      "howToFix": "Full timing kit replacement: belt + hydraulic tensioner + water pump + idler + all front seals + accessory belts as one job. A complete Aisin or Allied Motor Parts kit for the G25A1 runs $150-250. Labor at an independent: $400-700. Total: $550-950. Dealer: $1,000-1,500. The job takes ~6-8 hours because the 5-cylinder is longitudinally mounted and accessory removal is fiddlier than a transverse V6. ONLY use the OEM Honda tensioner or Aisin — the import-brand tensioners on AliExpress / cheap Amazon kits routinely fail within 10k miles on this engine.",
+      "howToFixHash": "b5bdd4df72ad39ec801e51daefd8bb6f917f5b4975a90bd9997d47bc5ad4d3f2",
+      "suppliedUrl": "https://www.ebay.com/itm/307038701562?_skw=Acura+Vigor&itmmeta=01M02KS4QJ0ST88T3FDASRRH28&hash=item477ceec7fa%3Ag%3Ar0EAAeSw%7EDhqRoTv&itmprp=enc%3AAQALAAAA8DKQclQvzFwZQpmMrsO4LuqlF249sc83A8oamDqYaE6DO98OLH4SrSyS8DRVYxwpySeZz5AbHCBREkw9P5Qpsf8lgrukrivSoXdLRftCxesLaxqpZxGnLYgAEPpGESC5%2B%2FYCLLjBPegacSxRZmY41XoUgeT4eKXrmuDJGjdoII24DCU16jFbdV9P0KYmL6%2F0OCpjg%2FNZDjOBVmSjrnCM8ZCrY%2FYjAqvrLIKvwpQHbUmiyHgEOPwFnPkXqSv2lQ2cZAE8AptbbqAm37X7Y1UUgSihk7%2F%2B7sSWzz2YlK7IoppGsOp4JjfbWsMHW%2BDC18BPcw%3D%3D%7Ctkp%3ABFBM-svk04Bo&fits=ake%3AAcura%7Codel%3AVigor",
+      "vendor": "ebay.com",
+      "destinationProduct": "New water pump for 1992–1994 Acura Vigor 2.5L",
+      "linkRole": "Repair component only",
+      "correctedDecision": "keep",
+      "fitmentScope": "1992–1994 Vigor 2.5L; water pump only. Timing belt, tensioner, idler/seals, and accessory belts are still required.",
+      "reason": "The water pump is explicitly required by How to Fix and the compatibility table covers the full issue range. Keep it as a partial component link.",
+      "approvedDestinations": [
+        {
+          "label": "New water pump for 1992–1994 Acura Vigor 2.5L",
+          "url": "https://www.ebay.com/itm/307038701562"
+        }
+      ],
+      "supplementalDestinations": [],
+      "evidenceUrls": [
+        "https://www.ebay.com/itm/307038701562"
+      ],
+      "contentCorrection": "No complete AISIN kit was verified; present exact components separately and retain the OEM/AISIN-quality warning for the tensioner."
+    }
+  ]
+}

@@ -1,10 +1,5 @@
 import {
-  proceduresInSolution,
-  toolsForProcedures,
-  scannersForCodeFamilies,
-  codeFamilyOf,
-  type CodeFamily,
-  type DiagnosticTool,
+  diagnosticToolsForIssue,
 } from '@/data/diagnostic-tools';
 
 /**
@@ -34,24 +29,11 @@ interface IssueDiagnosticToolsProps {
 }
 
 export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticToolsProps) {
-  const procedures = proceduresInSolution(solution);
-  const nonemptyCodes = (dtcCodes || []).map((code) => String(code).trim()).filter(Boolean);
-  const parsedFamilies = nonemptyCodes.map(codeFamilyOf);
-  const hasUnknownCode = parsedFamilies.some((family) => family === null);
-  const families = [...new Set(
-    parsedFamilies.filter((family): family is CodeFamily => family !== null),
-  )];
-  const tools: DiagnosticTool[] = [...toolsForProcedures(procedures, hasUnknownCode ? [] : families)];
-
-  // If the issue names codes, the reader also needs something that can READ
-  // them — and for a body or network code that is emphatically not a $20 reader.
-  const capable = hasUnknownCode ? undefined : scannersForCodeFamilies(families)[0];
-  if (capable && !tools.some((t) => t.id === capable.id)) tools.push(capable);
+  const { tools, procedures, families, hasUnknownCode } = diagnosticToolsForIssue(solution, dtcCodes);
 
   if (tools.length === 0) return null;
   const nonPowertrain = families.filter((f) => f !== 'P');
-  // Whether the ARTICLE asked for a test, versus us offering a reader because
-  // the page happens to name a code. The two justify different claims.
+  // Commerce is procedure-driven. DTC presence alone is never a purchase cue.
   const matchedProcedure = procedures.some((procedure) => procedure !== 'scan-codes');
   const hasAffiliateLinks = tools.some((tool) => Boolean(tool.productUrl));
   const hasScannerRecommendation = tools.some((tool) => tool.kind === 'scanner');
@@ -62,7 +44,7 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
-        {matchedProcedure ? 'What you need to diagnose it' : 'What reads this code'}
+        What you need to diagnose it
       </h4>
       <p className="mb-3 text-xs leading-relaxed text-[#475569]">
         {matchedProcedure
@@ -70,7 +52,7 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
           // actually calls for one. Saying it on a page that already carries a
           // confirmed part would contradict the repair sitting right below it.
           ? 'The fix here starts with a test, not a part — which repair you need depends on what the test finds.'
-          : 'This issue is identified by a stored code. To confirm it is what your car actually has, you need a scanner that can read it.'}
+          : 'The repair instructions explicitly call for reading stored codes. Use a scanner that can read the named code families before choosing a repair.'}
         {nonPowertrain.length > 0 && (
           <span className="mt-1 block text-[#64748B]">
             This issue involves {nonPowertrain.join('/')} codes, which a basic engine-code reader

@@ -124,6 +124,11 @@ export function partIsEligibleForVehicle(
  */
 export function partCanBeShownForVehicle(fitment: PartFitment | undefined, vehicle: FitmentVehicle): boolean {
   if (!fitment) return true;
+  // A generic make/model article has no selected vehicle dimensions. Show the
+  // reviewed scoped offer there with its visible "Fits …" label; only suppress
+  // it after the reader supplies at least one dimension that can prove a
+  // mismatch or leaves another declared dimension unresolved.
+  if (vehicle.year == null && !vehicle.engine && !vehicle.trim) return true;
   if (fitment.years?.length && vehicle.year == null) return false;
   if (fitment.engines?.length && !vehicle.engine) return false;
   if (fitment.trims?.length && !vehicle.trim) return false;

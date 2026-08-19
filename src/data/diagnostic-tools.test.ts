@@ -2,6 +2,7 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
   diagnosticTools,
+  diagnosticToolsForIssue,
   codeFamilyOf,
   proceduresInSolution,
   scannersForCodeFamilies,
@@ -24,6 +25,7 @@ test('a scanner must support every family on a mixed-code issue', () => {
 
 test('manufacturer-specific numeric codes do not default to generic P codes', () => {
   assert.equal(codeFamilyOf('2E81'), null);
+  assert.equal(codeFamilyOf('P17BF'), null);
   assert.equal(codeFamilyOf('P0300'), 'P');
 });
 
@@ -31,6 +33,34 @@ test('scan procedure filtering cannot reintroduce an incapable scanner', () => {
   const tools = toolsForProcedures(['scan-codes'], ['U']);
   assert.ok(tools.length > 0);
   assert.ok(tools.every((tool) => tool.codeFamilies.includes('U')));
+});
+
+test('DTC presence alone never creates scanner commerce for a repair article', () => {
+  const selection = diagnosticToolsForIssue(
+    'Replace the timing belt, tensioner, water pump, and all idler pulleys as a complete kit.',
+    ['P0340', 'P0341'],
+  );
+  assert.deepEqual(selection.procedures, []);
+  assert.deepEqual(selection.tools, []);
+});
+
+test('an explicit scan instruction selects a capability-matched scanner', () => {
+  const selection = diagnosticToolsForIssue(
+    'Connect a scan tool and retrieve the stored fault codes before replacing any component.',
+    ['P0340'],
+  );
+  assert.deepEqual(selection.procedures, ['scan-codes']);
+  assert.ok(selection.tools.length > 0);
+  assert.ok(selection.tools.every((tool) => tool.kind === 'scanner' && tool.codeFamilies.includes('P')));
+});
+
+test('an explicit scan instruction with an unknown manufacturer code does not guess coverage', () => {
+  const selection = diagnosticToolsForIssue(
+    'Use a scanner to retrieve the stored fault codes before continuing.',
+    ['2E81'],
+  );
+  assert.equal(selection.hasUnknownCode, true);
+  assert.deepEqual(selection.tools, []);
 });
 
 test('unsupported procedure mentions are not claimed as covered', () => {
@@ -86,6 +116,7 @@ test('delegated, negated and not-required tests never produce affiliate guidance
 
 test('malformed family-prefixed strings are not treated as supported DTCs', () => {
   assert.equal(codeFamilyOf('P0300'), 'P');
-  assert.equal(codeFamilyOf('U1000'), 'U');
+  assert.equal(codeFamilyOf('U0100'), 'U');
+  assert.equal(codeFamilyOf('U1000'), null);
   for (const code of ['Pbanana', 'U', 'C-', 'B12', '2E81']) assert.equal(codeFamilyOf(code), null, code);
 });

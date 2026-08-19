@@ -9,6 +9,7 @@ import { CategorySection } from './CategorySection';
 import { SeverityFilter } from './SeverityFilter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { filterableKnownIssueTrims, knownIssueMatchesTrim } from '@/lib/known-issue-trim-filter';
+import { vehicleInfoForKnownIssueArticle } from '@/lib/known-issue-article-vehicle';
 
 export interface RelatedIssueVehicle {
   slug: string;
@@ -45,25 +46,11 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
   // without a stale useState initializer or an extra effect render.
   const yearFilter = initialYear ?? null;
 
-  // Get user's selected trim if it matches this article's make/model
-  const userTrim = useMemo(() => {
-    if (!selectedVehicle) return null;
-    if (selectedVehicle.make.toLowerCase() !== make.toLowerCase()) return null;
-    if (selectedVehicle.model.toLowerCase() !== model.toLowerCase()) return null;
-    return selectedVehicle.trim || null;
-  }, [selectedVehicle, make, model]);
-
-  // Auto-set year filter from user's vehicle selection
-  useMemo(() => {
-    if (selectedVehicle && !initialYear &&
-        selectedVehicle.make.toLowerCase() === make.toLowerCase() &&
-        selectedVehicle.model.toLowerCase() === model.toLowerCase()) {
-      // Only set if not already set
-      if (yearFilter === null) {
-        // Don't call setState in useMemo — handled by initialYear prop or user interaction
-      }
-    }
-  }, [selectedVehicle, make, model, initialYear, yearFilter]);
+  const vehicleInfo = useMemo(
+    () => vehicleInfoForKnownIssueArticle(selectedVehicle, make, model, yearFilter),
+    [make, model, selectedVehicle, yearFilter],
+  );
+  const userTrim = vehicleInfo?.trim || null;
 
   // Get unique trims from issues for the trim filter
   const availableTrims = useMemo(() => {
@@ -117,12 +104,9 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
     return sortedCategories.map(cat => ({ category: cat, issues: groups[cat]! }));
   }, [filteredIssues]);
 
-  // Build vehicleInfo using selected year or max year
-  const vehicleInfo = useMemo(() => {
-    const year = yearFilter ?? Math.max(...issues.flatMap(i => i.vehicleMatch.years));
-    return { year, make, model };
-  }, [issues, make, model, yearFilter]);
-
+  // Only claim a vehicle year when the URL or vehicle context selected one.
+  // Using the newest article year as a fake default hid every reviewed part
+  // scoped to an older generation on the unfiltered make/model page.
   return (
     <>
       <div

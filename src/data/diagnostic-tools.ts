@@ -225,9 +225,14 @@ export function scannersForCodeFamilies(families: CodeFamily[]): DiagnosticTool[
 /** The code family of a canonical five-character OBD DTC. */
 export function codeFamilyOf(code: string): CodeFamily | null {
   const normalized = String(code || '').trim().toUpperCase();
-  return /^[PBCU][0-3][0-9A-F]{3}$/.test(normalized)
-    ? normalized[0] as CodeFamily
-    : null;
+  if (!/^[PBCU][0-3][0-9A-F]{3}$/.test(normalized)) return null;
+  // Family-level coverage does not prove access to a manufacturer-specific
+  // controller. Standard P0/P2 and B0/C0/U0 ranges are safe at this level;
+  // exact OEM ranges remain unknown until a tool proves module coverage.
+  const family = normalized[0] as CodeFamily;
+  const range = normalized[1];
+  if (family === 'P') return range === '0' || range === '2' ? family : null;
+  return range === '0' ? family : null;
 }
 
 /**
@@ -239,7 +244,7 @@ const PROCEDURE_PATTERNS: Array<[Procedure, RegExp]> = [
   ['battery-state-of-health', /\b(?:perform|run|do|conduct) (?:an? )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance) test\b|\btest (?:the )?battery (?:state[- ]of[- ]health|conductance|cca|internal resistance)\b/i],
   // Unsupported procedures intentionally have no matcher until a verified tool
   // exists. Recognizing them while rendering nothing creates false coverage.
-  ['scan-codes', /\b(?:use|connect|diagnose with) (?:an? )?(?:scan tool|scanner)\b|\b(?:read|retrieve|scan for) (?:the )?(?:stored )?(?:fault )?codes\b/i],
+  ['scan-codes', /\b(?:use|connect|diagnose with) (?:an? )?(?:scan tool|scanner)\b|\bdiagnos(?:e|ing)\b[^.;!?]{0,80}\bwith (?:an? )?(?:scan tool|scanner)\b|\b(?:read|retrieve|scan for) (?:the )?(?:stored )?(?:fault )?codes\b/i],
 ];
 
 export function proceduresInSolution(solution: string): Procedure[] {
@@ -261,4 +266,36 @@ export function toolsForProcedures(procedures: Procedure[], families: CodeFamily
       return families.length > 0 && families.every((family) => t.codeFamilies.includes(family));
     })
     .sort((a, b) => a.priceAnchor - b.priceAnchor);
+}
+
+export interface IssueDiagnosticToolSelection {
+  tools: DiagnosticTool[];
+  procedures: Procedure[];
+  families: CodeFamily[];
+  hasUnknownCode: boolean;
+}
+
+/**
+ * Select diagnostic commerce from the prescribed action, never from a DTC by
+ * itself. Codes narrow an explicit scan procedure to compatible tool families;
+ * they do not create that procedure.
+ */
+export function diagnosticToolsForIssue(
+  solution: string,
+  dtcCodes?: string[] | null,
+): IssueDiagnosticToolSelection {
+  const procedures = proceduresInSolution(solution);
+  const codes = (dtcCodes || []).map((code) => String(code).trim()).filter(Boolean);
+  const parsedFamilies = codes.map(codeFamilyOf);
+  const hasUnknownCode = parsedFamilies.some((family) => family === null);
+  const families = [...new Set(
+    parsedFamilies.filter((family): family is CodeFamily => family !== null),
+  )];
+
+  return {
+    procedures,
+    families,
+    hasUnknownCode,
+    tools: toolsForProcedures(procedures, hasUnknownCode ? [] : families),
+  };
 }

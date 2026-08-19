@@ -11,3 +11,7 @@
 - source_spec: `_bmad-output/implementation-artifacts/spec-complete-bmw-known-issues-audit-and-production-deploy.md`
   summary: Bind transitive manifest-generator dependencies into the reviewed generator hash for future factory-backed audit cohorts.
   evidence: `_build-full-record-model-manifest-core.cjs` hashes the core and thin per-model config but does not include `_config-bmw-remaining-factory.cjs`; this does not change committed immutable BMW manifests, but a future regeneration could execute changed factory code under the same reviewed core/config hashes.
+
+- source_spec: none
+  summary: Integrate repair-first commerce-link discovery and fitment review into the known-issue creation workflow.
+  evidence: The user selected Split so the approved Acura link release can be reviewed, tested, and deployed independently before changing the known-issue authoring workflow.
