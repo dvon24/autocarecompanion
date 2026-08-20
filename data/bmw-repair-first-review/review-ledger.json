@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "make": "BMW",
-  "generatedAt": "2026-08-20T17:08:38.453Z",
+  "generatedAt": "2026-08-20T17:12:59.549Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "9c5acba63181f1d3d714c4d0090380ab656767ee3836b4056dfe3873dadc67e0",
   "publishedIssueCount": 385,
-  "reviewedIssueCount": 150,
-  "remainingIssueCount": 235,
-  "reviewedWithDestinationCount": 147,
-  "destinationCount": 213,
-  "distinctUrlCount": 54,
+  "reviewedIssueCount": 175,
+  "remainingIssueCount": 210,
+  "reviewedWithDestinationCount": 172,
+  "destinationCount": 248,
+  "distinctUrlCount": 73,
   "scannerDestinationCount": 0,
   "missingHowToFixCount": 3,
   "reviews": [
@@ -3444,6 +3444,582 @@
       "ymmt": "2021-2025 | BMW | iX3 | eDrive40, M Sport | Gen5 eDrive rear motor (RWD)",
       "title": "Rear Brake Disc Corrosion and Caliper Seizure from Regen Under-Use",
       "howToFix": "Periodically perform deliberate hard stops (BMW recommends this) or select a lower/adaptive regen mode so the friction brakes engage and clean themselves; in salty/humid regions service the rear calipers (clean and re-lube slide pins, free the pistons) at least annually. Once discs are pitted/scored or a caliper has seized, replace rear discs and pads per axle and rebuild or replace the affected caliper."
+    },
+    {
+      "issueId": "bmw-ix3-regen-braking-inconsistency-2022",
+      "repairItems": "Driver education for temperature/state-of-charge regen limits; friction-brake use; software check",
+      "decision": "MARKET-SPECIFIC SOFTWARE/OWNER-GUIDANCE / NO PART",
+      "destinations": [
+        {
+          "label": "BMW international dealer locator",
+          "url": "https://www.bmw.com/en/footer/dealer-locator.html",
+          "scope": "2022-2024 iX3 market-specific software and brake-system check",
+          "role": "official EV service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Normal regen changes are not a failed component, and iX3 equipment/controls vary by market.",
+      "correction": "Remove the paddle-shifter claim unless the exact market/trim equipment is documented; do not sell brake or charging parts from expected regen limits.",
+      "sequence": 151,
+      "ymmt": "2022-2024 | BMW | iX3",
+      "title": "Regenerative Braking Lag and Inconsistency",
+      "howToFix": "Familiarize yourself with how regen braking changes based on battery state of charge and temperature. Use the paddle shifters to manually adjust regen levels. Check for BMW software updates that improve regen calibration. In cold weather or with a fully charged battery, rely more on the friction brakes and do not assume regen will provide full deceleration."
+    },
+    {
+      "issueId": "bmw-ix3-software-infotainment-glitches-2022",
+      "repairItems": "Soft reset; OTA/dealer software; conditional head-unit reflash/hardware diagnosis; 12V health check",
+      "decision": "MARKET-SPECIFIC SOFTWARE/DIAGNOSIS / HEAD UNIT HELD",
+      "destinations": [
+        {
+          "label": "BMW international dealer locator",
+          "url": "https://www.bmw.com/en/footer/dealer-locator.html",
+          "scope": "2022-2024 iX3 software, head-unit and 12V diagnosis",
+          "role": "official infotainment service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Software and 12V checks precede hardware; a replacement head unit is market, generation and VIN specific.",
+      "correction": "Do not link a head unit or 12V battery before diagnosis and exact market/VIN fitment.",
+      "sequence": 152,
+      "ymmt": "2022-2024 | BMW | iX3",
+      "title": "iDrive Infotainment Software Freezes and Reboots",
+      "howToFix": "Perform a soft reset of the iDrive system by holding the volume/power knob for 30 seconds. Check for and install the latest BMW software update via OTA or at a dealer. If issues persist, the dealer may need to reflash the head unit firmware or replace the head unit hardware. Ensure the 12V battery is in good health, as low voltage can cause software instability."
+    },
+    {
+      "issueId": "bmw-m2-charge-pipe-2016",
+      "repairItems": "DME fault read; production-date check; conditional ISTA programming to specified I-level",
+      "decision": "BULLETIN PROGRAMMING SERVICE / NO CHARGE PIPE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2016 F87 M2 SIB 12 17 16 fault diagnosis and programming",
+          "role": "ISTA programming service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source explicitly identifies a software path and says not to replace a charge pipe from this card.",
+      "correction": "Rename to early F87 M2 boost-control software faults; no scanner or charge-pipe link.",
+      "sequence": 153,
+      "ymmt": "2016-2016 | BMW | M2 | N55 3.0L turbo I6",
+      "title": "Early F87 M2 Boost-Control Software Faults",
+      "howToFix": "Read the DME faults with the current BMW ISTA version and confirm the production date. If the vehicle meets SIB 12 17 16, program the vehicle to integration level F020-16-07-504 or higher. Do not replace a charge pipe from this card. ShowMeTheParts resolves exact 2016 M2 turbocharger and 3.0-liter fitment but returned no charge-pipe candidate; even a catalog match would not prove the BMW software fault or repair role."
+    },
+    {
+      "issueId": "bmw-m2-comp-s55-crank-hub-2019",
+      "repairItems": "Pinned/keyed S55 crank-hub kit; one-time-use installation hardware; specialist timing work",
+      "decision": "EXACT PERFORMANCE PART + SPECIALIST INSTALLATION",
+      "destinations": [
+        {
+          "label": "FCP Euro comprehensive pinned S55 crank-hub installation kit 11237574827KT1",
+          "url": "https://www.fcpeuro.com/products/bmw-comprehensive-pinned-crank-hub-installation-kit-11237574827kt1",
+          "scope": "2019-2020 BMW M2 Competition S55; confirm transmission/drivetrain fitment selector",
+          "role": "pinned crank-hub installation kit"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "S55 timing/crank-hub diagnosis or installation referral",
+          "role": "specialist service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live product explicitly lists 2019 and 2020 M2 Competition S55 applications and is a comprehensive installation kit.",
+      "correction": "Present this as a performance/preventive aftermarket choice, not a universal BMW-mandated service; installation is not a casual DIY.",
+      "sequence": 154,
+      "ymmt": "2019-2020 | BMW | M2",
+      "title": "S55 Crank Hub Failure (CATASTROPHIC) - M2 Competition",
+      "howToFix": "MANDATORY preventive replacement with upgraded pinned or keyed crank hub. Pure Turbos, VTT, and S55 Crank Hub Fix all sell upgraded solutions with mechanical retention (pin or keyway). Installation requires crankshaft pulley removal and careful torque specs. This is considered essential maintenance for any S55-powered car, especially if tuned or tracked. Many M2 Competition owners perform this upgrade immediately after purchase."
+    },
+    {
+      "issueId": "bmw-m2-cooling-system-2016",
+      "repairItems": "Track-use cooling diagnosis; conditional auxiliary radiators/oil cooler/charge-air cooler by N55 versus S55",
+      "decision": "ENGINE-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        {
+          "label": "CSF 8258 F8X/M2 Competition auxiliary radiator",
+          "url": "https://csfrace.com/products/8258-bmw-f8x-m3-m4-m2-comp-high-performance-auxiliary-radiator",
+          "scope": "2019-2020 F87 M2 Competition S55; sold individually and most applications require two",
+          "role": "track-use auxiliary radiator"
+        },
+        {
+          "label": "CSF 8355 F87 M2 N55 auxiliary radiator",
+          "url": "https://csfrace.com/products/8355-f87-m2-n55-f3x-340i-440i-f2x-m240i-high-performance-auxiliary-radiator",
+          "scope": "2016-2018 F87 M2 N55 only; left-side single radiator",
+          "role": "track-use auxiliary radiator"
+        }
+      ],
+      "evidence": [
+        "https://csfrace.com/collections/bmw-f8x-m3-m4-m2c"
+      ],
+      "reason": "CSF explicitly separates N55 M2 and S55 M2 Competition applications, including quantity/location notes.",
+      "correction": "The source YMMT incorrectly labels the full 2016-2020 range as S55. Keep N55 and S55 parts separate and do not imply street cars need the upgrades.",
+      "sequence": 155,
+      "ymmt": "2016-2020 | BMW | M2 | S55",
+      "title": "Cooling System Inadequacy Under Track Use - F87 M2/M2C",
+      "howToFix": "Install aftermarket cooling upgrades for track use: CSF radiator (higher core density), aftermarket oil cooler (Mishimoto, CSF), upgraded intercooler (Wagner, CSF), and coolant reroute kit. Remove kidney grille blockage for better airflow. Install oil temperature and pressure gauges to monitor. Limit track sessions to 15-20 minutes with cool-down laps. Many serious track M2 owners install full cooling system upgrades ($2,500-4,000 total). For street use, stock cooling is adequate."
+    },
+    {
+      "issueId": "bmw-m2-dct-clutch-2016",
+      "repairItems": "DCT-only diagnosis; adaptation reset; conditional clutch pack; correct DCT fluid/service parts",
+      "decision": "TRANSMISSION-SPECIFIC SERVICE / CLUTCH AND FLUID HELD",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2016-2020 F87 M2 equipped with M-DCT; adaptation and clutch diagnosis",
+          "role": "DCT service"
+        }
+      ],
+      "evidence": [
+        "https://www.fcpeuro.com/BMW-parts/M2/Automatic-Transmission-Fluid-Kit/"
+      ],
+      "reason": "The live M2 category does not clearly establish a complete in-stock M2-specific service kit, and manual cars are outside scope.",
+      "correction": "Add transmission code, exact fluid specification, fill quantity and kit contents before approving fluid or a clutch pack.",
+      "sequence": 156,
+      "ymmt": "2016-2020 | BMW | M2",
+      "title": "DCT Dual-Clutch Transmission Shudder & Clutch Wear - F87 M2/M2C",
+      "howToFix": "Replace DCT clutch pack ($4,000-6,000 parts + labor). Change DCT fluid every 30,000 miles with BMW-approved fluid to extend clutch life. Avoid excessive launch control use. Transmission adaptation reset via BMW software often improves shift quality temporarily. Some performance shops offer upgraded clutch packs for track use. Extended warranty coverage highly recommended for DCT-equipped M2s."
+    },
+    {
+      "issueId": "bmw-m2-dct-mechatronics-2016",
+      "repairItems": "M-DCT fault diagnosis; adaptation reset; conditional mechatronics rebuild/replacement; correct fluid service",
+      "decision": "TRANSMISSION DIAGNOSIS/SPECIALIST SERVICE / UNIT HELD",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2016-2021 F87 M2 M-DCT fault diagnosis, adaptation and mechatronics repair",
+          "role": "DCT specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Adaptation may resolve early symptoms; replacement versus rebuild depends on fault-led diagnosis and transmission identity.",
+      "correction": "Do not link a mechatronics unit, rebuild kit or fluid from shudder alone.",
+      "sequence": 157,
+      "ymmt": "2016-2021 | BMW | M2",
+      "title": "DCT (M-DCT) Mechatronics Unit Failure",
+      "howToFix": "Replace or rebuild the mechatronics unit. In some cases, a transmission adaptation reset via ISTA can resolve early-stage symptoms. Severe cases require full mechatronics replacement, which involves dropping the transmission. Fluid change every 30k miles helps extend life."
+    },
+    {
+      "issueId": "bmw-m2-n55-rod-bearing-2016",
+      "repairItems": "Oil analysis; track-use risk assessment; conditional measured rod-bearing service; correct oil by use/temperature",
+      "decision": "SPECIALIST ENGINE SERVICE / AFTERMARKET BEARINGS HELD",
+      "destinations": [
+        {
+          "label": "Blackstone Laboratories oil analysis kits",
+          "url": "https://www.blackstone-labs.com/products/free-test-kits/",
+          "scope": "2016-2018 F87 M2 N55 oil trend monitoring; follow lab sampling instructions",
+          "role": "named oil-analysis service"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "N55 bearing-noise/oil-pressure diagnosis",
+          "role": "engine diagnosis service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source makes a broad preventive interval claim without confirming bearing clearances, crank condition or a complete exact-fit kit.",
+      "correction": "Do not present ACL/King parts or a 60,000-mile replacement as universally mandatory without specialist measurement and engine-use context.",
+      "sequence": 158,
+      "ymmt": "2016-2018 | BMW | M2 | N55",
+      "title": "N55 Rod Bearing Premature Wear - F87 M2",
+      "howToFix": "Preventive rod bearing replacement recommended at 60,000 miles or before track use. Upgraded aftermarket bearings (ACL Race, King Racing) provide larger clearances and better durability. Oil analysis every 5,000 miles to monitor bearing wear (check for copper/lead particles). Use high-quality 5W-40 oil (Liqui Moly, Motul) and change every 5,000 miles max for track cars. Some track-focused owners replace bearings every 50,000 miles preventively."
+    },
+    {
+      "issueId": "bmw-m240i-b58-charge-pipe-2017",
+      "repairItems": "Replace confirmed failed charge pipe; inspect boots/connections; warranty check on stock vehicle",
+      "decision": "CHASSIS-SPLIT PARTIAL PART APPROVAL",
+      "destinations": [
+        {
+          "label": "BMS Elite aluminum B58 F-chassis charge pipe",
+          "url": "https://burgertuning.com/products/bms-aluminum-replacement-charge-pipe-upgrade-for-b58-f-chassis-bmw",
+          "scope": "2017-2021 F22/F23 M240i and xDrive with Gen-1 B58; not G42",
+          "role": "replacement charge pipe"
+        }
+      ],
+      "evidence": [],
+      "reason": "The manufacturer explicitly lists F22/F23 M240i fitment; the source range also includes G42 cars that use a different layout.",
+      "correction": "Split 2017-2021 F22/F23 from 2022-2024 G42 and verify the latter separately.",
+      "sequence": 159,
+      "ymmt": "2017-2024 | BMW | M240i | B58 3.0L Turbo I6",
+      "title": "Plastic Charge Pipe Failure Under Boost",
+      "howToFix": "Replace the factory plastic charge pipe with an upgraded aluminum aftermarket unit from manufacturers like Burger Motorsports, VRSF, or FTP Motorsport. If the failure occurs on a stock car, BMW may cover repair under warranty. After replacement, inspect the intercooler boots and all charge air connections for damage."
+    },
+    {
+      "issueId": "bmw-m240i-b58-coolant-loss-2017",
+      "repairItems": "VIN service-action check; cylinder-head-to-expansion-tank vent line; bleed/check cooling system",
+      "decision": "SERVICE ACTION/VIN ROUTE / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2017-2020 M240i VIN check for SIB 17 01 21 and vent-line service action",
+          "role": "service-action lookup/repair"
+        }
+      ],
+      "evidence": [],
+      "reason": "Campaign eligibility and the exact updated vent line are VIN-specific; the source explicitly rejects tank and water-pump replacement from this card.",
+      "correction": "Do not convert a service-action card into a generic hose, tank or water-pump sale.",
+      "sequence": 160,
+      "ymmt": "2017-2020 | BMW | M240i | B58 3.0L turbo I6",
+      "title": "F2x Cylinder-Head Coolant Vent-Line Service Action",
+      "howToFix": "Check BMW AIR, DCSnet or the key-reader service menu for an open SIB 17 01 21 Service Action on the exact VIN. For an affected vehicle, replace the cylinder-head-to-expansion-tank coolant vent line following BMW Repair Instruction 17 12 012 and bleed/check the cooling system as required. Do not replace the expansion tank or electric water pump solely from this card. ShowMeTheParts resolves exact 2017 M240i fitment and lists hoses/pipes and water-pump categories, but catalog fitment does not establish this defect or repair."
+    },
+    {
+      "issueId": "bmw-m240i-b58-valve-cover-gasket-2017",
+      "repairItems": "Valve-cover gasket or complete cover/PCV after inspection; conditional plugs/coils; cleanup",
+      "decision": "CHASSIS-SPLIT EXACT PARTIAL APPROVAL",
+      "destinations": [
+        {
+          "label": "Genuine BMW B58 valve cover 11127645173",
+          "url": "https://www.fcpeuro.com/products/bmw-valve-cover-genuine-bmw-11127645173",
+          "scope": "2017-2021 F22/F23 M240i/M240i xDrive B58; includes gasket set and mounting bolts",
+          "role": "complete valve cover/PCV assembly"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live listing explicitly covers 2017-2021 M240i variants and states that the gasket set and bolts are included.",
+      "correction": "Do not extend this F-chassis cover to 2022-2024 G42; link plugs or coils only when oil contamination/damage is confirmed.",
+      "sequence": 161,
+      "ymmt": "2017-2024 | BMW | M240i | B58 3.0L Turbo I6",
+      "title": "Valve Cover Gasket Oil Leak",
+      "howToFix": "Replace the valve cover gasket with an updated BMW part. If oil has entered spark plug tubes, replace spark plugs and inspect ignition coils. Clean all oil residue from the engine block. Some owners replace the entire valve cover assembly as the integrated PCV valve can also fail."
+    },
+    {
+      "issueId": "bmw-m240i-b58-vanos-solenoid-2017",
+      "repairItems": "Fault-led VANOS diagnosis; conditional seals or complete solenoid; approved oil",
+      "decision": "CHASSIS/YEAR/COMPONENT SPLIT REQUIRED / NO PRODUCT",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2017-2024 M240i VANOS fault diagnosis and VIN-specific part identification",
+          "role": "engine diagnosis service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source spans two chassis/B58 generations and does not provide solenoid position, current part number or verified silicone O-ring specification.",
+      "correction": "Verify fault, intake/exhaust position, chassis generation and VIN before approving an O-ring, solenoid or oil.",
+      "sequence": 162,
+      "ymmt": "2017-2024 | BMW | M240i | B58 3.0L Turbo I6",
+      "title": "VANOS Solenoid O-Ring Failure",
+      "howToFix": "Replace the VANOS solenoid o-rings with updated silicone o-rings. Clean the solenoid screens of any debris. If solenoids are contaminated, replace the entire solenoid unit. Use BMW-approved 0W-30 oil and maintain proper oil change intervals to reduce o-ring degradation."
+    },
+    {
+      "issueId": "bmw-m3-brittle-plastic-cooling-system-components-fail-catastrophica",
+      "repairItems": "VIN recall check; free redesigned radiator cap; safe overheating response",
+      "decision": "RECALL ROUTE / NO RETAIL CAP",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "1995 BMW M3; VIN required for 98V-178",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "1995 BMW M3; VIN confirmation for 98V-178",
+          "role": "independent recall lookup"
+        }
+      ],
+      "evidence": [
+        "https://www.nhtsa.gov/recalls"
+      ],
+      "reason": "The redesigned cap is a no-charge recall remedy, and catalog fitment cannot establish VIN campaign status.",
+      "correction": "Rename to the 1995 radiator-cap recall and keep generic cooling-system products off the card.",
+      "sequence": 163,
+      "ymmt": "1995-1995 | BMW | M3 | S50 3.0L inline-six",
+      "title": "1995 M3 Radiator-Cap Safety Recall 98V-178",
+      "howToFix": "Check the VIN for an open 98V-178 campaign. An authorized BMW dealer installs the redesigned radiator cap, which controls pressure and provides greater coolant overflow during overheating. Stop safely if an overheating warning appears and do not open a hot cooling system. ShowMeTheParts resolves exact 1995 M3 3.0-liter fitment and a radiator-cap candidate, but catalog fitment does not establish recall applicability or replace the free recall remedy."
+    },
+    {
+      "issueId": "bmw-m3-cs-s58-charge-pipe-2024",
+      "repairItems": "Confirmed cracked S58 charge pipe; reinforced replacement; inspect couplers/boots",
+      "decision": "EXACT TRIM/DRIVETRAIN PART APPROVAL",
+      "destinations": [
+        {
+          "label": "JDY titanium S58 charge-pipe kit",
+          "url": "https://www.uspmotorsports.com/product/jdy-titanium-charge-pipe-for-g8x-bmw-m2m3m4-75792879",
+          "scope": "2024 BMW M3 CS S58B30T0, AWD, 8-speed; confirm current product options",
+          "role": "reinforced charge-pipe replacement"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live listing explicitly names 2024 M3 CS, S58 engine, transmission and AWD configuration.",
+      "correction": "The source's named VRSF/Eventuri/BMS options were not verified as charge-pipe listings; use the exact live M3 CS fitment instead.",
+      "sequence": 164,
+      "ymmt": "2024-2024 | BMW | M3 CS | S58",
+      "title": "Charge Pipe Cracking Under High Boost (S58 Engine)",
+      "howToFix": "Replace the OEM plastic charge pipe with an aluminum or reinforced charge pipe from VRSF, Eventuri, or BMS. The aluminum pipe eliminates the cracking risk entirely and is a 30-minute DIY job. If the OEM pipe has cracked, also inspect the intercooler boots and couplers for damage from over-pressurization."
+    },
+    {
+      "issueId": "bmw-m3-e46-rod-bearing-2001",
+      "repairItems": "S54 rod-bearing service; standard-size coated bearing set after journal measurement; oil analysis",
+      "decision": "EXACT PART + MONITORING SERVICE / MEASUREMENT REQUIRED",
+      "destinations": [
+        {
+          "label": "King CR6877XPC S54 rod-bearing set",
+          "url": "https://kingenginebuilders.com/cr6877xpc",
+          "scope": "2001-2006 E46 M3 S54B32; select CR6877XPC-STD only after journal/clearance measurement",
+          "role": "six-pair rod-bearing set"
+        },
+        {
+          "label": "Blackstone Laboratories oil analysis kits",
+          "url": "https://www.blackstone-labs.com/products/free-test-kits/",
+          "scope": "S54 oil trend monitoring; follow lab sampling instructions",
+          "role": "named oil-analysis service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live bearing page identifies S54B32, six pairs, available sizes, coating and in-stock status.",
+      "correction": "Do not assume STD size without crank/journal measurement; the part page is not a complete service kit with bolts, gaskets, oil or labor.",
+      "sequence": 165,
+      "ymmt": "2001-2006 | BMW | M3 | S54",
+      "title": "Rod Bearing Wear (S54 Engine)",
+      "howToFix": "Rod bearing replacement requires oil pan drop and is a 5-hour DIY or $1,500-$2,500 at a shop. King Racing CR6877XPC-STD (~$430-$450) with ceramic nano-composite coating are the top forum pick. ACL 6B2500H-STD (~$150-$200) is the budget option. BE-Clevite tri-metal bearings (~$350) are the premium choice. Send oil samples to Blackstone Labs every 5,000 miles to monitor bearing wear before symptoms appear."
+    },
+    {
+      "issueId": "bmw-m3-e46-subframe-crack-2001",
+      "repairItems": "Rear floor/RACP inspection; crack repair; weld-in reinforcement plates; optional additional bracing",
+      "decision": "EXACT WELD-IN KIT + SPECIALIST SERVICE",
+      "destinations": [
+        {
+          "label": "Turner TDR4675412 E46 rear subframe/chassis reinforcement kit",
+          "url": "https://www.ecstuning.com/b-turner-motorsport-parts/rear-subframe-chassis-reinforcement-kit/tdr4675412~tms/",
+          "scope": "2001-2006 E46 M3; weld-in plates; inspect and repair existing cracks first",
+          "role": "rear floor reinforcement kit"
+        }
+      ],
+      "evidence": [
+        "https://assets.ecstuning.com/edoc/028535TMS01~A_INS.pdf"
+      ],
+      "reason": "The live page explicitly lists E46 M3/S54 fitment, weld-in purpose and current in-stock status.",
+      "correction": "Call the failure the rear axle carrier panel/floor mounting area, not the detachable subframe itself; welding and crack repair require an experienced shop.",
+      "sequence": 166,
+      "ymmt": "2001-2006 | BMW | M3",
+      "title": "Rear Subframe Mounting Point Cracking",
+      "howToFix": "Drop the rear subframe, inspect floor pan for cracks, repair any existing cracks, and weld in reinforcement plates. Turner Motorsport TDR4675412 (~$120-$150) or BimmerWorld expanded kit (~$125-$140) are the most popular kits. Through-bolting the front mounts and adding a rear X-brace provides the most comprehensive protection. This is a 15-20 hour job requiring welding equipment. Budget $1,500-$4,000 total at an experienced shop. Inspection is free - any shop can check for cracks with the car on a lift."
+    },
+    {
+      "issueId": "bmw-m3-e46-throttle-actuator-2001",
+      "repairItems": "BMW throttle diagnostics/basic setting; conditional exact S54 actuator or verified rebuild",
+      "decision": "EXACT CONDITIONAL PART / SOURCE AVAILABILITY CORRECTION",
+      "destinations": [
+        {
+          "label": "Genuine BMW S54 throttle actuator 13627840537",
+          "url": "https://www.turnermotorsport.com/p-16512-throttle-actuator-e46-m3-z3m-z4m-with-s54-engine/",
+          "scope": "2001-2006 E46 M3 S54; verify current ship date/availability before ordering",
+          "role": "conditional throttle actuator"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "E46 M3 basic-throttle-setting, TPS and actuator diagnosis",
+          "role": "BMW diagnostic service"
+        }
+      ],
+      "evidence": [
+        "https://bmwrepairguide.com/sib/123706.pdf"
+      ],
+      "reason": "A current live genuine-BMW listing exists for the exact S54 actuator, contrary to the source's blanket discontinued claim; diagnosis must distinguish setting/TPS/actuator faults.",
+      "correction": "Do not send buyers to the out-of-stock Rogue rebuild listing or assume every EML fault is the actuator.",
+      "sequence": 167,
+      "ymmt": "2001-2006 | BMW | M3",
+      "title": "Electronic Throttle Actuator (EDR) Failure",
+      "howToFix": "Since BMW discontinued the OEM part (13627840537), rebuilt units are the primary option. EBM Engineering (via Rogue Engineering) offers send-in rebuilds for $500-$700+core. ECU Testing (UK) offers motor rewinding + TPS repair for $300-$500. Installation is 2-3 hours ($300-$600 labor). Source a good used unit as a spare - availability is increasingly scarce."
+    },
+    {
+      "issueId": "bmw-m3-e46-vanos-failure-2001",
+      "repairItems": "Diagnosis-specific S54 VANOS seals; rattle kit; oil-pump disk/core; gasket and required tools/hardware",
+      "decision": "EXACT MODULAR KIT APPROVAL / CHOOSE BY FAILURE MODE",
+      "destinations": [
+        {
+          "label": "Beisan BS021 S54 VANOS seal kit",
+          "url": "https://beisansystems.com/product/s54-vanos-seals-repair-kit/",
+          "scope": "2001-2006 E46 M3 S54; seal-related leakage/timing symptoms",
+          "role": "VANOS seal kit"
+        },
+        {
+          "label": "Beisan BS022 S54 VANOS rattle kit",
+          "url": "https://beisansystems.com/product/s54-vanos-rattle-repair-kit/",
+          "scope": "S54 only; requires diagnosis and separate tools/hardware",
+          "role": "rattle elimination kit"
+        },
+        {
+          "label": "Beisan BS025 S54 VANOS oil-pump disk",
+          "url": "https://beisansystems.com/product/s54-vanos-oil-pump-disk/",
+          "scope": "S54 oil-pump-disk repair; includes refundable core charge and core-return terms",
+          "role": "conditional oil-pump disk"
+        }
+      ],
+      "evidence": [
+        "https://beisansystems.com/s54-vanos-rattle-procedure/"
+      ],
+      "reason": "Each live manufacturer page identifies the S54 application, SKU, contents/purpose and availability/core terms.",
+      "correction": "Do not present BS021+BS022+BS025 as automatically sufficient for every VANOS failure; sprocket hub, solenoid, bolts, gasket and tools are separate conditional items.",
+      "sequence": 168,
+      "ymmt": "2001-2006 | BMW | M3 | S54",
+      "title": "VANOS Unit Failure (S54 Double-VANOS)",
+      "howToFix": "VANOS rebuild using Beisan Systems kits is the most cost-effective approach. For budget repair, start with seal kit (BS021, $60) and rattle elimination kit (BS022, $80). For comprehensive repair, add oil pump disk (BS025, $150+core) which saves ~$1,250 vs full replacement. Full rebuilt VANOS from Beisan (BS100, $1,990+core) or Mr Vanos (~$1,500 send-in service) for heavily worn units. Always replace VANOS gasket (BMW 11-36-7-831-938) during service. DIY is feasible with Beisan's detailed procedure guide (4-8 hours). Professional installation $500-$1,200."
+    },
+    {
+      "issueId": "bmw-m3-e92-differential-mount-subframe-stress",
+      "repairItems": "Mount/subframe inspection; track-use solid or street-use polyurethane differential mounts; conditional crack repair",
+      "decision": "EXACT PERFORMANCE PART / USE-CASE WARNING",
+      "destinations": [
+        {
+          "label": "VAC aluminum differential mount kit VAC-33-ADMK-E9XM",
+          "url": "https://store.vacmotorsports.com/vac-motorsports-aluminum-differential-mount-kit-bmw-e90e92e93-m3-p2217.aspx",
+          "scope": "2008-2013 E90/E92/E93 M3; track/race/extreme performance use; increased noise possible",
+          "role": "solid differential mount kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "The manufacturer explicitly lists E9X M3 years, use case, solid construction and NVH tradeoff.",
+      "correction": "Do not call a solid mount a universal street repair or imply it repairs existing subframe cracks; inspect first.",
+      "sequence": 169,
+      "ymmt": "2008-2013 | BMW | M3",
+      "title": "E92 Rear Differential Mount and Subframe Stress",
+      "howToFix": "Upgrade to solid or polyurethane differential mounts. VAC Motorsports aluminum differential mount kit. Reinforce subframe with welded reinforcement plates if cracking has occurred. Regular inspection of differential mounting points."
+    },
+    {
+      "issueId": "bmw-m3-e92-edc-damper-failure",
+      "repairItems": "EDC fault/corner diagnosis; position-specific OEM or Bilstein DampTronic damper; calibration; optional complete-system conversion",
+      "decision": "POSITION/BODY-STYLE SPLIT REQUIRED / NO SINGLE KIT",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2008-2013 E9X M3 EDC fault diagnosis, corner identification and calibration",
+          "role": "EDC suspension service"
+        }
+      ],
+      "evidence": [
+        "https://info.bilsteinus.com/public_access/media-cd/2014/Catalogs%20and%20Brochures/BILSTEIN%20Application%20Guide%202014.pdf"
+      ],
+      "reason": "Bilstein identifies separate front-left, front-right and rear DampTronic part numbers; the source gives no failed corner or sedan/coupe/convertible split.",
+      "correction": "Do not link one damper as an all-four kit or mix EDC replacement with an EDC-delete/coilover conversion.",
+      "sequence": 170,
+      "ymmt": "2008-2013 | BMW | M3",
+      "title": "EDC Electronic Damper Control System Failure",
+      "howToFix": "Replace failed EDC dampers with OEM units (approximately $2,400 for all four). Bilstein B6 DampTronic replacement dampers (approximately $1,700 for all four). EDC delete kit with conventional performance coilovers. Replace EDC control module if module is the issue."
+    },
+    {
+      "issueId": "bmw-m3-e9x-idle-control-2008",
+      "repairItems": "VIN warranty-comment/history check; BMW test module; conditional idle-control-device replacement",
+      "decision": "WARRANTY/DIAGNOSIS SERVICE / NO PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2013 E9X M3 S65 VIN-specific idle-control-device warranty and diagnosis",
+          "role": "warranty diagnosis/service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Rough idle alone does not establish the covered failure, and no exact candidate was resolved.",
+      "correction": "Do not infer an idle valve or coverage without the VIN warranty comment and BMW test result.",
+      "sequence": 171,
+      "ymmt": "2013-2013 | BMW | M3 | S65 4.0L V8",
+      "title": "2013 S65 Idle-Control-Device Warranty Extension",
+      "howToFix": "Confirm the exact model, production date and VIN-specific warranty comment and repair history before diagnosis. For a confirmed eligible failure, an authorized BMW center performs the BMW test module and replaces the idle control device when required. Do not infer coverage from rough idle alone. ShowMeTheParts resolves exact 2013 M3 4.0-liter fuel-injection fitment but returned no idle-control-valve candidate; catalog output would not establish failure or coverage."
+    },
+    {
+      "issueId": "bmw-m3-e9x-rod-bearing-2008",
+      "repairItems": "S65 rod-bearing service; measured custom-clearance set; new fasteners; full gasket/fluid/hardware plan",
+      "decision": "EXACT SPECIALIST KIT / SOURCE BOLT CLAIM CORRECTION",
+      "destinations": [
+        {
+          "label": "Lang Racing S65 rod-bearing service kit",
+          "url": "https://store.langracing.com/products/rod-bearing-service-kit-bmw-s65-e90-e92-m3/",
+          "scope": "2008-2013 E90/E92/E93 M3 S65; custom-clearance ACL set plus listed service parts",
+          "role": "rod-bearing service kit"
+        },
+        {
+          "label": "ARP S65 rod-bolt kit 201-6001",
+          "url": "https://arp-bolts.com/kit/201-6001",
+          "scope": "BMW 4.0L S65 V8; rod resizing and ARP installation procedure required",
+          "role": "optional aftermarket rod bolts"
+        }
+      ],
+      "evidence": [
+        "https://cdn.arp-bolts.com/instructions/201-6001.pdf"
+      ],
+      "reason": "The Lang kit is live and explicitly S65/E9X-specific; ARP's official page and instructions confirm the optional bolt application and resizing requirement.",
+      "correction": "The source says ARP is always mandatory, but Lang's complete kit uses new genuine BMW bolts. Do not combine both bolt strategies or skip clearance/rod measurements.",
+      "sequence": 172,
+      "ymmt": "2008-2013 | BMW | M3 | S65",
+      "title": "Rod Bearing Failure (S65 V8) - CRITICAL",
+      "howToFix": "MANDATORY preventative replacement before 60,000-70,000 miles. Lang Racing Development custom ACL set (~$300-$350) achieves ideal 0.0023-0.0025\" clearance using mixed shells (STD rod side + .001\" oversize cap side). BE Bearings SP1527HK-STD-S65 ($590) is the premium option with tri-metal coating. Always replace with ARP 201-6001 connecting rod bolts ($250-$300) - factory stretch bolts cannot be reused. Professional installation $2,500-$3,500 total (8-15 hours labor). Dealer quotes $5,000-$9,500."
+    },
+    {
+      "issueId": "bmw-m3-e9x-throttle-actuator-2008",
+      "repairItems": "Confirm S65 actuator fault; two gear sets or two send-in rebuilds; electronics testing",
+      "decision": "EXACT MODULAR REPAIR APPROVAL / ELECTRONICS CAVEAT",
+      "destinations": [
+        {
+          "label": "Beisan BS101 S65/S85 throttle-actuator gears",
+          "url": "https://beisansystems.com/product/bs101-s65-s85-throttle-actuator-gears/",
+          "scope": "2008-2013 E9X M3 S65; one set per actuator, quantity two for both",
+          "role": "mechanical gear repair"
+        },
+        {
+          "label": "Beisan BS102 S65/S85 actuator rebuild service",
+          "url": "https://beisansystems.com/product/bs102-s65-s85-throttle-actuator-gears-w-installation-service/",
+          "scope": "S65/S85; one actuator per service, quantity two for both; damaged electronics may be declined",
+          "role": "send-in mechanical rebuild service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live manufacturer pages state S65 fitment, one-set/one-service-per-actuator quantities, stock and rebuild limitations.",
+      "correction": "Do not claim the gear service automatically repairs degraded electronics; test fault codes and actuator electronics first.",
+      "sequence": 173,
+      "ymmt": "2008-2013 | BMW | M3 | S65",
+      "title": "Throttle Actuator Gear Failure (S65 V8)",
+      "howToFix": "Beisan Systems BS101 gear set ($250 per actuator, need 2) is the most cost-effective solution. BS102 ($300) includes send-in rebuild with new gears. Electronics rebuild from bimmerthrottlerepair.com (~$70 each) is essential alongside gear replacement - the voltage regulator IC degrades chronically. Total DIY rebuild cost: $570-$650 for both actuators. Evolve Automotive uprated actuators ($1,200-$1,500/pair) are the premium fix-it-once solution."
+    },
+    {
+      "issueId": "bmw-m3-e9x-vanos-solenoid-2008",
+      "repairItems": "Clean/swap for diagnosis; bank/position confirmation; intake and exhaust solenoids as a pair when confirmed",
+      "decision": "EXACT TWO-SOLENOID KIT APPROVAL",
+      "destinations": [
+        {
+          "label": "Genuine BMW S65 VANOS solenoid kit 11367843118KT",
+          "url": "https://www.turnermotorsport.com/p-51075084-s65-vanos-solenoid-valve-kit/",
+          "scope": "2008-2013 E90/E92/E93 M3 S65; includes one intake 11367843118 and one exhaust 11367843117",
+          "role": "one-bank intake/exhaust solenoid kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live kit identifies both OEM numbers, exact S65/E9X fitment, contents and availability.",
+      "correction": "Confirm bank and fault by cleaning/swapping before ordering; the linked quantity covers one intake plus one exhaust, not all four solenoids.",
+      "sequence": 174,
+      "ymmt": "2008-2013 | BMW | M3 | S65",
+      "title": "VANOS Solenoid Failure (S65 V8)",
+      "howToFix": "Replace VANOS solenoids with OEM parts. Intake solenoid: BMW 11367843118 (~$80-$150). Exhaust solenoid: BMW 11367843117 (~$80-$150). Always replace both solenoids on a bank simultaneously. Very DIY-friendly - solenoids are mounted on the front of the cylinder head (1-2 hours labor). Try cleaning first and swapping side-to-side to isolate the faulty solenoid before buying parts."
+    },
+    {
+      "issueId": "bmw-m3-elevated-oil-consumption-via-crankcase-ventilation-rings",
+      "repairItems": "Engine-specific crankcase ventilation diagnosis; oil-consumption test; conditional rings/valve seals; correct owner-manual oil",
+      "decision": "SOURCE REPAIR MODEL CORRECTION / NO PRODUCT",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "1995-1999 US E36 M3 S50B30US/S52B32US oil-consumption and crankcase-ventilation diagnosis",
+          "role": "engine diagnosis service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source's cold-weather CCV kit language belongs to later M52TU/M54-style systems and is not established for US S50/S52 E36 M3 engines.",
+      "correction": "Rewrite the repair with S50-versus-S52 ventilation diagrams/part numbers and documented oil specification before adding CCV hoses, separator or oil products.",
+      "sequence": 175,
+      "ymmt": "1995-1999 | BMW | M3 | Coupe, Sedan, Convertible | S50B30US 3.0L inline-6, S52B32US 3.2L inline-6",
+      "title": "Elevated oil consumption via crankcase ventilation (CCV) and rings",
+      "howToFix": "Replace the CCV/oil-separator valve and its hoses first, as it is a frequent and relatively inexpensive culprit (get the cold-weather CCV variant in cold climates). Use a BMW-approved thicker synthetic (5W-40 such as Mobil 1 European, Liqui-Moly, or Pentosin). Persistent high consumption after CCV service points to worn rings/valve seals requiring more involved engine work. Regular level checks are essential."
     }
   ]
 }
