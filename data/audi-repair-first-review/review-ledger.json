@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "make": "Audi",
-  "generatedAt": "2026-08-20T19:25:40.311Z",
+  "generatedAt": "2026-08-20T19:30:10.082Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "a1f7f8fdd3d1f2841544f188c0f1a6d06a7d70d7bc4de401c640992730ebe303",
   "publishedIssueCount": 389,
-  "reviewedIssueCount": 300,
-  "remainingIssueCount": 89,
-  "reviewedWithDestinationCount": 295,
-  "destinationCount": 513,
-  "distinctUrlCount": 89,
+  "reviewedIssueCount": 350,
+  "remainingIssueCount": 39,
+  "reviewedWithDestinationCount": 344,
+  "destinationCount": 603,
+  "distinctUrlCount": 101,
   "scannerDestinationCount": 5,
-  "missingHowToFixCount": 5,
+  "missingHowToFixCount": 6,
   "reviews": [
     {
       "issueId": "audi-a6-27t-ignition-coil-pack-2000",
@@ -7288,6 +7288,1245 @@
       "ymmt": "2008-2025 | Audi | S5 | 3.0T",
       "title": "3.0T Supercharger Intercooler Pump Failure",
       "howToFix": "Replace intercooler coolant pump. Check intercooler lines for leaks and flush the circuit during replacement."
+    },
+    {
+      "issueId": "audi-s5-thermostat-2008",
+      "repairItems": "Split V8/supercharged/turbo engines; pressure-test exact pump/thermostat/housing source; VIN component/revision and coolant",
+      "decision": "OVERBROAD MULTI-ENGINE / LEAK-SOURCE GATE",
+      "destinations": [
+        {
+          "label": "Audi S5 thermostat catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S5/Thermostat/",
+          "scope": "2008-2025 exact engine/VIN and confirmed component",
+          "role": "vehicle-specific thermostat catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "pressure-test/engine diagnosis",
+          "role": "specialist cooling service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Source incorrectly labels whole range 3.0T and one assembly.",
+      "correction": "No universal revised-housing upgrade or pump/thermostat bundle.",
+      "sequence": 301,
+      "ymmt": "2008-2025 | Audi | S5 | 3.0T",
+      "title": "Thermostat and Water Pump Assembly Failure",
+      "howToFix": "Replace thermostat/water pump assembly. Upgrade to revised housing if available."
+    },
+    {
+      "issueId": "audi-s6-air-suspension-2013",
+      "repairItems": "Test compressor and J403; compressor+relay only for severe relay erosion/overheat; relay only for normal compressor/minor marks; separate sag/leak diagnosis",
+      "decision": "TSB RELAY/COMPRESSOR CONDITION GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2013 S6 air-suspension compressor/J403 diagnosis",
+          "role": "manufacturer suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Relay inspection and compressor test select branch.",
+      "correction": "No strut/compressor product from warning alone.",
+      "sequence": 302,
+      "ymmt": "2013-2013 | Audi | S6 | 4.0T",
+      "title": "2013 Audi S6 Air-Suspension Compressor or Relay Fault - Diagnosis Required",
+      "howToFix": "Have an Audi-qualified technician test the air-suspension compressor and inspect relay J403. Audi directs replacement of both the compressor and relay when the relay has severe contact erosion or an overheated strand; when the compressor sounds normal and the relay has only minor contact marks, replace the relay only. A sagging corner or leak-down condition requires separate leak localization before any strut is replaced. Do not order the former strut or compressor recommendations from this card."
+    },
+    {
+      "issueId": "audi-s6-c7-carbon-buildup-2013",
+      "repairItems": "Confirm deposits after misfire/fuel/compression and borescope; 4.0T cleaning; disturbed gaskets/seals and PCV only by condition",
+      "decision": "CONFIRMED-DEPOSIT / CONSUMABLE GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2013-2018 S6 4.0T intake diagnosis/cleaning",
+          "role": "specialist intake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Cleaning is valid after proof; seals/PCV conditional.",
+      "correction": "Remove prices and automatic injector/PCV parts.",
+      "sequence": 303,
+      "ymmt": "2013-2018 | Audi | S6 | 4.0T",
+      "title": "4.0T Carbon Buildup on Intake Valves",
+      "howToFix": "Confirm carbon buildup by scanning for misfire faults (commonly random/multiple or cylinder-specific misfires), reviewing fuel trims, and inspecting the intake valves with a borescope after removing the intake manifold or accessing the ports. The proper repair is an intake valve carbon cleaning, typically walnut shell blasting each intake port with the valves closed, then replacing intake manifold gaskets, injector seals/O-rings or any disturbed PCV-related seals as needed and clearing/adapting the ECU afterward. If buildup is severe or returns quickly, inspect the PCV/oil separator system and crankcase ventilation hoses for excessive oil carryover. Independent shops typically charge about $800-$1,500 for a full walnut blast service on the 4.0T, while dealer pricing can run roughly $1,500-$2,500 depending on labor and gasket/seal replacement."
+    },
+    {
+      "issueId": "audi-s6-carbon-buildup-2013",
+      "repairItems": "Split generations/injection systems; confirm inlet deposits before generation-specific cleaning",
+      "decision": "MULTI-GENERATION / CONFIRMED-DEPOSIT SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2013-2024 S6 4.0T intake diagnosis/cleaning",
+          "role": "specialist intake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "2019+ dual-injection statement not sufficient for whole range.",
+      "correction": "No automatic eight-runner walnut service.",
+      "sequence": 304,
+      "ymmt": "2013-2024 | Audi | S6 | 4.0T",
+      "title": "4.0T Direct Injection Carbon Buildup",
+      "howToFix": "Walnut blast all eight intake runners. Dual-injection models (2019+) are less affected."
+    },
+    {
+      "issueId": "audi-s6-rearview-camera-image-failure-from-software-error",
+      "repairItems": "VIN/90TV/25V900 check; free software; direct observation",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2020-2025 S6 90TV",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V900 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Software is recall remedy.",
+      "correction": "Restart is not completion; no camera link.",
+      "sequence": 305,
+      "ymmt": "2020-2025 | Audi | S6",
+      "title": "2020-2025 Audi S6 Rearview Camera Software Recall 25V900 / 90TV",
+      "howToFix": "Check the VIN for recall 25V900/90TV and contact an authorized Audi dealer. Dealers will install the more robust driver-assistance software update free of charge. Until repaired, use extra caution when reversing and do not treat a restart or temporary image recovery as completion of the recall."
+    },
+    {
+      "issueId": "audi-s6-takata-passenger-airbag-inflator-recall",
+      "repairItems": "VIN/69R7/18V427 check; free passenger inflator remedy",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2007-2011 S6 69R7",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "18V427 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Warning light does not determine eligibility.",
+      "correction": "No retail airbag link.",
+      "sequence": 306,
+      "ymmt": "2007-2011 | Audi | S6",
+      "title": "2007-2011 Audi S6 Takata Passenger-Airbag Recall 18V427 / 69R7",
+      "howToFix": "Check the VIN for recall 18V427/69R7 and arrange the free final passenger-frontal-airbag replacement with an Audi dealer. Do not use an airbag warning light to determine recall eligibility; Audi states that the warning light is unrelated to this inflator defect."
+    },
+    {
+      "issueId": "audi-s6-transmission-valve-body-2002",
+      "repairItems": "",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "Source has no How to Fix.",
+      "correction": "Add 5HP24 code, faults, fluid/debris, valve-body/solenoid/converter/mechanical branches before links.",
+      "sequence": 307,
+      "ymmt": "2002-2004 | Audi | S6",
+      "title": "ZF 5HP24 Tiptronic Transmission Valve Body Failure",
+      "howToFix": ""
+    },
+    {
+      "issueId": "audi-s6-turbo-coolant-2013",
+      "repairItems": "Confirm TSB leak/VIN; both-bank feed/return pipes and disturbed oil-feed O-rings; exact coolant/bleed; coverage check",
+      "decision": "TSB / VIN CONDITIONAL BOTH-BANK SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2013 S6 4.0T coolant-pipe TSB/21F7 history",
+          "role": "manufacturer service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "both-bank leak diagnosis/service",
+          "role": "specialist cooling service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Expired action and both-bank procedure require VIN/current parts.",
+      "correction": "No single pipe/silicone kit link or coverage promise.",
+      "sequence": 308,
+      "ymmt": "2013-2013 | Audi | S6 | 4.0T",
+      "title": "2013 Audi S6 Turbocharger Coolant-Pipe Seepage - Diagnosis Required",
+      "howToFix": "Confirm the leak source and VIN applicability before ordering parts. For the TSB condition, Audi specifies replacing the coolant feed and return pipes on both cylinder banks, replacing the disturbed oil-feed-pipe O-rings, then refilling and bleeding the cooling system. Service Action 21F7 was VIN-specific and expired in 2019, so current coverage must not be assumed. Do not order the former single pipe or alleged silicone-line kit from this card."
+    },
+    {
+      "issueId": "audi-s7-air-suspension-2012",
+      "repairItems": "VIN/42L1/42L5/21V295/22V034 check; nuts/bolts, rear alignment and qualifying tire remedy",
+      "decision": "SOURCE-ID/YEAR MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2020-2021 S7 rear-axle campaigns",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "21V295/22V034 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Rear-axle recall, not 2012 air suspension.",
+      "correction": "Rename/re-key; no suspension/tire commerce link.",
+      "sequence": 309,
+      "ymmt": "2020-2021 | Audi | S7",
+      "title": "Rear-Axle Lock Nut and Alignment Recall Follow-Up (21V295 / 22V034)",
+      "howToFix": "Check the VIN for both campaigns 42L1 and 42L5. Audi dealers replace affected nuts and bolts, inspect and adjust rear alignment, and replace qualifying unevenly worn tires free of charge."
+    },
+    {
+      "issueId": "audi-s7-biturbo-coolant-2012",
+      "repairItems": "VIN/20U6/13V450 check; free fuel line; stop for odor/leak",
+      "decision": "SOURCE-ID/YEAR MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2013-2014 S7 20U6",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "13V450 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Fuel line recall, not coolant.",
+      "correction": "Rename/re-key; no fuel/coolant line product.",
+      "sequence": 310,
+      "ymmt": "2013-2014 | Audi | S7 | 4.0 TFSI",
+      "title": "4.0L Fuel Line Can Leak and Create a Fire Risk (Recall 13V450 / 20U6)",
+      "howToFix": "Check the VIN and campaign history. Audi dealers replace the fuel line free of charge under campaign 20U6/L8. Stop driving if fuel odor or leakage is present."
+    },
+    {
+      "issueId": "audi-s7-carbon-buildup-4.0t-2012",
+      "repairItems": "VIN/69CS/21V606 check; middle-rear belt inspection/replacement",
+      "decision": "SOURCE-ID/YEAR MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2021 S7 69CS",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "21V606 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Seat-belt recall, not carbon.",
+      "correction": "Rename/re-key; no cleaning/seat-belt product.",
+      "sequence": 311,
+      "ymmt": "2021-2021 | Audi | S7",
+      "title": "Rear Seat-Belt Retractor Can Release a Child Restraint Early (Recall 21V606 / 69CS)",
+      "howToFix": "Check VIN eligibility. Audi dealers inspect and replace the affected middle-rear seat-belt assembly as necessary free of charge under campaign 69CS."
+    },
+    {
+      "issueId": "audi-s7-cylinder-demand-rough-running-hesitation",
+      "repairItems": "VIN/90VC/25V201 check; instrument-panel software",
+      "decision": "SOURCE-ID MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2021 S7 90VC",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V201 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Display recall, not cylinder demand.",
+      "correction": "Rename/re-key; no engine/display product.",
+      "sequence": 312,
+      "ymmt": "2021-2021 | Audi | S7",
+      "title": "Instrument Panel May Fail to Display Critical Safety Information (Recall 25V201 / 90VC)",
+      "howToFix": "Check the VIN and campaign-completion history. Audi dealers update the instrument-panel module software free of charge under campaign 90VC."
+    },
+    {
+      "issueId": "audi-s7-ea839-2-9t-v6-water-pump-internal-leak-overheating",
+      "repairItems": "VIN/90TV/25V900 check; camera software; direct reverse observation",
+      "decision": "SOURCE-ID MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2020-2024 S7 90TV",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V900 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Camera recall, not water pump.",
+      "correction": "Rename/re-key; no cooling/camera product.",
+      "sequence": 313,
+      "ymmt": "2020-2024 | Audi | S7",
+      "title": "Rearview Camera Image May Not Display (Recall 25V900 / 90TV)",
+      "howToFix": "Check the VIN and campaign-completion history. Audi dealers update the relevant software free of charge under campaign 90TV. Continue direct visual checks when reversing until repaired."
+    },
+    {
+      "issueId": "audi-s7-electromechanical-steering-rack-torque-sensor-failure-causin",
+      "repairItems": "VIN/47T9/23V601 check; inspect/replace brake-fluid cap; use specified fluid",
+      "decision": "SOURCE-ID MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2021 S7 47T9",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "23V601 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Cap-label recall, not steering rack.",
+      "correction": "Rename/re-key; no steering/cap/fluid product.",
+      "sequence": 314,
+      "ymmt": "2021-2021 | Audi | S7",
+      "title": "Incorrect Brake-Fluid Reservoir Cap Label (Recall 23V601 / 47T9)",
+      "howToFix": "Check VIN eligibility. Audi dealers inspect the reservoir cap and replace it when necessary free of charge under campaign 47T9. Use only the brake-fluid specification in the owner and service information."
+    },
+    {
+      "issueId": "audi-s7-front-control-arm-bushing-ball-joint-failure",
+      "repairItems": "Loaded inspection each arm/joint; exact C7 position/VIN or complete verified kit; one-time hardware, ride-height torque and alignment",
+      "decision": "POSITION / KIT-COMPLETENESS GATE",
+      "destinations": [
+        {
+          "label": "Audi S7 control-arm catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S7/Control-Arms/",
+          "scope": "2013-2018 C7 S7 exact position/VIN/kit contents",
+          "role": "vehicle-specific suspension catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "loaded inspection/ride-height torque/alignment",
+          "role": "specialist suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Not every car needs a 16-piece kit.",
+      "correction": "Verify hardware/positions before full-set link.",
+      "sequence": 315,
+      "ymmt": "2013-2018 | Audi | S7 | S7, S7 Sportback | 4.0T TFSI Biturbo V8 (EA824)",
+      "title": "Front Control Arm Bushing and Ball Joint Failure (C7 Suspension)",
+      "howToFix": "Inspect all front control arms for play in the bushings and ball joints. Replace worn arms — many owners do the full front control-arm set (commonly a 16-piece kit covering both sides) to avoid repeat visits since the labor overlaps. Critical install notes: torque the bushing bolts at ride height (not with the suspension hanging) to avoid pre-loading and destroying the new bushings, and perform a four-wheel alignment afterward."
+    },
+    {
+      "issueId": "audi-s7-fuel-injector-deposits-failure-causing-misfire-rough-running",
+      "repairItems": "Cylinder-specific misfire/fuel-trim/injector leak/balance diagnosis; exact injector/seals; plugs/coils/carbon only if separately failed",
+      "decision": "CYLINDER / INJECTOR-DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi S7 fuel-injector catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S7/Fuel-Injector/",
+          "scope": "2013-2018 S7 4.0T exact VIN/current revision",
+          "role": "vehicle-specific injector catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "injector/misfire diagnosis",
+          "role": "specialist fuel service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Source wrongly bundles plugs/coils as a set and carbon.",
+      "correction": "Replace only confirmed injector/secondary faults.",
+      "sequence": 316,
+      "ymmt": "2013-2018 | Audi | S7 | S7 Quattro 4.0T | 4.0 TFSI V8 (EA824)",
+      "title": "Fuel Injector Deposits / Failure Causing Misfire and Rough Running (4.0T V8)",
+      "howToFix": "Pull misfire counts per cylinder to localize the fault. Inspect/replace failed or leaking injectors and renew injector seals; replace spark plugs and any weak coils as a set. Confirm fuel trims return to normal and clear codes; address intake carbon if present."
+    },
+    {
+      "issueId": "audi-s7-gateway-control-module-shutdown-from-rear-seat-liquid-spill",
+      "repairItems": "VIN/90V2/22V861 check; gateway protective cover; safe response to warnings/reduced power",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2020-2022 S7 90V2",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V861 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Cover is free remedy.",
+      "correction": "No gateway module link.",
+      "sequence": 317,
+      "ymmt": "2020-2022 | Audi | S7 | 2.9 TFSI",
+      "title": "Rear-Seat Liquid Spill Can Shut Down Gateway Module (Recall 22V861 / 90V2)",
+      "howToFix": "Check the VIN and campaign history. Audi dealers install a protective gateway-module cover free of charge under campaign 90V2. If multiple warnings or reduced power occur after a spill, move out of traffic safely and arrange dealer inspection."
+    },
+    {
+      "issueId": "audi-s7-high-pressure-fuel-pump-failure-causing-hard-start-power-los",
+      "repairItems": "Rail actual/target, low-side supply/sensor and bank diagnosis; exact bank/VIN HPFP if failed; cam follower/seals only per engine procedure; both pumps only by strategy",
+      "decision": "BANK / FUEL-PRESSURE GATE",
+      "destinations": [
+        {
+          "label": "Audi S7 HPFP catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S7/High-Pressure-Fuel-Pump/",
+          "scope": "2013-2018 S7 4.0T exact bank/VIN after diagnosis",
+          "role": "vehicle-specific HPFP catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "low/high pressure diagnosis",
+          "role": "specialist fuel service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Low-side/sensor faults mimic HPFP.",
+      "correction": "No both-pump/follower bundle by mileage alone.",
+      "sequence": 318,
+      "ymmt": "2013-2018 | Audi | S7 | S7 Quattro 4.0T | 4.0 TFSI V8 (EA824)",
+      "title": "High-Pressure Fuel Pump (HPFP) Failure Causing Hard Start and Power Loss (4.0T V8)",
+      "howToFix": "Diagnose with live fuel-rail pressure data before condemning the pump, as a faulty low-pressure sensor or in-tank pump can set the same codes. Replace the failed high-pressure pump (the affected bank, or both as a set on high-mileage cars) together with the cam follower and seals. Verify low-pressure (in-tank) supply is within spec."
+    },
+    {
+      "issueId": "audi-s7-ignition-coil-pack-failure-causing-misfires",
+      "repairItems": "Cylinder-specific swap test; exact 079905110-series current VIN coil; plugs/full set only by condition/strategy; inspect oil fouling",
+      "decision": "CYLINDER / COIL-REVISION GATE",
+      "destinations": [
+        {
+          "label": "Audi S7 ignition-coil catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S7/Ignition-Coil/",
+          "scope": "2013-2018 S7 4.0T exact VIN/current revision",
+          "role": "vehicle-specific coil catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "misfire/secondary-cause diagnosis",
+          "role": "specialist ignition service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Swap-test supports failed coil, not automatic eight-coil/plug set.",
+      "correction": "Do not generalize mixed-age failure sequence.",
+      "sequence": 319,
+      "ymmt": "2013-2018 | Audi | S7 | S7, S7 Sportback | 4.0T TFSI Biturbo V8 (EA824)",
+      "title": "Ignition Coil Pack Failure Causing Misfires (4.0T V8)",
+      "howToFix": "Confirm the failing cylinder, then swap the suspect coil to another cylinder to verify the fault follows the coil. Replace the failed coil; best practice on the 4.0T is to replace all eight coils and the spark plugs as a set since the access labor is shared and mixed-age coils tend to fail in sequence. Use OE or quality OE-equivalent coils (the 4.0T uses the 079905110-series coil). Inspect spark plugs for fouling/oil that could indicate a secondary issue."
+    },
+    {
+      "issueId": "audi-s7-motor-mount-failure-2012",
+      "repairItems": "VIN/74D5/18V370 check; occupant-detection repair kit",
+      "decision": "SOURCE-ID/YEAR MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2013-2018 S7 74D5",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "18V370 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Airbag seat-mat recall, not motor mounts.",
+      "correction": "Rename/re-key; no mount/ODS product.",
+      "sequence": 320,
+      "ymmt": "2013-2018 | Audi | S7",
+      "title": "Passenger Occupant Detection Mat Can Disable the Airbag (Recall 18V370 / 74D5)",
+      "howToFix": "Check VIN eligibility because seat equipment affects scope. Audi dealers install the occupant-detection repair kit free of charge under campaign 74D5."
+    },
+    {
+      "issueId": "audi-s7-pcv-oil-separator-failure-causing-oil-consumption-whistling",
+      "repairItems": "Smoke/crankcase-pressure/whistle and oil-consumption diagnosis; exact VIN oil separator/breather; ECM update when applicable; rear-main seal only if leaking",
+      "decision": "DIAGNOSIS / VIN PCV GATE",
+      "destinations": [
+        {
+          "label": "Audi S7 PCV catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S7/PCV/",
+          "scope": "2013-2018 S7 4.0T exact VIN/current revision after diagnosis",
+          "role": "conditional PCV catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "smoke/crankcase/rear-main diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "PCV and rear-main are separate branches.",
+      "correction": "No automatic breather hose/rear-main replacement.",
+      "sequence": 321,
+      "ymmt": "2013-2018 | Audi | S7 | S7 Quattro 4.0T | 4.0 TFSI V8 (EA824)",
+      "title": "PCV / Oil Separator (Ölabscheider) Failure Causing Oil Consumption and Whistling (4.0T V8)",
+      "howToFix": "Replace the failed oil separator / PCV assembly and the associated breather hose with the latest revised part. An ECM update may accompany the new part on some VINs. Confirm with a smoke test for intake-side vacuum leaks; inspect the rear main seal if oil consumption is severe, as a failed PCV is a common cause of rear main seal damage on these engines."
+    },
+    {
+      "issueId": "audi-s7-power-liftgate-motor-gas-strut-failure",
+      "repairItems": "Split generations; diagnose gas struts versus spindle lift motors versus latch/cinching; position/VIN component; struts paired; relearn per procedure",
+      "decision": "GENERATION / COMPONENT GATE",
+      "destinations": [
+        {
+          "label": "Audi S7 liftgate catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S7/Liftgate-and-Parts/",
+          "scope": "2013-2022 exact generation/VIN/component",
+          "role": "vehicle-specific liftgate catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "TSB 2072431/1 latch/motor diagnosis",
+          "role": "specialist body service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Weak support, slow travel and latch failure differ.",
+      "correction": "Engine list/generation must be split before link.",
+      "sequence": 322,
+      "ymmt": "2013-2022 | Audi | S7 | S7, S7 Sportback | 4.0T TFSI Biturbo V8 (EA824), 2.9T TFSI Biturbo V6 (EA839)",
+      "title": "Power Liftgate Motor and Gas Strut Failure (Sportback Tailgate)",
+      "howToFix": "Diagnose whether the fault is the gas struts (won't stay up / weak lift), the spindle lift motors (slow or struggling travel), or the latch/cinching motor (won't release or won't pull closed — see TSB 2072431/1). Replace worn gas struts in pairs; replace failed lift or cinching motors as needed. After repair, perform the power-liftgate relearn/reset procedure so travel limits recalibrate."
+    },
+    {
+      "issueId": "audi-s7-premature-front-brake-rotor-warping-pad-wear",
+      "repairItems": "Split generations/brake PR codes; measure runout/thickness/pad/caliper/hub; exact axle pads/rotors only if failed; correct bedding",
+      "decision": "GENERATION / BRAKE-OPTION / MEASUREMENT GATE",
+      "destinations": [
+        {
+          "label": "Audi S7 brake catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S7/Brakes/",
+          "scope": "2013-2022 exact VIN/PR code/axle",
+          "role": "vehicle-specific brake catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "runout/hub/caliper diagnosis",
+          "role": "specialist brake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Pulsation is not necessarily rotor warping.",
+      "correction": "No upgraded package or OEM-soft claim without exact evidence.",
+      "sequence": 323,
+      "ymmt": "2013-2022 | Audi | S7 | S7, S7 Sportback | 4.0T TFSI Biturbo V8 (EA824), 2.9T TFSI Biturbo V6 (EA839)",
+      "title": "Premature Front Brake Rotor Warping and Pad Wear",
+      "howToFix": "Replace warped/below-spec rotors and pads together; consider higher-quality coated or upgraded rotors that resist warping better than the soft OEM units. Bed in new pads/rotors properly and avoid riding the brakes to prevent uneven deposits. Ensure caliper guide pins/slides move freely so pads engage evenly. For repeat warping, an upgraded rotor-and-pad package is the durable fix; address any pulsation early before it damages new components."
+    },
+    {
+      "issueId": "audi-s7-rear-differential-mount-driveshaft-center-bearing-wear-causi",
+      "repairItems": "Inspect diff mount, center bearing, driveshaft joints and active-engine-mount TSB; exact failed component/VIN; insert only with verified fitment/NVH disclosure",
+      "decision": "ROOT-CAUSE / DRIVELINE-COMPONENT GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2013-2018 S7 clunk/vibration diagnosis",
+          "role": "specialist driveline service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN mount/bearing and active-mount TSB",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Multiple sources contribute and inserts change compliance/NVH.",
+      "correction": "No billet insert promise without exact live fitment.",
+      "sequence": 324,
+      "ymmt": "2013-2018 | Audi | S7 | S7, S7 Sportback | 4.0T TFSI Biturbo V8 (EA824)",
+      "title": "Rear Differential Mount and Driveshaft Center Bearing Wear Causing Drivetrain Clunk (C7)",
+      "howToFix": "Inspect the rear differential mount and driveshaft center support bearing for play and torn rubber. Replace worn components with OE parts, or fit billet aluminum diff/transmission mount inserts that fill the factory voids to remove the slop without adding harshness. On 4.0T cars, also check for the separate active-engine-mount software TSB before condemning a mount for a 1,000-3,000 RPM cruise vibration. Reassess the clunk after each fix since multiple sources can contribute."
+    },
+    {
+      "issueId": "audi-s7-rear-view-camera-mmi-flex-harness-black-screen",
+      "repairItems": "Scan plus tailgate flex-harness continuity; repair broken conductors or exact loom; camera only if failed; MMI software branch separately",
+      "decision": "HARNESS-FIRST / CAMERA-SOFTWARE SPLIT",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2013-2018 S7 tailgate harness/camera/MMI diagnosis",
+          "role": "specialist electrical service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN loom/camera/software",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Black screen does not establish camera failure.",
+      "correction": "No camera/harness link before continuity and exact break/part proof.",
+      "sequence": 325,
+      "ymmt": "2013-2018 | Audi | S7 | S7 (C7), A7 (C7) | 4.0 TFSI V8 (EA824)",
+      "title": "Rear-View Camera / MMI Flex Harness Black Screen",
+      "howToFix": "Diagnose with a scan and continuity check of the tailgate-to-body flex harness before replacing the camera. Repair or replace the broken hinge-side loom conductors; if confirmed faulty, replace the camera module. For MMI freezes, apply the latest software update or reset the unit."
+    },
+    {
+      "issueId": "audi-s7-s-tronic-7-speed-dual-clutch-mechatronic-clutch-wear",
+      "repairItems": "Confirm DL501/0B5 code; faults/pressure/adaptation, clutch and mechanical diagnosis; exact gearbox fluid/filter service; valve body/clutch only by test",
+      "decision": "TRANSMISSION-CODE / COMPONENT GATE",
+      "destinations": [
+        {
+          "label": "Audi S7 transmission-service catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S7/Automatic-Transmission-Service/",
+          "scope": "2013-2018 S7 DL501 exact VIN/fluid/filter",
+          "role": "vehicle-specific transmission catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "mechatronic/clutch diagnosis/adaptation",
+          "role": "specialist transmission service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Service, valve body and clutch are separate branches.",
+      "correction": "Verify schedule from exact US manual; reset does not fix wear.",
+      "sequence": 326,
+      "ymmt": "2013-2018 | Audi | S7 | S7 Quattro 4.0T (S-tronic / 0B5 DL501) | 4.0 TFSI V8 (EA824)",
+      "title": "S-tronic 7-Speed Dual-Clutch (DL501/0B5) Mechatronic and Clutch Wear",
+      "howToFix": "Perform the S-tronic gearbox oil and filter service on schedule (roughly every 40,000-60,000 km). For judder/jerking, have the mechatronic unit tested; recondition or replace the valve body with the superseded design and adapt/replace the clutch packs as needed. Software adaptation resets can temporarily improve drivability but do not fix worn hardware."
+    },
+    {
+      "issueId": "audi-s7-shark-fin-roof-antenna-water-intrusion-causing-gps-satellite",
+      "repairItems": "Water/reception/coax diagnosis; exact VIN antenna module or FAKRA repair kit/gasket; reseat/repair corrosion when possible; water test",
+      "decision": "MODULE / CONNECTOR / VIN GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2013-2018 S7 antenna/FAKRA kit by VIN",
+          "role": "manufacturer parts/service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "coax/reception/water diagnosis",
+          "role": "specialist electrical service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Connector kit may avoid antenna replacement.",
+      "correction": "No whole antenna before exact module/coax failure.",
+      "sequence": 327,
+      "ymmt": "2013-2018 | Audi | S7 | Prestige, Premium Plus | 4.0T Biturbo V8 (4.0 TFSI)",
+      "title": "Shark-Fin Roof Antenna Water Intrusion Causing GPS / Satellite Radio Reception Loss (C7)",
+      "howToFix": "Test/replace the shark-fin antenna module with a matching OEM part number and renew the base gasket to restore a watertight seal; in many cases the official fix is a repair kit with a new FAKRA connector and adapter cable rather than a whole new antenna. Access requires partially dropping the rear headliner to reach the single mounting nut and reconnect the coax leads. Inspecting and reseating a corroded coax connection sometimes restores reception without full replacement."
+    },
+    {
+      "issueId": "audi-s7-sunroof-panoramic-roof-drain-clog-causing-water-intrusion-el",
+      "repairItems": "Modest water-test each drain; approved flexible clearing; reseat/replace exact damaged tube; dry carpet/modules",
+      "decision": "DRAIN-POSITION / LEAK-SOURCE SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2013-2018 S7 drain tracing/drying",
+          "role": "specialist water-leak service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "position/VIN drain parts",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Blocked/disconnected/damaged drains differ.",
+      "correction": "Remove low-pressure air/trimmer-line and annual universal advice.",
+      "sequence": 328,
+      "ymmt": "2013-2018 | Audi | S7 | S7, S7 Sportback | 4.0T TFSI Biturbo V8 (EA824)",
+      "title": "Sunroof / Panoramic Roof Drain Clog Causing Water Intrusion and Electronics Damage (C7)",
+      "howToFix": "Test the drains by slowly pouring water into the channels at each corner of the sunroof and watching where it exits beneath the A- and C-pillars. Clear clogged tubes with low-pressure air or a soft trimmer line (avoid stiff wire that can puncture the tube) and reseat/secure any loose drain-tube connectors at the sunroof frame. Dry out any soaked carpet/insulation promptly and inspect floor-mounted modules for corrosion. Periodic drain cleaning is the best prevention."
+    },
+    {
+      "issueId": "audi-s7-turbo-oil-strainer-2012",
+      "repairItems": "VIN/21H7/22V178 check; oil strainer and oil change; inspect damage per campaign",
+      "decision": "SOURCE-YEAR MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2013-2017 S7 21H7",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V178 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Free safety remedy.",
+      "correction": "Identifier says 2012; no retail strainer.",
+      "sequence": 329,
+      "ymmt": "2013-2017 | Audi | S7 | 4.0 TFSI",
+      "title": "Turbocharger Oil-Supply Strainer Can Block and Cause Engine Stall (Recall 22V178 / 21H7)",
+      "howToFix": "Check the VIN and campaign history. Audi dealers replace the oil strainer and perform an oil change free of charge under campaign 21H7. If abnormal turbo noise, loss of power, or an engine warning occurs, stop safely and arrange dealer inspection."
+    },
+    {
+      "issueId": "audi-s7-turbocharger-wastegate-linkage-rattle-underboost",
+      "repairItems": "Confirm heat shield versus side-specific wastegate/turbo fault; boost commanded/actual and actuator tests; exact bank turbo only if failed; required lines/seals per procedure",
+      "decision": "BANK / TURBO-DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2013-2018 S7 4.0T wastegate/boost diagnosis",
+          "role": "specialist turbo service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN/bank turbo and required hardware",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Clip and turbo branches need exact fault; both oil lines not universal from source.",
+      "correction": "No clip/turbo link or cool-down/oil schedule claim without exact Audi procedure.",
+      "sequence": 330,
+      "ymmt": "2013-2018 | Audi | S7 | S7, S7 Sportback | 4.0T TFSI Biturbo V8 (EA824)",
+      "title": "Turbocharger Wastegate Linkage Rattle and Underboost (4.0T V8)",
+      "howToFix": "Diagnose the rattle and any boost faults to confirm wastegate-arm play versus a loose heat shield. Minor play can sometimes be mitigated with a clip, but the durable factory fix is turbocharger replacement. When replacing a hot-V turbo, it is mandatory to also replace the oil feed and return lines and to prime the new unit with oil before first start to prevent immediate bearing failure. Regular oil changes and allowing turbo cool-down help reduce coking-related wear."
+    },
+    {
+      "issueId": "audi-s8-5-2-v10-timing-chain-tensioner-guide-wear",
+      "repairItems": "Confirm BSM engine and timing-rattle source/oil pressure/adaptation; engine-code chain/tensioner/guide scope; engine-out only if current procedure; damage assessment",
+      "decision": "ENGINE / TIMING-DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2007-2012 S8 V10 timing/oil-pressure diagnosis",
+          "role": "specialist engine service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN timing parts/procedure",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Rattle/repair scope requires proof and exact procedure.",
+      "correction": "No universal short oil interval or full kit before inspection.",
+      "sequence": 331,
+      "ymmt": "2007-2012 | Audi | S8 | 5.2L FSI V10 (BSM)",
+      "title": "5.2 V10 Timing Chain Tensioner / Guide Wear (D3 Cold-Start Rattle)",
+      "howToFix": "Investigate any cold-start rattle promptly: inspect tensioner travel and guide condition. Replace the timing chains, tensioners, and plastic guides as a set with updated genuine parts; this is a major, labor-intensive repair (often engine-out). Strictly follow short oil-change intervals with the correct grade to maximize tensioner/guide life, and address any low-oil-pressure condition immediately. Do not drive a V10 with a persistent timing rattle."
+    },
+    {
+      "issueId": "audi-s8-air-suspension-2013",
+      "repairItems": "Split generations; sag/leak/compressor/valve/J1135/wiring/height-sensor diagnosis; exact component and calibration",
+      "decision": "MULTI-GENERATION SYSTEM DIAGNOSIS",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2013-2024 S8 air-suspension diagnosis",
+          "role": "specialist suspension service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN/PR-code parts/calibration",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "No 80k whole-system rule.",
+      "correction": "No Arnott link without exact generation/fitment and failure.",
+      "sequence": 332,
+      "ymmt": "2013-2024 | Audi | S8",
+      "title": "Adaptive Air Suspension Multi-Point Failure",
+      "howToFix": "Replace air struts as they fail. Budget for full system refresh at 80,000 miles. Arnott aftermarket struts offer cost savings."
+    },
+    {
+      "issueId": "audi-s8-air-suspension-failure-2013",
+      "repairItems": "Read DTC/symptom; J775-J1135 wiring/terminals; passive clear/verify; active/static conditional J1135; separate sag/leak",
+      "decision": "SOURCE-YEAR MISMATCH / WIRING-FIRST TSB",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2020-2024 S8 J1135 diagnosis",
+          "role": "manufacturer suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "No air hardware is established.",
+      "correction": "Identifier says 2013; no strut/compressor/conversion link.",
+      "sequence": 333,
+      "ymmt": "2020-2024 | Audi | S8",
+      "title": "2020-2024 S8 Air-Suspension Malfunction with J1135 Communication Fault - Diagnosis Required",
+      "howToFix": "Read the suspension-controller DTC and symptom code, then inspect wiring, terminals and connectors between J775 and J1135 exactly as Audi specifies. If the fault is passive/sporadic, clear it and verify operation. If it remains active/static after the electrical inspection and key cycle, follow Audi testing for J1135 replacement. Diagnose vehicle sag or leak-down separately; do not order air struts, a compressor or a coil-conversion kit from the former card."
+    },
+    {
+      "issueId": "audi-s8-battery-management-energy-control-module-faults-parasitic-dr",
+      "repairItems": "VIN/open 27BQ check; starter-alternator action; separate battery/charging/sleep-current diagnosis outside action",
+      "decision": "SOURCE-ID MISMATCH / 48V ACTION ROUTE",
+      "destinations": [
+        {
+          "label": "Audi recall and campaign lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2020 S8 27BQ",
+          "role": "manufacturer campaign lookup"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "action/48V diagnosis",
+          "role": "authorized high-voltage service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Action is starter-alternator, not generic parasitic drain.",
+      "correction": "No battery monitor/gateway/MMI module link.",
+      "sequence": 334,
+      "ymmt": "2020-2020 | Audi | S8 | VIN-specific Emissions Service Action 27BQ; verify open action in Audi campaign lookup | 4.0T TFSI V8 mild-hybrid",
+      "title": "2020 S8 Starter-Alternator Emissions Service Action 27BQ - VIN Check Required",
+      "howToFix": "Check the VIN in Audi’s recall/service-campaign lookup or ask an Audi dealer to verify 27BQ in Elsa. If open, the dealer replaces the starter-alternator under the action. Electrical-system warnings, a discharged battery, abnormal charging or overnight draw outside this exact action require battery/charging tests and a measured sleep-current diagnosis; do not replace a battery monitor, gateway or MMI module from the former card."
+    },
+    {
+      "issueId": "audi-s8-biturbo-coolant-2013",
+      "repairItems": "Split generations; pressure-test exact turbo coolant/oil line leak; VIN/bank/position component only if failed; correct fluid/bleed",
+      "decision": "MULTI-GENERATION / LEAK-SOURCE GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2013-2024 S8 turbo line leak diagnosis",
+          "role": "specialist turbo/cooling service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN/bank/position parts",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "No evidence supports all lines at 60k.",
+      "correction": "Remove preventive replacement/monitoring-only repair.",
+      "sequence": 335,
+      "ymmt": "2013-2024 | Audi | S8 | 4.0T",
+      "title": "4.0T Turbo Coolant System Degradation",
+      "howToFix": "Replace all turbo coolant and oil feed lines preventatively at 60,000 miles. Monitor coolant levels closely."
+    },
+    {
+      "issueId": "audi-s8-clogged-sunroof-plenum-drains-causing-water-intrusion-electr",
+      "repairItems": "Split D3/D4; trace sunroof/plenum/filter housing; approved drain clearing or exact hose/grommet/connector repair; dry/inspect modules",
+      "decision": "PLATFORM / LEAK-SOURCE SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2007-2009/2013-2018 S8 platform-specific water diagnosis",
+          "role": "specialist water-leak service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Two platforms/paths differ.",
+      "correction": "No annual interval or module replacement until damage confirmed.",
+      "sequence": 336,
+      "ymmt": "2007-2018 | Audi | S8 | S8, S8 Plus | 5.2 FSI V10, 4.0 TFSI twin-turbo V8 (4.0T)",
+      "title": "Clogged Sunroof / Plenum Drains Causing Water Intrusion and Electronics Damage",
+      "howToFix": "Clear and flush all sunroof and plenum/cowl drains; replace cracked drain hoses, grommets, or channel connectors. Dry out saturated carpet/insulation and inspect plenum-area modules for corrosion, replacing any water-damaged control units. Preventively clean the drains at least annually and keep the cowl area free of leaves/debris."
+    },
+    {
+      "issueId": "audi-s8-coolant-thermostat-leak-2013",
+      "repairItems": "Stop for overheat; pressure-test; 2021 VIN boundary; pump only if TSB-confirmed; other thermostat/hose/turbo/heat-exchanger/internal branches",
+      "decision": "SOURCE-ID/YEAR MISMATCH / VIN LEAK-SOURCE GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2020-early 2021 S8 TSB 2065040/4",
+          "role": "manufacturer cooling service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "pressure-test/source diagnosis",
+          "role": "specialist cooling service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Card concerns pump leak, not thermostat bundle.",
+      "correction": "Rename/re-key; no pump/thermostat bundle.",
+      "sequence": 337,
+      "ymmt": "2020-2021 | Audi | S8 | 2021 applicability ends at VIN 012194; confirm VIN and coolant-pump leak before repair | 4.0T TFSI V8",
+      "title": "2020-Early 2021 S8 Coolant-Pump Leak - Diagnosis Required",
+      "howToFix": "Do not drive an overheating vehicle. Record coolant warning and temperature behavior, pressure-test the cooling system when safe, and locate the leak. Confirm the 2021 VIN boundary and apply TSB 2065040/4 only when the coolant pump is the identified source. Other thermostat, hose, turbo-line, heat-exchanger or internal-loss causes require separate diagnosis; do not order the former thermostat/water-pump bundle from this card."
+    },
+    {
+      "issueId": "audi-s8-cylinder-demand-active-engine-mount-failure-4-cylinder-mode",
+      "repairItems": "Reproduce 1000-3000 rpm condition; J931 scan/software/SVM/basic settings; exhaust alignment; mount hardware only after software/calibration/exhaust",
+      "decision": "SOFTWARE/CALIBRATION-FIRST / MOUNT HOLD",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2013-2015 S8 COD/J931 bulletin",
+          "role": "manufacturer driveline service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "J931/exhaust/mount diagnosis",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Vibration does not establish failed mounts.",
+      "correction": "Do not disable COD or replace both mounts.",
+      "sequence": 338,
+      "ymmt": "2013-2015 | Audi | S8 | 4.0 TFSI vehicles with reproducible 1000-3000 rpm vibration; diagnose J931 before mount replacement | 4.0T TFSI V8",
+      "title": "2013-2015 S8 COD Vibration with J931 Basic-Setting Fault - Diagnosis Required",
+      "howToFix": "Reproduce the vibration under Audi’s specified driving conditions and scan J931. If the bulletin applies, verify J931 software, perform the required SVM update and basic settings, align the exhaust without tension, repeat basic settings and follow the referenced diagnosis if vibration remains. Inspect mount hardware only after the software, calibration and exhaust path. Do not disable cylinder-on-demand or replace both mounts from the former card."
+    },
+    {
+      "issueId": "audi-s8-d2-4-2-v8-timing-belt-tensioner-service",
+      "repairItems": "Confirm AYS and documented interval/history; complete belt/tensioner/idlers/water-pump kit; locking tools; chain tensioners inspected only by condition",
+      "decision": "ENGINE-CODE / TIMING-KIT GATE",
+      "destinations": [
+        {
+          "label": "Audi S8 timing-belt catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S8/Timing-Belt-Kit/",
+          "scope": "2001-2003 D2 S8 AYS; verify engine/VIN and kit contents",
+          "role": "engine-specific timing catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "service-position/locking/history",
+          "role": "specialist timing service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Complete kit is named, but interval/parts require exact engine proof.",
+      "correction": "Do not automatically replace exhaust-side chain tensioners.",
+      "sequence": 339,
+      "ymmt": "2001-2003 | Audi | S8 | 4.2L 40V V8 (AYS)",
+      "title": "D2 4.2 V8 Timing Belt and Tensioner Service (Interference Engine)",
+      "howToFix": "Replace the timing belt as a complete kit — belt, tensioner, idler/guide rollers, and water pump — at or before Audi's interval (and by age regardless of mileage). Use genuine/OE-quality components and set cam/crank timing precisely with the correct locking tools; this is a front-of-engine ('service position') job. Inspect the exhaust-side chain tensioners while in there. Always confirm timing-belt history (with receipts) before buying a D2 S8; if unknown, do it immediately."
+    },
+    {
+      "issueId": "audi-s8-direct-injection-carbon-buildup-intake-valves",
+      "repairItems": "Borescope confirmation after ignition/PCV checks; engine-code intake cleaning; manifold gaskets; plugs/coils only by condition",
+      "decision": "ENGINE-CODE / CONFIRMED-DEPOSIT SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2013-2018 S8 4.0T intake diagnosis/cleaning",
+          "role": "specialist intake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Cleaning valid after proof; plugs/coils/catch can conditional.",
+      "correction": "Remove fixed interval and catch-can prevention claim.",
+      "sequence": 340,
+      "ymmt": "2013-2018 | Audi | S8 | 4.0T TFSI V8 (CTFA/CGTA/CWUC)",
+      "title": "Direct-Injection Carbon Buildup on Intake Valves (Misfires / Rough Idle)",
+      "howToFix": "Confirm via borescope of the intake valves (and rule out coils/plugs/PCV first). The accepted repair is walnut-shell blasting: remove the intake manifold and media-blast the carbon off the valves and ports with crushed walnut shells, then reinstall with new intake gaskets. Replace spark plugs and inspect coils while the manifold is off. Preventively, keep up with oil changes, fix any PCV/oil-burning source, and consider periodic cleaning every ~40,000-60,000 miles. Catch-can solutions reduce future accumulation."
+    },
+    {
+      "issueId": "audi-s8-front-suspension-control-arm-bushing-sway-bar-link-wear",
+      "repairItems": "VIN boundary; reproduce/acoustically localize; inspect lower guide-link hydro-bushings/joints; paired bushing/guide-link branch; alignment",
+      "decision": "SOURCE-ID MISMATCH / VIN TSB SUSPENSION SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2020-early 2021 S8 guide-link TSB/VIN",
+          "role": "manufacturer suspension service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "acoustic localization/alignment",
+          "role": "specialist suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "No ten-arm/sway-link repair.",
+      "correction": "Rename/re-key to lower guide-link hydro-bushing.",
+      "sequence": 341,
+      "ymmt": "2020-2021 | Audi | S8 | 2021 applicability through VIN 028090; localize noise acoustically before parts | 4.0T TFSI V8 mild-hybrid",
+      "title": "2020-Early 2021 S8 Front Lower Guide-Link Hydro-Bushing Noise - Diagnosis Required",
+      "howToFix": "Confirm the VIN boundary, reproduce the noise and localize it with acoustic diagnostic equipment. Inspect the lower guide-link hydro-bushings and surrounding joints. If the hydro-bushing is confirmed, follow Audi’s paired replacement procedure; complete guide links may be required when prior pressing or rework prevents the specified repair. Align the vehicle as required. Do not order a ten-arm kit or sway-bar links from the former card."
+    },
+    {
+      "issueId": "audi-s8-high-pressure-fuel-pump-injector-internal-leak-causing-hard",
+      "repairItems": "ODIS fuel-in-oil/software and high/low pressure hold tests; borescope injector path; both HPFPs+oil only for defined low-side drop path",
+      "decision": "TEST-BRANCH / PUMP-INJECTOR HOLD",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2013-2018 S8 4.0T warm-soak fuel diagnosis",
+          "role": "manufacturer fuel service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "pressure-hold/borescope diagnosis",
+          "role": "specialist fuel service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Injector and HPFP are mutually diagnostic branches.",
+      "correction": "No pump/injector until test path identifies it.",
+      "sequence": 342,
+      "ymmt": "2013-2018 | Audi | S8 | 4.0 TFSI; diagnosis requires ODIS values, software check and pressure-hold testing | 4.0T TFSI V8",
+      "title": "2013-2018 S8 Warm-Soak Long-Crank or No-Start - Fuel Diagnosis Required",
+      "howToFix": "Have the dealer read DTCs and ODIS fuel-in-oil value, verify ECM software and perform Audi’s high- and low-pressure holding tests. If high-pressure behavior is abnormal, borescope the combustion chamber to identify a leaking injector. If low-side pressure builds correctly but drops more than 1.5 bar in the first 15 minutes, Audi says at least one HPFP may be leaking and directs replacement of both pumps plus an oil change. Select no pump or injector until the test identifies the path."
+    },
+    {
+      "issueId": "audi-s8-mmi-upper-display-backup-camera-black-screen",
+      "repairItems": "VIN/90TV/25V900 check; software remedy; direct observation; separate dead/rebooting display/wiring/hardware diagnosis",
+      "decision": "RECALL ROUTES / SYMPTOM SPLIT",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2020-2026 S8 90TV",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V900 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Recall only covers camera image software.",
+      "correction": "No MMI display/hardware link.",
+      "sequence": 343,
+      "ymmt": "2020-2026 | Audi | S8 | VIN-specific NHTSA 25V900 / Audi 90TV; verify open recall | 4.0T TFSI V8 mild-hybrid",
+      "title": "2020-2026 S8 Rearview/Top-View Camera Image May Not Display - Recall 25V900",
+      "howToFix": "Check the VIN in Audi’s recall/service-campaign lookup and schedule the free 90TV software remedy if open. Use extra care when reversing until repaired and visually check the area around the vehicle. A completely dead or rebooting MMI display, missing instrument-cluster data, wiring fault or hardware failure requires separate diagnosis and must not be attributed to this recall without VIN and symptom confirmation."
+    },
+    {
+      "issueId": "audi-s8-oil-consumption-2013",
+      "repairItems": "2020-2023 EA825 VIN and documented measured consumption; exclude leaks/spec/operation; conditional TSB piston/ring/rod procedure",
+      "decision": "SOURCE-YEAR MISMATCH / MEASURED-CONSUMPTION GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2020-2023 S8 TSB 2071114 and oil test",
+          "role": "manufacturer engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Internal work requires measured excess and TSB applicability.",
+      "correction": "Identifier says 2013; no viscosity/internal-part link.",
+      "sequence": 344,
+      "ymmt": "2020-2023 | Audi | S8 | EA825 4.0L; confirm VIN, engine and measured consumption under Audi procedure | 4.0T TFSI V8 mild-hybrid (EA825)",
+      "title": "2020-2023 S8 High Oil Consumption and Updated Piston Rings - Diagnosis Required",
+      "howToFix": "Document oil-level warnings, mileage, top-up quantity, leaks and oil specification, then have an Audi dealer perform the authorized oil-consumption measurement. Repair is justified only when the measured result exceeds the applicable owner-manual limit and other leakage or operating causes are excluded. If TSB 2071114 applies, follow its VIN/engine-specific piston, ring and connecting-rod procedure. Do not change oil viscosity or authorize internal-engine work solely from the former card."
+    },
+    {
+      "issueId": "audi-s8-pcv-oil-separator-failure-excessive-crankcase-vacuum",
+      "repairItems": "Warm-idle reference/filler-cap response; P2279/P0507 and other leak diagnosis; VIN oil-separator breather/seals only when matched",
+      "decision": "DIAGNOSIS / VIN PCV GATE",
+      "destinations": [
+        {
+          "label": "Audi S8 PCV catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S8/PCV/",
+          "scope": "2013-2016 S8 4.0T exact VIN after matching diagnosis",
+          "role": "conditional PCV catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "intake/crankcase leak diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Oil-cap feel alone insufficient.",
+      "correction": "No five-item bundle.",
+      "sequence": 345,
+      "ymmt": "2013-2016 | Audi | S8 | 4.0 TFSI; confirm warm-idle sound and filler-cap response before oil-separator replacement | 4.0T TFSI V8",
+      "title": "2013-2016 S8 Warm-Idle Whistle from Crankcase Breather Leak - Diagnosis Required",
+      "howToFix": "Compare the sound with Audi’s reference condition and check whether opening the oil filler cap changes it. Read P2279/P0507 and rule out other intake leaks. When the sound matches and is affected by the filler-cap check, follow Audi’s oil-separator breather replacement procedure and renew required seals/consumables by VIN. Do not diagnose by oil-cap feel alone or order the former five-item parts list."
+    },
+    {
+      "issueId": "audi-s8-porous-high-pressure-fuel-supply-line-recall-nhtsa-19v057000",
+      "repairItems": "VIN/20BM/19V057 check; in-tank low-pressure damper; stop/tow for fuel odor/leak",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2013-2016 S8 20BM",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "19V057 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Remedy is damper, not retail line.",
+      "correction": "No line/damper product.",
+      "sequence": 346,
+      "ymmt": "2013-2016 | Audi | S8 | VIN-specific NHTSA 19V057 / Audi 20BM; verify open recall | 4.0T TFSI V8",
+      "title": "2013-2016 S8 Porous Fuel-Pump Supply Line / Fire Risk - Recall 19V057",
+      "howToFix": "Check the VIN for open recall 20BM and contact an Audi dealer without delay. The free remedy installs a fuel-pressure damper in the low-pressure fuel supply inside the tank. If fuel odor or visible leakage is present, avoid ignition sources, do not continue driving, and arrange dealer inspection/towing as appropriate. Do not buy a retail line or damper from the former card."
+    },
+    {
+      "issueId": "audi-s8-torque-converter-2013",
+      "repairItems": "Split generations/ZF code; TCM faults, fluid/debris and converter-slip testing; exact service/valve-body/converter/rebuild branch",
+      "decision": "TRANSMISSION-CODE / COMPONENT GATE",
+      "destinations": [
+        {
+          "label": "Audi S8 transmission-service catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/S8/Automatic-Transmission-Service/",
+          "scope": "2013-2024 exact transmission/VIN/fluid/filter",
+          "role": "vehicle-specific transmission catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "converter/valve-body diagnosis",
+          "role": "specialist transmission service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Twelve years span units and component branches.",
+      "correction": "No automatic converter+valve-body repair or universal 50k interval.",
+      "sequence": 347,
+      "ymmt": "2013-2024 | Audi | S8",
+      "title": "ZF 8-Speed Torque Converter and Valve Body Issues",
+      "howToFix": "Replace torque converter and service valve body. Full ZF fluid and filter change every 50,000 miles extends transmission life."
+    },
+    {
+      "issueId": "audi-s8-turbo-oil-strainer-2013",
+      "repairItems": "VIN/21H7/22V178 check; strainer/oil service; damage/coverage by inspection",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2013-2017 S8 21H7",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V178 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Free safety remedy.",
+      "correction": "No retail strainer/turbo link.",
+      "sequence": 348,
+      "ymmt": "2013-2017 | Audi | S8 | VIN-specific NHTSA 22V178 / Audi 21H7; verify open recall | 4.0T TFSI V8",
+      "title": "2013-2017 S8 Blocked Turbocharger Oil Strainer / Stall Risk - Recall 22V178",
+      "howToFix": "Check the VIN for open recall 21H7 and schedule the free Audi dealer remedy, which replaces the oil strainer and performs an oil change. If EPC, MIL or oil warning lights appear with unusual turbo noise, extended cranking, rough idle, loss of power or stalling, stop safely and arrange diagnosis. Turbo damage, warranty eligibility and any additional repair must be assessed by VIN and inspection; do not buy the former retail strainer."
+    },
+    {
+      "issueId": "audi-s8-water-to-air-intercooler-internal-coolant-leak",
+      "repairItems": "Pressure-test and confirm intake-side coolant versus external leak; exact engine/VIN charge-air cooler; other valley parts only if failed/required by procedure; bleed",
+      "decision": "LEAK-SOURCE / ENGINE-VIN INTERCOOLER GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2013-2018 S8 VIN charge-air cooler/valley parts",
+          "role": "manufacturer parts route"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "intake-side coolant diagnosis/service",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Internal cooler leak must be distinguished and overlapping parts are not mandatory.",
+      "correction": "Do not bundle turbo strainer, valves and PCV unless separately due/failed.",
+      "sequence": 349,
+      "ymmt": "2013-2018 | Audi | S8 | 4.0T TFSI V8 (CTFA/CGTA/CWUC)",
+      "title": "Water-to-Air Intercooler Internal Coolant Leak (Coolant into Intake)",
+      "howToFix": "Confirm the source: pressure-test the cooling system and inspect the charge piping/intercooler outlet for coolant residue; scope for white smoke and coolant on the intake side rather than an external leak. Replace the water-to-air intercooler/charge-air cooler unit (genuine OEM core). Because access requires removing intake components in the valley, it is standard practice to also replace the turbo oil strainer, coolant valves, and PCV/oil separator while in there. Refill and bleed the cooling system per procedure. This is a high-difficulty job typically done by a specialist or dealer."
+    },
+    {
+      "issueId": "audi-sq2-ea888-2-0-tfsi-coolant-leak-from-water-pump-thermostat-housi",
+      "repairItems": "Non-US-market engine/VIN pressure test; exact pump/thermostat/housing leak source and revision; gasket/coolant/bleed",
+      "decision": "NON-US-MARKET / LEAK-SOURCE GATE",
+      "destinations": [
+        {
+          "label": "Audi UK service and maintenance",
+          "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/",
+          "scope": "2019-2024 SQ2 local-market EA888 coolant diagnosis",
+          "role": "manufacturer-market service"
+        }
+      ],
+      "evidence": [],
+      "reason": "SQ2 is non-US and exact assembly/revision requires market VIN.",
+      "correction": "No US affiliate or generic upgraded kit; do not bundle flush automatically.",
+      "sequence": 350,
+      "ymmt": "2019-2024 | Audi | SQ2 | 2.0 TFSI quattro | EA888 2.0 TFSI Gen3",
+      "title": "EA888 2.0 TFSI coolant leak from water pump / thermostat housing",
+      "howToFix": "Replace the failed water pump / thermostat housing assembly, ideally with the latest revised, more heat-resistant unit; many shops fit an upgraded repair kit and a new gasket. Catch it early by watching for slowly dropping coolant level and a faint sweet smell. Combine with a coolant flush and refill."
     }
   ]
 }
