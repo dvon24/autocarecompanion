@@ -1,17 +1,17 @@
 {
   "schemaVersion": 1,
   "make": "Audi",
-  "generatedAt": "2026-08-20T18:08:28.498Z",
+  "generatedAt": "2026-08-20T18:13:12.921Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "a1f7f8fdd3d1f2841544f188c0f1a6d06a7d70d7bc4de401c640992730ebe303",
   "publishedIssueCount": 389,
-  "reviewedIssueCount": 100,
-  "remainingIssueCount": 289,
-  "reviewedWithDestinationCount": 96,
-  "destinationCount": 181,
-  "distinctUrlCount": 52,
-  "scannerDestinationCount": 3,
+  "reviewedIssueCount": 150,
+  "remainingIssueCount": 239,
+  "reviewedWithDestinationCount": 146,
+  "destinationCount": 266,
+  "distinctUrlCount": 62,
+  "scannerDestinationCount": 5,
   "missingHowToFixCount": 4,
   "reviews": [
     {
@@ -2497,6 +2497,1216 @@
       "ymmt": "2000-2004 | Audi | A6",
       "title": "Front Suspension Multi-Link Control Arm and Tie-Rod Wear Causing Clunks and Tire Wear",
       "howToFix": "Diagnosis usually involves checking for play in the upper and lower control arm ball joints, torn bushings, and worn tie-rod ends with the suspension loaded. The durable repair is replacement of the failed arms, and many owners replace the full front control-arm kit at once followed by a four-wheel alignment. Tie rods and sway-bar links are often inspected or replaced at the same time."
+    },
+    {
+      "issueId": "audi-a6-gateway-module-liquid-2019",
+      "repairItems": "VIN/open-recall check for 90V2 / 22V861; dealer protective cover and conditional liquid-damaged module handling",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2019-2022 A6/A6 allroad VIN check for 90V2",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "independent VIN recall-history check",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The free remedy is a protective cover; an affected module requires VIN-specific diagnosis.",
+      "correction": "Do not link a scanner, manual or gateway module.",
+      "sequence": 101,
+      "ymmt": "2019-2022 | Audi | A6 | A6 Sedan, A6 allroad",
+      "title": "Gateway Control Module Liquid-Ingress Recall 90V2 (22V-861)",
+      "howToFix": "Check the VIN in Audi's official recall lookup and have an authorized Audi dealer complete campaign 90V2 if it is open. The recall remedy is installation of a protective cover over the gateway control module at no charge. Do not buy a scanner, repair manual, or replacement gateway module as the recall fix. If warning messages or sudden reduced power occur, move out of traffic safely and arrange prompt dealer diagnosis; a module already affected by liquid requires vehicle-specific diagnosis and campaign or warranty handling."
+    },
+    {
+      "issueId": "audi-a6-headlight-switch-wiring-fire-recall",
+      "repairItems": "VIN/open-campaign check for JC/JN; dealer crossmember protection/harness inspection or campaign jumper remedy; fire-safety response",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "1998-2004 A6 VIN check for JC/JN",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "independent VIN recall-history check",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "JC and JN use campaign-specific wiring remedies.",
+      "correction": "Do not substitute a retail switch or generic harness; stop and exit for heat/smoke/fire.",
+      "sequence": 102,
+      "ymmt": "1998-2004 | Audi | A6",
+      "title": "Headlight-Switch Wiring Fire Recalls JC and JN",
+      "howToFix": "Check the VIN with Audi and have every open JC or JN campaign completed by an authorized dealer at no charge. The JC procedure installs protective material at the crossmember and inspects the wiring harness; the JN procedure reroutes the circuit with a jumper wiring harness. Do not buy a switch or generic harness as a substitute for the campaign remedy. If there is a burning-plastic odor, smoke, heat, or headlight-switch malfunction, stop safely, switch the vehicle off, exit, and contact emergency services if fire or smoke is present."
+    },
+    {
+      "issueId": "audi-a6-instrument-cluster-pixel-failure",
+      "repairItems": "Cold/warm display photos; LCD-only versus reset/gauge fault; address-17, voltage, power/ground diagnosis; exact cluster identity; original-cluster specialist repair or VIN-coded replacement",
+      "decision": "CLUSTER-VARIANT / CODING GATE",
+      "destinations": [
+        {
+          "label": "Module Master Audi repair services",
+          "url": "https://modulemaster.com/collections/audi",
+          "scope": "1998-2004 C5 A6 original-cluster evaluation after exact label/variant confirmation",
+          "role": "conditional cluster repair service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "cluster power/ground, coding and immobilizer diagnosis",
+          "role": "specialist electrical service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Display variants differ and a full cluster replacement has coding/vehicle-data consequences.",
+      "correction": "Do not link a loose LCD/ribbon solely from model year.",
+      "sequence": 103,
+      "ymmt": "1998-2004 | Audi | A6",
+      "title": "C5 A6 Center Driver-Information Display Pixel Loss",
+      "howToFix": "Photograph the display cold and warm, confirm whether only the center LCD is affected, and scan address 17 while checking battery/charging voltage and cluster power/ground if the entire unit resets or gauges drop. Record the cluster's full Audi/VDO label and software identity. For an LCD-only fault, a qualified instrument-electronics specialist can evaluate repair of the original cluster, which may preserve its coding and vehicle data; do not buy a loose ribbon or LCD solely from a model-year search because cluster/display variants differ. If the complete cluster must be replaced, follow Audi's VIN-specific replacement, coding, saved-value, immobilizer, and key-adaptation procedure. Because the exact display variant is not known from the card, no retail part link is published."
+    },
+    {
+      "issueId": "audi-a6-instrument-cluster-pixel-loss-2000",
+      "repairItems": "Confirm 2021-2022 Virtual Cockpit Gen2+ continuous RGB line; document per TSB; VIN-selected J285 replacement with programming/security/mileage handling",
+      "decision": "SOURCE-YEAR MISMATCH / VIN-CODED MODULE SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2021-2022 A6 ETKA-selected J285 replacement and adaptation",
+          "role": "manufacturer module service"
+        }
+      ],
+      "evidence": [],
+      "reason": "A generic used cluster is unsafe because identity, programming and saved values are vehicle-specific.",
+      "correction": "Identifier says 2000; align to 2021-2022 and publish no retail cluster.",
+      "sequence": 104,
+      "ymmt": "2021-2022 | Audi | A6",
+      "title": "2021-2022 A6 Virtual Cockpit Continuous Colored Pixel Line",
+      "howToFix": "Confirm that the vehicle is a 2021-2022 A6 with Virtual Cockpit Gen2+ and that the complaint is a continuous red, green, or blue vertical line. Photograph the line in focus with a date and VIN reference, as Audi directs. The bulletin specifies replacement of instrument cluster J285 at address 0017 according to ELSA, with the exact cluster selected through ETKA for the VIN. Cluster programming, coding, immobilizer/security, mileage, and driver-information functions make a generic used or retail cluster unsafe. Check warranty/CPO eligibility, then use an Audi dealer or properly equipped specialist for the documented replacement and adaptation. No universal product link is published."
+    },
+    {
+      "issueId": "audi-a6-mmi-failure-2019",
+      "repairItems": "Confirm 2019 MIB2+ lower-display TSB symptom; address-005F U10E300 guided diagnosis; VIN/current-ETKA top display/operating unit when bulletin matches",
+      "decision": "TSB / VIN-SPECIFIC DISPLAY SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019 A6 TSB 2053875/1 diagnosis and VIN-selected display unit",
+          "role": "manufacturer electronics service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Other black-screen/reboot/camera faults do not follow this display replacement.",
+      "correction": "No universal part number or retail link; use current ETKA by VIN.",
+      "sequence": 105,
+      "ymmt": "2019-2019 | Audi | A6",
+      "title": "2019 MIB2+ Lower MMI/HVAC Display Distortion or Flicker",
+      "howToFix": "Confirm that the vehicle is a 2019 A6 with MIB2+ and that the symptom matches the lower-screen distortion/flicker described in Audi TSB 2053875/1. Scan address 005F for U10E300 and complete Audi's guided diagnosis. For the documented condition, the TSB directs the technician to replace the top display and operating unit in the instrument panel. Audi instructs the parts department to use current ETKA information, including supersessions, so there is no safe universal part number or retail link for this record; select the unit by VIN. Other black-screen, reboot, camera, connectivity, or control faults require their own diagnosis rather than automatic display replacement."
+    },
+    {
+      "issueId": "audi-a6-multitronic-cvt-failure-2005",
+      "repairItems": "Confirm 2006 FWD BKH/01J and production date; TCM printout; DTC/MVB pressure-current/adaptation branch; conditional four 01J301547F seals and Reverse-only 01J301547A",
+      "decision": "TRANSMISSION / MVB CONDITIONAL INTERNAL-PART GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2006 A6 FWD 01J TCM, MVB and internal axial-seal diagnosis",
+          "role": "specialist CVT service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN/production-date and seal supersession/quantity verification",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The internal seals are authorized only for specific direction, pressure, current and DTC results.",
+      "correction": "Identifier says 2005; exclude quattro/09L and do not buy seals/transmission before the measured branch.",
+      "sequence": 106,
+      "ymmt": "2006-2006 | Audi | A6 | A6 Sedan, front-wheel drive, Multitronic 01J only | 3.2L V6 (BKH)",
+      "title": "2006 A6 Multitronic 01J Delayed D/R Engagement - Check the Axial-Seal TSB",
+      "howToFix": "First identify the transmission code and vehicle production date; Quattro/09L and other transmissions are outside this repair. Scan the TCM and retain the printout. For P1743/18151, Audi directs the technician to inspect MVB 44/1 and 45/1: 1000 mA with pressure above 12 bar points to the axial seals, while pressure below 12 bar indicates a different hydraulic problem. If no fault is logged, Audi specifies an adaptation drive with ATF temperature above 90 C, then assessment of MVB 10/1. For a Drive complaint with MVB 10/1 above 380 mA, the bulletin calls for four valve-body axial seals 01J301547F. For a Reverse complaint, it calls for those four valve-body seals plus input-shaft seal 01J301547A and the corresponding transmission work. If the production range, direction, DTC, temperature, or measurements do not match, continue Guided Fault Finding instead of buying seals or a transmission. These are internal, condition-dependent parts; verify current Audi supersessions and quantities through the VIN before repair."
+    },
+    {
+      "issueId": "audi-a6-pcv-valve-failure-2012",
+      "repairItems": "VIN/17F9 completion check; inspect 2.0T pressure-regulating valve; conditional repair kit 06H198542A",
+      "decision": "SERVICE-ACTION / EXACT CONDITIONAL KIT",
+      "destinations": [
+        {
+          "label": "Genuine Audi repair kit 06H198542A",
+          "url": "https://www.shopdap.com/06h-198-542-a-vw-audi.html",
+          "scope": "2012-2014 A6 2.0T only when 17F9 inspection calls for this kit; verify VIN/current supersession",
+          "role": "exact conditional campaign kit"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN applicability/completion and campaign inspection",
+          "role": "manufacturer campaign service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The exact kit is named by the service action but is conditional on inspection.",
+      "correction": "Do not substitute 06H103495AK, a diaphragm, 3.0T cover or catch can.",
+      "sequence": 107,
+      "ymmt": "2012-2014 | Audi | A6 | 2.0L TFSI",
+      "title": "Crankcase Pressure-Regulating Valve Service Action 17F9 (2.0T)",
+      "howToFix": "Check the VIN with Audi and ask whether service action 17F9 is applicable or already complete. The Audi procedure inspects the pressure-regulating valve and, when the inspection calls for it, installs repair kit 06H198542A. Do not order the former 06H103495AK search result, Dorman diaphragm, 3.0T valve-cover assembly, or catch can as the campaign remedy. A 3.0T A6 or a vehicle with ongoing drivability or oil-consumption symptoms requires a separate engine-specific diagnosis."
+    },
+    {
+      "issueId": "audi-a6-supercharger-nose-cone-2012",
+      "repairItems": "Confirm 2016-2018 CREC; localize/compare noise; magnetic-clutch/belt/boost diagnosis; exact clutch, pulley, bearing or supercharger only after component proof",
+      "decision": "SOURCE-YEAR MISMATCH / COMPONENT DIAGNOSIS",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "CREC supercharger clutch/accessory-drive noise diagnosis",
+          "role": "specialist engine service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN component and supersession selection",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Normal clutch engagement and multiple accessory/supercharger faults can sound alike.",
+      "correction": "Identifier says 2012; align to CREC 2016-2018 and publish no nose-cone part from noise alone.",
+      "sequence": 108,
+      "ymmt": "2016-2018 | Audi | A6 | 3.0T CREC supercharged V6",
+      "title": "Supercharger Clutch Engagement Noise vs Pulley Fault — CREC 3.0T",
+      "howToFix": "Do not order a nose-cone bearing from noise alone. Confirm the CREC engine and localize the sound, compare operation with a similar-mileage vehicle, and follow Audi's magnetic-clutch and belt diagnostic process. Check for boost or drivability faults and distinguish normal clutch engagement from an accessory-drive, clutch, pulley, bearing, or complete-supercharger fault. Select a part only after the exact failed component and VIN fitment are established. No owner-buyable part is published for this record until that diagnosis exists."
+    },
+    {
+      "issueId": "audi-a6-tie-rod-end-seal-failure-recall",
+      "repairItems": "VIN/open-recall check for 99V248/00V414; dealer tie-rod remedy; outside recall inspect complete inner/outer assemblies, VIN/steering-specific parts and alignment",
+      "decision": "RECALL ROUTES / CONDITIONAL STEERING SERVICE",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "1998-1999 A6 VIN check for tie-rod recalls",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "99V248/00V414 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Recall remedy is not one generic outer end.",
+      "correction": "Do not drive with measurable steering play and do not link retail tie rods from model year.",
+      "sequence": 109,
+      "ymmt": "1998-1999 | Audi | A6",
+      "title": "Tie-Rod Seal Failure Recalls 99V-248 and 00V-414",
+      "howToFix": "Check the VIN with NHTSA and Audi for open recall 99V-248 or 00V-414 work and have an authorized dealer perform any open remedy at no charge. The recall history involves tie-rod replacement, not one generic retail outer end. If no campaign is open but looseness or boot damage is present, have a qualified shop inspect the complete inner and outer tie-rod assemblies on both sides, select the correct updated parts by VIN and steering configuration, replace only after diagnosis, and perform a wheel alignment. Do not drive a vehicle with measurable steering play until it is judged safe."
+    },
+    {
+      "issueId": "audi-a6-timing-chain-tensioner-2005",
+      "repairItems": "Split 3.2 V6 and 4.2 V8 by engine code; reproduce/measure timing condition; engine-specific chain/tensioner/guide/oil-pump-chain scope and post-failure assessment",
+      "decision": "MULTI-ENGINE TIMING / DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi A6 timing-chain catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/A6/Timing-Chain-Kit/",
+          "scope": "2005-2011 A6; select exact 3.2/4.2 engine code, VIN and kit completeness",
+          "role": "engine-specific timing catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "rear-chain noise/adaptation and engine-damage diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "V6/V8 systems and repair scope differ; the trim list also incorrectly includes 3.0T/S6.",
+      "correction": "Remove universal preventive interval, aftermarket-failure claim and expired-settlement promise.",
+      "sequence": 110,
+      "ymmt": "2005-2011 | Audi | A6 | 3.0T, 3.2 Quattro, 4.2, 4.2 Quattro, Competition, Premium, Premium Plus, Prestige, S line, S6 | 3.2L V6, 4.2L V8",
+      "title": "Timing Chain Tensioner Failure (3.2L V6 & 4.2L V8)",
+      "howToFix": "PREVENTIVE REPLACEMENT: Replace ALL timing chains, tensioners, and guides at 80,000-100,000 miles before failure occurs. The repair requires removing the transmission for access. Labor is 15-20 hours. Replace oil pump chain as well. Use OEM Audi parts only—aftermarket tensioners fail quickly. If rattling has started, DO NOT delay—engine damage can occur within weeks. Some owners opt for engine replacement ($8,000-$12,000) if severe damage has occurred. Class action settlement may cover some costs for 2004-2008 models."
+    },
+    {
+      "issueId": "audi-a6-water-pump-failure-2005",
+      "repairItems": "Split engine/generation/main versus auxiliary pump; pressure-test exact leak/overheat cause; VIN-selected pump/thermostat only as integrated or both confirmed; current coolant/bleed",
+      "decision": "OVERBROAD MULTI-ENGINE / PUMP-TYPE GATE",
+      "destinations": [
+        {
+          "label": "Audi A6 water-pump catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/A6/Water-Pump/",
+          "scope": "2005-2023 A6; exact year, engine, main/auxiliary pump and VIN required",
+          "role": "vehicle-specific pump catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "pressure-test, pump-type/thermostat and coolant diagnosis",
+          "role": "specialist cooling service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Eighteen years span many unrelated pumps, thermostats and coolant specifications.",
+      "correction": "Do not replace pump and thermostat together universally or prescribe G12++/G13 across the range.",
+      "sequence": 111,
+      "ymmt": "2005-2023 | Audi | A6",
+      "title": "Water Pump and Thermostat Failure (Overheating)",
+      "howToFix": "Replace water pump AND thermostat together ($800-$1,500 with labor). Always use OEM or high-quality aftermarket parts (Rein, Hepu)—cheap pumps fail within 20,000 miles. If water pump is timing belt/chain driven, replace during timing service to save labor. Flush cooling system and refill with OEM Audi G12++ or G13 coolant (do NOT mix types). Inspect coolant hoses and replace if cracked. If auxiliary electric water pump fails, replace separately ($300-$600). Monitor coolant level weekly and address leaks immediately to prevent overheating damage."
+    },
+    {
+      "issueId": "audi-a7-carbon-buildup-2012",
+      "repairItems": "Engine-specific misfire/fuel/air/compression diagnosis and intake inspection; confirmed-deposit intake-valve service with required seals",
+      "decision": "ENGINE / CONFIRMED-DEPOSIT SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2012-2023 A7 engine-specific intake inspection and walnut-blast service",
+          "role": "specialist intake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "2.0T, 3.0T and performance variants have different layouts and symptoms are not proof of carbon.",
+      "correction": "Remove universal intervals, catch-can/cleaner claims and Italian-tune-up advice.",
+      "sequence": 112,
+      "ymmt": "2012-2023 | Audi | A7 | Competition, Premium Plus, Prestige, S line | 2.0T, 3.0T, 3.0T CREC",
+      "title": "Severe Carbon Buildup on Intake Valves (Direct Injection)",
+      "howToFix": "WALNUT BLASTING: Remove intake manifold and blast crushed walnut shells through intake ports to remove carbon ($800-$1,500 for A7; $1,200-$2,000 for S7/RS7 due to complexity). Requires specialized equipment—not DIY-friendly. Repeat every 60,000 miles as PREVENTIVE maintenance—do not wait for symptoms. PREVENTION: Install catch can ($400-$600) to filter PCV oil vapors—extends cleaning interval to 100k+ miles. Add Liqui Moly Intake Valve Cleaner to every oil change ($15). Perform \"Italian tune-up\" monthly (safe spirited driving to redline). Change oil every 5,000 miles to reduce PCV vapor contamination."
+    },
+    {
+      "issueId": "audi-a7-gateway-module-recall-2019",
+      "repairItems": "VIN/campaign check for 90V2 / 22V861; dealer protective cover and conditional damaged-module replacement",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2019-2022 A7 VIN check for 90V2",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V861 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The remedy and any module replacement are campaign-controlled.",
+      "correction": "Do not sell a gateway module.",
+      "sequence": 113,
+      "ymmt": "2019-2022 | Audi | A7",
+      "title": "2019-2022 Audi A7 Gateway Recall 90V2 / NHTSA 22V861",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The free recall remedy installs a protective cover over the gateway-control module and replaces a module already showing liquid intrusion when required. If warning messages appear or engine power drops, move out of traffic safely and arrange dealer inspection."
+    },
+    {
+      "issueId": "audi-a7-mmi-48v-2019",
+      "repairItems": "VIN/Elsa check for open 27BQ; free dealer starter-alternator remedy; separate current symptom diagnosis",
+      "decision": "48V SERVICE-ACTION ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-2020 A7 27BQ VIN/action check and remedy",
+          "role": "authorized high-voltage service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Eligibility and part selection are VIN-controlled.",
+      "correction": "Do not link battery, maintainer or scanner.",
+      "sequence": 114,
+      "ymmt": "2019-2020 | Audi | A7",
+      "title": "2019-2020 Audi A7 Starter-Alternator Service Action 27BQ",
+      "howToFix": "Ask an authorized Audi dealer to check the VIN in Elsa for an open 27BQ action. Eligible vehicles receive a replacement starter-alternator at no charge under the action. Diagnose any current no-start, warning-light or infotainment concern separately; do not buy a battery, maintainer or scan tool from this summary."
+    },
+    {
+      "issueId": "audi-a7-phev-battery-overheating-2022",
+      "repairItems": "Immediate VIN/current 93AA/25V080 check; dealer monitoring software and battery module/pack remedy; follow vehicle-specific no-charge instruction",
+      "decision": "HIGH-VOLTAGE RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2022 A7 e PHEV VIN check for 93AA",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V080 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Charging restrictions and battery remedy are campaign/VIN-specific high-voltage work.",
+      "correction": "Do not link a 12V battery, charger or portable EVSE.",
+      "sequence": 115,
+      "ymmt": "2022-2022 | Audi | A7 | plug-in hybrid",
+      "title": "2022 Audi A7 E Battery Recall 93AA / NHTSA 25V080",
+      "howToFix": "Check the VIN and current campaign instructions with Audi or NHTSA immediately. Dealers install advanced diagnostic software free of charge, monitor available vehicle data and replace affected battery modules or batteries as directed. Follow any Audi instruction not to charge the vehicle until the remedy is complete; vehicles without online data are advised by the campaign not to charge until the final remedy is available. Do not substitute a 12-volt battery, charger or portable EVSE."
+    },
+    {
+      "issueId": "audi-a7-supercharger-clutch-2012",
+      "repairItems": "Correct model/engine identification; distinguish A7 3.0T supercharger clutch/isolator from S7 4.0T; boost, belt, pulley and noise diagnosis; exact failed component by VIN",
+      "decision": "SOURCE MODEL/ENGINE ERROR / NO PART LINK",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "A7 3.0T versus S7 4.0T powertrain identification and noise diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The card calls this an S7 3.0T even though S7 uses a different engine; its repair claims cannot safely drive commerce.",
+      "correction": "Correct model/engine before any clutch or supercharger link; remove unverified oil interval and driving-style claims.",
+      "sequence": 116,
+      "ymmt": "2012-2018 | Audi | A7 | Competition, Premium Plus, Prestige, S line",
+      "title": "Supercharger Clutch and Isolator Failure (S7 3.0T)",
+      "howToFix": "If caught EARLY (noise but no power loss): Replace supercharger clutch ($1,500-$2,500 with labor). Clutch can be replaced without removing supercharger. If SEVERE (grinding + power loss): Replace complete supercharger assembly ($3,500-$5,000 installed). PREVENTION: Service supercharger oil every 40,000 miles despite Audi saying \"lifetime.\" Change engine oil every 5,000 miles with high-quality synthetic. Avoid aggressive launches—gentle driving extends clutch life. Budget for this repair if buying a used S7."
+    },
+    {
+      "issueId": "audi-a7-supercharger-nose-cone-2012",
+      "repairItems": "Confirm 3.0T engine and exact noise source; distinguish belt, pulley, isolator, bearing, clutch and supercharger; exact component/VIN only after diagnosis",
+      "decision": "COMPONENT / VIN DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2012-2018 A7 3.0T supercharger/accessory noise diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Noise alone does not prove a nose-cone bearing and product revisions were not verified.",
+      "correction": "Hold 034/JHM parts and 50k oil-service claim until exact component/procedure evidence.",
+      "sequence": 117,
+      "ymmt": "2012-2018 | Audi | A7 | Premium Plus, Prestige | 3.0T",
+      "title": "Supercharger Nose Cone Bearing Wear",
+      "howToFix": "Replace the nose cone bearing assembly. Aftermarket upgraded bearings from 034 Motorsport or JHM are recommended over OEM. The repair can be performed without removing the supercharger. Change supercharger oil every 50,000 miles as preventive maintenance."
+    },
+    {
+      "issueId": "audi-a7-thermostat-housing-leak-2012",
+      "repairItems": "Pressure-test 3.0T and locate leak; exact VIN thermostat/housing and required seals; water pump only if inspected failed; current coolant/bleed",
+      "decision": "ENGINE / LEAK-SOURCE / VIN GATE",
+      "destinations": [
+        {
+          "label": "Audi A7 thermostat catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/A7-Quattro/Thermostat/",
+          "scope": "2012-2018 A7 3.0T; verify VIN/current housing and seals",
+          "role": "vehicle-specific thermostat catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "pressure-test and pump/thermostat source diagnosis",
+          "role": "specialist cooling service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Water pump and thermostat are separate conditional branches.",
+      "correction": "Do not approve an aluminum housing without verified interfaces, fitment and live page.",
+      "sequence": 118,
+      "ymmt": "2012-2018 | Audi | A7 | Premium Plus, Prestige | 3.0T",
+      "title": "Thermostat Housing Coolant Leak",
+      "howToFix": "Replace the thermostat housing assembly with an updated part. The O-ring seals should always be replaced. Some owners upgrade to aluminum aftermarket housings for improved durability. The water pump should be inspected during this repair as it shares the same coolant circuit."
+    },
+    {
+      "issueId": "audi-a7-timing-chain-tensioner-2012",
+      "repairItems": "Reproduce exact 1-3 second first-start rattle per TSB; VIN/engine-specific optimized upper tensioners; separate longer/warm/fault-associated diagnosis",
+      "decision": "TSB-SPECIFIC UPPER-TENSIONER SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2012-2015 A7 3.0 TFSI TSB 2039995/2 confirmation and VIN parts",
+          "role": "manufacturer timing service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "cold-start noise comparison and timing diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The bulletin calls for both upper tensioners only when its exact noise condition matches.",
+      "correction": "Do not link a complete chain kit from this TSB summary.",
+      "sequence": 119,
+      "ymmt": "2012-2015 | Audi | A7 | 3.0 TFSI",
+      "title": "2012-2015 Audi A7 Cold-Start Rattle TSB 2039995/2",
+      "howToFix": "Have a technician reproduce and compare the exact first-start sound using Audi’s bulletin. If it matches, follow the VIN- and engine-specific repair procedure for both upper timing-chain tensioners. Diagnose a longer rattle, warning light, running fault or different noise separately; do not order a complete chain kit from this summary."
+    },
+    {
+      "issueId": "audi-a8-40t-coolant-lines-2013",
+      "repairItems": "VIN/21F7 check; pressure-test turbo coolant-pipe connections; VIN/installed-part seals, software and fill procedure; stop for active loss/overheat",
+      "decision": "CAMPAIGN / LEAK-CONFIRMATION SERVICE",
+      "destinations": [
+        {
+          "label": "Audi recall and campaign lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2013-2014 A8 4.0T VIN check for 21F7",
+          "role": "manufacturer campaign lookup"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "TSB 2036167/2 pressure test, seals/software and fill procedure",
+          "role": "manufacturer-capable service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The procedure is campaign, installed-part and leak-condition specific.",
+      "correction": "Do not infer coolant-line repair from boost DTCs.",
+      "sequence": 120,
+      "ymmt": "2013-2014 | Audi | A8 | 4.0T | 4.0L TFSI",
+      "title": "2013-2014 A8 4.0T Turbo Coolant-Line Seepage - TSB 2036167/2 / Action 21F7",
+      "howToFix": "Check the VIN in Audi campaign records and inspect the turbocharger coolant-pipe connections for the bulletin condition. Follow the current pressure-test, seal-replacement, software and filling procedure selected by the VIN and installed parts. Treat active coolant loss or overheating as a stop-driving condition; do not infer this repair from boost DTCs."
+    },
+    {
+      "issueId": "audi-a8-adaptive-cruise-radar-2011",
+      "repairItems": "Record C110BF0/environment; clean field of view; inspect bumper/mount/alignment; Audi-approved target calibration; sensor only after internal-fault diagnosis",
+      "decision": "CALIBRATION-EQUIPMENT / DIAGNOSIS SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2011-2018 A8 Audi-approved ACC guided diagnosis/calibration",
+          "role": "manufacturer ADAS service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "properly equipped VAG ADAS inspection/calibration",
+          "role": "specialist ADAS service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Obstruction, mount/alignment and internal sensor faults require different actions.",
+      "correction": "Do not link a radar sensor before guided diagnosis.",
+      "sequence": 121,
+      "ymmt": "2011-2018 | Audi | A8 | Adaptive Cruise Control equipped",
+      "title": "2011-2018 A8 ACC Inoperative with C110BF0 - TSB 2033355/3",
+      "howToFix": "Record the exact fault and environmental conditions. Inspect and clean the sensor field of view, then inspect the bumper, sensor mount and alignment before any parts decision. Calibration requires Audi-approved alignment and target equipment. Replace a sensor only after guided diagnosis identifies an internal fault."
+    },
+    {
+      "issueId": "audi-a8-air-suspension-2011",
+      "repairItems": "Record complete C1260F0/U112100 symptom; wiring/connector contacts and guided diagnosis; component only if proven",
+      "decision": "SOURCE-YEAR MISMATCH / WIRING-FIRST TSB",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-2025 A8 TSB 2059363/6 wiring/contact and guided diagnosis",
+          "role": "manufacturer suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The bulletin starts with wiring and does not identify a compressor/spring/relay.",
+      "correction": "Identifier says 2011; align to 2019-2025 and do not link suspension parts.",
+      "sequence": 122,
+      "ymmt": "2019-2025 | Audi | A8 | Air-suspension-equipped",
+      "title": "2019-2025 A8 Air-Suspension Warning C1260F0/U112100 - TSB 2059363/6",
+      "howToFix": "Record the complete DTC and symptom code and have an Audi-capable technician inspect the specified wiring and connector contacts. If no wiring or contact problem is found, continue the guided procedure in current Audi service information. Do not replace a compressor, spring or relay from this card alone."
+    },
+    {
+      "issueId": "audi-a8-carbon-buildup-2011",
+      "repairItems": "Engine-specific misfire/fuel/air/compression diagnosis and intake inspection; confirmed-deposit cleaning with procedure seals",
+      "decision": "ENGINE / CONFIRMED-DEPOSIT SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2011-2023 A8 engine-specific intake inspection/cleaning",
+          "role": "specialist intake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The range spans 3.0T, 4.0T and later engines with different layouts.",
+      "correction": "Remove universal interval, catch-can, cleaner and Italian-tune-up claims.",
+      "sequence": 123,
+      "ymmt": "2011-2023 | Audi | A8 | 3.0T, 4.0T, 55 TFSI, 60 TFSI, Base, L, L S8 | 3.0T, 4.0T, 60 TFSI",
+      "title": "Severe Carbon Buildup on Intake Valves",
+      "howToFix": "WALNUT BLASTING: Remove intake manifold and blast crushed walnut shells through intake ports ($1,000-$1,800 for A8 due to packaging complexity). Requires specialized equipment. Repeat every 60,000 miles as PREVENTIVE maintenance. PREVENTION: Install catch can ($400-$700) to filter PCV vapors—extends cleaning interval to 100k+ miles. Add Liqui Moly Intake Valve Cleaner to every oil change. Change oil every 5,000 miles to reduce vapor contamination. Budget for this as routine maintenance."
+    },
+    {
+      "issueId": "audi-a8-d2-4-2-v8-timing-belt-interval-revision",
+      "repairItems": "Split ABZ 32V and AUX/AWN/AKB 40V; documented interval; engine-specific complete belt/tensioner/damper/idler/water-pump/thermostat scope; locking tools/procedure; condition-only seals/accessories",
+      "decision": "ENGINE-CODE TIMING / KIT-COMPLETENESS GATE",
+      "destinations": [
+        {
+          "label": "Audi A8 timing-belt catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/A8-Quattro/Timing-Belt-Kit/",
+          "scope": "1997-2003 D2 A8 4.2; select exact 32V/40V engine code and verify kit contents",
+          "role": "engine-specific timing catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "D2 service-position, cam-lock and interval verification",
+          "role": "specialist timing service"
+        }
+      ],
+      "evidence": [],
+      "reason": "32V and 40V procedures/components differ and optional seals are not mandatory bundle items.",
+      "correction": "Verify the claimed retroactive 75k/age interval from the exact market manual/TSB before publishing it.",
+      "sequence": 124,
+      "ymmt": "1997-2003 | Audi | A8 | 4.2 quattro | 4.2L V8 32-valve (ABZ) - 1997-1999, 4.2L V8 40-valve (AUX/AWN/AKB) - 1999-2003",
+      "title": "D2 A8 4.2 V8 Timing Belt — Interval Retroactively Cut from 105k to 75k Miles (Interference Engine)",
+      "howToFix": "Procedure: pull the front off / put car in service position, take it apart, lock the cams and R&R the belt + water pump + thermostat and anything else worn or suspicious — consider doing valve cover gaskets and chain tensioner seals too, those seals would be slightly easier to get to while in the middle of the big service. A cam-lock bar is not totally critical, but definitely makes it easier and safer. A full kit (belt, tensioner, damper, idler rollers, water pump, thermostat, accessory belts) should be installed together; budget $1,500–$3,000 with labor at an independent Audi specialist. Replace at 75,000 miles OR 5–6 years, whichever comes first, regardless of what the original owner's book says."
+    },
+    {
+      "issueId": "audi-a8-d2-abs-module-bosch-5-3-failure",
+      "repairItems": "VAG address-03 scan plus exact module identity; power/ground/communication/wheel-speed testing; conditional original EBCM repair or VIN-configured replacement/coding",
+      "decision": "EXPLICIT SCANNER/DIAGNOSTIC TOOL APPROVAL — VAG ABS TEST",
+      "destinations": [
+        {
+          "label": "Ross-Tech VCDS HEX-V2 diagnostic tool",
+          "url": "https://store.ross-tech.com/shop/vchv2_ent/?attribute_pa_hvvin=vin_3",
+          "scope": "official VW/Audi tool explicitly required for D2 ABS; verify legacy interface/support",
+          "role": "explicitly required VW/Audi diagnostic tool"
+        },
+        {
+          "label": "Module Master ABS repair services",
+          "url": "https://modulemaster.com/collections/abs-control-module-rebuilds",
+          "scope": "exact original Bosch 5.3 number/failure required before shipment",
+          "role": "conditional original-module rebuild"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source explicitly requires a VAG ABS scan, but no-communication alone is not sufficient proof without electrical tests.",
+      "correction": "Do not promise plug-and-play/no programming for every variant.",
+      "sequence": 125,
+      "ymmt": "1997-2003 | Audi | A8",
+      "title": "Bosch 5.3 ABS Control Module Internal Failure (EBCM)",
+      "howToFix": "To confirm that the module is the problem, scan the ABS system with a VAG scan tool (factory scanner or VAG-COM/VCDS) — OBD-II generic scanners will not read ABS codes, and if you get a 'Link Error' / no communication with controller 03 (ABS Brakes), the module is almost certainly the cause. Rather than buying a new unit (largely NLA from Audi), the EBCM can be unbolted from the hydraulic block and sent out for rebuild. Only the electronic part of the ABS pump is normally needed — it is attached to the side of the pump with six torx screws and can be removed by first removing the passenger side front wheel and the inner wheel arch plastic liner, then unbolting the washer bottle and moving it out of the way. Repair services (Module Master, XeMODeX, UpFix, ECU Testing) keep coding/adaptations intact so the rebuilt module is plug-and-play with no programming required."
+    },
+    {
+      "issueId": "audi-a8-d2-aga-ack-air-mass-meter-throttle-jam",
+      "repairItems": "Australian-market VIN/recall PRA 1998/3629 check; inspect AGA/ACK air-grid/MAF; exact updated assembly if damaged; VCDS adaptation only after replacement",
+      "decision": "NON-US-MARKET RECALL / ENGINE-CODE GATE",
+      "destinations": [
+        {
+          "label": "Audi Australia recall information",
+          "url": "https://www.audi.com.au/au/web/en/owners/recalls-and-service-campaigns.html",
+          "scope": "1996-1998 A8 2.8 AGA/ACK Australian-market VIN/campaign check",
+          "role": "manufacturer-market recall route"
+        }
+      ],
+      "evidence": [],
+      "reason": "This Australian recall cannot establish US-market fitment or current free remedy.",
+      "correction": "Do not publish a US MAF link; verify local market, VIN, engine and damaged grid first.",
+      "sequence": 126,
+      "ymmt": "1996-1998 | Audi | A8 | 2.8 | AGA, ACK",
+      "title": "AGA/ACK 2.8 V6 air mass meter grid detaches and jams throttle valve",
+      "howToFix": "This was addressed under Australian recall PRA 1998/3629 (August 1998); affected VINs received an updated MAF/air-grid assembly free of charge through Audi dealers. Out-of-recall vehicles should have the MAF (G70) sensor inspected and replaced if the screen is damaged — a Bosch/Hitachi OE-spec MAF runs roughly $150–$300 plus labor. Always clear adaptation values with VCDS after replacement and address any underlying misfire (coils, plugs) to prevent recurrence."
+    },
+    {
+      "issueId": "audi-a8-d2-instrument-cluster-pixel-fade-vdo",
+      "repairItems": "Confirm LCD-only versus whole-cluster fault; exact VDO label/display; qualified ribbon/LCD repair or original-cluster service; VIN-specific coding/mileage/immobilizer if replacement",
+      "decision": "CLUSTER-VARIANT / REPAIR-SKILL GATE",
+      "destinations": [
+        {
+          "label": "Module Master Audi repair services",
+          "url": "https://modulemaster.com/collections/audi",
+          "scope": "1994-2002 D2 A8 exact VDO cluster evaluation",
+          "role": "conditional cluster repair service"
+        },
+        {
+          "label": "Minitools Audi display catalog",
+          "url": "https://store.minitools.com/en/car-brands/audi.html",
+          "scope": "experienced electronics repair only after exact display identification",
+          "role": "conditional electronics catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "Display variants and immobilizer/coding requirements differ.",
+      "correction": "Remove broken citation markup and do not recommend connector reset or universal ribbon kit as a guaranteed fix.",
+      "sequence": 127,
+      "ymmt": "1994-2002 | Audi | A8",
+      "title": "Instrument cluster LCD pixel fade / dead pixels on VDO display",
+      "howToFix": "Two fixes: (1) reseat/repair the ribbon cable bonded to the LCD — <cite index=\"1-19,1-20\">VDO assembled the LCD display and silver ribbon cable with a heat bonding procedure, which makes the contacts loose connection very quickly, often within just a few years.</cite> (2) Send the cluster to a specialist (e.g., instrumentcluster.eu, German Auto Tech, pixelfix.net) for a replacement LCD soldered in. DIY ribbon-cable repair kits run $30–$80; <cite index=\"7-12\">professional cluster repair runs approximately $300</cite>; full cluster replacement (with mileage re-coding) is $800+. <cite index=\"5-4\">Replacing an instrument cluster can be a pain because in some cases it requires programming back to the vehicle if coded to the immobiliser, so it can work out to be quite costly.</cite> For total cluster blanking, pulling the cluster, unplugging for 30+ seconds, and reseating connectors sometimes resets it."
+    },
+    {
+      "issueId": "audi-a8-d2-pentosin-hydraulic-power-steering-leak",
+      "repairItems": "Running inspection of exact pump/rack/line leak; VIN-selected failed component; CHF 11S only where reservoir/manual confirms; rack strainer/O-rings when procedure requires; safe bleed",
+      "decision": "LEAK-SOURCE / HYDRAULIC-FLUID GATE",
+      "destinations": [
+        {
+          "label": "Pentosin CHF 11S hydraulic fluid catalog",
+          "url": "https://www.fcpeuro.com/products/pentosin-hydraulic-system-fluid-chf11s",
+          "scope": "1997-2003 D2 A8 only when cap/manual specifies CHF 11S; verify availability and quantity",
+          "role": "exact conditional fluid"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "ZF pump/rack/line leak tracing and bleed",
+          "role": "specialist steering service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Pump, rack and hoses are separate repair branches; fluid must match vehicle specification.",
+      "correction": "Do not link a rebuilt pump/rack from whine alone or use ATF.",
+      "sequence": 128,
+      "ymmt": "1997-2003 | Audi | A8 | 4.2L V8 ABZ, 3.7L V8 AEW, 4.2L V8 AKB/AUX/AYS (facelift), 3.7L V8 AQG (facelift)",
+      "title": "Pentosin CHF11S hydraulic system leaks (power steering pump, rack, hoses)",
+      "howToFix": "Inspect the ZF tandem pump, rack pinion seal, and high-pressure lines with the engine running. A ZF rebuilt pump is around $280 in parts plus ~$350 labor and typically eliminates cold-start whine. Always refill with Pentosin CHF 11S (green) — never ATF, which destroys seals. When replacing the rack, also replace the Servotronic fluid strainer and o-rings on the nipple. Bleed by raising the front wheels off the ground and briefly starting the engine per Bentley procedure until air clears."
+    },
+    {
+      "issueId": "audi-a8-d2-secondary-air-injection-combi-valve-vacuum",
+      "repairItems": "Cold-start leak inspection; VCDS output test/pump current; hand-vacuum combi-valve test; engine-code hose/valve/pump or head-port cleaning by confirmed branch",
+      "decision": "EXPLICIT SCANNER/DIAGNOSTIC TOOL APPROVAL — VCDS OUTPUT TEST",
+      "destinations": [
+        {
+          "label": "Ross-Tech VCDS HEX-V2 diagnostic tool",
+          "url": "https://store.ross-tech.com/shop/vchv2_ent/?attribute_pa_hvvin=vin_3",
+          "scope": "official VW/Audi tool explicitly required for SAI output tests; verify D2 support",
+          "role": "explicitly required VW/Audi diagnostic tool"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "4.2 engine-code vacuum, valve, pump and carbon-port diagnosis",
+          "role": "specialist emissions service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Vacuum leak, valve, pump and carbon blockage are distinct branches.",
+      "correction": "Do not sell a smog pump from P0410/P0411; a leaking combi valve may be the root cause.",
+      "sequence": 129,
+      "ymmt": "1997-2003 | Audi | A8 | 4.2 quattro, S8 | 4.2L V8 32-valve (ABZ), 4.2L V8 40-valve (AKB/AUX/AYS/BFM)",
+      "title": "Secondary Air Injection P0410/P0411 — Cracked Vacuum Lines, Stuck Combi Valves, Carbon-Clogged Head Ports",
+      "howToFix": "\nDiagnose by starting the engine cold so the SAI system runs and listening for the vacuum leak, then looking around for the crack.\n \nSticky/partly opening combi-valve or slow running pump are all candidates — you can spin the pumps up using VCDS\n output tests to verify pump current draw. Replace brittle vacuum hose with silicone, test combi valves with a hand vacuum pump (they should hold vacuum and audibly click open), and if codes persist with new vacuum/valves the SAI ports in the head will need to be carbon-cleaned. The pump itself (smog pump) typically fails when a leaking combi valve allows exhaust moisture to back-feed and corrode the impeller."
+    },
+    {
+      "issueId": "audi-a8-d2-xenon-headlight-projector-clouding",
+      "repairItems": "Confirm xenon housing and internal reflector/projector damage versus outer lens; exact pre-facelift/facelift projector kit; install/aim and verify legal road-use compliance",
+      "decision": "YEAR-SPLIT / ROAD-LEGALITY HOLD",
+      "destinations": [
+        {
+          "label": "Retrofitlab 1999-2002 A8 D2 projector kit",
+          "url": "https://retrofitlab.com/en-at/collections/retroquick-projector-kits/products/audi-a8-d2-1999-2002-bi-xenon-xenon-hid-headlights",
+          "scope": "1999-2002 xenon D2 only; product explicitly states not ECE or DOT/FMVSS108 approved for public-road exterior use",
+          "role": "exact off-road/non-road-legal retrofit reference"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "headlamp diagnosis, restoration and compliant aiming/replacement",
+          "role": "specialist lighting service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live product proves year fitment but explicitly disclaims public-road approval, so it is not approved as a normal road replacement.",
+      "correction": "Do not present retrofit as road legal; split 1994-1998 and 1999-2002 housings.",
+      "sequence": 130,
+      "ymmt": "1994-2002 | Audi | A8 | Xenon-equipped",
+      "title": "Xenon headlight projector reflector blackening / lens clouding",
+      "howToFix": "Open the headlight housing (clipped, not glued on the D2 — relatively easy) and inspect the projector reflector bowl. The existing projector can be removed through the rear bulb access port and replaced with an upgraded bi-xenon projector and bracket; the original screws are prone to breaking, in which case the headlight must be opened (the lens is only clipped in place) and the broken bolts drilled out. Aftermarket bi-xenon retrofit kits (Retrofitlab, Morimoto) using D2S bulbs run $300-$700 per side; a full set of used Euro/aftermarket replacement headlights runs $600-$1,500. Plastic-lens polishing only addresses the outer cover; internal reflector damage cannot be polished away."
+    },
+    {
+      "issueId": "audi-a8-door-handle-comfort-access-2004",
+      "repairItems": "Comfort-module measuring blocks and per-door handle input test; exact exterior sensor or harness for confirmed door; coding/adaptation if required",
+      "decision": "DOOR-POSITION / MODULE-DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2004-2010 A8 VIN/door-specific comfort-access sensor/harness",
+          "role": "manufacturer parts/service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "comfort measuring blocks, key/module versus door diagnosis",
+          "role": "specialist electrical service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Key, module, harness and individual door sensors can mimic one another.",
+      "correction": "Do not link a handle assembly before the failed door/component is proven.",
+      "sequence": 131,
+      "ymmt": "2004-2010 | Audi | A8",
+      "title": "Door Handle Comfort Access Microswitch Failure Causing Lock/Unlock Problems",
+      "howToFix": "Diagnosis usually requires scanning the comfort/convenience module, checking measuring blocks for door handle input, and testing each handle individually. Repair often involves replacing the affected exterior handle sensor assembly or repairing the handle harness, followed by coding/adaptation if required. Because symptoms can mimic key or module faults, confirming the failed door location first saves time and cost."
+    },
+    {
+      "issueId": "audi-a8-electrical-sensor-2011",
+      "repairItems": "Split exact sensor, parasitic draw, software and module branches; record full DTC/module/VIN; replace only proven component after wiring/power/network diagnosis",
+      "decision": "OVERBROAD SOURCE / SYSTEM-SPECIFIC DIAGNOSIS",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2011-2023 A8 software, guided-fault and VIN-specific module diagnosis",
+          "role": "manufacturer electronics service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "parasitic-draw and system-specific electrical diagnosis",
+          "role": "specialist electrical service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source combines unrelated systems and no exact repair item.",
+      "correction": "Do not sell a generic sensor/module, promise warranty, or advise ignoring non-safety faults without diagnosis.",
+      "sequence": 132,
+      "ymmt": "2011-2023 | Audi | A8",
+      "title": "Electrical Faults and Sensor Malfunctions",
+      "howToFix": "For SENSOR issues: Dealer diagnostic scan ($150-$300) to identify failed sensor. Replace specific sensor ($200-$600 per sensor installed). For BATTERY drain: Parasitic draw test to identify faulty module ($150-$300 diagnostic). Common culprits: trunk electronics, MMI, comfort modules. For \"DRIVE SYSTEM MALFUNCTION\": Update control module software at dealer ($200-$400). If persistent, may require module replacement ($1,000-$2,500). Most electrical issues covered under 4-year/50k warranty. After warranty, prioritize safety-critical repairs only—live with minor annoyances."
+    },
+    {
+      "issueId": "audi-a8-mmi-infotainment-2011",
+      "repairItems": "Confirm PR 7T6 and exact symptom; DTC/software group; applicable gateway bulletin first, then K0942 MMI procedure",
+      "decision": "SOFTWARE / PR-CODE SERVICE ROUTE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2010-2015 A8 PR 7T6 gateway/MMI software sequence",
+          "role": "manufacturer software service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "properly equipped MMI3G+ diagnosis/software service",
+          "role": "specialist electronics service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The remedy is PR-code and software-sequence specific.",
+      "correction": "Do not disconnect battery or replace display/main unit from this card.",
+      "sequence": 133,
+      "ymmt": "2010-2015 | Audi | A8 | MMI3G+ Navigation (PR code 7T6)",
+      "title": "2010-2015 A8 MMI3G+ Freeze, Reset or Blank Startup - Software Check Required",
+      "howToFix": "Confirm PR code 7T6, reproduce and document the exact concern, record DTCs and read the installed MMI software group. On 2011-2012 A8 vehicles, Audi first directs completion of gateway bulletin 2030903 when applicable, followed by the specified MMI K0942 software procedure. Do not disconnect the battery or replace the display/main unit from this card alone."
+    },
+    {
+      "issueId": "audi-a8-sunroof-drain-and-plenum-2004",
+      "repairItems": "Trace/flow-test sunroof, plenum and filter-housing paths; exact drain/seal repair; thorough carpet/module drying and connector/splice corrosion repair",
+      "decision": "LEAK-SOURCE / ELECTRICAL-DAMAGE SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2004-2010 A8 water-path diagnosis, drying and electrical inspection",
+          "role": "specialist water-leak service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Blocked drains, housing seals and damaged modules are different branches.",
+      "correction": "Do not link generic sealant, drains or modules before tracing the leak and damage.",
+      "sequence": 134,
+      "ymmt": "2004-2010 | Audi | A8",
+      "title": "Sunroof Drain and Plenum Water Intrusion Damaging Interior Electronics",
+      "howToFix": "Inspect the sunroof drains, cowl/plenum drains, and cabin filter housing for blockage or poor sealing, then water-test the car. Drying the interior thoroughly is critical because control modules and wiring splices under the carpet can corrode after prolonged exposure. Repairs may include clearing drains, resealing grommets, replacing damaged modules, and repairing corroded connectors."
+    },
+    {
+      "issueId": "audi-a8-takata-nadi-airbag-inflator-recall",
+      "repairItems": "VIN check for 69BT / 20V056 / 22V471; dealer inflator inspection/replacement",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "1998-1999 A8 VIN check for 69BT",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "20V056/22V471 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "This is free pyrotechnic recall work.",
+      "correction": "Do not disturb or sell an inflator.",
+      "sequence": 135,
+      "ymmt": "1998-1999 | Audi | A8",
+      "title": "1998-1999 A8 Takata NADI Driver-Airbag Inflator Recall 69BT (20V056/22V471)",
+      "howToFix": "Check the VIN for open Audi campaign 69BT / NHTSA 20V056 or its 22V471 correction. If open, an authorized Audi dealer checks the installed inflator and replaces an affected driver-airbag inflator with an alternative inflator free of charge. Do not disturb an airbag module yourself."
+    },
+    {
+      "issueId": "audi-a8-timing-chain-tensioner-2011",
+      "repairItems": "Confirm 2013-2015 3.0 TFSI exact 1-3 second first-cold-start rear rattle; both optimized upper tensioners; separate longer/warm/DTC noise diagnosis",
+      "decision": "SOURCE-YEAR MISMATCH / TSB-SPECIFIC SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2013-2015 A8 3.0 TFSI bulletin confirmation and VIN-selected tensioners",
+          "role": "manufacturer timing service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "cold-start timing-noise diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Only the precise bulletin condition authorizes both upper tensioners.",
+      "correction": "Identifier says 2011; align years and do not link a full chain kit.",
+      "sequence": 136,
+      "ymmt": "2013-2015 | Audi | A8 | 3.0 TFSI | 3.0L TFSI",
+      "title": "2013-2015 A8 3.0 TFSI 1-3 Second Cold-Start Timing-Chain Rattle - Diagnosis Required",
+      "howToFix": "Verify that the noise occurs only for approximately one to three seconds on the first cold start and comes from the rear timing-chain area. If the bulletin condition is confirmed, follow current Audi repair information to replace both upper timing-chain tensioners with the optimized parts. Diagnose longer, warm or fault-code-associated noise separately."
+    },
+    {
+      "issueId": "audi-a8-zf-6hp26-automatic-transmission-2004",
+      "repairItems": "Confirm 6HP26 code; TCM faults, fluid/debris and converter-slip road test; exact fluid/filter service, valve body, converter or rebuild branch; adaptation after applicable repair",
+      "decision": "TRANSMISSION-CODE / COMPONENT DIAGNOSIS",
+      "destinations": [
+        {
+          "label": "Audi A8 transmission-service catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/A8-Quattro/Automatic-Transmission-Service/",
+          "scope": "2004-2010 A8; confirm exact ZF code, pan/filter and Lifeguard-fluid specification",
+          "role": "vehicle-specific transmission catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "converter slip, valve-body and contamination diagnosis",
+          "role": "specialist transmission service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Service, valve body, converter and rebuild are mutually conditional branches.",
+      "correction": "Do not sell fluid/parts until transmission code and debris/fault/slip results are known.",
+      "sequence": 137,
+      "ymmt": "2004-2010 | Audi | A8",
+      "title": "ZF 6HP26 Automatic Transmission Torque Converter Shudder and Failure",
+      "howToFix": "Diagnosis typically includes scanning the transmission control module for ratio and converter clutch faults, checking fluid condition, and measuring slip values during road testing. Repairs range from fluid/filter service and valve body work to torque converter replacement or full transmission rebuild if clutch debris has contaminated the unit. Using the correct ZF Lifeguard fluid and adapting the transmission after repair is commonly recommended."
+    },
+    {
+      "issueId": "audi-cabriolet-coolant-1994",
+      "repairItems": "VIN/98V332 completion check; historical all-injector remedy; current availability/cost; stop for fuel odor/leak",
+      "decision": "SOURCE-ID MISMATCH / HISTORICAL RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "1994-1995 Cabriolet V6 VIN check for 98V332",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "independent recall-history check",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The identifier says coolant but repair is a fuel-injector seal recall.",
+      "correction": "Rename/re-key; do not link coolant or retail injectors.",
+      "sequence": 138,
+      "ymmt": "1994-1995 | Audi | Cabriolet | V6",
+      "title": "1994-1995 Audi Cabriolet V6 Fuel-Injector Seal Recall 98V332",
+      "howToFix": "Check the VIN, engine and campaign-completion history with Audi or NHTSA. The historical remedy replaced all fuel injectors. Confirm current remedy availability and cost with Audi because of the vehicle age. If fuel odor or visible fuel appears in the engine compartment, shut the engine off, keep ignition sources away and arrange inspection without driving."
+    },
+    {
+      "issueId": "audi-cabriolet-top-electrical-1994",
+      "repairItems": "VIN/96V017 completion check; historical dealer ignition-switch remedy; lighting/wiper safety response",
+      "decision": "SOURCE-ID MISMATCH / HISTORICAL RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "1994-1996 Cabriolet VIN check for 96V017",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "independent recall-history check",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The identifier implies convertible-top electrical work, but this is ignition-switch recall content.",
+      "correction": "Rename/re-key and do not link top parts or retail switch.",
+      "sequence": 139,
+      "ymmt": "1994-1996 | Audi | Cabriolet",
+      "title": "1994-1996 Audi Cabriolet Ignition-Switch Recall 96V017",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The historical remedy replaced the ignition switch. Confirm current remedy availability and cost with Audi because of the vehicle age. If wipers, lights or turn signals fail after starting, avoid driving in conditions that require them until the ignition circuit is inspected."
+    },
+    {
+      "issueId": "audi-cabriolet-top-hydraulic-1994",
+      "repairItems": "Fluid level/leak and pump power/ground diagnosis; exact leaking cylinder/line/seal or pump branch; inspect binding; correct fluid and bleed",
+      "decision": "COMPONENT / LEAK-SOURCE DIAGNOSIS",
+      "destinations": [
+        {
+          "label": "Top Hydraulics Audi services",
+          "url": "https://www.tophydraulics.com/audi/",
+          "scope": "1994-1998 Audi Cabriolet; confirm exact cylinder/pump rebuild availability and terms",
+          "role": "conditional hydraulic rebuild service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "top hydraulic/electrical/linkage diagnosis",
+          "role": "specialist convertible service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source incorrectly proposes replacing cylinders, lines, pump and all seals without diagnosis.",
+      "correction": "Replace/rebuild only the failed branch and verify fluid specification.",
+      "sequence": 140,
+      "ymmt": "1994-1998 | Audi | Cabriolet",
+      "title": "Convertible Top Hydraulic System Failure",
+      "howToFix": "Replace hydraulic cylinders and lines. Rebuild or replace hydraulic pump. Check and replace all seals and O-rings."
+    },
+    {
+      "issueId": "audi-cabriolet-top-hydraulic-failure-1994",
+      "repairItems": "Reservoir/leak inspection plus pump power/ground and linkage binding; paired cylinders/hoses when condition warrants; pump only if tested weak/failed; exact fluid and bleed",
+      "decision": "HYDRAULIC / ELECTRICAL BRANCH DIAGNOSIS",
+      "destinations": [
+        {
+          "label": "Top Hydraulics Audi services",
+          "url": "https://www.tophydraulics.com/audi/",
+          "scope": "1994-1998 Cabriolet exact cylinder/pump rebuild confirmation",
+          "role": "conditional hydraulic rebuild service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "top system leak, electrical and binding diagnosis",
+          "role": "specialist convertible service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Leak, weak pump, electrical supply and mechanical binding require different repairs.",
+      "correction": "Do not publish price estimates as fitment evidence or automatically replace pump/cylinders together.",
+      "sequence": 141,
+      "ymmt": "1994-1998 | Audi | Cabriolet",
+      "title": "Convertible Top Hydraulic System Failure",
+      "howToFix": "Inspect the convertible top hydraulic system by checking the pump reservoir fluid level, looking for ATF/hydraulic fluid leaks at the pump, lines, and lift cylinders behind the interior trim, and verifying pump power/ground before condemning the motor. Leaking cylinders or cracked hoses should be replaced or professionally rebuilt as a pair, then the system refilled with the correct hydraulic fluid and cycled/bled to remove air; if the pump runs weakly or not at all, replace the pump assembly and inspect the top frame/linkages for binding. Typical repair costs range from about $300-$700 for hose or single-cylinder repairs, $800-$1,500 for both cylinders and fluid service, and $1,000-$2,000+ if the hydraulic pump assembly also needs replacement."
+    },
+    {
+      "issueId": "audi-etron-air-suspension-2019",
+      "repairItems": "Complete DTC/symptom; J775-J1135 wiring/terminal/connector inspection; clear/verify first passive occurrence; conditional J1135 only for defined active/return result; separate sag/leak/compressor diagnosis",
+      "decision": "TSB CONDITIONAL MODULE / WIRING-FIRST",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-2023 e-tron covered models; guided J1135 diagnosis and VIN-selected module",
+          "role": "manufacturer suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The bulletin has explicit first/second occurrence and active/passive branches.",
+      "correction": "Exclude Q8 e-tron and do not link compressor or air-supply parts.",
+      "sequence": 142,
+      "ymmt": "2019-2023 | Audi | e-tron | e-tron quattro (2019, 2021-2023); e-tron Sportback quattro (2020-2023); e-tron S (2022-2023); excludes Q8 e-tron",
+      "title": "2019-2023 e-tron Air-Suspension Warning with J1135 Communication Fault - Diagnosis Required",
+      "howToFix": "Read the complete suspension DTC and symptom code, then inspect wiring, terminals and connectors between J775 and J1135 as Audi directs. If the fault is passive/sporadic on its first occurrence, clear it and verify operation. Replace J1135 if the fault is active/static after the electrical inspection or if C1260F0 or U112100 with symptom 262400 returns a second time as passive/sporadic. Diagnose vehicle sag, leak-down or compressor noise separately; do not order a compressor, air-supply unit or suspension parts from the former card."
+    },
+    {
+      "issueId": "audi-etron-battery-overheat-2019",
+      "repairItems": "Immediate VIN 93U9/93V2 / 23V867 check; dealer battery monitoring/inspection/module remedy; follow temporary 80% instruction only for applicable VIN; emergency fire response",
+      "decision": "HIGH-VOLTAGE RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2019-2022 e-tron VIN check for 93U9/93V2",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "23V867 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "High-voltage module work and charge limits are VIN/campaign-controlled.",
+      "correction": "No owner high-voltage work or product link.",
+      "sequence": 143,
+      "ymmt": "2019-2022 | Audi | e-tron | VIN-specific e-tron quattro (2019-2022) and e-tron Sportback quattro (2020-2022); verify 93U9/93V2 status | Battery-electric vehicles with potentially affected LG E61V high-voltage modules",
+      "title": "2019-2022 e-tron High-Voltage Battery Self-Discharge / Fire Risk - Recall 23V867",
+      "howToFix": "Check the VIN in the NHTSA and Audi recall/service-campaign lookups and contact an authorized Audi dealer without delay. Depending on the VIN and campaign phase, Audi installs advanced battery-monitoring software, inspects the high-voltage modules and replaces a module when indicated. If the current Audi notice for the VIN instructs an 80% maximum charge, keep that limit until the dealer confirms the applicable module repair or recall remedy is complete; it is not a permanent limit. Rapid or unexplained range/performance loss is an early indication that requires prompt dealer contact. If there is smoke, unusual heat, an explicit fire warning or visible fire, stop in a safe place, leave the vehicle, keep others away and call emergency services; do not attempt high-voltage battery work."
+    },
+    {
+      "issueId": "audi-etron-charge-port-actuator-2019",
+      "repairItems": "Owner-manual release only; VIN/DTC confirmation; indicator connector crack/moisture/oxidation inspection; seal intact connector or replace damaged door unit; coverage check",
+      "decision": "HIGH-VOLTAGE-AREA / CONNECTOR-CONDITION SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-early 2020 e-tron charge-door connector/unit diagnosis and expired-action coverage check",
+          "role": "authorized EV service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The procedure branches between sealing and complete door-unit replacement; prior action expired.",
+      "correction": "Do not order former actuator or unrelated electrical parts.",
+      "sequence": 144,
+      "ymmt": "2019-2020 | Audi | e-tron | 2019 e-tron quattro and early 2020 e-tron Sportback quattro; confirm VIN/build applicability | Battery-electric",
+      "title": "2019-2020 e-tron Charging Door Will Not Open: VIN and Connector Diagnosis Required",
+      "howToFix": "Use the owner-manual release only as directed to gain access; high-voltage-area diagnosis and repair belong with an Audi-qualified technician. Confirm model/VIN applicability and the matching DTC, then inspect the charge-level-indicator connector for cracks, moisture and oxidation. Audi’s procedure seals an undamaged connector or replaces the damaged charge-door unit and seals the updated connector as required. The former 93H6 service action expired in 2023, so confirm current coverage before work and do not order the former actuator or unrelated electrical parts."
+    },
+    {
+      "issueId": "audi-etron-charging-port-2019",
+      "repairItems": "VIN/DTC/software and mechanical actuator diagnosis; exact charging-door/port component only when proven; high-voltage-safe service",
+      "decision": "OVERBROAD SOURCE / EV DIAGNOSIS REQUIRED",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-2024 e-tron VIN-specific charging-port software/actuator diagnosis",
+          "role": "authorized EV service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source asserts replacement and lubrication without model-generation, DTC or component evidence.",
+      "correction": "Do not link an actuator or lubricant until the exact door/port and failure are identified.",
+      "sequence": 145,
+      "ymmt": "2019-2024 | Audi | e-tron",
+      "title": "CCS Charging Port Actuator Failure",
+      "howToFix": "Replace charging port actuator assembly. Software update may resolve communication errors. Keep port clean and lubricated."
+    },
+    {
+      "issueId": "audi-etron-gt-battery-short-2022",
+      "repairItems": "VIN/open 931A/931B check; dealer data monitoring/diagnostic procedure/software and conditional module remedy; follow only vehicle-specific charge instruction",
+      "decision": "HIGH-VOLTAGE RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2022-2024 e-tron GT VIN check for 931A/931B",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "24V726 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Campaign criteria control monitoring, charge limits and module replacement.",
+      "correction": "Do not apply an 80% limit universally or link battery products.",
+      "sequence": 146,
+      "ymmt": "2022-2024 | Audi | e-tron GT",
+      "title": "2022-2024 e-tron GT High-Voltage Battery Recall 931A/931B (24V726)",
+      "howToFix": "Check the VIN for open Audi campaign 931A or 931B and complete the authorized dealer remedy. Under 931A, enrolled vehicles can be monitored through online battery data; Audi contacts owners if a module appears critical. Under 931B, the dealer performs diagnostic procedures until the final monitoring software is installed. Audi installs the onboard diagnostic software and replaces affected battery modules at no cost when anomalies are identified. Follow any vehicle- or dealer-specific 80-percent charging instruction; the filing does not direct every 931A vehicle to use that limit."
+    },
+    {
+      "issueId": "audi-etron-gt-brake-hose-2022",
+      "repairItems": "VIN/open 47UP check; dealer both front hoses and holders remedy; urgent warning/pedal-travel diagnosis",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2022-2024 e-tron GT VIN check for 47UP",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "24V465 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The complete paired-hose/holder repair is campaign-controlled.",
+      "correction": "Do not sell one hose or generic brake line.",
+      "sequence": 147,
+      "ymmt": "2022-2024 | Audi | e-tron GT",
+      "title": "2022-2024 e-tron GT Front Brake-Hose Recall 47UP (24V465)",
+      "howToFix": "Check the VIN for an open 47UP action and have an authorized Audi dealer replace both front brake hoses and holders free of charge. If pedal travel increases or the vehicle displays a warning related to reduced brake fluid, contact an Audi dealer for diagnosis without delay. Do not buy a single hose or substitute generic brake lines from the prior links; the campaign controls the complete criteria-specific repair."
+    },
+    {
+      "issueId": "audi-etron-gt-charging-port-2022",
+      "repairItems": "VIN/91VT criterion check; dealer HV-battery control software and criterion-dependent convenience-module update; separate out-of-campaign charging diagnosis",
+      "decision": "SOFTWARE ACTION ROUTE ONLY",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2022-2024 e-tron GT 91VT criterion/software remedy",
+          "role": "authorized EV software service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The defined campaign branch is software, not socket/module hardware.",
+      "correction": "Do not replace charging socket or module from symptoms alone.",
+      "sequence": 148,
+      "ymmt": "2022-2024 | Audi | e-tron GT",
+      "title": "2022-2024 e-tron GT Red Charging LED or Fast-Charging Abort - Audi Update 91VT",
+      "howToFix": "Have an Audi dealer check the VIN and assigned 91VT criterion in the campaign/action system. For the charging-related criteria, the authorized remedy updates the high-voltage battery control-module software, with the convenience-system control module also updated where the assigned criterion requires it. Diagnose charging failures outside that exact campaign branch rather than replacing the charging socket or module from symptoms alone."
+    },
+    {
+      "issueId": "audi-etron-gt-hv-coolant-2022",
+      "repairItems": "Audi-qualified high-voltage thermal-management inspection; VIN-specific coolant circuit/component diagnosis and service",
+      "decision": "HIGH-VOLTAGE SERVICE ROUTE ONLY",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2022-2024 e-tron GT high-voltage coolant-system inspection/service",
+          "role": "authorized EV thermal service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The How to Fix explicitly requires dealer inspection and HV safety training but names no owner-buyable part.",
+      "correction": "Do not link coolant or thermal components without exact circuit/VIN diagnosis.",
+      "sequence": 149,
+      "ymmt": "2022-2024 | Audi | e-tron GT",
+      "title": "Battery Thermal Management Coolant System",
+      "howToFix": "Dealer inspection and service required for HV coolant system. High-voltage safety training required for all work on this system."
+    },
+    {
+      "issueId": "audi-etron-gt-passenger-airbag-2022",
+      "repairItems": "VIN/open 74HC check; dealer optimized passenger-seat cushion remedy; follow warning/indicator guidance",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2022-2023 e-tron GT VIN check for 74HC",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V227 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The remedy is a VIN-specific seat cushion replacement.",
+      "correction": "Do not link a clock spring, battery reset or generic calibration.",
+      "sequence": 150,
+      "ymmt": "2022-2023 | Audi | e-tron GT",
+      "title": "2022-2023 e-tron GT Passenger-Airbag PODS Recall 74HC (25V227)",
+      "howToFix": "Check the VIN for open Audi recall 74HC and have an authorized dealer replace the affected front-passenger seat cushion with the optimized cushion free of charge. If the airbag warning or Passenger Airbag OFF indicator appears while the seat is occupied, follow the vehicle warning and contact an Audi dealer. A clock spring, battery reset or generic sensor calibration is not the recall remedy."
     }
   ]
 }
