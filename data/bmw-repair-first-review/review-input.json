@@ -1264,6 +1264,231 @@
       "evidence": [],
       "reason": "The source reports no software/receiver catalog candidate and states that parts replacement will not solve this path.",
       "correction": "Rename this to Comfort Access faults after Remote Upgrade and do not link receivers or scanners."
+    },
+    {
+      "issueId": "bmw-i8-12v-battery-drain-2014",
+      "repairItems": "ISTA Energy Diagnosis; verify CCM 415 and I-level; conditional whole-vehicle programming",
+      "decision": "BULLETIN DIAGNOSIS/PROGRAMMING SERVICE / NO PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2015-2020 i8 CCM 415 energy diagnosis and conditional I-level programming","role":"ISTA diagnosis/programming service"}],
+      "evidence": [],
+      "reason": "The source explicitly forbids a controller, generic maintainer, or scan-tool purchase; programming applies only when both bulletin conditions are met.",
+      "correction": "Keep the title and destination tied to CCM 415 sleep delay rather than generic battery drain."
+    },
+    {
+      "issueId": "bmw-i8-12v-battery-hv-system-2014",
+      "repairItems": "VIN-specified AGM battery; reconnect safety wire; battery registration; HV restart/sleep-current/charging diagnosis",
+      "decision": "VIN/DIAGNOSIS SERVICE / BATTERY HELD",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2020 i8 battery registration, HV restart and charging-system diagnosis","role":"hybrid-qualified service"}],
+      "evidence": [],
+      "reason": "The repair requires registration and may involve the high-voltage system; the source does not provide a verified battery capacity or current part number.",
+      "correction": "Add a battery product only after VIN/build-date capacity and terminal configuration are verified; do not infer one from AGM alone."
+    },
+    {
+      "issueId": "bmw-i8-b38-turbo-timing-2014",
+      "repairItems": "Turbo oil-line/seal diagnosis; walnut blasting; conditional timing-chain kit; BMW-approved oil",
+      "decision": "MULTI-BRANCH SPECIALIST SERVICE / PARTS HELD",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2020 i8 B38 turbo, intake-valve and timing-chain diagnosis","role":"BMW hybrid/engine service"},{"label":"Genuine BMW i8 engine-oil catalog","url":"https://www.bmwpartsdeal.com/accessories/bmw-i8-engine_oil.html","scope":"i8 oil catalog; confirm model year and owner-manual specification before ordering","role":"preventive fluid"}],
+      "evidence": [],
+      "reason": "Turbo, carbon and timing-chain paths are separate repairs and require diagnosis; the oil catalog is model-specific but viscosity/specification still varies by model year.",
+      "correction": "Split turbo, carbon buildup and timing-chain concerns before approving repair kits; do not call every rattle a timing-chain failure."
+    },
+    {
+      "issueId": "bmw-i8-butterfly-door-actuator-2014",
+      "repairItems": "Door-release LED check; BDC fault scan; 12V Energy Diagnosis; key-fob batteries; conditional BMW latch reset",
+      "decision": "BULLETIN DIAGNOSIS/RESET SERVICE / NO PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2020 i8 BDC door-latch diagnosis and BMW reset procedure","role":"ISTA/body-electronics service"}],
+      "evidence": [],
+      "reason": "The source explicitly says not to replace struts, hinges or actuators from this card.",
+      "correction": "Rename this to low-voltage door-latch failsafe diagnosis; the current actuator-style title is misleading."
+    },
+    {
+      "issueId": "bmw-i8-charging-port-2014",
+      "repairItems": "Charge-flap/lock diagnosis; emergency release; white lithium grease; conditional actuator or complete wiring/port assembly",
+      "decision": "MAINTENANCE PRODUCT + DIAGNOSIS SERVICE / ACTUATOR HELD",
+      "destinations": [{"label":"CRC White Lithium Grease 05037","url":"https://shop.advanceautoparts.com/p/crc-white-lithium-grease-10-wt-oz-05037/7070403-P","scope":"Metal charging-latch mechanism only; follow product and BMW cautions","role":"named preventive lubricant"},{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2020 i8 recurring charge-flap, cable-lock or integrated port/harness fault","role":"charging-system diagnosis/service"}],
+      "evidence": ["https://www.bmwpartsdeal.com/parts-list/2014-bmw-i8-coupe_i12/bodywork/charging_flap.html"],
+      "reason": "The lubricant is a live named product suitable for automotive metal-to-metal use. The catalog page does not establish the source's claimed actuator or complete harness for every i8 year.",
+      "correction": "Do not link the flap ejector as an actuator or imply the catalog diagram is a complete charging-port assembly."
+    },
+    {
+      "issueId": "bmw-i8-cooling-system-failure-2014",
+      "repairItems": "ISTA/D activation test for turbocharger coolant pump; conditional auxiliary-pump diagnosis",
+      "decision": "TEST-PLAN SERVICE / NO PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2015 i8 fault 20A503 ISTA pump-activation test","role":"ISTA cooling-system diagnosis"}],
+      "evidence": [],
+      "reason": "No repair is required when activation succeeds and the fault does not return; exact turbo-pump fitment was not established.",
+      "correction": "Do not use a generic i8 water-pump listing for this auxiliary turbo-coolant circuit."
+    },
+    {
+      "issueId": "bmw-i8-door-strut-hinge-2014",
+      "repairItems": "Two door support struts; hinge/pin/bushing inspection; conditional latch diagnosis and alignment",
+      "decision": "EXACT PARTIAL PART APPROVAL + SERVICE",
+      "destinations": [{"label":"Genuine BMW door support strut 51227465481","url":"https://www.bmwpartsdeal.com/parts/bmw-gas_pressurized_spring-51227465481.html","scope":"2014-2020 BMW i8 I12/I15; sold individually; required quantity two","role":"door support strut"},{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"i8 hinge, alignment or electronic latch diagnosis","role":"body/door service"}],
+      "evidence": ["https://www.bmwpartsdeal.com/oem-bmw-i8-body_door_lift_support.html"],
+      "reason": "The live OEM listing identifies i8 fitment, supersessions, stock status and required quantity two.",
+      "correction": "The source's latch part 51217229458 is not an i8 fitment and is rejected; diagnose the latch by VIN instead."
+    },
+    {
+      "issueId": "bmw-i8-electrical-gremlins-2014",
+      "repairItems": "ISTA diagnosis; software update; grounds/connectors; 12V health; conditional VIN-specific harness",
+      "decision": "DIAGNOSIS/SOFTWARE SERVICE / NO GENERIC HARNESS",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2020 i8 electrical, software and sleep-current diagnosis","role":"ISTA/electrical service"}],
+      "evidence": [],
+      "reason": "This is a symptom family, not one part failure; harness replacement is the last conditional branch and must be VIN-specific.",
+      "correction": "Do not monetize a generic battery, module or wiring harness before fault-led diagnosis."
+    },
+    {
+      "issueId": "bmw-i8-fuel-tank-recall-2014",
+      "repairItems": "VIN recall check; dealer inspection of ground-stud weld; conditional no-charge fuel-tank replacement",
+      "decision": "RECALL ROUTE / NO RETAIL PART",
+      "destinations": [{"label":"BMW recall lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2014 i8; VIN required for campaign 14V-674","role":"manufacturer recall lookup"},{"label":"NHTSA recall lookup","url":"https://www.nhtsa.gov/recalls","scope":"2014 i8; VIN confirmation for 14V-674","role":"independent recall lookup"}],
+      "evidence": ["https://www.nhtsa.gov/recalls"],
+      "reason": "The inspection and any tank replacement are recall work at no charge and are adjacent to high-voltage components.",
+      "correction": "No tank hardware or DIY inspection link belongs on this card."
+    },
+    {
+      "issueId": "bmw-i8-hv-system-faults-2014",
+      "repairItems": "VIN coverage inquiry; ISTA diagnosis; conditional internal NTC repair kit by HV-certified technician",
+      "decision": "COVERAGE/HIGH-VOLTAGE SERVICE / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2017 i8 SIB 01 09 24 coverage and HV battery temperature-sensor diagnosis","role":"HV-certified diagnosis/coverage service"}],
+      "evidence": [],
+      "reason": "The repair is internal to the high-voltage battery and only follows a confirmed cell-module temperature-sensor fault.",
+      "correction": "Do not link generic battery modules, temperature sensors or scan tools."
+    },
+    {
+      "issueId": "bmw-ix-12v-battery-drain-2022",
+      "repairItems": "Software update; sleep-current diagnosis; conditional 12V battery/CCU; battery registration",
+      "decision": "SOFTWARE/DIAGNOSIS SERVICE / BATTERY PART HELD",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2022-2025 iX software, sleep-current, CCU and 12V battery-registration diagnosis","role":"EV electrical service"}],
+      "evidence": [],
+      "reason": "The cited 01405A38CB9 number was not verified on a live fitment page and battery/CCU replacement is conditional.",
+      "correction": "Confirm VIN, battery capacity, terminal layout and current supersession before linking a battery or maintainer."
+    },
+    {
+      "issueId": "bmw-ix-air-suspension-2022",
+      "repairItems": "Leak/component diagnosis; conditional compressor, air spring or line; post-repair reset; warranty/goodwill check",
+      "decision": "DIAGNOSIS/WARRANTY SERVICE / PARTS HELD",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2022-2025 iX xDrive50/M60 air-suspension diagnosis, warranty and calibration","role":"suspension service"}],
+      "evidence": [],
+      "reason": "Compressor, corner spring and line are mutually conditional branches; no axle/corner or VIN-specific part is established.",
+      "correction": "Split by confirmed leaking component and corner before adding product links."
+    },
+    {
+      "issueId": "bmw-ix-air-suspension-calibration-2022",
+      "repairItems": "ISTA calibration routine; conditional ride-height sensor; post-wheel/tire calibration check",
+      "decision": "CALIBRATION SERVICE / SENSOR HELD",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2022-2026 iX ISTA ride-height calibration and sensor diagnosis","role":"suspension calibration service"}],
+      "evidence": [],
+      "reason": "Calibration is the first repair; sensor replacement requires a confirmed sensor fault and exact position.",
+      "correction": "Do not link a ride-height sensor without axle/side and VIN fitment."
+    },
+    {
+      "issueId": "bmw-ix-build-quality-2022",
+      "repairItems": "Warranty documentation; trim/rattle repair; panel adjustment; conditional goodwill or lemon-law review",
+      "decision": "WARRANTY/BODY SERVICE / NO PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2022-2025 iX warranty inspection and body/trim adjustment","role":"warranty service"}],
+      "evidence": [],
+      "reason": "The repair is inspection and warranty adjustment; generic clips or insulation cannot be approved without the affected location.",
+      "correction": "Do not link lemon-law services or trim parts from a broad build-quality complaint."
+    },
+    {
+      "issueId": "bmw-ix-charging-failures-2022",
+      "repairItems": "Document failure; test another charger/outlet/adapter/station; inspect connection; ISTA charging test",
+      "decision": "INFRASTRUCTURE-FIRST DIAGNOSIS / NO PRODUCT",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2022-2024 iX vehicle-side charging diagnosis after alternate-infrastructure test","role":"EV charging diagnosis"}],
+      "evidence": [],
+      "reason": "The source explicitly says to test infrastructure before condemning the vehicle and reports no exact charging candidate.",
+      "correction": "Do not infer a cable, adapter, wallbox or onboard charger from a generic charging failure."
+    },
+    {
+      "issueId": "bmw-ix-dc-fast-charging-issues-2022",
+      "repairItems": "Navigation-triggered battery preconditioning; software update; alternate charging network; conditional onboard-charger diagnosis",
+      "decision": "USAGE/SOFTWARE/DIAGNOSIS SERVICE / NO PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2022-2026 iX software and charging-hardware diagnosis after preconditioning/network comparison","role":"EV charging service"}],
+      "evidence": [],
+      "reason": "Charge speed depends on temperature, battery state and infrastructure; hardware is only a conditional diagnosis branch.",
+      "correction": "Do not link an onboard charger or DC adapter from charging-speed inconsistency alone."
+    },
+    {
+      "issueId": "bmw-ix-hv-battery-ecu-software-2022",
+      "repairItems": "VIN recall check; free electric-drive-motor software update; post-remedy diagnosis if fault remains",
+      "decision": "RECALL/SOFTWARE ROUTE / NO PART",
+      "destinations": [{"label":"BMW recall lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2022-2024 iX; VIN required for campaign 25V-395","role":"manufacturer recall lookup"},{"label":"NHTSA recall lookup","url":"https://www.nhtsa.gov/recalls","scope":"2022-2024 iX; VIN confirmation for 25V-395","role":"independent recall lookup"}],
+      "evidence": ["https://www.nhtsa.gov/recalls"],
+      "reason": "The stated remedy is a free software update, not a battery ECU, motor or battery purchase.",
+      "correction": "Keep all hardware links off this recall card."
+    },
+    {
+      "issueId": "bmw-ix-idrive8-crashes-2022",
+      "repairItems": "OTA update; soft reset; conditional dealer flash/factory reset; conditional MGU inspection",
+      "decision": "SOFTWARE/DIAGNOSIS SERVICE / MGU HELD",
+      "destinations": [{"label":"BMW Remote Software Upgrade","url":"https://www.bmwusa.com/explore/connecteddrive/remote-software-upgrade.html","scope":"Eligible 2022-2025 iX; confirm offered update in vehicle/My BMW app","role":"official software route"},{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Persistent iX reboot loop or head-unit hardware diagnosis","role":"infotainment service"}],
+      "evidence": [],
+      "reason": "Reset and software are first-line; MGU replacement only follows persistent failure and dealer inspection.",
+      "correction": "Do not link a head unit before generation, VIN and diagnosis are known; remove unsupported version promises."
+    },
+    {
+      "issueId": "bmw-ix-infotainment-screen-blackout-2022",
+      "repairItems": "Sleep cycle; 70-second head-unit reset; directed 12V reset; ISTA display test; conditional whole-vehicle programming",
+      "decision": "BULLETIN TEST/PROGRAMMING SERVICE / NO DISPLAY",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2022-2026 iX HU-H4/H5/H6 blackout test plan and programming","role":"ISTA infotainment service"}],
+      "evidence": [],
+      "reason": "The source explicitly requires testing before display replacement and head-unit generation/I-level confirmation.",
+      "correction": "Do not link a display, head unit, battery or scanner from a black-screen symptom."
+    },
+    {
+      "issueId": "bmw-ix-phantom-braking-2022",
+      "repairItems": "ADCAM fault read; clean/inspect camera area and wipers; verify holder/windshield; conditional ISTA calibration",
+      "decision": "ADAS DIAGNOSIS/CALIBRATION SERVICE / NO PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2022-2024 iX ADCAM diagnosis and windshield-camera calibration","role":"ADAS calibration service"}],
+      "evidence": [],
+      "reason": "BMW's path distinguishes installation/calibration faults from environmental operating limits; parts do not correct the latter.",
+      "correction": "Do not monetize camera, radar, wiper or scanner parts without a confirmed fault and position."
+    },
+    {
+      "issueId": "bmw-ix3-12v-battery-drain-2022",
+      "repairItems": "OEM-spec AGM battery; battery tender; software/sleep-mode diagnosis",
+      "decision": "MARKET/VIN-SPECIFIC SERVICE / BATTERY HELD",
+      "destinations": [{"label":"BMW international dealer locator","url":"https://www.bmw.com/en/footer/dealer-locator.html","scope":"2022-2024 iX3 market/VIN-specific battery, software and sleep-current service","role":"official service route"}],
+      "evidence": [],
+      "reason": "The iX3 was not a US retail model and the source gives no battery capacity, current part number or market specification.",
+      "correction": "A US product link would violate the requested market/fitment method; verify destination market and VIN first."
+    },
+    {
+      "issueId": "bmw-ix3-charging-socket-lock-fault-cable-will-not-unlock-charging-wo",
+      "repairItems": "Key-fob/manual release; LIM scan; firmware updates; conditional charging-socket lock actuator or socket assembly",
+      "decision": "MARKET/VIN DIAGNOSIS SERVICE / PART HELD",
+      "destinations": [{"label":"BMW international dealer locator","url":"https://www.bmw.com/en/footer/dealer-locator.html","scope":"2021-2024 iX3 LIM diagnosis, firmware and charging-lock repair","role":"official EV service route"}],
+      "evidence": [],
+      "reason": "Actuator versus socket assembly is conditional and market/VIN-specific; no exact US fitment product is supportable.",
+      "correction": "Do not reuse i3/i8 charge-flap or cable-lock parts for the iX3."
+    },
+    {
+      "issueId": "bmw-ix3-drivetrain-wire-harness-2022",
+      "repairItems": "VIN recall check; HV-qualified replacement of internal cell-supervision circuit",
+      "decision": "MARKET RECALL/HIGH-VOLTAGE SERVICE / NO PART",
+      "destinations": [{"label":"BMW international dealer locator","url":"https://www.bmw.com/en/footer/dealer-locator.html","scope":"2021 iX3 R/2023/133 or market-equivalent campaign; VIN required","role":"official recall service route"}],
+      "evidence": [],
+      "reason": "This is a non-US campaign and an internal high-voltage-battery repair at no charge when covered.",
+      "correction": "Rename away from generic drivetrain harness and do not link a wiring harness."
+    },
+    {
+      "issueId": "bmw-ix3-onboard-charger-manufacturing-fault-electric-shock-risk",
+      "repairItems": "VIN recall check; free BMU reprogramming; fault-led diagnosis outside campaign",
+      "decision": "MARKET RECALL/SOFTWARE SERVICE / NO CHARGER",
+      "destinations": [{"label":"BMW international dealer locator","url":"https://www.bmw.com/en/footer/dealer-locator.html","scope":"2021 iX3 R/2021/361 or market-equivalent campaign; VIN required","role":"official recall service route"}],
+      "evidence": [],
+      "reason": "The remedy is BMU reprogramming, not onboard-charger replacement, and the campaign is market-specific.",
+      "correction": "Correct the title to intermediate-circuit discharge recall and keep charger parts off the card."
+    },
+    {
+      "issueId": "bmw-ix3-rear-brake-disc-corrosion-caliper-seizure-from-regen-under-u",
+      "repairItems": "Deliberate friction-brake use; annual caliper service; conditional rear discs/pads per axle; conditional side-specific caliper",
+      "decision": "MARKET/AXLE-SPECIFIC SERVICE / PARTS HELD",
+      "destinations": [{"label":"BMW international dealer locator","url":"https://www.bmw.com/en/footer/dealer-locator.html","scope":"2021-2025 iX3 rear-brake inspection, caliper service and VIN-specific parts","role":"official brake service route"}],
+      "evidence": [],
+      "reason": "The iX3 is market-specific and rear disc/pad/caliper numbers vary; the failed caliper side is not known.",
+      "correction": "Approve discs, pads and a left/right caliper only after destination market, VIN, axle dimensions and side are verified."
     }
   ]
 }
