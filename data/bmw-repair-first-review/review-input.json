@@ -766,6 +766,279 @@
       "evidence": [],
       "reason": "BPM Sport has a live buyable VIN-selected replacement covering CCC/CIC/NBT through 2016. The later G11/G12 range cannot be fit to that listing and remains diagnosis-first.",
       "correction": "Split F01/F02 CIC/NBT from G11/G12 NBT Evo/MGU generations. Do not claim every blackout/reboot is a hard drive or eMMC failure."
+    },
+    {
+      "issueId": "bmw-7-series-panoramic-roof-2016",
+      "repairItems": "Impact/manufacturing inspection for cracked glass; exact roof panel by VIN; drain-path diagnosis/cleaning; headliner only if confirmed damaged",
+      "decision": "DIAGNOSIS/GLASS-SERVICE FIRST",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2016-2025 7 Series roof-glass, drain and warranty diagnosis","role":"glass/roof service"}],
+      "evidence": [],
+      "reason": "The row lacks body/roof option, panel position and part number, and warranty depends on inspection rather than model year alone.",
+      "correction": "Do not tell users to blow compressed air through drains without the model procedure; split cracked glass, blocked drains and water-damaged trim."
+    },
+    {
+      "issueId": "bmw-7series-air-suspension-2002",
+      "repairItems": "Generation-specific leak and ride-height diagnosis; exact failed strut, compressor, valve block, line or sensor; calibration; coil conversion only where engineered and legal",
+      "decision": "SOURCE SPLIT REQUIRED / NO UNIVERSAL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2002-2023 7 Series chassis/VIN-specific air-suspension diagnosis","role":"diagnostic/calibration service"}],
+      "evidence": [],
+      "reason": "Twenty-one model years span E65/E66, F01/F02 and G11/G12 systems; one strut, compressor or conversion kit cannot fit the row.",
+      "correction": "Split by chassis, axle, side, suspension option and diagnosed component. Remove universal multi-failure and price claims."
+    },
+    {
+      "issueId": "bmw-7series-electrical-e65-2002",
+      "repairItems": "Module/network and parasitic-draw diagnosis; condition-specific CCC, window regulator, battery/registration or other exact repair",
+      "decision": "DIAGNOSIS FIRST / NO GENERIC ELECTRICAL CART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2002-2008 E65/E66 electrical/network diagnosis and programming","role":"diagnostic/programming service"}],
+      "evidence": [],
+      "reason": "The row combines unrelated modules, windows and battery conditions without a specific symptom, position, option or part number.",
+      "correction": "Split each known issue by component and symptom; remove ownership advice and unsupported blanket repair pricing."
+    },
+    {
+      "issueId": "bmw-7series-hpfp-2009",
+      "repairItems": "Measured low/high fuel-pressure diagnosis; N63A versus N63TU split; one or both pumps only as diagnosis directs; contamination inspection; required seals/adapters",
+      "decision": "ENGINE-GENERATION SPLIT PRODUCT APPROVAL",
+      "destinations": [
+        {"label":"Bosch HPFP 13517595339 for early N63A","url":"https://www.bimmerworld.com/Intake-Fuel/Fuel-Filters/BMW-Hgh-Presion-Pump-13517595339.html","scope":"2009-2012 F01/F02 750i/750Li N63A only; sold individually, two used per car; in stock","role":"early N63A high-pressure fuel pump"},
+        {"label":"Bosch HPFP 13518604232 for N63TU","url":"https://www.bimmerworld.com/Intake-Fuel/Fuel-Filters/High-Pressure-Fuel-Pump-O-On-Engine-N63-V8.html","scope":"2013-2015 F01/F02 750i/750Li N63TU; sold individually; pre-12/2013 cars require listed wiring adapter","role":"N63TU high-pressure fuel pump"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Fuel-pressure, bank and contamination diagnosis plus VIN history","role":"diagnostic service"}
+      ],
+      "evidence": [],
+      "reason": "Two live in-stock Bosch listings provide explicit 2009-2012 N63A and 2013-2015 N63TU 750i splits, part numbers and quantity notes.",
+      "correction": "Add 750Li/xDrive trims, engine generation and production date. Do not promise Customer Care Package coverage or automatically replace both pumps without measured diagnosis."
+    },
+    {
+      "issueId": "bmw-7series-n63-turbo-2009",
+      "repairItems": "N63TU1/chassis/production/engine-serial/VIN confirmation; electronic oil-level and leak tests; turbocharger only if leakage is documented",
+      "decision": "DIAGNOSIS FIRST / NO RETAIL TURBO",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2013-2015 750i/750Li N63TU1 oil-consumption and turbo-leak diagnosis","role":"diagnostic service"}],
+      "evidence": [],
+      "reason": "Exact oil-return-line fitment does not establish a leak or prove that a turbocharger is the oil-consumption cause.",
+      "correction": "Correct issue ID/year and add the actual 750i/750Li trims; no turbo, line or scanner link before documented tests."
+    },
+    {
+      "issueId": "bmw-7series-n63-valvetronic-2009",
+      "repairItems": "N63 generation/bank/VIN and fault diagnosis; eccentric-shaft motor only when confirmed; inspect mechanism and wiring; program/teach-in as required",
+      "decision": "DIAGNOSIS FIRST / ENGINE SPLIT REQUIRED",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2009-2015 F01/F02 750i/750Li Valvetronic diagnosis and teach-in","role":"diagnostic/programming service"}],
+      "evidence": [],
+      "reason": "The row spans N63A and N63TU hardware and supplies no bank, part number or confirmed fault; replacing both motors preventively is not justified.",
+      "correction": "Split by engine generation, bank and production date; remove unsupported preventive replacement and historical-coverage claims."
+    },
+    {
+      "issueId": "bmw-8-series-adaptive-suspension-2019",
+      "repairItems": "Fault-memory and physical diagnosis; exact chassis/option/axle/side adaptive damper; programming/calibration only where required; pair replacement based on condition",
+      "decision": "POSITION/OPTION SPLIT REQUIRED",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2019-2025 G14/G15/G16/F91/F92/F93 adaptive-suspension diagnosis and coding","role":"diagnostic/calibration service"}],
+      "evidence": [],
+      "reason": "The row has no trim, suspension option, axle, side or damper part number; 8 Series and M8 applications cannot share a universal Bilstein link.",
+      "correction": "Split by chassis, trim, suspension option, front/rear and left/right. Do not mandate pair replacement or coding for every damper without procedure support."
+    },
+    {
+      "issueId": "bmw-8-series-b58-coolant-loss-2019",
+      "repairItems": "Pressure-test and locate leak; production-specific 840i expansion tank/cap only if failed; inspect mechanical pump and quick-connect fittings; correct VIN-specified coolant",
+      "decision": "YEAR-SPLIT PARTIAL PRODUCT APPROVAL",
+      "destinations": [
+        {"label":"Genuine BMW expansion tank 17139846642","url":"https://www.bmwpartsdeal.com/parts/bmw-expansion_tank-17139846642.html","scope":"2021-2025 BMW 840i/840i xDrive 3.0L only; select VIN to confirm; ships in 1-3 business days","role":"coolant expansion tank"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2019-2020 production split and cooling-system pressure diagnosis","role":"diagnostic/fitment service"}
+      ],
+      "evidence": ["https://www.bmwpartsdeal.com/parts-list/2020-bmw-840i-coupe_g15/cooling_exhaust_system/expansion_tank.html"],
+      "reason": "The live part page explicitly fits 2021-2025 840i, while 2019-2020 catalog data shows a different production split and is held for VIN confirmation.",
+      "correction": "The B58 uses a mechanical coolant pump, not the electric-pump wording implied by the row. Do not replace tank/cap without locating the leak or prescribe blue coolant across all production dates."
+    },
+    {
+      "issueId": "bmw-8-series-n63-oil-consumption-m850i-2019",
+      "repairItems": "Controlled oil-consumption measurement; external/turbo-return/crankcase-ventilation checks; valve-seal diagnosis only if supported",
+      "decision": "DIAGNOSIS FIRST / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2019-2025 M850i N63 oil-consumption measurement and leak diagnosis","role":"diagnostic service"}],
+      "evidence": [],
+      "reason": "The How to Fix names several possible causes but no confirmed failed component, part number or exact engine-generation split.",
+      "correction": "Verify the current BMW oil-consumption specification and engine designation by VIN; do not present one generic rate or preselect turbo lines, ventilation parts or seals."
+    },
+    {
+      "issueId": "bmw-8series-ibs-failure-2020",
+      "repairItems": "VIN check for recall 21V-062; authorized integrated-brake remedy; immediate service direction for brake warnings or changed pedal effort",
+      "decision": "RECALL ONLY / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW recall lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2019-2021 8 Series; VIN required for 21V-062","role":"official recall check"},
+        {"label":"NHTSA VIN recall lookup","url":"https://www.nhtsa.gov/recalls","scope":"US VIN confirmation and recall details","role":"government recall check"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source is a VIN-controlled safety recall and reports no defensible retail brake-booster candidate.",
+      "correction": "Rename the issue away from 'IBS failure'; IBS commonly means Intelligent Battery Sensor and is misleading here."
+    },
+    {
+      "issueId": "bmw-8series-n63tu3-timing-chain-2019",
+      "repairItems": "Confirm actual M850i N63 generation and timing fault; BMW test plan; VIN-specific chain/guide/tensioner parts only after diagnosis",
+      "decision": "CONTENT/FITMENT ERROR / REJECT NAMED KIT",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2019-2024 M850i N63 timing-system diagnosis and VIN-specific parts","role":"diagnostic service"}],
+      "evidence": ["https://www.turnermotorsport.com/p-5553284-timing-chain-kit-n63-44l/"],
+      "reason": "Turner says 11317594899KT has no vehicle applications; the detailed fitment found elsewhere is for older N63TU/N63N applications, not the M850i N63TU3 row.",
+      "correction": "Remove impossible E31 trims (840Ci/850Ci/850CSi), the universal preventive interval and catastrophic cost claims. Do not use 11317594899KT for M850i without VIN/ETK confirmation."
+    },
+    {
+      "issueId": "bmw-8series-n63tu3-valve-stem-seals-2019",
+      "repairItems": "Confirm M850i N63 generation and oil-consumption cause; engine-generation-specific seals/tooling; spark plugs only when repair procedure or condition calls for them",
+      "decision": "CONTENT/FITMENT ERROR / NO APPROVED RETAIL TOOL",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2019-2024 M850i oil-consumption and valve-seal diagnosis","role":"diagnostic service"}],
+      "evidence": ["https://agatools.com/collections/valve-tools/products/aga-n63-vsk-k","https://www.turnermotorsport.com/p-49265628-n63tu-valve-stem-seal-tool-kit/"],
+      "reason": "AGA-N63-VSK-K is explicitly for N63/S63 and the N63TU tool listing has no vehicle applications; neither verifies N63TU3 M850i fitment.",
+      "correction": "Remove impossible E31 trims, use the actual M850i engine designation, and do not promise class-action coverage or link older N63/N63TU tools."
+    },
+    {
+      "issueId": "bmw-8series-premature-tire-wear-2019",
+      "repairItems": "Inspect wear pattern, pressure and suspension; alignment within safe BMW/tire specifications; exact-size/load/speed-rated tires in axle pairs where required",
+      "decision": "ALIGNMENT/INSTALLER SERVICE APPROVAL",
+      "destinations": [
+        {"label":"Tire Rack recommended installer locator","url":"https://www.tirerack.com/installer/Installer.jsp","scope":"ZIP-based US tire installation route; select exact vehicle and tire product before checkout","role":"tire installer locator"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"8 Series/M8 alignment and suspension inspection","role":"alignment service"}
+      ],
+      "evidence": [],
+      "reason": "A live ZIP-based installer route is valid, but the row lacks wheel size, tire size, load/speed rating and trim needed for a tire product link.",
+      "correction": "Do not prescribe one rear-camber target or tire-life savings to every 8 Series/M8. Split staggered, square, rear-steer and M applications."
+    },
+    {
+      "issueId": "bmw-8series-zf-8hp-mechatronic-2019",
+      "repairItems": "VIN check for recall 23V-821; authorized replacement of the transmission mechatronics module when included",
+      "decision": "RECALL ONLY / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW recall lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2023 840i/840i xDrive/M850i xDrive; VIN required for 23V-821","role":"official recall check"},
+        {"label":"NHTSA VIN recall lookup","url":"https://www.nhtsa.gov/recalls","scope":"US VIN confirmation","role":"government recall check"}
+      ],
+      "evidence": [],
+      "reason": "The source explicitly rejects sleeve kits and fluid service as substitutes for the dealer-only ITCU recall remedy.",
+      "correction": "Keep the issue titled as an ITCU recall, not a generic ZF 8HP mechatronic wear problem."
+    },
+    {
+      "issueId": "bmw-driveshaft-flex-disc-e90",
+      "repairItems": "VIN recall check; installed rear-flex-disc revision inspection; dealer replacement only when campaign requires",
+      "decision": "RECALL ONLY / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW recall lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"Certain 2011 3 Series; VIN required for 17V-067","role":"official recall check"},
+        {"label":"NHTSA VIN recall lookup","url":"https://www.nhtsa.gov/recalls","scope":"US VIN confirmation","role":"government recall check"}
+      ],
+      "evidence": [],
+      "reason": "BMW requires inspection of the installed revision and the catalog returned no exact flex-disc candidate; the free recall remedy controls.",
+      "correction": "Add the exact affected body/trim/drivetrain scope from the recall before any future retail flex-disc link."
+    },
+    {
+      "issueId": "bmw-i3-12v-battery-drain-2014",
+      "repairItems": "Check Control/fault-memory review; ISTA Energy Diagnosis and 12V test; software-first Controller remedy; battery only if separately failed and then register it",
+      "decision": "SOFTWARE/DIAGNOSIS FIRST / NO BATTERY LINK",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2021 i3 ISTA Energy Diagnosis, programming and battery registration","role":"diagnostic/programming service"}],
+      "evidence": [],
+      "reason": "The corrected source says not to replace the Controller and found no defensible battery candidate for this specific software-first condition.",
+      "correction": "Do not turn the discharge warning into an automatic battery or scanner sale; link a battery only after failed testing."
+    },
+    {
+      "issueId": "bmw-i3-12v-parasitic-drain-2014",
+      "repairItems": "Parasitic-draw/software diagnosis and 12V load test; AUX18L AGM battery only if failed; battery registration after replacement",
+      "decision": "DIAGNOSIS-GATED BATTERY APPROVAL",
+      "destinations": [
+        {"label":"East Penn/Deka AUX18L AGM i3 battery","url":"https://remybattery.com/start-stop-aux18l-auxiliary-battery.html","scope":"2014-2021 BMW i3; live page identifies AUX18L as the OEM factory-installed i3 battery; confirm terminals and current stock","role":"12V AGM auxiliary battery"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Parasitic-draw diagnosis, software check and battery registration","role":"diagnostic/programming service"}
+      ],
+      "evidence": [],
+      "reason": "The live AUX18L product is buyable and explicitly identifies BMW i3 OEM fitment, but battery replacement does not diagnose parasitic drain.",
+      "correction": "Do not tell users BimmerCode necessarily performs battery registration; name the supported registration tool/procedure only after verification."
+    },
+    {
+      "issueId": "bmw-i3-ac-compressor-black-death-2014",
+      "repairItems": "HV isolation and refrigerant/oil contamination diagnosis; exact electric compressor; contaminated circuit and battery-cooling components only as the HV-EV procedure requires",
+      "decision": "HV-DIAGNOSIS-GATED COMPRESSOR APPROVAL",
+      "destinations": [
+        {"label":"Genuine BMW i3 electric A/C compressor 64529496107","url":"https://www.fcpeuro.com/products/bmw-ac-compressor-genuine-bmw-64529496107","scope":"BMW i3/i3s; available; confirm VIN, supersession, refrigerant and specified electrically insulating oil","role":"electric A/C compressor"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"HV-safe A/C diagnosis, evacuation, contamination assessment and repair","role":"HV A/C service"}
+      ],
+      "evidence": ["https://www.fcpeuro.com/BMW-parts/i3/AC-Compressor/"],
+      "reason": "FCP Euro's live i3 compressor catalog lists genuine 64529496107 as available for i3/i3s. It does not justify buying the compressor before contamination/HV diagnosis.",
+      "correction": "Remove unverified fixed prices and 'entire system' wording; specify the exact BMW refrigerant oil by procedure and never substitute PAG oil."
+    },
+    {
+      "issueId": "bmw-i3-ac-compressor-failure-2014",
+      "repairItems": "HV-safe A/C diagnosis and de-energization; exact electric compressor; system evacuation/recharge with VIN-specified refrigerant and oil",
+      "decision": "HV-DIAGNOSIS-GATED COMPRESSOR APPROVAL",
+      "destinations": [
+        {"label":"Genuine BMW i3 electric A/C compressor 64529496107","url":"https://www.fcpeuro.com/products/bmw-ac-compressor-genuine-bmw-64529496107","scope":"BMW i3/i3s; confirm VIN and supersession before ordering","role":"electric A/C compressor"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Certified HV A/C service and exact refrigerant/oil verification","role":"HV A/C service"}
+      ],
+      "evidence": ["https://www.fcpeuro.com/BMW-parts/i3/AC-Compressor/"],
+      "reason": "The exact live compressor is valid, while installation and charging require trained HV/A-C service.",
+      "correction": "Do not assume R-1234yf across every 2014-2021 build without the under-hood label/VIN procedure."
+    },
+    {
+      "issueId": "bmw-i3-battery-degradation-2014",
+      "repairItems": "VIN check for recall 22V-683; authorized replacement of affected high-voltage battery cell module",
+      "decision": "HIGH-VOLTAGE RECALL ONLY / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW recall lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2019-2021 i3; VIN required for 22V-683","role":"official recall check"},
+        {"label":"NHTSA VIN recall lookup","url":"https://www.nhtsa.gov/recalls","scope":"US VIN confirmation","role":"government recall check"}
+      ],
+      "evidence": [],
+      "reason": "This is a VIN-controlled high-voltage safety recall; retail battery modules and capacity estimates are not substitutes.",
+      "correction": "Rename the issue to the cell-module recall rather than generic battery degradation."
+    },
+    {
+      "issueId": "bmw-i3-connectivity-module-2014",
+      "repairItems": "VIN/AIR/My Garage eligibility check; campaign programming for eligible 4G vehicle; current ConnectedDrive service confirmation; no used TCB by model year",
+      "decision": "VIN/SERVICE ELIGIBILITY ONLY",
+      "destinations": [
+        {"label":"My BMW Garage","url":"https://mygarage.bmwusa.com/","scope":"VIN-linked vehicle/campaign and service information","role":"official eligibility route"},
+        {"label":"BMW contact and ConnectedDrive support","url":"https://www.bmwusa.com/contact-us.html","scope":"Confirm current ConnectedDrive availability and support options","role":"official support"}
+      ],
+      "evidence": [],
+      "reason": "The source explicitly says an early non-eligible 3G vehicle cannot be restored by buying the frozen card's used TCB part.",
+      "correction": "Do not promise a hardware upgrade or service restoration from model year alone."
+    },
+    {
+      "issueId": "bmw-i3-dc-fast-charge-latch-2014",
+      "repairItems": "VIN KLE action check; charging and 12V diagnostics; campaign KLE replacement/programming where open; controlled Level 2 recovery where applicable",
+      "decision": "CAMPAIGN/PROGRAMMING FIRST / NO LATCH PART",
+      "destinations": [
+        {"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2014 i3 VIN/campaign check","role":"official campaign route"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"KLE/charging diagnosis and programming","role":"diagnostic/programming service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source says this is a KLE/charging-delay path, not a DC fast-charge latch failure, and explicitly rejects buying a latch actuator.",
+      "correction": "Rename the issue to the Level 2/KLE campaign condition and remove drilling/lubrication advice."
+    },
+    {
+      "issueId": "bmw-i3-hvac-heater-2014",
+      "repairItems": "HVAC fault and HV isolation diagnosis; exact heater, compressor, blower or control/software repair only as confirmed",
+      "decision": "COMPONENT-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        {"label":"Genuine BMW i3 electric A/C compressor 64529496107","url":"https://www.fcpeuro.com/products/bmw-ac-compressor-genuine-bmw-64529496107","scope":"i3/i3s compressor circuit only after diagnosis; not a heater or blower part","role":"electric HVAC compressor"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"HVAC/HV diagnosis, software, heater and blower identification","role":"HV HVAC service"}
+      ],
+      "evidence": ["https://www.fcpeuro.com/BMW-parts/i3/AC-Compressor/"],
+      "reason": "The How to Fix names several unrelated HVAC components; only the exact compressor has a verified live i3/i3s product page.",
+      "correction": "Split heater element, heat-pump compressor, blower motor and control software into separate issues; remove fixed price claims."
+    },
+    {
+      "issueId": "bmw-i3-rex-engine-issues-2014",
+      "repairItems": "VIN check for recall 17V-088; inspect fuel-tank vent line; replace line if required and install separating clip",
+      "decision": "RECALL ONLY / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW recall lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2014-2017 i3 REx; VIN required for 17V-088","role":"official recall check"},
+        {"label":"NHTSA VIN recall lookup","url":"https://www.nhtsa.gov/recalls","scope":"US VIN confirmation","role":"government recall check"}
+      ],
+      "evidence": [],
+      "reason": "The recall remedy is dealer/VIN controlled and the source explicitly rejects generic engine products as substitutes.",
+      "correction": "Rename the issue to the fuel-vent-line recall rather than generic REx engine issues."
+    },
+    {
+      "issueId": "bmw-i3-rex-stale-fuel-2014",
+      "repairItems": "REx operating/storage practice; fuel stabilizer for extended storage; diagnose fuel-pressure, injector or ignition faults; exact relay/coils only when confirmed",
+      "decision": "PREVENTIVE PRODUCT + DIAGNOSIS-GATED REX PARTS",
+      "destinations": [
+        {"label":"STA-BIL Storage Fuel Stabilizer 32 oz 22214","url":"https://www.academy.com/p/sta-bil%C2%AE-fuel-stabilizer-200000214","scope":"Universal gasoline storage treatment; follow label dosage; live shipping/add-to-cart page","role":"fuel stabilizer"},
+        {"label":"Genuine BMW sky-blue relay 61366915327","url":"https://www.bmwpartsdeal.com/parts/bmw-relay_make_contact_sky_blue-61366915327.html","scope":"2014-2017 i3 REx fuel-pump relay catalog application; confirm relay position and failed relay before ordering","role":"conditional fuel-pump relay"},
+        {"label":"Genuine BMW i3 REx ignition coil 12138569194","url":"https://www.bimmerworld.com/Engine/Ignition/Ignition-Coil-Genuine-BMW-I01-i3-Rex.html","scope":"2014-2021 issue scope; I01 REx 60Ah/94Ah/120Ah; in stock; sold individually, two per car","role":"conditional ignition coil"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"REx fuel/ignition diagnosis and injector service","role":"diagnostic service"}
+      ],
+      "evidence": ["https://www.bmwpartsdeal.com/parts-list/2017-bmw-i3-range_extender_i01/vehicle_electrical_system/relay_electric_fuel_pump.html","https://www.goldeagle.com/product/sta-bil-fuel-stabilizer/"],
+      "reason": "The three live buyable pages match items explicitly named in How to Fix; relay and coils remain conditional on the diagnosed fault, while stabilizer is preventive.",
+      "correction": "Do not call the relay the most common failure without evidence, do not prescribe premium fuel universally, and separate preventive storage advice from fault repair."
     }
   ]
 }
