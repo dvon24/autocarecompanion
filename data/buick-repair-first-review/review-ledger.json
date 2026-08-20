@@ -1,11 +1,11 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-19T21:01:12.964Z",
+  "generatedAt": "2026-08-20T03:43:49.459Z",
   "make": "Buick",
   "sourceSnapshotHash": "b0d70caba729cf926d71e3fa19325409ecb1fdcb1b5afb853d4bbd0a79136103",
   "totalPublishedIssues": 70,
-  "reviewedIssueCount": 15,
-  "remainingIssueCount": 55,
+  "reviewedIssueCount": 70,
+  "remainingIssueCount": 0,
   "deployed": false,
   "counts": {
     "CONTENT CORRECTION + PARTIAL APPROVAL": 3,
@@ -13,14 +13,47 @@
     "SPECIALIST SERVICE / HOLD RETAIL CTA": 1,
     "DIAGNOSIS-FIRST HOLD": 1,
     "POSITION-SPECIFIC PARTIAL APPROVAL": 1,
-    "COVERAGE-FIRST + PARTIAL APPROVAL": 1,
+    "COVERAGE-FIRST + PARTIAL APPROVAL": 2,
     "COVERAGE-FIRST / NO RETAIL CTA": 1,
-    "DIAGNOSIS-GATED PARTIAL APPROVAL": 1,
+    "DIAGNOSIS-GATED PARTIAL APPROVAL": 2,
     "COVERAGE-FIRST + YEAR-SPLIT APPROVAL": 1,
     "FLUID APPROVAL + SERVICE GATE": 1,
-    "PART APPROVAL": 1,
-    "YEAR-SPLIT PARTIAL APPROVAL": 1,
-    "FLUID APPROVAL + DIAGNOSIS-FIRST HOLD": 1
+    "PART APPROVAL": 4,
+    "YEAR-SPLIT PARTIAL APPROVAL": 4,
+    "FLUID APPROVAL + DIAGNOSIS-FIRST HOLD": 1,
+    "CONTENT CORRECTION + RECALL-FIRST": 2,
+    "DIAGNOSIS-FIRST SERVICE LINK": 5,
+    "COVERAGE-FIRST / NO RETAIL PART": 1,
+    "TRANSMISSION-SPLIT SERVICE LINK": 1,
+    "RECALL SOFTWARE / NO PART": 2,
+    "SAFETY RECALL / NO RETAIL PART": 8,
+    "TSB DIAGNOSIS / HOLD RETAIL PART": 1,
+    "COVERAGE-FIRST + PART APPROVAL": 1,
+    "WARRANTY SERVICE / HOLD RETAIL PART": 1,
+    "PARTIAL APPROVAL + CONTENT CORRECTION": 1,
+    "YEAR/ENGINE-SPLIT PARTIAL APPROVAL": 1,
+    "RECALL-FIRST / NO RETAIL PART": 1,
+    "DIAGNOSIS + COVERAGE-FIRST": 1,
+    "YEAR-SPLIT DIAGNOSIS + PARTIAL APPROVAL": 1,
+    "POSITION-SPECIFIC PART APPROVAL": 1,
+    "ELECTRICAL DIAGNOSIS / HOLD RETAIL PART": 1,
+    "PROGRAMMED MODULE SERVICE LINK": 1,
+    "SERVICE-FIRST + PART REFERENCE": 1,
+    "SPECIALIST SERVICE / HOLD RETAIL KIT": 1,
+    "DUPLICATE + SPECIALIST SERVICE": 1,
+    "ENGINE-SPLIT PARTIAL APPROVAL": 1,
+    "CONTENT CORRECTION + EARLY-YEAR PARTIAL APPROVAL": 1,
+    "FLUID APPROVAL + TRANSMISSION-SPLIT HOLD": 1,
+    "CONTENT CORRECTION + FLUID APPROVAL": 1,
+    "SERVICE LINK / NO RETAIL PART": 1,
+    "SAFETY RECALL SOFTWARE / NO PART": 1,
+    "PARTIAL APPROVAL + DUPLICATE REVIEW": 1,
+    "SPECIALIST SERVICE + TECHNICAL KIT REFERENCE": 1,
+    "SAFETY RECALL / HOLD RETAIL PART": 1,
+    "MODEL-SPECIFIC PART APPROVAL": 1,
+    "DIAGNOSIS-GATED PART APPROVAL": 2,
+    "SERVICE-FIRST + PART APPROVAL": 1,
+    "PART APPROVAL + SERVICE NOTE": 1
   },
   "records": [
     {
@@ -404,6 +437,1224 @@
       ],
       "reason": "DEXRON-VI is verified, but the remaining fixes depend on whether the fault is converter, solenoid/TEHCM, valve body, calibration, or internal damage.",
       "correction": "Do not link a solenoid, TEHCM, scanner, or rebuild kit until diagnosis identifies that repair. The fluid link is not a promise that service cures slipping.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 16,
+      "issueId": "buick-encore-encore-gx-three-cylinder-turbo-stalling-low-oil-pressure-ecm",
+      "ymmt": "2020-2023 | Buick | Encore",
+      "title": "Encore GX (2020+) Three-Cylinder Turbo Stalling and Low-Oil-Pressure ECM Recall",
+      "howToFix": "Have the ECM reprogrammed under the GM recall to ensure low-oil-pressure conditions (P0521) are properly flagged. Diagnose stalling/power-loss with a scan tool. Monitor oil level frequently given the small-displacement turbo's sensitivity to low oil.",
+      "repairItems": "ECM recall calibration; scan-tool diagnosis if the recall does not resolve the condition; verify oil level/pressure",
+      "decision": "CONTENT CORRECTION + RECALL-FIRST",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2020-2023 Encore GX; VIN required",
+          "official recall/service link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The repair begins with an ECM calibration and VIN eligibility, not a timing, oil-pump, or scanner purchase.",
+      "correction": "The title says Encore/Encore GX, but the three-cylinder application is Encore GX. Replace the unrelated purge-valve citation before publication.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 17,
+      "issueId": "buick-encore-encore-gx-transmission-shudder-jerking-solenoid-faults",
+      "ymmt": "2020-2023 | Buick | Encore",
+      "title": "Encore GX Transmission Shudder, Jerking and Solenoid Faults",
+      "howToFix": "Diagnose with a scan tool for solenoid and torque-converter fault codes. Repairs range from shift-solenoid replacement and a torque-converter clutch service to torque converter or full transmission replacement in severe cases. Check for applicable GM service bulletins and lemon-law/warranty coverage on repeat failures.",
+      "repairItems": "Transmission-capable diagnosis; software; solenoid/valve body, torque converter or transmission only after fault isolation",
+      "decision": "DIAGNOSIS-FIRST SERVICE LINK",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2020-2023 Encore GX; transmission identification and module diagnosis required",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The How to Fix names several mutually exclusive repairs. A generic OBD scanner or single transmission part would be misleading.",
+      "correction": "Replace the unrelated charge-air-cooler citation and keep commerce gated by transmission ID and diagnosis.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 18,
+      "issueId": "buick-encore-engine-stalling-sudden-power-loss-while-driving",
+      "ymmt": "2013-2015 | Buick | Encore",
+      "title": "Engine Stalling and Sudden Power Loss While Driving (Early Models)",
+      "howToFix": "Diagnose with a scan tool to isolate the trigger (camshaft/crankshaft position sensors, throttle body, turbo underboost, or misfire). Common repairs include throttle body replacement, sensor replacement, and addressing the turbo/PCV issues above. Apply current GM software updates, as some driveability concerns were addressed via ECM reprogramming.",
+      "repairItems": "Scan-tool and fuel/air diagnosis; repair the confirmed sensor, throttle-body, turbo, PCV or calibration fault",
+      "decision": "DIAGNOSIS-FIRST SERVICE LINK",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2013-2015 Encore 1.4L; diagnose before ordering",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The symptom has multiple unrelated causes and the repair text explicitly requires diagnosis.",
+      "correction": "Do not generate an OBD or throttle-body CTA from the error codes alone.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 19,
+      "issueId": "buick-encore-evap-purge-pump-failure-warranty-extension",
+      "ymmt": "2022-2022 | Buick | Encore",
+      "title": "EVAP Purge Pump Failure (2022 Encore) - Warranty Extension",
+      "howToFix": "Replace the EVAP purge pump under GM's special coverage / warranty extension (up to 15 yr / 150,000 mi). Owners who already paid out of pocket may be eligible for reimbursement. Confirm exact eligibility and codes with a GM dealer.",
+      "repairItems": "VIN eligibility and dealer replacement of the EVAP purge pump under special coverage",
+      "decision": "COVERAGE-FIRST / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall and coverage lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2022 Encore; VIN required",
+          "official coverage link"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10238343-0001.pdf"
+      ],
+      "reason": "The stated repair is a covered purge-pump replacement. The coverage check should precede any purchase.",
+      "correction": "Keep the CTA on official VIN coverage rather than a generic purge valve.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 20,
+      "issueId": "buick-encore-excessive-oil-consumption",
+      "ymmt": "2013-2021 | Buick | Encore",
+      "title": "Excessive Oil Consumption (1.4L Turbo)",
+      "howToFix": "Check oil level frequently between changes and top off as needed. Diagnose and repair the PCV/camshaft cover system, which is a common contributor. Perform a documented oil-consumption test at a dealer; persistent high consumption may require valve cover, PCV, or piston ring/seal service.",
+      "repairItems": "Oil-consumption test; PCV/cam cover if confirmed; intake/check valve or piston-ring repair only when diagnosed",
+      "decision": "DIAGNOSIS-GATED PARTIAL APPROVAL",
+      "destinations": [
+        [
+          "GM Genuine 25209141 camshaft/valve cover",
+          "https://cruzekits.com/products/gm-acdelco-25203036-camshaft-valve-cover",
+          "2013-2021 Encore 1.4L except LE2; only after PCV/cam-cover diagnosis",
+          "conditional repair part"
+        ],
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "Oil-consumption test and internal-engine diagnosis",
+          "service locator"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2020/MC-10178406-9999.pdf"
+      ],
+      "reason": "The live product includes the gasket and bolts and lists 2013+ Encore excluding LE2, but it does not address intake check-valve or ring failure.",
+      "correction": "Show the valve cover only after diagnosis; keep ring/short-block work as service-only.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 21,
+      "issueId": "buick-encore-gx-1.2-1.3-turbo-shudder",
+      "ymmt": "2020-2024 | Buick | Encore GX | Preferred, Select, Essence, Sport Touring, Avenir | 1.2L Turbo, 1.3L Turbo",
+      "title": "Encore GX CVT / 9-Speed Hesitation and Shudder",
+      "howToFix": "CVT: software update via dealer (TSB 21-NA-141 and successors). 9-speed: ATF flush + reprogramming if persistent shudder; valve body or torque converter if not resolved. Many fixes were under GM's \"PI\" (Product Investigation) bulletins — check for active campaigns on your VIN.",
+      "repairItems": "Identify CVT versus 9-speed; calibration/fast learn; transmission-specific fluid; valve body or converter only if diagnosed",
+      "decision": "TRANSMISSION-SPLIT SERVICE LINK",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2020-2024 Encore GX; VIN/transmission required",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The CVT and 9-speed use different procedures and fluids. A shared fluid or solenoid link would be unsafe.",
+      "correction": "Replace the unrelated turbo-coverage citations and split the repair by transmission before adding parts.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 22,
+      "issueId": "buick-encore-gx-ecm-ignition-timing-fault-causing-engine-knock-after-auto-st",
+      "ymmt": "2024-2024 | Buick | Encore GX",
+      "title": "ECM Ignition Timing Fault Causing Engine Knock After Auto Stop/Start (Recall A242435780)",
+      "howToFix": "Covered under GM recall A242435780 (NHTSA 11006392) - the dealer reprograms the engine control module free of charge (no parts required). Owners noticing knock or a check engine light after stop/start cycles should have the ECM reflashed promptly to avoid engine damage.",
+      "repairItems": "Recall ECM reprogramming",
+      "decision": "RECALL SOFTWARE / NO PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2024 Encore GX; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2024/MC-11006392-0001.pdf"
+      ],
+      "reason": "The remedy is software only; no retail part or scanner purchase is called for.",
+      "correction": "Use the official VIN/recall route.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 23,
+      "issueId": "buick-encore-gx-electronic-brake-boost-sensor-connection-failure-loss-power",
+      "ymmt": "2020-2021 | Buick | Encore GX",
+      "title": "Electronic Brake Boost Sensor Connection Failure - Loss of Power Assist (Recall 20V588)",
+      "howToFix": "Covered under NHTSA recall 20V588 (GM A202307262) - the dealer replaces the electronic brake boost module free of charge. Owners with a hard brake pedal or brake-assist warning should verify recall completion via VIN at nhtsa.gov and have the module replaced.",
+      "repairItems": "Recall inspection and dealer replacement of the electronic brake-boost module as directed",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2020-2021 Encore GX; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/rcl/2020/RCSB-20V588-8771.pdf"
+      ],
+      "reason": "This is a safety-recall remedy with VIN-controlled parts and procedures.",
+      "correction": "Do not place a brake-booster purchase ahead of the recall repair.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 24,
+      "issueId": "buick-encore-gx-false-shift-to-park-warning-park-switch-failure",
+      "ymmt": "2020-2023 | Buick | Encore GX",
+      "title": "False \"Shift to Park\" Warning / Park Switch Failure (TSB 23-NA-119)",
+      "howToFix": "Per GM TSB 23-NA-119, the fix is inspecting the park-switch terminals and, if no harness damage is found, replacing the shifter control assembly. Confirm a clean shutdown afterward to prevent parasitic battery drain. Repair may be covered under bumper-to-bumper warranty.",
+      "repairItems": "Inspect shifter terminals/harness; replace shifter control only if terminals are undamaged and the bulletin directs replacement",
+      "decision": "TSB DIAGNOSIS / HOLD RETAIL PART",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2020-2023 Encore GX; inspect connector before parts",
+          "service locator"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2024/MC-11009103-0001.pdf"
+      ],
+      "reason": "The shifter is conditional; harness or terminal damage changes the repair.",
+      "correction": "Do not link a shifter assembly until VIN and connector condition establish the correct part.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 25,
+      "issueId": "buick-encore-gx-incorrect-catalytic-converter-installed-factory",
+      "ymmt": "2020-2023 | Buick | Encore GX",
+      "title": "Incorrect Catalytic Converter Installed at Factory (Emissions Recall A202317281)",
+      "howToFix": "Covered under GM emissions recall A202317281 (NHTSA 10197318) - dealers inspect the catalytic converter and replace it with the correct part (e.g. P/N 55515139) at no charge if the wrong unit was installed. Verify eligibility by VIN at nhtsa.gov.",
+      "repairItems": "Emission-recall inspection and VIN-specific catalytic-converter replacement",
+      "decision": "CONTENT CORRECTION + RECALL-FIRST",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "Encore GX; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2021/MC-10197318-9999.pdf",
+        "https://static.nhtsa.gov/odi/tsbs/2023/MC-10232163-0001.pdf"
+      ],
+      "reason": "The recall supplies the correct converter by VIN; a retail converter risks the wrong emissions calibration.",
+      "correction": "Verify the published year span because the cited campaigns cover specific 2020-2021 and 2023 populations rather than every 2020-2023 vehicle.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 26,
+      "issueId": "buick-encore-gx-instrument-panel-display-goes-blank-while-driving",
+      "ymmt": "2024-2024 | Buick | Encore GX",
+      "title": "Instrument Panel Display Goes Blank While Driving (Recall 23V744 - VCU Software)",
+      "howToFix": "Covered under NHTSA recall 23V744 (GM A232424320) - the VCU software is updated by a dealer or via over-the-air (OTA) update free of charge. Owners experiencing a blank cluster should confirm the recall is applied and that their software is current.",
+      "repairItems": "Recall VCU software update by dealer or approved OTA process",
+      "decision": "RECALL SOFTWARE / NO PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2024 Encore GX; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/rcl/2023/RCLRPT-23V744-5341.PDF"
+      ],
+      "reason": "The remedy is software, not an instrument-cluster or scanner purchase.",
+      "correction": "Route users to the official recall workflow.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 27,
+      "issueId": "buick-encore-pcv-camshaft-cover-diaphragm-failure-tea-kettle-whistle",
+      "ymmt": "2013-2021 | Buick | Encore",
+      "title": "PCV / Camshaft Cover Diaphragm Failure (1.4L Turbo) - \"Tea Kettle\" Whistle",
+      "howToFix": "Replace the camshaft (valve) cover, which contains the integrated PCV diaphragm; many owners upgrade to a revised cover. The root-cause check valve in the intake manifold should also be addressed (replace manifold or install an external check-valve/PCV bypass kit) to prevent turbo boost from over-pressurizing the crankcase. Check eligibility under GM Special Coverage N202299080.",
+      "repairItems": "Integrated PCV camshaft cover; inspect intake-manifold check valve; coverage eligibility",
+      "decision": "COVERAGE-FIRST + PART APPROVAL",
+      "destinations": [
+        [
+          "GM Genuine 25209141 camshaft/valve cover",
+          "https://cruzekits.com/products/gm-acdelco-25203036-camshaft-valve-cover",
+          "2013-2021 Encore 1.4L except LE2; cover, gasket and bolts",
+          "primary repair part"
+        ],
+        [
+          "Buick recall and coverage lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "VIN required before purchase",
+          "official coverage link"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2020/MC-10178406-9999.pdf"
+      ],
+      "reason": "The live page explicitly includes the valve cover gasket/bolts and Encore fitment. Intake-manifold check-valve damage remains a separate diagnosis.",
+      "correction": "Do not call the cover a complete repair when the intake check valve has also failed.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 28,
+      "issueId": "buick-encore-turbocharger-oil-supply-line-failure-causing-sudden-loss-pow",
+      "ymmt": "2013-2018 | Buick | Encore",
+      "title": "Turbocharger / Oil Supply Line Failure Causing Sudden Loss of Power",
+      "howToFix": "Replace the turbocharger assembly along with the turbo oil feed pipe seals, oil return pipe gaskets, exhaust/coolant seals, and related hardware per GM's procedure. For 2017-2018 models, check eligibility for the GM turbocharger warranty extension (10 yr / 120,000 mi). Maintain strict oil change intervals to avoid oil-feed line coking that accelerates turbo failure.",
+      "repairItems": "Turbocharger assembly; new oil feed/return lines; seals, gaskets and hardware; coverage check",
+      "decision": "COVERAGE-FIRST + PARTIAL APPROVAL",
+      "destinations": [
+        [
+          "Genuine Buick turbocharger assembly 25201063",
+          "https://www.gmpartsgiant.com/parts/buick-turbocharger-asm~25201063.html",
+          "2013-2018 Encore 1.4L; VIN confirmation required",
+          "turbo assembly"
+        ],
+        [
+          "Buick recall and coverage lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2017-2018 coverage population; VIN required",
+          "official coverage link"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2024/MC-10250285-0001.pdf"
+      ],
+      "reason": "The OEM page verifies the turbo assembly and instructs replacement of feed/return lines, which are not included in the single link.",
+      "correction": "Label this partial and list lines/seals/hardware separately after VIN lookup.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 29,
+      "issueId": "buick-envision-top-end-engine-ticking-from-hydraulic-lash-adjusters",
+      "ymmt": "2025-2026 | Buick | Envision | 2.0L Turbo I4 (RPO: LSY)",
+      "title": "Top-End Engine Ticking from Hydraulic Lash Adjusters (LSY 2.0T)",
+      "howToFix": "Per PIP6101A, dealer removes camshaft carrier, inspects for soft SHLAs, and replaces failed lash adjusters AND their matched rocker arms. Covered under powertrain warranty - do not let dealer dismiss as normal direct-injection noise.",
+      "repairItems": "Dealer inspection; matched lash adjusters and rocker arms only for confirmed affected positions",
+      "decision": "WARRANTY SERVICE / HOLD RETAIL PART",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2025-2026 Envision LSY 2.0T; warranty inspection",
+          "service locator"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2026/MC-11032771-0001.pdf"
+      ],
+      "reason": "Part count and positions are determined during inspection and the repair is within the powertrain-warranty context.",
+      "correction": "Do not sell a generic lifter set before inspection.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 30,
+      "issueId": "buick-lacrosse-3-6l-v6-timing-chain-stretch-wear",
+      "ymmt": "2010-2012 | Buick | LaCrosse",
+      "title": "3.6L V6 Timing Chain Stretch and Wear",
+      "howToFix": "Replace the timing chains, guides, and tensioners (a full timing set) along with the cam phasers; budget for a labor-intensive front-of-engine teardown. Maintain strict 5,000-mile oil changes with the correct dexos1 oil to prevent recurrence. GM revised chain and tensioner components for later production engines.",
+      "repairItems": "Complete timing chains, guides and tensioners; inspect cam phasers; correct dexos1 oil",
+      "decision": "PARTIAL APPROVAL + CONTENT CORRECTION",
+      "destinations": [
+        [
+          "ACDelco timing-chain kit 12700436",
+          "https://www.finditparts.com/products/11901052/acdelco-12700436",
+          "2010-2012 LaCrosse; confirm 3.6L RPO/VIN",
+          "timing kit"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2012/MC-10113848-9999.pdf"
+      ],
+      "reason": "The live page is in stock, offers Add to Cart and lists 2010-2012 LaCrosse; the GM bulletin covers high-feature V6 chain kits, but cam phasers may be separate.",
+      "correction": "Replace the unrelated ignition-recall citation and require RPO/VIN confirmation.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 31,
+      "issueId": "buick-lacrosse-3-8l-v6-lower-intake-manifold-gasket-plastic-coolant-elbow-l",
+      "ymmt": "2005-2009 | Buick | LaCrosse",
+      "title": "3.8L V6 Lower Intake Manifold Gasket / Plastic Coolant Elbow Leaks",
+      "howToFix": "Replace the lower intake manifold gaskets with GM's revised gasket (higher-temp rubber with metal coolant-passage inserts) and swap the plastic coolant elbows for metal Dorman replacements. Pressure-test the cooling system and inspect for oil/coolant intermixing during the repair.",
+      "repairItems": "Revised lower-intake gasket set; aluminum coolant elbows; coolant refill and contamination inspection",
+      "decision": "PART APPROVAL",
+      "destinations": [
+        [
+          "Fel-Pro MS98014T intake-manifold gasket set",
+          "https://www.autozone.com/p/fel-pro-engine-intake-manifold-gasket-set-ms98014t/217566",
+          "2005-2009 LaCrosse 3.8L; verify VIN/engine",
+          "primary gasket set"
+        ],
+        [
+          "Dorman 47065HP aluminum coolant elbows",
+          "https://www.autozone.com/p/dorman-oe-fix-hvac-heater-hose-connector-47065hp/99614",
+          "GM 3.8L application; confirm both elbow shapes before purchase",
+          "companion repair parts"
+        ]
+      ],
+      "evidence": [
+        "https://www.autozone.com/external-engine/intake-manifold-gaskets-plenum-gaskets/buick/lacrosse/2009"
+      ],
+      "reason": "The gasket set is listed for the 2009 LaCrosse and the metal elbows address the failure named in How to Fix.",
+      "correction": "Keep the engine/VIN check visible and do not substitute the similarly numbered MS98003T.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 32,
+      "issueId": "buick-lacrosse-3.6l-timing-chain",
+      "ymmt": "2010-2016 | Buick | LaCrosse | CX, CXL, CXS, Touring, Premium I, Premium II, Premium III, Sport Touring | 3.6L LFX/LLT V6",
+      "title": "LaCrosse 3.6L LLT/LFX Timing Chain Stretch",
+      "howToFix": "Full timing chain kit ($2,000-$3,500 incl. labor) — both primary and secondary chains, all tensioners and guides. Switch to 5,000-7,500 mile oil intervals with full-synthetic dexos1 5W-30. LLT engines may also need PCV valve replacement to reduce oil consumption (TSB 10-06-01-007).",
+      "repairItems": "Complete timing chains, guides and tensioners; oil service; LLT PCV update when applicable",
+      "decision": "YEAR/ENGINE-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        [
+          "ACDelco timing-chain kit 12700436",
+          "https://www.finditparts.com/products/11901052/acdelco-12700436",
+          "2010-2012 LaCrosse high-feature V6; confirm RPO/VIN",
+          "verified early-year timing kit"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2012/MC-10113848-9999.pdf"
+      ],
+      "reason": "The linked kit is verified for the early high-feature V6 application; the 2013-2016 LFX span needs its own exact kit.",
+      "correction": "Split LLT and LFX years instead of stretching one product across 2010-2016.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 33,
+      "issueId": "buick-lacrosse-driver-door-wiring-splice-corrosion",
+      "ymmt": "2014-2014 | Buick | LaCrosse",
+      "title": "Driver Door Wiring Splice Corrosion (Recall 14V317000)",
+      "howToFix": "Under recall 14V317000, dealers inspect the driver door window motor harness and replace the electrical splice as necessary, free of charge. For non-recall door-harness wear, repair or re-splice the broken wires in the door jamb flex loom.",
+      "repairItems": "Recall inspection/replacement of the door-harness splice; harness repair only as directed",
+      "decision": "RECALL-FIRST / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2014 LaCrosse; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The repair depends on inspected corrosion extent and recall eligibility.",
+      "correction": "Do not sell a universal wiring pigtail as the complete repair.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 34,
+      "issueId": "buick-lacrosse-eassist-12v-battery-drain-service-battery-charging-system-wa",
+      "ymmt": "2012-2016 | Buick | LaCrosse",
+      "title": "eAssist 12V Battery Drain and \"Service Battery Charging System\" Warnings",
+      "howToFix": "Have the dealer diagnose the Generator Control Module and Battery Energy Control Module per the GM exchange/recall program; replace failed modules and the 12V battery as needed. Check for the open recall by VIN. Inspect the hybrid battery control module wiring harness for shorts when chasing parasitic drain.",
+      "repairItems": "Hybrid-system diagnosis; 12V battery, module or hybrid harness only when confirmed; recall/VIN check",
+      "decision": "DIAGNOSIS + COVERAGE-FIRST",
+      "destinations": [
+        [
+          "Buick recall and coverage lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2012-2016 LaCrosse eAssist; VIN required",
+          "official coverage link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "Battery drain can originate in the battery, modules or hybrid harness, so a battery link alone would be incomplete.",
+      "correction": "Require eAssist-capable diagnosis before parts.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 35,
+      "issueId": "buick-lacrosse-electronic-power-steering-connector-corrosion-loss-assist",
+      "ymmt": "2017-2017 | Buick | LaCrosse",
+      "title": "Electronic Power Steering Connector Corrosion / Loss of Assist (Recall 17V116000)",
+      "howToFix": "Under recall 17V116000, dealers inspect, correct the seal seating, and secure the EPS connector seals free of charge. Owners should verify the recall has been completed by VIN; if assist is lost, have the EPS connectors and module inspected for corrosion.",
+      "repairItems": "Recall inspection and sealing/repair of the EPS connector",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2017 LaCrosse; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The remedy is VIN-controlled and connector-condition dependent.",
+      "correction": "Do not infer that the steering gear must be replaced.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 36,
+      "issueId": "buick-lacrosse-hvac-blower-motor-climate-control-module-failures",
+      "ymmt": "2008-2014 | Buick | LaCrosse",
+      "title": "HVAC Blower Motor and Climate Control Module Failures",
+      "howToFix": "Replace the failed blower motor (and resistor module on older cars) as a common wear repair. For frozen climate controls, update or replace the ECC/HVAC control module per GM software updates; inspect connectors for corrosion.",
+      "repairItems": "Diagnose blower circuit; older blower motor/resistor; later ECC/HVAC module or software; inspect connectors",
+      "decision": "YEAR-SPLIT DIAGNOSIS + PARTIAL APPROVAL",
+      "destinations": [
+        [
+          "2008 LaCrosse blower-motor resistor catalog",
+          "https://www.autozone.com/cooling-heating-and-climate-control/blower-motor-resistor/buick/lacrosse/2008",
+          "2008 LaCrosse; select exact resistor/control module after connector and HVAC-option check",
+          "year-specific parts catalog"
+        ]
+      ],
+      "evidence": [
+        "https://www.autozone.com/cooling-heating-and-climate-control/blower-motor-resistor/buick/lacrosse/2014"
+      ],
+      "reason": "The product category is live and year-filtered, but automatic-climate modules and resistor types differ across 2008-2014.",
+      "correction": "Split 2008-2009 hardware from later module/software cases; do not show one resistor for every year.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 37,
+      "issueId": "buick-lacrosse-intermittent-low-beam-headlight-failure",
+      "ymmt": "2005-2008 | Buick | LaCrosse",
+      "title": "Intermittent Low-Beam Headlight Failure",
+      "howToFix": "Diagnose the headlight wiring, the underhood bussed electrical center/relays, and the headlamp switch/connectors for heat damage and loose terminals; repair or replace affected harness connectors and relays. Some owners resolve it by replacing corroded headlamp socket connectors.",
+      "repairItems": "Electrical diagnosis of harness, fuse block, relay/driver, switch, connector or lamp socket",
+      "decision": "DIAGNOSIS-FIRST SERVICE LINK",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2005-2008 LaCrosse; electrical diagnosis required",
+          "service locator"
+        ]
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/inv/2017/INRD-RQ17002-68739.pdf"
+      ],
+      "reason": "The How to Fix names several non-interchangeable causes; no single bulb, relay or harness is justified.",
+      "correction": "Do not link headlight bulbs when the known issue is an intermittent control-circuit failure.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 38,
+      "issueId": "buick-lacrosse-rear-suspension-toe-link-may-loosen-fracture",
+      "ymmt": "2017-2017 | Buick | LaCrosse",
+      "title": "Rear Suspension Toe-Link May Loosen / Fracture (Recalls 17V267000 & later)",
+      "howToFix": "Under the applicable recall, dealers inspect the left and right rear suspension toe-link assemblies and correct the installation or replace corroded links free of charge. Owners in road-salt states should check for the expanded toe-link recall by VIN and have rear suspension inspected.",
+      "repairItems": "Recall inspection/replacement of rear toe links and required fasteners; alignment",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2017 LaCrosse; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "Recall parts and alignment procedure are VIN-controlled.",
+      "correction": "Keep retail suspension links behind the recall check.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 39,
+      "issueId": "buick-lesabre-electronic-climate-control-programmer-blower-control-module",
+      "ymmt": "1992-2005 | Buick | LeSabre",
+      "title": "Electronic Climate Control Programmer / Blower Control Module Failure",
+      "howToFix": "Diagnose by powering the blower motor directly; if the motor runs, replace the blower control module (mounted near the blower under the dash or cowl) or the HVAC programmer on earlier cars. Aftermarket modules are inexpensive, and replacement restores normal automatic fan operation.",
+      "repairItems": "Direct blower test; blower-control module on later cars or HVAC programmer on earlier cars",
+      "decision": "YEAR-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        [
+          "Four Seasons 20956 A/C power/blower-control module",
+          "https://www.partsgeek.com/84lcc9p-buick-lesabre-ac-power-module.html",
+          "2000-2005 LeSabre 3.8L sedan; only after direct blower/circuit test",
+          "later-year control module"
+        ]
+      ],
+      "evidence": [
+        "https://www.gmpartsgiant.com/oem-buick-lesabre-hvac_control_module.html"
+      ],
+      "reason": "The live page is in stock with Add to Cart, lists 2000-2005 LeSabre 3.8L and cross-references OEM 52480042; 1992-1999 uses other programmers/modules.",
+      "correction": "Split the 1992-1999 applications and require automatic-climate option confirmation.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 40,
+      "issueId": "buick-lesabre-front-strut-mount-bearing-wear-clunking-popping-over-bumps-t",
+      "ymmt": "2000-2005 | Buick | LeSabre",
+      "title": "Front Strut Mount and Bearing Wear — Clunking and Popping Over Bumps and in Turns",
+      "howToFix": "Replace both front strut mounts; most shops install complete loaded strut assemblies (quick-struts) in pairs since the struts themselves are usually tired at the same mileage. An alignment afterward is recommended.",
+      "repairItems": "Both front strut mounts/bearings or paired loaded struts; alignment",
+      "decision": "PART APPROVAL",
+      "destinations": [
+        [
+          "Monroe Strut-Mate 902972 front strut mount kit",
+          "https://www.shocksurplus.com/products/monroe-strut-mate-strut-mount-kit-902972",
+          "2000-2005 LeSabre front; quantity two",
+          "mount and bearing kit"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The live page is in stock with Add to Cart and its fitment table lists 2000-2005 LeSabre front. Replace both sides and align afterward.",
+      "correction": "State that alignment and paired replacement remain required service steps.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 41,
+      "issueId": "buick-lesabre-fuel-pressure-regulator-diaphragm-leak-fire-risk-recall",
+      "ymmt": "1998-2000 | Buick | LeSabre",
+      "title": "Fuel Pressure Regulator Diaphragm Leak — Fire Risk Recall (NHTSA 04V090000 / GM 03054B)",
+      "howToFix": "GM dealers replaced the regulator with a revised design free of charge under recall 03054B; check the VIN for open recall completion. If the recall was never performed or the replacement has since failed, install a new fuel pressure regulator — an inexpensive job since the regulator sits on top of the fuel rail.",
+      "repairItems": "Recall/VIN check and revised fuel-pressure regulator if directed",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "1998-2000 LeSabre; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "A fuel-leak/fire-risk campaign should route to the recall before a regulator purchase.",
+      "correction": "Do not bypass the recall with a generic regulator.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 42,
+      "issueId": "buick-lesabre-pass-key-anti-theft-system-fault-security-light-engine-crank",
+      "ymmt": "1992-2005 | Buick | LeSabre",
+      "title": "PASS-Key Anti-Theft System Fault — Security Light On, Engine Cranks but Won't Start",
+      "howToFix": "Try the relearn/wait procedure (key on with security light flashing for about 10 minutes, then restart) to get going. The lasting fix is replacing the ignition lock cylinder/Passkey sensor (and worn keys) followed by the security relearn; some owners on older resistor-pellet cars install a matched bypass resistor instead.",
+      "repairItems": "Pass-Key diagnosis/relearn; ignition lock cylinder/sensor and keys only when confirmed",
+      "decision": "DIAGNOSIS-FIRST SERVICE LINK",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "1992-2005 LeSabre; theft-system generation and key code required",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The repair differs by Pass-Key generation and may be a relearn rather than hardware.",
+      "correction": "Do not promote resistor bypasses or a lock cylinder without diagnosing the exact system.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 43,
+      "issueId": "buick-lesabre-plastic-upper-intake-manifold-degradation-causing-coolant-le",
+      "ymmt": "1996-2005 | Buick | LeSabre",
+      "title": "Plastic Upper Intake Manifold (Plenum) Degradation Causing Coolant Leak and Hydro-Lock Risk",
+      "howToFix": "Replace the upper intake manifold with the revised GM service kit or an improved aftermarket plenum (with updated gaskets and EGR stovepipe), per GM TSB 04-06-01-017. Most shops replace the lower intake gaskets at the same time since the manifold is already off. Never keep driving with unexplained coolant loss — internal leaks can hydro-lock the engine.",
+      "repairItems": "Revised upper intake plenum with gaskets/EGR stovepipe; inspect lower-intake gaskets",
+      "decision": "PART APPROVAL",
+      "destinations": [
+        [
+          "Dorman 615-180 upper intake manifold with gaskets",
+          "https://www.autopartsprime.com/dorman/plastic-intake-manifold/mp-615180",
+          "1996-2005 LeSabre 3.8L; use vehicle fitment check",
+          "primary repair assembly"
+        ]
+      ],
+      "evidence": [
+        "https://www.dormanproducts.com/p-32743-615-180.aspx"
+      ],
+      "reason": "The live product is in stock and includes the intake manifold, gaskets and PCV items; Dorman lists Buick 1995-2005 applications.",
+      "correction": "Keep lower-intake gasket replacement conditional on inspection.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 44,
+      "issueId": "buick-lesabre-power-window-regulator-cable-failure",
+      "ymmt": "2000-2005 | Buick | LeSabre",
+      "title": "Power Window Regulator Cable Failure (Windows Drop or Stop Working)",
+      "howToFix": "Replace the failed window regulator assembly with an updated aftermarket unit (commonly available for $50-$100); the motor can usually be reused. Many owners replace regulators in remaining doors preemptively or keep a spare, since failures across all four windows are widely reported.",
+      "repairItems": "Position-specific window regulator assembly; reuse motor only if it tests good",
+      "decision": "POSITION-SPECIFIC PART APPROVAL",
+      "destinations": [
+        [
+          "Genuine Buick LeSabre window-regulator catalog",
+          "https://www.gmpartsgiant.com/oem-buick-lesabre-window_regulator.html",
+          "2000-2005 LeSabre; select front/rear and driver/passenger position",
+          "position-specific parts catalog"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The live catalog lists exact OEM regulators and position labels for the issue span.",
+      "correction": "Require door position before purchase and do not imply the motor is always included or failed.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 45,
+      "issueId": "buick-lesabre-tank-fuel-pump-fuel-level-sender-failure",
+      "ymmt": "1998-2005 | Buick | LeSabre",
+      "title": "In-Tank Fuel Pump and Fuel Level Sender Failure (Stalling, No-Start, Erratic Gauge)",
+      "howToFix": "Replace the complete fuel pump module assembly (pump, sender, and strainer together) — the tank must be dropped on these cars. Replacing the whole module rather than just the pump fixes the erratic fuel gauge at the same time.",
+      "repairItems": "Fuel-pressure/electrical diagnosis; complete pump module/sender/strainer for the exact year and tank configuration",
+      "decision": "YEAR-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        [
+          "Genuine Buick LeSabre fuel-pump catalog",
+          "https://www.gmpartsgiant.com/oem-buick-lesabre-fuel_pump.html",
+          "1998-2005 LeSabre; select year/VIN/tank option",
+          "year-specific parts catalog"
+        ]
+      ],
+      "evidence": [
+        "https://www.gmpartsgiant.com/parts/buick-module-kit-f-tnk-f-pmp~19369903.html"
+      ],
+      "reason": "The 2004-2005 OEM module 19369903 is verified, but earlier years use different modules.",
+      "correction": "Do not stretch 19369903 across 1998-2003; force year/VIN selection.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 46,
+      "issueId": "buick-lucerne-fuel-pump-relay-overheats-melts-fuse-box",
+      "ymmt": "2008-2011 | Buick | Lucerne",
+      "title": "Fuel Pump Relay Overheats and Melts Fuse Box (Crank/No-Start, Stalling)",
+      "howToFix": "Repair the melted fuse box terminal/relay socket and replace the fuel pump relay; severe cases require replacing the fuse box. Inspecting and re-terminating the relay circuit (rather than just swapping the pump) is the correct fix. Some owners relocate/upgrade the relay terminal to prevent recurrence.",
+      "repairItems": "Inspect relay, terminals and underhood fuse block; repair/relocate socket or replace fuse block based on heat damage",
+      "decision": "ELECTRICAL DIAGNOSIS / HOLD RETAIL PART",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2008-2011 Lucerne; inspect heat damage before parts",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "A new relay alone is unsafe if the terminal or fuse block is heat-damaged.",
+      "correction": "Gate every part behind a terminal/fuse-block inspection.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 47,
+      "issueId": "buick-lucerne-heated-windshield-washer-fluid-module-fire-risk",
+      "ymmt": "2006-2009 | Buick | Lucerne",
+      "title": "Heated Windshield Washer Fluid Module Fire Risk (Microheat)",
+      "howToFix": "Covered under NHTSA recalls 08V441000 (first remedy) and 10V240000 (second/final remedy). Dealers permanently disable and remove the heated washer module and reroute the washer fluid hoses. GM paid affected owners $100 each.",
+      "repairItems": "Recall removal/disablement of the heated-washer module and hose reroute",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2006-2009 Lucerne; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The recall remedy removes/disables the module; buying another heated module contradicts the repair.",
+      "correction": "No retail module CTA.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 48,
+      "issueId": "buick-lucerne-ignition-switch-can-slip-out-run-position",
+      "ymmt": "2006-2011 | Buick | Lucerne",
+      "title": "Ignition Switch Can Slip Out of Run Position",
+      "howToFix": "Covered under NHTSA recall 14V355000 (part of GM's large 2014 ignition-switch campaign). Dealers inspect/replace the ignition key/switch components. As an interim measure GM advised drivers to use only the ignition key with nothing else on the ring until the remedy was performed.",
+      "repairItems": "Recall inspection and key/switch remedy as directed by VIN",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2006-2011 Lucerne; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The safety campaign controls whether the key, switch or both are serviced.",
+      "correction": "Do not sell an ignition switch before the VIN recall check.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 49,
+      "issueId": "buick-lucerne-instrument-cluster-hard-to-read-daylight",
+      "ymmt": "2006-2008 | Buick | Lucerne",
+      "title": "Instrument Cluster Hard to Read in Daylight",
+      "howToFix": "GM's remedy is replacement of the instrument panel cluster (IPC) with a revised version that has larger, higher-contrast numerals. The replacement is easier to read in daylight, though it still does not fully illuminate during the day.",
+      "repairItems": "Diagnose brightness/power; revised instrument cluster when confirmed; VIN programming",
+      "decision": "PROGRAMMED MODULE SERVICE LINK",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2006-2008 Lucerne; VIN programming required",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "A replacement IPC must match options/mileage and be programmed; a bare cluster is not plug-and-play.",
+      "correction": "Use a service route rather than an unprogrammed module purchase.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 50,
+      "issueId": "buick-lucerne-intermediate-steering-shaft-clunk-during-slow-turns",
+      "ymmt": "2006-2009 | Buick | Lucerne",
+      "title": "Intermediate Steering Shaft Clunk During Slow Turns",
+      "howToFix": "GM TSB 06-02-35-009H covers this. Early remedy was to lubricate/realign the cardan joint; the durable fix is replacing the intermediate steering shaft with the updated design (GM P/N 25810450). The TSB explicitly advises against replacing the steering rack for this noise.",
+      "repairItems": "Inspect/lubricate/realign intermediate shaft; replace with updated shaft if needed",
+      "decision": "SERVICE-FIRST + PART REFERENCE",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2006-2009 Lucerne; confirm shaft rather than rack",
+          "service locator"
+        ]
+      ],
+      "evidence": [
+        "https://www.gmpartsgiant.com/parts/gm-shaft-25810450.html"
+      ],
+      "reason": "GM 25810450 has exact Lucerne fitment but is discontinued on the verified page; lubrication/realignment may solve the issue.",
+      "correction": "Do not present a discontinued shaft as buyable or replace the steering rack for this symptom.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 51,
+      "issueId": "buick-lucerne-northstar-4-6l-v8-head-gasket-head-bolt-thread-failure",
+      "ymmt": "2006-2011 | Buick | Lucerne",
+      "title": "Northstar 4.6L V8 Head Gasket / Head Bolt Thread Failure",
+      "howToFix": "Proper repair requires removing the heads and installing oversized thread inserts (e.g., a head-stud/Time-Sert kit) before fitting new head gaskets. This is labor-intensive (engine often pulled), so repair bills commonly run several thousand dollars; some owners replace the engine instead.",
+      "repairItems": "Northstar specialist diagnosis; oversized block-thread inserts/Time-Sert process; head gaskets and machine inspection",
+      "decision": "SPECIALIST SERVICE / HOLD RETAIL KIT",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2006-2011 Lucerne 4.6L; specialist engine repair",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "Correct insert size, tooling and machine condition cannot be established from YMMT alone.",
+      "correction": "Do not link sealers or a head-gasket-only kit as the fix.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 52,
+      "issueId": "buick-lucerne-northstar-head-bolt",
+      "ymmt": "2006-2011 | Buick | Lucerne | CXS, Super, Special Edition | 4.6L L37 Northstar V8",
+      "title": "Lucerne Northstar V8 Head Bolt Pull / Coolant Loss",
+      "howToFix": "Northstar \"time-sert\" head bolt repair is the durable fix — block must be removed (engine out or in some cases above-engine work), threads drilled out, larger steel inserts installed. $3,500-$6,000 specialist labor. Some owners try \"Block-Tite\" / sealants as a band-aid; not durable. Watch coolant level monthly.",
+      "repairItems": "Oversized block-thread inserts with head gaskets; specialist inspection of block and heads",
+      "decision": "DUPLICATE + SPECIALIST SERVICE",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2006-2011 Lucerne 4.6L; specialist engine repair",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "This duplicates the broader Northstar head-gasket/head-bolt issue and cannot be safely reduced to one retail kit.",
+      "correction": "Consolidate the duplicate and explicitly reject cooling-system sealants.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 53,
+      "issueId": "buick-lucerne-rear-air-self-leveling-suspension-failure",
+      "ymmt": "2006-2011 | Buick | Lucerne",
+      "title": "Rear Air Self-Leveling Suspension Failure (Sagging Rear)",
+      "howToFix": "Diagnose the specific failure point: replace leaking air shocks, the height sensor, or the air compressor (the relief valve is integral to the compressor, so a stuck valve means a full compressor replacement). Some owners convert to conventional non-air shocks/coils to eliminate the system.",
+      "repairItems": "Diagnose rear shocks, height sensor and compressor; repair failed component or convert to passive shocks",
+      "decision": "YEAR-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        [
+          "Monroe 90007C rear air-leveling conversion kit",
+          "https://www.monroe.com/technical-resources/installation-guides/conversion-kit-90007c-buick-cadillac-oldsmobile-pontiac.html",
+          "2006-2010 Lucerne only; conversion option",
+          "conversion kit"
+        ]
+      ],
+      "evidence": [],
+      "reason": "Monroe explicitly covers 2006-2010 Lucerne; 2011 remains outside the verified kit span, and component repair may be preferable.",
+      "correction": "Hold 2011 and label conversion as an option, not proof that the compressor or shocks failed.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 54,
+      "issueId": "buick-lucerne-throttle-body-throttle-position-sensor-causing-reduced-engin",
+      "ymmt": "2006-2011 | Buick | Lucerne",
+      "title": "Throttle Body / Throttle Position Sensor Causing Reduced Engine Power",
+      "howToFix": "Clean the throttle body first; if the TPS/electronic throttle body has failed, replace it and perform the required throttle relearn so the computer sets correct idle and full-throttle positions. GM Special Coverage extended this to 10 years / 120,000 miles on covered 2009-2011 models.",
+      "repairItems": "Throttle-body diagnosis/cleaning; engine-specific throttle body if confirmed; electronic relearn",
+      "decision": "ENGINE-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        [
+          "Genuine Buick Lucerne throttle-body catalog",
+          "https://www.gmpartsgiant.com/oem-buick-lucerne-throttle_body.html",
+          "2006-2011 Lucerne; select 3.8L, 3.9L or 4.6L before purchase",
+          "engine-specific parts catalog"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The catalog exposes three different throttle bodies by engine/year and live buyable listings.",
+      "correction": "Require engine/VIN selection and relearn; do not imply one throttle body fits every Lucerne.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 55,
+      "issueId": "buick-regal-2.0t-timing-chain-ltg",
+      "ymmt": "2011-2017 | Buick | Regal | GS, Premium, Turbo, Sport Touring | 2.0L Turbo LHU, 2.0L Turbo LTG",
+      "title": "Regal 2.0L Turbo (LHU/LTG) Timing Chain Stretch",
+      "howToFix": "Full timing chain kit including chain, tensioner, guides, sprockets — $1,800-$3,000 at independent. Stick to 5,000-7,500 mile oil intervals with dexos1 full-synthetic 5W-30. Carbon-clean intake valves at the same service ($300-$500) since LHU/LTG are direct-injection.",
+      "repairItems": "Complete engine-specific timing kit; inspect valves; intake-valve cleaning; correct oil",
+      "decision": "CONTENT CORRECTION + EARLY-YEAR PARTIAL APPROVAL",
+      "destinations": [
+        [
+          "2011-2013 Regal 2.0L timing-chain kit",
+          "https://www.partsgeek.com/xks4hcw-buick-regal-timing-chain-kit.html",
+          "2011-2013 Regal 2.0L, including VIN V where listed; verify engine/VIN",
+          "early-year timing kit"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The live product lists 2011-2013 2.0L fitment and kit contents. LHU and LTG are different applications, so 2014-2017 needs a separate product.",
+      "correction": "Split LHU from LTG and do not call walnut blasting part of a timing kit.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 56,
+      "issueId": "buick-regal-6t70-6t40-automatic-transmission-shudder-slipping-hard-shift",
+      "ymmt": "2011-2017 | Buick | Regal",
+      "title": "6T70/6T40 Automatic Transmission Shudder, Slipping & Hard Shifts",
+      "howToFix": "Start with a full transmission fluid/filter service (fixes many shudder cases). Persistent problems require valve body cleaning/rebuild, accumulator bore repair, or torque converter replacement. Use only the correct GM spec fluid.",
+      "repairItems": "Identify transmission; correct DEXRON-VI fluid/filter service; valve body, accumulator or converter only after diagnosis",
+      "decision": "FLUID APPROVAL + TRANSMISSION-SPLIT HOLD",
+      "destinations": [
+        [
+          "ACDelco GM OE DEXRON-VI ATF 88865601",
+          "https://parts.buick.com/product/acdelco-gm-original-equipment-dexron-vi-automatic-transmission-fluid-1-qt-88865601",
+          "2011-2017 Regal with transmission requiring DEXRON-VI; verify unit and capacity",
+          "specified fluid"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The fluid is appropriate only after confirming a 6T-series unit; hard parts differ between 6T40/6T70 and failure mode.",
+      "correction": "Do not merge 6T40 and 6T70 repair parts or imply a fluid service cures internal slipping.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 57,
+      "issueId": "buick-regal-aisin-af40-transmission",
+      "ymmt": "2011-2017 | Buick | Regal | CXL, GS, Premium, Turbo | 2.0L Turbo, 2.4L, 3.6L V6",
+      "title": "Regal Aisin AF40 6-Speed Harsh Shifts / Shudder",
+      "howToFix": "Drain-and-fill ATF every 50,000 miles using AC Delco / Aisin AFW+ (or JWS3309 equivalent) — about $150-$250 DIY (5-6 qt drained per service). Severe shudder may need torque converter or valve body work ($1,500-$3,500). If neglected past 120k miles, full rebuild may be required ($3,500-$5,500).",
+      "repairItems": "GM AW/Aisin Warner fluid service; diagnose valve body/solenoids/internal wear; software as applicable",
+      "decision": "CONTENT CORRECTION + FLUID APPROVAL",
+      "destinations": [
+        [
+          "ACDelco GM OE AW transmission fluid 19256039",
+          "https://parts.buick.com/product/acdelco-gm-original-equipment-aw-%28aisin-warner%29-automatic-transmission-fluid-1-qt-19256039",
+          "2011-2013 Regal GS listed by Buick; confirm AF40/VIN",
+          "specified fluid"
+        ]
+      ],
+      "evidence": [],
+      "reason": "Buick's official product page lists GM AW fluid 19256039 for 2011-2013 Regal GS. The current JWS 3309 claim is not supported for this application.",
+      "correction": "Replace JWS 3309/Aisin AFW+ language with GM AW-1 specification and narrow the year/trim scope to verified AF40 applications.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 58,
+      "issueId": "buick-regal-carbon-buildup-intake-valves",
+      "ymmt": "2011-2017 | Buick | Regal",
+      "title": "Carbon Buildup on Intake Valves (Direct Injection)",
+      "howToFix": "Perform a walnut-blasting / manual intake valve cleaning (or chemical induction service in milder cases). Updated engine-management software and periodic intake cleaning help slow recurrence; catch-can installation reduces future buildup.",
+      "repairItems": "Borescope/airflow diagnosis; walnut-shell or manual intake-valve cleaning; optional catch can is not the repair",
+      "decision": "SERVICE LINK / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2011-2017 Regal direct-injection engines; confirm buildup",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The specified remedy is a cleaning service, not an OBD scanner or replacement intake part.",
+      "correction": "Do not market a catch can as a cure for existing deposits.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 59,
+      "issueId": "buick-regal-excessive-oil-consumption-2-4l-ecotec",
+      "ymmt": "2011-2013 | Buick | Regal",
+      "title": "Excessive Oil Consumption on 2.4L Ecotec",
+      "howToFix": "GM TSB diagnostic involves an oil consumption test; remedies range from PCV/valve cover updates to piston and ring replacement. Owners commonly manage it by checking oil frequently and topping off, or rebuilding the short block in severe cases.",
+      "repairItems": "Oil-consumption test; PCV/cam cover if confirmed; piston/ring or short-block repair only after diagnosis",
+      "decision": "DIAGNOSIS-FIRST SERVICE LINK",
+      "destinations": [
+        [
+          "Buick dealer locator",
+          "https://www.buick.com/locate-buick-dealer",
+          "2011-2013 Regal 2.4L; oil-consumption test",
+          "service locator"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The possible repairs range from a cover to internal engine work, so no single retail part is justified.",
+      "correction": "Keep the CTA on diagnosis and coverage before parts.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 60,
+      "issueId": "buick-regal-loss-power-brake-assist-ebcm-software-defect",
+      "ymmt": "2018-2020 | Buick | Regal",
+      "title": "Loss of Power Brake Assist — EBCM Software Defect (Recall)",
+      "howToFix": "Dealers reprogram/update the EBCM software at no cost; no replacement parts required. Owners should verify the recall has been completed via VIN.",
+      "repairItems": "Recall EBCM software update",
+      "decision": "SAFETY RECALL SOFTWARE / NO PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2018-2020 Regal; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The remedy is software and safety-critical.",
+      "correction": "Do not link a brake booster, sensor or scanner.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 61,
+      "issueId": "buick-regal-rear-suspension-toe-link-corrosion-fracture",
+      "ymmt": "2011-2013 | Buick | Regal",
+      "title": "Rear Suspension Toe Link Corrosion / Fracture (Salt-Belt Recall)",
+      "howToFix": "Under recall, dealers replace the rear suspension toe links and adjuster fasteners at no cost. Out of recall scope, replace corroded toe links with new parts.",
+      "repairItems": "Recall replacement of rear toe links/fasteners and alignment",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2011-2013 Regal; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The campaign remedy and parts are VIN-controlled.",
+      "correction": "Recall check precedes any retail suspension link.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 62,
+      "issueId": "buick-regal-sudden-loss-electric-power-steering-assist",
+      "ymmt": "2016-2016 | Buick | Regal",
+      "title": "Sudden Loss of Electric Power Steering Assist (Recall)",
+      "howToFix": "Under recall 21510, dealers replace the electric belt-drive rack-and-pinion steering gear assembly free of charge. Non-recall failures require diagnosis of the steering rack motor/module and replacement.",
+      "repairItems": "Recall replacement of the electric steering gear as directed by VIN",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        [
+          "Buick recall lookup",
+          "https://www.buick.com/ownercenter/recalls",
+          "2016 Regal; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "Steering gear replacement is a safety-recall procedure with VIN-specific configuration.",
+      "correction": "Do not sell an unprogrammed steering gear.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 63,
+      "issueId": "buick-regal-timing-chain-tensioner-failure-2-0t-turbo",
+      "ymmt": "2011-2013 | Buick | Regal",
+      "title": "Timing Chain / Tensioner Failure on 2.0T Turbo (LHU/LNF)",
+      "howToFix": "Replace the timing chain, tensioner, guides and any damaged valvetrain components; severe cases require partial or full engine rebuild. Preventively, change oil more frequently (~5,000 miles) and address any P0008/P0016/P0017 codes immediately before the chain jumps time.",
+      "repairItems": "Complete chain, tensioner and guides; inspect valve/piston damage; correct oil",
+      "decision": "PARTIAL APPROVAL + DUPLICATE REVIEW",
+      "destinations": [
+        [
+          "2011-2013 Regal 2.0L timing-chain kit",
+          "https://www.partsgeek.com/xks4hcw-buick-regal-timing-chain-kit.html",
+          "2011-2013 Regal 2.0L; verify LHU/VIN",
+          "timing kit"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The live listing covers the stated early 2.0L span and enumerates timing components, but internal damage is not covered.",
+      "correction": "Consolidate with the broader Regal 2.0T timing-chain entry and keep post-failure engine inspection explicit.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 64,
+      "issueId": "buick-roadmaster-4l60e-automatic-transmission-wear",
+      "ymmt": "1994-1996 | Buick | Roadmaster | Roadmaster Sedan, Roadmaster Estate Wagon, Roadmaster Limited | 5.7L LT1 V8 (Gen II)",
+      "title": "4L60E automatic transmission wear (valve body, sprag, harsh shift/no downshift)",
+      "howToFix": "For early valve-body symptoms, a valve body rebuild/updated valves and a fluid/filter service may suffice. For slipping or sprag/clutch failure, a full rebuild with upgraded hard parts (sunshell, sprag) is the accepted fix.",
+      "repairItems": "Transmission diagnosis; valve-body service or rebuild with upgraded sunshell/sprag and damaged hard parts",
+      "decision": "SPECIALIST SERVICE + TECHNICAL KIT REFERENCE",
+      "destinations": [
+        [
+          "1993-1996 4L60E super-master rebuild kit with HD sunshell",
+          "https://www.gmtransmissionparts.com/4l60e-super-master-transmission-rebuild-kit-1993-1996/",
+          "1994-1996 Roadmaster 4L60E; transmission builder must confirm year-specific unit",
+          "specialist rebuild components"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The kit is year-correct and includes the named HD sunshell, but rebuild contents must follow teardown and the transmission's year-specific calibration.",
+      "correction": "Route to a transmission specialist and do not imply the kit covers every failed hard part or converter.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 65,
+      "issueId": "buick-roadmaster-abs-hydraulic-modulator-corrosion-front-brake-fluid-leak",
+      "ymmt": "1994-1996 | Buick | Roadmaster | Roadmaster Sedan, Roadmaster Estate Wagon, Roadmaster Limited | 5.7L LT1 V8 (Gen II)",
+      "title": "ABS hydraulic modulator corrosion / front brake fluid leak (safety recall)",
+      "howToFix": "Have the ABS modulator inspected and, if corroded/leaking, replaced (the recall remedy). Verify recall completion by VIN. Out-of-warranty, the modulator can be replaced with a known-good used or rebuilt unit and the system bled.",
+      "repairItems": "Safety-recall inspection/replacement of ABS hydraulic modulator; rebuilt/used sourcing only if no coverage",
+      "decision": "SAFETY RECALL / HOLD RETAIL PART",
+      "destinations": [
+        [
+          "NHTSA VIN recall lookup",
+          "https://www.nhtsa.gov/recalls",
+          "1994-1996 Roadmaster; VIN required",
+          "official recall link"
+        ]
+      ],
+      "evidence": [],
+      "reason": "A leaking hydraulic modulator is safety-critical and the original remedy is recall-controlled; used units need specialist inspection.",
+      "correction": "Do not direct users to a used modulator before the VIN recall check.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 66,
+      "issueId": "buick-roadmaster-estate-wagon-rear-self-leveling-air-shock-compressor-failure",
+      "ymmt": "1991-1996 | Buick | Roadmaster",
+      "title": "Estate Wagon Rear Self-Leveling Air Shock and Compressor Failure",
+      "howToFix": "Diagnose first: inspect the height sensor wiring under the driver-side rear seat for broken/corroded wires, test the sensor, and check the air lines for leaks at the shock fittings. If the shocks themselves leak, the most common modern fix is a conversion kit (Strutmasters CADR3 or similar) that replaces the air shocks with passive gas shocks and either deletes the air system or splits compressor output to aftermarket air bags via a T-fitting. Replace the compressor relay or compressor if it sticks on. Many owners simply unplug the compressor and run conventional shocks to eliminate the system entirely.",
+      "repairItems": "Diagnose compressor, height sensor and air shocks; repair failed component or install wagon conversion kit",
+      "decision": "MODEL-SPECIFIC PART APPROVAL",
+      "destinations": [
+        [
+          "Strutmasters CADR3 rear air-shock conversion kit",
+          "https://www.strutmasters.com/products/1991-1996-buick-roadmaster-wagon-rear-air-shock-conversion-kit-cadr3",
+          "1991-1996 Roadmaster Wagon only",
+          "complete conversion option"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The live page explicitly lists the wagon, full year span, two coil-over shocks and required hardware.",
+      "correction": "Keep diagnosis first and do not apply the wagon kit to sedans.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 67,
+      "issueId": "buick-roadmaster-fuel-pump-tank-check-valve-failure-causing-hard-starting-low",
+      "ymmt": "1994-1996 | Buick | Roadmaster | Roadmaster Sedan, Roadmaster Estate Wagon, Roadmaster Limited | 5.7L LT1 V8 (Gen II)",
+      "title": "Fuel pump / in-tank check valve failure causing hard starting and low pressure",
+      "howToFix": "Verify fuel pressure with a gauge (prime and leak-down test) before condemning the pump. Replace the in-tank fuel pump/sending-unit module (check valve is integral); inspect the pressure relief valve. The sending unit shares the module, so a weak float/gauge reading often accompanies pump wear.",
+      "repairItems": "Fuel-pressure/leak-down diagnosis; complete fuel-pump module/sending unit when check valve or pump is confirmed",
+      "decision": "DIAGNOSIS-GATED PART APPROVAL",
+      "destinations": [
+        [
+          "19179521-compatible Roadmaster fuel-pump module",
+          "https://www.maxpeedingrods.com/product/fuel-pump-module-assembly-for-buick-roadmaster-57l-v8-1994-1996-19179521.html",
+          "1994-1996 Roadmaster 5.7L; verify tank connector/VIN",
+          "complete pump module"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The product page states the exact 1994-1996 5.7L Roadmaster application; a pressure test is still required because injectors/regulator can also lose pressure.",
+      "correction": "Do not link a pump from the hard-start symptom alone.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 68,
+      "issueId": "buick-roadmaster-lt1-intake-manifold-gasket-coolant-oil-leak",
+      "ymmt": "1994-1996 | Buick | Roadmaster | Roadmaster Sedan, Roadmaster Estate Wagon, Roadmaster Limited | 5.7L LT1 V8 (Gen II)",
+      "title": "LT1 intake manifold gasket coolant/oil leak",
+      "howToFix": "Check and re-torque intake manifold bolts to spec first. If leaking persists, replace the intake manifold gaskets (and seals). Inspect for coolant contamination and top-end cleanliness during the job.",
+      "repairItems": "Retorque/diagnose first; intake-manifold gasket set and seals if leakage persists",
+      "decision": "SERVICE-FIRST + PART APPROVAL",
+      "destinations": [
+        [
+          "Fel-Pro MS95580 intake-manifold gasket set",
+          "https://frsport.com/products/fel-pro-intake-manifold-gasket-set-felms95580",
+          "1994-1996 Roadmaster 5.7L",
+          "primary gasket set"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The live page is in stock and states exact YMMT/engine fitment; the How to Fix calls for retorque before replacement.",
+      "correction": "Keep retorque/inspection ahead of the parts CTA.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 69,
+      "issueId": "buick-roadmaster-optispark-distributor-failure-lt1",
+      "ymmt": "1994-1996 | Buick | Roadmaster | Roadmaster Sedan, Roadmaster Estate Wagon, Roadmaster Limited | 5.7L LT1 V8 (Gen II)",
+      "title": "Optispark (Opti-Spark) distributor failure on the LT1",
+      "howToFix": "Replace the Optispark with an AC Delco (vented) unit, and because the water pump has to come off to access it, replace the water pump at the same time. Ensure the distributor vent hoses are correctly routed and clear so condensation can escape. Rule out spark plug wires and plugs first, as those often mimic Optispark failure.",
+      "repairItems": "Ignition diagnosis; vented Optispark distributor if confirmed; inspect/replace leaking water pump, hoses, plugs and wires as needed",
+      "decision": "DIAGNOSIS-GATED PART APPROVAL",
+      "destinations": [
+        [
+          "ACCEL 59125 vented Opti-Spark II distributor",
+          "https://pitstopusa.com/products/accel-performance-distributor",
+          "1994-1996 Roadmaster 5.7L LT1; verify pin-drive/vented configuration",
+          "primary ignition part"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The live page is in stock with Add to Cart, identifies ACCEL 59125 and lists 1994-1996 Roadmaster; pin-drive/vented configuration still must be confirmed.",
+      "correction": "Diagnose coil/wires/plugs first and inspect the water pump leak source before ordering.",
+      "status": "REVIEW ONLY — NOT DEPLOYED"
+    },
+    {
+      "sequence": 70,
+      "issueId": "buick-roadmaster-reverse-flow-cooling-water-pump-shaft-seal-leak-air-lock-ove",
+      "ymmt": "1994-1996 | Buick | Roadmaster | Roadmaster Sedan, Roadmaster Estate Wagon, Roadmaster Limited | 5.7L LT1 V8 (Gen II)",
+      "title": "Reverse-flow cooling: water pump shaft seal leak and air-lock overheating",
+      "howToFix": "Replace the water pump (use special seal tool J39087 if only resealing, otherwise install a complete pump). When refilling coolant, open the bleeder screw on the thermostat housing to purge trapped air. Address any weep promptly to protect the Optispark below it.",
+      "repairItems": "Water pump or specialist reseal using correct tool; coolant refill and LT1 bleed procedure",
+      "decision": "PART APPROVAL + SERVICE NOTE",
+      "destinations": [
+        [
+          "ACDelco 252-700 engine water pump",
+          "https://newparts.com/acdelco-252-700-engine-water-pump",
+          "1994-1996 Roadmaster 5.7L",
+          "primary repair part"
+        ]
+      ],
+      "evidence": [],
+      "reason": "The OEM page lists exact 1994-1996 Roadmaster 5.7L fitment.",
+      "correction": "Do not imply the pump eliminates the required bleeding procedure or that resealing is appropriate without the specified tool.",
       "status": "REVIEW ONLY — NOT DEPLOYED"
     }
   ]
