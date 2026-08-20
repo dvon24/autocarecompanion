@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "make": "BMW",
-  "generatedAt": "2026-08-20T04:05:00.409Z",
+  "generatedAt": "2026-08-20T04:08:02.112Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "9c5acba63181f1d3d714c4d0090380ab656767ee3836b4056dfe3873dadc67e0",
   "publishedIssueCount": 385,
-  "reviewedIssueCount": 45,
-  "remainingIssueCount": 340,
-  "reviewedWithDestinationCount": 45,
-  "destinationCount": 63,
-  "distinctUrlCount": 27,
+  "reviewedIssueCount": 60,
+  "remainingIssueCount": 325,
+  "reviewedWithDestinationCount": 60,
+  "destinationCount": 85,
+  "distinctUrlCount": 30,
   "scannerDestinationCount": 0,
   "reviews": [
     {
@@ -1034,6 +1034,356 @@
       "ymmt": "2017-2025 | BMW | 4 Series | B58",
       "title": "B58 Charge Pipe Pop-Off Under Boost",
       "howToFix": "Replace the OEM plastic charge pipe with an upgraded aluminum aftermarket unit. These use proper clamp-style connections that won't pop off under pressure. If replacing with OEM, use the latest revision part number. Check the intercooler boots and couplings for damage from the pressure release event."
+    },
+    {
+      "issueId": "bmw-4-series-n20-timing-chain-2014",
+      "repairItems": "VIN/chassis/engine/build-date check; BMW timing-chain diagnostic procedure; coverage check",
+      "decision": "DIAGNOSIS/COVERAGE FIRST / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2014-2015 428i N20/N26; BMW test-plan diagnosis",
+          "role": "diagnostic service"
+        },
+        {
+          "label": "BMW recall and campaign lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN required; historical warranty extension may be expired",
+          "role": "coverage check"
+        }
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf"
+      ],
+      "reason": "The full repair text explicitly requires diagnosis before parts and rejects catalog fitment as remedy proof.",
+      "correction": "Keep timing-kit and scanner commerce off until the test plan identifies the repair.",
+      "sequence": 46,
+      "ymmt": "2014-2015 | BMW | 4 Series | N20, N26",
+      "title": "Lower-Engine Whine Requires 428i N20/N26 Timing-Chain Diagnosis",
+      "howToFix": "Confirm the exact chassis, engine, production date and VIN eligibility, then have a BMW-qualified technician reproduce the noise and follow the current BMW diagnostic procedure before replacing anything. The historical seven-year/70,000-mile coverage was a limited warranty extension, not a recall, and is not a current coverage promise. ShowMeTheParts returned no exact 2014 428i timing-chain candidate, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-4-series-valve-cover-gasket-2014",
+      "repairItems": "Engine-specific valve-cover/gasket/PCV repair; clean plug wells; plugs only if oil-fouled; correct torque",
+      "decision": "ENGINE/YEAR CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2014-2020 4 Series; exact N20/N26/N55/B46/B48/B58 engine and VIN required",
+          "role": "fitment/service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row omits later engines and incorrectly claims the gasket is integrated into the plastic cover in the same way on both N20 and N55. Exact repair and part numbers vary.",
+      "correction": "Split by engine, model and build date; determine gasket-only versus full-cover replacement before linking a product.",
+      "sequence": 47,
+      "ymmt": "2014-2020 | BMW | 4 Series | N20, N55",
+      "title": "Valve Cover Gasket Leak and PCV Failure",
+      "howToFix": "Replace the entire valve cover assembly as the gasket and PCV are integrated into the plastic cover on both N20 and N55 engines. Clean spark plug wells of any oil contamination and replace spark plugs if oil-fouled. Use a torque wrench to properly seat the new cover — over-tightening cracks the plastic housing."
+    },
+    {
+      "issueId": "bmw-4series-charge-pipe-2014",
+      "repairItems": "Engine/transmission-specific aluminum charge pipe; inspect intercooler boots and clamps",
+      "decision": "ENGINE/TRANSMISSION-SPLIT PART APPROVAL",
+      "destinations": [
+        {
+          "label": "VRSF N20/N26 charge pipe",
+          "url": "https://www.vr-speed.com/product/vrsf-chargepipe-upgrade-kit-12-17-bmw-128i-228i-328i-428i-xi-f20-f30-n20-n26",
+          "scope": "2014-2016 F32/F33/F36 428i N20/N26; select transmission/drivetrain",
+          "role": "N20/N26 primary repair part"
+        },
+        {
+          "label": "VRSF N55 charge-pipe kit 10301050KT",
+          "url": "https://www.ecstuning.com/b-vrsf-parts/vrsf-charge-pipe-upgrade-kit/10301050kt~dk/",
+          "scope": "F32/F33 435i and 435i xDrive N55; validate exact chassis",
+          "role": "N55 primary repair part"
+        },
+        {
+          "label": "Bimmer Plug F-chassis B58 charge pipes",
+          "url": "https://bimmerplug.com/products/b58-engine-charge-pipes-bmw-f-chassis",
+          "scope": "2017-2020 F32/F33/F36 440i B58",
+          "role": "B58 primary repair part"
+        }
+      ],
+      "evidence": [],
+      "reason": "The product pages identify three distinct engine families and their exact 428i, 435i or 440i applications; a single charge pipe cannot cover the title.",
+      "correction": "Split N20/N26, N55 and B58. Add the missing B58 engine to source metadata and preserve transmission/drivetrain selectors.",
+      "sequence": 48,
+      "ymmt": "2014-2020 | BMW | 4 Series | N20, N55",
+      "title": "Turbo Charge Pipe Failure - 428i/435i/440i F32/F33/F36",
+      "howToFix": "Replace charge pipe. OEM replacement is plastic and will fail again. Aftermarket aluminum charge pipe is highly recommended for permanent fix. Popular brands: ARM Motorsports, Burger Motorsport (BMS), VRSF. Installation is straightforward DIY for experienced mechanics. Also inspect intercooler boots and clamps for cracks while charge pipe is removed."
+    },
+    {
+      "issueId": "bmw-4series-convertible-top-2014",
+      "repairItems": "F33 top diagnosis; pump motor, lines, microswitches, latch or fluid only as diagnosed",
+      "decision": "DIAGNOSIS/POSITION FIRST / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2014-2020 F33 convertible; top-module diagnosis and hydraulic inspection",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The repair branches across hydraulic, electrical and latch components. A pump link would be misleading before the failed component and fluid specification are confirmed.",
+      "correction": "Do not assume the pump is the cause or recommend fluid without the VIN-specific specification.",
+      "sequence": 49,
+      "ymmt": "2014-2020 | BMW | 4 Series",
+      "title": "Convertible Top Hydraulic Pump & Motor Failure - F33 Convertible",
+      "howToFix": "Diagnose specific failure point - pump motor, hydraulic lines, microswitches, or latch mechanisms. Hydraulic pump motor replacement is most common repair. Check hydraulic fluid level and refill if low. Inspect all microswitches and sensors for proper operation. Regular top cycling (once per month minimum) prevents seals from drying out. Store with top up to reduce strain on hydraulics."
+    },
+    {
+      "issueId": "bmw-4series-fuel-injector-2014",
+      "repairItems": "Engine-specific injector diagnosis; coding/calibration; walnut blasting only when intake deposits warrant it",
+      "decision": "CONTENT CORRECTION / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2014-2020 428i/430i/435i/440i; identify engine, injector index and failed cylinder",
+          "role": "diagnostic/programming service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row provides no engines or injector indices and incorrectly generalizes that BMW recommends replacing all injectors. Injector coding and replacement strategy vary by engine.",
+      "correction": "Split N20/N26, N55, B46/B48 and B58; remove the universal all-injector and walnut-blast claims before adding parts.",
+      "sequence": 50,
+      "ymmt": "2014-2020 | BMW | 4 Series",
+      "title": "Fuel Injector Failure - 428i/430i/435i/440i F32/F33/F36",
+      "howToFix": "Replace failed injector(s). BMW recommends replacing all injectors together to prevent repeat repairs. Perform walnut blast carbon cleaning on intake valves while injectors are out (labor overlap saves money). Use Top Tier gasoline with detergent additives to minimize carbon buildup. Some owners add Liqui Moly Valve Clean to fuel tank every 5,000 miles preventively."
+    },
+    {
+      "issueId": "bmw-4series-n20-timing-chain-2014",
+      "repairItems": "VIN/build-date verification; BMW test-plan diagnosis; coverage check; complete updated timing repair only when diagnosed",
+      "decision": "DUPLICATE/CONTENT CORRECTION + DIAGNOSIS FIRST",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2014-2016 428i N20/N26; exact build date and test-plan result required",
+          "role": "diagnostic service"
+        },
+        {
+          "label": "BMW recall and campaign lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN required; settlement/warranty terms are time-limited",
+          "role": "coverage check"
+        }
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf"
+      ],
+      "reason": "This overlaps the preceding 4 Series N20 timing-chain issue and contradicts its diagnosis-first wording with a blanket preventive-replacement recommendation.",
+      "correction": "Consolidate the duplicate, correct 430i engine metadata, and remove the unsupported blanket 60,000-80,000-mile replacement/8-year-100,000-mile promise.",
+      "sequence": 51,
+      "ymmt": "2014-2016 | BMW | 4 Series | 428i, 430i | N20",
+      "title": "N20 Timing Chain Premature Failure - 428i F32/F33/F36",
+      "howToFix": "Complete timing chain kit replacement including chain, guides, tensioner, and sprockets. Must be performed by experienced BMW technician. Preventive replacement recommended at 60,000-80,000 miles. BMW extended warranty to 8 years/100,000 miles under class action settlement. Upgraded reinforced chain kit available from aftermarket."
+    },
+    {
+      "issueId": "bmw-4series-n55-vanos-solenoid-2014",
+      "repairItems": "Engine-specific VANOS diagnosis; failed solenoid(s); sludge/oil-condition correction; BMW LL-01 oil where applicable",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2014-2018 4 Series; exact engine/VIN and intake-versus-exhaust diagnosis",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The title/trim scope is internally wrong: 440i uses B58 and M440i is a later G-chassis model, not N55. Intake and exhaust solenoid replacement is diagnosis-dependent.",
+      "correction": "Limit N55 content to 435i applications and create separate B58 content if supported.",
+      "sequence": 52,
+      "ymmt": "2014-2018 | BMW | 4 Series | 435i, 440i, M440i",
+      "title": "N55 VANOS Solenoid Failure - 435i/440i F32/F33/F36",
+      "howToFix": "Replace failed VANOS solenoid(s). Both intake and exhaust solenoids should be inspected. Clean VANOS system if contaminated with sludge. Use high-quality full synthetic oil (BMW LL-01 spec) and maintain 7,500-mile oil change intervals to prevent premature failure. Some shops recommend replacing both solenoids preventively."
+    },
+    {
+      "issueId": "bmw-4series-n55-water-pump-2014",
+      "repairItems": "Exact-engine cooling diagnosis; applicable electric pump/thermostat; approved coolant and bleed procedure",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2014-2018 4 Series; confirm engine and failed cooling component",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row labels 440i/M440i as N55 and mentions a separate main mechanical pump without establishing that architecture for the actual vehicle.",
+      "correction": "Limit N55 scope to 435i and split B58 models; verify pump/thermostat architecture and coolant by VIN before linking parts.",
+      "sequence": 53,
+      "ymmt": "2014-2018 | BMW | 4 Series | 435i, 440i, M440i | N55",
+      "title": "N55 Electric Water Pump Failure - 435i/440i F32/F33/F36",
+      "howToFix": "Replace electric water pump. Also inspect main mechanical water pump and thermostat for leaks/failure while repair is being performed. Replace coolant with BMW-approved coolant (blue or newer orange). Bleed cooling system properly after replacement to avoid air pockets. Some mechanics recommend replacing both pumps together since labor overlaps."
+    },
+    {
+      "issueId": "bmw-5-series-air-suspension-g30-2017",
+      "repairItems": "Suspension-option/VIN diagnosis; leak test; compressor and relay only as diagnosed; ride-height calibration",
+      "decision": "CONTENT CORRECTION / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2017-2023 5 Series; verify G30/G31 body and actual air-suspension option",
+          "role": "diagnostic/calibration service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row supplies no trims or suspension option and claims four air bladders on a G30 blanket scope. Sedan/touring and market configurations differ.",
+      "correction": "Verify body style, market and axle configuration before naming compressor, relay or air springs.",
+      "sequence": 54,
+      "ymmt": "2017-2023 | BMW | 5 Series",
+      "title": "Air Suspension Compressor Failure (G30 with Adaptive Air Suspension)",
+      "howToFix": "Replace the air suspension compressor unit mounted under the trunk floor. Inspect all four air spring bladders for cracks or leaks — a leaking bladder will kill the new compressor quickly. The compressor relay should also be replaced as it often welds contacts from repeated cycling. BMW diagnostic software is needed to calibrate ride height after replacement."
+    },
+    {
+      "issueId": "bmw-5-series-electric-water-pump-2011",
+      "repairItems": "Engine-specific pump/thermostat; BMW-approved coolant; correct bleed procedure",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2011-2023 5 Series; exact engine/chassis/VIN required",
+          "role": "fitment/service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Five engine families and two 5 Series generations do not share one pump, thermostat or bleed procedure. The claim that every new pump must be registered/reset is unsupported as a blanket rule.",
+      "correction": "Split N20, N55, B48, B58 and N63 by chassis/build date; replace the unsafe cap-open generic bleed instructions with VIN-specific service information.",
+      "sequence": 55,
+      "ymmt": "2011-2023 | BMW | 5 Series | N20, N55, B48, B58, N63",
+      "title": "Electric Water Pump and Thermostat Failure",
+      "howToFix": "Replace the electric water pump and thermostat as a pair. Flush the cooling system and refill with BMW-approved coolant. Bleed the system thoroughly using BMW's bleeding procedure (turn heater to max, run engine at 2,000 RPM with expansion tank cap open). Register the new pump with BMW diagnostic software to reset the pump runtime counter."
+    },
+    {
+      "issueId": "bmw-5-series-epb-failure-2004",
+      "repairItems": "Software/ISTA diagnosis first; actuator(s) or other EPB component only as diagnosed; calibration/retraction procedure",
+      "decision": "CONTENT CORRECTION / SOFTWARE FIRST",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2004-2023 5 Series; exact generation, EPB architecture and software level required",
+          "role": "diagnostic/software service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The 20-year scope spans multiple parking-brake architectures; 'per-side actuators' and a free software fix cannot be generalized.",
+      "correction": "Split E60/F10/G30 generations, identify the actual fault and remove unsafe DIY/general pricing claims before adding parts.",
+      "sequence": 56,
+      "ymmt": "2004-2023 | BMW | 5 Series",
+      "title": "Electronic Parking Brake (EPB) Actuator Failure",
+      "howToFix": "Replace electronic parking brake actuator(s) ($400-700 per side at dealer, $200-350 DIY parts). Both actuators often fail together, so replace both ($800-1,400 dealer, $400-700 DIY). Can sometimes be fixed with software update - try this FIRST at BMW dealer (free). DIY replacement requires retracting caliper pistons with BMW ISTA software (INPA tool). PREVENTIVE: Use parking brake monthly even in flat areas to exercise mechanism and prevent corrosion. Apply silicone grease to actuator threads yearly. In salt belt states, actuators fail earlier (60k-80k) from road salt corrosion."
+    },
+    {
+      "issueId": "bmw-5-series-front-thrust-arm-bushing-failure",
+      "repairItems": "Both thrust-arm bushings or both complete arms; ball-joint inspection; four-wheel alignment",
+      "decision": "ENGINE/SUSPENSION-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        {
+          "label": "Meyle HD E39 thrust-arm bushing pair 31129068753",
+          "url": "https://www.bimmerworld.com/Suspension-Steering/Control-Arm-Bushings/Front-Thrust-Arm-Bushings-Meyle-HD-E39-525i-528i-530i.html",
+          "scope": "1997-1999 issue overlap for E39 528i; page also lists 1997-2003 525i/530i",
+          "role": "I6 bushing pair"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "Confirm engine, suspension option, ball-joint wear and alignment",
+          "role": "inspection/service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live BimmerWorld listing is in stock, buyable and sold as a pair, but it covers I6 applications only. V8/M5 thrust arms use different parts.",
+      "correction": "Add trims/engines and separate I6 from 540i/M5. Do not claim the bushing pair includes complete arms or alignment.",
+      "sequence": 57,
+      "ymmt": "1996-1999 | BMW | 5 Series",
+      "title": "Front Thrust Arm (Control Arm) Bushing Failure",
+      "howToFix": "Replace both thrust arm bushings or both complete thrust arms simultaneously (never one side only). Options: (1) Lemforder OEM hydraulic bushings (~$40 each) restore stock comfort but fail again at similar mileage, or (2) Meyle HD solid-rubber bushings or complete arms (~$60-100 each) last 2-3x longer with minor harshness penalty. Job requires a ball joint press or fork to remove the bushings. After install, a four-wheel alignment is mandatory. Also inspect and replace the rearward lower control arm ball joints while apart."
+    },
+    {
+      "issueId": "bmw-5-series-instrument-cluster-pixel-failure",
+      "repairItems": "Original E39 cluster pixel/display diagnosis; mail-in repair or skilled ribbon repair",
+      "decision": "MAIL-IN SERVICE LINK + CONTENT CAUTION",
+      "destinations": [
+        {
+          "label": "BimmerDash BMW cluster pixel repair",
+          "url": "https://bimmerdash.com/",
+          "scope": "E39 instrument clusters; contact service to confirm exact cluster and repair scope",
+          "role": "mail-in/local repair service"
+        }
+      ],
+      "evidence": [
+        "https://www.automotivecircuitsolutions.com/products/bmw-e38-e39-e53-m5-x5-instrument-gauge-cluster-repair-service"
+      ],
+      "reason": "BimmerDash currently advertises mail-in E39 cluster pixel repair. A previously indexed Automotive Circuit Solutions product URL redirected to its homepage during live verification and was not approved.",
+      "correction": "Do not guarantee no coding or mileage handling for every cluster; confirm the exact unit and service terms before shipping.",
+      "sequence": 58,
+      "ymmt": "1996-1999 | BMW | 5 Series",
+      "title": "Instrument Cluster Pixel Failure (Dead LCD)",
+      "howToFix": "Two repair paths: (1) DIY replacement of the LCD ribbon cable with a silver flex cable kit (~$15-30) requires removing the cluster, carefully separating the LCD from the PCB, and re-bonding the new ribbon with a heated press, or (2) mail the cluster to a specialist (ACS, BavTek, Totaltronics, Pixelfix) for $100-200 turnaround repair. Cluster removal is easy: two screws under the visor hood, tilt forward, disconnect plugs. No coding required on reinstall as the mileage is stored in the cluster EEPROM."
+    },
+    {
+      "issueId": "bmw-5-series-n20-timing-chain-2012",
+      "repairItems": "Engine/build-date/VIN verification; BMW timing-chain and oil-pump-chain test plans; coverage check",
+      "decision": "DIAGNOSIS/COVERAGE FIRST / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2012-2015 528i N20; timing and oil-pump-chain diagnosis",
+          "role": "diagnostic service"
+        },
+        {
+          "label": "BMW recall and campaign lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN required; historical extension is not a recall",
+          "role": "coverage check"
+        }
+      ],
+      "evidence": [
+        "https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf"
+      ],
+      "reason": "The revised How to Fix says no exact timing-chain candidate was found and requires approved test-plan results.",
+      "correction": "Replace the word 'module' with the actual diagnosed timing/oil-pump-chain component; no retail kit or scanner before diagnosis.",
+      "sequence": 59,
+      "ymmt": "2012-2015 | BMW | 5 Series | N20",
+      "title": "528i N20 Timing-Chain or Oil-Pump-Chain Diagnosis",
+      "howToFix": "Confirm the exact engine, production date and VIN eligibility, then have a BMW-qualified technician follow the current timing-chain and oil-pump-chain test plans. Replace a module only when the approved test result requires it. The historical seven-year/70,000-mile extension is not a recall or current coverage promise. ShowMeTheParts resolved the 2014 528i ENGINE COMPONENTS fitment but returned no timing-chain candidate, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-5-series-n54-hpfp-2008",
+      "repairItems": "VIN/campaign history; measured low/high fuel-pressure diagnosis; software and/or HPFP only as service history directs",
+      "decision": "CAMPAIGN/DIAGNOSIS FIRST / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW recall and campaign lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "2008-2010 535i N54; VIN required",
+          "role": "official campaign route"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "Fuel-pressure diagnosis and campaign-history review",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The historical action did not require automatic pump replacement, and exact catalog fitment does not establish eligibility or defect identity.",
+      "correction": "No HPFP or scanner link before measured diagnosis and VIN history.",
+      "sequence": 60,
+      "ymmt": "2008-2010 | BMW | 5 Series | N54",
+      "title": "2008-2010 535i N54 High-Pressure Fuel-Pump Recall Path",
+      "howToFix": "Check the VIN and campaign/service history with BMW, then diagnose measured low- and high-pressure fuel delivery before replacement. The historical action called for a software update and/or pump replacement based on individual service history, not automatic replacement from symptoms alone. ShowMeTheParts returned one exact 2009 535i high-pressure-pump fitment candidate, but catalog fitment does not establish campaign eligibility, defect identity or remedy, so no commerce link is approved."
     }
   ]
 }

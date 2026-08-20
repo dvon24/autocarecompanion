@@ -474,6 +474,148 @@
       "evidence": [],
       "reason": "The live G-chassis page is buyable and explicitly lists 2021+ M440i; the F-chassis listing explicitly covers 2017-2020 440i. A checked HPS alternative was rejected because all displayed variants were unavailable.",
       "correction": "Split 440i F-chassis from M440i G-chassis and do not stretch either link to 2025 without the seller's exact year/application confirmation."
+    },
+    {
+      "issueId": "bmw-4-series-n20-timing-chain-2014",
+      "repairItems": "VIN/chassis/engine/build-date check; BMW timing-chain diagnostic procedure; coverage check",
+      "decision": "DIAGNOSIS/COVERAGE FIRST / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2015 428i N20/N26; BMW test-plan diagnosis","role":"diagnostic service"},{"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"VIN required; historical warranty extension may be expired","role":"coverage check"}],
+      "evidence": ["https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf"],
+      "reason": "The full repair text explicitly requires diagnosis before parts and rejects catalog fitment as remedy proof.",
+      "correction": "Keep timing-kit and scanner commerce off until the test plan identifies the repair."
+    },
+    {
+      "issueId": "bmw-4-series-valve-cover-gasket-2014",
+      "repairItems": "Engine-specific valve-cover/gasket/PCV repair; clean plug wells; plugs only if oil-fouled; correct torque",
+      "decision": "ENGINE/YEAR CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2020 4 Series; exact N20/N26/N55/B46/B48/B58 engine and VIN required","role":"fitment/service route"}],
+      "evidence": [],
+      "reason": "The row omits later engines and incorrectly claims the gasket is integrated into the plastic cover in the same way on both N20 and N55. Exact repair and part numbers vary.",
+      "correction": "Split by engine, model and build date; determine gasket-only versus full-cover replacement before linking a product."
+    },
+    {
+      "issueId": "bmw-4series-charge-pipe-2014",
+      "repairItems": "Engine/transmission-specific aluminum charge pipe; inspect intercooler boots and clamps",
+      "decision": "ENGINE/TRANSMISSION-SPLIT PART APPROVAL",
+      "destinations": [
+        {"label":"VRSF N20/N26 charge pipe","url":"https://www.vr-speed.com/product/vrsf-chargepipe-upgrade-kit-12-17-bmw-128i-228i-328i-428i-xi-f20-f30-n20-n26","scope":"2014-2016 F32/F33/F36 428i N20/N26; select transmission/drivetrain","role":"N20/N26 primary repair part"},
+        {"label":"VRSF N55 charge-pipe kit 10301050KT","url":"https://www.ecstuning.com/b-vrsf-parts/vrsf-charge-pipe-upgrade-kit/10301050kt~dk/","scope":"F32/F33 435i and 435i xDrive N55; validate exact chassis","role":"N55 primary repair part"},
+        {"label":"Bimmer Plug F-chassis B58 charge pipes","url":"https://bimmerplug.com/products/b58-engine-charge-pipes-bmw-f-chassis","scope":"2017-2020 F32/F33/F36 440i B58","role":"B58 primary repair part"}
+      ],
+      "evidence": [],
+      "reason": "The product pages identify three distinct engine families and their exact 428i, 435i or 440i applications; a single charge pipe cannot cover the title.",
+      "correction": "Split N20/N26, N55 and B58. Add the missing B58 engine to source metadata and preserve transmission/drivetrain selectors."
+    },
+    {
+      "issueId": "bmw-4series-convertible-top-2014",
+      "repairItems": "F33 top diagnosis; pump motor, lines, microswitches, latch or fluid only as diagnosed",
+      "decision": "DIAGNOSIS/POSITION FIRST / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2020 F33 convertible; top-module diagnosis and hydraulic inspection","role":"specialist service"}],
+      "evidence": [],
+      "reason": "The repair branches across hydraulic, electrical and latch components. A pump link would be misleading before the failed component and fluid specification are confirmed.",
+      "correction": "Do not assume the pump is the cause or recommend fluid without the VIN-specific specification."
+    },
+    {
+      "issueId": "bmw-4series-fuel-injector-2014",
+      "repairItems": "Engine-specific injector diagnosis; coding/calibration; walnut blasting only when intake deposits warrant it",
+      "decision": "CONTENT CORRECTION / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2020 428i/430i/435i/440i; identify engine, injector index and failed cylinder","role":"diagnostic/programming service"}],
+      "evidence": [],
+      "reason": "The row provides no engines or injector indices and incorrectly generalizes that BMW recommends replacing all injectors. Injector coding and replacement strategy vary by engine.",
+      "correction": "Split N20/N26, N55, B46/B48 and B58; remove the universal all-injector and walnut-blast claims before adding parts."
+    },
+    {
+      "issueId": "bmw-4series-n20-timing-chain-2014",
+      "repairItems": "VIN/build-date verification; BMW test-plan diagnosis; coverage check; complete updated timing repair only when diagnosed",
+      "decision": "DUPLICATE/CONTENT CORRECTION + DIAGNOSIS FIRST",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2016 428i N20/N26; exact build date and test-plan result required","role":"diagnostic service"},{"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"VIN required; settlement/warranty terms are time-limited","role":"coverage check"}],
+      "evidence": ["https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf"],
+      "reason": "This overlaps the preceding 4 Series N20 timing-chain issue and contradicts its diagnosis-first wording with a blanket preventive-replacement recommendation.",
+      "correction": "Consolidate the duplicate, correct 430i engine metadata, and remove the unsupported blanket 60,000-80,000-mile replacement/8-year-100,000-mile promise."
+    },
+    {
+      "issueId": "bmw-4series-n55-vanos-solenoid-2014",
+      "repairItems": "Engine-specific VANOS diagnosis; failed solenoid(s); sludge/oil-condition correction; BMW LL-01 oil where applicable",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2018 4 Series; exact engine/VIN and intake-versus-exhaust diagnosis","role":"diagnostic service"}],
+      "evidence": [],
+      "reason": "The title/trim scope is internally wrong: 440i uses B58 and M440i is a later G-chassis model, not N55. Intake and exhaust solenoid replacement is diagnosis-dependent.",
+      "correction": "Limit N55 content to 435i applications and create separate B58 content if supported."
+    },
+    {
+      "issueId": "bmw-4series-n55-water-pump-2014",
+      "repairItems": "Exact-engine cooling diagnosis; applicable electric pump/thermostat; approved coolant and bleed procedure",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2018 4 Series; confirm engine and failed cooling component","role":"diagnostic service"}],
+      "evidence": [],
+      "reason": "The row labels 440i/M440i as N55 and mentions a separate main mechanical pump without establishing that architecture for the actual vehicle.",
+      "correction": "Limit N55 scope to 435i and split B58 models; verify pump/thermostat architecture and coolant by VIN before linking parts."
+    },
+    {
+      "issueId": "bmw-5-series-air-suspension-g30-2017",
+      "repairItems": "Suspension-option/VIN diagnosis; leak test; compressor and relay only as diagnosed; ride-height calibration",
+      "decision": "CONTENT CORRECTION / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2017-2023 5 Series; verify G30/G31 body and actual air-suspension option","role":"diagnostic/calibration service"}],
+      "evidence": [],
+      "reason": "The row supplies no trims or suspension option and claims four air bladders on a G30 blanket scope. Sedan/touring and market configurations differ.",
+      "correction": "Verify body style, market and axle configuration before naming compressor, relay or air springs."
+    },
+    {
+      "issueId": "bmw-5-series-electric-water-pump-2011",
+      "repairItems": "Engine-specific pump/thermostat; BMW-approved coolant; correct bleed procedure",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2011-2023 5 Series; exact engine/chassis/VIN required","role":"fitment/service route"}],
+      "evidence": [],
+      "reason": "Five engine families and two 5 Series generations do not share one pump, thermostat or bleed procedure. The claim that every new pump must be registered/reset is unsupported as a blanket rule.",
+      "correction": "Split N20, N55, B48, B58 and N63 by chassis/build date; replace the unsafe cap-open generic bleed instructions with VIN-specific service information."
+    },
+    {
+      "issueId": "bmw-5-series-epb-failure-2004",
+      "repairItems": "Software/ISTA diagnosis first; actuator(s) or other EPB component only as diagnosed; calibration/retraction procedure",
+      "decision": "CONTENT CORRECTION / SOFTWARE FIRST",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2004-2023 5 Series; exact generation, EPB architecture and software level required","role":"diagnostic/software service"}],
+      "evidence": [],
+      "reason": "The 20-year scope spans multiple parking-brake architectures; 'per-side actuators' and a free software fix cannot be generalized.",
+      "correction": "Split E60/F10/G30 generations, identify the actual fault and remove unsafe DIY/general pricing claims before adding parts."
+    },
+    {
+      "issueId": "bmw-5-series-front-thrust-arm-bushing-failure",
+      "repairItems": "Both thrust-arm bushings or both complete arms; ball-joint inspection; four-wheel alignment",
+      "decision": "ENGINE/SUSPENSION-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        {"label":"Meyle HD E39 thrust-arm bushing pair 31129068753","url":"https://www.bimmerworld.com/Suspension-Steering/Control-Arm-Bushings/Front-Thrust-Arm-Bushings-Meyle-HD-E39-525i-528i-530i.html","scope":"1997-1999 issue overlap for E39 528i; page also lists 1997-2003 525i/530i","role":"I6 bushing pair"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Confirm engine, suspension option, ball-joint wear and alignment","role":"inspection/service"}
+      ],
+      "evidence": [],
+      "reason": "The live BimmerWorld listing is in stock, buyable and sold as a pair, but it covers I6 applications only. V8/M5 thrust arms use different parts.",
+      "correction": "Add trims/engines and separate I6 from 540i/M5. Do not claim the bushing pair includes complete arms or alignment."
+    },
+    {
+      "issueId": "bmw-5-series-instrument-cluster-pixel-failure",
+      "repairItems": "Original E39 cluster pixel/display diagnosis; mail-in repair or skilled ribbon repair",
+      "decision": "MAIL-IN SERVICE LINK + CONTENT CAUTION",
+      "destinations": [{"label":"BimmerDash BMW cluster pixel repair","url":"https://bimmerdash.com/","scope":"E39 instrument clusters; contact service to confirm exact cluster and repair scope","role":"mail-in/local repair service"}],
+      "evidence": ["https://www.automotivecircuitsolutions.com/products/bmw-e38-e39-e53-m5-x5-instrument-gauge-cluster-repair-service"],
+      "reason": "BimmerDash currently advertises mail-in E39 cluster pixel repair. A previously indexed Automotive Circuit Solutions product URL redirected to its homepage during live verification and was not approved.",
+      "correction": "Do not guarantee no coding or mileage handling for every cluster; confirm the exact unit and service terms before shipping."
+    },
+    {
+      "issueId": "bmw-5-series-n20-timing-chain-2012",
+      "repairItems": "Engine/build-date/VIN verification; BMW timing-chain and oil-pump-chain test plans; coverage check",
+      "decision": "DIAGNOSIS/COVERAGE FIRST / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2012-2015 528i N20; timing and oil-pump-chain diagnosis","role":"diagnostic service"},{"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"VIN required; historical extension is not a recall","role":"coverage check"}],
+      "evidence": ["https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf"],
+      "reason": "The revised How to Fix says no exact timing-chain candidate was found and requires approved test-plan results.",
+      "correction": "Replace the word 'module' with the actual diagnosed timing/oil-pump-chain component; no retail kit or scanner before diagnosis."
+    },
+    {
+      "issueId": "bmw-5-series-n54-hpfp-2008",
+      "repairItems": "VIN/campaign history; measured low/high fuel-pressure diagnosis; software and/or HPFP only as service history directs",
+      "decision": "CAMPAIGN/DIAGNOSIS FIRST / NO RETAIL PART",
+      "destinations": [{"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2008-2010 535i N54; VIN required","role":"official campaign route"},{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Fuel-pressure diagnosis and campaign-history review","role":"diagnostic service"}],
+      "evidence": [],
+      "reason": "The historical action did not require automatic pump replacement, and exact catalog fitment does not establish eligibility or defect identity.",
+      "correction": "No HPFP or scanner link before measured diagnosis and VIN history."
     }
   ]
 }
