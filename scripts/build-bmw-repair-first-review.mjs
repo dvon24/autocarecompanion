@@ -27,9 +27,11 @@ const queue = source.records.filter((r) => !reviewedIds.has(r.id));
 const destinations = rows.flatMap((r) => r.destinations.map((d) => ({issueId:r.issueId, ...d})));
 const malformed = destinations.filter((d) => !/^https:\/\//.test(d.url));
 const scannerDestinations = destinations.filter((d) => /scanner|obd/i.test(`${d.label} ${d.role}`));
+const missingHowToFix = rows.filter((r) => !r.howToFix);
+const unflaggedMissingHowToFix = missingHowToFix.filter((r) => !/^SOURCE HOW-TO-FIX REQUIRED/.test(r.decision));
 if (malformed.length) throw new Error(`Malformed URLs: ${malformed.map((d) => d.url).join(", ")}`);
 if (scannerDestinations.length) throw new Error(`Unexpected scanner destinations: ${scannerDestinations.map((d) => d.issueId).join(", ")}`);
-if (rows.some((r) => !r.howToFix)) throw new Error("A reviewed issue is missing How to Fix");
+if (unflaggedMissingHowToFix.length) throw new Error(`Unflagged missing How to Fix: ${unflaggedMissingHowToFix.map((r) => r.issueId).join(", ")}`);
 if (rows.length + queue.length !== source.inventory.publishedIssueCount) throw new Error("Inventory mismatch");
 
 const ledger = {
@@ -46,6 +48,7 @@ const ledger = {
   destinationCount: destinations.length,
   distinctUrlCount: new Set(destinations.map((d) => d.url)).size,
   scannerDestinationCount: scannerDestinations.length,
+  missingHowToFixCount: missingHowToFix.length,
   reviews: rows,
 };
 await fs.mkdir(outputDir, {recursive:true});
@@ -62,20 +65,20 @@ const navy = "#0B1F3A", blue = "#1769AA", pale = "#EAF2F8", gold = "#F4B942", wh
 summary.getRange("A1:H1").merge();
 summary.getRange("A1").values = [["BMW Repair-First Fitment Review"]];
 summary.getRange("A1:H1").format = {fill:navy, font:{bold:true,color:white,size:18}, rowHeight:32};
-summary.getRange("A3:B11").values = [
+summary.getRange("A3:B12").values = [
   ["Status", ledger.deploymentStatus], ["Published BMW issues", ledger.publishedIssueCount], ["Reviewed in this batch", ledger.reviewedIssueCount],
   ["Remaining queue", ledger.remainingIssueCount], ["Issues with destinations", ledger.reviewedWithDestinationCount], ["Destination entries", ledger.destinationCount],
-  ["Distinct URLs", ledger.distinctUrlCount], ["Scanner destinations", ledger.scannerDestinationCount], ["Source snapshot hash", ledger.sourceSnapshotHash],
+  ["Distinct URLs", ledger.distinctUrlCount], ["Scanner destinations", ledger.scannerDestinationCount], ["Missing How to Fix", ledger.missingHowToFixCount], ["Source snapshot hash", ledger.sourceSnapshotHash],
 ];
-summary.getRange("A3:A11").format = {fill:pale, font:{bold:true,color:navy}};
-summary.getRange("A3:B11").format.wrapText = true;
-summary.getRange("A13:H13").merge();
-summary.getRange("A13").values = [["Interpretation"]];
-summary.getRange("A13:H13").format = {fill:blue,font:{bold:true,color:white}};
-summary.getRange("A14:H17").merge();
-summary.getRange("A14").values = [["This workbook is a local review artifact. Every completed row was evaluated from its full How to Fix text. A product is approved only for the exact verified scope; diagnosis, recall, coverage, software, and ambiguous-fitment issues use service/official destinations. DTCs did not create scanner links."]];
-summary.getRange("A14:H17").format = {wrapText:true, verticalAlignment:"top"};
-summary.getRange("A1:H17").format.font = {name:"Aptos", size:11};
+summary.getRange("A3:A12").format = {fill:pale, font:{bold:true,color:navy}};
+summary.getRange("A3:B12").format.wrapText = true;
+summary.getRange("A14:H14").merge();
+summary.getRange("A14").values = [["Interpretation"]];
+summary.getRange("A14:H14").format = {fill:blue,font:{bold:true,color:white}};
+summary.getRange("A15:H18").merge();
+summary.getRange("A15").values = [["This workbook is a local review artifact. Every completed row with source instructions was evaluated from its full How to Fix text; blank source instructions are explicitly flagged and receive no inferred link. A product is approved only for the exact verified scope; diagnosis, recall, coverage, software, and ambiguous-fitment issues use service/official destinations. DTCs did not create scanner links."]];
+summary.getRange("A15:H18").format = {wrapText:true, verticalAlignment:"top"};
+summary.getRange("A1:H18").format.font = {name:"Aptos", size:11};
 summary.getRange("A:A").format.columnWidth = 28; summary.getRange("B:B").format.columnWidth = 72;
 
 const headers = ["#","Issue ID","YMMT","Title","Full How to Fix","Repair items extracted","Decision","Destination label","URL","Verified scope","Destination role","Evidence URLs","Reason","Correction / hold note"];

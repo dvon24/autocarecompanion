@@ -1,17 +1,18 @@
 {
   "schemaVersion": 1,
   "make": "BMW",
-  "generatedAt": "2026-08-20T16:58:39.066Z",
+  "generatedAt": "2026-08-20T17:04:15.097Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "9c5acba63181f1d3d714c4d0090380ab656767ee3836b4056dfe3873dadc67e0",
   "publishedIssueCount": 385,
-  "reviewedIssueCount": 100,
-  "remainingIssueCount": 285,
-  "reviewedWithDestinationCount": 100,
-  "destinationCount": 148,
+  "reviewedIssueCount": 125,
+  "remainingIssueCount": 260,
+  "reviewedWithDestinationCount": 122,
+  "destinationCount": 182,
   "distinctUrlCount": 49,
   "scannerDestinationCount": 0,
+  "missingHowToFixCount": 3,
   "reviews": [
     {
       "issueId": "bmw-x4-electric-water-pump-2015",
@@ -2344,6 +2345,561 @@
       "ymmt": "2014-2021 | BMW | i3 | W20 647cc",
       "title": "Range Extender Stale Fuel & Engine Problems - I01 REx Only",
       "howToFix": "Preventive: Run the REx at least every 6 weeks for a minimum of 10-13 minutes to burn off moisture. Use fuel stabilizer (Sta-Bil) if vehicle sits for extended periods. Keep fuel tank above half to reduce vapor space. For fuel pump relay failure (most common), replace relay ($20-30). For injector issues, professional cleaning or replacement required. For coil failures, replace ignition coils. Maintain regular oil changes with BMW-approved oil despite low mileage. Some owners run premium fuel exclusively to reduce varnish formation."
+    },
+    {
+      "issueId": "bmw-i4-12v-battery-drain-2022",
+      "repairItems": "Latest vehicle software; ISTA energy/parasitic-draw diagnosis; battery test; VIN-specific 12V battery and registration only if failed",
+      "decision": "SOFTWARE/DIAGNOSIS FIRST / NO UNIVERSAL BATTERY",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2022-2026 i4 software, energy diagnosis, battery test and registration",
+          "role": "diagnostic/programming service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row does not identify battery chemistry, capacity, production split or part number, and software/parasitic draw must be checked before replacement.",
+      "correction": "Add trim, production date and VIN-specific battery specification before a product link; do not imply every auxiliary-battery warning is battery failure.",
+      "sequence": 101,
+      "ymmt": "2022-2026 | BMW | i4",
+      "title": "12V Auxiliary Battery Drain",
+      "howToFix": "Ensure the latest software version is installed (BMW has released multiple OTA updates addressing sleep mode behavior). If the problem persists, have the dealer check for parasitic draw using ISTA diagnostics. In severe cases, the 12V battery may need replacement and proper registration."
+    },
+    {
+      "issueId": "bmw-i4-12v-battery-sleep-mode-2022",
+      "repairItems": "Software/CCU and parasitic-draw diagnosis; load-test exact 12V battery; VIN-specific replacement and supported registration procedure only if failed",
+      "decision": "SOFTWARE/DIAGNOSIS FIRST / BATTERY SPEC UNVERIFIED",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2022-2025 i4 CCU/sleep diagnosis, battery specification and registration",
+          "role": "diagnostic/programming service"
+        }
+      ],
+      "evidence": [
+        "https://bmwtechinfo.bmwgroup.com/sib_attachments/B611523.pdf"
+      ],
+      "reason": "BMW service information says to identify whether the installed 12V battery is lithium or lead before charging; the row's blanket 60Ah AGM claim is not VIN-verified.",
+      "correction": "Remove the universal 60Ah AGM and charger claims. Verify whether the exact vehicle uses Li or Pb/AGM and verify the supported registration tool before linking products.",
+      "sequence": 102,
+      "ymmt": "2022-2025 | BMW | i4",
+      "title": "12V Battery Drain - Sleep Mode Failure",
+      "howToFix": "First check for latest software update - BMW has released updates to fix sleep mode bugs. If 12V battery has been deeply discharged, it may need replacement (60Ah AGM). Must register new battery using BimmerLink app (not BimmerCode - BimmerCode cannot register batteries). For vehicles that sit for extended periods, use a BMW-approved battery tender. If CCU is causing the issue, dealer diagnosis and CCU replacement under warranty. The DC-DC converter should maintain 12V charge from the HV battery, so persistent drain indicates a software or CCU hardware fault."
+    },
+    {
+      "issueId": "bmw-i4-brake-feel-regen-2022",
+      "repairItems": "Explain selectable recuperation behavior; software check; physical/integrated-brake diagnosis only for abnormal pulsation, grinding, warning or changed pedal effort",
+      "decision": "EDUCATION/SOFTWARE FIRST / NO PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2022-2025 i4 abnormal blended-brake or integrated-brake diagnosis",
+          "role": "brake diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source describes a normal operating characteristic unless objective abnormal symptoms are present; no failed part is identified.",
+      "correction": "Do not imply Adaptive recuperation exists on every configuration or mention a recall without a VIN-specific campaign reference.",
+      "sequence": 103,
+      "ymmt": "2022-2025 | BMW | i4",
+      "title": "Regenerative Braking Pedal Feel Complaints - Grabby/Aggressive",
+      "howToFix": "This is a design characteristic of the blended braking system, not a defect per se. Adaptive approaches: Use \"D\" mode with Adaptive recuperation setting for the most natural brake feel - it adjusts regen based on traffic and road conditions. Avoid \"B\" mode unless you specifically want strong one-pedal driving. Practice feathering the brake pedal with very light, progressive pressure. Some owners report the brake feel improves slightly with software updates. If braking is truly abnormal (pulsating, grinding), have the integrated brake module checked as that could indicate a hardware issue covered under recall."
+    },
+    {
+      "issueId": "bmw-i4-drivetrain-malfunction-2022",
+      "repairItems": "VIN check for 25V-395; authorized/approved OTA electric-drive-motor software remedy; separate diagnosis if warning remains",
+      "decision": "RECALL/SOFTWARE ONLY / NO DRIVETRAIN PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "2022-2025 i4; VIN required for 25V-395",
+          "role": "official recall check"
+        },
+        {
+          "label": "NHTSA VIN recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "US VIN confirmation",
+          "role": "government recall check"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source explicitly rejects gear oil, gaskets and drivetrain parts as substitutes for the software recall.",
+      "correction": "Keep this as a VIN-controlled propulsion-loss recall, not a generic drivetrain-malfunction parts page.",
+      "sequence": 104,
+      "ymmt": "2022-2025 | BMW | i4",
+      "title": "2022-2025 i4 Propulsion-Loss Recall 25V-395",
+      "howToFix": "Check the VIN for an open 25V-395 campaign. If included, install BMW’s free electric-drive-motor software update through the authorized dealer or the approved over-the-air recall process. Do not buy gear oil, gaskets or drivetrain parts as a substitute. Capture any red warning and arrange diagnosis if the VIN is not included or the fault remains after the recall remedy."
+    },
+    {
+      "issueId": "bmw-i4-heat-pump-cold-weather-2022",
+      "repairItems": "Coolant level/fault memory; inspect G26 coolant changeover valve for active/dried leakage; production/VIN-specific valve and ISTA bleed/test only when bulletin criteria are met",
+      "decision": "BULLETIN DIAGNOSIS FIRST / NO CATALOG CANDIDATE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2022-2024 G26 i4 SIB 17 01 24 diagnosis, ETK valve selection and ISTA bleed",
+          "role": "diagnostic/HV cooling service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected How to Fix reports no changeover-valve catalog candidate and requires production-specific AIR/ETK instructions.",
+      "correction": "Rename this to the coolant changeover-valve leak condition; do not link generic coolant, water pumps or a scanner.",
+      "sequence": 105,
+      "ymmt": "2022-2024 | BMW | i4",
+      "title": "G26 i4 Coolant Changeover-Valve Leak Diagnosis",
+      "howToFix": "Check coolant level, read the exact BMW fault memory and inspect the G26 changeover valve for active or dried leakage. Follow SIB 17 01 24 and VIN-specific AIR/ETK instructions; replace the applicable older-production valve and bleed/test the cooling system with ISTA when the BMW criteria are met. ShowMeTheParts resolves exact 2022 i4 HVAC and water-pump categories but returned no changeover-valve candidate, so the frozen marketplace searches and generic coolant are removed."
+    },
+    {
+      "issueId": "bmw-i4-heat-pump-malfunction-2022",
+      "repairItems": "Latest calibration; exact HVAC fault diagnosis; heat-pump valve only when fault and VIN/ETK part are confirmed",
+      "decision": "SOFTWARE/DIAGNOSIS FIRST / NO UNIVERSAL VALVE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2022-2026 i4 HVAC software and heat-pump diagnosis",
+          "role": "HV HVAC service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row combines software and unspecified valve faults without part number, production split or confirmed symptom.",
+      "correction": "Split software-only cold-weather behavior from a diagnosed leaking/failed valve before adding a product link.",
+      "sequence": 106,
+      "ymmt": "2022-2026 | BMW | i4",
+      "title": "Heat Pump Malfunction in Cold Weather",
+      "howToFix": "BMW has released software updates to improve heat pump operation in cold weather. Visit the dealer for the latest calibration. Some cases require heat pump valve replacement. Pre-conditioning the cabin while plugged in reduces the impact on driving range."
+    },
+    {
+      "issueId": "bmw-i4-idrive8-software-bugs-2022",
+      "repairItems": "Current Remote Software Upgrade; supported soft/factory reset; ISTA programming only for persistent faults; hardware only after diagnosis",
+      "decision": "SOFTWARE/SUPPORT LINKS ONLY",
+      "destinations": [
+        {
+          "label": "My BMW Garage",
+          "url": "https://mygarage.bmwusa.com/",
+          "scope": "VIN-linked software and vehicle information",
+          "role": "official software route"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "Persistent iDrive 8 crash diagnosis and ISTA programming",
+          "role": "programming service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The fix is software/reset driven and does not identify a failed head unit or retail part.",
+      "correction": "Remove hard-coded '.63 and later' unless tied to the exact BMW software train; avoid unverified phone-workaround guarantees.",
+      "sequence": 107,
+      "ymmt": "2022-2025 | BMW | i4",
+      "title": "iDrive 8 Software Bugs - Screen Crashes, Reboots & Freezing",
+      "howToFix": "Ensure vehicle has latest iDrive software via OTA update (Settings > Software Update). Version .63 and later resolved many screen blank/reboot issues. For persistent crashes: Perform soft reset by holding volume knob/power button for 10+ seconds. For factory reset, use Settings > General > Reset to restore defaults. If issues persist after latest OTA, dealer can force-flash the head unit via ISTA. Some owners report that disconnecting phone from wireless CarPlay/Android Auto and using wired connection improves stability. BMW has released multiple major software updates addressing these issues."
+    },
+    {
+      "issueId": "bmw-i4-infotainment-glitches-2022",
+      "repairItems": "OTA/dealer software update; supported iDrive reset; head-unit diagnosis and warranty replacement only for confirmed hardware fault",
+      "decision": "SOFTWARE/WARRANTY FIRST / NO RETAIL HEAD UNIT",
+      "destinations": [
+        {
+          "label": "My BMW Garage",
+          "url": "https://mygarage.bmwusa.com/",
+          "scope": "VIN-linked software information",
+          "role": "official software route"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "Persistent infotainment diagnosis, programming and warranty review",
+          "role": "diagnostic/programming service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row supplies no head-unit generation or part number and says hardware replacement is only for confirmed display faults.",
+      "correction": "Combine or distinguish this row from the adjacent iDrive 8 software-bugs issue to avoid duplicate generic content.",
+      "sequence": 108,
+      "ymmt": "2022-2026 | BMW | i4",
+      "title": "iDrive 8 Software and Infotainment Glitches",
+      "howToFix": "Keep software up to date via OTA updates or dealer visit. For persistent issues, a full iDrive system reset (Settings > General > Reset) can resolve cached data problems. Some owners have needed the head unit replaced under warranty for hardware-level display faults."
+    },
+    {
+      "issueId": "bmw-i4-pedestrian-sound-2022",
+      "repairItems": "VIN check for 23V-026; authorized programming of Receiver Audio Module/external sound generator; separate diagnosis outside recall",
+      "decision": "RECALL/PROGRAMMING ONLY / NO SPEAKER PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "2022-2023 i4 eDrive40; VIN required for 23V-026",
+          "role": "official recall check"
+        },
+        {
+          "label": "NHTSA VIN recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "US VIN confirmation",
+          "role": "government recall check"
+        }
+      ],
+      "evidence": [],
+      "reason": "The free programming remedy controls and the source explicitly says not to replace a speaker or module based only on missing sound.",
+      "correction": "Keep eDrive40/VIN scope visible and separate non-recall faults.",
+      "sequence": 109,
+      "ymmt": "2022-2023 | BMW | i4",
+      "title": "2022-2023 i4 eDrive40 Sound-Generator Recall 23V-026",
+      "howToFix": "Check the VIN for an open 23V-026 campaign. If included, arrange the free BMW programming remedy for the Receiver Audio Module/external artificial sound generator. Do not replace a speaker or module based only on a missing sound; if the VIN is outside the campaign, diagnose the exact warning and faults separately."
+    },
+    {
+      "issueId": "bmw-i5-12v-battery-drain-2024",
+      "repairItems": "Software and energy/parasitic-draw diagnosis; exact battery chemistry/capacity test; approved maintainer only after BMW connection/chemistry confirmation",
+      "decision": "SOFTWARE/DIAGNOSIS FIRST / MAINTAINER HELD",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2024-2025 i5 energy diagnosis, exact 12V battery specification and safe charging guidance",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [
+        "https://bmwtechinfo.bmwgroup.com/sib_attachments/B611523.pdf"
+      ],
+      "reason": "The current BMW charger part found in US retail was discontinued/unavailable, and the row does not identify whether the installed 12V battery is Li or Pb/AGM.",
+      "correction": "Do not assert that plugging in always trickle-charges the 12V battery or direct charger connection without the i5 procedure and battery chemistry.",
+      "sequence": 110,
+      "ymmt": "2024-2025 | BMW | i5",
+      "title": "12V Auxiliary Battery Drain and Dead Car Syndrome",
+      "howToFix": "Keep the i5 plugged in when parked for extended periods — the HV charger trickle-charges the 12V battery. Install a BMW-recommended battery maintainer connected to the 12V battery (accessible in the right side of the trunk). Update iDrive software to the latest version — BMW has released OTA updates that improve sleep-mode power management. If the 12V battery dies, the manual release cable under the hood allows emergency access."
+    },
+    {
+      "issueId": "bmw-i5-acoustic-pedestrian-warning-sound-generator-fault",
+      "repairItems": "VIN check for 23V-885; authorized dealer or approved OTA programming remedy; separate diagnosis outside campaign",
+      "decision": "RECALL/PROGRAMMING ONLY / NO SPEAKER PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "2024 i5; VIN required for 23V-885",
+          "role": "official recall check"
+        },
+        {
+          "label": "NHTSA VIN recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "US VIN confirmation",
+          "role": "government recall check"
+        }
+      ],
+      "evidence": [],
+      "reason": "The recall remedy is programming and the source explicitly rejects replacing a speaker or module from the symptom alone.",
+      "correction": "Keep non-recall missing-sound diagnosis separate.",
+      "sequence": 111,
+      "ymmt": "2024-2024 | BMW | i5",
+      "title": "2024 i5 Pedestrian Sound Recall 23V-885",
+      "howToFix": "Check the VIN for an open 23V-885 campaign. If included, arrange BMW's free software programming remedy through the authorized dealer or the approved recall over-the-air process. Do not replace a speaker or module based only on a missing sound; diagnose vehicles outside the campaign separately."
+    },
+    {
+      "issueId": "bmw-i5-adaptive-suspension-calibration-2024",
+      "repairItems": "ISTA calibration; inspect each ride-height sensor/connector; software update; exact sensor only after corner and part-number diagnosis",
+      "decision": "CALIBRATION/DIAGNOSIS FIRST / NO SENSOR LINK",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2024-2026 i5 suspension calibration, sensor inspection and software",
+          "role": "calibration service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row provides no trim, suspension option, corner, sensor part number or confirmed physical failure.",
+      "correction": "Split software/calibration error from a damaged ride-height sensor and identify axle/side before adding parts.",
+      "sequence": 112,
+      "ymmt": "2024-2026 | BMW | i5",
+      "title": "Adaptive Suspension Self-Leveling Calibration Errors",
+      "howToFix": "Perform a suspension calibration reset using BMW ISTA diagnostic software. If the issue persists, inspect the ride height sensors at each corner for damage or loose connectors. A dealer software update may also resolve the issue."
+    },
+    {
+      "issueId": "bmw-i5-c-wiring-harness-damaged-during-cabin-filter-service",
+      "repairItems": "VIN check for 26V-096; dealer inspection and repair/replacement of A/C harness; emergency response for smoke/burning odor",
+      "decision": "RECALL ONLY / NO HARNESS PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "2024-2026 i5; VIN required for 26V-096",
+          "role": "official recall check"
+        },
+        {
+          "label": "NHTSA VIN recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "US VIN confirmation",
+          "role": "government recall check"
+        }
+      ],
+      "evidence": [],
+      "reason": "This is a current VIN-controlled safety recall and the source prohibits probing, splicing or ordering harness parts from the card.",
+      "correction": "Keep the recall number and emergency guidance prominent.",
+      "sequence": 113,
+      "ymmt": "2024-2026 | BMW | i5",
+      "title": "2024-2026 i5 A/C Harness Recall 26V-096",
+      "howToFix": "Check the VIN for an open 26V-096 campaign. If included, have an authorized BMW dealer inspect the air-conditioning wiring harness and repair or replace it as required at no charge. Do not probe, splice or order harness parts from this card. If smoke, burning odor or an electrical warning appears, stop using the vehicle and follow BMW emergency guidance."
+    },
+    {
+      "issueId": "bmw-i5-dc-fast-charge-throttling-loud-cooling-fans-repeated-session",
+      "repairItems": "Latest charging-management software; battery preconditioning; charging-session observation; dealer diagnosis for persistent abnormal power drops or schedule failures",
+      "decision": "SOFTWARE/OPERATING GUIDANCE / NO PART",
+      "destinations": [
+        {
+          "label": "My BMW Garage",
+          "url": "https://mygarage.bmwusa.com/",
+          "scope": "VIN-linked software information",
+          "role": "official software route"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "Persistent i5 charging-management diagnosis",
+          "role": "EV diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Loud fan operation can be normal thermal management and the source identifies software/usage rather than a failed cooling component.",
+      "correction": "Do not present normal repeated-session throttling as a part failure; document charger, ambient temperature, state of charge and preconditioning.",
+      "sequence": 114,
+      "ymmt": "2024-2025 | BMW | i5 | eDrive40, xDrive40, M60 xDrive",
+      "title": "DC Fast-Charge Throttling and Loud Cooling Fans on Repeated Sessions",
+      "howToFix": "Keep the i5 on the latest software, since BMW has released charging-curve/charging-management updates via OTA and dealer flashes. Precondition the battery before fast charging to reduce throttling, avoid back-to-back DC sessions when possible, and report persistent amp drops or skipped scheduled charges to the dealer (some cases were traced to software faults). Loud thermal-management fan noise is generally normal during/after DC charging."
+    },
+    {
+      "issueId": "bmw-i5-electric-drive-motor-software-false-isolation-fault-causing",
+      "repairItems": "VIN check for 25V-395; authorized/approved OTA electric-drive-motor software remedy; separate diagnosis if fault persists",
+      "decision": "RECALL/SOFTWARE ONLY / NO DRIVETRAIN PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "2024 i5; VIN required for 25V-395",
+          "role": "official recall check"
+        },
+        {
+          "label": "NHTSA VIN recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "US VIN confirmation",
+          "role": "government recall check"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source explicitly rejects drivetrain and battery parts as substitutes for the software recall.",
+      "correction": "Keep this VIN-controlled and avoid claiming every isolation fault is the recall condition.",
+      "sequence": 115,
+      "ymmt": "2024-2024 | BMW | i5",
+      "title": "2024 i5 Propulsion-Loss Recall 25V-395",
+      "howToFix": "Check the VIN for an open 25V-395 campaign. If included, install BMW's free electric-drive-motor software update through the authorized dealer or the approved recall over-the-air process. Do not order drivetrain or battery parts from this card. Capture any red warning and arrange diagnosis if the VIN is not included or the fault remains after the remedy."
+    },
+    {
+      "issueId": "bmw-i5-heat-pump-drip-tube-thunking-clunking-noise",
+      "repairItems": "Production-date and bulletin-condition verification; optimized condensation drain installed by HV-qualified facility with HV battery removal",
+      "decision": "HV BULLETIN SERVICE / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "Early-production 2024 G60 i5 SIB 64 01 24 diagnosis and HV-qualified drain replacement",
+          "role": "HV HVAC service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source found no matching catalog HVAC candidate and the repair requires HV battery removal.",
+      "correction": "Do not cut or modify the drain and do not link generic tubing.",
+      "sequence": 116,
+      "ymmt": "2024-2024 | BMW | i5",
+      "title": "Early-Production G60 i5 Condensation-Drain Drum Noise",
+      "howToFix": "Confirm the production date and reproduce the rhythmic noise under the BMW bulletin conditions. If SIB 64 01 24 applies, an authorized high-voltage-qualified repair facility replaces the condensation-water drain with the optimized part; the procedure requires high-voltage battery removal. Do not cut or modify the drain. ShowMeTheParts resolved the exact 2024 i5 but returned no matching HVAC candidate, so no parts link is approved."
+    },
+    {
+      "issueId": "bmw-i5-high-voltage-battery-module-insufficient-weld-seams",
+      "repairItems": "VIN check for 24V-135; dealer replacement of affected HV battery module",
+      "decision": "HIGH-VOLTAGE RECALL ONLY / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "Single affected 2024 i5; VIN required for 24V-135",
+          "role": "official recall check"
+        },
+        {
+          "label": "NHTSA VIN recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "US VIN confirmation",
+          "role": "government recall check"
+        }
+      ],
+      "evidence": [],
+      "reason": "This single-vehicle high-voltage recall cannot support any retail battery-module link.",
+      "correction": "Keep the exceptionally narrow VIN scope visible.",
+      "sequence": 117,
+      "ymmt": "2024-2024 | BMW | i5",
+      "title": "Single-Vehicle 2024 i5 Battery-Weld Recall 24V-135",
+      "howToFix": "Check the VIN for an open 24V-135 campaign. If included, follow BMW's instructions and have the affected high-voltage battery module replaced at no charge by an authorized high-voltage-qualified dealer. Do not open the battery pack or order modules independently; vehicles outside the campaign require separate fault-led diagnosis."
+    },
+    {
+      "issueId": "bmw-i5-integrated-brake-system-servomotor-weld-failure",
+      "repairItems": "VIN check for 24V-697; authorized integrated-brake-system replacement; immediate service for warnings or changed pedal effort",
+      "decision": "BRAKE RECALL ONLY / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "2024-2025 i5; VIN required for 24V-697",
+          "role": "official recall check"
+        },
+        {
+          "label": "NHTSA VIN recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "US VIN confirmation",
+          "role": "government recall check"
+        }
+      ],
+      "evidence": [],
+      "reason": "Pads, rotors, fluid and generic actuators do not substitute for the recall remedy.",
+      "correction": "Do not add routine brake products to this safety recall card.",
+      "sequence": 118,
+      "ymmt": "2024-2025 | BMW | i5",
+      "title": "2024-2025 i5 Integrated-Brake Recall 24V-697",
+      "howToFix": "Check the VIN for an open 24V-697 campaign. If included, have an authorized BMW dealer replace the integrated brake system at no charge. Do not buy pads, rotors, fluid or a generic actuator as a substitute. If a brake warning or changed pedal effort appears, stop driving when safe and arrange BMW assistance."
+    },
+    {
+      "issueId": "bmw-i5-regen-braking-inconsistency-2024",
+      "repairItems": "Battery/cabin preconditioning; selectable recuperation use; software update; friction-brake/regen diagnosis only for objective abnormal behavior",
+      "decision": "OPERATING GUIDANCE/SOFTWARE FIRST",
+      "destinations": [
+        {
+          "label": "My BMW Garage",
+          "url": "https://mygarage.bmwusa.com/",
+          "scope": "VIN-linked software information",
+          "role": "official software route"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "Persistent abnormal i5 regen/blended-brake diagnosis",
+          "role": "EV brake diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Cold-battery regen limits can be an operating characteristic; no failed part is identified.",
+      "correction": "Do not hard-code '10-15 minutes' or specific menu labels across all software versions without owner-manual support.",
+      "sequence": 119,
+      "ymmt": "2024-2025 | BMW | i5",
+      "title": "Regenerative Braking Inconsistency in Cold Weather",
+      "howToFix": "Use the BMW departure timer to precondition the battery before driving — this warms the battery and restores full regen capability from the start. Set the regen level to \"Adaptive\" instead of \"High\" in winter, which provides smoother transitions. BMW software updates have improved regen ramping behavior. Rely more on friction brakes during the first 10-15 minutes of cold-weather driving until the battery warms."
+    },
+    {
+      "issueId": "bmw-i5-software-glitches-2024",
+      "repairItems": "No repair instructions supplied in source",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "The How to Fix field is empty, so there is no named repair, service or product to verify.",
+      "correction": "Author a symptom-specific diagnostic and software path before adding OTA, dealer or hardware destinations.",
+      "sequence": 120,
+      "ymmt": "2024-2026 | BMW | i5",
+      "title": "iDrive 8.5 Software Bugs and EV System Errors",
+      "howToFix": ""
+    },
+    {
+      "issueId": "bmw-i5-software-updates-2025",
+      "repairItems": "No repair instructions supplied in source",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "The How to Fix field is empty and the title alone does not establish an actionable repair.",
+      "correction": "Add exact symptoms, software/version verification, reset/programming steps and escalation criteria first.",
+      "sequence": 121,
+      "ymmt": "2025-2026 | BMW | i5",
+      "title": "iDrive 9 Software Updates and Calibration Issues",
+      "howToFix": ""
+    },
+    {
+      "issueId": "bmw-i5-steering-spindle-double-universal-joint-fracture",
+      "repairItems": "VIN check for 24V-714; authorized steering-spindle double-universal-joint replacement; immediate service for notchy/increased-effort steering",
+      "decision": "STEERING RECALL ONLY / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "2024-2025 i5; VIN required for 24V-714",
+          "role": "official recall check"
+        },
+        {
+          "label": "NHTSA VIN recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "US VIN confirmation",
+          "role": "government recall check"
+        }
+      ],
+      "evidence": [],
+      "reason": "The free safety-recall remedy controls and the source explicitly says not to order the steering joint from the card.",
+      "correction": "Keep emergency steering guidance and VIN scope prominent.",
+      "sequence": 122,
+      "ymmt": "2024-2025 | BMW | i5",
+      "title": "2024-2025 i5 Steering-Spindle Recall 24V-714",
+      "howToFix": "Check the VIN for an open 24V-714 campaign. If included, have an authorized BMW dealer replace the steering spindle double universal joint at no charge. Do not order a steering joint from this card. If steering-column noise, notchy steering or increased effort appears, stop driving when safe and arrange BMW assistance."
+    },
+    {
+      "issueId": "bmw-i7-air-suspension-calibration-2023",
+      "repairItems": "No repair instructions supplied in source",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "The How to Fix field is empty; title alone cannot distinguish calibration, sensor, leak, strut or compressor faults.",
+      "correction": "Add ISTA fault/calibration steps and exact component criteria before any service or part destination.",
+      "sequence": 123,
+      "ymmt": "2023-2026 | BMW | i7",
+      "title": "Air Suspension Calibration and Sensor Issues",
+      "howToFix": ""
+    },
+    {
+      "issueId": "bmw-i7-autonomous-system-updates-2025",
+      "repairItems": "ADCam fault memory; clean/inspect camera area and wipers; verify holder/windshield installation; ISTA calibration after replacement; explain environmental limits",
+      "decision": "DIAGNOSIS/CALIBRATION SERVICE / NO PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2023-2024 G70 i7 ADCAM diagnosis and windshield-camera calibration",
+          "role": "ADAS calibration service"
+        }
+      ],
+      "evidence": [],
+      "reason": "BMW says parts replacement does not correct environmental operating limits; calibration is conditional on the fault and windshield work.",
+      "correction": "Rename the issue to ADCAM assistance-limit diagnosis rather than autonomous-system updates.",
+      "sequence": 124,
+      "ymmt": "2023-2024 | BMW | i7",
+      "title": "G70 i7 ADCAM Assistance-Limit Diagnosis",
+      "howToFix": "Read ADCAM fault memory with ISTA before replacing anything. Inspect and clean the windshield camera area, verify wiper performance and camera-holder installation, and document weather and traffic conditions. If fault 7E00A0 follows windshield replacement, start the required camera calibration in ISTA. If no fault or installation problem exists, explain the operating limits in the owner manual. BMW states that parts replacement does not correct environmental system limitations."
+    },
+    {
+      "issueId": "bmw-i7-ota-update-failures-2025",
+      "repairItems": "Confirm complaint followed Remote Software Upgrade; read BCP faults; ISTA programming/pairing of all FBD5/FBD5s receivers; verify Comfort Access and Passive Go/Exit",
+      "decision": "SOFTWARE/PAIRING SERVICE / NO RECEIVER PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2023-2024 G70 i7 SIB 61 11 24 programming and receiver pairing",
+          "role": "programming service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source reports no software/receiver catalog candidate and states that parts replacement will not solve this path.",
+      "correction": "Rename this to Comfort Access faults after Remote Upgrade and do not link receivers or scanners.",
+      "sequence": 125,
+      "ymmt": "2023-2024 | BMW | i7",
+      "title": "G70 i7 Comfort-Access Faults after Remote Upgrade",
+      "howToFix": "Confirm that the complaint followed a BMW Remote Software Upgrade and read the exact BCP faults. Follow SIB 61 11 24 in ISTA to program and pair all FBD5/FBD5s remote-control receivers, clear faults and verify Comfort Access and Passive Go/Exit. Keep phones disconnected during receiver programming. BMW states that parts replacement will not solve this path. ShowMeTheParts resolves the exact 2023 i7 but has no software or receiver repair candidate, so all marketplace links are removed."
     }
   ]
 }
