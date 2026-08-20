@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "make": "Audi",
-  "generatedAt": "2026-08-20T18:19:30.290Z",
+  "generatedAt": "2026-08-20T19:21:14.833Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "a1f7f8fdd3d1f2841544f188c0f1a6d06a7d70d7bc4de401c640992730ebe303",
   "publishedIssueCount": 389,
-  "reviewedIssueCount": 200,
-  "remainingIssueCount": 189,
-  "reviewedWithDestinationCount": 196,
-  "destinationCount": 344,
-  "distinctUrlCount": 67,
+  "reviewedIssueCount": 250,
+  "remainingIssueCount": 139,
+  "reviewedWithDestinationCount": 246,
+  "destinationCount": 431,
+  "distinctUrlCount": 80,
   "scannerDestinationCount": 5,
   "missingHowToFixCount": 4,
   "reviews": [
@@ -4875,6 +4875,1228 @@
       "ymmt": "2011-2016 | Audi | Q7 | 3.0 TFSI",
       "title": "2011-2016 Q7 3.0 TFSI Secondary-Air Carbon Restriction - P0491/P0492",
       "howToFix": "Have an Audi-trained technician confirm that P0491 and P0492 are present together, test the secondary-air pump and hose routing, and measure secondary-air flow using the bulletin procedure. If the measured flow and checks match the bulletin, the cylinder-head secondary-air ports are cleaned with Audi tools and training. Do not buy a PCV assembly, catch can or intake-cleaning product from this card."
+    },
+    {
+      "issueId": "audi-q7-supercharger-failure-2011",
+      "repairItems": "3.0T boost/smoke/leak test; distinguish hose/clamp, bypass valve, pulley/bearing and complete supercharger; exact failed component/VIN",
+      "decision": "COMPONENT / BOOST-DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2011-2015 Q7 3.0T boost and supercharger diagnosis",
+          "role": "specialist engine service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN component/supersession",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Bearing, bypass and external boost leaks require different repairs.",
+      "correction": "Trim list wrongly includes SQ7; no catch-can or generic bearing link.",
+      "sequence": 201,
+      "ymmt": "2011-2015 | Audi | Q7 | Premium, Premium Plus, Prestige, S line, SQ7 | 3.0T",
+      "title": "Supercharger Bearing Failure and Boost Leaks (3.0T)",
+      "howToFix": "Worn bearings: Supercharger rebuild with new bearings ($1,500-2,500) or replacement supercharger ($3,000-5,000). Bypass valve: Replace supercharger bypass valve ($300-600). Boost leaks: Inspect all boost hoses/clamps, replace cracked hoses ($150-400). Use OEM Audi or quality aftermarket (INA) supercharger bearings. AudiWorld recommends catch can installation ($300-500) to reduce oil vapor damage to supercharger."
+    },
+    {
+      "issueId": "audi-q7-tdi-emissions-scandal-2009",
+      "repairItems": "VIN modification/settlement history and current extended-emissions coverage; separate present-fault diagnosis",
+      "decision": "VIN / COVERAGE ROUTE ONLY",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2009-2015 Q7 3.0 TDI modification/coverage history",
+          "role": "manufacturer service"
+        },
+        {
+          "label": "EPA Volkswagen diesel information",
+          "url": "https://www.epa.gov/vw",
+          "scope": "current official settlement/emissions information",
+          "role": "government information"
+        }
+      ],
+      "evidence": [],
+      "reason": "Settlement status is VIN-specific and not a retail repair.",
+      "correction": "No scanner/manual link.",
+      "sequence": 202,
+      "ymmt": "2009-2015 | Audi | Q7 | 3.0 TDI",
+      "title": "2009-2015 Q7 3.0 TDI Emissions Settlement and Modification History",
+      "howToFix": "Check the VIN and service history with an authorized Audi dealer and use current EPA or Audi settlement information to determine whether an emissions modification was completed and what extended emissions warranty, if any, applies to that vehicle. Diagnose any present warning or drivability concern separately. Do not buy a scan tool or generic repair manual as a settlement remedy."
+    },
+    {
+      "issueId": "audi-q7-tdi-oil-cooler-leak-2013",
+      "repairItems": "VIN/47L8/14V516 check; dealer vacuum-line replacement plus contamination inspection and conditional booster/line parts",
+      "decision": "SOURCE-ID MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2013 Q7 TDI 47L8",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "14V516 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Repair is brake-booster vacuum-line recall, not oil cooler.",
+      "correction": "Rename/re-key; no oil-cooler/scanner/manual link.",
+      "sequence": 203,
+      "ymmt": "2013-2013 | Audi | Q7 | 3.0 TDI",
+      "title": "2013 Q7 TDI Brake-Booster Vacuum-Line Recall 47L8 (14V516)",
+      "howToFix": "Check the VIN for open recall 47L8 with Audi. The dealer remedy replaces the specified vacuum line and inspects the vacuum line and brake booster for oil contamination. Additional vacuum-line or brake-booster components are replaced when contamination is found. The recall repair is dealer work and is not a reason to buy an oil cooler, scan tool or manual."
+    },
+    {
+      "issueId": "audi-q7-timing-chain-tensioner-2007",
+      "repairItems": "Confirm 2011-2015 3.0 TFSI exact 1-3 second first-start rattle; TSB upper tensioners; separate other noise/fault diagnosis",
+      "decision": "SOURCE-YEAR MISMATCH / TSB SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "Q7 TSB 2039995/2",
+          "role": "manufacturer timing service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "cold-start timing diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Only exact bulletin condition follows this repair.",
+      "correction": "Identifier says 2007; no complete timing-kit link.",
+      "sequence": 204,
+      "ymmt": "2011-2015 | Audi | Q7 | 3.0 TFSI",
+      "title": "2011-2015 Q7 3.0 TFSI Brief Cold-Start Timing-Chain Rattle - TSB 2039995/2",
+      "howToFix": "Confirm that the concern is the bulletin-defined one-to-three-second first-start rattle and have an Audi technician follow TSB 2039995/2 and current repair information. A longer, persistent or different noise, warning light or drivability concern requires separate diagnosis. Do not order a timing kit from this card."
+    },
+    {
+      "issueId": "audi-q7-transfer-case-2007",
+      "repairItems": "Identify transfer-case/final-drive code and exact leak source; VIN/position seals; manufacturer-specified fluid; rebuild/replacement only after internal diagnosis",
+      "decision": "DRIVELINE-CODE / LEAK-SOURCE GATE",
+      "destinations": [
+        {
+          "label": "Audi Q7 transfer-case fluid catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q7/Transfer-Case-Fluid/",
+          "scope": "2007-2019 Q7; verify transfer-case code and exact Audi fluid before purchase",
+          "role": "conditional fluid catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "seal, bearing/grinding and fluid diagnosis",
+          "role": "specialist driveline service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live catalog does not prove generic 75W-90 for every case.",
+      "correction": "No universal 60k interval or transfer-case replacement from grinding alone.",
+      "sequence": 205,
+      "ymmt": "2007-2019 | Audi | Q7 | Premium, Premium Plus, Prestige | 3.0T, 3.6L, 4.2L, 3.0 TDI",
+      "title": "Transfer Case Fluid Leak and Failure",
+      "howToFix": "Replace leaking seals and refill with correct fluid (75W-90 GL-5 or Audi specification). If grinding is present, the transfer case may need rebuild or replacement. Regular fluid changes every 60,000 miles can prevent internal damage. Check for leaks at every oil change."
+    },
+    {
+      "issueId": "audi-q7-water-pump-failure-2007",
+      "repairItems": "Stop for overheating; split engines and pressure-test pump/thermostat/leak source; exact component and coolant; overheat damage test",
+      "decision": "MULTI-ENGINE / LEAK-SOURCE GATE",
+      "destinations": [
+        {
+          "label": "Audi Q7 water-pump catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q7/Water-Pump/",
+          "scope": "2007-2015 Q7; exact engine/VIN and confirmed failed component",
+          "role": "vehicle-specific pump catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "pressure test and overheat-damage diagnosis",
+          "role": "specialist cooling service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The range includes multiple unrelated pumps/thermostats.",
+      "correction": "No universal preventive 60k-80k assembly replacement or brand claim.",
+      "sequence": 206,
+      "ymmt": "2007-2015 | Audi | Q7",
+      "title": "Water Pump and Thermostat Failure (Overheating)",
+      "howToFix": "IMMEDIATE if overheating: Pull over, turn off engine, DO NOT continue - engine damage occurs in minutes. Preventive: Replace water pump/thermostat assembly at 60k-80k miles ($800-1,500) to avoid catastrophic failure. Failed pump: Replace water pump/thermostat ($800-1,500). If overheated: Cylinder head inspection, possible head gasket replacement ($2,500-5,000). Use OEM Audi or premium Geba/Meyle parts."
+    },
+    {
+      "issueId": "audi-q8-48v-system-2019",
+      "repairItems": "VIN/open 27BQ check; campaign starter-alternator; outside campaign guided tests distinguishing replacement from sensor/CAN faults",
+      "decision": "48V CAMPAIGN / GUIDED SERVICE",
+      "destinations": [
+        {
+          "label": "Audi recall and campaign lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2019-2024 Q8 27BQ",
+          "role": "manufacturer campaign lookup"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "48V guided diagnosis/remedy",
+          "role": "authorized high-voltage service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Replacement depends on VIN/test result.",
+      "correction": "No 12V battery, charger or starter link.",
+      "sequence": 207,
+      "ymmt": "2019-2024 | Audi | Q8",
+      "title": "2019-2024 Q8 Starter-Alternator Service Action 27BQ - Check VIN",
+      "howToFix": "Check the VIN and current campaign status with an Audi dealer. If 27BQ is open, the dealer follows the campaign procedure and replaces the starter-alternator at no cost when directed. If the action is not open, use Audi guided diagnostics: current bulletins distinguish a replacement result from sensor and CAN faults that replacement will not fix. Do not buy a 12V battery, charger or starter from this card."
+    },
+    {
+      "issueId": "audi-q8-8-speed-tiptronic-harsh-shifting-jolt-delayed-engagement",
+      "repairItems": "Identify exact ZF 8HP code/application; faults, fluid/debris, adaptation/software and mount diagnosis; exact pan/filter/fluid only when service branch applies",
+      "decision": "TRANSMISSION-CODE / DIAGNOSTIC GATE",
+      "destinations": [
+        {
+          "label": "Audi Q8 transmission-service catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q8/Automatic-Transmission-Service/",
+          "scope": "2019-2023 Q8/SQ8/RS Q8; exact transmission code and fluid spec",
+          "role": "vehicle-specific transmission catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "shift/adaptation/mount diagnosis",
+          "role": "specialist transmission service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Variants do not share one fluid/service path.",
+      "correction": "Do not service or reset adaptations before code/fault diagnosis.",
+      "sequence": 208,
+      "ymmt": "2019-2023 | Audi | Q8 | Q8 55 TFSI, SQ8, RS Q8, 50 TDI",
+      "title": "8-Speed Tiptronic Harsh Shifting, Jolt and Delayed Engagement",
+      "howToFix": "Perform a full ZF 8HP transmission fluid and filter (pan) service with the correct Audi-spec fluid, then run the gearbox adaptation/relearn procedure. Update the transmission control module software if a TSB applies. Inspect transmission and engine mounts and replace if collapsed."
+    },
+    {
+      "issueId": "audi-q8-air-suspension-2019",
+      "repairItems": "J775-J1135 wiring/contact inspection; clear first passive event; conditional J1135 after active/static or second return",
+      "decision": "TSB CONDITIONAL MODULE / WIRING-FIRST",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-2025 Q8 TSB 2059363/6",
+          "role": "manufacturer suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Bulletin has explicit occurrence/status branches.",
+      "correction": "No strut, spring, compressor or conversion link.",
+      "sequence": 209,
+      "ymmt": "2019-2025 | Audi | Q8",
+      "title": "2019-2025 Q8 Air-Suspension J1135 Communication Fault - TSB 2059363/6",
+      "howToFix": "Inspect the wiring and connector contacts between J775 and J1135 before replacing a component. For a first passive or sporadic occurrence, clear the fault and release the vehicle. If the same passive fault returns a second time, or the fault is active or static after wiring inspection, Audi directs replacement of J1135 under current repair and parts information. Do not buy struts, springs, a compressor or a conversion kit solely from this warning."
+    },
+    {
+      "issueId": "audi-q8-carbon-buildup-2019",
+      "repairItems": "Confirm 3.0T deposits after ignition/fuel/air/compression diagnosis and intake inspection; engine-specific cleaning",
+      "decision": "CONFIRMED-DEPOSIT SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2019-2023 Q8 3.0T intake diagnosis/cleaning",
+          "role": "specialist intake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Mileage/symptoms do not prove deposits.",
+      "correction": "No universal interval, catch can, cleaner or oil schedule.",
+      "sequence": 210,
+      "ymmt": "2019-2023 | Audi | Q8",
+      "title": "Severe Carbon Buildup on Intake Valves (3.0T)",
+      "howToFix": "WALNUT BLASTING: Remove intake manifold and blast walnut shells through intake ports ($900-$1,500). Requires specialized equipment. Repeat every 60,000 miles as PREVENTIVE maintenance. PREVENTION: Install catch can ($400-$600) to filter PCV vapors—extends interval to 100k+ miles. Add Liqui Moly Intake Valve Cleaner to every oil change. Change oil every 5,000 miles."
+    },
+    {
+      "issueId": "audi-q8-e-tron-brake-pedal-to-booster-pushrod-screw-joint-detachment",
+      "repairItems": "VIN/46P7/26V240 check; dealer pushrod screw inspection/torque; recovery for abnormal pedal",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2023-2024 Q8 e-tron 46P7",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "26V240 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Campaign controls inspection/remedy.",
+      "correction": "No brake-pedal/booster product link.",
+      "sequence": 211,
+      "ymmt": "2023-2024 | Audi | Q8 e-tron",
+      "title": "2023-2024 Audi Q8 e-tron Brake-Pedal Recall 46P7 / NHTSA 26V240",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. Dealers inspect and tighten the brake-booster pushrod screw joint as necessary at no charge. If the brake pedal makes an unusual noise, fails to return or feels abnormal, do not continue driving; contact Audi for recovery and follow the owner’s manual emergency-braking instructions."
+    },
+    {
+      "issueId": "audi-q8-e-tron-dc-fast-charging-handshake-timeout-failure-to-initiate-sessi",
+      "repairItems": "Confirm same-station repetition, AC works and exact U15AF00 symptom; disable Plug & Charge/use other station; guided diagnosis if broader",
+      "decision": "STATION/SOFTWARE CONDITION / NO HARDWARE LINK",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2023-2024 Q8 e-tron TSB 2071345/1",
+          "role": "manufacturer EV service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Defined Plug & Charge condition does not prove vehicle hardware failure.",
+      "correction": "No charger/inlet/module link.",
+      "sequence": 212,
+      "ymmt": "2023-2024 | Audi | Q8 e-tron",
+      "title": "2023-2024 Audi Q8 e-tron Plug & Charge TSB 2071345/1",
+      "howToFix": "Confirm that the failure repeats at the same station, AC charging works and U15AF00 symptom 2097297 is present. Temporarily disable Plug & Charge in the MMI or use another compatible charging station. Do not replace vehicle charging hardware solely from this symptom; follow current Audi guidance if the failure also occurs with Plug & Charge disabled or at multiple stations."
+    },
+    {
+      "issueId": "audi-q8-e-tron-front-passenger-occupant-detection-system-deactivates-airbag",
+      "repairItems": "VIN/69GU/24V251 check; dealer passenger ODS module; avoid seat if indicators abnormal",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2024 Q8 e-tron 69GU",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "24V251 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Module replacement is campaign-controlled.",
+      "correction": "No retail ODS module.",
+      "sequence": 213,
+      "ymmt": "2024-2024 | Audi | Q8 e-tron",
+      "title": "2024 Audi Q8 e-tron Passenger-Airbag Recall 69GU / NHTSA 24V251",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The free remedy replaces the passenger-seat occupant-detection control module. If the passenger-airbag warning or AIRBAG OFF indicator behaves unexpectedly, avoid using that seat until Audi inspects it. Do not buy an ODS module from this summary."
+    },
+    {
+      "issueId": "audi-q8-e-tron-over-torqued-brake-pressure-line-failure-fluid-leak",
+      "repairItems": "VIN/47DE/24V428 check; dealer line inspection/conditional replacement; recovery for warning/leak/pedal travel",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2024 Q8 e-tron 47DE",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "24V428 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Recall determines affected line/remedy.",
+      "correction": "No generic brake line.",
+      "sequence": 214,
+      "ymmt": "2024-2024 | Audi | Q8 e-tron",
+      "title": "2024 Audi Q8 e-tron Brake-Line Recall 47DE / NHTSA 24V428",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. Dealers inspect and replace the brake-pressure line when necessary at no charge. If the brake warning appears, pedal travel increases or fluid is visible, stop driving and arrange recovery."
+    },
+    {
+      "issueId": "audi-q8-e-tron-panoramic-glass-roof-water-leak-into-cabin",
+      "repairItems": "TSB root-cause test; clear/reroute pinched drains or replace/reseal cracked channel; dry carpet/electronics",
+      "decision": "LEAK-SOURCE BODY SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2023-2024 Q8 e-tron panoramic-roof TSB diagnosis",
+          "role": "manufacturer body service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Drain and cracked-channel branches differ.",
+      "correction": "Do not generalize owner reports or link sealant/drain parts before diagnosis.",
+      "sequence": 215,
+      "ymmt": "2023-2024 | Audi | Q8 e-tron | Q8 e-tron (panoramic roof equipped), Q8 Sportback e-tron",
+      "title": "Panoramic Glass Roof Water Leak into Cabin (TSB MC-10182485-0001)",
+      "howToFix": "Have the dealer diagnose per the panoramic roof TSB. Repair depends on the root cause: clear or re-route clogged/pinched drain tubes, correct a pinched-shut rear drain, or replace/reseal the cracked plastic water channel. Dry out and inspect saturated carpet/underlay to prevent mold and electrical corrosion. Audi performs the repair reactively (only after water ingress is confirmed); some owners report the factory fix failing and needing a second visit."
+    },
+    {
+      "issueId": "audi-q8-e-tron-premature-brake-pad-rotor-wear-brake-vibration-pulsation",
+      "repairItems": "Measure pad/rotor thickness/runout and hub/bearing/caliper causes; exact PR-code friction parts if failed; correct torque/bedding",
+      "decision": "BRAKE MEASUREMENT / PR-CODE GATE",
+      "destinations": [
+        {
+          "label": "Audi Q8 e-tron brake catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q8-e-tron/Brakes/",
+          "scope": "2023-2024 exact VIN/brake PR code/axle after measurements",
+          "role": "vehicle-specific brake catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "runout/hub/caliper diagnosis",
+          "role": "specialist brake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Wear, corrosion and hub runout require different repairs.",
+      "correction": "Do not claim regen setting prevents corrosion or machine rotors without limits.",
+      "sequence": 216,
+      "ymmt": "2023-2024 | Audi | Q8 e-tron | Q8 e-tron, Q8 Sportback e-tron, SQ8 e-tron",
+      "title": "Premature Brake Pad/Rotor Wear and Brake Vibration/Pulsation",
+      "howToFix": "Have a dealer or independent measure rotor runout/thickness variation and machine or replace rotors with correct torque and bedding-in. Verify pad hardware and caliper slides. Using a stronger regenerative-braking setting reduces friction-brake duty and corrosion. If vibration returns shortly after a full brake job, escalate for a deeper inspection of hubs/wheel bearings and calibration."
+    },
+    {
+      "issueId": "audi-q8-e-tron-rearview-camera-image-fails-is-delayed-when-shifting-to-reve",
+      "repairItems": "VIN/90TV/25V900 check; dealer software; direct observation until complete",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2023-2024 Q8 e-tron 90TV",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V900 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Software is free remedy.",
+      "correction": "No camera/module link.",
+      "sequence": 217,
+      "ymmt": "2023-2024 | Audi | Q8 e-tron",
+      "title": "2023-2024 Audi Q8 e-tron Camera Recall 90TV / NHTSA 25V900",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. Dealers update the software at no charge. Until completed, use mirrors and direct observation with extra care while reversing."
+    },
+    {
+      "issueId": "audi-q8-e-tron-severe-cold-weather-range-loss-reduced-dc-charge-speed",
+      "repairItems": "Owner-manual route-based battery preconditioning and plugged-in cabin preconditioning; mild-weather persistence triggers dealer battery/thermal diagnosis",
+      "decision": "OPERATING GUIDANCE / CONDITIONAL EV SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2023-2024 Q8 e-tron persistent mild-weather range/charge diagnosis",
+          "role": "manufacturer EV service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Normal cold-battery behavior is not a failed part.",
+      "correction": "Do not prescribe charger amperage or hardware from this card.",
+      "sequence": 218,
+      "ymmt": "2023-2024 | Audi | Q8 e-tron | Q8 e-tron, Q8 Sportback e-tron, SQ8 e-tron",
+      "title": "Severe Cold-Weather Range Loss and Reduced DC Charge Speed (Cold Battery)",
+      "howToFix": "Use route-based battery preconditioning: enter the DC fast charger as a navigation destination so the car warms the pack en route, restoring charge speed. Precondition the cabin while still plugged in at home, use seat/steering heaters over cabin heat, and rely on Level 2 home charging (40-60A) to absorb seasonal losses overnight. No repair is needed unless range/charge limits persist in mild weather, which warrants a dealer battery-health check."
+    },
+    {
+      "issueId": "audi-q8-ea839-3-0t-water-pump-internal-leak-coolant-loss",
+      "repairItems": "Clean/dry/fill, idle/2500-rpm inspect and pressure-test; exact proven leak component; P0299 vacuum/N649 branch",
+      "decision": "TSB LEAK-CONFIRMATION GATE",
+      "destinations": [
+        {
+          "label": "Audi Q8 water-pump catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q8/Water-Pump/",
+          "scope": "2019-2024 Q8 V6 TFSI after confirmed pump source/VIN",
+          "role": "conditional pump catalog"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "TSB 2070349/4",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "No returned leak means observation; P0299 may be vacuum control.",
+      "correction": "No pump link without confirmation.",
+      "sequence": 219,
+      "ymmt": "2019-2024 | Audi | Q8 | V6 TFSI",
+      "title": "2019-2024 Q8 V6 Coolant-Pump Leak Diagnosis - TSB 2070349/4",
+      "howToFix": "Have the suspected area cleaned and dried, fill the cooling system correctly, inspect at idle and up to about 2,500 rpm, and pressure-test it per Audi repair information. If no leak returns, continue to observe without replacing parts. Replace only the component proven to leak and inspect the vacuum path and N649 when P0299 is present. Do not order a pump from this card without confirmation."
+    },
+    {
+      "issueId": "audi-q8-etron-12v-battery-drain-2023",
+      "repairItems": "Software/version check; sleep-current/parasitic-draw isolation; exact AGM battery only if failed; registration/coding",
+      "decision": "PARASITIC-DRAW / BATTERY-SPEC GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2023-2025 Q8 e-tron software/draw/battery diagnosis",
+          "role": "manufacturer EV electrical service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "exact AGM and registration after failure test",
+          "role": "specialist electrical service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Battery may be victim of module wake-up.",
+      "correction": "No AGM product until group/capacity/VIN confirmed.",
+      "sequence": 220,
+      "ymmt": "2023-2025 | Audi | Q8 e-tron",
+      "title": "12V Auxiliary Battery Excessive Drain",
+      "howToFix": "Update vehicle software to latest version via dealer. If drain persists, have dealer perform parasitic draw test to identify module staying awake. 12V battery replacement with AGM type may be needed if battery was deeply discharged."
+    },
+    {
+      "issueId": "audi-q8-etron-12v-battery-drain-2024",
+      "repairItems": "Software/sleep-timing check; parasitic draw and battery SOH; exact battery if failed; storage charging only per manual-approved equipment",
+      "decision": "PARASITIC-DRAW / BATTERY-SPEC GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2024-2026 Q8 e-tron software/draw/battery diagnosis",
+          "role": "manufacturer EV electrical service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Deep discharge does not identify module or exact replacement battery.",
+      "correction": "No universal trickle charger or battery link.",
+      "sequence": 221,
+      "ymmt": "2024-2026 | Audi | Q8 e-tron | Premium, Premium Plus, Prestige, Sportback Premium, Sportback Premium Plus, Sportback Prestige | Electric",
+      "title": "12V Auxiliary Battery Parasitic Drain",
+      "howToFix": "Update the vehicle software to the latest version which includes revised module sleep timing. If the 12V battery has been deeply discharged multiple times, it may need replacement as lead-acid batteries are damaged by deep discharge cycles. Connect a 12V trickle charger if the vehicle will sit for more than a week."
+    },
+    {
+      "issueId": "audi-q8-etron-charge-port-actuator-2024",
+      "repairItems": "Manual release per manual; debris/ice, latch/actuator/wiring/software diagnosis; exact door/latch only after proof",
+      "decision": "EV CHARGE-DOOR COMPONENT GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2024-2026 Q8 e-tron charge-door VIN/component diagnosis",
+          "role": "authorized EV service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Actuator, latch, obstruction and controls differ.",
+      "correction": "Do not describe independent repair as straightforward near charge hardware.",
+      "sequence": 222,
+      "ymmt": "2024-2026 | Audi | Q8 e-tron | Premium, Premium Plus, Prestige, Sportback Premium, Sportback Premium Plus, Sportback Prestige | Electric",
+      "title": "Charge Port Door Actuator and Locking Mechanism Failure",
+      "howToFix": "Replace the charge port door actuator and/or latch mechanism. In an emergency, there is a manual cable release in the cargo area to free a stuck charging cable. The actuator replacement is a straightforward repair that can be done by an independent shop if comfortable with the charge port housing."
+    },
+    {
+      "issueId": "audi-q8-etron-charge-port-lid-2023",
+      "repairItems": "Manual release per manual; inspect ice/debris; actuator/latch/wiring/software diagnosis; exact assembly only if failed",
+      "decision": "EV CHARGE-DOOR COMPONENT GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2023-2025 Q8 e-tron charge-door diagnosis",
+          "role": "authorized EV service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Symptoms do not prove actuator assembly.",
+      "correction": "No actuator link before VIN/DTC/component proof.",
+      "sequence": 223,
+      "ymmt": "2023-2025 | Audi | Q8 e-tron",
+      "title": "Charge Port Door Actuator Failure",
+      "howToFix": "Replace charge port door actuator assembly. Check for debris or ice in the mechanism. Software update may improve actuator control logic. Manual release is accessible from inside the cargo area."
+    },
+    {
+      "issueId": "audi-q8-etron-hvac-compressor-2024",
+      "repairItems": "Reproduce A/C-on noise; confirm off when disabled; inspect refrigerant-line contact and hood-release clip; matching contact branch only",
+      "decision": "TSB CONTACT-NOISE SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2024 Q8 e-tron TSB 2063467/6",
+          "role": "manufacturer EV HVAC service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Bulletin does not prove compressor failure.",
+      "correction": "No compressor, battery, maintainer or EVSE link.",
+      "sequence": 224,
+      "ymmt": "2024-2024 | Audi | Q8 e-tron",
+      "title": "2024 Audi Q8 e-tron A/C Compressor-Area Noise TSB 2063467/6",
+      "howToFix": "Reproduce the exact noise with the A/C compressor active and confirm that it stops when A/C is switched off. Inspect the bulletin’s refrigerant-line contact points and hood-release cable clip and perform only the branch that matches the confirmed contact. Diagnose non-reproducible noise or loss of heating/cooling separately; do not buy a battery, maintainer or portable EVSE from this card."
+    },
+    {
+      "issueId": "audi-q8-front-brake-rotor-corrosion-premature-pad-rotor-wear",
+      "repairItems": "Classify surface rust versus deep corrosion/warp; measure thickness/runout; exact PR-code axle pads/rotors if limits require; slides/hardware/bedding",
+      "decision": "BRAKE MEASUREMENT / PR-CODE GATE",
+      "destinations": [
+        {
+          "label": "Audi Q8 brake catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q8/Brakes/",
+          "scope": "2019-2024 exact VIN/brake PR code/axle",
+          "role": "vehicle-specific brake catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "runout/corrosion/caliper diagnosis",
+          "role": "specialist brake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Light rust and failed friction parts are different conditions.",
+      "correction": "No anti-seize on unspecified friction/brake contact points; follow approved lubricant locations.",
+      "sequence": 225,
+      "ymmt": "2019-2024 | Audi | Q8",
+      "title": "Front Brake Rotor Corrosion and Premature Pad/Rotor Wear",
+      "howToFix": "For light surface rust, normal braking usually clears it; for noise, refinish or replace rotors and fit OEM-spec pads with proper bedding-in. Apply high-temp anti-seize/lubricant on contact points and ensure caliper slides move freely. Replace warped or deeply corroded rotors in axle sets."
+    },
+    {
+      "issueId": "audi-q8-front-shock-absorber-fork-cracking",
+      "repairItems": "VIN/40O4/19V114 check; free dealer affected fork replacement; separate generic suspension-noise diagnosis",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2019 Q8 40O4",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "19V114 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Recall condition/part is VIN-controlled.",
+      "correction": "No retail fork link or noise inference.",
+      "sequence": 226,
+      "ymmt": "2019-2019 | Audi | Q8",
+      "title": "2019 Q8 Front Shock-Absorber Fork Recall 40O4 (19V114) - Check VIN",
+      "howToFix": "Check the VIN for open recall 40O4 with Audi or NHTSA and contact an authorized Audi dealer. The dealer replaces the affected front shock-absorber fork free of charge. Do not buy a fork from this card or assume a generic suspension noise proves the recall condition."
+    },
+    {
+      "issueId": "audi-q8-fuel-pump-internal-failure-causing-engine-stall",
+      "repairItems": "VIN/20DR/22V516 check; free improved fuel-delivery module; recovery for stall risk",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2019-2021 Q8 V6 20DR",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V516 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "In-tank module replacement is recall work.",
+      "correction": "No old/improved retail module link.",
+      "sequence": 227,
+      "ymmt": "2019-2021 | Audi | Q8 | V6",
+      "title": "2019-2021 Q8 V6 Fuel-Delivery-Module Recall 20DR (22V516)",
+      "howToFix": "Check the VIN for open recall 20DR and contact an authorized Audi dealer. The recall remedy replaces the fuel-delivery module with the improved version. Do not purchase the old or improved module from this card or attempt an in-tank repair based only on the model year."
+    },
+    {
+      "issueId": "audi-q8-mmi-electrical-2019",
+      "repairItems": "Document exact MMI/electrical symptom, DTC and software; safe reset only per manual; VIN update or module branch after diagnosis",
+      "decision": "OVERBROAD SOFTWARE/ELECTRICAL SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-2023 Q8 MMI software/module diagnosis",
+          "role": "manufacturer electronics service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "system-specific electrical diagnosis",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Generic glitches do not prove MMI replacement.",
+      "correction": "No universal reset, price or warranty promise.",
+      "sequence": 228,
+      "ymmt": "2019-2023 | Audi | Q8",
+      "title": "MMI Infotainment and Electrical Issues",
+      "howToFix": "MMI hard reset (hold power + volume up 10 seconds). If persistent, dealer software update ($150-$300). For severe cases: MMI replacement ($2,000-$3,500). Most covered under 4-year/50k warranty."
+    },
+    {
+      "issueId": "audi-q8-mmi-infotainment-2019",
+      "repairItems": "VIN/90TV/25V900 check; free driver-assistance software; direct reverse observation",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2019-2026 Q8 90TV",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V900 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Reset/tool recovery does not complete recall.",
+      "correction": "No scanner, relay, meter or MMI part link.",
+      "sequence": 229,
+      "ymmt": "2019-2026 | Audi | Q8",
+      "title": "2019-2026 Q8 Rearview-Camera Software Recall 90TV (25V900)",
+      "howToFix": "Check the VIN for recall 25V900/90TV and contact an authorized Audi dealer. Dealers install more robust driver-assistance software free of charge. Until repaired, use extra caution when reversing. A hard reset, scan tool, relay, multimeter or temporary image recovery is not completion of the recall."
+    },
+    {
+      "issueId": "audi-q8-oil-separator-pcv-valve-failure-elevated-oil-consumption",
+      "repairItems": "Measure crankcase pressure/consumption and inspect leaks/intake/plugs; exact EA839 VIN oil separator only if failed; intake seals required by procedure",
+      "decision": "DIAGNOSIS / ENGINE-VIN PCV GATE",
+      "destinations": [
+        {
+          "label": "Audi Q8 PCV catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q8/PCV/",
+          "scope": "2019-2023 Q8 3.0T EA839; exact VIN/current separator after diagnosis",
+          "role": "conditional engine catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "crankcase pressure/consumption diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Consumption and oil fouling do not alone prove cracked separator.",
+      "correction": "Do not automatically reseal intake or replace plugs.",
+      "sequence": 230,
+      "ymmt": "2019-2023 | Audi | Q8 | 3.0L V6 TFSI (EA839)",
+      "title": "Oil Separator / PCV Valve Failure and Elevated Oil Consumption (3.0T)",
+      "howToFix": "Replace the cracked oil separator / PCV valve assembly with the updated part, inspect the intake and spark plugs for oil fouling, and reseal the intake manifold. Monitor oil level between services; perform a consumption test if usage exceeds Audi's threshold."
+    },
+    {
+      "issueId": "audi-q8-panoramic-sunroof-water-leak-into-cabin",
+      "repairItems": "Inspect/water-test four TSB branches; exact drain/hose/valve/seal/adjustment/deflector repair; frame only if structurally damaged",
+      "decision": "TSB LEAK-SOURCE SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-2021 Q8 TSB 2056944/10",
+          "role": "manufacturer body service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Multiple branches require evidence.",
+      "correction": "No sunroof-frame link from water entry alone.",
+      "sequence": 231,
+      "ymmt": "2019-2021 | Audi | Q8",
+      "title": "2019-2021 Q8 Water Entry from Sunroof Area - TSB 2056944/10",
+      "howToFix": "Have all four bulletin branches inspected and water-flow tested. Clear a drain obstruction or replace a damaged hose or valve, replace a damaged opening seal, correct glass adjustment, and perform the specified wind-deflector and channel modifications when applicable. Replace the sunroof frame only when actual structural damage is found. Do not order a frame from this card."
+    },
+    {
+      "issueId": "audi-r8-5-2-v10-excessive-oil-consumption",
+      "repairItems": "Measured consumption baseline; external leak/PCV/turbo? and plug/exhaust inspection; exact approved oil; rings/valve seals only after mechanical teardown diagnosis",
+      "decision": "MEASURED-CONSUMPTION / ENGINE GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2009-2023 R8 V10 oil-consumption diagnosis",
+          "role": "specialist engine service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN-approved oil and threshold",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Consumption has several causes; heavier oil is not universal remedy.",
+      "correction": "Do not prescribe 502/505/heavier oil without exact model-year approval.",
+      "sequence": 232,
+      "ymmt": "2009-2023 | Audi | R8 | 5.2L V10 FSI",
+      "title": "5.2 V10 Excessive Oil Consumption",
+      "howToFix": "Establish a documented consumption baseline (measured quarts over measured miles) and inspect the plugs/exhaust for oil fouling. Use a manufacturer-approved oil of the correct viscosity (owners report fewer issues with a quality 502/505-approved synthetic); some go to a heavier grade only with caution. Truly excessive consumption with smoke requires teardown for rings/valve seals, an engine-out job. Keep the oil topped between changes to protect the engine."
+    },
+    {
+      "issueId": "audi-r8-5-2-v10-oil-pump-driveshaft-seal-timing-case-oil-leak",
+      "repairItems": "Clean/trace exact oil source; confirm pump driveshaft seal versus covers/cooler; VIN/engine seal/O-ring/gasket scope; pump only if worn; exact fluids/fill",
+      "decision": "LEAK-SOURCE / ENGINE-VIN GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2009-2023 R8 V10 engine-out/access leak diagnosis and reseal",
+          "role": "specialist R8 engine service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN seal diagrams/parts",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Aftermarket reseal kit fitment was not proven for all generations.",
+      "correction": "Hold RKX/Steso link until live page proves engine/year/contents.",
+      "sequence": 233,
+      "ymmt": "2009-2023 | Audi | R8 | R8 V10, R8 V10 Plus, R8 V10 Performance, R8 V10 Spyder | 5.2L V10 FSI",
+      "title": "5.2 V10 Oil Pump Driveshaft Seal Timing-Case Oil Leak",
+      "howToFix": "Confirm the source (timing-case oil-pump driveshaft seal, not valve covers or oil cooler). Repair involves removing the oil pump and renewing the oil-pump drive-shaft seal and associated O-rings/gaskets; a full reseal kit (e.g. RKX/Steso) is commonly used. It is mostly a labor and gasket/seal job rather than replacing the pump, though the pump can be replaced if worn. Fresh oil and coolant and a proper fill/bleed are required because both systems are opened."
+    },
+    {
+      "issueId": "audi-r8-ac-compressor-v8-2008",
+      "repairItems": "Confirm 4.2 V8 refrigerant/compressor fault; VIN compressor and required dryer/seals/oil; current R8 removal procedure; condition-only overlapping engine-out work",
+      "decision": "ENGINE / HVAC-DIAGNOSIS SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2008-2012 R8 4.2 compressor diagnosis and current access procedure",
+          "role": "specialist R8 HVAC service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN compressor/procedure",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Compressor failure and engine-removal requirement must be verified before parts.",
+      "correction": "Do not bundle mounts/clutch or promise alternate labor path; no monthly-run prevention claim.",
+      "sequence": 234,
+      "ymmt": "2008-2012 | Audi | R8 | 4.2 | 4.2 V8",
+      "title": "A/C Compressor Failure Requiring Engine-Out Repair (4.2 V8)",
+      "howToFix": "A/C COMPRESSOR REPLACEMENT: Requires ENGINE REMOVAL on the V8 model. Total repair cost $5,000-$8,000 ($1,000-$1,500 for parts, $4,000-$6,500 for labor). When the engine is out, strongly recommended to also address: motor mounts, clutch inspection, and any other components that benefit from engine-out access. ALTERNATIVE: Some specialty R8 shops have developed methods to access the compressor with partial disassembly (removing subframe) rather than full engine removal, potentially reducing labor to $3,000-$4,000. PREVENTION: Run the A/C regularly (even in winter for 5-10 minutes monthly) to keep compressor seals lubricated."
+    },
+    {
+      "issueId": "audi-r8-carbon-buildup-2008",
+      "repairItems": "Split V8/V10; leak-down and ignition/fuel/air diagnosis; confirm deposits; engine-specific intake-valve cleaning and seals",
+      "decision": "ENGINE / CONFIRMED-DEPOSIT SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2008-2015 R8 V8/V10 leak-down, intake inspection and cleaning",
+          "role": "specialist R8 intake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "V8/V10 scope differs and deposits require confirmation.",
+      "correction": "Remove fixed interval, chemical, high-RPM, octane and oil-schedule claims.",
+      "sequence": 235,
+      "ymmt": "2008-2015 | Audi | R8 | 4.2, 5.2 | 4.2 FSI V8, 5.2 FSI V10",
+      "title": "Carbon Buildup on Intake Valves (4.2 V8 FSI and 5.2 V10 FSI)",
+      "howToFix": "WALNUT BLASTING: Remove intake manifolds and blast all intake ports with walnut shells. V8 (4.2L): $800-$1,200. V10 (5.2L): $1,200-$2,000 due to 10 cylinders. Perform a leak-down test BEFORE walnut blasting to ensure intake valves seat properly. Repeat every 50,000-70,000 miles. CHEMICAL CLEANING: Less effective than walnut blasting but some owners use intake valve cleaners (BG Products, CRC) as interim maintenance. DRIVING HABITS: Regular high-RPM driving (the R8's natural habitat) helps slow carbon accumulation. PREVENTION: Use quality fuel (91+ octane) and change oil every 5,000 miles."
+    },
+    {
+      "issueId": "audi-r8-carbon-fiber-sideblade-trim-clear-coat-peeling",
+      "repairItems": "Inspect clear-coat versus fiber damage; carbon-experienced refinish with UV-stable system; optional PPF after cured refinish",
+      "decision": "CONDITION-BASED BODY SERVICE",
+      "destinations": [
+        {
+          "label": "XPEL installer locator",
+          "url": "https://www.xpel.com/installer-locator",
+          "scope": "PPF only after 2008-2015 R8 carbon panel finish is sound/cured",
+          "role": "conditional protection service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "panel identity/replacement options",
+          "role": "manufacturer body route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Peeling clear requires refinishing skill; coating does not repair failed finish.",
+      "correction": "No DIY abrasive/coating product without weave/finish assessment.",
+      "sequence": 236,
+      "ymmt": "2008-2015 | Audi | R8 | 4.2L V8 FSI, 5.2L V10 FSI",
+      "title": "Carbon Fiber Sideblade and Trim Clear-Coat Peeling",
+      "howToFix": "Refinish the affected panel: carefully sand back the failed lacquer without cutting into the carbon weave, then re-clear with a UV-stabilized automotive clear coat (best done by a shop experienced with carbon). To prevent recurrence, protect the finish with paint-protection film (clear wrap) or a ceramic coating, which also guards against stone chips."
+    },
+    {
+      "issueId": "audi-r8-catalytic-converter-failure-requiring-engine-out-replacement",
+      "repairItems": "Confirm bank with O2 efficiency and backpressure; correct upstream misfire/oil cause; engine/generation/side-specific converter-manifold; legal emissions compliance",
+      "decision": "BANK / ENGINE / EMISSIONS-COMPLIANCE GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2008-2023 R8 VIN/bank converter-manifold",
+          "role": "manufacturer emissions parts/service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "backpressure/root-cause diagnosis",
+          "role": "specialist R8 emissions service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Bank/engine and root cause must be known.",
+      "correction": "Do not recommend de-catted manifolds; high-flow legality must be verified for jurisdiction.",
+      "sequence": 237,
+      "ymmt": "2008-2023 | Audi | R8 | 4.2L V8 FSI, 5.2L V10 FSI",
+      "title": "Catalytic Converter Failure Requiring Engine-Out Replacement",
+      "howToFix": "Confirm the failed bank with O2/catalyst-efficiency data and a back-pressure check before condemning. OEM repair means replacing the catalytic-converter-with-integrated-manifold assembly (engine-out labor); many owners opt for high-flow aftermarket or de-catted manifolds where legal. Verify no upstream misfire/oil-consumption issue is destroying the new cats."
+    },
+    {
+      "issueId": "audi-r8-clutch-pack-2008",
+      "repairItems": "VIN/37O1/22V225 check; dealer transmission-oil level inspection/correction; recovery for slip/leak/smoke",
+      "decision": "SOURCE-YEAR MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2021-2022 R8 37O1",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V225 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "This is oil-level recall, not 2008 clutch pack.",
+      "correction": "Rename/re-key; no clutch/fluid commerce link.",
+      "sequence": 238,
+      "ymmt": "2021-2022 | Audi | R8",
+      "title": "Gearbox Underfilled: Clutch Slippage or Transmission-Oil Leak (Recall 22V225 / 37O1)",
+      "howToFix": "Check the VIN and campaign history with Audi or NHTSA. Under campaign 37O1, an Audi dealer inspects and corrects the transmission-oil level free of charge. If drive power drops, a clutch slips, or oil/smoke is noticed, stop safely and arrange dealer inspection."
+    },
+    {
+      "issueId": "audi-r8-clutch-wear-2008",
+      "repairItems": "Confirm R tronic versus manual/S tronic and measured clutch wear/adaptation; exact clutch/pressure plate/release bearing/flywheel branch; transmission removal procedure",
+      "decision": "TRANSMISSION / CLUTCH-WEAR GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2008-2015 R8 transmission-specific clutch wear/adaptation diagnosis",
+          "role": "specialist R8 transmission service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN clutch components",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The listed years include different transmissions and not all need every part.",
+      "correction": "Remove driving/track-life and S-tronic comparison claims from fitment guidance.",
+      "sequence": 239,
+      "ymmt": "2008-2015 | Audi | R8 | 4.2, 5.2",
+      "title": "R-Tronic Clutch Premature Wear and Expensive Replacement",
+      "howToFix": "CLUTCH REPLACEMENT: Replace clutch disc, pressure plate, throwout bearing, and resurface/replace flywheel ($5,500-$9,000 at dealer, $4,000-$6,000 at independent specialist). The mid-engine layout requires dropping the transmission—8-12 hours of labor. DRIVING TECHNIQUE: Minimize R-Tronic slip by avoiding creeping in traffic (use brake hold instead). Use manual mode in stop-and-go traffic. Avoid reverse on steep inclines. For TRACK USE: Budget for clutch replacement every 10,000-20,000 miles—R-Tronic track driving is hard on clutches. ALTERNATIVE: S-Tronic (Gen 2 R8) wet dual-clutch is significantly more durable for daily driving."
+    },
+    {
+      "issueId": "audi-r8-coolant-expansion-tank-cracking-cooling-system-leaks",
+      "repairItems": "Pressure-test exact leak; VIN/current expansion tank 420121403 when fitted and cracked; cap/hoses/radiator by condition; current coolant/bleed",
+      "decision": "LEAK-SOURCE / EXACT CONDITIONAL TANK",
+      "destinations": [
+        {
+          "label": "Genuine Audi R8 expansion tank 420121403",
+          "url": "https://www.fcpeuro.com/Audi-parts/R8/Coolant-Expansion-Tank/",
+          "scope": "FCP lists R8 and current availability; verify 2008-2015 VIN and installed tank",
+          "role": "exact conditional expansion tank"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "pressure test and bleed",
+          "role": "specialist cooling service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Live catalog proves R8 tank but leak source/VIN still required.",
+      "correction": "Do not prescribe G13/G12 universally or replace all fittings.",
+      "sequence": 240,
+      "ymmt": "2008-2015 | Audi | R8 | 4.2L V8 FSI, 5.2L V10 FSI",
+      "title": "Coolant Expansion Tank Cracking and Cooling System Leaks",
+      "howToFix": "Pressure-test the cooling system to pinpoint the leak. Replace the cracked expansion/overflow tank with the updated design and renew brittle hose clamps/connections; inspect the radiator and cap. Refill with the correct Audi G13/G12 coolant specification and bleed the system fully. Address any weeping hose fittings at the same time."
+    },
+    {
+      "issueId": "audi-r8-direct-injection-fuel-injector-failure",
+      "repairItems": "Cylinder-specific misfire/fuel-trim/injector diagnosis; engine/generation/VIN exact injector and seals; bank/set only when strategy/condition supports; carbon service separately confirmed",
+      "decision": "CYLINDER / ENGINE / INJECTOR GATE",
+      "destinations": [
+        {
+          "label": "Audi R8 fuel-injector catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/R8/Fuel-Injector/",
+          "scope": "2008-2023 R8; exact V8/V10 generation, VIN and injector revision",
+          "role": "vehicle-specific injector catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "injector-specific diagnosis",
+          "role": "specialist R8 fuel service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Full set/bank replacement and carbon cleaning are conditional.",
+      "correction": "Do not replace coils or injectors from misfire alone; remove owner-price claim.",
+      "sequence": 241,
+      "ymmt": "2008-2023 | Audi | R8 | 4.2L V8 FSI, 5.2L V10 FSI",
+      "title": "Direct-Injection Fuel Injector Failure",
+      "howToFix": "Confirm the failing cylinder with misfire and fuel-trim data and, where possible, injector-specific fault codes rather than replacing coils blindly. Replace the failed injector(s) with OEM FSI units; many owners replace as a bank or full set given shared age and mileage, and clean or address intake-valve carbon at the same service. Expect roughly $2,900 for a multi-injector job including labor per owner reports."
+    },
+    {
+      "issueId": "audi-r8-front-axle-hydraulic-lift-system-pump-failure",
+      "repairItems": "Lift circuit pressure/leak, pump power/ground, valve and hydraulic diagnosis; exact VIN pump or original rebuild only after failure",
+      "decision": "HYDRAULIC-CIRCUIT / PUMP GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2017-2023 R8 front-lift hydraulic diagnosis",
+          "role": "specialist R8 suspension service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN pump/parts",
+          "role": "manufacturer parts route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Pump is not established as usual cause without tests.",
+      "correction": "No used/rebuild pump link without exact identity, condition, warranty and service proof.",
+      "sequence": 242,
+      "ymmt": "2017-2023 | Audi | R8 | 5.2L V10 FSI",
+      "title": "Front Axle Hydraulic Lift System Pump Failure",
+      "howToFix": "Diagnose the lift pump/hydraulic circuit; a failed pump is the usual culprit. A new dealer pump assembly runs over $3,000, so many owners fit a good used OEM pump or an independent rebuild as a cost-effective alternative. Until repaired, approach inclines and speed bumps at an angle and very slowly to avoid front-end damage."
+    },
+    {
+      "issueId": "audi-r8-front-passenger-airbag-inflator-rupture",
+      "repairItems": "VIN/69DY/61C1/22V543 check; free passenger airbag module",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2016 R8 airbag recall",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V543 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Pyrotechnic module remedy is campaign-controlled.",
+      "correction": "No used airbag link.",
+      "sequence": 243,
+      "ymmt": "2016-2016 | Audi | R8",
+      "title": "Front-Passenger Airbag Module May Explode or Deploy Improperly (Recall 22V543 / 69DY)",
+      "howToFix": "Check the VIN with Audi or NHTSA. Audi dealers replace the front-passenger airbag module free of charge under campaign 69DY/61C1. Do not source a used airbag module from this summary."
+    },
+    {
+      "issueId": "audi-r8-fuel-supply-line-chafing-heat-shield",
+      "repairItems": "VIN/20Q8/11V390 check; dealer line inspection/conditional replacement and heat-shield clearance; stop for fuel odor/leak",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2011-2012 R8 Spyder 20Q8",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "11V390 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Line/clearance remedy is recall work.",
+      "correction": "No fuel-line product link.",
+      "sequence": 244,
+      "ymmt": "2011-2012 | Audi | R8 | 4.2L V8 FSI, 5.2L V10 FSI",
+      "title": "R8 Spyder Fuel Supply Line Can Chafe on Heat Shield (Recall 11V390 / 20Q8)",
+      "howToFix": "Check the VIN and recall status. Audi dealers inspect the line, replace it if damaged, and adjust the fuel line and heat shield for proper clearance free of charge. If fuel odor or leakage is present, stop driving and arrange immediate inspection."
+    },
+    {
+      "issueId": "audi-r8-ignition-coil-pack-failure-causing-misfires",
+      "repairItems": "Misfire counters/cylinder swap and plug/oil-leak inspection; exact engine/generation coil; plugs/full set only by condition/strategy",
+      "decision": "ENGINE-GENERATION / CYLINDER GATE",
+      "destinations": [
+        {
+          "label": "Genuine R8 V10 coil 07L905115B",
+          "url": "https://www.fcpeuro.com/products/audi-direct-ignition-coil-genuine-audi-07l905115b",
+          "scope": "live page lists R8; verify Gen-2 5.2 V10 VIN before purchase",
+          "role": "exact conditional V10 coil"
+        },
+        {
+          "label": "Audi R8 ignition-coil catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/R8/Ignition-Coil/",
+          "scope": "select exact V8/V10 generation and current revision",
+          "role": "vehicle-specific coil catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "07L905115B is live and R8-listed; the claimed 077905115T family was not verified across the V8 population.",
+      "correction": "Do not replace full set/plugs or use cross-reference 06E905115E without VIN/engine proof.",
+      "sequence": 245,
+      "ymmt": "2008-2023 | Audi | R8 | 4.2L V8 FSI, 5.2L V10 FSI",
+      "title": "Ignition Coil Pack Failure Causing Misfires",
+      "howToFix": "Diagnose the misfiring cylinder(s) via the stored misfire counters, then replace the failed coil(s) along with spark plugs; most specialists replace the full set of 8 (V8) or 10 (V10) plus plugs to avoid repeat visits. The canonical 4.2 V8 coil is the revision-'T' red coil, Audi/VW PN 077905115T (superseded family, aftermarket cross-reference 06E905115E). The Gen-2 5.2 V10 uses Audi PN 07L905115B. Address any valve-cover or plug-tube oil leak at the same time so new coils are not contaminated."
+    },
+    {
+      "issueId": "audi-r8-led-headlight-drl-module-failure-flickering",
+      "repairItems": "Split generations/options/side; moisture/connector/driver diagnosis; exact module or assembly; reseal source; aim/level calibration",
+      "decision": "HEADLAMP-OPTION / SIDE / DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2014-2023 R8 VIN/side/headlamp-option parts and calibration",
+          "role": "manufacturer lighting service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "moisture/driver diagnosis and repair",
+          "role": "specialist lighting service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Driver may be repairable and full assembly/side/options vary.",
+      "correction": "Remove UK price claims and no generic diagnostic-tool link.",
+      "sequence": 246,
+      "ymmt": "2014-2023 | Audi | R8 | 4.2L V8 FSI, 5.2L V10 FSI",
+      "title": "LED Headlight / DRL Module Failure and Flickering",
+      "howToFix": "Inspect the headlight for moisture and corroded connectors; a failed LED driver module usually requires replacing the headlight assembly (used units run roughly £1,600-1,800, new from Audi around £2,800), followed by headlight aiming/auto-leveling calibration with a diagnostic tool. Reseal or replace cracked housings to stop repeat water damage. Some independent specialists can repair the driver board at lower cost."
+    },
+    {
+      "issueId": "audi-r8-magnetic-ride-2008",
+      "repairItems": "Per-corner leak/damping/electrical diagnosis; exact generation/PR-code damper; matched axle/set as required; calibrated OEM repair or engineered conversion plan",
+      "decision": "GENERATION / PR-CODE SUSPENSION GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2008-2024 R8 magnetic-ride diagnosis and conversion implications",
+          "role": "specialist R8 suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Seventeen years span different generations and options.",
+      "correction": "No KW/Bilstein link before exact kit fitment, cancellation hardware, alignment and ride-control tradeoffs.",
+      "sequence": 247,
+      "ymmt": "2008-2024 | Audi | R8",
+      "title": "Magnetic Ride Damper Fluid Leaks",
+      "howToFix": "Replace magnetic ride dampers. OEM replacements are very expensive. KW or Bilstein aftermarket coilovers are popular track-oriented alternatives."
+    },
+    {
+      "issueId": "audi-r8-magnetic-ride-leak-2008",
+      "repairItems": "Confirm leaking corner and electronic function; exact first-gen damper or verified original rebuild; engineered passive conversion only with complete hardware/coding/alignment plan",
+      "decision": "CORNER / OPTION / CONVERSION GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2008-2015 R8 magnetic-ride diagnosis/rebuild/conversion planning",
+          "role": "specialist R8 suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "OEM, rebuild and passive conversion are distinct choices.",
+      "correction": "No 30k-50k life claim or named kit link without live exact fitment evidence.",
+      "sequence": 248,
+      "ymmt": "2008-2015 | Audi | R8 | 4.2, 5.2",
+      "title": "Magnetic Ride Suspension Damper Leak and Premature Failure",
+      "howToFix": "OEM REPLACEMENT: Replace leaking magnetic ride shocks ($1,800 each, $5,100-$8,000+ for full set installed). OEM replacements use the same technology and will eventually fail again. REFURBISHED OPTION: Refurbished magnetic ride dampers from specialty rebuilders (approximately $1,000-$1,400 each). PASSIVE CONVERSION: Convert to R8 Plus passive shocks ($3,000-$4,000 for set—less than 2 OEM magnetic ride shocks) or aftermarket coilovers ($2,500-$5,000 for quality kit like KW, JRZ, or Ohlins). Passive conversion eliminates the failure mode permanently but removes adaptive ride control. PREVENTION: Limited—magnetic fluid degradation is inherent to the technology. Budget for replacement every 30,000-50,000 miles if keeping magnetic ride."
+    },
+    {
+      "issueId": "audi-r8-r-tronic-hydraulic-pump-pressure-accumulator-failure",
+      "repairItems": "Explicit manufacturer-capable scan for P17BF/P0944 plus pressure/run-time; accumulator first only if diagnosis supports; pump/relay/fuse then actuator/O-rings; exact fluid and guided bleed",
+      "decision": "EXPLICIT SCANNER/DIAGNOSTIC TOOL APPROVAL — R TRONIC GUIDED SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2008-2015 R8 R tronic pressure diagnosis and guided bleed",
+          "role": "specialist diagnostic service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN hydraulic components/fluid/procedure",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "How to Fix explicitly needs a scan/guided bleed, but specialized R-tronic service is safer than a generic OBD link.",
+      "correction": "No accumulator/pump until pressure diagnosis; verify trim incorrectly listing V10 Plus R tronic.",
+      "sequence": 249,
+      "ymmt": "2008-2015 | Audi | R8 | R8 4.2 R tronic, R8 V10 R tronic, R8 V10 Plus R tronic | 4.2L V8 FSI, 5.2L V10 FSI",
+      "title": "R tronic Hydraulic Pump and Pressure Accumulator Failure",
+      "howToFix": "Diagnose with a scan tool: a failing accumulator/pump typically stores P17BF (hydraulic pump play protection) and/or P0944 (loss of hydraulic pressure). Standard repair order is to renew the relatively inexpensive pressure accumulator first; if pressure loss persists, replace the hydraulic pump (and its relay/fuse), and only then suspect the hydraulic clutch/gear actuator or the solenoid-valve O-rings. Fresh, correct-spec hydraulic fluid and a proper bleed with a diagnostic tool are required. Owners are advised not to drive the car (except directly to a shop) once the pump is heard running continuously or shifting becomes intermittent."
+    },
+    {
+      "issueId": "audi-r8-s-tronic-actuator-2008",
+      "repairItems": "Correct model-year/transmission population; exact S tronic code; faults/pressure/adaptation/fluid and actuator diagnosis; component only after proof",
+      "decision": "SOURCE RANGE ERROR / TRANSMISSION-CODE GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "R8 S tronic transmission-code and actuator diagnosis",
+          "role": "specialist R8 transmission service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN transmission/actuator/fluid",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "2008-2012 first-gen R8 did not uniformly use S tronic and the range spans different units.",
+      "correction": "Correct years/transmission before any actuator/fluid link; no blanket replacement.",
+      "sequence": 250,
+      "ymmt": "2008-2024 | Audi | R8",
+      "title": "S-tronic Transmission Actuator Failure",
+      "howToFix": "Replace S-tronic actuators. Full transmission service with correct S-tronic fluid is critical. Dealer or specialist only repair."
     }
   ]
 }
