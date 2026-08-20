@@ -2972,6 +2972,294 @@
       "evidence": [],
       "reason": "The source combines fundamentally different AWD layouts across E84, F48, and U11, so one actuator or transfer-case link cannot cover the row.",
       "correction": "Split generations before product approval and do not prescribe a universal 50,000-mile fluid interval without the exact unit/specification."
+    },
+    {
+      "issueId": "bmw-x1-transfer-case-actuator-2013",
+      "repairItems": "xDrive-only diagnosis; split E84/F48 generations; exact actuator/servo if separately serviceable; internal transfer case check; unit-specific fluid",
+      "decision": "GENERATION / AWD-SYSTEM SPLIT",
+      "destinations": [
+        {"label": "BMW X1 transfer-case catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x1-transfer_case.html", "scope": "2013-2022 xDrive X1; VIN and E84/F48 generation required", "role": "OEM actuator/transfer-case catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "actuator versus internal AWD diagnosis", "role": "drivetrain service"}
+      ],
+      "evidence": [],
+      "reason": "The row crosses longitudinal E84 and transverse F48 AWD systems, so one actuator cannot be approved for the full range.",
+      "correction": "Split generations and confirm the exact unit/fluid; the transfer case is not always healthy when an actuator fault is present."
+    },
+    {
+      "issueId": "bmw-x2-b48-timing-chain-tensioner-2018",
+      "repairItems": "Cold-start noise and timing diagnosis; VIN/engine tensioner identification; chain stretch/guide inspection; full timing kit only if out of specification",
+      "decision": "DIAGNOSIS / VIN GATE; UPDATE CLAIM UNVERIFIED",
+      "destinations": [
+        {"label": "Genuine BMW X2 timing catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x2-timing_chain.html", "scope": "2018-2023 X2; VIN, B46/B48 variant, and production date required", "role": "OEM timing-component catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "B-series timing diagnosis", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "A specific updated tensioner design and blanket B48 weakness were not substantiated by an exact bulletin or part supersession.",
+      "correction": "Do not order a tensioner from noise alone or promise that an 'updated design' cures the condition without VIN/part evidence."
+    },
+    {
+      "issueId": "bmw-x2-crankshaft-sensor-recall-2018",
+      "repairItems": "VIN recall 18V-465 check; free dealer sensor replacement if open; roadside assistance for stall/loss of power",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for 18V-465", "role": "manufacturer recall remedy"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-status check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The corrected How to Fix explicitly says not to order a sensor from the card.",
+      "correction": "Keep model-year fitment separate from actual VIN recall eligibility."
+    },
+    {
+      "issueId": "bmw-x2-front-control-arm-bushings-2018",
+      "repairItems": "Front suspension inspection; side/position-specific complete arm or serviceable bushing; alignment; polyurethane only after NVH/use review",
+      "decision": "SIDE-SPECIFIC SUSPENSION CATALOG",
+      "destinations": [
+        {"label": "BMW X2 control-arm catalog", "url": "https://www.fcpeuro.com/BMW-parts/X2/Control-Arm/", "scope": "2018-2023 F39 X2; select side, position, drivetrain, and VIN", "role": "vehicle-specific arm catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "suspension inspection and four-wheel alignment", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Control arms are side/position specific and polyurethane changes noise/harshness rather than being a universal longevity upgrade.",
+      "correction": "Approve the exact failed arm after inspection; do not default every owner to polyurethane."
+    },
+    {
+      "issueId": "bmw-x2-oil-filter-housing-2018",
+      "repairItems": "Leak/crack and contamination diagnosis; VIN-correct complete oil-filter housing and seals; oil/coolant service if mixed; engine-damage check if prolonged",
+      "decision": "EXACT OEM NUMBER CONDITIONAL; ALUMINUM CLAIM HELD",
+      "destinations": [
+        {"label": "Genuine BMW X2 oil-filter-housing catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x2-oil_filter_housing.html", "scope": "2018-2023 F39 X2; VIN and engine required; verify 11428596283/supersession", "role": "OEM housing catalog"}
+      ],
+      "evidence": [],
+      "reason": "The OEM housing must be selected by VIN; no live aluminum-upgrade page with exact X2 fitment and complete oil/coolant interfaces was verified.",
+      "correction": "Reject 'permanently eliminates' and the unverified FCP kit claim until an exact live product page proves X2 fitment and completeness."
+    },
+    {
+      "issueId": "bmw-x2-oil-filter-housing-gasket-2018",
+      "repairItems": "Confirm gasket-only versus cracked housing; exact gasket/seals; clean contamination; inspect and replace oil-soaked belt if needed",
+      "decision": "LEAK-SOURCE / HOUSING-CONDITION GATE",
+      "destinations": [
+        {"label": "BMW X2 oil-filter-housing catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x2-oil_filter_housing.html", "scope": "2018-2023 F39 X2; VIN and gasket-versus-housing branch required", "role": "OEM housing/seal catalog"}
+      ],
+      "evidence": [],
+      "reason": "This row overlaps the cracked-housing row, and a gasket cannot repair a cracked plastic housing.",
+      "correction": "Consolidate duplicate rows and diagnose gasket versus housing before purchase."
+    },
+    {
+      "issueId": "bmw-x2-tie-rod-recall-2019",
+      "repairItems": "VIN recall 19V-601 check; dealer inspection of both tie rods; free tie-rod/ball-joint replacement only as campaign requires",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for 19V-601", "role": "manufacturer recall remedy"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-status check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "Recall eligibility and replacement scope are VIN/campaign decisions, not retail fitment.",
+      "correction": "Do not order steering parts from model year alone."
+    },
+    {
+      "issueId": "bmw-x2-transmission-jerking-2018",
+      "repairItems": "VIN/transmission identification; TSB and software level check; adaptation/road test; oil-pump/internal repair only after diagnosis",
+      "decision": "TSB / SOFTWARE / SPECIALIST ROUTE",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2018-2020 X2 Aisin transmission software and TSB GBSEL-SELP24 check", "role": "manufacturer-capable diagnosis"}
+      ],
+      "evidence": [],
+      "reason": "Software, pump-neck wear, internal repair, and complete transmission are distinct branches; no retail part is justified before the TSB workflow.",
+      "correction": "Do not promise recalibration will fix mechanical wear or quote a universal repair price."
+    },
+    {
+      "issueId": "bmw-x2-valve-cover-gasket-2018",
+      "repairItems": "Leak/PCV diagnosis; complete cover 11127611278 where VIN-matched and cover/PCV failed; gasket/tube seals by condition; cleanup",
+      "decision": "EXACT OEM COVER CONDITIONAL",
+      "destinations": [
+        {"label": "Genuine BMW valve cover 11127611278", "url": "https://www.fcpeuro.com/products/bmw-cylinder-head-cover-11127611278", "scope": "F39 X2 B46/B48 where validated; confirm VIN/current fitment", "role": "conditional complete valve-cover assembly"}
+      ],
+      "evidence": [],
+      "reason": "The live page identifies the genuine cover and includes X2 fitment, while the complete assembly remains conditional on cover/PCV condition.",
+      "correction": "Do not call a complete cover a gasket repair or automatically add tube seals without checking kit contents."
+    },
+    {
+      "issueId": "bmw-x3-coolant-expansion-tank-2004",
+      "repairItems": "Pressure-test leak source; generation/engine/VIN-specific expansion tank; correct current coolant specification; bleed/test; preventive replacement only by condition",
+      "decision": "MULTI-GENERATION VIN CATALOG",
+      "destinations": [
+        {"label": "BMW X3 expansion-tank catalog", "url": "https://www.fcpeuro.com/BMW-parts/X3/Expansion-Tank/", "scope": "2004-2023 E83/F25/G01 X3; select exact engine, generation, and VIN", "role": "vehicle-specific tank catalog"}
+      ],
+      "evidence": [],
+      "reason": "The 20-year range spans multiple tanks and coolant specifications; one Behr/OEM part cannot fit all.",
+      "correction": "Remove universal 30-minute labor, color-only coolant advice, fixed preventive interval, and blanket brand-failure claims."
+    },
+    {
+      "issueId": "bmw-x3-electric-water-pump-2011",
+      "repairItems": "Generation/engine/VIN diagnosis; identify mechanical main pump versus electric pump/auxiliary circuit; thermostat only if applicable/failed; exact bleed procedure",
+      "decision": "MAJOR ENGINE / PUMP-TYPE SPLIT",
+      "destinations": [
+        {"label": "Genuine BMW X3 water-pump catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x3-water_pump.html", "scope": "2011-2026 X3; VIN, engine, pump circuit, and generation required", "role": "OEM pump catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "cooling-system diagnosis and bleed", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Not every X3 engine in 2011-2026 uses the same electric main pump, and thermostat replacement is not universally paired.",
+      "correction": "Split by engine/pump type; remove the advice to carry a spare pump."
+    },
+    {
+      "issueId": "bmw-x3-m-electric-wastegate-actuator-adaptation-fault-boost-cutout-ea",
+      "repairItems": "Production date, fault-code, and integration-level confirmation; BMW ISTA programming to specified/newer approved level; mechanical diagnosis separately",
+      "decision": "SOFTWARE SERVICE ROUTE ONLY",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2020 F97 X3 M ISTA integration-level check and programming", "role": "bulletin software remedy"}
+      ],
+      "evidence": [],
+      "reason": "The corrected How to Fix explicitly rejects actuator/turbo replacement from this card.",
+      "correction": "Do not attach wastegate hardware or a generic OBD scanner to a programming bulletin."
+    },
+    {
+      "issueId": "bmw-x3-m-fuel-tank-inlet-check-valve-weld-failure-2021-x3-m",
+      "repairItems": "VIN recall 21V-199 check; free dealer fuel-tank replacement if open; roadside safety response for odor/leak",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for 21V-199", "role": "manufacturer recall remedy"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-status check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The safety remedy is an authorized recall repair, not a retail tank sale.",
+      "correction": "Preserve the stop/evacuate/tow warning for active fuel leakage."
+    },
+    {
+      "issueId": "bmw-x3-m-idrive-control-display-blank-screen-infotainment-glitches-f9",
+      "repairItems": "Soft reset; current iDrive/head-unit software; 12-volt health check; screen assembly only after hardware diagnosis",
+      "decision": "SOFTWARE FIRST / CONDITIONAL HARDWARE",
+      "destinations": [
+        {"label": "BMW Remote Software Upgrade", "url": "https://www.bmwusa.com/explore/connecteddrive/remote-software-upgrade.html", "scope": "F97 X3 M only when update is offered to VIN", "role": "official update information"},
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "recurring fault and display hardware diagnosis", "role": "software/hardware service"}
+      ],
+      "evidence": [],
+      "reason": "The source requires software first and reserves display replacement for confirmed hardware failure.",
+      "correction": "Do not sell a screen for a frozen head unit or low-voltage condition."
+    },
+    {
+      "issueId": "bmw-x3-m-improperly-welded-front-seat-frame-2019-2021-x3-m",
+      "repairItems": "VIN recall 23V-211 check; free dealer seat-frame/backrest replacement using campaign-selected parts",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for 23V-211", "role": "manufacturer recall remedy"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-status check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "VIN-selected recall parts belong with the authorized campaign.",
+      "correction": "Do not order seat components from model year alone."
+    },
+    {
+      "issueId": "bmw-x3-m-low-mounted-engine-oil-cooler-vulnerable-to-road-debris-punc",
+      "repairItems": "Oil-cooler inspection; exact protective guard; punctured cooler replacement and correct oil; oil-pressure/bearing-damage assessment after starvation",
+      "decision": "EXACT F97/F98 GUARD APPROVAL",
+      "destinations": [
+        {"label": "RW Carbon F97 X3M oil-cooler guard bmwf97022", "url": "https://www.rwcarbon.com/bmw-f97-x3m-f98-x4m-aluminum-oil-cooler-guard.html", "scope": "2019+ F97 X3 M/F98 X4 M as explicitly listed; verify model year/current stock", "role": "preventive underbody oil-cooler guard"},
+        {"label": "Genuine BMW X3 M oil-cooler catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x3_m-oil_cooler.html", "scope": "VIN-specific replacement only after puncture/diagnosis", "role": "conditional OEM cooler"}
+      ],
+      "evidence": [],
+      "reason": "The guard manufacturer explicitly lists F97 X3 M fitment and factory mounting points.",
+      "correction": "A guard reduces road-debris exposure but cannot guarantee prevention; stop driving immediately after oil loss."
+    },
+    {
+      "issueId": "bmw-x3-m-oem-plastic-charge-pipe-cracking-blow-off-under-boost-f97-x3",
+      "repairItems": "Smoke/boost-leak diagnosis; F97 S58 charge-pipe kit; verify whether larger 2-to-1 pipe is included/needed; seals/clips",
+      "decision": "EXACT F97 S58 KIT WITH COMPLETENESS NOTE",
+      "destinations": [
+        {"label": "FTP S58 charge-pipe kit sg71466", "url": "https://www.turnermotorsport.com/p-46444158-s58-charge-pipe-kit/", "scope": "F97 X3 M S58 explicitly listed; special order; excludes larger 2-to-1 charge pipe", "role": "charge-pipe replacement kit"}
+      ],
+      "evidence": [],
+      "reason": "The live product page explicitly lists F97 X3 M S58 and discloses that the larger 2-to-1 pipe is not included.",
+      "correction": "The factory S58 pipes are mixed rubber/aluminum, not simply all plastic; do not call replacement mandatory for every tune."
+    },
+    {
+      "issueId": "bmw-x3-n20-timing-chain-2011",
+      "repairItems": "Confirm N20 engine/production date and timing diagnosis; complete chain/guide/tensioner/oil-pump-chain service kit when failure confirmed",
+      "decision": "EXACT N20 KIT AFTER DIAGNOSIS",
+      "destinations": [
+        {"label": "FCP Euro N20/N26 timing kit 11318648732KT", "url": "https://www.fcpeuro.com/products/bmw-n20-n26-timing-chain-kit-11318648732kt", "scope": "F25 X3 N20 where cataloged; verify VIN/production date and installer-required access parts", "role": "engine-specific timing kit"}
+      ],
+      "evidence": [],
+      "reason": "The live kit identifies N20/N26 applications including X3, but the broad 2011-2017 row still requires engine confirmation.",
+      "correction": "Remove the universal 80,000-mile preventive recommendation and diagnose before purchase."
+    },
+    {
+      "issueId": "bmw-x3-n20-timing-chain-2012",
+      "repairItems": "N20/production-date/VIN confirmation; noise reproduction and BMW diagnosis; historical extension disclosed as expired",
+      "decision": "DIAGNOSIS / WARRANTY-HISTORY ROUTE",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2013-2015 F25 X3 N20 timing diagnosis and VIN history", "role": "BMW-qualified service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source rejects category fitment as proof and distinguishes an expired extension from a recall.",
+      "correction": "Do not attach a kit to lower-engine whine alone."
+    },
+    {
+      "issueId": "bmw-x3-oil-filter-housing-gasket-2007",
+      "repairItems": "Split N52 and N20 engines; leak-source diagnosis; housing and oil-cooler gaskets only as equipped; coolant/oil service; belt/alternator inspection",
+      "decision": "ENGINE / HOUSING CONFIGURATION SPLIT",
+      "destinations": [
+        {"label": "BMW X3 oil-filter-housing gasket catalog", "url": "https://www.fcpeuro.com/BMW-parts/X3/Oil-Filter-Housing-Gasket/", "scope": "2007-2017 X3; select exact engine, generation, VIN, and oil-cooler configuration", "role": "vehicle-specific gasket catalog"}
+      ],
+      "evidence": [],
+      "reason": "N52 and N20 housings and seals are not interchangeable, and not every configuration uses the same cooler gasket.",
+      "correction": "Split engines; remove universal labor/cost and blanket cheap-gasket lifespan claims."
+    },
+    {
+      "issueId": "bmw-x3-transfer-case-actuator-2004",
+      "repairItems": "xDrive fault diagnosis; generation/unit identification; motor versus gear versus internal transfer-case failure; exact repair kit/actuator; unit-specific fluid",
+      "decision": "MULTI-GENERATION DRIVETRAIN SPLIT",
+      "destinations": [
+        {"label": "BMW X3 transfer-case catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x3-transfer_case.html", "scope": "2004-2023 E83/F25/G01 xDrive; VIN and exact transfer-case unit required", "role": "OEM actuator/transfer-case catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "actuator/motor/gear/internal diagnosis", "role": "drivetrain service"}
+      ],
+      "evidence": [],
+      "reason": "The 20-year range spans multiple transfer cases; a plastic-gear kit cannot be approved across all units.",
+      "correction": "Remove 'when not if,' fixed prices, and generic clicking diagnosis; verify the fault and unit before parts."
+    },
+    {
+      "issueId": "bmw-x3-transfer-case-actuator-2011",
+      "repairItems": "Generation/unit-specific xDrive diagnosis; exact actuator only if confirmed; internal transfer-case inspection; correct fluid service",
+      "decision": "GENERATION / UNIT GATE",
+      "destinations": [
+        {"label": "BMW X3 transfer-case catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x3-transfer_case.html", "scope": "2011-2026 F25/G01/G45 xDrive; VIN and transfer-case unit required", "role": "OEM drivetrain catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "xDrive diagnosis and fluid/service functions", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The row crosses at least three generations and cannot support one actuator or fluid.",
+      "correction": "Do not claim the actuator always replaces without transfer-case removal or that rebuilt units are universally inferior."
+    },
+    {
+      "issueId": "bmw-x3-valve-cover-gasket-2004",
+      "repairItems": "Split M54 and N52 engines/model years; valve-cover gasket; cover/PCV by condition; coil boots only if oil-damaged; VANOS O-rings only if leaking",
+      "decision": "SOURCE RANGE / ENGINE CORRECTION",
+      "destinations": [
+        {"label": "BMW X3 valve-cover gasket catalog", "url": "https://www.fcpeuro.com/BMW-parts/X3/Valve-Cover-Gasket/", "scope": "E83/F25 X3; select exact M54 or N52 engine and VIN", "role": "engine-specific gasket catalog"}
+      ],
+      "evidence": [],
+      "reason": "The title names M54/N52 but the 2004-2017 range reaches other engines; VANOS O-rings and coil boots are conditional.",
+      "correction": "Narrow/split the years by engine, do not bundle unrelated VANOS seals, and remove unsafe 'one quart low is OK' guidance."
+    },
+    {
+      "issueId": "bmw-x3-valve-cover-gasket-2011",
+      "repairItems": "Engine/VIN-specific leak diagnosis; gasket if cover serviceable; complete warped/cracked cover; PCV branch; cleanup and correct torque procedure",
+      "decision": "ENGINE / COVER-CONDITION GATE",
+      "destinations": [
+        {"label": "BMW X3 valve-cover catalog", "url": "https://www.fcpeuro.com/BMW-parts/X3/Valve-Cover/", "scope": "2011-2022 F25/G01 X3; select exact engine, VIN, gasket/cover branch", "role": "vehicle-specific cover catalog"}
+      ],
+      "evidence": [],
+      "reason": "The range spans multiple engines/covers; the source correctly makes the complete cover conditional on damage.",
+      "correction": "Do not attach one cover or gasket across N20/N52/N55/B-series engines."
+    },
+    {
+      "issueId": "bmw-x3-vanos-solenoid-2007",
+      "repairItems": "Split N52 and N55 VANOS systems; BMW-capable diagnosis; affected intake/exhaust solenoid/seals; VIN campaign check where applicable; full VANOS only after confirmation",
+      "decision": "ENGINE / POSITION / CAMPAIGN SPLIT",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for applicable VANOS gear-bolt campaign", "role": "manufacturer campaign route"},
+        {"label": "BMW X3 VANOS catalog", "url": "https://www.fcpeuro.com/BMW-parts/X3/VANOS-Solenoid/", "scope": "2007-2017 X3; select N52/N55, intake/exhaust, VIN, and diagnosed component", "role": "engine-specific VANOS catalog"}
+      ],
+      "evidence": [],
+      "reason": "N52/N55 and campaign repairs cannot be combined into one solenoid replacement rule.",
+      "correction": "Remove fixed preventive replacement and oil-interval claims; no generic scanner link without BMW VANOS coverage."
     }
   ]
 }
