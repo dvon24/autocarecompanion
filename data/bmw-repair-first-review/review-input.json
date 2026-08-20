@@ -317,6 +317,163 @@
       "evidence": ["https://www.germanaudiotech.com/products/bmw-e36-11-button-on-board-computer-pixel-repair"],
       "reason": "The live mail-in page found for E36 pixel repair is explicitly for the 11-button on-board computer, not the instrument cluster named in this issue. Reusing it would link the wrong module.",
       "correction": "Correct the title/device distinction and verify an instrument-cluster-specific mail-in service before approving a commerce CTA."
+    },
+    {
+      "issueId": "bmw-3-series-e36-rear-shock-mount-trunk-floor-cracking",
+      "repairItems": "Structural inspection; rear shock-tower reinforcement plates for intact sheet metal; repair panel and welding if torn",
+      "decision": "DAMAGE-GATED PARTIAL APPROVAL",
+      "destinations": [
+        {"label":"AKG rear shock-mount reinforcement plates RSMR3036","url":"https://akgmotorsport.com/products/bmw-rear-shock-mount-reinforcements-e30-e36-e46-z3","scope":"1992-1999 E36 318/323/325/328/M3; preventive or intact-tower reinforcement only","role":"reinforcement part"},
+        {"label":"BMW dealer/body repair locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Structural/body repair when sheet metal or trunk floor is torn","role":"structural service route"}
+      ],
+      "evidence": [],
+      "reason": "The AKG page is live, in stock, buyable and explicitly lists E36 models. Reinforcement plates do not replace torn sheet metal or qualified welding.",
+      "correction": "Do not present the plates as the complete repair after trunk-floor damage. Remove the unrelated rear-subframe-bushing suggestion from the shock-tower remedy unless separately diagnosed."
+    },
+    {
+      "issueId": "bmw-3-series-n20-timing-chain-2012",
+      "repairItems": "VIN/chassis/engine/build-date check; BMW timing-chain diagnostic procedure; coverage check; diagnosed components only",
+      "decision": "DIAGNOSIS/COVERAGE FIRST / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2012-2015 3 Series N20/N26; BMW test-plan diagnosis","role":"diagnostic service"},
+        {"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"VIN required; historical extension is not a current promise","role":"coverage check"}
+      ],
+      "evidence": ["https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf"],
+      "reason": "The repair text explicitly says to diagnose before replacing anything and rejects catalog fitment as remedy proof.",
+      "correction": "No timing kit or scanner link until the VIN, drivetrain and test-plan result identify the repair."
+    },
+    {
+      "issueId": "bmw-3-series-oil-leaks-2006",
+      "repairItems": "Engine-specific valve-cover gasket/assembly and/or oil-filter-housing gasket; clean oil and monitor level",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2006-2023 3 Series; identify engine, chassis and exact leak source","role":"diagnostic/fitment service"}],
+      "evidence": [],
+      "reason": "The row combines seven engines, multiple generations and two leak sources. Their covers, gaskets and ancillary requirements are not interchangeable.",
+      "correction": "Split by engine/chassis and valve-cover versus OFHG leak before linking any product."
+    },
+    {
+      "issueId": "bmw-3-series-water-pump-2006",
+      "repairItems": "Engine-specific water pump; thermostat where applicable; BMW-spec coolant and bleed/flush; immediate overheat response",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2006-2023 3 Series; exact engine/chassis and pump type required","role":"diagnostic/fitment service"}],
+      "evidence": [],
+      "reason": "The title says all engines use an electric pump, which is false across the listed gasoline and diesel engines. Pump, thermostat and coolant quantities vary substantially.",
+      "correction": "Split electric versus mechanical pumps by exact engine/chassis and remove the blanket 80,000-mile replacement claim before adding parts."
+    },
+    {
+      "issueId": "bmw-3series-absdsc-module-internal-failure-2000",
+      "repairItems": "ABS/DSC-capable diagnosis; wheel-speed sensor/tone-ring exclusion; original-module repair if internal fault confirmed; post-repair road test",
+      "decision": "DIAGNOSIS-GATED REPAIR SERVICE",
+      "destinations": [
+        {"label":"XeMODeX E46 ABS module repair service","url":"https://xemodex.com/us/product/bmw-e46-anti-lock-brake-abs-module-repair-service/","scope":"1998-2005 E46 3 Series; original module only after internal fault is confirmed","role":"mail-in module repair"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"ABS/DSC diagnosis and wheel-speed live-data verification","role":"diagnostic service"}
+      ],
+      "evidence": [],
+      "reason": "The live repair-service page is in stock, buyable and explicitly lists E46 3 Series. It must remain secondary to sensor/tone-ring diagnosis.",
+      "correction": "Do not send the module or buy a scanner based only on warning lamps. Confirm module part/service eligibility first."
+    },
+    {
+      "issueId": "bmw-3series-automatic-transmission-no-reverse--2000",
+      "repairItems": "Transmission-capable diagnosis; fluid condition and ID; valve-body/sleeve service or rebuild with updated hard parts as diagnosed; correct ZF fluid/fill procedure",
+      "decision": "TRANSMISSION-ID DIAGNOSIS / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2000-2005 E46; identify exact transmission and internal fault","role":"transmission diagnostic service"}],
+      "evidence": [],
+      "reason": "The row omits model, engine, transmission code and drivetrain. Not every automatic E46 used the ZF 5HP19, and fluid/parts are transmission-specific.",
+      "correction": "Identify the transmission tag/code before linking fluid, valve-body parts or a rebuild kit. No generic OBD link."
+    },
+    {
+      "issueId": "bmw-3series-ccvoil-separator-failure-causing-2000",
+      "repairItems": "BMW inspection of oil separator, hoses and dipstick guide tube; exact-drivetrain bulletin correction",
+      "decision": "DIAGNOSIS-FIRST / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2001-2005 E46 M54; cold-climate CCV diagnosis and drivetrain-specific correction","role":"diagnostic service"}],
+      "evidence": [],
+      "reason": "The symptoms can indicate severe oil ingestion or hydrolock risk, and the revised fix says catalog candidates do not prove the failed component.",
+      "correction": "Keep commerce off until the separator, hoses and dipstick tube are inspected and the exact drivetrain correction is known."
+    },
+    {
+      "issueId": "bmw-3series-cooling-system-expansion-tank-2000",
+      "repairItems": "Cooling-system pressure test; expansion tank/radiator/hoses/thermostat/cap as found; immediate overheat response",
+      "decision": "ENGINE/TRANSMISSION-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        {"label":"FCP Euro E46 cooling-system overhaul kit 376716261KT1","url":"https://www.fcpeuro.com/products/bmw-mango-e46-cooling-system-overhaul-kit-mangocoolkit1","scope":"E46 325Ci/325i/325xi/330Ci/330i/330xi; validate exact vehicle and transmission","role":"comprehensive preventive kit"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Pressure-test and diagnose the actual leak before purchase","role":"diagnostic service"}
+      ],
+      "evidence": [],
+      "reason": "The live FCP page is in stock, buyable and includes the major named cooling parts, but it covers only the listed M54 models and requires vehicle validation.",
+      "correction": "Hold unlisted 2000-2005 variants and transmission-specific radiator configurations. Do not imply every seep requires the full kit."
+    },
+    {
+      "issueId": "bmw-3series-final-stage-unit-fsu-2000",
+      "repairItems": "Confirm erratic blower/parasitic draw; final-stage unit; blower motor or HVAC panel only if symptoms remain",
+      "decision": "DIAGNOSIS-GATED PART APPROVAL",
+      "destinations": [{"label":"Mahle-Behr final-stage unit 64116923204","url":"https://shop.bimmerbum.com/5-00690-oem-final-stage-blower-motor-resistor-for-bmw-e46-e39-e53-e83-64116923204/","scope":"1999-2006 E46 3 Series including M3; confirm VIN","role":"primary repair part after diagnosis"}],
+      "evidence": [],
+      "reason": "The live listing is available, has Add to Cart, identifies the latest FSU design and explicitly lists E46 3 Series.",
+      "correction": "Do not promise that the FSU cures a failed blower motor or HVAC control panel."
+    },
+    {
+      "issueId": "bmw-3series-front-control-arm-bushings-2000",
+      "repairItems": "Inspect bushings and ball joints; drivetrain-specific bushings/control arms; alignment; diagnose remaining vibration",
+      "decision": "DRIVETRAIN-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        {"label":"Lemforder RWD E46 front control-arm bushing kit 31126783376","url":"https://www.fcpeuro.com/products/bmw-control-arm-bushing-kit-front-e46-31126757623l","scope":"E46 323/325/328/330 rear-wheel-drive listed applications; validate model and suspension","role":"bushings only"},
+        {"label":"Lemforder xDrive/xi bushing set 31129063163","url":"https://oembimmerparts.com/products/bmw-e46-330xi-325xi-control-arm-bushing-set-oem-31129063163","scope":"2001-2005 E46 325xi/330xi","role":"AWD bushings only"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Ball-joint/control-arm inspection and alignment","role":"inspection/service"}
+      ],
+      "evidence": [],
+      "reason": "The buyable listings establish separate RWD and xi fitment. They are bushing sets, not complete control-arm-and-alignment repairs.",
+      "correction": "Do not reuse the RWD kit for xi cars or claim either listing includes both control arms."
+    },
+    {
+      "issueId": "bmw-3series-gm5-body-control-module-2000",
+      "repairItems": "Verify fuses and door-lock actuators; original GM5 relay repair if multiple functions implicate module; post-repair function test",
+      "decision": "DIAGNOSIS-GATED REPAIR SERVICE",
+      "destinations": [{"label":"BMWGM5 E46 module repair service","url":"https://www.bmwgm5.com/GM5_Repair_Service.htm","scope":"1998-2005 E46; contact service first to distinguish actuator from GM5 fault","role":"mail-in/drive-up module repair"}],
+      "evidence": [],
+      "reason": "The live service explicitly lists E46, requires symptom screening before accepting a module, and repairs the original unit.",
+      "correction": "Do not link a replacement module before actuator/fuse diagnosis or omit coding requirements for a swap."
+    },
+    {
+      "issueId": "bmw-3series-ignition-coil-pack-failure-2000",
+      "repairItems": "VIN/campaign-history check; inspect and replace affected BREMI coils as campaign directs; verification",
+      "decision": "CAMPAIGN-FIRST / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2003-2005 E46 M54/M56; VIN required","role":"official campaign route"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Campaign 05E-A01 history and coil inspection","role":"authorized service"}
+      ],
+      "evidence": [],
+      "reason": "Fitment cannot identify whether the installed coil is an affected BREMI unit or whether the campaign remains open.",
+      "correction": "No coil purchase before VIN and campaign-history verification."
+    },
+    {
+      "issueId": "bmw-3series-rear-subframe-trunk-2000",
+      "repairItems": "Lift-based structural inspection; production-date and damage-severity repair plan; qualified welding/body repair",
+      "decision": "STRUCTURAL SERVICE / NO RETAIL PART",
+      "destinations": [{"label":"BMW dealer/body repair locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2000-2005 E46; rear-axle-carrier structural inspection","role":"structural service route"}],
+      "evidence": [],
+      "reason": "The correct repair depends on cracking location and severity. A reinforcement plate alone is not a verified remedy for existing structural damage.",
+      "correction": "Do not imply historical settlement coverage is current or sell a plate before inspection."
+    },
+    {
+      "issueId": "bmw-3series-window-regulator-cable-and-2000",
+      "repairItems": "Door/position/body-style-specific window regulator; vapor-barrier adhesive; clips/guides as needed; glass alignment",
+      "decision": "POSITION/BODY-STYLE CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2000-2005 E46; identify body style, door and side","role":"fitment/service route"}],
+      "evidence": [],
+      "reason": "Regulators differ by sedan/coupe/convertible/wagon, front/rear and left/right. None of those fields are present.",
+      "correction": "Add body style, door position and side before linking the regulator; list adhesive and clips separately."
+    },
+    {
+      "issueId": "bmw-4-series-b58-charge-pipe-2017",
+      "repairItems": "Generation-specific aluminum charge pipe; inspect intercooler boots/couplings",
+      "decision": "GENERATION-SPLIT PART APPROVAL",
+      "destinations": [
+        {"label":"Bimmer Plug F-chassis B58 charge pipes","url":"https://bimmerplug.com/products/b58-engine-charge-pipes-bmw-f-chassis","scope":"2017-2020 F32/F33/F36 440i B58; validate chassis","role":"F-chassis repair part"},
+        {"label":"MBS Gen2 B58 aluminum charge pipe","url":"https://midwestbimmersupply.com/products/mbs-gen-2-b58-aluminum-charge-pipe","scope":"2021+ G22/G23/G26 M440i/M440i xDrive with two-bolt B58TU connection; verify exact model year","role":"G-chassis repair part"}
+      ],
+      "evidence": [],
+      "reason": "The live G-chassis page is buyable and explicitly lists 2021+ M440i; the F-chassis listing explicitly covers 2017-2020 440i. A checked HPS alternative was rejected because all displayed variants were unavailable.",
+      "correction": "Split 440i F-chassis from M440i G-chassis and do not stretch either link to 2025 without the seller's exact year/application confirmation."
     }
   ]
 }
