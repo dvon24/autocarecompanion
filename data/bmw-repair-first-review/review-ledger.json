@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "make": "BMW",
-  "generatedAt": "2026-08-20T17:35:20.451Z",
+  "generatedAt": "2026-08-20T17:38:36.615Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "9c5acba63181f1d3d714c4d0090380ab656767ee3836b4056dfe3873dadc67e0",
   "publishedIssueCount": 385,
-  "reviewedIssueCount": 300,
-  "remainingIssueCount": 85,
-  "reviewedWithDestinationCount": 297,
-  "destinationCount": 430,
-  "distinctUrlCount": 146,
+  "reviewedIssueCount": 325,
+  "remainingIssueCount": 60,
+  "reviewedWithDestinationCount": 322,
+  "destinationCount": 468,
+  "distinctUrlCount": 161,
   "scannerDestinationCount": 0,
   "missingHowToFixCount": 3,
   "reviews": [
@@ -6876,6 +6876,584 @@
       "ymmt": "2007-2017 | BMW | X3 | M40i, M50, xDrive35i | N52, N55",
       "title": "VANOS Solenoid Failure (N52, N55 Engines)",
       "howToFix": "Replace VANOS solenoids and seals ($250-400 European shops, $729-882 US average). Use high-quality oil (5W-30 or 0W-40 BMW LL-01 spec) and change every 5,000-7,000 miles to prevent future failures - cheap oil or extended intervals kill VANOS solenoids. Some cases may require complete VANOS unit rebuild ($1,500-2,500). PREVENTIVE: Replace VANOS solenoids and seals every 50k miles as maintenance - much cheaper than waiting for failure. On F25 X3 with N52/N55, check TSB SI B12 14 10 for VANOS gear assembly bolt issue."
+    },
+    {
+      "issueId": "bmw-x3-wastegate-rattle-2011",
+      "repairItems": "Boost/wastegate diagnosis; split N20/N55/B58 and vacuum/electronic actuation; actuator/repair kit only if serviceable; bank/VIN-specific turbo only for severe wear",
+      "decision": "ENGINE / ACTUATION-SYSTEM SPLIT",
+      "destinations": [
+        {
+          "label": "BMW X3 turbo-control catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/X3/Turbocharger-Boost-Control-Valve/",
+          "scope": "2011-2023 X3; select engine, chassis, production date, and diagnosed control system",
+          "role": "vehicle-specific boost-control catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "wastegate play, boost leak, and turbo diagnosis",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The range combines three engine families and different actuator designs; rattle without boost loss can be monitored.",
+      "correction": "Do not attach one VTT kit or complete turbo across N20/N55/B58; confirm serviceability and exact fitment.",
+      "sequence": 301,
+      "ymmt": "2011-2023 | BMW | X3 | M40i, M50, sDrive30i, xDrive28i, xDrive30i, xDrive35i",
+      "title": "Turbocharger Wastegate Rattle (N55, N20, B58 Engines)",
+      "howToFix": "Replace wastegate actuator ($400-800) or use aftermarket wastegate repair kit with upgraded stainless steel bushings ($150-300). Some cases require complete turbocharger replacement ($2,000-$4,000). VTT (Vargas Turbo Technologies) repair kits popular on forums - upgraded materials prevent future rattle. MONITORING: Early wastegate rattle may be harmless (annoying but no performance loss). If car boosts normally and no underboost codes, can monitor rattle without urgent repair. However, if check engine light appears with code 30FF or boost pressure drops, repair immediately to prevent turbo damage."
+    },
+    {
+      "issueId": "bmw-x3-water-pump-2007",
+      "repairItems": "Stop/tow after overheat; split N52/N20 and pump variants; exact pump after fault test; thermostat by condition; VIN recall/campaign check where applicable",
+      "decision": "ENGINE / VIN / CAMPAIGN GATE",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN check for applicable X3 protective-shield campaign",
+          "role": "manufacturer campaign route"
+        },
+        {
+          "label": "BMW X3 water-pump catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-x3-water_pump.html",
+          "scope": "2007-2017 X3; exact engine, VIN, and pump circuit required",
+          "role": "OEM pump catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "N52 and N20 applications, recalls, and pump part numbers cannot be merged into one preventive replacement link.",
+      "correction": "Remove fixed 70-80k replacement and price claims; diagnose and verify VIN campaign status.",
+      "sequence": 302,
+      "ymmt": "2007-2017 | BMW | X3 | sDrive30i, xDrive28i, xDrive30i | N52, N20",
+      "title": "Electric Water Pump Failure (N52, N20 Engines)",
+      "howToFix": "Replace electric water pump at first sign of failure ($800 parts + labor). Consider preventative replacement at 70-80k miles to avoid being stranded ($400 parts, DIY-able). CRITICAL: If you own 2013-2017 X3 28i, verify recall repair (protective shield installation) has been completed to prevent fire risk - check with BMW dealer using VIN. If engine overheats, PULL OVER IMMEDIATELY and shut off - driving with overheating warps cylinder heads ($4,000+ repair). Call tow truck."
+    },
+    {
+      "issueId": "bmw-x3m-brake-wear-2020",
+      "repairItems": "Identify brake option and axle; measure pads/rotors; VIN/corner-specific OEM replacement; track pads/fluid only for actual use and temperature range",
+      "decision": "BRAKE-OPTION / AXLE GATE",
+      "destinations": [
+        {
+          "label": "BMW X3 M brake catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/X3-M/Brakes/",
+          "scope": "2020-2023 F97 X3 M; select VIN, front/rear axle, rotor side, and brake option",
+          "role": "vehicle-specific brake catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "brake measurement and track-use setup",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Rotors are side-specific and pad/fluid choices depend on street versus track use; the claimed BimmerWorld kit page was not verified.",
+      "correction": "Hold named aftermarket pads/rotors until exact F97 fitment, axle, and operating range are verified.",
+      "sequence": 303,
+      "ymmt": "2020-2023 | BMW | X3 M | S58",
+      "title": "Accelerated Brake Pad & Rotor Wear from Vehicle Weight - F97 X3 M / F98 X4 M",
+      "howToFix": "Front brake replacement: OEM front rotor (34118054825 left, matching right) with OEM M compound pads. Complete OEM front brake kit available from BimmerWorld (34108064561K1, ~$800-$1,000). Rear brake kit similarly priced. For track use: Upgrade to Brembo GT brake pad set (BM8 compound) for improved heat resistance and longer pad life. EBC Yellowstuff or Hawk HPS 5.0 pads are popular street/track compromise choices ($150-$250 per axle). StopTech slotted rotors offer improved heat dissipation. For dedicated track cars: Brembo GT big brake kit with 412x38mm discs available ($4,000-$6,000 installed). Budget $2,000-$3,000 per year for brake maintenance if driving spiritedly. Use high-temperature brake fluid (Motul RBF 660 or ATE Typ 200) and flush every 12 months."
+    },
+    {
+      "issueId": "bmw-x3m-cooling-track-use-2020",
+      "repairItems": "Log track temperatures; distinguish charge-cooler core, heat exchangers, engine radiator, oil cooling, and coolant maintenance; upgrade only the limiting circuit",
+      "decision": "TRACK CONFIGURATION / COOLING-CIRCUIT GATE",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "F97 X3 M S58 temperature diagnosis and track cooling plan",
+          "role": "specialist service"
+        },
+        {
+          "label": "Turner F97 X3 M cooling catalog",
+          "url": "https://www.turnermotorsport.com/BMW-F97/c-163-bmw-cooling",
+          "scope": "F97 X3 M; select exact diagnosed circuit and verify live fitment",
+          "role": "vehicle-specific cooling catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The S58 uses water-to-air charge cooling; calling every front heat exchanger an intercooler obscures which circuit needs work.",
+      "correction": "Remove mandatory intervals and preemptive tank/thermostat replacements; log the actual limiting temperature/circuit first.",
+      "sequence": 304,
+      "ymmt": "2020-2023 | BMW | X3 M | S58",
+      "title": "Cooling System Heat Soak During Track/Spirited Driving - F97 X3 M / F98 X4 M",
+      "howToFix": "For track use: Upgrade intercooler to do88 front-mount intercooler ($1,200-$1,800) - the community standard for S58 heat management. Add CSF high-performance radiator ($600-$900) for sustained track work. Dinan or VRSF also offer intercooler upgrades in the $1,000-$1,500 range. For street/canyon driving: Stock cooling is adequate but ensure coolant flush every 2 years/30,000 miles and inspect expansion tank for cracks. Replace coolant expansion tank preemptively at 60,000 miles if car is driven hard. For all X3 M/X4 M: Use BMW coolant only (mixed 50/50 with distilled water), replace thermostat at 80,000 miles preventatively, inspect all coolant hoses for bulging or softening at every oil change."
+    },
+    {
+      "issueId": "bmw-x3m-differential-bolt-2020",
+      "repairItems": "Inspect revised bolt/mount/bushing and driveline; F97/F98 FJ bolt/collar kit when owner accepts NVH/installation tradeoffs; torque verification",
+      "decision": "EXACT F97/F98 KIT; CLAIMS QUALIFIED",
+      "destinations": [
+        {
+          "label": "FJ X3M/X4M diff bolt and collar kit",
+          "url": "https://bmgperformance.com/products/fj-motorwerkes-x3m-x4m-diff-bolt-and-collar-upgrade",
+          "scope": "F97 X3 M/F98 X4 M as explicitly listed; confirm stock, revision, and installer requirements",
+          "role": "conditional differential-mount upgrade"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live page explicitly lists F97/F98 and discloses the complete bolt/bushing/collar contents.",
+      "correction": "Do not call the upgrade mandatory or repeat strength claims as independent proof; inspect the installed revision and discuss NVH.",
+      "sequence": 305,
+      "ymmt": "2020-2023 | BMW | X3 M | S58",
+      "title": "Rear Differential Mounting Bolt & Bush Failure - F97 X3 M / F98 X4 M",
+      "howToFix": "Replace factory differential bolt, bush, and collar with FJ Motorwerkes uprated diff bolt and collar upgrade kit. The FJ kit uses premium CNC-machined stainless steel components that can handle 170,000 PSI (39% stronger than BMW's revised bolt). Kit price approximately $255 (GBP). Available from FJ Motorwerkes directly, BMG Performance, AM Tuning, and H4ck Performance. Installation is straightforward - rear differential does not need to be fully removed. Budget $400-$600 total including labor. This upgrade is considered MANDATORY by the X3 M/X4 M community for any car making stock or above power. JXB Performance also offers a driveshaft carrier bearing upgrade for cars experiencing propshaft vibration as a companion fix."
+    },
+    {
+      "issueId": "bmw-x3m-s58-bearing-recall-2020",
+      "repairItems": "VIN campaign check; stop/tow for knocking; free dealer main-bearing remedy if affected; no preventive rod-bearing product outside campaign without diagnosis",
+      "decision": "CAMPAIGN ROUTES ONLY; AFTERMARKET CLAIM REJECTED",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN check for S58 main-bearing technical campaign",
+          "role": "manufacturer campaign route"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "campaign eligibility and covered repair",
+          "role": "authorized repair"
+        }
+      ],
+      "evidence": [],
+      "reason": "Main-bearing campaign work is not equivalent to aftermarket rod-bearing prevention.",
+      "correction": "Remove the unrelated 60,000-mile ACL rod-bearing recommendation and verify whether the action is a recall or technical campaign before labeling it.",
+      "sequence": 306,
+      "ymmt": "2020-2021 | BMW | X3 M",
+      "title": "S58 Engine Main Bearing Shell Recall / Stop Sale - F97 X3 M / F98 X4 M",
+      "howToFix": "Check VIN immediately against BMW recall database at bmwusa.com or contact your BMW dealer. If your vehicle is within the affected production date range, BMW will inspect and replace main bearing shells at no cost under the Tech Campaign. The repair requires removing the cylinder head and oil pan to access and replace all main bearing shells - this is a major repair (8-12 hours labor) but fully covered by BMW. Do NOT drive the vehicle if knocking is present. For S58 vehicles outside the recall range: Proactive rod bearing inspection is recommended at 60,000 miles for track-driven vehicles. ACL Race Series rod bearings 6B1510H-STD are the aftermarket upgrade choice on Bimmerpost for preventive replacement ($150-$250 for bearing set, $3,000-$5,000 total with labor)."
+    },
+    {
+      "issueId": "bmw-x3m-transfer-case-2020",
+      "repairItems": "Tire circumference/tread check; VTG faults and fluid condition; VIN-specific DTF-1 service if specified; actuator versus internal diagnosis; initialization",
+      "decision": "VIN / DIAGNOSIS / FLUID-SPEC GATE",
+      "destinations": [
+        {
+          "label": "BMW X3 M transfer-case catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-x3_m-transfer_case.html",
+          "scope": "2020-2023 F97 X3 M; VIN and production date required",
+          "role": "OEM drivetrain catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "VTG diagnosis, fluid service, and initialization",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Fluid interval, actuator, brace, and transfer-case replacement are distinct branches.",
+      "correction": "Remove mandatory 30k/15k intervals and generic tire-rotation advice; follow tire pattern/manual and exact unit specification.",
+      "sequence": 307,
+      "ymmt": "2020-2023 | BMW | X3 M | S58",
+      "title": "xDrive Transfer Case Stress & Fluid Degradation - F97 X3 M / F98 X4 M",
+      "howToFix": "Change transfer case fluid every 30,000 miles (BMW says \"lifetime fill\" - this is NOT correct for M vehicles driven hard). Use BMW DTF-1 transfer case fluid or equivalent high-quality synthetic. Check tire tread depth at every service - all 4 tires must be within 2/32\" of each other to prevent transfer case stress. Rotate tires every 5,000-7,000 miles. If transfer case actuator motor fails: FCP Euro guide for BMW transfer case actuator repair (part number varies by production date, ~$300-$600). For tuned cars: Consider transfer case brace/reinforcement and shortened fluid change intervals (every 15,000 miles). Complete transfer case replacement if internals are damaged: $3,000-$5,500 at independent specialist, $5,000-$8,000+ at dealer."
+    },
+    {
+      "issueId": "bmw-x4-n20-timing-chain-2015",
+      "repairItems": "Confirm N20/production date and timing diagnosis; complete chain/guide/tensioner/oil-pump-chain service kit; specialist installation",
+      "decision": "EXACT N20 KIT AFTER DIAGNOSIS",
+      "destinations": [
+        {
+          "label": "FCP Euro N20/N26 timing kit 11318648732KT",
+          "url": "https://www.fcpeuro.com/products/bmw-n20-n26-timing-chain-kit-11318648732kt",
+          "scope": "2015-2016 F26 X4 xDrive28i N20 where cataloged; verify VIN and completeness",
+          "role": "engine-specific timing kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live kit covers N20 applications including X4, subject to vehicle selection.",
+      "correction": "The cited warranty terms conflict with the adjacent corrected row; verify historical eligibility and remove universal preventive interval/labor claims.",
+      "sequence": 308,
+      "ymmt": "2015-2016 | BMW | X4 | xDrive28i, xDrive30i",
+      "title": "N20 Timing Chain Premature Failure - F26 X4 xDrive28i",
+      "howToFix": "Complete timing chain kit replacement including chain, guides, tensioner, and sprockets. Must be performed by experienced BMW technician. Preventive replacement recommended at 60,000-80,000 miles. BMW extended warranty to 8 years/100,000 miles under class action settlement. Upgraded reinforced chain kit available from aftermarket. Labor is 10-14 hours for X4 due to AWD and tight engine bay."
+    },
+    {
+      "issueId": "bmw-x4-n20-timing-chain-guide-2015",
+      "repairItems": "Variant/engine/production/VIN confirmation; noise reproduction and BMW diagnosis; expired historical coverage disclosed accurately",
+      "decision": "DIAGNOSIS / WARRANTY-HISTORY ROUTE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2015 F26 X4 N20 timing diagnosis and VIN history",
+          "role": "BMW-qualified service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly rejects category fitment as proof of failure.",
+      "correction": "Consolidate with the prior timing row and preserve the expired-coverage warning.",
+      "sequence": 309,
+      "ymmt": "2015-2015 | BMW | X4 | N20",
+      "title": "2015 X4 N20 Lower-Engine Whine Requires Timing-Chain Diagnosis",
+      "howToFix": "Confirm the exact xDrive28i variant, N20 engine, production date and VIN eligibility, then have a BMW-qualified technician reproduce the noise and follow current BMW diagnosis before replacing anything. The historical seven-year/70,000-mile coverage was a limited warranty extension, not a recall, and is not a current coverage promise. ShowMeTheParts established category-level fitment only, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-x4-oil-leak-2015",
+      "repairItems": "Leak-source diagnosis; engine/VIN-specific valve-cover gasket/cover or oil-filter-housing gasket; cleanup and belt inspection",
+      "decision": "MULTI-ENGINE / LEAK-SOURCE SPLIT",
+      "destinations": [
+        {
+          "label": "BMW X4 engine-gasket catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/X4/Engine-Gaskets-and-Seals/",
+          "scope": "2015-2023 F26/G02 X4; select engine, generation, VIN, and confirmed leak source",
+          "role": "vehicle-specific gasket catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row crosses two generations and several engines; the two leak locations require different parts.",
+      "correction": "Do not bundle both gaskets or repeat fixed labor times across all models.",
+      "sequence": 310,
+      "ymmt": "2015-2023 | BMW | X4",
+      "title": "Oil Leaks - Valve Cover & Oil Filter Housing - All Models",
+      "howToFix": "Replace valve cover gasket and/or oil filter housing gasket. Valve cover replacement is 3-4 hours labor on X4. Oil filter housing gasket is 1-2 hours. Both are routine maintenance items on BMW turbo engines. Use OEM gaskets for best longevity. Clean oil residue from engine bay after repair. Monitor oil level regularly to catch leaks early."
+    },
+    {
+      "issueId": "bmw-x4-rear-differential-mount-2015",
+      "repairItems": "Generation/VIN-specific mount inspection; exact front/rear bushing only if worn; aftermarket stiffness chosen with NVH tradeoff",
+      "decision": "GENERATION / POSITION GATE",
+      "destinations": [
+        {
+          "label": "BMW X4 differential-mount catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-x4-differential_mount.html",
+          "scope": "2015-2023 F26/G02 X4; VIN, axle, and bushing position required",
+          "role": "OEM mount catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "driveline mount diagnosis",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Front/rear mounts and two chassis generations are not one set, and stiffer bushings change NVH.",
+      "correction": "Inspect all mounts but replace only failed/strategically chosen components.",
+      "sequence": 311,
+      "ymmt": "2015-2023 | BMW | X4",
+      "title": "Rear Differential Mount Bushing Failure",
+      "howToFix": "Replace rear differential mount bushings. Both front and rear differential bushings should be inspected and replaced as a set. Upgraded aftermarket bushings with stiffer rubber or polyurethane are available for longer service life."
+    },
+    {
+      "issueId": "bmw-x4-transfer-case-2015",
+      "repairItems": "xDrive/VTG diagnosis; split F26/G02 transfer-case units; actuator versus internal failure; exact fluid and initialization",
+      "decision": "GENERATION / UNIT SPLIT",
+      "destinations": [
+        {
+          "label": "BMW X4 transfer-case catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-x4-transfer_case.html",
+          "scope": "2015-2023 F26/G02 xDrive; VIN and exact unit required",
+          "role": "OEM transfer-case catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "actuator/internal diagnosis and initialization",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row crosses incompatible transfer-case generations and multiple failure branches.",
+      "correction": "Do not attach a generic actuator or fixed 50,000-mile interval across all units.",
+      "sequence": 312,
+      "ymmt": "2015-2023 | BMW | X4",
+      "title": "Transfer Case Actuator Motor Failure - All xDrive X4",
+      "howToFix": "Diagnose specific failure. Transfer case actuator motor replacement ($800-1,200) is most common. Complete transfer case replacement required for internal failures ($2,500-4,000). Regular transfer case fluid changes every 50,000 miles may extend life. Some owners install aftermarket upgraded actuator motors. Common wear item on high-mileage xDrive BMW models."
+    },
+    {
+      "issueId": "bmw-x4m-brake-wear-2020",
+      "repairItems": "Identify brake option and axle; measure pads/rotors; side-specific OEM replacement; track compounds/fluid by use",
+      "decision": "DUPLICATE X3M/X4M BRAKE CONFIGURATION GATE",
+      "destinations": [
+        {
+          "label": "BMW X4 M brake catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/X4-M/Brakes/",
+          "scope": "2020-2023 F98 X4 M; VIN, axle, side, and brake option required",
+          "role": "vehicle-specific brake catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "This duplicates the X3 M brake text and contains a repeated F98 model label; exact axle/option selection remains required.",
+      "correction": "Fix duplicated title text and hold named aftermarket compounds until exact F98 fitment/use is verified.",
+      "sequence": 313,
+      "ymmt": "2020-2023 | BMW | X4 M | S58",
+      "title": "Accelerated Brake Pad & Rotor Wear from Vehicle Weight - F98 X4 M / F98 X4 M",
+      "howToFix": "Front brake replacement: OEM front rotor (34118054825 left, matching right) with OEM M compound pads. Complete OEM front brake kit available from BimmerWorld (34108064561K1, ~$800-$1,000). Rear brake kit similarly priced. For track use: Upgrade to Brembo GT brake pad set (BM8 compound) for improved heat resistance and longer pad life. EBC Yellowstuff or Hawk HPS 5.0 pads are popular street/track compromise choices ($150-$250 per axle). StopTech slotted rotors offer improved heat dissipation. For dedicated track cars: Brembo GT big brake kit with 412x38mm discs available ($4,000-$6,000 installed). Budget $2,000-$3,000 per year for brake maintenance if driving spiritedly. Use high-temperature brake fluid (Motul RBF 660 or ATE Typ 200) and flush every 12 months."
+    },
+    {
+      "issueId": "bmw-x4m-cooling-track-use-2020",
+      "repairItems": "Log track temperatures; identify limiting S58 cooling circuit; targeted radiator/heat-exchanger/charge-cooler upgrade; maintenance by actual specification",
+      "decision": "DUPLICATE / COOLING-CIRCUIT GATE",
+      "destinations": [
+        {
+          "label": "Turner F98 X4 M cooling catalog",
+          "url": "https://www.turnermotorsport.com/BMW-F98/c-163-bmw-cooling",
+          "scope": "F98 X4 M; select diagnosed circuit and verify live fitment",
+          "role": "vehicle-specific cooling catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "S58 track temperature logging and setup",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "This duplicates X3 M text and conflates the water-to-air charge cooler with a generic front-mount intercooler.",
+      "correction": "Fix duplicated F98 title and remove blanket tank/thermostat replacement intervals.",
+      "sequence": 314,
+      "ymmt": "2020-2023 | BMW | X4 M",
+      "title": "Cooling System Heat Soak During Track/Spirited Driving - F98 X4 M / F98 X4 M",
+      "howToFix": "For track use: Upgrade intercooler to do88 front-mount intercooler ($1,200-$1,800) - the community standard for S58 heat management. Add CSF high-performance radiator ($600-$900) for sustained track work. Dinan or VRSF also offer intercooler upgrades in the $1,000-$1,500 range. For street/canyon driving: Stock cooling is adequate but ensure coolant flush every 2 years/30,000 miles and inspect expansion tank for cracks. Replace coolant expansion tank preemptively at 60,000 miles if car is driven hard. For all X3 M/X4 M: Use BMW coolant only (mixed 50/50 with distilled water), replace thermostat at 80,000 miles preventatively, inspect all coolant hoses for bulging or softening at every oil change."
+    },
+    {
+      "issueId": "bmw-x4m-differential-bolt-2020",
+      "repairItems": "Inspect bolt/mount revision; F97/F98 FJ bolt/collar kit when selected; installation/torque and NVH review",
+      "decision": "EXACT DUPLICATE F97/F98 KIT",
+      "destinations": [
+        {
+          "label": "FJ X3M/X4M diff bolt and collar kit",
+          "url": "https://bmgperformance.com/products/fj-motorwerkes-x3m-x4m-diff-bolt-and-collar-upgrade",
+          "scope": "F98 X4 M explicitly listed; confirm stock/revision and installer requirements",
+          "role": "conditional differential-mount upgrade"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live kit explicitly covers F98, but the row duplicates the X3 M content.",
+      "correction": "Do not call the kit mandatory or treat seller strength claims as independent validation.",
+      "sequence": 315,
+      "ymmt": "2020-2023 | BMW | X4 M",
+      "title": "Rear Differential Mounting Bolt & Bush Failure - F98 X4 M / F98 X4 M",
+      "howToFix": "Replace factory differential bolt, bush, and collar with FJ Motorwerkes uprated diff bolt and collar upgrade kit. The FJ kit uses premium CNC-machined stainless steel components that can handle 170,000 PSI (39% stronger than BMW's revised bolt). Kit price approximately $255 (GBP). Available from FJ Motorwerkes directly, BMG Performance, AM Tuning, and H4ck Performance. Installation is straightforward - rear differential does not need to be fully removed. Budget $400-$600 total including labor. This upgrade is considered MANDATORY by the X3 M/X4 M community for any car making stock or above power. JXB Performance also offers a driveshaft carrier bearing upgrade for cars experiencing propshaft vibration as a companion fix."
+    },
+    {
+      "issueId": "bmw-x4m-s58-bearing-recall-2020",
+      "repairItems": "VIN campaign check; stop/tow for knocking; covered dealer main-bearing remedy if affected; no unrelated preventive rod-bearing sale",
+      "decision": "CAMPAIGN ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN check for S58 main-bearing technical campaign",
+          "role": "manufacturer campaign route"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "campaign eligibility/repair",
+          "role": "authorized service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Main-bearing campaign work is distinct from aftermarket rod-bearing prevention.",
+      "correction": "Fix repeated F98 title, verify recall-versus-campaign terminology, and remove the unrelated ACL recommendation.",
+      "sequence": 316,
+      "ymmt": "2020-2021 | BMW | X4 M | M40i, xDrive35i | S58",
+      "title": "S58 Engine Main Bearing Shell Recall / Stop Sale - F98 X4 M / F98 X4 M",
+      "howToFix": "Check VIN immediately against BMW recall database at bmwusa.com or contact your BMW dealer. If your vehicle is within the affected production date range, BMW will inspect and replace main bearing shells at no cost under the Tech Campaign. The repair requires removing the cylinder head and oil pan to access and replace all main bearing shells - this is a major repair (8-12 hours labor) but fully covered by BMW. Do NOT drive the vehicle if knocking is present. For S58 vehicles outside the recall range: Proactive rod bearing inspection is recommended at 60,000 miles for track-driven vehicles. ACL Race Series rod bearings 6B1510H-STD are the aftermarket upgrade choice on Bimmerpost for preventive replacement ($150-$250 for bearing set, $3,000-$5,000 total with labor)."
+    },
+    {
+      "issueId": "bmw-x4m-transfer-case-2020",
+      "repairItems": "Tire circumference/tread and VTG diagnosis; VIN-specific fluid/service; actuator versus internal failure; initialization",
+      "decision": "DUPLICATE / VIN-SPECIFIC DRIVETRAIN GATE",
+      "destinations": [
+        {
+          "label": "BMW X4 M transfer-case catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-x4_m-transfer_case.html",
+          "scope": "2020-2023 F98 X4 M; VIN and production date required",
+          "role": "OEM drivetrain catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "VTG diagnosis/service/initialization",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "This duplicates the X3 M transfer-case text and contains multiple conditional branches.",
+      "correction": "Fix repeated F98 title and remove universal fluid/rotation/brace claims.",
+      "sequence": 317,
+      "ymmt": "2020-2023 | BMW | X4 M | S58",
+      "title": "xDrive Transfer Case Stress & Fluid Degradation - F98 X4 M / F98 X4 M",
+      "howToFix": "Change transfer case fluid every 30,000 miles (BMW says \"lifetime fill\" - this is NOT correct for M vehicles driven hard). Use BMW DTF-1 transfer case fluid or equivalent high-quality synthetic. Check tire tread depth at every service - all 4 tires must be within 2/32\" of each other to prevent transfer case stress. Rotate tires every 5,000-7,000 miles. If transfer case actuator motor fails: FCP Euro guide for BMW transfer case actuator repair (part number varies by production date, ~$300-$600). For tuned cars: Consider transfer case brace/reinforcement and shortened fluid change intervals (every 15,000 miles). Complete transfer case replacement if internals are damaged: $3,000-$5,500 at independent specialist, $5,000-$8,000+ at dealer."
+    },
+    {
+      "issueId": "bmw-x5-air-suspension-2007",
+      "repairItems": "G05 VIN/options/campaign check; exact warning and ISTA test plan; campaign-specific sensor holder/software/air-line remedy or diagnosed component",
+      "decision": "CAMPAIGN / DIAGNOSIS ROUTE; NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "G05 X5 VIN campaign check",
+          "role": "manufacturer campaign route"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "ISTA suspension diagnosis and VIN-selected remedy",
+          "role": "authorized service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected article intentionally rejects a single compressor/strut/spring/conversion link.",
+      "correction": "Correct the issue ID's 2007 mismatch: the row is 2019-2026 G05.",
+      "sequence": 318,
+      "ymmt": "2019-2026 | BMW | X5",
+      "title": "G05 Suspension Warning: Check Faults and Campaigns Before Parts",
+      "howToFix": "Start with the VIN build/options, open-campaign status, exact warning, complete fault memory, and BMW ISTA test plan. If the VIN and production date match a BMW action, follow that bulletin: inspect the specified sensor-link holders, apply the specified software correction, or inspect the affected air line as directed. For other vehicles, test the particular system shown by the VIN and fault path before selecting any component. Do not buy a compressor, strut, spring, or conversion kit until the failed part and its VIN-specific number are established. This article intentionally has no retail link because no single part repairs all of these conditions."
+    },
+    {
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "repairItems": "EHC/ISTA diagnosis; confirm rear self-leveling option; leak-test springs/lines/valves; power/sensor checks; air-supply unit only after isolation; calibration",
+      "decision": "EXACT CONDITIONAL E70 AIR-SUPPLY UNIT",
+      "destinations": [
+        {
+          "label": "Genuine BMW air supply unit 37206859714",
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html",
+          "scope": "2007-2013 E70 X5 with applicable rear self-leveling system; VIN and diagnosis required",
+          "role": "conditional air-supply/compressor assembly"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live OEM page explicitly lists E70 X5 fitment and superseded numbers.",
+      "correction": "Do not order from sagging alone; leak/sensor/power faults can mimic a failed compressor.",
+      "sequence": 319,
+      "ymmt": "2007-2013 | BMW | X5 | 3.0si, 4.8i, xDrive30i, xDrive35d, xDrive35i, xDrive48i, xDrive50i, X5 M | N52, N62, M57, N55, N63, S63",
+      "title": "E70 Rear Air-Supply Unit: Diagnose the Self-Leveling System First",
+      "howToFix": "Read the EHC fault memory and run the applicable BMW ISTA test plan before ordering a compressor. Confirm the vehicle is equipped with rear self-leveling suspension, compare left/right ride height, check system power and wiring, inspect the height-sensor links, and leak-test the air springs, lines, and valve system. Test the air supply only after those checks isolate it. If BMW ETK/AIR selects the E70 air-supply system for the VIN and diagnosis confirms that assembly, replace it with current part 37-20-6-859-714, follow the BMW repair procedure, clear faults, and perform the required ride-height calibration. Do not install a generic compressor or a coil-conversion kit from symptoms alone."
+    },
+    {
+      "issueId": "bmw-x5-carbon-buildup-2007",
+      "repairItems": "Engine-specific fault/misfire/ignition/fueling/PCV diagnosis; borescope/manifold inspection; professional mechanical cleaning only for confirmed deposits",
+      "decision": "SERVICE ROUTE; UNIVERSAL PRODUCTS REJECTED",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2011-2018 direct-injected gasoline X5 engine-specific deposit diagnosis/cleaning",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected source rejects universal catch cans, sprays, fuel, and intervals.",
+      "correction": "Correct the issue ID's 2007 mismatch and identify the exact engine before authorizing cleaning.",
+      "sequence": 320,
+      "ymmt": "2011-2018 | BMW | X5 | xDrive35i, xDrive50i | N55, N63, N63TU1",
+      "title": "Possible Intake-Valve Deposits on Direct-Injected Gasoline Engines",
+      "howToFix": "Diagnose the actual symptom before authorizing cleaning: read BMW-specific faults and misfire counters, check ignition and fueling, smoke-test the intake where indicated, verify crankcase ventilation operation, and inspect the intake valves with a borescope or by removing the intake manifold when the test plan supports it. If substantial deposits are confirmed and match the complaint, use an engine-specific professional mechanical-cleaning procedure that protects closed valves and removes all blasting media before reassembly. Do not present a universal catch can, chemical spray, fuel brand, short oil interval, or high-RPM driving as a proven repair. Any crankcase-ventilation modification also requires engine-specific fitment and emissions-law review."
+    },
+    {
+      "issueId": "bmw-x5-coolant-pipe-leak-2007",
+      "repairItems": "Cold pressure test; confirmed E70 N62 valley transfer pipe; BMW pipe 11141439975 with VIN-specific seals/hardware; correct coolant/bleed/retest",
+      "decision": "EXACT CONDITIONAL N62 PIPE",
+      "destinations": [
+        {
+          "label": "Genuine BMW coolant transfer pipe 11141439975",
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pipe-11141439975.html",
+          "scope": "2007-2010 E70 X5 N62 where VIN-matched; seals/hardware from VIN diagram",
+          "role": "conditional OEM transfer pipe"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected How to Fix provides the exact N62 pipe number and rejects unrelated N63/thermostat/hoses.",
+      "correction": "Approve only after the valley leak is pressure-test confirmed.",
+      "sequence": 321,
+      "ymmt": "2007-2010 | BMW | X5 | 4.8i, xDrive48i | N62, N62TU",
+      "title": "E70 N62 Coolant Transfer Pipe Leak (Pressure-Test First)",
+      "howToFix": "Pressure-test the cooling system cold and inspect the engine valley and all accessible connections to identify the exact leak before ordering parts. If inspection confirms the N62 transfer pipe and BMW ETK/AIR selects it for the VIN, replace pipe 11-14-1-439-975 with the required seals and one-time-use hardware from the VIN-specific repair diagram. Refill and bleed the cooling system with the specified coolant, repeat the pressure test, and verify stable temperature. Do not automatically replace an N63 pipe, thermostat, or unrelated hoses from this article."
+    },
+    {
+      "issueId": "bmw-x5-n63-timing-chain-2008",
+      "repairItems": "VIN/service history and DME diagnosis; ISTA elongation test; both timing chains only if test fails; complete SIB procedure including oil/filter/programming",
+      "decision": "BMW SIB / ISTA SERVICE ROUTE; NO GENERIC KIT",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2010-2013 E70 X5 N63 SIB 11 16 14 timing test/repair",
+          "role": "BMW test-plan and complete repair"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly rejects a single tensioner and generic Cloyes kit as incomplete.",
+      "correction": "Correct the issue ID's 2008 mismatch; do not sell parts when ISTA says the chain is OK.",
+      "sequence": 322,
+      "ymmt": "2010-2013 | BMW | X5 | xDrive50i | N63",
+      "title": "Early N63 Timing-Chain Wear Check: ISTA Test Before Repair",
+      "howToFix": "Check the VIN and service history with a BMW center, diagnose stored VANOS/camshaft faults first, and run BMW's ISTA timing-chain elongation test. If the result is 'Timing chain is OK,' do not replace parts on this claim. If it is 'not OK,' BMW SIB 11 16 14 directs replacement of both timing chains under the VIN-specific repair instruction, followed by the required oil/filter service, priming steps, programming, and shorter oil-service interval. A single tensioner 11-31-7-557-741 or a generic Cloyes kit is not the complete repair and must not be presented as what the owner needs. Tow the vehicle rather than driving it when severe mechanical noise, oil-pressure warnings, or loss of timing is present."
+    },
+    {
+      "issueId": "bmw-x5-n63-wastegate-2008",
+      "repairItems": "DME boost data; charge-air smoke test; vacuum pump/reservoir/hoses/converters; actuator movement; engine generation/bank/VIN component only after diagnosis",
+      "decision": "DIAGNOSIS ROUTE; NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2010-2018 X5 N63/N63TU vacuum/boost/turbo diagnosis",
+          "role": "specialist service"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2010-2013 E70 Customer Care Package history where applicable",
+          "role": "VIN history/service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected source requires vacuum and charge-air diagnosis and says the care package was not an automatic wastegate replacement.",
+      "correction": "Correct the issue ID's 2008 mismatch and hold all turbos/actuators until bank and root cause are identified.",
+      "sequence": 323,
+      "ymmt": "2010-2018 | BMW | X5 | xDrive50i | N63, N63TU",
+      "title": "N63/N63TU Low Boost or Turbo Rattle: Diagnose Vacuum Control First",
+      "howToFix": "Read all DME faults and compare requested versus actual boost under the BMW test plan. Pressure- or smoke-test the intake and charge-air path, verify vacuum supply from the pump and reservoir, inspect both banks' hoses and pressure converters, and test actuator movement before condemning a turbocharger. Identify the engine generation, failed bank, and exact hardware in BMW ETK/AIR. Check a 2010-2013 E70 VIN for the N63 Customer Care Package only as applicable; its published six-point scope includes air-mass sensors, injectors, vacuum pump, low-pressure fuel sensor/feed line, fresh-air turbo seals, and crankcase-ventilation lines, not an automatic wastegate replacement. No retail link is published until diagnosis selects a VIN-specific component."
+    },
+    {
+      "issueId": "bmw-x5-oil-leaks-2000",
+      "repairItems": "Clean/trace highest leak source; M54 cover gasket set 11120030496 only for perimeter/wells; inspect cover, grommets, and CCV; separate other oil circuits",
+      "decision": "EXACT CONDITIONAL M54 GASKET SET",
+      "destinations": [
+        {
+          "label": "Genuine BMW valve-cover gasket set 11120030496",
+          "url": "https://www.fcpeuro.com/products/bmw-valve-cover-gasket-set-11120030496",
+          "scope": "2003-2006 E53 X5 3.0i M54 where cataloged; verify VIN and cover condition",
+          "role": "conditional gasket set"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected source narrows the issue to E53 M54 and supplies the exact gasket-set number.",
+      "correction": "Correct the issue ID's 2000 mismatch; reuse the cover only if it passes inspection.",
+      "sequence": 324,
+      "ymmt": "2003-2006 | BMW | X5 | 3.0i | M54",
+      "title": "E53 3.0i M54 Valve-Cover Gasket Leak (Confirm the Source)",
+      "howToFix": "Clean the engine and trace the highest fresh-oil source before ordering a gasket. If the leak is at the M54 cylinder-head-cover perimeter or spark-plug-well seals, inspect the plastic cover for cracks, warpage, damaged fastener grommets, and crankcase-ventilation faults. Reuse the cover only if it passes inspection, then install VIN/production-confirmed gasket set 11-12-0-030-496 with the BMW-specified grommets and sealant locations and torque sequence. If the cover or another oil circuit is the source, select that separate repair instead."
+    },
+    {
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "repairItems": "VTG/DSC ISTA diagnosis; tires/voltage/wiring/unit/fluid/ratios; confirmed ATC700 exchange servomotor 27102449709; resistor/hardware; initialization",
+      "decision": "EXACT CONDITIONAL ATC700 SERVOMOTOR",
+      "destinations": [
+        {
+          "label": "Genuine BMW exchange servomotor 27102449709",
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_actuator-27102449709.html",
+          "scope": "2007-2013 E70 X5 ATC700 where VIN/ETK selects it; verify classification resistor/hardware",
+          "role": "conditional transfer-case positioning motor"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected source supplies the current superseding motor and requires ATC700/VIN confirmation.",
+      "correction": "Correct the issue ID's 2000 mismatch and reject generic gear-only kits without opening/confirming the motor fault.",
+      "sequence": 325,
+      "ymmt": "2007-2013 | BMW | X5 | 3.0si, 4.8i, xDrive30i, xDrive35d, xDrive48i, X5 M | N52, N62, M57, S63",
+      "title": "E70 ATC700 Transfer-Case Positioning Motor (Diagnosis Required)",
+      "howToFix": "Read BMW VTG/DSC faults and run the applicable ISTA transfer-case test plan before buying a motor. Confirm tire sizes and wear, battery voltage, wiring, transfer-case type, fluid condition, calibration, and—especially after differential or transfer-case replacement—the VIN-correct front and rear gear ratios. If testing confirms the ATC700 positioning motor and BMW ETK/AIR selects this application for the VIN, current BMW exchange servomotor 27-10-2-449-709 supersedes 27-10-7-568-267. Install the correct classification resistor/hardware supplied or specified for the VIN and perform the required VTG initialization/calibration. A generic gear-only kit is not a universal BMW repair and should not be ordered without opening and confirming the exact motor failure."
     }
   ]
 }

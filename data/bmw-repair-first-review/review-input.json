@@ -3260,6 +3260,294 @@
       "evidence": [],
       "reason": "N52/N55 and campaign repairs cannot be combined into one solenoid replacement rule.",
       "correction": "Remove fixed preventive replacement and oil-interval claims; no generic scanner link without BMW VANOS coverage."
+    },
+    {
+      "issueId": "bmw-x3-wastegate-rattle-2011",
+      "repairItems": "Boost/wastegate diagnosis; split N20/N55/B58 and vacuum/electronic actuation; actuator/repair kit only if serviceable; bank/VIN-specific turbo only for severe wear",
+      "decision": "ENGINE / ACTUATION-SYSTEM SPLIT",
+      "destinations": [
+        {"label": "BMW X3 turbo-control catalog", "url": "https://www.fcpeuro.com/BMW-parts/X3/Turbocharger-Boost-Control-Valve/", "scope": "2011-2023 X3; select engine, chassis, production date, and diagnosed control system", "role": "vehicle-specific boost-control catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "wastegate play, boost leak, and turbo diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The range combines three engine families and different actuator designs; rattle without boost loss can be monitored.",
+      "correction": "Do not attach one VTT kit or complete turbo across N20/N55/B58; confirm serviceability and exact fitment."
+    },
+    {
+      "issueId": "bmw-x3-water-pump-2007",
+      "repairItems": "Stop/tow after overheat; split N52/N20 and pump variants; exact pump after fault test; thermostat by condition; VIN recall/campaign check where applicable",
+      "decision": "ENGINE / VIN / CAMPAIGN GATE",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for applicable X3 protective-shield campaign", "role": "manufacturer campaign route"},
+        {"label": "BMW X3 water-pump catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x3-water_pump.html", "scope": "2007-2017 X3; exact engine, VIN, and pump circuit required", "role": "OEM pump catalog"}
+      ],
+      "evidence": [],
+      "reason": "N52 and N20 applications, recalls, and pump part numbers cannot be merged into one preventive replacement link.",
+      "correction": "Remove fixed 70-80k replacement and price claims; diagnose and verify VIN campaign status."
+    },
+    {
+      "issueId": "bmw-x3m-brake-wear-2020",
+      "repairItems": "Identify brake option and axle; measure pads/rotors; VIN/corner-specific OEM replacement; track pads/fluid only for actual use and temperature range",
+      "decision": "BRAKE-OPTION / AXLE GATE",
+      "destinations": [
+        {"label": "BMW X3 M brake catalog", "url": "https://www.fcpeuro.com/BMW-parts/X3-M/Brakes/", "scope": "2020-2023 F97 X3 M; select VIN, front/rear axle, rotor side, and brake option", "role": "vehicle-specific brake catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "brake measurement and track-use setup", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Rotors are side-specific and pad/fluid choices depend on street versus track use; the claimed BimmerWorld kit page was not verified.",
+      "correction": "Hold named aftermarket pads/rotors until exact F97 fitment, axle, and operating range are verified."
+    },
+    {
+      "issueId": "bmw-x3m-cooling-track-use-2020",
+      "repairItems": "Log track temperatures; distinguish charge-cooler core, heat exchangers, engine radiator, oil cooling, and coolant maintenance; upgrade only the limiting circuit",
+      "decision": "TRACK CONFIGURATION / COOLING-CIRCUIT GATE",
+      "destinations": [
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "F97 X3 M S58 temperature diagnosis and track cooling plan", "role": "specialist service"},
+        {"label": "Turner F97 X3 M cooling catalog", "url": "https://www.turnermotorsport.com/BMW-F97/c-163-bmw-cooling", "scope": "F97 X3 M; select exact diagnosed circuit and verify live fitment", "role": "vehicle-specific cooling catalog"}
+      ],
+      "evidence": [],
+      "reason": "The S58 uses water-to-air charge cooling; calling every front heat exchanger an intercooler obscures which circuit needs work.",
+      "correction": "Remove mandatory intervals and preemptive tank/thermostat replacements; log the actual limiting temperature/circuit first."
+    },
+    {
+      "issueId": "bmw-x3m-differential-bolt-2020",
+      "repairItems": "Inspect revised bolt/mount/bushing and driveline; F97/F98 FJ bolt/collar kit when owner accepts NVH/installation tradeoffs; torque verification",
+      "decision": "EXACT F97/F98 KIT; CLAIMS QUALIFIED",
+      "destinations": [
+        {"label": "FJ X3M/X4M diff bolt and collar kit", "url": "https://bmgperformance.com/products/fj-motorwerkes-x3m-x4m-diff-bolt-and-collar-upgrade", "scope": "F97 X3 M/F98 X4 M as explicitly listed; confirm stock, revision, and installer requirements", "role": "conditional differential-mount upgrade"}
+      ],
+      "evidence": [],
+      "reason": "The live page explicitly lists F97/F98 and discloses the complete bolt/bushing/collar contents.",
+      "correction": "Do not call the upgrade mandatory or repeat strength claims as independent proof; inspect the installed revision and discuss NVH."
+    },
+    {
+      "issueId": "bmw-x3m-s58-bearing-recall-2020",
+      "repairItems": "VIN campaign check; stop/tow for knocking; free dealer main-bearing remedy if affected; no preventive rod-bearing product outside campaign without diagnosis",
+      "decision": "CAMPAIGN ROUTES ONLY; AFTERMARKET CLAIM REJECTED",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for S58 main-bearing technical campaign", "role": "manufacturer campaign route"},
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "campaign eligibility and covered repair", "role": "authorized repair"}
+      ],
+      "evidence": [],
+      "reason": "Main-bearing campaign work is not equivalent to aftermarket rod-bearing prevention.",
+      "correction": "Remove the unrelated 60,000-mile ACL rod-bearing recommendation and verify whether the action is a recall or technical campaign before labeling it."
+    },
+    {
+      "issueId": "bmw-x3m-transfer-case-2020",
+      "repairItems": "Tire circumference/tread check; VTG faults and fluid condition; VIN-specific DTF-1 service if specified; actuator versus internal diagnosis; initialization",
+      "decision": "VIN / DIAGNOSIS / FLUID-SPEC GATE",
+      "destinations": [
+        {"label": "BMW X3 M transfer-case catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x3_m-transfer_case.html", "scope": "2020-2023 F97 X3 M; VIN and production date required", "role": "OEM drivetrain catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "VTG diagnosis, fluid service, and initialization", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Fluid interval, actuator, brace, and transfer-case replacement are distinct branches.",
+      "correction": "Remove mandatory 30k/15k intervals and generic tire-rotation advice; follow tire pattern/manual and exact unit specification."
+    },
+    {
+      "issueId": "bmw-x4-n20-timing-chain-2015",
+      "repairItems": "Confirm N20/production date and timing diagnosis; complete chain/guide/tensioner/oil-pump-chain service kit; specialist installation",
+      "decision": "EXACT N20 KIT AFTER DIAGNOSIS",
+      "destinations": [
+        {"label": "FCP Euro N20/N26 timing kit 11318648732KT", "url": "https://www.fcpeuro.com/products/bmw-n20-n26-timing-chain-kit-11318648732kt", "scope": "2015-2016 F26 X4 xDrive28i N20 where cataloged; verify VIN and completeness", "role": "engine-specific timing kit"}
+      ],
+      "evidence": [],
+      "reason": "The live kit covers N20 applications including X4, subject to vehicle selection.",
+      "correction": "The cited warranty terms conflict with the adjacent corrected row; verify historical eligibility and remove universal preventive interval/labor claims."
+    },
+    {
+      "issueId": "bmw-x4-n20-timing-chain-guide-2015",
+      "repairItems": "Variant/engine/production/VIN confirmation; noise reproduction and BMW diagnosis; expired historical coverage disclosed accurately",
+      "decision": "DIAGNOSIS / WARRANTY-HISTORY ROUTE",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2015 F26 X4 N20 timing diagnosis and VIN history", "role": "BMW-qualified service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly rejects category fitment as proof of failure.",
+      "correction": "Consolidate with the prior timing row and preserve the expired-coverage warning."
+    },
+    {
+      "issueId": "bmw-x4-oil-leak-2015",
+      "repairItems": "Leak-source diagnosis; engine/VIN-specific valve-cover gasket/cover or oil-filter-housing gasket; cleanup and belt inspection",
+      "decision": "MULTI-ENGINE / LEAK-SOURCE SPLIT",
+      "destinations": [
+        {"label": "BMW X4 engine-gasket catalog", "url": "https://www.fcpeuro.com/BMW-parts/X4/Engine-Gaskets-and-Seals/", "scope": "2015-2023 F26/G02 X4; select engine, generation, VIN, and confirmed leak source", "role": "vehicle-specific gasket catalog"}
+      ],
+      "evidence": [],
+      "reason": "The row crosses two generations and several engines; the two leak locations require different parts.",
+      "correction": "Do not bundle both gaskets or repeat fixed labor times across all models."
+    },
+    {
+      "issueId": "bmw-x4-rear-differential-mount-2015",
+      "repairItems": "Generation/VIN-specific mount inspection; exact front/rear bushing only if worn; aftermarket stiffness chosen with NVH tradeoff",
+      "decision": "GENERATION / POSITION GATE",
+      "destinations": [
+        {"label": "BMW X4 differential-mount catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x4-differential_mount.html", "scope": "2015-2023 F26/G02 X4; VIN, axle, and bushing position required", "role": "OEM mount catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "driveline mount diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Front/rear mounts and two chassis generations are not one set, and stiffer bushings change NVH.",
+      "correction": "Inspect all mounts but replace only failed/strategically chosen components."
+    },
+    {
+      "issueId": "bmw-x4-transfer-case-2015",
+      "repairItems": "xDrive/VTG diagnosis; split F26/G02 transfer-case units; actuator versus internal failure; exact fluid and initialization",
+      "decision": "GENERATION / UNIT SPLIT",
+      "destinations": [
+        {"label": "BMW X4 transfer-case catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x4-transfer_case.html", "scope": "2015-2023 F26/G02 xDrive; VIN and exact unit required", "role": "OEM transfer-case catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "actuator/internal diagnosis and initialization", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The row crosses incompatible transfer-case generations and multiple failure branches.",
+      "correction": "Do not attach a generic actuator or fixed 50,000-mile interval across all units."
+    },
+    {
+      "issueId": "bmw-x4m-brake-wear-2020",
+      "repairItems": "Identify brake option and axle; measure pads/rotors; side-specific OEM replacement; track compounds/fluid by use",
+      "decision": "DUPLICATE X3M/X4M BRAKE CONFIGURATION GATE",
+      "destinations": [
+        {"label": "BMW X4 M brake catalog", "url": "https://www.fcpeuro.com/BMW-parts/X4-M/Brakes/", "scope": "2020-2023 F98 X4 M; VIN, axle, side, and brake option required", "role": "vehicle-specific brake catalog"}
+      ],
+      "evidence": [],
+      "reason": "This duplicates the X3 M brake text and contains a repeated F98 model label; exact axle/option selection remains required.",
+      "correction": "Fix duplicated title text and hold named aftermarket compounds until exact F98 fitment/use is verified."
+    },
+    {
+      "issueId": "bmw-x4m-cooling-track-use-2020",
+      "repairItems": "Log track temperatures; identify limiting S58 cooling circuit; targeted radiator/heat-exchanger/charge-cooler upgrade; maintenance by actual specification",
+      "decision": "DUPLICATE / COOLING-CIRCUIT GATE",
+      "destinations": [
+        {"label": "Turner F98 X4 M cooling catalog", "url": "https://www.turnermotorsport.com/BMW-F98/c-163-bmw-cooling", "scope": "F98 X4 M; select diagnosed circuit and verify live fitment", "role": "vehicle-specific cooling catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "S58 track temperature logging and setup", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "This duplicates X3 M text and conflates the water-to-air charge cooler with a generic front-mount intercooler.",
+      "correction": "Fix duplicated F98 title and remove blanket tank/thermostat replacement intervals."
+    },
+    {
+      "issueId": "bmw-x4m-differential-bolt-2020",
+      "repairItems": "Inspect bolt/mount revision; F97/F98 FJ bolt/collar kit when selected; installation/torque and NVH review",
+      "decision": "EXACT DUPLICATE F97/F98 KIT",
+      "destinations": [
+        {"label": "FJ X3M/X4M diff bolt and collar kit", "url": "https://bmgperformance.com/products/fj-motorwerkes-x3m-x4m-diff-bolt-and-collar-upgrade", "scope": "F98 X4 M explicitly listed; confirm stock/revision and installer requirements", "role": "conditional differential-mount upgrade"}
+      ],
+      "evidence": [],
+      "reason": "The live kit explicitly covers F98, but the row duplicates the X3 M content.",
+      "correction": "Do not call the kit mandatory or treat seller strength claims as independent validation."
+    },
+    {
+      "issueId": "bmw-x4m-s58-bearing-recall-2020",
+      "repairItems": "VIN campaign check; stop/tow for knocking; covered dealer main-bearing remedy if affected; no unrelated preventive rod-bearing sale",
+      "decision": "CAMPAIGN ROUTES ONLY",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for S58 main-bearing technical campaign", "role": "manufacturer campaign route"},
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "campaign eligibility/repair", "role": "authorized service"}
+      ],
+      "evidence": [],
+      "reason": "Main-bearing campaign work is distinct from aftermarket rod-bearing prevention.",
+      "correction": "Fix repeated F98 title, verify recall-versus-campaign terminology, and remove the unrelated ACL recommendation."
+    },
+    {
+      "issueId": "bmw-x4m-transfer-case-2020",
+      "repairItems": "Tire circumference/tread and VTG diagnosis; VIN-specific fluid/service; actuator versus internal failure; initialization",
+      "decision": "DUPLICATE / VIN-SPECIFIC DRIVETRAIN GATE",
+      "destinations": [
+        {"label": "BMW X4 M transfer-case catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x4_m-transfer_case.html", "scope": "2020-2023 F98 X4 M; VIN and production date required", "role": "OEM drivetrain catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "VTG diagnosis/service/initialization", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "This duplicates the X3 M transfer-case text and contains multiple conditional branches.",
+      "correction": "Fix repeated F98 title and remove universal fluid/rotation/brace claims."
+    },
+    {
+      "issueId": "bmw-x5-air-suspension-2007",
+      "repairItems": "G05 VIN/options/campaign check; exact warning and ISTA test plan; campaign-specific sensor holder/software/air-line remedy or diagnosed component",
+      "decision": "CAMPAIGN / DIAGNOSIS ROUTE; NO RETAIL PART",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "G05 X5 VIN campaign check", "role": "manufacturer campaign route"},
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "ISTA suspension diagnosis and VIN-selected remedy", "role": "authorized service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected article intentionally rejects a single compressor/strut/spring/conversion link.",
+      "correction": "Correct the issue ID's 2007 mismatch: the row is 2019-2026 G05."
+    },
+    {
+      "issueId": "bmw-x5-air-suspension-compressor-2007",
+      "repairItems": "EHC/ISTA diagnosis; confirm rear self-leveling option; leak-test springs/lines/valves; power/sensor checks; air-supply unit only after isolation; calibration",
+      "decision": "EXACT CONDITIONAL E70 AIR-SUPPLY UNIT",
+      "destinations": [
+        {"label": "Genuine BMW air supply unit 37206859714", "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_air_supply_system-37206859714.html", "scope": "2007-2013 E70 X5 with applicable rear self-leveling system; VIN and diagnosis required", "role": "conditional air-supply/compressor assembly"}
+      ],
+      "evidence": [],
+      "reason": "The live OEM page explicitly lists E70 X5 fitment and superseded numbers.",
+      "correction": "Do not order from sagging alone; leak/sensor/power faults can mimic a failed compressor."
+    },
+    {
+      "issueId": "bmw-x5-carbon-buildup-2007",
+      "repairItems": "Engine-specific fault/misfire/ignition/fueling/PCV diagnosis; borescope/manifold inspection; professional mechanical cleaning only for confirmed deposits",
+      "decision": "SERVICE ROUTE; UNIVERSAL PRODUCTS REJECTED",
+      "destinations": [
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "2011-2018 direct-injected gasoline X5 engine-specific deposit diagnosis/cleaning", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source rejects universal catch cans, sprays, fuel, and intervals.",
+      "correction": "Correct the issue ID's 2007 mismatch and identify the exact engine before authorizing cleaning."
+    },
+    {
+      "issueId": "bmw-x5-coolant-pipe-leak-2007",
+      "repairItems": "Cold pressure test; confirmed E70 N62 valley transfer pipe; BMW pipe 11141439975 with VIN-specific seals/hardware; correct coolant/bleed/retest",
+      "decision": "EXACT CONDITIONAL N62 PIPE",
+      "destinations": [
+        {"label": "Genuine BMW coolant transfer pipe 11141439975", "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pipe-11141439975.html", "scope": "2007-2010 E70 X5 N62 where VIN-matched; seals/hardware from VIN diagram", "role": "conditional OEM transfer pipe"}
+      ],
+      "evidence": [],
+      "reason": "The corrected How to Fix provides the exact N62 pipe number and rejects unrelated N63/thermostat/hoses.",
+      "correction": "Approve only after the valley leak is pressure-test confirmed."
+    },
+    {
+      "issueId": "bmw-x5-n63-timing-chain-2008",
+      "repairItems": "VIN/service history and DME diagnosis; ISTA elongation test; both timing chains only if test fails; complete SIB procedure including oil/filter/programming",
+      "decision": "BMW SIB / ISTA SERVICE ROUTE; NO GENERIC KIT",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2010-2013 E70 X5 N63 SIB 11 16 14 timing test/repair", "role": "BMW test-plan and complete repair"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly rejects a single tensioner and generic Cloyes kit as incomplete.",
+      "correction": "Correct the issue ID's 2008 mismatch; do not sell parts when ISTA says the chain is OK."
+    },
+    {
+      "issueId": "bmw-x5-n63-wastegate-2008",
+      "repairItems": "DME boost data; charge-air smoke test; vacuum pump/reservoir/hoses/converters; actuator movement; engine generation/bank/VIN component only after diagnosis",
+      "decision": "DIAGNOSIS ROUTE; NO RETAIL PART",
+      "destinations": [
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "2010-2018 X5 N63/N63TU vacuum/boost/turbo diagnosis", "role": "specialist service"},
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2010-2013 E70 Customer Care Package history where applicable", "role": "VIN history/service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source requires vacuum and charge-air diagnosis and says the care package was not an automatic wastegate replacement.",
+      "correction": "Correct the issue ID's 2008 mismatch and hold all turbos/actuators until bank and root cause are identified."
+    },
+    {
+      "issueId": "bmw-x5-oil-leaks-2000",
+      "repairItems": "Clean/trace highest leak source; M54 cover gasket set 11120030496 only for perimeter/wells; inspect cover, grommets, and CCV; separate other oil circuits",
+      "decision": "EXACT CONDITIONAL M54 GASKET SET",
+      "destinations": [
+        {"label": "Genuine BMW valve-cover gasket set 11120030496", "url": "https://www.fcpeuro.com/products/bmw-valve-cover-gasket-set-11120030496", "scope": "2003-2006 E53 X5 3.0i M54 where cataloged; verify VIN and cover condition", "role": "conditional gasket set"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source narrows the issue to E53 M54 and supplies the exact gasket-set number.",
+      "correction": "Correct the issue ID's 2000 mismatch; reuse the cover only if it passes inspection."
+    },
+    {
+      "issueId": "bmw-x5-transfer-case-actuator-2000",
+      "repairItems": "VTG/DSC ISTA diagnosis; tires/voltage/wiring/unit/fluid/ratios; confirmed ATC700 exchange servomotor 27102449709; resistor/hardware; initialization",
+      "decision": "EXACT CONDITIONAL ATC700 SERVOMOTOR",
+      "destinations": [
+        {"label": "Genuine BMW exchange servomotor 27102449709", "url": "https://www.bmwpartsdeal.com/parts/bmw-rp_actuator-27102449709.html", "scope": "2007-2013 E70 X5 ATC700 where VIN/ETK selects it; verify classification resistor/hardware", "role": "conditional transfer-case positioning motor"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source supplies the current superseding motor and requires ATC700/VIN confirmation.",
+      "correction": "Correct the issue ID's 2000 mismatch and reject generic gear-only kits without opening/confirming the motor fault."
     }
   ]
 }
