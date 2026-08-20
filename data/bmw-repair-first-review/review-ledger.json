@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "make": "BMW",
-  "generatedAt": "2026-08-20T17:28:30.047Z",
+  "generatedAt": "2026-08-20T17:31:55.050Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "9c5acba63181f1d3d714c4d0090380ab656767ee3836b4056dfe3873dadc67e0",
   "publishedIssueCount": 385,
-  "reviewedIssueCount": 250,
-  "remainingIssueCount": 135,
-  "reviewedWithDestinationCount": 247,
-  "destinationCount": 353,
-  "distinctUrlCount": 116,
+  "reviewedIssueCount": 275,
+  "remainingIssueCount": 110,
+  "reviewedWithDestinationCount": 272,
+  "destinationCount": 392,
+  "distinctUrlCount": 132,
   "scannerDestinationCount": 0,
   "missingHowToFixCount": 3,
   "reviews": [
@@ -5714,6 +5714,590 @@
       "ymmt": "2012-2019 | BMW | M6 | M6 Coupe (F13), M6 Convertible (F12), M6 Gran Coupe (F06) | S63 4.4L twin-turbo V8 (S63TU)",
       "title": "S63 High-Pressure Fuel Pump / Fuel Injector Cold-Start Misfire",
       "howToFix": "Scan for misfire and fuel-system codes and test cold-start fuel-rail pressure. Replace a failing HPFP; for injector faults, replace the affected injector(s) with units of the correct matching index code (do not mix injector indexes on a bank) and re-code them. Address per the relevant BMW technical service bulletin for the N63/S63."
+    },
+    {
+      "issueId": "bmw-m6-s63-rod-bearing-2013",
+      "repairItems": "S63TU oil-pressure/bearing assessment; measured bearing clearance; engine-builder-selected bearings/bolts/gaskets; optional trend analysis",
+      "decision": "SPECIALIST GATE; SPECULATIVE INTERVAL CORRECTED",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2013-2018 F06/F12/F13 M6 S63TU bearing assessment",
+          "role": "engine-builder service"
+        },
+        {
+          "label": "Blackstone oil-analysis kit",
+          "url": "https://www.blackstone-labs.com/products/free-test-kits/",
+          "scope": "optional wear trending only; not a conclusive bearing diagnosis",
+          "role": "oil-analysis service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source prescribes an aftermarket bearing and interval without vehicle-specific clearance evidence.",
+      "correction": "Oil analysis is supporting evidence only; remove mandatory interval and unqualified ACL/King/WPC recommendations.",
+      "sequence": 251,
+      "ymmt": "2013-2018 | BMW | M6 | S63",
+      "title": "S63 Twin-Turbo V8 Rod Bearing Concerns (F06/F12/F13 M6)",
+      "howToFix": "Preventive rod bearing replacement at 60,000-80,000 miles using ACL Race Rod Bearings 8B1578HX-STD ($150-250), King Bearings SV Series, or WPC-treated bearings from Lang Racing. Cost: $4,000-7,000 for preventive replacement. Oil changes every 5,000-7,500 miles mandatory (ignore BMW's 10,000-mile recommendation). Use Blackstone Labs oil analysis ($30/test) every 5,000 miles to monitor bearing wear metals. Preventive replacement recommended for peace of mind, especially on cars used for track days or spirited driving."
+    },
+    {
+      "issueId": "bmw-m6-s85-rod-bearing-2006",
+      "repairItems": "S85 bearing assessment; exact comprehensive service kit; measured clearances; new bolts/gaskets/oil; inspect VANOS high-pressure line",
+      "decision": "EXACT S85 KIT WITH BUILDER GATE",
+      "destinations": [
+        {
+          "label": "FCP Euro S85 rod-bearing kit 11247841703KT2",
+          "url": "https://www.fcpeuro.com/products/bmw-s85-comprehensive-rod-bearing-replacement-kit-11247841703kt2",
+          "scope": "2006-2010 E63/E64 M6 S85; verify kit revision and installer fastener choice",
+          "role": "complete engine-specific service kit"
+        },
+        {
+          "label": "DrVanos S85 high-pressure line",
+          "url": "https://drvanos.com/products/s85-vanos-high-pressure-oil-line",
+          "scope": "S85; inspect/replace as condition and access justify",
+          "role": "conditional VANOS line"
+        }
+      ],
+      "evidence": [],
+      "reason": "The FCP live page explicitly covers S85 M5/M6 and is more complete than a bearing-shell-only link.",
+      "correction": "Remove 'mandatory,' fixed failure mileage, 'never OEM,' and automatic ARP claims; measure and follow the engine builder's fastener procedure.",
+      "sequence": 252,
+      "ymmt": "2006-2010 | BMW | M6 | S85",
+      "title": "S85 V10 Rod Bearing Failure (Catastrophic Engine Destruction)",
+      "howToFix": "MANDATORY PREVENTIVE REPLACEMENT before 70,000 miles: Replace all 10 rod bearings with ACL Race Bearings 10B1580HX-STD (+0.001\" clearance, $200-350) or WPC-treated bearings from Lang Racing, or VAC Motorsports kit VAC-HPRBK-S85, or Turner kit TMS222798, or FCP Euro kit 11247841703KT3. ALSO replace VANOS line 11367838669 and use ARP rod bolts (included in most kits). Cost: $6,500-9,500 preventive. If engine is destroyed from bearing failure: $15,000-32,000 for engine replacement or rebuild. NEVER use OEM bearings as replacements. Use Blackstone Labs oil analysis every 5,000 miles ($30/test) to monitor bearing wear metals."
+    },
+    {
+      "issueId": "bmw-m6-s85-throttle-actuator-2006",
+      "repairItems": "Bank-specific diagnosis; BS101 gear repair when electronics are healthy; BS102 rebuild service; second actuator only by condition",
+      "decision": "EXACT S65/S85 REBUILD OPTIONS",
+      "destinations": [
+        {
+          "label": "Beisan BS101 S65/S85 actuator gears",
+          "url": "https://beisansystems.com/product/bs101-s65-s85-throttle-actuator-gears/",
+          "scope": "2006-2010 E63/E64 M6 S85; gear failure with serviceable electronics",
+          "role": "actuator gear repair"
+        },
+        {
+          "label": "Beisan BS102 installed gear service",
+          "url": "https://beisansystems.com/product/bs102-s65-s85-throttle-actuator-gears-w-installation-service/",
+          "scope": "customer-supplied S85 actuator; confirm electronics and terms",
+          "role": "rebuild service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Both live pages explicitly cover S85 throttle actuators.",
+      "correction": "Do not call any repair permanent or require both actuators when only one bank is diagnosed.",
+      "sequence": 253,
+      "ymmt": "2006-2010 | BMW | M6 | S85",
+      "title": "S85 V10 Throttle Actuator Failure (Plastic Gear Stripping)",
+      "howToFix": "Rebuild throttle actuators using Beisan Systems BS101 sintered metal gear kit ($250/set, need 2 sets for both actuators) for permanent fix. Beisan BS102 full rebuild service available ($300). Alternatively, rebuilt actuators from Euro Power Motorsports ($500-800 each). OEM replacement actuators from BMW cost $2,000-4,500. Total cost: $500-4,500 depending on approach. Beisan Systems sintered metal gears are THE permanent fix - they replace the weak plastic PPA gears with metal gears that will not strip. Always rebuild both actuators simultaneously."
+    },
+    {
+      "issueId": "bmw-m6-s85-v10-vanos-high-pressure-oil-pump-failure",
+      "repairItems": "VANOS pressure test; pump inspection; rebuild kit or rebuilt pump based on damage; updated line/seals; contamination check",
+      "decision": "EXACT S85 PUMP OPTIONS AFTER PRESSURE TEST",
+      "destinations": [
+        {
+          "label": "DrVanos S85 pump rebuild kit",
+          "url": "https://drvanos.com/products/s85-vanos-pump-rebuild-kit",
+          "scope": "S85 pump with repairable bearing-ring failure; excludes severely damaged pump",
+          "role": "conditional pump rebuild kit"
+        },
+        {
+          "label": "DrVanos rebuilt S85 VANOS pump",
+          "url": "https://drvanos.com/collections/s85-v10-vanos/products/s85-vanos-oil-pump",
+          "scope": "E63/E64 M6 S85; rebuildable core and stock required",
+          "role": "conditional rebuilt pump"
+        }
+      ],
+      "evidence": [],
+      "reason": "DrVanos explicitly distinguishes a repairable pump kit from the complete rebuilt pump.",
+      "correction": "Do not replace preventively without pressure/condition evidence; check current sold-out/core status.",
+      "sequence": 254,
+      "ymmt": "2005-2010 | BMW | M6 | M6 Coupe, M6 Convertible | S85 5.0L V10 (S85B50)",
+      "title": "S85 V10 VANOS High-Pressure Oil Pump Failure",
+      "howToFix": "Perform an oil-pressure test on the VANOS circuit at the first sign of cold-start knocking. Replace or professionally rebuild the high-pressure VANOS pump and renew the high-pressure lines/seals. Many owners do the VANOS pump preventively at the same time as the rod-bearing service since the oil pan is already removed. Use only BMW-spec oil and strict change intervals to prolong pump life."
+    },
+    {
+      "issueId": "bmw-m6-smg-pump-failure-2005",
+      "repairItems": "SMG III pressure diagnosis; relay/accumulator/motor/pump/actuator branch; exact component; CHF 11S only where specified; bleed/adapt; manual conversion treated separately",
+      "decision": "DIAGNOSIS-FIRST SMG III CATALOG",
+      "destinations": [
+        {
+          "label": "SMG Society M5/M6 SMG III catalog",
+          "url": "https://www.smgsociety.com/shop/",
+          "scope": "2006-2010 E63/E64 M6 SMG III; choose diagnosed component",
+          "role": "transmission-specific components"
+        },
+        {
+          "label": "SMG Society pump motor",
+          "url": "https://www.smgsociety.com/product/pump-motor-bmw-e60-m5-e63-m6-smg-iii/",
+          "scope": "SMG III pump-motor failure only, reference 23017841032",
+          "role": "conditional motor kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "The specialist catalog separates common pressure-system causes rather than forcing a complete pump.",
+      "correction": "Do not automatically replace pump and accumulator; a manual swap is a separate modification project, not the default repair.",
+      "sequence": 255,
+      "ymmt": "2005-2010 | BMW | M6",
+      "title": "SMG Hydraulic Pump and Clutch Actuator Failure",
+      "howToFix": "Replace the SMG hydraulic pump and pressure accumulator. Bleed and refill the SMG hydraulic system with Pentosin CHF 11S fluid. Many owners convert to a traditional 6-speed manual swap using an aftermarket kit from companies like OS Giken or using the E90 M3 6MT parts. Budget $2,000-4,000 for SMG repair or $5,000-8,000 for a manual conversion."
+    },
+    {
+      "issueId": "bmw-m8-adaptive-suspension-leak-2020",
+      "repairItems": "Corner-specific leak and control diagnosis; VIN/options-correct adaptive damper; axle mate only by wear/strategy; ISTA service functions if required",
+      "decision": "VIN / CORNER / OPTION GATE",
+      "destinations": [
+        {
+          "label": "Genuine BMW M8 suspension catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m8-shock_absorber.html",
+          "scope": "2020-2025 F91/F92/F93 M8; VIN, body, axle, side, and suspension option required",
+          "role": "OEM adaptive-damper catalog"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "ISTA diagnosis/calibration and warranty check",
+          "role": "coding-capable service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Damper fitment varies by body, axle, side, and option code; calibration requirements must be confirmed for the actual repair.",
+      "correction": "Do not automatically sell an axle pair or claim every damper replacement needs the same calibration procedure.",
+      "sequence": 256,
+      "ymmt": "2020-2025 | BMW | M8",
+      "title": "Adaptive Suspension Damper Leaks",
+      "howToFix": "Replace the leaking damper(s). BMW adaptive dampers must be replaced as complete units — they cannot be rebuilt. After replacement, a suspension calibration via ISTA is required to integrate the new damper into the adaptive system. Replacing in pairs (front or rear axle) is recommended."
+    },
+    {
+      "issueId": "bmw-m8-carbon-ceramic-brakes-2020",
+      "repairItems": "Confirm factory CCB option; inspect/measure each rotor and pad; exact corner replacement or engineered iron conversion with matching pads/hardware",
+      "decision": "BRAKE-SYSTEM CONFIGURATION GATE",
+      "destinations": [
+        {
+          "label": "BimmerWorld CCB-to-iron guidance",
+          "url": "https://www.bimmerworld.com/About-Us/CCB-to-Iron-Brake-Conversion/",
+          "scope": "technical conversion guidance; confirm an exact F91/F92/F93 M8 kit before purchase",
+          "role": "conversion planning reference"
+        },
+        {
+          "label": "Genuine BMW M8 brake catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m8-brake_disc.html",
+          "scope": "VIN/build and exact axle/corner; verify carbon-ceramic option",
+          "role": "OEM rotor catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "M8 standard iron and optional carbon-ceramic systems cannot share parts; the searched BimmerWorld article did not prove an exact M8 conversion kit.",
+      "correction": "Hold the claimed M8 conversion kit until exact live fitment is verified; squeal alone is not rotor damage.",
+      "sequence": 257,
+      "ymmt": "2020-2024 | BMW | M8",
+      "title": "M8 Carbon Ceramic Brake (CCB) Issues",
+      "howToFix": "Replace damaged CCB rotors ($3,000-$4,000 per corner, $12,000-$16,000 for all four). CCB rotors cannot be resurfaced - replacement is only option. Alternatively, convert to iron rotors using BimmerWorld CCB-to-iron conversion kit ($3,000-$5,000 total for all four corners) for dramatically lower running costs. PREVENTION: Avoid driving through standing water with hot brakes (thermal shock cracks rotors). Avoid aggressive braking over potholes or road debris. Squealing at low speed is normal for CCB material - not a defect. If only using car for street driving, iron conversion is more practical and cost-effective."
+    },
+    {
+      "issueId": "bmw-m8-s63tu4-oil-consumption-2020",
+      "repairItems": "Document consumption with correct electronic level procedure; leak/PCV/turbo/combustion diagnosis; warranty/VIN check; valve seals or rings only after confirmation",
+      "decision": "WARRANTY / DIAGNOSIS ROUTE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2020-2025 M8 S63TU4 oil-consumption test and warranty review",
+          "role": "manufacturer-capable diagnosis"
+        }
+      ],
+      "evidence": [],
+      "reason": "Valve seals and piston rings are mutually exclusive major repair branches, neither justified by level loss alone.",
+      "correction": "State the current BMW consumption-test threshold only from VIN/current service information; do not promise updated rings generically.",
+      "sequence": 258,
+      "ymmt": "2020-2025 | BMW | M8 | S63TU4",
+      "title": "S63TU4 V8 Excessive Oil Consumption",
+      "howToFix": "Monitor oil level regularly using iDrive oil level check. For excessive consumption beyond BMW's threshold, valve stem seal replacement may be warranted under warranty. Updated piston rings are available for severe cases. Always keep oil topped up between changes."
+    },
+    {
+      "issueId": "bmw-m8-s63tu4-rod-bearing-2020",
+      "repairItems": "Noise/oil-pressure diagnosis; engine-builder clearance assessment; exact bearings/fasteners only after measurement; optional oil trending",
+      "decision": "SPECULATIVE PREVENTIVE CLAIM CORRECTED",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2020-2024 M8 S63TU4 bottom-end assessment",
+          "role": "engine-builder service"
+        },
+        {
+          "label": "Blackstone oil-analysis kit",
+          "url": "https://www.blackstone-labs.com/products/free-test-kits/",
+          "scope": "optional trend analysis; not proof of bearing condition",
+          "role": "oil-analysis service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source prescribes a fixed interval and ACL part without verified S63TU4 fitment/clearance evidence.",
+      "correction": "Remove the blanket preventive interval and claim that elevated metals identify rod bearings specifically.",
+      "sequence": 259,
+      "ymmt": "2020-2024 | BMW | M8",
+      "title": "S63TU4 Rod Bearing Wear (M8/M8 Competition)",
+      "howToFix": "PREVENTIVE: Replace rod bearings every 60,000-80,000 miles or sooner if tracked ($5,000-$8,000). Use ACL Race bearings 8B1578HX-STD ($200-350) which have wider clearance tolerances than OEM for better oil film protection. Monitor bearing health with Blackstone Labs oil analysis ($30/sample) every oil change - elevated copper/lead indicates bearing wear starting. If bearings have failed: engine replacement required ($20,000-$40,000). CRITICAL: If you hear any knocking from bottom end, stop driving immediately and tow to shop."
+    },
+    {
+      "issueId": "bmw-n54-hpfp",
+      "repairItems": "BMW fault memory and bulletin pressure tests; VIN-specific pump only after confirmed failure; historical coverage disclosed as expired",
+      "decision": "DIAGNOSIS / BMW SERVICE ROUTE; NO PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2007-2010 N54 3 Series fuel-pressure diagnosis and VIN history",
+          "role": "BMW-qualified diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected How to Fix explicitly says catalog fitment is not diagnosis or remedy proof.",
+      "correction": "Preserve the expired-coverage warning and do not revive the rejected generic HPFP candidates.",
+      "sequence": 260,
+      "ymmt": "2007-2010 | BMW | 3 Series | N54",
+      "title": "N54 Long Crank or Power Loss Requires Fuel-Pressure Diagnosis",
+      "howToFix": "Have a BMW-qualified technician read fault memory and follow the bulletin pressure tests for 2FBF, 29DC, 29F1 or 29F2 before replacing the pump. The historical ten-year/120,000-mile emissions-warranty extension has expired for this population and is not a current coverage promise. ShowMeTheParts resolved three 2009 335i fuel-pump candidates, but catalog fitment is not diagnosis or remedy proof and no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-n55-boost-solenoid-2012",
+      "repairItems": "Boost/vacuum/smoke diagnosis; vacuum lines; exact boost solenoid or electronic actuator by chassis/turbo; software only if applicable",
+      "decision": "CHASSIS / ACTUATION-SYSTEM SPLIT",
+      "destinations": [
+        {
+          "label": "BMW 3 Series turbo-control catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/3-Series/Turbocharger-Boost-Control-Valve/",
+          "scope": "2012-2018 N55 3 Series; select chassis, production date, and vacuum/electronic system",
+          "role": "vehicle-specific boost-control catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "boost leak, wastegate, vacuum, and software diagnosis",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The range crosses different chassis and wastegate actuation systems, so solenoid and actuator are not interchangeable.",
+      "correction": "Diagnose the control system before selecting a solenoid or actuator.",
+      "sequence": 261,
+      "ymmt": "2012-2018 | BMW | 3 Series | 335d, 335i, 340i, M340i | N55",
+      "title": "Wastegate/Boost Solenoid Issues",
+      "howToFix": "Diagnose boost system for proper operation. Replace wastegate actuator or boost solenoid as needed. Check vacuum lines for leaks. Software update may address some issues."
+    },
+    {
+      "issueId": "bmw-n55-carbon-buildup-2012",
+      "repairItems": "Confirm deposits; professional walnut-shell cleaning; PCV inspection; catch can only after legal/warranty review",
+      "decision": "SERVICE ROUTE; CATCH CAN HELD",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2012-2018 N55 intake-valve diagnosis and walnut blasting",
+          "role": "specialist cleaning service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Walnut blasting is a service and the article's fixed interval/catch-can prescription is not universal.",
+      "correction": "Later N55 engines did not gain port injection from BMW; remove that inaccurate prevention claim.",
+      "sequence": 262,
+      "ymmt": "2012-2018 | BMW | 3 Series | 335d, 335i, 340i, M340i | N55",
+      "title": "Intake Valve Carbon Buildup",
+      "howToFix": "Walnut blast cleaning of intake valves every 50,000-70,000 miles. Install catch can to reduce oil vapor. Use quality fuel. BMW port injection on later engines helps reduce this issue."
+    },
+    {
+      "issueId": "bmw-n55-charge-pipe-2012",
+      "repairItems": "Smoke/boost-leak diagnosis; chassis-specific aluminum charge pipe; correct throttle-body and intercooler connections",
+      "decision": "CHASSIS-SPECIFIC CHARGE-PIPE CATALOG",
+      "destinations": [
+        {
+          "label": "BMW N55 charge-pipe catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/Charge-Pipe/",
+          "scope": "select exact 2012-2018 N55 chassis/model/production date; E- and F-chassis pipes differ",
+          "role": "vehicle-specific replacement catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source range is too broad for one pipe, but the catalog supports exact vehicle selection.",
+      "correction": "Do not attach one F30 pipe to E9x/F3x/F34 variants; diagnose the leak first.",
+      "sequence": 263,
+      "ymmt": "2012-2018 | BMW | 3 Series | N55",
+      "title": "Charge Pipe Failure/Cracking",
+      "howToFix": "Replace with upgraded aluminum charge pipe for reliability. If keeping stock, inspect regularly for cracks. Upgraded pipe is recommended for any tuned vehicle. Installation is relatively straightforward."
+    },
+    {
+      "issueId": "bmw-n55-injector-2012",
+      "repairItems": "Cylinder and fuel-system diagnosis; VIN-correct N55 solenoid injector; seals/decoupler; calibration/coding as required",
+      "decision": "SOURCE INJECTOR-INDEX CORRECTION / VIN GATE",
+      "destinations": [
+        {
+          "label": "Genuine BMW 3 Series fuel-injection catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-3_series-fuel_injection.html",
+          "scope": "2012-2018 N55 3 Series; VIN and engine required",
+          "role": "OEM injector catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "misfire diagnosis and injector calibration",
+          "role": "coding-capable service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source imports N54 piezo-injector index advice into an N55 row; N55 uses a different injector system.",
+      "correction": "Remove 'all injectors same index' from the N55 article and do not bundle carbon cleaning with an injector fault.",
+      "sequence": 264,
+      "ymmt": "2012-2018 | BMW | 3 Series | N55",
+      "title": "High-Pressure Fuel Injector Issues",
+      "howToFix": "Replace failed injector(s) with correct index version. Consider cleaning service for carbon buildup. Use quality fuel. All injectors should be same index for proper operation."
+    },
+    {
+      "issueId": "bmw-n55-oil-filter-housing-2012",
+      "repairItems": "VIN/service-action history; housing material and leak-source inspection; black plastic housing only when campaign procedure requires",
+      "decision": "CAMPAIGN / SERVICE ROUTE; NO COMMERCE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2012 F30 N55 service-action history and housing inspection",
+          "role": "campaign-capable service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected How to Fix explicitly rejects generic gasket links and distinguishes black plastic from silver aluminum housings.",
+      "correction": "Preserve the no-commerce decision until VIN, housing material, and leak source are known.",
+      "sequence": 265,
+      "ymmt": "2012-2012 | BMW | 3 Series | N55",
+      "title": "Certain 2012 F30 N55 Vehicles Need an Oil-Filter-Housing Campaign Check",
+      "howToFix": "Check the VIN and service-action history, then have a BMW-qualified technician inspect the housing material and leak source. Under the bulletin, the black plastic housing is replaced while the silver aluminum housing is left in place. ShowMeTheParts returned no exact 2012 335i oil-filter-housing candidate, and the former generic gasket links were removed."
+    },
+    {
+      "issueId": "bmw-n55-valve-cover-2012",
+      "repairItems": "Leak/PCV diagnosis; chassis/VIN-correct complete cover with integrated PCV when warped/failed; gasket-only branch only if serviceable; cleanup",
+      "decision": "CHASSIS / COVER-CONDITION GATE",
+      "destinations": [
+        {
+          "label": "BMW N55 valve-cover catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/Valve-Cover/",
+          "scope": "select exact 2012-2018 N55 3 Series chassis, VIN, and cover/gasket branch",
+          "role": "vehicle-specific cover catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "Fitment and cover revision vary, and a complete cover is justified by PCV or cover failure rather than every gasket leak.",
+      "correction": "Do not universally require cover-and-gasket assembly without confirming the cover/PCV condition.",
+      "sequence": 266,
+      "ymmt": "2012-2018 | BMW | 3 Series | N55",
+      "title": "Valve Cover/Gasket Oil Leak",
+      "howToFix": "Replace valve cover and gasket as an assembly (PCV valve is integrated). Clean oil from exhaust manifold. Monitor for leaks after repair. This is a common maintenance item at higher mileage."
+    },
+    {
+      "issueId": "bmw-n55-vanos-2012",
+      "repairItems": "VIN recall 14V-176 check; dealer bolt replacement/inspection; gears only if campaign procedure requires",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN check for campaign 14V-176",
+          "role": "manufacturer recall remedy"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "independent VIN recall-status check",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Recall work belongs with an authorized center and the corrected source explicitly rejects commerce.",
+      "correction": "Do not link VANOS solenoids or complete gears before campaign inspection.",
+      "sequence": 267,
+      "ymmt": "2012-2012 | BMW | 3 Series | N55",
+      "title": "Certain 2012 N55 3 Series Need a VANOS Gear-Bolt Recall Check",
+      "howToFix": "Check the VIN for campaign 14V-176 before ordering VANOS solenoids or gears. For an affected vehicle, BMW specifies replacing the VANOS gear bolts and inspecting for loose or broken bolts, with additional gear work only when the campaign procedure requires it. Recall work belongs with an authorized BMW center, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-n55-water-pump-2012",
+      "repairItems": "Stop after overheat warning; chassis/engine/VIN confirmation; fault-memory and coolant-pump test plan; exact pump only after failure confirmation",
+      "decision": "ENGINE / CHASSIS SPLIT; DIAGNOSIS ROUTE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2012-2013 335i/335is cooling diagnosis and VIN history",
+          "role": "BMW test-plan service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row mixes N55 335i and N54 335is applications and the corrected source rejects catalog fitment as proof of failure.",
+      "correction": "Split N54 335is from N55 335i before any pump link; preserve expired-settlement warning.",
+      "sequence": 268,
+      "ymmt": "2012-2013 | BMW | 3 Series | N54T, N55",
+      "title": "2012-2013 335i/335is Overheat Warnings Need Coolant-Pump Diagnosis",
+      "howToFix": "Stop safely if an overheat warning appears and avoid continued operation until the cooling system is checked. Verify the chassis, engine and VIN, read fault memory and follow the current coolant-pump test plan before replacement. Settlement benefits were time-limited. ShowMeTheParts resolved five 2012 335i water-pump candidates, but fitment does not prove failure or remedy, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-x1-coolant-leak-2016",
+      "repairItems": "Pressure test; exact F48/U11 engine and cooling circuit; failed pump or thermostat housing; hoses by condition; correct current BMW coolant and bleed procedure",
+      "decision": "ENGINE / CIRCUIT / GENERATION GATE",
+      "destinations": [
+        {
+          "label": "Genuine BMW X1 water-pump catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-x1-water_pump.html",
+          "scope": "2016-2023 X1; select VIN, F48/U11 generation, engine, and main/auxiliary circuit",
+          "role": "OEM pump catalog"
+        },
+        {
+          "label": "2016 F48 X1 pump/thermostat diagram",
+          "url": "https://www.bmwpartsdeal.com/parts-list/2016-bmw-x1-xdrive28i_f48/engine/water_pump_thermostat.html",
+          "scope": "2016 US xDrive28i F48 only; verify VIN and failed component",
+          "role": "early-generation OEM diagram"
+        }
+      ],
+      "evidence": [],
+      "reason": "The range crosses F48 and U11 plus multiple coolant circuits; one generic electric-pump link is unsafe.",
+      "correction": "Remove universal labor times, 80,000-mile replacement, and color-only coolant guidance; use current BMW specification and do not mix generations.",
+      "sequence": 269,
+      "ymmt": "2016-2023 | BMW | X1 | B-series",
+      "title": "Coolant Leaks - Water Pump & Thermostat - F48 X1",
+      "howToFix": "Replace failed water pump or thermostat housing. Electric water pump replacement is 2-3 hours labor. Thermostat housing is 1-2 hours. Always use BMW-approved coolant (blue or orange, do not mix). Properly bleed cooling system after repair to prevent air pockets. Inspect all coolant hoses during repair and replace if cracked. Preventive replacement of water pump at 80,000 miles recommended."
+    },
+    {
+      "issueId": "bmw-x1-n20-timing-chain-2013",
+      "repairItems": "N20/production-date/VIN confirmation; noise reproduction and BMW diagnosis; historical warranty disclosed as expired; parts only after confirmation",
+      "decision": "DIAGNOSIS / WARRANTY-HISTORY ROUTE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2013-2015 E84 X1 N20 timing diagnosis and VIN history",
+          "role": "BMW-qualified service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected source says category fitment is insufficient and the historical extension is not current coverage.",
+      "correction": "Do not attach a timing kit to whine alone or describe the expired extension as a recall.",
+      "sequence": 270,
+      "ymmt": "2013-2015 | BMW | X1 | N20",
+      "title": "Lower-Engine Whine Requires X1 N20 Timing-Chain Diagnosis",
+      "howToFix": "Confirm the exact model, N20 engine, production date and VIN eligibility, then have a BMW-qualified technician reproduce the noise and follow current BMW diagnosis before replacing anything. The historical seven-year/70,000-mile coverage was a limited warranty extension, not a recall, and is not a current coverage promise. ShowMeTheParts established category-level fitment only, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-x1-n20-timing-chain-guide-2013",
+      "repairItems": "Confirmed N20 timing-guide failure; timing chain, guides, tensioner, oil-pump chain components and access hardware as required; specialist timing verification",
+      "decision": "EXACT N20/N26 KIT AFTER DIAGNOSIS",
+      "destinations": [
+        {
+          "label": "FCP Euro N20/N26 timing kit 11318648732KT",
+          "url": "https://www.fcpeuro.com/products/bmw-n20-n26-timing-chain-kit-11318648732kt",
+          "scope": "2013-2015 E84 X1 N20 where cataloged; confirm VIN/production date and kit completeness with installer",
+          "role": "engine-specific timing kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live page explicitly includes X1 among N20/N26 applications and lists a comprehensive component set.",
+      "correction": "Diagnosis comes first; remove the unsupported universal 80,000-mile preventive interval.",
+      "sequence": 271,
+      "ymmt": "2013-2015 | BMW | X1 | N20",
+      "title": "N20 Timing Chain Guide Failure",
+      "howToFix": "Replace timing chain, guides, tensioner, and both sprockets as a complete kit. The repair requires removing the front of the engine and is labor-intensive. Updated guide materials are available. Preventive replacement at 80,000 miles is recommended for high-mileage N20 engines."
+    },
+    {
+      "issueId": "bmw-x1-oil-filter-housing-gasket-2013",
+      "repairItems": "Leak-source diagnosis; VIN/engine-correct oil-filter-housing gasket; oil-cooler gasket only if present/leaking; cleanup and belt inspection",
+      "decision": "ENGINE / HOUSING CONFIGURATION GATE",
+      "destinations": [
+        {
+          "label": "BMW X1 oil-filter-housing gasket catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/X1/Oil-Filter-Housing-Gasket/",
+          "scope": "2013-2022 X1; select E84/F48, engine, VIN, and housing/cooler configuration",
+          "role": "vehicle-specific gasket catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The years cross several engines and generations, and the oil-cooler gasket is conditional.",
+      "correction": "Do not imply all aftermarket gaskets fail or attach one gasket across N20/N55/B-series engines.",
+      "sequence": 272,
+      "ymmt": "2013-2022 | BMW | X1 | N20, B48",
+      "title": "Oil Filter Housing Gasket Leak",
+      "howToFix": "Replace the oil filter housing gasket and clean all affected surfaces. Also inspect and replace the oil cooler gasket if present. Use only OEM-quality gaskets as aftermarket gaskets tend to fail prematurely. Typical repair takes 2-3 hours."
+    },
+    {
+      "issueId": "bmw-x1-oil-leak-2016",
+      "repairItems": "Leak-source diagnosis; valve-cover gasket/cover or oil-filter-housing gasket by exact engine; cleanup and oil monitoring",
+      "decision": "LEAK-SOURCE / ENGINE SPLIT",
+      "destinations": [
+        {
+          "label": "BMW X1 engine-gasket catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/X1/Engine-Gaskets-and-Seals/",
+          "scope": "2016-2023 X1; select F48/U11, engine, VIN, and confirmed leak source",
+          "role": "vehicle-specific gasket catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The repair says gasket and/or housing; exact parts differ by engine and source of the leak.",
+      "correction": "Do not bundle both leak branches or repeat fixed labor times across all engines/generations.",
+      "sequence": 273,
+      "ymmt": "2016-2023 | BMW | X1 | B46, B48",
+      "title": "Oil Leaks - Valve Cover & Oil Filter Housing - F48 X1",
+      "howToFix": "Replace valve cover gasket and/or oil filter housing gasket as needed. Valve cover replacement is 2-3 hours labor. Oil filter housing gasket is 1-2 hours. Both are routine maintenance items on B-series engines. Use OEM gaskets for best longevity. Clean oil residue from engine bay after repair. Monitor oil level regularly to catch leaks early."
+    },
+    {
+      "issueId": "bmw-x1-suspension-bushing-2016",
+      "repairItems": "Lift inspection; exact front arm/bushing and side; complete arm versus pressed bushing by condition/shop method; alignment",
+      "decision": "GENERATION / SIDE-SPECIFIC CATALOG",
+      "destinations": [
+        {
+          "label": "BMW X1 control-arm catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/X1/Control-Arm/",
+          "scope": "2016-2023 X1; select F48/U11, axle position, side, and VIN",
+          "role": "vehicle-specific suspension catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "suspension inspection and alignment",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The range reaches a new generation and control arms are side/position specific.",
+      "correction": "Pairs are a recommendation, not an automatic requirement; replace confirmed wear and align.",
+      "sequence": 274,
+      "ymmt": "2016-2023 | BMW | X1",
+      "title": "Front Suspension Bushing & Control Arm Wear - F48 X1",
+      "howToFix": "Replace worn control arms or bushings. Most shops replace complete control arms (with integrated bushings) rather than pressing in new bushings alone. Alignment required after replacement. Inspect all suspension components while vehicle is lifted. Consider replacing both sides even if only one shows symptoms to avoid repeat labor costs. Use OEM or quality aftermarket parts (Lemforder, Meyle HD) for longevity."
+    },
+    {
+      "issueId": "bmw-x1-transfer-case-2013",
+      "repairItems": "xDrive-only diagnosis; split E84 longitudinal transfer case from F48 transverse AWD and U11; actuator versus internal failure; generation-specific fluid/service",
+      "decision": "MAJOR GENERATION / DRIVETRAIN SPLIT",
+      "destinations": [
+        {
+          "label": "BMW X1 transfer-case catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-x1-transfer_case.html",
+          "scope": "xDrive X1 only; VIN and E84/F48/U11 generation required",
+          "role": "OEM drivetrain catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "actuator versus internal AWD diagnosis",
+          "role": "drivetrain service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source combines fundamentally different AWD layouts across E84, F48, and U11, so one actuator or transfer-case link cannot cover the row.",
+      "correction": "Split generations before product approval and do not prescribe a universal 50,000-mile fluid interval without the exact unit/specification.",
+      "sequence": 275,
+      "ymmt": "2013-2023 | BMW | X1",
+      "title": "Transfer Case Failure - xDrive Models E84/F48 X1",
+      "howToFix": "Diagnose specific failure point. Transfer case actuator motor can be replaced separately ($800-1,200) if caught early. Complete transfer case replacement required for internal failures ($2,500-4,000). Regular transfer case fluid changes every 50,000 miles may extend life. Some owners install aftermarket upgraded actuator motors for better durability. Common wear item on high-mileage xDrive models."
     }
   ]
 }
