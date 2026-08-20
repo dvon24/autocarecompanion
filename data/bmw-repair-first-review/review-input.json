@@ -1,0 +1,178 @@
+{
+  "reviewedAt": "2026-08-20",
+  "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
+  "reviews": [
+    {
+      "issueId": "bmw-x4-electric-water-pump-2015",
+      "repairItems": "Electric water pump; thermostat; cooling-system bleed",
+      "decision": "YEAR/ENGINE-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        {"label":"Dayco DEP1038 electric water pump","url":"https://www.partzilla.com/product/automotive/DAY-DEP1038","scope":"2015-2019 X4 with 3.0L application only; verify VIN","role":"pump only"}
+      ],
+      "evidence": ["https://www.dayco.com/na-en/dayco-electric-water-pump/"],
+      "reason": "The live listing is the named DEP1038 pump and is in stock, while Dayco's application data limits it to BMW 3.0L applications through 2019. It does not include the thermostat.",
+      "correction": "Do not stretch DEP1038 across 2020-2023 or non-3.0L X4 variants. Add a separate thermostat only after exact engine/VIN fitment is known."
+    },
+    {
+      "issueId": "bmw-x5-n63-oil-consumption-2010",
+      "repairItems": "Oil-consumption diagnosis; VIN coverage check; two valve-seal kits only after confirmed leakage; VIN-specific one-time-use hardware",
+      "decision": "COVERAGE/DIAGNOSIS FIRST + CONDITIONAL PART",
+      "destinations": [
+        {"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2010-2018 X5 xDrive50i; VIN required","role":"coverage first"},
+        {"label":"BMW valve-seal kit 11340054492","url":"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340054492.html","scope":"N63/N63TU1 only after diagnosis; quantity two","role":"conditional repair part"}
+      ],
+      "evidence": ["https://static.nhtsa.gov/odi/tsbs/2019/MC-10160285-9999.pdf"],
+      "reason": "Oil use can come from several systems. The live BMW-parts page carries the exact current kit, but the repair text requires testing and a VIN program check first.",
+      "correction": "Keep the part secondary to diagnosis and coverage. State quantity two and that the linked item is not a complete job kit."
+    },
+    {
+      "issueId": "bmw-x5-valve-stem-seals-2000",
+      "repairItems": "BMW-capable diagnosis; two 16-seal kits if ETK selects them; VIN-specific hardware and seals",
+      "decision": "DIAGNOSIS-GATED PART APPROVAL",
+      "destinations": [
+        {"label":"BMW valve-seal kit 11340029751","url":"https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html","scope":"2004-2006 X5 4.4i/4.8is N62; quantity two after VIN/diagnosis","role":"conditional repair part"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Diagnosis and VIN-specific ETK/AIR verification","role":"service locator"}
+      ],
+      "evidence": [],
+      "reason": "The live product page lists the exact 11340029751 kit and E53 X5 fitment. Blue smoke alone does not prove valve-seal failure.",
+      "correction": "Retain the diagnosis gate and quantity-two warning; never substitute oil or an oil filter as the repair."
+    },
+    {
+      "issueId": "bmw-1-series-electric-water-pump-2012",
+      "repairItems": "Electric water pump; thermostat; bleed procedure",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Exact model, market, engine and VIN required","role":"fitment/service route"}
+      ],
+      "evidence": [],
+      "reason": "The row spans a global 1 Series generation without trim, chassis, engine, or drivetrain. BMW used different pump/thermostat combinations, so no single product can cover it safely.",
+      "correction": "Split by market, chassis, engine and drivetrain before adding pump and thermostat links."
+    },
+    {
+      "issueId": "bmw-1-series-n20-timing-chain-2012",
+      "repairItems": "Timing chain; guides; tensioner; related one-time-use hardware and oil-pump drive parts as required",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"VIN/chassis/drivetrain-specific timing repair","role":"fitment/service route"}
+      ],
+      "evidence": ["https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf"],
+      "reason": "The issue says 1 Series 2012-2019 N20 but supplies no trim, chassis or drivetrain. Available N20 kits split by rear-wheel drive and xDrive, and US bulletin applications do not support this blanket row.",
+      "correction": "Identify the exact market/model (for example 125i versus 228i), chassis and drivetrain, then select the complete updated kit."
+    },
+    {
+      "issueId": "bmw-1-series-oil-filter-housing-gasket-2012",
+      "repairItems": "Oil-filter-housing gasket; oil-cooler gasket; clean/inspect belt and pulleys",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Exact market/model, engine and VIN required","role":"fitment/service route"}
+      ],
+      "evidence": [],
+      "reason": "The broad 2012-2019 1 Series/N20 scope is not enough to prove a gasket pair. Product selection changes with the actual chassis and oil-cooler configuration.",
+      "correction": "Add exact trim/chassis/market and VIN, then link both required gaskets rather than only one."
+    },
+    {
+      "issueId": "bmw-1series-n54-charge-pipe-2008",
+      "repairItems": "Aluminum charge pipe replacing the OEM plastic pipe",
+      "decision": "PART APPROVAL",
+      "destinations": [
+        {"label":"VRSF N54 aluminum charge pipe","url":"https://modbargains.com/vrsf-charge-pipe-n54-for-2007-13-bmw-135i-1m-335i-is-535i-e82-e88-e90-e92-e93-e60-f10/","scope":"2008-2010 135i N54 and 2011 1 Series M; confirm emissions legality for location","role":"primary repair part"}
+      ],
+      "evidence": [],
+      "reason": "The live product page is in stock, has Add to Cart, names the N54, and explicitly lists the E82/E88 135i and 1M application.",
+      "correction": "Correct the blanket 2008-2011 N54 135i wording: 2011 135i is normally N55, while the 2011 1M is N54."
+    },
+    {
+      "issueId": "bmw-1series-n54-hpfp-2008",
+      "repairItems": "BMW fault-memory and fuel-pressure test plan; VIN coverage check; pump only if diagnosed",
+      "decision": "DIAGNOSIS-FIRST / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2008-2010 N54 1 Series; ISTA/fuel-pressure diagnosis","role":"service locator"},
+        {"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"VIN required; historical coverage may be expired","role":"coverage check"}
+      ],
+      "evidence": [],
+      "reason": "The How to Fix explicitly says not to replace the HPFP automatically. Fitment alone is not remedy proof.",
+      "correction": "Keep pump commerce off until the diagnostic test plan selects replacement. No generic OBD scanner link."
+    },
+    {
+      "issueId": "bmw-1series-n54-injector-2008",
+      "repairItems": "VIN/production-date recall check; six injectors and calibration only for eligible vehicles",
+      "decision": "RECALL-FIRST / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2008-2009 N54 1 Series; VIN required","role":"official recall route"},
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"DCSnet eligibility and campaign repair","role":"authorized service"}
+      ],
+      "evidence": [],
+      "reason": "The remedy depends on campaign eligibility and includes coding/calibration. Generic injectors are not an appropriate first destination.",
+      "correction": "Do not publish injector commerce ahead of the VIN and production-date check."
+    },
+    {
+      "issueId": "bmw-1series-n54-spark-coil-2008",
+      "repairItems": "Six correct spark plugs; ignition coils as needed after misfire diagnosis",
+      "decision": "CONTENT CORRECTION + YEAR-SPLIT PART APPROVAL",
+      "destinations": [
+        {"label":"Bosch ZGR6STE2 spark plug 12120037244","url":"https://www.bmwpartsfactory.com/bosch/spark-plug/12-12-0-037-244","scope":"2008-2010 135i 3.0L N54; verify build date; quantity six","role":"scheduled repair part"},
+        {"label":"BMW/Delphi ignition coil 12138616153","url":"https://www.bmwpartsdeal.com/parts/bmw-ignition_coil-12138616153.html","scope":"2008-2010 135i N54 and 2011 1M; quantity as diagnosed, up to six","role":"conditional repair part"}
+      ],
+      "evidence": ["https://www.realoem.com/bmw/enUS/partxref?q=12120037244"],
+      "reason": "The plug listing names the exact Bosch number and 2008-2010 135i application. The live coil page is buyable and its catalog includes the N54 135i/1M. The source row incorrectly treats every 2011 135i as N54.",
+      "correction": "Split 2008-2010 135i N54 from 2011 135i N55 and 2011 1M N54. Do not replace coils unless diagnosis supports it."
+    },
+    {
+      "issueId": "bmw-1series-n54-wastegate-2008",
+      "repairItems": "ISTA wastegate test plan; VIN coverage check; turbo/actuator only if diagnosis selects it",
+      "decision": "DIAGNOSIS-FIRST / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2008-2010 N54 1 Series; noise classification and ISTA test","role":"service locator"}
+      ],
+      "evidence": [],
+      "reason": "The How to Fix says a rattle alone does not justify turbocharger or actuator replacement.",
+      "correction": "Do not generate turbo, actuator, or scanner links from the symptom or codes alone."
+    },
+    {
+      "issueId": "bmw-1series-ofhg-leak-2008",
+      "repairItems": "Engine-specific oil-filter-housing gasket(s); oil-filter-cap O-ring; cleanup of oil on exhaust",
+      "decision": "ENGINE-SPLIT PART APPROVAL",
+      "destinations": [
+        {"label":"BMW gasket 11427537293 (superseded by 11428637821)","url":"https://www.bmwpartsdeal.com/parts/bmw-gasket-11427537293.html","scope":"2008-2013 128i N52; confirm VIN and oil-cooler configuration","role":"N52 housing gasket"},
+        {"label":"FCP Euro OFHG kit 11428637821KT","url":"https://www.fcpeuro.com/products/bmw-oil-filter-housing-gasket-kit-11428637821kt","scope":"2008-2010 135i N54, 2011 1M N54, and applicable N55 135i; validate vehicle","role":"N54/N55 reseal kit"}
+      ],
+      "evidence": [],
+      "reason": "Both live pages carry the named parts; the FCP kit explicitly lists 135i and 1 Series M and includes the required reseal gaskets. Engine splitting is mandatory.",
+      "correction": "Do not use one gasket link for N52, N54 and N55. Add the cap O-ring separately if it is not in the selected kit."
+    },
+    {
+      "issueId": "bmw-1series-valve-cover-pcv-2008",
+      "repairItems": "Engine-specific valve-cover/PCV assembly; gasket and required bolts; optional plugs only while access is open",
+      "decision": "ENGINE-SPLIT PART APPROVAL",
+      "destinations": [
+        {"label":"Genuine BMW N51/N52 valve cover 11127552281","url":"https://www.fcpeuro.com/products/bmw-valve-cover-3-0-l6-11127552281","scope":"2008-2013 128i N52/N51; validate VIN","role":"N52/N51 valve-cover assembly"},
+        {"label":"BMW cylinder-head cover 11127565284","url":"https://www.bmwpartsdeal.com/parts/bmw-cylinder_head_cover-11127565284.html","scope":"2008-2010 135i N54; confirm N55/1M separately","role":"N54 valve-cover assembly"}
+      ],
+      "evidence": [],
+      "reason": "The live listings identify the exact part numbers and supported applications. The source's single N54/N55 part number does not safely cover every engine/year.",
+      "correction": "Split N52, N54 and N55. Confirm whether gaskets and all required bolts are included; do not imply optional plugs repair the PCV fault."
+    },
+    {
+      "issueId": "bmw-1series-water-pump-2008",
+      "repairItems": "BMW coolant-pump test plan; pump only after diagnosis; cooling-system bleed",
+      "decision": "DIAGNOSIS-FIRST / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2008-2013 135i/1M; VIN and engine verification required","role":"diagnostic service"}
+      ],
+      "evidence": [],
+      "reason": "The revised How to Fix explicitly requires the BMW test plan and says fitment candidates are not remedy proof.",
+      "correction": "Keep pump commerce removed until diagnosis identifies replacement. Do not add a scanner solely because fault codes may be stored."
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-225xe-plug-hybrid-high-voltage-battery-fire-risk",
+      "repairItems": "VIN/production-date recall check; authorized high-voltage recall remedy",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW global recall lookup","url":"https://www.bmw.com/en/footer/recall/recall-en.html","scope":"2020 225xe Active Tourer; VIN required","role":"official recall route"}
+      ],
+      "evidence": [],
+      "reason": "The repair is a high-voltage recall action. The battery must not be opened or repaired by the owner, and no commerce link is appropriate.",
+      "correction": "Use the applicable national BMW recall authority and authorized high-voltage center; no battery or scanner CTA."
+    }
+  ]
+}
