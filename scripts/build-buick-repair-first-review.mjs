@@ -203,6 +203,15 @@ const reviewRows = Object.entries(decisions).map(([issueId, review], index) => {
     status: "REVIEW ONLY — NOT DEPLOYED",
   };
 });
+const reviewedIssueIds = new Set(reviewRows.map((row) => row.issueId));
+const remainingRecords = source.records.filter((record) => !reviewedIssueIds.has(record.id));
+if (remainingRecords.length !== 55) {
+  throw new Error(`Expected 55 remaining Buick issues, found ${remainingRecords.length}`);
+}
+const remainingWithLinks = remainingRecords.filter((record) => (record.claims || []).length > 0);
+if (remainingWithLinks.length > 0) {
+  throw new Error(`Remaining queue unexpectedly contains linked issues: ${remainingWithLinks.map((record) => record.id).join(", ")}`);
+}
 
 const summary = {
   schemaVersion: 1,
@@ -226,10 +235,12 @@ await fs.writeFile(path.join(dataDir, "review-ledger.json"), `${JSON.stringify(s
 const workbook = Workbook.create();
 const summarySheet = workbook.worksheets.add("Summary");
 const reviewSheet = workbook.worksheets.add("Buick Review");
+const remainingSheet = workbook.worksheets.add("55 Unlinked Issues");
 const methodSheet = workbook.worksheets.add("Method");
 
 summarySheet.showGridLines = false;
 reviewSheet.showGridLines = false;
+remainingSheet.showGridLines = false;
 methodSheet.showGridLines = false;
 
 summarySheet.getRange("A1:H1").merge();
@@ -321,6 +332,121 @@ reviewSheet.getRange("A2:O2").format.rowHeight = 34;
 reviewSheet.getRange("A4:O4").format.rowHeight = 40;
 reviewSheet.getRange(`A5:O${reviewRows.length + 4}`).format.rowHeight = 110;
 
+const remainingHeaders = [
+  "#",
+  "Issue ID",
+  "YMMT",
+  "Known Issue",
+  "Description / Context",
+  "How to Fix (full)",
+  "Symptoms",
+  "DTC Codes",
+  "Existing Link Count",
+  "Repair Items to Extract",
+  "Candidate URL(s)",
+  "Reviewer Status",
+  "Reviewer Notes",
+];
+remainingSheet.getRange("A1:M1").merge();
+remainingSheet.getRange("A1").values = [["55 Buick Known Issues With No Existing Links"]];
+remainingSheet.getRange("A2:M2").merge();
+remainingSheet.getRange("A2").values = [["These issues have not failed the fitment process. They are the untouched queue: read the full How to Fix, extract exact repair items, then search and verify product/service pages."]];
+remainingSheet.getRange("A4:M4").values = [remainingHeaders];
+const remainingMatrix = remainingRecords.map((record, index) => {
+  const years = `${Math.min(...record.years)}-${Math.max(...record.years)}`;
+  const ymmt = [
+    years,
+    record.make,
+    record.model,
+    (record.trims || []).join(", "),
+    (record.engines || []).join(", "),
+  ]
+    .filter(Boolean)
+    .join(" | ");
+  return [
+    index + 1,
+    record.id,
+    ymmt,
+    record.title,
+    record.description,
+    record.solution,
+    (record.symptoms || []).join("\n"),
+    (record.dtcCodes || []).join(", "),
+    (record.claims || []).length,
+    "PENDING — read full How to Fix",
+    "",
+    "Needs review",
+    "",
+  ];
+});
+remainingSheet.getRangeByIndexes(4, 0, remainingMatrix.length, remainingHeaders.length).values = remainingMatrix;
+remainingSheet.freezePanes.freezeRows(4);
+remainingSheet.freezePanes.freezeColumns(3);
+remainingSheet.getRange("A1:M1").format = {
+  fill: "#17365D",
+  font: { bold: true, color: "#FFFFFF", size: 17 },
+  verticalAlignment: "center",
+};
+remainingSheet.getRange("A2:M2").format = {
+  fill: "#D9EAF7",
+  font: { italic: true, color: "#17365D" },
+  wrapText: true,
+  verticalAlignment: "center",
+};
+remainingSheet.getRange("A4:M4").format = {
+  fill: "#2F75B5",
+  font: { bold: true, color: "#FFFFFF" },
+  wrapText: true,
+  verticalAlignment: "center",
+  borders: { preset: "outside", style: "thin", color: "#17365D" },
+};
+remainingSheet.getRange(`A5:M${remainingRecords.length + 4}`).format = {
+  font: { name: "Aptos", size: 9 },
+  wrapText: true,
+  verticalAlignment: "top",
+  borders: { insideHorizontal: { style: "thin", color: "#D9E2F3" } },
+};
+remainingSheet.getRange(`I5:I${remainingRecords.length + 4}`).format = {
+  fill: "#E2F0D9",
+  font: { bold: true, color: "#375623" },
+  horizontalAlignment: "center",
+  verticalAlignment: "top",
+};
+remainingSheet.getRange(`J5:J${remainingRecords.length + 4}`).format = {
+  fill: "#FFF2CC",
+  font: { color: "#7F6000" },
+  wrapText: true,
+  verticalAlignment: "top",
+};
+remainingSheet.getRange(`L5:L${remainingRecords.length + 4}`).dataValidation = {
+  rule: {
+    type: "list",
+    values: ["Needs review", "Agree", "Find replacement", "Hold", "Edit source content"],
+  },
+};
+remainingSheet.getRange(`L5:L${remainingRecords.length + 4}`).conditionalFormats.add("containsText", {
+  text: "Needs review",
+  format: { fill: "#FFF2CC", font: { color: "#7F6000", bold: true } },
+});
+remainingSheet.getRange("A:A").format.columnWidth = 5;
+remainingSheet.getRange("B:B").format.columnWidth = 38;
+remainingSheet.getRange("C:C").format.columnWidth = 42;
+remainingSheet.getRange("D:D").format.columnWidth = 38;
+remainingSheet.getRange("E:E").format.columnWidth = 58;
+remainingSheet.getRange("F:F").format.columnWidth = 62;
+remainingSheet.getRange("G:G").format.columnWidth = 36;
+remainingSheet.getRange("H:H").format.columnWidth = 22;
+remainingSheet.getRange("I:I").format.columnWidth = 14;
+remainingSheet.getRange("J:J").format.columnWidth = 34;
+remainingSheet.getRange("K:K").format.columnWidth = 50;
+remainingSheet.getRange("L:L").format.columnWidth = 22;
+remainingSheet.getRange("M:M").format.columnWidth = 42;
+remainingSheet.getRange("A1:M1").format.rowHeight = 34;
+remainingSheet.getRange("A2:M2").format.rowHeight = 42;
+remainingSheet.getRange("A4:M4").format.rowHeight = 42;
+remainingSheet.getRange(`A5:M${remainingRecords.length + 4}`).format.rowHeight = 115;
+remainingSheet.tables.add(`A4:M${remainingRecords.length + 4}`, true, "UnlinkedBuickIssuesTable");
+
 methodSheet.getRange("A1:F1").merge();
 methodSheet.getRange("A1").values = [["Repeatable Link-Finding Method"]];
 methodSheet.getRange("A3:B10").values = [
@@ -374,9 +500,22 @@ const keyRange = await workbook.inspect({
   tableMaxCols: 8,
 });
 console.log(keyRange.ndjson);
+const remainingCheck = await workbook.inspect({
+  kind: "table",
+  range: "55 Unlinked Issues!A1:M9",
+  include: "values,formulas",
+  tableMaxRows: 9,
+  tableMaxCols: 13,
+});
+console.log(remainingCheck.ndjson);
 
-for (const sheetName of ["Summary", "Buick Review", "Method"]) {
-  const range = sheetName === "Buick Review" ? "A1:O8" : undefined;
+for (const sheetName of ["Summary", "Buick Review", "55 Unlinked Issues", "Method"]) {
+  const range =
+    sheetName === "Buick Review"
+      ? "A1:O8"
+      : sheetName === "55 Unlinked Issues"
+        ? "A1:M9"
+        : undefined;
   const preview = await workbook.render({ sheetName, range, autoCrop: range ? undefined : "all", scale: 1, format: "png" });
   const safe = sheetName.toLowerCase().replaceAll(" ", "-");
   await fs.writeFile(path.join(outputDir, `${safe}-preview.png`), new Uint8Array(await preview.arrayBuffer()));
