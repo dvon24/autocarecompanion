@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "make": "BMW",
-  "generatedAt": "2026-08-20T17:24:23.649Z",
+  "generatedAt": "2026-08-20T17:28:30.047Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "9c5acba63181f1d3d714c4d0090380ab656767ee3836b4056dfe3873dadc67e0",
   "publishedIssueCount": 385,
-  "reviewedIssueCount": 225,
-  "remainingIssueCount": 160,
-  "reviewedWithDestinationCount": 222,
-  "destinationCount": 313,
-  "distinctUrlCount": 95,
+  "reviewedIssueCount": 250,
+  "remainingIssueCount": 135,
+  "reviewedWithDestinationCount": 247,
+  "destinationCount": 353,
+  "distinctUrlCount": 116,
   "scannerDestinationCount": 0,
   "missingHowToFixCount": 3,
   "reviews": [
@@ -5124,6 +5124,596 @@
       "ymmt": "2000-2003 | BMW | M5 | 4.9L S62 V8",
       "title": "Door Vapor Barrier and Sunroof Drain Leaks Causing Wet Carpets and Electrical Problems",
       "howToFix": "Remove the door panel and inspect the vapor barrier seal, especially along the lower edge, and verify all sunroof drains flow freely and exit properly. Reseal the vapor barrier with butyl ribbon or equivalent body sealer, clear the drains, dry the carpet and padding thoroughly, and inspect under-carpet wiring/connectors for corrosion."
+    },
+    {
+      "issueId": "bmw-m5-e39-m5-vanos-solenoidseal-2000",
+      "repairItems": "S62 VANOS diagnosis; bank-specific solenoid diagnosis; BS064 upgraded solenoid O-rings; BS061.2 seals only when indicated",
+      "decision": "EXACT S62 SEAL OPTIONS",
+      "destinations": [
+        {
+          "label": "Beisan S62 VANOS catalog",
+          "url": "https://beisansystems.com/product-category/s62-m5/",
+          "scope": "2000-2003 E39 M5 S62; select BS064 solenoid O-rings or applicable seal service only after diagnosis",
+          "role": "engine-specific VANOS repair catalog"
+        },
+        {
+          "label": "Beisan BS064 S62 solenoid O-rings",
+          "url": "https://beisansystems.com/product/bs064-s62-upgraded-solenoid-o-rings-covers-both-solenoids/",
+          "scope": "all US E39 M5 S62; covers both solenoid banks",
+          "role": "solenoid seal repair"
+        }
+      ],
+      "evidence": [],
+      "reason": "Beisan explicitly identifies the S62/E39 M5 and the coverage of the solenoid O-ring set.",
+      "correction": "Do not infer a consumer scanner from the DTC language; BMW VANOS activation testing is specialist diagnosis.",
+      "sequence": 226,
+      "ymmt": "2000-2003 | BMW | M5 | 4.9L S62 V8",
+      "title": "E39 M5 VANOS Solenoid/Seal Failure Causing Rattle, Power Loss, and Check Engine Lights",
+      "howToFix": "Diagnosis typically includes scanning for camshaft timing and VANOS activation faults, checking oil condition/pressure, and listening for startup rattle from the front of the engine. Repair usually involves rebuilding the VANOS units with upgraded seals, replacing failed solenoids or solenoid seals, and correcting any oil leaks or timing-related wear. Many owners address both banks preventively while the front of engine is apart."
+    },
+    {
+      "issueId": "bmw-m5-front-thrust-arm-bushing-2000",
+      "repairItems": "Front thrust-arm/control-arm inspection; axle-side and ball-joint confirmation; arms or bushings; alignment; rotor/wheel diagnosis if shimmy remains",
+      "decision": "VIN / SIDE-SPECIFIC SUSPENSION CATALOG",
+      "destinations": [
+        {
+          "label": "BMW E39 M5 front suspension catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/M5/Control-Arm/",
+          "scope": "2000-2003 E39 M5; select exact arm, side, and kit after inspection",
+          "role": "vehicle-specific control-arm catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "front-end diagnosis and alignment",
+          "role": "inspection/alignment service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The repair branches among bushings, complete arms, ball joints, brakes, and wheel balance, so the vehicle catalog is appropriate but one universal kit is not.",
+      "correction": "Confirm play/leakage and left/right requirements before ordering.",
+      "sequence": 227,
+      "ymmt": "2000-2003 | BMW | M5 | 4.9L S62 V8",
+      "title": "Front Thrust Arm Bushing Failure Causing 50-60 MPH Brake Shimmy and Steering Vibration",
+      "howToFix": "Inspect the front thrust arms and control arms for bushing cracks, fluid leakage from hydro-bushings, and ball-joint play. Replace the thrust arms or complete front control arm set, then perform a proper alignment; if brake pulsation remains, inspect rotor runout and wheel balance."
+    },
+    {
+      "issueId": "bmw-m5-getrag-420g-6-speed-synchro-2000",
+      "repairItems": "Hot/cold road test; clutch-release, mounts, and fluid checks; Getrag 420G specialist rebuild if persistent grinding; optional clutch/shifter wear items",
+      "decision": "TRANSMISSION SPECIALIST ROUTE",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2000-2003 E39 M5 Getrag 420G diagnosis/rebuild",
+          "role": "manual-transmission specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The gearbox should not be condemned until clutch release, mounts, and fluid are ruled out; rebuild parts and optional clutch items depend on measured wear.",
+      "correction": "Do not market fluid as a cure for worn synchros or bundle a clutch without inspection.",
+      "sequence": 228,
+      "ymmt": "2000-2003 | BMW | M5 | 4.9L S62 V8",
+      "title": "Getrag 420G 6-Speed Synchro Wear and 2nd/3rd Gear Grinding",
+      "howToFix": "Diagnosis involves road testing hot and cold, checking clutch release operation, and ruling out worn transmission mounts or old fluid before condemning the gearbox. Mild cases may improve with fresh fluid, but persistent grinding usually requires transmission rebuild with new synchros, bearings, and wear components. Clutch and shifter bushings are often serviced at the same time."
+    },
+    {
+      "issueId": "bmw-m5-ignition-coils-2012",
+      "repairItems": "Cylinder-specific misfire diagnosis; generation/VIN-correct coil; spark plugs by condition and service interval",
+      "decision": "GENERATION SPLIT / VIN CATALOG",
+      "destinations": [
+        {
+          "label": "BMW M5 ignition catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/M5/Ignition/",
+          "scope": "F10 and F90 M5; select chassis/year/VIN before coil or plug quantity",
+          "role": "vehicle-specific ignition catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The 2012-2023 range crosses F10 and F90 S63 revisions, and the source's all-eight recommendation is not a diagnosis.",
+      "correction": "Replace the failed coil(s) based on testing; all eight and plugs are conditional, not mandatory.",
+      "sequence": 229,
+      "ymmt": "2012-2023 | BMW | M5 | S63, S63TU",
+      "title": "S63/S63TU Ignition Coil Premature Failure",
+      "howToFix": "Replace failed ignition coil(s) immediately to prevent catalytic converter damage ($3,000-$5,000 additional). When one coil fails, M5Post recommends replacing all 8 coils as preventative maintenance ($600-$900 parts + labor) - they typically fail within similar timeframes and saves second service visit. Use OEM Bosch coils for best reliability ($50-$80 each) - aftermarket options fail even faster on S63 due to heat and electrical demands. Replace spark plugs simultaneously if mileage exceeds 30,000 miles ($280-$320 for 8 plugs). Labor: 1-2 hours. Single coil replacement: $179-$235."
+    },
+    {
+      "issueId": "bmw-m5-instrument-cluster-pixel-failure-2000",
+      "repairItems": "Visual confirmation; original cluster/MID rebuild; ribbon/screen repair by specialist; coding/mileage handling for replacement units",
+      "decision": "REBUILD SERVICE ROUTE",
+      "destinations": [
+        {
+          "label": "Module Repair Pro BMW cluster repair",
+          "url": "https://modulerepairpro.com/collections/bmw-instrument-cluster-repair",
+          "scope": "verify exact E39 M5 cluster/MID service and current terms before shipment",
+          "role": "specialist rebuild catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "Rebuilding the original unit avoids used-cluster coding and mileage-tamper complications, but the exact unit must be selected.",
+      "correction": "Do not sell an uncoded used cluster as plug-and-play.",
+      "sequence": 230,
+      "ymmt": "2000-2003 | BMW | M5 | 4.9L S62 V8",
+      "title": "Instrument Cluster Pixel Failure and MID Display Dropout",
+      "howToFix": "Diagnosis is usually visual, confirming missing display segments in the cluster or MID. Repair involves replacing or rebuilding the cluster/MID display ribbon and screen components, or sending the unit to a specialist rebuilder. Used replacement clusters require coding and mileage tamper considerations, so rebuild is often preferred."
+    },
+    {
+      "issueId": "bmw-m5-maf-sensor-degradation-causing-2000",
+      "repairItems": "Intake-leak inspection; bank-to-bank live-airflow comparison; affected OE MAF only after confirmation; boots and filter by condition",
+      "decision": "DIAGNOSIS / VIN-SPECIFIC MAF",
+      "destinations": [
+        {
+          "label": "Genuine BMW E39 M5 air-intake catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m5-air_intake.html",
+          "scope": "2000-2003 E39 M5 S62; select VIN and left/right quantity only after testing",
+          "role": "OEM MAF/intake catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "Lean faults commonly come from unmetered air; the source correctly requires leak checks and bank comparison first.",
+      "correction": "Do not automatically replace both MAF sensors from lean codes alone.",
+      "sequence": 231,
+      "ymmt": "2000-2003 | BMW | M5 | 4.9L S62 V8",
+      "title": "MAF Sensor Degradation Causing Lean Codes, Hesitation, and Reduced Power",
+      "howToFix": "Scan for fuel-trim and MAF-related faults, inspect for intake leaks first, then compare live airflow values bank-to-bank. If readings are implausible or one bank differs significantly, replace the affected MAF sensor(s) with OE-quality parts and clear adaptations; also inspect intake boots and air filter condition."
+    },
+    {
+      "issueId": "bmw-m5-radiator-end-tank-and-2000",
+      "repairItems": "Cooling pressure test; failed radiator or expansion tank; hoses/cap/thermostat/pump only by age and condition; correct coolant",
+      "decision": "LEAK-SOURCE / VIN CATALOG",
+      "destinations": [
+        {
+          "label": "BMW E39 M5 cooling-system catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/M5/Cooling-System/",
+          "scope": "2000-2003 E39 M5; choose the pressure-test-confirmed component",
+          "role": "vehicle-specific cooling catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The How to Fix lists several distinct leak sources and only conditionally suggests a full refresh.",
+      "correction": "Do not convert one cracked tank into an automatic complete cooling-system kit.",
+      "sequence": 232,
+      "ymmt": "2000-2003 | BMW | M5 | 4.9L S62 V8",
+      "title": "Radiator End Tank and Expansion Tank Cracking Causing Sudden Coolant Loss and Overheating",
+      "howToFix": "Diagnose with a cooling-system pressure test and inspect the radiator side tanks, expansion tank seams, level sensor area, upper hose neck, and bleed screw area for seepage or cracks. Repair typically involves replacing the failed tank or radiator, and many owners proactively refresh the full cooling system with hoses, cap, thermostat, water pump, and coolant to prevent repeat failures."
+    },
+    {
+      "issueId": "bmw-m5-rear-ball-joint-and-2000",
+      "repairItems": "Lift inspection; side-specific rear ball joints/integral links; pairs only when both show wear; four-wheel alignment",
+      "decision": "INSPECTION / REAR-SUSPENSION CATALOG",
+      "destinations": [
+        {
+          "label": "BMW E39 M5 rear suspension catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/M5/Suspension/",
+          "scope": "2000-2003 E39 M5; select exact rear joint/link and side after inspection",
+          "role": "vehicle-specific suspension catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "rear suspension diagnosis and four-wheel alignment",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Multiple rear links can create the same symptoms, and alignment is part of the repair.",
+      "correction": "Do not assume every rear wear item must be replaced together.",
+      "sequence": 233,
+      "ymmt": "2000-2003 | BMW | M5 | 4.9L S62 V8",
+      "title": "Rear Ball Joint and Integral Link Wear Causing Clunks, Tire Wear, and Unstable Handling",
+      "howToFix": "Diagnosis includes checking rear wheel play on a lift, inspecting ball joints and links for torn boots or looseness, and measuring alignment. Repair typically involves replacing worn rear ball joints and links in pairs, followed by a four-wheel alignment. Many owners refresh multiple rear suspension wear items together to restore the M5's original handling precision."
+    },
+    {
+      "issueId": "bmw-m5-s63-rod-bearing-2012",
+      "repairItems": "S63-specific diagnosis and oil-pressure review; measured bearing clearances; exact bearings/bolts/gaskets selected by engine and builder",
+      "decision": "SOURCE PROCEDURE CORRECTION / SPECIALIST ROUTE",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2012-2016 F10 M5 S63TU rod-bearing assessment",
+          "role": "engine-builder diagnosis and repair"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source incorrectly says the crankshaft must be dropped to access rod bearings and prescribes an unqualified interval/product choice.",
+      "correction": "Correct the procedure; bearing grade/clearance and fastener strategy must be selected by the engine builder.",
+      "sequence": 234,
+      "ymmt": "2012-2016 | BMW | M5 | S63",
+      "title": "S63 Twin-Turbo V8 Rod Bearing Wear",
+      "howToFix": "Preventative rod bearing replacement with upgraded BE Bearings or ACL Race bearings every 60,000-80,000 miles. Requires oil pan removal and dropping the crankshaft to access all 8 rod bearings. Use strict 5,000-mile oil change intervals with BMW LL-01 approved 0W-40 oil."
+    },
+    {
+      "issueId": "bmw-m5-s63-turbo-2012",
+      "repairItems": "Turbo/oil-supply/cooling diagnosis; VIN-specific updated turbo only after confirmed failure; both units only if justified; relevant heat shielding",
+      "decision": "VIN / FAILURE-SOURCE GATE",
+      "destinations": [
+        {
+          "label": "Genuine BMW M5 turbocharger catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m5-turbocharger.html",
+          "scope": "2012-2016 F10 M5; select VIN, bank, and superseded part after diagnosis",
+          "role": "OEM turbo catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "S63 turbo, oil-line, and cooling diagnosis",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Bank, production date, oil/coolant supply condition, and supersession determine the actual repair.",
+      "correction": "Reject automatic paired turbo replacement and unsupported universal oil-interval claims.",
+      "sequence": 235,
+      "ymmt": "2012-2016 | BMW | M5 | S63",
+      "title": "S63 V8 Twin-Turbocharger Failure - F10 M5",
+      "howToFix": "Replace failed turbocharger(s) with updated OEM units ($4,000-$6,000 per turbo, $8,000-$12,000 for both). Install BMW TSB heat insulators to protect turbo coolant and oil lines from excessive heat exposure ($200 preventive vs. $8,000+ turbo replacement). Use ONLY high-quality synthetic oil and maintain strict oil change intervals (5,000-7,500 miles MAX - NOT BMW's 10k recommendation). Avoid aggressive driving when engine cold - allow full warm-up before boost. For high-mileage vehicles (80,000+ miles), consider preventative turbo replacement or inspection. M5Post: when one turbo fails, seriously consider replacing both - labor overlap saves $2,000-$3,000 and other will likely fail soon."
+    },
+    {
+      "issueId": "bmw-m5-s85-rod-bearing-2006",
+      "repairItems": "S85 rod-bearing assessment; measured-clearance service kit; new bolts/gaskets/oil; optional oil trend analysis; inspect VANOS high-pressure line during access",
+      "decision": "EXACT S85 KIT WITH MEASUREMENT GATE",
+      "destinations": [
+        {
+          "label": "Lang Racing S85 rod-bearing service kit",
+          "url": "https://store.langracing.com/products/rod-bearing-service-kit-bmw-s85-e60-m5-e63-m6",
+          "scope": "2006-2010 E60 M5 S85; engine-builder selection and clearance verification required",
+          "role": "engine-specific rod-bearing service kit"
+        },
+        {
+          "label": "Blackstone oil-analysis kit",
+          "url": "https://www.blackstone-labs.com/products/free-test-kits/",
+          "scope": "optional wear trending; not a conclusive bearing diagnosis",
+          "role": "oil-analysis service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live kit explicitly covers the S85 E60 M5, while measurement and professional installation remain essential.",
+      "correction": "Remove 'mandatory,' the fixed 70,000-mile guarantee, and the claim that the crankshaft is dropped; oil analysis cannot prove bearing condition.",
+      "sequence": 236,
+      "ymmt": "2006-2010 | BMW | M5",
+      "title": "S85 V10 Rod Bearing Premature Failure (CATASTROPHIC) - E60 M5",
+      "howToFix": "MANDATORY PREVENTATIVE: Replace rod bearings before 70,000 miles ($6,500-$8,600). Upgrade to BE Bearings, ACL Race, or VAC Motorsports high-performance bearings with increased clearances (0.0025\" or greater) - DO NOT use OEM BMW bearings which have same design flaw. Perform regular oil analysis every 5,000 miles to detect early bearing wear. Use only BMW-approved 10W-60 synthetic oil with frequent oil changes (5,000-7,500 mile intervals). NEVER redline engine before reaching full operating temperature. Replace high-pressure VANOS line at same time as rod bearings (labor overlap saves $2,000-$3,000). If catastrophic failure occurs: Complete engine replacement required ($15,000-$32,000)."
+    },
+    {
+      "issueId": "bmw-m5-s85-throttle-actuator-2006",
+      "repairItems": "Bank-specific throttle-actuator diagnosis; upgraded internal gears/electronics rebuild or exact actuator; second bank only by condition",
+      "decision": "EXACT S85 REBUILD OPTIONS",
+      "destinations": [
+        {
+          "label": "Beisan S65/S85 throttle-actuator gear service",
+          "url": "https://beisansystems.com/product/bs102-s65-s85-throttle-actuator-gears-w-installation-service/",
+          "scope": "S85 E60 M5 actuator sent for upgraded-gear installation; verify electronics eligibility",
+          "role": "actuator rebuild service"
+        },
+        {
+          "label": "ECU Testing S85 throttle-actuator rebuild",
+          "url": "https://www.ecutesting.com/common-faults/bmw/m3-m5-throttle-actuator-rebuild/",
+          "scope": "E60 M5 S85 original actuator; confirm shipping/region/current terms",
+          "role": "electronics and gear rebuild service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Both live services explicitly identify the S85/E60 M5 actuator failure.",
+      "correction": "Do not claim the other bank will fail within a fixed 6-12 months or require paired replacement without testing.",
+      "sequence": 237,
+      "ymmt": "2006-2010 | BMW | M5",
+      "title": "S85 V10 Throttle Body Actuator Failure - E60 M5",
+      "howToFix": "Replace failed throttle actuator(s) with OEM units ($1,400-$1,700 each) or upgrade to Evolve Automotive uprated throttle actuators ($1,500-$1,800 each) for improved durability and increased lifespan - these have upgraded internal components that prevent repeat failure. ECU Testing and Euro Power Motorsports offer actuator rebuilds ($500-$800 per actuator) as cost-effective alternatives. M5Post consensus: when one actuator fails, replace both at same time to save labor costs since second will fail within 6-12 months. Labor: 3 hours professional / 4+ hours DIY."
+    },
+    {
+      "issueId": "bmw-m5-s85-vanos-pump-2006",
+      "repairItems": "VANOS pressure/pump diagnosis; updated high-pressure line; rebuildable pump or rebuild kit based on damage; contamination inspection",
+      "decision": "EXACT S85 VANOS OPTIONS",
+      "destinations": [
+        {
+          "label": "DrVanos S85 rebuilt VANOS oil pump",
+          "url": "https://drvanos.com/collections/s85-v10-vanos/products/s85-vanos-oil-pump",
+          "scope": "2006-2010 E60 M5 S85; rebuildable core required; verify stock",
+          "role": "conditional rebuilt VANOS pump"
+        },
+        {
+          "label": "DrVanos S85 high-pressure oil line",
+          "url": "https://drvanos.com/products/s85-vanos-high-pressure-oil-line",
+          "scope": "S85 M5/M6; includes crush washers",
+          "role": "updated VANOS pressure line"
+        }
+      ],
+      "evidence": [],
+      "reason": "DrVanos explicitly lists the S85 E60 M5 pump and line; the pump page may be sold out and requires a rebuildable core.",
+      "correction": "Do not link a pump until pressure/contamination diagnosis determines whether rebuild is possible.",
+      "sequence": 238,
+      "ymmt": "2006-2010 | BMW | M5 | S85",
+      "title": "VANOS High-Pressure Pump & Line Failure (CATASTROPHIC) - E60 M5",
+      "howToFix": "Replace high-pressure VANOS line with updated design that includes proper bend radius ($3,000 parts + labor). Replace VANOS high-pressure pump if showing signs of wear or contamination. DrVanos offers fully rebuilt S85 VANOS pumps ($1,800 + $400 core deposit) - M5Post gold standard for rebuilds. This repair is BEST performed simultaneously with rod bearing replacement to save on overlapping labor costs ($2,000-$4,000 savings). WARNING: DO NOT ignore VANOS line leaks - metal debris from failed pump circulates through entire lubrication system and can destroy engine. If catastrophic failure: engine replacement required ($32,000)."
+    },
+    {
+      "issueId": "bmw-m5-smg-pump-2006",
+      "repairItems": "SMG pressure diagnosis; distinguish relay, accumulator, motor, gear pump, sensor, or leak; exact failed component; fluid/bleed/adaptation",
+      "decision": "EXACT SMG III COMPONENT CATALOG AFTER DIAGNOSIS",
+      "destinations": [
+        {
+          "label": "SMG Society E60 M5/E63 M6 SMG III catalog",
+          "url": "https://www.smgsociety.com/shop/",
+          "scope": "SMG III only; choose motor, accumulator, relay, seals, sensor, or pump parts from pressure diagnosis",
+          "role": "transmission-specific component catalog"
+        },
+        {
+          "label": "SMG Society E60 M5 pump motor",
+          "url": "https://www.smgsociety.com/product/pump-motor-bmw-e60-m5-e63-m6-smg-iii/",
+          "scope": "E60/E61 M5 SMG III, reference 23017841032; motor failure only",
+          "role": "conditional pump-motor kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "The specialist catalog separates the common SMG III pressure-system failure branches and explicitly covers E60 M5.",
+      "correction": "Diagnosis first; do not replace the whole pump when the relay, accumulator, motor, seals, or sensor is the cause.",
+      "sequence": 239,
+      "ymmt": "2006-2010 | BMW | M5",
+      "title": "SMG III Hydraulic Pump Failure - E60 M5",
+      "howToFix": "DIAGNOSIS FIRST: Insist on proper diagnosis before pump replacement - accumulator failure has similar symptoms and costs $500 vs. $5,000. If pump confirmed failed: Try rebuild first - carbon buildup can often be cleaned for fraction of replacement cost. SMG Society and specialty shops offer pump rebuilds ($300 pump + labor + fluids = $1,500-$2,500). If rebuild unsuccessful: Replace SMG pump with OEM or remanufactured unit ($5,000-$7,700 dealership, $5,000-$6,500 independent specialist). Replace hydraulic accumulator at same time if vehicle has 60,000+ miles ($300-$500 additional). Flush and replace SMG hydraulic fluid and manual transmission fluid during pump replacement."
+    },
+    {
+      "issueId": "bmw-m5-timing-chain-guide-wear-2000",
+      "repairItems": "Cold-start diagnosis; inspect filter for guide debris; timing data; guides/tensioners/rails and access gaskets selected as a complete engine-specific job",
+      "decision": "SPECIALIST SERVICE / COMPLETE-JOB CONFIGURATION",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2000-2003 E39 M5 S62 timing-chain diagnosis and repair",
+          "role": "timing specialist service"
+        },
+        {
+          "label": "BMW E39 M5 timing catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/M5/Timing-Chain/",
+          "scope": "S62; configure guides, rails, tensioners, seals, and one-time hardware with installer",
+          "role": "engine-specific timing catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "This is an invasive system repair whose completeness depends on inspected wear and access items.",
+      "correction": "Do not offer a timing-belt or OBD-scanner link; this engine uses chains and requires mechanical diagnosis.",
+      "sequence": 240,
+      "ymmt": "2000-2003 | BMW | M5 | 4.9L S62 V8",
+      "title": "Timing Chain Guide Wear and Chain Tensioner Noise on the S62 V8",
+      "howToFix": "Diagnosis includes listening for chain noise on cold start, inspecting oil/filter for plastic guide debris, and checking timing adaptation/fault data. Repair generally requires replacing timing chain guides, tensioners, related rails, gaskets, and often addressing front-engine seals while disassembled. Preventive service is often recommended once noise appears rather than waiting for a failure."
+    },
+    {
+      "issueId": "bmw-m5-torque-converter-shudder-2018",
+      "repairItems": "VIN/SIB check; ZF 8HP fluid and integrated pan/filter service; software/adaptation evaluation; torque converter only if shudder persists and is confirmed",
+      "decision": "VIN / SERVICE-BULLETIN GATE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2018-2023 F90 M5 VIN/SIB, software, and converter diagnosis",
+          "role": "bulletin and diagnostic service"
+        },
+        {
+          "label": "F90 M5 transmission-service catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/M5/Automatic-Transmission-Fluid-Kit/",
+          "scope": "select 2018-2023 F90 M5 and verify exact ZF pan/fluid kit by VIN",
+          "role": "vehicle-specific service-kit catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The converter is conditional after service/diagnosis and any SIB coverage is VIN-specific.",
+      "correction": "Do not guarantee that fluid or software cures a mechanically worn converter.",
+      "sequence": 241,
+      "ymmt": "2018-2023 | BMW | M5",
+      "title": "ZF 8HP Torque Converter Shudder",
+      "howToFix": "Perform a transmission fluid and filter change using genuine ZF LifeGuard 8 fluid. If the shudder persists, the torque converter must be replaced. BMW issued a service bulletin for some VINs. A software update for shift calibration may also help in mild cases."
+    },
+    {
+      "issueId": "bmw-m5-valve-stem-seals-2012",
+      "repairItems": "Oil-consumption and smoke diagnosis; generation-specific valve-stem seals; head-on versus head-off method selected by equipped specialist; catalyst inspection",
+      "decision": "GENERATION SPLIT / SPECIALIST SERVICE",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "F10 or F90 M5 S63 valve-seal diagnosis and equipped repair",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row crosses S63 revisions and the repair method depends on tooling and engine condition; a smoke plume is not sufficient diagnosis.",
+      "correction": "Reject the unsafe instruction to rev a stationary engine to redline as a diagnostic test.",
+      "sequence": 242,
+      "ymmt": "2012-2023 | BMW | M5",
+      "title": "S63/S63TU Valve Stem Seal Failure & Oil Consumption",
+      "howToFix": "Replace valve stem seals with updated OEM or performance seals ($3,500-$10,000 depending on method). Labor-intensive repair requiring either cylinder head removal ($6,000-$10,000) or specialized valve spring compressor tools with heads on engine ($3,500-$6,000). Address issue EARLY to prevent catalytic converter damage from oil burning (adds $3,000-$5,000 to repair). Perform more frequent oil changes (5,000 miles) to minimize damage. Blue smoke test: let engine idle 30+ minutes until hot, then rev to redline briefly - big blue smoke plume = valve seals. Find shop that can replace valve seals with heads installed (specialized tools required) - saves $4,000+ in labor vs. full head removal."
+    },
+    {
+      "issueId": "bmw-m6-e63-e64-active-steering-steering-gear-play-knock",
+      "repairItems": "Steering and front-suspension play inspection; bushings/ball joints first if failed; VIN-specific steering gear only for confirmed internal play/leak; alignment",
+      "decision": "DIAGNOSIS / BRANCH-SPECIFIC CATALOG",
+      "destinations": [
+        {
+          "label": "BMW M6 steering catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m6-steering.html",
+          "scope": "2005-2010 E63/E64 M6; VIN and Active Steering equipment required",
+          "role": "OEM steering catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "steering-gear versus control-arm diagnosis and alignment",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source correctly requires cheaper suspension causes to be ruled out before an expensive steering gear.",
+      "correction": "Do not attach a steering rack to a knock symptom without confirming Active Steering equipment and internal rack play.",
+      "sequence": 243,
+      "ymmt": "2005-2010 | BMW | M6 | M6 Coupe, M6 Convertible | S85 5.0L V10 (S85B50)",
+      "title": "E63/E64 Active Steering and Steering-Gear Play / Knock",
+      "howToFix": "Inspect the steering gear and front control-arm/thrust-arm bushings for play. Replace worn control-arm bushings/ball joints first as they are cheaper and frequently the source of the knock; if the steering rack/gear itself has internal play or leaks, it requires replacement (a significant cost) followed by an alignment."
+    },
+    {
+      "issueId": "bmw-m6-f12-convertible-top-hydraulic-pump-relay-failure",
+      "repairItems": "F12 convertible-only roof diagnosis; exact relay or microswitch; leak/pressure diagnosis; pump rebuild/replacement only if confirmed; fluid bleed",
+      "decision": "BODY-STYLE / FAILURE-BRANCH GATE",
+      "destinations": [
+        {
+          "label": "Genuine BMW M6 convertible-top catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m6-convertible_top_motor.html",
+          "scope": "2012-2019 F12 M6 convertible only; VIN and diagnosed component required",
+          "role": "OEM roof-system catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "F12 roof relay, sensor, leak, and pressure diagnosis",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The failure may be electrical, hydraulic, or a position sensor, and the issue applies only to the F12 convertible.",
+      "correction": "Exclude F13 coupe/F06 Gran Coupe and do not replace the hydraulic pump before relay/sensor/leak diagnosis.",
+      "sequence": 244,
+      "ymmt": "2012-2019 | BMW | M6 | M6 Convertible (F12) | S63 4.4L twin-turbo V8 (S63TU)",
+      "title": "F12 Convertible Top Hydraulic Pump and Relay Failure",
+      "howToFix": "Diagnose whether the fault is the pump's high-current relays (relatively cheap, often the cure), a pressure loss in the pump, a hydraulic leak, or a roof microswitch/sensor. Replace the relays first; if pressure loss persists, rebuild or replace the hydraulic pump unit (specialist rebuild services exist) and renew worn seals/sensors. Bleed and refill the hydraulic system after repair."
+    },
+    {
+      "issueId": "bmw-m6-f12-f13-7-speed-m-dct-mechatronic-clutch-pack-failure",
+      "repairItems": "BMW-capable DCT diagnosis; mechatronic versus clutch-pack confirmation; programming/adaptation; fluid/filter service where due",
+      "decision": "SPECIALIST DIAGNOSIS; PARTS HELD",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2012-2019 F12/F13/F06 M6 7-speed M-DCT",
+          "role": "coding-capable DCT diagnosis and repair"
+        }
+      ],
+      "evidence": [],
+      "reason": "The repair branches between mechatronics and clutch packs and requires programming/adaptation; no consumer scanner coverage was verified.",
+      "correction": "No generic OBD link; the scanner must access the BMW transmission module and service functions.",
+      "sequence": 245,
+      "ymmt": "2012-2019 | BMW | M6 | M6 Coupe (F13), M6 Convertible (F12), M6 Gran Coupe (F06) | S63 4.4L twin-turbo V8 (S63TU)",
+      "title": "F12/F13 7-Speed M-DCT Mechatronic and Clutch Pack Failure",
+      "howToFix": "Scan for transmission codes to confirm whether the fault is the mechatronic unit or worn clutch packs. Mechatronic units can often be repaired/replaced and must be reprogrammed and adapted to the vehicle afterward. Worn clutch packs require a clutch replacement (dealer cost often $3,000-$5,000). Regular DCT fluid and filter changes help prevent premature wear; avoid prolonged clutch slip in traffic."
+    },
+    {
+      "issueId": "bmw-m6-f12-f13-electric-water-pump-thermostat-failure",
+      "repairItems": "Cooling pressure test; mechanical coolant pump 11537843738; thermostat 11537586885 only if failed; tanks/hoses by inspection; coolant",
+      "decision": "SOURCE CORRECTION / EXACT MECHANICAL PUMP",
+      "destinations": [
+        {
+          "label": "Genuine BMW M6 water-pump/thermostat diagram",
+          "url": "https://www.bmwpartsdeal.com/parts-list/2013-bmw-m6-convertible_f12/engine/water_pump_thermostat.html",
+          "scope": "F12/F13 M6 S63N; confirm VIN; pump 11537843738 and thermostat 11537586885",
+          "role": "OEM mechanical pump and thermostat catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The OEM catalog explicitly identifies the M6 coolant pump as mechanical, not electric, and lists the thermostat separately.",
+      "correction": "Change the title and repair text from electric water pump to mechanical coolant pump.",
+      "sequence": 246,
+      "ymmt": "2012-2019 | BMW | M6 | M6 Coupe (F13), M6 Convertible (F12), M6 Gran Coupe (F06) | S63 4.4L twin-turbo V8 (S63TU)",
+      "title": "F12/F13 Electric Water Pump and Thermostat Failure",
+      "howToFix": "Replace the failed electric water pump and/or electronic thermostat with OEM units; inspect the radiator end-tanks and expansion tank for cracks and replace as needed. Pressure-test the cooling system, refresh coolant, and treat the pump/thermostat as wear items given the heat load. Address any overheating event immediately to avoid secondary engine damage."
+    },
+    {
+      "issueId": "bmw-m6-f12-f13-turbocharger-wastegate-rattle-oil-starvation",
+      "repairItems": "Wastegate/turbo diagnosis; actuator/linkage only if serviceable and confirmed; oil/coolant supply inspection; bank/VIN-specific turbo only for severe failure",
+      "decision": "DIAGNOSIS / VIN-SPECIFIC TURBO CATALOG",
+      "destinations": [
+        {
+          "label": "Genuine BMW M6 turbocharger catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m6-turbocharger.html",
+          "scope": "F12/F13/F06 M6 S63; select VIN, bank, and supersession after diagnosis",
+          "role": "OEM turbo catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "wastegate, turbo, and oil-supply diagnosis",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Rattle, actuator wear, oil starvation, and turbo bearing failure are different branches requiring different parts.",
+      "correction": "Do not attach a complete turbo to rattle alone or claim a universal replacement interval.",
+      "sequence": 247,
+      "ymmt": "2012-2019 | BMW | M6 | M6 Coupe (F13), M6 Convertible (F12), M6 Gran Coupe (F06) | S63 4.4L twin-turbo V8 (S63TU)",
+      "title": "F12/F13 Turbocharger Wastegate Rattle and Oil Starvation",
+      "howToFix": "Confirm wastegate rattle by listening at light throttle; worn actuators/linkages can be replaced or upgraded. For oil starvation, maintain strict oil-change intervals with the correct specification, allow proper cool-down after hard driving, and keep the cooling system healthy. Severely worn or whining turbos require rebuild or replacement."
+    },
+    {
+      "issueId": "bmw-m6-rod-bearing-wear-2005",
+      "repairItems": "Split S85 E63/E64 from S63 F12/F13/F06; engine-specific diagnosis; measured-clearance bearing service; oil/filter analysis only as supporting evidence",
+      "decision": "MAJOR SOURCE ENGINE/RANGE CORRECTION",
+      "destinations": [
+        {
+          "label": "Lang Racing S85 M5/M6 rod-bearing kit",
+          "url": "https://store.langracing.com/products/rod-bearing-service-kit-bmw-s85-e60-m5-e63-m6",
+          "scope": "2006-2010 E63/E64 M6 S85 only; professional measurement/install",
+          "role": "exact early-generation kit"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2012-2018 S63 M6 assessment; select engine-specific solution separately",
+          "role": "later-generation service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source incorrectly names S65/S63 across 2005-2019; the M6 used S85 in E63/E64 and S63 in F-series, so the row must be split.",
+      "correction": "Replace S65 with S85, correct model years, split generations, and remove the false universal engine-out/in-car procedure claim.",
+      "sequence": 248,
+      "ymmt": "2005-2019 | BMW | M6 | S65, S63",
+      "title": "Rod Bearing Premature Wear (S65/S63 Engines)",
+      "howToFix": "Perform a preventive rod bearing replacement between 60,000-80,000 miles on S65 engines, and inspect by 80,000-100,000 miles on S63 engines. Use upgraded ACL or King XP bearings with coated surfaces. Cut and send used oil filter for analysis — bearing material particles indicate wear progression. The job requires engine-out on the S65 (approximately 20 hours labor) or can be done in-car on the S63 with the oil pan dropped."
+    },
+    {
+      "issueId": "bmw-m6-s63-carbon-buildup-intake-valves",
+      "repairItems": "Confirm intake deposits; professional walnut-shell cleaning; PCV inspection; correct oil; catch can only after emissions/warranty review",
+      "decision": "SERVICE ROUTE; OPTIONAL HARDWARE HELD",
+      "destinations": [
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "2012-2018 M6 S63 intake-valve deposit diagnosis and cleaning",
+          "role": "walnut-blasting service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Walnut blasting is a service, and a catch can is neither universally legal nor proven to prevent all deposits.",
+      "correction": "Confirm deposits before cleaning and do not prescribe a fixed cleaning interval for every car.",
+      "sequence": 249,
+      "ymmt": "2012-2019 | BMW | M6 | M6 Coupe (F13), M6 Convertible (F12), M6 Gran Coupe (F06) | S63 4.4L twin-turbo V8 (S63TU)",
+      "title": "S63 Carbon Buildup on Intake Valves (Direct Injection)",
+      "howToFix": "Have the intake valves walnut-blasted (media-blast cleaning) to remove carbon deposits without removing the cylinder heads. Many owners do this every 50,000-70,000 km. A properly functioning PCV/crankcase ventilation system and quality oil reduce deposit rate. An oil-catch can is sometimes fitted to slow accumulation."
+    },
+    {
+      "issueId": "bmw-m6-s63-high-pressure-fuel-pump-fuel-injector-cold-start-misfire",
+      "repairItems": "Cold-start fuel-pressure and misfire diagnosis; VIN-correct HPFP; affected injector with matching index on bank; seals; coding",
+      "decision": "INDEX / VIN GATE; SPECIALIST ROUTE",
+      "destinations": [
+        {
+          "label": "Genuine BMW M6 fuel-injection catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m6-fuel_injection.html",
+          "scope": "2012-2018 F12/F13/F06 M6 S63; select VIN, pump, injector index, and quantity after testing",
+          "role": "OEM fuel-system catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "BMW-capable rail-pressure diagnosis and injector coding",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The How to Fix requires live fuel-pressure diagnosis and matching injector indexes, so a generic HPFP or injector link would be unsafe.",
+      "correction": "No generic scanner link; verify BMW fuel-system module/data coverage and exact injector index.",
+      "sequence": 250,
+      "ymmt": "2012-2019 | BMW | M6 | M6 Coupe (F13), M6 Convertible (F12), M6 Gran Coupe (F06) | S63 4.4L twin-turbo V8 (S63TU)",
+      "title": "S63 High-Pressure Fuel Pump / Fuel Injector Cold-Start Misfire",
+      "howToFix": "Scan for misfire and fuel-system codes and test cold-start fuel-rail pressure. Replace a failing HPFP; for injector faults, replace the affected injector(s) with units of the correct matching index code (do not mix injector indexes on a bank) and re-code them. Address per the relevant BMW technical service bulletin for the N63/S63."
     }
   ]
 }
