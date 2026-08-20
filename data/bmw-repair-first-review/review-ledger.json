@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "make": "BMW",
-  "generatedAt": "2026-08-20T04:08:02.112Z",
+  "generatedAt": "2026-08-20T16:51:12.466Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "9c5acba63181f1d3d714c4d0090380ab656767ee3836b4056dfe3873dadc67e0",
   "publishedIssueCount": 385,
-  "reviewedIssueCount": 60,
-  "remainingIssueCount": 325,
-  "reviewedWithDestinationCount": 60,
-  "destinationCount": 85,
-  "distinctUrlCount": 30,
+  "reviewedIssueCount": 75,
+  "remainingIssueCount": 310,
+  "reviewedWithDestinationCount": 75,
+  "destinationCount": 105,
+  "distinctUrlCount": 38,
   "scannerDestinationCount": 0,
   "reviews": [
     {
@@ -1384,6 +1384,342 @@
       "ymmt": "2008-2010 | BMW | 5 Series | N54",
       "title": "2008-2010 535i N54 High-Pressure Fuel-Pump Recall Path",
       "howToFix": "Check the VIN and campaign/service history with BMW, then diagnose measured low- and high-pressure fuel delivery before replacement. The historical action called for a software update and/or pump replacement based on individual service history, not automatic replacement from symptoms alone. ShowMeTheParts returned one exact 2009 535i high-pressure-pump fitment candidate, but catalog fitment does not establish campaign eligibility, defect identity or remedy, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-5-series-n54-wastegate-2008",
+      "repairItems": "Exact N54 vehicle/modification check; distinguish normal slight rattle from bulletin-defined repeated clanking; BMW test plan",
+      "decision": "DIAGNOSIS FIRST / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2008-2010 E60/E61 535i and 535i xDrive N54 wastegate/turbocharger diagnosis",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source explicitly says no exact wastegate or turbocharger candidate was found and that slight mechanical rattle is not itself a failure.",
+      "correction": "Do not sell a turbocharger, wastegate actuator or scanner from the complaint alone; verify the exact bulletin condition and modification history first.",
+      "sequence": 61,
+      "ymmt": "2008-2010 | BMW | 5 Series | N54",
+      "title": "535i N54 Wastegate Clanking Requires Turbocharger Diagnosis",
+      "howToFix": "Confirm the exact N54 vehicle and modification history, distinguish normal slight rattle from the defined clanking condition, and follow current BMW diagnostic and repair instructions. The historical eight-year/82,000-mile emissions extension is not a current coverage promise. ShowMeTheParts returned four exact-fitment turbo oil/coolant-line candidates but no wastegate or turbocharger repair candidate, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-5-series-n63-oil-consumption-2011",
+      "repairItems": "VIN/service-history review; documented oil additions and intervals; current BMW oil-consumption measurement and condition-dependent diagnosis",
+      "decision": "DIAGNOSIS/SETTLEMENT-HISTORY FIRST / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2010-2013 F10 550i/550i xDrive N63 oil-consumption test and service-history review",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The repair path is measurement- and condition-dependent and the historical settlement does not identify one universal failed part.",
+      "correction": "Do not present the N63 Customer Care Package or settlement benefits as current coverage and do not preselect valve seals, rings or an engine.",
+      "sequence": 62,
+      "ymmt": "2010-2013 | BMW | 5 Series | N63",
+      "title": "N63 Low-Oil Warning Requires 550i Oil-Consumption Testing",
+      "howToFix": "Confirm the VIN and service history, record oil additions and service intervals, and have a BMW-qualified technician perform the current oil-consumption test and applicable diagnosis. Historical settlement benefits and the N63 Customer Care Package must not be presented as current coverage. The official material describes multiple checks and condition-dependent repairs, so no single catalog part or retail link is approved."
+    },
+    {
+      "issueId": "bmw-5-series-n63-timing-chain-2006",
+      "repairItems": "N63 engine/production-date/VIN confirmation; resolve VANOS/cam-position faults; prescribed timing-chain elongation test; both chains only on failed test",
+      "decision": "DIAGNOSIS FIRST / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2010-2013 F10 550i/550i xDrive N63 timing-chain test plan",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The How to Fix requires an approved test result and reports no exact timing-chain catalog candidate.",
+      "correction": "Correct the issue ID/year metadata to the actual 2010-2013 scope; this is not a recall and no chain kit or scanner is approved before the test.",
+      "sequence": 63,
+      "ymmt": "2010-2013 | BMW | 5 Series | N63",
+      "title": "N63 550i Timing-Chain Wear Check",
+      "howToFix": "Confirm the N63 engine, production date and VIN history, resolve stored VANOS or camshaft-position faults first, and have a BMW-qualified technician run the prescribed timing-chain test. Replace both chains only if the approved test reports that the chain is not OK. ShowMeTheParts resolved the exact 2012 550i ENGINE COMPONENTS fitment but returned no timing-chain candidate, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-5-series-oil-leaks-2004",
+      "repairItems": "Leak-source diagnosis; engine-specific valve-cover gasket and/or oil-filter-housing gasket; related seals/bolts only as the exact engine procedure requires",
+      "decision": "SOURCE SPLIT REQUIRED / NO UNIVERSAL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2004-2023 5 Series leak-source and engine identification",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The 20-year row has no trims or engines and spans many unrelated gasket designs; a single VCG or OFHG link would be unsafe fitment.",
+      "correction": "Split by chassis, trim, engine and gasket location. Remove universal failure, mileage, price and DIY claims unless supported for each split.",
+      "sequence": 64,
+      "ymmt": "2004-2023 | BMW | 5 Series",
+      "title": "Valve Cover Gasket & Oil Filter Housing Gasket Leaks",
+      "howToFix": "Replace valve cover gasket ($400-$800 shop, $150-250 DIY parts) and/or oil filter housing gasket ($300-$600 shop, $80-150 DIY parts). Can be done separately or together depending on leak source. Use OEM BMW gaskets or quality German aftermarket (Elring, Victor Reinz brands) - cheap gaskets leak within 20k miles. Both are DIY-friendly for experienced mechanics: VCG takes 2-3 hours, OFHG takes 1-2 hours. YouTube has detailed model-specific guides. Monitor oil level weekly and top off as needed (1 quart low is OK, 2+ quarts low risks engine damage). Address OFHG leaks EARLY - oil dripping on alternator causes $800+ alternator failure."
+    },
+    {
+      "issueId": "bmw-5-series-water-pump-2004",
+      "repairItems": "Cooling-system diagnosis; engine-specific pump, thermostat where applicable, correct coolant and bleed procedure",
+      "decision": "CONTENT ERROR / ENGINE SPLIT REQUIRED",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "Identify exact 5 Series engine and pump architecture before ordering",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row incorrectly treats all listed engines and all 2004-2023 5 Series as one electric-water-pump application; pump type, thermostat and procedure vary by engine.",
+      "correction": "Split every engine/chassis generation, distinguish mechanical from electric pumps, verify thermostat and coolant requirements, and remove the unsupported universal failure-rate claim.",
+      "sequence": 65,
+      "ymmt": "2004-2023 | BMW | 5 Series | N52, N54, N55, N20, N62, N63, B48, B58",
+      "title": "Electric Water Pump Failure (All Engines)",
+      "howToFix": "Replace electric water pump ($600-$1,200 installed). Use OEM BMW or quality German aftermarket (Rein, Hepu brands) - cheap eBay pumps fail within 20k miles. Replace thermostat at same time ($200 additional parts) since labor is 80% done. Flush cooling system and refill with BMW-spec coolant (do NOT use generic green antifreeze - causes corrosion). PREVENTIVE: Replace water pump at 80,000 miles BEFORE failure to avoid being stranded. If engine overheats, PULL OVER IMMEDIATELY and shut off - driving with overheating warps heads ($4,000+ repair). Call tow truck; do not attempt to drive."
+    },
+    {
+      "issueId": "bmw-5-series-zf-6hp-mechatronic-2004",
+      "repairItems": "Transmission-code and symptom diagnosis; exact 6HP sealing sleeves/bridge seal; transmission-specific pan/filter and approved fluid; valve-body work only if confirmed",
+      "decision": "TRANSMISSION SPLIT REQUIRED / NO UNIVERSAL KIT",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2004-2013 5 Series transmission identification and hydraulic diagnosis",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row omits trim, engine, transmission variant and production split, so the sealing kit, pan/filter and fluid cannot be fit safely from YMM alone.",
+      "correction": "Split by exact ZF transmission code and VIN; do not claim every high-mileage 6HP has the same failure or that fluid changes prevent 90% of problems.",
+      "sequence": 66,
+      "ymmt": "2004-2013 | BMW | 5 Series",
+      "title": "ZF 6HP Transmission Mechatronic Sleeve & Valve Body Failure",
+      "howToFix": "Replace mechatronic sealing sleeves (4 tubes + 1 square seal) and valve body adapter sleeve ($150-300 parts). DIY-friendly with transmission pan drop and valve body removal (4-6 hours, detailed guides on Bimmerfest). While valve body is out, replace transmission fluid/filter and clean solenoids ($200 additional). Dealer charges $1,500-2,500 for this repair; DIY costs $400-700 total. PREVENTIVE: Change transmission fluid every 50,000 miles (NOT \"lifetime\") with BMW-spec fluid (Pentosin/ZF Lifeguard 6). Fluid changes prevent 90% of ZF 6HP problems. If ignored, worn mechatronic destroys clutches requiring $5,000+ transmission rebuild."
+    },
+    {
+      "issueId": "bmw-6-series-adaptive-headlight-2012",
+      "repairItems": "Fault isolation between wiring, stepper motor, headlamp electronics/control module and complete lamp; coding/programming only when the replaced module requires it",
+      "decision": "DIAGNOSIS/CODING FIRST / NO UNIVERSAL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2012-2018 6 Series adaptive-headlight diagnosis and programming",
+          "role": "diagnostic/coding service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source has no trim, lamp technology, side, module part number or failure diagnosis; a motor or module cannot be approved across the range.",
+      "correction": "Split by chassis, option code, headlamp type, left/right position and diagnosed component before adding any part link.",
+      "sequence": 67,
+      "ymmt": "2012-2018 | BMW | 6 Series",
+      "title": "Adaptive Headlight Module and Stepper Motor Failure",
+      "howToFix": "Replace the failed stepper motor within the headlight assembly. In some cases, the entire adaptive headlight control module must be replaced and coded to the vehicle. The stepper motor can often be replaced without removing the entire headlight assembly by accessing it from behind the headlight. If the control module is replaced, it must be programmed with BMW ISTA diagnostic software."
+    },
+    {
+      "issueId": "bmw-6-series-n63-valve-stem-seals-2012",
+      "repairItems": "N63TU1/chassis/production-date/VIN confirmation; documented oil-consumption measurement; BMW test plans; condition-dependent repair",
+      "decision": "DIAGNOSIS/SETTLEMENT-HISTORY FIRST / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2013-2018 F12 and 2013-2017 F13 650i/650i xDrive N63TU1 oil-consumption diagnosis",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "A catalog valve-seal set does not establish that valve-stem seals caused the oil use, and the repair path is test-dependent.",
+      "correction": "Correct the issue ID/year metadata and do not assume historical settlement eligibility or a valve-seal repair without diagnosis.",
+      "sequence": 68,
+      "ymmt": "2013-2018 | BMW | 6 Series | N63TU1",
+      "title": "N63TU1 650i Oil Consumption Requires BMW Diagnosis",
+      "howToFix": "Confirm the exact chassis, engine, production date, VIN and service history, document oil additions, and have a BMW-qualified technician perform the current oil-consumption measurement and applicable test plans. Do not assume historical settlement eligibility or replace valve-stem seals without diagnosis. ShowMeTheParts returned one exact-fit 2015 650i valve-stem-oil-seal set, but catalog fitment does not establish defect identity or the required repair, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-6series-convertible-top-2004",
+      "repairItems": "Diagnose pump, cylinder, line, sensor/wiring and switch faults separately; rebuild the confirmed E64 or F12 hydraulic component",
+      "decision": "CHASSIS-SPLIT HYDRAULIC SERVICE APPROVAL",
+      "destinations": [
+        {
+          "label": "Top Hydraulics E63/E64 hydraulic pump rebuild 54347154648",
+          "url": "https://tophydraulics.com/bmw-6-series-e63e64-2003-2010/464-4265-rebuild-service-for-e63-e64-hydraulic-pump.html#/30-order_method_-send_your_parts_to_top_hydraulics_first",
+          "scope": "2004-2010 E64 convertible; confirmed hydraulic pump only",
+          "role": "mail-in rebuild service"
+        },
+        {
+          "label": "Top Hydraulics F12 6 Series hydraulic service",
+          "url": "https://tophydraulics.com/142-bmw-6-series-f12-2011-2018",
+          "scope": "2012-2018 F12 convertible; use listed pump service only after exact component/part-number confirmation",
+          "role": "fitment-specific service category"
+        }
+      ],
+      "evidence": [
+        "https://tophydraulics.com/9-bmw"
+      ],
+      "reason": "Top Hydraulics has live, chassis-specific E64 and F12 service listings. The source row is still too broad to assume every top stoppage is a pump or cylinder failure.",
+      "correction": "Separate E64 from F12 and diagnose Hall sensors/wiring, switches and fluid leaks before shipping a hydraulic unit. Prices and turnaround must come from the live listing.",
+      "sequence": 69,
+      "ymmt": "2004-2018 | BMW | 6 Series",
+      "title": "Convertible Top Hydraulic Pump & Cylinder Failure (E64/F12)",
+      "howToFix": "Send hydraulic pump and/or cylinders to Top Hydraulics (tophydraulics.com) for rebuild service ($600-1,200 with 3-year warranty). This is universally recommended over new OEM parts. OEM pump replacement: E64 pump 54347154648 ($2,000-3,500), F12 pump 54347299838 (similar cost). Total cost: $600-5,000 depending on approach. Top Hydraulics rebuild service is universally recommended by E64/F12 forums - their rebuilt units often outlast new OEM parts and come with 3-year warranty."
+    },
+    {
+      "issueId": "bmw-6series-n62-coolant-pipe-2004",
+      "repairItems": "Confirm N62 valley/weep-hole coolant transfer-pipe leak; BimmerFix N62 stent kit or exact full-pipe alternative",
+      "decision": "EXACT N62 PRODUCT APPROVED",
+      "destinations": [
+        {
+          "label": "BimmerFix N62 coolant-pipe repair kit",
+          "url": "https://bimmerfix.com/products/coolant-pipe-repair-kit-bmw-n62-v8-engines",
+          "scope": "2004-2007 645Ci and 2005-2010 650i E63/E64 N62; page explicitly lists both models",
+          "role": "coolant transfer-pipe stent kit"
+        }
+      ],
+      "evidence": [
+        "https://bimmerfix.com/pages/n62-v8-n73-v12-coolant-leak-solutions"
+      ],
+      "reason": "The live product is buyable in the US and explicitly lists E63/E64 645Ci and 650i N62 applications plus cross-reference 11141439975.",
+      "correction": "Correct the 645Ci year range to the verified application and confirm the leak is at the transfer-pipe/weep-hole system before ordering; this kit is not for every N62 coolant leak.",
+      "sequence": 70,
+      "ymmt": "2004-2010 | BMW | 6 Series | 645Ci, 650i | N62",
+      "title": "N62 Coolant Transfer Pipe Leak (Engine Valley Pipe)",
+      "howToFix": "Install BimmerFix Stent Repair Kit ($239) - community gold standard fix that repairs the leak from underneath without removing the intake manifold. Takes 2-3 hours vs multi-day full pipe replacement. Alternatively, full OEM pipe replacement using pipe 11141439975 or URO collapsible pipe kit costs $3,000-5,000 at shop due to extensive labor. Total cost: $239-5,000 depending on approach. BimmerFix stent is universally recommended on Bimmerpost and E63/E64 forums - avoids $3,000-5,000 full pipe replacement labor."
+    },
+    {
+      "issueId": "bmw-6series-n62-valve-stem-seals-2004",
+      "repairItems": "All 32 N62 valve-stem seals; valve-cover gaskets and other one-time-use parts as the exact repair requires; professional in-car N62 tool set",
+      "decision": "EXACT ENGINE PARTS/TOOL APPROVED",
+      "destinations": [
+        {
+          "label": "AGA 32-piece Elring N62 valve-stem seal kit 11340029751",
+          "url": "https://agatools.com/products/valve-stem-seals",
+          "scope": "N62/N62TU; 32 seals, BMW part 11 34 0 029 751; valve-cover gaskets not included",
+          "role": "valve-stem seals"
+        },
+        {
+          "label": "AGA N62 valve-stem-seal master tool collection",
+          "url": "https://agatools.com/collections/n62-valve-stem-seal-tool-kit/products/aga-n62-vst-k-vk",
+          "scope": "Professional N62 in-car repair tool set; confirm training and all supplementary equipment",
+          "role": "specialty tool kit"
+        }
+      ],
+      "evidence": [
+        "https://www.ecstuning.com/b-genuine-bmw-parts/valve-seals/11340029751/"
+      ],
+      "reason": "Both live AGA listings are buyable: the seal kit states 32 Elring seals and the BMW part number, while the master collection is explicitly for N62 engines.",
+      "correction": "The current prices are higher than the source text. Do not describe this as a simple DIY job or imply the seal kit includes valve-cover gaskets.",
+      "sequence": 71,
+      "ymmt": "2004-2010 | BMW | 6 Series | 645Ci, 650i | N62",
+      "title": "N62 Valve Stem Seal Failure (Heavy Oil Consumption & Blue Smoke)",
+      "howToFix": "Replace all 32 valve stem seals using Elring seals 11340029751 ($78 for complete set). DIY in-car repair using AGA Tools N62 valve stem seal tool kit ($500-700) avoids cylinder head removal and costs $800-2,000 total. Dealer repair with head removal costs $8,000-12,000. The AGA tool kit allows valve spring compression and seal replacement through the spark plug holes with the heads still on the engine. Check oil every 500-1,000 miles on high-mileage N62 engines and carry spare quart in vehicle."
+    },
+    {
+      "issueId": "bmw-6series-n63-timing-chain-2012",
+      "repairItems": "N63/chassis/production-date/VIN confirmation; resolve VANOS/cam-position faults; BMW timing-chain elongation test; both chains only after failed test",
+      "decision": "DIAGNOSIS FIRST / NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2012-2013 F12/F13 650i N63 timing-chain test plan",
+          "role": "diagnostic service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source reports no exact timing-chain candidate and requires the approved test result before replacement.",
+      "correction": "The check is not a recall or mandatory campaign; do not link a timing kit or scanner before diagnosis.",
+      "sequence": 72,
+      "ymmt": "2012-2013 | BMW | 6 Series | N63",
+      "title": "Early N63 650i Timing-Chain Wear Check",
+      "howToFix": "Confirm the N63 engine, chassis, production date and VIN history, resolve stored VANOS or camshaft-position faults first, and have a BMW-qualified technician run the prescribed timing-chain test. Replace both chains only if the approved test reports that the chain is not OK. ShowMeTheParts resolved the exact 2012 650i ENGINE COMPONENTS fitment but returned no timing-chain candidate, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-6series-smg-pump-2004",
+      "repairItems": "Identify non-M six-speed SMG versus M6 SMG III; diagnose pressure, relay, accumulator, motor and pump; transmission-specific motor only when confirmed",
+      "decision": "TRANSMISSION-SPLIT PRODUCT APPROVAL",
+      "destinations": [
+        {
+          "label": "SMG Society six-speed SMG pump motor",
+          "url": "https://www.smgsociety.com/product/pump-motor-6-speed-smg/",
+          "scope": "E63 non-M six-speed SMG only; references 23427571297/23427507107; in stock",
+          "role": "non-M SMG pump motor"
+        },
+        {
+          "label": "SMG Society M6 SMG III pump motor 23017841032",
+          "url": "https://www.smgsociety.com/product/pump-motor-bmw-e60-m5-e63-m6-smg-iii/",
+          "scope": "E63/E64 M6 SMG III only; in stock",
+          "role": "M6 SMG III pump motor"
+        }
+      ],
+      "evidence": [],
+      "reason": "Live pages confirm two different in-stock motors and compatibility groups. The source incorrectly treats M6 SMG III and 645Ci/650i six-speed SMG as one assembly.",
+      "correction": "Split M6 from non-M applications, remove the unsupported 90% success claim, and note BMW procedures may still require pressure reduction, checks or service functions.",
+      "sequence": 73,
+      "ymmt": "2004-2010 | BMW | 6 Series",
+      "title": "SMG III Hydraulic Pump Failure (M6 and SMG-Equipped 645Ci/650i)",
+      "howToFix": "Try pump motor-only replacement FIRST ($200-350 from SMG Society) - 90% success rate and no hydraulic bleed needed. If motor replacement fails, install MLREng/BimmerWorld upgraded pump ($449). OEM full pump replacement 23427571297 costs $5,000-6,500 and should be LAST resort. Total cost: $500-7,700 depending on approach. CRITICAL: 90% of failures are the pump motor, not the full pump - do not let shops misdiagnose and charge $5,000+ when a $350 motor fixes the issue."
+    },
+    {
+      "issueId": "bmw-7-series-air-suspension-compressor-2009",
+      "repairItems": "VIN/WVI eligibility check; diagnose the exact sagging corner and air-suspension fault; replace only a confirmed eligible strut",
+      "decision": "DIAGNOSIS/COVERAGE FIRST / NO COMPRESSOR LINK",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2016-2022 G11/G12 air-suspension diagnosis and WVI review",
+          "role": "diagnostic service"
+        },
+        {
+          "label": "BMW recall and campaign lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN lookup; limited warranty extension is not a recall",
+          "role": "official coverage check"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected source concerns component-specific front/rear struts and explicitly excludes other air-suspension components; it does not support a compressor link.",
+      "correction": "Correct the issue ID/year and title: do not generalize the historical strut extension to compressors, relays, dryers or all four corners.",
+      "sequence": 74,
+      "ymmt": "2016-2022 | BMW | 7 Series",
+      "title": "G11/G12 Air-Suspension Strut Diagnosis",
+      "howToFix": "Confirm the exact model, production date, VIN and current WVI vehicle comments, then diagnose the specific sagging corner, ride-height complaint or suspension warning with BMW procedures. Replace only a strut assembly that is confirmed defective and eligible under the current instructions. Do not present the historical eight-year/80,000-mile extension as a universal or current coverage promise. ShowMeTheParts resolved exact 2018 740i and 740i xDrive suspension categories but returned no air-spring candidate, so no commerce link is approved."
+    },
+    {
+      "issueId": "bmw-7-series-idrive-system-failures-2009",
+      "repairItems": "Identify chassis and exact head-unit generation; software/power/network diagnosis; VIN-matched programmed replacement or exact-unit specialist repair",
+      "decision": "GENERATION-SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        {
+          "label": "BPM Sport VIN-matched CCC/CIC/NBT iDrive replacement",
+          "url": "https://www.bpmsport.com/products/bmw-nav-replacement.html",
+          "scope": "2009-2016 only; VIN/year/sound-system selection and programming required; unit only, no display/controller/wiring",
+          "role": "programmed replacement head unit"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2016-2022 G11/G12 NBT Evo/MGU-era diagnosis, software and coding",
+          "role": "diagnostic/programming service"
+        }
+      ],
+      "evidence": [],
+      "reason": "BPM Sport has a live buyable VIN-selected replacement covering CCC/CIC/NBT through 2016. The later G11/G12 range cannot be fit to that listing and remains diagnosis-first.",
+      "correction": "Split F01/F02 CIC/NBT from G11/G12 NBT Evo/MGU generations. Do not claim every blackout/reboot is a hard drive or eMMC failure.",
+      "sequence": 75,
+      "ymmt": "2009-2022 | BMW | 7 Series",
+      "title": "iDrive Head Unit and CIC/NBT Module Failures",
+      "howToFix": "For CIC units (F01): replace the internal hard drive with an SSD upgrade, or replace the entire CIC module. For NBT units (G11): replace the head unit or have the eMMC chip reflowed/replaced by a specialist. Software updates from BMW can address some stability issues. Many aftermarket specialists offer rebuilt head units at 40-60% of dealer pricing. The unit must be coded to the vehicle VIN after replacement."
     }
   ]
 }
