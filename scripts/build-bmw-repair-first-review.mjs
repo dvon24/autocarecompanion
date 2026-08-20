@@ -28,11 +28,14 @@ const reviewedIds = new Set(rows.map((r) => r.issueId));
 const queue = source.records.filter((r) => !reviewedIds.has(r.id));
 const destinations = rows.flatMap((r) => r.destinations.map((d) => ({issueId:r.issueId, ...d})));
 const malformed = destinations.filter((d) => !/^https:\/\//.test(d.url));
-const scannerDestinations = destinations.filter((d) => /scanner|obd/i.test(`${d.label} ${d.role}`));
+const scannerDestinations = destinations.filter((d) => /scanner|obd|vcds/i.test(`${d.label} ${d.role}`));
+const unauthorizedScannerDestinations = rows.flatMap((r) => r.destinations
+  .filter((d) => /scanner|obd|vcds/i.test(`${d.label} ${d.role}`) && !/^EXPLICIT SCANNER\/DIAGNOSTIC TOOL APPROVAL/.test(r.decision))
+  .map((d) => ({issueId:r.issueId, ...d})));
 const missingHowToFix = rows.filter((r) => !r.howToFix);
 const unflaggedMissingHowToFix = missingHowToFix.filter((r) => !/^SOURCE HOW-TO-FIX REQUIRED/.test(r.decision));
 if (malformed.length) throw new Error(`Malformed URLs: ${malformed.map((d) => d.url).join(", ")}`);
-if (scannerDestinations.length) throw new Error(`Unexpected scanner destinations: ${scannerDestinations.map((d) => d.issueId).join(", ")}`);
+if (unauthorizedScannerDestinations.length) throw new Error(`Unauthorized scanner destinations: ${unauthorizedScannerDestinations.map((d) => d.issueId).join(", ")}`);
 if (unflaggedMissingHowToFix.length) throw new Error(`Unflagged missing How to Fix: ${unflaggedMissingHowToFix.map((r) => r.issueId).join(", ")}`);
 if (rows.length + queue.length !== source.inventory.publishedIssueCount) throw new Error("Inventory mismatch");
 

@@ -289,6 +289,299 @@
       "evidence": [],
       "reason": "Inline-five and V6 timing systems, tensioners, pumps, and procedures are not interchangeable.",
       "correction": "Split engines and use documented interval/age; do not present one 60k/5-7-year rule as universal."
+    },
+    {
+      "issueId": "audi-90-wandering-erratic-idle-from-idle-stabilizer-valve-intake-vac",
+      "repairItems": "VIN/campaign-completion check for NHTSA 98V332; dealer inspection and historical remedy for all six fuel injectors/seals; immediate stop-and-tow response for an active fuel leak",
+      "decision": "SOURCE-TITLE MISMATCH / RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "1993-1995 Audi 90 V6; VIN check for campaign 98V332 and current remedy availability", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check for 98V332", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The repair text describes a safety recall for leaking V6 fuel-injector seals, not an idle-stabilizer-valve or generic vacuum-leak repair.",
+      "correction": "Rename/re-key the issue to the fuel-injector seal recall; do not attach idle-valve or vacuum-hose products to this record."
+    },
+    {
+      "issueId": "audi-90-water-intrusion-into-footwells-from-windshield-base-sunroof",
+      "repairItems": "Locate entry path; carefully clear/flush applicable sunroof drains; inspect windshield base and ECU/plenum cover; dry carpet, padding, connectors and modules; repair the confirmed seal/drain/body source",
+      "decision": "LEAK-SOURCE / BODY-WATER DIAGNOSIS",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "1990-1995 Audi 90 water-entry diagnosis and electrical drying/inspection", "role": "specialist service"},
+        {"label": "Safelite repair and replacement", "url": "https://www.safelite.com/", "scope": "windshield bonding or glass-source evaluation only after the leak path is confirmed", "role": "conditional automotive-glass service"}
+      ],
+      "evidence": [],
+      "reason": "Sunroof drains, windshield bonding, plenum covers and body seams require different repairs; the actual entry path must be proven first.",
+      "correction": "Do not prescribe high-pressure compressed air because it can disconnect or damage a drain tube."
+    },
+    {
+      "issueId": "audi-90-window-regulator-1993",
+      "repairItems": "VIN/campaign-completion check for NHTSA 96V017; authorized-dealer ignition-switch inspection/replacement; immediate lighting/wiper safety assessment",
+      "decision": "SOURCE-TITLE MISMATCH / RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "1994-1995 Audi 90; VIN check for campaign 96V017 and current remedy availability", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check for 96V017", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The repair instructions concern an ignition-switch safety recall, while the issue identifier implies a window regulator.",
+      "correction": "Rename/re-key this record; do not link a window regulator or retail ignition switch for a recall remedy."
+    },
+    {
+      "issueId": "audi-90-window-regulator-clip-1990",
+      "repairItems": "Confirm failed door and regulator design; exact left/right front/rear regulator, cable or clip by VIN/installed assembly; inspect guides and glass; use regulator-safe channel lubricant",
+      "decision": "DOOR-POSITION / ASSEMBLY GATE",
+      "destinations": [
+        {"label": "Audi 90 window-regulator catalog", "url": "https://www.carid.com/audi-90-window-regulators/", "scope": "1990-1995 Audi 90; verify exact year, body, door position and complete assembly before purchase", "role": "vehicle-specific regulator catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "legacy regulator identification and repair when clips/cables are not separately serviceable", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The repair depends on door position and installed regulator design, and a clip may not be separately serviceable.",
+      "correction": "The claim that metal clips are always more durable was not verified; approve only an exact compatible component or assembly."
+    },
+    {
+      "issueId": "audi-a1-1-2-1-4-tfsi-timing-chain-stretch-tensioner-failure",
+      "repairItems": "Confirm EA111 engine code and timing diagnosis; engine-code-specific chain, guides and current tensioner; required locking/timing procedure; valve-damage assessment after a jump",
+      "decision": "NON-US-MARKET / ENGINE-CODE GATE",
+      "destinations": [
+        {"label": "Audi UK service and maintenance", "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/", "scope": "Audi A1 local-market service route; confirm engine code and current parts/procedure", "role": "manufacturer-market service"}
+      ],
+      "evidence": [],
+      "reason": "The Audi A1 was not a US-market model, so a US commerce search cannot establish fitment; 1.2 and 1.4 EA111 timing parts also differ by engine code.",
+      "correction": "Do not publish a US affiliate product or one universal EA111 kit; route by vehicle market, VIN and engine code."
+    },
+    {
+      "issueId": "audi-a1-1-4-tfsi-turbocharger-failure",
+      "repairItems": "Confirm engine and turbo code; boost-control, lubrication and charge-air diagnosis; exact turbo/supersession; oil feed/return and contamination repairs only as required",
+      "decision": "NON-US-MARKET / ENGINE-TURBO-CODE GATE",
+      "destinations": [
+        {"label": "Audi UK service and maintenance", "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/", "scope": "Audi A1 1.4 TFSI local-market turbo diagnosis and VIN-based parts", "role": "manufacturer-market service"}
+      ],
+      "evidence": [],
+      "reason": "A1 1.4 TFSI engines and turbo revisions vary, and no US-market fitment can be inferred.",
+      "correction": "Do not sell a turbo from symptoms alone; confirm the engine/turbo code and correct the cause of failure before replacement."
+    },
+    {
+      "issueId": "audi-a1-1-6-2-0-tdi-diesel-dpf-clogging-egr-valve-faults",
+      "repairItems": "Read manufacturer-specific diesel faults and live data; distinguish soot load, ash load, temperature/pressure-sensor fault and EGR fault; perform an approved regeneration/cleaning or exact repair only when safe",
+      "decision": "NON-US-MARKET / PROFESSIONAL DIESEL DIAGNOSIS",
+      "destinations": [
+        {"label": "Audi UK service and maintenance", "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/", "scope": "Audi A1 TDI local-market DPF/EGR diagnosis and guided service", "role": "manufacturer-market service"}
+      ],
+      "evidence": [],
+      "reason": "DPF and EGR warnings have multiple causes and the A1 TDI is not a US-market fitment population.",
+      "correction": "Do not advise an uncontrolled highway regeneration or sell cleaners/EGR parts before soot, ash, sensor and fault-state diagnosis."
+    },
+    {
+      "issueId": "audi-a1-7-speed-s-tronic-dual-clutch-mechatronic-failure",
+      "repairItems": "Confirm DQ200/0AM code and local campaign status; transmission-specific fault data, pressure and adaptation diagnosis; software, mechatronic or gearbox branch selected by results",
+      "decision": "NON-US-MARKET / TRANSMISSION-CODE GATE",
+      "destinations": [
+        {"label": "Audi UK service and maintenance", "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/", "scope": "Audi A1 S tronic local-market campaign, software and transmission diagnosis", "role": "manufacturer-market service"}
+      ],
+      "evidence": [],
+      "reason": "The A1 is non-US-market and DQ200 campaigns/remedies differ by country and transmission build.",
+      "correction": "Do not apply wet-clutch DSG fluid/service parts to the dry-clutch DQ200 or prescribe a mechatronic unit without fault-code and pressure diagnosis."
+    },
+    {
+      "issueId": "audi-a1-ea211-water-pump-thermostat-housing-coolant-leak",
+      "repairItems": "Pressure-test and locate the leak; confirm EA211 engine/VIN; exact pump/thermostat/housing revision and seals; current market-specified coolant and bleed procedure",
+      "decision": "NON-US-MARKET / ENGINE-VIN LEAK-SOURCE GATE",
+      "destinations": [
+        {"label": "Audi UK service and maintenance", "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/", "scope": "Audi A1 EA211 local-market coolant-leak diagnosis and VIN-based parts", "role": "manufacturer-market service"}
+      ],
+      "evidence": [],
+      "reason": "The exact module and coolant depend on engine/VIN and the A1 was not sold in the US.",
+      "correction": "Do not bundle pump, thermostat and housing unless the installed module or multiple failures are confirmed."
+    },
+    {
+      "issueId": "audi-a1-electrical-faults-sticking-windows-light-housings-sunroof-mo",
+      "repairItems": "Local-market VIN/campaign check for the 2016 airbag and belt-tensioner igniter recall; authorized Audi Centre remedy only",
+      "decision": "SOURCE-TITLE MISMATCH / NON-US RECALL ROUTE",
+      "destinations": [
+        {"label": "Audi Ireland vehicle campaign check", "url": "https://www.audi.ie/en/customer-area/audi-service/audi-health-check/", "scope": "Audi A1 local-market warranty, outstanding campaign and recall route through AudiCheck/Audi Centre", "role": "manufacturer-market campaign route"},
+        {"label": "Audi UK service and maintenance", "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/", "scope": "UK-market VIN recall check and Audi Centre booking when applicable", "role": "manufacturer-market recall route"}
+      ],
+      "evidence": [],
+      "reason": "The title/repair is an airbag and belt-tensioner recall, while the identifier describes unrelated electrical faults; US recall tools do not cover this market population.",
+      "correction": "Rename/re-key the record and route to the vehicle's selling-market Audi organization; never DIY pyrotechnic recall work."
+    },
+    {
+      "issueId": "audi-a1-excessive-oil-consumption-1-2-1-4-tfsi-engines",
+      "repairItems": "Verify leaks, oil specification and measured consumption; compression/leak-down and bore/piston diagnosis; engine-code-specific pistons/rings only after teardown findings",
+      "decision": "NON-US-MARKET / ENGINE-CONDITION GATE",
+      "destinations": [
+        {"label": "Audi UK service and maintenance", "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/", "scope": "Audi A1 EA111 local-market oil-consumption test and engine repair planning", "role": "manufacturer-market service"}
+      ],
+      "evidence": [],
+      "reason": "Oil consumption can arise from leaks, PCV/turbo, bore or piston-ring faults, and internal parts require engine-code and measurement confirmation.",
+      "correction": "Do not sell pistons/rings or additives from symptoms alone, and do not infer US-market fitment."
+    },
+    {
+      "issueId": "audi-a1-tfsi-direct-injection-carbon-build-up-intake-valves",
+      "repairItems": "Confirm deposits with misfire data and intake inspection; engine-code-appropriate intake-valve cleaning service; replace manifold seals/consumables required by the procedure",
+      "decision": "NON-US-MARKET / CONFIRMED-DEPOSIT SERVICE",
+      "destinations": [
+        {"label": "Audi UK service and maintenance", "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/", "scope": "Audi A1 TFSI local-market intake diagnosis and service", "role": "manufacturer-market service"}
+      ],
+      "evidence": [],
+      "reason": "Direct-injection carbon symptoms overlap with ignition, fueling and mechanical faults; the A1 is not a US-market fitment.",
+      "correction": "Do not recommend a universal catch-can or cleaning product; approve cleaning only after deposit confirmation and engine identification."
+    },
+    {
+      "issueId": "audi-a3-dq381dq250-s-tronic-mechatronic-2016",
+      "repairItems": "Confirm DQ381 versus DQ250 transmission code; manufacturer-specific faults, fluid condition, pressure and adaptation; software/adaptation, mechatronic or internal gearbox repair chosen by diagnosis",
+      "decision": "TRANSMISSION-CODE / DIAGNOSTIC BRANCH",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "2016-2024 A3/S3 DQ250/DQ381 identification, guided diagnosis and adaptation", "role": "specialist transmission service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/transmission-code, software/campaign and supersession check", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "DQ250 and DQ381 hardware, fluids, software and mechatronics are not interchangeable, and similar symptoms can come from internal faults.",
+      "correction": "Do not sell a mechatronic unit or service kit until transmission code and diagnostic branch are established."
+    },
+    {
+      "issueId": "audi-a3-haldex-awd-pumpfilter-contamination-2016",
+      "repairItems": "Confirm quattro/Haldex generation and final-drive code; AWD faults and pump activation test; clean pump screen and use exact fluid; replace pump only if testing confirms failure",
+      "decision": "AWD-GENERATION / PUMP-TEST GATE",
+      "destinations": [
+        {"label": "Audi A3 Haldex service-kit catalog", "url": "https://www.ecstuning.com/Audi-A3/Drivetrain/Differential/Haldex/Service_Kit/", "scope": "2016-2020 A3 quattro/S3; select exact model year, Haldex generation and kit contents", "role": "vehicle-specific AWD service catalog"},
+        {"label": "Audi Haldex pump diagnostic TSB", "url": "https://static.nhtsa.gov/odi/tsbs/2016/MC-10118340-9999.pdf", "scope": "technical diagnosis reference; verify applicability and current revision before service", "role": "manufacturer technical reference"}
+      ],
+      "evidence": [],
+      "reason": "A blocked screen, wrong fluid, electrical fault and failed pump require different repairs; pump replacement is conditional on activation/current testing.",
+      "correction": "Do not treat all A3 AWD systems as one generation or automatically sell a pump with every fluid service."
+    },
+    {
+      "issueId": "audi-a3-panoramic-sunroof-glass-cracking-2016",
+      "repairItems": "Inspect for impact, stress crack, frame alignment and cassette/drain faults; exact VIN/option glass or cassette; calibrate/initialize as required; water-test after repair",
+      "decision": "VIN / ROOT-CAUSE BODY-GLASS SERVICE",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2016-2024 A3 panoramic-roof VIN/option diagnosis and genuine glass/cassette sourcing", "role": "manufacturer-capable service"},
+        {"label": "Safelite repair and replacement", "url": "https://www.safelite.com/", "scope": "panoramic roof glass availability and glass-only evaluation; verify the provider services this roof and vehicle", "role": "conditional automotive-glass service"}
+      ],
+      "evidence": [],
+      "reason": "Glass-only, frame, cassette and drain failures are different repairs, and roof options/part numbers vary by VIN.",
+      "correction": "Do not link generic glass or sealant; inspect the frame/cassette and impact evidence before selecting the remedy."
+    },
+    {
+      "issueId": "audi-a3-tdi-dpf-2010",
+      "repairItems": "Read TDI-specific faults/live data; verify soot versus ash, differential-pressure and temperature sensors; guided regeneration only when manufacturer limits permit; off-car cleaning or replacement based on measured condition",
+      "decision": "SAFETY CORRECTION / PROFESSIONAL DPF DIAGNOSIS",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "2010-2013 A3 TDI DPF soot/ash/sensor diagnosis and safe guided service", "role": "specialist diesel service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN-specific software, emissions coverage and approved DPF procedure", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "A highway drive or chemical cleaner is unsafe or ineffective when ash load, excessive soot, sensor faults or active engine faults are present.",
+      "correction": "Remove the public-road forced-regeneration/security-code procedure and do not recommend cleaner or DPF replacement without measured diagnosis."
+    },
+    {
+      "issueId": "audi-a3-tdi-egr-2010",
+      "repairItems": "Confirm CBEA/CJAA engine and EGR valve versus cooler fault; exact valve 03L131501K when VIN/engine matches; cooler, gaskets and coolant only for the diagnosed branch",
+      "decision": "ENGINE / EGR-COMPONENT GATE",
+      "destinations": [
+        {"label": "Genuine Audi EGR valve 03L131501K", "url": "https://www.audiusaparts.com/oem-parts/audi-egr-valve-3l131501k", "scope": "2010-2013 Audi A3 TDI shown by seller; verify VIN, engine code and current supersession", "role": "exact conditional EGR-valve part"},
+        {"label": "ECS genuine EGR valve 03L131501K", "url": "https://www.ecstuning.com/b-genuine-volkswagen-audi-parts/exhaust-gas-recirculation-valve/03l131501k/", "scope": "A3 8P FWD TDI shown by seller; secondary fitment/availability check", "role": "exact conditional EGR-valve source"}
+      ],
+      "evidence": [],
+      "reason": "The valve and cooler are different failure branches; 03L131501K has explicit A3 TDI fitment but still requires VIN/engine confirmation.",
+      "correction": "Do not automatically include the cooler or control hardware unless testing identifies that component."
+    },
+    {
+      "issueId": "audi-a3-tdi-emissions-2015",
+      "repairItems": "VIN-specific emissions-modification completion and extended-coverage history; dealer diagnosis under applicable settlement/warranty terms",
+      "decision": "VIN / COVERAGE SERVICE ROUTE ONLY",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2010-2015 A3 2.0L TDI emissions-modification and coverage-history check", "role": "manufacturer-capable service"},
+        {"label": "Audi recall and service-campaign lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "VIN-based open campaign check", "role": "manufacturer campaign lookup"}
+      ],
+      "evidence": [],
+      "reason": "The remedy and coverage depend on VIN and completion history; it is not a retail-parts repair.",
+      "correction": "Do not link emissions parts or promise coverage without dealer/VIN confirmation."
+    },
+    {
+      "issueId": "audi-a3-tdi-glow-plug-2010",
+      "repairItems": "VCDS cylinder-specific fault/testing; confirm engine/VIN and exact glow-plug revision; controlled removal due to seizure risk; wiring or control module only when diagnosed",
+      "decision": "EXPLICIT SCANNER/DIAGNOSTIC TOOL APPROVAL — EXACT VCDS REQUIREMENT",
+      "destinations": [
+        {"label": "Ross-Tech VCDS HEX-V2 diagnostic tool", "url": "https://store.ross-tech.com/shop/vchv2_ent/?attribute_pa_hvvin=vin_3", "scope": "official VW/Audi diagnostic system; Windows PC and VIN-license limits apply; confirm 2010-2013 A3 TDI functions before purchase", "role": "explicitly required VW/Audi diagnostic tool"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "cylinder-specific glow-plug diagnosis and seized-plug removal", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The How to Fix explicitly requires VCDS; Ross-Tech is the exact VW/Audi tool provider, unlike a generic OBD scanner.",
+      "correction": "Do not infer a generic scanner from the DTC and do not replace all plugs, harness or module without testing."
+    },
+    {
+      "issueId": "audi-a3-tdi-injector-2010",
+      "repairItems": "VIN/campaign-completion check for NHTSA 11V490; dealer replacement of injector line number 2 and installation/inspection of vibration dampers under the campaign; stop for active fuel leak",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "2010-2012 A3 TDI VIN check for campaign 11V490", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check for 11V490", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "This is a safety-recall repair with a specified dealer remedy, not a retail injector sale.",
+      "correction": "Do not link injectors; the recalled component is the number-2 fuel line/damper arrangement and campaign completion must be checked by VIN."
+    },
+    {
+      "issueId": "audi-a3-tdi-turbo-2010",
+      "repairItems": "Confirm 2.0 TDI engine code and installed turbo number; boost/vacuum/actuator, charge-air and lubrication diagnosis; exact superseded turbo only after confirmation; oil lines and contamination repairs by procedure/condition",
+      "decision": "ENGINE / TURBO-NUMBER / ROOT-CAUSE GATE",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2010-2013 A3 TDI VIN/engine/turbo-number and current supersession check", "role": "manufacturer-capable parts and service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "TDI boost-system, actuator and lubrication diagnosis before turbo replacement", "role": "specialist diesel service"}
+      ],
+      "evidence": [],
+      "reason": "The source's broad number and trim list do not prove one turbo across the population, and underboost does not establish turbo failure.",
+      "correction": "Hold retail turbo links until engine/VIN and installed turbo number are verified; do not prescribe a universal idle cooldown."
+    },
+    {
+      "issueId": "audi-a3-virtual-cockpitmmi-display-freezing-2017",
+      "repairItems": "VIN/campaign-completion check for NHTSA 22V806; authorized Audi main-unit software/repair remedy; follow rear-visibility precautions until repaired",
+      "decision": "SOURCE-TITLE MISMATCH / RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "2022 Audi A3 VIN check for campaign 22V806", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check for 22V806", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The record is a 2022 infotainment main-unit/rearview safety recall even though its identifier implies a broader 2017 display issue.",
+      "correction": "Rename/re-key to the recall population and do not link replacement displays or generic electronics."
+    },
+    {
+      "issueId": "audi-a3-water-pumpthermostat-housing-coolant-2016",
+      "repairItems": "Clean/dry, fill to specification and pressure-test; confirm leak source and 2.0 TFSI engine/VIN; exact pump, thermostat, housing or seal only for the proven source; current coolant and bleed procedure",
+      "decision": "LEAK-SOURCE / ENGINE-VIN GATE",
+      "destinations": [
+        {"label": "Audi A3 water-pump catalog", "url": "https://www.fcpeuro.com/Audi-parts/A3/Water-Pump/", "scope": "2020 and 2022-2024 A3 2.0 TFSI; select exact engine/VIN and confirmed leaking component", "role": "vehicle-specific pump catalog"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN-based pressure-test diagnosis, supersession and coolant specification", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "Residue can come from several pump/thermostat interfaces; the repair should follow a confirmed fresh leak.",
+      "correction": "Do not automatically bundle pump and thermostat or use stop-leak."
+    },
+    {
+      "issueId": "audi-a4-12v-battery-drain-and-2022",
+      "repairItems": "Battery state-of-health and charging test; key-off current after all modules sleep; gateway/telematics software and circuit isolation; exact AGM battery only if failed; required battery registration/coding",
+      "decision": "PARASITIC-DRAW / BATTERY-SPEC DIAGNOSIS",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2022-2025 A4 gateway/telematics software, sleep-current diagnosis and battery registration", "role": "manufacturer-capable service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "parasitic-draw isolation and exact AGM battery specification/coding", "role": "specialist electrical service"}
+      ],
+      "evidence": [],
+      "reason": "A weak battery may be the result rather than the cause; group size, capacity and registration requirements must be confirmed by VIN.",
+      "correction": "Do not sell a battery, gateway or telematics module until the draw and failed branch are proven."
+    },
+    {
+      "issueId": "audi-a4-1997-1998-nadi-airbag-recall-69bt",
+      "repairItems": "VIN/campaign-completion check for 69BT and NHTSA 20V056/22V471; authorized Audi driver-airbag inflator remedy only",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "1997-2000 Audi A4 VIN check for 69BT / 20V056 / 22V471", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "Pyrotechnic inflator replacement is an authorized recall remedy and must be determined by VIN/campaign status.",
+      "correction": "Do not sell a retail inflator or instruct DIY airbag work."
     }
   ]
 }
