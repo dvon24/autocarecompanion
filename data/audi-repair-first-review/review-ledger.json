@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "make": "Audi",
-  "generatedAt": "2026-08-20T18:13:12.921Z",
+  "generatedAt": "2026-08-20T18:19:30.290Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "a1f7f8fdd3d1f2841544f188c0f1a6d06a7d70d7bc4de401c640992730ebe303",
   "publishedIssueCount": 389,
-  "reviewedIssueCount": 150,
-  "remainingIssueCount": 239,
-  "reviewedWithDestinationCount": 146,
-  "destinationCount": 266,
-  "distinctUrlCount": 62,
+  "reviewedIssueCount": 200,
+  "remainingIssueCount": 189,
+  "reviewedWithDestinationCount": 196,
+  "destinationCount": 344,
+  "distinctUrlCount": 67,
   "scannerDestinationCount": 5,
   "missingHowToFixCount": 4,
   "reviews": [
@@ -3707,6 +3707,1174 @@
       "ymmt": "2022-2023 | Audi | e-tron GT",
       "title": "2022-2023 e-tron GT Passenger-Airbag PODS Recall 74HC (25V227)",
       "howToFix": "Check the VIN for open Audi recall 74HC and have an authorized dealer replace the affected front-passenger seat cushion with the optimized cushion free of charge. If the airbag warning or Passenger Airbag OFF indicator appears while the seat is occupied, follow the vehicle warning and contact an Audi dealer. A clock spring, battery reset or generic sensor calibration is not the recall remedy."
+    },
+    {
+      "issueId": "audi-etron-gt-software-2022",
+      "repairItems": "Confirm post-91DZ Audi connect/SOS condition; ODIS GFF plus SVM Check Module Configuration for J533/address 0019; Audi escalation if persistent",
+      "decision": "SOFTWARE / GUIDED-CODING SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2022 e-tron GT TSB 2068824/2 ODIS/SVM procedure",
+          "role": "manufacturer software service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The repair is guided module configuration, not hardware.",
+      "correction": "Do not link a module or retail coding service; manual coding is no longer directed.",
+      "sequence": 151,
+      "ymmt": "2022-2022 | Audi | e-tron GT",
+      "title": "2022 e-tron GT Audi connect Inoperative after 91DZ - TSB 2068824/2",
+      "howToFix": "Confirm that the failure began after 91DZ and matches the Audi connect/SOS-LED condition. An Audi technician should use ODIS Guided Fault Finding and run SVM Check Module Configuration for diagnostic address 0019, J533. Manual coding is no longer required. Escalate a continuing Audi connect failure through Audi support after the guided coding procedure rather than buying hardware or a retail software service."
+    },
+    {
+      "issueId": "audi-etron-hv-coolant-2019",
+      "repairItems": "Audi-qualified confirmation of N632 leak and scan-tool valve identity; conditional index K/Q replacement per TSB 2067941/3",
+      "decision": "HIGH-VOLTAGE / VALVE-INDEX SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-2022 e-tron covered models; N632 identity, leak and TSB service",
+          "role": "authorized EV thermal service"
+        }
+      ],
+      "evidence": [],
+      "reason": "High-voltage coolant work and replacement depend on exact valve index and leak proof.",
+      "correction": "Do not add coolant or link valve/fluid for owner repair.",
+      "sequence": 152,
+      "ymmt": "2019-2022 | Audi | e-tron | e-tron quattro (2019, 2021-2022); e-tron Sportback quattro (2020-2022); e-tron S (2022) | Battery-electric; confirm coolant valve N632 part number by scan tool",
+      "title": "2019-2022 e-tron Coolant Valve N632 Leak in Cold Conditions - Diagnosis Required",
+      "howToFix": "Do not open or add fluid to a high-voltage cooling circuit unless you are trained and have the Audi procedure. Have an Audi-qualified technician confirm that coolant valve N632 is the leak source and identify the installed valve with the scan tool. If index K or index Q is fitted and the TSB criteria apply, replace the valve if necessary under Audi TSB 2067941/3. A coolant warning, overheating warning or active high-voltage fault requires prompt professional diagnosis; do not order the former coolant product from this card."
+    },
+    {
+      "issueId": "audi-etron-onboard-charger-2019",
+      "repairItems": "Classify AC/DC/station-specific failure; scan J1050; matching software 0070 to 0079+ SVM update; reproduce and guided-test remaining DTC",
+      "decision": "SOURCE-YEAR MISMATCH / SOFTWARE-FIRST SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2021 e-tron J1050 software and guided charging diagnosis",
+          "role": "authorized EV software service"
+        }
+      ],
+      "evidence": [],
+      "reason": "One working charge mode does not prove hardware failure.",
+      "correction": "Identifier says 2019; align to 2021 and do not link charger, battery, relay, meter or EVSE.",
+      "sequence": 153,
+      "ymmt": "2021-2021 | Audi | e-tron | e-tron quattro and e-tron Sportback; confirm J1050 software level and matching DTC | Battery-electric",
+      "title": "2021 e-tron Charging Interruptions with Onboard-Charger Software 0070 - Diagnosis Required",
+      "howToFix": "Record whether the failure is AC, DC or station-specific and have J1050 scanned before parts. If the vehicle has the matching condition and software level 0070, Audi directs an SVM update to software 0079 or higher. After the update, reproduce the concern and follow the guided test plan for any new active DTC. Do not infer hardware failure merely because one charging mode works, and do not order the former charger, 12-volt battery, relay, meter or portable EVSE from this card."
+    },
+    {
+      "issueId": "audi-etron-ota-software-2019",
+      "repairItems": "Document exact infotainment/OTA symptom and software; safe reboot only per manual; VIN/version-specific dealer update and module diagnosis if persistent",
+      "decision": "OVERBROAD SOFTWARE SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2019-2024 e-tron VIN/software-level diagnosis and updates",
+          "role": "manufacturer software service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source combines multiple software symptoms without version or DTC.",
+      "correction": "Do not promise Wi-Fi or a generic hard reset fixes OTA issues; no product link.",
+      "sequence": 154,
+      "ymmt": "2019-2024 | Audi | e-tron",
+      "title": "OTA Software Update and Infotainment Issues",
+      "howToFix": "Hard reset infotainment system. Visit dealer for manual software update. Ensure stable WiFi connection for OTA updates."
+    },
+    {
+      "issueId": "audi-q2-coolant-water-pump-leak-tfsi-engines",
+      "repairItems": "Local-market VIN/engine-code pressure test; exact pump/thermostat/housing source; current coolant and bleed; timing service only when that engine/procedure overlaps",
+      "decision": "NON-US-MARKET / ENGINE LEAK-SOURCE GATE",
+      "destinations": [
+        {
+          "label": "Audi UK service and maintenance",
+          "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/",
+          "scope": "2016-2021 Q2 TFSI local-market leak diagnosis and VIN parts",
+          "role": "manufacturer-market service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Q2 was not sold in the US and 1.0/1.4/2.0 systems differ.",
+      "correction": "Do not bundle pump, thermostat or G13 universally or assume timing-belt labor overlap.",
+      "sequence": 155,
+      "ymmt": "2016-2021 | Audi | Q2 | TFSI petrol | 1.4 TFSI, 2.0 TFSI, 1.0 TFSI, TFSI petrol",
+      "title": "Coolant / water pump leak on TFSI engines (cracked plastic pump housing)",
+      "howToFix": "Replace the water pump and thermostat housing (typically an updated revised unit) and refill/bleed with the correct G13 coolant; many shops do this together with the timing belt service. Inspect related coolant hoses/thermostat at the same time."
+    },
+    {
+      "issueId": "audi-q2-diesel-particulate-filter-clogging-tdi-engines-used-short-tr",
+      "repairItems": "TDI fault/live-data diagnosis; distinguish soot, ash and sensor faults; approved guided regeneration, professional cleaning or replacement by measured condition",
+      "decision": "NON-US-MARKET / PROFESSIONAL DPF SERVICE",
+      "destinations": [
+        {
+          "label": "Audi UK service and maintenance",
+          "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/",
+          "scope": "2016-2020 Q2 TDI local-market DPF diagnosis/service",
+          "role": "manufacturer-market service"
+        }
+      ],
+      "evidence": [],
+      "reason": "A drive cycle may be unsafe/ineffective with excessive soot or active faults.",
+      "correction": "Do not prescribe uncontrolled road regeneration or a DPF product before diagnosis.",
+      "sequence": 156,
+      "ymmt": "2016-2020 | Audi | Q2 | TDI diesel | 1.6 TDI, 2.0 TDI",
+      "title": "Diesel particulate filter (DPF) clogging on TDI engines used for short trips",
+      "howToFix": "Drive at a steady speed (>60 km/h / ~40 mph) under moderate load for 15–30 minutes to allow regeneration to complete; if blocked, the dealer performs a forced/static regeneration with diagnostic equipment. Severely blocked filters need professional DPF cleaning or replacement. Long-term: avoid exclusively short trips."
+    },
+    {
+      "issueId": "audi-q2-electro-mechanical-parking-brake-can-release-its-own",
+      "repairItems": "Selling-market VIN/45H4 completion check; authorized brake-control software update; secure vehicle in Park/gear",
+      "decision": "NON-US RECALL ROUTE",
+      "destinations": [
+        {
+          "label": "Audi UK service and maintenance",
+          "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/",
+          "scope": "2017-2018 Q2 local-market recall/Audi Centre route",
+          "role": "manufacturer-market recall route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The remedy is campaign software.",
+      "correction": "Do not link parking-brake hardware.",
+      "sequence": 157,
+      "ymmt": "2017-2018 | Audi | Q2",
+      "title": "2017-2018 Audi Q2 Parking-Brake Software Recall 45H4",
+      "howToFix": "Check the VIN and campaign-completion history with Audi. The recall remedy is an authorised-dealer software update to the brake control unit. Until eligibility and completion are confirmed, leave the transmission in gear or Park and avoid relying on the parking brake alone on a slope."
+    },
+    {
+      "issueId": "audi-q2-fuse-carrier-power-connector-recall-engine-instrument-cluste",
+      "repairItems": "Selling-market VIN/GAI-3692 check; dealer fuse-carrier power-connection inspection/correction",
+      "decision": "NON-US RECALL ROUTE",
+      "destinations": [
+        {
+          "label": "Audi UK service and maintenance",
+          "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/",
+          "scope": "2021-2023 Q2 local-market campaign/Audi Centre route",
+          "role": "manufacturer-market recall route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The campaign controls the connection remedy.",
+      "correction": "Do not sell a fuse box or harness from a warning lamp.",
+      "sequence": 158,
+      "ymmt": "2021-2023 | Audi | Q2 | 35 TFSI, 35 TDI",
+      "title": "2021-2023 Audi Q2 Interior Fuse-Carrier Recall GAI-3692",
+      "howToFix": "Check the VIN and open-campaign status with an authorised Audi dealer in the vehicle’s market. The campaign remedy is dealer inspection and correction of the fuse-carrier power connection. Do not replace a fuse box or wiring harness solely from a warning lamp or this model-year summary."
+    },
+    {
+      "issueId": "audi-q2-mmi-infotainment-freezing-rebooting-intermittent-electrical",
+      "repairItems": "Record symptom/DTC/software and phone-data trigger; safe reboot; market/VIN software update; head unit only if diagnosed",
+      "decision": "NON-US-MARKET / SOFTWARE-FIRST SERVICE",
+      "destinations": [
+        {
+          "label": "Audi UK service and maintenance",
+          "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/",
+          "scope": "2016-2022 Q2 MMI diagnosis/update",
+          "role": "manufacturer-market software service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Temporary data/software faults do not establish head-unit failure.",
+      "correction": "Do not link a head unit or promise a universal reset.",
+      "sequence": 159,
+      "ymmt": "2016-2022 | Audi | Q2",
+      "title": "MMI infotainment freezing/rebooting and intermittent electrical glitches",
+      "howToFix": "Apply the latest MMI software update at an Audi dealer; clear/re-pair the phone if corrupt phone data triggers it. A manual MMI reboot (press-and-hold the power/volume knob ~10 seconds) clears temporary glitches. Persistent faults may require a head-unit or module replacement."
+    },
+    {
+      "issueId": "audi-q2-premature-timing-belt-failure-1-0-1-4-tfsi-petrol-engines",
+      "repairItems": "Confirm engine code and documented belt interval/condition; exact belt/tensioner/idler/pump scope; post-failure compression/valve/engine assessment",
+      "decision": "NON-US-MARKET / ENGINE TIMING GATE",
+      "destinations": [
+        {
+          "label": "Audi UK service and maintenance",
+          "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/",
+          "scope": "2016-2021 Q2 1.0/1.4 TFSI interval and engine-code timing service",
+          "role": "manufacturer-market service"
+        }
+      ],
+      "evidence": [],
+      "reason": "No evidence supports one 4-year/40k-50k interval or engine replacement outcome for both engines.",
+      "correction": "Do not publish a universal kit/interval or goodwill promise.",
+      "sequence": 160,
+      "ymmt": "2016-2021 | Audi | Q2 | 1.0 TFSI, 1.4 TFSI, 30 TFSI, 35 TFSI | 1.0 TFSI (3-cyl), 1.4 TFSI, TFSI petrol",
+      "title": "Premature timing belt failure on 1.0 / 1.4 TFSI petrol engines",
+      "howToFix": "Replace the timing belt, tensioner, idlers and water pump as a kit well before the stated interval (many owners now do it at 4 years / 40k-50k miles as a precaution); if the belt has already failed, the usual outcome is a replacement engine (often a reconditioned/used unit) plus a new belt kit. Pursue Audi goodwill via the dealer/ombudsman if full service history exists."
+    },
+    {
+      "issueId": "audi-q2-rear-hub-carrier-fracture-recall",
+      "repairItems": "Selling-market VIN/R2017-311 check; dealer both rear bearing-housing remedy; stop for looseness/noise",
+      "decision": "NON-US RECALL ROUTE",
+      "destinations": [
+        {
+          "label": "Audi UK service and maintenance",
+          "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/",
+          "scope": "2017 Q2 VIN recall/Audi Centre route",
+          "role": "manufacturer-market recall route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Both housings are campaign-controlled.",
+      "correction": "Do not link a retail bearing/hub.",
+      "sequence": 161,
+      "ymmt": "2017-2017 | Audi | Q2",
+      "title": "2017 Audi Q2 Rear Wheel-Bearing Housing Recall R/2017/311",
+      "howToFix": "Check the VIN and campaign-completion history with Audi. The recall remedy replaces both rear wheel-bearing housings at an authorised dealer. If rear-wheel noise, looseness or unusual tyre wear is present, avoid continued driving until the vehicle is inspected."
+    },
+    {
+      "issueId": "audi-q2-s-tronic-dual-clutch-transmission-jerking-hesitation-delayed",
+      "repairItems": "Identify exact 7-speed transmission code/wet-dry design; software/adaptation, exact fluid/filter service where applicable, clutch/mechatronic branch by diagnosis",
+      "decision": "NON-US-MARKET / TRANSMISSION-CODE GATE",
+      "destinations": [
+        {
+          "label": "Audi UK service and maintenance",
+          "url": "https://www.audi.co.uk/en/owners/service-and-maintenance/",
+          "scope": "2016-2022 Q2 S tronic code, software and service diagnosis",
+          "role": "manufacturer-market transmission service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Not every 7-speed uses the same fluid/filter or mechatronic.",
+      "correction": "Do not prescribe a fluid service or component until transmission code and fault branch are known.",
+      "sequence": 162,
+      "ymmt": "2016-2022 | Audi | Q2 | S tronic / DSG (7-speed) | TFSI S tronic, TDI S tronic",
+      "title": "S tronic (DSG) dual-clutch transmission jerking, hesitation and delayed shifts",
+      "howToFix": "Start with a transmission software/adaption update and a DSG mechatronic fluid-and-filter service at the correct interval; if symptoms persist, diagnose and replace the clutch pack or mechatronic unit as required. Address promptly to avoid limp-mode and further wear."
+    },
+    {
+      "issueId": "audi-q3-brake-pedal-recall-2019",
+      "repairItems": "VIN/46i7/20V786 completion check; dealer pedal-weld inspection and conditional complete pedal replacement; stop for abnormal pedal",
+      "decision": "SOURCE-YEAR MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2020 Q3 VIN check for 46i7",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "20V786 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "This is a 2020 pedal recall, not brake friction service.",
+      "correction": "Identifier says 2019; do not link pads/rotors.",
+      "sequence": 163,
+      "ymmt": "2020-2020 | Audi | Q3",
+      "title": "2020 Audi Q3 Brake-Pedal Recall 46i7 / NHTSA 20V786",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The free recall remedy inspects the weld between the pedal and pedal plate and replaces the complete brake pedal when required. Do not buy pads or rotors for this campaign; if the pedal feels loose, bent or abnormal, stop driving and arrange dealer inspection."
+    },
+    {
+      "issueId": "audi-q3-carbon-buildup-2015",
+      "repairItems": "Confirm engine and deposits after ignition/fuel/air/compression diagnosis and intake inspection; engine-specific cleaning/service seals",
+      "decision": "ENGINE / CONFIRMED-DEPOSIT SERVICE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2015-2023 Q3 2.0 TFSI intake diagnosis/cleaning",
+          "role": "specialist intake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Symptoms and mileage alone do not prove intake deposits.",
+      "correction": "Remove universal interval, catch-can/cleaner and Italian-tune-up claims.",
+      "sequence": 164,
+      "ymmt": "2015-2023 | Audi | Q3 | 2.0 TFSI",
+      "title": "Carbon Buildup on Intake Valves (Direct Injection)",
+      "howToFix": "WALNUT BLASTING: Remove intake manifold and blast crushed walnut shells through intake ports ($700-$1,200). Requires specialized equipment—not DIY-friendly. Dealers charge $1,200-$1,500; independent Audi shops charge less. Repeat every 60,000-80,000 miles. PREVENTION: Install catch can ($300-$500) to filter PCV oil vapors before they reach valves—extends cleaning interval to 100k+ miles. Add Liqui Moly Intake Valve Cleaner to every oil change ($15). Perform \"Italian tune-up\" monthly (spirited highway driving to high RPM to burn carbon)."
+    },
+    {
+      "issueId": "audi-q3-electrical-infotainment-2019",
+      "repairItems": "VIN/91Ei/22V806 completion check; dealer infotainment main-unit remedy; reverse with direct observation",
+      "decision": "SOURCE-YEAR MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2022 Q3 VIN check for 91Ei",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V806 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The record is a 2022 recall.",
+      "correction": "Identifier says 2019; do not link refurbished head unit.",
+      "sequence": 165,
+      "ymmt": "2022-2022 | Audi | Q3",
+      "title": "2022 Audi Q3 Rearview-Camera Recall 91Ei / NHTSA 22V806",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The recall remedy replaces the infotainment main unit at no charge. Until repaired, use mirrors and direct observation with extra care while reversing; do not order a refurbished head unit from this summary."
+    },
+    {
+      "issueId": "audi-q3-oil-consumption-2015",
+      "repairItems": "Measured consumption after leak/oil-spec/PCV/turbo checks; engine-code/generation split; pistons/rings/short block only after mechanical diagnosis",
+      "decision": "ENGINE / MEASURED-CONSUMPTION GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2015-2018 Q3 2.0 TFSI measured consumption and root-cause diagnosis",
+          "role": "specialist engine service"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "VIN engine revision, historical coverage and oil spec",
+          "role": "manufacturer-capable service"
+        }
+      ],
+      "evidence": [],
+      "reason": "PCV, leaks, turbo and internal wear are separate branches.",
+      "correction": "Do not prescribe thicker oil, walnut blasting, pistons or coverage without evidence.",
+      "sequence": 166,
+      "ymmt": "2015-2018 | Audi | Q3 | EA888 Gen 2, EA888 Gen 3",
+      "title": "Excessive Oil Consumption (2.0 TFSI Engine)",
+      "howToFix": "For SEVERE consumption (over 1 qt/1,000 mi): Piston ring replacement or short block replacement ($4,000-$7,000). Check Audi's extended warranty program for 2015-2018 Q3 models. For MODERATE consumption: Replace PCV valve ($150), clean carbon with walnut blasting ($800), switch to thicker oil (5W-40). PREVENTION: Check oil level WEEKLY, change oil every 5,000 miles (NOT 10,000), avoid 2015-2017 models when buying used. 2019+ Gen 3 EA888 engines are far more reliable."
+    },
+    {
+      "issueId": "audi-q3-panoramic-roof-2015",
+      "repairItems": "VIN/60C1/15V200 completion check; dealer sunroof-control software update; keep clear of moving panel",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2015 Q3 VIN check for 60C1",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "15V200 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The remedy is software.",
+      "correction": "Do not substitute battery, relay or electrical parts.",
+      "sequence": 167,
+      "ymmt": "2015-2015 | Audi | Q3",
+      "title": "2015 Audi Q3 Sunroof-Control Recall 60C1 / NHTSA 15V200",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The recall remedy updates the sunroof control-module software at no charge. Keep hands and objects clear of the moving panel and do not use battery, relay or generic electrical parts as a substitute for the campaign."
+    },
+    {
+      "issueId": "audi-q3-steering-lock-recall-2019",
+      "repairItems": "VIN/48P7/21V027 completion check; free dealer steering-rack remedy; recovery for binding/locking",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2019 Q3 VIN check for 48P7",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "21V027 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Eligibility and rack replacement are VIN-controlled.",
+      "correction": "Do not infer all 2019 Q3 vehicles or link a retail rack.",
+      "sequence": 168,
+      "ymmt": "2019-2019 | Audi | Q3",
+      "title": "2019 Audi Q3 Steering-Rack Recall 48P7 / NHTSA 21V027",
+      "howToFix": "Check the VIN and campaign history with Audi or NHTSA. The recall remedy replaces the steering rack at no charge. If steering binds or locks, stop driving and arrange recovery; do not infer that another Q3 is affected from model year alone."
+    },
+    {
+      "issueId": "audi-q3-timing-chain-2015",
+      "repairItems": "Confirm engine code/generation and chain/tensioner condition; exact complete timing kit/current revision; post-jump mechanical assessment",
+      "decision": "ENGINE / TIMING-CONDITION GATE",
+      "destinations": [
+        {
+          "label": "Audi Q3 timing-chain catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q3-Quattro/Timing-Chain-Kit/",
+          "scope": "2015-2018 Q3 2.0T; exact engine/VIN and kit completeness",
+          "role": "engine-specific timing catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "cold-start rattle/adaptation and timing diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Revision and repair scope depend on engine and measured condition.",
+      "correction": "Do not impose a universal 80k-100k interval.",
+      "sequence": 169,
+      "ymmt": "2015-2018 | Audi | Q3 | Premium, Premium Plus, Prestige | 2.0T",
+      "title": "EA888 Timing Chain Tensioner Failure",
+      "howToFix": "Replace the timing chain, tensioner, guides, and related hardware as a complete kit. Use the latest OEM revised tensioner part number. Preventive replacement is recommended at 80,000-100,000 miles. Cold-start rattle is the critical warning sign that should not be ignored."
+    },
+    {
+      "issueId": "audi-q3-timing-chain-tensioner-2015",
+      "repairItems": "Split 2015-2018 and 2019-2020 engine generations; exact timing diagnosis/kit; post-failure damage assessment",
+      "decision": "MULTI-GENERATION TIMING GATE",
+      "destinations": [
+        {
+          "label": "Audi Q3 timing-chain catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q3-Quattro/Timing-Chain-Kit/",
+          "scope": "2015-2020 Q3; exact generation/engine/VIN and kit contents",
+          "role": "engine-specific timing catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "generation-specific timing diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The range crosses platforms/EA888 revisions.",
+      "correction": "Remove universal interval, labor, aftermarket-failure and water-pump/thermostat claims.",
+      "sequence": 170,
+      "ymmt": "2015-2020 | Audi | Q3 | EA888",
+      "title": "Timing Chain Tensioner Failure (2.0 TFSI Engine)",
+      "howToFix": "PREVENTIVE REPLACEMENT: Replace timing chain, tensioners, and guides at 80,000-100,000 miles BEFORE rattling starts ($2,000-$3,000). If rattling has started, DO NOT delay—chain can jump at any moment. Repair requires removing front engine cover, water pump, thermostat. Labor is 8-12 hours. Use ONLY OEM Audi parts—aftermarket tensioners fail quickly. Change oil every 5,000 miles and check oil level weekly to prevent accelerated tensioner wear. If catastrophic failure occurs, engine replacement ($6,000-$10,000) is often more cost-effective than rebuild. 2021+ Q3 models have updated parts and are more reliable."
+    },
+    {
+      "issueId": "audi-q3-water-pump-2015",
+      "repairItems": "Pressure-test/document; replace confirmed pump or thermostat housing only; align/torque/belt tension per Audi; VIN/current parts and coverage",
+      "decision": "TSB LEAK-SOURCE GATE",
+      "destinations": [
+        {
+          "label": "Audi Q3 water-pump catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q3-Quattro/Water-Pump/",
+          "scope": "2015-2018 Q3 2.0 TFSI; confirmed component and VIN only",
+          "role": "conditional pump catalog"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "TSB 2061604/5 parts/procedure/coverage",
+          "role": "manufacturer-capable service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Pump and housing are separate repair branches.",
+      "correction": "Do not order by model year or bundle both.",
+      "sequence": 171,
+      "ymmt": "2015-2018 | Audi | Q3 | 2.0 TFSI",
+      "title": "2015-2018 Audi Q3 Coolant-Module Leak TSB 2061604/5",
+      "howToFix": "Pressure-test the cooling system and document the leak. Replace only the component that is leaking—the coolant pump or thermostat housing—then align the two components flush, torque the connecting bolts as specified and verify the pump-belt tension is within Audi’s procedure. Confirm current parts and warranty coverage with Audi; do not order by model year alone."
+    },
+    {
+      "issueId": "audi-q3-water-pump-coolant-2015",
+      "repairItems": "Clean/dry/fill and reassess after driving; exact recurring leak source/VIN component only; coverage check",
+      "decision": "SOURCE-YEAR MISMATCH / TSB LEAK-CONFIRMATION",
+      "destinations": [
+        {
+          "label": "Audi Q3 water-pump catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q3-Quattro/Water-Pump/",
+          "scope": "2020-2024 Q3 2.0 TFSI after fresh recurring leak confirmation",
+          "role": "conditional pump catalog"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "TSB 2071515/1 diagnosis/coverage",
+          "role": "manufacturer-capable service"
+        }
+      ],
+      "evidence": [],
+      "reason": "No fresh leak means observation, not parts.",
+      "correction": "Identifier says 2015; align to 2020-2024.",
+      "sequence": 172,
+      "ymmt": "2020-2024 | Audi | Q3 | 2.0 TFSI",
+      "title": "2020-2024 Audi Q3 Coolant-Pump Leak TSB 2071515/1",
+      "howToFix": "Document the suspected leak, clean and dry all coolant traces, fill the system to the correct level and reassess after driving a few miles. If no fresh leak returns, continue observing without replacing parts. If leakage recurs, replace only the component causing it under the exact VIN, engine and part criteria. Outside applicable warranty, Audi states the bulletin is informational."
+    },
+    {
+      "issueId": "audi-q4-etron-brake-rollaway-2022",
+      "repairItems": "VIN/454R/25V120 completion check; dealer brake-control software update; always Park/parking brake until complete",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2022-2023 Q4 e-tron VIN check for 454R",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V120 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The remedy is software.",
+      "correction": "Do not link brake or parking components.",
+      "sequence": 173,
+      "ymmt": "2022-2023 | Audi | Q4 e-tron",
+      "title": "2022-2023 Audi Q4 e-tron Rollaway Recall 454R / NHTSA 25V120",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The free recall remedy updates the brake-control-unit software. Until completed, verify the selected gear and always engage the parking brake before leaving the vehicle."
+    },
+    {
+      "issueId": "audi-q4-etron-charging-port-2022",
+      "repairItems": "VIN/93U6/93U8/23V842 instructions; stop affected 220/240V cable; temporary 110V/public charging; free sensor-equipped replacement cable",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2022-2024 Q4 e-tron VIN/cable recall check",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "23V842 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The recalled item is the cable, not the vehicle inlet.",
+      "correction": "Do not link a charging inlet or retail cable substitute.",
+      "sequence": 174,
+      "ymmt": "2022-2024 | Audi | Q4 e-tron",
+      "title": "2022-2024 Audi Q4 e-tron Charging-Cable Recall 93U6/93U8 / NHTSA 23V842",
+      "howToFix": "Check the VIN and campaign instructions with Audi or NHTSA. The recall advises owners not to use the affected 220V/240V compact cable and to use the 110V cable or public charging until Audi supplies the replacement 220V/240V cable with an incorporated temperature sensor at no charge. Do not order a charging inlet from this card."
+    },
+    {
+      "issueId": "audi-q4-etron-cold-weather-range-2022",
+      "repairItems": "Verify heat-pump equipment by VIN/build; owner-manual preconditioning/climate/range practices; Audi-qualified R744 diagnosis only for equipped malfunction",
+      "decision": "EQUIPMENT / CLIMATE-SERVICE SPLIT",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2023-2024 Q4 e-tron VIN heat-pump equipment and R744 service",
+          "role": "manufacturer EV climate service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Normal cold-weather range loss and a failed heat pump are different cases.",
+      "correction": "Do not infer equipment from February 2023 alone or link aftermarket heat-pump parts.",
+      "sequence": 175,
+      "ymmt": "2023-2024 | Audi | Q4 e-tron",
+      "title": "Severe Cold Weather Range Loss (Models Without Heat Pump)",
+      "howToFix": "Check your build sheet or window sticker to determine if your Q4 e-tron has a heat pump - vehicles built after February 2023 likely do NOT have one. For non-heat-pump models: use seat heaters and steering wheel heater instead of cabin air heater to preserve range. Pre-condition the cabin while plugged in before departing. Set cabin temperature to 68F or lower. Enable eco mode for climate. Use range-optimized route planning. For heat pump equipped models experiencing issues: dealer service may need specialized R-744 (CO2) refrigerant which many shops don't stock - call ahead. Aftermarket heat pump installation is NOT feasible."
+    },
+    {
+      "issueId": "audi-q4-etron-headlight-module-2022",
+      "repairItems": "VIN/941L/24V361 check; dealer corrected headlight-control data set",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2022-2024 Q4 e-tron 941L",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "24V361 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Software is the free remedy.",
+      "correction": "Do not link bulbs, relays, meter or headlamp.",
+      "sequence": 176,
+      "ymmt": "2022-2024 | Audi | Q4 e-tron",
+      "title": "2022-2024 Audi Q4 e-tron Headlight Recall 941L / NHTSA 24V361",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The free remedy updates the headlight-control module with a corrected data set. Do not substitute relays, bulbs, a multimeter or a headlight assembly for the campaign software update."
+    },
+    {
+      "issueId": "audi-q4-etron-hv-coolant-2022",
+      "repairItems": "Audi-qualified HV coolant bleed and pump/circuit diagnosis",
+      "decision": "HIGH-VOLTAGE SERVICE ONLY",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2022-2024 Q4 e-tron HV thermal system",
+          "role": "authorized EV service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Source requires dealer HV work and names no exact failed part.",
+      "correction": "No owner coolant/pump link.",
+      "sequence": 177,
+      "ymmt": "2022-2024 | Audi | Q4 e-tron",
+      "title": "Battery Cooling System Efficiency Issues",
+      "howToFix": "Bleed HV coolant circuit of air. Check coolant pump operation. Dealer service required for HV system work."
+    },
+    {
+      "issueId": "audi-q4-etron-ota-software-2022",
+      "repairItems": "Document symptom/version; safe reboot; VIN-specific dealer update",
+      "decision": "SOFTWARE SERVICE ONLY",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2022-2024 Q4 e-tron software diagnosis/update",
+          "role": "manufacturer software service"
+        }
+      ],
+      "evidence": [],
+      "reason": "No exact hardware repair is identified.",
+      "correction": "Do not promise a hard reset fixes persistent faults.",
+      "sequence": 178,
+      "ymmt": "2022-2024 | Audi | Q4 e-tron",
+      "title": "OTA Updates and Software Glitches",
+      "howToFix": "Perform hard reset. Check dealer for latest software version. Some issues require dealer-applied updates only."
+    },
+    {
+      "issueId": "audi-q4-etron-software-glitches-2022",
+      "repairItems": "VIN/93FR/25V125 check; free on-board charger replacement; recovery for drive-power warning",
+      "decision": "SOURCE-ID MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2024-2025 Q4 e-tron 93FR",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V125 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "This is charger recall, not generic glitches.",
+      "correction": "Rename/re-key; no 12V battery link.",
+      "sequence": 179,
+      "ymmt": "2024-2025 | Audi | Q4 e-tron",
+      "title": "2024-2025 Audi Q4 e-tron On-Board-Charger Recall 93FR / NHTSA 25V125",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The free remedy replaces the on-board charger. If the vehicle warns of an electrical-system fault or loses drive power, move out of traffic safely and arrange Audi recovery/inspection; do not buy a 12-volt battery or generic electrical parts from this summary."
+    },
+    {
+      "issueId": "audi-q5-carbon-buildup-2009",
+      "repairItems": "Fuel quality, symptoms and DTC diagnosis; Top Tier fuel when applicable; locate deposits before cleaning",
+      "decision": "FUEL-QUALITY TSB / NO CLEANER LINK",
+      "destinations": [
+        {
+          "label": "Top Tier gasoline stations",
+          "url": "https://www.toptiergas.com/gasoline-brands/",
+          "scope": "US detergent-fuel route recommended by Audi when applicable",
+          "role": "approved fuel-quality route"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2009-2025 Q5 deposit diagnosis",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "TSB does not establish intake carbon.",
+      "correction": "No walnut blast, catch can, chemical or high-RPM prescription.",
+      "sequence": 180,
+      "ymmt": "2009-2025 | Audi | Q5",
+      "title": "2009-2025 Q5 Gasoline-Quality Deposit Diagnosis - TSB 2014753/13",
+      "howToFix": "Confirm the exact gasoline-powered vehicle, fuel quality, symptoms and stored DTCs before cleaning or replacing components. If contaminated gasoline is suspected, change fuel source; if detergent quality is suspect, Audi recommends Top Tier detergent gasoline. Continue guided diagnosis if the condition persists and identify the actual deposit location before selecting any cleaning procedure. Do not prescribe routine walnut blasting, a catch can, chemical cleaner or high-RPM driving from this record."
+    },
+    {
+      "issueId": "audi-q5-coolant-leaks-2009",
+      "repairItems": "Photo/pressure test; confirmed pump or thermostat housing only; Elsa assembly/belt check and ETKA fitment",
+      "decision": "SOURCE-YEAR MISMATCH / LEAK-SOURCE TSB",
+      "destinations": [
+        {
+          "label": "Audi Q5 water-pump catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q5/Water-Pump/",
+          "scope": "2011-2017 Q5 2.0T confirmed component/VIN",
+          "role": "conditional pump catalog"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "TSB 2061604/5 procedure",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Pump and housing are separate branches.",
+      "correction": "Identifier says 2009; do not bundle modules.",
+      "sequence": 181,
+      "ymmt": "2011-2017 | Audi | Q5",
+      "title": "2011-2017 Q5 2.0T Coolant Leak at Pump or Thermostat - TSB 2061604/5",
+      "howToFix": "Photograph the leak with date and VIN reference and pressure-test the cooling system according to Audi workshop instructions. Replace only the component confirmed to be leaking: the coolant pump or the thermostat housing. Follow Elsa for removal, assembly, belt-tension checking and current ETKA fitment. Do not replace every plastic cooling component, buy a bundled module or infer the source from a warning or puddle alone."
+    },
+    {
+      "issueId": "audi-q5-oil-consumption-2010",
+      "repairItems": "2011 CAEB VIN and measured TSB procedure; conditional PCV, front seal/bolt, SVM and electronic test",
+      "decision": "SOURCE-YEAR MISMATCH / TSB MEASUREMENT",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2011 Q5 CAEB TSB 2027731/7",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Staged procedure precedes internal repair.",
+      "correction": "Do not link pistons, turbo or PCV alone.",
+      "sequence": 182,
+      "ymmt": "2011-2011 | Audi | Q5",
+      "title": "2011 Q5 2.0T CAEB Oil-Consumption Procedure - TSB 2027731/7",
+      "howToFix": "Verify the VIN and CAEB engine, document actual oil use and have an Audi-capable shop follow TSB 2027731/7. Check the crankcase-pressure regulating valve, use the current ETKA valve when required, replace the specified front seal and bolt, perform the Q5 SVM software update and run the electronic oil-consumption measurement exactly as directed. If the low-oil warning appears during the test, return for evaluation rather than adding oil. Do not replace pistons, rings, a turbo or a PCV part from this record alone."
+    },
+    {
+      "issueId": "audi-q5-sportback-connecting-rod-bearing-failure",
+      "repairItems": "VIN/13i5/22V753 check; dealer inspection/conditional engine; stop/recover for severe symptoms",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2021-2023 Q5 Sportback 13i5",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V753 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Engine remedy is campaign-controlled.",
+      "correction": "No bearing/engine commerce link.",
+      "sequence": 183,
+      "ymmt": "2021-2023 | Audi | Q5 Sportback",
+      "title": "2021-2023 Audi Q5 Sportback Engine Recall 13i5 / NHTSA 22V753",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. Dealers inspect eligible vehicles and replace an affected engine when necessary at no charge. If the engine develops severe knocking, warning messages, smoke, oil leakage or a stall, stop safely and arrange dealer recovery rather than continuing to drive."
+    },
+    {
+      "issueId": "audi-q5-sportback-ea888-water-pump-thermostat-housing-coolant-leak",
+      "repairItems": "Clean/dry/fill/road reassess; exact recurring leak component/VIN only",
+      "decision": "TSB LEAK-CONFIRMATION",
+      "destinations": [
+        {
+          "label": "Audi Q5 water-pump catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q5/Water-Pump/",
+          "scope": "2021-2024 Q5 Sportback after fresh leak confirmation",
+          "role": "conditional pump catalog"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "TSB 2071515/1",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "No fresh leak means no parts.",
+      "correction": "Do not order by model year.",
+      "sequence": 184,
+      "ymmt": "2021-2024 | Audi | Q5 Sportback | 2.0 TFSI",
+      "title": "2021-2024 Audi Q5 Sportback Coolant-Pump Leak TSB 2071515/1",
+      "howToFix": "Document the suspected leak, clean and dry all coolant traces, fill the system correctly and reassess after driving a few miles. If no fresh leak returns, continue observing without replacing parts. If leakage recurs, replace only the component causing it under the exact VIN, engine and part criteria. Confirm current coverage with Audi; do not order by model year alone."
+    },
+    {
+      "issueId": "audi-q5-sportback-excessive-engine-oil-consumption",
+      "repairItems": "Documented consumption; leak/oil/PCV/turbo/mechanical branches; internal parts only after proof",
+      "decision": "MEASURED-CONSUMPTION GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2021-2025 Q5 Sportback root-cause diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "PCV, wear and carbon are different concerns.",
+      "correction": "No rings or walnut link from consumption alone.",
+      "sequence": 185,
+      "ymmt": "2021-2025 | Audi | Q5 Sportback | 2.0T TFSI 45 TFSI (EA888)",
+      "title": "Excessive Engine Oil Consumption (2.0 TFSI EA888)",
+      "howToFix": "Confirm consumption with a documented Audi oil-consumption test. Remedies range from PCV/oil-separator service and updated piston rings to, in severe cases, piston/ring replacement; walnut-blasting addresses associated intake-valve carbon. Owners should monitor oil level frequently between service intervals as a safeguard."
+    },
+    {
+      "issueId": "audi-q5-sportback-front-assist-phantom-braking-false-emergency-braking",
+      "repairItems": "Document events; scan ADAS; inspect radar/mount/alignment; applicable software/calibration; sensor only if failed",
+      "decision": "ADAS DIAGNOSIS SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2021-2025 Q5 Sportback ADAS diagnosis/calibration",
+          "role": "manufacturer ADAS service"
+        },
+        {
+          "label": "NHTSA complaint portal",
+          "url": "https://www.nhtsa.gov/report-a-safety-problem",
+          "scope": "persistent safety incidents",
+          "role": "government reporting"
+        }
+      ],
+      "evidence": [],
+      "reason": "Obstruction, alignment, software and sensor faults differ.",
+      "correction": "Do not promise recall or link sensor.",
+      "sequence": 186,
+      "ymmt": "2021-2025 | Audi | Q5 Sportback",
+      "title": "Front Assist Phantom Braking / False Emergency Braking (ADAS)",
+      "howToFix": "Have the dealer scan for ADAS faults and apply any available radar/camera control-module software updates and sensor recalibration; check for and clear obstructions/misalignment of the front radar. Persistent cases may require sensor replacement. Document incidents and file an NHTSA complaint, as ongoing investigations can drive a recall."
+    },
+    {
+      "issueId": "audi-q5-sportback-loose-cylinder-head-cover-screws-causing-oil-leak-fire-risk",
+      "repairItems": "VIN/15ZK/25V294 check; dealer screw inspection/replacement; stop for oil/smoke",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2022-2024 Q5 Sportback 15ZK",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V294 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Recall controls remedy.",
+      "correction": "No retail screw/cover link.",
+      "sequence": 187,
+      "ymmt": "2022-2024 | Audi | Q5 Sportback",
+      "title": "2022-2024 Audi Q5 Sportback Head-Cover Recall 15ZK / NHTSA 25V294",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. Dealers inspect and replace the screws as necessary at no charge. If oil odor, smoke or visible leakage occurs, stop safely, switch the vehicle off and arrange Audi inspection."
+    },
+    {
+      "issueId": "audi-q5-sportback-mild-hybrid-electrical-fault-start-stop-failure",
+      "repairItems": "VIN/90S9/21V947 check; gateway cover and seam seal; safe response to reduced power",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2021-2022 Q5 Sportback 90S9",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "21V947 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Gateway protection is the remedy.",
+      "correction": "No 12V battery link.",
+      "sequence": 188,
+      "ymmt": "2021-2022 | Audi | Q5 Sportback",
+      "title": "2021-2022 Audi Q5 Sportback Gateway Recall 90S9 / NHTSA 21V947",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The free remedy installs a protective gateway-module cover and seals the underbody seam when necessary. If multiple warnings appear or engine power drops, move out of traffic safely and arrange dealer inspection; do not order a 12-volt battery from this card."
+    },
+    {
+      "issueId": "audi-q5-sportback-phev-high-voltage-battery-overheating-fire-risk",
+      "repairItems": "VIN/25V080 check; dealer monitoring software and module/pack remedy; follow do-not-charge guidance",
+      "decision": "HIGH-VOLTAGE RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "Q5 Sportback PHEV VIN check",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "25V080 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "HV remedy is VIN-controlled.",
+      "correction": "No owner battery/charger link.",
+      "sequence": 189,
+      "ymmt": "2021-2024 | Audi | Q5 Sportback | 55 TFSI e quattro, Q5 Sportback TFSI e PHEV | 2.0T TFSI e plug-in hybrid",
+      "title": "PHEV High-Voltage Battery Overheating / Fire Risk (Recall 25V080000)",
+      "howToFix": "Audi installs advanced diagnostic/monitoring software as the final remedy and replaces individual battery modules or the entire high-voltage pack where defective cells are detected, free of charge. Affected owners should follow the do-not-charge guidance until inspected and confirm recall status by VIN."
+    },
+    {
+      "issueId": "audi-q5-sportback-rear-brake-squeal-2021",
+      "repairItems": "Classify noise/wear; measure pads/rotors/hardware; exact PR-code friction part if confirmed; EPB procedure only as required",
+      "decision": "BRAKE MEASUREMENT GATE",
+      "destinations": [
+        {
+          "label": "Audi Q5 brake-pad catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q5/Brake-Pads/",
+          "scope": "2021-2026 exact VIN/brake PR code/axle",
+          "role": "vehicle-specific brake catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "noise/wear/EPB diagnosis",
+          "role": "specialist brake service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Ceramic pads are not universal cure.",
+      "correction": "No rotor replacement without measurement; no EPB frequency tweak.",
+      "sequence": 190,
+      "ymmt": "2021-2026 | Audi | Q5 Sportback | Premium, Premium Plus, Prestige | 2.0T",
+      "title": "Rear Brake Squeal and Premature Pad Wear",
+      "howToFix": "Replace rear brake pads with aftermarket ceramic compound pads that eliminate the metallic resonance squeal. Apply brake pad shims and caliper slide pin lubricant. Have the electronic parking brake calibrated via scan tool to reduce unnecessary auto-apply frequency. Replace rotors if they show scoring or are below minimum thickness."
+    },
+    {
+      "issueId": "audi-q5-sportback-sunroof-rattle-2021",
+      "repairItems": "Trace wind/rattle; approved cleaning/lubricant; alignment/deflector/cassette branch",
+      "decision": "ROOT-CAUSE BODY SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2021-2025 Q5 Sportback roof diagnosis",
+          "role": "manufacturer body service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Seal, rail, deflector and cassette faults differ.",
+      "correction": "No generic grease or scan-tool indexing claim.",
+      "sequence": 191,
+      "ymmt": "2021-2025 | Audi | Q5 Sportback",
+      "title": "Panoramic Sunroof Wind Noise and Rattle",
+      "howToFix": "Clean and lubricate sunroof rails and seals with Krytox or silicone grease. Adjust sunroof alignment via dealer. Replace wind deflector if cracked. In some cases, the sunroof cassette requires re-indexing via scan tool."
+    },
+    {
+      "issueId": "audi-q5-sportback-virtual-cockpit-2021",
+      "repairItems": "VIN/91DZ/22V742 check; dealer infotainment software; direct reverse observation",
+      "decision": "SOURCE-ID MISMATCH / RECALL ROUTES",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2021 Q5 Sportback 91DZ",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "22V742 VIN history",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Camera software, not cluster hardware.",
+      "correction": "No cluster/scanner link.",
+      "sequence": 192,
+      "ymmt": "2021-2021 | Audi | Q5 Sportback",
+      "title": "2021 Audi Q5 Sportback Rearview-Camera Recall 91DZ / NHTSA 22V742",
+      "howToFix": "Check the VIN and campaign-completion history with Audi or NHTSA. The free remedy updates the infotainment-unit software. Until repaired, use mirrors and direct observation with extra care while reversing. Do not order a replacement instrument cluster or generic scan tool from this summary."
+    },
+    {
+      "issueId": "audi-q5-sunroof-drain-clogs-2009",
+      "repairItems": "2011-2017 VIN/69P1 remedy; 2018-2023 TSB hose inspection/kink repair/specified cleaning",
+      "decision": "YEAR-SPLIT RECALL / TSB",
+      "destinations": [
+        {
+          "label": "Audi recall lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2011-2017 Q5 69P1",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2018-2023 TSB 2075969/2",
+          "role": "manufacturer body service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Two populations have different actions.",
+      "correction": "No compressed air, trimmer line or generic tube kit.",
+      "sequence": 193,
+      "ymmt": "2011-2023 | Audi | Q5",
+      "title": "2011-2023 Q5 Panoramic-Sunroof Water Entry - Recall 69P1 / TSB 2075969/2",
+      "howToFix": "For a 2011-2017 panoramic-roof Q5, check the VIN for Recall 69P1 first and follow Audi’s dealer precautions and remedy; until an open recall is completed, do not use the second row and seek prompt inspection if headliner or rear-cabin leakage is visible. For a 2018-2023 panoramic-roof Q5, have the drain hoses inspected under TSB 2075969/2; the workshop lowers the headliner, replaces kinked hoses and cleans all four hoses with the specified tool when substantial dirt is present. Do not use compressed air, weed-trimmer line or a generic drain-tube kit from this record."
+    },
+    {
+      "issueId": "audi-q5-timing-chain-2009",
+      "repairItems": "Engine-code/generation timing diagnosis; exact chain/tensioner/guides/current revision",
+      "decision": "ENGINE TIMING GATE",
+      "destinations": [
+        {
+          "label": "Audi Q5 timing-chain catalog",
+          "url": "https://www.fcpeuro.com/Audi-parts/Q5/Timing-Chain-Kit/",
+          "scope": "2009-2017 Q5 2.0T exact engine/VIN/kit",
+          "role": "engine-specific timing catalog"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "timing diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "06K109467K is not universal.",
+      "correction": "Remove one 80k interval.",
+      "sequence": 194,
+      "ymmt": "2009-2017 | Audi | Q5 | Premium, Premium Plus, Prestige | 2.0T",
+      "title": "EA888 Timing Chain Tensioner Failure",
+      "howToFix": "Replace timing chain, tensioner (latest revision 06K109467K), guides, and upper chain tensioner as a complete kit. The Q5 requires more labor than the A4 due to engine bay packaging. Preventive replacement at 80,000 miles is strongly recommended, especially on pre-2013 engines."
+    },
+    {
+      "issueId": "audi-q5-timing-chain-tensioner-2011",
+      "repairItems": "VIN/U35 history; confirm chain/tensioner/timing and damage before repair",
+      "decision": "DIAGNOSIS / HISTORICAL COVERAGE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2011-2012 Q5 U35/history",
+          "role": "manufacturer service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "mechanical timing diagnosis",
+          "role": "specialist engine service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Coverage and failed part cannot be assumed.",
+      "correction": "No timing kit link.",
+      "sequence": 195,
+      "ymmt": "2011-2012 | Audi | Q5",
+      "title": "2011-2012 Q5 Timing Chain/Tensioner Diagnosis - Warranty Key U35",
+      "howToFix": "If timing noise, a timing fault, a no-start or suspected mechanical timing damage is present, stop driving when safe operation is uncertain and obtain engine-specific diagnosis. Ask an Audi dealer to check the VIN, Warranty Key U35 history and repair history, but do not assume current settlement coverage. Repair only after the chain, tensioner, timing relationship and any consequential engine damage are confirmed; do not buy a tensioner or kit from this record."
+    },
+    {
+      "issueId": "audi-q5-transmission-mechatronic-2009",
+      "repairItems": "Confirm 2011-2012 2.0L/0BK; PCV/seal/bolt branch then matching ECM/TCM SVM and year adaptation",
+      "decision": "SOURCE-ID MISMATCH / TSB SOFTWARE-FIRST",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "TSB 2032812/9",
+          "role": "manufacturer service"
+        }
+      ],
+      "evidence": [],
+      "reason": "TSB does not direct mechatronic replacement.",
+      "correction": "No valve body/transmission/fluid link.",
+      "sequence": 196,
+      "ymmt": "2011-2012 | Audi | Q5",
+      "title": "2011-2012 Q5 2.0T Hesitation or Harsh-Shift Service - TSB 2032812/9",
+      "howToFix": "Reproduce the exact hesitation or harsh-shift concern and confirm the 2.0L/0BK-8-speed application. Check the installed crankcase-pressure regulating valve first: if 06H103495AE is already fitted, do not replace those parts; otherwise TSB 2032812/9 directs replacement with 06H103495AE plus front crankshaft seal 06L103085B and bolt WHT001760 before the software update. Check both TCM and ECM software levels and apply only matching SVM updates. For model year 2011, clear adaptations and perform the GFF test-drive adaptation; for 2012, perform the standstill adaptation. Continue diagnosis if the condition or any separate DTC remains. Do not replace a mechatronic unit, valve body or transmission or prescribe a fluid interval from this record."
+    },
+    {
+      "issueId": "audi-q5-water-pump-failure-2009",
+      "repairItems": "VIN/open 19N8 check; electric after-run pump and ECM update",
+      "decision": "CAMPAIGN ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "Audi recall and campaign lookup",
+          "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/",
+          "scope": "2013-2017 Q5 19N8",
+          "role": "manufacturer campaign lookup"
+        },
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "campaign remedy",
+          "role": "authorized service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Not main pump/thermostat.",
+      "correction": "Identifier says 2009; no generic pump link.",
+      "sequence": 197,
+      "ymmt": "2013-2017 | Audi | Q5",
+      "title": "2013-2017 Q5 After-Run Coolant Pump Campaign 19N8 - VIN Check Required",
+      "howToFix": "Check the VIN and current open-action status with an Audi dealer. When Service Action 19N8 is open, Audi directs installation of the revised electric after-run coolant pump and an ECM software update. An EPC warning can indicate a blocked pump on vehicles with the relevant software; contact a dealer without delay. Do not buy a main pump, thermostat module, impeller kit or generic replacement from this campaign card, and do not infer eligibility from model year alone."
+    },
+    {
+      "issueId": "audi-q7-air-suspension-2007",
+      "repairItems": "Sag/leak/runtime/output diagnosis; exact spring/strut, valve, relay, compressor or controls by proof; calibration",
+      "decision": "SYSTEM DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2007-2015 Q7 air suspension",
+          "role": "specialist suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Whole-system replacement is not universal.",
+      "correction": "Hold aftermarket/conversion links until full fitment/safety plan.",
+      "sequence": 198,
+      "ymmt": "2007-2015 | Audi | Q7 | Premium, Premium Plus, Prestige | 3.0T, 3.6L, 4.2L, 3.0 TDI",
+      "title": "Air Suspension System Failure (Compressor and Springs)",
+      "howToFix": "Replace all four air springs and the compressor as a complete system overhaul for best results. If budget is limited, replace the leaking spring(s) and compressor together. Always replace the compressor relay. Arnott aftermarket air springs are popular and cost 50-60% less than OEM. Some owners convert to coilover suspension ($2,000-$3,000) to eliminate the air system entirely."
+    },
+    {
+      "issueId": "audi-q7-air-suspension-failure-2007",
+      "repairItems": "Per-corner leak, compressor output, relay/valve/module/wiring diagnosis; exact component or engineered conversion",
+      "decision": "SYSTEM DIAGNOSIS GATE",
+      "destinations": [
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "2007-2015 Q7 diagnosis/calibration",
+          "role": "specialist suspension service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Source lists mutually exclusive repairs by price.",
+      "correction": "No part/conversion before failure and VIN confirmation.",
+      "sequence": 199,
+      "ymmt": "2007-2015 | Audi | Q7",
+      "title": "Air Suspension Strut Failure and Compressor Issues",
+      "howToFix": "Leaking strut: Replace air strut ($800-1,500 per corner). All four corners worn: Replace all four struts ($3,000-5,500). Failed compressor: Replace air suspension compressor ($1,200-2,000). Control module fault: Replace suspension control module ($800-1,500). Alternative: Convert to coil spring suspension ($1,500-2,500 all corners) - eliminates air suspension issues permanently. AudiWorld recommends Arnott or Strutmasters air struts (cheaper than OEM, good quality)."
+    },
+    {
+      "issueId": "audi-q7-carbon-buildup-3.0t-2011",
+      "repairItems": "Confirm P0491/P0492 together; pump/hose and measured SAI flow; trained head-port cleaning only when bulletin matches",
+      "decision": "SAI MEASUREMENT SERVICE",
+      "destinations": [
+        {
+          "label": "Audi dealer locator",
+          "url": "https://www.audiusa.com/en/find-a-dealer/",
+          "scope": "2011-2016 Q7 3.0 TFSI SAI test/clean",
+          "role": "manufacturer emissions service"
+        },
+        {
+          "label": "Audi specialist locator",
+          "url": "https://www.audishops.com/",
+          "scope": "trained VAG SAI diagnosis",
+          "role": "specialist emissions service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Intake products do not address SAI ports.",
+      "correction": "No PCV/catch-can/intake-cleaner link.",
+      "sequence": 200,
+      "ymmt": "2011-2016 | Audi | Q7 | 3.0 TFSI",
+      "title": "2011-2016 Q7 3.0 TFSI Secondary-Air Carbon Restriction - P0491/P0492",
+      "howToFix": "Have an Audi-trained technician confirm that P0491 and P0492 are present together, test the secondary-air pump and hose routing, and measure secondary-air flow using the bulletin procedure. If the measured flow and checks match the bulletin, the cylinder-head secondary-air ports are cleaned with Audi tools and training. Do not buy a PCV assembly, catch can or intake-cleaning product from this card."
     }
   ]
 }
