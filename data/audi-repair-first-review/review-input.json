@@ -1,0 +1,294 @@
+{
+  "reviewedAt": "2026-08-20",
+  "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
+  "reviews": [
+    {
+      "issueId": "audi-a6-27t-ignition-coil-pack-2000",
+      "repairItems": "Cylinder-specific misfire diagnosis; exact 2.7T coil by VIN/installed revision; spark plugs by condition; full set only by strategy",
+      "decision": "DIAGNOSIS / REVISION-SPECIFIC IGNITION CATALOG",
+      "destinations": [
+        {"label": "Audi A6 2.7T ignition-coil catalog", "url": "https://www.fcpeuro.com/Audi-parts/A6-Quattro/Ignition-Coil/", "scope": "2000-2004 C5 A6 2.7T; select exact engine/VIN and installed coil revision", "role": "vehicle-specific coil catalog"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "misfire diagnosis and current supersession check", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "The source correctly requires cylinder swap/testing; coil revisions and conversion hardware vary.",
+      "correction": "Do not automatically sell a full set or plugs; replace confirmed faults and verify any updated-coil conversion completeness."
+    },
+    {
+      "issueId": "audi-q5-thermostat-housing-2009",
+      "repairItems": "Pressure-test confirmed thermostat housing; exact engine/VIN housing; water pump only if leaking/failed or deliberately planned; correct current coolant specification",
+      "decision": "ENGINE / LEAK-SOURCE / COOLANT-SPEC GATE",
+      "destinations": [
+        {"label": "Audi Q5 thermostat catalog", "url": "https://www.fcpeuro.com/Audi-parts/Q5/Thermostat/", "scope": "2009-2017 Q5; select gasoline/diesel engine, VIN, housing, and production date", "role": "vehicle-specific thermostat catalog"},
+        {"label": "Audi Q5 water-pump catalog", "url": "https://www.fcpeuro.com/Audi-parts/Q5/Water-Pump/", "scope": "only when the exact Q5 engine's pump is separately diagnosed or planned", "role": "conditional pump catalog"}
+      ],
+      "evidence": [],
+      "reason": "The range includes several engines with different housings/pumps and not every leak requires both components.",
+      "correction": "Hold generic aluminum housings until exact engine fitment/interfaces are verified; use current VIN-specified coolant rather than assuming G13 for every repair."
+    },
+    {
+      "issueId": "audi-100-auto-transmission-issues-1990",
+      "repairItems": "VIN recall 93V006 history; confirm current historical-remedy availability/cost; differential gear-oil service only through campaign/specialist; diagnose present shift complaint separately",
+      "decision": "HISTORICAL RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "VIN/campaign-completion check for 93V006", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The historical remedy is a campaign fluid procedure and does not diagnose current shift symptoms.",
+      "correction": "Do not attach a transmission solenoid/filter kit or promise a free remedy on a vehicle of this age."
+    },
+    {
+      "issueId": "audi-100-brake-pressure-accumulator-nitrogen-loss",
+      "repairItems": "VIN recall 93V007 history; historical brake vacuum-booster pump/valve remedy; stop driving for elevated brake effort",
+      "decision": "HISTORICAL SAFETY RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "VIN/campaign-completion check for 93V007", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The title says accumulator, but the corrected remedy describes a vacuum-booster pump/valve campaign; retail accumulator fitment would be misleading.",
+      "correction": "Correct the title to match recall 93V007 and confirm present remedy availability/cost with Audi."
+    },
+    {
+      "issueId": "audi-100-engine-charging-wiring-harness-insulation-degradation",
+      "repairItems": "VIN recall 01V324 history; rear-speaker amplifier assemblies; immediate stop/inspection for rear-speaker heat/smoke/burning odor",
+      "decision": "TITLE CORRECTION / HISTORICAL RECALL ROUTES",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "VIN/campaign-completion check for 01V324", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The issue title describes charging wiring, but the source repair is a rear-speaker amplifier recall.",
+      "correction": "Replace the title/category before any product research; do not attach charging-harness parts."
+    },
+    {
+      "issueId": "audi-100-hvac-temperature-flap-actuator-motor-failure",
+      "repairItems": "VIN recall 96V017 history; ignition-switch replacement through campaign; driving-safety response for lost lamps/wipers/signals",
+      "decision": "TITLE CORRECTION / HISTORICAL RECALL ROUTES",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "VIN/campaign-completion check for 96V017", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The issue title describes HVAC, while the repair is an ignition-switch safety recall.",
+      "correction": "Replace the title/category and do not attach a temperature-flap actuator."
+    },
+    {
+      "issueId": "audi-100-hydraulic-system-leak-1990",
+      "repairItems": "",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "The source has no How to Fix instructions.",
+      "correction": "Add a leak-source, exact hydraulic circuit, seal/component, and fluid-spec procedure before link research."
+    },
+    {
+      "issueId": "audi-100-power-steering-rack-leak-1990",
+      "repairItems": "Leak-source and rack/pump/hose diagnosis; VIN-specific rack rebuild/replacement; exact hydraulic fluid from reservoir cap/service data; full system flush only when required",
+      "decision": "VIN / FLUID-SPEC / SERVICE ROUTE",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "1990-1994 Audi 100 hydraulic-system and steering-rack diagnosis/rebuild", "role": "specialist service"},
+        {"label": "Audi 100 steering catalog", "url": "https://www.fcpeuro.com/Audi-parts/100/Steering/", "scope": "select exact year/engine/VIN and diagnosed rack/hose/pump component", "role": "vehicle-specific steering catalog"}
+      ],
+      "evidence": [],
+      "reason": "Rack, hose, and pump leaks can mimic each other, and early Audi hydraulic fluid requirements must be verified by vehicle rather than assumed.",
+      "correction": "Do not state CHF 11S exclusively across 1990-1994 without VIN/service confirmation; never substitute generic ATF unless explicitly specified."
+    },
+    {
+      "issueId": "audi-100-timing-belt-failure-interference-v6-causes-catastrophic-engi",
+      "repairItems": "Confirm AAH/AFC V6 and service interval; complete belt/tensioner/idlers/water-pump plan; cam/crank locking tools and timing procedure; leak-down/valve inspection after failure",
+      "decision": "ENGINE-SPECIFIC TIMING CATALOG / SPECIALIST SERVICE",
+      "destinations": [
+        {"label": "Audi 100 timing-belt catalog", "url": "https://www.fcpeuro.com/Audi-parts/100/Timing-Belt-Kit/", "scope": "1992-1994 Audi 100 V6; select exact engine/VIN and verify kit completeness", "role": "vehicle-specific timing-kit catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "locking-tool timing service and post-failure engine assessment", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The complete job and interval depend on exact engine and kit contents; belt failure requires mechanical testing, not a scanner link.",
+      "correction": "Use the documented interval for the exact engine/market; do not market 60-90k as one universal interval."
+    },
+    {
+      "issueId": "audi-100-vacuum-hose-rot-1990",
+      "repairItems": "Map and test each vacuum circuit; hose of exact material/diameter/temperature/fuel-vapor compatibility; check valves/reservoirs by test",
+      "decision": "MATERIAL / DIAMETER / CIRCUIT GATE",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "1990-1994 Audi 100 vacuum diagram, smoke test, and hose specification", "role": "diagnostic service"},
+        {"label": "Gates vacuum-hose catalog", "url": "https://www.gates.com/us/en/fluid-power/engine-hose/vacuum-hose.html", "scope": "choose only hose rated for the exact circuit, diameter, temperature, and fluid exposure", "role": "material-specification reference"}
+      ],
+      "evidence": [],
+      "reason": "Generic silicone is not appropriate for every fuel-vapor, oil, heat, or control circuit.",
+      "correction": "Do not sell one bulk hose size/material as a complete repair; preserve routing and verify every check valve."
+    },
+    {
+      "issueId": "audi-20t-carbon-buildup-2009",
+      "repairItems": "Gasoline/engine confirmation; fuel-quality and DTC diagnosis; actual deposit-location identification; cleaning only if the guided diagnosis supports it",
+      "decision": "TSB / DIAGNOSIS ROUTE; UNIVERSAL PRODUCTS REJECTED",
+      "destinations": [
+        {"label": "TOP TIER gasoline brands", "url": "https://www.toptiergas.com/gasoline-brands/", "scope": "fuel-source information only; not a deposit repair", "role": "fuel-quality reference"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "TSB 2014753/13 guided diagnosis", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly rejects routine walnut blasting, catch cans, chemical cleaners, and high-RPM driving.",
+      "correction": "Confirm the actual deposit location and complaint before selecting any cleaning service."
+    },
+    {
+      "issueId": "audi-20t-coolant-leak-2009",
+      "repairItems": "Pressure-test and identify exact flange/fitting; engine/VIN-specific replacement; nearby fittings only by condition; metal alternative only with proven interfaces/sealing",
+      "decision": "ENGINE / LEAK-SOURCE GATE",
+      "destinations": [
+        {"label": "Audi A4 coolant-flange catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/Coolant-Flange/", "scope": "2009-2018 A4; select exact engine, VIN, flange location, and production date", "role": "vehicle-specific coolant-flange catalog"}
+      ],
+      "evidence": [],
+      "reason": "The range crosses engine generations and multiple coolant flanges/fittings.",
+      "correction": "Do not replace nearby plastic parts automatically or approve a metal flange without exact sealing/sensor/hose fitment."
+    },
+    {
+      "issueId": "audi-20t-ignition-coils-2009",
+      "repairItems": "Confirm 2010-2011 CAEB and VIN suffix; supported misfire faults; installed Bosch coil-number check; four 07K905715F coils only within bulletin; continued guided diagnosis if unresolved",
+      "decision": "EXACT TSB COIL WITH CURRENT-SUPERSESSION NOTE",
+      "destinations": [
+        {"label": "Bosch ignition coil 07K905715F", "url": "https://www.ecstuning.com/b-bosch-parts/ignition-coil-priced-each/07k905715f~bos/", "scope": "2010-2011 A4/A4 Avant CAEB only when TSB 2033561/2 and installed coil numbers match; priced each", "role": "bulletin-specified replacement coil"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN suffix, bulletin applicability, current supersession and guided-fault confirmation", "role": "manufacturer-capable service"}
+      ],
+      "evidence": ["https://static.nhtsa.gov/odi/tsbs/2013/MC-10121479-9999.pdf"],
+      "reason": "The live product is the bulletin number, but 07K905715F has later supersessions and the bulletin scope is narrow.",
+      "correction": "Verify current Audi supersession and quantity four; outside the exact TSB, diagnose coils/plugs/wiring/fuel/mechanical causes."
+    },
+    {
+      "issueId": "audi-20t-mechatronic-2009",
+      "repairItems": "Identify transmission code and whether vehicle actually has S tronic/DSG; fault/software/fluid diagnosis; exact fluid/filter service by gearbox; mechatronic repair/replacement with coding/adaptation only after confirmation",
+      "decision": "TRANSMISSION-CODE / DRIVETRAIN GATE",
+      "destinations": [
+        {"label": "Audi A4 transmission-service catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/Transmission-Service-Kit/", "scope": "2009-2020 A4; select exact transmission code—do not apply S tronic parts to Tiptronic/CVT/manual", "role": "gearbox-specific service catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "mechatronic diagnosis, software, coding and adaptation", "role": "specialist transmission service"}
+      ],
+      "evidence": [],
+      "reason": "US A4 configurations across these years include transmissions other than S tronic, and mechatronic failure cannot be inferred from shift symptoms.",
+      "correction": "Split by transmission code and use the exact maintenance schedule; do not state a universal 40,000-mile DSG interval across the row."
+    },
+    {
+      "issueId": "audi-20t-oil-consumption-2009",
+      "repairItems": "Document additions/leaks; verify CAEB/VIN/service history; complete TSB 2027731/7 PCV/front-seal/bolt/ECM/electronic-measurement procedure; historical U24 coverage disclosed as expired",
+      "decision": "AUDI TSB SERVICE ROUTE; NO RETAIL KIT",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2009-2011 A4 CAEB TSB 2027731/7 procedure and VIN/coverage history", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "The procedure combines diagnosis, software, seals, hardware, and measurement; one PCV or seal link is incomplete.",
+      "correction": "Do not promise historical U24 coverage or prescribe oil outside the current manual/VIN instructions."
+    },
+    {
+      "issueId": "audi-20t-pcv-failure-2009",
+      "repairItems": "Engine/VIN/revision-specific PCV diagnosis; complete breather assembly only if failed; intake-oil inspection; catch can only after emissions/warranty review",
+      "decision": "ENGINE / PCV-REVISION GATE",
+      "destinations": [
+        {"label": "Audi A4 PCV/breather catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/PCV-Valve/", "scope": "2009-2015 A4 2.0T; select exact engine code, VIN, and superseded PCV revision", "role": "vehicle-specific PCV catalog"}
+      ],
+      "evidence": [],
+      "reason": "Several PCV revisions/engine codes exist, and a catch can is not a universal repair or legal in every jurisdiction.",
+      "correction": "Do not say every updated design is reliable or install a catch can without emissions/freeze/warranty review."
+    },
+    {
+      "issueId": "audi-20t-timing-chain-2009",
+      "repairItems": "Body/EA888/VIN/Warranty Key U35 confirmation; timing synchronization and mechanical diagnosis; exact complete timing repair only if failed; historical extension disclosed as generally expired",
+      "decision": "WARRANTY-HISTORY / DIAGNOSIS ROUTE",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2009-2013 A4 2.0T U35 history and guided timing diagnosis", "role": "manufacturer-capable service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "timing synchronization/mechanical assessment", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly rejects inference from generic rattle or DTC and says coverage is generally expired.",
+      "correction": "Do not attach a tensioner/chain kit until exact engine and mechanical failure are confirmed."
+    },
+    {
+      "issueId": "audi-20t-water-pump-2009",
+      "repairItems": "Date/VIN-referenced leak evidence; pressure test; exact pump or thermostat housing only for confirmed leak; current Audi parts/coolant/bleed procedure",
+      "decision": "TSB LEAK-SOURCE SPLIT",
+      "destinations": [
+        {"label": "Audi A4 water-pump catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/Water-Pump/", "scope": "2007-2013 and 2015-2016 A4 2.0T; select exact engine/VIN only after pump leak confirmation", "role": "conditional pump catalog"},
+        {"label": "Audi A4 thermostat catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/Thermostat/", "scope": "same TSB population only after thermostat-housing leak confirmation", "role": "conditional thermostat catalog"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly says pump and thermostat are alternative leak branches, not a mandatory bundle.",
+      "correction": "Do not infer the source from a puddle/warning or sell both components as one automatic repair."
+    },
+    {
+      "issueId": "audi-90-cooling-system-failure-1990",
+      "repairItems": "",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "The source has no How to Fix instructions.",
+      "correction": "Add engine-specific pressure-test, failure-source, coolant, and bleed instructions before links."
+    },
+    {
+      "issueId": "audi-90-engine-oil-leaks-from-rear-cam-seal-o-ring-valve-cover-gaske",
+      "repairItems": "Confirm I5 engine and highest fresh leak; rear cam seal/dust-cap O-ring; valve-cover gasket; correct seals and even torque",
+      "decision": "ENGINE / LEAK-SOURCE CATALOG",
+      "destinations": [
+        {"label": "Audi 90 engine-gasket catalog", "url": "https://www.fcpeuro.com/Audi-parts/90/Engine-Gaskets-and-Seals/", "scope": "1990-1995 Audi 90 inline-five only; select exact engine/VIN and rear-cam/cover components", "role": "engine-specific seal catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "oil-leak tracing and legacy I5 parts confirmation", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The source narrows the repair to I5 but the model range also contains V6 cars, so engine confirmation is mandatory.",
+      "correction": "Do not apply the I5 rear-cam seal repair to AAH/AFC V6 fitment."
+    },
+    {
+      "issueId": "audi-90-hydraulic-brake-pressure-accumulator-nitrogen-loss-loss-brak",
+      "repairItems": "Assisted-pedal and hydraulic-system diagnosis; build-date/VIN-specific accumulator 893612061C or 4A0612061D; sealing washers/O-rings; exact Pentosin fluid/bleed; pump/return-line inspection",
+      "decision": "BUILD-DATE / PART-NUMBER / FLUID GATE",
+      "destinations": [
+        {"label": "Audi accumulator 893612061C reference", "url": "https://www.lllparts.co.uk/product/893612061c/pressure-accumulator-893612061c", "scope": "legacy Audi hydraulic brake systems; verify pre-10/89 fitment and US availability before purchase", "role": "early accumulator technical reference"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "1990-1995 Audi 90 build-date, accumulator, pump, leak and fluid diagnosis", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The source itself gives a build-date split; the searched 4A0612061D pages did not prove a current US retail source for the full population.",
+      "correction": "The pre-10/89 number may fall outside a 1990-1995 row; reconcile model/build dates and verify the reservoir/service fluid rather than assuming one liter CHF 11S."
+    },
+    {
+      "issueId": "audi-90-hydraulic-lifter-noise-1990",
+      "repairItems": "",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "The source has no How to Fix instructions.",
+      "correction": "Merge with the described lifter-tick row or add an engine-specific oil-pressure/lifter diagnosis before links."
+    },
+    {
+      "issueId": "audi-90-hydraulic-lifter-tick-1990",
+      "repairItems": "Confirm engine and oil pressure/level/specification; correct VW/Audi-approved oil and filter; lifters only after persistent mechanical diagnosis",
+      "decision": "ENGINE / OIL-SPEC / DIAGNOSIS GATE",
+      "destinations": [
+        {"label": "Audi 90 oil-filter catalog", "url": "https://www.fcpeuro.com/Audi-parts/90/Oil-Filter/", "scope": "1990-1995 Audi 90; select exact engine/VIN", "role": "vehicle-specific filter catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "oil-pressure and valvetrain diagnosis; exact oil specification", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "Lifter tick may reflect oil pressure, filter drainback, wrong viscosity, wear, or another mechanical source; one 5W-40 link is not universal.",
+      "correction": "Use the exact engine's approved viscosity/specification and do not prescribe 5,000 miles or lifter replacement from duration alone."
+    },
+    {
+      "issueId": "audi-90-speedometer-odometer-plastic-gear-failure",
+      "repairItems": "Confirm cluster/VSS source; cluster-out inspection; exact tooth-count/material gear kit; trip-reset mechanism; specialist repair if odometer calibration/instruments affected",
+      "decision": "CLUSTER / GEAR-COUNT GATE",
+      "destinations": [
+        {"label": "Odometer Gears Audi catalog", "url": "https://www.odometergears.com/products/Audi", "scope": "select exact Audi 90 cluster, year, and tooth count after opening/identification", "role": "instrument gear catalog"},
+        {"label": "Module Repair Pro instrument-cluster service", "url": "https://modulerepairpro.com/collections/audi-instrument-cluster-repair", "scope": "verify legacy Audi 90 cluster service and terms before shipment", "role": "conditional cluster rebuild service"}
+      ],
+      "evidence": [],
+      "reason": "The exact gear/tooth count and cluster design were not stated, and a dead speedometer can also be VSS/wiring.",
+      "correction": "Do not approve a generic Delrin gear until the cluster is identified and the fault is proven internal."
+    },
+    {
+      "issueId": "audi-90-timing-belt-failure-causing-bent-valves",
+      "repairItems": "Split NG/7A inline-five and AAH V6; exact service interval; engine-specific belt/tensioner/water-pump kit; timing/locking procedure; post-failure compression/leak-down/valve inspection",
+      "decision": "MULTI-ENGINE TIMING SPLIT",
+      "destinations": [
+        {"label": "Audi 90 timing-belt catalog", "url": "https://www.fcpeuro.com/Audi-parts/90/Timing-Belt-Kit/", "scope": "1990-1995 Audi 90; select exact NG/7A/AAH engine and verify kit completeness", "role": "engine-specific timing catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "legacy I5/V6 timing and post-failure assessment", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "Inline-five and V6 timing systems, tensioners, pumps, and procedures are not interchangeable.",
+      "correction": "Split engines and use documented interval/age; do not present one 60k/5-7-year rule as universal."
+    }
+  ]
+}

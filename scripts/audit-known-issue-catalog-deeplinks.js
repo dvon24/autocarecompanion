@@ -409,10 +409,11 @@ async function main() {
 }
 
 if (require.main === module) {
+  const keepAlive = setInterval(() => {}, 1000);
   main().catch((error) => {
     console.error(error instanceof Error ? error.message : error);
     process.exitCode = 1;
-  });
+  }).finally(() => clearInterval(keepAlive));
 }
 
 module.exports = {

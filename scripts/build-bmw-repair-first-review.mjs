@@ -3,15 +3,17 @@ import path from "node:path";
 import { SpreadsheetFile, Workbook } from "@oai/artifact-tool";
 
 const root = process.cwd();
-const dataDir = path.join(root, "data", "bmw-repair-first-review");
-const outputDir = path.join(root, "outputs", "bmw-repair-first-review");
+const make = String(process.env.REVIEW_MAKE || "BMW").trim();
+const makeSlug = make.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+const dataDir = path.join(root, "data", `${makeSlug}-repair-first-review`);
+const outputDir = path.join(root, "outputs", `${makeSlug}-repair-first-review`);
 const source = JSON.parse(await fs.readFile(path.join(dataDir, "source-snapshot.json"), "utf8"));
 const input = JSON.parse(await fs.readFile(path.join(dataDir, "review-input.json"), "utf8"));
 const byId = new Map(source.records.map((r) => [r.id, r]));
 
 const rows = input.reviews.map((review, index) => {
   const record = byId.get(review.issueId);
-  if (!record) throw new Error(`Missing BMW issue ${review.issueId}`);
+  if (!record) throw new Error(`Missing ${make} issue ${review.issueId}`);
   const ymmt = [
     `${Math.min(...record.years)}-${Math.max(...record.years)}`,
     record.make,
@@ -36,7 +38,7 @@ if (rows.length + queue.length !== source.inventory.publishedIssueCount) throw n
 
 const ledger = {
   schemaVersion: 1,
-  make: "BMW",
+  make,
   generatedAt: new Date().toISOString(),
   reviewedAt: input.reviewedAt,
   deploymentStatus: input.deploymentStatus,
@@ -56,17 +58,18 @@ await fs.writeFile(path.join(dataDir, "review-ledger.json"), `${JSON.stringify(l
 
 const wb = Workbook.create();
 const summary = wb.worksheets.add("Summary");
-const review = wb.worksheets.add("BMW Review");
+const reviewSheetName = `${make} Review`.slice(0, 31);
+const review = wb.worksheets.add(reviewSheetName);
 const remaining = wb.worksheets.add("Remaining Queue");
 const method = wb.worksheets.add("Method");
 for (const sheet of [summary, review, remaining, method]) sheet.showGridLines = false;
 
 const navy = "#0B1F3A", blue = "#1769AA", pale = "#EAF2F8", gold = "#F4B942", white = "#FFFFFF", gray = "#5B6573";
 summary.getRange("A1:H1").merge();
-summary.getRange("A1").values = [["BMW Repair-First Fitment Review"]];
+summary.getRange("A1").values = [[`${make} Repair-First Fitment Review`]];
 summary.getRange("A1:H1").format = {fill:navy, font:{bold:true,color:white,size:18}, rowHeight:32};
 summary.getRange("A3:B12").values = [
-  ["Status", ledger.deploymentStatus], ["Published BMW issues", ledger.publishedIssueCount], ["Reviewed in this batch", ledger.reviewedIssueCount],
+  ["Status", ledger.deploymentStatus], [`Published ${make} issues`, ledger.publishedIssueCount], ["Reviewed in this batch", ledger.reviewedIssueCount],
   ["Remaining queue", ledger.remainingIssueCount], ["Issues with destinations", ledger.reviewedWithDestinationCount], ["Destination entries", ledger.destinationCount],
   ["Distinct URLs", ledger.distinctUrlCount], ["Scanner destinations", ledger.scannerDestinationCount], ["Missing How to Fix", ledger.missingHowToFixCount], ["Source snapshot hash", ledger.sourceSnapshotHash],
 ];
@@ -135,11 +138,11 @@ const formulaErrors = await wb.inspect({
   summary:"final formula error scan",
 });
 if (formulaErrors.ndjson && formulaErrors.ndjson.includes("\"value\"")) throw new Error(`Formula errors: ${formulaErrors.ndjson}`);
-for (const [sheetName, range] of [["Summary",undefined],["BMW Review","A1:N8"],["Remaining Queue","A1:G9"],["Method",undefined]]) {
+for (const [sheetName, range] of [["Summary",undefined],[reviewSheetName,"A1:N8"],["Remaining Queue","A1:G9"],["Method",undefined]]) {
   const preview = await wb.render({sheetName,range,autoCrop:range?undefined:"all",scale:1,format:"png"});
   const safe = sheetName.toLowerCase().replaceAll(" ","-");
   await fs.writeFile(path.join(outputDir,`${safe}-preview.png`),new Uint8Array(await preview.arrayBuffer()));
 }
-const out = path.join(outputDir,"BMW-repair-first-fitment-review.xlsx");
+const out = path.join(outputDir,`${make}-repair-first-fitment-review.xlsx`);
 const file = await SpreadsheetFile.exportXlsx(wb); await file.save(out);
 console.log(JSON.stringify({workbookPath:out,ledgerPath:path.join(dataDir,"review-ledger.json"),reviewed:rows.length,remaining:queue.length,destinations:destinations.length},null,2));
