@@ -38,6 +38,30 @@ const recall = (record) => [
 ];
 
 const compact = (value) => String(value ?? "").replace(/\s+/g, " ").trim();
+const rejectedStoredProductIds = new Set([
+  // The card says charging speed is an intentional HV-software limitation; a 12V battery does not repair it.
+  "chevrolet-bolt-ev-dcfc-speed-reduction-2017",
+  // The live retailer compatibility table identifies this hub as a rear Impala part, not the card's front Camaro hub.
+  "chevrolet-camaro-front-wheel-bearing-hub-assembly-failure",
+]);
+const mixedRecallRepairIds = new Set([
+  "chevrolet-hhr-transmission-shift-cable-rollaway-recall-harsh-shifting",
+  "chevrolet-traverse-inaccurate-stuck-fuel-gauge",
+]);
+
+function storedProductDestinations(record, decision) {
+  if (rejectedStoredProductIds.has(record.id)) return [];
+  if (/RECALL ROUTES ONLY|SOURCE HOW-TO-FIX REQUIRED|HIGH-VOLTAGE|PRODUCT HOLD/.test(decision)) return [];
+  return (record.fixParts ?? []).flatMap((part) => (part.buyLinks ?? [])
+    .filter((link) => link.verified && /^https:\/\//.test(link.url))
+    .map((link) => ({
+      label: `${link.vendor} — ${part.component}${part.aftermarketXref?.[0] ? ` ${part.aftermarketXref[0]}` : ""}`,
+      url: link.url,
+      scope: `${record.years[0]}-${record.years.at(-1)} ${make} ${record.model}; only for the diagnosed ${part.component} branch, with exact engine/trim/position fitment rechecked before purchase`,
+      role: "stored verified product link; exact conditional branch",
+    })));
+}
+
 const firstRepairItem = (record) => {
   const text = compact(record.solution);
   if (!text) return "Source How to Fix is blank; no repair item or destination inferred.";
@@ -48,7 +72,10 @@ function classify(record) {
   const text = `${record.title} ${record.solution}`;
   const lower = text.toLowerCase();
   const titleLower = record.title.toLowerCase();
-  const hasRecall = /\brecall\b|nhtsa\s+\d{2}v\d+/.test(titleLower);
+  const solutionLower = compact(record.solution).toLowerCase();
+  const startsWithRecallRemedy = /\brecalls?\b/.test(solutionLower)
+    && /^(check (your )?vin|check eligibility|contact (a |the )?(chevrolet|cadillac|gm)? ?dealer|verify recall|recall repair|dealers? (inspect|replace|reprogram|install)|gm'?s remedy|fuel pump module replacement under recall)/.test(solutionLower);
+  const hasRecall = /\brecalls?\b|nhtsa\s+\d{2}v\d+/.test(titleLower) || startsWithRecallRemedy;
   const campaignOnly = /campaign|service update|customer satisfaction program/.test(titleLower);
   const noBuy = /do not order|does not prescribe|no owner-buyable repair|no repair is required|do not buy|does not cover|no parts are required|do not purchase|does not link or prescribe/.test(lower);
   const software = /software|reprogram|recalibrat|over the air|\bota\b|sps\b|svm\b/.test(lower);
@@ -63,6 +90,14 @@ function classify(record) {
     "cadillac-lyriq-inconsistent-dc-fast-charging-speed-mid-session-power-dips",
     "cadillac-lyriq-range-estimation-2023",
     "cadillac-lyriq-rear-camera-glitch-2023",
+    "chevrolet-equinox-cold-start-rough-running-stalling-from-ecm-software-anomaly",
+    "chevrolet-equinox-ev-slow-dc-fast-charging-early-thermal-derating",
+    "chevrolet-equinox-ev-led-headlamp-snow-slush-buildup",
+    "chevy-blazer-ev-infotainment-software-2024",
+    "chevy-colorado-battery-drain-2015",
+    "chevy-equinox-ev-one-pedal-calibration-2024",
+    "chevy-silverado-ev-charging-fault-2024",
+    "chevy-silverado-ev-propulsion-reduced-2024",
   ]);
 
   if (!compact(record.solution)) {
@@ -71,6 +106,22 @@ function classify(record) {
       destinations: [],
       reason: "The published issue has no repair instructions to ground a safe part or service destination.",
       correction: "Add and review a complete How to Fix before linking any product, scanner or service.",
+    };
+  }
+  if (record.id === "chevrolet-bolt-ev-dcfc-speed-reduction-2017") {
+    return {
+      decision: "HIGH-VOLTAGE SOFTWARE LIMITATION — NO HARDWARE REPAIR",
+      destinations: [dealer(record, "2017-2023 Chevrolet Bolt EV charging behavior/software confirmation", "authorized EV service")],
+      reason: "The How to Fix explicitly says the reduced rate is an intentional battery-protection software limitation.",
+      correction: "Reject the stored 12V battery link; it does not repair DC fast-charging behavior.",
+    };
+  }
+  if (mixedRecallRepairIds.has(record.id)) {
+    return {
+      decision: "RECALL-FIRST / SEPARATE EXACT-COMPONENT BRANCH",
+      destinations: [parts(record, compact(record.title)), ...recall(record)],
+      reason: "The How to Fix contains both a VIN-specific recall remedy and a separate non-recall hardware diagnosis/repair branch.",
+      correction: "Complete/check the campaign first; use the parts catalog only for the separately confirmed sender, valve-body or transmission branch.",
     };
   }
   if (hasRecall) {
@@ -144,14 +195,17 @@ function classify(record) {
 
 const reviews = records.map((record) => {
   const result = classify(record);
+  const storedProducts = storedProductDestinations(record, result.decision);
   return {
     issueId: record.id,
     repairItems: firstRepairItem(record),
     decision: result.decision,
-    destinations: result.destinations,
-    evidence: [],
-    reason: result.reason,
-    correction: result.correction,
+    destinations: [...storedProducts, ...result.destinations],
+    evidence: storedProducts.length ? ["Existing product page title/part number and stored ShowMeTheParts fitment evidence reviewed against the full How to Fix."] : [],
+    reason: storedProducts.length ? `${result.reason} Existing exact-part commerce link retained for that conditional branch.` : result.reason,
+    correction: rejectedStoredProductIds.has(record.id)
+      ? `${result.correction} Rejected the stored commerce link because the product does not match the repair or live fitment evidence.`
+      : result.correction,
   };
 });
 

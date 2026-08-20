@@ -1899,6 +1899,12 @@
       "decision": "VIN/RPO / EXACT-COMPONENT GATE",
       "destinations": [
         {
+          "label": "Amazon — Engine Valve Lifter 213-1738",
+          "url": "https://www.amazon.com/Clevite-77-213-1738-Roller-Lifter/dp/B000C07XZI?tag=au7o-20",
+          "scope": "2010-2020 Cadillac Escalade; only for the diagnosed Engine Valve Lifter branch, with exact engine/trim/position fitment rechecked before purchase",
+          "role": "stored verified product link; exact conditional branch"
+        },
+        {
           "label": "GM Genuine Parts catalog — Confirmed AFM Lifter Collapse Requires Generation-Specific Diagnosis",
           "url": "https://parts.gmparts.com/",
           "scope": "2010-2020 Cadillac Escalade; select exact VIN, engine, trim, position and current supersession",
@@ -1911,8 +1917,10 @@
           "role": "manufacturer-capable service"
         }
       ],
-      "evidence": [],
-      "reason": "The repair names a physical component, but exact VIN/RPO/position and failed branch must be confirmed before purchase.",
+      "evidence": [
+        "Existing product page title/part number and stored ShowMeTheParts fitment evidence reviewed against the full How to Fix."
+      ],
+      "reason": "The repair names a physical component, but exact VIN/RPO/position and failed branch must be confirmed before purchase. Existing exact-part commerce link retained for that conditional branch.",
       "correction": "The official catalog is a fitment gate, not approval of every listed part; select the exact VIN and confirmed component."
     },
     {
@@ -3506,6 +3514,12 @@
       "decision": "EXPLICIT SCANNER/DIAGNOSTIC TOOL APPROVAL — PROFESSIONAL DIAGNOSIS / EXACT-PART GATE",
       "destinations": [
         {
+          "label": "eBay — Engine Water Pump WPGM-611V",
+          "url": "https://www.ebay.com/itm/137201131319?_skw=Aisin+WPGM-611V+Engine+Water+Pump&hash=item1ff1d31f37%3Ag%3AwbcAAeSwarpp01Vu&mkevt=1&mkcid=1&mkrid=711-53200-19255-0&campid=5339164204&customid=&toolid=10049",
+          "scope": "2013-2019 Cadillac XTS; only for the diagnosed Engine Water Pump branch, with exact engine/trim/position fitment rechecked before purchase",
+          "role": "stored verified product link; exact conditional branch"
+        },
+        {
           "label": "GM Genuine Parts catalog — Water Pump Weep-Hole Coolant Leak",
           "url": "https://parts.gmparts.com/",
           "scope": "2013-2019 Cadillac XTS; select exact VIN, engine, trim, position and current supersession",
@@ -3518,8 +3532,10 @@
           "role": "manufacturer-capable service"
         }
       ],
-      "evidence": [],
-      "reason": "The How to Fix explicitly requires testing or scan-capable diagnosis before the failed branch and exact part are known.",
+      "evidence": [
+        "Existing product page title/part number and stored ShowMeTheParts fitment evidence reviewed against the full How to Fix."
+      ],
+      "reason": "The How to Fix explicitly requires testing or scan-capable diagnosis before the failed branch and exact part are known. Existing exact-part commerce link retained for that conditional branch.",
       "correction": "The official catalog is a fitment gate, not approval of every listed part; select the exact VIN and confirmed component."
     }
   ]
