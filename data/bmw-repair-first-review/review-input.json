@@ -173,6 +173,150 @@
       "evidence": [],
       "reason": "The repair is a high-voltage recall action. The battery must not be opened or repaired by the owner, and no commerce link is appropriate.",
       "correction": "Use the applicable national BMW recall authority and authorized high-voltage center; no battery or scanner CTA."
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-b38-three-cylinder-petrol-timing-chain-stretch-cold-start-ra",
+      "repairItems": "Timing chain, guides and tensioner as a set; BMW Longlife-spec oil service",
+      "decision": "MARKET/VIN CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW global dealer and service route","url":"https://www.bmw.com/en/automotive-life/dealer-locator.html","scope":"2014-2021 Active Tourer 216i/218i B38; exact market, build date and VIN required","role":"fitment/service route"}],
+      "evidence": [],
+      "reason": "This is a non-US Active Tourer application and the row spans two trims and eight model years without a production split or OE kit number.",
+      "correction": "Split by market, trim, build date and VIN before linking a timing kit; retain all three core components and the correct oil specification."
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-diesel-egr-cooler-glycol-leak-causing-intake-manifold-melt-f",
+      "repairItems": "VIN recall check; countermeasure EGR module; inspection of related damage",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [{"label":"BMW global recall lookup","url":"https://www.bmw.com/en/footer/recall/recall-en.html","scope":"2015-2018 218d Active Tourer B47; VIN and market required","role":"official recall route"}],
+      "evidence": [],
+      "reason": "Affected ranges and the campaign component vary by market; the fix explicitly requires an authorized campaign inspection.",
+      "correction": "Do not place an EGR-cooler purchase ahead of the VIN recall check."
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-diesel-swirl-flap-sticking-carbon-build-up-causing-limp-mode",
+      "repairItems": "DDE diagnosis; carbon cleaning; actuator or intake manifold only if worn; EGR-soot source correction",
+      "decision": "DIAGNOSIS-FIRST SERVICE LINK",
+      "destinations": [{"label":"BMW global dealer and service route","url":"https://www.bmw.com/en/automotive-life/dealer-locator.html","scope":"2014-2021 Active Tourer B37/B47; diagnose exact failed component","role":"diagnostic service"}],
+      "evidence": [],
+      "reason": "Cleaning, actuator replacement and manifold replacement are mutually conditional repairs. Delete plates are market/emissions-sensitive and are not an appropriate blanket commerce recommendation.",
+      "correction": "Remove the claim that delete plates are a universal permanent fix; select a part only after DDE diagnosis and inspection."
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-electromechanical-parking-brake-failure-false-warning",
+      "repairItems": "ISTA EMF diagnosis; caliper actuator or gear-selector spring/switch depending on fault; warranty check",
+      "decision": "DIAGNOSIS/WARRANTY FIRST / NO RETAIL PART",
+      "destinations": [{"label":"BMW global dealer and service route","url":"https://www.bmw.com/en/automotive-life/dealer-locator.html","scope":"2015-2018 Active/Gran Tourer; EMF-module diagnosis and warranty check","role":"diagnostic service"}],
+      "evidence": [],
+      "reason": "The How to Fix names two different repair branches that cannot be distinguished from the warning alone.",
+      "correction": "Do not link an actuator, switch, or generic scanner until the EMF fault is read."
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-front-suspension-strut-top-mount-creaking-knocking-over-bump",
+      "repairItems": "Lift inspection; strut top mount/bearing, spring pad, bump stop, bushes or anti-roll-bar link only if worn; warranty check",
+      "decision": "POSITION/DIAGNOSIS FIRST / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW global dealer and service route","url":"https://www.bmw.com/en/automotive-life/dealer-locator.html","scope":"2014-2021 Active Tourer; confirm side, suspension option and failed part","role":"inspection/service route"}],
+      "evidence": [],
+      "reason": "Several suspension and body/cowl sources can create the noise, and left/right and suspension-option fitment are not identified.",
+      "correction": "Approve a mount, bearing, bush or link only after the failed position and VIN suspension configuration are known."
+    },
+    {
+      "issueId": "bmw-2-series-active-tourer-spurious-collision-warning-autonomous-emergency-braking-acti",
+      "repairItems": "Camera/radar and brake-switch diagnosis; possible brake switch, calibration or software; safety escalation",
+      "decision": "SAFETY DIAGNOSIS/SOFTWARE / NO RETAIL PART",
+      "destinations": [{"label":"BMW global dealer and service route","url":"https://www.bmw.com/en/automotive-life/dealer-locator.html","scope":"2016-2019 Active Tourer; driving-assistance diagnosis and calibration","role":"authorized service"}],
+      "evidence": [],
+      "reason": "The repair may be hardware, calibration or software. A generic brake switch would be premature and would not address camera/radar faults.",
+      "correction": "Route to BMW and the applicable national safety authority; no part or scanner CTA before diagnosis."
+    },
+    {
+      "issueId": "bmw-2-series-b48-coolant-loss-2017",
+      "repairItems": "Expansion tank if cracked; damaged quick-connect fittings; expansion-tank cap; cooling-system pressure test",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2017-2025 2 Series B48; exact chassis, trim, build date and VIN required","role":"fitment/service route"}],
+      "evidence": [],
+      "reason": "The row spans F22/F23, F44 and G42-era cars without trims or chassis. Expansion tanks, caps and connectors are not interchangeable across the blanket range.",
+      "correction": "Split by chassis, trim and build date, then link the tank, cap and any diagnosed connector separately."
+    },
+    {
+      "issueId": "bmw-2-series-valve-cover-gasket-2014",
+      "repairItems": "Engine-specific valve-cover assembly/gasket; spark-plug-well cleanup; PCV only if degraded; correct bolt torque",
+      "decision": "ENGINE/YEAR CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2021 2 Series N20/B48; VIN and engine required","role":"fitment/service route"}],
+      "evidence": [],
+      "reason": "N20 and B48 covers and PCV arrangements differ, and the source's statement that both always use an integrated gasket/full assembly is too broad.",
+      "correction": "Split N20 from B46/B48 and identify whether the diagnosis calls for a gasket or full cover before adding a product."
+    },
+    {
+      "issueId": "bmw-2series-charge-pipe-2014",
+      "repairItems": "Engine/chassis-specific aluminum charge pipe; inspect intercooler boots and clamps",
+      "decision": "ENGINE/YEAR-SPLIT PART APPROVAL",
+      "destinations": [
+        {"label":"VRSF N20/N26 charge-pipe kit","url":"https://www.vr-speed.com/product/vrsf-chargepipe-upgrade-kit-12-17-bmw-128i-228i-328i-428i-xi-f20-f30-n20-n26","scope":"2014-2016 F22/F23 228i and 228i xDrive N20/N26; select transmission/drivetrain","role":"N20/N26 primary repair part"},
+        {"label":"BMS Gen1 B46/B48 charge pipe","url":"https://burgertuning.com/products/bms-bmw-b46-b48-gen1-charge-pipe","scope":"2016-2021 F22/F23 230i including convertible/xDrive","role":"B46/B48 primary repair part"}
+      ],
+      "evidence": [],
+      "reason": "Both live product pages have Add to Cart and explicitly list the applicable 228i or 230i chassis/engine split.",
+      "correction": "Remove M240i from the title unless the N55/B58 scope and a third exact product are added. Do not reuse either product across the other engine family."
+    },
+    {
+      "issueId": "bmw-2series-coolant-leak-2014",
+      "repairItems": "VIN recall check; dealer shield installation; connector or pump only when campaign inspection requires it",
+      "decision": "SAFETY RECALL / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW recall lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"2014-2016 228i N20/N26; VIN required","role":"official recall route"},
+        {"label":"NHTSA VIN recall lookup","url":"https://www.nhtsa.gov/recalls","scope":"US vehicle; VIN required","role":"independent official recall check"}
+      ],
+      "evidence": [],
+      "reason": "The campaign inspection determines whether the shield alone or connector/pump work is required.",
+      "correction": "Do not publish a generic pump link ahead of the VIN and campaign inspection."
+    },
+    {
+      "issueId": "bmw-2series-n20-timing-chain-2014",
+      "repairItems": "VIN/build-date verification; ISTA timing-chain test plan; coverage check; diagnosed timing components only",
+      "decision": "DIAGNOSIS/COVERAGE FIRST / NO RETAIL PART",
+      "destinations": [
+        {"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2015 228i N20/N26; ISTA test and production-date verification","role":"diagnostic service"},
+        {"label":"BMW recall and campaign lookup","url":"https://www.bmwusa.com/safety-and-emission-recalls.html","scope":"VIN required; historical extension may be expired","role":"coverage check"}
+      ],
+      "evidence": ["https://static.nhtsa.gov/odi/tsbs/2020/MC-10186213-9999.pdf"],
+      "reason": "The revised How to Fix explicitly requires a test-plan diagnosis and says no exact commerce candidate was approved.",
+      "correction": "Do not add a timing kit until VIN, drivetrain and the diagnosed repair scope are known."
+    },
+    {
+      "issueId": "bmw-2series-oil-leak-2014",
+      "repairItems": "Diagnosed valve-cover gasket/assembly and/or oil-filter-housing gasket; cleanup and oil-level monitoring",
+      "decision": "CONTENT CORRECTION / HOLD RETAIL CTA",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"2014-2023 228i/230i; exact engine, chassis and leak source required","role":"diagnostic/fitment service"}],
+      "evidence": [],
+      "reason": "The row combines different engines, chassis and two leak sources across ten years; no single gasket or cover fits the scope.",
+      "correction": "Split N20/N26, B46/B48 generations and the valve-cover versus OFHG repair before adding parts."
+    },
+    {
+      "issueId": "bmw-3-series-carbon-buildup-2006",
+      "repairItems": "Intake-valve walnut-blast service; optional engine/market-legal catch can; correct oil and maintenance",
+      "decision": "SERVICE LINK + CONTENT CORRECTION",
+      "destinations": [{"label":"BMW dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"Direct-injection engines only; confirm engine and need for intake cleaning","role":"service locator"}],
+      "evidence": [],
+      "reason": "The repair is primarily a specialized cleaning service and the issue wrongly includes engines/years that may not share the same direct-injection buildup pattern. Catch-can legality and fitment are engine-specific.",
+      "correction": "Split by direct-injection engine family and remove the unsupported blanket interval/Italian-tune-up claim before linking equipment or catch cans."
+    },
+    {
+      "issueId": "bmw-3-series-e36-cooling-system-plastic-failure",
+      "repairItems": "Radiator, thermostat/housing, water pump, expansion tank/cap, upper/lower hoses and fan clutch as applicable",
+      "decision": "ENGINE-SPLIT PARTIAL APPROVAL",
+      "destinations": [{"label":"Achilles E36 cooling-system overhaul package","url":"https://www.achillesmotorsports.com/Cooling-System-Overhaul-Package-BMW-E36-323-325-p/17-pak-e36coolkit.htm","scope":"1992-1999 E36 323/325/328 and 1995-1999 M3 six-cylinder applications; select optional expansion tank","role":"partial configurable kit"}],
+      "evidence": [],
+      "reason": "The live page is buyable and lists radiator, hoses, thermostat/housing, metal-impeller pump and cap for the named six-cylinder applications. Expansion tank is optional and fan clutch is not included; 318/320 are not covered.",
+      "correction": "Split four-cylinder 318/320 from six-cylinder cars. Mark the kit partial unless the expansion tank and fan-clutch requirements are separately fulfilled."
+    },
+    {
+      "issueId": "bmw-3-series-e36-instrument-cluster-pixel-fade",
+      "repairItems": "Correct display/module diagnosis; mail-in repair of the original unit if the failed device is repairable",
+      "decision": "CONTENT CORRECTION / HOLD SERVICE CTA",
+      "destinations": [{"label":"BMW specialist/dealer locator","url":"https://www.bmwusa.com/dealer-locator.html","scope":"1992-1999 E36; identify instrument cluster versus OBC/radio display","role":"diagnostic service"}],
+      "evidence": ["https://www.germanaudiotech.com/products/bmw-e36-11-button-on-board-computer-pixel-repair"],
+      "reason": "The live mail-in page found for E36 pixel repair is explicitly for the 11-button on-board computer, not the instrument cluster named in this issue. Reusing it would link the wrong module.",
+      "correction": "Correct the title/device distinction and verify an instrument-cluster-specific mail-in service before approving a commerce CTA."
     }
   ]
 }
