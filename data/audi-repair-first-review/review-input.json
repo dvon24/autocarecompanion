@@ -582,6 +582,602 @@
       "evidence": [],
       "reason": "Pyrotechnic inflator replacement is an authorized recall remedy and must be determined by VIN/campaign status.",
       "correction": "Do not sell a retail inflator or instruct DIY airbag work."
+    },
+    {
+      "issueId": "audi-a4-20t-cam-follower-and-2005",
+      "repairItems": "Confirm BPG/BWT engine, faults and measured fuel pressure; inspect follower and cam lobe; conditional 06D109309C follower, camshaft and/or HPFP selected by TSB 2013147/12",
+      "decision": "ENGINE / TSB CONDITIONAL TREE",
+      "destinations": [
+        {"label": "Genuine cam follower 06D109309C", "url": "https://www.fcpeuro.com/Parts/Fuel-Pump-Camshaft-Follower", "scope": "2005-2007 A4 2.0T FSI BPG/BWT shown in catalog; follower only after inspection and VIN confirmation", "role": "exact conditional follower"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "TSB 2013147/12 application and camshaft/HPFP conditional diagnosis", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "The bulletin branches among follower, camshaft and pump based on inspection and pressure results.",
+      "correction": "Do not promise expired coverage or sell a complete kit from the title alone."
+    },
+    {
+      "issueId": "audi-a4-abs-control-module-failure-2000",
+      "repairItems": "Confirm Bosch ABS 5.3 equipment and communication fault; module disconnect/fuse/ground-bond test; current electrical diagnosis for the confirmed cause",
+      "decision": "ABS-VERSION / COMMUNICATION DIAGNOSIS",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "1997-2001 A4 ABS 5.3 communication, power, ground and module-isolation testing", "role": "specialist diagnostic service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/ABS-version repair-information check", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "The bulletin is a diagnostic isolation procedure and does not establish module or hydraulic-unit failure.",
+      "correction": "Do not infer loss of braking or link a rebuilt module before ABS version and the communication cause are confirmed."
+    },
+    {
+      "issueId": "audi-a4-allroad-rear-diff-leak-2013",
+      "repairItems": "Confirm exact rear final drive and leaking side; VIN/position-specific output seal and required hardware; specified GL-5 gear oil; inspect/clear the vent and verify fill level",
+      "decision": "FINAL-DRIVE / POSITION / FLUID-SPEC GATE",
+      "destinations": [
+        {"label": "Audi A4 allroad differential-seal catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4-allroad/Drive-Shaft-and-Axle-Seals/", "scope": "2013-2024 A4 allroad; select exact year, final drive, output position and VIN", "role": "vehicle-specific seal catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "rear final-drive identification, vent inspection and exact fluid specification", "role": "specialist driveline service"}
+      ],
+      "evidence": [],
+      "reason": "Output seals and fill fluids depend on final-drive code and position; a wet case must be traced before replacement.",
+      "correction": "Do not assume one 75W-90 product or replace both seals when only one source is confirmed."
+    },
+    {
+      "issueId": "audi-a4-allroad-water-pump-2013",
+      "repairItems": "VIN/open-action check for 19N8; dealer revised electric after-run pump plus ECM update when applicable",
+      "decision": "CAMPAIGN ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall and campaign lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "2013-2016 A4 allroad VIN/open-action check for 19N8", "role": "manufacturer campaign lookup"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "19N8 remedy and software update", "role": "authorized campaign service"}
+      ],
+      "evidence": [],
+      "reason": "19N8 concerns an electric after-run pump and software, not the main mechanical pump/thermostat.",
+      "correction": "Do not link main-pump, thermostat or impeller kits, and do not infer eligibility from model year."
+    },
+    {
+      "issueId": "audi-a4-avant-b5-rear-hatch-strut-failure",
+      "repairItems": "Exact B5 Avant left/right lift support by VIN; replace both matched struts; inspect ball studs/hinges and secure mounts only if loose",
+      "decision": "BODY-STYLE / MATCHED-PAIR GATE",
+      "destinations": [
+        {"label": "Audi liftgate-support catalog", "url": "https://www.fcpeuro.com/Audi-parts/Liftgate-and-Parts/", "scope": "1996-2001 A4 Avant only; select exact VIN-supported Stabilus/OE pair", "role": "vehicle-specific lift-support catalog"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "legacy VIN part-number and ball-stud verification", "role": "manufacturer parts route"}
+      ],
+      "evidence": [],
+      "reason": "Sedan and Avant supports differ, and matched pressure/fitment must be verified.",
+      "correction": "Do not rely on brand names or an approximate torque without confirming the installed ball-stud specification."
+    },
+    {
+      "issueId": "audi-a4-avant-b5-rear-window-regulator-clip-failure",
+      "repairItems": "Identify failed door and regulator revision; exact clip-only repair when serviceable or complete regulator assembly; required rivets/tools and glass/channel inspection",
+      "decision": "DOOR-POSITION / CLIP-VS-ASSEMBLY GATE",
+      "destinations": [
+        {"label": "Audi A4 window-regulator catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/Window-Regulator/", "scope": "1996-2001 B5 A4 Avant; select exact door position, body and assembly", "role": "vehicle-specific regulator catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "clip serviceability, regulator revision and riveted installation", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "Clip-only and full-assembly paths are mutually exclusive and left/right/front/rear parts differ.",
+      "correction": "Do not approve generic eBay clips or claim stainless/ball-bearing construction without a live exact product page."
+    },
+    {
+      "issueId": "audi-a4-avant-bosch-abs-5-3-module-failure",
+      "repairItems": "Record exact Bosch/Audi module number, coding and 65535 fault; verify power, grounds and communication; conditional original-module rebuild or exact hydraulic assembly after proof",
+      "decision": "MODULE-NUMBER / DIAGNOSIS GATE",
+      "destinations": [
+        {"label": "Module Master ABS repair services", "url": "https://modulemaster.com/collections/abs-control-module-rebuilds", "scope": "confirm exact 8E0614111 suffix and Bosch 5.3 service acceptance before shipment", "role": "conditional original-module rebuild"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "1998-2001 A4 Avant ABS power/ground/communication and coding diagnosis", "role": "specialist diagnostic service"}
+      ],
+      "evidence": [],
+      "reason": "A fault example and one M-suffix do not establish that every vehicle has the same module or that electronics are the cause.",
+      "correction": "Do not promise no recoding or sell a complete pump before exact identity and failure confirmation."
+    },
+    {
+      "issueId": "audi-a4-avant-cargo-cover-latch-2009",
+      "repairItems": "Confirm Avant/allroad body and cargo-cover option; exact side latch/clip if separately serviceable; complete cassette only for failed spring/cassette",
+      "decision": "VIN / CLIP-VS-CASSETTE GATE",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2009-2025 A4 Avant/allroad VIN and cargo-cover diagram/part-number check", "role": "manufacturer parts route"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "latch versus retract-spring/cassette diagnosis", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The long range spans multiple platforms and the latch and cassette are different repair branches.",
+      "correction": "Hold aftermarket cover links until body, option, dimensions and live availability are verified."
+    },
+    {
+      "issueId": "audi-a4-avant-cvt-multitronic-2002",
+      "repairItems": "",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "The source has no How to Fix instructions.",
+      "correction": "Add transmission-code, fault, fluid/service-history, TCM, valve-body and mechanical diagnostic branches before links."
+    },
+    {
+      "issueId": "audi-a4-avant-nadi-takata-airbag-recall-69ae",
+      "repairItems": "VIN/campaign check for 69BT / NHTSA 20V056; authorized dealer driver-inflator remedy only",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "1999-2000 A4 Avant VIN check for 69BT / 20V056", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "This is a pyrotechnic safety recall with a free authorized remedy.",
+      "correction": "The identifier says 69AE while the title/repair says 69BT; reconcile the campaign label and never link a retail inflator."
+    },
+    {
+      "issueId": "audi-a4-avant-panoramic-sunroof-drain-2009",
+      "repairItems": "Trace each drain and water-test modestly; clear with approved flexible drain tool; inspect corner connections and tubes; replace only a disconnected/cracked exact-position tube; dry electronics/interior",
+      "decision": "DRAIN-POSITION / LEAK-SOURCE SERVICE",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "2009-2016 A4 Avant panoramic-drain tracing, clearing and tube repair", "role": "specialist water-leak service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/body/position-specific drain-tube lookup", "role": "manufacturer parts and service"}
+      ],
+      "evidence": [],
+      "reason": "Blocked, disconnected and cracked drains need different repairs and tube part numbers depend on position.",
+      "correction": "Remove compressed-air advice because it can disconnect a tube; do not link a universal wire or hose."
+    },
+    {
+      "issueId": "audi-a4-avant-rear-shock-mount-2009",
+      "repairItems": "Loaded suspension/noise diagnosis; exact rear upper mount by body/suspension PR code; shocks only if failed/worn; replace matched axle components as required; alignment only when procedure/geometry warrants",
+      "decision": "SUSPENSION-PR / CONDITION GATE",
+      "destinations": [
+        {"label": "Audi A4 rear-shock-mount catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/Strut-Mount/", "scope": "2009-2025 A4; select exact body, rear position and suspension PR code", "role": "vehicle-specific mount catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "mount/shock/noise diagnosis and suspension-code confirmation", "role": "specialist suspension service"}
+      ],
+      "evidence": [],
+      "reason": "Mounts and dampers vary across platforms/suspension options; mileage alone does not prove a shock has failed.",
+      "correction": "Do not automatically sell Bilstein/Sachs shocks or promise that rear-mount work always requires alignment."
+    },
+    {
+      "issueId": "audi-a4-b5-1-8t-oil-sludge-pickup-clog",
+      "repairItems": "Verify oil pressure and inspect sludge/pickup; exact 1.8T engine oil-pickup/pump branch; turbo feed and PCV only by condition; oil-pan/cover seals; VW 502 00 oil and exact filter",
+      "decision": "ENGINE / OIL-PRESSURE / CONDITION GATE",
+      "destinations": [
+        {"label": "Audi A4 oil-filter catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/Oil-Filter/", "scope": "1997-2001 A4 1.8T AEB/ATW/AWM; verify exact filter and VW 502 00 service", "role": "vehicle-specific service catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "mechanical oil-pressure test, pan/pickup inspection and sludge remediation", "role": "specialist engine service"}
+      ],
+      "evidence": [],
+      "reason": "The listed components are not a mandatory bundle; the damage and correct repair depend on measured oil pressure and inspection.",
+      "correction": "Do not use engine flush on a confirmed clogged system or promise a universal 068115561B filter without engine fitment."
+    },
+    {
+      "issueId": "audi-a4-b5-central-locking-pump-graphite-impeller-water-intrusion",
+      "repairItems": "Repair tail-lamp/trunk water source first; pressure/vacuum and line-leak diagnosis; exact pre-facelift/facelift pump suffix and coding; conditional original-board, motor or vane repair",
+      "decision": "WATER-SOURCE / PART-SUFFIX / FAILURE-MODE GATE",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "1997-2001 B5 A4 central-locking vacuum leak, water ingress, pump identity and coding", "role": "specialist electrical/vacuum service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/facelift-specific 8D0/8L0 pump suffix and seal lookup", "role": "manufacturer parts route"}
+      ],
+      "evidence": [],
+      "reason": "Water damage, shattered vanes, vacuum leaks and cutoff faults require different repairs; suffix/coding varies.",
+      "correction": "Do not publish a used or donor pump without exact number, suffix, condition, return terms and coding plan."
+    },
+    {
+      "issueId": "audi-a4-b5-front-control-arm-bushing-failure",
+      "repairItems": "Loaded-suspension inspection of each arm/ball joint plus tie rods/links; exact chassis/VIN front arm or complete matched kit; new one-time hardware; torque at ride height; alignment",
+      "decision": "CHASSIS / INSPECTION / KIT-COMPLETENESS GATE",
+      "destinations": [
+        {"label": "Audi A4 control-arm catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/Control-Arms/", "scope": "1996-2001 B5 A4; select exact FWD/quattro chassis, arm position and complete hardware", "role": "vehicle-specific suspension catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "loaded inspection, seized pinch-bolt planning, ride-height torque and alignment", "role": "specialist suspension service"}
+      ],
+      "evidence": [],
+      "reason": "Not every complaint needs all eight arms; drivetrain and arm position affect fitment.",
+      "correction": "Do not approve a kit from price/brand alone; verify included arms, hardware and exact chassis."
+    },
+    {
+      "issueId": "audi-a4-b5-g62-coolant-temp-sensor-failure",
+      "repairItems": "VCDS/VAG fault/live-data plus resistance test; exact updated green sensor 059919501A/078919501C; O-ring N90316802 and clip 032121142; coolant top-up/bleed",
+      "decision": "EXPLICIT SCANNER/DIAGNOSTIC TOOL APPROVAL — VAG TEST PLUS EXACT SENSOR",
+      "destinations": [
+        {"label": "Genuine coolant sensor 059919501A", "url": "https://www.fcpeuro.com/products/audi-vw-coolant-temperature-sensor-genuine-audi-vw-059919501a", "scope": "FCP lists 1997-2000 A4 1.8T/2.8 fitments and required O-ring/clip; verify 2001 engine/VIN", "role": "exact conditional sensor"},
+        {"label": "Ross-Tech VCDS HEX-V2 diagnostic tool", "url": "https://store.ross-tech.com/shop/vchv2_ent/?attribute_pa_hvvin=vin_3", "scope": "official VW/Audi tool explicitly required by source; confirm legacy interface/Windows and VIN-license needs", "role": "explicitly required VW/Audi diagnostic tool"}
+      ],
+      "evidence": [],
+      "reason": "The source explicitly requires VAG-COM/VCDS and gives a verifiable updated sensor with required sealing parts.",
+      "correction": "Use live data/resistance to confirm the sensor; do not infer a generic OBD scanner from P0118."
+    },
+    {
+      "issueId": "audi-a4-b5-ignition-switch-spring-anchor-fracture-recall",
+      "repairItems": "VIN/open-recall check for 06V403/JS; authorized dealer optimized ignition-switch remedy",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "1996-1997 A4 VIN check for 06V403/JS", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "This is a safety recall with a free VIN-specific dealer remedy.",
+      "correction": "Do not link a retail switch or infer eligibility from model year."
+    },
+    {
+      "issueId": "audi-a4-b5-instrument-cluster-pixel-failure",
+      "repairItems": "Separate instrument-cluster LCD from climate LCD; confirm ribbon/display-only failure; exact display/ribbon by cluster number; skilled solder repair or send-in service; immobilizer/coding plan if replacing cluster",
+      "decision": "MODULE / DISPLAY / SKILL-LEVEL GATE",
+      "destinations": [
+        {"label": "Module Master Audi repair services", "url": "https://modulemaster.com/collections/audi", "scope": "confirm exact B5 cluster or climate-control module service and terms before shipment", "role": "conditional module repair service"},
+        {"label": "Minitools Audi display catalog", "url": "https://store.minitools.com/en/car-brands/audi.html", "scope": "experienced electronics repair only; match exact cluster/display number and soldering requirements", "role": "conditional electronics-parts catalog"}
+      ],
+      "evidence": [],
+      "reason": "Cluster and HVAC displays are different modules and DIY ribbon work requires exact display identity and soldering skill.",
+      "correction": "Do not claim a universal SEPDISP09 or plug-and-play repair for every listed module."
+    },
+    {
+      "issueId": "audi-a4-b6b7-front-suspension-control-2002",
+      "repairItems": "Loaded inspection of each arm, bushing, ball joint, tie rod and link; exact B6/B7 drivetrain/position parts or matched kit; one-time hardware, ride-height torque and four-wheel alignment",
+      "decision": "CHASSIS / POSITION / INSPECTION GATE",
+      "destinations": [
+        {"label": "Audi A4 control-arm catalog", "url": "https://www.fcpeuro.com/Audi-parts/A4/Control-Arms/", "scope": "2002-2008 B6/B7 A4; select exact FWD/quattro, arm position and kit hardware", "role": "vehicle-specific suspension catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "loaded inspection, seized pinch-bolt work, ride-height torque and alignment", "role": "specialist suspension service"}
+      ],
+      "evidence": [],
+      "reason": "The durable repair may be one confirmed arm or a complete overlapping-labor kit; chassis and position determine fitment.",
+      "correction": "Do not automatically sell a full kit until every component and required hardware are verified."
+    },
+    {
+      "issueId": "audi-a4-cvt-multitronic-transmission-failure-2002",
+      "repairItems": "Verify original US factory CVT, VIN and transmission code; faults, fluid/history and reproducible behavior; separate TCM, valve body and mechanical transmission diagnosis",
+      "decision": "TRANSMISSION-CODE / COMPONENT DIAGNOSIS",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "2002-2006 factory-CVT A4 code, fluid, TCM, valve-body and mechanical diagnosis", "role": "specialist CVT service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/factory-equipment and current parts/software information", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "The settlement is expired and its components are not interchangeable repair guesses.",
+      "correction": "Do not promise historical coverage or link a TCM, valve body or transmission before component diagnosis."
+    },
+    {
+      "issueId": "audi-a4-front-brake-squealjudder-and-2022",
+      "repairItems": "Classify noise versus wheel/pedal pulsation or performance concern; VIN/current TSB check; reproduce and measure tires, hubs, rotors, pads and installation; replace only confirmed parts",
+      "decision": "TSB / MEASUREMENT-BASED BRAKE DIAGNOSIS",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2022-2025 A4 TSB 2051095/8 or 2022584/12 applicability and measured diagnosis", "role": "manufacturer-capable brake service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "hub/rotor runout, pad, tire and installation diagnosis", "role": "specialist brake service"}
+      ],
+      "evidence": [],
+      "reason": "Squeal and pulsation have different root causes and the bulletin requires reproduction/measurement.",
+      "correction": "Do not sell pads and rotors from the complaint title alone."
+    },
+    {
+      "issueId": "audi-a4-instrument-cluster-lcd-pixel-2000",
+      "repairItems": "Confirm LCD/ribbon-only versus broader cluster fault; battery/charging test; exact cluster-number send-in rebuild; immobilizer adaptation/coding if replacement is unavoidable",
+      "decision": "CLUSTER-FAULT / IMMOBILIZER GATE",
+      "destinations": [
+        {"label": "Module Master Audi repair services", "url": "https://modulemaster.com/collections/audi", "scope": "2000-2005 A4 cluster; confirm exact part number, pixel service and warranty before shipment", "role": "conditional original-cluster rebuild"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "charging-system diagnosis and immobilizer/coding support", "role": "specialist electrical service"}
+      ],
+      "evidence": [],
+      "reason": "Pixel/ribbon faults may be rebuildable while replacement clusters can require immobilizer matching.",
+      "correction": "Do not sell a replacement cluster or LCD kit until the exact cluster and failure are identified."
+    },
+    {
+      "issueId": "audi-a4-mmivirtual-cockpit-freezing-rebooting-2022",
+      "repairItems": "VIN/open-recall check for 91Ei; authorized dealer infotainment main-unit remedy; direct observation when reversing until repaired",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "2022 A4 VIN check for 91Ei", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "This is a VIN-specific free recall remedy.",
+      "correction": "Do not sell a display, main unit or software service from the recall card."
+    },
+    {
+      "issueId": "audi-a4-rearview-camera-failure-or-2022",
+      "repairItems": "VIN/open-recall check for 91CR/91DZ; dealer software/parameter update selected for that VIN; reverse with direct observation until repaired",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "2021-2022 A4 VIN check for 91CR/91DZ", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The remedy is VIN-specific software/parameters, not automatically a failed camera or module.",
+      "correction": "Do not link a camera, harness or infotainment module."
+    },
+    {
+      "issueId": "audi-a4-sunroof-drainseal-water-intrusion-2022",
+      "repairItems": "Trace and flow-test each drain; inspect attachments, cassette/frame seals and door vapor barriers; repair exact source; dry carpet/modules and inspect corrosion",
+      "decision": "LEAK-SOURCE / INTERIOR-ELECTRICAL SERVICE",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2022-2025 A4 VIN/body-specific sunroof and interior water-leak diagnosis", "role": "manufacturer-capable service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "drain flow testing, vapor-barrier diagnosis and electrical drying/corrosion inspection", "role": "specialist water-leak service"}
+      ],
+      "evidence": [],
+      "reason": "Drain blockage, detached tubes, cassette seals and vapor barriers require different repairs.",
+      "correction": "Do not link generic drains, sealant or electronics until the water path and damage are confirmed."
+    },
+    {
+      "issueId": "audi-a5-airbag-ods-recall-2018",
+      "repairItems": "VIN/campaign check for 74E3 / NHTSA 21V874; dealer connecting cable plus heating-mat or seat-cover remedy selected by VIN; avoid passenger seat if indicators are abnormal",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "2018-2020 A5 VIN check for 74E3 / 21V874", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The authorized remedy is VIN-specific seat wiring/heating-mat or cover work.",
+      "correction": "Do not link a clock spring, ODS sensor or retail seat part."
+    },
+    {
+      "issueId": "audi-a5-carbon-buildup-2008",
+      "repairItems": "Confirm engine and deposits with misfire/air/fuel/mechanical diagnosis and intake inspection; engine-specific manifold removal and intake-valve cleaning; replace required seals/consumables",
+      "decision": "ENGINE / CONFIRMED-DEPOSIT SERVICE",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "2008-2023 A5 engine-specific intake inspection and walnut-blast service after diagnosis", "role": "specialist intake-cleaning service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/engine procedure and required manifold seals", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "The 16-year range includes different engines and similar symptoms can come from ignition, fuel or compression faults.",
+      "correction": "Remove universal 60k-80k intervals, catch-can promises, chemical-intake cleaner and Italian-tune-up claims."
+    },
+    {
+      "issueId": "audi-a5-electrical-infotainment-2017",
+      "repairItems": "VIN/campaign check for 91Ei / NHTSA 22V806; dealer infotainment main-unit remedy; direct observation while reversing",
+      "decision": "SOURCE-YEAR MISMATCH / RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "2022 A5 VIN check for 91Ei / 22V806", "role": "manufacturer recall lookup"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-history check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The title/repair population is 2022, not the identifier's broader 2017 implication.",
+      "correction": "Do not link a virtual-cockpit cluster or generic infotainment part; align record years to the recall."
+    },
+    {
+      "issueId": "audi-a5-mechatronic-2008",
+      "repairItems": "Identify exact S tronic transmission code and wet/dry clutch design; faults, pressure, clutch adaptation and fluid condition; software/adaptation, mechatronic rebuild/replacement or internal repair by result; exact fluid/service kit by code",
+      "decision": "TRANSMISSION-CODE / FLUID-SPEC DIAGNOSTIC GATE",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "2008-2017 A5 transmission identification, mechatronic diagnosis and adaptation", "role": "specialist transmission service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/transmission-code, software and current mechatronic supersession", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "The range includes multiple transmissions and FFL-2 is not a universal fluid prescription.",
+      "correction": "Do not sell a mechatronic or fluid kit before transmission-code and component diagnosis."
+    },
+    {
+      "issueId": "audi-a5-oil-consumption-2008",
+      "repairItems": "Measured oil-consumption test after leak/spec/PCV/turbo checks; engine-code and production-date split; bore/piston/ring/short-block branch only after mechanical diagnosis; exact approved oil",
+      "decision": "ENGINE / MEASURED-CONSUMPTION / CONDITION GATE",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "2008-2015 A5 2.0 TFSI measured consumption, PCV and mechanical diagnosis", "role": "specialist engine service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/engine revision, historical campaign/coverage and current oil specification", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "PCV, leaks, turbo and internal wear are different branches; historical coverage cannot be promised in 2026.",
+      "correction": "Do not prescribe thicker oil, walnut blasting, pistons or a short block without the respective diagnosis."
+    },
+    {
+      "issueId": "audi-a5-sportback-panoroof-drain-2018",
+      "repairItems": "Inspect retained water in side sills; access and drain cavities; modify obstructing sound absorber per Audi procedure; apply cavity preservative; preserve functional drain plugs",
+      "decision": "TSB-SPECIFIC BODY SERVICE",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2017-2023 A5 Sportback side-sill water procedure and cavity-preservative service", "role": "manufacturer-capable body service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "side-member inspection and repair according to current Audi information", "role": "specialist body service"}
+      ],
+      "evidence": [],
+      "reason": "Audi's repair addresses side-sill sound-absorber drainage, not a panoramic-roof blockage inferred from the identifier.",
+      "correction": "Do not use compressed air, wire or roof sealant solely from this card."
+    },
+    {
+      "issueId": "audi-a5-sportback-rear-hatch-strut-2018",
+      "repairItems": "Compare noise with Audi's normal hydraulic-flow/functional description; independently diagnose inability to stay open, unexpected closing or abnormal powered-lift operation",
+      "decision": "NO-PART INFORMATIONAL / SAFETY-SYMPTOM SPLIT",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2018-2023 A5 Sportback trunk-lid noise comparison and safety-relevant lift diagnosis", "role": "manufacturer-capable service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "abnormal hatch support or powered-lift diagnosis", "role": "specialist body-electrical service"}
+      ],
+      "evidence": [],
+      "reason": "Audi states parts replacement does not cure the described normal noise, while unsafe support behavior is a different complaint.",
+      "correction": "Do not link hatch struts from the noise title alone."
+    },
+    {
+      "issueId": "audi-a5-sportback-thermostat-2018",
+      "repairItems": "Pressure-test and locate fresh leak; exact 2.0T engine/VIN thermostat housing revision; water pump only if separately leaking/failed or integrated by the confirmed module; current coolant and bleed",
+      "decision": "ENGINE / LEAK-SOURCE / MODULE GATE",
+      "destinations": [
+        {"label": "Audi A5 thermostat catalog", "url": "https://www.fcpeuro.com/Audi-parts/A5-Sportback/Thermostat/", "scope": "2018-2026 A5 Sportback 2.0T; select exact engine/VIN and confirmed housing/module", "role": "vehicle-specific thermostat catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "pressure test, pump/thermostat source and coolant-spec diagnosis", "role": "specialist cooling service"}
+      ],
+      "evidence": [],
+      "reason": "A low level or residue does not prove a cracked housing, and pump replacement is conditional.",
+      "correction": "Do not claim an updated reinforced housing or overlapping pump replacement without exact part/procedure evidence."
+    },
+    {
+      "issueId": "audi-a5-sportback-water-pump-2018",
+      "repairItems": "Clean/dry, correctly fill and road-reassess; confirm fresh leak source; exact VIN/engine component only if leakage recurs",
+      "decision": "TSB LEAK-CONFIRMATION GATE",
+      "destinations": [
+        {"label": "Audi A5 water-pump catalog", "url": "https://www.fcpeuro.com/Audi-parts/A5-Sportback/Water-Pump/", "scope": "2020-2024 A5 Sportback 2.0T; use only after confirmed component and VIN fitment", "role": "conditional vehicle-specific pump catalog"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "current Audi leak-assessment procedure and VIN part selection", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "Audi directs observation without parts when no fresh leak returns.",
+      "correction": "Do not replace parts based on old residue or incomplete bleeding."
+    },
+    {
+      "issueId": "audi-a5-timing-chain-2008",
+      "repairItems": "Confirm engine code/generation and measured chain adaptation/inspection; generation-specific chain, guides and correct current tensioner; post-jump compression/leak-down and valve/piston assessment",
+      "decision": "ENGINE-GENERATION / TENSIONER-REVISION GATE",
+      "destinations": [
+        {"label": "Audi A5 timing-chain catalog", "url": "https://www.fcpeuro.com/Audi-parts/A5/Timing-Chain-Kit/", "scope": "2008-2017 A5 2.0T; select exact engine code/generation, VIN and complete kit", "role": "engine-specific timing catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "chain adaptation/inspection and post-jump mechanical assessment", "role": "specialist engine service"}
+      ],
+      "evidence": [],
+      "reason": "The range crosses EA888 generations; 06K109467K is not a universal early-engine tensioner.",
+      "correction": "Do not publish one tensioner revision or a universal 80k-100k preventive interval for all years."
+    },
+    {
+      "issueId": "audi-a5-timing-chain-tensioner-2008",
+      "repairItems": "Confirm 2.0 TFSI engine code/generation and chain/tensioner condition; exact chain, guides and current tensioner; required one-time hardware/seals; mechanical damage assessment after a jump",
+      "decision": "ENGINE-GENERATION / KIT-COMPLETENESS GATE",
+      "destinations": [
+        {"label": "Audi A5 timing-chain catalog", "url": "https://www.fcpeuro.com/Audi-parts/A5/Timing-Chain-Kit/", "scope": "2008-2016 A5 2.0 TFSI; verify exact engine/VIN, tensioner revision and kit contents", "role": "engine-specific timing catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "urgent rattle diagnosis and post-jump mechanical testing", "role": "specialist engine service"}
+      ],
+      "evidence": [],
+      "reason": "Timing revisions and accessory-removal requirements vary; rattle also requires diagnosis.",
+      "correction": "Do not claim all aftermarket tensioners fail or prescribe one interval, oil schedule or water-pump replacement universally."
+    },
+    {
+      "issueId": "audi-a5-water-pump-2008",
+      "repairItems": "Document, clean/dry, fill correctly and reassess; exact VIN/engine leaking component only when fresh leakage returns; coverage check",
+      "decision": "TSB LEAK-CONFIRMATION / VIN GATE",
+      "destinations": [
+        {"label": "Audi A5 water-pump catalog", "url": "https://www.fcpeuro.com/Audi-parts/A5/Water-Pump/", "scope": "2020-2024 A5 2.0 TFSI; use only after exact leak source and VIN fitment", "role": "conditional vehicle-specific pump catalog"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "TSB 2071515/1, coverage and current part criteria", "role": "manufacturer-capable service"}
+      ],
+      "evidence": [],
+      "reason": "The source correctly requires a fresh recurring leak before replacement.",
+      "correction": "The identifier says 2008 while the issue population is 2020-2024; align metadata and do not order by model name alone."
+    },
+    {
+      "issueId": "audi-a6-27t-turbocharger-oil-supplyheat-related-2000",
+      "repairItems": "APB commanded/actual boost and smoke diagnosis; pressure/smoke test intake/charge path, DV/N75/wastegate/PCV/oil/coolant; specialist confirmation of mechanical turbo failure and bank; exact left/right turbo revision and installation consumables",
+      "decision": "NO TURBO LINK / SIDE AND ROOT-CAUSE REQUIRED",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "2000-2002 C5 A6 APB twin-turbo system testing and side-specific failure confirmation", "role": "specialist turbo diagnostic service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/transmission/left-right turbo supersession and required hardware", "role": "manufacturer parts route"}
+      ],
+      "evidence": [],
+      "reason": "Neither symptoms nor the catalog evidence proves a failed side; many external faults mimic turbo failure.",
+      "correction": "Intentionally hold turbo purchase links until APB fitment, bank and mechanical failure are confirmed."
+    },
+    {
+      "issueId": "audi-a6-28-v6-timing-belt-interference-failure",
+      "repairItems": "Split AAH 12V and AHA/ATQ 30V; engine-specific complete belt/tensioner/idler/damper/water-pump kit; 30V locking tools only where specified; post-failure mechanical damage assessment",
+      "decision": "MULTI-ENGINE TIMING / TOOL SPLIT",
+      "destinations": [
+        {"label": "Audi A6 timing-belt-kit catalog", "url": "https://www.fcpeuro.com/Audi-parts/A6/Timing-Belt-Kit/", "scope": "1995-1999 A6; select exact AAH/AHA/ATQ engine and verify every kit component", "role": "engine-specific timing catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "12V/30V procedure, locking-tool and post-failure assessment", "role": "specialist timing service"}
+      ],
+      "evidence": [],
+      "reason": "12V and 30V kits/procedures differ, and tools 3242/3391 are specifically a 30V requirement in the source.",
+      "correction": "Do not link one universal kit or tool bundle; verify interval and current OE-quality components by engine."
+    },
+    {
+      "issueId": "audi-a6-48v-mild-hybrid-2019",
+      "repairItems": "VIN/open-action check for 27H2, 20V153 or 27BQ; dealer fire-risk remedy; ODIS-guided diagnosis outside campaign; VIN/test-selected starter-alternator suffix only",
+      "decision": "48V CAMPAIGN / GUIDED-DIAGNOSIS ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "2019-2025 A6 VIN check for 27H2, 20V153 and 27BQ", "role": "manufacturer recall/campaign lookup"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "48V safety instructions, ODIS guided diagnosis and VIN-selected remedy", "role": "authorized high-voltage service"}
+      ],
+      "evidence": [],
+      "reason": "A code alone does not establish a starter generator and the campaigns have VIN-specific remedies.",
+      "correction": "Do not link 12V batteries, chargers, starters or alternators for a 48V fault."
+    },
+    {
+      "issueId": "audi-a6-abs-module-electronic-2000",
+      "repairItems": "Safe stop/emergency-off instructions; stored-DTC diagnosis; winter-slip restart observation; separate persistent-warning diagnosis",
+      "decision": "NO-PART INFORMATIONAL / SAFETY SERVICE",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2012-2015 A6 persistent ABS/ESP warning and ignition-off complaint diagnosis", "role": "manufacturer-capable service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "stored-DTC and braking-system diagnosis", "role": "specialist diagnostic service"}
+      ],
+      "evidence": [],
+      "reason": "The informational bulletin specifies no replacement part and explicitly says to diagnose by stored faults.",
+      "correction": "The identifier's 2000/module wording conflicts with the 2012-2015 informational issue; rename and do not link an ABS module."
+    },
+    {
+      "issueId": "audi-a6-air-suspension-compressor-2012",
+      "repairItems": "Confirm adaptive-suspension PR equipment; dealer VAS 751 001 physical-pressure test; separate leak, valve-block, spring, relay, wiring, temperature and compressor-output diagnosis",
+      "decision": "EXPLICIT FACTORY TESTER / NO CONSUMER TOOL OR COMPRESSOR LINK",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2018-2021 A6 VAS 751 001 physical pressure test and factory air-supply diagnosis", "role": "manufacturer factory-tool service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "adaptive-suspension equipment and leak/system diagnosis with suitable factory-equivalent equipment", "role": "specialist suspension service"}
+      ],
+      "evidence": [],
+      "reason": "Audi requires a physical tester because the displayed value can be misleading; this does not authorize compressor replacement.",
+      "correction": "The identifier says 2012 but population is 2018-2021; do not sell a compressor or consumer pressure tool."
+    },
+    {
+      "issueId": "audi-a6-allroad-48v-mild-hybrid-2020",
+      "repairItems": "VIN/open-action check for 27BQ; dealer starter-alternator remedy when open; outside action use ODIS/TSB-defined results and reject replacement for sensor/CAN-only faults",
+      "decision": "48V SERVICE-ACTION ROUTES ONLY",
+      "destinations": [
+        {"label": "Audi recall and campaign lookup", "url": "https://www.audiusa.com/en/owners-and-services/about-my-vehicle/recalls/", "scope": "2020-2024 A6 allroad VIN check for 27BQ", "role": "manufacturer campaign lookup"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "27BQ remedy or ODIS-guided TSB 2058831/15 and 2073284/3 diagnosis", "role": "authorized high-voltage service"}
+      ],
+      "evidence": [],
+      "reason": "The free action and out-of-action diagnostic branches depend on VIN and guided-test result.",
+      "correction": "Do not link a starter, alternator, 12V battery or charger."
+    },
+    {
+      "issueId": "audi-a6-allroad-mild-hybrid-battery-2020",
+      "repairItems": "Audi-trained measurement of both battery SoC values; approved high-capacity charger plus ODIS contactor plan for 5%-15%; replace 48V battery only below 5% or when guided diagnosis directs",
+      "decision": "48V GUIDED CHARGING / NO CONSUMER PRODUCT LINK",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2020-2024 A6 allroad TSB 2067906/5 guided 48V recovery or replacement decision", "role": "authorized high-voltage service"}
+      ],
+      "evidence": [],
+      "reason": "This is not a consumer battery-maintainer procedure and replacement is conditionally prohibited above the threshold.",
+      "correction": "Do not link a 48V/12V battery, charger, tape, loom or connector kit."
+    },
+    {
+      "issueId": "audi-a6-bosch-53-abs-module-failure",
+      "repairItems": "VAG-capable scan of address 03 and exact module/coding; power, ground, connector, communication and four wheel-speed signal testing; exact ABS/EDL/ASR/ESP configuration; conditional original electronics repair or factory replacement/coding",
+      "decision": "EXPLICIT SCANNER/DIAGNOSTIC TOOL APPROVAL — VAG ABS IDENTIFICATION",
+      "destinations": [
+        {"label": "Ross-Tech VCDS HEX-V2 diagnostic tool", "url": "https://store.ross-tech.com/shop/vchv2_ent/?attribute_pa_hvvin=vin_3", "scope": "official VW/Audi tool explicitly required for legacy address-03 scan; verify interface and 1998-2001 C5 support", "role": "explicitly required VW/Audi diagnostic tool"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "Bosch 5.3 electrical, wheel-speed and coding diagnosis", "role": "specialist ABS service"}
+      ],
+      "evidence": [],
+      "reason": "The repair explicitly requires VAG-capable module identification and live diagnostic data; no universal replacement follows from it.",
+      "correction": "Do not link a module/rebuild until exact Audi/Bosch number, configuration and failure are proven."
+    },
+    {
+      "issueId": "audi-a6-c5-rear-coolant-pipe-leak-30v",
+      "repairItems": "Cold pressure test and exact joint trace; distinguish rear pipe, heater hose/connector and sensor seal; VIN/engine/diagram-position part and required seals; exact coolant, bleed and retest",
+      "decision": "ENGINE / EXACT LEAK-JOINT GATE",
+      "destinations": [
+        {"label": "Audi A6 cooling-hose catalog", "url": "https://www.fcpeuro.com/Audi-parts/A6/Cooling-Hoses/", "scope": "1998-2001 C5 A6 2.8 AHA/ATQ; select exact joint, diagram position and VIN", "role": "vehicle-specific cooling catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "rear-engine pressure test, exact source and bleeding", "role": "specialist cooling service"}
+      ],
+      "evidence": [],
+      "reason": "Several closely grouped connections can leak and their seals/quantities are position-specific.",
+      "correction": "Do not order N90560701 as a universal seal; stop driving if coolant warning or temperature rises."
+    },
+    {
+      "issueId": "audi-a6-c5-sunroof-drain-clogged-water-ingress",
+      "repairItems": "Confirm 4B body/VIN; modest water test each sunroof drain and plenum; approved flexible clearing method; position/body-specific hose only if damaged/disconnected; dry carpet/electronics",
+      "decision": "BODY / DRAIN-POSITION / LEAK-SOURCE SERVICE",
+      "destinations": [
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "1998-2004 C5 body-specific drain/plenum tracing and electrical drying", "role": "specialist water-leak service"},
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "VIN/body/position-specific hose lookup", "role": "manufacturer parts route"}
+      ],
+      "evidence": [],
+      "reason": "Sedan, Avant and allroad hose positions/parts differ and a blocked hose does not require replacement.",
+      "correction": "Do not use unverified 4A9877233 as a universal C5 hose."
+    },
+    {
+      "issueId": "audi-a6-carbon-buildup-2011",
+      "repairItems": "Record DTC/freeze frame; confirm 2019-2021 3.0L; compare ECM part/version and perform applicable SVM update; only after recheck diagnose ignition, fuel, air, compression and inspect valves before cleaning",
+      "decision": "SOURCE-YEAR MISMATCH / SOFTWARE-FIRST TSB",
+      "destinations": [
+        {"label": "Audi dealer locator", "url": "https://www.audiusa.com/en/find-a-dealer/", "scope": "2019-2021 A6 3.0L ECM software/version check and SVM update", "role": "manufacturer software service"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "post-update misfire diagnosis and confirmed intake inspection", "role": "specialist diagnostic service"}
+      ],
+      "evidence": [],
+      "reason": "Audi's bulletin directs software verification before mechanical cleaning or ignition parts.",
+      "correction": "The identifier says 2011; align it to 2019-2021 and do not link a catch can, cleaner, coil, plug or walnut service from P0300-P0306."
+    },
+    {
+      "issueId": "audi-a6-electrical-issues-2005",
+      "repairItems": "Split window regulator by door, lock actuator by door/latch, MMI software/module, and parasitic-draw branches; exact VIN/module/part diagnosis for the confirmed branch",
+      "decision": "OVERBROAD SOURCE / SYSTEM-SPECIFIC SPLIT",
+      "destinations": [
+        {"label": "Audi A6 window-regulator catalog", "url": "https://www.fcpeuro.com/Audi-parts/A6/Window-Regulator/", "scope": "2005-2023 A6; exact generation, body and door position after confirmed regulator fault", "role": "conditional vehicle-specific catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "door-latch, MMI and parasitic-draw branch diagnosis", "role": "specialist electrical service"}
+      ],
+      "evidence": [],
+      "reason": "This record combines unrelated systems across multiple generations, so one parts bundle cannot fit.",
+      "correction": "Do not promise metal clips, perform a universal reset, or sell actuators/MMI modules before exact fault and VIN identification."
+    },
+    {
+      "issueId": "audi-a6-front-suspension-multi-link-control-2000",
+      "repairItems": "Loaded inspection of each upper/lower arm, bushing, ball joint, tie rod and link; exact C5 drivetrain/position part or complete matched kit; hardware, ride-height torque and four-wheel alignment",
+      "decision": "CHASSIS / POSITION / INSPECTION GATE",
+      "destinations": [
+        {"label": "Audi A6 control-arm catalog", "url": "https://www.fcpeuro.com/Audi-parts/A6/Control-Arms/", "scope": "2000-2004 C5 A6; select exact FWD/quattro, arm position and kit hardware", "role": "vehicle-specific suspension catalog"},
+        {"label": "Audi specialist locator", "url": "https://www.audishops.com/", "scope": "loaded inspection, ride-height torque and alignment", "role": "specialist suspension service"}
+      ],
+      "evidence": [],
+      "reason": "Only failed parts are required, while a full kit may be reasonable when multiple components and labor overlap.",
+      "correction": "Do not automatically include tie rods or links unless inspected, and verify exact drivetrain/kit completeness."
     }
   ]
 }
