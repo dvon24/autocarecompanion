@@ -3548,6 +3548,359 @@
       "evidence": [],
       "reason": "The corrected source supplies the current superseding motor and requires ATC700/VIN confirmation.",
       "correction": "Correct the issue ID's 2000 mismatch and reject generic gear-only kits without opening/confirming the motor fault."
+    },
+    {
+      "issueId": "bmw-x5-transfer-case-actuator-2007",
+      "repairItems": "SIB 27 02 20 sequence: tire/application/wear check, powertrain faults, ISTA VTG deactivation road test, ATX13-X DTF-1 service only if shudder disappears, calibration and saturation period",
+      "decision": "BMW SIB SERVICE ROUTE; NO ACTUATOR LINK",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2019-2026 G05/F95 X5 SIB 27 02 20 diagnosis and VTG service", "role": "BMW test-plan service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly requires tires and a clutch-deactivation test before fluid and rejects actuator/transfer-case purchase.",
+      "correction": "Correct the issue ID's 2007 mismatch and continue diagnosis if VTG deactivation does not remove shudder."
+    },
+    {
+      "issueId": "bmw-x5-vanos-solenoid-2000",
+      "repairItems": "VIN recall 23V-707 check; free inspection-dependent bolt or adjustment-unit repair; fragment recovery; BMW diagnosis only if outside/after recall",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for 23V-707", "role": "manufacturer recall remedy"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-status check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The repair is an inspection-dependent recall and specifically says not to buy a solenoid or VANOS part first.",
+      "correction": "Correct the issue ID's 2000 mismatch; stop driving for roughness, mechanical noise, loss of power, or stalling."
+    },
+    {
+      "issueId": "bmw-x5-water-pump-2007",
+      "repairItems": "Stop/tow after temperature warning; leak/level/fault/power/communication/ISTA test; pump 11515A05704 only when VIN/test confirm; thermostat separately; bleed/verify",
+      "decision": "EXACT CONDITIONAL E70 N55 PUMP",
+      "destinations": [
+        {"label": "Genuine BMW electric coolant pump 11515A05704", "url": "https://www.bmwpartsdeal.com/parts/bmw-coolant_pump_electric-11515a05704.html", "scope": "2011-2013 E70 X5 xDrive35i N55 where VIN/ETK selects it", "role": "conditional electric coolant pump"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source narrows the pump to E70 N55 and makes thermostat replacement conditional.",
+      "correction": "Correct the issue ID's 2007 mismatch; do not use this pump for N52/N63/F15."
+    },
+    {
+      "issueId": "bmw-x5m-brake-system-2010",
+      "repairItems": "Split E70/F85/F95; identify brake option and axle; measure pads/rotors; side-specific OEM replacement; track compounds/fluid only by actual use",
+      "decision": "THREE-GENERATION BRAKE SPLIT",
+      "destinations": [
+        {"label": "BMW X5 M brake catalog", "url": "https://www.fcpeuro.com/BMW-parts/X5-M/Brakes/", "scope": "2010-2023 E70/F85/F95 X5 M; select generation, VIN, axle, side, and brake option", "role": "vehicle-specific brake catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "brake measurement and track-use setup", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Three generations use different pads, rotors, calipers, and options; named aftermarket products cannot be applied across the row.",
+      "correction": "Split generations and verify each part number; remove blanket annual cost and fluid-interval claims."
+    },
+    {
+      "issueId": "bmw-x5m-rear-differential-2010",
+      "repairItems": "Generation/VIN-specific differential diagnosis; correct BMW fluid/specification and fill method; leak/noise/internal inspection; specialist rebuild only if confirmed",
+      "decision": "DIFFERENTIAL / FLUID-SPEC SPLIT",
+      "destinations": [
+        {"label": "Genuine BMW X5 M differential catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x5_m-differential.html", "scope": "2010-2023 E70/F85/F95; VIN, axle unit, and fluid specification required", "role": "OEM differential catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "limited-slip/active differential diagnosis and service", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The row combines different differential designs and recommends generic GL-5 fluids without proving BMW specification compatibility.",
+      "correction": "Do not use Royal Purple/Red Line by viscosity alone or assume a universal 1.2-liter capacity/30k interval."
+    },
+    {
+      "issueId": "bmw-x5m-s63-cooling-system-2010",
+      "repairItems": "Split S63 generations and cooling circuits; pressure/fault diagnosis; pump/thermostat/tank/hoses only by exact failure and VIN; correct coolant/service schedule",
+      "decision": "THREE-GENERATION COOLING SPLIT",
+      "destinations": [
+        {"label": "BMW X5 M cooling catalog", "url": "https://www.fcpeuro.com/BMW-parts/X5-M/Cooling-System/", "scope": "E70/F85/F95 X5 M; select generation, engine revision, circuit, and VIN", "role": "vehicle-specific cooling catalog"}
+      ],
+      "evidence": [],
+      "reason": "The source imposes one proactive schedule across three S63 revisions and multiple main/auxiliary cooling circuits.",
+      "correction": "Remove blanket 60k pump/thermostat/tank replacement and 2-year coolant interval; diagnose and follow exact BMW specification."
+    },
+    {
+      "issueId": "bmw-x5m-s63-oil-leaks-2010",
+      "repairItems": "Trace highest fresh leak; split valve covers, filter housing, oil pan, turbo feed/return, and VANOS seals by generation/bank/source; complete cover only if cracked/warped",
+      "decision": "LEAK-SOURCE / GENERATION SPLIT",
+      "destinations": [
+        {"label": "BMW X5 M engine-gasket catalog", "url": "https://www.fcpeuro.com/BMW-parts/X5-M/Engine-Gaskets-and-Seals/", "scope": "2010-2023 E70/F85/F95; select exact engine revision, VIN, bank, and confirmed leak source", "role": "vehicle-specific seal catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "S63 leak tracing and repair planning", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The article lists many independent leak sources and unverified aftermarket line brands; no all-in-one repair is valid.",
+      "correction": "Do not bundle all leak points or claim engine/subframe removal universally; verify generation and repair procedure."
+    },
+    {
+      "issueId": "bmw-x5m-s63-rod-bearing-2010",
+      "repairItems": "Engine-revision-specific oil-pressure/noise diagnosis; measured bearing clearances; engine-builder-selected bearings/fasteners; optional oil trending",
+      "decision": "SPECULATIVE PREVENTIVE CLAIM CORRECTED",
+      "destinations": [
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "2010-2018 E70/F85 X5 M S63 bottom-end assessment", "role": "engine-builder service"},
+        {"label": "Blackstone oil-analysis kit", "url": "https://www.blackstone-labs.com/products/free-test-kits/", "scope": "optional trending only; not conclusive bearing diagnosis", "role": "oil-analysis service"}
+      ],
+      "evidence": [],
+      "reason": "The source prescribes ACL/WPC, intervals, and oil without engine-revision/clearance evidence; 10W-60 is not a universal S63 specification.",
+      "correction": "Remove fixed preventive interval, 'gold standard,' and universal 10W-60 advice."
+    },
+    {
+      "issueId": "bmw-x5m-s63-turbo-coolant-line-2010",
+      "repairItems": "Pressure-test and confirm E70 S63 turbo-coolant line/T-fitting leak; exact reinforced line/fitting kit or VIN-specific OEM components; coolant refill/bleed; turbo inspection after overheat",
+      "decision": "E70-SPECIFIC DIAGNOSIS; AFTERMARKET KIT HELD",
+      "destinations": [
+        {"label": "BMW X5 M turbo-cooling catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x5_m-turbocharger_cooling.html", "scope": "2010-2013 E70 X5 M S63; VIN and failed line/fitting required", "role": "OEM cooling-line catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "hot-V leak diagnosis and repair", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "No exact live GRYPHONTEK/MAMBA page with complete E70 kit contents was verified in this pass.",
+      "correction": "Do not call proactive replacement mandatory; approve an aftermarket kit only after opening and verifying exact E70 fitment/contents."
+    },
+    {
+      "issueId": "bmw-x5m-s63-vanos-solenoid-2010",
+      "repairItems": "Engine-revision and intake/exhaust/bank diagnosis; exact solenoid and seals; screens/oil condition by service procedure; quantity based on confirmed failures",
+      "decision": "PART-NUMBER / POSITION / GENERATION GATE",
+      "destinations": [
+        {"label": "BMW X5 M VANOS-solenoid catalog", "url": "https://www.fcpeuro.com/BMW-parts/X5-M/VANOS-Solenoid/", "scope": "E70/F85/F95 X5 M; select S63 revision, VIN, position, and exact number", "role": "vehicle-specific VANOS catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "BMW-capable VANOS diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The source names two part numbers across three generations and requires all four without evidence.",
+      "correction": "Do not replace all four automatically or recommend an engine flush; diagnose position and follow current oil specification."
+    },
+    {
+      "issueId": "bmw-x5m-s63-wastegate-rattle-2010",
+      "repairItems": "Boost/vacuum/wastegate diagnosis; identify S63 generation, turbo model, bank, and flapper/actuator serviceability; turbo only for confirmed severe wear; access lines/gaskets by condition",
+      "decision": "TURBO-MODEL / BANK GATE; KITS HELD",
+      "destinations": [
+        {"label": "BMW X5 M turbo catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x5_m-turbocharger.html", "scope": "2010-2018 E70/F85 X5 M; VIN, engine revision, bank, and turbo number required", "role": "OEM turbo catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "wastegate/boost/turbo diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The named repair kits were not verified against every turbo number and generation in the row.",
+      "correction": "Do not approve flapper/actuator kits by engine name alone; turbo removal and machine work require exact compatibility."
+    },
+    {
+      "issueId": "bmw-x5m-transfer-case-actuator-2010",
+      "repairItems": "VTG/DSC diagnosis; split E70/F85/F95 units; exact motor only if test confirms; fluid to exact unit; initialization/calibration; internal transfer-case branch",
+      "decision": "THREE-GENERATION UNIT SPLIT",
+      "destinations": [
+        {"label": "BMW X5 M transfer-case catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x5_m-transfer_case.html", "scope": "2010-2023 E70/F85/F95; VIN and exact transfer-case unit required", "role": "OEM drivetrain catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "VTG test plan and initialization", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The three generations have different actuator numbers and diagnostic paths.",
+      "correction": "Do not attach 27107566296 or 27608643153 beyond verified VIN fitment, and do not claim removal procedure universally."
+    },
+    {
+      "issueId": "bmw-x6-adaptive-drive-malfunction-2008",
+      "repairItems": "VIN/options and ISTA diagnosis; distinguish hydraulic pump, valve block, sensors, lines, active anti-roll bars, and wiring; exact component only after test; conversion as separate modification",
+      "decision": "OPTION / COMPONENT DIAGNOSIS ROUTE",
+      "destinations": [
+        {"label": "BMW X6 Adaptive Drive catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x6-active_suspension.html", "scope": "2008-2019 E71/F16 X6; VIN, option codes, and diagnosed component required", "role": "OEM active-suspension catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "ISTA Adaptive Drive diagnosis", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The symptom can originate in several hydraulic/electronic components and spans two generations.",
+      "correction": "Do not default to pump/valve block or present conventional-bar conversion as the normal repair."
+    },
+    {
+      "issueId": "bmw-x6-air-suspension-2008",
+      "repairItems": "Generation/options/fault diagnosis; leak-test springs/struts/lines/valve block; compressor power/output; exact failed component; coil conversion only as separately engineered/legal choice",
+      "decision": "MULTI-GENERATION AIR-SUSPENSION SPLIT",
+      "destinations": [
+        {"label": "BMW X6 air-suspension catalog", "url": "https://www.fcpeuro.com/BMW-parts/X6/Air-Suspension/", "scope": "2008-2023 E71/F16/G06; select generation, VIN, axle/corner, and diagnosed component", "role": "vehicle-specific air-suspension catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "leak and compressor diagnosis/calibration", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Named Arnott/OEM/conversion products do not span three generations and configurations.",
+      "correction": "Do not replace axle pairs or convert to coils automatically; repair the diagnosed source and preserve chassis-control compatibility."
+    },
+    {
+      "issueId": "bmw-x6-ibs-brake-recall-2023",
+      "repairItems": "VIN recall 26V-422 check; free dealer inspection/module replacement if required; increased-distance/roadside safety response for warnings",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "VIN check for 26V-422", "role": "government recall lookup"},
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "manufacturer VIN/campaign status", "role": "manufacturer recall remedy"}
+      ],
+      "evidence": [],
+      "reason": "The remedy is an authorized safety recall, not retail brake electronics.",
+      "correction": "Correct the issue ID's 2023 mismatch: the row is 2024 X6."
+    },
+    {
+      "issueId": "bmw-x6-n63-timing-chain-2008",
+      "repairItems": "Split N63/N63TU and production/VIN; DME/VANOS faults and ISTA elongation test; complete chain repair only if failed; historical warranty check",
+      "decision": "ENGINE-GENERATION / ISTA GATE",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "E71/F16 X6 N63 timing test, VIN history, and complete repair", "role": "BMW-qualified service"}
+      ],
+      "evidence": [],
+      "reason": "The source prescribes immediate 60-80k replacement and named kits without an elongation test or complete-generation fitment.",
+      "correction": "Remove 'immediately,' fixed interval, and engine-replacement certainty; split N63/N63TU and verify complete SIB procedure."
+    },
+    {
+      "issueId": "bmw-x6-n63-valve-stem-seal-wear-2008",
+      "repairItems": "Oil-consumption/smoke/leak/turbo/PCV diagnosis; engine-revision-specific valve seals only after confirmation; turbo-return lines/software only if separately indicated",
+      "decision": "DUPLICATE / GENERATION-SPECIFIC SERVICE ROUTE",
+      "destinations": [
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "2008-2019 X6 N63/N63TU oil-consumption and valve-seal diagnosis", "role": "equipped specialist service"}
+      ],
+      "evidence": [],
+      "reason": "This overlaps the next valve-seal row and bundles unrelated turbo lines/software.",
+      "correction": "Consolidate duplicate rows and diagnose oil source before authorizing head/valve-seal work."
+    },
+    {
+      "issueId": "bmw-x6-n63-valve-stem-seals-2008",
+      "repairItems": "Split N63 revisions/generations; oil-consumption and smoke diagnosis; exact valve-stem seals; head-on/head-off method by equipped specialist; tooling not sold as repair part",
+      "decision": "GENERATION / SERVICE-METHOD GATE",
+      "destinations": [
+        {"label": "Genuine BMW X6 valve-seal catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x6-valve_stem_seal.html", "scope": "2008-2023 X6; VIN, N63 revision, and quantity required", "role": "OEM seal catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "N63 valve-seal diagnosis and equipped repair", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The row crosses multiple N63 revisions and the AGA item is a professional tool, not a replacement part.",
+      "correction": "Do not recommend generic Viton seals or monitoring without checking catalyst/oil-consumption risk and exact engine."
+    },
+    {
+      "issueId": "bmw-x6-n63-wastegate-2008",
+      "repairItems": "Boost/vacuum/charge-air diagnosis; identify N63 generation, turbo number, bank, actuator/flapper serviceability; complete turbo only for confirmed severe wear",
+      "decision": "TURBO-NUMBER / GENERATION GATE",
+      "destinations": [
+        {"label": "BMW X6 turbocharger catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x6-turbocharger.html", "scope": "2008-2018 E71/F16 xDrive50i; VIN, engine revision, bank, and turbo number required", "role": "OEM turbo catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "boost/wastegate diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Garrett/MAMBA/OEM part claims were not verified across every turbo and engine revision.",
+      "correction": "Rattle alone is not proof of imminent turbo failure; approve repair hardware only by exact turbo number."
+    },
+    {
+      "issueId": "bmw-x6-rear-differential-bushing-2008",
+      "repairItems": "Generation/VIN/position-specific mount inspection; exact failed bushing/mount; housing/subframe check; alignment only if repair procedure disturbs geometry",
+      "decision": "THREE-GENERATION / POSITION SPLIT",
+      "destinations": [
+        {"label": "BMW X6 differential-mount catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x6-differential_mount.html", "scope": "2008-2026 E71/F16/G06 X6; VIN, axle unit, and mount position required", "role": "OEM mount catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "driveline mount diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The row spans three generations; no single Lemforder/OEM bushing or 'all bushings' set applies.",
+      "correction": "Replace diagnosed mounts, verify supplier/fitment per part, and do not require alignment universally."
+    },
+    {
+      "issueId": "bmw-x6-transfer-case-2008",
+      "repairItems": "VTG/DSC diagnosis; split E71/F16/G06 units; tire/voltage/wiring/fluid/calibration checks; exact actuator or internal repair only after confirmation",
+      "decision": "THREE-GENERATION TRANSFER-CASE SPLIT",
+      "destinations": [
+        {"label": "BMW X6 transfer-case catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x6-transfer_case.html", "scope": "2008-2023 xDrive X6; VIN and exact unit required", "role": "OEM drivetrain catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "VTG diagnosis and initialization", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "One G06 actuator number and generic gear kit cannot cover E71/F16/G06.",
+      "correction": "Remove 'straightforward,' fixed savings, clicking-only diagnosis, and blanket used-car prediction."
+    },
+    {
+      "issueId": "bmw-x6m-front-thrust-arm-bushing-2015",
+      "repairItems": "Split F86/F96; side-specific thrust-arm/bushing/ball-joint inspection; complete arm or serviceable bushing per design; alignment; polyurethane only by NVH/use choice",
+      "decision": "GENERATION / SIDE-SPECIFIC SUSPENSION GATE",
+      "destinations": [
+        {"label": "BMW X6 M control-arm catalog", "url": "https://www.fcpeuro.com/BMW-parts/X6-M/Control-Arm/", "scope": "2015-2025 F86/F96 X6 M; select generation, side, position, and VIN", "role": "vehicle-specific arm catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "suspension inspection and alignment", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The row crosses generations and the claim that bushings are never separately serviceable was not verified across both.",
+      "correction": "Do not require both complete arms or polyurethane without inspection and NVH discussion."
+    },
+    {
+      "issueId": "bmw-x6m-s63-rod-bearing-2010",
+      "repairItems": "S63-revision-specific diagnosis; oil pressure/noise and measured clearance; engine-builder-selected bearings/fasteners; optional oil trending",
+      "decision": "SPECULATIVE PREVENTIVE CLAIM CORRECTED",
+      "destinations": [
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "2010-2023 X6 M S63 bottom-end assessment", "role": "engine-builder service"},
+        {"label": "Blackstone oil-analysis kit", "url": "https://www.blackstone-labs.com/products/free-test-kits/", "scope": "optional trending only; not conclusive bearing diagnosis", "role": "oil-analysis service"}
+      ],
+      "evidence": [],
+      "reason": "The row spans several S63 revisions and prescribes aftermarket parts/intervals without clearance evidence.",
+      "correction": "Remove fixed preventive interval, universal bearing numbers, and the claim oil analysis/documentation guarantees condition."
+    },
+    {
+      "issueId": "bmw-x6m-vanos-solenoid-2015",
+      "repairItems": "BMW-capable diagnosis; engine-revision/intake/exhaust/bank identification; clean only when service procedure supports and electronics test good; exact solenoid/seals; correct oil service",
+      "decision": "GENERATION / POSITION / DIAGNOSIS GATE",
+      "destinations": [
+        {"label": "BMW X6 M VANOS-solenoid catalog", "url": "https://www.fcpeuro.com/BMW-parts/X6-M/VANOS-Solenoid/", "scope": "2015-2021 F86/F96 X6 M; select VIN, S63 revision, and position", "role": "vehicle-specific VANOS catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "VANOS/oil-pressure diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Sludge is not automatically cured by solenoid cleaning, and an engine flush can create risk.",
+      "correction": "Remove engine-flush instruction and fixed oil interval; diagnose oil supply, wiring, and mechanism before parts."
+    },
+    {
+      "issueId": "bmw-x7-48v-battery-2020",
+      "repairItems": "Confirm vehicle actually has 48V system; BMW-capable energy diagnosis; warranty/VIN check; exact 48V battery only if failed; coding/commissioning",
+      "decision": "EQUIPMENT / CODING / WARRANTY GATE",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2020-2023 X7 48V equipment confirmation, diagnosis, warranty, and coding", "role": "high-voltage-capable service"}
+      ],
+      "evidence": [],
+      "reason": "Not every X7 in the range has the same mild-hybrid system, and replacement requires energy diagnosis/coding.",
+      "correction": "Do not infer a failed 48V battery from start-stop behavior or advise living with an active electrical fault."
+    },
+    {
+      "issueId": "bmw-x7-air-suspension-2019",
+      "repairItems": "VIN/options/corner-specific leak and fault diagnosis; exact strut/spring/compressor/valve block; axle mate only by condition/strategy; calibration",
+      "decision": "VIN / CORNER / COMPONENT GATE",
+      "destinations": [
+        {"label": "BMW X7 air-suspension catalog", "url": "https://www.fcpeuro.com/BMW-parts/X7/Air-Suspension/", "scope": "2019-2023 G07 X7; VIN, axle, side, option, and diagnosed component required", "role": "vehicle-specific air-suspension catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "leak diagnosis and ride-height calibration", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The listed part numbers and rebuilt struts were not proven across all X7 builds/options.",
+      "correction": "Do not automatically replace axle pairs or use fixed 50k inspection/replacement claims."
+    },
+    {
+      "issueId": "bmw-x7-air-suspension-compressor-2019",
+      "repairItems": "Fault/power/output diagnosis; leak-test all air springs/lines/valve block; exact VIN compressor only if failed; repair leaks first; calibration",
+      "decision": "DIAGNOSIS / VIN-SPECIFIC COMPRESSOR",
+      "destinations": [
+        {"label": "Genuine BMW X7 air-supply catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x7-air_suspension_compressor.html", "scope": "2019-2026 G07 X7; VIN and diagnosed air-supply unit required", "role": "OEM compressor catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "air-leak and compressor diagnosis/calibration", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "A compressor can be damaged by leaks, but soapy-water checks alone may not isolate every valve/line/control fault.",
+      "correction": "Repair the leak/root cause before a compressor and verify exact location/procedure by VIN."
+    },
+    {
+      "issueId": "bmw-x7-b58-coolant-2019",
+      "repairItems": "Pressure/fault diagnosis; exact B58 generation and coolant circuit; pump/thermostat/tank/connections only if failed; VIN recall 24V-608 check where applicable",
+      "decision": "RECALL / ENGINE-REVISION / CIRCUIT GATE",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for 24V-608 or related coolant-pump action", "role": "manufacturer recall route"},
+        {"label": "BMW X7 cooling catalog", "url": "https://www.fcpeuro.com/BMW-parts/X7/Cooling-System/", "scope": "2019-2023 xDrive40i; VIN, B58 revision, and failed circuit/component required", "role": "vehicle-specific cooling catalog"}
+      ],
+      "evidence": [],
+      "reason": "The source bundles several components and part numbers across revisions while making preventive claims.",
+      "correction": "Do not replace all plastic connections/pump/thermostat/tank from one fault or use fixed 60-70k intervals."
+    },
+    {
+      "issueId": "bmw-x7-b58-coolant-expansion-tank-2019",
+      "repairItems": "Pressure-test/confirm tank crack; VIN/circuit-specific expansion tank and cap by condition; hose inspection; correct coolant/bleed/retest",
+      "decision": "VIN / COOLING-CIRCUIT GATE",
+      "destinations": [
+        {"label": "BMW X7 expansion-tank catalog", "url": "https://www.fcpeuro.com/BMW-parts/X7/Expansion-Tank/", "scope": "2019-2026 G07 X7; VIN, engine, and coolant circuit required", "role": "vehicle-specific tank catalog"}
+      ],
+      "evidence": [],
+      "reason": "An exact updated part/supersession and 'improved plastic' claim were not verified for every build/circuit.",
+      "correction": "Do not promise an updated material; replace cap/hoses only if required by condition/procedure."
+    },
+    {
+      "issueId": "bmw-x7-ibs-brake-recall-2023",
+      "repairItems": "VIN recall 26V-422 check; free dealer inspection/module replacement if required; safety response for warning/increased pedal effort",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "VIN check for 26V-422", "role": "government recall lookup"},
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "manufacturer VIN/campaign status", "role": "manufacturer recall remedy"}
+      ],
+      "evidence": [],
+      "reason": "The repair is an authorized safety recall and the article correctly rejects retail brake electronics.",
+      "correction": "Keep the safety instructions and VIN gate primary."
     }
   ]
 }
