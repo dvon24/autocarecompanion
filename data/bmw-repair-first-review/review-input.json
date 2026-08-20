@@ -3901,6 +3901,358 @@
       "evidence": [],
       "reason": "The repair is an authorized safety recall and the article correctly rejects retail brake electronics.",
       "correction": "Keep the safety instructions and VIN gate primary."
+    },
+    {
+      "issueId": "bmw-x7-n63-oil-consumption-2019",
+      "repairItems": "Split xDrive50i/M50i N63TU3 from M60i S68; documented consumption/leak/PCV/turbo/combustion diagnosis; valve seals only after confirmation; warranty/settlement check",
+      "decision": "MAJOR ENGINE / MODEL SPLIT",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2019-2023 X7 oil-consumption test, engine identification, warranty/TSB history", "role": "manufacturer-capable diagnosis"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "N63TU3/S68 oil-source and valve-seal diagnosis", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The source incorrectly groups the M60i's S68 with N63TU3 models and prescribes seals/oil before diagnosis.",
+      "correction": "Split M60i/S68, verify current oil specification by VIN, and do not advise monitoring/top-off as a substitute for diagnosing excessive consumption."
+    },
+    {
+      "issueId": "bmw-x7-panoramic-roof-rattle-2019",
+      "repairItems": "Reproduce/localize rattle; inspect guides, seals, cassette, fasteners, and body flex; BMW-approved lubricant/felt only where procedure specifies; warranty/updated-parts check",
+      "decision": "SERVICE / VIN / BULLETIN GATE",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2019-2026 G07 X7 panoramic-roof diagnosis, bulletin and warranty check", "role": "manufacturer-capable service"},
+        {"label": "Genuine BMW X7 sunroof catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x7-sunroof.html", "scope": "VIN-specific guides/seals/cassette only after diagnosis", "role": "OEM roof catalog"}
+      ],
+      "evidence": [],
+      "reason": "Felt, lubricant, guide parts, seals, and cassette replacement are different branches; updated components were not identified by exact bulletin/part.",
+      "correction": "Do not apply generic lubricant or sell a cassette from a creak alone."
+    },
+    {
+      "issueId": "bmw-x7-sunroof-leak-2019",
+      "repairItems": "Controlled water test; SIB 54 11 19 applicability; inspect drains/connections/seals/cassette; clear drains without disconnecting/damaging tubes; electronics/moisture assessment",
+      "decision": "SIB / LEAK-SOURCE SERVICE ROUTE",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2019-2023 G07 X7 SIB 54 11 19 and water-leak diagnosis", "role": "manufacturer-capable service"},
+        {"label": "BMW X7 sunroof catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-x7-sunroof.html", "scope": "VIN-specific drain/seal/cassette component only after leak test", "role": "OEM roof catalog"}
+      ],
+      "evidence": [],
+      "reason": "Drain blockage, disconnected tube, seal, and cassette leak require different repairs.",
+      "correction": "Do not use unregulated compressed air, which can detach drain tubes; use the BMW procedure and controlled pressure/manual clearing."
+    },
+    {
+      "issueId": "bmw-x7-tire-wear-2019",
+      "repairItems": "Tire size/load/speed/run-flat/staggered setup and tread pattern; suspension/play and alignment diagnosis; VIN-approved alignment target; exact replacement tires by configuration",
+      "decision": "TIRE-CONFIGURATION / ALIGNMENT GATE",
+      "destinations": [
+        {"label": "Tire Rack BMW X7 tire selector", "url": "https://www.tirerack.com/tires/SelectTireSize.jsp?autoMake=BMW&autoModel=X7", "scope": "select exact year/trim/wheel size/load and axle before tire choice", "role": "vehicle-configured tire catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "suspension inspection and four-wheel alignment", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The row names tires without proving every X7 size/load/staggered application and suggests reducing camber outside specification.",
+      "correction": "Use VIN-approved alignment tolerances and exact load/speed rating; do not promise doubled tire life."
+    },
+    {
+      "issueId": "bmw-xm-airbag-passenger-knee-recall-2023",
+      "repairItems": "VIN recall 23V-622 check; free authorized passenger knee-airbag replacement; no DIY restraint-system work",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for 23V-622", "role": "manufacturer recall remedy"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-status check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "Airbag work requires VIN-selected campaign parts and trained personnel.",
+      "correction": "Do not link a clock spring, module, or airbag product."
+    },
+    {
+      "issueId": "bmw-xm-hybrid-drivetrain-hesitation-2023",
+      "repairItems": "Fault memory and current integration/software level; official transmission/hybrid update; adaptation reset only per test plan; mechanical/high-voltage diagnosis if persistent",
+      "decision": "HYBRID SOFTWARE / DEALER SERVICE ROUTE",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2023-2024 XM hybrid drivetrain software and high-voltage diagnosis", "role": "authorized hybrid service"},
+        {"label": "BMW Remote Software Upgrade", "url": "https://www.bmwusa.com/explore/connecteddrive/remote-software-upgrade.html", "scope": "only when an official update is offered to the VIN", "role": "official update information"}
+      ],
+      "evidence": [],
+      "reason": "This is software/high-voltage diagnosis, not a retail part; drive mode is a preference, not a repair.",
+      "correction": "Do not promise an update or adaptation reset will fix every hesitation."
+    },
+    {
+      "issueId": "bmw-xm-integrated-brake-system-recall-2023",
+      "repairItems": "VIN recall 26V-422 check; free dealer inspection/module replacement if required; safety response for warning/increased pedal effort",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "VIN check for 26V-422", "role": "government recall lookup"},
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "manufacturer VIN/campaign status", "role": "manufacturer recall remedy"}
+      ],
+      "evidence": [],
+      "reason": "Wheel-speed sensors are not the stated recall remedy and retail electronics are inappropriate.",
+      "correction": "Keep VIN and brake-warning safety instructions primary."
+    },
+    {
+      "issueId": "bmw-xm-suspension-ride-quality-2023",
+      "repairItems": "Cold tire-pressure/load check; verify wheel/tire size and damage; alignment/suspension fault diagnosis; Comfort mode; alternate tire only with exact approved size/load/speed rating",
+      "decision": "CONDITION / CONFIGURATION GUIDANCE; NO SUSPENSION PART",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2023-2024 XM suspension fault, software, alignment, and approved tire configuration", "role": "manufacturer-capable service"},
+        {"label": "Tire Rack BMW XM tire selector", "url": "https://www.tirerack.com/tires/SelectTireSize.jsp?autoMake=BMW&autoModel=XM", "scope": "exact year/wheel/load configuration only", "role": "configured tire catalog"}
+      ],
+      "evidence": [],
+      "reason": "Harshness may be normal tuning, pressure, tire, alignment, or a fault; no universal spring/damper product was identified.",
+      "correction": "Do not alter tire diameter/load rating or claim no aftermarket solution exists indefinitely."
+    },
+    {
+      "issueId": "bmw-z3-convertible-top-rear-window-cracking-clouding-bead-separatio",
+      "repairItems": "Confirm zipper-style original/replacement top; exact rear-window panel and zipper/seal kit; fabric/top replacement only if fabric/zipper/cassette condition requires",
+      "decision": "TOP / ZIPPER CONFIGURATION GATE",
+      "destinations": [
+        {"label": "Genuine BMW Z3 convertible-top catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-z3-convertible_top.html", "scope": "1996-2002 Z3; VIN and installed top/window configuration required", "role": "OEM roof/window catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "top/window condition and installation assessment", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "A zipper replacement is viable only if the installed top/zipper is compatible and sound.",
+      "correction": "Do not promise a 1-1.5-hour DIY or panel-only repair for aftermarket tops or damaged zipper tracks."
+    },
+    {
+      "issueId": "bmw-z3-cooling-system-failure-1996",
+      "repairItems": "",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "The source has no How to Fix instructions, so there is no repair item to map responsibly.",
+      "correction": "Write and approve an engine-specific diagnostic/repair procedure before commerce research."
+    },
+    {
+      "issueId": "bmw-z3-cracked-exhaust-manifold-1-9l-4-cylinder",
+      "repairItems": "Confirm M44 versus non-US M43 and crack location; smoke/cold test; exact manifold/header with emissions legality; gasket and one-time hardware",
+      "decision": "ENGINE / MARKET / EMISSIONS GATE",
+      "destinations": [
+        {"label": "Genuine BMW Z3 exhaust-manifold catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-z3-exhaust_manifold.html", "scope": "1996-1999 US Z3 1.9L M44 where VIN-matched; M43 is non-US/different", "role": "OEM manifold catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "crack diagnosis and emissions-compliant repair", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "M44/M43 markets and emissions equipment differ, and a used manifold or tubular header needs exact fitment/legal review.",
+      "correction": "Narrow US fitment to M44 years and do not approve a header without catalyst/emissions compatibility."
+    },
+    {
+      "issueId": "bmw-z3-differential-mount-ear-trunk-floor-pan-tearing",
+      "repairItems": "Full top/bottom structural inspection; crack/spot-weld assessment; chassis-specialist weld/reinforcement design; subframe/diff bushings only as part of engineered repair; alignment",
+      "decision": "STRUCTURAL SPECIALIST ROUTE; KIT HELD",
+      "destinations": [
+        {"label": "Randy Forbes Z3 reinforcement information", "url": "https://www.spcarsplus.com/", "scope": "Z3 structural reinforcement reference; confirm current kit/service availability and exact chassis", "role": "specialist reinforcement source"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "Z3 chassis/body structural inspection and welding referral", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Repair scope depends on structural damage; polyurethane alone does not repair or necessarily reduce every stress mode.",
+      "correction": "Do not install bushings as a substitute for welding/reinforcement or approve a plate kit without current exact contents."
+    },
+    {
+      "issueId": "bmw-z3-door-window-regulator-clip-mounting-tab-failure",
+      "repairItems": "Door/side diagnosis; exact plastic clips if mechanism healthy; side-specific regulator if cable/mechanism worn; weld/reinforce torn door anchor; channel lubrication",
+      "decision": "SIDE / FAILURE-BRANCH CATALOG",
+      "destinations": [
+        {"label": "BMW Z3 window-regulator catalog", "url": "https://www.fcpeuro.com/BMW-parts/Z3/Window-Regulator/", "scope": "1996-2002 Z3; select left/right and clip-versus-regulator branch", "role": "vehicle-specific regulator catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "torn mounting-tab welding and window adjustment", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Clips, regulator, and torn door anchor are three different repairs.",
+      "correction": "Do not sell a regulator when only a clip failed or fit new parts to an unrepaired torn anchor."
+    },
+    {
+      "issueId": "bmw-z3-fuel-level-sender-failure-causing-erratic-dead-fuel-gauge",
+      "repairItems": "Wiring/ground and tank-vent diagnosis; sender plate/brush inspection; clean only if serviceable; VIN/tank-side-specific sender or complete carrier if required",
+      "decision": "DIAGNOSIS / TANK-CONFIGURATION GATE",
+      "destinations": [
+        {"label": "BMW Z3 fuel-sender catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-z3-fuel_level_sensor.html", "scope": "1996-2002 Z3; VIN, tank configuration, and sender/carrier branch required", "role": "OEM sender catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "fuel-level circuit and tank-vent diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Gauge faults can be electrical, sender wear, carrier, or tank-vacuum deformation.",
+      "correction": "Do not condemn the sender before wiring/ground/vent checks or clean a cracked/worn resistor plate."
+    },
+    {
+      "issueId": "bmw-z3-hvac-blower-final-stage-resistor-failure",
+      "repairItems": "A/C versus non-A/C configuration; blower-speed/resistor circuit diagnosis; exact resistor; blower motor and water/cowl inspection if unresolved",
+      "decision": "HVAC-CONFIGURATION GATE",
+      "destinations": [
+        {"label": "BMW Z3 blower-resistor catalog", "url": "https://www.fcpeuro.com/BMW-parts/Z3/Blower-Motor-Resistor/", "scope": "1996-2002 Z3; confirm A/C equipment, VIN, and resistor location/part", "role": "vehicle-specific resistor catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "blower circuit/water-intrusion diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The source identifies different locations/configurations and a blower-motor fallback.",
+      "correction": "Do not assume max-only operation proves the resistor without circuit testing."
+    },
+    {
+      "issueId": "bmw-z3-rear-subframe-crack-1996",
+      "repairItems": "Top/bottom structural inspection including hidden seams; chassis-specialist fabrication/welding; exact reinforcement strategy; bushings/fasteners by condition; alignment",
+      "decision": "STRUCTURAL SPECIALIST ROUTE",
+      "destinations": [
+        {"label": "Randy Forbes Z3 reinforcement information", "url": "https://www.spcarsplus.com/", "scope": "Z3 dual-ear/trunk-floor reinforcement reference; verify current kit/service and exact damage", "role": "specialist reinforcement source"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "structural inspection and qualified body/chassis referral", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "Advanced unibody damage requires individualized fabrication; a catalog kit alone is not the repair.",
+      "correction": "Consolidate with the differential-mount/trunk-floor duplicate and avoid fixed cost promises."
+    },
+    {
+      "issueId": "bmw-z3-rear-subframe-cracking-1996",
+      "repairItems": "",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "This duplicate source row has no How to Fix instructions.",
+      "correction": "Merge with the fully described Z3 trunk-floor/subframe issue or add an approved structural repair procedure before links."
+    },
+    {
+      "issueId": "bmw-z3-valve-cover-gasket-oil-leak",
+      "repairItems": "Confirm M52/S52/M52TU/M54 and leak source; engine-specific cover gasket, plug-well seals/grommets/bolt seals; cover inspection; oil-damaged boots/coils by condition; torque procedure",
+      "decision": "ENGINE / COVER-CONFIGURATION GATE",
+      "destinations": [
+        {"label": "BMW Z3 valve-cover gasket catalog", "url": "https://www.fcpeuro.com/BMW-parts/Z3/Valve-Cover-Gasket/", "scope": "1997-2002 six-cylinder Z3; select exact engine/VIN and kit contents", "role": "engine-specific gasket catalog"}
+      ],
+      "evidence": [],
+      "reason": "The years include multiple six-cylinder engines and gasket/cover details.",
+      "correction": "Do not attach one M54 kit to M52/S52/M52TU; replace boots/coils only if oil-damaged/test-failed."
+    },
+    {
+      "issueId": "bmw-z3-vanos-seals-1999",
+      "repairItems": "Split S52 single VANOS from M52TU/M54 double VANOS; vacuum/oil/timing diagnosis; engine-specific seals/anti-rattle components; gasket/washers by access; timing only when procedure requires",
+      "decision": "ENGINE / VANOS-TYPE SPLIT",
+      "destinations": [
+        {"label": "Beisan VANOS product catalog", "url": "https://beisansystems.com/shop/", "scope": "select M50tu/M52 single or M52tu/M54 double VANOS product by exact Z3 engine", "role": "engine-specific seal catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "VANOS/vacuum/timing diagnosis and installation", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "S52 and M52TU/M54 use different VANOS types and seal kits; the source incorrectly treats them as one repair.",
+      "correction": "Split single/double VANOS, do not infer a scanner product from DTCs, and verify whether cam re-timing is actually disturbed."
+    },
+    {
+      "issueId": "bmw-z4-b58-coolant-tank-2019",
+      "repairItems": "Pressure-test and identify coolant circuit; VIN-specific tank; updated/superseded OEM part only if cataloged; aluminum tank only with proven G29 fitment/interfaces; cap/hoses by condition; correct coolant/bleed",
+      "decision": "VIN / CIRCUIT GATE; ALUMINUM CLAIM HELD",
+      "destinations": [
+        {"label": "BMW Z4 expansion-tank catalog", "url": "https://www.fcpeuro.com/BMW-parts/Z4/Expansion-Tank/", "scope": "2019-2026 G29 Z4; select B48/B58, VIN, and coolant circuit", "role": "vehicle-specific tank catalog"}
+      ],
+      "evidence": [],
+      "reason": "The source does not identify an exact updated or aluminum tank and G29 has multiple cooling circuits.",
+      "correction": "Do not promise updated plastic or approve aluminum without exact cap/sensor/hose/pressure fitment."
+    },
+    {
+      "issueId": "bmw-z4-e85-convertible-top-hydraulic-2003",
+      "repairItems": "Roof fault/leak/water-intrusion diagnosis; pump motor 54347193448 only if confirmed; correct top fluid 54340394395; drains and mounting inspection; relocation/rebuild as specialist modification",
+      "decision": "EXACT CONDITIONAL E85 PUMP / FLUID",
+      "destinations": [
+        {"label": "Genuine BMW E85 roof pump 54347193448", "url": "https://www.bmwpartsdeal.com/parts/bmw-hydraulic_unit-54347193448.html", "scope": "2003-2008 E85 Z4 where VIN-matched; supersedes 54347119633", "role": "conditional hydraulic unit/pump"},
+        {"label": "BMW roof hydraulic fluid 54340394395", "url": "https://www.rmeuropean.com/Products/54340394395-MFG36-V11915.aspx", "scope": "verify E85 roof-system application and service procedure", "role": "specified hydraulic fluid"}
+      ],
+      "evidence": [],
+      "reason": "The OEM number/supersession is exact, but water, motor, pump, cylinders, and microswitches must be distinguished.",
+      "correction": "Do not recommend unverified Amazon motors or a relocation/rebuild without specialist quality and water-management review."
+    },
+    {
+      "issueId": "bmw-z4-e85-window-regulator-2003",
+      "repairItems": "Left/right diagnosis; repair cables/rollers only if frame/gears sound; complete regulator 51337198909 left or 51337198910 right; window adjustment",
+      "decision": "EXACT SIDE-SPECIFIC OEM REGULATORS",
+      "destinations": [
+        {"label": "Genuine BMW left regulator 51337198909", "url": "https://www.bmwpartsdeal.com/parts/bmw-window_lifter_without_motor_left-51337198909.html", "scope": "2003-2008 E85 Z4 left/driver side where VIN-matched", "role": "left regulator"},
+        {"label": "Genuine BMW right regulator 51337198910", "url": "https://www.bmwpartsdeal.com/parts/bmw-window_lifter_without_motor_right-51337198910.html", "scope": "2003-2008 E85 Z4 right/passenger side where VIN-matched", "role": "right regulator"}
+      ],
+      "evidence": [],
+      "reason": "The source provides distinct left/right OEM numbers and separates repair-kit from complete-regulator branches.",
+      "correction": "Do not approve BWR974 by marketplace title alone or call cable rethreading universally DIY-friendly."
+    },
+    {
+      "issueId": "bmw-z4-electric-steering-rack-2003",
+      "repairItems": "VIN recall 12V-302 check; free steering-assistance module replacement; roadside safety response for warning/assist loss",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for 12V-302", "role": "manufacturer recall remedy"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-status check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The recall remedy is a steering-assistance module, not a steering rack.",
+      "correction": "Correct the issue ID's 2003 mismatch: the row is 2012 Z4."
+    },
+    {
+      "issueId": "bmw-z4-electric-water-pump-2006",
+      "repairItems": "VIN recall 24V-608 check; free pump/connector inspection, conditional replacement and protective shield; fire-safety response for smoke",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {"label": "BMW recall lookup", "url": "https://www.bmwusa.com/safety-and-emission-recalls.html", "scope": "VIN check for 24V-608", "role": "manufacturer recall remedy"},
+        {"label": "NHTSA recall lookup", "url": "https://www.nhtsa.gov/recalls", "scope": "independent VIN recall-status check", "role": "government recall lookup"}
+      ],
+      "evidence": [],
+      "reason": "The campaign decides whether pump/connector replacement is required and supplies the shield free.",
+      "correction": "Correct the issue ID's 2006 mismatch and do not order a pump from this recall card."
+    },
+    {
+      "issueId": "bmw-z4-g29-b58-water-pump-2019",
+      "repairItems": "Split B48/B58 and main/auxiliary cooling circuits; fault/pressure diagnosis; identify mechanical versus electric pump; thermostat and seals/bolts only by exact procedure; outlet adapter inspection",
+      "decision": "MAJOR PUMP-TYPE / ENGINE CORRECTION",
+      "destinations": [
+        {"label": "Genuine BMW G29 Z4 water-pump catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-z4-water_pump.html", "scope": "2019-2025 G29; VIN, B48/B58 engine, and coolant circuit required", "role": "OEM pump/thermostat catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "cooling-system diagnosis and bleed", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "B48/B58 modular engines have multiple pumps/circuits and the source's universal 'electric pump and thermostat together' statement is not reliable.",
+      "correction": "Remove fixed 60k replacement, unverified part numbers/Mishimoto claim, and mandatory paired replacement until exact VIN diagram/procedure is established."
+    },
+    {
+      "issueId": "bmw-z4-n54-hpfp-2009",
+      "repairItems": "BMW fuel-pressure and low-side diagnosis; VIN/current supersession check; latest compatible HPFP only after confirmed failure; low-pressure sensor only if test-failed; expired historical coverage disclosed",
+      "decision": "DIAGNOSIS / CURRENT-SUPERSESSION GATE",
+      "destinations": [
+        {"label": "Genuine BMW Z4 high-pressure pump catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-z4-fuel_pump.html", "scope": "2009-2011 E89 sDrive35i/35is N54; VIN and current supersession required", "role": "OEM HPFP catalog"},
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "fuel-pressure diagnosis and historical coverage/VIN review", "role": "BMW-qualified service"}
+      ],
+      "evidence": [],
+      "reason": "The claimed 'latest' number and customer-care coverage may have been superseded/expired, and the low-pressure sensor is not automatic.",
+      "correction": "Do not call HPFP replacement straightforward or definitive without pressure diagnosis/current ETK."
+    },
+    {
+      "issueId": "bmw-z4-n54-wastegate-rattle-2009",
+      "repairItems": "VIN/engine/production/DME/boost-control/noise-source diagnosis; historical coverage check; exact turbo/actuator/wastegate only after confirmation",
+      "decision": "DIAGNOSIS ROUTE; NO RETAIL PART",
+      "destinations": [
+        {"label": "BMW dealer locator", "url": "https://www.bmwusa.com/dealer-locator.html", "scope": "2009-2010 E89 sDrive35i N54 diagnostic and coverage-history check", "role": "BMW-qualified service"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "N54 boost/wastegate diagnosis", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly rejects turbo/actuator/wastegate purchase without diagnosis.",
+      "correction": "Preserve the expired-coverage caveat and do not attach marketplace repair kits."
+    },
+    {
+      "issueId": "bmw-z4-soft-top-hydraulic-2003",
+      "repairItems": "E89 retractable-hardtop fault and leak-location diagnosis; exact left/right cylinder, hose, pump, microswitch or sensor; BMW-specified hydraulic fluid and full bleed",
+      "decision": "COMPONENT / SIDE / FLUID-SPEC GATE",
+      "destinations": [
+        {"label": "Genuine BMW E89 folding-top hydraulics catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-z4-convertible_top_motor.html", "scope": "2009-2016 E89 Z4; VIN and diagnosed pump/cylinder/hose/sensor required", "role": "OEM roof-system catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "retractable-hardtop hydraulic/control diagnosis and bleed", "role": "specialist service"}
+      ],
+      "evidence": [],
+      "reason": "The mechanism has many hydraulic/control branches, and CHF 11S was not verified as the correct roof fluid for every E89 procedure.",
+      "correction": "Correct the issue ID's 2003 mismatch and verify BMW fluid part/specification rather than assuming power-steering hydraulic fluid."
+    },
+    {
+      "issueId": "bmw-z4-vanos-solenoid-2003",
+      "repairItems": "Split M54/N52/N54/N20 and VANOS architecture; BMW-capable oil-pressure/wiring/timing diagnosis; exact intake/exhaust/engine solenoid or complete VANOS component; seals by procedure",
+      "decision": "MAJOR ENGINE / VANOS-ARCHITECTURE SPLIT",
+      "destinations": [
+        {"label": "BMW Z4 VANOS-solenoid catalog", "url": "https://www.fcpeuro.com/BMW-parts/Z4/VANOS-Solenoid/", "scope": "2003-2016 E85/E89; select exact engine, VIN, position, and diagnosed component", "role": "engine-specific VANOS catalog"},
+        {"label": "BMW specialist locator", "url": "https://www.bimmershops.com/", "scope": "BMW-capable VANOS/oil/timing diagnosis", "role": "service route"}
+      ],
+      "evidence": [],
+      "reason": "The source assigns two solenoids/part numbers across engines with different VANOS designs and automatically replaces all units.",
+      "correction": "M54 is not accurately represented by two external solenoids; split every engine, remove all-at-once and cleaning/flush claims, and verify exact position/number."
+    },
+    {
+      "issueId": "bmw-z8-soft-top-mechanism-2000",
+      "repairItems": "Leak/pressure/cable/latch/microswitch diagnosis; exact cylinder rebuild by specialist if rebuildable; frayed cable or sensor by VIN/position; correct lubricant/storage guidance",
+      "decision": "SPECIALIST REBUILD / COMPONENT GATE",
+      "destinations": [
+        {"label": "BMW Z8 soft-top catalog", "url": "https://www.bmwpartsdeal.com/oem-bmw-z8-convertible_top.html", "scope": "2000-2003 E52 Z8; VIN and exact hydraulic/cable/sensor component required", "role": "OEM roof-system catalog"},
+        {"label": "Top Hydraulics BMW services", "url": "https://www.tophydraulics.com/bmw/", "scope": "verify current Z8/E52 cylinder rebuild offering, core terms, and exact cylinder before shipment", "role": "conditional hydraulic rebuild service"}
+      ],
+      "evidence": [],
+      "reason": "Cylinder rebuild, cable replacement, microswitch adjustment, and mechanism lubrication are separate branches.",
+      "correction": "Do not quote rebuild/replacement prices or annual silicone-grease/storage rules without the current specialist/BMW procedure."
     }
   ]
 }

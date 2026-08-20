@@ -1,18 +1,18 @@
 {
   "schemaVersion": 1,
   "make": "BMW",
-  "generatedAt": "2026-08-20T17:42:26.864Z",
+  "generatedAt": "2026-08-20T17:46:54.234Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "9c5acba63181f1d3d714c4d0090380ab656767ee3836b4056dfe3873dadc67e0",
   "publishedIssueCount": 385,
-  "reviewedIssueCount": 355,
-  "remainingIssueCount": 30,
-  "reviewedWithDestinationCount": 352,
-  "destinationCount": 521,
-  "distinctUrlCount": 182,
+  "reviewedIssueCount": 385,
+  "remainingIssueCount": 0,
+  "reviewedWithDestinationCount": 380,
+  "destinationCount": 575,
+  "distinctUrlCount": 203,
   "scannerDestinationCount": 0,
-  "missingHowToFixCount": 3,
+  "missingHowToFixCount": 5,
   "reviews": [
     {
       "issueId": "bmw-x4-electric-water-pump-2015",
@@ -8192,6 +8192,748 @@
       "ymmt": "2023-2025 | BMW | X7",
       "title": "2023-2025 X7 Integrated Brake System Recall 26V-422",
       "howToFix": "Check the VIN at NHTSA and with an authorized BMW dealer when campaign 26V-422 VINs become searchable, and arrange the free dealer inspection and module replacement if required. If a brake warning appears or pedal effort increases, avoid abrupt braking, allow extra stopping distance, stop safely and contact BMW roadside assistance; do not order brake electronics from this card."
+    },
+    {
+      "issueId": "bmw-x7-n63-oil-consumption-2019",
+      "repairItems": "Split xDrive50i/M50i N63TU3 from M60i S68; documented consumption/leak/PCV/turbo/combustion diagnosis; valve seals only after confirmation; warranty/settlement check",
+      "decision": "MAJOR ENGINE / MODEL SPLIT",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2019-2023 X7 oil-consumption test, engine identification, warranty/TSB history",
+          "role": "manufacturer-capable diagnosis"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "N63TU3/S68 oil-source and valve-seal diagnosis",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source incorrectly groups the M60i's S68 with N63TU3 models and prescribes seals/oil before diagnosis.",
+      "correction": "Split M60i/S68, verify current oil specification by VIN, and do not advise monitoring/top-off as a substitute for diagnosing excessive consumption.",
+      "sequence": 356,
+      "ymmt": "2019-2023 | BMW | X7 | M50i, M60i, xDrive50i | N63TU3",
+      "title": "N63TU3 Oil Consumption & Valve Stem Seal Degradation (xDrive50i/M50i/M60i)",
+      "howToFix": "Replace valve stem seals - extremely labor-intensive job requiring cylinder head work ($4,900-12,000 total). Elring seals 11340039494 for OEM spec. 5150 AutoSport Viton upgraded seals ($150-200) recommended for better heat resistance. AGA Tools kit includes specialized tools required. Reference TSB MC-10149960-9999 when visiting dealer. Check eligibility for class action settlement coverage. Some owners monitor oil levels and top off rather than repair. Use quality synthetic 0W-40 BMW LL-01 spec oil and check level every 500-1,000 miles."
+    },
+    {
+      "issueId": "bmw-x7-panoramic-roof-rattle-2019",
+      "repairItems": "Reproduce/localize rattle; inspect guides, seals, cassette, fasteners, and body flex; BMW-approved lubricant/felt only where procedure specifies; warranty/updated-parts check",
+      "decision": "SERVICE / VIN / BULLETIN GATE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2019-2026 G07 X7 panoramic-roof diagnosis, bulletin and warranty check",
+          "role": "manufacturer-capable service"
+        },
+        {
+          "label": "Genuine BMW X7 sunroof catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-x7-sunroof.html",
+          "scope": "VIN-specific guides/seals/cassette only after diagnosis",
+          "role": "OEM roof catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "Felt, lubricant, guide parts, seals, and cassette replacement are different branches; updated components were not identified by exact bulletin/part.",
+      "correction": "Do not apply generic lubricant or sell a cassette from a creak alone.",
+      "sequence": 357,
+      "ymmt": "2019-2026 | BMW | X7",
+      "title": "Panoramic Sunroof Rattle and Creak",
+      "howToFix": "Apply BMW-approved felt tape or lubricant to sunroof guide rails. Replace worn guide rail bushings. In severe cases, the sunroof cassette or seal may need replacement under warranty. BMW has issued updated guide rail components for early production vehicles."
+    },
+    {
+      "issueId": "bmw-x7-sunroof-leak-2019",
+      "repairItems": "Controlled water test; SIB 54 11 19 applicability; inspect drains/connections/seals/cassette; clear drains without disconnecting/damaging tubes; electronics/moisture assessment",
+      "decision": "SIB / LEAK-SOURCE SERVICE ROUTE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2019-2023 G07 X7 SIB 54 11 19 and water-leak diagnosis",
+          "role": "manufacturer-capable service"
+        },
+        {
+          "label": "BMW X7 sunroof catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-x7-sunroof.html",
+          "scope": "VIN-specific drain/seal/cassette component only after leak test",
+          "role": "OEM roof catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "Drain blockage, disconnected tube, seal, and cassette leak require different repairs.",
+      "correction": "Do not use unregulated compressed air, which can detach drain tubes; use the BMW procedure and controlled pressure/manual clearing.",
+      "sequence": 358,
+      "ymmt": "2019-2023 | BMW | X7",
+      "title": "Panoramic Sunroof Water Leak",
+      "howToFix": "Clear clogged sunroof drain tubes ($100-300 at shop). Reference TSB SIB 54 11 19 when visiting dealer. For persistent leaks, drain tube connections or sunroof seal may need replacement ($500-1,500). If water has damaged interior electronics, repair costs can reach $3,000. PREVENTIVE: Clear sunroof drains annually, especially in areas with heavy tree debris. Run compressed air or flexible drain snake through drain tubes during oil changes. Keep sunroof track clean of debris."
+    },
+    {
+      "issueId": "bmw-x7-tire-wear-2019",
+      "repairItems": "Tire size/load/speed/run-flat/staggered setup and tread pattern; suspension/play and alignment diagnosis; VIN-approved alignment target; exact replacement tires by configuration",
+      "decision": "TIRE-CONFIGURATION / ALIGNMENT GATE",
+      "destinations": [
+        {
+          "label": "Tire Rack BMW X7 tire selector",
+          "url": "https://www.tirerack.com/tires/SelectTireSize.jsp?autoMake=BMW&autoModel=X7",
+          "scope": "select exact year/trim/wheel size/load and axle before tire choice",
+          "role": "vehicle-configured tire catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "suspension inspection and four-wheel alignment",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The row names tires without proving every X7 size/load/staggered application and suggests reducing camber outside specification.",
+      "correction": "Use VIN-approved alignment tolerances and exact load/speed rating; do not promise doubled tire life.",
+      "sequence": 359,
+      "ymmt": "2019-2023 | BMW | X7",
+      "title": "Premature Tire Wear (Especially 21\"/22\" Wheels)",
+      "howToFix": "Have alignment adjusted to reduce aggressive camber settings ($200-400). Switch to quality tires designed for heavy SUVs: Michelin Pilot Sport 4S or Continental PremiumContact 6 are recommended. If possible, avoid 22\" wheels and opt for 21\" or smaller for better tire longevity and ride comfort. Alignment adjustment can extend tire life from 15,000 to 30,000+ miles. Total cost $200-2,000 depending on tire replacement needs. Check alignment every 10,000 miles."
+    },
+    {
+      "issueId": "bmw-xm-airbag-passenger-knee-recall-2023",
+      "repairItems": "VIN recall 23V-622 check; free authorized passenger knee-airbag replacement; no DIY restraint-system work",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN check for 23V-622",
+          "role": "manufacturer recall remedy"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "independent VIN recall-status check",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "Airbag work requires VIN-selected campaign parts and trained personnel.",
+      "correction": "Do not link a clock spring, module, or airbag product.",
+      "sequence": 360,
+      "ymmt": "2023-2023 | BMW | XM",
+      "title": "2023 XM Front-Passenger Knee-Airbag Recall 23V-622",
+      "howToFix": "Check the VIN for an open 23V-622 campaign. If open, an authorized BMW dealer replaces the front-passenger knee airbag free of charge. Do not attempt airbag diagnosis or order a clock spring or airbag module from this card; supplemental-restraint work requires trained personnel and VIN-selected parts."
+    },
+    {
+      "issueId": "bmw-xm-hybrid-drivetrain-hesitation-2023",
+      "repairItems": "Fault memory and current integration/software level; official transmission/hybrid update; adaptation reset only per test plan; mechanical/high-voltage diagnosis if persistent",
+      "decision": "HYBRID SOFTWARE / DEALER SERVICE ROUTE",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2023-2024 XM hybrid drivetrain software and high-voltage diagnosis",
+          "role": "authorized hybrid service"
+        },
+        {
+          "label": "BMW Remote Software Upgrade",
+          "url": "https://www.bmwusa.com/explore/connecteddrive/remote-software-upgrade.html",
+          "scope": "only when an official update is offered to the VIN",
+          "role": "official update information"
+        }
+      ],
+      "evidence": [],
+      "reason": "This is software/high-voltage diagnosis, not a retail part; drive mode is a preference, not a repair.",
+      "correction": "Do not promise an update or adaptation reset will fix every hesitation.",
+      "sequence": 361,
+      "ymmt": "2023-2024 | BMW | XM | S68 4.4L Twin-Turbo V8 Hybrid, S68",
+      "title": "Hybrid Drivetrain Hesitation and Power Delivery Lag",
+      "howToFix": "Visit the dealer for the latest transmission and hybrid system software calibration updates. Select Sport or Sport Plus mode for more consistent power delivery. The latest software revisions significantly improve the electric-to-V8 handoff smoothness. If hesitation persists after updates, the dealer can reset the transmission adaptation values to relearn driving patterns."
+    },
+    {
+      "issueId": "bmw-xm-integrated-brake-system-recall-2023",
+      "repairItems": "VIN recall 26V-422 check; free dealer inspection/module replacement if required; safety response for warning/increased pedal effort",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "VIN check for 26V-422",
+          "role": "government recall lookup"
+        },
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "manufacturer VIN/campaign status",
+          "role": "manufacturer recall remedy"
+        }
+      ],
+      "evidence": [],
+      "reason": "Wheel-speed sensors are not the stated recall remedy and retail electronics are inappropriate.",
+      "correction": "Keep VIN and brake-warning safety instructions primary.",
+      "sequence": 362,
+      "ymmt": "2023-2024 | BMW | XM",
+      "title": "2023-2024 XM Integrated Brake System Recall 26V-422",
+      "howToFix": "Check the VIN at NHTSA and with an authorized BMW dealer when campaign 26V-422 VINs become searchable, and arrange the free dealer inspection and module replacement if required. If a brake warning appears or pedal effort increases, avoid abrupt braking, allow extra stopping distance, stop safely and contact BMW roadside assistance; wheel-speed sensors are not the recall remedy."
+    },
+    {
+      "issueId": "bmw-xm-suspension-ride-quality-2023",
+      "repairItems": "Cold tire-pressure/load check; verify wheel/tire size and damage; alignment/suspension fault diagnosis; Comfort mode; alternate tire only with exact approved size/load/speed rating",
+      "decision": "CONDITION / CONFIGURATION GUIDANCE; NO SUSPENSION PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2023-2024 XM suspension fault, software, alignment, and approved tire configuration",
+          "role": "manufacturer-capable service"
+        },
+        {
+          "label": "Tire Rack BMW XM tire selector",
+          "url": "https://www.tirerack.com/tires/SelectTireSize.jsp?autoMake=BMW&autoModel=XM",
+          "scope": "exact year/wheel/load configuration only",
+          "role": "configured tire catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "Harshness may be normal tuning, pressure, tire, alignment, or a fault; no universal spring/damper product was identified.",
+      "correction": "Do not alter tire diameter/load rating or claim no aftermarket solution exists indefinitely.",
+      "sequence": 363,
+      "ymmt": "2023-2024 | BMW | XM | S68 4.4L Twin-Turbo V8 Hybrid",
+      "title": "Harsh Ride Quality and Suspension Stiffness",
+      "howToFix": "Check tire pressures regularly - overinflated tires significantly worsen the harsh ride. Some owners report improved comfort by switching to a tire with a taller sidewall profile (if available for the XM's wheel size). Use Comfort mode for daily driving. Unfortunately, no aftermarket spring or damper solution currently exists to significantly improve the ride without compromising the handling needed for the XM's weight."
+    },
+    {
+      "issueId": "bmw-z3-convertible-top-rear-window-cracking-clouding-bead-separatio",
+      "repairItems": "Confirm zipper-style original/replacement top; exact rear-window panel and zipper/seal kit; fabric/top replacement only if fabric/zipper/cassette condition requires",
+      "decision": "TOP / ZIPPER CONFIGURATION GATE",
+      "destinations": [
+        {
+          "label": "Genuine BMW Z3 convertible-top catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-z3-convertible_top.html",
+          "scope": "1996-2002 Z3; VIN and installed top/window configuration required",
+          "role": "OEM roof/window catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "top/window condition and installation assessment",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "A zipper replacement is viable only if the installed top/zipper is compatible and sound.",
+      "correction": "Do not promise a 1-1.5-hour DIY or panel-only repair for aftermarket tops or damaged zipper tracks.",
+      "sequence": 364,
+      "ymmt": "1996-2002 | BMW | Z3",
+      "title": "Convertible Top Rear Window Cracking, Clouding, and Bead Separation",
+      "howToFix": "Replace the rear window panel only — BMW used a zipper system so the clouded/cracked window unzips and a new window zips/tapes in without disturbing the fabric top. Re-gluing separated bead trim rarely holds, so window replacement is the durable fix. Job is a DIY-feasible 1-1.5 hours; replace the whole top only if the fabric is also degraded."
+    },
+    {
+      "issueId": "bmw-z3-cooling-system-failure-1996",
+      "repairItems": "",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "The source has no How to Fix instructions, so there is no repair item to map responsibly.",
+      "correction": "Write and approve an engine-specific diagnostic/repair procedure before commerce research.",
+      "sequence": 365,
+      "ymmt": "1996-2002 | BMW | Z3",
+      "title": "Cooling System Component Failures",
+      "howToFix": ""
+    },
+    {
+      "issueId": "bmw-z3-cracked-exhaust-manifold-1-9l-4-cylinder",
+      "repairItems": "Confirm M44 versus non-US M43 and crack location; smoke/cold test; exact manifold/header with emissions legality; gasket and one-time hardware",
+      "decision": "ENGINE / MARKET / EMISSIONS GATE",
+      "destinations": [
+        {
+          "label": "Genuine BMW Z3 exhaust-manifold catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-z3-exhaust_manifold.html",
+          "scope": "1996-1999 US Z3 1.9L M44 where VIN-matched; M43 is non-US/different",
+          "role": "OEM manifold catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "crack diagnosis and emissions-compliant repair",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "M44/M43 markets and emissions equipment differ, and a used manifold or tubular header needs exact fitment/legal review.",
+      "correction": "Narrow US fitment to M44 years and do not approve a header without catalyst/emissions compatibility.",
+      "sequence": 366,
+      "ymmt": "1996-2002 | BMW | Z3 | 1.9, 1.9i, Z3 1.9 | 1.9L M44 4-cylinder, 1.9L M43TU 4-cylinder",
+      "title": "Cracked Exhaust Manifold on 1.9L 4-Cylinder (M44/M43)",
+      "howToFix": "Inspect the manifold for hairline cracks (a cold-engine listen or smoke test confirms the leak). Replace the cracked manifold with a used OE unit or an aftermarket stainless tubular header, and renew the manifold gasket and hardware. Allow roughly 3-4 hours labor."
+    },
+    {
+      "issueId": "bmw-z3-differential-mount-ear-trunk-floor-pan-tearing",
+      "repairItems": "Full top/bottom structural inspection; crack/spot-weld assessment; chassis-specialist weld/reinforcement design; subframe/diff bushings only as part of engineered repair; alignment",
+      "decision": "STRUCTURAL SPECIALIST ROUTE; KIT HELD",
+      "destinations": [
+        {
+          "label": "Randy Forbes Z3 reinforcement information",
+          "url": "https://www.spcarsplus.com/",
+          "scope": "Z3 structural reinforcement reference; confirm current kit/service availability and exact chassis",
+          "role": "specialist reinforcement source"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "Z3 chassis/body structural inspection and welding referral",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Repair scope depends on structural damage; polyurethane alone does not repair or necessarily reduce every stress mode.",
+      "correction": "Do not install bushings as a substitute for welding/reinforcement or approve a plate kit without current exact contents.",
+      "sequence": 367,
+      "ymmt": "1996-2002 | BMW | Z3",
+      "title": "Differential Mount Ear and Trunk Floor Pan Tearing",
+      "howToFix": "Inspect the trunk floor around the differential mount and rear subframe pickup points for cracks, torn metal, and broken spot welds. Repair requires welding and a reinforcement/re-fabrication plate kit to tie the diff mount/subframe back into the floor. Switching the diff carrier bushings to polyurethane reduces carrier movement and the stress that causes the tearing. Catching it early greatly limits the repair scope."
+    },
+    {
+      "issueId": "bmw-z3-door-window-regulator-clip-mounting-tab-failure",
+      "repairItems": "Door/side diagnosis; exact plastic clips if mechanism healthy; side-specific regulator if cable/mechanism worn; weld/reinforce torn door anchor; channel lubrication",
+      "decision": "SIDE / FAILURE-BRANCH CATALOG",
+      "destinations": [
+        {
+          "label": "BMW Z3 window-regulator catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/Z3/Window-Regulator/",
+          "scope": "1996-2002 Z3; select left/right and clip-versus-regulator branch",
+          "role": "vehicle-specific regulator catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "torn mounting-tab welding and window adjustment",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Clips, regulator, and torn door anchor are three different repairs.",
+      "correction": "Do not sell a regulator when only a clip failed or fit new parts to an unrepaired torn anchor.",
+      "sequence": 368,
+      "ymmt": "1996-2002 | BMW | Z3",
+      "title": "Door Window Regulator Clip / Mounting Tab Failure",
+      "howToFix": "Replace the broken plastic regulator clips, or replace the regulator assembly if the cable or mechanism is also worn. If the welded mounting tab/anchor has torn from the door frame, it must be re-welded or reinforced before fitting a new regulator. Lubricate the window channels to reduce drag on the new parts."
+    },
+    {
+      "issueId": "bmw-z3-fuel-level-sender-failure-causing-erratic-dead-fuel-gauge",
+      "repairItems": "Wiring/ground and tank-vent diagnosis; sender plate/brush inspection; clean only if serviceable; VIN/tank-side-specific sender or complete carrier if required",
+      "decision": "DIAGNOSIS / TANK-CONFIGURATION GATE",
+      "destinations": [
+        {
+          "label": "BMW Z3 fuel-sender catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-z3-fuel_level_sensor.html",
+          "scope": "1996-2002 Z3; VIN, tank configuration, and sender/carrier branch required",
+          "role": "OEM sender catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "fuel-level circuit and tank-vent diagnosis",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Gauge faults can be electrical, sender wear, carrier, or tank-vacuum deformation.",
+      "correction": "Do not condemn the sender before wiring/ground/vent checks or clean a cracked/worn resistor plate.",
+      "sequence": 369,
+      "ymmt": "1996-2002 | BMW | Z3",
+      "title": "Fuel Level Sender Failure Causing Erratic or Dead Fuel Gauge",
+      "howToFix": "Remove the access panel behind the seats and inspect the sender. A dirty or lightly worn ceramic/resistor plate can sometimes be cleaned, but a cracked plate or worn brushes requires replacing the sender unit (or the complete fuel-pump/sender carrier assembly). Also check the tank vent valve, as tank vacuum can deform the float arm. Confirm wiring/ground integrity before condemning the sender."
+    },
+    {
+      "issueId": "bmw-z3-hvac-blower-final-stage-resistor-failure",
+      "repairItems": "A/C versus non-A/C configuration; blower-speed/resistor circuit diagnosis; exact resistor; blower motor and water/cowl inspection if unresolved",
+      "decision": "HVAC-CONFIGURATION GATE",
+      "destinations": [
+        {
+          "label": "BMW Z3 blower-resistor catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/Z3/Blower-Motor-Resistor/",
+          "scope": "1996-2002 Z3; confirm A/C equipment, VIN, and resistor location/part",
+          "role": "vehicle-specific resistor catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "blower circuit/water-intrusion diagnosis",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source identifies different locations/configurations and a blower-motor fallback.",
+      "correction": "Do not assume max-only operation proves the resistor without circuit testing.",
+      "sequence": 370,
+      "ymmt": "1996-2002 | BMW | Z3",
+      "title": "HVAC Blower Final Stage Resistor Failure (Fan Only Works on Max)",
+      "howToFix": "Replace the blower final stage resistor (A/C cars: part under the scuttle/cowl; non-A/C cars: behind the passenger footwell panel). If a new resistor does not restore all speeds, test the blower motor itself, which may also be worn. Inspect for corrosion/water intrusion at the cowl on A/C cars."
+    },
+    {
+      "issueId": "bmw-z3-rear-subframe-crack-1996",
+      "repairItems": "Top/bottom structural inspection including hidden seams; chassis-specialist fabrication/welding; exact reinforcement strategy; bushings/fasteners by condition; alignment",
+      "decision": "STRUCTURAL SPECIALIST ROUTE",
+      "destinations": [
+        {
+          "label": "Randy Forbes Z3 reinforcement information",
+          "url": "https://www.spcarsplus.com/",
+          "scope": "Z3 dual-ear/trunk-floor reinforcement reference; verify current kit/service and exact damage",
+          "role": "specialist reinforcement source"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "structural inspection and qualified body/chassis referral",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "Advanced unibody damage requires individualized fabrication; a catalog kit alone is not the repair.",
+      "correction": "Consolidate with the differential-mount/trunk-floor duplicate and avoid fixed cost promises.",
+      "sequence": 371,
+      "ymmt": "1996-2002 | BMW | Z3",
+      "title": "Rear Subframe Mounting Point Cracking",
+      "howToFix": "Inspect the trunk floor, differential mount area, and all rear subframe mounting points from above and below the car for spot-weld separation, torn sheet metal, and cracked seams; a dye penetrant test or removing trunk trim/seam sealer may be needed to reveal early damage. If cracking is present, the proper repair is to drop the rear axle carrier/subframe, weld and reinforce the damaged unibody mounting points and trunk floor with a reinforcement kit (commonly Randy Forbes-style dual-ear/differential mount reinforcement or equivalent), then reinstall with new subframe bushings, differential mount bushings, and perform a 4-wheel alignment. Minor early cracks may be repairable before major deformation, but advanced damage often requires fabrication and extensive welding by a chassis/body specialist; typical cost ranges from about $2,000-$3,500 for early reinforcement repairs and can exceed $4,000-$6,000 if the floor is torn or multiple mounting points are damaged."
+    },
+    {
+      "issueId": "bmw-z3-rear-subframe-cracking-1996",
+      "repairItems": "",
+      "decision": "SOURCE HOW-TO-FIX REQUIRED / NO LINK",
+      "destinations": [],
+      "evidence": [],
+      "reason": "This duplicate source row has no How to Fix instructions.",
+      "correction": "Merge with the fully described Z3 trunk-floor/subframe issue or add an approved structural repair procedure before links.",
+      "sequence": 372,
+      "ymmt": "1996-2002 | BMW | Z3 | M52, M54",
+      "title": "Rear Subframe Mounting Point Cracks",
+      "howToFix": ""
+    },
+    {
+      "issueId": "bmw-z3-valve-cover-gasket-oil-leak",
+      "repairItems": "Confirm M52/S52/M52TU/M54 and leak source; engine-specific cover gasket, plug-well seals/grommets/bolt seals; cover inspection; oil-damaged boots/coils by condition; torque procedure",
+      "decision": "ENGINE / COVER-CONFIGURATION GATE",
+      "destinations": [
+        {
+          "label": "BMW Z3 valve-cover gasket catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/Z3/Valve-Cover-Gasket/",
+          "scope": "1997-2002 six-cylinder Z3; select exact engine/VIN and kit contents",
+          "role": "engine-specific gasket catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The years include multiple six-cylinder engines and gasket/cover details.",
+      "correction": "Do not attach one M54 kit to M52/S52/M52TU; replace boots/coils only if oil-damaged/test-failed.",
+      "sequence": 373,
+      "ymmt": "1997-2002 | BMW | Z3 | 2.3, 2.5i, 2.8, 3.0i | M52 2.8, M52TU 2.5/2.8, M54 2.5/3.0",
+      "title": "Valve Cover Gasket Oil Leak (M52/M54 6-Cylinder)",
+      "howToFix": "Replace the valve cover gasket, the spark-plug-well/grommet seals, and the cover bolt seals. On M54 engines also clean oil from the plug wells and replace any oil-contaminated coil boots/coils. Use the correct torque sequence to avoid re-leaking. Inspect the cover for warping or cracks while it is off."
+    },
+    {
+      "issueId": "bmw-z3-vanos-seals-1999",
+      "repairItems": "Split S52 single VANOS from M52TU/M54 double VANOS; vacuum/oil/timing diagnosis; engine-specific seals/anti-rattle components; gasket/washers by access; timing only when procedure requires",
+      "decision": "ENGINE / VANOS-TYPE SPLIT",
+      "destinations": [
+        {
+          "label": "Beisan VANOS product catalog",
+          "url": "https://beisansystems.com/shop/",
+          "scope": "select M50tu/M52 single or M52tu/M54 double VANOS product by exact Z3 engine",
+          "role": "engine-specific seal catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "VANOS/vacuum/timing diagnosis and installation",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "S52 and M52TU/M54 use different VANOS types and seal kits; the source incorrectly treats them as one repair.",
+      "correction": "Split single/double VANOS, do not infer a scanner product from DTCs, and verify whether cam re-timing is actually disturbed.",
+      "sequence": 374,
+      "ymmt": "1999-2002 | BMW | Z3 | M52, M54, S52",
+      "title": "VANOS Seal Failure (M52/M54/S52)",
+      "howToFix": "Confirm the fault by checking for cold-start VANOS rattle, rough idle, hesitation, and scanning for cam timing or mixture-related fault codes; on M52TU/M54/S52 engines, inspect VANOS operation and rule out vacuum leaks before disassembly. Repair typically involves removing the valve cover and VANOS unit, replacing the internal piston seals/O-rings with updated Viton/Teflon seals, renewing the valve cover gasket and VANOS oil line sealing washers, and then re-timing the cams to BMW specifications if required. If the unit still rattles after resealing, the VANOS bearing/anti-rattle components or the complete VANOS assembly may need replacement. Typical cost is about $60-$150 in seals/gaskets for DIY repair, $300-$700 for an independent shop reseal, or $800-$1,500+ if a rebuilt/replacement VANOS unit is installed."
+    },
+    {
+      "issueId": "bmw-z4-b58-coolant-tank-2019",
+      "repairItems": "Pressure-test and identify coolant circuit; VIN-specific tank; updated/superseded OEM part only if cataloged; aluminum tank only with proven G29 fitment/interfaces; cap/hoses by condition; correct coolant/bleed",
+      "decision": "VIN / CIRCUIT GATE; ALUMINUM CLAIM HELD",
+      "destinations": [
+        {
+          "label": "BMW Z4 expansion-tank catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/Z4/Expansion-Tank/",
+          "scope": "2019-2026 G29 Z4; select B48/B58, VIN, and coolant circuit",
+          "role": "vehicle-specific tank catalog"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source does not identify an exact updated or aluminum tank and G29 has multiple cooling circuits.",
+      "correction": "Do not promise updated plastic or approve aluminum without exact cap/sensor/hose/pressure fitment.",
+      "sequence": 375,
+      "ymmt": "2019-2026 | BMW | Z4 | B58",
+      "title": "B58 Coolant Expansion Tank Cracking",
+      "howToFix": "Replace the coolant expansion tank with an updated BMW part or aftermarket aluminum tank. Inspect the tank and cap regularly for signs of cracking, discoloration, or seepage. When replacing, also replace the cap and check all coolant hoses for brittleness. Flush and refill with BMW-approved coolant."
+    },
+    {
+      "issueId": "bmw-z4-e85-convertible-top-hydraulic-2003",
+      "repairItems": "Roof fault/leak/water-intrusion diagnosis; pump motor 54347193448 only if confirmed; correct top fluid 54340394395; drains and mounting inspection; relocation/rebuild as specialist modification",
+      "decision": "EXACT CONDITIONAL E85 PUMP / FLUID",
+      "destinations": [
+        {
+          "label": "Genuine BMW E85 roof pump 54347193448",
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-hydraulic_unit-54347193448.html",
+          "scope": "2003-2008 E85 Z4 where VIN-matched; supersedes 54347119633",
+          "role": "conditional hydraulic unit/pump"
+        },
+        {
+          "label": "BMW roof hydraulic fluid 54340394395",
+          "url": "https://www.rmeuropean.com/Products/54340394395-MFG36-V11915.aspx",
+          "scope": "verify E85 roof-system application and service procedure",
+          "role": "specified hydraulic fluid"
+        }
+      ],
+      "evidence": [],
+      "reason": "The OEM number/supersession is exact, but water, motor, pump, cylinders, and microswitches must be distinguished.",
+      "correction": "Do not recommend unverified Amazon motors or a relocation/rebuild without specialist quality and water-management review.",
+      "sequence": 376,
+      "ymmt": "2003-2008 | BMW | Z4",
+      "title": "Convertible Top Hydraulic Pump Motor Failure - E85 Z4",
+      "howToFix": "Replace hydraulic pump motor assembly (BMW 54347193448 / supersedes 54347119633). OEM Genuine BMW pump: $800-$1,200. Aftermarket alternatives available on Amazon for $150-$300 but quality varies significantly. Dealer labor is $1,500-$2,500+ as BMW procedure requires full top removal. ZRoadster.org members have documented a motor relocation to the boot/trunk area which allows much easier future access. Hydraulic fluid: use Aral Vitamol ZHM or BMW 54340394395 hydraulic oil. PREVENTION: Clean drain holes annually, ensure rubber bungs are properly seated, and check for water intrusion in pump area at every service. Some owners have had success with pump motor rebuilds from roofmotors.co.uk ($300-$500) but quality of rebuilds varies."
+    },
+    {
+      "issueId": "bmw-z4-e85-window-regulator-2003",
+      "repairItems": "Left/right diagnosis; repair cables/rollers only if frame/gears sound; complete regulator 51337198909 left or 51337198910 right; window adjustment",
+      "decision": "EXACT SIDE-SPECIFIC OEM REGULATORS",
+      "destinations": [
+        {
+          "label": "Genuine BMW left regulator 51337198909",
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-window_lifter_without_motor_left-51337198909.html",
+          "scope": "2003-2008 E85 Z4 left/driver side where VIN-matched",
+          "role": "left regulator"
+        },
+        {
+          "label": "Genuine BMW right regulator 51337198910",
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-window_lifter_without_motor_right-51337198910.html",
+          "scope": "2003-2008 E85 Z4 right/passenger side where VIN-matched",
+          "role": "right regulator"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source provides distinct left/right OEM numbers and separates repair-kit from complete-regulator branches.",
+      "correction": "Do not approve BWR974 by marketplace title alone or call cable rethreading universally DIY-friendly.",
+      "sequence": 377,
+      "ymmt": "2003-2008 | BMW | Z4",
+      "title": "Power Window Regulator Failure - E85 Z4",
+      "howToFix": "Option 1 (Budget): Window regulator repair kit - replacement cables and rollers for ~$18-$25 from eBay/Amazon (BWR974 for left/driver side). Requires removing door panel and threading new cables through existing regulator frame. DIY-friendly with Z4-forum.com guides. Option 2 (Recommended): Full window regulator replacement. Driver side: BMW 51337198909 ($180-$280 OEM, $80-$150 aftermarket). Passenger side: BMW 51337198910 ($180-$280 OEM, $80-$150 aftermarket). Labor: $200-$400 at independent shop, $500-$700+ at dealer. DIY: 2-3 hours with door panel removal guide from Pelican Parts. ZRoadster.org recommends full replacement over repair kit for long-term reliability."
+    },
+    {
+      "issueId": "bmw-z4-electric-steering-rack-2003",
+      "repairItems": "VIN recall 12V-302 check; free steering-assistance module replacement; roadside safety response for warning/assist loss",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN check for 12V-302",
+          "role": "manufacturer recall remedy"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "independent VIN recall-status check",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The recall remedy is a steering-assistance module, not a steering rack.",
+      "correction": "Correct the issue ID's 2003 mismatch: the row is 2012 Z4.",
+      "sequence": 378,
+      "ymmt": "2012-2012 | BMW | Z4",
+      "title": "2012 Z4 Electric Power-Steering Recall 12V-302",
+      "howToFix": "Check the VIN for an open 12V-302 campaign. If open, an authorized BMW dealer replaces the steering-assistance module free of charge. If the steering warning and audible alert occur, maintain control, reduce speed, stop safely and arrange dealer or roadside assistance; do not replace a steering rack from this card."
+    },
+    {
+      "issueId": "bmw-z4-electric-water-pump-2006",
+      "repairItems": "VIN recall 24V-608 check; free pump/connector inspection, conditional replacement and protective shield; fire-safety response for smoke",
+      "decision": "RECALL ROUTES ONLY",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "VIN check for 24V-608",
+          "role": "manufacturer recall remedy"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "independent VIN recall-status check",
+          "role": "government recall lookup"
+        }
+      ],
+      "evidence": [],
+      "reason": "The campaign decides whether pump/connector replacement is required and supplies the shield free.",
+      "correction": "Correct the issue ID's 2006 mismatch and do not order a pump from this recall card.",
+      "sequence": 379,
+      "ymmt": "2012-2016 | BMW | Z4 | N20",
+      "title": "2012-2016 Z4 sDrive28i Water-Pump Connector Recall 24V-608",
+      "howToFix": "Check the VIN for an open 24V-608 campaign. If open, an authorized BMW dealer inspects the water pump and connector, replaces them if necessary, and installs the protective shield free of charge. If smoke appears from the engine compartment, stop safely, switch off the vehicle, have occupants exit, move away from traffic and call emergency or roadside assistance; do not order a pump from this card."
+    },
+    {
+      "issueId": "bmw-z4-g29-b58-water-pump-2019",
+      "repairItems": "Split B48/B58 and main/auxiliary cooling circuits; fault/pressure diagnosis; identify mechanical versus electric pump; thermostat and seals/bolts only by exact procedure; outlet adapter inspection",
+      "decision": "MAJOR PUMP-TYPE / ENGINE CORRECTION",
+      "destinations": [
+        {
+          "label": "Genuine BMW G29 Z4 water-pump catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-z4-water_pump.html",
+          "scope": "2019-2025 G29; VIN, B48/B58 engine, and coolant circuit required",
+          "role": "OEM pump/thermostat catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "cooling-system diagnosis and bleed",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "B48/B58 modular engines have multiple pumps/circuits and the source's universal 'electric pump and thermostat together' statement is not reliable.",
+      "correction": "Remove fixed 60k replacement, unverified part numbers/Mishimoto claim, and mandatory paired replacement until exact VIN diagram/procedure is established.",
+      "sequence": 380,
+      "ymmt": "2019-2025 | BMW | Z4 | M40i, sDrive35i, sDrive35is | B48, B58",
+      "title": "B48/B58 Electric Water Pump & Thermostat Failure - G29 Z4",
+      "howToFix": "Preventative replacement recommended at 60,000 miles. Always replace water pump and thermostat together - they share labor overlap and frequently fail concurrently. B48 sDrive30i: Water pump BMW 11518632586 ($300-$450), Thermostat BMW 11538685978 ($100-$150). B58 M40i: Water pump BMW 11518650986 ($350-$500), Thermostat BMW 11538685978 ($100-$150). Mishimoto offers performance water pump alternatives for B58 with improved impeller design. Replace 3 O-rings between thermostat and pump housing, plus 2 O-rings on coolant tube to head. Must replace water pump mounting bolts (torque-to-yield). Labor: 3-4 hours. FCP Euro lifetime warranty kits available. Also inspect plastic cylinder head coolant outlet adapter - known to shear off causing massive coolant leak."
+    },
+    {
+      "issueId": "bmw-z4-n54-hpfp-2009",
+      "repairItems": "BMW fuel-pressure and low-side diagnosis; VIN/current supersession check; latest compatible HPFP only after confirmed failure; low-pressure sensor only if test-failed; expired historical coverage disclosed",
+      "decision": "DIAGNOSIS / CURRENT-SUPERSESSION GATE",
+      "destinations": [
+        {
+          "label": "Genuine BMW Z4 high-pressure pump catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-z4-fuel_pump.html",
+          "scope": "2009-2011 E89 sDrive35i/35is N54; VIN and current supersession required",
+          "role": "OEM HPFP catalog"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "fuel-pressure diagnosis and historical coverage/VIN review",
+          "role": "BMW-qualified service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The claimed 'latest' number and customer-care coverage may have been superseded/expired, and the low-pressure sensor is not automatic.",
+      "correction": "Do not call HPFP replacement straightforward or definitive without pressure diagnosis/current ETK.",
+      "sequence": 381,
+      "ymmt": "2009-2011 | BMW | Z4 | M40i, sDrive35i, sDrive35is | N54",
+      "title": "N54 High Pressure Fuel Pump (HPFP) Failure - E89 Z4 sDrive35i/35is",
+      "howToFix": "Replace HPFP with latest revision Genuine BMW unit. The pump went through multiple revisions - ONLY install the latest version. Part number evolution: Original -> 13517592881 (Index 10, TSB fix) -> 13517616170 (latest revision, most reliable). Genuine BMW 13517616170 is the definitive fix ($350-$550 for pump). Replacement is straightforward DIY (1-2 hours) with basic tools. Also available as complete kit from FCP Euro with lifetime warranty. BMW extended warranty coverage to 10 years/120,000 miles under customer care package for original owners - check VIN eligibility. Replace low-pressure fuel sensor at same time (13537537319) as it may have been damaged by pressure fluctuations ($35-$55)."
+    },
+    {
+      "issueId": "bmw-z4-n54-wastegate-rattle-2009",
+      "repairItems": "VIN/engine/production/DME/boost-control/noise-source diagnosis; historical coverage check; exact turbo/actuator/wastegate only after confirmation",
+      "decision": "DIAGNOSIS ROUTE; NO RETAIL PART",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2009-2010 E89 sDrive35i N54 diagnostic and coverage-history check",
+          "role": "BMW-qualified service"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "N54 boost/wastegate diagnosis",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The corrected source explicitly rejects turbo/actuator/wastegate purchase without diagnosis.",
+      "correction": "Preserve the expired-coverage caveat and do not attach marketplace repair kits.",
+      "sequence": 382,
+      "ymmt": "2009-2010 | BMW | Z4 | N54",
+      "title": "2009-2010 Z4 sDrive35i N54 Wastegate Diagnosis",
+      "howToFix": "Confirm the VIN, engine, production date, DME faults, boost-control data and noise source using current BMW diagnostic information. Check VIN-specific coverage history with BMW, recognizing that the bulletin's time/mileage window may have expired. Do not replace a turbocharger, actuator or wastegate from this card without the required diagnosis."
+    },
+    {
+      "issueId": "bmw-z4-soft-top-hydraulic-2003",
+      "repairItems": "E89 retractable-hardtop fault and leak-location diagnosis; exact left/right cylinder, hose, pump, microswitch or sensor; BMW-specified hydraulic fluid and full bleed",
+      "decision": "COMPONENT / SIDE / FLUID-SPEC GATE",
+      "destinations": [
+        {
+          "label": "Genuine BMW E89 folding-top hydraulics catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-z4-convertible_top_motor.html",
+          "scope": "2009-2016 E89 Z4; VIN and diagnosed pump/cylinder/hose/sensor required",
+          "role": "OEM roof-system catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "retractable-hardtop hydraulic/control diagnosis and bleed",
+          "role": "specialist service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The mechanism has many hydraulic/control branches, and CHF 11S was not verified as the correct roof fluid for every E89 procedure.",
+      "correction": "Correct the issue ID's 2003 mismatch and verify BMW fluid part/specification rather than assuming power-steering hydraulic fluid.",
+      "sequence": 383,
+      "ymmt": "2009-2016 | BMW | Z4",
+      "title": "Retractable Hard Top Hydraulic Mechanism Failure",
+      "howToFix": "Diagnose the leak location and replace the failed component. Common failure points are the main hydraulic cylinders (left and right), the hydraulic pump motor, and the flexible hoses. The hydraulic fluid should be flushed and replaced with BMW-approved CHF 11S fluid. A full system bleed is required after any repair."
+    },
+    {
+      "issueId": "bmw-z4-vanos-solenoid-2003",
+      "repairItems": "Split M54/N52/N54/N20 and VANOS architecture; BMW-capable oil-pressure/wiring/timing diagnosis; exact intake/exhaust/engine solenoid or complete VANOS component; seals by procedure",
+      "decision": "MAJOR ENGINE / VANOS-ARCHITECTURE SPLIT",
+      "destinations": [
+        {
+          "label": "BMW Z4 VANOS-solenoid catalog",
+          "url": "https://www.fcpeuro.com/BMW-parts/Z4/VANOS-Solenoid/",
+          "scope": "2003-2016 E85/E89; select exact engine, VIN, position, and diagnosed component",
+          "role": "engine-specific VANOS catalog"
+        },
+        {
+          "label": "BMW specialist locator",
+          "url": "https://www.bimmershops.com/",
+          "scope": "BMW-capable VANOS/oil/timing diagnosis",
+          "role": "service route"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source assigns two solenoids/part numbers across engines with different VANOS designs and automatically replaces all units.",
+      "correction": "M54 is not accurately represented by two external solenoids; split every engine, remove all-at-once and cleaning/flush claims, and verify exact position/number.",
+      "sequence": 384,
+      "ymmt": "2003-2016 | BMW | Z4 | 2.5i, 3.0i, 3.0si, M40i, sDrive28i, sDrive30i, sDrive35i, sDrive35is | M54, N52, N54, N20",
+      "title": "VANOS Solenoid & System Failure - E85/E89 Z4 (All Engines)",
+      "howToFix": "Replace VANOS solenoids - inexpensive and straightforward repair. M54 (E85 2003-2005): 2 solenoids required, BMW 11361707323 ($35-$65 each). N52 (E85 2006-2008 / E89 2009-2011 28i): 2 solenoids, BMW 11367585425 ($40-$70 each). N54 (E89 35i/35is): 2 solenoids, BMW 11367585425 ($40-$70 each). N20 (E89 sDrive28i 2012-2016): 2 solenoids, BMW 11367585425 ($40-$70 each). Labor: under 1 hour for experienced mechanic, 2-3 hours DIY. Replace all solenoids at once even if only one has failed - the others are same age and will fail soon. Also replace VANOS solenoid O-rings and sealing plates during service. Clean VANOS system with Beisan Systems VANOS cleaning procedure for best results."
+    },
+    {
+      "issueId": "bmw-z8-soft-top-mechanism-2000",
+      "repairItems": "Leak/pressure/cable/latch/microswitch diagnosis; exact cylinder rebuild by specialist if rebuildable; frayed cable or sensor by VIN/position; correct lubricant/storage guidance",
+      "decision": "SPECIALIST REBUILD / COMPONENT GATE",
+      "destinations": [
+        {
+          "label": "BMW Z8 soft-top catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-z8-convertible_top.html",
+          "scope": "2000-2003 E52 Z8; VIN and exact hydraulic/cable/sensor component required",
+          "role": "OEM roof-system catalog"
+        },
+        {
+          "label": "Top Hydraulics BMW services",
+          "url": "https://www.tophydraulics.com/bmw/",
+          "scope": "verify current Z8/E52 cylinder rebuild offering, core terms, and exact cylinder before shipment",
+          "role": "conditional hydraulic rebuild service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Cylinder rebuild, cable replacement, microswitch adjustment, and mechanism lubrication are separate branches.",
+      "correction": "Do not quote rebuild/replacement prices or annual silicone-grease/storage rules without the current specialist/BMW procedure.",
+      "sequence": 385,
+      "ymmt": "2000-2003 | BMW | Z8",
+      "title": "Power Soft Top Hydraulic System and Cable Failure",
+      "howToFix": "Rebuild the hydraulic cylinders with new seals rather than replacing ($200 vs $2,000+). Inspect and replace frayed cables. Adjust or replace the microswitch sensors at the windshield header latch. Lubricate the top mechanism pivot points with silicone grease annually. Store the car with the top up to reduce stress on the hydraulic system."
     }
   ]
 }

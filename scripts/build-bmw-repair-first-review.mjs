@@ -99,9 +99,11 @@ widths.forEach((w,i)=>review.getRangeByIndexes(0,i,reviewData.length+1,1).format
 const qHeaders = ["#","Issue ID","YMMT","Title","Full How to Fix","Existing claim count","Queue status"];
 const qRows = queue.map((r,i)=>[i+1,r.id,[`${Math.min(...r.years)}-${Math.max(...r.years)}`,r.make,r.model,(r.trims||[]).join(", "),(r.engines||[]).join(", ")].filter(Boolean).join(" | "),r.title,r.solution,(r.claims||[]).length,"PENDING REPAIR-FIRST REVIEW"]);
 remaining.getRange("A1:G1").values=[qHeaders];
-remaining.getRange(`A2:G${qRows.length+1}`).values=qRows;
 remaining.getRange("A1:G1").format={fill:navy,font:{bold:true,color:white},wrapText:true,rowHeight:30};
-remaining.getRange(`A2:G${qRows.length+1}`).format={wrapText:true,verticalAlignment:"top"};
+if (qRows.length) {
+  remaining.getRange(`A2:G${qRows.length+1}`).values=qRows;
+  remaining.getRange(`A2:G${qRows.length+1}`).format={wrapText:true,verticalAlignment:"top"};
+}
 remaining.freezePanes.freezeRows(1);
 remaining.getRange(`A1:G${qRows.length+1}`).format.autofitRows();
 [5,38,40,38,78,16,30].forEach((w,i)=>remaining.getRangeByIndexes(0,i,qRows.length+1,1).format.columnWidth=w);
