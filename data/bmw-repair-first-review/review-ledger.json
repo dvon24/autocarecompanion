@@ -1,16 +1,16 @@
 {
   "schemaVersion": 1,
   "make": "BMW",
-  "generatedAt": "2026-08-20T17:12:59.549Z",
+  "generatedAt": "2026-08-20T17:17:06.392Z",
   "reviewedAt": "2026-08-20",
   "deploymentStatus": "REVIEW ONLY — NOT DEPLOYED",
   "sourceSnapshotHash": "9c5acba63181f1d3d714c4d0090380ab656767ee3836b4056dfe3873dadc67e0",
   "publishedIssueCount": 385,
-  "reviewedIssueCount": 175,
-  "remainingIssueCount": 210,
-  "reviewedWithDestinationCount": 172,
-  "destinationCount": 248,
-  "distinctUrlCount": 73,
+  "reviewedIssueCount": 200,
+  "remainingIssueCount": 185,
+  "reviewedWithDestinationCount": 197,
+  "destinationCount": 279,
+  "distinctUrlCount": 84,
   "scannerDestinationCount": 0,
   "missingHowToFixCount": 3,
   "reviews": [
@@ -4020,6 +4020,556 @@
       "ymmt": "1995-1999 | BMW | M3 | Coupe, Sedan, Convertible | S50B30US 3.0L inline-6, S52B32US 3.2L inline-6",
       "title": "Elevated oil consumption via crankcase ventilation (CCV) and rings",
       "howToFix": "Replace the CCV/oil-separator valve and its hoses first, as it is a frequent and relatively inexpensive culprit (get the cold-weather CCV variant in cold climates). Use a BMW-approved thicker synthetic (5W-40 such as Mobil 1 European, Liqui-Moly, or Pentosin). Persistent high consumption after CCV service points to worn rings/valve seals requiring more involved engine work. Regular level checks are essential."
+    },
+    {
+      "issueId": "bmw-m3-f80-charge-pipe-2015",
+      "repairItems": "Confirmed cracked S55 charge pipes; aluminum hot/cold-side replacement; inspect seals/couplers",
+      "decision": "EXACT S55 PART APPROVAL",
+      "destinations": [
+        {
+          "label": "VRSF S55 charge-pipe kit 10801050",
+          "url": "https://www.ecstuning.com/b-vrsf-parts/3",
+          "scope": "2015-2018 F80 M3 S55; verify listing 10801050 and selected options",
+          "role": "aluminum charge-pipe kit"
+        }
+      ],
+      "evidence": [
+        "https://www.amsperformance.com/wp-content/uploads/2022/11/AMS-Performance-BMW-S55-Charge-Pipe-Install-Instructions-V1.pdf"
+      ],
+      "reason": "The live retailer catalog identifies 10801050 as the S55 M3/M4/M2 Competition kit and reports it in stock.",
+      "correction": "Treat as a repair for a confirmed crack or an aftermarket tuned-car choice, not mandatory maintenance for every stock M3.",
+      "sequence": 176,
+      "ymmt": "2015-2018 | BMW | M3 | S55",
+      "title": "Plastic Charge Pipe Failure (S55)",
+      "howToFix": "Replace with aluminum charge pipes. VRSF 10801050 (~$200-$250) is the most popular option with CNC billet aluminum flanges and pre-tapped 1/8\" NPT bungs. BMS/Burger Motorsports (~$200-$300) is the other top choice. FTP Motorsport (~$180-$250) is the budget option. All are direct bolt-on replacements. Very DIY-friendly (1 hour). This is considered essential maintenance for any tuned car."
+    },
+    {
+      "issueId": "bmw-m3-f80-crank-hub-2015",
+      "repairItems": "Pinned/keyed S55 crank-hub kit; one-time-use hardware; specialist drilling/timing service",
+      "decision": "EXACT S55 KIT + SPECIALIST INSTALLATION",
+      "destinations": [
+        {
+          "label": "FCP Euro comprehensive pinned S55 crank-hub installation kit 11237574827KT1",
+          "url": "https://www.fcpeuro.com/products/bmw-comprehensive-pinned-crank-hub-installation-kit-11237574827kt1",
+          "scope": "2015-2018 F80 M3 S55; confirm transmission/drivetrain selector",
+          "role": "pinned crank-hub installation kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "The existing verified S55 kit is a complete live installation listing with F80 M3 applications; it is safer than an unverified price/service promise.",
+      "correction": "Present as an aftermarket preventive/performance option and require qualified installation; do not claim one vendor is the universal industry standard.",
+      "sequence": 177,
+      "ymmt": "2015-2018 | BMW | M3 | S55",
+      "title": "Crank Hub Slip/Failure (S55) - CRITICAL",
+      "howToFix": "SSR Performance double-keyed 4-pin crank hub kit (SSR-CHB-S55, ~$949) is the industry standard fix. Requires drilling the crankshaft - MUST be performed by a qualified technician with BMW specialty tools. Installation $800-$1,200 at an independent shop. Studio RSR offers complete installed service starting at $1,750 (includes oil change + coolant flush). Total parts + labor: $1,750-$2,200. The F80 Bimmerpost 'Crank Hub Issue Master Thread' is essential reading."
+    },
+    {
+      "issueId": "bmw-m3-f80-injector-failure-2015",
+      "repairItems": "ISTA injector-type/fault confirmation; six EU6 injectors when required; decoupling elements; coding/adaptation",
+      "decision": "SOURCE PART-NUMBER CORRECTION + EXACT CONDITIONAL PART",
+      "destinations": [
+        {
+          "label": "BMW EU6 S55 injector 13647639994",
+          "url": "https://www.bmwpartsdeal.com/parts/bmw-injector-13647639994.html",
+          "scope": "2015-2018 F80 M3 S55 EU6 only; quantity six for complete set; requires decoupling elements and coding",
+          "role": "conditional direct injector"
+        }
+      ],
+      "evidence": [
+        "https://www.bmwpartsdeal.com/parts-list/2015-bmw-m3-sedan_f80/fuel_system/high_pressure_rail_injector_mounting.html"
+      ],
+      "reason": "The live BMW catalog explicitly lists 13647639994 for F80 M3 and quantity six.",
+      "correction": "The source's 13538616079 and S63TU 13647599876 claims are not F80 S55 stock-injector fitment. Determine EU5/EU6 with ISTA before ordering and do not substitute port/racing injectors.",
+      "sequence": 178,
+      "ymmt": "2015-2018 | BMW | M3",
+      "title": "Direct Fuel Injector Failure (S55)",
+      "howToFix": "Replace failed injectors with OEM updated version (BMW 13538616079, ~$80-$120/each). For tuned cars making higher boost, 1200cc S63TU-spec Bosch injectors (13647599876 / BOS-0261500136, ~$150-$200/each) provide 33% more fuel flow. Injector coding/adaptation via BMW diagnostic software is required after replacement. Professional installation $400-$800 for complete set."
+    },
+    {
+      "issueId": "bmw-m3-f80-water-pump-2015",
+      "repairItems": "S55 mechanical water pump; drive belt; conditional thermostat/gaskets/pulleys; coolant service",
+      "decision": "SOURCE SYSTEM CORRECTION + EXACT PUMP",
+      "destinations": [
+        {
+          "label": "Genuine BMW S55 mechanical water pump 11517846361",
+          "url": "https://www.ecstuning.com/b-genuine-bmw-parts/water-pump/11517846361/",
+          "scope": "2015-2018 F80 M3 S55; mechanical belt-driven pump only",
+          "role": "water pump"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live listing explicitly identifies F80 M3 S55 fitment and the part as a mechanical, accessory-belt-driven pump.",
+      "correction": "The title incorrectly says electric. Verify belt, thermostat and one-time-use parts separately; do not impose an unsupported 60,000-mile preventive interval.",
+      "sequence": 179,
+      "ymmt": "2015-2018 | BMW | M3 | S55",
+      "title": "Electric Water Pump Failure (S55)",
+      "howToFix": "Replace with OEM/Continental water pump (BMW 11517846361, ~$260-$280). Always replace the water pump belt (BMW 11287848606, ~$20-$30) and thermostat during service. Flush the cooling system. OEM/Continental strongly recommended over aftermarket. Preemptive replacement recommended around 60,000 miles. Professional installation $400-$800 labor."
+    },
+    {
+      "issueId": "bmw-m3-g80-adaptive-suspension-2021",
+      "repairItems": "Software/campaign check; EDC fault/corner diagnosis; conditional position-specific damper; calibration/warranty",
+      "decision": "SOFTWARE/WARRANTY/DIAGNOSIS SERVICE / DAMPER HELD",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2021-2023 G80 M3 adaptive-suspension software, warranty and EDC diagnosis",
+          "role": "EDC service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Software may resolve the issue, and a hardware link requires failed corner, suspension option and VIN.",
+      "correction": "Do not link one damper or a four-corner set before BMW fault diagnosis.",
+      "sequence": 180,
+      "ymmt": "2021-2023 | BMW | M3",
+      "title": "Adaptive M Suspension Electronic Damper Failure",
+      "howToFix": "Software update at dealer ($0 under warranty, $150-$200 out of warranty) resolves many cases. Hardware failures require individual damper replacement ($500-$800/corner) or full set ($2,000-$3,500). Most G80 M3s should still be under warranty. Check for BMW software campaigns addressing adaptive suspension calibration."
+    },
+    {
+      "issueId": "bmw-m3-g80-charge-pipe-2021",
+      "repairItems": "Confirmed S58 charge-pipe failure; aluminum replacement; transfer/inspect seals, clips and couplers",
+      "decision": "EXACT S58 PART APPROVAL",
+      "destinations": [
+        {
+          "label": "FTP S58 G80 M3 charge pipes",
+          "url": "https://r44performance.com/products/ftp-bmw-m3-m4-x3m-x4m-s58-charge-pipe-g80-g81-g82-g83-f97-f98",
+          "scope": "2021-2023 G80 M3/M3 Competition S58; verify selected kit configuration",
+          "role": "aluminum charge-pipe replacement"
+        }
+      ],
+      "evidence": [
+        "https://www.mishimoto.eu/mwdownloads/download/link/id/1538"
+      ],
+      "reason": "The live product explicitly lists 2021+ G80 M3 and Competition compatibility and describes included seals/hardware.",
+      "correction": "Call it essential only for the tuned/high-boost use case; do not imply every stock G80 needs preventive replacement.",
+      "sequence": 181,
+      "ymmt": "2021-2023 | BMW | M3",
+      "title": "Plastic Y-Shaped Charge Pipe Failure (S58)",
+      "howToFix": "Replace with aluminum charge pipe. FTP Motorsport (~$200-$300) is the most popular value option with CNC flanges and 1/8\" NPT bungs. do88 Performance (~$300-$400) is the premium choice with measured 960 CFM vs OEM 835 CFM. Bolt-on replacement, very DIY-friendly. Essential for Stage 2+ tuned cars."
+    },
+    {
+      "issueId": "bmw-m3-g80-cooling-system-2021",
+      "repairItems": "Coolant-level trend; pressure/leak inspection; VIN-specific pump/circuit diagnosis; approved coolant",
+      "decision": "DIAGNOSIS FIRST / PREVENTIVE PUMP CLAIM REJECTED",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2021-2023 G80 M3 S58 cooling-circuit pressure test and VIN-specific repair",
+          "role": "cooling-system service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The card mixes normal settling, leaks and multiple cooling components; a blanket 37,000-mile pump replacement is unsupported.",
+      "correction": "Identify the leaking circuit/component and current pump part by VIN before approving coolant or hardware.",
+      "sequence": 182,
+      "ymmt": "2021-2023 | BMW | M3 | S58",
+      "title": "Coolant System Issues (S58)",
+      "howToFix": "Monitor coolant level monthly. Most coolant loss on new G80s is normal system settling. Inspect all hose connections and clamps at regular intervals. Electric water pump replacement recommended around 60,000 km (~37,000 miles) preventatively. Always use BMW-approved coolant. Professional water pump replacement ~$1,100-$1,600."
+    },
+    {
+      "issueId": "bmw-m3-g80-idrive-electronics-2021",
+      "repairItems": "Correct head-unit reset; OTA update; phone-side check; conditional dealer reflash/hardware diagnosis",
+      "decision": "SOFTWARE/DIAGNOSIS SERVICE / HEAD UNIT HELD",
+      "destinations": [
+        {
+          "label": "BMW Remote Software Upgrade",
+          "url": "https://www.bmwusa.com/explore/connecteddrive/remote-software-upgrade.html",
+          "scope": "Eligible 2021-2023 G80 M3; confirm offered update in vehicle/My BMW app",
+          "role": "official software route"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "Persistent G80 infotainment faults or hardware diagnosis",
+          "role": "infotainment service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Update and reset precede hardware; head-unit generation and VIN are required for replacement.",
+      "correction": "Verify the correct reset control/hold time for the installed iDrive generation; do not sell a head unit from a connectivity symptom.",
+      "sequence": 183,
+      "ymmt": "2021-2023 | BMW | M3",
+      "title": "iDrive 8 Software/Electronics Issues",
+      "howToFix": "Hard reboot by holding start/stop button 30 seconds with car off. Most issues resolved by BMW over-the-air updates. Dealer software reflash for persistent problems ($0 under warranty). Head unit replacement ($2,000-$4,000) only for confirmed hardware failures. Keep phone firmware updated - many connectivity issues are phone-side."
+    },
+    {
+      "issueId": "bmw-m3-g80-integrated-brake-system-recall",
+      "repairItems": "VIN recall check; free integrated-brake-system replacement/programming; stop/assistance guidance",
+      "decision": "RECALL ROUTE / NO RETAIL BRAKE PART",
+      "destinations": [
+        {
+          "label": "BMW recall lookup",
+          "url": "https://www.bmwusa.com/safety-and-emission-recalls.html",
+          "scope": "2021 G80 M3; VIN required for 21V-062",
+          "role": "manufacturer recall lookup"
+        },
+        {
+          "label": "NHTSA recall lookup",
+          "url": "https://www.nhtsa.gov/recalls",
+          "scope": "2021 G80 M3; VIN confirmation for 21V-062",
+          "role": "independent recall lookup"
+        }
+      ],
+      "evidence": [
+        "https://www.nhtsa.gov/recalls"
+      ],
+      "reason": "The integrated brake system and programming are free recall remedies; catalog fitment cannot establish campaign eligibility.",
+      "correction": "Do not link wheel-speed sensors, boosters or brake fluid from this recall card.",
+      "sequence": 184,
+      "ymmt": "2021-2021 | BMW | M3",
+      "title": "2021 G80 Integrated Brake System Recall 21V-062",
+      "howToFix": "Check the VIN for an open 21V-062 campaign. If open, an authorized BMW dealer replaces the integrated brake system free of charge and performs the required programming. A stiff pedal or brake warning during hard braking requires safely stopping and arranging assistance. Do not replace wheel-speed sensors from this card. ShowMeTheParts resolves exact 2021 M3 brake-hydraulics fitment but returned no brake-booster candidate; catalog output cannot establish recall applicability."
+    },
+    {
+      "issueId": "bmw-m3-g80-s58-carbon-buildup",
+      "repairItems": "Confirm deposits/misfire cause; walnut-shell intake-valve cleaning; conditional catch can for off-road/performance use",
+      "decision": "SPECIALIST CLEANING SERVICE / CATCH CAN HELD",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2021-2023 G80 M3 S58 intake-valve/deposit diagnosis and approved repair referral",
+          "role": "engine diagnosis/service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source supplies no verified inspection threshold or emissions-compliant exact catch-can product; chemical cleaning and walnut blasting are not equivalent.",
+      "correction": "Do not promise an interval or link a catch can until legality, routing and exact G80 S58 fitment are verified.",
+      "sequence": 185,
+      "ymmt": "2021-2023 | BMW | M3 | S58",
+      "title": "G80 S58 Engine Carbon Buildup on Intake Valves",
+      "howToFix": "Walnut shell blasting to clean intake valves (every 50,000-70,000 miles). Catch can installation to reduce oil vapor entering intake. Regular Italian tune-ups (sustained high RPM driving) may slow buildup. Chemical cleaning treatments (less effective than walnut blasting)."
+    },
+    {
+      "issueId": "bmw-m3-power-window-regulator-failure-interior-trim-rattles",
+      "repairItems": "Body-style/door/side-specific genuine regulator; conditional motor; clips/glovebox hardware by location",
+      "decision": "POSITION/BODY-STYLE SPLIT PARTIAL APPROVAL",
+      "destinations": [
+        {
+          "label": "Genuine BMW E36 M3 window-regulator catalog",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m3-window_regulator.html",
+          "scope": "1995-1999 E36 M3; select body style, door and side or VIN before ordering",
+          "role": "position-specific window regulator"
+        }
+      ],
+      "evidence": [
+        "https://www.fcpeuro.com/blog/how-to-replace-a-bmw-window-regulator-and-motor-e36"
+      ],
+      "reason": "The live catalog exposes different coupe/convertible/sedan and left/right regulators; genuine parts match the source preference.",
+      "correction": "Do not use one regulator across all three body styles or add a motor/trim clips without confirming the failed component and location.",
+      "sequence": 186,
+      "ymmt": "1995-1999 | BMW | M3 | Coupe, Sedan, Convertible | S50B30US 3.0L inline-6, S52B32US 3.2L inline-6",
+      "title": "Power window regulator failure and interior trim rattles",
+      "howToFix": "Replace the failed regulator (and motor if worn). Genuine BMW regulators are strongly preferred, as aftermarket units are widely reported to have excessive joint play and short life. Reseat or replace cracked door-panel clips and glovebox hardware to address the associated trim rattles."
+    },
+    {
+      "issueId": "bmw-m3-rear-subframe-mounting-points-rear-axle-carrier-panel-cracki",
+      "repairItems": "Existing factory-plate verification; floor/mount inspection; crack repair; conditional weld-in reinforcement",
+      "decision": "SOURCE APPLICABILITY CORRECTION / CONDITIONAL EARLY-CAR KIT",
+      "destinations": [
+        {
+          "label": "Genuine BMW E36 rear floor reinforcement kit 4111225649",
+          "url": "https://www.turnermotorsport.com/p-3971-e36-rear-subframechassis-reinforcement-kit/",
+          "scope": "Primarily early 1995 E36 M3 if VIN/inspection shows factory plates absent; 1996-1999 M3 already has factory reinforcements",
+          "role": "conditional weld-in reinforcement plates"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live page states that 1996-1999 M3s should already have these plates and only early 1995 applicability is uncertain.",
+      "correction": "The source overgeneralizes all 1995-1999 M3s. Inspect for factory plates and actual cracks before ordering; this is a welding/body repair.",
+      "sequence": 187,
+      "ymmt": "1995-1999 | BMW | M3 | Coupe, Sedan, Convertible | S50B30US 3.0L inline-6, S52B32US 3.2L inline-6",
+      "title": "Rear subframe mounting points / rear axle carrier panel (RACP) cracking",
+      "howToFix": "Inspect the subframe mounts and surrounding trunk floor for cracks (best done from above in the trunk after scraping away seam sealer over the welds). The accepted repair is to weld up existing cracks and install reinforcement plates at the subframe mounting points; BMW itself produced reinforcement stampings used in factory/dealer repairs, and multiple aftermarket RACP reinforcement kits exist. This is a body/welding job, not a bolt-on."
+    },
+    {
+      "issueId": "bmw-m3-s55-charge-pipe-failure",
+      "repairItems": "Confirmed cracked S55 charge pipes; aluminum hot/cold-side replacement; couplers/seals inspection",
+      "decision": "DUPLICATE REPAIR / EXACT S55 PART REUSED",
+      "destinations": [
+        {
+          "label": "VRSF S55 charge-pipe kit 10801050",
+          "url": "https://www.ecstuning.com/b-vrsf-parts/3",
+          "scope": "2015-2018 F80 M3 S55; verify listing 10801050 and selected options",
+          "role": "aluminum charge-pipe kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "This is the same vehicle, failure and repair as the F80 charge-pipe row, so the already verified exact kit is reusable.",
+      "correction": "Merge duplicate known issues rather than present two separate failures.",
+      "sequence": 188,
+      "ymmt": "2015-2018 | BMW | M3 | S55",
+      "title": "S55 Plastic Charge Pipe Cracking",
+      "howToFix": "Replace with aluminum aftermarket charge pipes (ARM Motorsports, FTP, AMS Performance, BMS). Silicone couplers at connection points for improved sealing. Regular visual inspection of charge pipes for cracks."
+    },
+    {
+      "issueId": "bmw-m3-s55-crank-hub-slip",
+      "repairItems": "Capture plate as limited preventive option; keyed/pinned crank hub for mechanical retention; specialist timing work",
+      "decision": "DUPLICATE REPAIR / EXACT S55 KIT REUSED",
+      "destinations": [
+        {
+          "label": "FCP Euro comprehensive pinned S55 crank-hub installation kit 11237574827KT1",
+          "url": "https://www.fcpeuro.com/products/bmw-comprehensive-pinned-crank-hub-installation-kit-11237574827kt1",
+          "scope": "2015-2018 F80 M3 S55; confirm transmission/drivetrain selector",
+          "role": "pinned crank-hub installation kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "This duplicates the F80 crank-hub issue; a full pinned kit provides the mechanical retention described.",
+      "correction": "Merge duplicate rows and distinguish a capture plate from a pinned/keyed hub—it does not provide the same retention mechanism.",
+      "sequence": 189,
+      "ymmt": "2015-2018 | BMW | M3 | S55",
+      "title": "S55 Crank Hub Slip/Failure",
+      "howToFix": "Install crank bolt capture plate over existing crank bolt (4-5 hours labor) as preventative measure. Upgrade to keyed/pinned crank hub assembly (Studio RSR, BimmerWorld). Spline-lock crank hub kits provide mechanical lock rather than friction. Essential for any tuned S55 or vehicles used on track."
+    },
+    {
+      "issueId": "bmw-m3-s55-water-pump-electric-failure",
+      "repairItems": "Engine-generation split; S55 mechanical pump versus S58 cooling-circuit diagnosis; conditional thermostat/coolant service",
+      "decision": "SOURCE TITLE/SYSTEM ERROR + S55-ONLY PARTIAL APPROVAL",
+      "destinations": [
+        {
+          "label": "Genuine BMW S55 mechanical water pump 11517846361",
+          "url": "https://www.ecstuning.com/b-genuine-bmw-parts/water-pump/11517846361/",
+          "scope": "2015-2018 F80 M3 S55 only; mechanical belt-driven pump",
+          "role": "S55 water pump"
+        },
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2021-2023 G80 M3 S58 cooling-circuit diagnosis and VIN-specific pump identification",
+          "role": "S58 cooling service"
+        }
+      ],
+      "evidence": [],
+      "reason": "The source combines S55 and S58 under one electric-pump title, but the verified S55 part is mechanical and the S58 system differs.",
+      "correction": "Split by F80 S55 versus G80 S58 before linking thermostat, pump or coolant.",
+      "sequence": 190,
+      "ymmt": "2015-2023 | BMW | M3 | S55, S58",
+      "title": "S55/S58 Electric Water Pump Failure",
+      "howToFix": "Replace electric water pump. Replace thermostat at same time (recommended). Flush cooling system when replacing pump. Consider OEM replacement - aftermarket quality varies."
+    },
+    {
+      "issueId": "bmw-m3-s65-rod-bearing-failure",
+      "repairItems": "S65 rod-bearing service; measured custom-clearance set; new fasteners/gaskets/fluids; oil analysis",
+      "decision": "DUPLICATE REPAIR / EXACT SERVICE KIT REUSED",
+      "destinations": [
+        {
+          "label": "Lang Racing S65 rod-bearing service kit",
+          "url": "https://store.langracing.com/products/rod-bearing-service-kit-bmw-s65-e90-e92-m3/",
+          "scope": "2008-2013 E90/E92/E93 M3 S65; custom-clearance ACL set plus listed service parts",
+          "role": "rod-bearing service kit"
+        },
+        {
+          "label": "Blackstone Laboratories oil analysis kits",
+          "url": "https://www.blackstone-labs.com/products/free-test-kits/",
+          "scope": "S65 oil trend monitoring",
+          "role": "oil-analysis service"
+        }
+      ],
+      "evidence": [],
+      "reason": "This duplicates the earlier E9X S65 rod-bearing row; the exact complete kit and monitoring route remain applicable.",
+      "correction": "Merge duplicate known issues and avoid presenting a universal mileage cutoff as factory policy.",
+      "sequence": 191,
+      "ymmt": "2008-2013 | BMW | M3 | S65",
+      "title": "S65 V8 Rod Bearing Premature Failure",
+      "howToFix": "Preventative rod bearing replacement before 70,000 miles. Upgrade to BE Bearings, ACL Race, or Mahle performance bearings with increased clearances. Regular oil analysis to detect early bearing wear. Use BMW-approved 10W-60 oil with frequent oil changes (5,000-7,500 mile intervals)."
+    },
+    {
+      "issueId": "bmw-m3-s65-throttle-actuator-failure",
+      "repairItems": "Confirm S65 actuator fault; two gear sets or two rebuild services; electronics testing",
+      "decision": "DUPLICATE REPAIR / EXACT MODULAR OPTIONS REUSED",
+      "destinations": [
+        {
+          "label": "Beisan BS101 S65/S85 throttle-actuator gears",
+          "url": "https://beisansystems.com/product/bs101-s65-s85-throttle-actuator-gears/",
+          "scope": "2008-2013 E9X M3 S65; quantity two for both actuators",
+          "role": "mechanical gear repair"
+        },
+        {
+          "label": "Beisan BS102 S65/S85 actuator rebuild service",
+          "url": "https://beisansystems.com/product/bs102-s65-s85-throttle-actuator-gears-w-installation-service/",
+          "scope": "S65; one service per actuator; damaged electronics may be declined",
+          "role": "send-in mechanical rebuild"
+        }
+      ],
+      "evidence": [],
+      "reason": "This duplicates the prior E9X throttle-actuator row, so the same exact engine-specific options and limitations apply.",
+      "correction": "Merge duplicates and do not claim a mechanical gear rebuild fixes failed electronics.",
+      "sequence": 192,
+      "ymmt": "2008-2013 | BMW | M3 | S65",
+      "title": "S65 Throttle Body Actuator Failure",
+      "howToFix": "Replace failed throttle actuator(s) with OEM or upgraded units. Upgrade to Evolve Automotive uprated throttle actuators for improved durability. ECU Testing offers actuator rebuilds as a cost-effective alternative."
+    },
+    {
+      "issueId": "bmw-m3-s65-vanos-solenoid-failure",
+      "repairItems": "Clean/swap for diagnosis; bank/position confirmation; intake/exhaust pair when confirmed",
+      "decision": "DUPLICATE REPAIR / EXACT KIT REUSED",
+      "destinations": [
+        {
+          "label": "Genuine BMW S65 VANOS solenoid kit 11367843118KT",
+          "url": "https://www.turnermotorsport.com/p-51075084-s65-vanos-solenoid-valve-kit/",
+          "scope": "2008-2013 E90/E92/E93 M3 S65; one intake plus one exhaust for one bank",
+          "role": "one-bank VANOS solenoid kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "This duplicates the earlier E9X VANOS-solenoid row; the exact kit remains valid.",
+      "correction": "Merge duplicate known issues and do not call a one-bank pair a complete all-solenoid set.",
+      "sequence": 193,
+      "ymmt": "2008-2013 | BMW | M3 | S65",
+      "title": "VANOS Solenoid Wear and Failure",
+      "howToFix": "Replace VANOS solenoids (typically done as a set). Use high-quality BMW-approved oil to prevent contamination. Maintain regular oil change intervals (5,000-7,500 miles)."
+    },
+    {
+      "issueId": "bmw-m3-single-vanos-variable-timing-unit-rattle-seal-failure",
+      "repairItems": "S52 single-VANOS seal kit; conditional rattle kit and required tools; approved oil by manual",
+      "decision": "EXACT MODULAR VANOS KIT APPROVAL",
+      "destinations": [
+        {
+          "label": "Beisan BS011 single-VANOS seal kit",
+          "url": "https://beisansystems.com/product/single-vanos-seals-repair-kit/",
+          "scope": "1996-1999 US E36 M3 S52; seal-related symptoms",
+          "role": "single-VANOS seal kit"
+        },
+        {
+          "label": "Beisan BS012 single-VANOS rattle kit",
+          "url": "https://beisansystems.com/product/single-vanos-rattle-repair-kit-6-cyl/",
+          "scope": "S52 only when rattle/play is confirmed; install with BS011 and required tools",
+          "role": "conditional anti-rattle kit"
+        }
+      ],
+      "evidence": [
+        "https://beisansystems.com/product-category/m50tu-m52-single/"
+      ],
+      "reason": "The live manufacturer pages explicitly list US S52 compatibility, SKU, stock and tool/companion-kit requirements.",
+      "correction": "Do not substitute Euro S50 kits or assume fresh oil permanently repairs degraded seals or mechanical play.",
+      "sequence": 194,
+      "ymmt": "1996-1999 | BMW | M3 | Coupe, Sedan, Convertible | S52B32US 3.2L inline-6",
+      "title": "Single-VANOS variable-timing unit rattle and seal failure (S52)",
+      "howToFix": "First step is fresh BMW-approved synthetic oil, which can quiet borderline cases. The accepted permanent fix is a VANOS seal rebuild using proven kits (Beisan Systems, Dr. VANOS) that replace the degraded piston seals, often combined with an anti-rattle kit that addresses the cam-gear/shaft play. DIY on the seal kit is common; specialists also offer fully rebuilt exchange units."
+    },
+    {
+      "issueId": "bmw-m3-worn-rear-trailing-arm-bushings-suspension-mounts",
+      "repairItems": "RTAB replacement; optional limiters; rear shock and engine/transmission mount inspection",
+      "decision": "EXACT OPTIONAL LIMITER / BUSHINGS AND MOUNTS SPLIT",
+      "destinations": [
+        {
+          "label": "Turner E36 M3 RTAB limiter kit TMS177932",
+          "url": "https://www.turnermotorsport.com/p-177932-composite-rtab-limiter-kit-new/",
+          "scope": "1995-1999 E36 M3 coupe/sedan with compatible rubber RTABs; currently backordered",
+          "role": "optional RTAB limiter kit"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live page explicitly lists E36 M3 years/body styles and explains that this is a limiter, not the bushing itself.",
+      "correction": "Because the limiter is backordered and convertible fitment is not listed, verify availability/body style; approve RTABs and each mount separately after inspection.",
+      "sequence": 195,
+      "ymmt": "1995-1999 | BMW | M3 | Coupe, Sedan, Convertible | S50B30US 3.0L inline-6, S52B32US 3.2L inline-6",
+      "title": "Worn rear trailing arm bushings (RTAB) and suspension mounts",
+      "howToFix": "Replace the RTABs with genuine BMW rubber bushings or upgraded poly/spherical bushings; many owners add RTAB limiter kits to reduce deflection. Inspect and renew rear shock mounts and engine/transmission mounts at the same time. The RTAB job is a common DIY that can be done with the trailing arms on the car."
+    },
+    {
+      "issueId": "bmw-m340i-12v-battery-drain-failure-battery-registration-issues",
+      "repairItems": "Parasitic-drain/IBS diagnosis; VIN-specified AGM battery; registration; recharge/use-pattern check",
+      "decision": "DIAGNOSIS/REGISTRATION SERVICE / BATTERY HELD",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2019-2024 M340i/M340i xDrive parasitic-drain, IBS, battery specification and registration",
+          "role": "battery/electrical service"
+        }
+      ],
+      "evidence": [],
+      "reason": "Battery capacity/group and 48V mild-hybrid configuration vary by build; the source provides no current part number.",
+      "correction": "Verify VIN, 12V capacity, terminal layout, build date and whether a 48V system is present before approving a battery.",
+      "sequence": 196,
+      "ymmt": "2019-2024 | BMW | M340i | M340i, M340i xDrive | B58",
+      "title": "12V Battery Drain and Failure / Battery Registration Issues",
+      "howToFix": "Test and replace the AGM battery with the correct OEM-spec unit, then register the new battery with BimmerLink/ISTA so the charging strategy adapts. Diagnose parasitic drain and a faulty IBS cable/sensor if discharge persists. Drive long enough to fully recharge between trips."
+    },
+    {
+      "issueId": "bmw-m340i-b58-carbon-buildup-2020",
+      "repairItems": "Confirm intake deposits/misfire cause; walnut-shell valve cleaning; conditional emissions-compliant catch can",
+      "decision": "SPECIALIST CLEANING SERVICE / CATCH CAN HELD",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2020-2024 G20 M340i B58 intake-valve/deposit diagnosis and repair referral",
+          "role": "engine diagnosis/service"
+        }
+      ],
+      "evidence": [],
+      "reason": "A fixed interval and catch-can legality/fitment are not established; cleaning should follow inspection.",
+      "correction": "Do not sell a catch can or promise walnut blasting every 50,000 miles without confirmed deposits and exact G20 B58 routing.",
+      "sequence": 197,
+      "ymmt": "2020-2024 | BMW | M340i | B58 3.0L Turbo I6",
+      "title": "Intake Valve Carbon Buildup",
+      "howToFix": "Walnut blast the intake valves every 50,000-60,000 miles. This involves removing the intake manifold and blasting walnut shell media at the valve backs to remove carbon deposits. Some owners use catch cans to reduce oil vapor entering the intake. BMW's official position is that carbon buildup is normal for direct-injection engines."
+    },
+    {
+      "issueId": "bmw-m340i-b58-coolant-loss-2020",
+      "repairItems": "Pressure-test and identify circuit; conditional expansion tank/vent line/water pump; approved coolant by VIN",
+      "decision": "MULTI-CIRCUIT DIAGNOSIS + YEAR-SPECIFIC CATALOG HOLD",
+      "destinations": [
+        {
+          "label": "BMW dealer locator",
+          "url": "https://www.bmwusa.com/dealer-locator.html",
+          "scope": "2020-2024 M340i B58 coolant pressure test, vent-line campaign check and VIN-specific parts",
+          "role": "cooling-system service"
+        }
+      ],
+      "evidence": [
+        "https://www.bmwpartsdeal.com/parts-list/2020-bmw-m340i-sedan_g20/cooling_exhaust_system/expansion_tank.html"
+      ],
+      "reason": "The 2020 catalog alone lists two expansion tanks/circuits, so one tank link cannot safely cover every leak or 2020-2024 build.",
+      "correction": "Do not preemptively replace a pump or call all coolant BMW blue; identify circuit, build date, current specification and exact leaking part first.",
+      "sequence": 198,
+      "ymmt": "2020-2024 | BMW | M340i | B58 3.0L Turbo I6",
+      "title": "Coolant Loss from Expansion Tank and Water Pump",
+      "howToFix": "Replace the coolant expansion tank at first sign of cracking. Proactively replace the electric water pump before 60,000 miles. Replace the coolant vent line per BMW TSB. Use only BMW-approved blue coolant. Monitor coolant level monthly and pressure test the cooling system at every major service."
+    },
+    {
+      "issueId": "bmw-m340i-b58-hpfp-failure-2020",
+      "repairItems": "Low-side feed-pressure test; confirmed HPFP failure; latest VIN-compatible high-pressure pump; warranty check",
+      "decision": "EXACT CONDITIONAL HPFP APPROVAL",
+      "destinations": [
+        {
+          "label": "Genuine BMW M340i HPFP 13518631642",
+          "url": "https://www.bmwpartsdeal.com/oem-bmw-m340i-fuel_pump.html",
+          "scope": "2020-2024 G20 M340i 3.0L; select VIN and the high-pressure-pump listing, not supply module",
+          "role": "conditional high-pressure fuel pump"
+        }
+      ],
+      "evidence": [],
+      "reason": "The live catalog explicitly lists 13518631642 as the 2020-2024 M340i high-pressure pump and distinguishes the in-tank supply module.",
+      "correction": "Test low-pressure feed and confirm warranty/VIN supersession before ordering.",
+      "sequence": 199,
+      "ymmt": "2020-2024 | BMW | M340i | B58 3.0L Turbo I6",
+      "title": "High-Pressure Fuel Pump (HPFP) Failure",
+      "howToFix": "Replace the high-pressure fuel pump with the latest revised BMW part number. Verify the low-pressure fuel pump is providing adequate feed pressure. Use top-tier fuel and avoid running the tank below 1/4 to reduce strain on the fuel system. If under warranty, BMW will cover HPFP replacement."
+    },
+    {
+      "issueId": "bmw-m340i-b58-oil-filter-disintegration-2020",
+      "repairItems": "MANN/OE oil-filter element; inspect removed filter; clean housing if fragments found; correct oil service",
+      "decision": "EXACT FILTER APPROVAL",
+      "destinations": [
+        {
+          "label": "MANN-FILTER HU 6022 z",
+          "url": "https://www.mann-filter.com/us-en/catalog/search-results/product.html/hu6022z_mann-filter.html",
+          "scope": "2020-2024 M340i/M340i xDrive B58B30O1; verify VIN/build in catalog",
+          "role": "OEM-quality oil-filter element"
+        }
+      ],
+      "evidence": [],
+      "reason": "MANN's current US catalog explicitly lists HU 6022 z for M340i 3.0L B58B30O1 through 2024.",
+      "correction": "Do not claim MANN is always the factory supplier for every build or prescribe a universal shortened interval without use/owner-manual context.",
+      "sequence": 200,
+      "ymmt": "2020-2024 | BMW | M340i | B58 3.0L Turbo I6, B58",
+      "title": "Oil Filter Disintegration in Housing",
+      "howToFix": "Use only genuine BMW or Mann-branded oil filters (Mann is the OEM supplier). Change oil and filter every 5,000-7,000 miles rather than BMW's recommended 10,000-mile interval. When removing the old filter, inspect it carefully for signs of deterioration. If filter fragments are found in the housing, flush the housing thoroughly before installing the new filter."
     }
   ]
 }
