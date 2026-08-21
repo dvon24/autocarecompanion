@@ -131,6 +131,15 @@ export default function RootLayout({
             Validation Scan flagged that as "default consent signals
             sent too late." This placement passes the scan. */}
         <TermlyConsentBootstrap />
+        {/* Advance Auto Parts / Impact affiliate ownership verification.
+            Keep this in the document head so Impact can verify au7o.io. */}
+        <script
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7655285-4eb7-438d-a105-b982cf1c4d4e1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');",
+          }}
+        />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         {/* AdSense site verification + Auto Ads loader. Per Google's
