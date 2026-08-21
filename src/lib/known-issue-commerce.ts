@@ -35,9 +35,10 @@ export function vendorMatchesProductUrl(vendor: string, value: string): boolean 
   // false positive can send an owner to the wrong product or merchant.
   const vendorIdentity = normalizedVendor.replace(/[^a-z0-9]/g, '');
   const hostLabels = new URL(value).hostname.toLowerCase().replace(/^www\./, '').split('.');
+  const hostIdentity = (hostLabels.at(-2) || '').replace(/[^a-z0-9]/g, '');
   return vendorIdentity.length >= 3
     && hostLabels.length >= 2
-    && hostLabels.at(-2) === vendorIdentity;
+    && hostIdentity === vendorIdentity;
 }
 
 /** Add owned affiliate attribution only after the destination passes the guard. */
@@ -114,6 +115,14 @@ export function isKnownIssueProductUrl(value: string): boolean {
   // Do not let lookalike marketplace domains fall through to the generic
   // direct-retailer rule below.
   if (hostLabels.some((label) => ['amazon', 'ebay', 'rockauto'].includes(label))) return false;
+
+  // BAVLOGIC's fetched CIC repair-service detail page is a WordPress product
+  // query at the site root. Accept only that exact product parameter; the
+  // homepage and arbitrary query pages remain blocked.
+  if (host === 'bavlogic.com' && path === '/') {
+    return [...url.searchParams.keys()].every((key) => key === 'product')
+      && /^bmw-[a-z0-9-]+-repair-service-[a-z0-9-]+$/i.test(url.searchParams.get('product') || '');
+  }
 
   const verifiedHostProduct = matchesVerifiedHostPattern(host, path);
   if (
@@ -198,6 +207,31 @@ const VERIFIED_RETAILER_PATTERNS: Array<[RegExp, RegExp]> = [
   // product page. Trade-channel transmission parts are largely absent from
   // consumer retail, so the maker's page is often the only real destination.
   [/^raybestospowertrain\.com$/, /^\/[a-z0-9-]+\/\d{4,}$/i],
+  // JB Tools publishes ProMAXX detail pages at the site root. These two HEMI
+  // drill-template kits were fetched live on 2026-08-21 with matching product
+  // titles, part numbers, prices, stock and add-to-cart controls.
+  [/^jbtools\.com$/, /^\/promaxx-[a-z0-9-]*pmx[a-z0-9-]*$/i],
+  // DSS Challenger driveshaft detail pages verified live on 2026-08-21.
+  // AmericanMuscle uses a root-level .html slug; HHP uses a root-level slug.
+  [/^americanmuscle\.com$/, /^\/the-driveshaft-shop-challenger-4-inch-aluminum-one-piece-driveshaft-chsh(?:37|40)-a\.html$/i],
+  [/^highhorseperformance\.com$/, /^\/the-driveshaft-shop-chsh36-a-1-piece-4-aluminum-driveshaft-for-15-23-demon-challenger-srt-hellcat-redeye-6-2l-hemi-automatic$/i],
+  // BMW specialist product and exact repair-service pages verified in the
+  // 2026-08-21 repair-first review. These patterns retain a SKU/part token or
+  // one exact service path; category and search pages on the hosts still fail.
+  [/^bimmerworld\.com$/, /^\/(?:[a-z0-9-]+\/){0,4}[a-z0-9-]*\d[a-z0-9-]*\.html$/i],
+  [/^endera\.de$/, /^\/[a-z0-9-]*\d[a-z0-9-]*\.html$/i],
+  [/^bmwgm5\.com$/, /^\/gm5_repair_service\.htm$/i],
+  [/^turnermotorsport\.com$/, /^\/p-\d+-[a-z0-9-]+$/i],
+  [/^agatools\.com$/, /^\/collections\/[a-z0-9-]+\/products\/(?=[a-z0-9-]*\d)[a-z0-9-]+$/i],
+  [/^parts\.bmwoforlandpark\.com$/, /^\/p\/[a-z0-9_%-]+\/[a-z0-9-]+\/\d+\/\d+\.html$/i],
+  [/^kingenginebuilders\.com$/, /^\/[a-z]+\d+[a-z0-9-]*$/i],
+  [/^ecstuning\.com$/, /^\/b-[a-z0-9-]+-parts\/[a-z0-9-]+\/[a-z0-9~_-]*\d[a-z0-9~_-]*$/i],
+  [/^store\.vacmotorsports\.com$/, /^\/[a-z0-9-]*-p\d+\.aspx$/i],
+  [/^mannfiltersrus\.com$/, /^\/[a-z0-9-]*\d[a-z0-9-]*\.html$/i],
+  [/^parts\.bmwofsouthatlanta\.com$/, /^\/oem-parts\/bmw-[a-z0-9-]*\d[a-z0-9-]*$/i],
+  [/^blackstone-labs\.com$/, /^\/free-test-kits$/i],
+  [/^rwcarbon\.com$/, /^\/[a-z0-9-]*\d[a-z0-9-]*\.html$/i],
+  [/^shop\.bimmerbum\.com$/, /^\/[a-z0-9-]*\d[a-z0-9-]*$/i],
   // transpartswarehouse.com was a candidate here and is deliberately NOT listed:
   // its product URL did not survive a live fetch. The bar for this list is a
   // page we actually retrieved, not one that merely looks right.

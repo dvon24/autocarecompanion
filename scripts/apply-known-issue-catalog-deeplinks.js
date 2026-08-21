@@ -190,6 +190,10 @@ function productUrlError(value) {
   if (parsed.protocol !== 'https:') return 'URL must use https';
   const host = parsed.hostname.toLowerCase().replace(/^www\./, '');
   const pathname = parsed.pathname.toLowerCase();
+  const bavlogicProduct = host === 'bavlogic.com'
+    && pathname === '/'
+    && [...parsed.searchParams.keys()].every((key) => key === 'product')
+    && /^bmw-[a-z0-9-]+-repair-service-[a-z0-9-]+$/i.test(parsed.searchParams.get('product') || '');
   for (const key of parsed.searchParams.keys()) {
     if (SEARCH_QUERY_KEYS.has(key.toLowerCase())) return `search query parameter ${key}`;
   }
@@ -204,7 +208,7 @@ function productUrlError(value) {
   if (ebayHost) {
     if (!/(^|\/)itm(\/|$)/i.test(pathname)) return 'eBay URL is not an item page';
   }
-  if (pathname === '/' || pathname.length < 4) return 'URL has no product path';
+  if (!bavlogicProduct && (pathname === '/' || pathname.length < 4)) return 'URL has no product path';
   return null;
 }
 

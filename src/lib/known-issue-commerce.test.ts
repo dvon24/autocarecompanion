@@ -119,13 +119,7 @@ test('rejects local-only retailer hosts and substring-lookalike merchants', () =
   }
 });
 
-// Documents a known FALSE NEGATIVE, so the behaviour is deliberate rather than
-// discovered again later. The guard only accepts a retailer path containing a
-// product/part/item/sku segment, so ECS Tuning's category-style product URLs are
-// dropped even though they are real, single-product pages. Conservative by
-// design — a false negative hides a CTA, a false positive sells the wrong part —
-// but it is why a verified Audi tensioner link does not reach the page.
-test('drops a real retailer product URL that lacks a product-shaped path segment', () => {
+test('renders an allowlisted ECS product-detail URL that lacks the generic path shape', () => {
   const { fixParts } = getKnownIssueCommerce(
     issue([{
       component: 'Timing chain tensioner',
@@ -137,7 +131,22 @@ test('drops a real retailer product URL that lacks a product-shaped path segment
       }],
     }]),
   );
-  assert.deepEqual(fixParts[0]!.buyLinks, [], 'known false negative — see comment');
+  assert.equal(fixParts[0]!.buyLinks.length, 1);
+});
+
+test('normalizes punctuation in a direct retailer host before matching its vendor label', () => {
+  const { fixParts } = getKnownIssueCommerce(
+    issue([{
+      component: 'Charge pipe',
+      verified: true,
+      buyLinks: [{
+        vendor: 'VR Speed',
+        url: 'https://www.vr-speed.com/product/vrsf-chargepipe-upgrade-07-13-bmw-135i-335i-n54-n55',
+        verified: true,
+      }],
+    }]),
+  );
+  assert.equal(fixParts[0]!.buyLinks.length, 1);
 });
 
 /**
@@ -158,6 +167,26 @@ test('accepts verified-retailer product pages the generic path rule misses', () 
     'https://www.partcatalog.com/walker-235-1456-engine-crankshaft-position-sensor.html',
     'https://www.summitracing.com/parts/mah-vs50109',
     'https://www.raybestospowertrain.com/steel-clutch-packs/000601',
+    'https://www.jbtools.com/promaxx-dodge-hemi-5-7l-v8-and-6-1l-repair-broken-exhaust-bolts-pmxa200prop/',
+    'https://www.jbtools.com/promaxx-dodge-ram-6-4l-hemi-exhaust-manifold-bolt-repair-prokit-pmxcd200pro/',
+    'https://www.americanmuscle.com/the-driveshaft-shop-challenger-4-inch-aluminum-one-piece-driveshaft-chsh40-a.html',
+    'https://www.americanmuscle.com/the-driveshaft-shop-challenger-4-inch-aluminum-one-piece-driveshaft-chsh37-a.html',
+    'https://highhorseperformance.com/the-driveshaft-shop-chsh36-a-1-piece-4-aluminum-driveshaft-for-15-23-demon-challenger-srt-hellcat-redeye-6-2l-hemi-automatic/',
+    'https://www.bimmerworld.com/Cooling/Radiators/E36-3-Series-Cooling-System-Overhaul-Kit-Stage-III.html',
+    'https://www.endera.de/abs-steuergeraet-reparatur-bosch-5-7-bmw-e46.html',
+    'https://www.bmwgm5.com/GM5_Repair_Service.htm',
+    'https://www.turnermotorsport.com/p-570740-valve-seal-repair-kit/',
+    'https://agatools.com/collections/n62-valve-stem-seal-tool-kit/products/aga-n62-vst-k-vk',
+    'https://www.bavlogic.com/?product=bmw-cic-repair-service-with-one-year-warranty',
+    'https://parts.bmwoforlandpark.com/p/BMW__iX/Original-BMW-AGM-battery-60-AH/43776515/61217604802.html',
+    'https://kingenginebuilders.com/cr6877xpc',
+    'https://www.ecstuning.com/b-genuine-bmw-parts/water-pump/11517846361/',
+    'https://store.vacmotorsports.com/vac-motorsports-aluminum-differential-mount-kit-bmw-e90e92e93-m3-p2217.aspx',
+    'https://www.mannfiltersrus.com/mann-hu6022z-oil-filter-element-metal-free.html',
+    'https://parts.bmwofsouthatlanta.com/oem-parts/bmw-convertible-top-hydraulic-pump-54377344440',
+    'https://www.blackstone-labs.com/free-test-kits/',
+    'https://www.rwcarbon.com/bmw-f97-x3m-f98-x4m-aluminum-oil-cooler-guard.html',
+    'https://shop.bimmerbum.com/5-00691-genuine-bmw-replacement-blower-motor-resistor-z3-64116912633/',
   ]) {
     assert.equal(isKnownIssueProductUrl(url), true, `should accept ${url}`);
   }
@@ -172,6 +201,26 @@ test('allowlisting a host does not allowlist its category, search or lookalike U
     'https://www.densoproducts.com/collections/condensers',
     'https://www.partcatalog.com/',
     'https://www.raybestospowertrain.com/automatic-transmission/clutch-packs',
+    'https://www.jbtools.com/search.php?search_query=promaxx',
+    'https://www.jbtools.com/shop-all/',
+    'https://www.americanmuscle.com/2008-challenger-driveshafts.html',
+    'https://highhorseperformance.com/drivetrain/',
+    'https://www.bimmerworld.com/Cooling/',
+    'https://www.endera.de/',
+    'https://www.bmwgm5.com/',
+    'https://www.turnermotorsport.com/',
+    'https://agatools.com/collections/n62-valve-stem-seal-tool-kit/',
+    'https://www.bavlogic.com/',
+    'https://www.bavlogic.com/?product=anything',
+    'https://parts.bmwoforlandpark.com/',
+    'https://kingenginebuilders.com/',
+    'https://www.ecstuning.com/b-genuine-bmw-parts/',
+    'https://store.vacmotorsports.com/',
+    'https://www.mannfiltersrus.com/',
+    'https://parts.bmwofsouthatlanta.com/oem-parts/',
+    'https://www.blackstone-labs.com/',
+    'https://www.rwcarbon.com/',
+    'https://shop.bimmerbum.com/',
     // A lookalike domain must not inherit the allowlist.
     'https://partshawk.evil.com/delphi-ss10867-abs-wheel-speed-sensor.html',
     // http is refused on every host, allowlisted or not.
@@ -179,4 +228,53 @@ test('allowlisting a host does not allowlist its category, search or lookalike U
   ]) {
     assert.equal(isKnownIssueProductUrl(url), false, `should reject ${url}`);
   }
+});
+
+test('renders the verified ProMAXX Alan and Chad JB Tools buy links', () => {
+  const { fixParts } = getKnownIssueCommerce(
+    issue([{
+      component: 'HEMI exhaust-manifold bolt extraction tools',
+      verified: true,
+      buyLinks: [
+        {
+          vendor: 'jbtools',
+          url: 'https://www.jbtools.com/promaxx-dodge-hemi-5-7l-v8-and-6-1l-repair-broken-exhaust-bolts-pmxa200prop/',
+          verified: true,
+        },
+        {
+          vendor: 'jbtools',
+          url: 'https://www.jbtools.com/promaxx-dodge-ram-6-4l-hemi-exhaust-manifold-bolt-repair-prokit-pmxcd200pro/',
+          verified: true,
+        },
+      ],
+    }]),
+  );
+  assert.equal(fixParts[0]!.buyLinks.length, 2);
+});
+
+test('renders the three verified DSS Challenger driveshaft branches', () => {
+  const { fixParts } = getKnownIssueCommerce(
+    issue([{
+      component: 'DSS Challenger driveshaft branches',
+      verified: true,
+      buyLinks: [
+        {
+          vendor: 'americanmuscle',
+          url: 'https://www.americanmuscle.com/the-driveshaft-shop-challenger-4-inch-aluminum-one-piece-driveshaft-chsh40-a.html',
+          verified: true,
+        },
+        {
+          vendor: 'americanmuscle',
+          url: 'https://www.americanmuscle.com/the-driveshaft-shop-challenger-4-inch-aluminum-one-piece-driveshaft-chsh37-a.html',
+          verified: true,
+        },
+        {
+          vendor: 'highhorseperformance',
+          url: 'https://highhorseperformance.com/the-driveshaft-shop-chsh36-a-1-piece-4-aluminum-driveshaft-for-15-23-demon-challenger-srt-hellcat-redeye-6-2l-hemi-automatic/',
+          verified: true,
+        },
+      ],
+    }]),
+  );
+  assert.equal(fixParts[0]!.buyLinks.length, 3);
 });
