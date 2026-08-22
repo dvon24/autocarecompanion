@@ -14,6 +14,8 @@ import { getKnownIssueCommerce, hasKnownIssueCommerce, knownIssueAffiliateUrl } 
 import { partCanBeShownForVehicle, describeFitment, isNarrowerThanArticle } from '@/lib/known-issue-part-fitment';
 import { formatOwnerReportCount } from '@/lib/owner-report-count';
 import { IssueDiagnosticTools } from './IssueDiagnosticTools';
+import { FindDealerNearby } from './FindDealerNearby';
+import { needsDealerReferral } from '@/lib/known-issue-dealer-referral';
 
 /**
  * Strip the verification worker's INTERNAL reasoning log out of a fixPart note
@@ -522,6 +524,14 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               ("the procedure needs this") is separate from the part claim
               ("this repairs your car"). */}
           <IssueDiagnosticTools solution={issue.solution} dtcCodes={issue.dtcCodes} />
+
+          {/* Dealer work, not a DIY part: an open recall is repaired free, so the
+              next step is reaching a franchise — not buying anything. Gated by
+              needsDealerReferral() and placed OUTSIDE the fixParts block, because
+              most of these issues carry no parts at all. */}
+          {needsDealerReferral(issue) && issue.vehicleMatch?.make && (
+            <FindDealerNearby make={issue.vehicleMatch.make} />
+          )}
 
           {/* Public commerce lives in this one canonical section. Search and
               category links have already been removed by getKnownIssueCommerce. */}

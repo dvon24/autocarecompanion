@@ -19,7 +19,9 @@ const { PrismaClient } = require('@prisma/client');
 const { PrismaPg } = require('@prisma/adapter-pg');
 const { Pool } = require('pg');
 
-const OUTPUT_PATH = process.argv[2];
+const args = process.argv.slice(2);
+const DRY_RUN = args.includes('--dry-run');
+const OUTPUT_PATH = args.find((arg) => !arg.startsWith('--'));
 if (!OUTPUT_PATH) {
   console.error('Usage: node scripts/_persist-known-issues-run.js <workflow-output-path>');
   process.exit(1);
@@ -108,9 +110,11 @@ async function main() {
       addedVisual++;
     }
   }
-  fs.mkdirSync(path.dirname(HELD_VISUAL_PATH), { recursive: true });
-  fs.writeFileSync(HELD_VISUAL_PATH, JSON.stringify(heldExisting, null, 2));
-  console.log(`Held visual evidence: +${addedVisual} new (total ${heldExisting.length}) -> ${HELD_VISUAL_PATH}\n`);
+  if (!DRY_RUN) {
+    fs.mkdirSync(path.dirname(HELD_VISUAL_PATH), { recursive: true });
+    fs.writeFileSync(HELD_VISUAL_PATH, JSON.stringify(heldExisting, null, 2));
+  }
+  console.log(`${DRY_RUN ? 'Would hold' : 'Held'} visual evidence: +${addedVisual} new (total ${heldExisting.length})${DRY_RUN ? '' : ` -> ${HELD_VISUAL_PATH}`}\n`);
 
   // ── 2. Persist confirmed issues to the review queue ──────────────────
   if (confirmed.length === 0) {
@@ -157,6 +161,11 @@ async function main() {
       humanApproved: false,
     };
 
+    if (DRY_RUN) {
+      console.log(`+ WOULD INSERT: ${id}  [${issue.severity}] ${issue.model} (${(issue.years || []).join(',')})`);
+      inserted.push(id);
+      continue;
+    }
     try {
       await prisma.knownIssue.create({ data: row });
       console.log(`✓ ${id}  [${issue.severity}] ${issue.model} (${(issue.years || []).join(',')}) — verdict ${(issue._verdictConfidence || 0).toFixed(2)}, ${row.citations.length} cites`);
@@ -167,8 +176,8 @@ async function main() {
     }
   }
 
-  console.log('\n━━━ Persistence complete (status = pending_review) ━━━');
-  console.log(`  Inserted: ${inserted.length}`);
+  console.log(`\n━━━ ${DRY_RUN ? 'Dry run' : 'Persistence complete'} (status = pending_review) ━━━`);
+  console.log(`  ${DRY_RUN ? 'Would insert' : 'Inserted'}: ${inserted.length}`);
   console.log(`  Skipped (already exists): ${skipped.length}`);
   console.log(`  Failed: ${failed.length}`);
   if (failed.length) failed.forEach((f) => console.log(`    - ${f.id}: ${f.error}`));

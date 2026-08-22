@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { hubChatMinuteLimiter, getClientIp, rateLimitResponse, voiceDemoAnonLimiter, voiceDemoFreeLimiter } from '@/lib/rate-limit';
+import { peekVoiceDemo, consumeVoiceDemo, voiceDemoKey } from '@/lib/voice-demo-quota';
 
 export const runtime = 'nodejs';
 
@@ -34,6 +35,17 @@ const REALTIME_VOICE = process.env.OPENAI_REALTIME_VOICE || 'verse';
 // enough to hear the greeting + one exchange (the "wow"), tight enough that the
 // give-away cost stays tiny. The client counts down and auto-ends at this mark.
 const DEMO_SECONDS = 40;
+// Must mirror the ceilings on voiceDemoAnonLimiter / voiceDemoFreeLimiter —
+// these are the numbers the DURABLE (DB-backed) demo counter enforces.
+const DEMO_ANON_LIMIT = 1;
+const DEMO_FREE_LIMIT = 2;
+// The mint API has no session-duration parameter, so DEMO_SECONDS cannot be
+// enforced server-side; a client that ignores the countdown keeps talking until
+// OpenAI's own session ceiling. Capping demo output tokens bounds what that
+// costs us, and the durable per-identity demo counter bounds how often it can
+// be re-obtained. Removing the client-trust entirely needs a session-duration
+// control OpenAI does not currently expose at mint time.
+const DEMO_MAX_OUTPUT_TOKENS = 1500;
 
 type Upsell = { message: string; ctaUrl: string; ctaLabel: string };
 const ANON_UPSELL: Upsell = { message: 'Free voice preview complete. Browse known issues for your vehicle.', ctaUrl: '/known-issues', ctaLabel: 'Browse known issues' };
@@ -106,9 +118,21 @@ export async function POST(request: NextRequest) {
   const upsell: Upsell | null = tier === 'demo' ? (userId ? FREE_UPSELL : ANON_UPSELL) : null;
   const demoLimiter = userId ? voiceDemoFreeLimiter : voiceDemoAnonLimiter;
   const demoKey = userId ? `user:${userId}` : `ip:${ip}`;
-  if (tier === 'demo' && !demoLimiter.peek(demoKey)) {
-    // Demo already used — return the upsell instead of minting a paid session.
-    return NextResponse.json({ error: 'demo_used', gated: true, tier: 'demo', ...upsell }, { status: 402 });
+  // The demo ceiling is what separates the free taste from the paid tier, so it
+  // has to be durable. The in-memory limiter above resets on every cold start
+  // and isn't shared between instances, so on its own it never actually bound —
+  // an anonymous caller could re-mint full-tier sessions indefinitely. Check the
+  // DB-backed counter first and fall back to the in-memory one only if the DB is
+  // unreachable (a blip must not take the signup hook offline).
+  const demoLimit = userId ? DEMO_FREE_LIMIT : DEMO_ANON_LIMIT;
+  const quotaKey = voiceDemoKey(demoKey);
+  if (tier === 'demo') {
+    const durable = await peekVoiceDemo(quotaKey, demoLimit);
+    const allowed = durable === null ? demoLimiter.peek(demoKey) : durable;
+    if (!allowed) {
+      // Demo already used — return the upsell instead of minting a paid session.
+      return NextResponse.json({ error: 'demo_used', gated: true, tier: 'demo', ...upsell }, { status: 402 });
+    }
   }
 
   let vehicle: VehicleCtx | null = null;
@@ -173,6 +197,9 @@ export async function POST(request: NextRequest) {
           // killing every voice session at the token-mint step). Audio output
           // still streams the assistant transcript via the transcript events.
           output_modalities: ['audio'],
+          // Demo tier only: bound the give-away for a client that ignores the
+          // 40s countdown. Subscribers are uncapped.
+          ...(tier === 'demo' ? { max_output_tokens: DEMO_MAX_OUTPUT_TOKENS } : {}),
           audio: {
             input: {
               transcription: { model: 'whisper-1' },
@@ -199,7 +226,10 @@ export async function POST(request: NextRequest) {
     }
     // Mint succeeded — NOW consume the demo credit (so a failed mint above never
     // burned it). Subscribers don't touch the demo limiter at all.
-    if (tier === 'demo') demoLimiter.check(demoKey);
+    if (tier === 'demo') {
+      demoLimiter.check(demoKey);
+      await consumeVoiceDemo(quotaKey, demoLimit);
+    }
     return NextResponse.json({
       client_secret: clientSecret,
       expires_at: data?.expires_at ?? null,

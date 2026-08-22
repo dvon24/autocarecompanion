@@ -12,6 +12,8 @@ import { getOwnersManualSchedule } from '@/lib/owners-manual-schedule';
 import { isFounderEmail } from '@/lib/founder';
 import { parseVehicleSlug as parseCatalogVehicleSlug } from '@/lib/vehicle-slug';
 import { getKnownIssueVehicleCandidates } from '@/lib/known-issue-vehicle-aliases';
+import { getTwinHubData } from '@/lib/twin-hub-data';
+import { LiveTwinHub } from '@/components/twin/LiveTwinHub';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -113,10 +115,10 @@ export default async function VehicleProfilePage({
   searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ session?: string; from?: string }>;
+  searchParams: Promise<{ session?: string; from?: string; twin?: string }>;
 }) {
   const { slug } = await params;
-  const { session: sessionIdParam } = await searchParams;
+  const { session: sessionIdParam, twin: twinParam } = await searchParams;
   const vehicle = parseHubVehicleSlug(slug);
   if (!vehicle) notFound();
 
@@ -306,6 +308,8 @@ export default async function VehicleProfilePage({
   let maintenanceSchedule: ScheduleData | null = null;
   let userId: string | null = null;
   let userInfo: { name: string; joinedAt: string; isSubscriber: boolean } | null = null;
+  // Whether this viewer may see the twin hub in place of the classic one.
+  let isFounder = false;
   // Saved vehicles for the top-bar switcher dropdown — only populated
   // when authed. Empty array on anonymous viewers so the switcher just
   // renders the static vehicle label without dropdown affordance.
@@ -330,6 +334,7 @@ export default async function VehicleProfilePage({
           // /api/maintenance.
           isSubscriber: session.user.subscriptionStatus === 'active' || isFounderEmail(userRow.email),
         };
+        isFounder = isFounderEmail(userRow.email);
       }
       // Pull ALL vehicles for the switcher dropdown — same query as
       // /api/vehicles GET but inlined here so we can do it in parallel
@@ -433,6 +438,26 @@ export default async function VehicleProfilePage({
   // (they're upstream of the signup conversion). Subscribers see
   // the real schedule. Quietly absent everywhere else.
   const showMaintenanceUpgradeTile = isAuthed && !isSubscriberFlag && !!userVehicleId;
+
+  // ---- Twin hub swap -------------------------------------------------
+  // The tech-tree hub (the /demo/hub screen) replaces the classic hub for
+  // the founder, so it can be driven daily against a real car instead of
+  // the 65,000 mi demo. Deliberately narrow for now:
+  //
+  //   * founder only - the stage art depicts a Challenger, so any other
+  //     vehicle would be shown the wrong car, which is exactly the fitment
+  //     dishonesty this codebase avoids elsewhere.
+  //   * needs a garage vehicle WITH an odometer - getTwinHubData returns
+  //     null otherwise, and a mileage-based screen with no mileage has
+  //     nothing true to say.
+  //   * ?twin=0 forces the classic hub back, so there is always a way out
+  //     without a deploy.
+  //
+  // Any of those failing falls through to the classic hub below.
+  if (isFounder && twinParam !== '0' && userId && userVehicleId) {
+    const twinData = await getTwinHubData(userId, userVehicleId).catch(() => null);
+    if (twinData) return <LiveTwinHub data={twinData} />;
+  }
 
   return (
     <VehicleHub

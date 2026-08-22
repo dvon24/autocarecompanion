@@ -2,6 +2,14 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { sendEmail } from '@/lib/email';
 
+// Both the message and the sender land in an HTML email delivered to the
+// operator's inbox from our own SPF/DKIM-aligned domain. Escape both — an
+// unescaped sender is an arbitrary-markup phishing vector aimed at us.
+const esc = (v: unknown) => String(v == null ? '' : v)
+  .replace(/&/g, '&amp;')
+  .replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;');
+
 interface FeedbackPayload {
   type: 'bug' | 'feature' | 'general';
   message: string;
@@ -41,13 +49,19 @@ export async function POST(request: NextRequest) {
     try {
       const notifyTo = process.env.FEEDBACK_NOTIFY_EMAIL;
       if (notifyTo) {
-        const from = body.email?.trim() || 'anonymous';
-        const safe = msg.slice(0, 4000).replace(/</g, '&lt;');
+        // Syntax-only check, and it gates DISPLAY, not the save — a typo'd
+        // address must never cost us the feedback itself. Anything that isn't
+        // a plausible address is labelled rather than shown as a sender.
+        const claimed = body.email?.trim() || '';
+        const from = /^[^\s@<>"]+@[^\s@<>".]+\.[^\s@<>".]+$/.test(claimed)
+          ? claimed
+          : (claimed ? 'anonymous (unusable address supplied)' : 'anonymous');
+        const safe = esc(msg.slice(0, 4000));
         await sendEmail({
           to: notifyTo,
           subject: `Au7o feedback (${type}) from ${from}`,
           text: `Type: ${type}\nFrom: ${from}\n\n${msg.slice(0, 4000)}`,
-          html: `<p><strong>Type:</strong> ${type}</p><p><strong>From:</strong> ${from}</p><pre style="white-space:pre-wrap;font-family:inherit">${safe}</pre>`,
+          html: `<p><strong>Type:</strong> ${type}</p><p><strong>From:</strong> ${esc(from)}</p><pre style="white-space:pre-wrap;font-family:inherit">${safe}</pre>`,
         });
       }
     } catch (notifyErr) {

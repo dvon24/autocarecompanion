@@ -41,7 +41,15 @@ export async function POST(request: Request) {
     }
 
     const recs = issue.communityRecommendations as any[];
-    if (recs && recs[recommendationIndex]) {
+    // This endpoint is deliberately unauthenticated (public click tracker), so
+    // recommendationIndex is attacker-controlled. Require a real array index —
+    // a string like "__proto__" would otherwise index the prototype chain.
+    if (
+      Array.isArray(recs) &&
+      Number.isInteger(recommendationIndex) &&
+      recommendationIndex >= 0 &&
+      recommendationIndex < recs.length
+    ) {
       if (recs[recommendationIndex].clickCount === undefined) {
         recs[recommendationIndex].clickCount = 0;
       }

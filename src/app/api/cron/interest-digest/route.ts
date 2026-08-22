@@ -2,7 +2,11 @@ import { NextResponse } from 'next/server';
 import { runInterestDigest } from '@/lib/interest-digest';
 
 export const runtime = 'nodejs';
-export const maxDuration = 60;
+// Was 60. The 2026-08-17 run was killed at 57.7s having emailed 92 of 155
+// eligible recipients, and because the loop was unordered it chopped the same
+// tail every week — 63 leads had never received anything. runInterestDigest now
+// stops itself at SEND_BUDGET_MS (240s); this is the outer wall behind it.
+export const maxDuration = 300;
 
 /**
  * Cron: weekly "new findings for your vehicle" digest to interest-email leads.

@@ -14,33 +14,33 @@ datasource db {
 // ============================================
 
 model User {
-  id                 String    @id @default(cuid())
-  email              String    @unique
+  id             String    @id @default(cuid())
+  email          String    @unique
   // Optional contact email. The `email` field above is the login
   // identity (NextAuth credentials match on it), so it can't be
   // changed lightly. `secondaryEmail` is a soft contact slot for
   // receipts, GDPR display, and "send updates here instead" without
   // touching the login. Not @unique on purpose — same business email
   // could legitimately appear on more than one personal account.
-  secondaryEmail     String?
-  name               String?
-  emailVerified      DateTime?
-  image              String?
-  passwordHash       String?
+  secondaryEmail String?
+  name           String?
+  emailVerified  DateTime?
+  image          String?
+  passwordHash   String?
 
   // Stripe subscription
-  stripeCustomerId   String?   @unique
+  stripeCustomerId   String? @unique
   subscriptionId     String?
-  subscriptionStatus String?   // active, canceled, past_due, trialing
+  subscriptionStatus String? // active, canceled, past_due, trialing
   // Phase 1 tiering: free | plus | pro. Null on legacy free users;
   // legacy active subscribers are backfilled to 'plus' (the $9.99 plan
   // they had is closest to the new $14.99 Plus tier feature set).
   // Stripe webhook writes this from subscription.metadata.tier.
-  subscriptionTier   String?   // free, plus, pro
+  subscriptionTier   String? // free, plus, pro
 
   // Notification preferences
-  emailNotifications Boolean   @default(true)
-  pushNotifications  Boolean   @default(true)
+  emailNotifications Boolean @default(true)
+  pushNotifications  Boolean @default(true)
 
   // GDPR Art. 21 right-to-object opt-out. When true, every AI endpoint
   // (/api/chat, /api/hub-chat, /api/guide, /api/guide/help, /api/parts)
@@ -65,17 +65,17 @@ model User {
   // hub visit (one-shot).
   onboardingCompletedAt DateTime?
 
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
-  accounts           Account[]
-  sessions           Session[]
-  vehicles           Vehicle[]
-  chatSessions       ChatSession[]
-  insights           VehicleInsight[]
+  accounts            Account[]
+  sessions            Session[]
+  vehicles            Vehicle[]
+  chatSessions        ChatSession[]
+  insights            VehicleInsight[]
   passwordResetTokens PasswordResetToken[]
-  diagnosisSamples   DiagnosisSample[]
+  diagnosisSamples    DiagnosisSample[]
 }
 
 // Weekly chat quota for anonymous (and optionally free-tier signed-in)
@@ -103,14 +103,14 @@ model ChatQuota {
 // user when they request a reset. We index by tokenHash (not the raw
 // token) so a DB leak doesn't yield usable reset links.
 model PasswordResetToken {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
   userId    String
-  tokenHash String   @unique
+  tokenHash String    @unique
   expiresAt DateTime
   usedAt    DateTime?
-  createdAt DateTime @default(now())
+  createdAt DateTime  @default(now())
 
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
 }
@@ -156,33 +156,33 @@ model VerificationToken {
 // ============================================
 
 model Vehicle {
-  id                String    @id @default(cuid())
-  userId            String
+  id     String @id @default(cuid())
+  userId String
 
   // Vehicle info
-  year              Int
-  make              String
-  model             String
-  trim              String?
-  vin               String?
-  color             String?
+  year  Int
+  make  String
+  model String
+  trim  String?
+  vin   String?
+  color String?
 
   // Mileage tracking
   currentMileage    Int?
   lastMileageUpdate DateTime?
-  annualMileage     Int?      // Estimated miles driven per year (for maintenance predictions)
+  annualMileage     Int? // Estimated miles driven per year (for maintenance predictions)
 
   // User customization
-  nickname          String?
-  isPrimary         Boolean   @default(false)
-  imageUrl          String?
+  nickname  String?
+  isPrimary Boolean @default(false)
+  imageUrl  String?
 
   // Showcase settings
-  isPublic          Boolean   @default(false)
-  showcaseSlug      String?   @unique
+  isPublic     Boolean @default(false)
+  showcaseSlug String? @unique
 
-  createdAt         DateTime  @default(now())
-  updatedAt         DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   // Relations
   user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
@@ -198,7 +198,7 @@ model MileageLog {
   id        String   @id @default(cuid())
   vehicleId String
   mileage   Int
-  source    String?  // manual, obd, estimated
+  source    String? // manual, obd, estimated
   date      DateTime @default(now())
 
   vehicle Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
@@ -211,26 +211,26 @@ model MileageLog {
 // ============================================
 
 model MaintenanceRecord {
-  id             String    @id @default(cuid())
-  vehicleId      String
+  id        String @id @default(cuid())
+  vehicleId String
 
   // Maintenance details
-  type           String    // oil_change, tire_rotation, brake_service, etc.
-  description    String?
-  mileage        Int
-  cost           Float?
-  date           DateTime
+  type        String // oil_change, tire_rotation, brake_service, etc.
+  description String?
+  mileage     Int
+  cost        Float?
+  date        DateTime
 
   // Next service tracking
   nextDueMileage Int?
   nextDueDate    DateTime?
 
   // Additional info
-  notes          String?   @db.Text
-  receiptUrl     String?
-  shopName       String?
+  notes      String? @db.Text
+  receiptUrl String?
+  shopName   String?
 
-  createdAt      DateTime  @default(now())
+  createdAt DateTime @default(now())
 
   vehicle Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
@@ -243,11 +243,11 @@ model MaintenanceRecord {
 // ============================================
 
 model Modification {
-  id          String    @id @default(cuid())
-  vehicleId   String
+  id        String @id @default(cuid())
+  vehicleId String
 
   // Mod details
-  category    String    // wheels, tires, suspension, exhaust, body, interior, performance
+  category    String // wheels, tires, suspension, exhaust, body, interior, performance
   name        String
   brand       String?
   partNumber  String?
@@ -256,15 +256,15 @@ model Modification {
   installDate DateTime?
 
   // Media
-  imageUrl    String?
+  imageUrl String?
 
   // 3D visualization data
-  modelData   Json?     // wheel diameter, offset, width, color, etc.
+  modelData Json? // wheel diameter, offset, width, color, etc.
 
   // Display order
-  sortOrder   Int       @default(0)
+  sortOrder Int @default(0)
 
-  createdAt   DateTime  @default(now())
+  createdAt DateTime @default(now())
 
   vehicle Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
 
@@ -277,13 +277,13 @@ model Modification {
 // ============================================
 
 model ChatSession {
-  id        String   @id @default(cuid())
-  userId    String?  // null for anonymous users
+  id        String  @id @default(cuid())
+  userId    String? // null for anonymous users
   vehicleId String?
 
   // Chat data
-  messages  Json     // Array of { role, content, timestamp }
-  diagnosis Json?    // Final diagnosis if generated
+  messages  Json // Array of { role, content, timestamp }
+  diagnosis Json? // Final diagnosis if generated
 
   // Anonymous tracking (for rate limiting)
   anonymousId String?
@@ -352,14 +352,14 @@ model TrendingIntent {
 // ============================================
 
 model NotificationLog {
-  id        String   @id @default(cuid())
-  userId    String
-  type      String   // maintenance_due, maintenance_overdue, weekly_summary
-  channel   String   // email, push
-  title     String
-  body      String
-  sentAt    DateTime @default(now())
-  readAt    DateTime?
+  id      String    @id @default(cuid())
+  userId  String
+  type    String // maintenance_due, maintenance_overdue, weekly_summary
+  channel String // email, push
+  title   String
+  body    String
+  sentAt  DateTime  @default(now())
+  readAt  DateTime?
 
   @@index([userId])
 }
@@ -380,31 +380,31 @@ model PushSubscription {
 // ============================================
 
 model UserIssueFix {
-  id            String   @id @default(cuid())
-  userId        String
-  vehicleId     String
+  id        String @id @default(cuid())
+  userId    String
+  vehicleId String
 
   // Link to the known issue
-  knownIssueId  String
-  knownIssue    KnownIssue? @relation(fields: [knownIssueId], references: [id], onDelete: SetNull)
+  knownIssueId String
+  knownIssue   KnownIssue? @relation(fields: [knownIssueId], references: [id], onDelete: SetNull)
 
   // Fix details
-  status        String   // fixed, in_progress, wont_fix
-  solution      String?  @db.Text  // User's description of how they fixed it
-  cost          Float?             // How much they spent
-  difficultyRating Int?            // 1-5 how hard was it
-  partsUsed     String?  @db.Text  // Parts they used (freeform text)
-  shopUsed      String?            // Shop name if they had it done professionally
+  status           String // fixed, in_progress, wont_fix
+  solution         String? @db.Text // User's description of how they fixed it
+  cost             Float? // How much they spent
+  difficultyRating Int? // 1-5 how hard was it
+  partsUsed        String? @db.Text // Parts they used (freeform text)
+  shopUsed         String? // Shop name if they had it done professionally
 
   // Helpful for others
-  tips          String?  @db.Text  // Any tips for others
-  wouldRecommend Boolean @default(true)  // Would they recommend this fix to others
+  tips           String? @db.Text // Any tips for others
+  wouldRecommend Boolean @default(true) // Would they recommend this fix to others
 
   // Visibility
-  isPublic      Boolean  @default(true)  // Share with community
+  isPublic Boolean @default(true) // Share with community
 
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([userId, vehicleId, knownIssueId])
   @@index([knownIssueId])
@@ -418,14 +418,14 @@ model UserIssueFix {
 
 model CachedGuide {
   id                String    @id @default(cuid())
-  cacheKey          String    @unique  // "2019_chevrolet_camaro_zl1_oil_change"
+  cacheKey          String    @unique // "2019_chevrolet_camaro_zl1_oil_change"
   year              Int
   make              String
   model             String
   trim              String    @default("")
-  maintenanceType   String               // "oil_change", "spark_plugs", etc.
-  guideJson         Json                 // Full Guide object
-  title             String               // Denormalized for admin list
+  maintenanceType   String // "oil_change", "spark_plugs", etc.
+  guideJson         Json // Full Guide object
+  title             String // Denormalized for admin list
   status            String    @default("auto-generated") // auto-generated | reviewed | verified
   reviewNotes       String?   @db.Text
   version           Int       @default(1)
@@ -440,11 +440,11 @@ model CachedGuide {
 }
 
 model GuideCacheStats {
-  id       String @id @default(cuid())
-  date     String // YYYY-MM-DD
-  hits     Int    @default(0)
-  misses   Int    @default(0)
-  savings  Float  @default(0)
+  id      String @id @default(cuid())
+  date    String // YYYY-MM-DD
+  hits    Int    @default(0)
+  misses  Int    @default(0)
+  savings Float  @default(0)
 
   @@unique([date])
 }
@@ -454,56 +454,60 @@ model GuideCacheStats {
 // ============================================
 
 model KnownIssue {
-  id                       String   @id  // e.g. "honda-civic-oil-dilution-2016"
+  id                       String   @id // e.g. "honda-civic-oil-dilution-2016"
   make                     String
   model                    String
   years                    Int[]
-  trims                    String[]  @default([])
-  engines                  String[]  @default([])
+  trims                    String[] @default([])
+  engines                  String[] @default([])
   category                 String
   title                    String
   description              String   @db.Text
   solution                 String   @db.Text
   severity                 String
   confidence               String   @default("medium")
-  symptoms                 String[]  @default([])
-  affectedSystems          String[]  @default([])
-  dtcCodes                 String[]  @default([])
+  symptoms                 String[] @default([])
+  affectedSystems          String[] @default([])
+  dtcCodes                 String[] @default([])
   estimatedCostLow         Int?
   estimatedCostHigh        Int?
-  typicalMileageLow        Int?      // Mileage range when issue typically appears
+  typicalMileageLow        Int? // Mileage range when issue typically appears
   typicalMileageHigh       Int?
-  citations                Json      @default("[]")
-  communityRecommendations Json      @default("[]")
+  citations                Json     @default("[]")
+  communityRecommendations Json     @default("[]")
   // THE FIX, made buyable: the exact part(s) to resolve this issue — PN-precise,
   // validated buy-links. The au7o differentiator (problem -> proven fix -> the
   // exact part to buy, no internet scavenger hunt). Shape:
   //   [{ component, oemPartNumber, aftermarketXref[], priceLow, priceHigh,
   //      buyLinks[{vendor,url}], note }]
-  fixParts                 Json      @default("[]")
-  humanApproved            Boolean   @default(false)
-  reportCount              Int       @default(0)
-  source                   String    @default("ai-researched")  // "nhtsa-verified", "ai-researched", "manual"
-  status                   String    @default("published")
-  lastReportedByOwners     String    @default("")
-  reviewedOn               String    @default("")
+  fixParts                 Json     @default("[]")
+  humanApproved            Boolean  @default(false)
+  reportCount              Int      @default(0)
+  source                   String   @default("ai-researched") // "nhtsa-verified", "ai-researched", "manual"
+  status                   String   @default("published")
+  lastReportedByOwners     String   @default("")
+  reviewedOn               String   @default("")
   // Public, human-authored notice for meaningful content corrections.
   // Kept separate from updatedAt/reviewedOn so routine writes never imply
   // that the published repair guidance changed.
-  contentUpdatedOn         String    @default("")
-  contentUpdateSummary     String    @default("")
+  contentUpdatedOn         String   @default("")
+  contentUpdateSummary     String   @default("")
 
   // Pre-computed semantic-similarity cross-links (other KnownIssue.id values)
   // populated by scripts/compute-issue-embeddings.js. Embedding lookup is
   // offline; render-time uses this column directly so cross-link lookup is
   // a simple JOIN with no vector math at request time. Bounded to top-K
   // (typically 5) and pre-filtered by shared component/engine/system.
-  relatedIssueIds          String[]  @default([])
+  relatedIssueIds String[] @default([])
 
-  createdAt                DateTime  @default(now())
-  updatedAt                DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
-  userFixes                UserIssueFix[]
+  userFixes UserIssueFix[]
+  // ALSO created directly in prod (raw SQL, not Prisma-managed, applied 2026-06-20):
+  //   GIN("dtcCodes")                        — serves dtcCodes @> array (DTC-per-make pages)
+  //   GIN(make gin_trgm_ops), GIN(model ...) — serve case-insensitive ILIKE make/model
+  //   requires: CREATE EXTENSION pg_trgm;
 
   @@index([make, model])
   @@index([severity])
@@ -512,10 +516,6 @@ model KnownIssue {
   // Compound indexes for the hot SEO read paths (article + category pages).
   @@index([status, make, model])
   @@index([status, category])
-  // ALSO created directly in prod (raw SQL, not Prisma-managed, applied 2026-06-20):
-  //   GIN("dtcCodes")                        — serves dtcCodes @> array (DTC-per-make pages)
-  //   GIN(make gin_trgm_ops), GIN(model ...) — serve case-insensitive ILIKE make/model
-  //   requires: CREATE EXTENSION pg_trgm;
 }
 
 // ============================================
@@ -523,11 +523,11 @@ model KnownIssue {
 // ============================================
 
 model DTCCode {
-  code         String   @id  // e.g. "P0300"
+  code         String   @id // e.g. "P0300"
   name         String
   system       String
   description  String   @db.Text
-  commonCauses String[]  @default([])
+  commonCauses String[] @default([])
   severity     String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
@@ -558,14 +558,14 @@ model VehiclePartLookup {
   make               String
   model              String
   trim               String
-  task               String    // e.g. "oil_change", "spark_plugs", "freetext:rocker panels"
-  generation         String?   // e.g. "2015+ 6.4 SRT" — shared across years in same gen
-  parts              Json      // Array of verified parts
-  unverifiedParts    Json?     // Parts that failed web verification (for retry/learning)
+  task               String // e.g. "oil_change", "spark_plugs", "freetext:rocker panels"
+  generation         String? // e.g. "2015+ 6.4 SRT" — shared across years in same gen
+  parts              Json // Array of verified parts
+  unverifiedParts    Json? // Parts that failed web verification (for retry/learning)
   source             String    @default("ai") // "static" | "pipeline" | "pipeline-freetext"
   status             String    @default("pending") // "pending" | "verified" | "partial" | "failed"
   verifiedAt         DateTime?
-  verificationLog    Json?     // Web search results, retry history
+  verificationLog    Json? // Web search results, retry history
   webSearchConfirmed Boolean   @default(false)
   humanApproved      Boolean   @default(false)
   retryCount         Int       @default(0)
@@ -586,18 +586,18 @@ model VehiclePartLookup {
 
 model VehicleInsight {
   id          String   @id @default(cuid())
-  userId      String?  // null for anonymous users; set when a logged-in user generated the insight
+  userId      String? // null for anonymous users; set when a logged-in user generated the insight
   year        Int
   make        String
   model       String
   trim        String?
-  source      String   // "symptom_chat" | "parts_search" | "known_issue" | "community"
-  insightType String   // "diagnosis" | "part_demand" | "part_confirmed" | "symptom_pattern"
-  title       String   // e.g. "Warped front rotors", "Oil filter lookup"
-  data        Json     // Flexible: { diagnosis, symptoms, partNumber, searchQuery, etc. }
-  confidence  String?  // "high" | "medium" | "low"
+  source      String // "symptom_chat" | "parts_search" | "known_issue" | "community"
+  insightType String // "diagnosis" | "part_demand" | "part_confirmed" | "symptom_pattern"
+  title       String // e.g. "Warped front rotors", "Oil filter lookup"
+  data        Json // Flexible: { diagnosis, symptoms, partNumber, searchQuery, etc. }
+  confidence  String? // "high" | "medium" | "low"
   sessionHash String?
-  country     String?  // ISO country code from x-vercel-ip-country
+  country     String? // ISO country code from x-vercel-ip-country
   occurrences Int      @default(1)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -620,37 +620,37 @@ model VehicleInsight {
 // storage until Phase 0.1 adds the private-bucket crop pipeline. The
 // image columns exist now so 0.1 needs no migration.
 model DiagnosisSample {
-  id              String   @id @default(cuid())
+  id String @id @default(cuid())
 
   // Identity. Phase 0 is AUTHED-ONLY (the route gate requires a userId),
   // so userId is set and anonId stays null. Both nullable so a future
   // consented-anon path needs no migration.
-  userId          String?
-  anonId          String?
+  userId String?
+  anonId String?
 
   // Vehicle context (denormalized like VehicleInsight — survives vehicle
   // deletion; needed to slice the dataset by YMMT).
-  year            Int?
-  make            String?
-  model           String?
-  trim            String?
+  year  Int?
+  make  String?
+  model String?
+  trim  String?
 
   // Diagnosis metadata (structured, low-PII, high training value).
   mode            String   @default("photo") // "photo" | "video"
-  primaryCategory String?  // identifiedParts[primary].category, e.g. "rotor"
-  primaryPartName String?  // human label of the diagnosed component
+  primaryCategory String? // identifiedParts[primary].category, e.g. "rotor"
+  primaryPartName String? // human label of the diagnosed component
   dtcCodes        String[] @default([])
   confidence      Float?
-  vehicleMatch    String?  // "confident" | "uncertain" | "likely_mismatch"
-  diagnosisJson   Json?    // PII-scrubbed subset of the shaped result
+  vehicleMatch    String? // "confident" | "uncertain" | "likely_mismatch"
+  diagnosisJson   Json? // PII-scrubbed subset of the shaped result
 
   // Image reference (Phase 0.1). Null/false for Phase 0.0 metadata rows.
-  imageStored     Boolean  @default(false)
-  storageKey      String?  // private-bucket object path; null = no bytes
-  cropApplied     Boolean  @default(false) // true = component crop (Option B)
-  exifStripped    Boolean  @default(true)  // hard guarantee when bytes exist
-  contentType     String?
-  byteSize        Int?
+  imageStored  Boolean @default(false)
+  storageKey   String? // private-bucket object path; null = no bytes
+  cropApplied  Boolean @default(false) // true = component crop (Option B)
+  exifStripped Boolean @default(true) // hard guarantee when bytes exist
+  contentType  String?
+  byteSize     Int?
 
   // Phase 0.2: published KnownIssue ids this sample's diagnosis text
   // semantically matches (computed offline by
@@ -659,9 +659,9 @@ model DiagnosisSample {
   matchedIssueIds String[] @default([])
 
   // Provenance / consent audit.
-  consentSource   String   // "account_toggle" | "per_upload_checkbox"
-  consentVersion  String   @default("v1")
-  createdAt       DateTime @default(now())
+  consentSource  String // "account_toggle" | "per_upload_checkbox"
+  consentVersion String   @default("v1")
+  createdAt      DateTime @default(now())
 
   user User? @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -675,13 +675,13 @@ model DiagnosisSample {
 // read-only on Vercel — every production submission 500'd and the
 // content was silently lost (2026-06-11 review finding).
 model InterestEmail {
-  id        String   @id @default(cuid())
-  email     String
+  id               String    @id @default(cuid())
+  email            String
   // What the lead asked to be alerted about, e.g. "known-issues:chevrolet-camaro"
   // or "diagnose". Lets us send vehicle-specific recall/issue alerts (the hook
   // that makes the capture convert) instead of a generic list.
-  context   String?
-  createdAt DateTime @default(now())
+  context          String?
+  createdAt        DateTime  @default(now())
   // Weekly "new findings for your vehicle" digest plumbing:
   //   unsubscribeToken — one-click CAN-SPAM unsubscribe link target.
   //   unsubscribedAt   — set when they opt out; suppresses all future sends.
@@ -699,24 +699,49 @@ model InterestEmail {
 // want it", which is a far stronger signal than an address left on an article.
 // `source` records WHERE they reserved (hero vs the demo below it) so we can see
 // whether people commit on the promise or only after actually driving it.
-model Reservation {
+// Addresses we must never send to again. Written by the Resend webhook
+// (src/app/api/resend/webhook/route.ts) on a PERMANENT bounce or a spam
+// complaint, and consulted by sendEmail() before every send.
+//
+// Why this exists: every hard bounce is charged against our Resend sending
+// reputation, and a degraded reputation costs delivery for EVERY real lead —
+// so one dead address quietly taxes the whole list. Hand-deleting rows does
+// not scale past a couple hundred leads.
+//
+// Deliberately keyed by email rather than by InterestEmail id: the same dead
+// address can appear on several lead rows (one per vehicle) and can also be a
+// User account, and all of them must stop sending.
+model EmailSuppression {
   id        String   @id @default(cuid())
+  // Always stored lowercased+trimmed; look-ups normalize the same way.
   email     String   @unique
+  // 'hard_bounce' | 'complaint' | 'manual'
+  reason    String
+  // Provider detail for debugging (bounce subType, complaint feedback type).
+  detail    String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model Reservation {
+  id               String    @id @default(cuid())
+  email            String    @unique
   // The car they want it for, free-text as typed/selected ("2019 Chevrolet
   // Camaro ZL1"). Drives which vehicle we build the twin for first.
-  vehicle   String?
+  vehicle          String?
   // Required by the reserve form. Paid plans are US-only at launch (tax
   // registration pending), so this tells us where demand actually is before we
   // open billing in a market — the reason the form asks at all.
-  country   String?
+  country          String?
   // "hero" | "demo" | "<page>:<slot>" — the demand-test dimension.
-  source    String?
+  source           String?
   // Page they reserved from, for attribution back to the traffic that converts.
-  path      String?
+  path             String?
   // Optional free-text ("what would you want it to show you?") — the cheapest
   // qualitative read on whether the feature is worth building.
-  note      String?
-  createdAt DateTime @default(now())
+  note             String?
+  createdAt        DateTime  @default(now())
   // Same CAN-SPAM plumbing as InterestEmail: we will email these people when the
   // beta opens, so mint the opt-out token at capture time.
   unsubscribeToken String?   @unique
@@ -730,10 +755,10 @@ model Reservation {
 
 model Feedback {
   id        String   @id @default(cuid())
-  kind      String   // "bug" | "feature" | "general" | "vehicle-correction"
+  kind      String // "bug" | "feature" | "general" | "vehicle-correction"
   message   String
   email     String?
-  meta      Json?    // userAgent + structured payloads (vehicle parse, etc.)
+  meta      Json? // userAgent + structured payloads (vehicle parse, etc.)
   createdAt DateTime @default(now())
 
   @@index([kind])
@@ -761,7 +786,7 @@ model AiCostLog {
   model        String
   inputTokens  Int      @default(0)
   outputTokens Int      @default(0)
-  costUsd     Float
+  costUsd      Float
   createdAt    DateTime @default(now())
 
   @@index([createdAt])

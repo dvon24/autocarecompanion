@@ -11,13 +11,19 @@
  */
 import React from "react";
 import { Icon } from "./Icon";
+import { useTwinVehicle, useTwinTrees } from "../twin-context";
 
 /* Ported from the design bundle's "Hub personalized" module — TTDetail renders
    it, and its absence crashed every part tap with a ReferenceError. */
 function VerifiedFit() {
+  /* Named the demo car in hardcoded text. On a live hub this badge is a
+     fitment claim about the OWNER's car, so it has to read from the vehicle
+     actually being shown — a "verified fit" label naming the wrong car is
+     exactly the failure this project has been careful to avoid elsewhere. */
+  const v = useTwinVehicle();
   return (
     <span style={{ display:"inline-flex", alignItems:"center", gap:4, fontSize:10, fontWeight:600, padding:"2px 8px", borderRadius:999, background:"var(--ki-ok-bg)", color:"var(--ki-ok-ink)" }}>
-      <Icon name="check" size={10} stroke={2.4}/> Verified fit · 2015 SRT 392
+      <Icon name="check" size={10} stroke={2.4}/> Verified fit · {v.year} {v.trim || v.model}
     </span>
   );
 }
@@ -257,9 +263,22 @@ const ttHasUpgrade = (nodes, ids, eq) => ids.some(id => nodes[id] && nodes[id].u
 
 function ttRisk(node, miles) {
   if (!node.riskAt) return null;
-  const due = node.servicedAt != null ? node.servicedAt + node.riskAt : node.riskAt;
-  if (miles >= due) return "critical";
-  if (miles >= due * 0.8) return "watch";
+  if (node.servicedAt != null) {
+    /* Serviced: risk is how far through the INTERVAL we are. The old code
+       compared the odometer against an absolute due figure, so the 80%
+       "watch" band was measured from zero miles — on a 155,000 mi car every
+       part sat above 80% of its due number forever, and an oil change done
+       this morning still read as amber. Only visible once real service
+       history exists, which is why the demo never showed it. */
+    const elapsed = miles - node.servicedAt;
+    if (elapsed >= node.riskAt) return "critical";
+    if (elapsed >= node.riskAt * 0.8) return "watch";
+    return null;
+  }
+  /* Never serviced: fall back to treating riskAt as an absolute mileage,
+     which is how the demo car is authored. */
+  if (miles >= node.riskAt) return "critical";
+  if (miles >= node.riskAt * 0.8) return "watch";
   return null;
 }
 
@@ -704,7 +723,11 @@ function ttAskLine(n, tail = "") {
 function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact = false, detailMode = null, vertical = false }) {
   const sheetDetail = detailMode ? detailMode === "sheet" : compact;
   const [equipped, setEquipped] = useEquipped();
-  const tree = React.useMemo(() => { const t = TT_TREES[branch]; const n = ttViewNodes(t.nodes, equipped); return n === t.nodes ? t : { ...t, nodes:n }; }, [branch, equipped]);
+  /* Demo tree set unless a live hub supplied the owner's. */
+  const trees = useTwinTrees(TT_TREES);
+  const vehicle = useTwinVehicle();
+  const carLabel = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? " " + vehicle.trim : ""}`;
+  const tree = React.useMemo(() => { const t = trees[branch]; const n = ttViewNodes(t.nodes, equipped); return n === t.nodes ? t : { ...t, nodes:n }; }, [trees, branch, equipped]);
   const [selected, setSelected] = React.useState(null);
   const [intent, setIntent] = React.useState(null);
   const [menu, setMenu] = React.useState(null);
@@ -729,7 +752,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
     return () => window.removeEventListener("resize", on);
   }, []);
 
-  React.useEffect(() => { setExpanded({ [TT_TREES[branch].root]: true }); setSelected(null); setIntent(null); setAllow(null); setMenu(null); setOffsets({}); setPan({ x:56, y:40 }); }, [branch]);
+  React.useEffect(() => { setExpanded({ [trees[branch].root]: true }); setSelected(null); setIntent(null); setAllow(null); setMenu(null); setOffsets({}); setPan({ x:56, y:40 }); }, [trees, branch]);
   React.useEffect(() => { try { localStorage.setItem("au7o-tt-styles", JSON.stringify(styles)); } catch(e) {} }, [styles]);
 
   /* a hotspot can point at a node, not just a branch — open its path and select it */
@@ -820,7 +843,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
   };
 
   React.useEffect(() => {
-    if (pending && branch === "car") { doIntent(pending, TT_TREES.car); setPending(null); }
+    if (pending && branch === "car") { doIntent(pending, trees.car); setPending(null); }
   }, [branch, pending]);
 
   const panDown = e => {
@@ -905,9 +928,9 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
                 <Icon name="chevron" size={11} style={{ color:"var(--slate-400)", flexShrink:0 }}/>
               </React.Fragment>
             )}
-            <span style={{ fontSize: compact ? 14 : 15.5, fontWeight:600, letterSpacing:"-0.02em" }}>{branch === "car" ? "2015 Challenger SRT 392" : tree.label}</span>
+            <span style={{ fontSize: compact ? 14 : 15.5, fontWeight:600, letterSpacing:"-0.02em" }}>{branch === "car" ? carLabel : tree.label}</span>
           </div>
-          {!compact && <div style={{ fontSize:11, color:"var(--slate-500)" }}>{branch === "car" ? "All systems" : "Tech tree"} · 2015 Challenger SRT 392 · <span className="mono">{miles.toLocaleString()} mi</span></div>}
+          {!compact && <div style={{ fontSize:11, color:"var(--slate-500)" }}>{branch === "car" ? "All systems" : "Tech tree"} · {carLabel} · <span className="mono">{miles.toLocaleString()} mi</span></div>}
         </div>
         {/* "N at risk" chip removed — the risk is already legible from the red
             nodes, and on a phone it crowded the close button. */}

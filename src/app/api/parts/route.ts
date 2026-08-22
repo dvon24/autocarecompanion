@@ -62,8 +62,12 @@ interface PartResult {
  */
 export async function GET(request: NextRequest) {
   const ip = getClientIp(request);
-  if (!knownIssuesLimiter.check(ip)) {
-    return rateLimitResponse(60);
+  // check() returns a RateLimitResult object, which is always truthy — the old
+  // `if (!knownIssuesLimiter.check(ip))` could never fire, so this route was
+  // effectively unthrottled. Test the .success flag.
+  const rateCheck = knownIssuesLimiter.check(ip);
+  if (!rateCheck.success) {
+    return rateLimitResponse(rateCheck.reset);
   }
 
   // GDPR Art. 21 right-to-object check — opted-out users get a 403

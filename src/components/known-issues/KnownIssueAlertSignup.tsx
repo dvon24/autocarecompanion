@@ -40,6 +40,12 @@ export function KnownIssueAlertSignup({
   const sub = blurb ?? `Leave your email and we'll alert you the moment there's a new recall or known issue for your ${vehicleName}. Free, no account needed.`;
   const [email, setEmail] = useState('');
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
+  // The server can now reject for a specific, fixable reason ("that domain does
+  // not exist"). A typo'd address is the common case, so showing the actual
+  // reason recovers a lead that a generic error would have lost.
+  const [errorMsg, setErrorMsg] = useState('');
+  // Honeypot: hidden from humans, filled by bots. Never populated by a person.
+  const [company, setCompany] = useState('');
   // Post-signup feedback box (shown on the confirmation): "help us make the site better".
   const [fb, setFb] = useState('');
   const [fbState, setFbState] = useState<'idle' | 'sending' | 'sent'>('idle');
@@ -64,6 +70,7 @@ export function KnownIssueAlertSignup({
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.includes('@') || email.length > 320) {
+      setErrorMsg('Enter a valid email and try again.');
       setState('error');
       return;
     }
@@ -72,7 +79,7 @@ export function KnownIssueAlertSignup({
       const res = await fetch('/api/interest', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim(), context }),
+        body: JSON.stringify({ email: email.trim(), context, company }),
       });
       if (res.ok) {
         setState('done');
@@ -80,9 +87,16 @@ export function KnownIssueAlertSignup({
         try { trackEvent('lead_capture', { context }); } catch { /* analytics best-effort */ }
         onDone?.();
       } else {
+        const body = await res.json().catch(() => null);
+        setErrorMsg(
+          res.status === 429
+            ? 'Too many attempts — try again in a little while.'
+            : (body?.error as string) || 'Enter a valid email and try again.',
+        );
         setState('error');
       }
     } catch {
+      setErrorMsg('Something went wrong on our end — please try again.');
       setState('error');
     }
   };
@@ -167,6 +181,19 @@ export function KnownIssueAlertSignup({
               disabled={state === 'loading'}
               style={{ flex: '1 1 200px', minWidth: 0, padding: '12px 14px', borderRadius: 11, border: '1px solid #E3DFD4', fontSize: 14, color: '#0B1220', background: '#FBFAF7', outline: 'none' }}
             />
+            {/* Honeypot. Off-screen rather than display:none, which some bots
+                detect and skip. aria-hidden + tabIndex keep it away from screen
+                readers and keyboard users. */}
+            <input
+              type="text"
+              name="company"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{ position: 'absolute', left: '-9999px', width: 1, height: 1, opacity: 0 }}
+            />
             <button
               type="submit"
               disabled={state === 'loading'}
@@ -181,7 +208,7 @@ export function KnownIssueAlertSignup({
         </div>
       )}
       {state === 'error' && (
-        <div style={{ fontSize: 12.5, color: '#B91C1C' }}>Enter a valid email and try again.</div>
+        <div style={{ fontSize: 12.5, color: '#B91C1C' }}>{errorMsg || 'Enter a valid email and try again.'}</div>
       )}
     </div>
   );

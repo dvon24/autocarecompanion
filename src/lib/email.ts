@@ -15,6 +15,7 @@
  */
 
 import { Resend } from 'resend';
+import { isSuppressed } from '@/lib/email-suppression';
 
 let _resend: Resend | null = null;
 function client(): Resend | null {
@@ -73,6 +74,15 @@ export async function sendEmailDetailed({ to, subject, html, text, replyTo }: Se
   if (!c) {
     console.warn('[email] RESEND_API_KEY not set; skipping send. To:', to, 'Subject:', subject);
     return { ok: false, error: 'RESEND_API_KEY is not set in this environment' };
+  }
+  // Suppression chokepoint. An address that permanently bounced or filed a spam
+  // complaint is never retried — each retry is charged against our sending
+  // reputation, which costs delivery for every real lead. Checked here rather
+  // than at each call site so no future sender can forget it. isSuppressed()
+  // fails OPEN, so a DB fault can never silently swallow a password reset.
+  if (await isSuppressed(to)) {
+    console.warn('[email] suppressed address, not sending. To:', to, 'Subject:', subject);
+    return { ok: false, error: 'Address is on the suppression list (hard bounce or spam complaint)' };
   }
   try {
     const result = await c.emails.send({

@@ -1,5 +1,6 @@
 import { randomBytes } from 'crypto';
 import { prisma } from '@/lib/db';
+import { loadSuppressed } from '@/lib/email-suppression';
 import { sendEmail, appUrl } from '@/lib/email';
 import { makeSlug } from '@/lib/known-issues';
 import { getRecallsForArticle, type RecallItem } from '@/lib/recalls';
@@ -15,6 +16,9 @@ import { getRecallsForArticle, type RecallItem } from '@/lib/recalls';
  */
 
 const MAX_PER_DIGEST = 10;
+// Leave headroom under the route's maxDuration so the loop exits on its own
+// terms. Raise both together if the list outgrows it.
+const SEND_BUDGET_MS = 240_000;
 const esc = (s: unknown) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;')
   .replace(/</g, '&lt;')
@@ -106,6 +110,10 @@ export interface DigestResult {
   skippedNoNew: number;
   skippedAlreadySentThisWeek: number;
   deduplicated: number;
+  /** Eligible recipients the run ran out of time for. They sort to the front of
+   *  the next run, so a non-zero value here is a backlog, not a loss — but a
+   *  persistently non-zero value means the budget needs raising. */
+  skippedOutOfTime: number;
   reason?: string;
 }
 
@@ -117,6 +125,7 @@ export async function runInterestDigest(): Promise<DigestResult> {
     skippedNoNew: 0,
     skippedAlreadySentThisWeek: 0,
     deduplicated: 0,
+    skippedOutOfTime: 0,
   };
   if (!process.env.AU7O_MAILING_ADDRESS) {
     result.reason = 'AU7O_MAILING_ADDRESS not set - refusing to send.';
@@ -129,6 +138,10 @@ export async function runInterestDigest(): Promise<DigestResult> {
 
   const leads = await prisma.interestEmail.findMany({
     where: { unsubscribedAt: null, context: { startsWith: 'known-issues:' } },
+    // Deterministic order. Without it Postgres returns rows in physical order,
+    // which is stable enough that a truncated run chops the SAME tail every
+    // week — see the sort of `eligible` below for why that was so damaging.
+    orderBy: { createdAt: 'asc' },
     select: {
       id: true,
       email: true,
@@ -139,6 +152,21 @@ export async function runInterestDigest(): Promise<DigestResult> {
     },
   });
 
+  // Drop addresses proven dead before the loop spends any of its time budget on
+  // them. sendEmail() also refuses these, but that check happens per-send and
+  // after the per-lead work; filtering here keeps the budget for real leads.
+  // ONE query for the whole list. Empty set on a DB fault (fail-open).
+  const suppressed = await loadSuppressed(leads.map((l) => l.email));
+  const liveLeads = suppressed.size === 0
+    ? leads
+    : leads.filter((l) => !suppressed.has(l.email.trim().toLowerCase()));
+  if (suppressed.size > 0) {
+    console.warn(
+      `[interest-digest] skipping ${leads.length - liveLeads.length} lead row(s) on the ` +
+      `suppression list (hard bounce or spam complaint)`,
+    );
+  }
+
   // Repeated submissions of the same address + vehicle are one subscription.
   // The newest watermark prevents an older duplicate from triggering a resend.
   const grouped = new Map<string, {
@@ -146,7 +174,7 @@ export async function runInterestDigest(): Promise<DigestResult> {
     ids: string[];
     lastNotifiedAt: Date | null;
   }>();
-  for (const lead of leads) {
+  for (const lead of liveLeads) {
     const key = `${lead.email.trim().toLowerCase()}\u0000${String(lead.context || '').trim().toLowerCase()}`;
     const existing = grouped.get(key);
     if (!existing) {
@@ -176,9 +204,26 @@ export async function runInterestDigest(): Promise<DigestResult> {
   result.skippedAlreadySentThisWeek = groups.filter(
     (group) => group.lastNotifiedAt && group.lastNotifiedAt >= weekStart,
   ).length;
-  const eligible = groups.filter(
-    (group) => !group.lastNotifiedAt || group.lastNotifiedAt < weekStart,
-  );
+  // Longest-waiting first, never-emailed before everyone.
+  //
+  // This is the fix for the starvation found on 2026-08-21. The loop below is
+  // bounded by the function timeout, and the old unordered pass always spent
+  // that budget on the same early rows — so the leads it never reached were
+  // always the NEWEST signups. 63 of 174 leads had never received a single
+  // email, including every single person who signed up after 2026-08-05: the
+  // highest-intent people on the list, who had just asked to hear from us.
+  // Draining oldest-watermark-first means a truncated run resumes where it
+  // stopped instead of replaying the same head forever.
+  const eligible = groups
+    .filter((group) => !group.lastNotifiedAt || group.lastNotifiedAt < weekStart)
+    .sort((a, b) => {
+      if (!a.lastNotifiedAt && !b.lastNotifiedAt) {
+        return a.lead.createdAt.getTime() - b.lead.createdAt.getTime();
+      }
+      if (!a.lastNotifiedAt) return -1;
+      if (!b.lastNotifiedAt) return 1;
+      return a.lastNotifiedAt.getTime() - b.lastNotifiedAt.getTime();
+    });
 
   const pairs = await prisma.knownIssue.findMany({
     distinct: ['make', 'model'],
@@ -189,7 +234,49 @@ export async function runInterestDigest(): Promise<DigestResult> {
     pairBySubject.set(`${pair.make} ${pair.model}`.toLowerCase().trim(), pair);
   }
 
+  // One NHTSA round-trip and one years query PER VEHICLE, not per lead. 174
+  // leads are only ~111 distinct vehicles, and duplicates (four separate
+  // Cadillac XT6 leads) each paid for their own network call. This was the
+  // dominant per-lead cost: the 2026-08-17 run averaged 0.63s/lead and died at
+  // the timeout having sent 92 of 155.
+  const recallCache = new Map<string, RecallItem[]>();
+  const recallsForVehicle = async (make: string, model: string): Promise<RecallItem[]> => {
+    const key = `${make} ${model}`;
+    const cached = recallCache.get(key);
+    if (cached) return cached;
+    let all: RecallItem[] = [];
+    try {
+      const yearRows = await prisma.knownIssue.findMany({
+        where: { make, model },
+        select: { years: true },
+      });
+      const years = [...new Set(yearRows.flatMap((row) => row.years || []))]
+        .sort((a, b) => b - a)
+        .slice(0, 8);
+      if (years.length > 0) all = await getRecallsForArticle(make, model, years);
+    } catch {
+      // Recall enrichment is additive and must never block the digest.
+    }
+    recallCache.set(key, all);
+    return all;
+  };
+
+  // Stop cleanly with time to spare rather than being killed mid-iteration.
+  // A hard kill loses the watermark write for the email it just sent, which
+  // would mail that person twice next week.
+  const startedAt = Date.now();
+  let processed = 0;
+
   for (const group of eligible) {
+    if (Date.now() - startedAt > SEND_BUDGET_MS) {
+      result.skippedOutOfTime = eligible.length - processed;
+      console.warn(
+        `[interest-digest] time budget reached after ${processed} of ${eligible.length}; ` +
+        `${result.skippedOutOfTime} carry over to the next run (they sort first).`,
+      );
+      break;
+    }
+    processed++;
     const lead = group.lead;
     const subject = String(lead.context || '').slice('known-issues:'.length).trim();
     const pair = pairBySubject.get(subject.toLowerCase());
@@ -207,26 +294,15 @@ export async function runInterestDigest(): Promise<DigestResult> {
       select: { id: true, title: true, severity: true },
     });
 
-    let recalls: RecallItem[] = [];
-    try {
-      const yearRows = await prisma.knownIssue.findMany({
-        where: { make: pair.make, model: pair.model },
-        select: { years: true },
-      });
-      const years = [...new Set(yearRows.flatMap((row) => row.years || []))]
-        .sort((a, b) => b - a)
-        .slice(0, 8);
-      if (years.length > 0) {
-        const all = await getRecallsForArticle(pair.make, pair.model, years);
-        const cutoff = since ? new Date(since) : new Date(Date.now() - 90 * 86400000);
-        recalls = all.filter((recall) => {
-          const date = parseRecallDate(recall.reportDate);
-          return Boolean(date && date > cutoff);
-        }).slice(0, 5);
-      }
-    } catch {
-      // Recall enrichment is additive and must never block the digest.
-    }
+    // The cutoff is per-lead (it depends on their watermark), so the cache
+    // holds the unfiltered campaign list and the filter runs per recipient.
+    const cutoff = since ? new Date(since) : new Date(Date.now() - 90 * 86400000);
+    const recalls = (await recallsForVehicle(pair.make, pair.model))
+      .filter((recall) => {
+        const date = parseRecallDate(recall.reportDate);
+        return Boolean(date && date > cutoff);
+      })
+      .slice(0, 5);
 
     let mode: 'catch-up' | 'new' | 'weekly' | 'researching' = !since
       ? 'catch-up'

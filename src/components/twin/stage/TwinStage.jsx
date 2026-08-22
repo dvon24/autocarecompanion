@@ -11,12 +11,15 @@
 import React from "react";
 import { Icon } from "./Icon";
 import { TT_TREES, ttRisk, ttHasUpgrade, ttFinish, useEquipped } from "./TechTree";
+import { TWIN_DEMO_MILES, TWIN_DEMO_VEHICLE, useTwinVehicle, useTwinMiles, useTwinTrees } from "../twin-context";
 
 /* Au7o Hub — tech tree direction.
    The hub greets you with your car. Click a part and the tech tree opens over it. */
 
-const TH_MILES = 65000;
-const TH_V = { year:2015, make:"Dodge", model:"Challenger", trim:"SRT 392", engine:"6.4L V8 HEMI" };
+/* Demo fallbacks only. A live hub supplies the owner's car and odometer
+   through TwinDataCtx; these are what /demo/hub keeps showing. */
+const TH_MILES = TWIN_DEMO_MILES;
+const TH_V = TWIN_DEMO_VEHICLE;
 
 const TH_HOTSPOTS = [
   { id:"wheel",     branch:"wheel",  label:"Wheel, Tire & Brakes", x:39.6, y:65.5 },
@@ -33,22 +36,24 @@ const TH_SYSTEMS = [
   { hot:"glass", branch:"wipers", label:"Windshield Wipers",    img:"/twin-stage/parts/part-wipers.webp" },
 ];
 
-const thCount = (branch, kind) => {
-  const t = TT_TREES[branch];
+/* These closed over the demo's tree set and 65,000 mi. They take both as
+   arguments now, defaulting to the demo, so a live hub can pass the owner's. */
+const thCount = (branch, kind, trees = TT_TREES, miles = TH_MILES) => {
+  const t = trees[branch];
   if (!t) return 0;
-  return Object.keys(t.nodes).filter(k => k !== t.root && ttRisk(t.nodes[k], TH_MILES) === kind).length;
+  return Object.keys(t.nodes).filter(k => k !== t.root && ttRisk(t.nodes[k], miles) === kind).length;
 };
 const TH_DUE = thCount("car", "critical");
 const TH_WATCH = thCount("car", "watch");
-const thPartCount = branch => Object.keys(TT_TREES[branch].nodes).filter(k => !TT_TREES[branch].nodes[k].group).length;
-const thMeta = branch => `${thPartCount(branch)} parts · ${thCount(branch, "critical")} due · ${thCount(branch, "watch")} watch`;
-const thHot = (h, eq) => {
-  const t = TT_TREES[h.branch];
+const thPartCount = (branch, trees = TT_TREES) => Object.keys(trees[branch].nodes).filter(k => !trees[branch].nodes[k].group).length;
+const thMeta = (branch, trees = TT_TREES, miles = TH_MILES) => `${thPartCount(branch, trees)} parts · ${thCount(branch, "critical", trees, miles)} due · ${thCount(branch, "watch", trees, miles)} watch`;
+const thHot = (h, eq, trees = TT_TREES, miles = TH_MILES) => {
+  const t = trees[h.branch];
   const ids = [];
   const walk = id => { ids.push(id); (t.nodes[id].kids || []).forEach(walk); };
   if (h.node) walk(h.node); else (t.nodes[t.root].kids || []).forEach(walk);
-  const due = ids.filter(k => ttRisk(t.nodes[k], TH_MILES) === "critical").length;
-  const watch = ids.filter(k => ttRisk(t.nodes[k], TH_MILES) === "watch").length;
+  const due = ids.filter(k => ttRisk(t.nodes[k], miles) === "critical").length;
+  const watch = ids.filter(k => ttRisk(t.nodes[k], miles) === "watch").length;
   const parts = ids.filter(k => !t.nodes[k].group).length;
   const upgrade = ttHasUpgrade(t.nodes, ids, eq || {});
   return { ...h, risk: due > 0, upgrade, parts, sub: upgrade ? (due ? `${due} due · 1 upgrade` : "1 upgrade available") : due ? `${due} due` : watch ? `${watch} to watch` : "On track" };
@@ -124,6 +129,11 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
   }, []);
   const [active, setActive] = React.useState(null);
   const [equipped] = useEquipped();
+  /* Demo values unless a live hub wrapped us in TwinDataCtx. */
+  const vehicle = useTwinVehicle();
+  const miles = useTwinMiles();
+  const trees = useTwinTrees(TT_TREES);
+  const dueCount = thCount("car", "critical", trees, miles);
   const cur = hover || active;
   const lit = mode === "hotspots" && ["wheel","hood","rad","airbox","rearwheel"].includes(cur) ? cur : null;
   const tap = h => { if (mobile && active !== h.id) { setActive(h.id); return; } setActive(h.id); onOpen(h.id); };
@@ -141,7 +151,7 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
             </svg>
           </button>
         )}
-        <img src="/twin-stage/car-base.webp" alt={`${TH_V.year} ${TH_V.make} ${TH_V.model}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }}/>
+        <img src="/twin-stage/car-base.webp" alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }}/>
         <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: ttFinish().id === "oem" ? 0 : 1, filter: ttFinish().filter || "none", transition:"opacity .4s ease, filter .4s ease" }}/>
         <img src="/twin-stage/car-wheel-highlight-glow.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: lit === "wheel" ? 1 : 0, transition:"opacity .32s ease" }}/>
         <img src="/twin-stage/car-hood-highlight-glow.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: lit === "hood" ? 1 : 0, transition:"opacity .32s ease" }}/>
@@ -150,7 +160,7 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
         <img src="/twin-stage/car-airbox-highlight-glow.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: lit === "airbox" ? 1 : 0, transition:"opacity .32s ease" }}/>
         <img src="/twin-stage/car-xray.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: mode === "xray" ? 1 : 0, transition:"opacity .45s ease" }}/>
 
-        {mode !== "rail" && TH_HOTSPOTS.map(h => thHot(h, equipped)).map(h => {
+        {mode !== "rail" && TH_HOTSPOTS.map(h => thHot(h, equipped, trees, miles)).map(h => {
           const on = cur === h.id, open = mode === "xray", above = h.y > 55, c = TH_DOT(h);
           return (
             <button key={h.id} onMouseEnter={()=>setHover(h.id)} onMouseLeave={()=>setHover(null)} onClick={e=>{ e.stopPropagation(); tap(h); }}
@@ -177,11 +187,11 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
             <span className="au7o-pulse-soft" style={{ width:6, height:6, borderRadius:"50%", background:"#4CC9F0" }}/>
             <span className="eyebrow" style={{ color:"#8FDDF7", fontSize:9.5 }}>Your garage · live</span>
           </div>
-          <div style={{ color:"#fff", fontSize: mobile?17:21, fontWeight:600, letterSpacing:"-0.02em", marginTop:4 }}>{TH_V.year} {TH_V.make} {TH_V.model} <span style={{ color:"rgba(255,255,255,.55)", fontWeight:500 }}>{TH_V.trim}</span></div>
-          <div className="mono" style={{ color:"rgba(255,255,255,.6)", fontSize:11, marginTop:3 }}>{TH_V.engine} · {TH_MILES.toLocaleString()} mi</div>
+          <div style={{ color:"#fff", fontSize: mobile?17:21, fontWeight:600, letterSpacing:"-0.02em", marginTop:4 }}>{vehicle.year} {vehicle.make} {vehicle.model} <span style={{ color:"rgba(255,255,255,.55)", fontWeight:500 }}>{vehicle.trim}</span></div>
+          <div className="mono" style={{ color:"rgba(255,255,255,.6)", fontSize:11, marginTop:3 }}>{vehicle.engine} · {miles.toLocaleString()} mi</div>
         </div>
         <div style={{ marginLeft:"auto", display:"flex", alignItems:"center", gap:7, flexShrink:0 }}>
-          <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"3px 8px", borderRadius:999, background:"var(--ki-crit-bg)", color:"var(--ki-crit)", flexShrink:0 }}>{TH_DUE} due</span>
+          <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"3px 8px", borderRadius:999, background:"var(--ki-crit-bg)", color:"var(--ki-crit)", flexShrink:0 }}>{dueCount} due</span>
         </div>
         <div style={{ flexBasis:"100%", display:"flex", alignItems:"center", gap: mobile ? 10 : 16, flexWrap:"wrap", paddingTop:10, marginTop:2, borderTop:"1px solid rgba(255,255,255,.09)", fontSize:10.5, color:"rgba(255,255,255,.62)" }}>
           {[["alert","#FF6B63","Overdue on mileage"],["check","#35D69B","On track"],["shield-alert","#A78BFA","Known issue — fix available"]].map(([ic,c,l]) => (
@@ -199,7 +209,7 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
               </span>
               <span style={{ minWidth:0 }}>
                 <span style={{ display:"block", fontSize:12.5, fontWeight:600, color:"#fff", whiteSpace:"nowrap" }}>{s.label}</span>
-                <span style={{ display:"block", fontSize:10, color:"rgba(255,255,255,.55)", whiteSpace:"nowrap", marginTop:1 }}>{thMeta(s.branch)}</span>
+                <span style={{ display:"block", fontSize:10, color:"rgba(255,255,255,.55)", whiteSpace:"nowrap", marginTop:1 }}>{thMeta(s.branch, trees, miles)}</span>
               </span>
             </button>
           ))}

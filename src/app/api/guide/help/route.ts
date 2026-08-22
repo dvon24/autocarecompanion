@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
 import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
+import { guideLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
 
 /**
  * Guide Help API Route
@@ -16,20 +17,24 @@ import { checkAiGate, isAiGateBlocked } from '@/lib/ai-gate';
 const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
 const TIMEOUT_MS = 20000;
 
+// Every one of these context fields is interpolated into the SYSTEM prompt by
+// getSystemPrompt(), so an unbounded string here is an unbounded system prompt
+// on the server's OpenAI key. Cap each one at the length a real guide step
+// actually needs.
 const HelpRequestSchema = z.object({
   question: z.string().min(1).max(500),
   context: z.object({
-    guideTitle: z.string(),
-    stepNumber: z.number(),
-    stepInstruction: z.string(),
+    guideTitle: z.string().max(200),
+    stepNumber: z.number().int().min(0).max(500),
+    stepInstruction: z.string().max(2000),
     vehicle: z.object({
-      year: z.number(),
-      make: z.string(),
-      model: z.string(),
-      trim: z.string().optional(),
+      year: z.number().int().min(1900).max(2100),
+      make: z.string().max(60),
+      model: z.string().max(60),
+      trim: z.string().max(60).optional(),
     }),
-    toolsRequired: z.array(z.string()).optional(),
-    safetyWarnings: z.array(z.string()).optional(),
+    toolsRequired: z.array(z.string().max(120)).max(30).optional(),
+    safetyWarnings: z.array(z.string().max(300)).max(20).optional(),
   }),
 });
 
@@ -133,6 +138,16 @@ function generateMockResponse(question: string, context: z.infer<typeof HelpRequ
 }
 
 export async function POST(request: NextRequest) {
+  // Rate limit: 10 requests per minute per IP, same as the sibling /api/guide
+  // route. This endpoint is unauthenticated and fronts the server's OpenAI key,
+  // so without this it is an open completions proxy; the shared monthly budget
+  // guard below is not a substitute (tripping it also breaks real users).
+  const ip = getClientIp(request);
+  const rateCheck = guideLimiter.check(ip);
+  if (!rateCheck.success) {
+    return rateLimitResponse(rateCheck.reset);
+  }
+
   try {
     // GDPR Art. 21 right-to-object check — opted-out users never
     // reach the OpenAI help call below.
