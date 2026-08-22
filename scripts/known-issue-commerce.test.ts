@@ -6,6 +6,7 @@ import {
   hasKnownIssueCommerce,
   isKnownIssueProductUrl,
   knownIssueAffiliateUrl,
+  vendorMatchesProductUrl,
 } from '../src/lib/known-issue-commerce';
 
 test('accepts product-detail URLs and rejects marketplace searches', () => {
@@ -27,11 +28,64 @@ test('accepts product-detail URLs and rejects marketplace searches', () => {
   assert.equal(isKnownIssueProductUrl('https://retailer.example/parts/brakes'), false);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/category/brakes/11340029751'), false);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/search%2Fbrakes-11340029751'), false);
+  assert.equal(isKnownIssueProductUrl('https://retailer.example/search%252Fbrakes-11340029751'), false);
+  assert.equal(isKnownIssueProductUrl('https://retailer.example/parts-list/vehicle/brakes'), false);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/parts/11340029751?s=brakes'), false);
   assert.equal(isKnownIssueProductUrl('https://retailer.example/orders/11340029751'), false);
   assert.equal(isKnownIssueProductUrl('https://127.0.0.1/product/11340029751'), false);
   assert.equal(isKnownIssueProductUrl('https://parts.internal/product/11340029751'), false);
   assert.equal(isKnownIssueProductUrl('javascript:alert(1)'), false);
+});
+
+test('admits only exact reviewed retailer products and matching reviewed vendors', () => {
+  const reviewedHondaUrl = 'https://www.hondapartsnow.com/genuine/honda~filter~oil~15400-plm-a02.html';
+  const reviewedShopifyUrl = 'https://www.cuescreens.com/collections/best-sellers/products/uaq-uas-upgraded-replacement-uconnect-4-4c-8-4-touch-screen-lcd';
+
+  assert.equal(isKnownIssueProductUrl(reviewedHondaUrl), true);
+  assert.equal(vendorMatchesProductUrl('HondaPartsNow', reviewedHondaUrl), true);
+  assert.equal(vendorMatchesProductUrl('Unrelated Store', reviewedHondaUrl), false);
+  assert.equal(
+    isKnownIssueProductUrl('https://www.hondapartsnow.com/genuine/honda~filter~oil~15400-plm-a03.html'),
+    false,
+  );
+  assert.equal(isKnownIssueProductUrl(reviewedShopifyUrl), true);
+  assert.equal(isKnownIssueProductUrl('https://shopusa.motul.com/collections/brake-fluids'), false);
+  assert.equal(
+    isKnownIssueProductUrl('https://www.hondapartsnow.com/parts-list/2000-honda-accord/transmission/at_sensor_solenoid_v6.html'),
+    false,
+  );
+  assert.equal(isKnownIssueProductUrl('https://www.ebay.com/p/11062289670'), false);
+  assert.equal(
+    vendorMatchesProductUrl('eBay — Quirk Parts', 'https://www.ebay.com/itm/326788634929'),
+    true,
+  );
+  assert.equal(
+    vendorMatchesProductUrl('eBay — Different Seller', 'https://www.ebay.com/itm/326788634929'),
+    false,
+  );
+});
+
+test('catalog-marked destinations stay text-only even when the URL was reviewed', () => {
+  const reviewedHondaUrl = 'https://www.hondapartsnow.com/genuine/honda~filter~oil~15400-plm-a02.html';
+  const result = getKnownIssueCommerce({
+    fixParts: [{
+      component: 'Oil filter catalog reference',
+      oemPartNumber: '15400-PLM-A02',
+      aftermarketXref: [],
+      note: '',
+      variants: [],
+      verified: true,
+      buyLinks: [{
+        vendor: 'HondaPartsNow',
+        url: reviewedHondaUrl,
+        linkType: 'catalog',
+        verified: true,
+      }],
+    }],
+    communityRecommendations: [],
+  });
+
+  assert.deepEqual(result.fixParts[0].buyLinks, []);
 });
 
 test('exposes commerce only from fixParts and keeps owner guidance text-only', () => {
@@ -151,6 +205,36 @@ test('requires audited part and link metadata, vendor consistency, and unique de
   assert.deepEqual(result.fixParts[0].buyLinks, [
     { vendor: 'eBay', url: 'https://www.ebay.com/itm/396256904399', verified: true },
   ]);
+});
+
+test('removes duplicate destinations across separate parts and ignores URL fragments', () => {
+  const url = 'https://www.ebay.com/itm/396256904399';
+  const result = getKnownIssueCommerce({
+    fixParts: [
+      {
+        component: 'first fitment branch',
+        oemPartNumber: null,
+        aftermarketXref: [],
+        note: '',
+        variants: [],
+        verified: true,
+        buyLinks: [{ vendor: 'eBay', url, verified: true }],
+      },
+      {
+        component: 'second fitment branch',
+        oemPartNumber: null,
+        aftermarketXref: [],
+        note: '',
+        variants: [],
+        verified: true,
+        buyLinks: [{ vendor: 'eBay', url: `${url}#fitment`, verified: true }],
+      },
+    ],
+    communityRecommendations: [],
+  });
+
+  assert.equal(result.fixParts[0].buyLinks.length, 1);
+  assert.equal(result.fixParts[1].buyLinks.length, 0);
 });
 
 test('recall-first parts never expose retail links', () => {

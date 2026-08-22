@@ -1,6 +1,10 @@
 import type { KnownIssue } from '@/schemas/knownIssue.schema';
 import { ebayAffiliate } from '@/lib/ebay-affiliate';
 import { isPublicWebHostname } from '@/lib/external-http-url';
+import {
+  isReviewedKnownIssueProductUrl,
+  isReviewedKnownIssueVendorUrl,
+} from '@/lib/known-issue-reviewed-retailer-links';
 
 export type KnownIssueFixPart = NonNullable<KnownIssue['fixParts']>[number];
 
@@ -23,12 +27,19 @@ export function vendorMatchesProductUrl(vendor: string, value: string): boolean 
   const marketplace = marketplaceForProductUrl(value);
   if (!marketplace) return false;
   const normalizedVendor = vendor.trim().toLowerCase();
-  if (marketplace === 'amazon') return /^(amazon|amazon\.com)$/i.test(normalizedVendor);
-  if (marketplace === 'ebay') return /^(ebay|ebay\.com)$/i.test(normalizedVendor);
+  if (marketplace === 'amazon') {
+    return /^(amazon|amazon\.com)$/i.test(normalizedVendor)
+      || isReviewedKnownIssueVendorUrl(vendor, value);
+  }
+  if (marketplace === 'ebay') {
+    return /^(ebay|ebay\.com)$/i.test(normalizedVendor)
+      || isReviewedKnownIssueVendorUrl(vendor, value);
+  }
   if (marketplace === 'direct' && /^(rockauto|rockauto\.com)$/i.test(normalizedVendor)) {
     return new URL(value).hostname.toLowerCase().replace(/^www\./, '') === 'rockauto.com';
   }
   if (/(amazon|ebay|rockauto)/i.test(normalizedVendor)) return false;
+  if (isReviewedKnownIssueVendorUrl(vendor, value)) return true;
 
   // A verified flag alone must not let an unrelated retailer label point at
   // another domain. Be conservative: a false negative hides a CTA, while a
@@ -116,6 +127,8 @@ export function isKnownIssueProductUrl(value: string): boolean {
   // direct-retailer rule below.
   if (hostLabels.some((label) => ['amazon', 'ebay', 'rockauto'].includes(label))) return false;
 
+  const reviewedProduct = isReviewedKnownIssueProductUrl(url.toString());
+
   // BAVLOGIC's fetched CIC repair-service detail page is a WordPress product
   // query at the site root. Accept only that exact product parameter; the
   // homepage and arbitrary query pages remain blocked.
@@ -124,10 +137,10 @@ export function isKnownIssueProductUrl(value: string): boolean {
       && /^bmw-[a-z0-9-]+-repair-service-[a-z0-9-]+$/i.test(url.searchParams.get('product') || '');
   }
 
-  const verifiedHostProduct = matchesVerifiedHostPattern(host, path);
+  const shopifyProduct = /\/collections\/[^/]+\/products\/[^/]+(?:\/|$)/i.test(path);
   if (
-    !verifiedHostProduct &&
-    /\/(?:search|search-results|partsearch|parts-search|category|categories|catalog|collections?|sch|s)(?:\/|$)/i.test(path)
+    /\/(?:search|search-results|partsearch|parts-search|parts-list|category|categories|catalog|sch|find|s)(?:\/|$)/i.test(path)
+    || (!shopifyProduct && /\/collections?(?:\/|$)/i.test(path))
   ) return false;
 
   const searchKeys = new Set([
@@ -138,11 +151,14 @@ export function isKnownIssueProductUrl(value: string): boolean {
     if (searchKeys.has(key.toLowerCase())) return false;
   }
 
+  const verifiedHostProduct = matchesVerifiedHostPattern(host, path) || reviewedProduct;
+
   const segments = path.split('/').filter(Boolean);
   if (segments.length === 0) return false;
 
   const genericRoots = new Set(['part', 'parts', 'product', 'products', 'shop', 'store', 'catalog']);
   if (segments.length === 1 && genericRoots.has(segments[0])) return false;
+  if (reviewedProduct) return true;
 
   // Direct-retailer URLs need a product-shaped path. This is deliberately
   // conservative: false negatives hide a CTA; false positives can sell the
@@ -264,16 +280,22 @@ export function getKnownIssueCommerce(
   // commerce verification. Even an otherwise unverified recall marker must
   // suppress every retail link until the owner checks the VIN.
   const recallFirst = allParts.some((part) => part.recallFirst);
+  const seen = new Set<string>();
   const fixParts = verifiedParts
     .map((part) => {
-      const seen = new Set<string>();
       const buyLinks = recallFirst
         ? []
         : (part.buyLinks || []).filter((link) => {
-            if (link.verified !== true || !vendorMatchesProductUrl(link.vendor, link.url)) return false;
-            const canonicalUrl = new URL(link.url).toString();
-            if (seen.has(canonicalUrl)) return false;
-            seen.add(canonicalUrl);
+            if (
+              link.verified !== true
+              || (link.linkType !== undefined && link.linkType !== 'product')
+              || !vendorMatchesProductUrl(link.vendor, link.url)
+            ) return false;
+            const canonicalUrl = new URL(link.url);
+            canonicalUrl.hash = '';
+            const canonicalValue = canonicalUrl.toString();
+            if (seen.has(canonicalValue)) return false;
+            seen.add(canonicalValue);
             return true;
           });
       return { ...part, buyLinks };
