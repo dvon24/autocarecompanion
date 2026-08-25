@@ -690,6 +690,16 @@ model InterestEmail {
   unsubscribeToken String?   @unique
   unsubscribedAt   DateTime?
   lastNotifiedAt   DateTime?
+  // One-time 2026 Vehicle Twin return campaign. Separate from
+  // lastNotifiedAt so a launch send cannot move the weekly known-issue digest
+  // watermark or cause a newly published issue to be skipped.
+  twinLaunchEmailedAt DateTime?
+  // A distinct durable claim for the one-time campaign. It is set before the
+  // provider call and cleared only after a definitive rejection or successful
+  // final watermark. A non-null value after an ambiguous failure is reviewed
+  // manually instead of being mistaken for either sent or safe-to-retry.
+  twinLaunchPendingAt DateTime?
+  twinLaunchPendingKey String?
 
   @@index([createdAt])
 }
@@ -727,9 +737,34 @@ model EmailSuppression {
 model Reservation {
   id               String    @id @default(cuid())
   email            String    @unique
-  // The car they want it for, free-text as typed/selected ("2019 Chevrolet
-  // Camaro ZL1"). Drives which vehicle we build the twin for first.
+  // The car they want it for, as one display string ("2019 Chevrolet Camaro
+  // ZL1 1LE"). Drives which vehicle we build the twin for first. Always set —
+  // composed from the YMMT fields below when they picked, or their raw typing
+  // when they used the manual fallback.
   vehicle          String?
+  // Structured YMMT, set ONLY when the vehicle was chosen from public/data/
+  // ymmt.json. The maintenance schedule keys off year/make/model/trim, so a
+  // free-text string that merely looks right ("2025 nissan kicks") cannot be
+  // fed to it — a wrong trim silently shifts every interval. These are the
+  // fields a schedule may trust; `vehicle` is for display and triage.
+  year             Int?
+  make             String?
+  model            String?
+  trim             String?
+  // Asked only for reviewed YMMTs sold with both gearboxes. Automatic-only
+  // vehicles never see the field; null means not applicable or still needs a
+  // founder fitment check.
+  transmission     String?   // automatic | manual
+  // True only when year/make/model resolved against the YMMT database. False
+  // means the person used "enter it manually" and the row needs a human pass
+  // before anything schedule-shaped is derived from it.
+  vehicleVerified  Boolean   @default(false)
+  // Tracked apart from vehicleVerified because a trim can be right without
+  // being in the catalog: many models carry no trim list at all, and the owner
+  // typing "SV" is still the difference between two different schedules. False
+  // + a non-null `trim` means owner-asserted — usable, but confirm it before
+  // deriving intervals from it.
+  trimVerified     Boolean   @default(false)
   // Required by the reserve form. Paid plans are US-only at launch (tax
   // registration pending), so this tells us where demand actually is before we
   // open billing in a market — the reason the form asks at all.
@@ -749,8 +784,20 @@ model Reservation {
   // Set when they've been emailed their beta invite, so a re-run never double-sends.
   invitedAt        DateTime?
 
+  // Founder-operated fulfillment state. A reservation is only marked ready
+  // after its requested vehicle matches a live twin definition. This does not
+  // grant a subscription or start billing; it records which experience and
+  // offer should be presented when the owner claims it.
+  twinStatus       String    @default("reserved") // reserved | building | ready | claimed
+  assignedTwin     String?   // stable registry id, e.g. dodge-challenger
+  trialDays        Int?      // founder-selected 7 or 30 day offer
+  readyAt          DateTime?
+  claimedAt        DateTime?
+  updatedAt        DateTime  @default(now()) @updatedAt
+
   @@index([createdAt])
   @@index([source])
+  @@index([twinStatus])
 }
 
 model Feedback {

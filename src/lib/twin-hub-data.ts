@@ -1,6 +1,7 @@
 import prisma from '@/lib/db';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { getRecentThreads } from '@/lib/hub-data';
+import { getTwinDefinition, twinMatchesVehicle } from '@/lib/twin-fulfillment';
 
 /**
  * Server payload for the live twin hub.
@@ -39,6 +40,7 @@ export interface TwinHubData {
   /** Raw logged services; the client folds these onto tree nodes. */
   records: TwinServiceRecord[];
   recent: TwinRecentThread[];
+  transmission: 'automatic' | 'manual';
 }
 
 /**
@@ -54,16 +56,6 @@ export interface TwinHubData {
  * being allowed to see it. Widening this list means producing the layer set
  * and re-mapping TH_HOTSPOTS for that body first.
  */
-const TWIN_SUPPORTED_VEHICLES: ReadonlyArray<{ make: string; model: string }> = [
-  { make: 'dodge', model: 'challenger' },
-];
-
-export function twinSupportsVehicle(make: string, model: string): boolean {
-  const mk = make.trim().toLowerCase();
-  const md = model.trim().toLowerCase();
-  return TWIN_SUPPORTED_VEHICLES.some((v) => v.make === mk && v.model === md);
-}
-
 /** "2d ago" / "3w ago" — the sidebar's existing format. */
 function agoLabel(iso: string): string {
   const then = new Date(iso).getTime();
@@ -85,17 +77,33 @@ function agoLabel(iso: string): string {
  */
 export async function getTwinHubData(
   userId: string,
+  userEmail: string,
   vehicleId: string,
 ): Promise<TwinHubData | null> {
-  const vehicle = await prisma.vehicle.findFirst({
-    where: { id: vehicleId, userId },
-    select: {
-      id: true, year: true, make: true, model: true, trim: true, currentMileage: true,
-    },
-  });
+  const [vehicle, reservation] = await Promise.all([
+    prisma.vehicle.findFirst({
+      where: { id: vehicleId, userId },
+      select: {
+        id: true, year: true, make: true, model: true, trim: true, currentMileage: true,
+      },
+    }),
+    prisma.reservation.findUnique({
+      where: { email: userEmail.trim().toLowerCase() },
+      select: { twinStatus: true, assignedTwin: true, transmission: true, trialDays: true, claimedAt: true },
+    }),
+  ]);
   if (!vehicle) return null;
-  // No art for this body -> no twin. See TWIN_SUPPORTED_VEHICLES.
-  if (!twinSupportsVehicle(vehicle.make, vehicle.model)) return null;
+  // An account alone does not activate a twin. The founder must first mark
+  // this exact reservation ready (or the future claim flow must mark it
+  // claimed), and the assigned definition must match the garage vehicle.
+  if (!reservation || reservation.twinStatus !== 'claimed') return null;
+  if (!reservation.claimedAt || !reservation.trialDays) return null;
+  const expiresAt = new Date(reservation.claimedAt);
+  expiresAt.setUTCDate(expiresAt.getUTCDate() + reservation.trialDays);
+  if (expiresAt.getTime() <= Date.now()) return null;
+  if (reservation.transmission !== 'automatic' && reservation.transmission !== 'manual') return null;
+  const twin = getTwinDefinition(reservation.assignedTwin);
+  if (!twin || !twinMatchesVehicle(twin, vehicle)) return null;
   if (typeof vehicle.currentMileage !== 'number' || vehicle.currentMileage <= 0) return null;
 
   const [records, threads] = await Promise.all([
@@ -139,5 +147,6 @@ export async function getTwinHubData(
           .replace(/\s+/g, '-'),
       )}?session=${t.id}`,
     })),
+    transmission: reservation.transmission,
   };
 }

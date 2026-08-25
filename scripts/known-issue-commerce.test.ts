@@ -19,6 +19,9 @@ test('accepts product-detail URLs and rejects marketplace searches', () => {
   assert.equal(isKnownIssueProductUrl('https://www.ebay.com/itm/277072199375'), true);
   assert.equal(isKnownIssueProductUrl('https://www.ebay.com/itm/Genuine-BMW-Part/277072199375'), true);
   assert.equal(isKnownIssueProductUrl('https://www.ebay.com/sch/i.html?_nkw=11340029751'), false);
+  assert.equal(isKnownIssueProductUrl('https://www.ebay.co.uk/itm/355363261499'), true);
+  assert.equal(isKnownIssueProductUrl('https://www.ebay.co.uk/sch/i.html?_nkw=11340029751'), false);
+  assert.equal(isKnownIssueProductUrl('https://ebay.co.uk.evil.example/itm/355363261499'), false);
 
   assert.equal(isKnownIssueProductUrl('https://www.rockauto.com/en/partsearch/?q=11340029751'), false);
   assert.equal(isKnownIssueProductUrl('https://www.bmwpartsdeal.com/parts/bmw-repair_kit_valve_seal_ring-11340029751.html'), true);
@@ -277,4 +280,10 @@ test('normalizes owned Amazon attribution after URL validation', () => {
     knownIssueAffiliateUrl('https://www.amazon.com/s?k=water+pump&tag=someone-else'),
     'https://www.amazon.com/s?k=water+pump&tag=someone-else',
   );
+});
+
+test('accepts reviewed regional eBay marketplaces', () => {
+  const url = 'https://www.ebay.ca/itm/123456789012';
+  assert.equal(isKnownIssueProductUrl(url), true);
+  assert.equal(vendorMatchesProductUrl('eBay', url), true);
 });

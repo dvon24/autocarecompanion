@@ -12,9 +12,19 @@ const makes = makeArgs.length
   ? makeArgs
   : ["Honda", "Hyundai", "Infiniti", "Jaguar", "Jeep", "Kia"];
 const date = generatedOnArg.split("=")[1];
-const outputPath = path.join(root, "data", `repair-first-${makes.map((make) => make.toLowerCase()).join("-")}-${date}-gated.json`);
+const outputLabel = makes.length > 8
+  ? `${makes.length}-makes`
+  : makes.map((make) => make.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")).join("-");
+const outputPath = path.join(root, "data", `repair-first-${outputLabel}-${date}-gated.json`);
 const reviewedLinksDir = path.join(root, "src", "lib", "known-issue-reviewed-retailer-links");
 const reviewedLinksIndexPath = path.join(root, "src", "lib", "known-issue-reviewed-retailer-links.ts");
+const slugifyMake = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+const readJsonIfExists = async (filePath) => {
+  try { return JSON.parse(await fs.readFile(filePath, "utf8")); }
+  catch (error) { if (error && error.code === "ENOENT") return null; throw error; }
+};
+const globalSnapshotDoc = await readJsonIfExists(path.join(root, "data", "known-issues-catalog-deeplink-snapshot.json"));
+const globalSnapshot = globalSnapshotDoc?.records || [];
 
 const resolvedIssues = [];
 const seen = new Set();
@@ -205,9 +215,15 @@ const CATALOG_LINK_TYPES = new Set([
 ]);
 
 for (const make of makes) {
-  const dataDir = path.join(root, "data", `${make.toLowerCase()}-repair-first-review`);
-  const input = JSON.parse(await fs.readFile(path.join(dataDir, "review-input.json"), "utf8"));
-  const sourceById = new Map(input.reviews.map((row) => [row.issueId, row]));
+  const dataDir = path.join(root, "data", `${slugifyMake(make)}-repair-first-review`);
+  const input = await readJsonIfExists(path.join(dataDir, "review-input.json"));
+  const sourceDoc = await readJsonIfExists(path.join(dataDir, "source-snapshot.json"));
+  const sourceRows = input?.reviews
+    || sourceDoc?.records
+    || sourceDoc?.issues
+    || (Array.isArray(sourceDoc) ? sourceDoc : null)
+    || globalSnapshot.filter((row) => row.make === make);
+  const sourceById = new Map(sourceRows.map((row) => [row.issueId || row.id, row]));
   const batchFiles = (await fs.readdir(dataDir))
     .filter((name) => /^second-pass-.*\.json$/i.test(name))
     .sort((a, b) => a.localeCompare(b));
@@ -225,7 +241,12 @@ for (const make of makes) {
       const products = Array.isArray(issue.products) ? issue.products : [];
       const sourceRecallFirst = (source.existingFixParts || []).some((part) => part.recallFirst === true);
       const fixParts = products.map((product) => {
-        if (product.verified !== true) throw new Error(`Unverified product: ${issue.issueId} / ${product.component}`);
+        const component = product.component || product.name;
+        const vendor = product.vendor || product.merchant;
+        const scope = product.scope || product.fitment;
+        const linkType = product.linkType || "product";
+        if (!component || !vendor) throw new Error(`Missing product identity: ${issue.issueId}`);
+        if (product.verified !== true) throw new Error(`Unverified product: ${issue.issueId} / ${component}`);
         let parsedUrl;
         try {
           parsedUrl = new URL(product.url);
@@ -233,15 +254,15 @@ for (const make of makes) {
           throw new Error(`Malformed URL: ${issue.issueId} / ${product.url}`);
         }
         if (parsedUrl.protocol !== "https:") throw new Error(`Non-HTTPS URL: ${issue.issueId} / ${product.url}`);
-        if (!DIRECT_LINK_TYPES.has(product.linkType) && !CATALOG_LINK_TYPES.has(product.linkType)) {
-          throw new Error(`Unsupported linkType: ${issue.issueId} / ${String(product.linkType)}`);
+        if (!DIRECT_LINK_TYPES.has(linkType) && !CATALOG_LINK_TYPES.has(linkType)) {
+          throw new Error(`Unsupported linkType: ${issue.issueId} / ${String(linkType)}`);
         }
-        const note = [product.role, product.scope, product.availability]
+        const note = [product.role, scope, product.availability]
           .filter(Boolean)
           .join(" Fitment/availability: ");
         return {
-          component: product.component,
-          oemPartNumber: product.manufacturerSku || "",
+          component,
+          oemPartNumber: product.manufacturerSku || product.partNumber || "",
           aftermarketXref: [],
           priceLow: null,
           priceHigh: null,
@@ -249,9 +270,9 @@ for (const make of makes) {
           verified: true,
           ...(product.recallFirst === true || sourceRecallFirst ? { recallFirst: true } : {}),
           buyLinks: [{
-            vendor: product.vendor,
+            vendor,
             url: product.url,
-            linkType: CATALOG_LINK_TYPES.has(product.linkType) ? "catalog" : "product",
+            linkType: CATALOG_LINK_TYPES.has(linkType) ? "catalog" : "product",
             verified: true,
           }],
         };

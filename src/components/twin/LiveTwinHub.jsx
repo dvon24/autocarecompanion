@@ -52,6 +52,11 @@ function pickNextService(trees, miles) {
     const remaining = due - miles;
     const overdue = remaining <= 0;
     const cand = {
+      nodeId: id,
+      hot: id === "transFluid" || id === "transPan" ? "trans"
+        : id === "wipL" || id === "wipR" ? "glass"
+          : ["tire", "pads", "rotor", "padsR", "rotorR", "lugs", "tpms", "brakeFluid"].includes(id) ? "wheel"
+            : "hood",
       label: node.label,
       note: node.dueNote || "",
       overdue,
@@ -64,13 +69,13 @@ function pickNextService(trees, miles) {
     else if (overdue === best.overdue && cand.remaining < best.remaining) best = cand;
   }
   if (!best) return null;
-  return { label: best.label, note: best.note, overdue: best.overdue, progress: best.progress };
+  return best;
 }
 
 export function LiveTwinHub({ data }) {
   const value = React.useMemo(() => {
     const serviced = servicedFromRecords(data.records);
-    const trees = buildTwinTrees(serviced, data.miles);
+    const trees = buildTwinTrees(serviced, data.miles, data.transmission);
     return {
       vehicle: data.vehicle,
       miles: data.miles,

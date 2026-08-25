@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { getTransmissionOptions, type TransmissionChoice } from '@/lib/transmission-options';
 
 interface EmailEntry {
   id: string;
@@ -38,11 +39,41 @@ interface ReservationEntry {
   timestamp: string;
   email: string;
   vehicle: string | null;
+  year: number | null;
+  make: string | null;
+  model: string | null;
+  trim: string | null;
+  transmission: TransmissionChoice | null;
+  vehicleVerified: boolean;
+  trimVerified: boolean;
   country: string | null;
   source: string | null;
   path: string | null;
   note: string | null;
   invitedAt: string | null;
+  twinStatus: 'reserved' | 'building' | 'ready' | 'claimed';
+  assignedTwin: string | null;
+  trialDays: 7 | 30 | null;
+  readyAt: string | null;
+  claimedAt: string | null;
+  updatedAt: string;
+  account: {
+    id: string;
+    email: string;
+    name: string | null;
+    createdAt: string;
+  } | null;
+}
+
+interface TwinDefinitionEntry {
+  id: string;
+  label: string;
+  make: string;
+  model: string;
+  yearFrom: number;
+  yearTo: number;
+  trims: string[];
+  live: boolean;
 }
 
 interface FeedbackEntry {
@@ -187,6 +218,7 @@ export default function AdminPage() {
   const [emails, setEmails] = useState<EmailEntry[]>([]);
   const [feedback, setFeedback] = useState<FeedbackEntry[]>([]);
   const [reservations, setReservations] = useState<ReservationEntry[]>([]);
+  const [twins, setTwins] = useState<TwinDefinitionEntry[]>([]);
   const [users, setUsers] = useState<UserEntry[]>([]);
   const [vehicleFeedback, setVehicleFeedback] = useState<VehicleFeedback[]>([]);
   const [symptomPatterns, setSymptomPatterns] = useState<SymptomPattern[]>([]);
@@ -211,7 +243,44 @@ export default function AdminPage() {
   const [replyDraft, setReplyDraft] = useState<Record<string, string>>({});
   const [sendingReplyId, setSendingReplyId] = useState<string | null>(null);
   const [sentReplyIds, setSentReplyIds] = useState<Set<string>>(new Set());
-  const [activeTab, setActiveTab] = useState<'emails' | 'reservations' | 'users' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates' | 'guides'>('emails');
+  const [savingReservationId, setSavingReservationId] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState<'emails' | 'reservations' | 'users' | 'feedback' | 'vehicle' | 'patterns' | 'reports' | 'costs' | 'review' | 'affiliates' | 'guides'>('reservations');
+
+  async function updateReservation(
+    entry: ReservationEntry,
+    changes: Partial<Pick<ReservationEntry, 'twinStatus' | 'assignedTwin' | 'trialDays' | 'transmission'>>,
+  ) {
+    const next = { ...entry, ...changes };
+    setSavingReservationId(entry.id);
+    try {
+      const response = await fetch('/api/admin/reservations', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          id: entry.id,
+          status: next.twinStatus,
+          assignedTwin: next.assignedTwin,
+          trialDays: next.trialDays,
+          transmission: next.transmission,
+          expectedUpdatedAt: entry.updatedAt,
+        }),
+      });
+      const payload = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        alert(payload.error || 'Could not update this reservation.');
+        return;
+      }
+      setReservations((current) => current.map((reservation) => (
+        reservation.id === entry.id
+          ? { ...reservation, ...payload.reservation }
+          : reservation
+      )));
+    } catch {
+      alert('Could not update this reservation — try again.');
+    } finally {
+      setSavingReservationId(null);
+    }
+  }
 
   // Remove a lead from the active list (suppress = set unsubscribedAt). Used to
   // honor a "take me off" request. Optimistically marks the row unsubscribed.
@@ -284,6 +353,7 @@ export default function AdminPage() {
           setFeedback(data.feedback || []);
           setUsers(data.users || []);
           setReservations(data.reservations || []);
+          setTwins(data.twins || []);
         }
 
         // Fetch vehicle feedback
@@ -549,18 +619,22 @@ export default function AdminPage() {
 
         {!loading && !error && activeTab === 'reservations' && (
           <div className="space-y-4">
-            {/* The demand read: which placement earns the commitment. If the hero
-                converts and the demo doesn't, people want the promise; if the demo
-                wins, the twin itself is what sells. */}
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900">Twin fulfillment queue</h2>
+              <p className="mt-1 text-sm text-gray-600">
+                Match the reservation email to an account, build the requested vehicle, then assign its live twin and offer. Marking ready does not start billing.
+              </p>
+            </div>
             <div className="flex gap-3 flex-wrap">
               {(() => {
-                const bySource = reservations.reduce<Record<string, number>>((acc, r) => {
-                  const key = r.source || 'unknown';
-                  acc[key] = (acc[key] || 0) + 1;
-                  return acc;
-                }, {});
-                const entries = Object.entries(bySource).sort((a, b) => b[1] - a[1]);
-                return [['total', reservations.length] as [string, number], ...entries].map(([label, count]) => (
+                const entries: Array<[string, number]> = [
+                  ['total', reservations.length],
+                  ['no account', reservations.filter((r) => !r.account).length],
+                  ['building', reservations.filter((r) => r.twinStatus === 'building').length],
+                  ['ready', reservations.filter((r) => r.twinStatus === 'ready').length],
+                  ['claimed', reservations.filter((r) => r.twinStatus === 'claimed').length],
+                ];
+                return entries.map(([label, count]) => (
                   <div key={label} className="bg-white rounded-xl border border-gray-200 px-5 py-3 min-w-[120px]">
                     <div className="text-xs font-medium text-gray-500 uppercase">{label}</div>
                     <div className="text-2xl font-semibold text-gray-900">{count}</div>
@@ -569,47 +643,126 @@ export default function AdminPage() {
               })()}
             </div>
 
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+            <div className="bg-white rounded-xl border border-gray-200 overflow-x-auto">
               {reservations.length === 0 ? (
                 <div className="p-8 text-center text-gray-500">
                   No twin reservations yet
                 </div>
               ) : (
-                <table className="w-full">
+                <table className="w-full min-w-[1400px]">
                   <thead className="bg-gray-50 border-b border-gray-200">
                     <tr>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Email</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Vehicle</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Country</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Source</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Note</th>
-                      <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Invited</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Owner</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Requested vehicle</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Transmission</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Account match</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Build</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assigned twin</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Offer</th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ready</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    {reservations.map((r) => (
-                      <tr key={r.id} className="hover:bg-gray-50">
-                        <td className="px-6 py-4 text-sm text-gray-500">{new Date(r.timestamp).toLocaleString()}</td>
-                        <td className="px-6 py-4 text-sm text-gray-900">{r.email}</td>
-                        <td className="px-6 py-4 text-sm text-gray-700">{r.vehicle || <span className="text-gray-400">—</span>}</td>
-                        <td className="px-6 py-4 text-sm text-gray-700">
-                          {r.country
-                            ? <span className={r.country.toUpperCase() === 'US' || r.country === 'United States' ? '' : 'text-amber-700 font-medium'}>{r.country}</span>
-                            : <span className="text-gray-400">—</span>}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-700">
-                          <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-50 text-blue-700">
-                            {r.source || 'unknown'}
-                          </span>
-                          {r.path && <div className="text-xs text-gray-400 mt-1 truncate max-w-[180px]">{r.path}</div>}
-                        </td>
-                        <td className="px-6 py-4 text-sm text-gray-700">{r.note || <span className="text-gray-400">—</span>}</td>
-                        <td className="px-6 py-4 text-sm text-right text-gray-500">
-                          {r.invitedAt ? new Date(r.invitedAt).toLocaleDateString() : <span className="text-gray-400">Not yet</span>}
-                        </td>
-                      </tr>
-                    ))}
+                    {reservations.map((r) => {
+                      const matchingTwins = twins.filter((twin) => (
+                        twin.make === r.make?.trim().toLowerCase()
+                        && twin.model === r.model?.trim().toLowerCase()
+                        && r.year !== null
+                        && r.year >= twin.yearFrom
+                        && r.year <= twin.yearTo
+                        && twin.trims.includes(r.trim?.trim().toLowerCase() || '')
+                      ));
+                      const saving = savingReservationId === r.id;
+                      const transmissionOptions = getTransmissionOptions(r);
+                      return (
+                        <tr key={r.id} className="hover:bg-gray-50 align-top">
+                          <td className="px-6 py-4 text-xs text-gray-500 whitespace-nowrap">
+                            {new Date(r.timestamp).toLocaleString()}
+                            <div className="mt-1 text-gray-400">{r.source || 'unknown'}</div>
+                          </td>
+                          <td className="px-6 py-4 text-sm text-gray-900">
+                            <div className="font-medium">{r.email}</div>
+                            <div className="mt-1 text-xs text-gray-500">{r.country || 'Country unknown'}</div>
+                          </td>
+                          <td className="px-6 py-4 text-sm text-gray-700 max-w-[260px]">
+                            <div>{r.vehicle || <span className="text-gray-400">—</span>}</div>
+                            <span className={`mt-1 inline-flex rounded px-2 py-0.5 text-xs font-medium ${r.vehicleVerified ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
+                              {r.vehicleVerified ? (r.trimVerified ? 'YMMT verified' : 'Vehicle verified · check trim') : 'Manual · verify vehicle'}
+                            </span>
+                            {r.note && <div className="mt-2 text-xs text-gray-500">{r.note}</div>}
+                          </td>
+                          <td className="px-6 py-4 text-sm text-gray-700">
+                            {transmissionOptions.length > 1 ? (
+                              <select
+                                value={r.transmission || ''}
+                                disabled={saving || r.twinStatus === 'claimed'}
+                                onChange={(event) => updateReservation(r, { transmission: (event.target.value || null) as TransmissionChoice | null })}
+                                className="rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-800 disabled:opacity-50"
+                              >
+                                <option value="">Choose</option>
+                                {transmissionOptions.map((option) => <option key={option.value} value={option.value}>{option.label}</option>)}
+                              </select>
+                            ) : (
+                              <span className="text-xs text-gray-400">Not required</span>
+                            )}
+                          </td>
+                          <td className="px-6 py-4 text-sm">
+                            {r.account ? (
+                              <div>
+                                <span className="inline-flex rounded bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">Exact email match</span>
+                                <div className="mt-1 text-xs text-gray-500">{r.account.name || 'Account created'}</div>
+                              </div>
+                            ) : (
+                              <span className="inline-flex rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">Waiting for signup</span>
+                            )}
+                          </td>
+                          <td className="px-6 py-4">
+                            <select
+                              value={r.twinStatus}
+                              disabled={saving || r.twinStatus === 'claimed'}
+                              onChange={(event) => updateReservation(r, { twinStatus: event.target.value as ReservationEntry['twinStatus'] })}
+                              className="rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-800 disabled:opacity-50"
+                            >
+                              <option value="reserved">Reserved</option>
+                              <option value="building">Building</option>
+                              <option value="ready">Ready</option>
+                              {r.twinStatus === 'claimed' && <option value="claimed">Claimed</option>}
+                            </select>
+                          </td>
+                          <td className="px-6 py-4">
+                            <select
+                              value={r.assignedTwin || ''}
+                              disabled={saving || r.twinStatus === 'claimed' || matchingTwins.length === 0}
+                              onChange={(event) => updateReservation(r, { assignedTwin: event.target.value || null })}
+                              className="max-w-[190px] rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-800 disabled:opacity-50"
+                            >
+                              <option value="">{matchingTwins.length ? 'Not assigned' : 'Not built yet'}</option>
+                              {matchingTwins.map((twin) => <option key={twin.id} value={twin.id}>{twin.label}</option>)}
+                            </select>
+                          </td>
+                          <td className="px-6 py-4">
+                            <select
+                              value={r.trialDays || ''}
+                              disabled={saving || r.twinStatus === 'claimed'}
+                              onChange={(event) => updateReservation(r, { trialDays: event.target.value ? Number(event.target.value) as 7 | 30 : null })}
+                              className="rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-800 disabled:opacity-50"
+                            >
+                              <option value="">Choose</option>
+                              <option value="7">7 days</option>
+                              <option value="30">30 days</option>
+                            </select>
+                          </td>
+                          <td className="px-6 py-4 text-xs text-gray-500 whitespace-nowrap">
+                            {saving ? 'Saving…' : r.claimedAt
+                              ? `Claimed ${new Date(r.claimedAt).toLocaleDateString()}`
+                              : r.readyAt
+                                ? new Date(r.readyAt).toLocaleDateString()
+                                : 'Not ready'}
+                          </td>
+                        </tr>
+                      );
+                    })}
                   </tbody>
                 </table>
               )}

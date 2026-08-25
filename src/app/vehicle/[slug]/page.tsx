@@ -307,9 +307,8 @@ export default async function VehicleProfilePage({
   let maintenanceSuggestions: MaintenanceSuggestion[] = [];
   let maintenanceSchedule: ScheduleData | null = null;
   let userId: string | null = null;
+  let userEmail: string | null = null;
   let userInfo: { name: string; joinedAt: string; isSubscriber: boolean } | null = null;
-  // Whether this viewer may see the twin hub in place of the classic one.
-  let isFounder = false;
   // Saved vehicles for the top-bar switcher dropdown — only populated
   // when authed. Empty array on anonymous viewers so the switcher just
   // renders the static vehicle label without dropdown affordance.
@@ -325,6 +324,7 @@ export default async function VehicleProfilePage({
         select: { name: true, email: true, createdAt: true },
       });
       if (userRow) {
+        userEmail = userRow.email;
         userInfo = {
           name: userRow.name || userRow.email.split('@')[0],
           joinedAt: userRow.createdAt.toISOString(),
@@ -334,7 +334,6 @@ export default async function VehicleProfilePage({
           // /api/maintenance.
           isSubscriber: session.user.subscriptionStatus === 'active' || isFounderEmail(userRow.email),
         };
-        isFounder = isFounderEmail(userRow.email);
       }
       // Pull ALL vehicles for the switcher dropdown — same query as
       // /api/vehicles GET but inlined here so we can do it in parallel
@@ -347,19 +346,28 @@ export default async function VehicleProfilePage({
         select: { id: true, year: true, make: true, model: true, trim: true, nickname: true },
       });
 
-      // Match the vehicle URL to a row in the user's garage. Loose match
-      // on year/make/model — trim variations are common ("SRT 392" vs
-      // "SRT" vs "Hellcat") so we'd rather over-match than miss the
-      // user's actual garage entry.
-      const userVehicle = await prisma.vehicle.findFirst({
+      // Match all same-YMM rows, then prefer the exact URL trim. An unordered
+      // findFirst could select an R/T when this page is the owner's SRT 392,
+      // which would incorrectly hide (or mis-assign) the exact-fit twin.
+      const userVehicleCandidates = await prisma.vehicle.findMany({
         where: {
           userId: session.user.id,
           year,
           make: { equals: make, mode: 'insensitive' },
           model: { equals: model, mode: 'insensitive' },
         },
-        select: { id: true, currentMileage: true },
+        orderBy: [{ isPrimary: 'desc' }, { updatedAt: 'desc' }],
+        select: { id: true, currentMileage: true, trim: true },
       });
+      const normalizedTrim = (trim || '').trim().toLowerCase();
+      const exactCandidates = normalizedTrim
+        ? userVehicleCandidates.filter(
+          (candidate) => (candidate.trim || '').trim().toLowerCase() === normalizedTrim,
+        )
+        : userVehicleCandidates;
+      // A slug does not carry a database id. If duplicate exact YMMT rows
+      // exist, choosing one would attach the wrong mileage/service history.
+      const userVehicle = exactCandidates.length === 1 ? exactCandidates[0] : null;
       if (userVehicle) {
         userVehicleId = userVehicle.id;
         if (userVehicle.currentMileage != null) {
@@ -441,12 +449,11 @@ export default async function VehicleProfilePage({
 
   // ---- Twin hub swap -------------------------------------------------
   // The tech-tree hub (the /demo/hub screen) replaces the classic hub for
-  // the founder, so it can be driven daily against a real car instead of
-  // the 65,000 mi demo. Deliberately narrow for now:
+  // a fulfilled owner, so it can be driven against a real garage vehicle
+  // instead of the 65,000 mi demo. Deliberately narrow for now:
   //
-  //   * founder only - the stage art depicts a Challenger, so any other
-  //     vehicle would be shown the wrong car, which is exactly the fitment
-  //     dishonesty this codebase avoids elsewhere.
+  //   * exact reservation email has accepted a founder-prepared offer.
+  //   * assigned twin matches the mapped year/make/model/trim exactly.
   //   * needs a garage vehicle WITH an odometer - getTwinHubData returns
   //     null otherwise, and a mileage-based screen with no mileage has
   //     nothing true to say.
@@ -454,8 +461,8 @@ export default async function VehicleProfilePage({
   //     without a deploy.
   //
   // Any of those failing falls through to the classic hub below.
-  if (isFounder && twinParam !== '0' && userId && userVehicleId) {
-    const twinData = await getTwinHubData(userId, userVehicleId).catch(() => null);
+  if (isAuthed && twinParam !== '0' && userId && userEmail && userVehicleId) {
+    const twinData = await getTwinHubData(userId, userEmail, userVehicleId).catch(() => null);
     if (twinData) return <LiveTwinHub data={twinData} />;
   }
 

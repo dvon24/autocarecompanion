@@ -17,7 +17,7 @@
 import React from "react";
 import { Icon } from "../stage/Icon";
 import { TH_HOTSPOTS, TH_DOT, thHot } from "../stage/TwinStage";
-import { useTwinVehicle, useTwinMiles, useTwinTrees } from "../twin-context";
+import { greetingFor, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees } from "../twin-context";
 
 /* The full-screen view used TH_DUE, a module constant computed once against
    the demo's 65,000 mi. On a live hub the odometer arrives at render, so the
@@ -45,8 +45,7 @@ const THM_GLOW = {
 
 function THMinTop({ tc, onMenu, mobile, railOpen, onExit }) {
   const miles = useTwinMiles();
-  const h = new Date().getHours();
-  const part = h < 12 ? "Good morning" : h < 18 ? "Good afternoon" : "Good evening";
+  const greeting = greetingFor();
   return (
     <div style={{ flex:"0 0 auto", padding: mobile ? "14px 16px 0" : "20px 26px 0" }}>
       <div style={{ display:"flex", alignItems:"center", gap:12 }}>
@@ -65,7 +64,7 @@ function THMinTop({ tc, onMenu, mobile, railOpen, onExit }) {
         <button onClick={onMenu} aria-label={railOpen ? "Collapse menu" : "Menu"} title={railOpen ? "Collapse menu" : "Menu"} style={{ width:34, height:34, borderRadius:999, border:"1px solid rgba(255,255,255,.14)", background:"rgba(255,255,255,.06)", color:"rgba(255,255,255,.8)", cursor:"pointer", display:"grid", placeItems:"center", flexShrink:0 }}><Icon name="list" size={15}/></button>
       </div>
       <h1 style={{ margin: mobile ? "16px 0 0" : "18px 0 0", fontSize: mobile ? 26 : "clamp(22px,2.4vw,34px)", textWrap:"balance", fontWeight:600, letterSpacing:"-0.03em", lineHeight:1.08, color:"#fff" }}>
-        {part}, Jordan.<span style={{ color:"rgba(255,255,255,.42)", fontWeight:500 }}> Click any part.</span>
+        {greeting}.<span style={{ color:"rgba(255,255,255,.42)", fontWeight:500 }}> Click any part.</span>
       </h1>
     </div>
   );
@@ -77,6 +76,9 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
   const trees = useTwinTrees(TT_TREES);
   const [hover, setHover] = React.useState(null);
   const [equipped] = useEquipped();
+  const live = useTwinLive();
+  const effectiveEquipped = live ? {} : equipped;
+  const finish = live ? null : ttFinish();
   const lit = hover || sel;
   const boxRef = React.useRef(null);
   const [fit, setFit] = React.useState(null);
@@ -100,11 +102,11 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
       <div style={{ position:"absolute", width: mobile ? "150%" : "80%", aspectRatio:"1 / 1", borderRadius:"50%", background:"radial-gradient(circle, rgba(59,130,246,.14), rgba(59,130,246,0) 62%)", pointerEvents:"none" }}/>
       <div style={{ position:"relative", width: fit ? fit.width : "100%", height: fit ? fit.height : "100%", visibility: fit ? "visible" : "hidden" }}>
         <img src="/twin-stage/car-base.webp" alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain" }}/>
-        <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: ttFinish().id === "oem" ? 0 : 1, filter: ttFinish().filter || "none", transition:"opacity .4s ease" }}/>
+        <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: !finish || finish.id === "oem" ? 0 : 1, filter: finish?.filter || "none", transition:"opacity .4s ease" }}/>
         {Object.keys(THM_GLOW).map(k => (
           <img key={k} src={THM_GLOW[k]} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: lit === k ? 1 : 0, transition:"opacity .3s ease", pointerEvents:"none" }}/>
         ))}
-        {TH_HOTSPOTS.map(h0 => thHot(h0, equipped, trees, miles)).map(h => {
+        {TH_HOTSPOTS.map(h0 => thHot(h0, effectiveEquipped, trees, miles)).map(h => {
           const on = sel === h.id || hover === h.id, above = h.y > 55, c = TH_DOT(h);
           return (
             <button key={h.id} onMouseEnter={()=>setHover(h.id)} onMouseLeave={()=>setHover(null)} onClick={e=>{ e.stopPropagation(); onTap(h); }} aria-label={h.label}
@@ -177,7 +179,8 @@ function THMinimal({ tc, mobile, onExit }) {
   const [fb, setFb] = React.useState(false);
   const { bubble, say, clear } = useBubble(null);
   const [equipped] = useEquipped();
-  const hot = sel ? thHot(TH_HOTSPOTS.find(h => h.id === sel), equipped, trees, miles) : null;
+  const live = useTwinLive();
+  const hot = sel ? thHot(TH_HOTSPOTS.find(h => h.id === sel), live ? {} : equipped, trees, miles) : null;
 
   const openTreeFor = id => { setNav(false); setStartNode(TT_NODE_FOR_HOTSPOT[id] || null); setBranch(id === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[id]); };
   const tap = h => { if (sel !== h.id) { setSel(h.id); return; } openTreeFor(h.id); };

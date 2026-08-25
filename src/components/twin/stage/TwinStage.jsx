@@ -11,7 +11,7 @@
 import React from "react";
 import { Icon } from "./Icon";
 import { TT_TREES, ttRisk, ttHasUpgrade, ttFinish, useEquipped } from "./TechTree";
-import { TWIN_DEMO_MILES, TWIN_DEMO_VEHICLE, useTwinVehicle, useTwinMiles, useTwinTrees } from "../twin-context";
+import { TWIN_DEMO_MILES, TWIN_DEMO_VEHICLE, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees } from "../twin-context";
 
 /* Au7o Hub — tech tree direction.
    The hub greets you with your car. Click a part and the tech tree opens over it. */
@@ -33,6 +33,7 @@ const TH_HOTSPOTS = [
 const TH_SYSTEMS = [
   { hot:"wheel", branch:"wheel",  label:"Wheel, Tire & Brakes", img:"/twin-stage/parts/part-caliper.webp" },
   { hot:"hood",  branch:"engine", label:"Engine",               img:"/twin-stage/parts/part-engine.webp" },
+  { hot:"trans", branch:"trans",  label:"Transmission",         img:"/twin-stage/parts/part-transmission.webp" },
   { hot:"glass", branch:"wipers", label:"Windshield Wipers",    img:"/twin-stage/parts/part-wipers.webp" },
 ];
 
@@ -129,6 +130,9 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
   }, []);
   const [active, setActive] = React.useState(null);
   const [equipped] = useEquipped();
+  const live = useTwinLive();
+  const effectiveEquipped = live ? {} : equipped;
+  const finish = live ? null : ttFinish();
   /* Demo values unless a live hub wrapped us in TwinDataCtx. */
   const vehicle = useTwinVehicle();
   const miles = useTwinMiles();
@@ -152,7 +156,7 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
           </button>
         )}
         <img src="/twin-stage/car-base.webp" alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }}/>
-        <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: ttFinish().id === "oem" ? 0 : 1, filter: ttFinish().filter || "none", transition:"opacity .4s ease, filter .4s ease" }}/>
+        <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: !finish || finish.id === "oem" ? 0 : 1, filter: finish?.filter || "none", transition:"opacity .4s ease, filter .4s ease" }}/>
         <img src="/twin-stage/car-wheel-highlight-glow.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: lit === "wheel" ? 1 : 0, transition:"opacity .32s ease" }}/>
         <img src="/twin-stage/car-hood-highlight-glow.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: lit === "hood" ? 1 : 0, transition:"opacity .32s ease" }}/>
         <img src="/twin-stage/car-rear-wheel-highlight-glow.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: lit === "rearwheel" ? 1 : 0, transition:"opacity .32s ease" }}/>
@@ -160,7 +164,7 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
         <img src="/twin-stage/car-airbox-highlight-glow.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: lit === "airbox" ? 1 : 0, transition:"opacity .32s ease" }}/>
         <img src="/twin-stage/car-xray.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: mode === "xray" ? 1 : 0, transition:"opacity .45s ease" }}/>
 
-        {mode !== "rail" && TH_HOTSPOTS.map(h => thHot(h, equipped, trees, miles)).map(h => {
+        {mode !== "rail" && TH_HOTSPOTS.map(h => thHot(h, effectiveEquipped, trees, miles)).map(h => {
           const on = cur === h.id, open = mode === "xray", above = h.y > 55, c = TH_DOT(h);
           return (
             <button key={h.id} onMouseEnter={()=>setHover(h.id)} onMouseLeave={()=>setHover(null)} onClick={e=>{ e.stopPropagation(); tap(h); }}
@@ -202,7 +206,7 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
 
       {mode === "rail" && (
         <div style={{ display:"flex", gap:8, padding:"11px 12px", background:"#0A0D14", borderTop:"1px solid rgba(255,255,255,.1)", overflowX:"auto" }}>
-          {TH_SYSTEMS.map(s => (
+          {TH_SYSTEMS.filter(s => trees[s.branch]).map(s => (
             <button key={s.branch} onClick={()=>onOpen(s.hot)} style={{ display:"flex", alignItems:"center", gap:10, flexShrink:0, background:"rgba(255,255,255,.06)", border:"1px solid rgba(255,255,255,.14)", borderRadius:12, padding:"8px 13px 8px 9px", cursor:"pointer", textAlign:"left", fontFamily:"var(--font-sans)" }}>
               <span style={{ width:34, height:34, borderRadius:9, overflow:"hidden", background:"rgba(255,255,255,.05)", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}>
                 {s.img ? <img src={s.img} alt="" style={{ width:"124%", height:"124%", objectFit:"contain", filter:"brightness(1.6)" }}/> : <Icon name={s.icon} size={16} style={{ color:"rgba(255,255,255,.7)" }}/>}

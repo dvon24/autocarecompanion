@@ -23,9 +23,6 @@ const esc = (s: unknown) => String(s == null ? '' : s)
   .replace(/&/g, '&amp;')
   .replace(/</g, '&lt;')
   .replace(/>/g, '&gt;');
-const sevDot = (sev: string) => (
-  sev === 'critical' || sev === 'high' ? '&#128308;' : sev === 'medium' ? '&#128993;' : '&#9898;'
-);
 
 // NHTSA returns ReportReceivedDate as DD/MM/YYYY, which new Date() does not
 // parse reliably.
@@ -43,64 +40,202 @@ export function mondayUTC(now = new Date()): Date {
   return x;
 }
 
-function buildDigestHtml(opts: {
+/**
+ * Severity → the colour of a row's left accent bar.
+ *
+ * The design uses a coloured spine beside each item instead of an icon, which
+ * survives image-blocking clients where an icon would leave a grey box.
+ */
+const sevBar = (sev: string) => (
+  sev === 'critical' || sev === 'high' ? '#DC2626' : sev === 'medium' ? '#D97706' : '#94A3B8'
+);
+const sevLabel = (sev: string) => (
+  sev === 'critical' ? 'Critical' : sev === 'high' ? 'High' : sev === 'medium' ? 'Medium' : 'Low'
+);
+
+/** Exported so the layout can be rendered to disk for review without sending. */
+export function buildDigestHtml(opts: {
   vehicle: string;
   issues: { id: string; title: string; severity: string }[];
   recalls: RecallItem[];
   slug: string;
   unsubToken: string;
   mode: 'catch-up' | 'new' | 'weekly' | 'researching';
+  /**
+   * Absolute https:// URL of a hero image for this vehicle, when one exists.
+   *
+   * Deliberately optional and deliberately absent today. The design this is
+   * built from leads with a per-vehicle render, but the list spans 109 distinct
+   * vehicles and /public/vehicles holds 17 images, none of which match the most
+   * requested cars. Rendering a Challenger above a Nautilus owner's findings is
+   * worse than rendering no photo at all, so the block only appears when a real
+   * match is passed in. Wiring generated heroes in later is a one-argument
+   * change, not a redesign.
+   */
+  heroUrl?: string;
 }): string {
-  const { vehicle, issues, recalls, slug, unsubToken, mode } = opts;
+  const { vehicle, issues, recalls, slug, unsubToken, mode, heroUrl } = opts;
   const base = appUrl();
   const mailing = process.env.AU7O_MAILING_ADDRESS || '';
   const url = `${base}/known-issues/${slug}`;
   const unsub = `${base}/api/interest/unsubscribe?token=${encodeURIComponent(unsubToken)}`;
-  const heading = mode === 'catch-up'
-    ? `Known issues for your ${esc(vehicle)}`
-    : mode === 'weekly'
-      ? `Your weekly ${esc(vehicle)} check-in`
-      : mode === 'researching'
-        ? `We are still reviewing your ${esc(vehicle)}`
-        : `New findings for your ${esc(vehicle)}`;
-  const intro = mode === 'catch-up'
-    ? `You asked us to keep you posted on your ${esc(vehicle)}. Here is what we have documented so far - worth a look:`
-    : mode === 'weekly'
-      ? `No newly published finding this week, so here are the current issues most worth keeping on your radar:`
-      : mode === 'researching'
-        ? `We do not have a newly verified finding ready to publish this week. Your alert remains active, and we will keep checking primary sources for your vehicle.`
-        : `Here is what is new or materially updated for your ${esc(vehicle)} since we last checked in:`;
-  const rows = issues.map((i) => `
-    <tr><td style="padding:10px 0;border-bottom:1px solid #EEE;font-size:14px;line-height:1.4;color:#0B1220">
-      <span style="margin-right:6px">${sevDot(i.severity)}</span>
-      <a href="${url}#${i.id}" style="color:#0B1220;text-decoration:none;font-weight:600">${esc(i.title)}</a>
-    </td></tr>`).join('');
-  const recallBlock = recalls.length === 0 ? '' : `
-      <div style="background:#FEF2F2;border:1px solid #FECACA;border-radius:12px;padding:14px 16px;margin:0 0 16px">
-        <div style="font-size:13px;font-weight:800;color:#B91C1C;margin-bottom:8px">&#128737;&#65039; ${recalls.length} new safety recall${recalls.length > 1 ? 's' : ''} - free fix at the dealer</div>
-        ${recalls.map((r) => `<div style="font-size:13px;color:#0B1220;margin:6px 0;line-height:1.4"><strong>${esc(r.component || 'Recall')}</strong> - ${esc((r.summary || '').slice(0, 140))}${(r.summary || '').length > 140 ? '&hellip;' : ''}</div>`).join('')}
-        <a href="https://www.nhtsa.gov/recalls" style="display:inline-block;margin-top:8px;font-size:12.5px;font-weight:700;color:#B91C1C">Check your VIN + book the free repair &rarr;</a>
-      </div>`;
 
-  return `<!doctype html><html><body style="margin:0;background:#F7F6F2;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif">
-  <div style="max-width:520px;margin:0 auto;padding:24px 16px">
-    <div style="margin-bottom:8px">
-      <img src="${base}/icons/icon-192.png" alt="au7o" width="30" height="30" style="vertical-align:middle;border-radius:7px;display:inline-block">
-      <span style="font-size:16px;font-weight:800;color:#0B1220;vertical-align:middle;margin-left:8px">au7o</span>
-    </div>
-    <div style="background:#fff;border:1px solid #E3DFD4;border-radius:16px;padding:22px">
-      <h1 style="font-size:18px;margin:0 0 4px;color:#0B1220">${heading}</h1>
-      <p style="font-size:14px;color:#475569;margin:0 0 14px;line-height:1.5">${intro}</p>
-      ${recallBlock}
-      <table style="width:100%;border-collapse:collapse">${rows}</table>
-      <a href="${url}" style="display:inline-block;margin-top:18px;background:#0B1220;color:#fff;text-decoration:none;padding:11px 18px;border-radius:10px;font-size:14px;font-weight:700">See all known issues for your ${esc(vehicle)} &rarr;</a>
-      <p style="font-size:13px;color:#64748B;margin:16px 0 0;line-height:1.5">Got a noise, leak, or warning light? Point your phone at it and the au7o mechanic will tell you what it is - <a href="${base}/diagnose" style="color:#2563EB">try a free diagnosis</a>.</p>
-    </div>
-    <p style="font-size:11px;color:#94A3B8;text-align:center;margin:16px 0 0;line-height:1.5">
-      You are getting this because you asked au7o to alert you about findings for your ${esc(vehicle)}. We send one vehicle check-in on Mondays.<br>
-      <a href="${unsub}" style="color:#94A3B8">Unsubscribe</a>${mailing ? ` &nbsp;&middot;&nbsp; ${esc(mailing)}` : ''}
-    </p>
-  </div></body></html>`;
+  const n = issues.length;
+  const heading = mode === 'catch-up'
+    ? `What we know<br>about your ${esc(vehicle)}.`
+    : mode === 'weekly'
+      ? `This week on<br>your ${esc(vehicle)}.`
+      : mode === 'researching'
+        ? `Still digging on<br>your ${esc(vehicle)}.`
+        : `${n === 1 ? 'One new finding' : `${n} new findings`}<br>on your ${esc(vehicle)}.`;
+
+  const intro = mode === 'catch-up'
+    ? `You asked us to keep you posted. Here is everything we have documented so far, worst first.`
+    : mode === 'weekly'
+      ? `Nothing newly published this week, so here are the issues most worth keeping on your radar.`
+      : mode === 'researching'
+        ? `No newly verified finding is ready to publish this week. Your alert stays active and we keep checking primary sources for your vehicle.`
+        : `Here is what is new or materially updated since we last checked in.`;
+
+  // Preheader: the line a client shows beside the subject. Kept factual so it
+  // reads as information rather than a teaser.
+  const preheader = recalls.length > 0
+    ? `${recalls.length} open safety recall${recalls.length > 1 ? 's' : ''} plus ${n} documented issue${n === 1 ? '' : 's'} - free fix at the dealer.`
+    : `${n} documented issue${n === 1 ? '' : 's'} on your ${esc(vehicle)}, worst first.`;
+
+  const hero = !heroUrl ? '' : `
+<tr><td class="px" style="padding:0 30px">
+  <img src="${esc(heroUrl)}" width="536" alt="${esc(vehicle)}" style="display:block;width:100%;max-width:536px;height:auto;border:0;outline:none;text-decoration:none;border-radius:12px">
+</td></tr>`;
+
+  // One row per issue: severity spine, title, severity word. Mirrors the
+  // design's overdue rows, with severity standing in for the price column
+  // because nothing in the catalog carries a cost for a lead's vehicle.
+  const rows = issues.map((i, idx) => {
+    const isLast = idx === issues.length - 1;
+    // A hairline between items, matching the masthead rule. Each finding is a
+    // separate documented fault, and without a divider a two-line title reads
+    // as continuing into the next one.
+    const cell = `padding:${idx === 0 ? '0' : '13px'} 0 ${isLast ? '0' : '13px'};`
+      + (isLast ? '' : 'border-bottom:1px solid #E9E2D4;');
+    return `
+  <tr><td style="${cell}">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+    <tbody><tr>
+      <td width="4" bgcolor="${sevBar(i.severity)}" style="width:4px;background-color:${sevBar(i.severity)};border-radius:3px;font-size:0;line-height:0">&nbsp;</td>
+      <td width="12" style="width:12px">&nbsp;</td>
+      <td>
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+        <tbody><tr>
+          <td align="left" style="font-family:Arial,Helvetica,sans-serif;font-size:14.5px;line-height:20px;font-weight:bold;color:#0B1220;mso-line-height-rule:exactly">
+            <a href="${url}#${i.id}" style="color:#0B1220;text-decoration:none">${esc(i.title)}</a>
+          </td>
+          <td align="right" width="74" style="font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:20px;font-weight:bold;color:${sevBar(i.severity)};text-transform:uppercase;letter-spacing:.6px;white-space:nowrap;mso-line-height-rule:exactly">${sevLabel(i.severity)}</td>
+        </tr>
+        </tbody></table>
+      </td>
+    </tr>
+    </tbody></table>
+  </td></tr>`;
+  }).join('');
+
+  const issuesBlock = n === 0 ? '' : `
+<tr><td class="px" style="padding:26px 30px 0">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tbody><tr><td style="font-family:Arial,Helvetica,sans-serif;font-size:11px;font-weight:bold;letter-spacing:1.1px;text-transform:uppercase;color:#8A6D3B;padding-bottom:12px;mso-line-height-rule:exactly;line-height:16px">${mode === 'new' ? 'New findings' : 'Documented issues'} &middot; ${n}</td></tr>
+  ${rows}
+  </tbody></table>
+</td></tr>`;
+
+  // Recalls take the visual slot the design gives "The road ahead": a bordered
+  // panel with its own heading. A recall is the one item here with a free,
+  // dealer-performed fix, so it leads.
+  const recallBlock = recalls.length === 0 ? '' : `
+<tr><td class="px" style="padding:26px 30px 0">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#FEF2F2;border:1px solid #FECACA;border-radius:12px">
+  <tbody><tr><td style="padding:16px 18px">
+    <div style="font-family:Arial,Helvetica,sans-serif;font-size:12.5px;font-weight:bold;color:#B91C1C;letter-spacing:.2px;mso-line-height-rule:exactly;line-height:18px">${recalls.length} open safety recall${recalls.length > 1 ? 's' : ''} &middot; free fix at the dealer</div>
+    ${recalls.map((r) => `<div style="font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#0B1220;margin-top:9px;line-height:19px;mso-line-height-rule:exactly"><b>${esc(r.component || 'Recall')}</b> &mdash; ${esc((r.summary || '').slice(0, 140))}${(r.summary || '').length > 140 ? '&hellip;' : ''}</div>`).join('')}
+    <div style="margin-top:12px"><a href="https://www.nhtsa.gov/recalls" style="font-family:Arial,Helvetica,sans-serif;font-size:12.5px;font-weight:bold;color:#B91C1C;text-decoration:underline">Check your VIN and book the free repair &rarr;</a></div>
+  </td></tr>
+  </tbody></table>
+</td></tr>`;
+
+  return `<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>Au7o &mdash; ${esc(vehicle)}</title>
+<!--[if mso]><style>body,table,td,a{font-family:Arial,Helvetica,sans-serif !important}</style><![endif]-->
+<style>
+@media only screen and (max-width:620px){
+.w-full{width:100% !important}
+.px{padding-left:20px !important;padding-right:20px !important}
+.h1{font-size:26px !important;line-height:31px !important}
+}
+a{color:#2563EB}
+</style>
+</head>
+<body style="margin:0;padding:0;background-color:#EDEAE2;">
+
+<span style="display:none;font-size:1px;color:#EDEAE2;line-height:1px;max-height:0;max-width:0;opacity:0;overflow:hidden;">${preheader}</span>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color:#EDEAE2;">
+<tbody><tr><td align="center" style="padding:26px 12px 34px;">
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="w-full" style="width:600px;max-width:600px;background-color:#FAF7F0;border:1px solid #E4DED0;border-radius:14px;">
+
+<tr><td class="px" style="padding:20px 30px 18px;border-bottom:1px solid #E9E2D4;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tbody><tr>
+    <td align="left">
+      <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+      <tbody><tr>
+        <td width="30" style="width:30px;line-height:0;font-size:0"><img src="${base}/icons/icon-192.png" width="28" height="28" alt="" style="display:block;width:28px;height:28px;border:0;outline:none;text-decoration:none;border-radius:7px"></td>
+        <td width="9" style="width:9px">&nbsp;</td>
+        <td style="font-family:Arial,Helvetica,sans-serif;font-size:19px;font-weight:bold;letter-spacing:-0.4px;color:#0B1220;">Au<span style="color:#2563EB;">7</span>o</td>
+      </tr>
+      </tbody></table>
+    </td>
+    <td align="right" style="font-family:Arial,Helvetica,sans-serif;font-size:10.5px;font-weight:bold;letter-spacing:1.1px;text-transform:uppercase;color:#8A6D3B;">Vehicle check-in</td>
+  </tr>
+  </tbody></table>
+</td></tr>
+
+<tr><td class="px" style="padding:30px 30px 0;">
+  <h1 class="h1" style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:30px;line-height:35px;font-weight:bold;letter-spacing:-1px;color:#0B1220;mso-line-height-rule:exactly;">${heading}</h1>
+  <p style="margin:14px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:15px;line-height:23px;color:#3F4A5C;mso-line-height-rule:exactly;">${intro}</p>
+</td></tr>
+${hero ? `<tr><td style="height:22px;line-height:22px;font-size:0">&nbsp;</td></tr>${hero}` : ''}
+${recallBlock}
+${issuesBlock}
+
+<tr><td class="px" align="left" style="padding:26px 30px 0;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+  <tbody><tr><td bgcolor="#0B1220" style="background-color:#0B1220;border-radius:11px;padding:14px 24px;">
+    <a href="${url}" style="display:block;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:bold;color:#FFFFFF;text-decoration:none;letter-spacing:-0.2px;">See all known issues &rarr;</a>
+  </td></tr>
+  </tbody></table>
+</td></tr>
+
+<tr><td class="px" style="padding:0 30px 30px;">&nbsp;</td></tr>
+
+</tbody></table>
+
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" class="w-full" style="width:600px;max-width:600px;">
+<tbody><tr><td align="center" style="padding:18px 24px 0;font-family:Arial,Helvetica,sans-serif;font-size:11.5px;line-height:18px;color:#8A8D8A;mso-line-height-rule:exactly;">
+  You are getting this because you asked Au7o to alert you about findings for your ${esc(vehicle)}. We send one vehicle check-in on Mondays.<br>
+  ${mailing ? `${esc(mailing)}<br>` : ''}
+  <a href="${unsub}" style="color:#6B7280;text-decoration:underline;">Unsubscribe</a>
+</td></tr>
+</tbody></table>
+
+</td></tr>
+</tbody></table>
+
+</body></html>`;
 }
 
 export interface DigestResult {
@@ -241,7 +376,7 @@ export async function runInterestDigest(): Promise<DigestResult> {
   // the timeout having sent 92 of 155.
   const recallCache = new Map<string, RecallItem[]>();
   const recallsForVehicle = async (make: string, model: string): Promise<RecallItem[]> => {
-    const key = `${make} ${model}`;
+    const key = `${make}\u0000${model}`;
     const cached = recallCache.get(key);
     if (cached) return cached;
     let all: RecallItem[] = [];

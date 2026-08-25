@@ -11,7 +11,7 @@
  */
 import React from "react";
 import { Icon } from "./Icon";
-import { useTwinVehicle, useTwinTrees } from "../twin-context";
+import { useTwinLive, useTwinVehicle, useTwinTrees } from "../twin-context";
 
 /* Ported from the design bundle's "Hub personalized" module — TTDetail renders
    it, and its absence crashed every part tap with a ReferenceError. */
@@ -198,25 +198,48 @@ TT_TREES.engine = {
   }, TT_TREES.oil.nodes),
 };
 
+/* Transmission — the public demo uses the automatic 8HP70 branch. Live owner
+   trees replace it with the exact automatic/manual branch captured during
+   reservation; trim alone is not enough on the SRT 392. */
+TT_TREES.trans = {
+  label:"Transmission", short:"Transmission", root:"trx",
+  nodes:{
+    trx:{ label:"Transmission", sub:"ZF 8HP70 · 8-speed automatic", img:"/twin-stage/parts/part-transmission.webp", kids:["transFluid","transPan","transPlug"], group:true,
+          partNo:"—", where:"Behind the engine, under the tunnel", spec:"ZF 8HP70 · confirm transmission before ordering", price:"—",
+          life:"Fluid and the integrated pan filter are the service items — there is no dipstick" },
+    transFluid:{ label:"Transmission Fluid", sub:"ZF LifeguardFluid 8", img:"/twin-stage/parts/part-oil.webp", kids:[], riskAt:60000,
+          partNo:"68218925AA", brand:"Mopar 8 & 9 Speed ATF / ZF LifeguardFluid 8", where:"Fill plug on the driver side of the pan — filled from underneath", spec:"Set the level using the exact temperature procedure · never substitute ATF+4", price:"Verify current price", stock:"Confirm by VIN before ordering",
+          life:"60,000 mi for this owner-facing plan; shorten for track or tow use",
+          dueNote:"5,000 mi past due — never logged on this demo car." },
+    transPan:{ label:"Pan & Filter", sub:"Filter integrated into pan", img:"/twin-stage/parts/part-oil-filter.webp", kids:[], riskAt:60000,
+          partNo:"68225344AA", brand:"Mopar pan-with-filter assembly", where:"Bottom of the transmission", spec:"Pan, filter and gasket are serviced as one assembly · confirm transmission/VIN", price:"Verify current price", stock:"Confirm by VIN before ordering",
+          life:"Replace with a full automatic-transmission fluid service" },
+    transPlug:{ label:"Fill Plug Seal", sub:"One-time-use seal", img:"/twin-stage/parts/part-drain-plug.webp", kids:[],
+          partNo:"Verify by VIN", brand:"Mopar / ZF service seal", where:"Fill plug on the transmission pan", spec:"Use the exact service procedure and torque for the installed transmission", price:"Verify current price", stock:"Confirm by VIN before ordering",
+          life:"Replace whenever the fill plug is removed" },
+  },
+};
+
 /* The level above the categories: the car itself. Holds every category's nodes, so a
    filter like "maintenance due" can span the whole vehicle instead of one branch. */
 TT_TREES.car = {
   label:"2015 Dodge Challenger SRT 392", short:"Your car", root:"car", isCar:true,
   nodes: Object.assign({
-    car:{ label:"2015 Challenger SRT 392", sub:"6.4L V8 HEMI · 65,000 mi", img:"/twin-stage/car-base.webp", kids:["wtb","eng","wip"], group:true,
+    car:{ label:"2015 Challenger SRT 392", sub:"6.4L V8 HEMI · 65,000 mi", img:"/twin-stage/car-base.webp", kids:["wtb","eng","trx","wip"], group:true,
           partNo:"VIN 2C3CDZ...", where:"Your garage", spec:"Every system Au7o tracks on this car", price:"—",
-          life:"Three systems tracked · parts due across all of them" },
-  }, TT_TREES.wheel.nodes, TT_TREES.engine.nodes, TT_TREES.wipers.nodes),
+          life:"Four systems tracked · parts due across all of them" },
+  }, TT_TREES.wheel.nodes, TT_TREES.engine.nodes, TT_TREES.trans.nodes, TT_TREES.wipers.nodes),
 };
 
-const TT_BRANCH_ORDER = ["car", "wheel", "engine", "wipers"];
-const TT_CATEGORY_OF = { wtb:"wheel", eng:"engine", wip:"wipers" };
+const TT_BRANCH_ORDER = ["car", "wheel", "engine", "trans", "wipers"];
+const TT_CATEGORY_OF = { wtb:"wheel", eng:"engine", trx:"trans", wip:"wipers" };
 
-const TT_BRANCH_FOR_HOTSPOT = { wheel:"wheel", hood:"engine", glass:"wipers", rad:"engine", airbox:"engine", rearwheel:"wheel" };
+const TT_BRANCH_FOR_HOTSPOT = { wheel:"wheel", hood:"engine", glass:"wipers", rad:"engine", airbox:"engine", rearwheel:"wheel", trans:"trans" };
 const TT_NODE_FOR_HOTSPOT = { rad:"rad", airbox:"airFilter", hood:"oil", rearwheel:"tire" };
 
 /* ── Equipped upgrades — one store the hub, tree and phone all read ── */
 const TT_UP_HEX = "#8B5CF6";
+const TT_NO_EQUIP = {};
 const TT_EQUIP = { map:{}, subs:new Set(), bump(){ TT_EQUIP.subs.forEach(f => f()); }, set(id, on){ TT_EQUIP.map = { ...TT_EQUIP.map, [id]:!!on }; TT_EQUIP.bump(); } };
 /* Wheel finish — the one mod that shows on the car itself, so the hub photo has to follow it.
    One bronze wheel layer, tinted per finish — no extra renders. */
@@ -240,16 +263,17 @@ function useEquipped() {
   return [TT_EQUIP.map, TT_EQUIP.set];
 }
 /* nodes as the owner sees them today — equipped upgrades replace the OEM part in place */
-const ttViewNodes = (nodes, eq) => {
-  const fin = ttFinish();
-  const ids = Object.keys(nodes).filter(id => (nodes[id].upgrade && eq[id]) || nodes[id].fitFor || (nodes[id].finishes && fin.id !== "oem"));
+const ttViewNodes = (nodes, eq, finish = null) => {
+  const fin = finish || ttFinish();
+  const equipmentKnown = eq !== TT_NO_EQUIP;
+  const ids = Object.keys(nodes).filter(id => (nodes[id].upgrade && eq[id]) || (equipmentKnown && nodes[id].fitFor) || (nodes[id].finishes && fin.id !== "oem"));
   if (!ids.length) return nodes;
   const out = { ...nodes };
   ids.forEach(id => {
     const n = nodes[id];
     let v = n;
     if (n.upgrade && eq[id]) v = { ...v, ...n.upgrade.node, upgraded:true };
-    if (n.fitFor) v = { ...v, fitted: !!eq[n.fitFor] === !!n.fitWhen };
+    if (equipmentKnown && n.fitFor) v = { ...v, fitted: !!eq[n.fitFor] === !!n.fitWhen };
     if (n.finishes && fin.id !== "oem") v = { ...v, sub: fin.sub, img:"/twin-stage/parts/part-wheel-bronze.webp" };
     out[id] = v;
   });
@@ -430,8 +454,14 @@ function TTStyleMenu({ menu, style, onShape, onColor, onClose }) {
 /* ── Detail drawer ── */
 /* ── Service log row — "I did this" for anything with a mileage clock ── */
 function TTServiceRow({ node, miles, dense }) {
+  const live = useTwinLive();
   if (!node.riskAt) return null;
   const done = node.servicedAt != null;
+  if (live) return (
+    <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)", fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>
+      Service state comes from this vehicle&apos;s maintenance history. Log the completed job there to reset this clock.
+    </div>
+  );
   return (
     <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background: done ? "var(--ki-ok-bg)" : "var(--ki-page)", border:`1px solid ${done ? "color-mix(in oklab, var(--ki-ok-ink) 26%, transparent)" : "var(--ki-line)"}` }}>
       {done ? (
@@ -457,7 +487,13 @@ function TTServiceRow({ node, miles, dense }) {
 
 /* ── Finish picker — changing it repaints the wheels on the car photo, not just this card ── */
 function TTFinishRow({ dense }) {
+  const live = useTwinLive();
   const cur = ttFinish();
+  if (live) return (
+    <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)", fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>
+      Wheel finishes are a visual preview until a saved modification is added to this vehicle.
+    </div>
+  );
   return (
     <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
       <div className="eyebrow" style={{ fontSize:9.5 }}>Finish</div>
@@ -478,16 +514,18 @@ function TTFinishRow({ dense }) {
 
 /* ── Upgrade card — the known issue's fix, one tap from equipped ── */
 function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
+  const live = useTwinLive();
   const state = ttUpState(node);
   const fit = node && node.fitFor;
   if (!state && !fit) return null;
-  const on = fit ? !!node.fitted : state === "equipped";
+  const on = live ? false : (fit ? !!node.fitted : state === "equipped");
   const target = fit ? node.fitFor : nodeId;
   const val = fit ? (on ? !node.fitWhen : !!node.fitWhen) : !on;
   if (fit && !node.upgrade) return (
     <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:9, padding:"10px 12px", borderRadius:12, background: on ? "var(--ki-ok-bg)" : "var(--ki-page)", border:`1px solid ${on ? "color-mix(in oklab, var(--ki-ok-ink) 28%, transparent)" : "var(--ki-line)"}` }}>
       <span style={{ minWidth:0, flex:1, fontSize:11.5, fontWeight:600, color: on ? "var(--ki-ok-ink)" : "var(--slate-700)" }}>{on ? "Fitted on your car" : "Not what's on your car"}</span>
-      {!on && <button onClick={()=>onEquip && onEquip(target, val)} style={{ flexShrink:0, padding:"7px 11px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>This one is fitted</button>}
+      {!live && !on && <button onClick={()=>onEquip && onEquip(target, val)} style={{ flexShrink:0, padding:"7px 11px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>This one is fitted</button>}
+      {live && <span style={{ flexShrink:0, fontSize:10.5, color:"var(--slate-500)" }}>Not confirmed</span>}
     </div>
   );
   const u = node.upgrade;
@@ -509,10 +547,11 @@ function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
       </div>
       <div style={{ padding:"9px 11px 11px" }}>
         <div style={{ fontSize:10.5, color:"var(--slate-500)", lineHeight:1.45, marginBottom:9 }}>{u.confidence} · {u.fit}</div>
-        <button onClick={()=>onEquip && onEquip(target, val)} style={{ width:"100%", minHeight:38, borderRadius:10, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:12.5, fontWeight:600, display:"flex", alignItems:"center", justifyContent:"center", gap:7,
+        {!live && <button onClick={()=>onEquip && onEquip(target, val)} style={{ width:"100%", minHeight:38, borderRadius:10, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:12.5, fontWeight:600, display:"flex", alignItems:"center", justifyContent:"center", gap:7,
           background: on ? "var(--ki-card)" : TT_UP_HEX, color: on ? "var(--slate-700)" : "#fff", border: on ? "1px solid var(--ki-line)" : "none" }}>
           {on ? "Swap back to the OEM radiator" : <React.Fragment><svg width="12" height="12" viewBox="0 0 10 10"><path d="M5 8.5V1.8M5 1.8L2 4.8M5 1.8l3 3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" fill="none"/></svg>I have this — equip it</React.Fragment>}
-        </button>
+        </button>}
+        {live && <div style={{ width:"100%", minHeight:38, borderRadius:10, display:"grid", placeItems:"center", background:"var(--ki-page)", border:"1px solid var(--ki-line)", color:"var(--slate-500)", fontSize:11.5, fontWeight:600 }}>Available upgrade · not recorded as fitted</div>}
       </div>
     </div>
   );
@@ -548,6 +587,11 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
                 </div>
                 <VerifiedFit/>
               </div>
+            )}
+            {node.buyUrl && (
+              <a href={node.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ marginTop:10, minHeight:44, borderRadius:12, background:"#2563EB", color:"#fff", display:"flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:650, textDecoration:"none" }}>
+                {node.buyLabel || "Order this part"}
+              </a>
             )}
             <div style={{ marginTop:13, display:"flex", flexDirection:"column", gap:9 }}>
               {rows.map(([k,v]) => (
@@ -608,7 +652,7 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
           <div style={{ fontSize:16.5, fontWeight:600, letterSpacing:"-0.02em" }}>{node.label}</div>
           <div style={{ fontSize:12, color:"var(--slate-500)", marginTop:2 }}>{node.sub}</div>
           {risk && <div style={{ marginTop:10, display:"flex", alignItems:"center", gap:7, padding:"7px 10px", borderRadius:9, background: risk==="critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk==="critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)", fontSize:11.5, fontWeight:600 }}>
-            <Icon name="alert" size={12} stroke={2.2}/>{risk === "critical" ? "Due or past due at 65,000 mi" : "Watch — approaching its window"}
+            <Icon name="alert" size={12} stroke={2.2}/>{risk === "critical" ? `Due or past due at ${miles.toLocaleString()} mi` : "Watch — approaching its window"}
           </div>}
           {node.price && node.price !== "—" && (
             <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:9, padding:"10px 12px", borderRadius:11, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
@@ -618,6 +662,11 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
               </div>
               <VerifiedFit/>
             </div>
+          )}
+          {node.buyUrl && (
+            <a href={node.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ marginTop:10, minHeight:42, borderRadius:11, background:"#2563EB", color:"#fff", display:"flex", alignItems:"center", justifyContent:"center", fontSize:12.5, fontWeight:650, textDecoration:"none" }}>
+              {node.buyLabel || "Order this part"}
+            </a>
           )}
           <div style={{ marginTop:14, display:"flex", flexDirection:"column", gap:9 }}>
             {rows.map(([k,v]) => (
@@ -700,8 +749,8 @@ function TTComposer({ value, setValue, onSend, reply, suggestions }) {
 /* ── The canvas ── */
 const TT_INTENTS = [
   { id:"issues", label:"Known issues", line:"Backed out to the whole car and reshaped it around what's actually documented to fail — lug nuts, front pads and rotors are the three that bite people on a 392." },
-  { id:"maint",  label:"Maintenance due", line:"Backed out to the whole car — this is everything on a service interval, across all three systems. At 65,000 mi the pads, tires, oil and filter are past due; rotors and wipers are close." },
-  { id:"risk",   label:"Mileage risk", line:"Whole car. Anything glowing red is at or past its typical life at 65,000 mi. Amber is inside 20% of its window." },
+  { id:"maint",  label:"Maintenance due", line:"Backed out to the whole car and opened the tracked maintenance items for this odometer." },
+  { id:"risk",   label:"Mileage risk", line:"Whole car. Red is due or past due at the current odometer; amber is inside 20% of its window." },
 ];
 
 /**
@@ -723,11 +772,12 @@ function ttAskLine(n, tail = "") {
 function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact = false, detailMode = null, vertical = false }) {
   const sheetDetail = detailMode ? detailMode === "sheet" : compact;
   const [equipped, setEquipped] = useEquipped();
+  const live = useTwinLive();
   /* Demo tree set unless a live hub supplied the owner's. */
   const trees = useTwinTrees(TT_TREES);
   const vehicle = useTwinVehicle();
   const carLabel = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? " " + vehicle.trim : ""}`;
-  const tree = React.useMemo(() => { const t = trees[branch]; const n = ttViewNodes(t.nodes, equipped); return n === t.nodes ? t : { ...t, nodes:n }; }, [trees, branch, equipped]);
+  const tree = React.useMemo(() => { const t = trees[branch]; const n = ttViewNodes(t.nodes, live ? TT_NO_EQUIP : equipped, live ? TT_FINISHES[0] : null); return n === t.nodes ? t : { ...t, nodes:n }; }, [trees, branch, equipped, live]);
   const [selected, setSelected] = React.useState(null);
   const [intent, setIntent] = React.useState(null);
   const [menu, setMenu] = React.useState(null);
@@ -763,6 +813,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
     let c = startNode;
     while (parents[c]) { next[parents[c]] = true; c = parents[c]; }
     setExpanded(next);
+    setSelected(startNode);
     setAllow(null);
     setIntent(null);
   }, [branch, startNode]);
@@ -831,8 +882,14 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
     setAllow(keep);
     setOffsets({});
     setSelected(null);
-    setReply({ text: i.line, key: Date.now() });
-    if (say) say(i.line);
+    const matchedLabels = Object.values(tr.nodes).filter(match).map(n => n.label).slice(0, 6);
+    const line = i.id === "maint"
+      ? `Backed out to the whole car and opened ${matchedLabels.length} tracked maintenance item${matchedLabels.length === 1 ? "" : "s"} at ${miles.toLocaleString()} mi${matchedLabels.length ? `: ${matchedLabels.join(", ")}.` : "."}`
+      : i.id === "risk"
+        ? `Whole car at ${miles.toLocaleString()} mi. Red is due or past due; amber is inside 20% of its window${matchedLabels.length ? `: ${matchedLabels.join(", ")}.` : "."}`
+        : i.line;
+    setReply({ text: line, key: Date.now() });
+    if (say) say(line);
   };
 
   /* filters always answer for the whole car, not just the branch you happen to be in */
@@ -994,9 +1051,9 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
             </div>
           )}
           </div>
-          {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={setEquipped} miles={miles} risk={ttRisk(sel, miles)} sheet onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n))}/>}
+          {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={live ? undefined : setEquipped} miles={miles} risk={ttRisk(sel, miles)} sheet onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n))}/>}
         </div>
-        {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={setEquipped} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
+        {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={live ? undefined : setEquipped} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
       </div>
       <TTComposer value={draft} setValue={setDraft} onSend={answer} reply={reply} suggestions={compact ? [TT_SUGGEST[0], TT_SUGGEST[2]] : TT_SUGGEST}/>
       <TTStyleMenu menu={menu} style={menu ? styleOf(menu.id) : {}}

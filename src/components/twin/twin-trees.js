@@ -26,6 +26,26 @@
  * part done inside the engine tree has to show up in the whole-car tree too.
  */
 import { TT_TREES } from "./stage/TechTree";
+import { ebayAffiliate } from "@/lib/ebay-affiliate";
+
+const AUTO_FLUID_URL = "https://www.ebay.com/itm/152808690128";
+const MANUAL_FLUID_URL = "https://www.ebay.com/itm/389013189748";
+
+const MANUAL_TRANSMISSION_TREE = {
+  label:"Transmission", short:"Transmission", root:"trx",
+  nodes:{
+    trx:{ label:"Transmission", sub:"Tremec TR-6060 · 6-speed manual", img:"/twin-stage/parts/part-transmission.webp", kids:["transFluid","transPlug"], group:true,
+      partNo:"—", where:"Behind the engine, under the tunnel", spec:"Tremec TR-6060 · 6-speed manual", price:"—",
+      life:"ATF+4 is the factory-specified lubricant even though this is a manual gearbox" },
+    transFluid:{ label:"Manual Transmission Fluid", sub:"Mopar ATF+4 · MS-9602", img:"/twin-stage/parts/part-oil.webp", kids:[], riskAt:60000,
+      partNo:"68218057AC", brand:"Genuine Mopar ATF+4", where:"Manual-transmission fill plug", spec:"Approx. 3.4 qt dry capacity · fill 1/4 in below the plug using the service procedure", price:"$51.85 / 6-qt set when reviewed", stock:"eBay · new · add-to-cart live when reviewed",
+      life:"Inspect per the owner schedule; owner-facing service plan uses 60,000 mi",
+      buyUrl:ebayAffiliate(MANUAL_FLUID_URL, "twin-challenger-manual-fluid"), buyLabel:"Order manual-transmission fluid" },
+    transPlug:{ label:"Fill Plug Seal", sub:"Confirm the service hardware", img:"/twin-stage/parts/part-drain-plug.webp", kids:[],
+      partNo:"Verify by VIN", brand:"Mopar service hardware", where:"Fill plug on the manual transmission", spec:"Use the exact service procedure and torque for the installed TR-6060", price:"Verify current price", stock:"Confirm by VIN before ordering",
+      life:"Replace one-time-use hardware whenever specified by the service procedure" },
+  },
+};
 
 /**
  * Real service intervals, in miles. Each one matches the `life` string already
@@ -56,6 +76,8 @@ export const TWIN_INTERVALS = {
   lugs: 60000,
   tpms: 70000,
   radCore: 90000,
+  transFluid: 60000,
+  transPan: 60000,
 };
 
 /**
@@ -74,6 +96,9 @@ export const TWIN_MAINT_NODES = {
   brake_fluid: ["brakeFluid"],
   wiper_blades: ["wipL", "wipR"],
   coolant_flush: ["coolant"],
+  transmission_fluid: ["transFluid", "transPan"],
+  transmission_fluid_auto: ["transFluid", "transPan"],
+  transmission_fluid_manual: ["transFluid"],
   // Intentionally NOT mapped (they do not replace anything):
   //   tire_rotation, brake_inspection, wheel_alignment
 };
@@ -99,7 +124,7 @@ function dueNoteFor(node, miles, interval) {
  *                                           most recent replacement
  * @param {number} miles                     current odometer
  */
-export function buildTwinTrees(serviced, miles) {
+export function buildTwinTrees(serviced, miles, transmission) {
   const svc = serviced || {};
 
   // One object per node id, shared across every tree that lists it.
@@ -147,6 +172,50 @@ export function buildTwinTrees(serviced, miles) {
     const nodes = {};
     for (const id of Object.keys(tree.nodes)) nodes[id] = shared[id];
     out[key] = { ...tree, nodes };
+  }
+
+  if (transmission === "automatic" && out.trans && out.car) {
+    Object.assign(out.trans.nodes.transFluid, {
+      buyUrl: ebayAffiliate(AUTO_FLUID_URL, "twin-challenger-automatic-fluid"),
+      buyLabel: "Order 6-qt automatic drain-and-fill set",
+      price: "$179.95 / 6-qt set when reviewed",
+      stock: "eBay · new · more than 10 available when reviewed",
+      spec: "4.0 qt typical pan drain-and-fill · 7.6 qt full system · use the exact temperature-level procedure · never substitute ATF+4",
+    });
+    out.car.nodes.car = { ...out.car.nodes.car, life:"Four verified systems tracked · automatic transmission confirmed" };
+  } else if (transmission === "manual" && out.trans && out.car) {
+    const automaticNodeIds = Object.keys(out.trans.nodes);
+    for (const nodeId of automaticNodeIds) delete out.car.nodes[nodeId];
+
+    const manualNodes = {};
+    for (const [id, base] of Object.entries(MANUAL_TRANSMISSION_TREE.nodes)) {
+      const node = { ...base };
+      const interval = TWIN_INTERVALS[id] != null ? TWIN_INTERVALS[id] : base.riskAt;
+      if (svc[id] != null) {
+        node.servicedAt = svc[id];
+        node.riskAt = interval;
+      } else {
+        delete node.servicedAt;
+        delete node.riskAt;
+        if (interval) node.unlogged = true;
+      }
+      const note = dueNoteFor(node, miles, interval);
+      if (note) node.dueNote = note;
+      else delete node.dueNote;
+      manualNodes[id] = node;
+    }
+    out.trans = { ...MANUAL_TRANSMISSION_TREE, nodes: manualNodes };
+    Object.assign(out.car.nodes, manualNodes);
+    out.car.nodes.car = { ...out.car.nodes.car, life:"Four verified systems tracked · manual transmission confirmed" };
+  } else if (out.trans && out.car) {
+    const transmissionNodeIds = Object.keys(out.trans.nodes);
+    delete out.trans;
+    for (const nodeId of transmissionNodeIds) delete out.car.nodes[nodeId];
+    out.car.nodes.car = {
+      ...out.car.nodes.car,
+      kids: out.car.nodes.car.kids.filter((id) => id !== "trx"),
+      life: "Three verified systems tracked · transmission confirmation still needed",
+    };
   }
   return out;
 }

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/db';
 import { auth } from '@/lib/auth';
 import { isFounderEmail } from '@/lib/founder';
+import { TWIN_DEFINITIONS } from '@/lib/twin-fulfillment';
 
 export const dynamic = 'force-dynamic';
 
@@ -51,6 +52,17 @@ export async function GET() {
       message: r.message,
       email: r.email,
     }));
+    // The general Users tab stays bounded, but reservation-to-account matching
+    // must not pretend an older account is absent merely because it fell
+    // outside that page. Fetch exact reservation emails as a separate join.
+    const reservationAccountRows = await prisma.user.findMany({
+      where: reservationRows.length ? {
+        OR: reservationRows.map((row) => ({
+          email: { equals: row.email.trim(), mode: 'insensitive' as const },
+        })),
+      } : { id: '__no_reservation_accounts__' },
+      select: { id: true, email: true, name: true, createdAt: true },
+    });
     const users = userRows.map((u) => ({
       id: u.id,
       email: u.email,
@@ -61,22 +73,53 @@ export async function GET() {
       subscriptionStatus: u.subscriptionStatus ?? null,
       vehicleCount: u._count.vehicles,
     }));
+    const accountByEmail = new Map(
+      reservationAccountRows.map((user) => [user.email.trim().toLowerCase(), user]),
+    );
 
     // Twin beta demand test. `source` is the point of the table: hero vs demo
     // tells us whether the promise converts or only the hands-on drive does.
     const reservations = reservationRows.map((r) => ({
+      account: (() => {
+        const account = accountByEmail.get(r.email.trim().toLowerCase());
+        return account ? {
+          id: account.id,
+          email: account.email,
+          name: account.name ?? null,
+          createdAt: account.createdAt.toISOString(),
+        } : null;
+      })(),
       id: r.id,
       timestamp: r.createdAt.toISOString(),
       email: r.email,
       vehicle: r.vehicle ?? null,
+      year: r.year ?? null,
+      make: r.make ?? null,
+      model: r.model ?? null,
+      trim: r.trim ?? null,
+      transmission: r.transmission === 'automatic' || r.transmission === 'manual' ? r.transmission : null,
+      vehicleVerified: r.vehicleVerified,
+      trimVerified: r.trimVerified,
       country: r.country ?? null,
       source: r.source ?? null,
       path: r.path ?? null,
       note: r.note ?? null,
       invitedAt: r.invitedAt ? r.invitedAt.toISOString() : null,
+      twinStatus: r.twinStatus,
+      assignedTwin: r.assignedTwin ?? null,
+      trialDays: r.trialDays ?? null,
+      readyAt: r.readyAt ? r.readyAt.toISOString() : null,
+      claimedAt: r.claimedAt ? r.claimedAt.toISOString() : null,
+      updatedAt: r.updatedAt.toISOString(),
     }));
 
-    return NextResponse.json({ emails, feedback, users, reservations });
+    return NextResponse.json({
+      emails,
+      feedback,
+      users,
+      reservations,
+      twins: TWIN_DEFINITIONS.filter((twin) => twin.live),
+    });
   } catch (error) {
     console.error('Admin data error:', error);
     return NextResponse.json(

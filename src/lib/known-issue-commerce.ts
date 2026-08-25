@@ -15,11 +15,34 @@ export interface OwnerGuidance {
 
 type Marketplace = 'amazon' | 'ebay' | 'direct';
 
+const EBAY_MARKETPLACE_DOMAINS = new Set([
+  'ebay.com',
+  'ebay.co.uk',
+  'ebay.ca',
+  'ebay.com.au',
+  'ebay.de',
+  'ebay.fr',
+  'ebay.it',
+  'ebay.es',
+  'ebay.at',
+  'ebay.ch',
+  'ebay.ie',
+  'ebay.nl',
+  'ebay.be',
+  'ebay.pl',
+]);
+
+function isEbayMarketplaceHost(host: string): boolean {
+  return [...EBAY_MARKETPLACE_DOMAINS].some(
+    (domain) => host === domain || host.endsWith(`.${domain}`),
+  );
+}
+
 function marketplaceForProductUrl(value: string): Marketplace | null {
   if (!isKnownIssueProductUrl(value)) return null;
   const host = new URL(value).hostname.toLowerCase().replace(/^www\./, '');
   if (host === 'amazon.com' || host.endsWith('.amazon.com')) return 'amazon';
-  if (host === 'ebay.com' || host.endsWith('.ebay.com')) return 'ebay';
+  if (isEbayMarketplaceHost(host)) return 'ebay';
   return 'direct';
 }
 
@@ -32,7 +55,7 @@ export function vendorMatchesProductUrl(vendor: string, value: string): boolean 
       || isReviewedKnownIssueVendorUrl(vendor, value);
   }
   if (marketplace === 'ebay') {
-    return /^(ebay|ebay\.com)$/i.test(normalizedVendor)
+    return /^(ebay|ebay\.[a-z.]+)$/i.test(normalizedVendor)
       || isReviewedKnownIssueVendorUrl(vendor, value);
   }
   if (marketplace === 'direct' && /^(rockauto|rockauto\.com)$/i.test(normalizedVendor)) {
@@ -109,7 +132,7 @@ export function isKnownIssueProductUrl(value: string): boolean {
     return /\/(?:dp|gp\/product)\/[a-z0-9]{10}(?:\/|$)/i.test(path);
   }
 
-  if (host === 'ebay.com' || host.endsWith('.ebay.com')) {
+  if (isEbayMarketplaceHost(host)) {
     return /\/itm\/(?:[^/]+\/)?\d{9,15}(?:\/|$)/i.test(path);
   }
 

@@ -277,7 +277,7 @@ export async function generateMetadata({
   const titlePrefix = yearIsValid
     ? `${requestedYear}`
     : baseYearLabel;
-  const title = knownIssuesArticleTitle(slug, titlePrefix, vehicleName, issues.length);
+  const title = knownIssuesArticleTitle(titlePrefix, vehicleName, issues.length);
 
   const descPrefix = yearIsValid
     ? `${requestedYear} `
@@ -385,11 +385,15 @@ function getYearCoverageLabel(issues: KnownIssue[]): string {
 
 // The root layout appends " | Au7o". Keep this portion at or below 52
 // characters when possible so the complete title remains concise.
-function knownIssuesArticleTitle(slug: string, yearLabel: string, vehicleName: string, issueCount: number): string {
+// Every model uses the same candidate chain. This used to be gated on
+// SEO_AUDITED_MODEL_SLUGS, with unaudited models getting
+// "… Problems: N Issues Every Owner Should Know" — 68 characters before the
+// layout appends " | Au7o", so it was always truncated in the SERP, AND it
+// omitted the phrase "known issues" that owners actually search. Auditing a
+// model's records says nothing about whether its title fits, so the gate was
+// costing 692 of 827 model pages a correct title for no benefit.
+function knownIssuesArticleTitle(yearLabel: string, vehicleName: string, issueCount: number): string {
   const vehicleWithYear = `${yearLabel} ${vehicleName}`.trim();
-  if (!SEO_AUDITED_MODEL_SLUGS.has(slug)) {
-    return `${vehicleWithYear} Problems: ${issueCount} Issue${issueCount === 1 ? '' : 's'} Every Owner Should Know`;
-  }
   const candidates = [
     `${vehicleWithYear} Problems: ${issueCount} Known Issue${issueCount === 1 ? '' : 's'}`,
     `${vehicleWithYear} Problems & Issues`,
@@ -740,7 +744,7 @@ export default async function KnownIssuesArticlePage({
     : `https://au7o.io/known-issues/${slug}`;
   // H1, <title>, OG, Twitter, and TechArticle.headline share the same
   // concise label. The helper preserves the year when it fits safely.
-  const title = knownIssuesArticleTitle(slug, yearStr, vehicleName, issues.length);
+  const title = knownIssuesArticleTitle(yearStr, vehicleName, issues.length);
   const structuredProblemNoun = issues.length === 1 ? 'problem' : 'problems';
   const structuredDetailNoun = articleMinCost && articleMaxCost
     ? 'with symptoms, repair costs, and solutions'

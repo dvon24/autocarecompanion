@@ -46,6 +46,7 @@ const thMeta = (branch, trees, miles) => `${thPartCount(branch, trees)} parts ·
 const TH_SYSTEMS = [
   { hot:"wheel", branch:"wheel",  label:"Wheel, Tire & Brakes", img:"/twin-stage/parts/part-caliper.webp" },
   { hot:"hood",  branch:"engine", label:"Engine",               img:"/twin-stage/parts/part-engine.webp" },
+  { hot:"trans", branch:"trans",  label:"Transmission",         img:"/twin-stage/parts/part-transmission.webp" },
   { hot:"glass", branch:"wipers", label:"Windshield Wipers",    img:"/twin-stage/parts/part-wipers.webp" },
 ];
 
@@ -96,7 +97,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
           </button>
         </div>
         <div style={{ padding:"0 8px", display:"flex", flexDirection:"column", gap:2 }}>
-          {TH_SYSTEMS.map(s => (
+          {TH_SYSTEMS.filter(s => trees[s.branch]).map(s => (
             <button key={s.branch} onClick={()=>onOpen(s.hot)} style={{ display:"flex", alignItems:"center", gap:10, background:"transparent", border:"none", padding:"7px 12px", borderRadius:10, cursor:"pointer", textAlign:"left", color:"var(--ink)", fontFamily:"var(--font-sans)" }}>
               <span style={{ width:28, height:28, borderRadius:8, overflow:"hidden", background:"#0d1017", border:"1px solid var(--ki-line)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
                 {s.img ? <img src={s.img} alt="" style={{ width:"128%", height:"128%", objectFit:"contain", filter:"brightness(1.6)" }}/> : <Icon name={s.icon} size={15} style={{ color:"var(--slate-400)" }}/>}
@@ -123,6 +124,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
                 <div style={{ fontSize:13, fontWeight:600 }}>{live ? nextService.label : "Front brake pads"}</div>
                 <div className="mono" style={{ fontSize:11, color: live && !nextService.overdue ? "var(--slate-500)" : "var(--ki-crit)", marginTop:2 }}>{live ? nextService.note : "20,000 mi past a typical set"}</div>
                 <div style={{ height:4, borderRadius:999, background:"var(--ki-page)", marginTop:9, overflow:"hidden" }}><div style={{ width: live ? `${Math.round(Math.min(1, nextService.progress == null ? 1 : nextService.progress) * 100)}%` : "100%", height:"100%", background: live && !nextService.overdue ? "var(--ki-mod)" : "var(--ki-crit)" }}/></div>
+                {live && nextService.hot && <button onClick={()=>onOpen(nextService.hot, nextService.nodeId)} style={{ marginTop:10, width:"100%", minHeight:34, borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>Open item</button>}
               </div>
             </KICard>
           </div>
@@ -289,7 +291,7 @@ function THDesktop({ tc }) {
      itself immediately. */
   const greeting = greetingFor();
   const { bubble, say, clear } = useBubble(`${greeting}. This is your ${vehicle.model} — click any part of it and I'll open the tech tree for that system. Everything glowing red is at or past its life at ${miles.toLocaleString()} miles.`);
-  const open = hot => { const b = hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]; setStartNode(TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(b); say(b === "car" ? "Here's the whole car — every system Au7o tracks. Click one to drill in." : `Opening the ${trees[b].label.toLowerCase()} tree. Back out to the car any time from the breadcrumb.`); };
+  const open = (hot, nodeId = null) => { const b = hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]; setStartNode(nodeId || TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(b); say(b === "car" ? "Here's the whole car — every system Au7o tracks. Click one to drill in." : `Opening the ${trees[b].label.toLowerCase()} tree. Back out to the car any time from the breadcrumb.`); };
   return (
     <div className={"ki-theme-" + tc.theme} style={{ display:"flex", height:"100dvh", background:"var(--ki-page)", color:"var(--ink)", fontFamily:"var(--font-sans)", overflow:"hidden" }}>
       <THSidebar onOpen={open} onFeedback={()=>setFb(true)}/>
@@ -334,7 +336,7 @@ function THMobile({ tc }) {
   const [fb, setFb] = React.useState(false);
   const [startNode, setStartNode] = React.useState(() => initialFromQuery().node);
   const { bubble, say, clear } = useBubble(`${greeting}. Tap any part of your ${vehicle.model} and I'll open its tech tree.`);
-  const open = hot => { setNav(false); setStartNode(TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]); };
+  const open = (hot, nodeId = null) => { setNav(false); setStartNode(nodeId || TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]); };
   return (
     <div className={"ki-theme-" + tc.theme} style={{ height:"100dvh", display:"flex", justifyContent:"center", background:"var(--ki-desk)", color:"var(--ink)", fontFamily:"var(--font-sans)" }}>
       <div style={{ width:"min(430px,100vw)", height:"100%", background:"var(--ki-page)", display:"flex", flexDirection:"column", position:"relative", overflow:"hidden", boxShadow:"var(--shadow-2)" }}>
@@ -348,7 +350,7 @@ function THMobile({ tc }) {
           <h2 style={{ fontSize:20, fontWeight:600, letterSpacing:"-0.02em", lineHeight:1.2, flex:"0 0 auto" }}>{greeting}. <span style={{ color:"var(--slate-400)" }}>Tap any part.</span></h2>
           <THStage mode={mode} setMode={setMode} onOpen={open} mobile allowFullscreen onExpand={enterMinimal}/>
           <div style={{ display:"flex", flexDirection:"column", gap:7, flex:"0 0 auto" }}>
-            {TH_SYSTEMS.map(s => (
+            {TH_SYSTEMS.filter(s => trees[s.branch]).map(s => (
               <button key={s.branch} onClick={()=>open(s.hot)} style={{ display:"flex", alignItems:"center", gap:11, background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:13, padding:"10px 12px", cursor:"pointer", textAlign:"left", minHeight:56, fontFamily:"var(--font-sans)", color:"var(--ink)" }}>
                 <span style={{ width:38, height:38, borderRadius:10, overflow:"hidden", background:"#0d1017", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
                   {s.img ? <img src={s.img} alt="" style={{ width:"126%", height:"126%", objectFit:"contain", filter:"brightness(1.6)" }}/> : <Icon name={s.icon} size={17} style={{ color:"rgba(255,255,255,.7)" }}/>}
