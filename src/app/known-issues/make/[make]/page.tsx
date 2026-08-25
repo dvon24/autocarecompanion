@@ -37,8 +37,11 @@ function makeToSlug(make: string): string {
 let _makeSlugIndex: Map<string, string> | null = null;
 async function findMakeBySlug(slug: string): Promise<string | null> {
   if (!_makeSlugIndex) {
+    // vehicleType: 'car' — /known-issues/make/* is the automotive make index. Make names are shared
+    // across vehicle classes (Triumph, Suzuki, BMW and Honda all build cars and bikes), so without
+    // this filter a motorcycle-only make would resolve to a car make page. See KnownIssue.vehicleType.
     const distinct = await prisma.knownIssue.findMany({
-      where: { status: 'published' },
+      where: { status: 'published', vehicleType: 'car' },
       distinct: ['make'],
       select: { make: true },
     });
@@ -77,6 +80,9 @@ async function getMakePageData(makeSlugParam: string): Promise<MakePageData | nu
     where: {
       make: canonicalMake,
       status: 'published',
+      // Shared make names mean a Triumph or Suzuki make page would otherwise list motorcycles
+      // alongside cars and count them in its totals. See KnownIssue.vehicleType.
+      vehicleType: 'car',
     },
     select: { make: true, model: true, severity: true, years: true, category: true },
   });
@@ -157,8 +163,9 @@ async function getMakePageData(makeSlugParam: string): Promise<MakePageData | nu
 // --- Static generation ---
 
 export async function generateStaticParams() {
+  // vehicleType: 'car' — only automotive makes get a car make page built. See KnownIssue.vehicleType.
   const distinct = await prisma.knownIssue.findMany({
-    where: { status: 'published' },
+    where: { status: 'published', vehicleType: 'car' },
     distinct: ['make'],
     select: { make: true },
   });

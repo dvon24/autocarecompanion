@@ -45,8 +45,10 @@ const POPULAR_MAKES = [
 ];
 
 async function buildDirectory() {
+  // vehicleType: 'car' — this is the automotive directory. Motorcycles live in their own catalog
+  // (KnownIssue.vehicleType, added 2026-08-25) and must not appear in the car vehicle list.
   const rows = await prisma.knownIssue.findMany({
-    where: { status: 'published' },
+    where: { status: 'published', vehicleType: 'car' },
     select: { make: true, model: true, severity: true, years: true },
   });
 

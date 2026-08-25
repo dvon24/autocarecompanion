@@ -125,8 +125,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // year-specific title/H1/description, distinct meta canonical) so each
   // "2018 BMW 1 Series Problems" lands as its own indexable page.
   // Multiplies our known-issues index footprint roughly 5-7x.
+  // vehicleType: 'car' — the automotive sitemap must never advertise a motorcycle URL. Motorcycles
+  // are a separate catalog (added 2026-08-25) with their own counts and their own surfaces; make
+  // names are shared across both classes (Triumph, Suzuki, BMW, Honda all build cars and bikes), so
+  // filtering by make could never separate them. This is a no-op while every row is a car, and is
+  // exactly what stops it silently becoming a leak the first time a bike is promoted.
   const allPublished = await prisma.knownIssue.findMany({
-    where: { status: 'published' },
+    where: { status: 'published', vehicleType: 'car' },
     select: { make: true, model: true, years: true, updatedAt: true },
   });
   const perYearMap = new Map<string, Date>(); // key = `${slug}|${year}` → lastModified
@@ -182,7 +187,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const categoryDates = await prisma.$queryRaw<{ category: string; lastmod: Date }[]>`
     SELECT category, MAX("updatedAt") as lastmod
     FROM "KnownIssue"
-    WHERE status = 'published'
+    WHERE status = 'published' AND "vehicleType" = 'car'
     GROUP BY category
   `;
   const categoryPages: MetadataRoute.Sitemap = categoryDates.map(c => ({
@@ -199,7 +204,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const makeDates = await prisma.$queryRaw<{ make: string; lastmod: Date }[]>`
     SELECT make, MAX("updatedAt") as lastmod
     FROM "KnownIssue"
-    WHERE status = 'published'
+    WHERE status = 'published' AND "vehicleType" = 'car'
     GROUP BY make
   `;
   const makePages: MetadataRoute.Sitemap = makeDates.map(m => ({

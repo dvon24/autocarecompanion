@@ -19,6 +19,18 @@ const { Pool } = require('pg');
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const makeFilter = args.includes('--make') ? args[args.indexOf('--make') + 1] : null;
+// --created-after <ISO> promotes only rows persisted at or after a timestamp.
+//
+// Without it this script promotes EVERY pending_review row, which is wrong whenever the queue holds
+// rows that were deliberately left pending - as of 2026-08-25 that is 5 of them (RAM 1500 Uconnect,
+// Jeep CJ-7 ignition, Honda Civic Type R charge pipe, Mitsubishi Mirage fuel pump, and the Toyota
+// Avalon hybrid brake booster the dead-URL gate held). --make cannot separate them, because a
+// held row and a fresh wave row can share a make (Toyota Avalon vs Toyota Sequoia).
+const createdAfter = args.includes('--created-after') ? new Date(args[args.indexOf('--created-after') + 1]) : null;
+if (createdAfter && Number.isNaN(createdAfter.getTime())) {
+  console.error('--created-after needs a valid ISO timestamp, e.g. 2026-08-25T12:00:00Z');
+  process.exit(1);
+}
 const HEAD_TIMEOUT_MS = 10_000;
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/121.0.0.0 Safari/537.36';
 
@@ -47,6 +59,7 @@ async function main() {
 
   const where = { status: 'pending_review' };
   if (makeFilter) where.make = makeFilter;
+  if (createdAfter) where.createdAt = { gte: createdAfter };
   const rows = await prisma.knownIssue.findMany({
     where, select: { id: true, title: true, make: true, model: true, citations: true },
     orderBy: [{ make: 'asc' }, { model: 'asc' }],

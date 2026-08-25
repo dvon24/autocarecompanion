@@ -455,6 +455,14 @@ model GuideCacheStats {
 
 model KnownIssue {
   id                       String   @id // e.g. "honda-civic-oil-dilution-2016"
+  // Vehicle class discriminator. Every row in the catalog was automotive when this
+  // column was added (2026-08-25), so the "car" default backfilled all 8,799 rows
+  // correctly. It exists because make names COLLIDE across classes - Triumph TR6 the
+  // car and Triumph Bonneville the motorcycle are both make="Triumph", as are Suzuki
+  // Vitara and Suzuki GSX-R - so a naming convention could never separate them.
+  // The auto-catalog surfaces (sitemap, make pages, category pages, counts) filter on
+  // vehicleType="car" so a motorcycle can never silently inflate an automotive count.
+  vehicleType              String   @default("car") // "car" | "motorcycle"
   make                     String
   model                    String
   years                    Int[]
@@ -516,6 +524,7 @@ model KnownIssue {
   // Compound indexes for the hot SEO read paths (article + category pages).
   @@index([status, make, model])
   @@index([status, category])
+  @@index([vehicleType, status])
 }
 
 // ============================================

@@ -12,15 +12,20 @@ export const dynamic = 'force-dynamic';
 
 const getSiteStats = cache(async () => {
   try {
+    // vehicleType: 'car' — these three numbers are the headline automotive stats ("N issues across
+    // M makes"). Motorcycles are a separate catalog with a separate count (see KnownIssue.vehicleType,
+    // added 2026-08-25); folding bikes in here would silently inflate the automotive claim and add
+    // makes that build no cars at all. A no-op while every row is a car, and the guard that keeps it
+    // honest once bikes are published.
     const [totalIssues, distinctMakes, distinctModels] = await Promise.all([
-      prisma.knownIssue.count({ where: { status: 'published' } }),
+      prisma.knownIssue.count({ where: { status: 'published', vehicleType: 'car' } }),
       prisma.knownIssue.findMany({
-        where: { status: 'published' },
+        where: { status: 'published', vehicleType: 'car' },
         distinct: ['make'],
         select: { make: true },
       }),
       prisma.knownIssue.findMany({
-        where: { status: 'published' },
+        where: { status: 'published', vehicleType: 'car' },
         distinct: ['make', 'model'],
         select: { make: true, model: true },
       }),

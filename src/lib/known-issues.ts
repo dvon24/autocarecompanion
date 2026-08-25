@@ -105,8 +105,11 @@ export async function parseSlug(slug: string): Promise<{ make: string; model: st
 
 /** Get all unique slugs for static generation. */
 async function getAllKnownIssueSlugsImpl(): Promise<{ slug: string; make: string; model: string }[]> {
+  // vehicleType: 'car' — this drives static generation AND the sitemap's per-vehicle article URLs.
+  // Motorcycles are a separate catalog (KnownIssue.vehicleType, added 2026-08-25) and get their own
+  // surfaces; a bike slugged in here would be built and advertised as an automotive article.
   const distinct = await prisma.knownIssue.findMany({
-    where: { status: 'published' },
+    where: { status: 'published', vehicleType: 'car' },
     distinct: ['make', 'model'],
     select: { make: true, model: true },
   });

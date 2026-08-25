@@ -51,8 +51,9 @@ function categoryDescription(cat: string): string {
 // --- Static generation ---
 
 export async function generateStaticParams() {
+  // vehicleType: 'car' — category pages are part of the automotive catalog. See KnownIssue.vehicleType.
   const rows = await prisma.knownIssue.findMany({
-    where: { status: 'published' },
+    where: { status: 'published', vehicleType: 'car' },
     select: { category: true },
     distinct: ['category'],
   });
@@ -73,7 +74,7 @@ export async function generateMetadata({
   if (!VALID_CATEGORIES.includes(category as IssueCategory)) return { title: 'Not Found' };
 
   const label = categoryLabel(category);
-  const count = await prisma.knownIssue.count({ where: { status: 'published', category } });
+  const count = await prisma.knownIssue.count({ where: { status: 'published', category, vehicleType: 'car' } });
 
   const title = `${label} Problems & Known Issues | Au7o`;
   const description = `${count} documented ${label.toLowerCase()} problems across all makes and models. Symptoms, repair costs, and solutions.`;
@@ -99,7 +100,7 @@ interface VehicleGroup {
 
 async function getCategoryData(category: string) {
   const rows = await prisma.knownIssue.findMany({
-    where: { status: 'published', category },
+    where: { status: 'published', category, vehicleType: 'car' },
     select: { make: true, model: true, severity: true },
   });
 

@@ -131,12 +131,29 @@ async function main() {
   const failed = [];
 
   for (const issue of confirmed) {
+    // Vehicle class. Defaults to 'car' so every existing automotive wave keeps behaving exactly as
+    // before; a research workflow opts in by emitting vehicleType on its confirmed rows.
+    const vehicleType = issue.vehicleType === 'motorcycle' ? 'motorcycle' : 'car';
+
     const id = generateId(issue.make, issue.model, issue.title);
-    const existing = await prisma.knownIssue.findUnique({ where: { id }, select: { id: true } });
-    if (existing) { skipped.push(id); continue; }
+    const existing = await prisma.knownIssue.findUnique({ where: { id }, select: { id: true, vehicleType: true } });
+    if (existing) {
+      // A same-id hit ACROSS vehicle classes is not a duplicate - it is an id collision, and
+      // skipping it silently would drop a real issue while looking like ordinary dedupe. Make names
+      // are shared across classes (Triumph, Suzuki, BMW, Honda all build both), so this is a live
+      // possibility rather than a theoretical one.
+      if (existing.vehicleType !== vehicleType) {
+        console.error(`! ID COLLISION ACROSS VEHICLE TYPES: ${id} exists as ${existing.vehicleType}, incoming is ${vehicleType} — NOT inserted, needs a manual id`);
+        failed.push({ id, error: `id collision: existing ${existing.vehicleType} vs incoming ${vehicleType}` });
+        continue;
+      }
+      skipped.push(id);
+      continue;
+    }
 
     const row = {
       id,
+      vehicleType,
       make: issue.make,
       model: issue.model,
       years: Array.isArray(issue.years) ? issue.years : [],
@@ -162,7 +179,7 @@ async function main() {
     };
 
     if (DRY_RUN) {
-      console.log(`+ WOULD INSERT: ${id}  [${issue.severity}] ${issue.model} (${(issue.years || []).join(',')})`);
+      console.log(`+ WOULD INSERT: ${id}  [${issue.severity}] ${vehicleType === 'motorcycle' ? '🏍 ' : ''}${issue.model} (${(issue.years || []).join(',')})`);
       inserted.push(id);
       continue;
     }
