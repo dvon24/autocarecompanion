@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
 import test from 'node:test';
 import React from 'react';
@@ -13,8 +13,10 @@ import { TWIN_UNAVAILABLE_VEHICLE, TwinDataCtx, useTwinLive, useTwinMiles, useTw
 import { TH_DOT, TwinStage, retainActiveHotspot, resolveActiveTwinEffect, thHot } from '../src/components/twin/stage/TwinStage.jsx';
 import { TechTree, TTDetail, resolveAvailableTwinBranch, ttMatchesIntent, ttRisk, ttRiskLabel } from '../src/components/twin/stage/TechTree.jsx';
 import { HubMinimal } from '../src/components/twin/hub/HubMinimal.jsx';
-import { THSidebar } from '../src/components/twin/hub/Hub.jsx';
+import { THSidebar, mobileComposerPlaceholder } from '../src/components/twin/hub/Hub.jsx';
 import { buildOwnerTwinValue, FounderTransmissionPickerView, getFounderTransmissionPickerModel, pickNextService, saveFounderTransmission, suppressTwinTransmissionWhilePending } from '../src/components/twin/LiveTwinHub.jsx';
+import { HERO_MARKER_VISUALS, TWIN_STAGE_FRAME_STYLE } from '../src/components/home/RotatingTwinStage';
+import { demoHubHref } from '../src/components/home/TwinHero';
 import { TwinSelectedPreview } from '../src/components/admin/twins/TwinAdminShell';
 import { resolveTwinTransmissionBranch, sameTwinVehicleIdentity } from '../src/lib/twin-fulfillment';
 import { isLoggableMaintenanceType, maintenanceTypeMatchesTransmission, resolveMaintenanceWriteType } from '../src/lib/maintenance';
@@ -30,6 +32,40 @@ const pickTestNextService = pickNextService as unknown as (trees: LooseTreeSet, 
 const testHotspotEvidence = thHot as unknown as (hotspot: Record<string, unknown>, equipped: Record<string, boolean>, trees: LooseTreeSet, miles: number) => { due: number | null; risk: boolean; unlogged: boolean } | null;
 const testRiskLabel = ttRiskLabel as unknown as (node: Record<string, unknown>, miles: number, risk: 'critical' | 'watch') => string | null;
 const TestTechTree = TechTree as unknown as React.ComponentType<{ branch: string; setBranch: (branch: string) => void; miles: number; onClose: () => void; say: (message: string) => void; startNode: string; compact: boolean; detailMode: string; vertical: boolean }>;
+
+test('mobile twin surfaces keep mode copy and artwork inside a shared responsive frame', () => {
+  assert.equal(mobileComposerPlaceholder('demo', 'Nautilus'), 'Ask about this Nautilus demo…');
+  assert.equal(mobileComposerPlaceholder('owner', 'Challenger'), 'Ask about your car…');
+  assert.equal(TWIN_STAGE_FRAME_STYLE.width, '100%');
+  assert.equal(TWIN_STAGE_FRAME_STYLE.minWidth, 0);
+  assert.equal(TWIN_STAGE_FRAME_STYLE.aspectRatio, '16 / 9');
+  assert.equal('minHeight' in TWIN_STAGE_FRAME_STYLE, false);
+
+  const hubSource = readFileSync(path.join(process.cwd(), 'src/components/twin/hub/Hub.jsx'), 'utf8');
+  const mobileBody = hubSource.slice(hubSource.indexOf('function THMobile'), hubSource.indexOf('function HubTechTree'));
+  assert.match(mobileBody, /const twinMode = useTwinMode\(\)/);
+  assert.match(mobileBody, /twinMode === "owner" \? `your \$\{vehicle\.model\}` : `this \$\{vehicle\.model\} demo`/);
+});
+
+test('hero demo CTA and marker vocabulary follow selected truthful catalog state', () => {
+  for (const twin of VEHICLE_TWIN_CATALOG) {
+    assert.equal(demoHubHref(twin.id), `/demo/hub?vehicle=${twin.id}`);
+  }
+  assert.deepEqual(HERO_MARKER_VISUALS['known-issue'], { color: '#A78BFA', glyph: 'shield' });
+  assert.deepEqual(HERO_MARKER_VISUALS.overdue, { color: '#FF6B63', glyph: 'warning' });
+  assert.deepEqual(HERO_MARKER_VISUALS.unavailable, { color: '#94A3B8', glyph: 'neutral' });
+  assert.deepEqual(HERO_MARKER_VISUALS.unlogged, { color: '#94A3B8', glyph: 'neutral' });
+  assert.equal(TH_DOT({ risk:true, knownIssue:true }).icon, 'alert');
+  assert.equal(TH_DOT({ risk:false, knownIssue:true }).icon, 'shield-alert');
+  assert.equal(TH_DOT({ risk:false, knownIssue:false, unavailable:true }).icon, 'minus');
+
+  const heroSource = readFileSync(path.join(process.cwd(), 'src/components/home/TwinHero.tsx'), 'utf8');
+  const stageSource = readFileSync(path.join(process.cwd(), 'src/components/home/RotatingTwinStage.tsx'), 'utf8');
+  assert.match(heroSource, /<RotatingTwinStage onSelectedVehicleChange=\{setSelectedTwinId\} \/>/);
+  assert.match(heroSource, /<Reserve selectedTwin=\{selectedTwin\} \/>/);
+  assert.match(stageSource, /const markers = twin\.hotspots;/);
+  assert.doesNotMatch(stageSource, /hotspots\.filter\(\(hotspot\) => twin\.art\.effects/);
+});
 
 const publicPath=(value:string)=>path.join(process.cwd(),'public',value.replace(/^\//,''));
 test('catalog validates, fulfillment null stays null, and every target is real',()=>{
@@ -304,7 +340,7 @@ test('owner snapshot denies corrupt reviewed single-fitment state before loading
 });
 
 test('URL resolver clears absent open and keeps glass/airbox exact',()=>{
-  const twin=resolveDemoVehicleTwin('challenger');assert.deepEqual(resolveTwinDeepLink(twin,null),{hotspot:null,branch:null,node:null});assert.deepEqual(resolveTwinDeepLink(twin,'glass'),{hotspot:'glass',branch:'wipers',node:null});assert.deepEqual(resolveTwinDeepLink(twin,'airbox'),{hotspot:'airbox',branch:'engine',node:'airFilter'});
+  const twin=resolveDemoVehicleTwin('challenger');assert.deepEqual(resolveTwinDeepLink(twin,null),{hotspot:null,branch:null,node:null});assert.deepEqual(resolveTwinDeepLink(twin,'car'),{hotspot:'car',branch:'car',node:null});assert.deepEqual(resolveTwinDeepLink(twin,'glass'),{hotspot:'glass',branch:'wipers',node:null});assert.deepEqual(resolveTwinDeepLink(twin,'airbox'),{hotspot:'airbox',branch:'engine',node:'airFilter'});
 });
 
 test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected admin art',()=>{

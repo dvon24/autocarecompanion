@@ -12,12 +12,15 @@
  *     thrown away every note a beta tester wrote.
  */
 import React from "react";
+import { useSearchParams } from "next/navigation";
 import { Icon } from "../stage/Icon";
 import { TwinStage as THStage, TH_V, TH_MILES } from "../stage/TwinStage";
 import { TechTree, TT_TREES, ttRisk, ttHasUpgrade, ttFinish, useEquipped, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT } from "../stage/TechTree";
 import { Au7oMark, KICard, useTheme, useNarrow, useBubble, ThemeDots, SevBadge, VoiceButton, HPComposer, KI } from "./hub-shared";
 import { useHubView } from "./hub-view";
-import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinLive, useTwinNextService, useTwinRecent, greetingFor } from "../twin-context";
+import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinLive, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinMode, greetingFor } from "../twin-context";
+import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
+import { collectHotspotNodes, summarizeEvidence } from "../demo-trees";
 
 /* /demo/hub?open=<hotspot> — the marketing card on known-issues articles links
    straight to the part someone clicked, so they land in that tech tree instead
@@ -36,13 +39,10 @@ function initialFromQuery() {
 /* Risk/label helpers the sidebar shares with the stage. These were computed
    once at module load against the demo's tree set and 65,000 mi; a live hub's
    odometer only exists at render, so they take both as arguments now. */
-const thCount = (branch, kind, trees, miles) => {
-  const t = trees[branch];
-  if (!t) return 0;
-  return Object.keys(t.nodes).filter(k => k !== t.root && ttRisk(t.nodes[k], miles) === kind).length;
-};
-const thPartCount = (branch, trees) => Object.keys(trees[branch].nodes).filter(k => !trees[branch].nodes[k].group).length;
-const thMeta = (branch, trees, miles) => `${thPartCount(branch, trees)} parts · ${thCount(branch, "critical", trees, miles)} due · ${thCount(branch, "watch", trees, miles)} watch`;
+const thEvidence = (branch, trees, miles) => summarizeEvidence(collectHotspotNodes(trees, {branch}), miles);
+const thPartCount = (branch, trees) => trees[branch] ? Object.keys(trees[branch].nodes).filter(k => !trees[branch].nodes[k].group).length : 0;
+const thMeta = (branch, trees, miles) => `${thPartCount(branch, trees)} parts · ${thEvidence(branch, trees, miles).label}`;
+const mobileComposerPlaceholder = (twinMode, model) => twinMode === "owner" ? "Ask about your car…" : `Ask about this ${model} demo…`;
 const TH_SYSTEMS = [
   { hot:"wheel", branch:"wheel",  label:"Wheel, Tire & Brakes", img:"/twin-stage/parts/part-caliper.webp" },
   { hot:"hood",  branch:"engine", label:"Engine",               img:"/twin-stage/parts/part-engine.webp" },
@@ -58,13 +58,14 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
   const live = useTwinLive();
   const nextService = useTwinNextService();
   const recent = useTwinRecent();
-  const due = thCount("car", "critical", trees, miles);
-  const watch = thCount("car", "watch", trees, miles);
+  const catalog = useTwinCatalog();
+  const twinMode = useTwinMode();
+  const evidence = thEvidence("car", trees, miles);
+  const due = evidence.due;
+  const watch = evidence.watch;
   /* The demo ships a sample "Recent" list. On a live hub those threads belong
      to nobody, so show the owner's real ones or show none at all. */
-  const threads = live
-    ? (recent || [])
-    : [{ t:"Swollen lug nuts — why?", w:"2d ago", i:"search" }, { t:"Photo of my front rotor", w:"6d ago", i:"camera" }, { t:"0W-40 vs 5W-20 on a 392", w:"1w ago", i:"chat" }];
+  const threads = recent || [];
   return (
     <aside style={{ width:264, flex:"0 0 264px", borderRight: drawer ? "none" : "1px solid var(--ki-line)", background:"var(--ki-card)", display:"flex", flexDirection:"column", height:"100%" }}>
       <div style={{ padding:"18px 20px 14px", display:"flex", alignItems:"center" }}>
@@ -74,13 +75,13 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
       <div className="web-scroll" style={{ flex:1, minHeight:0, overflowY:"auto" }}>
         <div style={{ padding:"0 14px" }}>
           <KICard>
-            <div style={{ height:112, background:"#0A0D14" }}><img src="/twin-stage/car-base.webp" alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/></div>
+            <div style={{ height:112, background:"#0A0D14" }}><img src={catalog.art.base} alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/></div>
             <div style={{ padding:"11px 13px 13px" }}>
               <div style={{ fontSize:13.5, fontWeight:600, letterSpacing:"-0.01em" }}>{vehicle.year} {vehicle.make} {vehicle.model}</div>
-              <div style={{ fontSize:11.5, color:"var(--slate-500)", marginTop:1 }}>{vehicle.trim} · <span className="mono">{miles.toLocaleString()} mi</span></div>
+              <div style={{ fontSize:11.5, color:"var(--slate-500)", marginTop:1 }}>{vehicle.trim} · <span className="mono">{typeof miles === "number" ? `${miles.toLocaleString()} mi` : "Mileage unavailable"}</span> · {twinMode}</div>
               <div style={{ display:"flex", gap:5, marginTop:9, flexWrap:"wrap" }}>
-                <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"3px 8px", borderRadius:6, background:"var(--ki-crit-bg)", color:"var(--ki-crit)" }}>{due} due</span>
-                <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"3px 8px", borderRadius:6, background:"var(--ki-mod-bg)", color:"var(--ki-mod-ink)" }}>{watch} watch</span>
+                {due > 0 && <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"3px 8px", borderRadius:6, background:"var(--ki-crit-bg)", color:"var(--ki-crit)" }}>{due} due</span>}
+                {watch > 0 && <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"3px 8px", borderRadius:6, background:"var(--ki-mod-bg)", color:"var(--ki-mod-ink)" }}>{watch} watch</span>}
               </div>
             </div>
           </KICard>
@@ -88,16 +89,16 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
         <div style={{ padding:"16px 20px 7px" }} className="eyebrow">Tech trees</div>
         <div style={{ padding:"0 8px 2px" }}>
           <button onClick={()=>onOpen("car")} style={{ width:"100%", display:"flex", alignItems:"center", gap:10, background:"transparent", border:"none", padding:"7px 12px", borderRadius:10, cursor:"pointer", textAlign:"left", color:"var(--ink)", fontFamily:"var(--font-sans)" }}>
-            <span style={{ width:28, height:28, borderRadius:8, overflow:"hidden", background:"#0d1017", border:"1px solid var(--ki-line)", flexShrink:0 }}><img src="/twin-stage/thumbs/car-base.webp" alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/></span>
+            <span style={{ width:28, height:28, borderRadius:8, overflow:"hidden", background:"#0d1017", border:"1px solid var(--ki-line)", flexShrink:0 }}><img src={catalog.art.base} alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/></span>
             <span style={{ minWidth:0, flex:1 }}>
               <span style={{ display:"block", fontSize:12.5, fontWeight:600 }}>Whole car</span>
-              <span style={{ display:"block", fontSize:10.5, color:"var(--slate-500)" }}>{TH_SYSTEMS.length} systems · {due} due</span>
+              <span style={{ display:"block", fontSize:10.5, color:"var(--slate-500)" }}>{catalog.systems.filter(s=>trees[s.branch]).length} systems{due > 0 ? ` · ${due} due` : ""}</span>
             </span>
             <Icon name="chevron" size={12} style={{ color:"var(--slate-400)" }}/>
           </button>
         </div>
         <div style={{ padding:"0 8px", display:"flex", flexDirection:"column", gap:2 }}>
-          {TH_SYSTEMS.filter(s => trees[s.branch]).map(s => (
+          {catalog.systems.filter(s => trees[s.branch]).map(s => (
             <button key={s.branch} onClick={()=>onOpen(s.hot)} style={{ display:"flex", alignItems:"center", gap:10, background:"transparent", border:"none", padding:"7px 12px", borderRadius:10, cursor:"pointer", textAlign:"left", color:"var(--ink)", fontFamily:"var(--font-sans)" }}>
               <span style={{ width:28, height:28, borderRadius:8, overflow:"hidden", background:"#0d1017", border:"1px solid var(--ki-line)", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
                 {s.img ? <img src={s.img} alt="" style={{ width:"128%", height:"128%", objectFit:"contain", filter:"brightness(1.6)" }}/> : <Icon name={s.icon} size={15} style={{ color:"var(--slate-400)" }}/>}
@@ -113,18 +114,18 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
         {/* The demo hardcoded "Front brake pads · 20,000 mi past a typical set".
             A live hub computes this from the owner's logged services, and when
             nothing is due it renders nothing rather than inventing a job. */}
-        {(!live || nextService) && (
+        {nextService && (
           <div style={{ padding:"14px 14px 0" }}>
             <KICard>
               <div style={{ padding:"11px 14px", display:"flex", alignItems:"center", gap:8 }}>
                 <span className="eyebrow" style={{ fontSize:10 }}>Next service</span>
-                <span style={{ marginLeft:"auto" }}><SevBadge kind={live && !nextService.overdue ? "Moderate" : "Overdue"}/></span>
+                <span style={{ marginLeft:"auto" }}><SevBadge kind={!nextService.overdue ? "Moderate" : "Overdue"}/></span>
               </div>
               <div style={{ padding:"0 14px 12px" }}>
-                <div style={{ fontSize:13, fontWeight:600 }}>{live ? nextService.label : "Front brake pads"}</div>
-                <div className="mono" style={{ fontSize:11, color: live && !nextService.overdue ? "var(--slate-500)" : "var(--ki-crit)", marginTop:2 }}>{live ? nextService.note : "20,000 mi past a typical set"}</div>
-                <div style={{ height:4, borderRadius:999, background:"var(--ki-page)", marginTop:9, overflow:"hidden" }}><div style={{ width: live ? `${Math.round(Math.min(1, nextService.progress == null ? 1 : nextService.progress) * 100)}%` : "100%", height:"100%", background: live && !nextService.overdue ? "var(--ki-mod)" : "var(--ki-crit)" }}/></div>
-                {live && nextService.hot && <button onClick={()=>onOpen(nextService.hot, nextService.nodeId)} style={{ marginTop:10, width:"100%", minHeight:34, borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>Open item</button>}
+                <div style={{ fontSize:13, fontWeight:600 }}>{nextService.label}</div>
+                <div className="mono" style={{ fontSize:11, color:!nextService.overdue ? "var(--slate-500)" : "var(--ki-crit)", marginTop:2 }}>{nextService.note}</div>
+                <div style={{ height:4, borderRadius:999, background:"var(--ki-page)", marginTop:9, overflow:"hidden" }}><div style={{ width:`${Math.round(Math.min(1, nextService.progress == null ? 1 : nextService.progress) * 100)}%`, height:"100%", background:!nextService.overdue ? "var(--ki-mod)" : "var(--ki-crit)" }}/></div>
+                {nextService.hot && <button onClick={()=>onOpen(nextService.hot, nextService.nodeId)} style={{ marginTop:10, width:"100%", minHeight:34, borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>Open item</button>}
               </div>
             </KICard>
           </div>
@@ -282,15 +283,18 @@ function THDesktop({ tc }) {
   const miles = useTwinMiles();
   const trees = useTwinTrees(TT_TREES);
   const [mode, setMode] = React.useState("hotspots");
-  const [branch, setBranch] = React.useState(() => initialFromQuery().branch);
-  const [startNode, setStartNode] = React.useState(() => initialFromQuery().node);
+  const catalog = useTwinCatalog();
+  const searchParams = useSearchParams();
+  const [branch, setBranch] = React.useState(null);
+  const [startNode, setStartNode] = React.useState(null);
+  React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
   const [fb, setFb] = React.useState(false);
   /* The greeting was frozen at "Evening" and named the car in the string.
      Both read from the clock and the actual vehicle now — this screen is
      meant to be opened daily, and a hub that says "Evening" at 8am tells on
      itself immediately. */
   const greeting = greetingFor();
-  const { bubble, say, clear } = useBubble(`${greeting}. This is your ${vehicle.model} — click any part of it and I'll open the tech tree for that system. Everything glowing red is at or past its life at ${miles.toLocaleString()} miles.`);
+  const { bubble, say, clear } = useBubble(`${greeting}. This is the ${vehicle.model} ${useTwinMode() === "owner" ? "owner hub" : "demo"} — click any mapped part to open its selected tree.`);
   const open = (hot, nodeId = null) => { const b = hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]; setStartNode(nodeId || TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(b); say(b === "car" ? "Here's the whole car — every system Au7o tracks. Click one to drill in." : `Opening the ${trees[b].label.toLowerCase()} tree. Back out to the car any time from the breadcrumb.`); };
   return (
     <div className={"ki-theme-" + tc.theme} style={{ display:"flex", height:"100dvh", background:"var(--ki-page)", color:"var(--ink)", fontFamily:"var(--font-sans)", overflow:"hidden" }}>
@@ -329,13 +333,17 @@ function THMobile({ tc }) {
   const vehicle = useTwinVehicle();
   const miles = useTwinMiles();
   const trees = useTwinTrees(TT_TREES);
+  const twinMode = useTwinMode();
   const greeting = greetingFor();
   const [mode, setMode] = React.useState("hotspots");
-  const [branch, setBranch] = React.useState(() => initialFromQuery().branch);
+  const catalog = useTwinCatalog();
+  const searchParams = useSearchParams();
+  const [branch, setBranch] = React.useState(null);
   const [nav, setNav] = React.useState(false);
   const [fb, setFb] = React.useState(false);
-  const [startNode, setStartNode] = React.useState(() => initialFromQuery().node);
-  const { bubble, say, clear } = useBubble(`${greeting}. Tap any part of your ${vehicle.model} and I'll open its tech tree.`);
+  const [startNode, setStartNode] = React.useState(null);
+  React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
+  const { bubble, say, clear } = useBubble(`${greeting}. Tap any part of ${twinMode === "owner" ? `your ${vehicle.model}` : `this ${vehicle.model} demo`} and I'll open its tech tree.`);
   const open = (hot, nodeId = null) => { setNav(false); setStartNode(nodeId || TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]); };
   return (
     <div className={"ki-theme-" + tc.theme} style={{ height:"100dvh", display:"flex", justifyContent:"center", background:"var(--ki-desk)", color:"var(--ink)", fontFamily:"var(--font-sans)" }}>
@@ -344,13 +352,13 @@ function THMobile({ tc }) {
           <button onClick={()=>setNav(true)} aria-label="Menu" style={{ width:32, height:32, borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--slate-700)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><Icon name="list" size={15}/></button>
           <Au7oMark size={20}/>
           <span style={{ marginLeft:"auto" }}><ThemeDots tc={tc} size={13}/></span>
-          <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"4px 9px", borderRadius:999, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>{miles.toLocaleString()} mi</span>
+          <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"4px 9px", borderRadius:999, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>{typeof miles === "number" ? `${miles.toLocaleString()} mi` : "Mileage unavailable"}</span>
         </div>
         <div className="web-scroll" style={{ flex:1, minHeight:0, padding:"14px 13px 12px", display:"flex", flexDirection:"column", gap:13 }}>
           <h2 style={{ fontSize:20, fontWeight:600, letterSpacing:"-0.02em", lineHeight:1.2, flex:"0 0 auto" }}>{greeting}. <span style={{ color:"var(--slate-400)" }}>Tap any part.</span></h2>
           <THStage mode={mode} setMode={setMode} onOpen={open} mobile allowFullscreen onExpand={enterMinimal}/>
           <div style={{ display:"flex", flexDirection:"column", gap:7, flex:"0 0 auto" }}>
-            {TH_SYSTEMS.filter(s => trees[s.branch]).map(s => (
+            {catalog.systems.filter(s => trees[s.branch]).map(s => (
               <button key={s.branch} onClick={()=>open(s.hot)} style={{ display:"flex", alignItems:"center", gap:11, background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:13, padding:"10px 12px", cursor:"pointer", textAlign:"left", minHeight:56, fontFamily:"var(--font-sans)", color:"var(--ink)" }}>
                 <span style={{ width:38, height:38, borderRadius:10, overflow:"hidden", background:"#0d1017", flexShrink:0, display:"flex", alignItems:"center", justifyContent:"center" }}>
                   {s.img ? <img src={s.img} alt="" style={{ width:"126%", height:"126%", objectFit:"contain", filter:"brightness(1.6)" }}/> : <Icon name={s.icon} size={17} style={{ color:"rgba(255,255,255,.7)" }}/>}
@@ -367,7 +375,7 @@ function THMobile({ tc }) {
         <THBubble bubble={bubble} clear={clear}/>
         <div style={{ padding:"10px 12px 14px", borderTop:"1px solid var(--ki-line)", background:"var(--ki-glass)", backdropFilter:"blur(14px)", zIndex:6 }}>
           <div style={{ background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:14, boxShadow:"var(--shadow-1)", padding:"9px 10px 9px 14px", display:"flex", alignItems:"center", gap:8 }}>
-            <span style={{ flex:1, fontSize:13, color:"var(--slate-400)" }}>Ask about your car…</span>
+            <span style={{ flex:1, fontSize:13, color:"var(--slate-400)" }}>{mobileComposerPlaceholder(twinMode, vehicle.model)}</span>
             <button className="chip chip-sm"><Icon name="camera" size={12}/></button>
             <VoiceButton compact say={say}/>
             <button style={{ background:"var(--ink)", border:"none", color:"var(--ki-page)", width:30, height:30, borderRadius:10, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}><Icon name="send" size={13}/></button>
@@ -399,4 +407,4 @@ function HubTechTree() {
 }
 
 /* removed: standalone-bundle window export; this module uses real exports (see bottom). */
-export { HubTechTree, THDesktop, THMobile, THSidebar, THBubble, THTreeOverlay, THFeedback };
+export { HubTechTree, THDesktop, THMobile, THSidebar, THBubble, THTreeOverlay, THFeedback, mobileComposerPlaceholder };

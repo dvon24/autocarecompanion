@@ -1,7 +1,6 @@
 import { TwinHero } from '@/components/home/TwinHero';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { SiteHeader } from '@/components/shared/SiteHeader';
-import { RotatingTwinStage } from '@/components/home/RotatingTwinStage';
 
 interface Props {
   stats?: {
@@ -27,7 +26,7 @@ export default function LandingPage({ stats }: Props) {
         ctaShortLabel="Reserve"
         ctaHref="#reserve"
       />
-      <TwinHero stage={<RotatingTwinStage />} issueCount={stats?.totalIssues} />
+      <TwinHero issueCount={stats?.totalIssues} />
       <SiteFooter />
     </div>
   );

@@ -1,7 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import { useState } from 'react';
 import { HeroReserveForm, HeroReserveMeta } from './HeroReserveForm';
+import { RotatingTwinStage } from './RotatingTwinStage';
+import { DEFAULT_TWIN_ID, resolveDemoVehicleTwin, type VehicleTwinCatalogEntry } from '@/lib/vehicle-twin-catalog';
 
 /**
  * Homepage hero — direction 1 "Split" from `design/au7o (6)`.
@@ -107,7 +110,12 @@ function StatsInline({ stats }: { stats: ReturnType<typeof statsFor> }) {
  * right. Both live directly under the stage, which is where the design puts the
  * commitment — after someone has actually touched the car.
  */
-function Reserve() {
+export const demoHubHref = (vehicleId: string) => `/demo/hub?vehicle=${encodeURIComponent(vehicleId)}`;
+
+function Reserve({ selectedTwin }: { selectedTwin: VehicleTwinCatalogEntry }) {
+  const demoDescription = selectedTwin.demoMileage == null
+    ? `${selectedTwin.identity.year} ${selectedTwin.identity.make} ${selectedTwin.identity.model}. Visual structure preview; service evidence unavailable.`
+    : `${selectedTwin.identity.year} ${selectedTwin.identity.make} ${selectedTwin.identity.model} at ${selectedTwin.demoMileage.toLocaleString()} mi. No account.`;
   return (
     <div id="reserve" style={{ display: 'flex', gap: 11, flexWrap: 'wrap' }}>
       <div style={{ flex: '1 1 380px', minWidth: 0, padding: '15px 16px', borderRadius: 16, border: '1px solid var(--paper-line)', background: '#fff', boxShadow: 'var(--shadow-1)' }}>
@@ -139,10 +147,11 @@ function Reserve() {
         </span>
         <div style={{ minWidth: 0, flex: 1 }}>
           <div style={{ fontSize: 13.5, fontWeight: 600, letterSpacing: '-0.01em', color: 'var(--ink)' }}>Or poke around ours</div>
-          <div style={{ fontSize: 12, color: 'var(--slate-500)', marginTop: 2 }}>A 2015 Challenger at {COPY.miles.toLocaleString()} mi. No account.</div>
+          <div style={{ fontSize: 12, color: 'var(--slate-500)', marginTop: 2 }}>{demoDescription}</div>
         </div>
         <Link
-          href="/demo/hub"
+          href={demoHubHref(selectedTwin.id)}
+          aria-label={`See the ${selectedTwin.identity.model} full hub`}
           style={{ background: '#fff', color: 'var(--ink)', border: '1px solid var(--paper-line)', borderRadius: 11, padding: '9px 14px', fontSize: 12.5, fontWeight: 600, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 5, flexShrink: 0 }}
         >
           See full hub
@@ -155,6 +164,8 @@ function Reserve() {
 
 export function TwinHero({ stage, issueCount }: { stage?: React.ReactNode; issueCount?: number }) {
   const stats = statsFor(issueCount);
+  const [selectedTwinId, setSelectedTwinId] = useState(DEFAULT_TWIN_ID);
+  const selectedTwin = resolveDemoVehicleTwin(selectedTwinId);
   return (
     <div className="twin-surface" style={{ background: 'var(--paper)', color: 'var(--ink)' }}>
       <main style={{ maxWidth: 1240, margin: '0 auto', padding: '24px clamp(20px,5vw,56px) 60px', display: 'flex', flexDirection: 'column', gap: 26 }}>
@@ -170,10 +181,10 @@ export function TwinHero({ stage, issueCount }: { stage?: React.ReactNode; issue
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-          {stage}
+          {stage ?? <RotatingTwinStage onSelectedVehicleChange={setSelectedTwinId} />}
           {/* Mobile only: stats as text, between the car and the reserve form. */}
           <StatsInline stats={stats} />
-          <Reserve />
+          <Reserve selectedTwin={selectedTwin} />
         </div>
       </main>
     </div>
