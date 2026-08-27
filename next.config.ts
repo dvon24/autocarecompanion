@@ -136,6 +136,43 @@ const nextConfig: NextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
 
+  webpack(config) {
+    config.output.hashFunction = 'sha256';
+    return config;
+  },
+
+  /**
+   * Keep auth surfaces crawlable but never indexable.
+   *
+   * robots.txt used to Disallow /auth/ outright. That backfired: a blocked
+   * URL cannot be fetched, so Google never sees a noindex and falls back to
+   * indexing the bare URL from inbound links alone. GSC on 2026-08-27 showed
+   * 79 pages in "Indexed, though blocked by robots.txt" — all
+   * /auth/signup?callbackUrl=... and /api/auth/signin?callbackUrl=... — and
+   * the count had gone 30 -> 79 in three weeks, plus another 480 sitting in
+   * "Blocked by robots.txt".
+   *
+   * The combination that actually removes them is crawlable + noindex, so the
+   * Disallow is lifted in src/app/robots.ts and the directive is served here
+   * as a header instead. Headers work for /api/auth/* too, where there is no
+   * HTML <head> to put a meta tag in.
+   *
+   * follow (not nofollow) on purpose: these pages carry callbackUrl links
+   * back into real content, and we want that equity to keep flowing.
+   */
+  async headers() {
+    return [
+      {
+        source: '/auth/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
+      },
+      {
+        source: '/api/auth/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, follow' }],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       {

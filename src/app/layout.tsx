@@ -135,6 +135,14 @@ export default function RootLayout({
             Keep this in the document head so Impact can verify au7o.io. */}
         <script
           type="text/javascript"
+          /* Same Termly problem as <AdSenseScript />: this is an inline
+             wrapper that injects utt.impactcdn.com at runtime, so the URL
+             never appears as a src attribute and no Domain Rule can match
+             it. Termly stamped it data-termly-unknown-parent="1" and
+             blocked it — the 2026-08-27 cookie scan found no Impact
+             cookies at all. Declaring the category is what makes it
+             governable rather than silently dead. */
+          data-categories="advertising"
           dangerouslySetInnerHTML={{
             __html:
               "(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7655285-4eb7-438d-a105-b982cf1c4d4e1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');",
