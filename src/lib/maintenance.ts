@@ -8,6 +8,13 @@
 
 import maintenanceOverrides from '@/data/maintenance-overrides.json';
 import vehicleSpecsData from '@/data/vehicle-specs.json';
+import { resolveTwinTransmissionBranch, type TwinDefinition } from '@/lib/twin-fulfillment';
+import {
+  getReviewedTransmissionChoices,
+  hasValidReviewedTransmissionState,
+  isTransmissionChoice,
+  resolveReviewedTransmissionBranch,
+} from '@/lib/transmission-options';
 
 // ─── Vehicle Specs Types ───────────────────────────────────────────────
 
@@ -575,6 +582,122 @@ export const MAINTENANCE_SCHEDULES: Record<string, MaintenanceType> = {
     category: 'routine',
   },
 };
+
+export const TRANSMISSION_SERVICE_BRANCHES = {
+  transmission_fluid_auto: 'automatic',
+  transmission_fluid_manual: 'manual',
+} as const;
+
+export function isLoggableMaintenanceType(type: string): boolean {
+  return Object.prototype.hasOwnProperty.call(MAINTENANCE_SCHEDULES, type)
+    || Object.prototype.hasOwnProperty.call(TRANSMISSION_SERVICE_BRANCHES, type);
+}
+
+/** Generic legacy history stays valid but cannot prove either exact branch. */
+export function maintenanceTypeMatchesTransmission(
+  type: string,
+  transmission: string | null | undefined,
+): boolean {
+  const required = Object.prototype.hasOwnProperty.call(TRANSMISSION_SERVICE_BRANCHES, type)
+    ? TRANSMISSION_SERVICE_BRANCHES[type as keyof typeof TRANSMISSION_SERVICE_BRANCHES]
+    : undefined;
+  return required == null || required === transmission;
+}
+
+export type MaintenanceVehicleTransmissionContext = {
+  year: number;
+  make: string;
+  model: string;
+  trim?: string | null;
+  transmission?: string | null;
+};
+
+/**
+ * Resolve the type persisted by a new maintenance write.
+ *
+ * Existing generic `transmission_fluid` rows remain legacy/unassigned. New
+ * writes for a reviewed dual-transmission YMMT must identify the saved exact
+ * branch so the record cannot disappear from the owner tree or later attach
+ * itself to a different gearbox.
+ */
+export function resolveMaintenanceWriteType(
+  type: string,
+  vehicle: MaintenanceVehicleTransmissionContext,
+  definition: TwinDefinition | null = null,
+): { ok: true; type: string } | { ok: false; reason: 'invalid-type' | 'transmission-unselected' | 'transmission-mismatch' } {
+  if (!isLoggableMaintenanceType(type)) return { ok: false, reason: 'invalid-type' };
+
+  const transmissionMaintenance = type === 'transmission_fluid'
+    || Object.prototype.hasOwnProperty.call(TRANSMISSION_SERVICE_BRANCHES, type);
+  if (transmissionMaintenance && !hasValidReviewedTransmissionState(vehicle)) {
+    return { ok: false, reason: 'transmission-mismatch' };
+  }
+
+  const reviewed = resolveReviewedTransmissionBranch(vehicle, vehicle.transmission);
+  const registered = reviewed.options.length
+    ? reviewed
+    : resolveTwinTransmissionBranch(definition, vehicle.transmission, vehicle);
+  const requiresExactBranch = Object.prototype.hasOwnProperty.call(TRANSMISSION_SERVICE_BRANCHES, type);
+  if (requiresExactBranch && registered.options.length === 0) {
+    return { ok: false, reason: 'invalid-type' };
+  }
+  if (type === 'transmission_fluid' && registered.options.length > 0) {
+    if (registered.branch === 'automatic') return { ok: true, type: 'transmission_fluid_auto' };
+    if (registered.branch === 'manual') return { ok: true, type: 'transmission_fluid_manual' };
+    if (registered.requiresChoice) return { ok: false, reason: 'transmission-unselected' };
+  }
+
+  const effectiveTransmission = registered.branch ?? vehicle.transmission;
+  if (!maintenanceTypeMatchesTransmission(type, effectiveTransmission)) {
+    return { ok: false, reason: 'transmission-mismatch' };
+  }
+  return { ok: true, type };
+}
+
+/**
+ * Return the transmission evidence that can be read without treating a saved
+ * contradiction as fitment truth. Generic rows are legacy evidence; a
+ * reviewed single branch comes from the registry, and a reviewed dual branch
+ * comes only from its valid saved selection.
+ */
+export function resolveReadableTransmissionMaintenanceTypes(
+  vehicle: MaintenanceVehicleTransmissionContext,
+): readonly string[] {
+  const readable = ['transmission_fluid'];
+  const options = getReviewedTransmissionChoices(vehicle);
+  const branch = options.length === 1
+    ? options[0]
+    : (isTransmissionChoice(vehicle.transmission) && options.includes(vehicle.transmission)
+      ? vehicle.transmission
+      : null);
+  if (branch === 'automatic') readable.push('transmission_fluid_auto');
+  if (branch === 'manual') readable.push('transmission_fluid_manual');
+  return readable;
+}
+
+export function maintenanceTypeIsReadableForVehicle(
+  type: string,
+  vehicle: MaintenanceVehicleTransmissionContext,
+): boolean {
+  if (type !== 'transmission_fluid'
+    && !Object.prototype.hasOwnProperty.call(TRANSMISSION_SERVICE_BRANCHES, type)) return true;
+  return resolveReadableTransmissionMaintenanceTypes(vehicle).includes(type);
+}
+
+/**
+ * A generic transmission query represents both unassigned legacy evidence and
+ * the saved reviewed branch used by all new writes.
+ */
+export function resolveMaintenanceReadTypes(
+  type: string,
+  vehicle: MaintenanceVehicleTransmissionContext,
+): readonly string[] {
+  if (Object.prototype.hasOwnProperty.call(TRANSMISSION_SERVICE_BRANCHES, type)) {
+    return maintenanceTypeIsReadableForVehicle(type, vehicle) ? [type] : [];
+  }
+  if (type !== 'transmission_fluid') return [type];
+  return resolveReadableTransmissionMaintenanceTypes(vehicle);
+}
 
 /**
  * Reverse lookup: find maintenance type ID by display name.
