@@ -126,10 +126,78 @@ function pickNextService(trees, miles, evaluatedAt = null) {
 }
 
 export function LiveTwinHub({ data }) {
+  const router = useRouter();
   const [transmissionPending, setTransmissionPending] = React.useState(false);
-  const safeData = React.useMemo(() => suppressTwinTransmissionWhilePending(data, transmissionPending), [data, transmissionPending]);
-  const value = React.useMemo(() => buildOwnerTwinValue(safeData), [safeData]);
+  const [transmissionChoice, setTransmissionChoice] = React.useState(data.transmission || "");
+  const [transmissionState, setTransmissionState] = React.useState("idle");
+  const [transmissionError, setTransmissionError] = React.useState("");
+  const safeData = React.useMemo(() => suppressTwinTransmissionWhilePending(data, transmissionPending && !data.transmission), [data, transmissionPending]);
+  const baseValue = React.useMemo(() => buildOwnerTwinValue(safeData), [safeData]);
   const transmissionPicker = React.useMemo(() => getFounderTransmissionPickerModel(data), [data]);
+  const currentTransmission = transmissionPicker?.current || null;
+
+  React.useEffect(() => {
+    setTransmissionChoice(data.transmission || "");
+    setTransmissionState("idle");
+    setTransmissionError("");
+    setTransmissionPending(false);
+  }, [data.transmission, data.vehicleId, data.vehicleRevision]);
+
+  React.useEffect(() => {
+    if (transmissionState !== "refreshing") return undefined;
+    const timer = window.setTimeout(() => window.location.reload(), 10_000);
+    return () => window.clearTimeout(timer);
+  }, [transmissionState]);
+
+  const installUpgrade = React.useCallback(async ({ nodeId, upgrade }) => {
+    const response = await fetch(`/api/vehicles/${encodeURIComponent(data.vehicleId)}/modifications`, {
+      method:"POST",
+      headers:{ "Content-Type":"application/json" },
+      body:JSON.stringify({
+        category:"performance",
+        name:upgrade.label,
+        brand:"Mishimoto",
+        partNumber:upgrade.node?.partNo || "MMRAD-SRT-15",
+        description:upgrade.fixes,
+        modelData:{ source:"owner-twin", nodeId },
+      }),
+    });
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload.error || "Could not save this fitted part.");
+    router.refresh();
+    return true;
+  }, [data.vehicleId, router]);
+
+  const saveTransmission = React.useCallback(async () => {
+    if (!transmissionChoice || transmissionChoice === currentTransmission) return false;
+    return saveFounderTransmission({
+      fetcher:fetch,
+      vehicleId:data.vehicleId,
+      vehicleRevision:data.vehicleRevision,
+      choice:transmissionChoice,
+      onPendingChange:setTransmissionPending,
+      setState:setTransmissionState,
+      setError:setTransmissionError,
+      refresh:() => router.refresh(),
+    });
+  }, [currentTransmission, data.vehicleId, data.vehicleRevision, router, transmissionChoice]);
+
+  const value = React.useMemo(() => baseValue ? ({
+    ...baseValue,
+    ownerActions:{
+      vehicleId:data.vehicleId,
+      refresh:() => router.refresh(),
+      installUpgrade,
+    },
+    transmissionControl:transmissionPicker ? {
+      model:transmissionPicker,
+      choice:transmissionChoice,
+      state:transmissionState,
+      error:transmissionError,
+      setChoice:setTransmissionChoice,
+      save:saveTransmission,
+    } : null,
+  }) : null, [baseValue, data.vehicleId, installUpgrade, router, saveTransmission, transmissionChoice, transmissionError, transmissionPicker, transmissionState]);
 
   if (!value) {
     return (
@@ -141,14 +209,6 @@ export function LiveTwinHub({ data }) {
 
   return (
     <TwinDataCtx.Provider value={value}>
-      {transmissionPicker && (
-        <FounderTransmissionPicker
-          vehicleId={data.vehicleId}
-          vehicleRevision={data.vehicleRevision}
-          model={transmissionPicker}
-          onPendingChange={setTransmissionPending}
-        />
-      )}
       <HubRoot />
     </TwinDataCtx.Provider>
   );
@@ -182,39 +242,6 @@ export function FounderTransmissionPickerView({ model, choice, state = "idle", e
       </button>
       {error && <span role="alert" style={{ flexBasis:"100%", color:"var(--ki-crit)", fontSize:11 }}>{error}</span>}
     </div>
-  );
-}
-
-function FounderTransmissionPicker({ vehicleId, vehicleRevision, model, onPendingChange }) {
-  const router = useRouter();
-  const [choice, setChoice] = React.useState(model.current || "");
-  const [state, setState] = React.useState("idle");
-  const [error, setError] = React.useState("");
-
-  React.useEffect(() => {
-    setChoice(model.current || "");
-    setState("idle");
-    setError("");
-    onPendingChange(false);
-  }, [model, vehicleId, vehicleRevision, onPendingChange]);
-
-  const save = async () => {
-    if (!choice || choice === model.current) return;
-    await saveFounderTransmission({
-      fetcher: fetch, vehicleId, vehicleRevision, choice,
-      onPendingChange, setState, setError, refresh: () => router.refresh(),
-    });
-  };
-
-  return (
-    <FounderTransmissionPickerView
-      model={model}
-      choice={choice}
-      state={state}
-      error={error}
-      onChoice={setChoice}
-      onSave={save}
-    />
   );
 }
 
@@ -261,6 +288,19 @@ export function buildOwnerTwinValue(data) {
   if (!catalog?.ownerReady || !builder || !data?.vehicle || !sameIdentity(catalog, data.vehicle)) return null;
 
   const trees = builder(data, catalog);
+  const applicableIssues = (data.issues || []).filter((issue) => !(
+    data.transmission === "manual" && issue.id === "dodge-challenger-zf8-trans-2015"
+  ));
+  const issueById = new Map(applicableIssues.map((issue) => [issue.id, issue]));
+  for (const tree of Object.values(trees)) {
+    for (const node of Object.values(tree.nodes)) {
+      const summary = node.knownIssue?.id ? issueById.get(node.knownIssue.id) : null;
+      if (node.knownIssue?.id && !summary) delete node.knownIssue;
+      if (!summary) continue;
+      node.knownIssue = { ...node.knownIssue, ...summary };
+      node.issue = summary.title;
+    }
+  }
     if (trees.car?.nodes?.[trees.car.root]) {
       trees.car.label = `${data.vehicle.year} ${data.vehicle.make} ${data.vehicle.model} ${data.vehicle.trim}`.trim();
       trees.car.nodes[trees.car.root] = { ...trees.car.nodes[trees.car.root], label:trees.car.label, sub:"Owner garage vehicle", where:"Your garage" };
@@ -269,6 +309,10 @@ export function buildOwnerTwinValue(data) {
     }
   const ownerCatalog = filterTwinCatalogForTrees(catalog, trees);
   const nextService = pickNextService(trees, data.miles, data.evaluatedAt);
+  const mishimotoInstalled = (data.installedPartNumbers || []).some((partNumber) => partNumber.trim().toUpperCase() === "MMRAD-SRT-15");
+  const issues = applicableIssues.map((issue) => issue.id === "dodge-challenger-radiator-failure" && mishimotoInstalled
+    ? { ...issue, resolved:true }
+    : issue);
   const presentation = buildDemoTwinPresentation(ownerCatalog, {
     trees, miles:data.miles, mode:"owner", recent:data.recent, nextService,
   });
@@ -278,7 +322,8 @@ export function buildOwnerTwinValue(data) {
     trees,
     nextService,
     recent: data.recent || [],
-    issues: [],
+    issues,
+    equipped:{ radCore:mishimotoInstalled },
     catalog:ownerCatalog,
     presentation,
     mode: "owner",

@@ -6,7 +6,7 @@ import { isFounderEmail } from '@/lib/founder';
 import { evaluateTwinAccess, evaluateTwinReservationProvenance, getConfirmedTwinTransmission, normalizeTwinSessionIdentity, type TwinAccessDecision } from '@/lib/twin-access';
 import { hasValidReviewedTransmissionState, type TransmissionOption } from '@/lib/transmission-options';
 import { getTwinByFulfillmentId } from '@/lib/vehicle-twin-catalog';
-import { vehicleSlug } from '@/lib/vehicle-slug';
+import { slugNorm, vehicleSlug } from '@/lib/vehicle-slug';
 
 /**
  * Server payload for the live twin hub.
@@ -41,6 +41,13 @@ export interface TwinRecentThread {
   href: string;
 }
 
+export interface TwinIssueSummary {
+  id: string;
+  title: string;
+  severity: string;
+  href: string;
+}
+
 export interface TwinHubData {
   vehicleId: string;
   vehicle: { year: number; make: string; model: string; trim: string; engine: string };
@@ -48,6 +55,8 @@ export interface TwinHubData {
   /** Raw logged services; the client folds these onto tree nodes. */
   records: TwinServiceRecord[];
   recent: TwinRecentThread[];
+  issues: TwinIssueSummary[];
+  installedPartNumbers: string[];
   transmission: 'automatic' | 'manual' | null;
   transmissionOptions: readonly TransmissionOption[];
   canSelectTransmission: boolean;
@@ -67,6 +76,7 @@ export const TWIN_SERVICE_RECORD_TYPES = [
   'brake_fluid',
   'wiper_blades',
   'coolant_flush',
+  'tire_rotation',
   'transmission_fluid',
   'transmission_fluid_auto',
   'transmission_fluid_manual',
@@ -304,7 +314,19 @@ export async function getTwinHubData(
   }
 
   const { vehicle, twin, records, now, transmissionFitment, confirmedTransmission } = snapshot.payload;
-  const threads = await dependencies.getRecentThreads(userId, vehicle.id, 3).catch(() => []);
+  const catalog = (dependencies.resolveOwnerCatalog ?? getTwinByFulfillmentId)(twin.id);
+  const knownIssueIds = [...new Set(catalog?.hotspots.flatMap((hotspot) => hotspot.knownIssueIds || []) || [])];
+  const [threads, modifications, issueRows] = await Promise.all([
+    dependencies.getRecentThreads(userId, vehicle.id, 3).catch(() => []),
+    dependencies.prisma.modification.findMany({
+      where: { vehicleId: vehicle.id, partNumber: { not: null } },
+      select: { partNumber: true },
+    }),
+    knownIssueIds.length ? dependencies.prisma.knownIssue.findMany({
+      where: { id: { in: knownIssueIds }, status: 'published', years: { has: vehicle.year } },
+      select: { id: true, title: true, severity: true, make: true, model: true },
+    }).catch(() => []) : Promise.resolve([]),
+  ]);
   const specs = getVehicleSpecs({
     year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim ?? undefined,
   });
@@ -332,6 +354,15 @@ export async function getTwinHubData(
       i: 'chat',
       href: `/vehicle/${vehicleSlug(vehicle.year, vehicle.make, vehicle.model, vehicle.trim)}?session=${thread.id}`,
     })),
+    issues: issueRows.map((issue) => ({
+      id: issue.id,
+      title: issue.title,
+      severity: issue.severity,
+      href: `/known-issues/${slugNorm(issue.make)}-${slugNorm(issue.model)}#${issue.id}`,
+    })),
+    installedPartNumbers: modifications
+      .map((modification) => modification.partNumber)
+      .filter((partNumber): partNumber is string => typeof partNumber === 'string' && partNumber.length > 0),
     transmission: confirmedTransmission,
     transmissionOptions,
     canSelectTransmission: founder && transmissionFitment.requiresChoice,

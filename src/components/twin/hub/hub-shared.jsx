@@ -36,13 +36,11 @@ export function useBubble(intro) {
     timer.current = setTimeout(() => setBubble(null), 5200);
     return () => clearTimeout(timer.current);
   }, [bubble]);
-  return {
-    bubble,
-    // Date.now() as a key would differ between server and client render; a
-    // counter keeps the remount behaviour without the hydration mismatch.
-    say: (text) => setBubble({ text, key: ++seq.current }),
-    clear: () => setBubble(null),
-  };
+  // Stable callbacks keep an auto-dismiss re-render from looking like a new
+  // navigation handler to TechTree (which previously reset its branches).
+  const say = React.useCallback((text) => setBubble({ text, key: ++seq.current }), []);
+  const clear = React.useCallback(() => setBubble(null), []);
+  return { bubble, say, clear };
 }
 
 export function ThemeDots({ tc, size = 15 }) {

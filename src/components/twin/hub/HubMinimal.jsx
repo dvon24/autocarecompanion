@@ -18,7 +18,7 @@ import React from "react";
 import { Icon } from "../stage/Icon";
 import { TH_DOT, thHot } from "../stage/TwinStage";
 import { TwinMarkerDot } from "../stage/TwinMarker";
-import { greetingFor, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode } from "../twin-context";
+import { greetingFor, useTwinEquipment, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode } from "../twin-context";
 import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
 
 /* The full-screen view used TH_DUE, a module constant computed once against
@@ -74,7 +74,8 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
   const [hover, setHover] = React.useState(null);
   const [equipped] = useEquipped();
   const live = useTwinLive();
-  const effectiveEquipped = live ? {} : equipped;
+  const ownerEquipped = useTwinEquipment();
+  const effectiveEquipped = live ? ownerEquipped : equipped;
   const finish = live || catalog.id !== "challenger" ? null : ttFinish();
   const lit = hover || sel;
   const boxRef = React.useRef(null);
@@ -182,10 +183,13 @@ function THMinimal({ tc, mobile, onExit }) {
   const setRailOpen = v => { try { localStorage.setItem("au7o.hubRail", v ? "1" : "0"); } catch (e) {} setRail(v); };
   const [fb, setFb] = React.useState(false);
   const { bubble, say, clear } = useBubble(null);
+  const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
+  const closeTree = React.useCallback(() => setBranch(null), []);
   const [equipped] = useEquipped();
   const live = useTwinLive();
+  const ownerEquipped = useTwinEquipment();
   const catalog = useTwinCatalog();
-  const hot = sel ? thHot(catalog.hotspots.find(h => h.id === sel), live ? {} : equipped, trees, miles) : null;
+  const hot = sel ? thHot(catalog.hotspots.find(h => h.id === sel), live ? ownerEquipped : equipped, trees, miles) : null;
 
   const openTreeFor = id => { const target=id === "car" ? {branch:"car",node:null} : resolveTwinDeepLink(catalog,id,trees); if (!target.branch) return; setNav(false); setStartNode(target.node); setBranch(target.branch); };
   const tap = h => { if (sel !== h.id) { setSel(h.id); return; } openTreeFor(h.id); };
@@ -212,7 +216,7 @@ function THMinimal({ tc, mobile, onExit }) {
           <div onClick={e=>e.stopPropagation()} style={{ height:"100%", boxShadow:"var(--shadow-2)" }}><THSidebar onOpen={openTreeFor} onClose={()=>setNav(false)} onFeedback={()=>{ setNav(false); setFb(true); }} drawer/></div>
         </div>
       )}
-      {branch && <THTreeOverlay branch={branch} setBranch={b=>{ setStartNode(null); setBranch(b); }} onClose={()=>setBranch(null)} say={say} startNode={startNode} mobile={mobile}/>}
+      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} startNode={startNode} mobile={mobile}/>}
       <THFeedback open={fb} onClose={()=>setFb(false)}/>
     </div>
   );

@@ -11,7 +11,7 @@
 import React from "react";
 import { Icon } from "./Icon";
 import { TT_TREES, ttHasUpgrade, ttFinish, useEquipped } from "./TechTree";
-import { TWIN_DEMO_MILES, TWIN_DEMO_VEHICLE, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode } from "../twin-context";
+import { TWIN_DEMO_MILES, TWIN_DEMO_VEHICLE, useTwinEquipment, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode } from "../twin-context";
 import { collectHotspotNodes, summarizeEvidence } from "../demo-trees";
 import { TwinMarkerDot, resolveTwinMarkerVisual } from "./TwinMarker";
 
@@ -47,7 +47,11 @@ const thMeta = (branch, trees = TT_TREES, miles = TH_MILES) => `${thPartCount(br
 const thHot = (h, eq, trees = TT_TREES, miles = TH_MILES) => {
   if (!h || !trees[h.branch]) return null;
   const t = trees[h.branch];
-  const nodes = collectHotspotNodes(trees, h);
+  const nodes = collectHotspotNodes(trees, h).map((node) => (
+    node.upgrade && eq?.[node.id] && node.upgrade.node?.resolved
+      ? { ...node, knownIssue:null, upgraded:true, resolved:node.upgrade.node.resolved }
+      : node
+  ));
   const ids = nodes.map(node => node.id);
   const evidence = summarizeEvidence(nodes, miles);
   const due = evidence.due;
@@ -155,7 +159,8 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
     setActive((value) => retainActiveHotspot(value, hotspots));
     setHover((value) => retainActiveHotspot(value, hotspots));
   }, [hotspotKey]);
-  const effectiveEquipped = live ? {} : equipped;
+  const ownerEquipped = useTwinEquipment();
+  const effectiveEquipped = live ? ownerEquipped : equipped;
   const dueCount = thEvidence("car", trees, miles).due;
   const cur = retainActiveHotspot(hover || active, hotspots);
   const lit = resolveActiveTwinEffect(mode, cur, catalog.art.effects);

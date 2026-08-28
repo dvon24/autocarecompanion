@@ -18,7 +18,7 @@ import { TwinStage as THStage, TH_V, TH_MILES } from "../stage/TwinStage";
 import { TechTree, TT_TREES, ttRisk, ttHasUpgrade, ttFinish, useEquipped, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT } from "../stage/TechTree";
 import { Au7oMark, KICard, useTheme, useNarrow, useBubble, ThemeDots, SevBadge, VoiceButton, HPComposer, KI } from "./hub-shared";
 import { useHubView } from "./hub-view";
-import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinLive, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinMode, greetingFor } from "../twin-context";
+import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinLive, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinIssues, useTwinMode, useTwinTransmissionControl, greetingFor } from "../twin-context";
 import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
 import { collectHotspotNodes, summarizeEvidence } from "../demo-trees";
 
@@ -50,6 +50,33 @@ const TH_SYSTEMS = [
   { hot:"glass", branch:"wipers", label:"Windshield Wipers",    img:"/twin-stage/parts/part-wipers.webp" },
 ];
 
+function THTransmissionControl() {
+  const control = useTwinTransmissionControl();
+  const [editing, setEditing] = React.useState(false);
+  if (!control?.model || control.model.options.length <= 1) return null;
+  const missing = !control.model.current;
+  const open = missing || editing;
+  if (!open) return (
+    <button type="button" onClick={()=>setEditing(true)} style={{ width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between", gap:8, padding:"9px 12px", borderRadius:10, border:"1px solid var(--ki-line)", background:"var(--ki-page)", color:"var(--ink)", cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:11.5 }}>
+      <span>{control.model.current === "automatic" ? "Automatic" : "Manual"} transmission</span><span style={{ color:"var(--au7o-blue)", fontWeight:600 }}>Change</span>
+    </button>
+  );
+  return (
+    <div style={{ padding:"10px 12px", borderRadius:10, border:"1px solid var(--ki-line)", background:"var(--ki-page)" }}>
+      <label htmlFor="owner-sidebar-transmission" style={{ display:"block", fontSize:11, fontWeight:650, marginBottom:7 }}>{missing ? "Choose transmission for exact parts" : "Transmission"}</label>
+      <div style={{ display:"flex", gap:6 }}>
+        <select id="owner-sidebar-transmission" value={control.choice} disabled={control.state === "saving" || control.state === "refreshing"} onChange={(event)=>control.setChoice(event.target.value)} style={{ minWidth:0, flex:1, minHeight:34, borderRadius:8, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", padding:"0 8px" }}>
+          <option value="">Select…</option>
+          {control.model.options.map((option)=><option key={option.value} value={option.value}>{option.label}</option>)}
+        </select>
+        <button type="button" onClick={control.save} disabled={!control.choice || control.choice === control.model.current || control.state === "saving" || control.state === "refreshing"} style={{ minHeight:34, border:0, borderRadius:8, padding:"0 10px", background:"var(--ink)", color:"var(--ki-page)", fontWeight:650, opacity:!control.choice || control.choice === control.model.current ? .45 : 1 }}>{control.state === "saving" ? "Saving…" : "Save"}</button>
+      </div>
+      {!missing && <button type="button" onClick={()=>setEditing(false)} style={{ marginTop:6, padding:0, border:0, background:"transparent", color:"var(--slate-500)", fontSize:10.5, cursor:"pointer" }}>Cancel</button>}
+      {control.error && <div role="alert" style={{ color:"var(--ki-crit)", fontSize:10.5, marginTop:6 }}>{control.error}</div>}
+    </div>
+  );
+}
+
 /* ── Sidebar — systems double as a second way in ── */
 function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
   const vehicle = useTwinVehicle();
@@ -59,6 +86,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
   const nextService = useTwinNextService();
   const recent = useTwinRecent();
   const catalog = useTwinCatalog();
+  const issues = useTwinIssues();
   const twinMode = useTwinMode();
   const evidence = thEvidence("car", trees, miles);
   const due = evidence.due;
@@ -85,6 +113,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
               </div>
             </div>
           </KICard>
+          {live && <div style={{ marginTop:9 }}><THTransmissionControl/></div>}
         </div>
         <div style={{ padding:"16px 20px 7px" }} className="eyebrow">Tech trees</div>
         <div style={{ padding:"0 8px 2px" }}>
@@ -126,6 +155,16 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
                 <div className="mono" style={{ fontSize:11, color:!nextService.overdue ? "var(--slate-500)" : "var(--ki-crit)", marginTop:2 }}>{nextService.note}</div>
                 <div style={{ height:4, borderRadius:999, background:"var(--ki-page)", marginTop:9, overflow:"hidden" }}><div style={{ width:`${Math.round(Math.min(1, nextService.progress == null ? 1 : nextService.progress) * 100)}%`, height:"100%", background:!nextService.overdue ? "var(--ki-mod)" : "var(--ki-crit)" }}/></div>
                 {nextService.hot && <button onClick={()=>onOpen(nextService.hot, nextService.nodeId)} style={{ marginTop:10, width:"100%", minHeight:34, borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>Open item</button>}
+              </div>
+            </KICard>
+          </div>
+        )}
+        {issues.length > 0 && (
+          <div style={{ padding:"14px 14px 0" }}>
+            <KICard>
+              <div style={{ padding:"11px 14px 8px", display:"flex", alignItems:"center", gap:7 }}><Icon name="shield-alert" size={13} style={{ color:"#8B5CF6" }}/><span className="eyebrow" style={{ fontSize:10 }}>Known issues</span></div>
+              <div style={{ padding:"0 10px 10px", display:"flex", flexDirection:"column", gap:4 }}>
+                {issues.map((issue)=><a key={issue.id} href={issue.href} style={{ display:"block", padding:"7px 8px", borderRadius:8, color:"var(--ink)", textDecoration:"none", fontSize:11.5, lineHeight:1.35 }}>{issue.title}<span style={{ display:"block", marginTop:2, color:issue.resolved ? "var(--ki-ok-ink)" : "var(--slate-500)", fontSize:10 }}>{issue.resolved ? "Resolved by fitted upgrade" : issue.severity}</span></a>)}
               </div>
             </KICard>
           </div>
@@ -290,6 +329,8 @@ function THDesktop({ tc }) {
   const [startNode, setStartNode] = React.useState(null);
   React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
   const [fb, setFb] = React.useState(false);
+  const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
+  const closeTree = React.useCallback(() => setBranch(null), []);
   /* The greeting was frozen at "Evening" and named the car in the string.
      Both read from the clock and the actual vehicle now — this screen is
      meant to be opened daily, and a hub that says "Evening" at 8am tells on
@@ -320,7 +361,7 @@ function THDesktop({ tc }) {
         <THBubble bubble={bubble} clear={clear}/>
         <HPComposer say={say}/>
       </div>
-      {branch && <THTreeOverlay branch={branch} setBranch={b=>{ setStartNode(null); setBranch(b); }} onClose={()=>setBranch(null)} say={say} startNode={startNode}/>}
+      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} startNode={startNode}/>}
       {/* Floating feedback pill removed — it sat over the content on mobile.
           Feedback is still reachable from the sidebar item. */}
       <THFeedback open={fb} onClose={()=>setFb(false)}/>
@@ -343,6 +384,8 @@ function THMobile({ tc }) {
   const [nav, setNav] = React.useState(false);
   const [fb, setFb] = React.useState(false);
   const [startNode, setStartNode] = React.useState(null);
+  const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
+  const closeTree = React.useCallback(() => setBranch(null), []);
   React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
   const { bubble, say, clear } = useBubble(`${greeting}. Tap any part of ${twinMode === "owner" ? `your ${vehicle.model}` : `this ${vehicle.model} demo`} and I'll open its tech tree.`);
   const open = (hot, nodeId = null) => { setNav(false); setStartNode(nodeId || TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]); };
@@ -388,7 +431,7 @@ function THMobile({ tc }) {
           </div>
         )}
       </div>
-      {branch && <THTreeOverlay branch={branch} setBranch={b=>{ setStartNode(null); setBranch(b); }} onClose={()=>setBranch(null)} say={say} startNode={startNode} mobile/>}
+      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} startNode={startNode} mobile/>}
       {/* Floating feedback pill removed — it sat over the content on mobile.
           Feedback is still reachable from the sidebar item. */}
       <THFeedback open={fb} onClose={()=>setFb(false)}/>

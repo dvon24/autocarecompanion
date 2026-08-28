@@ -11,7 +11,8 @@
  */
 import React from "react";
 import { Icon } from "./Icon";
-import { useTwinLive, useTwinVehicle, useTwinTrees, useTwinMode } from "../twin-context";
+import { MaintenanceLogFlow } from "../../vehicle/MaintenanceLogFlow";
+import { useTwinEquipment, useTwinLive, useTwinOwnerActions, useTwinVehicle, useTwinTrees, useTwinMode } from "../twin-context";
 
 /* Ported from the design bundle's "Hub personalized" module — TTDetail renders
    it, and its absence crashed every part tap with a ReferenceError. */
@@ -235,7 +236,7 @@ const TT_BRANCH_ORDER = ["car", "wheel", "engine", "trans", "wipers"];
 const TT_CATEGORY_OF = { wtb:"wheel", eng:"engine", trx:"trans", wip:"wipers" };
 
 const TT_BRANCH_FOR_HOTSPOT = { wheel:"wheel", hood:"engine", glass:"wipers", rad:"engine", rearwheel:"wheel", trans:"trans" };
-const TT_NODE_FOR_HOTSPOT = { rad:"rad", hood:"oil", rearwheel:"tire" };
+const TT_NODE_FOR_HOTSPOT = { rad:"radCore", hood:"oil", rearwheel:"tire" };
 
 /* ── Equipped upgrades — one store the hub, tree and phone all read ── */
 const TT_UP_HEX = "#8B5CF6";
@@ -272,7 +273,12 @@ const ttViewNodes = (nodes, eq, finish = null) => {
   ids.forEach(id => {
     const n = nodes[id];
     let v = n;
-    if (n.upgrade && eq[id]) v = { ...v, ...n.upgrade.node, upgraded:true };
+    if (n.upgrade && eq[id]) {
+      v = { ...v, ...n.upgrade.node, upgraded:true };
+      // A resolved issue disappears only when persisted equipment evidence
+      // reached the owner context. Demo/local toggles use the same view rule.
+      if (v.resolved) delete v.knownIssue;
+    }
     if (equipmentKnown && n.fitFor) v = { ...v, fitted: !!eq[n.fitFor] === !!n.fitWhen };
     if (n.finishes && fin.id !== "oem") v = { ...v, sub: fin.sub, img:"/twin-stage/parts/part-wheel-bronze.webp" };
     out[id] = v;
@@ -402,8 +408,8 @@ function TTNodeV({ id, node, pos, col, mode, selected, risk, up, expanded, hasKi
       {mode !== "icon" && (
         <span style={{ fontSize: mode === "card" ? 10 : 9, lineHeight:1.15, fontWeight:600, letterSpacing:"-0.01em", textAlign:"center", color:"var(--ink)", display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical", overflow:"hidden", maxWidth:"100%" }}>{node.label}</span>
       )}
-      {hasKids && !expanded && (
-        <span className="mono" onClick={e=>{ e.stopPropagation(); onToggle(id); }} style={{ fontSize:8.5, fontWeight:700, padding:"1px 5px", borderRadius:999, background:"var(--ki-page)", border:"1px solid var(--ki-line)", color:"var(--slate-500)" }}>+{kidCount}</span>
+      {hasKids && (
+        <button type="button" className="mono" aria-label={expanded ? `Collapse ${node.label}` : `Expand ${node.label}`} onClick={e=>{ e.stopPropagation(); onToggle(id); }} style={{ minWidth:22, minHeight:20, fontSize:8.5, fontWeight:700, padding:"1px 5px", borderRadius:999, background:"var(--ki-page)", border:"1px solid var(--ki-line)", color:"var(--slate-500)", cursor:"pointer" }}>{expanded ? "−" : `+${kidCount}`}</button>
       )}
     </div>
   );
@@ -489,11 +495,26 @@ function TTStyleMenu({ menu, style, onShape, onColor, onClose }) {
 /* ── Service log row — "I did this" for anything with a mileage clock ── */
 function TTServiceRow({ node, miles, dense }) {
   const live = useTwinLive();
-  if (!node.riskAt) return null;
+  const ownerActions = useTwinOwnerActions();
+  const [logging, setLogging] = React.useState(false);
+  if (!node.maintenanceType || !node.serviceIntervalMiles) return null;
   const done = node.servicedAt != null;
   if (live) return (
     <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)", fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>
-      Service state comes from this vehicle&apos;s maintenance history. Log the completed job there to reset this clock.
+      {logging ? (
+        <MaintenanceLogFlow
+          vehicleId={ownerActions.vehicleId}
+          currentMileage={miles}
+          service={{ typeId:node.maintenanceType, label:node.serviceLabel || node.label, intervalMiles:node.serviceIntervalMiles }}
+          accent="#2563EB"
+          onLogged={ownerActions.refresh}
+        />
+      ) : (
+        <div style={{ display:"flex", alignItems:"center", gap:9 }}>
+          <div style={{ minWidth:0, flex:1 }}>{done ? <>Last logged at <span className="mono">{node.servicedAt.toLocaleString()} mi</span>.</> : "No service event logged."}</div>
+          <button type="button" onClick={()=>setLogging(true)} style={{ flexShrink:0, padding:"8px 12px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer", whiteSpace:"nowrap" }}>{done ? "Log again" : "Log service"}</button>
+        </div>
+      )}
     </div>
   );
   return (
@@ -549,12 +570,25 @@ function TTFinishRow({ dense }) {
 /* ── Upgrade card — the known issue's fix, one tap from equipped ── */
 function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
   const live = useTwinLive();
+  const [pending, setPending] = React.useState(false);
+  const [error, setError] = React.useState("");
+  const [recorded, setRecorded] = React.useState(false);
   const state = ttUpState(node);
   const fit = node && node.fitFor;
   if (!state && !fit) return null;
-  const on = live ? false : (fit ? !!node.fitted : state === "equipped");
+  const on = recorded || (fit ? !!node.fitted : state === "equipped");
   const target = fit ? node.fitFor : nodeId;
   const val = fit ? (on ? !node.fitWhen : !!node.fitWhen) : !on;
+  const persist = async () => {
+    if (!onEquip || pending || on) return;
+    setPending(true); setError("");
+    try {
+      const saved = await onEquip(target, val, node.upgrade);
+      if (saved !== false) setRecorded(true);
+    }
+    catch (cause) { setError(cause instanceof Error ? cause.message : "Could not save this fitted part."); }
+    finally { setPending(false); }
+  };
   if (fit && !node.upgrade) return (
     <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:9, padding:"10px 12px", borderRadius:12, background: on ? "var(--ki-ok-bg)" : "var(--ki-page)", border:`1px solid ${on ? "color-mix(in oklab, var(--ki-ok-ink) 28%, transparent)" : "var(--ki-line)"}` }}>
       <span style={{ minWidth:0, flex:1, fontSize:11.5, fontWeight:600, color: on ? "var(--ki-ok-ink)" : "var(--slate-700)" }}>{on ? "Fitted on your car" : "Not what's on your car"}</span>
@@ -585,7 +619,8 @@ function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
           background: on ? "var(--ki-card)" : TT_UP_HEX, color: on ? "var(--slate-700)" : "#fff", border: on ? "1px solid var(--ki-line)" : "none" }}>
           {on ? "Swap back to the OEM radiator" : <React.Fragment><svg width="12" height="12" viewBox="0 0 10 10"><path d="M5 8.5V1.8M5 1.8L2 4.8M5 1.8l3 3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" fill="none"/></svg>I have this — equip it</React.Fragment>}
         </button>}
-        {live && <div style={{ width:"100%", minHeight:38, borderRadius:10, display:"grid", placeItems:"center", background:"var(--ki-page)", border:"1px solid var(--ki-line)", color:"var(--slate-500)", fontSize:11.5, fontWeight:600 }}>Available upgrade · not recorded as fitted</div>}
+        {live && (on ? <div style={{ width:"100%", minHeight:38, borderRadius:10, display:"grid", placeItems:"center", background:"var(--ki-ok-bg)", border:"1px solid var(--ki-line)", color:"var(--ki-ok-ink)", fontSize:11.5, fontWeight:600 }}>Recorded as fitted on this vehicle</div> : <button type="button" onClick={persist} disabled={pending || !onEquip} style={{ width:"100%", minHeight:38, borderRadius:10, border:0, background:TT_UP_HEX, color:"#fff", fontSize:11.5, fontWeight:600, cursor:pending ? "wait" : "pointer", opacity:pending || !onEquip ? .65 : 1 }}>{pending ? "Saving…" : "I have this — record it as fitted"}</button>)}
+        {error && <div role="alert" style={{ marginTop:7, color:"var(--ki-crit)", fontSize:10.5 }}>{error}</div>}
       </div>
     </div>
   );
@@ -648,6 +683,7 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
                 <div className="eyebrow" style={{ fontSize:9.5, color:TT_UP_HEX }}><Icon name="shield-alert" size={10}/> Known issue on record</div>
                 {node.issue && <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>}
                 {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
+                {node.knownIssue.href && <a href={node.knownIssue.href} style={{ display:"inline-block", marginTop:7, color:TT_UP_HEX, fontSize:11, fontWeight:650 }}>View known issue</a>}
               </div>
             )}
             {node.resolved && (node.upgraded || node.fitted) && (
@@ -726,6 +762,7 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
               <div className="eyebrow" style={{ fontSize:9.5, color:TT_UP_HEX }}><Icon name="shield-alert" size={10}/> Known issue on record</div>
               {node.issue && <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>}
               {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
+              {node.knownIssue.href && <a href={node.knownIssue.href} style={{ display:"inline-block", marginTop:7, color:TT_UP_HEX, fontSize:11, fontWeight:650 }}>View known issue</a>}
             </div>
           )}
           {node.resolved && (node.upgraded || node.fitted) && (
@@ -824,15 +861,23 @@ export function resolveAvailableTwinBranch(branch, trees) {
 
 function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact = false, detailMode = null, vertical = false }) {
   const sheetDetail = detailMode ? detailMode === "sheet" : compact;
-  const [equipped, setEquipped] = useEquipped();
+  const [demoEquipped, setEquipped] = useEquipped();
+  const ownerEquipped = useTwinEquipment();
+  const ownerActions = useTwinOwnerActions();
   const live = useTwinLive();
+  const equipped = live ? ownerEquipped : demoEquipped;
   /* Demo tree set unless a live hub supplied the owner's. */
   const trees = useTwinTrees(TT_TREES);
   const activeBranch = resolveAvailableTwinBranch(branch, trees);
   const vehicle = useTwinVehicle();
   const twinMode = useTwinMode();
   const carLabel = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? " " + vehicle.trim : ""}`;
-  const tree = React.useMemo(() => { const t = trees[activeBranch]; const n = ttViewNodes(t.nodes, live ? TT_NO_EQUIP : equipped, live ? TT_FINISHES[0] : null); return n === t.nodes ? t : { ...t, nodes:n }; }, [trees, activeBranch, equipped, live]);
+  const tree = React.useMemo(() => { const t = trees[activeBranch]; const n = ttViewNodes(t.nodes, equipped, live ? TT_FINISHES[0] : null); return n === t.nodes ? t : { ...t, nodes:n }; }, [trees, activeBranch, equipped, live]);
+  const persistEquipment = React.useCallback((nodeId, on, upgrade) => {
+    if (!live) return setEquipped(nodeId, on);
+    if (!on || !upgrade) return Promise.resolve(false);
+    return ownerActions?.installUpgrade({ nodeId, upgrade });
+  }, [live, ownerActions, setEquipped]);
   const [selected, setSelected] = React.useState(null);
   const [intent, setIntent] = React.useState(null);
   const [menu, setMenu] = React.useState(null);
@@ -859,8 +904,10 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
 
   React.useEffect(() => {
     if (activeBranch !== branch) setBranch(activeBranch);
+  }, [activeBranch, branch, setBranch]);
+  React.useEffect(() => {
     setExpanded({ [tree.root]: true }); setSelected(null); setIntent(null); setAllow(null); setMenu(null); setOffsets({}); setPan({ x:56, y:40 });
-  }, [trees, activeBranch, branch, setBranch, tree.root]);
+  }, [activeBranch, tree.root, ownerActions?.vehicleId]);
   React.useEffect(() => { try { localStorage.setItem("au7o-tt-styles", JSON.stringify(styles)); } catch(e) {} }, [styles]);
 
   /* a hotspot can point at a node, not just a branch — open its path and select it */
@@ -874,7 +921,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
     setSelected(startNode);
     setAllow(null);
     setIntent(null);
-  }, [activeBranch, startNode, tree]);
+  }, [activeBranch, startNode, tree.root]);
 
   const styleOf = id => styles[id] || { shape:"rounded", color:"ink" };
   const vis0 = ttVisible(tree.nodes, tree.root, expanded, allow);
@@ -921,14 +968,17 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
   }, [expanded, activeBranch, allow, !!selected, vertical, tick]);
 
   /* pin the opening scroll to the root once the sizer has actually laid out at its new height */
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const el = canvasRef.current;
     if (!el) return;
-    const want = ((base[tree.root] || { y:0 }).y - minY) * zoom;
-    const target = Math.max(0, Math.min(want - el.clientHeight / 2 + 30, el.scrollHeight - el.clientHeight));
-    el.scrollLeft = 0;
-    el.scrollTop = target;
-  }, [expanded, activeBranch, allow, zoom]);
+    const frame = window.requestAnimationFrame(() => {
+      const want = ((base[tree.root] || { y:0 }).y - minY) * zoom;
+      const target = Math.max(0, Math.min(want - el.clientHeight / 2 + 30, el.scrollHeight - el.clientHeight));
+      el.scrollLeft = 0;
+      el.scrollTop = target;
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [activeBranch, tree.root]);
 
   const doIntent = (i, tr) => {
     setIntent(i.id);
@@ -1109,9 +1159,9 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
             </div>
           )}
           </div>
-          {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={live ? undefined : setEquipped} miles={miles} risk={ttRisk(sel, miles)} sheet onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n))}/>}
+          {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} sheet onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n))}/>}
         </div>
-        {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={live ? undefined : setEquipped} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
+        {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
       </div>
       <TTComposer value={draft} setValue={setDraft} onSend={answer} reply={reply} suggestions={compact ? [TT_SUGGEST[0], TT_SUGGEST[2]] : TT_SUGGEST}/>
       <TTStyleMenu menu={menu} style={menu ? styleOf(menu.id) : {}}

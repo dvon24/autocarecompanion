@@ -68,7 +68,9 @@ export const TWIN_INTERVALS = {
   wipL: 12000,
   wipR: 12000,
   // Wear items: the demo's numbers were already sane as intervals.
-  tire: 40000,
+  // The owner action on the tire node is a rotation/condition check, not a
+  // claim that the tire was replaced. Challenger's schedule uses 6,000 mi.
+  tire: 6000,
   pads: 45000,
   rotor: 70000,
   padsR: 80000,
@@ -96,8 +98,20 @@ export const TWIN_MAINT_NODES = {
   brake_fluid: ["brakeFluid"],
   wiper_blades: ["wipL", "wipR"],
   coolant_flush: ["coolant"],
-  // Intentionally NOT mapped (they do not replace anything):
-  //   tire_rotation, brake_inspection, wheel_alignment
+  tire_rotation: ["tire"],
+};
+
+/** Persistable maintenance action shown by each actionable tree node. */
+export const TWIN_NODE_SERVICE = {
+  oilFluid:{type:"oil_change", label:"Oil change"},
+  oilFilter:{type:"oil_change", label:"Oil change"},
+  airFilter:{type:"air_filter", label:"Engine air filter"},
+  cabinFilter:{type:"cabin_filter", label:"Cabin air filter"},
+  brakeFluid:{type:"brake_fluid", label:"Brake fluid"},
+  coolant:{type:"coolant_flush", label:"Coolant service"},
+  wipL:{type:"wiper_blades", label:"Wiper blades"},
+  wipR:{type:"wiper_blades", label:"Wiper blades"},
+  tire:{type:"tire_rotation", label:"Tire rotation and inspection"},
 };
 
 export const TWIN_SUPPORTED_MAINTENANCE_TYPES = [
@@ -151,7 +165,7 @@ function finiteDate(value) {
 
 /** Humanised "where this part stands", computed instead of hand-written. */
 function dueNoteFor(node, miles, interval) {
-  if (node.unlogged) return interval ? `Never logged — replace every ${interval.toLocaleString()} mi.` : "Never logged.";
+  if (node.unlogged) return interval ? `Never logged — service interval ${interval.toLocaleString()} mi.` : "Never logged.";
   const notes = [];
   if (typeof node.dueMileage === "number") {
     const delta = miles - node.dueMileage;
@@ -168,6 +182,12 @@ function dueNoteFor(node, miles, interval) {
 }
 
 function applyServiceEvidence(node, rawService, id, interval, miles, currentDate) {
+  const action = TWIN_NODE_SERVICE[id];
+  if (action && interval) {
+    node.maintenanceType = action.type;
+    node.serviceLabel = action.label;
+    node.serviceIntervalMiles = interval;
+  }
   const service = serviceValue(rawService);
   if (!service) {
     delete node.servicedAt;
@@ -248,6 +268,13 @@ export function buildTwinTrees(serviced, miles, transmission, evaluatedAt = null
   }
 
   if (transmission === "automatic" && out.trans && out.car) {
+    for (const id of ["transFluid", "transPan"]) {
+      Object.assign(out.trans.nodes[id], {
+        maintenanceType:"transmission_fluid_auto",
+        serviceLabel:"Automatic transmission fluid service",
+        serviceIntervalMiles:TWIN_INTERVALS[id],
+      });
+    }
     Object.assign(out.trans.nodes.transFluid, {
       buyUrl: ebayAffiliate(AUTO_FLUID_URL, "twin-challenger-automatic-fluid"),
       buyLabel: "Order 6-qt automatic drain-and-fill set",
@@ -265,6 +292,11 @@ export function buildTwinTrees(serviced, miles, transmission, evaluatedAt = null
       const node = { ...base };
       const interval = TWIN_INTERVALS[id] != null ? TWIN_INTERVALS[id] : base.riskAt;
       applyServiceEvidence(node, svc[id], id, interval, miles, currentDate);
+      if (id === "transFluid") Object.assign(node, {
+        maintenanceType:"transmission_fluid_manual",
+        serviceLabel:"Manual transmission fluid service",
+        serviceIntervalMiles:interval,
+      });
       manualNodes[id] = node;
     }
     out.trans = { ...MANUAL_TRANSMISSION_TREE, nodes: manualNodes };

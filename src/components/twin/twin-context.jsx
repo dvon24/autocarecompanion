@@ -80,6 +80,9 @@ function validOwnerTrees(trees) {
  * @property {Array<Object>=} issues
  * @property {Object|null=} nextService
  * @property {Array<Object>=} recent
+ * @property {Object|null=} transmissionControl
+ * @property {Object|null=} ownerActions
+ * @property {Object<string, boolean>=} equipped
  * @property {'demo'|'owner'=} mode
  */
 /** @type {React.Context<TwinData|null>} */
@@ -143,6 +146,24 @@ export function useTwinNextService() {
 export function useTwinRecent() {
   const ctx = React.useContext(TwinDataCtx);
   return (ctx && ctx.recent) || null;
+}
+
+/** Persisted owner equipment keyed by the stable tree node it replaces. */
+export function useTwinEquipment() {
+  const ctx = React.useContext(TwinDataCtx);
+  return (ctx?.mode === "owner" && ctx.equipped) || {};
+}
+
+/** Authenticated owner mutations supplied by LiveTwinHub. Demo mode has none. */
+export function useTwinOwnerActions() {
+  const ctx = React.useContext(TwinDataCtx);
+  return ctx?.mode === "owner" ? (ctx.ownerActions || null) : null;
+}
+
+/** Founder-only exact-fit transmission editor, rendered by the sidebar. */
+export function useTwinTransmissionControl() {
+  const ctx = React.useContext(TwinDataCtx);
+  return ctx?.mode === "owner" ? (ctx.transmissionControl || null) : null;
 }
 
 /** "Good morning/afternoon/evening" — the hub greets by time of day. */

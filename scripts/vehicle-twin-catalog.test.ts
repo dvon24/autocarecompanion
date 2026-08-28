@@ -4,6 +4,7 @@ import path from 'node:path';
 import test from 'node:test';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
+import { NextResponse } from 'next/server';
 import sharp from 'sharp';
 import { DEFAULT_TWIN_ID, VEHICLE_TWIN_CATALOG, getAdminTwinDefinitions, getTwinByFulfillmentId, resolveDemoVehicleTwin, resolveTwinDeepLink, validateVehicleTwinCatalog } from '../src/lib/vehicle-twin-catalog';
 import { evaluateTwinAccess, getConfirmedTwinTransmission } from '../src/lib/twin-access';
@@ -17,7 +18,9 @@ import { THSidebar, mobileComposerPlaceholder } from '../src/components/twin/hub
 import { buildOwnerTwinValue, FounderTransmissionPickerView, getFounderTransmissionPickerModel, pickNextService, saveFounderTransmission, suppressTwinTransmissionWhilePending } from '../src/components/twin/LiveTwinHub.jsx';
 import { HERO_MARKER_VISUALS, TWIN_STAGE_FRAME_STYLE } from '../src/components/home/RotatingTwinStage';
 import { demoHubHref } from '../src/components/home/TwinHero';
-import { TwinAdminShell, TwinSelectedPreview } from '../src/components/admin/twins/TwinAdminShell';
+import { AdminOverviewView, TwinAdminShell, TwinSelectedPreview } from '../src/components/admin/twins/TwinAdminShell';
+import { buildAdminOverviewSnapshot } from '../src/app/api/admin/overview/admin-overview';
+import { getAdminOverviewResponse } from '../src/app/api/admin/overview/admin-overview-response';
 import type { TwinMarkerEvidence } from '../src/components/twin/stage/TwinMarker';
 import { resolveTwinTransmissionBranch, sameTwinVehicleIdentity } from '../src/lib/twin-fulfillment';
 import { isLoggableMaintenanceType, maintenanceTypeMatchesTransmission, resolveMaintenanceWriteType } from '../src/lib/maintenance';
@@ -364,6 +367,42 @@ test('URL resolver clears absent and removed airbox opens while engine tree reta
   const twin=resolveDemoVehicleTwin('challenger');const trees=resolveTwinTrees(twin);assert.deepEqual(resolveTwinDeepLink(twin,null),{hotspot:null,branch:null,node:null});assert.deepEqual(resolveTwinDeepLink(twin,'car'),{hotspot:'car',branch:'car',node:null});assert.deepEqual(resolveTwinDeepLink(twin,'glass'),{hotspot:'glass',branch:'wipers',node:null});assert.deepEqual(resolveTwinDeepLink(twin,'airbox'),{hotspot:null,branch:null,node:null});assert.ok(trees.engine.nodes.airFilter);assert.ok(trees.engine.nodes.engineRoot?.kids?.includes('airFilter')||trees.engine.nodes.eng?.kids?.includes('airFilter'));
 });
 
+test('Admin overview exposes only real aggregates and explicit unsupported states',async()=>{
+  const now=new Date('2026-08-28T12:00:00.000Z');
+  const overview=buildAdminOverviewSnapshot({
+    now,
+    interests:[{createdAt:new Date('2026-08-27T00:00:00.000Z')},{createdAt:new Date('2026-07-01T00:00:00.000Z')}],
+    reservations:[{createdAt:new Date('2026-08-26T00:00:00.000Z'),vehicle:'2019 Lincoln Nautilus',source:'hero',twinStatus:'pending',vehicleVerified:true}],
+    clicks:[
+      {clickedAt:new Date('2026-08-27T00:00:00.000Z'),knownIssueId:'issue-covered',partBrand:'Gates',partName:'Timing belt kit',link:'https://www.ebay.com/itm/123456789012'},
+      {clickedAt:new Date('2026-08-26T00:00:00.000Z'),knownIssueId:'issue-gap',partBrand:'Mopar',partName:'Transmission fluid',link:'https://www.amazon.com/s?k=transmission+fluid'},
+    ],
+    issues:[
+      {id:'issue-covered',make:'Acura',model:'MDX',title:'Timing belt wear',reviewedOn:'2026-08-20',updatedAt:new Date('2026-08-20T00:00:00.000Z'),communityRecommendations:[],fixParts:[{name:'Timing belt kit',verified:true,buyLinks:[{vendor:'eBay',url:'https://www.ebay.com/itm/123456789012',verified:true,linkType:'product'}]}]},
+      {id:'issue-gap',make:'Dodge',model:'Challenger',title:'Transmission service',reviewedOn:'',updatedAt:new Date('2026-08-27T00:00:00.000Z'),fixParts:[],communityRecommendations:[{text:'Check this fluid',needsReview:true}]},
+    ],
+    feedback:[{kind:'vehicle-correction',message:'Correct trim',createdAt:new Date('2026-08-25T00:00:00.000Z')}],
+    userCount:5,
+    activeSubscriberCount:2,
+    vehicleCorrectionCount:12,
+  });
+  assert.equal(overview.kpis.interestTotal,2);assert.equal(overview.kpis.interestAdded7d,1);assert.equal(overview.kpis.deepLinkRate,50);assert.equal(overview.kpis.issuesWithBuyLinks,1);assert.equal(overview.kpis.issuesWithoutBuyLinks,1);
+  assert.equal(overview.queues.recommendationReviews,1);assert.equal(overview.queues.vehicleCorrections.total,12);assert.equal(overview.affiliate.searchLinkQueue[0]?.issueId,'issue-gap');assert.equal(overview.affiliate.searchLinkQueue[0]?.href,'/known-issues/dodge-challenger#issue-gap');assert.equal(overview.analytics.sessions.status,'not-connected');
+  const dataMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:getAdminTwinDefinitions(),state:{data:overview,loading:false,error:null}}));assert.match(dataMarkup,/Captured demand and affiliate clicks/);assert.match(dataMarkup,/50%/);assert.match(dataMarkup,/Transmission service/);assert.match(dataMarkup,/Not connected/);assert.match(dataMarkup,/2019 Lincoln Nautilus/);
+  const empty=buildAdminOverviewSnapshot({now,interests:[],reservations:[],clicks:[],issues:[],feedback:[],userCount:0,activeSubscriberCount:0});
+  const emptyMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:[],state:{data:empty,loading:false,error:null}}));assert.match(emptyMarkup,/No records in this period/);assert.match(emptyMarkup,/No affiliate clicks in the last 30 days/);
+  const loadingMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:[],state:{data:null,loading:true,error:null}}));assert.match(loadingMarkup,/Loading live records/);
+  const errorMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:[],state:{data:null,loading:false,error:'Overview unavailable'}}));assert.match(errorMarkup,/Overview unavailable/);
+  const partial=buildAdminOverviewSnapshot({now,interests:[],reservations:[],clicks:[],issues:[],feedback:[],userCount:0,activeSubscriberCount:0,sourceErrors:{clicks:'offline'}});
+  const partialMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:[],state:{data:partial,loading:false,error:null}}));assert.match(partialMarkup,/Partial Admin data/);assert.match(partialMarkup,/clicks unavailable/);
+  const splitGaps=buildAdminOverviewSnapshot({now,interests:[],reservations:[],clicks:[{clickedAt:now,knownIssueId:'i1',partBrand:'A',partName:'Part A',link:'https://example.com/search'},{clickedAt:now,knownIssueId:'i1',partBrand:'B',partName:'Part B',link:'https://example.com/search'}],issues:[],feedback:[],userCount:0,activeSubscriberCount:0});assert.equal(splitGaps.affiliate.searchLinkQueue.length,2);
+  let protectedLoadCalled=false;
+  const denied=await getAdminOverviewResponse(async()=>{protectedLoadCalled=true;return empty;},{authorize:async()=>NextResponse.json({error:'Forbidden'},{status:403})});assert.equal(denied.status,403);assert.equal(protectedLoadCalled,false);
+  const emptyResponse=await getAdminOverviewResponse(async()=>empty,{authorize:async()=>null});assert.equal(emptyResponse.status,200);assert.equal((await emptyResponse.json()).kpis.interestTotal,0);
+  const failedResponse=await getAdminOverviewResponse(async()=>{throw new Error('missing')},{authorize:async()=>null,reportError:()=>{}});assert.equal(failedResponse.status,500);assert.deepEqual(await failedResponse.json(),{error:'Failed to build Admin overview'});
+  const overviewRouteSource=readFileSync(path.join(process.cwd(),'src/app/api/admin/overview/route.ts'),'utf8');assert.match(overviewRouteSource,/requireFounder/);assert.match(overviewRouteSource,/buildAdminOverviewSnapshot/);assert.match(overviewRouteSource,/ISSUE_SCAN_LIMIT=250/);assert.doesNotMatch(overviewRouteSource,/342|2,847|18\.4k/);
+});
+
 test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected admin art',()=>{
   const twin=resolveDemoVehicleTwin('nautilus');const presentation=buildDemoTwinPresentation(twin);function Probe(){return React.createElement('span',{'data-testid':'miles-probe'},`${String(useTwinMiles())}|${String(useTwinLive())}|${useTwinMode()}`);}
   const value={catalog:twin,presentation,vehicle:twin.identity,miles:null,trees:presentation.trees,mode:'demo' as const};
@@ -375,11 +414,11 @@ test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected
   const baseOwnerData={fulfillmentId:'dodge-challenger',vehicleId:'v1',vehicle:{year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',engine:'6.4L V8 HEMI'},miles:24000,records:[],recent:[],transmission:'automatic',evaluatedAt:'2026-08-26T00:00:00.000Z'};
   const pendingTwin=buildOwnerTwinValue(suppressTwinTransmissionWhilePending(baseOwnerData,true));assert.ok(pendingTwin);assert.equal(resolveAvailableTwinBranch('trans',pendingTwin.trees),'car');
   const pendingMarkup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{...pendingTwin,mode:'owner' as const}},React.createElement(React.Fragment,null,React.createElement(TwinStage,{mode:'hotspots',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}),React.createElement(TestTechTree,{branch:'trans',setBranch:()=>{},miles:24000,onClose:()=>{},say:()=>{},startNode:'transFluid',compact:true,detailMode:'sheet',vertical:true}))));
-  assert.match(pendingMarkup,/2015 Dodge Challenger/);assert.doesNotMatch(pendingMarkup,/8HP70|TR-6060|Order 6-qt|automatic transmission confirmed|manual transmission confirmed/);
+  assert.match(pendingMarkup,/2015 Dodge Challenger/);assert.match(pendingMarkup,/Collapse 2015 Dodge Challenger/);assert.doesNotMatch(pendingMarkup,/8HP70|TR-6060|Order 6-qt|automatic transmission confirmed|manual transmission confirmed/);
   const admin=renderToStaticMarkup(React.createElement(TwinSelectedPreview,{twin:getAdminTwinDefinitions()[2]}));assert.match(admin,/Nissan Murano selected twin/);assert.match(admin,/base-red.webp/);
-  const emptyAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:[]}));assert.match(emptyAdmin,/Twin inventory is unavailable/);assert.doesNotMatch(emptyAdmin,/No twins match/);
-  const fullAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:getAdminTwinDefinitions()}));assert.match(fullAdmin,/Admin Dashboard/);assert.match(fullAdmin,/Vehicle Twin readiness from the live catalog/);
-  const adminSource=readFileSync(path.join(process.cwd(),'src/components/admin/twins/TwinAdminShell.tsx'),'utf8');assert.match(adminSource,/Art coverage matrix/);assert.match(adminSource,/Artwork intake/);assert.match(adminSource,/Preview layer/);assert.match(adminSource,/Array\.isArray\(data\.twins\)/);assert.match(adminSource,/AbortController/);
+  const emptyAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:[]}));assert.match(emptyAdmin,/Admin Dashboard/);assert.match(emptyAdmin,/Loading live records/);assert.doesNotMatch(emptyAdmin,/No twins match/);
+  const fullAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:getAdminTwinDefinitions()}));assert.match(fullAdmin,/Admin Dashboard/);assert.match(fullAdmin,/Founder-only operational data/);assert.match(fullAdmin,/Loading live records/);
+  const adminSource=readFileSync(path.join(process.cwd(),'src/components/admin/twins/TwinAdminShell.tsx'),'utf8');assert.match(adminSource,/Art coverage matrix/);assert.match(adminSource,/Artwork intake/);assert.match(adminSource,/Preview layer/);assert.match(adminSource,/Array\.isArray\(data\.twins\)/);assert.match(adminSource,/AbortController/);assert.match(adminSource,/\/api\/admin\/overview/);assert.doesNotMatch(adminSource,/className="avatar"/);
   const hubShared=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');const hub=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');assert.match(hubShared,/<Link href="\/" aria-label="Au7o home"/);assert.match(hub,/label: "Home", href: "\/"/);
   const challengerXray=resolveDemoVehicleTwin('challenger');assert.equal(challengerXray.art.xray,'/twin-stage/car-xray.webp');assert.match(renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challengerXray,presentation:buildDemoTwinPresentation(challengerXray),vehicle:challengerXray.identity,miles:challengerXray.demoMileage,trees:resolveTwinTrees(challengerXray),mode:'demo' as const}},React.createElement(TwinStage,{mode:'xray',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}))),/car-xray\.webp/);
 });
