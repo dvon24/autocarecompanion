@@ -16,13 +16,16 @@
  */
 import React from "react";
 import { Icon } from "../stage/Icon";
-import { TH_HOTSPOTS, TH_DOT, thHot } from "../stage/TwinStage";
-import { greetingFor, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees } from "../twin-context";
+import { TH_DOT, thHot } from "../stage/TwinStage";
+import { TwinMarkerDot } from "../stage/TwinMarker";
+import { greetingFor, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode } from "../twin-context";
+import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
 
 /* The full-screen view used TH_DUE, a module constant computed once against
    the demo's 65,000 mi. On a live hub the odometer arrives at render, so the
    count has to be computed then. */
 const thmDue = (trees, miles) => {
+  if (typeof miles !== "number") return null;
   const t = trees.car;
   if (!t) return 0;
   return Object.keys(t.nodes).filter(k => k !== t.root && ttRisk(t.nodes[k], miles) === "critical").length;
@@ -35,16 +38,9 @@ import { THSidebar, THBubble, THTreeOverlay, THFeedback } from "./Hub";
    greeting at the top, the vehicle filling the middle, one composer at the bottom.
    First click on a marker highlights it, second click opens its tech tree. */
 
-const THM_GLOW = {
-  wheel: "/twin-stage/car-wheel-highlight-glow.webp",
-  hood: "/twin-stage/car-hood-highlight-glow.webp",
-  rearwheel: "/twin-stage/car-rear-wheel-highlight-glow.webp",
-  rad: "/twin-stage/car-radiator-highlight-glow.webp",
-  airbox: "/twin-stage/car-airbox-highlight-glow.webp",
-};
-
 function THMinTop({ tc, onMenu, mobile, railOpen, onExit }) {
   const miles = useTwinMiles();
+  const twinMode = useTwinMode();
   const greeting = greetingFor();
   return (
     <div style={{ flex:"0 0 auto", padding: mobile ? "14px 16px 0" : "20px 26px 0" }}>
@@ -52,7 +48,7 @@ function THMinTop({ tc, onMenu, mobile, railOpen, onExit }) {
         <Au7oMark size={mobile ? 20 : 24} color="#fff"/>
         <div style={{ flex:1 }}/>
         <ThemeDots tc={tc} size={13}/>
-        <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"4px 9px", borderRadius:999, background:"rgba(255,255,255,.07)", border:"1px solid rgba(255,255,255,.14)", color:"rgba(255,255,255,.72)" }}>{miles.toLocaleString()} mi</span>
+        <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"4px 9px", borderRadius:999, background:"rgba(255,255,255,.07)", border:"1px solid rgba(255,255,255,.14)", color:"rgba(255,255,255,.72)" }}>{typeof miles === "number" ? `${miles.toLocaleString()} mi${twinMode === "demo" ? " sample" : ""}` : "Mileage unavailable"}</span>
         {onExit && (
           <button onClick={onExit} aria-label="Exit full screen" title="Exit full screen"
             style={{ width:34, height:34, borderRadius:999, border:"1px solid rgba(255,255,255,.14)", background:"rgba(255,255,255,.06)", color:"rgba(255,255,255,.8)", cursor:"pointer", display:"grid", placeItems:"center", flexShrink:0 }}>
@@ -74,15 +70,19 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
   const vehicle = useTwinVehicle();
   const miles = useTwinMiles();
   const trees = useTwinTrees(TT_TREES);
+  const catalog = useTwinCatalog();
   const [hover, setHover] = React.useState(null);
   const [equipped] = useEquipped();
   const live = useTwinLive();
   const effectiveEquipped = live ? {} : equipped;
-  const finish = live ? null : ttFinish();
+  const finish = live || catalog.id !== "challenger" ? null : ttFinish();
   const lit = hover || sel;
   const boxRef = React.useRef(null);
   const [fit, setFit] = React.useState(null);
-  const ar = mobile ? 4 / 3 : 16 / 9;
+  const [baseFailed, setBaseFailed] = React.useState(false);
+  const [failedEffects, setFailedEffects] = React.useState({});
+  React.useEffect(() => { setBaseFailed(false); setFailedEffects({}); }, [catalog.id]);
+  const ar = 16 / 9;
   React.useEffect(() => {
     const el = boxRef.current; if (!el) return;
     const measure = () => {
@@ -101,19 +101,22 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
     <div ref={boxRef} onClick={onBg} style={{ flex:1, minHeight:0, position:"relative", display:"grid", placeItems:"center", overflow:"hidden", padding: mobile ? "4px 8px" : "8px 26px" }}>
       <div style={{ position:"absolute", width: mobile ? "150%" : "80%", aspectRatio:"1 / 1", borderRadius:"50%", background:"radial-gradient(circle, rgba(59,130,246,.14), rgba(59,130,246,0) 62%)", pointerEvents:"none" }}/>
       <div style={{ position:"relative", width: fit ? fit.width : "100%", height: fit ? fit.height : "100%", visibility: fit ? "visible" : "hidden" }}>
-        <img src="/twin-stage/car-base.webp" alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain" }}/>
-        <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: !finish || finish.id === "oem" ? 0 : 1, filter: finish?.filter || "none", transition:"opacity .4s ease" }}/>
-        {Object.keys(THM_GLOW).map(k => (
-          <img key={k} src={THM_GLOW[k]} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: lit === k ? 1 : 0, transition:"opacity .3s ease", pointerEvents:"none" }}/>
+        {!baseFailed && (
+          <img src={catalog.art.base} onError={()=>setBaseFailed(true)} alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain" }}/>
+        )}
+        {baseFailed && <div role="img" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model} artwork unavailable`} style={{position:"absolute",inset:0,display:"grid",placeItems:"center",color:"rgba(255,255,255,.72)",fontSize:13}}>Vehicle artwork unavailable</div>}
+        {catalog.id === "challenger" && (
+          <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: !finish || finish.id === "oem" ? 0 : 1, filter: finish?.filter || "none", transition:"opacity .4s ease" }}/>
+        )}
+        {Object.entries(catalog.art.effects).filter(([k])=>!failedEffects[k]).map(([k,src]) => (
+          <img key={k} src={src} onError={()=>setFailedEffects(value=>({...value,[k]:true}))} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: lit === k ? 1 : 0, transition:"opacity .3s ease", pointerEvents:"none", ...(catalog.art.strategy === "opaque-masked" ? {clipPath:catalog.art.masks?.[k]} : {}) }}/>
         ))}
-        {TH_HOTSPOTS.map(h0 => thHot(h0, effectiveEquipped, trees, miles)).map(h => {
+        {catalog.hotspots.map(h0 => thHot(h0, effectiveEquipped, trees, miles)).filter(Boolean).map(h => {
           const on = sel === h.id || hover === h.id, above = h.y > 55, c = TH_DOT(h);
           return (
             <button key={h.id} onMouseEnter={()=>setHover(h.id)} onMouseLeave={()=>setHover(null)} onClick={e=>{ e.stopPropagation(); onTap(h); }} aria-label={h.label}
               style={{ position:"absolute", left:h.x+"%", top:h.y+"%", transform:"translate(-50%,-50%)", background:"transparent", border:"none", padding:0, cursor:"pointer", zIndex: on ? 4 : 3 }}>
-              <span className={h.risk && !h.upgrade ? "th-dot th-dot-risk" : "th-dot"} style={{ display:"grid", placeItems:"center", width: mobile?34:42, height: mobile?34:42, borderRadius:"50%", border:`2px solid ${c.edge}`, background:c.fill, boxShadow:`0 0 ${on?26:14}px ${c.glow}`, transform: on ? "scale(1.14)" : "scale(1)", transition:"all .22s ease" }}>
-                <Icon name={c.icon} size={mobile?16:18} stroke={c.icon==="check"?2.6:2} style={{ color:c.ink }}/>
-              </span>
+              <TwinMarkerDot evidence={h} size={mobile?34:42} active={on} className={h.risk && !h.knownIssue && !h.upgrade ? "th-dot th-dot-risk" : "th-dot"}/>
               {on && !mobile && (
                 <span style={{ position:"absolute", left:"50%", transform:"translateX(-50%)", ...(above ? { bottom:"100%", marginBottom:9 } : { top:"100%", marginTop:9 }), whiteSpace:"nowrap", background:"rgba(10,13,20,.92)", border:`1px solid ${c.line}`, backdropFilter:"blur(8px)", borderRadius:9, padding:"6px 11px", textAlign:"left" }}>
                   <span style={{ display:"block", fontSize:12, fontWeight:600, color:"#fff", letterSpacing:"-0.01em" }}>{h.label}</span>
@@ -133,16 +136,16 @@ function THMinCaption({ hot, onOpen, mobile }) {
   const miles = useTwinMiles();
   const trees = useTwinTrees(TT_TREES);
   const due = thmDue(trees, miles);
+  const mode = useTwinMode();
   if (!hot) return (
     <div style={{ flex:"0 0 auto", display:"flex", justifyContent:"center", padding:"0 20px 10px" }}>
-      <span className="mono" style={{ fontSize:10.5, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,.42)", textAlign:"center" }}>{vehicle.year} {vehicle.make} {vehicle.model} {vehicle.trim} · {vehicle.engine} · {due} due</span>
+      <span className="mono" style={{ fontSize:10.5, letterSpacing:"0.06em", textTransform:"uppercase", color:"rgba(255,255,255,.42)", textAlign:"center" }}>{vehicle.year} {vehicle.make} {vehicle.model} {vehicle.trim} · {vehicle.engine || "Engine unavailable"}{due > 0 ? ` · ${due} due` : ""} · {mode}</span>
     </div>
   );
-  const c = TH_DOT(hot);
   return (
     <div style={{ flex:"0 0 auto", display:"flex", justifyContent:"center", padding:"0 16px 10px" }}>
       <button onClick={onOpen} style={{ display:"flex", alignItems:"center", gap:11, maxWidth:520, width: mobile ? "100%" : "auto", padding:"9px 13px", borderRadius:16, background:"rgba(255,255,255,.07)", border:"1px solid rgba(255,255,255,.14)", backdropFilter:"blur(10px)", cursor:"pointer", fontFamily:"var(--font-sans)", textAlign:"left" }}>
-        <span style={{ width:28, height:28, borderRadius:999, display:"grid", placeItems:"center", background:c.fill, border:`1.5px solid ${c.edge}`, flexShrink:0 }}><Icon name={c.icon} size={14} stroke={c.icon==="check"?2.6:2} style={{ color:c.ink }}/></span>
+        <TwinMarkerDot evidence={hot} size={28} style={{flexShrink:0,borderWidth:1.5,boxShadow:'none'}}/>
         <span style={{ minWidth:0, flex:1 }}>
           <span style={{ display:"block", fontSize:13.5, fontWeight:600, color:"#fff", letterSpacing:"-0.01em", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{hot.label}</span>
           <span style={{ display:"block", fontSize:11, color:"rgba(255,255,255,.52)", marginTop:1 }}>{hot.sub}</span>
@@ -155,10 +158,11 @@ function THMinCaption({ hot, onOpen, mobile }) {
 }
 
 function THMinComposer({ say, mobile, hot }) {
+  const mode = useTwinMode();
   return (
     <div style={{ flex:"0 0 auto", padding: mobile ? "0 12px 16px" : "0 26px 24px", display:"flex", justifyContent:"center" }}>
       <div style={{ width:"100%", maxWidth:720, display:"flex", alignItems:"center", gap:8, padding:"9px 9px 9px 16px", borderRadius:18, background:"rgba(255,255,255,.08)", border:"1px solid rgba(255,255,255,.16)", backdropFilter:"blur(14px)" }}>
-        <span style={{ flex:1, fontSize:13.5, color:"rgba(255,255,255,.5)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{hot ? `Ask about the ${hot.label.toLowerCase()}…` : "Ask about your car…"}</span>
+        <span style={{ flex:1, fontSize:13.5, color:"rgba(255,255,255,.5)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{hot ? `Ask about the ${hot.label.toLowerCase()}…` : mode === "owner" ? "Ask about your car…" : "Ask about this demo…"}</span>
         <button className="chip chip-sm" style={{ background:"rgba(255,255,255,.09)", border:"1px solid rgba(255,255,255,.14)", color:"rgba(255,255,255,.8)" }}><Icon name="camera" size={12}/></button>
         <VoiceButton compact say={say}/>
         <button aria-label="Send" style={{ background:"var(--au7o-blue, #3B82F6)", border:"none", color:"#fff", width:32, height:32, borderRadius:999, cursor:"pointer", display:"grid", placeItems:"center", flexShrink:0 }}><Icon name="send" size={13}/></button>
@@ -180,9 +184,10 @@ function THMinimal({ tc, mobile, onExit }) {
   const { bubble, say, clear } = useBubble(null);
   const [equipped] = useEquipped();
   const live = useTwinLive();
-  const hot = sel ? thHot(TH_HOTSPOTS.find(h => h.id === sel), live ? {} : equipped, trees, miles) : null;
+  const catalog = useTwinCatalog();
+  const hot = sel ? thHot(catalog.hotspots.find(h => h.id === sel), live ? {} : equipped, trees, miles) : null;
 
-  const openTreeFor = id => { setNav(false); setStartNode(TT_NODE_FOR_HOTSPOT[id] || null); setBranch(id === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[id]); };
+  const openTreeFor = id => { const target=id === "car" ? {branch:"car",node:null} : resolveTwinDeepLink(catalog,id,trees); if (!target.branch) return; setNav(false); setStartNode(target.node); setBranch(target.branch); };
   const tap = h => { if (sel !== h.id) { setSel(h.id); return; } openTreeFor(h.id); };
 
   return (

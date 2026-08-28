@@ -17,7 +17,8 @@ import { THSidebar, mobileComposerPlaceholder } from '../src/components/twin/hub
 import { buildOwnerTwinValue, FounderTransmissionPickerView, getFounderTransmissionPickerModel, pickNextService, saveFounderTransmission, suppressTwinTransmissionWhilePending } from '../src/components/twin/LiveTwinHub.jsx';
 import { HERO_MARKER_VISUALS, TWIN_STAGE_FRAME_STYLE } from '../src/components/home/RotatingTwinStage';
 import { demoHubHref } from '../src/components/home/TwinHero';
-import { TwinSelectedPreview } from '../src/components/admin/twins/TwinAdminShell';
+import { TwinAdminShell, TwinSelectedPreview } from '../src/components/admin/twins/TwinAdminShell';
+import type { TwinMarkerEvidence } from '../src/components/twin/stage/TwinMarker';
 import { resolveTwinTransmissionBranch, sameTwinVehicleIdentity } from '../src/lib/twin-fulfillment';
 import { isLoggableMaintenanceType, maintenanceTypeMatchesTransmission, resolveMaintenanceWriteType } from '../src/lib/maintenance';
 import { buildLatestTwinServiceRecordQuery, getTwinHubData, loadLatestTwinServiceRecords, TWIN_SERVICE_RECORD_TYPES, twinServiceRecordTypesForBranch } from '../src/lib/twin-hub-data';
@@ -29,7 +30,7 @@ type NextServiceResult = { nodeId: string; overdue: boolean; dueMileage: number 
 const foldServiceRecords = servicedFromRecords as unknown as (records: Array<Record<string, unknown>>, mileage: number, transmission?: 'automatic' | 'manual' | null, evaluatedAt?: string | null) => ServiceEvidence;
 const buildTestTrees = buildTwinTrees as unknown as (serviced: ServiceEvidence, mileage: number, transmission: 'automatic' | 'manual' | null, evaluatedAt?: string | null) => TestTreeSet;
 const pickTestNextService = pickNextService as unknown as (trees: LooseTreeSet, miles: number, evaluatedAt?: string | null) => NextServiceResult | null;
-const testHotspotEvidence = thHot as unknown as (hotspot: Record<string, unknown>, equipped: Record<string, boolean>, trees: LooseTreeSet, miles: number) => { due: number | null; risk: boolean; unlogged: boolean } | null;
+const testHotspotEvidence = thHot as unknown as (hotspot: Record<string, unknown>, equipped: Record<string, boolean>, trees: LooseTreeSet, miles: number) => TwinMarkerEvidence & { due: number | null } | null;
 const testRiskLabel = ttRiskLabel as unknown as (node: Record<string, unknown>, miles: number, risk: 'critical' | 'watch') => string | null;
 const TestTechTree = TechTree as unknown as React.ComponentType<{ branch: string; setBranch: (branch: string) => void; miles: number; onClose: () => void; say: (message: string) => void; startNode: string; compact: boolean; detailMode: string; vertical: boolean }>;
 
@@ -51,11 +52,13 @@ test('hero demo CTA and marker vocabulary follow selected truthful catalog state
   for (const twin of VEHICLE_TWIN_CATALOG) {
     assert.equal(demoHubHref(twin.id), `/demo/hub?vehicle=${twin.id}`);
   }
-  assert.deepEqual(HERO_MARKER_VISUALS['known-issue'], { color: '#A78BFA', glyph: 'shield' });
-  assert.deepEqual(HERO_MARKER_VISUALS.overdue, { color: '#FF6B63', glyph: 'warning' });
-  assert.deepEqual(HERO_MARKER_VISUALS.unavailable, { color: '#94A3B8', glyph: 'neutral' });
-  assert.deepEqual(HERO_MARKER_VISUALS.unlogged, { color: '#94A3B8', glyph: 'neutral' });
-  assert.equal(TH_DOT({ risk:true, knownIssue:true }).icon, 'alert');
+  assert.equal(HERO_MARKER_VISUALS['known-issue'].icon, 'shield-alert');
+  assert.equal(HERO_MARKER_VISUALS['known-issue'].edge, '#A78BFA');
+  assert.equal(HERO_MARKER_VISUALS.overdue.icon, 'alert');
+  assert.equal(HERO_MARKER_VISUALS.overdue.edge, '#FF6B63');
+  assert.equal(HERO_MARKER_VISUALS.unavailable.icon, 'minus');
+  assert.equal(HERO_MARKER_VISUALS.unlogged.icon, 'minus');
+  assert.equal(TH_DOT({ risk:true, knownIssue:true }).icon, 'shield-alert');
   assert.equal(TH_DOT({ risk:false, knownIssue:true }).icon, 'shield-alert');
   assert.equal(TH_DOT({ risk:false, knownIssue:false, unavailable:true }).icon, 'minus');
 
@@ -64,6 +67,7 @@ test('hero demo CTA and marker vocabulary follow selected truthful catalog state
   assert.match(heroSource, /<RotatingTwinStage onSelectedVehicleChange=\{setSelectedTwinId\} \/>/);
   assert.match(heroSource, /<Reserve selectedTwin=\{selectedTwin\} \/>/);
   assert.match(stageSource, /const markers = twin\.hotspots;/);
+  assert.match(stageSource, /<TwinMarkerDot evidence=\{hotspot\}/);
   assert.doesNotMatch(stageSource, /hotspots\.filter\(\(hotspot\) => twin\.art\.effects/);
 });
 
@@ -77,6 +81,7 @@ test('catalog validates, fulfillment null stays null, and every target is real',
     const trees=resolveTwinTrees(twin);assert.equal(trees.car.nodes[trees.car.root].img,twin.art.base);
     for(const hot of twin.hotspots){const target=resolveTwinDeepLink(twin,hot.id);assert.ok(target.branch&&trees[target.branch]);if(target.node)assert.ok(trees[target.branch].nodes[target.node]);}
     for(const system of twin.systems){assert.ok(twin.hotspots.some((hot)=>hot.id===system.hot));assert.ok(trees[system.branch]);}
+    for(const record of twin.sampleState.records){assert.ok(record.intervalMiles>0);assert.ok(record.lastServiceMileage>=0);assert.match(record.sourceUrl,/^https:\/\//);assert.ok(record.sourceSection.length>3);}
   }
   assert.equal(resolveDemoVehicleTwin('unknown').id,DEFAULT_TWIN_ID);
 });
@@ -94,9 +99,24 @@ test('opaque art has masks, full URLs are preserved, and absent effects are not 
   assert.equal(resolveDemoVehicleTwin('challenger').art.effects.airbox,undefined);
 });
 
-test('explicit known issues drive tree and catalog parity per hotspot',()=>{
-  for(const twin of VEHICLE_TWIN_CATALOG){const trees=resolveTwinTrees(twin);const presentation=buildDemoTwinPresentation(twin);for(const hot of twin.hotspots){const nodes=collectHotspotNodes(trees,hot);const ids=nodes.flatMap((node)=>node.knownIssue?.id?[node.knownIssue.id]:[]);assert.deepEqual([...ids].sort(),[...(hot.knownIssueIds||[])].sort(),`${twin.id}/${hot.id}`);assert.equal(hot.status==='known-issue',ids.length>0);assert.equal(presentation.hotspots.find((item:{id:string})=>item.id===hot.id).status,hot.status);if(hot.status==='overdue')assert.ok(typeof twin.demoMileage==='number'&&nodes.some((node)=>typeof node.riskAt==='number'&&node.riskAt<=twin.demoMileage!));}}
-  const murano=resolveDemoVehicleTwin('murano');const trees=resolveTwinTrees(murano);assert.equal(trees.trans.nodes.cvt.knownIssue.id,'murano-cvt-judder');assert.match(trees.trans.nodes.cvt.issue,/judder/i);assert.equal(trees.trans.nodes.cvt.upgrade,undefined);
+test('published known issues and sample service evidence drive tree/catalog parity',()=>{
+  for(const twin of VEHICLE_TWIN_CATALOG){const trees=resolveTwinTrees(twin);const presentation=buildDemoTwinPresentation(twin);assert.equal(twin.sampleState.label,'Sample demo state');assert.ok(twin.sampleState.records.length>0);for(const hot of twin.hotspots){const nodes=collectHotspotNodes(trees,hot);const ids=nodes.flatMap((node)=>node.knownIssue?.id?[node.knownIssue.id]:[]);assert.deepEqual([...ids].sort(),[...(hot.knownIssueIds||[])].sort(),`${twin.id}/${hot.id}`);assert.equal(hot.status==='known-issue',ids.length>0);assert.equal(presentation.hotspots.find((item:{id:string})=>item.id===hot.id).status,hot.status);if(hot.status==='overdue')assert.ok(typeof twin.demoMileage==='number'&&nodes.some((node)=>typeof node.riskAt==='number'&&typeof node.servicedAt==='number'&&node.servicedAt+node.riskAt<=twin.demoMileage!));}}
+  const murano=resolveDemoVehicleTwin('murano');const trees=resolveTwinTrees(murano);assert.equal(trees.trans.nodes.transFluid.knownIssue,undefined);assert.equal(trees.trans.nodes.transFluid.sampleRecord,true);assert.match(trees.trans.nodes.transFluid.sub,/Sample record/);
+  const challenger=buildDemoTwinPresentation(resolveDemoVehicleTwin('challenger'));const trans=challenger.hotspots.find((hot:{id:string})=>hot.id==='trans');assert.equal(trans.status,'known-issue');assert.equal(trans.serviceStatus,'overdue');assert.match(trans.label,/Known issue on record.*overdue/i);
+  const challengerTwin=resolveDemoVehicleTwin('challenger');assert.equal(challengerTwin.sampleState.records.find((record)=>record.node==='oilFluid')?.intervalMiles,6000);assert.match(challengerTwin.hotspots.find((hot)=>hot.id==='wheel')?.statusDetail||'',/no sample service event logged/i);
+  const muranoRecord=resolveDemoVehicleTwin('murano').sampleState.records;assert.equal(muranoRecord.find((record)=>record.node==='tire')?.intervalMiles,7500);assert.equal(muranoRecord.find((record)=>record.node==='transFluid')?.intervalMiles,60000);
+});
+
+test('every demo shield resolves to a published snapshot row applicable to that vehicle',()=>{
+  const snapshot=JSON.parse(readFileSync(path.join(process.cwd(),'data/known-issues-catalog-deeplink-snapshot-2026-07-17.json'),'utf8'));
+  assert.match(snapshot.source,/live published KnownIssue rows/);
+  const rows=new Map(snapshot.records.map((row:{id:string})=>[row.id,row]));
+  for(const twin of VEHICLE_TWIN_CATALOG)for(const id of twin.hotspots.flatMap((hot)=>hot.knownIssueIds||[])){
+    const row=rows.get(id) as {vehicle:{year?:number;years:number[];make:string;model:string;trims?:string[]}}|undefined;
+    assert.ok(row,`${id} is not published in the catalog snapshot`);
+    assert.equal(row.vehicle.make,twin.identity.make,id);assert.equal(row.vehicle.model,twin.identity.model,id);assert.ok(row.vehicle.years.includes(twin.identity.year),id);
+    if(row.vehicle.trims?.length){const trim=twin.identity.trim.toLowerCase();assert.ok(row.vehicle.trims.some((candidate)=>candidate.toLowerCase().includes(trim)||trim.includes(candidate.toLowerCase())),`${id} excludes ${twin.identity.trim}`);}
+  }
 });
 
 test('structure twins stay neutral and missing transmission is filtered',()=>{
@@ -106,8 +126,8 @@ test('structure twins stay neutral and missing transmission is filtered',()=>{
 test('owner evidence merge preserves catalog issues and rejects future records',()=>{
   const serviced=foldServiceRecords([{type:'oil_change',mileage:70000},{type:'oil_change',mileage:50000}],65000);
   assert.equal(serviced.oilFluid.mileage,50000);assert.equal(serviced.oilFilter.mileage,50000);assert.equal(serviced.oilPlug.mileage,50000);
-  const twin=resolveDemoVehicleTwin('challenger');const owner=resolveTwinTrees(twin);owner.wheel.nodes.lugs.knownIssue=undefined;owner.engine.nodes.oilFluid.servicedAt=70000;owner.engine.nodes.oilFluid.riskAt=6000;
-  const merged=mergeCatalogEvidenceIntoOwnerTrees(twin,owner,65000);assert.equal(merged.wheel.nodes.lugs.knownIssue.id,'challenger-swollen-lug-nuts');assert.equal(merged.engine.nodes.oilFluid.servicedAt,undefined);assert.equal(merged.engine.nodes.oilFluid.unlogged,true);assert.equal(merged.car.nodes.car.partNo,undefined);assert.equal(merged.car.nodes.car.spec,undefined);assert.match(merged.car.nodes.car.sub,/Owner/);
+  const twin=resolveDemoVehicleTwin('challenger');const owner=resolveTwinTrees(twin);owner.wheel.nodes.rotor.knownIssue=undefined;owner.engine.nodes.oilFluid.servicedAt=70000;owner.engine.nodes.oilFluid.riskAt=6000;
+  const merged=mergeCatalogEvidenceIntoOwnerTrees(twin,owner,65000);assert.equal(merged.wheel.nodes.rotor.knownIssue.id,'dodge-challenger-warped-front-brake-rotors-causing-pedal-pulsation-steering-s');assert.equal(merged.engine.nodes.oilFluid.servicedAt,undefined);assert.equal(merged.engine.nodes.oilFluid.unlogged,true);assert.equal(merged.car.nodes.car.partNo,undefined);assert.equal(merged.car.nodes.car.spec,undefined);assert.match(merged.car.nodes.car.sub,/Owner/);
 });
 
 test('shared summaries never claim false zero and selected presentation drives chrome/sidebar data',()=>{
@@ -116,6 +136,7 @@ test('shared summaries never claim false zero and selected presentation drives c
   const coexist=summarizeEvidence([{id:'x',label:'X',riskAt:10000,unlogged:true,knownIssue:{id:'issue-x'}}],12000);assert.equal(coexist.status,'known-issue');assert.match(coexist.label,/Known issue on record.*No service event logged/);assert.equal(coexist.serviceStatus,'unlogged');assert.equal(coexist.due,null);assert.deepEqual(coexist.knownIssues,[{id:'issue-x'}]);
   const mixed=summarizeEvidence([{id:'x',label:'X',riskAt:10000,servicedAt:5000,overdueByDate:true,knownIssue:{id:'issue-x'}},{id:'y',label:'Y',riskAt:10000,unlogged:true}],12000);assert.equal(mixed.status,'known-issue');assert.equal(mixed.serviceStatus,'overdue');assert.match(mixed.label,/Known issue on record.*1 overdue.*history incomplete/i);assert.equal(mixed.due,null);assert.equal(mixed.watch,null);
   const murano=buildDemoTwinPresentation(resolveDemoVehicleTwin('murano'));assert.match(murano.chrome,/Murano demo/);assert.equal(murano.wholeCarArt,'/twin-stage/murano/base-red.webp');assert.equal(murano.recent.length,0);assert.equal(murano.nextService,null);assert.ok(murano.systems.some((system:{branch:string})=>system.branch==='trans'));
+  const ownerTrees={engine:{root:'oil',nodes:{oil:{label:'Engine oil',kids:[],servicedAt:23000,riskAt:6000,unlogged:false,availability:'owner'}}}} as unknown as LooseTreeSet;const ownerHot=testHotspotEvidence({id:'hood',branch:'engine',node:'oil',status:'overdue'}, {}, ownerTrees, 24000);assert.equal(ownerHot?.status,'on-track');assert.equal(TH_DOT(ownerHot||{}).icon,'check');
 });
 
 test('assistant is selected-tree and field safe',()=>{
@@ -253,7 +274,7 @@ test('explicit due mileage/date drive next service, hotspot risk, and independen
   const sourceLabel=testRiskLabel({...node,unlogged:false},55000,'critical');assert.match(sourceLabel || '',/Past due by date/);assert.doesNotMatch(sourceLabel || '',/mileage/);
   const mileageLabel=testRiskLabel({...node,dueDate:null,overdueByDate:false,unlogged:false},57000,'critical');assert.match(mileageLabel || '',/Past due by mileage.*56,000 mi deadline/);
   const detail=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{mode:'owner'}},React.createElement(TTDetail,{node:{...node,unlogged:false},nodeId:'transFluid',risk:'critical',miles:55000,onClose:()=>{},onEquip:undefined,onAsk:undefined,sheet:false,narrow:false})));assert.match(detail,/Past due by date/);assert.match(detail,/time interval passed/);assert.match(detail,/Known issue on record/);assert.match(detail,/Known branch issue/);
-  const redKnown=TH_DOT({risk:true,knownIssue:true});assert.equal(redKnown.icon,'alert');assert.equal(redKnown.edge,'#FF6B63');assert.match(detail,/Known issue on record/);
+  const redKnown=TH_DOT({risk:true,knownIssue:true});assert.equal(redKnown.icon,'shield-alert');assert.equal(redKnown.edge,'#A78BFA');assert.match(detail,/Known issue on record/);
 });
 
 test('founder transmission picker renders only for editable reviewed dual fitment',()=>{
@@ -339,8 +360,8 @@ test('owner snapshot denies corrupt reviewed single-fitment state before loading
   assert.equal(maintenanceReads,0);assert.equal(catalogReads,0);assert.equal(threadReads,0);
 });
 
-test('URL resolver clears absent open and keeps glass/airbox exact',()=>{
-  const twin=resolveDemoVehicleTwin('challenger');assert.deepEqual(resolveTwinDeepLink(twin,null),{hotspot:null,branch:null,node:null});assert.deepEqual(resolveTwinDeepLink(twin,'car'),{hotspot:'car',branch:'car',node:null});assert.deepEqual(resolveTwinDeepLink(twin,'glass'),{hotspot:'glass',branch:'wipers',node:null});assert.deepEqual(resolveTwinDeepLink(twin,'airbox'),{hotspot:'airbox',branch:'engine',node:'airFilter'});
+test('URL resolver clears absent and removed airbox opens while engine tree retains air filter',()=>{
+  const twin=resolveDemoVehicleTwin('challenger');const trees=resolveTwinTrees(twin);assert.deepEqual(resolveTwinDeepLink(twin,null),{hotspot:null,branch:null,node:null});assert.deepEqual(resolveTwinDeepLink(twin,'car'),{hotspot:'car',branch:'car',node:null});assert.deepEqual(resolveTwinDeepLink(twin,'glass'),{hotspot:'glass',branch:'wipers',node:null});assert.deepEqual(resolveTwinDeepLink(twin,'airbox'),{hotspot:null,branch:null,node:null});assert.ok(trees.engine.nodes.airFilter);assert.ok(trees.engine.nodes.engineRoot?.kids?.includes('airFilter')||trees.engine.nodes.eng?.kids?.includes('airFilter'));
 });
 
 test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected admin art',()=>{
@@ -348,6 +369,7 @@ test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected
   const value={catalog:twin,presentation,vehicle:twin.identity,miles:null,trees:presentation.trees,mode:'demo' as const};
   const stage=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value},React.createElement(React.Fragment,null,React.createElement(Probe),React.createElement(TwinStage,{mode:'hotspots',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}))));assert.match(stage,/data-testid="miles-probe">null\|false\|demo</);assert.match(stage,/Lincoln Nautilus/);assert.match(stage,/clip-path/);assert.doesNotMatch(stage,/65000|0 due|0 watch|Your garage/);
   const minimal=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value},React.createElement(HubMinimal,{tc:{theme:'light'},mobile:true,onExit:()=>{}})));assert.match(minimal,/Lincoln Nautilus/);assert.match(minimal,/clip-path/);
+  const sampleMinimal=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{...value,miles:twin.demoMileage}},React.createElement(HubMinimal,{tc:{theme:'light'},mobile:true,onExit:()=>{}})));assert.match(sampleMinimal,/42,000 mi sample/);
   const ownerTwin=buildOwnerTwinValue({fulfillmentId:'dodge-challenger',vehicleId:'v1',vehicle:{year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',engine:'6.4L V8 HEMI'},miles:24000,records:[],recent:[],transmission:'automatic'});assert.ok(ownerTwin);
   const ownerStage=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{...ownerTwin,mode:'owner' as const}},React.createElement(React.Fragment,null,React.createElement(Probe),React.createElement(TwinStage,{mode:'hotspots',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}),React.createElement(THSidebar,{onOpen:()=>{},onClose:()=>{},drawer:false,onFeedback:()=>{}}))));assert.match(ownerStage,/true\|owner/);assert.match(ownerStage,/Your garage · live/);assert.match(ownerStage,/No service event logged/);assert.doesNotMatch(ownerStage,/Public demo|0 due|0 watch/);
   const baseOwnerData={fulfillmentId:'dodge-challenger',vehicleId:'v1',vehicle:{year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',engine:'6.4L V8 HEMI'},miles:24000,records:[],recent:[],transmission:'automatic',evaluatedAt:'2026-08-26T00:00:00.000Z'};
@@ -355,4 +377,9 @@ test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected
   const pendingMarkup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{...pendingTwin,mode:'owner' as const}},React.createElement(React.Fragment,null,React.createElement(TwinStage,{mode:'hotspots',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}),React.createElement(TestTechTree,{branch:'trans',setBranch:()=>{},miles:24000,onClose:()=>{},say:()=>{},startNode:'transFluid',compact:true,detailMode:'sheet',vertical:true}))));
   assert.match(pendingMarkup,/2015 Dodge Challenger/);assert.doesNotMatch(pendingMarkup,/8HP70|TR-6060|Order 6-qt|automatic transmission confirmed|manual transmission confirmed/);
   const admin=renderToStaticMarkup(React.createElement(TwinSelectedPreview,{twin:getAdminTwinDefinitions()[2]}));assert.match(admin,/Nissan Murano selected twin/);assert.match(admin,/base-red.webp/);
+  const emptyAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:[]}));assert.match(emptyAdmin,/Twin inventory is unavailable/);assert.doesNotMatch(emptyAdmin,/No twins match/);
+  const fullAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:getAdminTwinDefinitions()}));assert.match(fullAdmin,/Admin Dashboard/);assert.match(fullAdmin,/Vehicle Twin readiness from the live catalog/);
+  const adminSource=readFileSync(path.join(process.cwd(),'src/components/admin/twins/TwinAdminShell.tsx'),'utf8');assert.match(adminSource,/Art coverage matrix/);assert.match(adminSource,/Artwork intake/);assert.match(adminSource,/Preview layer/);assert.match(adminSource,/Array\.isArray\(data\.twins\)/);assert.match(adminSource,/AbortController/);
+  const hubShared=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');const hub=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');assert.match(hubShared,/<Link href="\/" aria-label="Au7o home"/);assert.match(hub,/label: "Home", href: "\/"/);
+  const challengerXray=resolveDemoVehicleTwin('challenger');assert.equal(challengerXray.art.xray,'/twin-stage/car-xray.webp');assert.match(renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challengerXray,presentation:buildDemoTwinPresentation(challengerXray),vehicle:challengerXray.identity,miles:challengerXray.demoMileage,trees:resolveTwinTrees(challengerXray),mode:'demo' as const}},React.createElement(TwinStage,{mode:'xray',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}))),/car-xray\.webp/);
 });

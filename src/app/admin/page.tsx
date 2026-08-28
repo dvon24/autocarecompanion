@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getTransmissionOptions, type TransmissionChoice } from '@/lib/transmission-options';
+import { TwinAdminShell } from '@/components/admin/twins/TwinAdminShell';
 
 interface EmailEntry {
   id: string;
@@ -214,7 +215,7 @@ interface CostData {
   recentEntries: CostEntry[];
 }
 
-export default function AdminPage() {
+function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
   const [emails, setEmails] = useState<EmailEntry[]>([]);
   const [feedback, setFeedback] = useState<FeedbackEntry[]>([]);
   const [reservations, setReservations] = useState<ReservationEntry[]>([]);
@@ -414,9 +415,9 @@ export default function AdminPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className={embedded ? "bg-gray-50" : "min-h-screen bg-gray-50"}>
       {/* Header */}
-      <header className="bg-white border-b border-gray-200">
+      {!embedded && <header className="bg-white border-b border-gray-200">
         <div className="max-w-4xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Image
@@ -432,11 +433,11 @@ export default function AdminPage() {
           </Link>
           <span className="text-sm text-gray-500">Admin</span>
         </div>
-      </header>
+      </header>}
 
       {/* Content */}
       <main className="max-w-4xl mx-auto px-6 py-8">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-6">Admin Dashboard</h1>
+        {!embedded && <h1 className="text-2xl font-semibold text-gray-900 mb-6">Admin Dashboard</h1>}
 
         {/* Tabs */}
         <div className="flex gap-2 mb-6 flex-wrap">
@@ -1900,4 +1901,8 @@ export default function AdminPage() {
       </main>
     </div>
   );
+}
+
+export default function AdminPage() {
+  return <TwinAdminShell operations={<LegacyAdminOperations embedded/>}/>;
 }

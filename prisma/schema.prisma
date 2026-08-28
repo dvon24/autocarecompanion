@@ -164,6 +164,9 @@ model Vehicle {
   make  String
   model String
   trim  String?
+  // Persisted only for reviewed YMMTs sold with both gearboxes. Null means
+  // single-transmission/not-applicable or that the owner has not chosen yet.
+  transmission String? // automatic | manual
   vin   String?
   color String?
 

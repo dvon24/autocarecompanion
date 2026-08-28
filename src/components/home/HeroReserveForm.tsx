@@ -302,7 +302,7 @@ export function HeroReserveForm({
     || trimTextPick !== null || manualVehiclePick !== null || transmission !== ''
     || email !== '' || country !== '';
   const gapStyle: React.CSSProperties = {
-    borderColor: onGlass ? '#FCA5A5' : '#DC2626',
+    border: `1px solid ${onGlass ? '#FCA5A5' : '#DC2626'}`,
     boxShadow: onGlass ? '0 0 0 3px rgba(252,165,165,.16)' : '0 0 0 3px rgba(220,38,38,.10)',
   };
   /** Style + aria for a required control, marked only while it is empty. */

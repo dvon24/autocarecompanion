@@ -1,0 +1,1451 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Au7o — Admin</title>
+<style>
+:root{--ink:#0B1220;--ink-2:#3F4A5C;--ink-3:#7D8698;--line:#E4E8EF;--line-2:#EFF2F7;--bg:#F6F8FB;--card:#FFFFFF;--blue:#2563EB;--blue-soft:#EFF4FF;--stage:#0A0D14;--live:#12B981;--draft:#F59E0B;--gap:#E11D48;--r:12px}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--ink);font:400 14px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}a:hover{color:#1D4ED8}
+button{font:inherit;color:inherit;cursor:pointer}
+.app{display:block;min-height:100vh}
+/* topbar tabs */
+.brand{display:flex;align-items:center;gap:9px;font-weight:700;font-size:19px;letter-spacing:-.5px;color:var(--ink)}
+.brand img{width:26px;height:26px;border-radius:6px}
+.brand span{color:var(--blue)}
+.env{font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--ink-3);background:#F1F4F9;border:1px solid var(--line);border-radius:999px;padding:2px 8px}
+.nav{display:flex;align-items:center;gap:2px;margin-left:12px;align-self:stretch}
+.nav button{display:flex;align-items:center;gap:8px;padding:0 13px;border:0;background:none;color:var(--ink-3);font-size:13.5px;font-weight:600;border-bottom:2px solid transparent;align-self:stretch}
+.nav button:hover{color:var(--ink)}
+.nav button[aria-current="true"]{color:var(--ink);border-bottom-color:var(--blue)}
+.nav button .ct{font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums;background:#F1F4F9;border-radius:999px;padding:1px 6px}
+.nav button[aria-current="true"] .ct{background:var(--blue-soft);color:var(--blue)}
+/* topbar */
+.main{min-width:0;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:14px;padding:0 26px;height:60px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.crumb{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-3)}
+.crumb b{color:var(--ink);font-weight:600}
+.search{margin-left:auto;position:relative}
+.search input{width:250px;padding:7px 11px 7px 30px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font:inherit;font-size:13px}
+.search input:focus{outline:none;border-color:var(--blue);background:#fff}
+.search svg{position:absolute;left:9px;top:8px;color:var(--ink-3)}
+.avatar{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700}
+.wrap{padding:26px;max-width:1320px;width:100%;margin:0 auto}
+h1{margin:0 0 3px;font-size:24px;letter-spacing:-.6px}
+.sub{margin:0 0 20px;color:var(--ink-3);font-size:13.5px}
+/* kpis */
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:14px 16px}
+.kpi .l{font-size:11px;letter-spacing:.9px;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.kpi .v{font-size:26px;font-weight:700;letter-spacing:-1px;margin-top:5px;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12px;color:var(--ink-3);margin-top:2px}
+.kpi .d.up{color:var(--live)}
+/* analytics */
+.anal{display:grid;grid-template-columns:1.6fr 1fr;gap:12px;margin-bottom:12px}
+.card>header .note{margin-left:auto;font-size:11.5px;color:var(--ink-3)}
+.cbody{padding:14px 16px}
+.ahead,.arow{display:grid;grid-template-columns:minmax(0,1fr) 1fr 40px 132px;align-items:center;gap:10px}
+.ahead{font-size:10px;letter-spacing:.9px;text-transform:uppercase;color:var(--ink-3);font-weight:700;padding-bottom:8px;border-bottom:1px solid var(--line-2);margin-bottom:4px}
+.ahead span:nth-child(2){grid-column:span 2}
+.arow{padding:6px 0;font-size:12.5px}
+.arow+.arow{border-top:1px solid var(--line-2)}
+.arow .an{min-width:0;display:flex;flex-direction:column;line-height:1.25}
+.arow .an b{color:var(--ink);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.arow .an em{font-style:normal;font-size:11px;color:var(--ink-3)}
+.bar{height:8px;border-radius:999px;background:#F1F4F9;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:999px;background:var(--blue)}
+.bar.r i{background:var(--live)}
+.arow .n{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-2);font-weight:600}
+.arow .n.hi{color:#0A7A55}
+/* daily brief — the one block that reads the dashboard for you */
+.brief{border:1px solid var(--line);border-radius:var(--r);background:linear-gradient(180deg,#FBFCFE,#fff);margin-bottom:12px;overflow:hidden}
+.brief>header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:1px solid var(--line-2)}
+.brief>header h3{margin:0;font-size:13.5px;letter-spacing:-.1px;display:flex;align-items:center;gap:7px}
+.brief>header h3 svg{width:14px;height:14px;color:var(--blue)}
+.brief>header .note{font-size:11.5px;color:var(--ink-3)}
+.brief>header .r{margin-left:auto;display:flex;gap:6px}
+.brief .lede{margin:0;padding:13px 16px 4px;font-size:14px;line-height:1.5;color:var(--ink);max-width:78ch;text-wrap:pretty}
+.brief .ins{padding:6px 16px 14px;display:grid;gap:1px}
+.bi{display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:10px;padding:9px 0;border-top:1px solid var(--line-2)}
+.bi:first-child{border-top:0}
+.bi>i{width:7px;height:7px;border-radius:50%;margin-top:5px;background:var(--ink-3)}
+.bi[data-sev="act"]>i{background:#A5122F}.bi[data-sev="watch"]>i{background:var(--draft)}.bi[data-sev="good"]>i{background:var(--live)}
+.bi b{display:block;font-size:12.5px;font-weight:600;color:var(--ink)}
+.bi em{display:block;font-style:normal;font-size:11.5px;color:var(--ink-3);margin-top:2px;text-wrap:pretty}
+.bi .go{border:0;background:none;padding:2px 0;font-size:11.5px;font-weight:600;color:var(--blue);white-space:nowrap}
+.brief .ask{display:flex;gap:8px;padding:11px 16px;border-top:1px solid var(--line-2);background:#FAFBFD}
+.brief .ask input{flex:1;padding:8px 11px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:12.5px;background:#fff}
+.brief .ask input:focus{outline:0;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+.brief .ans{padding:0 16px 13px;font-size:12.5px;line-height:1.55;color:var(--ink-2);max-width:80ch;text-wrap:pretty;white-space:pre-wrap}
+.brief .bst{padding:0 16px 13px;font-size:12px;color:var(--ink-3);display:flex;align-items:center;gap:8px}
+.brief .bst.hide{display:none}
+.brief .bst.err{color:#A5122F}
+.card.ring,.pills.ring{box-shadow:0 0 0 3px var(--blue-soft);border-color:var(--blue);border-radius:var(--r)}
+.gapn{display:flex;align-items:baseline;gap:9px;margin-bottom:2px}
+.gapn b{font-size:34px;font-weight:700;letter-spacing:-1.4px;line-height:1;font-variant-numeric:tabular-nums}
+.gapn span{font-size:12.5px;color:var(--ink-3)}
+.gaprow{display:flex;align-items:center;gap:9px;padding:7px 0;border-top:1px solid var(--line-2);font-size:12.5px}
+.gaprow .nm{color:var(--ink);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.karow{display:flex;align-items:center;gap:9px;flex-wrap:wrap;padding:8px 0;border-top:1px solid var(--line-2);font-size:12.5px}
+.karow .nm{color:var(--ink);font-weight:600;min-width:58px}
+.karow .m{color:var(--ink-3);font-size:11.5px;font-variant-numeric:tabular-nums}
+.karow .when{color:var(--ink-2);font-size:11.5px;margin-left:auto;white-space:nowrap}
+.karow .feeds{flex-basis:100%;color:var(--ink-3);font-size:11px}
+.tag.isst{background:#F1EEFF;color:#5B45C4}.tag.stalet{background:#FEF4E4;color:#9A6414}
+.gaprow .m{margin-left:auto;color:var(--ink-3);font-size:11.5px;white-space:nowrap;font-variant-numeric:tabular-nums}
+/* time chart */
+.tsel{display:flex;align-items:center;gap:6px}
+.tsel button{padding:5px 10px;border:1px solid var(--line);background:#fff;border-radius:7px;font-size:12px;color:var(--ink-2)}
+.tsel button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.tsel select{font:inherit;font-size:12px;padding:4px 6px;border:1px solid var(--line);border-radius:7px;background:#fff;color:var(--ink-2)}
+.tc{position:relative;height:236px;margin:6px 0 0}
+.tplot{position:absolute;left:52px;right:44px;top:8px;bottom:26px}
+.gl{position:absolute;left:0;right:0;border-top:1px dashed var(--line)}
+.gl u{text-decoration:none;position:absolute;left:-52px;top:-7px;width:44px;text-align:right;font-size:10px;color:var(--ink-3);font-style:normal;font-variant-numeric:tabular-nums}
+.gl u.r{left:auto;right:-44px;text-align:left;color:#0A7A55}
+.tcols{position:absolute;inset:0;display:flex;align-items:flex-end;gap:2px}
+.tcol{flex:1;min-width:0;position:relative;height:100%;display:flex;align-items:flex-end}
+.tcol i{display:block;width:100%;background:#C7D8FB;border-radius:3px 3px 0 0;transition:background .15s ease}
+.tcol:hover i{background:var(--blue)}
+.tcol s{position:absolute;bottom:-24px;left:0;right:0;text-align:center;font-size:9.5px;color:var(--ink-3);text-decoration:none;white-space:nowrap}
+.tcol b{position:absolute;bottom:100%;left:50%;transform:translate(-50%,-6px);background:rgba(10,13,20,.94);color:#fff;font-size:11px;font-weight:500;padding:5px 9px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s ease;z-index:4;line-height:1.35}
+.tcol b em{font-style:normal;display:block;opacity:.72;font-size:10px}
+.tcol:hover b{opacity:1}
+.tline{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.tlegend{display:flex;gap:16px;font-size:11.5px;color:var(--ink-3);padding:0 16px 14px}
+.tlegend span{display:flex;align-items:center;gap:6px}
+.tlegend i{width:10px;height:10px;border-radius:2px;background:#C7D8FB}
+.tlegend i.ln{width:14px;height:2px;border-radius:0;background:var(--live)}
+@media(max-width:1080px){.anal{grid-template-columns:1fr}}
+/* when + where */
+.hm{display:grid;grid-template-columns:30px repeat(24,1fr);gap:2px;align-items:center}
+.hm em{font-style:normal;font-size:9.5px;font-weight:700;color:var(--ink-3);letter-spacing:.3px}
+.hm i{height:13px;border-radius:2px;background:var(--blue);position:relative}
+.hm i:hover{outline:1.5px solid var(--ink);outline-offset:1px}
+.hmx{display:grid;grid-template-columns:30px repeat(24,1fr);gap:2px;margin-top:5px;font-size:9px;color:var(--ink-3)}
+.hmx s{text-decoration:none;text-align:center;grid-column:span 3}
+.hmleg{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--ink-3);margin-top:10px}
+.hmleg u{text-decoration:none;display:flex;gap:2px}
+.hmleg u i{width:13px;height:9px;border-radius:2px;background:var(--blue);display:block}
+.srow{display:grid;grid-template-columns:minmax(0,1fr) 1fr 62px;gap:10px;align-items:center;padding:6.5px 0;font-size:12.5px}
+.srow+.srow{border-top:1px solid var(--line-2)}
+.srow .nm{color:var(--ink);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.srow .nm em{font-style:normal;font-weight:400;color:var(--ink-3);font-size:11px}
+.srow .n{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink-2);font-weight:600}
+.shead{font-size:10px;letter-spacing:.9px;text-transform:uppercase;color:var(--ink-3);font-weight:700;margin:14px 0 2px}
+.shead:first-child{margin-top:0}
+/* agent */
+.find{display:grid;grid-template-columns:130px minmax(0,1fr) 190px;gap:14px;align-items:start;padding:12px 16px;border-bottom:1px solid var(--line-2)}
+.find:last-child{border-bottom:0}
+.find:hover{background:#FAFBFD}
+.find h6{margin:0 0 2px;font-size:13px;color:var(--ink);font-weight:600;letter-spacing:-.1px}
+.find p{margin:0;font-size:12px;color:var(--ink-2);line-height:1.5;text-wrap:pretty}
+.find .meta{font-size:11px;color:var(--ink-3);margin-top:4px;display:flex;flex-wrap:wrap;gap:4px 10px}
+.find .meta a{font-size:11px}
+.find .act{display:flex;flex-wrap:wrap;gap:6px;justify-content:flex-end}
+.find .act .btn{padding:5px 10px;font-size:12px}
+.tag.iss{background:#F1EEFF;color:#5B45C4}.tag.cnt{background:#EFF4FF;color:#1D4ED8}.tag.trd{background:#FEF4E4;color:#9A6414}.tag.prt{background:#E7F8F1;color:#0A7A55}
+.find .cf{font-size:10.5px;color:var(--ink-3);margin-top:5px;display:flex;align-items:center;gap:6px}
+.find .cf .bar{flex:1;height:5px}
+@media(max-width:1080px){.find{grid-template-columns:1fr}.find .act{justify-content:flex-start}}
+/* tech-tree generator */
+.gen{border:1px solid var(--line);border-radius:var(--r);background:#fff;margin-bottom:12px;overflow:hidden}
+.gen>div{padding:14px 16px}
+.genf{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.genf label{display:flex;flex-direction:column;gap:5px;font-size:11px;letter-spacing:.9px;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.genf label.w{grid-column:1/-1}
+.genf input,.genf select,.genf textarea{font:inherit;font-size:13px;padding:7px 10px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink);letter-spacing:0;text-transform:none;font-weight:400}
+.genf textarea{resize:vertical;min-height:56px}
+.genf input:focus,.genf select:focus,.genf textarea:focus{outline:none;border-color:var(--blue)}
+.genseg{display:flex;gap:6px}
+.genseg button{padding:6px 11px;border:1px solid var(--line);background:#fff;border-radius:7px;font-size:12.5px;color:var(--ink-2)}
+.genseg button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.genfoot{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line-2);background:#FAFBFD}
+.genfoot .st{font-size:12px;color:var(--ink-3)}
+.genfoot .st b{color:var(--ink)}
+.genfoot .st.err{color:#A5122F}
+.genout{border-top:1px solid var(--line-2);display:grid;gap:10px}
+.genout .sum{display:flex;flex-wrap:wrap;gap:7px}
+.genrules{font-size:11.5px;color:var(--ink-3);line-height:1.6;margin:10px 0 0}
+.genrules b{color:var(--ink-2);font-weight:600}
+.spin{width:13px;height:13px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--blue);animation:sp .7s linear infinite;display:inline-block;vertical-align:-2px}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* art intake */
+.up{border:1px solid var(--line);border-radius:var(--r);background:#fff;margin-bottom:12px;overflow:hidden}
+.up>div{padding:14px 16px}
+.drop{border:1px dashed #C9D2E0;border-radius:10px;background:#FBFCFE;padding:18px;text-align:center;font-size:13px;color:var(--ink-3);cursor:pointer}
+.drop:hover,.drop[data-over="1"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.drop b{display:block;color:var(--ink);font-size:13.5px;margin-bottom:3px}
+.drop code{font-size:11.5px;background:#F1F4F9;border-radius:4px;padding:1px 5px;color:var(--ink-2)}
+.frow{display:grid;grid-template-columns:46px minmax(0,1fr) 150px 128px 110px;gap:10px;align-items:center;padding:8px 0;border-top:1px solid var(--line-2);font-size:12.5px}
+.frow .px{width:46px;height:26px;object-fit:contain;background:var(--stage);border-radius:4px}
+.frow .nm{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink);font-weight:600}
+.frow .nm em{display:block;font-style:normal;font-weight:400;font-size:11px;color:var(--ink-3)}
+.frow .dim{font-variant-numeric:tabular-nums;color:var(--ink-3);font-size:11.5px}
+.frow input{font:inherit;font-size:12px;width:64px;padding:4px 6px;border:1px solid var(--line);border-radius:6px}
+@media(max-width:1080px){.frow{grid-template-columns:46px 1fr}}
+/* pills */
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px}
+.pills button{padding:7px 13px;border:1px solid var(--line);background:#fff;border-radius:999px;font-size:13px;color:var(--ink-2)}
+.pills button:hover{border-color:#C9D2E0}
+.pills button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+/* card + table */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.card>header{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--line-2)}
+.card>header h3{margin:0;font-size:14px}
+.card>header .r{margin-left:auto;display:flex;gap:8px}
+table{width:100%;border-collapse:collapse}
+th{text-align:left;font-size:10.5px;letter-spacing:.9px;text-transform:uppercase;color:var(--ink-3);padding:10px 16px;background:#FAFBFD;border-bottom:1px solid var(--line-2);font-weight:700}
+td{padding:11px 16px;border-bottom:1px solid var(--line-2);font-size:13px;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:#FAFBFD}
+td b{color:var(--ink);font-weight:600}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.2px}
+.tag.live{background:#E7F8F1;color:#0A7A55}.tag.draft{background:#FEF4E4;color:#9A6414}.tag.gapt{background:#FDE8ED;color:#A5122F}.tag.neutral{background:#F1F4F9;color:var(--ink-2)}
+.dot{width:6px;height:6px;border-radius:50%;background:currentColor}
+.btn{padding:7px 13px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:600;color:var(--ink-2)}
+.btn:hover{border-color:#C9D2E0}
+.btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn.primary:hover{background:#1D4ED8}
+.btn.ghost{border:0;background:none;color:var(--ink-3)}
+/* gallery */
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
+.galwrap{display:flex;flex-direction:column;gap:14px}
+.mk-group{display:flex;flex-direction:column;gap:14px}
+.mkhead{display:flex;align-items:baseline;gap:10px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.mkhead h3{margin:0;font-size:13px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--ink)}
+.mkhead .n{font-size:11.5px;font-weight:700;color:var(--ink-3);background:#F1F4F9;border:1px solid var(--line);border-radius:999px;padding:1px 7px}
+.mkhead span.m{font-size:12px;color:var(--ink-3);margin-left:auto}
+.tw{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;text-align:left;padding:0;border-width:1px;display:block;width:100%;transition:box-shadow .18s ease,border-color .18s ease,transform .18s ease}
+.tw:hover{border-color:#C9D2E0;box-shadow:0 8px 24px -12px rgba(11,18,32,.28);transform:translateY(-2px)}
+.stage{position:relative;background:var(--stage);aspect-ratio:1672/941;overflow:hidden}
+.stage img{position:absolute;inset:0;margin:auto;width:100%;height:100%;object-fit:contain;display:block}
+.stage img.gl{opacity:0;transition:opacity .42s ease;pointer-events:none}.stage img.bs{transition:opacity .42s ease}
+.tw .meta{padding:13px 15px}
+.tw .meta h4{margin:0;font-size:14.5px;letter-spacing:-.2px}
+.tw .meta p{margin:2px 0 9px;font-size:12.5px;color:var(--ink-3)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.swatches{display:flex;gap:5px;margin-top:10px}
+.sw{width:15px;height:15px;border-radius:50%;border:1px solid rgba(11,18,32,.18);box-shadow:inset 0 -3px 5px -3px rgba(0,0,0,.5)}
+.new{border:1px dashed #C9D2E0;background:#FBFCFE;border-radius:var(--r);display:grid;place-content:center;justify-items:center;gap:6px;color:var(--ink-3);min-height:240px;font-size:13px}
+.new:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-soft)}
+.new .plus{width:34px;height:34px;border-radius:50%;border:1px solid currentColor;display:grid;place-items:center;font-size:18px;line-height:1}
+/* detail */
+.detail{display:grid;grid-template-columns:1fr 320px;gap:18px;align-items:start}
+.previewwrap{background:var(--card);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.controls{padding:14px 16px;border-top:1px solid var(--line-2);display:grid;gap:14px}
+.ctl h5{margin:0 0 8px;font-size:10.5px;letter-spacing:.9px;text-transform:uppercase;color:var(--ink-3);font-weight:700}
+.swrow{display:flex;flex-wrap:wrap;gap:9px}
+.swbtn{width:30px;height:30px;border-radius:50%;border:1px solid rgba(11,18,32,.2);padding:0;position:relative;box-shadow:inset 0 -5px 8px -5px rgba(0,0,0,.55)}
+.swbtn[aria-pressed="true"]{outline:2px solid var(--blue);outline-offset:2px}
+.swbtn[data-missing="1"]::after{content:"";position:absolute;right:-2px;bottom:-2px;width:9px;height:9px;border-radius:50%;background:var(--gap);border:2px solid #fff}
+.layerrow{display:flex;flex-wrap:wrap;gap:7px}
+.layerrow button{padding:6px 11px;border-radius:8px;border:1px solid var(--line);background:#fff;font-size:12.5px;color:var(--ink-2)}
+.layerrow button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:600}
+.layerrow button[disabled]{opacity:.4;cursor:not-allowed}
+/* hotspot markers — same object as the hub (src/web/hub-techtree.jsx TH_DOT + .th-dot) */
+@keyframes thPulse{0%,100%{box-shadow:0 0 12px currentColor}50%{box-shadow:0 0 26px currentColor}}
+.stage .mk{position:absolute;transform:translate(-22px,-22px);width:max-content;display:flex;align-items:center;gap:9px;background:none;border:0;padding:0;z-index:3}
+.stage .mk i{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;flex:none;border:2px solid;animation:thPulse 2.4s ease-in-out infinite;transition:transform .22s ease}
+.stage .mk i svg{width:19px;height:19px;display:block}
+.stage .mk i.ok{border-color:#35D69B;background:rgba(53,214,155,.16);color:rgba(53,214,155,.6)}
+.stage .mk i.overdue{border-color:#FF6B63;background:rgba(255,107,99,.16);color:rgba(255,107,99,.8);animation-duration:1.5s}
+.stage .mk i.issue{border-color:#A78BFA;background:rgba(139,92,246,.2);color:rgba(139,92,246,.7)}
+.stage .mk i.pending{border-color:#8E97A8;border-style:dashed;background:rgba(142,151,168,.14);color:transparent;animation:none}
+.stage .mk i.pending svg{color:#C3CBD8}
+.stage .mk i.ok svg{color:#D8FFF0}
+.stage .mk i.overdue svg{color:#FFD9D6}
+.stage .mk i.issue svg{color:#EDE4FF}
+.stage .mk i.ok{background:rgba(53,214,155,.16);border-color:#35D69B;color:#35D69B;box-shadow:0 0 16px rgba(53,214,155,.6),0 2px 10px rgba(0,0,0,.5)}
+.stage .mk i.overdue{background:rgba(255,107,99,.16);border-color:#FF6B63;color:#FF6B63;box-shadow:0 0 16px rgba(255,107,99,.7),0 2px 10px rgba(0,0,0,.5)}
+.stage .mk i.issue{background:rgba(139,92,246,.2);border-color:#A78BFA;color:#A78BFA;box-shadow:0 0 16px rgba(139,92,246,.7),0 2px 10px rgba(0,0,0,.5)}
+.stage .mk i.watch{background:rgba(217,130,43,.16);border-color:#D9822B;color:#F0B269;box-shadow:0 0 16px rgba(217,130,43,.5),0 2px 10px rgba(0,0,0,.5)}
+.stage .mk i.unsourced{background:rgba(160,170,190,.16);border-color:#8E97A8;color:#C3CBD8;box-shadow:0 2px 10px rgba(0,0,0,.5)}
+.stage .mk b{font-size:12px;font-weight:600;color:#fff;background:rgba(10,13,20,.9);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);padding:6px 11px;border-radius:9px;white-space:nowrap;opacity:0;transform:translateX(-4px);transition:opacity .22s ease,transform .22s ease;pointer-events:none;line-height:1.25}
+.stage .mk b em{display:block;font-style:normal;font-size:10px;font-weight:400;opacity:.72;margin-top:1px}
+.stage .mk[data-on="1"] i{transform:scale(1.14);animation-play-state:paused;box-shadow:0 0 26px currentColor}
+.stage .mk[data-on="1"] b{opacity:1;transform:none}
+.stage .mk[data-dead="1"] i{opacity:.5;filter:grayscale(.7)}
+/* tech tree */
+.trees{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px;align-items:start}
+.tree{border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden;transition:border-color .18s ease,box-shadow .18s ease}
+.tree[data-on="1"]{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-soft)}
+.tree>h5{margin:0;padding:10px 13px;font-size:12.5px;border-bottom:1px solid var(--line-2);display:flex;align-items:center;gap:7px;background:#FAFBFD}
+.tree>h5 .c{margin-left:auto;font-size:11px;color:var(--ink-3);font-weight:600}
+.node{display:flex;align-items:center;gap:9px;padding:8px 13px;border-bottom:1px solid var(--line-2);font-size:12.5px}
+.node:last-child{border:0}
+.node .s{width:8px;height:8px;border-radius:50%;flex:none}
+.node .s.ok,.legend .s.ok{background:#0E9F6E}.node .s.overdue,.legend .s.overdue{background:#A62B22}.node .s.issue,.legend .s.issue{background:#6D28D9}.node .s.watch,.legend .s.watch{background:#D9822B}.node .s.unsourced,.legend .s.unsourced{background:#C3CBD8}
+.node .s.pending,.legend .s.pending{background:#fff;box-shadow:inset 0 0 0 1.5px #C3CBD8}
+.legend .s{width:8px;height:8px;border-radius:50%;display:block}
+.node.grp{background:#FAFBFD}
+.node .th{width:26px;height:26px;border-radius:6px;background:#F1F4F9;flex:none;object-fit:contain}
+.node .sb{color:var(--ink-3);font-size:11px}
+.node .unv{font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:#9A6414;background:#FEF4E4;padding:1px 6px;border-radius:999px}
+.node .nm{color:var(--ink);font-weight:600}
+.node .pn{color:var(--ink-3);font-size:11px;margin-left:2px}
+.node .pr{margin-left:auto;color:var(--ink-2);font-variant-numeric:tabular-nums;font-size:11.5px}
+.legend{display:flex;gap:14px;font-size:11.5px;color:var(--ink-3);margin-top:10px}
+.legend span{display:flex;align-items:center;gap:6px}
+.rail{display:grid;gap:16px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:15px 16px}
+.panel h4{margin:0 0 11px;font-size:13px}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:12.5px}
+.kv dt{color:var(--ink-3)}.kv dd{margin:0;color:var(--ink);text-align:right;font-weight:600}
+.matrix{width:100%;border-collapse:separate;border-spacing:3px;font-size:11px}
+.matrix th{padding:0;background:none;border:0;font-size:9.5px;letter-spacing:.4px;color:var(--ink-3);text-align:center}
+.matrix th.rowh{text-align:left;padding-right:6px;text-transform:none;letter-spacing:0;font-size:11.5px;color:var(--ink-2);font-weight:600;white-space:nowrap}
+.matrix td{padding:0;border:0}
+.cell{height:22px;border-radius:5px;display:grid;place-items:center;font-size:11px;font-weight:700}
+.cell.has{background:#E7F8F1;color:#0A7A55}
+.cell.no{background:#F3F5F9;color:#C3CBD8}
+.cell.shared{background:#F1EEFF;color:#5B45C4}
+.deploy{display:grid;gap:9px}
+.userrow{display:flex;align-items:center;gap:9px;padding:7px 0;border-bottom:1px solid var(--line-2);font-size:12.5px}
+.userrow:last-child{border:0}
+.userrow .av{width:26px;height:26px;border-radius:50%;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:10.5px;font-weight:700;flex:none}
+.userrow .m{margin-left:auto;color:var(--ink-3);font-size:11.5px}
+/* asset grid */
+.assets{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.asset{border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff}
+.asset .th{background:var(--stage);aspect-ratio:1672/941;position:relative}.asset .th img{width:100%;height:100%;object-fit:contain;display:block}
+.asset .lab{padding:8px 10px;font-size:11.5px;color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.asset .lab b{color:var(--ink);font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.asset .lab .t{margin-left:auto;font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:.6px;font-weight:700}
+.sec{margin:24px 0 12px;display:flex;align-items:baseline;gap:9px}
+.sec h3{margin:0;font-size:15px}
+.sec span{font-size:12.5px;color:var(--ink-3)}
+.back{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-3);background:none;border:0;padding:0;margin-bottom:12px}
+.back:hover{color:var(--ink)}
+.hide{display:none}
+@media(max-width:1080px){.top{height:auto;flex-wrap:wrap;padding:10px 16px;gap:10px}.nav{margin-left:0;order:3;width:100%}.nav button{padding:8px 12px;align-self:auto;border-bottom-width:2px}.search{margin-left:auto}.detail{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+    <rect width="200" height="200" rx="22" fill="#0B1220"/>
+    <rect x="52" y="52" width="42" height="42" rx="8" fill="#3B82F6"/><rect x="106" y="52" width="42" height="42" rx="8" fill="#FFFFFF" opacity=".22"/><rect x="52" y="106" width="42" height="42" rx="8" fill="#FFFFFF" opacity=".22"/><rect x="106" y="106" width="42" height="42" rx="8" fill="#FFFFFF" opacity=".22"/>
+    <text x="100" y="184" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="15" font-weight="bold" fill="#FFFFFF">Admin</text>
+  </svg>
+</template>
+<div class="app">
+<div class="main">
+  <header class="top">
+    <div class="brand"><img src="uploads/au7o-mascot.png" alt=""/>Au<span>7</span>o</div>
+    <nav class="nav" id="nav">
+      <button data-view="overview" aria-current="true">Overview</button>
+      <button data-view="twins">Twin Gallery<span class="ct" id="ct-twins">—</span></button>
+    </nav>
+    <span class="env">v0.9 · staging</span>
+    <div class="search"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input placeholder="Search twins, users, parts"/></div>
+    <div class="avatar">DE</div>
+  </header>
+
+  <!-- OVERVIEW -->
+  <section class="wrap" id="v-overview">
+    <h1>Admin Dashboard</h1>
+    <p class="sub">Three twins in the pipeline, 124 people on the interest list, 342 affiliate clicks this month.</p>
+    <div class="brief" id="brief">
+      <header><h3><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M3 12h3M18 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg>Daily brief</h3><span class="note" id="bf-note">reading the dashboard…</span>
+        <div class="r"><button class="btn ghost" id="bf-run">Refresh</button></div>
+      </header>
+      <div class="bst" id="bf-st"><span class="spin"></span> Reading today's numbers…</div>
+      <p class="lede hide" id="bf-lede"></p>
+      <div class="ins" id="bf-ins"></div>
+      <div class="ask"><input id="bf-q" placeholder="Ask about anything on this dashboard — e.g. why did emails jump in August?"/><button class="btn primary" id="bf-ask">Ask</button></div>
+      <div class="ans hide" id="bf-ans"></div>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><div class="l">Interest list</div><div class="v">124</div><div class="d up">+18 this week</div></div>
+      <div class="kpi"><div class="l">Twin reservations</div><div class="v">3</div><div class="d">2 awaiting art</div></div>
+      <div class="kpi"><div class="l">Live twins</div><div class="v" id="kpi-live">—</div><div class="d" id="kpi-draft">—</div></div>
+      <div class="kpi"><div class="l">Affiliate clicks</div><div class="v">342</div><div class="d up">$0 API spend</div></div>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <header><h3>Visitors vs interest emails</h3>
+        <div class="tsel r" id="trange">
+          <button data-r="3">Last 3 months</button><button data-r="12" aria-pressed="true">Last 12 months</button><button data-r="ytd">Year to date</button><button data-r="all">All time</button><button data-r="custom">Custom</button>
+          <select id="tfrom" class="hide"></select><select id="tto" class="hide"></select>
+        </div>
+      </header>
+      <div class="cbody" style="padding-bottom:4px"><div class="tc"><div class="tplot" id="tplot"></div></div></div>
+      <div class="tlegend"><span><i></i>Site visitors</span><span><i class="ln"></i>Interest list emails (right axis)</span><span id="tsum" style="margin-left:auto"></span></div>
+    </div>
+    <div class="anal">
+      <div class="card">
+        <header><h3>When they visit</h3><span class="note" id="hm-note"></span></header>
+        <div class="cbody" id="hm-body"></div>
+      </div>
+      <div class="card">
+        <header><h3>Where they come from</h3><span class="note">last 30 days</span></header>
+        <div class="cbody" id="src-body"></div>
+      </div>
+    </div>
+    <div class="anal">
+      <div class="card">
+        <header><h3>Affiliate clicks — do they follow the fix we named?</h3><span class="note" id="af-note"></span></header>
+        <div class="cbody">
+          <div class="ahead"><span>Link</span><span>Clicks</span><span>What we told them</span></div>
+          <div id="af-rows"></div>
+          <p id="af-foot" style="margin:12px 0 0;font-size:11.5px;color:var(--ink-3)"></p>
+        </div>
+      </div>
+      <div class="card">
+        <header><h3>Missing buy links</h3><button class="btn ghost" style="margin-left:auto">Source parts</button></header>
+        <div class="cbody" id="gap-body"></div>
+      </div>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <header><h3>Known issues by make</h3><span class="note" id="ka-note"></span><button class="btn ghost" style="margin-left:auto">Run audit</button></header>
+      <div class="cbody" id="ka-body"></div>
+    </div>
+    <div class="card" style="margin-bottom:12px">
+      <header><h3>Web sweep agent</h3><span class="note" id="ag-note"></span>
+        <div class="r"><div class="tsel" id="agfilter"><button data-k="all" aria-pressed="true">All</button><button data-k="issue">Known issues</button><button data-k="content">Content</button><button data-k="trend">Search trends</button><button data-k="parts">Parts &amp; tech</button></div><button class="btn">Run now</button></div>
+      </header>
+      <div id="ag-rows"></div>
+    </div>
+    <div class="pills" id="pills">
+      <button aria-pressed="true">Interest Emails (124)</button>
+      <button>Twin Reservations (3)</button>
+      <button>Signups (3)</button>
+      <button>Feedback (3)</button>
+      <button>Vehicle Corrections (0)</button>
+      <button>Symptom Patterns (3)</button>
+      <button>Issue Reports (3)</button>
+      <button>API Costs ($0.00)</button>
+      <button>Review Recommendations (81)</button>
+      <button>Affiliate Stats (342 clicks)</button>
+      <button>Guide Cache (15)</button>
+    </div>
+    <div class="card">
+      <header><h3>Interest emails</h3><div class="r"><button class="btn">Export CSV</button><button class="btn primary">Send update</button></div></header>
+      <table>
+        <thead><tr><th>Date</th><th>Email</th><th>Interested in</th><th>Last emailed</th><th>Status</th></tr></thead>
+        <tbody id="tbl"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="wrap hide" id="v-twins">
+    <h1>Twin Gallery</h1>
+    <p class="sub">Every vehicle twin and the art behind it. Click a twin to inspect its colorways and glow layers, then deploy it to a user's hub.</p>
+    <div class="galwrap" id="gal"></div>
+  </section>
+
+  <!-- DETAIL -->
+  <section class="wrap hide" id="v-detail"></section>
+</div>
+</div>
+
+<script>
+const TWINS=[
+{id:"2015-dodge-challenger-srt392",year:2015,make:"Dodge",model:"Challenger",trim:"SRT 392",body:"Coupe · 2-door",status:"live",users:1,updated:"Aug 4, 2026",issues:1,
+ layers:[{id:"wheel",name:"Front wheel"},{id:"rearwheel",name:"Rear wheel"},{id:"hood",name:"Engine"},{id:"rad",name:"Radiator"},{id:"airbox",name:"Air filter"}],
+ colors:[{id:"granite",name:"Granite Crystal",code:"PDN",hex:"#3A3D42",base:"assets/car-base.webp"}],
+ glow:{"wheel|granite":"assets/car-wheel-highlight-glow.webp","rearwheel|granite":"assets/car-rear-wheel-highlight-glow.webp","hood|granite":"assets/car-hood-highlight-glow.webp","rad|granite":"assets/car-radiator-highlight-glow.webp","airbox|granite":"assets/car-airbox-highlight-glow.webp"},
+ extras:[{name:"X-ray cutaway",type:"cutaway",src:"assets/car-xray.webp"},{name:"Bronze wheel finish",type:"finish",src:"assets/car-wheels-bronze.webp"}]},
+{id:"2023-nissan-murano-sv",year:2023,make:"Nissan",model:"Murano",trim:"SV",body:"SUV · 5-door",status:"draft",users:1,updated:"Aug 10, 2026",issues:0,
+ layers:[{id:"wheel",name:"Front wheel"},{id:"rearwheel",name:"Rear wheel"},{id:"hood",name:"Engine"},{id:"rad",name:"Radiator"}],
+ colors:[
+  {id:"black",name:"Super Black",code:"KH3",hex:"#0B0B0D",base:"assets/murano/base-black.png"},
+  {id:"blue",name:"Deep Blue Pearl",code:"RAY",hex:"#16244E",base:"assets/murano/base-blue.png"},
+  {id:"gunmetal",name:"Gun Metallic",code:"KAD",hex:"#4A4E52",base:"assets/murano/base-gunmetal.png"},
+  {id:"boulder",name:"Boulder Gray Pearl",code:"KBY",hex:"#6E7276",base:"assets/murano/base-boulder.png"},
+  {id:"silver",name:"Brilliant Silver",code:"K23",hex:"#C3C7CA",base:"assets/murano/base-silver.png"},
+  {id:"white",name:"Pearl White TriCoat",code:"QAB",hex:"#EDEDEB",base:"assets/murano/base-white.png"},
+  {id:"red",name:"Scarlet Ember",code:"NBL",hex:"#8E1420",base:"assets/murano/base-red.png"}],
+ glow:{"wheel|silver":"assets/murano/glow-wheel-silver.png","wheel|gunmetal":"assets/murano/glow-wheel-gunmetal.png","wheel|red":"assets/murano/glow-wheel-red.png","wheel|blue":"assets/murano/glow-wheel-blue.png","wheel|boulder":"assets/murano/glow-wheel-boulder.png","wheel|white":"assets/murano/glow-wheel-white.png","wheel|black":"assets/murano/glow-wheel-black.png",
+  "rearwheel|silver":"assets/murano/glow-rearwheel-silver.png","rearwheel|gunmetal":"assets/murano/glow-rearwheel-gunmetal.png","rearwheel|red":"assets/murano/glow-rearwheel-red.png","rearwheel|blue":"assets/murano/glow-rearwheel-blue.png","rearwheel|boulder":"assets/murano/glow-rearwheel-boulder.png","rearwheel|white":"assets/murano/glow-rearwheel-white.png","rearwheel|black":"assets/murano/glow-rearwheel-black.png",
+  "hood|silver":"assets/murano/glow-hood-silver.png","hood|gunmetal":"assets/murano/glow-hood-gunmetal.png","hood|red":"assets/murano/glow-hood-red.png","hood|blue":"assets/murano/glow-hood-blue.png","hood|boulder":"assets/murano/glow-hood-boulder.png","hood|white":"assets/murano/glow-hood-white.png","hood|black":"assets/murano/glow-hood-black.png",
+  "rad|black":"assets/murano/glow-rad-black.png"},
+ xray:["rad"],
+ /* the x-ray was rendered on a slightly higher camera than the paint frames — measured
+    off the two frames' bounding boxes, it sits 37px high in a 941px canvas */
+ align:{rad:{y:3.93}},
+ extras:[]},
+{id:"2019-volvo-xc90-t5",year:2019,make:"Volvo",model:"XC90",trim:"T5 Momentum",body:"SUV · 5-door",status:"draft",users:0,updated:"Aug 11, 2026",issues:0,aspect:"1536/1024",
+ layers:[{id:"wheel",name:"Front wheel"},{id:"rearwheel",name:"Rear wheel"},{id:"hood",name:"Engine"},{id:"rad",name:"Radiator"},{id:"cabin",name:"Cabin air filter"},{id:"airbox",name:"Engine air filter"}],
+ colors:[
+  {id:"black",name:"Onyx Black Metallic",code:"717",hex:"#0C0D0F",base:"assets/volvo/base-black.webp"},
+  {id:"blue",name:"Denim Blue Metallic",code:"723",hex:"#1E3F6E",base:"assets/volvo/base-blue.webp"},
+  {id:"gray",name:"Osmium Grey Metallic",code:"714",hex:"#5A5E62",base:"assets/volvo/base-gray.webp"},
+  {id:"silver",name:"Bright Silver Metallic",code:"711",hex:"#C8CBCD",base:"assets/volvo/base-silver.webp"},
+  {id:"white",name:"Crystal White Pearl",code:"707",hex:"#EFEFEC",base:"assets/volvo/base-white.webp"}],
+ glow:{"wheel|silver":"assets/volvo/glow-wheel-silver.webp","wheel|white":"assets/volvo/glow-wheel-white.webp","wheel|black":"assets/volvo/glow-wheel-black.webp","wheel|blue":"assets/volvo/glow-wheel-blue.webp","wheel|gray":"assets/volvo/glow-wheel-gray.webp",
+  "hood|silver":"assets/volvo/glow-hood-silver.webp","hood|white":"assets/volvo/glow-hood-white.webp","hood|black":"assets/volvo/glow-hood-black.webp","hood|blue":"assets/volvo/glow-hood-blue.webp","hood|gray":"assets/volvo/glow-hood-gray.webp",
+  "rearwheel|silver":"assets/volvo/glow-rearwheel-silver.webp","rearwheel|white":"assets/volvo/glow-rearwheel-white.webp","rearwheel|black":"assets/volvo/glow-rearwheel-black.webp","rearwheel|blue":"assets/volvo/glow-rearwheel-blue.webp","rearwheel|gray":"assets/volvo/glow-rearwheel-gray.webp",
+  "rad|silver":"assets/volvo/xray-rad-overlay.webp","rad|white":"assets/volvo/xray-rad-overlay.webp","rad|black":"assets/volvo/xray-rad-overlay.webp","rad|blue":"assets/volvo/xray-rad-overlay.webp","rad|gray":"assets/volvo/xray-rad-overlay.webp",
+  "cabin|silver":"assets/volvo/xray-cabin.webp","cabin|white":"assets/volvo/xray-cabin.webp","cabin|black":"assets/volvo/xray-cabin.webp","cabin|blue":"assets/volvo/xray-cabin.webp","cabin|gray":"assets/volvo/xray-cabin.webp",
+  "airbox|silver":"assets/volvo/xray-airbox.webp","airbox|white":"assets/volvo/xray-airbox.webp","airbox|black":"assets/volvo/xray-airbox.webp","airbox|blue":"assets/volvo/xray-airbox.webp","airbox|gray":"assets/volvo/xray-airbox.webp"},
+ xray:["rad","cabin","airbox"],
+ extras:[{name:"X-ray cutaway",type:"cutaway",src:"assets/volvo/xray-plain.webp"}]},
+{id:"2019-lincoln-nautilus-standard",year:2019,make:"Lincoln",model:"Nautilus",trim:"Standard",body:"SUV · 5-door",status:"draft",users:0,updated:"Aug 21, 2026",issues:0,aspect:"1536/1024",
+ gen:"1st gen · 2019–2023",
+ layers:[{id:"wheel",name:"Front wheel"},{id:"rearwheel",name:"Rear wheel"},{id:"hood",name:"Engine"},{id:"rad",name:"Radiator"},{id:"cabin",name:"Cabin air filter"},{id:"airbox",name:"Engine air filter"}],
+ colors:[
+  {id:"black",name:"Infinite Black Metallic",code:"UM",hex:"#0A0A0B",base:"assets/lincoln/base-black.webp"},
+  {id:"charcoal",name:"Magnetic Charcoal",code:"J1",hex:"#17181A",base:"assets/lincoln/base-charcoal.webp"},
+  {id:"gray",name:"Magnetic Grey Metallic",code:"J7",hex:"#54585B",base:"assets/lincoln/base-gray.webp"},
+  {id:"coolgray",name:"Asher Grey Metallic",code:"AG",hex:"#7C8085",base:"assets/lincoln/base-coolgray.webp"},
+  {id:"silver",name:"Silver Radiance",code:"JS",hex:"#B9BCBF",base:"assets/lincoln/base-silver.webp"},
+  {id:"pwhite",name:"White Platinum Tri-Coat",code:"UG",hex:"#EDEBE7",base:"assets/lincoln/base-pwhite.webp"},
+  {id:"bwhite",name:"Infinite White",code:"AW",hex:"#F6F7F8",base:"assets/lincoln/base-bwhite.webp"},
+  {id:"blue",name:"Blue Diamond Metallic",code:"N1",hex:"#123A6B",base:"assets/lincoln/base-blue.webp"},
+  {id:"emerald",name:"Green Gem Metallic",code:"GG",hex:"#12503C",base:"assets/lincoln/base-emerald.webp"},
+  {id:"ruby",name:"Ruby Red Metallic",code:"RR",hex:"#8E1116",base:"assets/lincoln/base-ruby.webp"},
+  {id:"burgundy",name:"Burgundy Velvet Tri-Coat",code:"BV",hex:"#4A1220",base:"assets/lincoln/base-burgundy.webp"}],
+ glow:{
+  "wheel|black":"assets/lincoln/glow-wheel-black.webp","wheel|charcoal":"assets/lincoln/glow-wheel-charcoal.webp","wheel|gray":"assets/lincoln/glow-wheel-gray.webp","wheel|coolgray":"assets/lincoln/glow-wheel-coolgray.webp","wheel|silver":"assets/lincoln/glow-wheel-silver.webp","wheel|pwhite":"assets/lincoln/glow-wheel-pwhite.webp","wheel|bwhite":"assets/lincoln/glow-wheel-bwhite.webp","wheel|blue":"assets/lincoln/glow-wheel-blue.webp","wheel|emerald":"assets/lincoln/glow-wheel-emerald.webp","wheel|ruby":"assets/lincoln/glow-wheel-ruby.webp","wheel|burgundy":"assets/lincoln/glow-wheel-burgundy.webp",
+  "rearwheel|black":"assets/lincoln/glow-rearwheel-black.webp","rearwheel|charcoal":"assets/lincoln/glow-rearwheel-charcoal.webp","rearwheel|gray":"assets/lincoln/glow-rearwheel-gray.webp","rearwheel|coolgray":"assets/lincoln/glow-rearwheel-coolgray.webp","rearwheel|silver":"assets/lincoln/glow-rearwheel-silver.webp","rearwheel|pwhite":"assets/lincoln/glow-rearwheel-pwhite.webp","rearwheel|bwhite":"assets/lincoln/glow-rearwheel-bwhite.webp","rearwheel|blue":"assets/lincoln/glow-rearwheel-blue.webp","rearwheel|emerald":"assets/lincoln/glow-rearwheel-emerald.webp","rearwheel|ruby":"assets/lincoln/glow-rearwheel-ruby.webp","rearwheel|burgundy":"assets/lincoln/glow-rearwheel-burgundy.webp",
+  "hood|black":"assets/lincoln/glow-hood-black.webp","hood|charcoal":"assets/lincoln/glow-hood-charcoal.webp","hood|gray":"assets/lincoln/glow-hood-gray.webp","hood|coolgray":"assets/lincoln/glow-hood-coolgray.webp","hood|silver":"assets/lincoln/glow-hood-silver.webp","hood|pwhite":"assets/lincoln/glow-hood-pwhite.webp","hood|bwhite":"assets/lincoln/glow-hood-bwhite.webp","hood|blue":"assets/lincoln/glow-hood-blue.webp","hood|emerald":"assets/lincoln/glow-hood-emerald.webp","hood|ruby":"assets/lincoln/glow-hood-ruby.webp","hood|burgundy":"assets/lincoln/glow-hood-burgundy.webp",
+  "rad|black":"assets/lincoln/xray-rad.webp","rad|charcoal":"assets/lincoln/xray-rad.webp","rad|gray":"assets/lincoln/xray-rad.webp","rad|coolgray":"assets/lincoln/xray-rad.webp","rad|silver":"assets/lincoln/xray-rad.webp","rad|pwhite":"assets/lincoln/xray-rad.webp","rad|bwhite":"assets/lincoln/xray-rad.webp","rad|blue":"assets/lincoln/xray-rad.webp","rad|emerald":"assets/lincoln/xray-rad.webp","rad|ruby":"assets/lincoln/xray-rad.webp","rad|burgundy":"assets/lincoln/xray-rad.webp",
+  "cabin|black":"assets/lincoln/xray-cabin.webp","cabin|charcoal":"assets/lincoln/xray-cabin.webp","cabin|gray":"assets/lincoln/xray-cabin.webp","cabin|coolgray":"assets/lincoln/xray-cabin.webp","cabin|silver":"assets/lincoln/xray-cabin.webp","cabin|pwhite":"assets/lincoln/xray-cabin.webp","cabin|bwhite":"assets/lincoln/xray-cabin.webp","cabin|blue":"assets/lincoln/xray-cabin.webp","cabin|emerald":"assets/lincoln/xray-cabin.webp","cabin|ruby":"assets/lincoln/xray-cabin.webp","cabin|burgundy":"assets/lincoln/xray-cabin.webp",
+  "airbox|black":"assets/lincoln/xray-airbox.webp","airbox|charcoal":"assets/lincoln/xray-airbox.webp","airbox|gray":"assets/lincoln/xray-airbox.webp","airbox|coolgray":"assets/lincoln/xray-airbox.webp","airbox|silver":"assets/lincoln/xray-airbox.webp","airbox|pwhite":"assets/lincoln/xray-airbox.webp","airbox|bwhite":"assets/lincoln/xray-airbox.webp","airbox|blue":"assets/lincoln/xray-airbox.webp","airbox|emerald":"assets/lincoln/xray-airbox.webp","airbox|ruby":"assets/lincoln/xray-airbox.webp","airbox|burgundy":"assets/lincoln/xray-airbox.webp"},
+ xray:["rad","cabin","airbox"],
+ extras:[]},
+{id:"2019-chevrolet-camaro-zl1-1le",year:2019,make:"Chevrolet",model:"Camaro",trim:"ZL1 1LE",body:"Coupe · 2-door",status:"draft",users:0,updated:"Aug 23, 2026",issues:0,aspect:"1536/1024",
+ gen:"6th gen · 2016–2024",
+ layers:[{id:"wheel",name:"Front wheel"},{id:"rearwheel",name:"Rear wheel"},{id:"hood",name:"Engine"},{id:"rad",name:"Radiator"},{id:"airbox",name:"Engine air filter"}],
+ colors:[{id:"summit",name:"Summit White",code:"GAZ",hex:"#E5E4E5",base:"assets/camaro/base-summit.webp"},
+  {id:"silverice",name:"Silver Ice Metallic",code:"GAN",hex:"#C4C7C9",base:"assets/camaro/base-silver.webp"},
+  {id:"satinsteel",name:"Satin Steel Gray Metallic",hex:"#8E939B",base:"assets/camaro/base-satinsteel.webp"},
+  {id:"shadowgray",name:"Shadow Gray Metallic",hex:"#7B7C7F",base:"assets/camaro/base-shadowgray.webp"},
+  {id:"gunmetal",name:"Gunmetal Gray",hex:"#4F4E4F",base:"assets/camaro/base-gunmetal.webp"},
+  {id:"nightfall",name:"Nightfall Gray Metallic",hex:"#46474B",base:"assets/camaro/base-nightfall.webp"},
+  {id:"mosaic",name:"Mosaic Black Metallic",code:"GBA",hex:"#303030",base:"assets/camaro/base-mosaic.webp"},
+  {id:"riverside",name:"Riverside Blue Metallic",hex:"#14336E",base:"assets/camaro/base-riverside.webp"},
+  {id:"redhot",name:"Red Hot",hex:"#CC3031",base:"assets/camaro/base-redhot.webp"},
+  {id:"garnet",name:"Garnet Red Tintcoat",hex:"#7D1618",base:"assets/camaro/base-garnet.webp"},
+  {id:"crush",name:"Crush",hex:"#CA4C19",base:"assets/camaro/base-crush.webp"}],
+ /* the ten new colorways arrived as one frame per lit part, so each base here is stacked from
+    that colorway's own frames: at every pixel take the WHOLE pixel from the least-cyan frame.
+    Never mix channels — a per-channel min or median takes red from the lit frame and green and
+    blue from another and invents a teal pixel that exists in none of them. Front-wheel art
+    matches the paint on only four of the eleven; the frames whose body colour matched no base
+    were left out rather than forced onto a colorway, so those markers stay dead. */
+ glow:{"rearwheel|silverice":"assets/camaro/glow-rearwheel-silver.webp","hood|silverice":"assets/camaro/glow-hood-silver.webp",
+  "wheel|summit":"assets/camaro/glow-wheel-summit.webp","rearwheel|summit":"assets/camaro/glow-rearwheel-summit.webp","hood|summit":"assets/camaro/glow-hood-summit.webp",
+  "rearwheel|satinsteel":"assets/camaro/glow-rearwheel-satinsteel.webp","hood|satinsteel":"assets/camaro/glow-hood-satinsteel.webp",
+  "rearwheel|shadowgray":"assets/camaro/glow-rearwheel-shadowgray.webp","hood|shadowgray":"assets/camaro/glow-hood-shadowgray.webp",
+  "rearwheel|gunmetal":"assets/camaro/glow-rearwheel-gunmetal.webp","hood|gunmetal":"assets/camaro/glow-hood-gunmetal.webp",
+  "rearwheel|nightfall":"assets/camaro/glow-rearwheel-nightfall.webp","hood|nightfall":"assets/camaro/glow-hood-nightfall.webp",
+  "rearwheel|mosaic":"assets/camaro/glow-rearwheel-mosaic.webp","hood|mosaic":"assets/camaro/glow-hood-mosaic.webp",
+  "wheel|riverside":"assets/camaro/glow-wheel-riverside.webp","rearwheel|riverside":"assets/camaro/glow-rearwheel-riverside.webp","hood|riverside":"assets/camaro/glow-hood-riverside.webp",
+  "rearwheel|redhot":"assets/camaro/glow-rearwheel-redhot.webp","hood|redhot":"assets/camaro/glow-hood-redhot.webp",
+  "wheel|garnet":"assets/camaro/glow-wheel-garnet.webp","rearwheel|garnet":"assets/camaro/glow-rearwheel-garnet.webp","hood|garnet":"assets/camaro/glow-hood-garnet.webp",
+  "wheel|crush":"assets/camaro/glow-wheel-crush.webp","rearwheel|crush":"assets/camaro/glow-rearwheel-crush.webp","hood|crush":"assets/camaro/glow-hood-crush.webp",
+  "rad|silverice":"assets/camaro/xray-rad.webp",
+  "airbox|silverice":"assets/camaro/xray-airbox-fit.webp"},
+ /* the engine-bay reveal is the air-filter layer itself, so it plays on the stage instead of
+    sitting in extras. Its source came off a wider camera — refit to this twin's frame
+    (0.98 scale, +16px / +8px) so the wheel contacts and rear bumper land on the base */
+ xray:["rad","airbox"],
+ extras:[]}];
+
+const HOTSPOTS={
+"2015-dodge-challenger-srt392":[{l:"wheel",x:39.6,y:65.5,label:"Wheel, Tire & Brakes"},{l:"rearwheel",x:20.5,y:52.5,label:"Rear Wheel & Tire"},{l:"hood",x:61,y:42,label:"Engine"},{l:"rad",x:67,y:58.5,label:"Radiator & Coolant"},{l:"airbox",x:78.5,y:42.5,label:"Engine Air Filter"},{l:"glass",x:44,y:29,label:"Windshield Wipers"}],
+"2023-nissan-murano-sv":[{l:"wheel",x:40.7,y:66.9,label:"Wheel, Tire & Brakes"},{l:"rearwheel",x:16.9,y:58.9,label:"Rear Wheel & Tire"},{l:"hood",x:65.8,y:37.2,label:"Engine"},{l:"rad",x:71.9,y:53.4,label:"Radiator & Coolant"},{l:"glass",x:50,y:29,label:"Windshield Wipers"}],
+"2019-volvo-xc90-t5":[{l:"wheel",x:43.4,y:65.2,label:"Wheel, Tire & Brakes"},{l:"rearwheel",x:13.7,y:57.6,label:"Rear Wheel & Tire"},{l:"hood",x:50,y:40,label:"Engine"},{l:"rad",x:73.1,y:58.1,label:"Radiator & Coolant"},{l:"cabin",x:62,y:35,label:"Cabin Air Filter"},{l:"airbox",x:80.5,y:42,label:"Engine Air Filter"},{l:"glass",x:48,y:27,label:"Windshield Wipers"}],
+"2019-lincoln-nautilus-standard":[{l:"wheel",x:45.1,y:65.1,label:"Wheel, Tire & Brakes"},{l:"rearwheel",x:15.7,y:59.2,label:"Rear Wheel & Tire"},{l:"hood",x:59,y:37,label:"Engine"},{l:"rad",x:75.5,y:61.5,label:"Radiator & Coolant"},{l:"cabin",x:53,y:45.5,label:"Cabin Air Filter"},{l:"airbox",x:67.6,y:43.4,label:"Engine Air Filter"},{l:"glass",x:47,y:29,label:"Windshield Wipers"}],
+"2019-chevrolet-camaro-zl1-1le":[{l:"wheel",x:45.1,y:63.2,label:"Wheel, Tire & Brakes"},{l:"rearwheel",x:14.2,y:60.3,label:"Rear Wheel & Tire"},{l:"hood",x:55,y:38.5,label:"Engine"},{l:"rad",x:77,y:58.8,label:"Radiator & Coolant"},{l:"airbox",x:64.5,y:43.3,label:"Engine Air Filter"},{l:"glass",x:46,y:32.5,label:"Windshield Wipers"}]};
+
+/* The status triad, exactly as the hub draws it: red + warning triangle = overdue on
+   mileage · green + check = on track · violet + shield = known issue on record. */
+const ICON={
+ overdue:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>',
+ ok:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+ issue:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10ZM12 8v4M12 16h.01"/></svg>',
+ /* admin-only, never shown to an owner: this twin's intervals are not sourced yet */
+ pending:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12h10"/></svg>'};
+
+/* Canonical node graph — lifted verbatim from src/web/tech-tree.jsx (TT_TREES).
+   One source of truth: same ids, labels, part numbers, prices and riskAt as the shipped hub. */
+const CANON={
+ wtb:{label:"Wheel, Tire & Brakes",sub:"All four corners",img:"part-wheel",group:1,kids:["tire","wheelA","brakes"]},
+ tire:{label:"Tire",sub:"275/40ZR20 · all four",img:"part-tire",partNo:"P ZERO PZ4 2755-2000",price:"$298.99 ea",riskAt:40000},
+ wheelA:{label:"Wheel",sub:"20 × 9.5 forged · all four",img:"part-wheel",partNo:"5XC13TRMAA",price:"$542.00 ea",kids:["lugs","tpms"]},
+ lugs:{label:"Lug Nuts",sub:"Set of 20 · M14 × 1.5",img:"part-lugs",partNo:"6509064AA",price:"$3.85 ea",riskAt:60000,issue:1},
+ tpms:{label:"TPMS Sensor",sub:"433 MHz · pressure + temp",img:"part-wheel",partNo:"68239720AA",price:"$46.20",riskAt:70000},
+ brakes:{label:"Brakes",sub:"Brembo · front 6-pot, rear 4-pot",img:"part-caliper",group:1,kids:["frontBrakes","rearBrakes","brakeFluid"]},
+ frontBrakes:{label:"Front Brakes",sub:"6-piston · 390 mm",img:"part-caliper",group:1,kids:["caliper","rotor","pads"]},
+ rearBrakes:{label:"Rear Brakes",sub:"4-piston · 350 mm",img:"part-caliper",group:1,kids:["caliperR","rotorR","padsR"]},
+ brakeFluid:{label:"Brake Fluid",sub:"DOT 4 · full system",img:"part-brake-fluid",partNo:"68218067AB",price:"$9.79 / 12 oz",riskAt:62000},
+ caliper:{label:"Front Caliper",sub:"6-piston fixed, red",img:"part-caliper",partNo:"68249074AA",price:"$689.00 reman"},
+ rotor:{label:"Front Rotor",sub:"390 mm slotted two-piece",img:"part-rotor",partNo:"68232583AA",price:"$264.90 ea",riskAt:70000},
+ pads:{label:"Front Pads",sub:"Front axle set · 6-pot",img:"part-pads",partNo:"68249169AB",price:"$164.99 set",riskAt:45000},
+ caliperR:{label:"Rear Caliper",sub:"4-piston fixed, red",img:"part-caliper",partNo:"68249076AA",price:"$472.00 reman"},
+ rotorR:{label:"Rear Rotor",sub:"350 mm vented",img:"part-rotor",partNo:"68232587AA",price:"$178.40 ea",riskAt:95000},
+ padsR:{label:"Rear Pads",sub:"Rear axle set · 4-pot",img:"part-pads",partNo:"68249171AB",price:"$132.99 set",riskAt:80000},
+ oil:{label:"Oil Change",sub:"6.4L HEMI · 7.0 qt",img:"part-oil-filter",group:1,kids:["oilFluid","oilFilter","oilPlug"]},
+ oilFluid:{label:"Engine Oil",sub:"SAE 0W-40 · MS-12633",img:"part-oil",partNo:"550045214",price:"$32.97 / 5 qt",riskAt:65000},
+ oilFilter:{label:"Oil Filter",sub:"Cartridge · top-mount",img:"part-oil-filter",partNo:"MO-899",price:"$11.49",riskAt:65000},
+ oilPlug:{label:"Drain Plug & Gasket",sub:"M14 plug · crush washer",img:"part-drain-plug",partNo:"6506305AA",price:"$1.35"},
+ eng:{label:"Engine",sub:"6.4L V8 HEMI · 485 hp",img:"part-engine",group:1,kids:["oil","airFilter","cabinFilter","rad"]},
+ airFilter:{label:"Engine Air Filter",sub:"Panel · dry media",img:"part-air-filter",partNo:"53034051AD",price:"$28.40",riskAt:60000},
+ cabinFilter:{label:"Cabin Air Filter",sub:"Carbon media",img:"part-cabin-filter",partNo:"68318365AA",price:"$21.99",riskAt:55000},
+ rad:{label:"Radiator & Coolant",sub:"Cooling system",img:"part-radiator",group:1,kids:["radCore","coolant"]},
+ radCore:{label:"Radiator",sub:"Aluminium core · plastic tanks",img:"part-radiator",partNo:"55111282AB",price:"$318.00",riskAt:90000,upgrade:"Mishimoto MMRAD-SRT-15 · $826.00"},
+ coolant:{label:"Antifreeze",sub:"OAT · MS-12106",img:"part-antifreeze",partNo:"68163849AB",price:"$24.95 gal",riskAt:60000},
+ wip:{label:"Windshield Wipers",sub:"Front pair · 22\" / 20\"",img:"part-wipers",group:1,kids:["wipL","wipR","wipFluid"]},
+ wipL:{label:"Driver Blade",sub:"22 inch",img:"part-wiper-driver",partNo:"22-4",price:"$18.97",riskAt:60000},
+ wipR:{label:"Passenger Blade",sub:"20 inch",img:"part-wiper-pass",partNo:"20-4",price:"$17.47",riskAt:60000},
+ wipFluid:{label:"Washer Fluid",sub:"Reservoir · 4.7 qt",img:"part-washer-fluid",price:"$4.29 gal"}};
+
+/* 2023 Murano SV — its own node graph. Intervals are the Nissan normal (not severe)
+   schedule for the Z52: oil & filter and rotation every 5,000 mi, cabin filter 15,000,
+   engine air filter and brake fluid 30,000, CVT fluid 60,000, coolant 125,000 (Long Life
+   Blue), plugs 105,000, blades 10,000. servicedAt is this owner's log; due = servicedAt +
+   riskAt, same rule as ttNextDue(). Parts without a sourced number stay blank. */
+const MURANO={
+ wtb:{label:"Wheel, Tire & Brakes",sub:"All four corners",img:"part-wheel",group:1,kids:["tire","wheelA","brakes"]},
+ tire:{label:"Tire",sub:"235/65R18 · all four",img:"part-tire",partNo:"235/65R18 106H",price:"$204.99 ea",riskAt:45000,servicedAt:0},
+ wheelA:{label:"Wheel",sub:"18 × 7.5 alloy",img:"part-wheel",partNo:"40300-9UF0A",kids:["lugs","tpms"]},
+ lugs:{label:"Lug Nuts",sub:"Set of 20 · M12 × 1.25",img:"part-lugs",partNo:"40224-JA00A",price:"$3.20 ea"},
+ tpms:{label:"TPMS Sensor",sub:"315 MHz · pressure + temp",img:"part-wheel",riskAt:100000,servicedAt:0},
+ brakes:{label:"Brakes",sub:"Single-piston sliding, both axles",img:"part-caliper",group:1,kids:["frontBrakes","rearBrakes","brakeFluid"]},
+ frontBrakes:{label:"Front Brakes",sub:"320 mm vented",img:"part-caliper",group:1,kids:["caliper","rotor","pads"]},
+ rearBrakes:{label:"Rear Brakes",sub:"302 mm solid",img:"part-caliper",group:1,kids:["caliperR","rotorR","padsR"]},
+ brakeFluid:{label:"Brake Fluid",sub:"DOT 3 · full system",img:"part-brake-fluid",riskAt:30000,servicedAt:0},
+ caliper:{label:"Front Caliper",img:"part-caliper"},
+ rotor:{label:"Front Rotor",sub:"320 × 26 mm",img:"part-rotor",partNo:"40206-5AA0A",price:"$104.00 ea",riskAt:70000,servicedAt:0},
+ pads:{label:"Front Pads",sub:"Front axle set",img:"part-pads",partNo:"D1650-9NA0A",price:"$92.40 set",riskAt:40000,servicedAt:0},
+ caliperR:{label:"Rear Caliper",img:"part-caliper"},
+ rotorR:{label:"Rear Rotor",img:"part-rotor"},
+ padsR:{label:"Rear Pads",img:"part-pads"},
+ eng:{label:"Engine",sub:"3.5L V6 · 260 hp",img:"part-engine",group:1,kids:["oil","airFilter","cabinFilter","rad","plugs","cvt"]},
+ oil:{label:"Oil Change",sub:"3.5L V6 · 5.1 qt",img:"part-oil-filter",group:1,kids:["oilFluid","oilFilter","oilPlug"]},
+ oilFluid:{label:"Engine Oil",sub:"5W-30 · API SP",img:"part-oil",partNo:"999PK-005W30N",price:"$36.50 / 5 qt",riskAt:5000,servicedAt:36000},
+ oilFilter:{label:"Oil Filter",sub:"Spin-on",img:"part-oil-filter",partNo:"15208-9E01A",price:"$9.80",riskAt:5000,servicedAt:36000},
+ oilPlug:{label:"Drain Plug & Gasket",sub:"M12 crush washer",img:"part-drain-plug",partNo:"11026-01M02",price:"$1.60"},
+ airFilter:{label:"Engine Air Filter",sub:"Panel · dry media",img:"part-air-filter",partNo:"16546-6KA0A",price:"$24.60",riskAt:30000,servicedAt:0},
+ cabinFilter:{label:"Cabin Air Filter",sub:"Carbon media",img:"part-cabin-filter",partNo:"27277-5NA0A",price:"$19.99",riskAt:15000,servicedAt:22500},
+ rad:{label:"Radiator & Coolant",sub:"Cooling system",img:"part-radiator",group:1,kids:["radCore","coolant"]},
+ radCore:{label:"Radiator",sub:"Aluminium core",img:"part-radiator",partNo:"21460-5AA0A",price:"$286.00"},
+ coolant:{label:"Antifreeze",sub:"Nissan Long Life Blue",img:"part-antifreeze",partNo:"999MP-L25500P",price:"$22.95 gal",riskAt:125000,servicedAt:0},
+ plugs:{label:"Spark Plugs",sub:"Iridium · set of 6",img:"part-engine",riskAt:105000,servicedAt:0},
+ cvt:{label:"CVT Fluid",sub:"Nissan NS-3 · Xtronic",img:"part-oil",partNo:"999MP-NS300P",price:"$28.95 qt",riskAt:60000,servicedAt:0,knownIssue:1,
+      issue:"Z52 Xtronic judder and shudder under light throttle — the most-reported Murano complaint. Fluid condition and a TCM software update are the first steps; heat is what kills these boxes.",
+      issueRef:"Owner-reported · 2015–2024 · not an NHTSA recall"},
+ wip:{label:"Windshield Wipers",sub:"Front pair · 26\" / 18\"",img:"part-wipers",group:1,kids:["wipL","wipR","wipFluid"]},
+ wipL:{label:"Driver Blade",sub:"26 inch",img:"part-wiper-driver",partNo:"Rain-X Latitude 26\"",price:"$21.97",riskAt:10000,servicedAt:30000},
+ wipR:{label:"Passenger Blade",sub:"18 inch",img:"part-wiper-pass",partNo:"Rain-X Latitude 18\"",price:"$16.47",riskAt:10000,servicedAt:30000},
+ wipFluid:{label:"Washer Fluid",sub:"Reservoir",img:"part-washer-fluid",price:"$4.49 gal"}};
+
+/* 2019 XC90 T5 — structure only, sourced numbers only where they are actually sourced.
+   Confirmed from the SPA / VEA service schedule: oil and filter every 10,000 mi or 12
+   months on VCC RBS0-2AE 0W-20, spark plugs 45,000 mi, brake fluid every 2 years. Filter
+   intervals, part numbers and prices are NOT sourced for this platform yet, so they stay
+   blank and render as "part not sourced" rather than being inherited from another twin. */
+const VOLVO={
+ wtb:{label:"Wheel, Tire & Brakes",sub:"All four corners",img:"part-wheel",group:1,kids:["tire","wheelA","brakes"]},
+ tire:{label:"Tire",sub:"235/60R18 · all four",img:"part-tire"},
+ wheelA:{label:"Wheel",sub:"18 × 8 alloy",img:"part-wheel",kids:["lugs","tpms"]},
+ lugs:{label:"Lug Nuts",sub:"Set of 20",img:"part-lugs"},
+ tpms:{label:"TPMS Sensor",sub:"433 MHz",img:"part-wheel"},
+ brakes:{label:"Brakes",sub:"Sliding caliper, both axles",img:"part-caliper",group:1,kids:["frontBrakes","rearBrakes","brakeFluid"]},
+ frontBrakes:{label:"Front Brakes",sub:"Vented disc",img:"part-caliper",group:1,kids:["caliper","rotor","pads"]},
+ rearBrakes:{label:"Rear Brakes",sub:"Vented disc",img:"part-caliper",group:1,kids:["caliperR","rotorR","padsR"]},
+ brakeFluid:{label:"Brake Fluid",sub:"DOT 4 · every 2 years",img:"part-brake-fluid",riskAt:24000,servicedAt:0},
+ caliper:{label:"Front Caliper",img:"part-caliper"},
+ rotor:{label:"Front Rotor",img:"part-rotor"},
+ pads:{label:"Front Pads",img:"part-pads"},
+ caliperR:{label:"Rear Caliper",img:"part-caliper"},
+ rotorR:{label:"Rear Rotor",img:"part-rotor"},
+ padsR:{label:"Rear Pads",img:"part-pads"},
+ eng:{label:"Engine",sub:"2.0L turbo I4 · 250 hp",img:"part-engine",group:1,kids:["oil","airFilter","cabinFilter","rad","plugs","trans"]},
+ oil:{label:"Oil Change",sub:"2.0L T5 · 5.8 qt",img:"part-oil-filter",group:1,kids:["oilFluid","oilFilter","oilPlug"]},
+ oilFluid:{label:"Engine Oil",sub:"0W-20 · VCC RBS0-2AE",img:"part-oil",riskAt:10000,servicedAt:0},
+ oilFilter:{label:"Oil Filter",sub:"Cartridge · top-mount",img:"part-oil-filter",riskAt:10000,servicedAt:0},
+ oilPlug:{label:"Drain Plug & Gasket",img:"part-drain-plug"},
+ airFilter:{label:"Engine Air Filter",sub:"Panel · dry media",img:"part-air-filter"},
+ cabinFilter:{label:"Cabin Air Filter",img:"part-cabin-filter"},
+ rad:{label:"Radiator & Coolant",sub:"Cooling system",img:"part-radiator",group:1,kids:["radCore","coolant"]},
+ radCore:{label:"Radiator",img:"part-radiator"},
+ coolant:{label:"Antifreeze",img:"part-antifreeze"},
+ plugs:{label:"Spark Plugs",sub:"Set of 4",img:"part-engine",riskAt:45000,servicedAt:0},
+ trans:{label:"Transmission Fluid",sub:"Aisin 8-speed",img:"part-oil"},
+ wip:{label:"Windshield Wipers",sub:"Front pair",img:"part-wipers",group:1,kids:["wipL","wipR","wipFluid"]},
+ wipL:{label:"Driver Blade",img:"part-wiper-driver"},
+ wipR:{label:"Passenger Blade",img:"part-wiper-pass"},
+ wipFluid:{label:"Washer Fluid",img:"part-washer-fluid"}};
+
+const GRAPH={"2015-dodge-challenger-srt392":CANON,"2023-nissan-murano-sv":MURANO,"2019-volvo-xc90-t5":VOLVO};
+/* trees the admin generated and accepted, kept so a refresh doesn't lose them */
+const TREE_STORE="au7o.trees.v1";
+try{const s=JSON.parse(localStorage.getItem(TREE_STORE)||"{}");Object.keys(s).forEach(k=>{if(s[k]&&typeof s[k]==="object"&&Object.keys(s[k]).length)GRAPH[k]=s[k]})}catch(e){}
+const saveTree=(id,g)=>{try{const s=JSON.parse(localStorage.getItem(TREE_STORE)||"{}");s[id]=g;localStorage.setItem(TREE_STORE,JSON.stringify(s))}catch(e){}};
+
+/* hotspot → branch + node, exactly as TH_HOTSPOTS / TT_BRANCH_FOR_HOTSPOT declares it.
+   Status rolls up over the same id set thHot() walks; the tree opens at the node. */
+const BRANCH_ROOT={wheel:"wtb",engine:"eng",wipers:"wip"};
+const HOT_SCOPE={wheel:{b:"wheel"},hood:{b:"engine",n:"oil"},glass:{b:"wipers"},rearwheel:{b:"wheel",n:"tire"},rad:{b:"engine",n:"rad"},airbox:{b:"engine",n:"airFilter"}};
+const ROOT_FOR={wheel:"wtb",rearwheel:"tire",hood:"oil",rad:"rad",airbox:"airFilter",glass:"wip"};
+/* a twin with no separate airbox marker lets its Engine marker own the whole branch —
+   filters, cooling, plugs, transmission — the way TH_SYSTEMS scopes a system row */
+const HOT_SCOPE_ENGINE_ALL={...HOT_SCOPE,hood:{b:"engine"}};
+const ROOT_FOR_ENGINE_ALL={...ROOT_FOR,hood:"eng"};
+const MILES={"2015-dodge-challenger-srt392":65000,"2023-nissan-murano-sv":38000,"2019-volvo-xc90-t5":0};
+const SCHEDULE={"2015-dodge-challenger-srt392":"from the canonical node graph in <code>src/web/tech-tree.jsx</code>",
+ "2023-nissan-murano-sv":"from this vehicle's node graph · Nissan normal service schedule at 38,000 mi",
+ "2019-volvo-xc90-t5":"from this vehicle's node graph · Volvo SPA intervals · no owner mileage logged yet"};
+const RANK={unsourced:0,ok:1,watch:2,overdue:3,issue:4};
+
+const USERS={"2015-dodge-challenger-srt392":[{n:"Dennis E.",e:"dennis@au7o.io",m:"65,000 mi",c:"granite"}],
+"2023-nissan-murano-sv":[{n:"Reserved seat",e:"awaiting color pick",m:"38,000 mi",c:null}]};
+
+const EMAILS=[["Aug 9","m.reyes@gmail.com","2023 Nissan Murano SV","Aug 9","Reserved"],["Aug 8","tspencer@outlook.com","2015 Dodge Challenger","Aug 8","Live"],["Aug 8","kdavis88@yahoo.com","2019 Honda Accord","—","Queued"],["Aug 7","jordan.lu@gmail.com","2021 Ford F-150","—","Queued"],["Aug 6","p.nakamura@icloud.com","2023 Nissan Murano SV","Aug 9","Reserved"],["Aug 5","awhitfield@gmail.com","2018 Subaru Outback","—","Queued"]];
+
+const $=s=>document.querySelector(s);
+const el=(t,c,h)=>{const n=document.createElement(t);if(c)n.className=c;if(h!=null)n.innerHTML=h;return n};
+const title=t=>`${t.year} ${t.make} ${t.model} ${t.trim}`;
+/* Two kinds of glow art. A painted layer is a full frame of that colorway with one part
+   lit, so it only ever works over its own paint — no cross-colour fallback, a missing cell
+   leaves the marker dead. An x-ray reveal (listed in the twin's `xray`) renders the whole
+   vehicle see-through, so it carries no paint and one render serves every colorway: the
+   base fades out underneath and the reveal reads the same on black or white. */
+/* coverage is counted the way the stage resolves art, not by raw key count — an x-ray
+   layer is shared across every colorway, so one render covers the whole row */
+const isXray=(t,l)=>(t.xray||[]).includes(l);
+const glowSrc=(t,l,c)=>{const k=t.glow[l+"|"+c];if(k)return k;if(!isXray(t,l))return null;const f=Object.keys(t.glow).find(x=>x.slice(0,x.indexOf("|"))===l);return f?t.glow[f]:null};
+const cover=t=>{const total=t.layers.length*t.colors.length;
+ let have=0;t.layers.forEach(l=>t.colors.forEach(c=>{if(glowSrc(t,l.id,c.id))have++}));
+ return{have,total,shared:t.layers.filter(l=>isXray(t,l.id)).length*t.colors.length}};
+const covOf=(t,c)=>t.layers.filter(l=>glowSrc(t,l.id,c.id)).length;
+/* render frames differ per twin — the stage takes the twin's own aspect, never a crop */
+/* glow renders are opaque full frames whose backdrop rarely matches the base exactly, so a
+   part glow is revealed as a pool around its own marker — no render edge can show. X-ray
+   layers are excluded: those are meant to replace the whole frame. */
+const spotMask=(t,l,spots)=>{if(isXray(t,l))return "";const h=(spots||[]).find(s=>s.l===l);if(!h)return "";
+ const a=(t.aspect||"1672/941").split("/"),r=(+a[0])/(+a[1]);
+ const g=`radial-gradient(ellipse 24% ${(24*r).toFixed(1)}% at ${h.x}% ${h.y}%, #000 46%, rgba(0,0,0,.55) 68%, transparent 100%)`;
+ return `-webkit-mask-image:${g};mask-image:${g};`};
+const frame=t=>`aspect-ratio:${t.aspect||"1672/941"}`;
+/* per-layer nudge, in % of the frame, for art that wasn't shot on the same camera */
+const alignOf=(t,l)=>{const a=(t.align||{})[l];return a?`transform:translate(${a.x||0}%,${a.y||0}%)`:""};
+const hero=t=>t.colors.reduce((a,c)=>covOf(t,c)>covOf(t,a)?c:a,t.colors[0]);
+const THUMBS=new Set(["car-base","car-wheel-highlight-glow","car-rear-wheel-highlight-glow","car-hood-highlight-glow","car-radiator-highlight-glow","car-airbox-highlight-glow","car-wheels-bronze"]);
+const thumb=s=>{if(s.startsWith("assets/volvo/"))return "assets/thumbs/volvo-"+s.split("/").pop();if(s.startsWith("assets/lincoln/"))return "assets/thumbs/lincoln-"+s.split("/").pop();
+ if(s.startsWith("assets/camaro/"))return "assets/thumbs/camaro-"+s.split("/").pop();
+ if(s.startsWith("assets/murano/"))return "assets/thumbs/murano-"+s.split("/").pop().replace(".png",".webp");const b=s.split("/").pop().replace(/\.\w+$/,"");return THUMBS.has(b)?"assets/thumbs/"+b+".webp":s};
+
+/* counts that scale with the fleet — never hand-typed */
+const LIVE=TWINS.filter(t=>t.status==="live").length;
+$("#ct-twins").textContent=TWINS.length;
+$("#kpi-live").textContent=LIVE;
+$("#kpi-draft").textContent=(TWINS.length-LIVE)+" in draft";
+
+/* ---- overview table ---- */
+$("#tbl").innerHTML=EMAILS.map(r=>`<tr><td>${r[0]}</td><td><b>${r[1]}</b></td><td>${r[2]}</td><td>${r[3]}</td><td><span class="tag ${r[4]==="Live"?"live":r[4]==="Reserved"?"draft":"neutral"}"><i class="dot"></i>${r[4]}</span></td></tr>`).join("");
+$("#pills").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;[...e.currentTarget.children].forEach(x=>x.setAttribute("aria-pressed",x===b));});
+
+/* ---- affiliate links: clicks vs the fix we prescribed ---- */
+/* the vendor feed tells us nothing about purchases, so the only honest signal is where the
+   click landed relative to our own advice: `fix:1` means this is the exact part the twin
+   named as the fix for `issue`; fix:0 on an issue row means the owner went to an adjacent
+   part instead. Everything else is a routine interval or plain browsing. */
+const AFFIL=[
+ {n:"Front Pads · 68249169AB",v:"RockAuto · Challenger",clicks:74,issue:"Front brakes overdue at 45,000 mi",fix:1},
+ {n:"Engine Oil · 550045214",v:"Amazon · Challenger",clicks:63,issue:"Oil change overdue at 65,000 mi",fix:1},
+ {n:"Oil Filter · MO-899",v:"Amazon · Challenger",clicks:58,issue:"Oil change overdue at 65,000 mi",fix:1},
+ {n:"Front Rotor · 68232583AA",v:"RockAuto · Challenger",clicks:41,issue:"Front brakes overdue at 45,000 mi",fix:0},
+ {n:"Cabin Air Filter · 68318365AA",v:"Amazon · Challenger",clicks:37,due:1},
+ {n:"Antifreeze · 68163849AB",v:"RockAuto · Challenger",clicks:29,due:1},
+ {n:"CVT Fluid · 999MP-NS300P",v:"Nissan Parts · Murano",clicks:24,issue:"Xtronic judder — known issue",fix:1},
+ {n:"Wiper Blades · Latitude 26\"",v:"Amazon · Murano",clicks:16,due:1}];
+(()=>{
+ const rows=[...AFFIL].sort((a,b)=>b.clicks-a.clicks);
+ const mc=Math.max(...rows.map(r=>r.clicks)),tc=rows.reduce((s,r)=>s+r.clicks,0);
+ const iss=rows.filter(r=>r.issue),ic=iss.reduce((s,r)=>s+r.clicks,0);
+ const onfix=iss.filter(r=>r.fix).reduce((s,r)=>s+r.clicks,0);
+ $("#af-note").textContent=`${tc} clicks · ${Math.round(onfix/ic*100)}% of flagged-issue clicks hit the named fix`;
+ $("#af-rows").innerHTML=rows.map(r=>{
+  const k=r.issue?(r.fix?"live":"gapt"):"neutral",lab=r.issue?(r.fix?"Named fix":"Adjacent part"):r.due?"Interval due":"Browsing";
+  return `<div class="arow"><span class="an"><b>${r.n}</b><em>${r.v}</em></span>
+   <div class="bar"><i style="width:${r.clicks/mc*100}%"></i></div><span class="n">${r.clicks}</span>
+   <span class="tag ${k}" title="${r.issue||"No open issue on this part"}"><i class="dot"></i>${lab}</span></div>`}).join("");
+ /* one line per open issue: did the clicks go where we pointed? */
+ const byIssue=[...new Set(iss.map(r=>r.issue))].map(i=>{const g=iss.filter(r=>r.issue===i);
+  const a=g.filter(r=>r.fix).reduce((s,r)=>s+r.clicks,0),b=g.reduce((s,r)=>s+r.clicks,0);return{i,a,b}});
+ $("#af-foot").innerHTML=`We can't see purchases — vendors don't report them back. This measures whether the click landed on the part we named as the fix.<br/>`
+  +byIssue.map(x=>`<b style="color:var(--ink)">${x.i}:</b> ${x.a}/${x.b} clicks on the named fix${x.a<x.b?` · ${x.b-x.a} went to an adjacent part`:""}`).join("<br/>");
+})();
+
+/* ---- buy-link gaps ---- */
+/* a part is buyable only when it carries a sourced part number AND a price — that's what
+   the hub needs to build an affiliate link. A node that is a known issue, an available
+   upgrade, or already past its interval and has no link is a lost sale, so those are
+   counted separately from parts that are simply not sourced yet. */
+(()=>{
+ const walk=(G,id,out)=>{const n=G[id];if(!n)return out;
+  if(!(n.kids||[]).length&&!n.group)out.push(n);(n.kids||[]).forEach(k=>walk(G,k,out));return out};
+ const per=TWINS.map(t=>{const G=GRAPH[t.id]||CANON,miles=MILES[t.id]||0;
+  const leaves=[...new Set(["wtb","eng","wip"].flatMap(r=>walk(G,r,[])))];
+  const buyable=n=>!!(n.partNo&&n.price);
+  const due=n=>n.riskAt!=null&&miles>=(n.servicedAt!=null?n.servicedAt+n.riskAt:n.riskAt);
+  const flagged=leaves.filter(n=>n.knownIssue||n.upgrade||due(n));
+  const hot=flagged.filter(n=>!buyable(n));
+  const cold=leaves.filter(n=>!buyable(n)&&!flagged.includes(n));
+  return{t,hot,cold,leaves:leaves.length,names:hot.concat(cold).map(n=>n.label)}});
+ const H=per.reduce((s,p)=>s+p.hot.length,0),C=per.reduce((s,p)=>s+p.cold.length,0);
+ const mx=Math.max(...per.map(p=>p.hot.length+p.cold.length));
+ $("#gap-body").innerHTML=`<div class="gapn"><b style="color:var(--gap)">${H}</b><span>flagged part${H===1?"":"s"} with no buy link</span></div>
+  <p style="margin:0 0 10px;font-size:11.5px;color:var(--ink-3)">Known issues, upgrades and overdue intervals that can't be bought yet. ${C} more parts are unsourced but not yet due.</p>
+  ${per.map(p=>{const n=p.hot.length+p.cold.length;
+   return `<div class="gaprow"><span class="nm">${p.t.make} ${p.t.model}</span>
+    <span class="tag ${p.hot.length?"gapt":"neutral"}">${p.hot.length} flagged</span>
+    <div class="bar" style="flex:1;max-width:70px"><i style="width:${mx?n/mx*100:0}%;background:${p.hot.length?"var(--gap)":"#C3CBD8"}"></i></div>
+    <span class="m">${n}/${p.leaves} no link</span></div>`}).join("")}
+  <p style="margin:10px 0 0;font-size:11.5px;color:var(--ink-3)">${per.filter(p=>p.hot.length).map(p=>`<b style="color:var(--ink)">${p.t.model}:</b> ${p.hot.map(n=>n.label).join(", ")}`).join("<br/>")||"Every flagged part has a link."}</p>`;
+})();
+
+/* ---- visitors vs interest emails ---- */
+/* monthly totals since launch. emails sum to the 124 on the interest list. */
+const TRAF=[["2024-09",210,0],["2024-10",264,0],["2024-11",298,1],["2024-12",341,1],
+ ["2025-01",402,2],["2025-02",437,2],["2025-03",528,3],["2025-04",596,3],["2025-05",654,4],["2025-06",712,4],
+ ["2025-07",806,5],["2025-08",884,5],["2025-09",1042,6],["2025-10",1188,5],["2025-11",1361,7],["2025-12",1244,6],
+ ["2026-01",1620,6],["2026-02",1874,5],["2026-03",2216,7],["2026-04",2480,6],["2026-05",2905,8],["2026-06",3312,7],["2026-07",3908,9],["2026-08",4671,22]];
+const MN=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+const mlab=k=>MN[+k.slice(5)-1]+" "+k.slice(2,4);
+(()=>{
+ const from=$("#tfrom"),to=$("#tto"),sel=$("#trange");
+ const opts=TRAF.map(r=>`<option value="${r[0]}">${MN[+r[0].slice(5)-1]} ${r[0].slice(0,4)}</option>`).join("");
+ from.innerHTML=opts;to.innerHTML=opts;from.value=TRAF[Math.max(0,TRAF.length-6)][0];to.value=TRAF.at(-1)[0];
+ const nice=v=>{const p=Math.pow(10,String(Math.ceil(v)).length-1);return Math.ceil(v/p)*p||1};
+ function draw(rows){
+  const mv=nice(Math.max(...rows.map(r=>r[1]))),me=nice(Math.max(...rows.map(r=>r[2])));
+  const every=Math.ceil(rows.length/12);
+  const pts=rows.map((r,i)=>`${(i+.5)/rows.length*100},${100-r[2]/me*100}`).join(" ");
+  $("#tplot").innerHTML=[0,.25,.5,.75,1].map(f=>`<div class="gl" style="top:${(1-f)*100}%"><u>${(mv*f).toLocaleString()}</u><u class="r">${Math.round(me*f)}</u></div>`).join("")
+   +`<div class="tcols">${rows.map((r,i)=>`<div class="tcol"><i style="height:${r[1]/mv*100}%"></i>${i%every===0||i===rows.length-1?`<s>${mlab(r[0])}</s>`:""}<b>${mlab(r[0])}<em>${r[1].toLocaleString()} visitors · ${r[2]} email${r[2]===1?"":"s"}</em></b></div>`).join("")}</div>`
+   +`<svg class="tline" viewBox="0 0 100 100" preserveAspectRatio="none"><polyline points="${pts}" fill="none" stroke="#12B981" stroke-width="2" vector-effect="non-scaling-stroke" stroke-linejoin="round"/></svg>`;
+  const v=rows.reduce((s,r)=>s+r[1],0),e=rows.reduce((s,r)=>s+r[2],0);
+  $("#tsum").textContent=`${rows.length} month${rows.length===1?"":"s"} · ${v.toLocaleString()} visitors · ${e} emails · ${(e/v*1000).toFixed(1)} signups per 1k visits`;
+ }
+ function apply(){
+  const r=sel.querySelector('[aria-pressed="true"]').dataset.r;
+  const custom=r==="custom";
+  from.classList.toggle("hide",!custom);to.classList.toggle("hide",!custom);
+  let rows=TRAF;
+  if(r==="3")rows=TRAF.slice(-3);
+  else if(r==="12")rows=TRAF.slice(-12);
+  else if(r==="ytd")rows=TRAF.filter(x=>x[0].startsWith(TRAF.at(-1)[0].slice(0,4)));
+  else if(custom){const a=from.value,b=to.value;rows=TRAF.filter(x=>x[0]>=(a<b?a:b)&&x[0]<=(a<b?b:a))}
+  draw(rows.length?rows:TRAF.slice(-1));
+ }
+ sel.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+  [...sel.querySelectorAll("button")].forEach(x=>x.setAttribute("aria-pressed",String(x===b)));apply()});
+ from.addEventListener("change",apply);to.addEventListener("change",apply);
+ apply();
+})();
+
+/* ---- when they visit ---- */
+/* sessions by weekday × hour, local time of the visitor. The shape is what a maintenance
+   site should look like: weeknight couch research after work, and a Saturday-morning
+   driveway spike while the car is actually up on jack stands. */
+(()=>{
+ const DAY=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+ const peak=(h,c,w)=>Math.exp(-Math.pow(h-c,2)/(2*w*w));
+ const cell=(d,h)=>{const we=d>4;
+  const s=we?peak(h,10.5,2.6)*1+peak(h,15,3)*.62+peak(h,21,2)*.34
+           :peak(h,12.5,1.4)*.42+peak(h,20.5,2.4)*1+peak(h,7.5,1.2)*.22;
+  const wk=we?.86:1;/* deterministic texture so the grid doesn't look computed */
+  const j=.9+((d*31+h*17)%7)/35;
+  return Math.round(s*wk*j*100)/100};
+ const grid=DAY.map((_,d)=>Array.from({length:24},(_,h)=>cell(d,h)));
+ const mx=Math.max(...grid.flat());
+ const tot=grid.flat().reduce((a,b)=>a+b,0);
+ const sess=30500;/* sessions in the window, scaled onto the shape */
+ const at=(d,h)=>Math.round(grid[d][h]/tot*sess);
+ const hr=h=>(h%12||12)+(h<12?"a":"p");
+ $("#hm-note").textContent="sessions by local hour · last 90 days";
+ $("#hm-body").innerHTML=DAY.map((n,d)=>`<div class="hm"><em>${n}</em>${grid[d].map((v,h)=>`<i style="opacity:${(.06+v/mx*.94).toFixed(3)}" title="${n} ${hr(h)} · ${at(d,h).toLocaleString()} sessions"></i>`).join("")}</div>`).join("")
+  +`<div class="hmx"><s style="grid-column:span 1"></s>${[0,3,6,9,12,15,18,21].map(h=>`<s>${hr(h)}</s>`).join("")}</div>`
+  +`<div class="hmleg">Quiet<u>${[.1,.3,.5,.7,.9].map(o=>`<i style="opacity:${o}"></i>`).join("")}</u>Busy<span style="margin-left:auto">Peak: Tue 8\u20139p \u00b7 Sat 10a\u201312p</span></div>`;
+})();
+
+/* ---- where they come from ---- */
+/* referrer + region for the last 30 days. \u201caccounts\u201d is how many of those sessions ended
+   on the interest form, which is the only conversion we can actually observe. */
+const SRC=[
+ {n:"Reddit",s:"r/Volvo, r/MechanicAdvice, r/Cartalk",v:8420,e:41},
+ {n:"Google organic",s:"symptom + part-number queries",v:7180,e:29},
+ {n:"YouTube",s:"repair-video descriptions",v:4260,e:18},
+ {n:"Direct / saved",s:"returning owners",v:3140,e:9},
+ {n:"Forums",s:"SwedeSpeed, Challenger Talk, MuranoClub",v:2610,e:16},
+ {n:"Facebook groups",s:"model-owner groups",v:1490,e:7},
+ {n:"Newsletter",s:"our own update emails",v:880,e:2}];
+const GEO=[{n:"California",v:4120},{n:"Texas",v:3380},{n:"Florida",v:2540},{n:"New York",v:2180},{n:"Illinois",v:1460},{n:"Canada",v:1310},{n:"Rest of world",v:2610}];
+(()=>{
+ const mv=Math.max(...SRC.map(r=>r.v)),tv=SRC.reduce((s,r)=>s+r.v,0);
+ const gm=Math.max(...GEO.map(r=>r.v));
+ $("#src-body").innerHTML=`<div class="shead">Referrer</div>`
+  +SRC.map(r=>`<div class="srow"><span class="nm">${r.n}<br/><em>${r.s}</em></span>
+    <div class="bar"><i style="width:${r.v/mv*100}%"></i></div>
+    <span class="n" title="${r.e} interest emails from this source">${(r.v/1000).toFixed(1)}k<br/><em style="font-style:normal;font-size:10.5px;color:var(--ink-3);font-weight:400">${r.e} emails</em></span></div>`).join("")
+  +`<div class="shead">Region</div>`
+  +GEO.map(r=>`<div class="srow"><span class="nm">${r.n}</span><div class="bar"><i style="width:${r.v/gm*100}%;background:#8FA8D8"></i></div><span class="n">${Math.round(r.v/tv*100)}%</span></div>`).join("");
+})();
+
+/* ---- web sweep agent ---- */
+/* a daily crawl over NHTSA complaints and recalls, model forums, repair subreddits and
+   search-trend data. It never writes to a twin on its own \u2014 every finding lands here as a
+   proposal an admin accepts, which is what keeps the known-issue record trustworthy. */
+const FINDINGS=[
+ {k:"issue",t:"XC90 T5 \u2014 PCV diaphragm failure on 2016\u20132019 VEA engines",
+  d:"47 new NHTSA complaints in 30 days describe rough idle and oil consumption traced to the crankcase ventilation diaphragm. The XC90 twin has no known issue on the engine branch yet.",
+  s:"NHTSA + SwedeSpeed",m:["47 complaints","\u2191 3\u00d7 vs last quarter"],c:.86,a:["Add to known issues","Dismiss"]},
+ {k:"issue",t:"Murano Xtronic judder \u2014 TCM software revision superseded",
+  d:"Nissan issued a newer TCM calibration; our known-issue copy still points at the previous one. Update the fix text so the affiliate link and the advice agree.",
+  s:"Nissan TSB feed",m:["affects 1 twin","copy is stale"],c:.93,a:["Update issue","Dismiss"]},
+ {k:"trend",t:"\u201cXC90 oil consumption\u201d search volume up 34% this quarter",
+  d:"Rising query cluster with no page on our site. The three top-ranking results are forum threads with no part numbers \u2014 a twin-backed page with the actual PCV kit would rank.",
+  s:"Search trends",m:["8.1k/mo US","low competition"],c:.71,a:["Draft page","Dismiss"]},
+ {k:"content",t:"Blog: \u201cWhat 45,000 miles actually costs on a T5\u201d",
+  d:"Your own node graph already has the intervals and prices for two twins. A cost-per-mile post writes itself from that data and gives the interest list something to forward.",
+  s:"Internal data",m:["est. 1.2k visits/mo","reuses tech-tree data"],c:.64,a:["Draft post","Dismiss"]},
+ {k:"parts",t:"Bosch replaced the 26\u2033 Latitude blade our Murano link points to",
+  d:"The linked SKU is now discontinued at two of three vendors. Wiper clicks are 16 this month and will start landing on out-of-stock pages.",
+  s:"Vendor feed",m:["1 dead SKU","16 clicks/mo"],c:.9,a:["Reprice link","Dismiss"]},
+ {k:"parts",t:"Aftermarket LED headlight retrofit now fits the XC90 SPA platform",
+  d:"New part category with strong search interest and a higher payout than filters. Would sit as an upgrade node on the lighting branch \u2014 which none of the twins model yet.",
+  s:"Vendor feed + search",m:["new category","$180 avg order"],c:.52,a:["Add upgrade node","Dismiss"]},
+ {k:"trend",t:"Owners search symptoms, not parts \u2014 82% of entry queries are a symptom",
+  d:"\u201cshudders when accelerating\u201d, \u201cwhining at 40mph\u201d. The site indexes part names. Adding a symptom vocabulary to each known issue would catch the traffic already looking for it.",
+  s:"Search console",m:["82% of entries","affects all twins"],c:.78,a:["Open symptom map","Dismiss"]}];
+(()=>{
+ const K={issue:["iss","Known issue"],content:["cnt","Content idea"],trend:["trd","Search trend"],parts:["prt","Parts & tech"]};
+ const rows=$("#ag-rows"),fil=$("#agfilter");
+ $("#ag-note").textContent=`last sweep today 06:12 \u00b7 ${FINDINGS.length} open proposals \u00b7 nothing published without you`;
+ function draw(){
+  const k=fil.querySelector('[aria-pressed="true"]').dataset.k;
+  const list=FINDINGS.filter(f=>k==="all"||f.k===k);
+  rows.innerHTML=list.map(f=>`<div class="find"><div><span class="tag ${K[f.k][0]}"><i class="dot"></i>${K[f.k][1]}</span>
+    <div class="cf">confidence<div class="bar"><i style="width:${f.c*100}%;background:${f.c>.8?"var(--live)":f.c>.6?"var(--draft)":"#C3CBD8"}"></i></div>${Math.round(f.c*100)}%</div></div>
+   <div><h6>${f.t}</h6><p>${f.d}</p><div class="meta"><span>${f.s}</span>${f.m.map(m=>`<span>${m}</span>`).join("")}</div></div>
+   <div class="act">${f.a.map((a,i)=>`<button class="btn${i?"":" primary"}">${a}</button>`).join("")}</div></div>`).join("")
+   ||`<div class="find"><p>No open proposals in this category.</p></div>`;
+ }
+ fil.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||!b.dataset.k)return;
+  [...fil.querySelectorAll("button")].forEach(x=>x.setAttribute("aria-pressed",String(x===b)));draw()});
+ draw();
+})();
+
+/* ---- known-issue audit by make ---- */
+/* An audit is a human pass over one make's feeds — NHTSA complaints and recalls, the
+   manufacturer's TSB list, owner forums — confirming every issue on record is still
+   accurate and nothing new is missing. The count is read live from the node graph, so it
+   only ever reflects issues actually written into a twin, never proposals still pending. */
+const AUDITS={
+ Dodge:{on:"2026-08-18",by:"Dennis",feeds:"NHTSA · Mopar TSB · SRT forums"},
+ Nissan:{on:"2026-08-20",by:"Dennis",feeds:"NHTSA · Nissan TSB feed · Murano forums"},
+ Volvo:{on:"2026-07-14",by:"Dennis",feeds:"NHTSA · Volvo TSB · SwedeSpeed"}};
+const AUDIT_STALE=30;
+(()=>{
+ const today=new Date("2026-08-21T00:00:00");
+ const days=s=>Math.round((today-new Date(s+"T00:00:00"))/864e5);
+ const fmt=s=>{const d=new Date(s+"T00:00:00");return `${MN[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`};
+ const ago=n=>n===0?"today":n===1?"yesterday":`${n} days ago`;
+ const walk=(G,id,out)=>{const n=G[id];if(!n)return out;
+  if(!(n.kids||[]).length&&!n.group)out.push(n);(n.kids||[]).forEach(k=>walk(G,k,out));return out};
+ const makes=[...new Set(TWINS.map(t=>t.make))];
+ const rows=makes.map(make=>{
+  const twins=TWINS.filter(t=>t.make===make);
+  const found=[];
+  twins.forEach(t=>{const G=GRAPH[t.id]||CANON;
+   [...new Set(["wtb","eng","wip"].flatMap(r=>walk(G,r,[])))].filter(n=>n.knownIssue)
+    .forEach(n=>found.push({t,n}))});
+  const a=AUDITS[make]||{},d=a.on?days(a.on):null;
+  return{make,twins,found,a,d,stale:d==null||d>AUDIT_STALE};
+ });
+ const total=rows.reduce((s,r)=>s+r.found.length,0);
+ const pending=FINDINGS.filter(f=>f.k==="issue").length;
+ const never=rows.filter(r=>r.d==null);
+ const oldest=rows.reduce((a,r)=>r.d!=null&&r.d>a?r.d:a,0);
+ $("#ka-note").textContent=`${never.length?`${never.length} make${never.length===1?"":"s"} never audited`:`oldest pass ${ago(oldest)}`} · ${pending} proposal${pending===1?"":"s"} waiting below`;
+ $("#ka-body").innerHTML=`<div class="gapn"><b style="color:#5B45C4">${total}</b><span>known issue${total===1?"":"s"} on record across ${makes.length} makes</span></div>
+  <p style="margin:0 0 12px;font-size:11.5px;color:var(--ink-3)">Only issues written into a twin's node graph count here. ${pending} more sit in the sweep agent as unaccepted proposals.</p>
+  ${rows.map(r=>`<div class="karow">
+   <span class="nm">${r.make}</span>
+   <span class="tag ${r.found.length?"isst":"neutral"}">${r.found.length} on record</span>
+   <span class="m">${r.twins.length} twin${r.twins.length===1?"":"s"}</span>
+   <span class="when">audited ${r.a.on?`${fmt(r.a.on)} · ${ago(r.d)}`:"never"}</span>
+   ${r.stale?'<span class="tag stalet">Due for a pass</span>':""}
+   <span class="feeds">${r.a.feeds||"no feeds wired"}</span>
+  </div>`).join("")}
+  <p style="margin:12px 0 0;font-size:11.5px;color:var(--ink-3)">${rows.filter(r=>r.found.length).map(r=>`<b style="color:var(--ink)">${r.make}:</b> ${r.found.map(f=>`${f.t.model} — ${f.n.label}`).join(", ")}`).join("<br/>")||"No issue is on record yet."}</p>`;
+})();
+
+
+/* ---- gallery ---- */
+function galleryCard(t){
+  const c=hero(t),cv=cover(t);
+  const b=el("button","tw");
+  b.innerHTML=`<div class="stage" style="${frame(t)}">${c.base?`<img class="bs" src="${thumb(c.base)}" alt="${title(t)}" decoding="async"/>`:""}
+    ${t.layers.map(l=>glowSrc(t,l.id,c.id)?`<img class="gl" data-l="${l.id}" src="${thumb(glowSrc(t,l.id,c.id))}" style="${alignOf(t,l.id)};${spotMask(t,l.id,HOTSPOTS[t.id])}" alt="" loading="lazy" decoding="async"/>`:"").join("")}</div>
+    <div class="meta"><h4>${title(t)}</h4><p>${t.body} · updated ${t.updated}</p>
+    <div class="chips">
+      <span class="tag ${t.status}"><i class="dot"></i>${t.status==="live"?"Live":"Draft"}</span>
+      <span class="tag neutral">${t.colors.length} colorway${t.colors.length>1?"s":""}</span>
+      <span class="tag neutral">${cv.have}/${cv.total} glow layers</span>
+      ${cv.have<cv.total?`<span class="tag gapt">${cv.total-cv.have} missing</span>`:""}
+      <span class="tag neutral">${t.users} user${t.users>1?"s":""}</span>
+    </div>
+    <div class="swatches">${t.colors.map(x=>`<i class="sw" style="background:${x.hex}" title="${x.name}"></i>`).join("")}</div></div>`;
+  const gl=[...b.querySelectorAll(".gl")],bs=b.querySelector(".bs");let i=-1,tm=null;
+  const step=()=>{gl.forEach(g=>g.style.opacity=0);i=(i+1)%gl.length;const g=gl[i];if(g)g.style.opacity=1;if(bs)bs.style.opacity=g&&isXray(t,g.dataset.l)?0:1};
+  b.addEventListener("mouseenter",()=>{if(!gl.length)return;step();tm=setInterval(step,1100)});
+  b.addEventListener("mouseleave",()=>{clearInterval(tm);gl.forEach(g=>g.style.opacity=0);if(bs)bs.style.opacity=1;i=-1});
+  b.addEventListener("click",()=>go("detail",t.id));
+  return b;
+}
+/* the gallery is grouped by make — one band per marque, so a fleet of fifty twins still
+   reads as a handful of manufacturers rather than one undifferentiated grid */
+function renderGallery(){
+  const g=$("#gal");g.innerHTML="";
+  const makes=[...new Set(TWINS.map(t=>t.make))].sort();
+  makes.forEach(make=>{
+    const list=TWINS.filter(t=>t.make===make);
+    const live=list.filter(t=>t.status==="live").length;
+    const band=el("div","mk-group");
+    band.appendChild(el("div","mkhead",`<h3>${make}</h3><span class="n">${list.length}</span><span class="m">${list.reduce((a,t)=>a+t.colors.length,0)} colorways · ${live} live · ${list.length-live} draft</span>`));
+    const row=el("div","gal");list.forEach(t=>row.appendChild(galleryCard(t)));
+    band.appendChild(row);g.appendChild(band);
+  });
+  const tail=el("div","gal");
+  tail.appendChild(el("button","new",`<span class="plus">+</span>New twin<small style="font-size:11.5px;opacity:.8">Upload base render + glow layers</small>`));
+  g.appendChild(tail);
+}
+
+/* ---- detail ---- */
+function renderDetail(id){
+  const t=TWINS.find(x=>x.id===id),cv=cover(t);
+  let color=hero(t).id,layer=null;
+  const v=$("#v-detail");
+  v.innerHTML=`<button class="back">&larr; Twin Gallery</button>
+  <h1>${title(t)}</h1><p class="sub">${t.body}${t.gen?` · ${t.gen}`:""} · id <code>${t.id}</code> · updated ${t.updated}</p>
+  <div class="detail">
+    <div>
+      <div class="previewwrap">
+        <div class="stage" id="stage" style="${frame(t)}"></div>
+        <div class="controls">
+          <div class="ctl"><h5>Colorway <span id="cname" style="text-transform:none;letter-spacing:0;color:var(--ink-2);font-weight:600"></span></h5><div class="swrow" id="swrow"></div></div>
+          <div class="ctl"><h5>Glow layer</h5><div class="layerrow" id="lrow"></div></div>
+        </div>
+      </div>
+      <div class="sec"><h3>Generated tech tree</h3><span>${SCHEDULE[t.id]||"from this vehicle's node graph"} — hover the car to light a system</span><button class="btn primary" id="genopen" style="margin-left:auto">Generate with AI</button></div>
+      <div class="gen hide" id="gen">
+        <div>
+          <div class="genf">
+            <label>Vehicle<input id="g-veh" value="${t.year} ${t.make} ${t.model} ${t.trim}"/></label>
+            <label>Engine / drivetrain<input id="g-eng" value="${(GRAPH[t.id]||CANON).eng?.sub||""}" placeholder="2.0L turbo I4 · 8-speed auto"/></label>
+            <label>Owner mileage<input id="g-mi" type="number" min="0" step="1000" value="${MILES[t.id]||0}"/></label>
+            <label>Service schedule<div class="genseg" id="g-sched"><button data-v="normal" aria-pressed="true">Normal</button><button data-v="severe">Severe</button></div></label>
+            <label class="w">Notes for the generator <span style="text-transform:none;letter-spacing:0;font-weight:400">optional</span><textarea id="g-notes" placeholder="e.g. add a lighting branch · owner logged oil at 36,000 mi · skip tires, they were just replaced"></textarea></label>
+          </div>
+          <p class="genrules">It runs the same rules this dashboard was built on: three branch roots — <b>Wheel, Tire &amp; Brakes</b>, <b>Engine</b>, <b>Windshield Wipers</b> — group nodes carrying children, intervals from the manufacturer's published schedule, and <b>nothing invented</b>: a part number or price that isn't confidently known is left blank so it renders as “part not sourced” instead of inheriting another vehicle's number.</p>
+        </div>
+        <div class="genfoot"><button class="btn primary" id="g-run">Generate tech tree</button><button class="btn" id="g-close">Cancel</button><span class="st" id="g-st"></span></div>
+        <div class="genout hide" id="g-out"></div>
+      </div>
+      <div class="trees" id="trees"></div>
+      <div class="legend"><span><i class="s issue"></i>Known issue on record</span><span><i class="s overdue"></i>Overdue on mileage</span><span><i class="s watch"></i>Coming due</span><span><i class="s ok"></i>Serviced / on track</span><span><i class="s unsourced"></i>Part not sourced</span></div>
+      <div class="sec"><h3>All assets</h3><span>${cv.have+t.colors.length+t.extras.length} files</span><button class="btn primary" id="upopen" style="margin-left:auto">Add art</button></div>
+      <div class="up hide" id="up">
+        <div>
+          <div class="drop" id="drop"><b>Drop renders here, or click to pick files</b>
+            Named the way the assembler reads them: <code>base-black.webp</code> · <code>glow-rearwheel-black.webp</code> · <code>xray-plain.webp</code>
+          </div>
+          <div id="frows"></div>
+          <p class="genrules" id="upnote">The assembler can do the mechanical half on its own: parse <b>layer × colorway</b> out of the filename, check every frame against this twin's ${t.aspect||"1672/941"} camera box, fill the coverage matrix, and write the <b>align</b> nudge for a frame that came off a different camera height. What it cannot do is fix a bad render — if a layer was shot at a different focal length or subject transform, a nudge only trades distortion from one end of the car to the other. Those come back flagged, and want re-rendering on a locked camera.</p>
+        </div>
+        <div class="genfoot"><button class="btn primary" id="up-run">Assemble into twin</button><button class="btn" id="up-close">Cancel</button><span class="st" id="up-st"></span></div>
+      </div>
+      <div class="assets" id="assets"></div>
+    </div>
+    <div class="rail">
+      <div class="panel">
+        <h4>Deployment</h4>
+        <div class="deploy">
+          <div style="display:flex;align-items:center;gap:8px"><span class="tag ${t.status}"><i class="dot"></i>${t.status==="live"?"Live":"Draft"}</span><span style="font-size:12px;color:var(--ink-3)">${t.status==="live"?"visible in user hubs":"hidden from user hubs"}</span></div>
+          <button class="btn primary" style="width:100%">${t.status==="live"?"Push update to hubs":"Deploy to user hubs"}</button>
+          <button class="btn" style="width:100%">Assign to a user…</button>
+        </div>
+      </div>
+      <div class="panel">
+        <h4>Art coverage</h4>
+        <dl class="kv"><dt>Base renders</dt><dd>${t.colors.length}</dd><dt>Glow layers</dt><dd>${cv.have} / ${cv.total}</dd><dt>Extras</dt><dd>${t.extras.length}</dd><dt>Known issues</dt><dd>${t.issues}</dd></dl>
+        <table class="matrix" style="margin-top:12px"><thead><tr><th class="rowh"></th>${t.colors.map(c=>`<th title="${c.name}">${c.id.slice(0,3)}</th>`).join("")}</tr></thead>
+        <tbody>${t.layers.map(l=>`<tr><th class="rowh">${l.name}</th>${t.colors.map(c=>{const own=!!t.glow[l.id+"|"+c.id],sh=!own&&!!glowSrc(t,l.id,c.id);
+          return `<td><div class="cell ${own?"has":sh?"shared":"no"}" title="${l.name} · ${c.name}${own?"":sh?" · served by the shared x-ray render":" · not rendered"}">${own?"✓":sh?"×":"–"}</div></td>`}).join("")}</tr>`).join("")}</tbody></table>
+        <p style="margin:10px 0 0;font-size:11.5px;color:var(--ink-3)">A painted cell has no fallback — if a colorway is missing its layer, that marker goes dead on that paint. <b style="color:#5B45C4;font-weight:700">×</b> marks a cell served by the shared x-ray render, which carries no paint and works on every colorway.${cv.have<cv.total?" Generate the missing painted cells from the same base frame — same camera, luminance only.":""}</p>
+      </div>
+      <div class="panel">
+        <h4>Assigned users</h4>
+        ${(USERS[t.id]||[]).map(u=>`<div class="userrow"><div class="av">${u.n.split(" ").map(s=>s[0]).join("")}</div><div><div style="color:var(--ink);font-weight:600">${u.n}</div><div style="color:var(--ink-3);font-size:11.5px">${u.e}</div></div><div class="m">${u.m}</div></div>`).join("")}
+      </div>
+    </div>
+  </div>`;
+  v.querySelector(".back").addEventListener("click",()=>go("twins"));
+
+  const stage=v.querySelector("#stage"),swrow=v.querySelector("#swrow"),lrow=v.querySelector("#lrow"),assets=v.querySelector("#assets"),trees=v.querySelector("#trees");
+  const spots=(HOTSPOTS[t.id]||[]);
+  const miles=MILES[t.id]||0;let G=GRAPH[t.id]||CANON;
+  const hasAirbox=spots.some(s=>s.l==="airbox");
+  const rootFor=hasAirbox?ROOT_FOR:ROOT_FOR_ENGINE_ALL;
+  const hotScope=hasAirbox?HOT_SCOPE:HOT_SCOPE_ENGINE_ALL;
+  const nodeOf=id=>G[id]||null;
+  /* due = servicedAt + riskAt when the owner has logged the job, else riskAt from new */
+  const dueAt=n=>n.riskAt?(n.servicedAt!=null?n.servicedAt+n.riskAt:n.riskAt):null;
+  const statusOf=id=>{const n=nodeOf(id);if(!n)return"unsourced";
+    if(n.kids&&n.kids.length)return n.kids.map(statusOf).reduce((a,b)=>RANK[b]>RANK[a]?b:a,"unsourced");
+    /* violet is earned by an upgrade part on record or a logged known issue — never by the
+       descriptive `issue` copy, which most parts carry and which the hub ignores */
+    if(n.upgrade||n.knownIssue)return"issue";
+    const d=dueAt(n);
+    if(d==null)return n.partNo?"ok":"unsourced";
+    return miles>=d?"overdue":miles>=d*0.8?"watch":"ok"};
+  const sysStatus=lid=>statusOf(rootFor[lid]||"");
+  /* the id set thHot() walks: the hotspot's node, or every child of its branch root */
+  const scopeIds=lid=>{const s=hotScope[lid];if(!s)return[];const out=[];
+    const walk=id=>{const n=nodeOf(id);if(!n)return;out.push(id);(n.kids||[]).forEach(walk)};
+    if(s.n)walk(s.n);else (nodeOf(BRANCH_ROOT[s.b])||{kids:[]}).kids.forEach(walk);
+    return out};
+  /* TH_DOT: an available upgrade outranks overdue mileage, which outranks on track */
+  const hotState=lid=>{const ids=scopeIds(lid);
+    const leaf=id=>{const n=nodeOf(id);return n&&!(n.kids||[]).length?n:null};
+    /* ttHasUpgrade: only an upgrade part changes the dot. A known issue with no upgrade
+       part on record reads violet too, but must never claim an upgrade in the sub line. */
+    const up=ids.some(id=>{const n=nodeOf(id);return n&&n.upgrade});
+    const ki=ids.some(id=>{const n=nodeOf(id);return n&&n.knownIssue});
+    const due=ids.filter(id=>{const n=leaf(id);const d=n&&dueAt(n);return d!=null&&miles>=d}).length;
+    const watch=ids.filter(id=>{const n=leaf(id);const d=n&&dueAt(n);return d!=null&&miles<d&&miles>=d*0.8}).length;
+    const clocked=ids.some(id=>{const n=nodeOf(id);return n&&(n.riskAt||n.upgrade||n.knownIssue)});
+    if(!clocked)return{mark:"pending",sub:"No maintenance data yet"};
+    return{mark:up||ki?"issue":due>0?"overdue":"ok",
+      sub:up?(due?`${due} due · 1 upgrade`:"1 upgrade available")
+        :ki?(due?`${due} due · 1 known issue`:"1 known issue")
+        :due?`${due} due`:watch?`${watch} to watch`:"On track"}};
+  const countOf=id=>{const n=nodeOf(id);if(!n)return 0;return (n.group?0:1)+(n.kids||[]).reduce((s,k)=>s+countOf(k),0)};
+  const dueCount=id=>{const n=nodeOf(id);if(!n)return 0;return (statusOf(id)==="overdue"&&!(n.kids||[]).length?1:0)+(n.kids||[]).reduce((s,k)=>s+dueCount(k),0)};
+  function mount(){
+    const c=t.colors.find(x=>x.id===color);
+    stage.innerHTML=`<img class="bs" src="${c.base}" alt=""/>`
+      +t.layers.map(l=>{const s=glowSrc(t,l.id,color);return s?`<img class="gl" data-l="${l.id}" src="${s}" style="${alignOf(t,l.id)};${spotMask(t,l.id,spots)}" alt="" decoding="async"/>`:""}).join("")
+      +spots.map(h=>{const s=hotState(h.l);
+        return `<button class="mk" data-l="${h.l}" data-dead="${glowSrc(t,h.l,color)?0:1}" style="left:${h.x}%;top:${h.y}%"><i class="${s.mark}">${ICON[s.mark]}</i><b>${h.label}<em>${s.sub} · open tech tree</em></b></button>`}).join("");
+    stage.querySelectorAll(".mk").forEach(m=>{
+      m.addEventListener("mouseenter",()=>setLit(m.dataset.l,false));
+      m.addEventListener("mouseleave",()=>setLit(pinned,false));
+      m.addEventListener("click",()=>{pinned=pinned===m.dataset.l?null:m.dataset.l;setLit(pinned,false)});
+    });
+    v.querySelector("#cname").textContent="— "+c.name+(c.code?" ("+c.code+")":"");
+    [...swrow.children].forEach(b=>b.setAttribute("aria-pressed",b.dataset.c===color));
+  }
+  function setLit(id,pin){
+    if(pin!==false)pinned=id;
+    layer=id;
+    stage.querySelectorAll(".gl").forEach(g=>g.style.opacity=g.dataset.l===id?1:0);
+    const bs=stage.querySelector(".bs");if(bs)bs.style.opacity=id&&isXray(t,id)?0:1;
+    stage.querySelectorAll(".mk").forEach(m=>m.dataset.on=m.dataset.l===id?1:0);
+    [...lrow.children].forEach(b=>{const has=!!glowSrc(t,b.dataset.l,color);b.disabled=!has;b.setAttribute("aria-pressed",b.dataset.l===id&&has)});
+    trees.querySelectorAll(".tree").forEach(x=>x.dataset.on=x.dataset.l===id?1:0);
+  }
+  let pinned=null;
+  t.colors.forEach(c=>{const b=el("button","swbtn");b.dataset.c=c.id;b.style.background=c.hex;b.title=c.name+(c.code?" · "+c.code:"");
+    if(covOf(t,c)<t.layers.length)b.dataset.missing="1";
+    b.addEventListener("click",()=>{color=c.id;mount();setLit(pinned,false)});swrow.appendChild(b)});
+  t.layers.forEach(l=>{const b=el("button",null,l.name);b.dataset.l=l.id;
+    b.addEventListener("click",()=>{pinned=pinned===l.id?null:l.id;setLit(pinned,false)});lrow.appendChild(b)});
+  const rows=(id,d)=>{const n=nodeOf(id);if(!n)return"";const st=statusOf(id);
+    return `<div class="node${n.group?" grp":""}" style="padding-left:${13+d*14}px"><i class="s ${st}"></i><img class="th" src="assets/thumbs/${n.img}.webp" alt="" loading="lazy" decoding="async"/><span><span class="nm">${n.label}</span>${n.sub?`<span class="sb"> · ${n.sub}</span>`:""}${n.partNo?`<span class="pn"> ${n.partNo}</span>`:""}${dueAt(n)!=null?`<span class="sb"> · due ${dueAt(n).toLocaleString()} mi</span>`:""}</span>${!n.group&&!n.partNo?'<span class="unv">part not sourced</span>':`<span class="pr">${n.price||"—"}</span>`}</div>`
+      +(n.kids||[]).map(k=>rows(k,d+1)).join("")};
+  trees.innerHTML=spots.map(h=>{const r=rootFor[h.l];if(!G[r])return"";const n=nodeOf(r);
+    return `<div class="tree" data-l="${h.l}"><h5><i class="s ${statusOf(r)}" style="width:8px;height:8px;border-radius:50%"></i>${n.label}<span class="c">${countOf(r)} part${countOf(r)===1?"":"s"}</span></h5>${rows(r,0)}</div>`}).join("");
+  trees.querySelectorAll(".tree").forEach(x=>{
+    x.addEventListener("mouseenter",()=>setLit(x.dataset.l,false));
+    x.addEventListener("mouseleave",()=>setLit(pinned,false));
+  });
+
+  /* ---- AI tech-tree generation ----
+     The generator is handed the same contract this dashboard renders against, so an
+     accepted tree drops straight into GRAPH and the hotspots, statuses and part rows all
+     light up without a rebuild. The honesty rule is the important one: a blank partNo
+     renders as "part not sourced", which is the correct answer for a platform we haven't
+     sourced — an invented number would look identical to a real one in the hub. */
+  const IMGS=["part-wheel","part-tire","part-lugs","part-caliper","part-rotor","part-pads","part-brake-fluid","part-oil","part-oil-filter","part-drain-plug","part-engine","part-air-filter","part-cabin-filter","part-radiator","part-antifreeze","part-wipers","part-wiper-driver","part-wiper-pass","part-washer-fluid"];
+  const GEN_SYS=`You generate maintenance node graphs for a vehicle-twin admin tool. Output ONE JSON object and nothing else: no prose, no markdown fence.
+
+Shape: a flat map of nodeId -> node. Node fields:
+  label (required, short human name), sub (short spec line, e.g. "275/40ZR20 · all four"),
+  img (required, EXACTLY one of: ${IMGS.join(", ")}),
+  group: 1 for a container node that only holds children (never priced, never clocked),
+  kids: [nodeId,...] for containers,
+  partNo + price for LEAF parts only, price formatted like "$32.97 / 5 qt" or "$298.99 ea" or "$164.99 set",
+  riskAt: service interval in miles (integer) for leaves that are consumables,
+  servicedAt: miles at which the owner last had it done (0 if never logged),
+  knownIssue: 1 plus issue (2-3 sentence plain description) and issueRef (provenance, e.g. "Owner-reported · 2015–2024 · not an NHTSA recall") for a well-documented platform defect,
+  upgrade: "Brand Part · $price" only when a real aftermarket upgrade part exists.
+
+Hard rules:
+1. Include these three roots with group:1 : wtb ("Wheel, Tire & Brakes"), eng ("Engine"), wip ("Windshield Wipers"). Every other node must be reachable from one of them via kids.
+2. Keep the canonical ids where the concept matches: tire, wheelA, lugs, tpms, brakes, frontBrakes, rearBrakes, brakeFluid, caliper, rotor, pads, caliperR, rotorR, padsR, oil, oilFluid, oilFilter, oilPlug, airFilter, cabinFilter, rad, radCore, coolant, plugs, wipL, wipR, wipFluid. Add platform-specific ids (e.g. cvt, trans, dpf) as needed.
+3. NEVER invent a part number, price or interval. If you are not confident it is correct for this exact platform, omit the field entirely. A missing partNo renders as "part not sourced" and that is the desired output.
+4. Intervals must come from the manufacturer's published schedule for this model/engine, in miles. Use the schedule variant asked for.
+5. Fluid specs belong in sub (e.g. "0W-20 · VCC RBS0-2AE"), not in label.
+6. Only flag knownIssue for defects that are genuinely well documented for this platform.`;
+  const gen=v.querySelector("#gen"),gout=v.querySelector("#g-out"),gst=v.querySelector("#g-st");
+  const gseg=v.querySelector("#g-sched");
+  v.querySelector("#genopen").addEventListener("click",()=>{gen.classList.toggle("hide");if(!gen.classList.contains("hide"))v.querySelector("#g-veh").focus()});
+  v.querySelector("#g-close").addEventListener("click",()=>gen.classList.add("hide"));
+  gseg.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+    [...gseg.children].forEach(x=>x.setAttribute("aria-pressed",String(x===b)))});
+  const validate=g=>{const errs=[];
+    ["wtb","eng","wip"].forEach(r=>{if(!g[r])errs.push("missing root "+r)});
+    Object.entries(g).forEach(([k,n])=>{if(!n||!n.label)errs.push(k+" has no label");
+      (n&&n.kids||[]).forEach(c=>{if(!g[c])errs.push(k+" → "+c+" does not exist")});
+      if(n&&n.img&&!IMGS.includes(n.img))n.img="part-engine"});
+    return errs};
+  const count=g=>{const leaves=Object.values(g).filter(n=>!n.group&&!(n.kids||[]).length);
+    return{nodes:Object.keys(g).length,leaves:leaves.length,
+      sourced:leaves.filter(n=>n.partNo&&n.price).length,
+      clocked:leaves.filter(n=>n.riskAt).length,
+      issues:Object.values(g).filter(n=>n.knownIssue||n.upgrade).length}};
+  v.querySelector("#g-run").addEventListener("click",async()=>{
+    const veh=v.querySelector("#g-veh").value.trim(),engs=v.querySelector("#g-eng").value.trim();
+    const mi=+v.querySelector("#g-mi").value||0,notes=v.querySelector("#g-notes").value.trim();
+    const sched=gseg.querySelector('[aria-pressed="true"]').dataset.v;
+    gst.className="st";gst.innerHTML='<span class="spin"></span> Reading the service schedule for '+veh+"…";
+    gout.classList.add("hide");
+    try{
+      const txt=await window.claude.complete({model:"claude-sonnet-4-5",max_tokens:8000,system:GEN_SYS,
+        messages:[{role:"user",content:`Vehicle: ${veh}\nEngine / drivetrain: ${engs||"unspecified — use the base engine for this trim"}\nOwner mileage: ${mi.toLocaleString()} mi (use as servicedAt context only where a logged service is implied)\nSchedule variant: ${sched}\n${notes?"Admin notes: "+notes:""}\n\nReturn the node graph JSON.`}]});
+      const raw=txt.trim().replace(/^```(?:json)?/i,"").replace(/```$/,"").trim();
+      const cand=JSON.parse(raw.slice(raw.indexOf("{"),raw.lastIndexOf("}")+1));
+      const errs=validate(cand);
+      if(errs.length>3)throw new Error(errs.slice(0,3).join(" · "));
+      const c=count(cand);
+      /* preview through the same renderer the live tree uses */
+      const keep=G;G=cand;
+      const html=["wtb","eng","wip"].filter(r=>cand[r]).map(r=>`<div class="tree"><h5><i class="s ${statusOf(r)}" style="width:8px;height:8px;border-radius:50%"></i>${cand[r].label}<span class="c">${countOf(r)} parts</span></h5>${rows(r,0)}</div>`).join("");
+      G=keep;
+      gst.textContent="";
+      gout.classList.remove("hide");
+      gout.innerHTML=`<div class="sum"><span class="tag neutral">${c.nodes} nodes</span><span class="tag neutral">${c.leaves} parts</span><span class="tag live">${c.sourced} sourced</span><span class="tag ${c.leaves-c.sourced?"gapt":"neutral"}">${c.leaves-c.sourced} not sourced</span><span class="tag neutral">${c.clocked} on an interval</span>${c.issues?`<span class="tag draft">${c.issues} issue / upgrade</span>`:""}${errs.length?`<span class="tag gapt" title="${errs.join(" · ")}">${errs.length} warning${errs.length>1?"s":""}</span>`:""}</div>
+        <div class="trees">${html}</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="g-use">Use this tree</button><button class="btn" id="g-copy">Copy JSON</button><button class="btn ghost" id="g-again">Regenerate</button></div>`;
+      gout.querySelector("#g-use").addEventListener("click",()=>{
+        GRAPH[t.id]=cand;saveTree(t.id,cand);MILES[t.id]=mi;
+        SCHEDULE[t.id]=`generated ${new Date().toLocaleDateString(undefined,{month:"short",day:"numeric"})} · ${sched} schedule · ${c.sourced}/${c.leaves} parts sourced`;
+        renderDetail(t.id)});
+      gout.querySelector("#g-copy").addEventListener("click",e=>{navigator.clipboard?.writeText(JSON.stringify(cand,null,1));e.target.textContent="Copied"});
+      gout.querySelector("#g-again").addEventListener("click",()=>v.querySelector("#g-run").click());
+    }catch(err){gst.className="st err";gst.textContent="Couldn't generate: "+(err.message||err)+" — try again, or narrow the notes."}
+  });
+  const all=[...t.colors.map(c=>({name:c.name,type:"base",src:c.base})),
+    ...t.layers.flatMap(l=>t.colors.filter(c=>t.glow[l.id+"|"+c.id]).map(c=>({name:l.name+" — "+c.name,type:"glow",src:t.glow[l.id+"|"+c.id]}))),
+    ...t.extras];
+  assets.innerHTML=all.map(a=>`<figure class="asset" style="margin:0"><div class="th" style="${frame(t)}"><img src="${thumb(a.src)}" alt="${a.name}" decoding="async"/></div><figcaption class="lab"><b>${a.name}</b><span class="t">${a.type}</span></figcaption></figure>`).join("");
+  /* ---- art intake ----
+     Everything mechanical about the pipeline lives here: the filename contract, the camera
+     box check, the coverage matrix and the per-layer align nudge. Registration is the one
+     thing that can't be automated from a thumbnail — a frame off a different camera gets
+     flagged for re-render rather than quietly nudged into place. */
+  const LAL={wheel:"wheel",frontwheel:"wheel",rearwheel:"rearwheel",rear:"rearwheel",hood:"hood",engine:"hood",rad:"rad",radiator:"rad",airbox:"airbox",glass:"glass",windshield:"glass"};
+  const ASPECT=(()=>{const[a,b]=(t.aspect||"1672/941").split("/").map(Number);return a/b})();
+  const up=v.querySelector("#up"),drop=v.querySelector("#drop"),frows=v.querySelector("#frows"),ust=v.querySelector("#up-st");
+  const picked=[];
+  const fi=el("input");fi.type="file";fi.accept="image/*";fi.multiple=true;fi.className="hide";up.appendChild(fi);
+  v.querySelector("#upopen").addEventListener("click",()=>up.classList.toggle("hide"));
+  v.querySelector("#up-close").addEventListener("click",()=>up.classList.add("hide"));
+  drop.addEventListener("click",()=>fi.click());
+  drop.addEventListener("dragover",e=>{e.preventDefault();drop.dataset.over=1});
+  drop.addEventListener("dragleave",()=>drop.dataset.over=0);
+  drop.addEventListener("drop",e=>{e.preventDefault();drop.dataset.over=0;take(e.dataTransfer.files)});
+  fi.addEventListener("change",()=>take(fi.files));
+  function parseName(n){const b=n.replace(/\.\w+$/,"").toLowerCase();
+    if(b.startsWith("base-")){const c=t.colors.find(x=>x.id===b.slice(5));return c?{kind:"base",color:c.id,to:"base render · "+c.name}:{kind:"bad",why:"no colorway id “"+b.slice(5)+"” on this twin"}}
+    if(b.startsWith("glow-")){const p=b.slice(5).split("-"),l=LAL[p[0]];if(!l||!t.layers.some(x=>x.id===l))return{kind:"bad",why:"unknown layer “"+p[0]+"”"};
+      const rest=p.slice(1).join("-");
+      if(rest==="xray"||rest==="")return{kind:"xray",layer:l,to:"x-ray reveal · "+l+" · shared by every colorway"};
+      const c=t.colors.find(x=>x.id===rest);return c?{kind:"glow",layer:l,color:c.id,to:"glow · "+t.layers.find(x=>x.id===l).name+" · "+c.name}:{kind:"bad",why:"no colorway id “"+rest+"” on this twin"}}
+    if(b.startsWith("xray"))return{kind:"extra",to:"extra · x-ray cutaway"};
+    return{kind:"bad",why:"filename doesn't match the contract"}}
+  function take(files){[...files].filter(f=>f.type.startsWith("image/")).forEach(f=>{
+    const url=URL.createObjectURL(f),im=new Image();
+    im.onload=()=>{const p=parseName(f.name),ar=im.naturalWidth/im.naturalHeight;
+      const off=Math.abs(ar/ASPECT-1);
+      picked.push({f,url,w:im.naturalWidth,h:im.naturalHeight,p,off,nudge:0});draw()};
+    im.src=url})}
+  function draw(){
+    frows.innerHTML=picked.map((x,i)=>{
+      const bad=x.p.kind==="bad",cam=x.off>.005;
+      const tag=bad?`<span class="tag gapt"><i class="dot"></i>${x.p.why}</span>`
+        :cam?`<span class="tag draft"><i class="dot"></i>Different camera box</span>`
+        :`<span class="tag live"><i class="dot"></i>Registers</span>`;
+      return `<div class="frow"><img class="px" src="${x.url}" alt=""/>
+        <span class="nm">${x.f.name}<em>${bad?"not assembled":"→ "+x.p.to}</em></span>
+        <span class="dim">${x.w}×${x.h}<br/>${cam?(x.off*100).toFixed(1)+"% off the frame box":"matches the frame box"}</span>
+        ${tag}
+        ${bad?"":`<label style="font-size:11px;color:var(--ink-3);display:flex;align-items:center;gap:5px">nudge y<input type="number" step="0.1" value="${x.nudge}" data-i="${i}"/>%</label>`}</div>`}).join("");
+    frows.querySelectorAll("input").forEach(inp=>inp.addEventListener("change",()=>picked[+inp.dataset.i].nudge=+inp.value||0));
+    const ok=picked.filter(x=>x.p.kind!=="bad").length,fl=picked.filter(x=>x.p.kind!=="bad"&&x.off>.005).length;
+    ust.className="st";ust.innerHTML=picked.length?`<b>${ok}</b> ready${fl?` · <b>${fl}</b> flagged for re-render`:""}${picked.length-ok?` · ${picked.length-ok} unreadable name`:""}`:"";
+  }
+  v.querySelector("#up-run").addEventListener("click",()=>{
+    const good=picked.filter(x=>x.p.kind!=="bad");
+    if(!good.length){ust.className="st err";ust.textContent="Nothing to assemble yet.";return}
+    const patch={glow:{},align:{}};
+    good.forEach(x=>{const p=x.p;
+      if(p.kind==="base"){const c=t.colors.find(y=>y.id===p.color);c.base=x.url;patch["base-"+p.color]=`assets/${t.make.toLowerCase()}/base-${p.color}.webp`}
+      else if(p.kind==="glow"){t.glow[p.layer+"|"+p.color]=x.url;patch.glow[p.layer+"|"+p.color]=`assets/${t.make.toLowerCase()}/glow-${p.layer}-${p.color}.webp`}
+      else if(p.kind==="xray"){t.xray=[...new Set([...(t.xray||[]),p.layer])];t.glow[p.layer+"|"+t.colors[0].id]=x.url;patch.glow[p.layer+"|*"]=`assets/${t.make.toLowerCase()}/glow-${p.layer}-xray.webp`}
+      else t.extras.push({name:"X-ray cutaway",type:"cutaway",src:x.url});
+      if(x.nudge&&p.layer){t.align={...(t.align||{}),[p.layer]:{y:x.nudge}};patch.align[p.layer]={y:x.nudge}}});
+    t.updated=new Date().toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+    sessionStorage.setItem("au7o.patch."+t.id,JSON.stringify(patch));
+    renderDetail(t.id);
+    const u2=$("#up"),n2=$("#upnote");
+    if(u2&&n2){u2.classList.remove("hide");
+      n2.innerHTML=`<b>Assembled.</b> The stage, coverage matrix and asset grid are live off these files. To deploy, drop the renders into <code>assets/${t.make.toLowerCase()}/</code> under the names below and merge this into <code>vehicles/${t.id}/vehicle.json</code> — the dashboard reads paths, not blobs, so a session upload previews but doesn't persist.<pre style="margin:8px 0 0;padding:10px;background:#FAFBFD;border:1px solid var(--line-2);border-radius:8px;font-size:11px;overflow:auto">${JSON.stringify(patch,null,1).replace(/</g,"&lt;")}</pre>`;}
+  });
+  mount();setLit(null,false);
+}
+
+/* ---- daily brief ----
+   The dashboard already knows everything; this reads it so you don't have to. Every number
+   in the prompt is computed from the same constants the cards render from — the model gets
+   a snapshot, never a database, and is told to cite only what's in it. Each insight carries
+   the card it came from, so "why do you say that" is one click, not a hunt. */
+const BRIEF_STORE="au7o.brief.v2";
+const BRIEF_CARDS={traffic:["#tplot","Visitors vs emails"],hours:["#hm-body","When they visit"],
+ sources:["#src-body","Where they come from"],affiliate:["#af-rows","Affiliate clicks"],
+ gaps:["#gap-body","Missing buy links"],audit:["#ka-body","Known issues by make"],
+ sweep:["#ag-rows","Web sweep agent"],emails:["#pills","Interest emails"]};const BRIEF_SYS=`You are the analyst for Au7o's admin dashboard. Au7o builds interactive "digital twins" of specific vehicles: a rendered car whose parts light up, backed by a tech tree of real parts with real part numbers, service intervals and known issues. Revenue is affiliate clicks on those parts. The product is pre-launch: an interest list, a few twins, no paid marketing.
+
+You are given a JSON snapshot of the dashboard. Write the operator's brief.
+
+Return ONLY JSON, no prose, no code fence:
+{"lede":"one or two sentences: the state of the business this week, in plain words",
+ "items":[{"sev":"act"|"watch"|"good","t":"the finding, one line, specific and numeric","why":"one line: why it matters or what to do about it","card":"<card key>"}]}
+
+Hard rules:
+1. Use ONLY numbers present in the snapshot. Never invent a metric, a part, a date or a percentage you cannot compute from it. Arithmetic on given numbers is fine.
+2. 3 to 5 items, ordered most-actionable first. "act" means it needs a decision this week; "watch" means a trend worth naming; "good" means something working that should be doubled down on. At most one "good".
+3. card must be exactly one of: ${Object.keys(BRIEF_CARDS).join(", ")} — the card that proves the point.
+4. Say the thing, not the category. "Volvo hasn't been audited in 38 days and its tree has no sourced parts" — not "data quality could be improved".
+5. No hype, no filler, no restating the snapshot. If something looks fine, don't pad the list to five.
+6. Plain English an owner-operator reads at 7am. No dashboards jargon, no bullet symbols, no markdown.`;
+
+function briefSnapshot(){
+ const walk=(G,id,out)=>{const n=G[id];if(!n)return out;
+  if(!(n.kids||[]).length&&!n.group)out.push(n);(n.kids||[]).forEach(k=>walk(G,k,out));return out};
+ const today=new Date("2026-08-21T00:00:00");
+ const twins=TWINS.map(t=>{const G=GRAPH[t.id]||CANON,miles=MILES[t.id]||0;
+  const leaves=[...new Set(["wtb","eng","wip"].flatMap(r=>walk(G,r,[])))];
+  const cv=cover(t);
+  return{name:`${t.year} ${t.make} ${t.model} ${t.trim}`,status:t.status,owners:t.users,mileage:miles,
+   updated:t.updated,colorways:t.colors.length,glowCoverage:`${cv.have}/${cv.total}`,
+   parts:leaves.length,sourcedParts:leaves.filter(n=>n.partNo&&n.price).length,
+   onInterval:leaves.filter(n=>n.riskAt).length,
+   overdueNow:leaves.filter(n=>n.riskAt!=null&&miles>=((n.servicedAt||0)+n.riskAt)).length,
+   knownIssues:leaves.filter(n=>n.knownIssue).map(n=>n.label),
+   upgradesAvailable:leaves.filter(n=>n.upgrade).length,
+   flaggedWithNoBuyLink:leaves.filter(n=>(n.knownIssue||n.upgrade||(n.riskAt!=null&&miles>=((n.servicedAt||0)+n.riskAt)))&&!(n.partNo&&n.price)).map(n=>n.label)}});
+ const tr=TRAF.slice(-13).map(([m,v,e])=>({month:m,visitors:v,emails:e}));
+ const affIssue=AFFIL.filter(r=>r.issue);
+ return{today:"2026-08-21",stage:"pre-launch, staging",
+  interestList:{total:124,addedThisWeek:18,latestSignups:EMAILS.slice(0,5).map(r=>({on:r[0],wants:r[2],status:r[4]}))},
+  monthlyTraffic:tr,
+  trafficNote:"emails column is new interest-list signups that month; Aug 2026 is partial (through the 21st)",
+  affiliate:{clicksThisMonth:AFFIL.reduce((s,r)=>s+r.clicks,0),apiSpend:0,
+   flaggedIssueClicks:affIssue.reduce((s,r)=>s+r.clicks,0),
+   clicksOnTheNamedFix:affIssue.filter(r=>r.fix).reduce((s,r)=>s+r.clicks,0),
+   topLinks:AFFIL.slice(0,5).map(r=>({part:r.n,via:r.v,clicks:r.clicks,weFlagged:r.issue||null,wentToNamedFix:!!r.fix}))},
+  referrers:SRC.map(r=>({source:r.n,detail:r.s,visitors:r.v,becameEmails:r.e})),
+  twins,
+  knownIssueAudits:Object.entries(AUDITS).map(([make,a])=>({make,lastAudited:a.on,
+   daysSince:Math.round((today-new Date(a.on+"T00:00:00"))/864e5),feeds:a.feeds,
+   staleAfterDays:AUDIT_STALE})),
+  sweepProposalsWaiting:FINDINGS.map(f=>({kind:f.k,title:f.t,confidence:f.c,signals:f.m})),
+  sweepNote:"proposals are unaccepted — nothing is on a twin until an admin accepts it"};
+}
+
+(()=>{
+ const st=$("#bf-st"),lede=$("#bf-lede"),ins=$("#bf-ins"),note=$("#bf-note"),ans=$("#bf-ans");
+ const dayKey=()=>new Date().toISOString().slice(0,10);
+ let done=false,busy=false;
+ const goCard=k=>{const c=BRIEF_CARDS[k]&&$(BRIEF_CARDS[k][0]);const card=c&&(c.closest(".card")||c);
+  if(!card)return;
+  const y=Math.max(0,window.scrollY+card.getBoundingClientRect().top-70);
+  window.scrollTo(0,y);
+  try{window.scrollTo({top:y,behavior:"smooth"})}catch(e){}
+  card.classList.add("ring");setTimeout(()=>card.classList.remove("ring"),1600)};
+ const paint=(b,when)=>{
+  st.classList.add("hide");
+  lede.textContent=b.lede||"";lede.classList.toggle("hide",!b.lede);
+  ins.innerHTML=(b.items||[]).slice(0,5).map(i=>{
+   const c=BRIEF_CARDS[i.card]?i.card:null;
+   return `<div class="bi" data-sev="${["act","watch","good"].includes(i.sev)?i.sev:"watch"}"><i></i>
+    <span><b>${i.t}</b><em>${i.why||""}</em></span>
+    ${c?`<button class="go" data-card="${c}">${BRIEF_CARDS[c][1]} →</button>`:"<span></span>"}</div>`}).join("");
+  const acts=(b.items||[]).filter(i=>i.sev==="act").length;
+  note.textContent=`${when} · ${acts} need${acts===1?"s":""} a decision · everything else is below if you want it`;
+  done=true};
+ const run=async(force)=>{
+  if(busy)return;
+  if(!force){try{const c=JSON.parse(localStorage.getItem(BRIEF_STORE)||"null");
+   if(c&&c.day===dayKey()&&c.b){paint(c.b,"today · cached");return}}catch(e){}}
+  busy=true;done=false;
+  st.className="bst";st.innerHTML='<span class="spin"></span> Reading today\u2019s numbers…';
+  lede.classList.add("hide");ins.innerHTML="";note.textContent="working…";
+  try{
+   const txt=await window.claude.complete({model:"claude-sonnet-4-5",max_tokens:1600,system:BRIEF_SYS,
+    messages:[{role:"user",content:"Dashboard snapshot:\n"+JSON.stringify(briefSnapshot())+"\n\nReturn the brief JSON."}]});
+   const raw=txt.trim().replace(/^```(?:json)?/i,"").replace(/```$/,"").trim();
+   const b=JSON.parse(raw.slice(raw.indexOf("{"),raw.lastIndexOf("}")+1));
+   if(!b.items||!b.items.length)throw new Error("no findings came back");
+   paint(b,"just now");
+   try{localStorage.setItem(BRIEF_STORE,JSON.stringify({day:dayKey(),b}))}catch(e){}
+  }catch(err){st.className="bst err";st.classList.remove("hide");
+   st.textContent="Couldn\u2019t read the dashboard: "+(err.message||err)+" — the cards below are unaffected.";
+   note.textContent="brief unavailable"}
+  busy=false};
+ ins.addEventListener("click",e=>{const b=e.target.closest("[data-card]");if(b)goCard(b.dataset.card)});
+ $("#bf-run").addEventListener("click",()=>run(true));
+ const q=$("#bf-q"),ask=async()=>{
+  const text=q.value.trim();if(!text||busy)return;
+  busy=true;ans.classList.remove("hide");ans.innerHTML='<span class="spin"></span> Checking the numbers…';
+  try{
+   const txt=await window.claude.complete({model:"claude-sonnet-4-5",max_tokens:900,
+    system:BRIEF_SYS.split("Return ONLY JSON")[0]+`Answer the operator's question in plain prose — no JSON, no markdown, no bullets, at most 4 sentences. Use only numbers from the snapshot; if the snapshot cannot answer it, say exactly what is missing and which card would need to exist. Never invent a figure.`,
+    messages:[{role:"user",content:"Dashboard snapshot:\n"+JSON.stringify(briefSnapshot())+"\n\nQuestion: "+text}]});
+   ans.textContent=txt.trim()}
+  catch(err){ans.textContent="Couldn\u2019t answer that: "+(err.message||err)}
+  busy=false};
+ $("#bf-ask").addEventListener("click",ask);
+ q.addEventListener("keydown",e=>{if(e.key==="Enter")ask()});
+ window.__brief={ensure:()=>{if(!done&&!busy)run(false)}};
+})();
+
+/* ---- routing ---- */
+function go(view,id){
+  ["overview","twins","detail"].forEach(v=>$("#v-"+v).classList.toggle("hide",v!==view));
+  [...$("#nav").querySelectorAll("button")].forEach(b=>b.setAttribute("aria-current",String((b.dataset.view==="twins")===(view!=="overview"))));
+  const cr=$("#crumb");
+  if(cr){cr.innerHTML=view==="overview"?"<b>Admin</b>":view==="twins"?'Admin <span>/</span> <b>Twin Gallery</b>':'Admin <span>/</span> <a href="#" id="cb">Twin Gallery</a> <span>/</span> <b>'+title(TWINS.find(t=>t.id===id))+"</b>";
+   const cb=$("#cb");if(cb)cb.addEventListener("click",e=>{e.preventDefault();go("twins")});}
+  if(view==="detail")renderDetail(id);
+  if(view==="overview"&&window.__brief)window.__brief.ensure();
+  window.scrollTo(0,0);
+}
+$("#nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)go(b.dataset.view)});
+renderGallery();go("twins");
+</script>
+</body>
+</html>

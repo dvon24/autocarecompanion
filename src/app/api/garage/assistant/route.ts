@@ -3,6 +3,13 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { MAINTENANCE_SCHEDULES } from '@/lib/maintenance';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
+import {
+  isMaintenanceMutationError,
+  isRecordBody,
+} from '@/lib/maintenance-mutation';
+import { createGarageAssistantToolBatchExecutor } from '@/lib/garage-assistant-tool-batch';
+import { executeGarageAssistantProductionTool } from '@/lib/garage-assistant-production-tool';
+import { committedGarageActionFallback, resolveCommittedGarageActionMessage } from '@/lib/garage-assistant-response';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
@@ -17,7 +24,7 @@ const tools = [
         type: 'object',
         properties: {
           vehicleId: { type: 'string', description: 'The vehicle ID to update' },
-          mileage: { type: 'number', description: 'The new mileage reading' },
+          mileage: { type: 'integer', minimum: 0, maximum: 2147483647, description: 'The new mileage reading' },
         },
         required: ['vehicleId', 'mileage'],
       },
@@ -37,12 +44,12 @@ const tools = [
             enum: Object.keys(MAINTENANCE_SCHEDULES),
             description: 'Type of maintenance performed',
           },
-          mileage: { type: 'number', description: 'Mileage at time of service' },
-          date: { type: 'string', description: 'Date of service (ISO format or natural language like "today", "yesterday")' },
+          mileage: { type: 'integer', minimum: 0, maximum: 2147483647, description: 'Mileage at time of service' },
+          date: { type: 'string', description: 'Exact YYYY-MM-DD date, or ISO datetime with an explicit UTC offset' },
           cost: { type: 'number', description: 'Cost of service (optional)' },
           notes: { type: 'string', description: 'Additional notes (optional)' },
         },
-        required: ['vehicleId', 'type', 'mileage'],
+        required: ['vehicleId', 'type', 'mileage', 'date'],
       },
     },
   },
@@ -87,257 +94,12 @@ const tools = [
   },
 ];
 
-// Execute tool calls
-async function executeTool(
-  toolName: string,
-  args: Record<string, unknown>,
-  userId: string
-): Promise<string> {
-  switch (toolName) {
-    case 'list_vehicles': {
-      const vehicles = await prisma.vehicle.findMany({
-        where: { userId },
-        select: {
-          id: true,
-          year: true,
-          make: true,
-          model: true,
-          trim: true,
-          nickname: true,
-          currentMileage: true,
-          isPrimary: true,
-        },
-      });
+// Production tool execution lives in an importable seam so route behavior is executable in tests.
 
-      if (vehicles.length === 0) {
-        return 'No vehicles found in your garage.';
-      }
-
-      return JSON.stringify(vehicles.map((v: any) => ({
-        id: v.id,
-        name: v.nickname || `${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''}`,
-        mileage: v.currentMileage,
-        isPrimary: v.isPrimary,
-      })));
-    }
-
-    case 'get_vehicle_info': {
-      const vehicle = await prisma.vehicle.findFirst({
-        where: { id: args.vehicleId as string, userId },
-        include: {
-          maintenanceRecords: {
-            orderBy: { date: 'desc' },
-            take: 10,
-          },
-        },
-      });
-
-      if (!vehicle) {
-        return 'Vehicle not found.';
-      }
-
-      return JSON.stringify({
-        id: vehicle.id,
-        name: vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`,
-        year: vehicle.year,
-        make: vehicle.make,
-        model: vehicle.model,
-        trim: vehicle.trim,
-        vin: vehicle.vin,
-        currentMileage: vehicle.currentMileage,
-        recentMaintenance: vehicle.maintenanceRecords.map(r => ({
-          type: r.type,
-          typeName: MAINTENANCE_SCHEDULES[r.type]?.name || r.type,
-          date: r.date.toISOString().split('T')[0],
-          mileage: r.mileage,
-          cost: r.cost,
-        })),
-      });
-    }
-
-    case 'update_mileage': {
-      const mileage = args.mileage as number;
-      const vehicleId = args.vehicleId as string;
-
-      // Verify vehicle belongs to user
-      const vehicle = await prisma.vehicle.findFirst({
-        where: { id: vehicleId, userId },
-      });
-
-      if (!vehicle) {
-        return 'Vehicle not found or access denied.';
-      }
-
-      // Update mileage
-      await prisma.vehicle.update({
-        where: { id: vehicleId },
-        data: {
-          currentMileage: mileage,
-          lastMileageUpdate: new Date(),
-        },
-      });
-
-      // Log to mileage history
-      await prisma.mileageLog.create({
-        data: {
-          vehicleId,
-          mileage,
-        },
-      });
-
-      return `Updated mileage to ${mileage.toLocaleString()} miles for ${vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`}.`;
-    }
-
-    case 'log_maintenance': {
-      const vehicleId = args.vehicleId as string;
-      const type = args.type as string;
-      const mileage = args.mileage as number;
-      const cost = args.cost as number | undefined;
-      const notes = args.notes as string | undefined;
-
-      // Parse date
-      let date = new Date();
-      if (args.date) {
-        const dateStr = (args.date as string).toLowerCase();
-        if (dateStr === 'today') {
-          date = new Date();
-        } else if (dateStr === 'yesterday') {
-          date = new Date();
-          date.setDate(date.getDate() - 1);
-        } else {
-          date = new Date(args.date as string);
-        }
-      }
-
-      // Verify vehicle belongs to user
-      const vehicle = await prisma.vehicle.findFirst({
-        where: { id: vehicleId, userId },
-      });
-
-      if (!vehicle) {
-        return 'Vehicle not found or access denied.';
-      }
-
-      const schedule = MAINTENANCE_SCHEDULES[type];
-      if (!schedule) {
-        return `Unknown maintenance type: ${type}`;
-      }
-
-      // Calculate next due mileage
-      const nextDueMileage = mileage + schedule.defaultIntervalMiles;
-      const nextDueDate = new Date(date);
-      nextDueDate.setMonth(nextDueDate.getMonth() + schedule.defaultIntervalMonths);
-
-      // Create maintenance record
-      await prisma.maintenanceRecord.create({
-        data: {
-          vehicleId,
-          type,
-          mileage,
-          date,
-          cost,
-          notes,
-          nextDueMileage,
-          nextDueDate,
-        },
-      });
-
-      // Also update current mileage if this is higher
-      if (!vehicle.currentMileage || mileage > vehicle.currentMileage) {
-        await prisma.vehicle.update({
-          where: { id: vehicleId },
-          data: {
-            currentMileage: mileage,
-            lastMileageUpdate: new Date(),
-          },
-        });
-      }
-
-      return `Logged ${schedule.name} at ${mileage.toLocaleString()} miles${cost ? ` ($${cost.toFixed(2)})` : ''}. Next due at ${nextDueMileage.toLocaleString()} miles.`;
-    }
-
-    case 'get_maintenance_status': {
-      const vehicleId = args.vehicleId as string;
-
-      const vehicle = await prisma.vehicle.findFirst({
-        where: { id: vehicleId, userId },
-        include: {
-          maintenanceRecords: true,
-        },
-      });
-
-      if (!vehicle) {
-        return 'Vehicle not found.';
-      }
-
-      if (!vehicle.currentMileage) {
-        return 'Please update your current mileage first to see maintenance status.';
-      }
-
-      const statuses: Array<{ type: string; status: string; message: string }> = [];
-
-      for (const [typeId, schedule] of Object.entries(MAINTENANCE_SCHEDULES)) {
-        const records = vehicle.maintenanceRecords
-          .filter(r => r.type === typeId)
-          .sort((a, b) => b.mileage - a.mileage);
-
-        const lastRecord = records[0];
-
-        if (!lastRecord) {
-          // No history - assume due at first interval
-          const dueAt = schedule.defaultIntervalMiles;
-          if (vehicle.currentMileage >= dueAt) {
-            statuses.push({
-              type: schedule.name,
-              status: 'overdue',
-              message: `Overdue - no service history recorded`,
-            });
-          } else {
-            statuses.push({
-              type: schedule.name,
-              status: 'unknown',
-              message: `No history - due at ${dueAt.toLocaleString()} mi`,
-            });
-          }
-        } else {
-          const dueAtMileage = lastRecord.nextDueMileage || lastRecord.mileage + schedule.defaultIntervalMiles;
-          const milesUntilDue = dueAtMileage - vehicle.currentMileage;
-
-          if (milesUntilDue <= 0) {
-            statuses.push({
-              type: schedule.name,
-              status: 'overdue',
-              message: `Overdue by ${Math.abs(milesUntilDue).toLocaleString()} miles`,
-            });
-          } else if (milesUntilDue < 500) {
-            statuses.push({
-              type: schedule.name,
-              status: 'due_soon',
-              message: `Due in ${milesUntilDue.toLocaleString()} miles`,
-            });
-          } else {
-            statuses.push({
-              type: schedule.name,
-              status: 'ok',
-              message: `Due at ${dueAtMileage.toLocaleString()} mi (${milesUntilDue.toLocaleString()} mi remaining)`,
-            });
-          }
-        }
-      }
-
-      // Sort by urgency
-      const sorted = statuses.sort((a, b) => {
-        const order = { overdue: 0, due_soon: 1, unknown: 2, ok: 3 };
-        return (order[a.status as keyof typeof order] ?? 4) - (order[b.status as keyof typeof order] ?? 4);
-      });
-
-      return JSON.stringify(sorted);
-    }
-
-    default:
-      return `Unknown tool: ${toolName}`;
-  }
-}
+const executeGarageAssistantToolBatch = createGarageAssistantToolBatchExecutor({
+  prisma,
+  executeTool: executeGarageAssistantProductionTool,
+});
 
 interface VehicleContext {
   vehicleId: string;
@@ -351,7 +113,7 @@ function getSystemPrompt(
   vehicleContext?: VehicleContext
 ) {
   const vehicleList = vehicles.length > 0
-    ? vehicles.map((v: any) => `- ${v.name} (ID: ${v.id}, Mileage: ${v.mileage?.toLocaleString() || 'unknown'})`).join('\n')
+    ? vehicles.map((v) => `- ${v.name} (ID: ${v.id}, Mileage: ${v.mileage?.toLocaleString() || 'unknown'})`).join('\n')
     : 'No vehicles in garage yet.';
 
   const maintenanceTypes = Object.entries(MAINTENANCE_SCHEDULES)
@@ -413,7 +175,18 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    const { message, conversationHistory = [], vehicleContext } = await request.json();
+    let requestBody: unknown;
+    try {
+      requestBody = await request.json();
+    } catch {
+      return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
+    }
+    if (!isRecordBody(requestBody)) {
+      return NextResponse.json({ error: 'Invalid request body' }, { status: 400 });
+    }
+    const message = requestBody.message;
+    const conversationHistory = requestBody.conversationHistory ?? [];
+    const vehicleContext = requestBody.vehicleContext as VehicleContext | undefined;
 
     if (!message || typeof message !== 'string' || message.length > 8_000) {
       return NextResponse.json({ error: 'Message required' }, { status: 400 });
@@ -441,7 +214,7 @@ export async function POST(request: Request) {
       },
     });
 
-    const vehicleList = vehicles.map((v: any) => ({
+    const vehicleList = vehicles.map((v) => ({
       id: v.id,
       name: v.nickname || `${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''}`,
       mileage: v.currentMileage,
@@ -502,25 +275,10 @@ export async function POST(request: Request) {
 
     // Check if there are tool calls to execute
     if (assistantMessage.tool_calls && assistantMessage.tool_calls.length > 0) {
-      const toolResults: Array<{ tool_call_id: string; output: string }> = [];
-      const actions: Array<{ tool: string; result: string }> = [];
-
-      for (const toolCall of assistantMessage.tool_calls) {
-        const args = JSON.parse(toolCall.function.arguments);
-        const result = await executeTool(
-          toolCall.function.name,
-          args,
-          session.user.id
-        );
-        toolResults.push({
-          tool_call_id: toolCall.id,
-          output: result,
-        });
-        actions.push({
-          tool: toolCall.function.name,
-          result,
-        });
-      }
+      const { toolResults, actions } = await executeGarageAssistantToolBatch(
+        assistantMessage.tool_calls,
+        session.user.id,
+      );
 
       // Get final response after tool execution
       const followUpMessages = [
@@ -533,32 +291,37 @@ export async function POST(request: Request) {
         })),
       ];
 
-      const followUpResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${OPENAI_API_KEY}`,
-        },
-        body: JSON.stringify({
-          model: 'gpt-5.6-sol',
-          messages: followUpMessages,
-          max_completion_tokens: 500,
-        }),
-        signal: AbortSignal.timeout(25_000),
-      });
+      let followUpResponse: Response;
+      try {
+        followUpResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${OPENAI_API_KEY}`,
+          },
+          body: JSON.stringify({
+            model: 'gpt-5.6-sol',
+            messages: followUpMessages,
+            max_completion_tokens: 500,
+          }),
+          signal: AbortSignal.timeout(25_000),
+        });
+      } catch {
+        return NextResponse.json({ message: committedGarageActionFallback(actions), actions });
+      }
 
       if (!followUpResponse.ok) {
         // Return tool results directly if follow-up fails
         return NextResponse.json({
-          message: actions.map(a => a.result).join('\n'),
+          message: committedGarageActionFallback(actions),
           actions,
         });
       }
 
-      const followUpData = await followUpResponse.json();
+      const followUpData = await followUpResponse.json().catch(() => null);
 
       // Story 7.1: Log API cost for follow-up call
-      if (followUpData.usage) {
+      if (followUpData?.usage) {
         logApiCost(
           'garage_assistant',
           followUpData.usage.prompt_tokens || 0,
@@ -568,7 +331,7 @@ export async function POST(request: Request) {
       }
 
       return NextResponse.json({
-        message: followUpData.choices[0].message.content,
+        message: resolveCommittedGarageActionMessage(followUpData, actions),
         actions,
       });
     }
@@ -580,6 +343,9 @@ export async function POST(request: Request) {
     });
 
   } catch (error) {
+    if (isMaintenanceMutationError(error)) {
+      return NextResponse.json({ error: error.message }, { status: error.status });
+    }
     console.error('Garage assistant error:', error);
     return NextResponse.json(
       { error: 'Internal server error' },

@@ -1,0 +1,1227 @@
+/* Au7o Tech Tree — node canvas. Draggable nodes, expandable hierarchy, AI-driven reshaping,
+   mileage/known-issue risk glow, right-click node styling. */
+
+const TT_SHAPES = [
+  { id:"rect",    label:"Square",  radius:3 },
+  { id:"rounded", label:"Rounded", radius:14 },
+  { id:"pill",    label:"Pill",    radius:999 },
+  { id:"cut",     label:"Cut",     radius:3, cut:true },
+];
+const TT_COLORS = [
+  { id:"ink",   label:"Graphite", hex:"var(--ink)" },
+  { id:"blue",  label:"Blue",     hex:"#2563EB" },
+  { id:"red",   label:"Red",      hex:"#A62B22" },
+  { id:"amber", label:"Amber",    hex:"#D9822B" },
+  { id:"violet",label:"Violet",   hex:"#6D28D9" },
+];
+
+const TT_NODE_W = 198;
+const ttThumb = src => (src || "").replace("assets/", "assets/thumbs/");
+
+/* riskAt = mileage the part is typically consumed / known to fail. life = service life copy. */
+const TT_TREES = {
+  wheel: {
+    label:"Wheel, Tire & Brakes", short:"Wheel · Tire · Brakes", root:"wtb",
+    nodes:{
+      wtb:{ label:"Wheel, Tire & Brakes", sub:"All four corners", img:"assets/part-wheel.webp", kids:["tire","wheelA","brakes"], group:true,
+            partNo:"—", where:"Hub outward, front and rear", spec:"Same wheel and tire all round · brakes differ front to rear", price:"—" },
+      tire:{ label:"Tire", sub:"275/40ZR20 · all four", img:"assets/part-tire.webp", kids:[], riskAt:40000,
+             partNo:"P ZERO PZ4 2755-2000", brand:"Pirelli P Zero PZ4", where:"All four corners — same size front and rear", spec:"275/40ZR20 · 35 psi cold", price:"$298.99 ea", stock:"Tire Rack · ships 2 days",
+             life:"Replace at 3/32\" tread or 6 years", dueNote:"You are 25,000 mi past a typical set.", issue:"Heat-cycled sidewalls on a 392 go off well before the tread does — a set that still shows tread can be long past its grip." },
+      wheelA:{ label:"Wheel", finishes:true, sub:"20 × 9.5 forged · all four", img:"assets/part-wheel.webp", kids:["lugs","tpms"],
+               partNo:"5XC13TRMAA", brand:"Mopar forged aluminum", where:"All four corners — same part front and rear", spec:"20×9.5 · 5×115 · +23 mm offset", price:"$542.00 ea", stock:"Mopar parts counter · special order",
+               life:"Inspect for curb damage and runout at every rotation" },
+      lugs:{ label:"Lug Nuts", sub:"Set of 20 · M14 × 1.5", img:"assets/part-lugs.webp", kids:[], riskAt:60000,
+             partNo:"6509064AA", brand:"Mopar capped lug nut", where:"5 per corner · 22 mm socket", spec:"Torque 130 ft-lb · star pattern", price:"$3.85 ea", stock:"RockAuto · in stock",
+             life:"Replace any nut that no longer takes a 22 mm socket cleanly",
+             issue:"Classic Chrysler swollen-lug-nut failure — the chrome cap separates and balloons, so the socket won't seat. Extremely common by 60k. Solid one-piece aftermarket nuts are the usual fix.",
+             alt:"Gorilla 21133HT one-piece steel · $28.60 for 20" },
+      tpms:{ label:"TPMS Sensor", sub:"433 MHz · pressure + temp", img:"assets/part-wheel.webp", kids:[],  riskAt:70000,
+             partNo:"68239720AA", brand:"Mopar / Schrader clamp-in", where:"Inside the wheel at the valve stem", spec:"433 MHz · relearn required after swap", price:"$46.20", stock:"O'Reilly · 2.1 mi",
+             life:"Battery is sealed — 7 to 10 years, then the whole sensor" },
+      brakes:{ label:"Brakes", sub:"Brembo · front 6-pot, rear 4-pot", img:"assets/part-caliper.webp", kids:["frontBrakes","rearBrakes","brakeFluid"], group:true,
+               partNo:"—", where:"Behind each wheel", spec:"Front 390 mm 6-piston · rear 350 mm 4-piston", price:"—" },
+      frontBrakes:{ label:"Front Brakes", sub:"6-piston · 390 mm", img:"assets/part-caliper.webp", kids:["caliper","rotor","pads"], group:true,
+               partNo:"—", where:"Front axle, both sides", spec:"Brembo 6-piston fixed · 390 mm two-piece rotor", price:"—",
+               life:"The end that does 70% of the stopping — and wears like it" },
+      rearBrakes:{ label:"Rear Brakes", sub:"4-piston · 350 mm", img:"assets/part-caliper.webp", kids:["caliperR","rotorR","padsR"], group:true,
+               partNo:"—", where:"Rear axle, both sides", spec:"Brembo 4-piston fixed · 350 mm vented rotor", price:"—",
+               life:"Rears typically go two front sets before they need anything" },
+      brakeFluid:{ label:"Brake Fluid", sub:"DOT 4 · full system", img:"assets/part-brake-fluid.webp", kids:[], riskAt:62000,
+                partNo:"68218067AB", brand:"Mopar DOT 4 · 12 oz", where:"Master cylinder reservoir, driver side firewall", spec:"DOT 4 only · 1.0 qt for a full flush · dry boiling point 509 °F", price:"$9.79 / 12 oz", stock:"NAPA · 1.7 mi",
+                life:"Flush every 2 years or 30,000 mi — it absorbs water whether you drive or not",
+                dueNote:"Never logged on this car.", issue:"Old fluid boils under repeated hard stops and the pedal goes long right when you need it — the cheapest brake job on the list." },
+      caliper:{ label:"Front Caliper", sub:"6-piston fixed, red", img:"assets/part-caliper.webp", kids:[],
+                partNo:"68249074AA", brand:"Brembo 6-piston fixed", where:"Front, bolted to the knuckle", spec:"Bracket bolts 100 ft-lb · pistons 2×36 / 2×40 / 2×44 mm", price:"$689.00 reman", stock:"RockAuto · core charge $120",
+                life:"Rebuild or replace when a piston sticks or a boot tears" },
+      rotor:{ label:"Front Rotor", sub:"390 mm slotted two-piece", img:"assets/part-rotor.webp", kids:[], riskAt:70000,
+              partNo:"68232583AA", brand:"Mopar slotted vented", where:"Front axle, under the caliper", spec:"390 × 34 mm · min thickness 32.0 mm · runout < 0.05 mm", price:"$264.90 ea", stock:"Advance · 3.8 mi",
+              life:"Resurface once, then replace — most 392 owners replace in pairs",
+              issue:"Front rotors on the 392 warp early if the car sees hard street stops. Watch for steering-wheel shudder at 55–65 mph braking.",
+              alt:"StopTech 126.63066SR slotted · $214.99 ea" },
+      pads:{ label:"Front Pads", sub:"Front axle set · 6-pot", img:"assets/part-pads.webp", kids:[], riskAt:45000,
+             partNo:"68249169AB", brand:"Mopar semi-metallic, 6-piston fitment", where:"Front axle set · 4 pads", spec:"Min thickness 3 mm · bed-in 200 mi · not interchangeable with the rears", price:"$164.99 set", stock:"RockAuto · in stock",
+             life:"30k–45k on a 392 driven the way a 392 gets driven",
+             dueNote:"20,000 mi past a typical front set.", issue:"Pad slap and a low pedal are the tells on this car long before the wear sensor squeals.",
+             alt:"Hawk HPS 5.0 HB726B.582 · $148.00 set" },
+      caliperR:{ label:"Rear Caliper", sub:"4-piston fixed, red", img:"assets/part-caliper.webp", kids:[],
+                partNo:"68249076AA", brand:"Brembo 4-piston fixed", where:"Rear, bolted to the knuckle", spec:"Bracket bolts 85 ft-lb · pistons 4×38 mm", price:"$472.00 reman", stock:"RockAuto · core charge $95",
+                life:"Rears seize before they wear — exercise the slides at every pad change" },
+      rotorR:{ label:"Rear Rotor", sub:"350 mm vented", img:"assets/part-rotor.webp", kids:[], riskAt:95000,
+              partNo:"68232587AA", brand:"Mopar vented", where:"Rear axle, under the caliper", spec:"350 × 28 mm · min thickness 26.0 mm", price:"$178.40 ea", stock:"Advance · 3.8 mi",
+              life:"Usually outlives two front sets — replace in pairs when they do go" },
+      padsR:{ label:"Rear Pads", sub:"Rear axle set · 4-pot", img:"assets/part-pads.webp", kids:[], riskAt:80000,
+             partNo:"68249171AB", brand:"Mopar semi-metallic, 4-piston fitment", where:"Rear axle set · 4 pads", spec:"Min thickness 3 mm · smaller footprint than the fronts — different part", price:"$132.99 set", stock:"RockAuto · in stock",
+             life:"60k–80k — roughly twice a front set" },
+    },
+  },
+  oil: {
+    label:"Oil Change", short:"Oil change", root:"oil",
+    nodes:{
+      oil:{ label:"Oil Change", sub:"6.4L HEMI · 7.0 qt", img:"assets/part-oil-filter.webp", kids:["oilFluid","oilFilter","oilPlug"], group:true,
+            partNo:"—", where:"Under the car, driver side", spec:"Every 6,000 mi on a 392", price:"—" },
+      oilFluid:{ label:"Engine Oil", sub:"SAE 0W-40 · MS-12633", img:"assets/part-oil.webp", kids:[], riskAt:65000,
+                 partNo:"550045214", brand:"Pennzoil Ultra Platinum 0W-40", where:"7.0 qt with a filter change", spec:"Full synthetic, MS-12633 required — not 5W-20", price:"$32.97 / 5 qt", stock:"Walmart · 1.4 mi",
+                 life:"6,000 mi or 6 months, whichever lands first",
+                 dueNote:"Due now.", issue:"The 392 is one of the few HEMIs that genuinely needs 0W-40 — a quick-lube 5W-20 fill is how lifters start ticking." },
+      oilFilter:{ label:"Oil Filter", sub:"Cartridge · top-mount", img:"assets/part-oil-filter.webp", kids:[], riskAt:65000,
+                  partNo:"MO-899", brand:"Mopar MO-899", where:"Top of the engine, driver side of the intake", spec:"Cap torque 25 Nm · new O-ring each time", price:"$11.49", stock:"Mopar counter · in stock",
+                  life:"Every oil change, no exceptions" },
+      oilPlug:{ label:"Drain Plug & Gasket", sub:"M14 plug · crush washer", img:"assets/part-drain-plug.webp", kids:[],
+                partNo:"6506305AA", brand:"Mopar crush washer", where:"Oil pan drain plug", spec:"Plug torque 20 ft-lb", price:"$1.35", stock:"Dealer · in stock",
+                life:"One-time use — replace with every drain" },
+    },
+  },
+  wipers: {
+    label:"Windshield Wipers", short:"Wipers", root:"wip",
+    nodes:{
+      wip:{ label:"Windshield Wipers", sub:"Front pair · 22\" / 20\"", img:"assets/part-wipers.webp", kids:["wipL","wipR","wipFluid"], group:true,
+            partNo:"—", where:"Base of the windshield", spec:"Hook-style arm", price:"—" },
+      wipL:{ label:"Driver Blade", sub:"22 inch", img:"assets/part-wiper-driver.webp", kids:[], riskAt:60000,
+             partNo:"22-4", brand:"Rain-X Latitude 22\"", where:"Driver side arm", spec:"Hook J-arm · beam blade", price:"$18.97", stock:"AutoZone · 0.9 mi",
+             life:"6 to 12 months",
+             issue:"Chattering and streaking on the driver side is the most common wiper complaint on this car — the arm spring weakens before the rubber goes." },
+      wipR:{ label:"Passenger Blade", sub:"20 inch", img:"assets/part-wiper-pass.webp", kids:[], riskAt:60000,
+             partNo:"20-4", brand:"Rain-X Latitude 20\"", where:"Passenger side arm", spec:"Hook J-arm · beam blade", price:"$17.47", stock:"AutoZone · 0.9 mi",
+             life:"Replace as a pair with the driver blade" },
+      wipFluid:{ label:"Washer Fluid", sub:"Reservoir · 4.7 qt", img:"assets/part-washer-fluid.webp", kids:[],
+                 partNo:"—", brand:"De-icer rated to −20 °F", where:"Reservoir neck, passenger front corner", spec:"Do not use plain water — the pump freezes", price:"$4.29 gal", stock:"Any parts store",
+                 life:"Top off every oil change" },
+    },
+  },
+};
+
+/* What an owner can tell Au7o about a part they fitted themselves. Per fork, because the
+   question that decides whether the known issue is retired is different for every part. */
+const TT_RAD_OWN_KINDS = [
+  { id:"alum", label:"All-aluminium, welded tanks", clears:true, spec:"Aluminium core · TIG-welded aluminium end tanks · cap 16 psi", life:"No service interval — the plastic-tank failure mode doesn't apply to this part" },
+  { id:"plastic", label:"Aluminium core, plastic tanks", clears:false, spec:"Aluminium core · crimped plastic end tanks", life:"60,000–100,000 mi before the tank seams weep" },
+  { id:"unsure", label:"Not sure", clears:null, spec:"Construction not confirmed yet", life:"Interval unchanged until Au7o confirms the construction" },
+];
+
+/* the radiator known issue's fix — one object, shared by the part and its option node */
+const TT_RAD_UPGRADE = { label:"Mishimoto MMRAD-SRT-15", tag:"All-aluminium direct fit", img:"assets/part-radiator-alum.webp",
+  fixes:"Retires the failure mode instead of resetting the clock — TIG-welded aluminium end tanks in place of the crimped plastic ones, lifetime warranty.",
+  price:"$826.00", stock:"Amazon · 2-day", gain:"Reliability +18", confidence:"35 owner reports · fitment reviewed",
+  fit:"6.4L 392 / Scat Pack / SRT (2011–2021). The 5.7L R/T takes MMRAD-SRT-09 — confirm by VIN.",
+  node:{ sub:"All-aluminium · welded tanks", img:"assets/part-radiator-alum.webp", partNo:"MMRAD-SRT-15", brand:"Mishimoto all-aluminium direct fit", price:"$826.00", stock:"Amazon · 2-day",
+         spec:"2-row aluminium core · TIG-welded end tanks · cap 16 psi", life:"Lifetime warranty — the OEM tank failure no longer applies to this car", riskAt:null, issue:null,
+         resolved:"Known issue cleared — the plastic end tanks that fail on this platform are gone." } };
+
+/* Engine — holds the oil change, the two filters, and the radiator/cooling group */
+TT_TREES.engine = {
+  label:"Engine", short:"Engine", root:"eng",
+  nodes: Object.assign({
+    eng:{ label:"Engine", sub:"6.4L V8 HEMI · 485 hp", img:"assets/part-engine.webp", kids:["oil","airFilter","cabinFilter","rad"], group:true,
+          partNo:"—", where:"Under the hood", spec:"6.4L 392 HEMI · naturally aspirated", price:"—",
+          life:"Oil, filters and coolant are the whole maintenance story on this engine" },
+    airFilter:{ label:"Engine Air Filter", sub:"Panel · dry media", img:"assets/part-air-filter.webp", kids:[], riskAt:60000,
+          partNo:"53034051AD", brand:"Mopar panel filter", where:"Airbox on the passenger side of the engine bay", spec:"Drop-in panel · no oiling · two clips", price:"$28.40", stock:"Advance · 3.8 mi",
+          life:"Every 30,000 mi, sooner on dirt roads",
+          dueNote:"Past due.", issue:"A loaded filter on a 392 shows up as a lazy top end long before any code sets." },
+    cabinFilter:{ label:"Cabin Air Filter", sub:"Carbon media", img:"assets/part-cabin-filter.webp", kids:[], riskAt:55000,
+          partNo:"68318365AA", brand:"Mopar carbon cabin filter", where:"Behind the glovebox, passenger side", spec:"Airflow arrow points down · 10 min job", price:"$21.99", stock:"O'Reilly · 2.1 mi",
+          life:"Every 20,000 mi or a year",
+          dueNote:"Overdue by a wide margin.", issue:"This is the one people notice — weak vents and a musty smell on first start." },
+    rad:{ label:"Radiator & Coolant", sub:"Cooling system", img:"assets/part-radiator.webp", kids:["radCore","coolant"], group:true,
+          partNo:"—", where:"Front of the engine bay", spec:"14.5 qt system capacity", price:"—" },
+    radCore:{ label:"Radiator", sub:"Aluminium core · plastic tanks", img:"assets/part-radiator.webp", kids:["radOem","radAlum"], riskAt:90000,
+          issue:"2011–2021 Challenger, all trims — the crimped plastic end tanks split at the seams and weep, typically between 60,000 and 100,000 mi and sooner on a 392 driven hard or in heat. Symptoms start as a seam leak, low-coolant warnings and steam under load.",
+          issueRef:"OEM radiator premature failure · 2011–2021 · all trims · 35 owner reports",
+          upgrade:TT_RAD_UPGRADE,
+          ownKinds:TT_RAD_OWN_KINDS, ownAsk:"End tank construction", ownHint:"Brand and model as it's printed on the shroud or the invoice",
+          partNo:"55111282AB", brand:"Mopar / Denso replacement", where:"Front of the engine bay, behind the grille", spec:"Cap 16 psi · bleed at the thermostat housing", price:"$318.00", stock:"RockAuto · ships 3 days",
+          life:"Inspect the tank seams at every coolant change — the plastic end tanks are what fail, not the core" },
+    radOem:{ label:"OEM · plastic end tanks", sub:"Mopar / Denso · $318.00", img:"assets/part-radiator.webp", kids:[], fitFor:"radCore", fitWhen:false,
+          partNo:"55111282AB", brand:"Mopar / Denso replacement", where:"Front of the engine bay, behind the grille", spec:"Aluminium core, crimped plastic end tanks · cap 16 psi", price:"$318.00", stock:"RockAuto · ships 3 days",
+          life:"60,000–100,000 mi before the tank seams weep — then you do this job again",
+          issue:"This is the part the known issue is written about. A like-for-like replacement resets the clock but keeps the failure mode.",
+          issueRef:"OEM radiator premature failure · 2011–2021 · all trims" },
+    radAlum:{ label:"Mishimoto MMRAD-SRT-15", sub:"All-aluminium · welded tanks · $826.00", img:"assets/part-radiator-alum.webp", kids:[], fitFor:"radCore", fitWhen:true, upgrade:TT_RAD_UPGRADE,
+          partNo:"MMRAD-SRT-15", brand:"Mishimoto all-aluminium direct fit", where:"Same mounts as the OEM unit — direct fit, no bracket work", spec:"2-row aluminium core · TIG-welded end tanks · cap 16 psi", price:"$826.00", stock:"Amazon · 2-day",
+          life:"Lifetime warranty — the plastic-tank failure mode no longer applies",
+          resolved:"Fitting this clears the 2011–2021 radiator known issue on your car." },
+    coolant:{ label:"Antifreeze", sub:"OAT · MS-12106", img:"assets/part-antifreeze.webp", kids:[], riskAt:60000,
+          partNo:"68163849AB", brand:"Mopar 10-year OAT, purple", where:"Reservoir on the passenger side of the radiator", spec:"50/50 premix · do not mix with green or orange HOAT", price:"$24.95 gal", stock:"Dealer · in stock",
+          life:"10 years or 150,000 mi from new, then every 5 years",
+          dueNote:"Due for its first change.", issue:"Mixing coolant types on a HEMI drops the pack out of suspension and clogs the heater core — use OAT purple only." },
+  }, TT_TREES.oil.nodes),
+};
+
+/* Transmission — the 8HP70. No dipstick, no "fill for life": fluid and the pan filter. */
+TT_TREES.trans = {
+  label:"Transmission", short:"Transmission", root:"trx",
+  nodes:{
+    trx:{ label:"Transmission", sub:"ZF 8HP70 · 8-speed auto", img:"assets/part-transmission.png", kids:["transFluid","transPan","transPlug"], group:true,
+          partNo:"—", where:"Behind the engine, under the tunnel", spec:"ZF 8HP70 · 7.0 qt on a drain-and-fill · 9.9 qt dry", price:"—",
+          life:"Fluid and the pan filter are the whole maintenance story — there is no dipstick on this box" },
+    transFluid:{ label:"Transmission Fluid", sub:"ATF+8 · ZF Lifeguard 8", img:"assets/part-oil.webp", kids:[], riskAt:60000,
+          partNo:"68218058AB", brand:"Mopar ATF+8 (ZF Lifeguard 8)", where:"Fill plug on the driver side of the pan — filled from underneath", spec:"7.0 qt for a drain-and-fill · level set at 104 °F fluid temp · ATF+8 only", price:"$199.50 for the fill", stock:"Mopar counter · in stock",
+          life:"60,000 mi on a 392 — half that if it sees track or tow use",
+          dueNote:"5,000 mi past due — never logged on this car.",
+          issue:"The 8HP70 was sold as fill-for-life and isn't. Old fluid shows up as a flare between 2nd and 3rd and a harsh 8-7 downshift coming to a stop. ATF+4 is not a substitute — it will cook the box." },
+    transPan:{ label:"Pan & Filter", sub:"Filter bonded into the pan", img:"assets/part-oil-filter.webp", kids:[], riskAt:60000,
+          partNo:"68225344AA", brand:"Mopar pan-with-filter assembly", where:"Bottom of the transmission", spec:"Pan, filter and gasket are one unit · 26 bolts at 8 ft-lb", price:"$184.00", stock:"RockAuto · ships 3 days",
+          life:"Replace with every full fluid service — the filter can't be changed on its own",
+          dueNote:"Due with the fluid." },
+    transPlug:{ label:"Fill Plug Seal", sub:"O-ring · one-time use", img:"assets/part-drain-plug.webp", kids:[],
+          partNo:"68266727AA", brand:"Mopar O-ring", where:"Fill plug, driver side of the pan", spec:"Plug torque 26 ft-lb", price:"$6.40", stock:"Dealer · in stock",
+          life:"One-time use — a reused seal is the usual source of a weep after service" },
+  },
+};
+
+/* The level above the categories: the car itself. Holds every category's nodes, so a
+   filter like "maintenance due" can span the whole vehicle instead of one branch. */
+TT_TREES.car = {
+  label:"2015 Dodge Challenger SRT 392", short:"Your car", root:"car", isCar:true,
+  nodes: Object.assign({
+    car:{ label:"2015 Challenger SRT 392", sub:"6.4L V8 HEMI · 65,000 mi", img:"assets/car-base.webp", kids:["wtb","eng","trx","wip"], group:true,
+          partNo:"VIN 2C3CDZ...", where:"Your garage", spec:"Every system Au7o tracks on this car", price:"—",
+          life:"Four systems tracked · parts due across all of them" },
+  }, TT_TREES.wheel.nodes, TT_TREES.engine.nodes, TT_TREES.trans.nodes, TT_TREES.wipers.nodes),
+};
+
+const TT_BRANCH_ORDER = ["car", "wheel", "engine", "trans", "wipers"];
+const TT_CATEGORY_OF = { wtb:"wheel", eng:"engine", trx:"trans", wip:"wipers" };
+
+const TT_BRANCH_FOR_HOTSPOT = { wheel:"wheel", hood:"engine", glass:"wipers", rad:"engine", airbox:"engine", rearwheel:"wheel", trans:"trans" };
+const TT_NODE_FOR_HOTSPOT = { rad:"rad", airbox:"airFilter", hood:"oil", rearwheel:"tire" };
+
+/* ── Equipped upgrades — one store the hub, tree and phone all read ── */
+const TT_UP_HEX = "#8B5CF6";
+const TT_EQUIP = { map:{}, subs:new Set(), bump(){ TT_EQUIP.subs.forEach(f => f()); }, set(id, on){ TT_EQUIP.map = { ...TT_EQUIP.map, [id]:!!on }; TT_EQUIP.bump(); } };
+/* ── Owner-entered parts ──
+   A curated fork only knows the parts Au7o has reviewed. When the owner runs something else,
+   they describe it once and it becomes a third option under the same fork — registered into
+   every tree that holds the part, chosen like any other option, and queued for review. */
+TT_EQUIP.own = {};
+const ttAddOwnPart = (targetId, rec) => {
+  const id = "own_" + targetId;
+  const clears = rec.clears;
+  const node = { label:rec.label, sub:[rec.kindLabel, rec.price].filter(Boolean).join(" · "), img:null, icon:"wrench", kids:[],
+    fitFor:targetId, fitWhen:true, ownPart:true, review: clears === null ? "unsure" : "pending",
+    partNo: rec.partNo || "Owner-entered", brand: rec.label, where:"Same location as the part it replaced",
+    spec: rec.spec, price: rec.price || "—", stock: rec.installedAt ? `Fitted at ${Number(rec.installedAt).toLocaleString()} mi` : "On your car",
+    life: rec.life, installedAt: rec.installedAt || null, note: rec.note || "",
+    resolved: clears ? "You told Au7o this part is on the car — welded aluminium tanks, so the 2011–2021 end-tank issue no longer applies to it. Fitment is queued for review." : null,
+    issue: clears === false ? "Same construction as the part the known issue is written about — the clock is reset, the failure mode isn't." : null };
+  node.asFitted = { sub:node.sub, img:null, icon:"wrench", partNo:node.partNo, brand:node.brand, spec:node.spec, price:node.price, stock:node.stock, life:node.life, resolved:node.resolved, ownFitted:true };
+  if (clears) { node.asFitted.riskAt = null; node.asFitted.issue = null; }
+  Object.keys(TT_TREES).forEach(b => { const ns = TT_TREES[b].nodes; if (!ns[targetId]) return; ns[id] = node; if (!(ns[targetId].kids || []).includes(id)) ns[targetId].kids.push(id); });
+  TT_EQUIP.own[targetId] = id;
+  TT_EQUIP.set(targetId, true);
+};
+const ttRemoveOwnPart = targetId => {
+  const id = TT_EQUIP.own[targetId];
+  if (!id) return;
+  Object.keys(TT_TREES).forEach(b => { const ns = TT_TREES[b].nodes; delete ns[id]; if (ns[targetId]) ns[targetId].kids = (ns[targetId].kids || []).filter(k => k !== id); });
+  delete TT_EQUIP.own[targetId];
+  TT_EQUIP.set(targetId, false);
+};
+/* pick which option under a fork is the one on the car */
+const ttChooseFit = (targetId, optionId, optionNode) => {
+  if (optionNode && optionNode.ownPart) TT_EQUIP.own[targetId] = optionId;
+  else delete TT_EQUIP.own[targetId];
+  TT_EQUIP.set(targetId, optionNode ? !!optionNode.fitWhen : true);
+};
+const ttFittedRaw = (raw, id, targetId) => {
+  const on = !!TT_EQUIP.map[targetId], own = TT_EQUIP.own[targetId];
+  return raw.fitWhen ? (on && (own ? id === own : true)) : !on;
+};
+/* Wheel finish — the one mod that shows on the car itself, so the hub photo has to follow it.
+   One bronze wheel layer, tinted per finish — no extra renders. */
+const TT_FINISHES = [
+  { id:"oem",      label:"Satin Black",  swatch:"#2B2F36", sub:"20 × 9.5 forged · Satin Black",  price:"On the car", filter:null },
+  { id:"bronze",   label:"Satin Bronze", swatch:"#A0703A", sub:"20 × 9.5 forged · Satin Bronze", price:"$1,480 / set", filter:"none" },
+  { id:"silver",   label:"Brushed",      swatch:"#C4C9D1", sub:"20 × 9.5 forged · Brushed",      price:"$1,480 / set", filter:"saturate(.12) brightness(1.6)" },
+  { id:"gunmetal", label:"Gunmetal",     swatch:"#565C66", sub:"20 × 9.5 forged · Gunmetal",     price:"$1,480 / set", filter:"saturate(.16) brightness(.82)" },
+];
+TT_EQUIP.finish = "oem";
+TT_EQUIP.setFinish = id => { TT_EQUIP.finish = id; TT_EQUIP.bump(); };
+const ttFinish = () => TT_FINISHES.find(f => f.id === TT_EQUIP.finish) || TT_FINISHES[0];
+
+/* service log — marking a part done resets its clock from the odometer reading of the day */
+const ttMarkDone = (node, miles) => { node.servicedAt = miles; TT_EQUIP.bump(); };
+const ttUndoDone = node => { delete node.servicedAt; TT_EQUIP.bump(); };
+const ttNextDue = node => node.servicedAt != null && node.riskAt ? node.servicedAt + node.riskAt : null;
+function useEquipped() {
+  const [, bump] = React.useState(0);
+  React.useEffect(() => { const f = () => bump(v => v + 1); TT_EQUIP.subs.add(f); return () => TT_EQUIP.subs.delete(f); }, []);
+  return [TT_EQUIP.map, TT_EQUIP.set];
+}
+/* nodes as the owner sees them today — equipped upgrades replace the OEM part in place */
+const ttViewNodes = (nodes, eq) => {
+  const fin = ttFinish();
+  const ids = Object.keys(nodes).filter(id => (nodes[id].upgrade && eq[id]) || nodes[id].fitFor || (nodes[id].finishes && fin.id !== "oem"));
+  if (!ids.length) return nodes;
+  const out = { ...nodes };
+  ids.forEach(id => {
+    const n = nodes[id];
+    let v = n;
+    if (n.upgrade && eq[id]) { const oid = TT_EQUIP.own[id]; v = { ...v, ...((oid && nodes[oid] && nodes[oid].asFitted) || n.upgrade.node), upgraded:true }; }
+    if (n.fitFor) { const oid = TT_EQUIP.own[n.fitFor]; v = { ...v, fitted: (!!eq[n.fitFor] === !!n.fitWhen) && (!n.fitWhen || !oid || id === oid) }; }
+    if (n.finishes && fin.id !== "oem") v = { ...v, sub: fin.sub, img:"assets/part-wheel-bronze.webp" };
+    out[id] = v;
+  });
+  return out;
+};
+const ttUpState = node => !node ? null
+  : node.fitFor ? (node.fitted ? "equipped" : node.upgrade ? "available" : null)
+  : node.upgrade ? (node.upgraded ? "equipped" : "available") : null;
+/* does any part under these ids have an upgrade the owner hasn't equipped? */
+const ttHasUpgrade = (nodes, ids, eq) => ids.some(id => nodes[id] && nodes[id].upgrade && !nodes[id].fitFor && !eq[id]);
+
+function ttRisk(node, miles) {
+  if (!node.riskAt) return null;
+  const due = node.servicedAt != null ? node.servicedAt + node.riskAt : node.riskAt;
+  if (miles >= due) return "critical";
+  if (miles >= due * 0.8) return "watch";
+  return null;
+}
+
+/* ── Layout: layered left→right, leaves stack vertically ── */
+function ttLayout(nodes, rootId, expanded, allow, row, col) {
+  const COL = col || 258, ROW = row || 90;
+  const pos = {};
+  let slot = 0;
+  const walk = (id, depth) => {
+    const n = nodes[id];
+    const kids = (expanded[id] ? (n.kids || []) : []).filter(k => !allow || allow[k]);
+    if (!kids.length) { const y = slot * ROW; slot++; pos[id] = { x: depth * COL, y }; return y; }
+    const ys = kids.map(k => walk(k, depth + 1));
+    const y = (ys[0] + ys[ys.length - 1]) / 2;
+    pos[id] = { x: depth * COL, y };
+    return y;
+  };
+  walk(rootId, 0);
+  return pos;
+}
+
+function ttVisible(nodes, rootId, expanded, allow) {
+  const out = [];
+  const walk = id => { if (allow && !allow[id]) return; out.push(id); if (expanded[id]) (nodes[id].kids || []).forEach(walk); };
+  walk(rootId);
+  return out;
+}
+
+/* the mileage a part is typically consumed by, allowing for a logged service */
+const ttDue = node => node.riskAt ? (node.servicedAt != null ? node.servicedAt + node.riskAt : node.riskAt) : null;
+
+/* ── Node ── */
+/* ── Top-down layout — same tree as the desktop graph, rotated: generations stack downward,
+   siblings sit side by side. The phone layout. ── */
+function ttLayoutV(nodes, rootId, expanded, allow, ROW, COL) {
+  const pos = {};
+  let slot = 0;
+  const walk = (id, depth) => {
+    const kids = (expanded[id] ? (nodes[id].kids || []) : []).filter(k => !allow || allow[k]);
+    if (!kids.length) { const x = slot * COL; slot++; pos[id] = { x, y: depth * ROW, depth }; return x; }
+    const xs = kids.map(k => walk(k, depth + 1));
+    const x = (xs[0] + xs[xs.length - 1]) / 2;
+    pos[id] = { x, y: depth * ROW, depth };
+    return x;
+  };
+  walk(rootId, 0);
+  return pos;
+}
+/* how many leaves are on screen decides how wide a sibling can be */
+const ttLeafCount = (nodes, vis, expanded, allow) =>
+  Math.max(1, vis.filter(id => !(expanded[id] ? (nodes[id].kids || []) : []).filter(k => !allow || allow[k]).length).length);
+
+/* ── Vertical node — a column-shaped chip. Card → chip as siblings crowd; the label always stays. ── */
+function TTNodeV({ id, node, pos, col, mode, selected, risk, up, expanded, hasKids, kidCount, onSelect, onToggle }) {
+  const ring = risk === "critical" ? "#E5484D" : up === "available" ? TT_UP_HEX : risk === "watch" ? "#D9822B" : null;
+  const thumb = mode === "card" ? 46 : mode === "chip" ? 40 : 36;
+  const tap = e => { e.stopPropagation(); onSelect(id); if (hasKids && !expanded) onToggle(id); };
+  return (
+    <div onClick={tap} title={node.label} style={{ position:"absolute", left:pos.x, top:pos.y, width:col, display:"flex", flexDirection:"column", alignItems:"center", gap:4, cursor:"pointer", touchAction:"pan-y" }}>
+      <span style={{ position:"relative", width:thumb, height:thumb, flexShrink:0, borderRadius: mode === "icon" ? "50%" : 13, overflow:"hidden", background: node.img ? "#0d1017" : "var(--ki-page)", display:"flex", alignItems:"center", justifyContent:"center",
+        border:`${selected ? 2 : 1.5}px solid ${selected ? "var(--ink)" : ring || "var(--ki-line)"}`,
+        boxShadow: selected ? "0 0 0 4px color-mix(in oklab, var(--ink) 14%, transparent)" : ring ? `0 0 10px color-mix(in oklab, ${ring} 45%, transparent)` : "var(--shadow-1)" }}>
+        {node.img
+          ? <img src={ttThumb(node.img)} alt="" draggable="false" style={{ width:"124%", height:"124%", objectFit:"contain", filter:"brightness(1.55) contrast(1.1)" }}/>
+          : <Icon name="wrench" size={15} style={{ color:"var(--slate-400)" }}/>}
+        {ring && <span style={{ position:"absolute", top:-2, right:-2, width:9, height:9, borderRadius:"50%", background:ring, border:"1.5px solid var(--ki-card)" }}/>}
+      </span>
+      <span style={{ fontSize: mode === "card" ? 10 : 9.5, lineHeight:1.15, fontWeight:600, letterSpacing:"-0.01em", textAlign:"center", color:"var(--ink)", display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical", overflow:"hidden", maxWidth:"100%" }}>{node.label}</span>
+      {hasKids && !expanded && (
+        <span className="mono" onClick={e=>{ e.stopPropagation(); onToggle(id); }} style={{ fontSize:8.5, fontWeight:700, padding:"1px 5px", borderRadius:999, background:"var(--ki-page)", border:"1px solid var(--ki-line)", color:"var(--slate-500)" }}>+{kidCount}</span>
+      )}
+    </div>
+  );
+}
+
+/* ── Mileage horizon ── the tree keeps its own layout and node styling; a horizon just fades
+   back anything not due by the mileage you drag to. Nothing moves. */
+function ttDueSets(nodes, rootId, horizon) {
+  const own = {}, any = {}, count = {};
+  const walk = id => {
+    const n = nodes[id];
+    if (!n) return 0;
+    const d = ttDue(n);
+    const mine = d != null && d <= horizon ? 1 : 0;
+    own[id] = !!mine;
+    let c = mine;
+    (n.kids || []).forEach(k => { c += walk(k); });
+    count[id] = c;
+    any[id] = c > 0;
+    return c;
+  };
+  walk(rootId);
+  return { own, any, count };
+}
+
+function TTNode({ id, node, pos, style, selected, risk, intent, expanded, hasKids, onSelect, onToggle, onContext, onDrag, zoom = 1, dense = false, width = TT_NODE_W, dim = false, dueCount = 0 }) {
+  const sh = TT_SHAPES.find(s => s.id === style.shape) || TT_SHAPES[1];
+  const col = TT_COLORS.find(c => c.id === style.color) || TT_COLORS[0];
+  const flagged = intent === "issues" ? !!node.issue : intent === "maint" ? !!node.riskAt : false;
+  const up = ttUpState(node);
+  const ring = risk === "critical" ? "#E5484D" : up === "available" ? TT_UP_HEX : risk === "watch" ? "#D9822B" : null;
+  const down = e => {
+    if (e.button === 2) return;
+    e.stopPropagation();
+    const sx = e.clientX, sy = e.clientY, o = { ...pos };
+    let moved = false;
+    const mv = ev => { if (Math.abs(ev.clientX-sx) + Math.abs(ev.clientY-sy) > 3) moved = true; if (onDrag) onDrag(id, o.x + (ev.clientX-sx)/zoom, o.y + (ev.clientY-sy)/zoom); };
+    const up = () => { window.removeEventListener("pointermove", mv); window.removeEventListener("pointerup", up); if (!moved) onSelect(id); };
+    window.addEventListener("pointermove", mv); window.addEventListener("pointerup", up);
+  };
+  return (
+    <div onPointerDown={down} onContextMenu={e => { e.preventDefault(); e.stopPropagation(); onContext(id, e.clientX, e.clientY); }}
+      className={dim ? "tt-node" : ring === "#E5484D" ? "tt-node tt-glow-crit" : ring ? "tt-node tt-glow-watch" : "tt-node"}
+      style={{ position:"absolute", left:pos.x, top:pos.y, width, cursor: onDrag ? "grab" : "pointer", touchAction: onDrag ? "none" : "pan-y",
+        opacity: dim ? .26 : 1, filter: dim ? "grayscale(.7)" : "none", transition:"opacity .22s ease, filter .22s ease",
+        display:"flex", alignItems:"center", gap: dense ? 8 : 10, padding: dense ? "6px 10px" : "9px 11px",
+        background:"var(--ki-card)", color:"var(--ink)",
+        border:`${selected ? 2 : 1.5}px solid ${selected ? col.hex : ring || "var(--ki-line)"}`,
+        borderRadius: sh.radius, clipPath: sh.cut ? "polygon(11px 0,100% 0,100% calc(100% - 11px),calc(100% - 11px) 100%,0 100%,0 11px)" : "none",
+        boxShadow: selected ? `0 0 0 4px color-mix(in oklab, ${col.hex} 18%, transparent), var(--shadow-2)` : "var(--shadow-1)",
+        outline: flagged && !ring ? `2px dashed color-mix(in oklab, ${col.hex} 55%, transparent)` : "none", outlineOffset:2 }}>
+      <span style={{ position:"relative", width: dense ? 30 : 38, height: dense ? 30 : 38, flexShrink:0, overflow:"visible", display:"flex", alignItems:"center", justifyContent:"center" }}>
+        <span style={{ position:"absolute", inset:0, borderRadius: sh.id === "pill" ? "50%" : 9, overflow:"hidden", background: node.img ? "#0d1017" : "var(--ki-page)", border: node.img ? `1px solid ${col.hex === "var(--ink)" ? "var(--ki-line)" : col.hex}` : "1px dashed var(--ki-line)", color:"var(--slate-400)", display:"flex", alignItems:"center", justifyContent:"center" }}>
+          {node.img
+            ? <img src={ttThumb(node.img)} alt="" draggable="false" style={{ width:"126%", height:"126%", objectFit:"contain", filter:"brightness(1.55) contrast(1.1)" }}/>
+            : <Icon name={node.icon || "settings"} size={16}/>}
+        </span>
+        {dueCount > 0 && hasKids && !expanded && (
+          <span className="mono" title={`${dueCount} due by this mileage`} style={{ position:"absolute", top:-6, right:-6, minWidth:17, height:17, padding:"0 4px", borderRadius:999, background:"var(--au7o-blue)", color:"#fff", fontSize:9.5, fontWeight:700, display:"flex", alignItems:"center", justifyContent:"center", border:"1.5px solid var(--ki-card)" }}>{dueCount}</span>
+        )}
+      </span>
+      <div style={{ minWidth:0, flex:1 }}>
+        <div style={{ fontSize: dense ? 12 : 12.5, fontWeight:600, letterSpacing:"-0.01em", lineHeight:1.25, color: col.hex === "var(--ink)" ? "var(--ink)" : col.hex }}>{node.label}</div>
+        {!dense && <div style={{ fontSize:10, color:"var(--slate-500)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", marginTop:1 }}>{node.sub}</div>}
+      </div>
+      {up === "available" && (
+        <span title="Known issue on record — fix available" style={{ display:"flex", alignItems:"center", gap:3, flexShrink:0, padding:"3px 6px", borderRadius:999, background:"color-mix(in oklab, " + TT_UP_HEX + " 16%, transparent)", color:TT_UP_HEX, fontSize:9.5, fontWeight:700, letterSpacing:"0.04em" }}>
+          <Icon name="shield-alert" size={9} stroke={2.2}/>FIX
+        </span>
+      )}
+      {(up === "equipped" || (node.servicedAt != null && !risk)) && (
+        <span title={node.servicedAt != null ? "Logged as done" : "Upgrade equipped"} style={{ display:"flex", alignItems:"center", flexShrink:0, width:16, height:16, borderRadius:999, background:"var(--ki-ok-bg)", color:"var(--ki-ok-ink)", justifyContent:"center" }}>
+          <svg width="9" height="9" viewBox="0 0 10 10"><path d="M1.6 5.2l2.2 2.2L8.4 2.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>
+        </span>
+      )}
+      {ring && up !== "available" && <span style={{ width:7, height:7, borderRadius:"50%", background:ring, flexShrink:0 }}/>}
+      {hasKids && <span role="button" tabIndex={0} aria-label={expanded ? "Collapse" : "Expand"} onPointerDown={e => { e.stopPropagation(); e.preventDefault(); }} onClick={e => { e.stopPropagation(); onToggle(id); }} style={{ flexShrink:0, width: dense ? 22 : 24, height: dense ? 22 : 24, borderRadius:7, background:"var(--ki-page)", border:"1px solid var(--ki-line)", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--slate-500)", fontSize:12, lineHeight:1, fontWeight:700, cursor:"pointer" }}>{expanded ? "−" : "+"}</span>}
+    </div>
+  );
+}
+
+/* ── Right-click styling menu ── */
+function TTStyleMenu({ menu, style, onShape, onColor, onClose }) {
+  if (!menu) return null;
+  return (
+    <div onPointerDown={e => e.stopPropagation()} style={{ position:"fixed", left:Math.min(menu.x, window.innerWidth-180), top:Math.min(menu.y, window.innerHeight-150), zIndex:60, width:170, background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:12, boxShadow:"var(--shadow-2)", padding:9 }}>
+      <div className="eyebrow" style={{ fontSize:9.5, marginBottom:6 }}>Shape</div>
+      <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:5 }}>
+        {TT_SHAPES.map(s => (
+          <button key={s.id} onClick={()=>onShape(s.id)} title={s.label} style={{ height:26, cursor:"pointer", background: style.shape===s.id ? "var(--ink)" : "var(--ki-page)", border:`1px solid ${style.shape===s.id ? "var(--ink)" : "var(--ki-line)"}`, borderRadius:6, display:"flex", alignItems:"center", justifyContent:"center", padding:0 }}>
+            <span style={{ width:15, height:11, background: style.shape===s.id ? "var(--ki-page)" : "var(--slate-400)", borderRadius:s.radius===999?999:Math.min(s.radius,5), clipPath: s.cut ? "polygon(4px 0,100% 0,100% calc(100% - 4px),calc(100% - 4px) 100%,0 100%,0 4px)" : "none" }}/>
+          </button>
+        ))}
+      </div>
+      <div className="eyebrow" style={{ fontSize:9.5, margin:"10px 0 6px" }}>Colour</div>
+      <div style={{ display:"flex", gap:6 }}>
+        {TT_COLORS.map(c => (
+          <button key={c.id} onClick={()=>onColor(c.id)} title={c.label} style={{ width:22, height:22, borderRadius:"50%", cursor:"pointer", background:c.hex, border: style.color===c.id ? "2px solid var(--au7o-blue)" : "1px solid var(--ki-line)", boxShadow: style.color===c.id ? "0 0 0 2px var(--ki-card) inset" : "none", padding:0 }}/>
+        ))}
+      </div>
+      <button onClick={onClose} style={{ marginTop:10, width:"100%", background:"transparent", border:"none", color:"var(--slate-500)", fontSize:11, fontWeight:600, cursor:"pointer", fontFamily:"var(--font-sans)" }}>Close</button>
+    </div>
+  );
+}
+
+/* ── Detail drawer ── */
+/* ── Service log row — "I did this" for anything with a mileage clock ── */
+function TTServiceRow({ node, miles, dense }) {
+  if (!node.riskAt) return null;
+  const done = node.servicedAt != null;
+  return (
+    <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background: done ? "var(--ki-ok-bg)" : "var(--ki-page)", border:`1px solid ${done ? "color-mix(in oklab, var(--ki-ok-ink) 26%, transparent)" : "var(--ki-line)"}` }}>
+      {done ? (
+        <div style={{ display:"flex", alignItems:"center", gap:9 }}>
+          <span style={{ display:"grid", placeItems:"center", width:18, height:18, borderRadius:999, background:"var(--ki-ok-ink)", color:"var(--ki-card)", flexShrink:0 }}>
+            <svg width="10" height="10" viewBox="0 0 10 10"><path d="M1.6 5.2l2.2 2.2L8.4 2.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>
+          </span>
+          <div style={{ minWidth:0, flex:1 }}>
+            <div style={{ fontSize:11.5, fontWeight:600, color:"var(--ki-ok-ink)" }}>Done at <span className="mono">{node.servicedAt.toLocaleString()} mi</span></div>
+            <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>Next around <span className="mono">{ttNextDue(node).toLocaleString()} mi</span></div>
+          </div>
+          <button onClick={()=>ttUndoDone(node)} style={{ flexShrink:0, background:"transparent", border:"none", color:"var(--slate-500)", fontFamily:"var(--font-sans)", fontSize:11, fontWeight:600, cursor:"pointer", padding:0 }}>Undo</button>
+        </div>
+      ) : (
+        <div style={{ display:"flex", alignItems:"center", gap:9 }}>
+          <div style={{ minWidth:0, flex:1, fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>Already replaced this? Log it and Au7o resets the clock.</div>
+          <button onClick={()=>ttMarkDone(node, miles)} style={{ flexShrink:0, padding:"8px 12px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer", whiteSpace:"nowrap" }}>Mark as done</button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+/* ── Finish picker — changing it repaints the wheels on the car photo, not just this card ── */
+function TTFinishRow({ dense }) {
+  const cur = ttFinish();
+  return (
+    <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
+      <div className="eyebrow" style={{ fontSize:9.5 }}>Finish</div>
+      <div style={{ display:"flex", gap:7, marginTop:8, flexWrap:"wrap" }}>
+        {TT_FINISHES.map(f => (
+          <button key={f.id} onClick={()=>TT_EQUIP.setFinish(f.id)} title={f.label} aria-label={f.label} aria-pressed={cur.id===f.id}
+            style={{ display:"flex", alignItems:"center", gap:6, padding:"5px 9px 5px 6px", borderRadius:999, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:11, fontWeight:600,
+              background: cur.id===f.id ? "var(--ki-card)" : "transparent", color: cur.id===f.id ? "var(--ink)" : "var(--slate-500)",
+              border:`1.5px solid ${cur.id===f.id ? "var(--ink)" : "var(--ki-line)"}` }}>
+            <span style={{ width:16, height:16, borderRadius:"50%", background:f.swatch, border:"1px solid rgba(0,0,0,.25)", flexShrink:0 }}/>{f.label}
+          </button>
+        ))}
+      </div>
+      <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:8, lineHeight:1.4 }}>{cur.id === "oem" ? "What's on the car today. Pick another and it changes on the photo above." : `${cur.price} · fitted on the car above.`}</div>
+    </div>
+  );
+}
+
+/* ── Upgrade card — the known issue's fix, one tap from equipped ── */
+function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
+  const state = ttUpState(node);
+  const fit = node && node.fitFor;
+  if (!state && !fit) return null;
+  const ownId = TT_EQUIP.own[fit ? node.fitFor : nodeId];
+  if (!fit && ownId) return null;
+  const on = fit ? !!node.fitted : state === "equipped";
+  const target = fit ? node.fitFor : nodeId;
+  const val = fit ? (on ? !node.fitWhen : !!node.fitWhen) : !on;
+  const choose = () => { if (fit) ttChooseFit(target, nodeId, node); else { delete TT_EQUIP.own[target]; onEquip(target, val); } };
+  if (fit && !node.upgrade) return (
+    <div style={{ marginTop:12, padding:"10px 12px", borderRadius:12, background: on ? "var(--ki-ok-bg)" : "var(--ki-page)", border:`1px solid ${on ? "color-mix(in oklab, var(--ki-ok-ink) 28%, transparent)" : "var(--ki-line)"}` }}>
+      <div style={{ display:"flex", alignItems:"center", gap:9 }}>
+        <span style={{ minWidth:0, flex:1, fontSize:11.5, fontWeight:600, color: on ? "var(--ki-ok-ink)" : "var(--slate-700)" }}>{on ? "Fitted on your car" : "Not what's on your car"}</span>
+        {!on && <button onClick={choose} style={{ flexShrink:0, padding:"7px 11px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>This one is fitted</button>}
+      </div>
+      {node.ownPart && (
+        <div style={{ display:"flex", alignItems:"center", gap:8, marginTop:9, paddingTop:9, borderTop:"1px solid var(--ki-line)" }}>
+          <span className="mono" style={{ fontSize:9, fontWeight:700, padding:"3px 7px", borderRadius:999, background:"var(--ki-mod-bg)", color:"var(--ki-mod-ink)" }}>{node.review === "unsure" ? "NEEDS A DETAIL" : "IN REVIEW"}</span>
+          <span style={{ minWidth:0, flex:1, fontSize:10.5, color:"var(--slate-500)", lineHeight:1.4 }}>{node.review === "unsure" ? "Tell Au7o the tank construction and it can say whether the known issue is cleared." : "You added this part. Au7o is checking fitment against the platform — usually a day or two."}</span>
+          <button onClick={()=>ttRemoveOwnPart(node.fitFor)} style={{ flexShrink:0, background:"transparent", border:"none", padding:0, color:"var(--slate-500)", fontFamily:"var(--font-sans)", fontSize:11, fontWeight:600, cursor:"pointer" }}>Remove</button>
+        </div>
+      )}
+    </div>
+  );
+  const u = node.upgrade;
+  return (
+    <div style={{ marginTop:12, borderRadius:13, overflow:"hidden", border:`1px solid ${on ? "color-mix(in oklab, var(--ki-ok-ink) 30%, transparent)" : "color-mix(in oklab, " + TT_UP_HEX + " 38%, transparent)"}`, background: on ? "var(--ki-ok-bg)" : "color-mix(in oklab, " + TT_UP_HEX + " 7%, var(--ki-card))" }}>
+      <div style={{ display:"flex", alignItems:"center", gap:8, padding:"8px 11px", background: on ? "transparent" : "color-mix(in oklab, " + TT_UP_HEX + " 13%, transparent)" }}>
+        <span className="eyebrow" style={{ fontSize:9.5, color: on ? "var(--ki-ok-ink)" : TT_UP_HEX }}>{on ? "Equipped on your car" : fit ? "Upgrade — not fitted yet" : "Upgrade available"}</span>
+        <span className="mono" style={{ marginLeft:"auto", fontSize:9.5, fontWeight:700, color: on ? "var(--ki-ok-ink)" : TT_UP_HEX }}>{u.gain}</span>
+      </div>
+      <div style={{ display:"flex", gap:10, padding:"10px 11px 0" }}>
+        <span style={{ width: dense ? 48 : 58, height: dense ? 48 : 58, flexShrink:0, borderRadius:10, background:"#0d1017", border:"1px solid var(--ki-line)", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden", padding:4 }}>
+          <img src={u.img} alt="" style={{ width:"100%", height:"100%", objectFit:"contain", filter:"brightness(1.35)" }}/>
+        </span>
+        <span style={{ minWidth:0, flex:1 }}>
+          <span style={{ display:"block", fontSize:12.5, fontWeight:600, letterSpacing:"-0.01em" }}>{u.label}</span>
+          <span style={{ display:"block", fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>{u.tag} · <span className="mono">{u.price}</span></span>
+          <span style={{ display:"block", fontSize:11.5, lineHeight:1.45, marginTop:5, textWrap:"pretty" }}>{u.fixes}</span>
+        </span>
+      </div>
+      <div style={{ padding:"9px 11px 11px" }}>
+        <div style={{ fontSize:10.5, color:"var(--slate-500)", lineHeight:1.45, marginBottom:9 }}>{u.confidence} · {u.fit}</div>
+        <button onClick={choose} style={{ width:"100%", minHeight:38, borderRadius:10, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:12.5, fontWeight:600, display:"flex", alignItems:"center", justifyContent:"center", gap:7,
+          background: on ? "var(--ki-card)" : TT_UP_HEX, color: on ? "var(--slate-700)" : "#fff", border: on ? "1px solid var(--ki-line)" : "none" }}>
+          {on ? "Swap back to the OEM radiator" : <React.Fragment><svg width="12" height="12" viewBox="0 0 10 10"><path d="M5 8.5V1.8M5 1.8L2 4.8M5 1.8l3 3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" fill="none"/></svg>I have this — equip it</React.Fragment>}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ── What's on your car ── the fork's options, plus the one Au7o doesn't know about yet.
+   Curated forks only carry reviewed parts; this is how an owner's own part joins them. */
+const TT_OWN_INPUT = { width:"100%", boxSizing:"border-box", marginTop:4, padding:"8px 10px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:12, outline:"none" };
+function TTOwnField({ label, hint, children }) {
+  return (
+    <label style={{ display:"block", marginTop:10 }}>
+      <span style={{ display:"block", fontSize:10, fontWeight:600, letterSpacing:"0.07em", textTransform:"uppercase", color:"var(--slate-500)" }}>{label}</span>
+      {children}
+      {hint && <span style={{ display:"block", fontSize:10, color:"var(--slate-400)", marginTop:3, lineHeight:1.4 }}>{hint}</span>}
+    </label>
+  );
+}
+function TTOwnPartCard({ node, nodeId, dense, defaultOpen }) {
+  const kinds = node && node.ownKinds;
+  const [open, setOpen] = React.useState(false);
+  const [f, setF] = React.useState({ label:"", partNo:"", kind:"", price:"", installedAt:"", note:"" });
+  React.useEffect(() => { if (defaultOpen) setOpen(true); }, [defaultOpen]);
+  if (!kinds) return null;
+  const raw = TT_TREES.car.nodes;
+  const opts = ((raw[nodeId] && raw[nodeId].kids) || []).filter(k => raw[k] && raw[k].fitFor === nodeId);
+  const ownId = TT_EQUIP.own[nodeId];
+  const kind = kinds.find(k => k.id === f.kind);
+  const set = (k, v) => setF(p => ({ ...p, [k]:v }));
+  const submit = e => {
+    e.preventDefault();
+    if (!f.label.trim()) return;
+    ttAddOwnPart(nodeId, { label:f.label.trim(), partNo:f.partNo.trim(), price:f.price.trim(), installedAt:f.installedAt.replace(/[^0-9]/g, ""), note:f.note.trim(),
+      kindLabel: kind ? kind.label : "Construction not confirmed", clears: kind ? kind.clears : null,
+      spec: kind ? kind.spec : "Construction not confirmed yet", life: kind ? kind.life : node.life });
+    setOpen(false);
+    setF({ label:"", partNo:"", kind:"", price:"", installedAt:"", note:"" });
+  };
+  return (
+    <div style={{ marginTop:12, borderRadius:13, border:"1px solid var(--ki-line)", background:"var(--ki-page)", overflow:"hidden" }}>
+      <div style={{ padding: dense ? "9px 11px 2px" : "10px 12px 3px" }}>
+        <div className="eyebrow" style={{ fontSize:9.5 }}>What's on your car</div>
+      </div>
+      <div style={{ padding: dense ? "4px 11px 0" : "5px 12px 0", display:"flex", flexDirection:"column" }}>
+        {opts.map(id => {
+          const o = raw[id], on = ttFittedRaw(o, id, nodeId);
+          return (
+            <button key={id} onClick={()=>ttChooseFit(nodeId, id, o)} style={{ display:"flex", alignItems:"flex-start", gap:9, textAlign:"left", padding:"8px 0", background:"transparent", border:"none", borderTop: id === opts[0] ? "none" : "1px solid var(--ki-line)", cursor:"pointer", fontFamily:"var(--font-sans)" }}>
+              <span style={{ flexShrink:0, marginTop:1, width:15, height:15, borderRadius:999, display:"grid", placeItems:"center", background: on ? "var(--ki-ok-ink)" : "transparent", border:`1.5px solid ${on ? "var(--ki-ok-ink)" : "var(--ki-line)"}`, color:"var(--ki-card)" }}>
+                {on && <svg width="8" height="8" viewBox="0 0 10 10"><path d="M1.6 5.2l2.2 2.2L8.4 2.8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>}
+              </span>
+              <span style={{ minWidth:0, flex:1 }}>
+                <span style={{ display:"flex", alignItems:"center", gap:6 }}>
+                  <span style={{ fontSize:12, fontWeight:600, color:"var(--ink)", letterSpacing:"-0.01em" }}>{o.label}</span>
+                  {o.ownPart && <span className="mono" style={{ fontSize:8.5, fontWeight:700, padding:"2px 6px", borderRadius:999, background:"var(--ki-mod-bg)", color:"var(--ki-mod-ink)" }}>YOURS</span>}
+                </span>
+                <span style={{ display:"block", fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>{o.sub}</span>
+              </span>
+            </button>
+          );
+        })}
+      </div>
+      {!open && !ownId && (
+        <div style={{ padding: dense ? "8px 11px 11px" : "9px 12px 12px" }}>
+          <button onClick={()=>setOpen(true)} style={{ width:"100%", minHeight:36, display:"flex", alignItems:"center", justifyContent:"center", gap:7, borderRadius:10, border:"1px dashed var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:12, fontWeight:600, cursor:"pointer" }}>
+            <Icon name="plus" size={12}/>Mine isn't listed — add the part I run
+          </button>
+        </div>
+      )}
+      {!open && ownId && (
+        <div style={{ padding: dense ? "8px 11px 11px" : "9px 12px 12px", display:"flex", alignItems:"center", gap:8 }}>
+          <span style={{ minWidth:0, flex:1, fontSize:10.5, color:"var(--slate-500)", lineHeight:1.4 }}>{raw[ownId].review === "unsure" ? "Au7o needs the tank construction before it can clear the issue." : "Your part is queued for fitment review. Confirmed parts become an option for every owner on this platform."}</span>
+          <button onClick={()=>ttRemoveOwnPart(nodeId)} style={{ flexShrink:0, background:"transparent", border:"none", padding:0, color:"var(--slate-500)", fontFamily:"var(--font-sans)", fontSize:11, fontWeight:600, cursor:"pointer" }}>Remove</button>
+        </div>
+      )}
+      {open && (
+        <form onSubmit={submit} style={{ padding: dense ? "6px 11px 12px" : "7px 12px 13px", borderTop:"1px solid var(--ki-line)", marginTop:6 }}>
+          <TTOwnField label="Part on the car" hint={node.ownHint}>
+            <input autoFocus value={f.label} onChange={e=>set("label", e.target.value)} placeholder="e.g. Fluidyne FHP55-CHAL all-aluminium" style={TT_OWN_INPUT}/>
+          </TTOwnField>
+          <TTOwnField label="Part number">
+            <input value={f.partNo} onChange={e=>set("partNo", e.target.value)} placeholder="Optional" style={{ ...TT_OWN_INPUT, fontFamily:"var(--font-mono, var(--font-sans))" }}/>
+          </TTOwnField>
+          <div style={{ marginTop:10 }}>
+            <span style={{ display:"block", fontSize:10, fontWeight:600, letterSpacing:"0.07em", textTransform:"uppercase", color:"var(--slate-500)" }}>{node.ownAsk}</span>
+            <div style={{ display:"flex", flexDirection:"column", gap:5, marginTop:6 }}>
+              {kinds.map(k => (
+                <button key={k.id} type="button" onClick={()=>set("kind", k.id)} style={{ display:"flex", alignItems:"center", gap:8, textAlign:"left", padding:"8px 10px", borderRadius:9, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600,
+                  background: f.kind === k.id ? "var(--ki-card)" : "transparent", color: f.kind === k.id ? "var(--ink)" : "var(--slate-500)", border:`1.5px solid ${f.kind === k.id ? "var(--ink)" : "var(--ki-line)"}` }}>
+                  {k.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div style={{ display:"flex", gap:9 }}>
+            <div style={{ flex:1, minWidth:0 }}><TTOwnField label="Paid"><input value={f.price} onChange={e=>set("price", e.target.value)} placeholder="$0.00" style={TT_OWN_INPUT}/></TTOwnField></div>
+            <div style={{ flex:1, minWidth:0 }}><TTOwnField label="Fitted at"><input value={f.installedAt} onChange={e=>set("installedAt", e.target.value)} placeholder="mi" inputMode="numeric" style={TT_OWN_INPUT}/></TTOwnField></div>
+          </div>
+          {kind && (
+            <div style={{ marginTop:11, padding:"9px 11px", borderRadius:11, background: kind.clears === true ? "var(--ki-ok-bg)" : kind.clears === false ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)" }}>
+              <div className="eyebrow" style={{ fontSize:9, color: kind.clears === true ? "var(--ki-ok-ink)" : kind.clears === false ? "var(--ki-crit)" : "var(--ki-mod-ink)" }}>{kind.clears === true ? "Clears the known issue" : kind.clears === false ? "Resets the clock only" : "Au7o will check"}</div>
+              <div style={{ fontSize:11.5, lineHeight:1.45, marginTop:4, textWrap:"pretty" }}>{kind.clears === true ? "Welded aluminium tanks retire the failure mode — the radiator drops off your risk list and out of the schedule." : kind.clears === false ? "Same construction as the part the issue is written about. The interval stays on the tree." : "Add a photo of the tanks when you can and Au7o will confirm which it is."}</div>
+            </div>
+          )}
+          <div style={{ display:"flex", gap:8, marginTop:12 }}>
+            <button type="button" onClick={()=>setOpen(false)} style={{ flex:"0 0 auto", minHeight:38, padding:"0 14px", borderRadius:10, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--slate-700)", fontFamily:"var(--font-sans)", fontSize:12.5, fontWeight:600, cursor:"pointer" }}>Cancel</button>
+            <button type="submit" disabled={!f.label.trim()} style={{ flex:1, minHeight:38, borderRadius:10, border:"none", background: f.label.trim() ? "var(--ink)" : "var(--ki-line)", color: f.label.trim() ? "var(--ki-card)" : "var(--slate-400)", fontFamily:"var(--font-sans)", fontSize:12.5, fontWeight:600, cursor: f.label.trim() ? "pointer" : "default" }}>Add to my tree</button>
+          </div>
+          <div style={{ fontSize:10, color:"var(--slate-400)", marginTop:8, lineHeight:1.45 }}>Au7o reviews owner-added parts against the platform. Once confirmed, yours becomes a listed option for every 2011–2021 Challenger.</div>
+        </form>
+      )}
+    </div>
+  );
+}
+
+/* Part number → where to buy it. The vendor named in node.stock decides the destination,
+   so the link agrees with the availability line instead of inventing a second source. */
+const TT_VENDORS = [
+  { m:/rockauto/i, name:"RockAuto", url:q => "https://www.rockauto.com/en/partsearch/?partnum=" + encodeURIComponent(q) },
+  { m:/amazon/i, name:"Amazon", url:q => "https://www.amazon.com/s?k=" + encodeURIComponent(q) },
+  { m:/autozone/i, name:"AutoZone", url:q => "https://www.autozone.com/searchresult?searchText=" + encodeURIComponent(q) },
+  { m:/o'?reilly/i, name:"O'Reilly", url:q => "https://www.oreillyauto.com/search?q=" + encodeURIComponent(q) },
+  { m:/advance/i, name:"Advance", url:q => "https://shop.advanceautoparts.com/web/SearchResults?searchTerm=" + encodeURIComponent(q) },
+  { m:/napa/i, name:"NAPA", url:q => "https://www.napaonline.com/en/search?text=" + encodeURIComponent(q) },
+  { m:/walmart/i, name:"Walmart", url:q => "https://www.walmart.com/search?q=" + encodeURIComponent(q) },
+  { m:/tire ?rack/i, name:"Tire Rack", url:q => "https://www.tirerack.com/tires/TireSearchResults.jsp?partnum=" + encodeURIComponent(q) },
+  { m:/dealer|mopar/i, name:"Mopar", url:q => "https://www.moparonlineparts.com/search?q=" + encodeURIComponent(q) },
+];
+const ttPartLink = node => {
+  const pn = node.partNo;
+  if (!pn || pn === "—" || pn === "Owner-entered" || /^VIN/i.test(pn)) return null;
+  const v = TT_VENDORS.find(x => x.m.test(node.stock || ""));
+  const q = [pn, node.brand].filter(Boolean).join(" ");
+  return v ? { href: v.url(pn), name: v.name } : { href: "https://www.google.com/search?q=" + encodeURIComponent(q), name: null };
+};
+function TTPartNo({ node, size, weight }) {
+  const l = ttPartLink(node);
+  if (!l) return <span className="mono" style={{ fontSize:size, lineHeight:1.45, fontWeight:weight }}>{node.partNo}</span>;
+  return (
+    <a className="mono" href={l.href} target="_blank" rel="noreferrer noopener" title={l.name ? "Find " + node.partNo + " on " + l.name : "Search for " + node.partNo}
+      style={{ fontSize:size, lineHeight:1.45, fontWeight:weight, color:"var(--au7o-blue-600)", display:"inline-flex", alignItems:"center", gap:5, textDecoration:"underline", textDecorationStyle:"dotted", textUnderlineOffset:3 }}>
+      {node.partNo}
+      <svg width="9" height="9" viewBox="0 0 10 10" style={{ flexShrink:0, opacity:.8 }}><path d="M3.4 1.4h5.2v5.2M8.6 1.4L4 6M6.6 8.6H1.4V3.4" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" fill="none"/></svg>
+    </a>
+  );
+}
+
+/* owner-entered parts are not verified — say so where the verified-fit chip would sit */
+function TTOwnerChip({ node }) {
+  const unsure = node.review === "unsure";
+  return (
+    <span title="Owner-entered part — Au7o has not reviewed the fitment yet" style={{ flexShrink:0, display:"flex", alignItems:"center", gap:6, padding:"5px 9px", borderRadius:999, background:"var(--ki-mod-bg)", color:"var(--ki-mod-ink)" }}>
+      <Icon name="alert" size={11} stroke={2.2}/>
+      <span className="mono" style={{ fontSize:9, fontWeight:700, letterSpacing:"0.06em" }}>{unsure ? "NEEDS A DETAIL" : "FIT IN REVIEW"}</span>
+    </span>
+  );
+}
+
+function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, narrow, ownOpen }) {
+  if (!node) return null;
+  const rows = [["Part number", node.partNo], ["Part", node.brand], ["Where to find it", node.where], ["Spec", node.spec], ["Service life", node.life]].filter(r => r[1]);
+  if (sheet) return (
+    <div style={{ position:"absolute", inset:0, zIndex:20, display:"flex", flexDirection:"column", justifyContent:"flex-end" }}>
+      <div onClick={onClose} style={{ position:"absolute", inset:0, background:"rgba(11,18,32,.42)" }}/>
+      <div className="tt-rise" style={{ position:"relative", maxHeight:"78%", margin:"0 10px 10px", background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:22, display:"flex", flexDirection:"column", overflow:"hidden", boxShadow:"0 -18px 44px rgba(11,18,32,.26)" }}>
+        <div style={{ flexShrink:0, display:"grid", placeItems:"center", padding:"9px 0 3px" }}><span style={{ width:38, height:4, borderRadius:999, background:"var(--ki-line)" }}/></div>
+        <div className="web-scroll" style={{ flex:1, minHeight:0, overflowY:"auto" }}>
+          {node.img && (
+            <div style={{ margin:"4px 14px 0", height:118, background:"#0d1017", borderRadius:16, border:"1px solid var(--ki-line)", display:"flex", alignItems:"center", justifyContent:"center", overflow:"hidden", padding:14 }}>
+              <img src={node.img} alt="" style={{ width:"100%", height:"100%", minWidth:0, minHeight:0, objectFit:"contain", filter:"brightness(1.45)" }}/>
+            </div>
+          )}
+          <div style={{ padding:"13px 16px 12px" }}>
+            <div style={{ display:"flex", alignItems:"flex-start", gap:10 }}>
+              <div style={{ minWidth:0, flex:1 }}>
+                <div style={{ fontSize:17.5, fontWeight:600, letterSpacing:"-0.02em" }}>{node.label}</div>
+                <div style={{ fontSize:12.5, color:"var(--slate-500)", marginTop:2 }}>{node.sub}</div>
+              </div>
+              {risk && <span className="mono" style={{ flexShrink:0, fontSize:10, fontWeight:700, padding:"4px 9px", borderRadius:999, background: risk==="critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk==="critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)" }}>{risk === "critical" ? "DUE" : "WATCH"}</span>}
+            </div>
+            {node.price && node.price !== "—" && (
+              <div style={{ display:"flex", alignItems:"center", gap:9, marginTop:12, padding:"11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
+                <div style={{ minWidth:0, flex:1 }}>
+                  <div className="mono" style={{ fontSize:15.5, fontWeight:600 }}>{node.price}</div>
+                  {node.stock && <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>{node.stock}</div>}
+                </div>
+                {node.ownPart || node.ownFitted ? <TTOwnerChip node={node}/> : <VerifiedFit/>}
+              </div>
+            )}
+            <div style={{ marginTop:13, display:"flex", flexDirection:"column", gap:9 }}>
+              {rows.map(([k,v]) => (
+                <div key={k} style={{ display:"flex", gap:11, alignItems:"flex-start" }}>
+                  <span style={{ width:86, flexShrink:0, fontSize:10, fontWeight:600, letterSpacing:"0.07em", textTransform:"uppercase", color:"var(--slate-500)", paddingTop:2 }}>{k}</span>
+                  {k === "Part number" ? <TTPartNo node={node} size={12.5} weight={500}/> : <span style={{ fontSize:12.5, lineHeight:1.45 }}>{v}</span>}
+                </div>
+              ))}
+            </div>
+            {node.dueNote && risk && (
+              <div style={{ marginTop:13, display:"flex", alignItems:"center", gap:8, padding:"9px 12px", borderRadius:12, background: risk === "critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk === "critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)", fontSize:12, fontWeight:600 }}>
+                <Icon name="alert" size={12} stroke={2.2}/>{node.dueNote}
+              </div>
+            )}
+            {node.issue && (
+              <div style={{ marginTop:13, padding:"11px 12px", borderRadius:12, background:"var(--ki-crit-bg)" }}>
+                <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-crit)" }}>Known issue</div>
+                <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>
+                {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
+              </div>
+            )}
+            {node.resolved && (node.upgraded || node.fitted) && (
+              <div style={{ marginTop:13, padding:"11px 12px", borderRadius:12, background:"var(--ki-ok-bg)" }}>
+                <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-ok-ink)" }}>Known issue resolved</div>
+                <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.resolved}</div>
+              </div>
+            )}
+            {node.finishes && <TTFinishRow dense/>}
+            <TTUpgradeCard node={node} nodeId={nodeId} onEquip={onEquip} dense/>
+            <TTOwnPartCard node={node} nodeId={nodeId} defaultOpen={ownOpen} dense/>
+            <TTServiceRow node={node} miles={miles} dense/>
+            {node.alt && (
+              <div style={{ marginTop:9, padding:"11px 12px", borderRadius:12, background:"var(--ki-ok-bg)" }}>
+                <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-ok-ink)" }}>Aftermarket that fits</div>
+                <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, fontWeight:500 }}>{node.alt}</div>
+              </div>
+            )}
+          </div>
+        </div>
+        <div style={{ flexShrink:0, borderTop:"1px solid var(--ki-line)", padding:"11px 14px 13px", display:"flex", gap:8 }}>
+          <button onClick={onClose} style={{ flex:1, minHeight:46, background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:12, fontSize:13, fontWeight:600, cursor:"pointer", fontFamily:"var(--font-sans)", color:"var(--ink)" }}>Close</button>
+        </div>
+      </div>
+    </div>
+  );
+  return (
+    <aside style={{ width: narrow ? 262 : 308, flex: narrow ? "0 0 262px" : "0 0 308px", borderLeft:"1px solid var(--ki-line)", background:"var(--ki-card)", display:"flex", flexDirection:"column", minHeight:0 }}>
+      <div style={{ padding:"12px 14px", borderBottom:"1px solid var(--ki-line)", display:"flex", alignItems:"center", gap:9, background:"var(--ki-band)" }}>
+        <span className="eyebrow" style={{ fontSize:10, color:"var(--ki-band-ink)" }}>Part detail</span>
+        <button onClick={onClose} style={{ marginLeft:"auto", background:"transparent", border:"none", color:"var(--slate-400)", cursor:"pointer", display:"flex", padding:2 }}><Icon name="x" size={14}/></button>
+      </div>
+      <div className="web-scroll" style={{ flex:1, minHeight:0, overflowY:"auto" }}>
+        <div style={{ height:132, background: node.img ? "#0d1017" : "var(--ki-page)", borderBottom: node.img ? "none" : "1px dashed var(--ki-line)", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:7, color:"var(--slate-400)" }}>
+          {node.img
+            ? <img src={node.img} alt="" style={{ width:"82%", height:"82%", objectFit:"contain", filter:"brightness(1.45)" }}/>
+            : <React.Fragment><Icon name={node.icon || "settings"} size={26}/><span style={{ fontSize:10.5 }}>Part photo not loaded yet</span></React.Fragment>}
+        </div>
+        <div style={{ padding:"13px 15px" }}>
+          <div style={{ fontSize:16.5, fontWeight:600, letterSpacing:"-0.02em" }}>{node.label}</div>
+          <div style={{ fontSize:12, color:"var(--slate-500)", marginTop:2 }}>{node.sub}</div>
+          {risk && <div style={{ marginTop:10, display:"flex", alignItems:"center", gap:7, padding:"7px 10px", borderRadius:9, background: risk==="critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk==="critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)", fontSize:11.5, fontWeight:600 }}>
+            <Icon name="alert" size={12} stroke={2.2}/>{risk === "critical" ? "Due or past due at 65,000 mi" : "Watch — approaching its window"}
+          </div>}
+          {node.price && node.price !== "—" && (
+            <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:9, padding:"10px 12px", borderRadius:11, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
+              <div style={{ minWidth:0, flex:1 }}>
+                <div className="mono" style={{ fontSize:14.5, fontWeight:600 }}>{node.price}</div>
+                {node.stock && <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>{node.stock}</div>}
+              </div>
+              {node.ownPart || node.ownFitted ? <TTOwnerChip node={node}/> : <VerifiedFit/>}
+            </div>
+          )}
+          <div style={{ marginTop:14, display:"flex", flexDirection:"column", gap:9 }}>
+            {rows.map(([k,v]) => (
+              <div key={k} style={{ display:"flex", gap:10, alignItems:"flex-start" }}>
+                <span style={{ width:96, flexShrink:0, fontSize:10.5, color:"var(--slate-500)", textTransform:"uppercase", letterSpacing:"0.06em", fontWeight:600, paddingTop:1 }}>{k}</span>
+                {k === "Part number" ? <TTPartNo node={node} size={12} weight={600}/> : <span style={{ fontSize:12, lineHeight:1.45 }}>{v}</span>}
+              </div>
+            ))}
+          </div>
+          {node.dueNote && risk && (
+            <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:8, padding:"9px 11px", borderRadius:10, background: risk === "critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk === "critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)", fontSize:11.5, fontWeight:600 }}>
+              <Icon name="alert" size={12} stroke={2.2}/>{node.dueNote}
+            </div>
+          )}
+          {node.issue && (
+            <div style={{ marginTop:14, padding:"11px 12px", borderRadius:11, background:"var(--ki-crit-bg)", border:"1px solid color-mix(in oklab, var(--ki-crit) 22%, transparent)" }}>
+              <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-crit)" }}>Known issue</div>
+              <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>
+              {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
+            </div>
+          )}
+          {node.resolved && (node.upgraded || node.fitted) && (
+            <div style={{ marginTop:14, padding:"11px 12px", borderRadius:11, background:"var(--ki-ok-bg)" }}>
+              <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-ok-ink)" }}>Known issue resolved</div>
+              <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.resolved}</div>
+            </div>
+          )}
+          {node.finishes && <TTFinishRow/>}
+          <TTUpgradeCard node={node} nodeId={nodeId} onEquip={onEquip}/>
+          <TTOwnPartCard node={node} nodeId={nodeId} defaultOpen={ownOpen}/>
+          <TTServiceRow node={node} miles={miles}/>
+          {node.alt && (
+            <div style={{ marginTop:10, padding:"11px 12px", borderRadius:11, background:"var(--ki-ok-bg)" }}>
+              <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-ok-ink)" }}>Aftermarket that fits</div>
+              <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, fontWeight:500 }}>{node.alt}</div>
+            </div>
+          )}
+        </div>
+      </div>
+      <div style={{ borderTop:"1px solid var(--ki-line)", padding:"10px 14px", display:"flex", gap:7 }}>
+        <button className="chip chip-sm" style={{ border:"1px solid var(--ki-line)" }}><Icon name="plus" size={11}/> Save</button>
+      </div>
+    </aside>
+  );
+}
+
+/* ── Ask Au7o, inside the tree — the same thread as the hub composer ── */
+function ttParents(nodes) {
+  const p = {};
+  Object.keys(nodes).forEach(id => (nodes[id].kids || []).forEach(k => p[k] = id));
+  return p;
+}
+
+const TT_SUGGEST = ["Show everything due on the car", "Which of these actually fails?", "I run a different radiator", "Cheaper than OEM?", "Back out to the car"];
+const TT_SUGGEST_SCHED = ["Back to the tree", "What's due at the next stop?", "Which of these actually fails?"];
+
+function TTComposer({ value, setValue, onSend, reply, suggestions }) {
+  return (
+    <div style={{ flex:"0 0 auto", borderTop:"1px solid var(--ki-line)", background:"var(--ki-card)", padding:"10px 16px 12px" }}>
+      {reply && (
+        <div key={reply.key} className="hl-bubble" style={{ display:"flex", gap:9, alignItems:"flex-start", marginBottom:9 }}>
+          <img src="brand/au7o-mascot.png" alt="" style={{ width:19, height:19, flexShrink:0, marginTop:1 }}/>
+          <div style={{ fontSize:12.5, lineHeight:1.45, textWrap:"pretty" }}>{reply.text}</div>
+        </div>
+      )}
+      <div style={{ display:"flex", gap:6, marginBottom:8, flexWrap:"wrap" }}>
+        {suggestions.map(s => (
+          <button key={s} onClick={()=>onSend(s)} className="chip chip-sm" style={{ border:"1px solid var(--ki-line)" }}>{s}</button>
+        ))}
+      </div>
+      <form onSubmit={e => { e.preventDefault(); onSend(value); }} style={{ display:"flex", alignItems:"center", gap:9, background:"var(--ki-page)", border:"1px solid var(--ki-line)", borderRadius:13, padding:"8px 9px 8px 14px" }}>
+        <input value={value} onChange={e=>setValue(e.target.value)} placeholder="Ask about any part in this tree — I'll move it, filter it, or explain it"
+          style={{ flex:1, minWidth:0, background:"transparent", border:"none", outline:"none", fontSize:13, color:"var(--ink)", fontFamily:"var(--font-sans)" }}/>
+        <button type="button" className="chip chip-sm" style={{ border:"1px solid var(--ki-line)" }}><Icon name="camera" size={12}/></button>
+        <button type="button" className="chip chip-sm" style={{ border:"1px solid var(--ki-line)" }}><Icon name="mic" size={12}/></button>
+        <button type="submit" aria-label="Send" style={{ background:"#3B82F6", border:"none", color:"#F0F4FA", width:30, height:30, borderRadius:10, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><Icon name="send" size={13}/></button>
+      </form>
+    </div>
+  );
+}
+
+/* ── The canvas ── */
+const TT_INTENTS = [
+  { id:"issues", label:"Known issues", line:"Backed out to the whole car and reshaped it around what's actually documented to fail — lug nuts, front pads and rotors are the three that bite people on a 392." },
+  { id:"maint",  label:"Maintenance due", line:"Backed out to the whole car — this is everything on a service interval, across all three systems. At 65,000 mi the pads, tires, oil and filter are past due; rotors and wipers are close." },
+  { id:"risk",   label:"Mileage risk", line:"Whole car. Anything glowing red is at or past its typical life at 65,000 mi. Amber is inside 20% of its window." },
+];
+
+function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact = false, detailMode = null, vertical = false, horizon = null, startView = "tree", startStop = null, startList = false }) {
+  const sheetDetail = detailMode ? detailMode === "sheet" : compact;
+  const [equipped, setEquipped] = useEquipped();
+  const tree = React.useMemo(() => { const t = TT_TREES[branch]; const n = ttViewNodes(t.nodes, equipped); return n === t.nodes ? t : { ...t, nodes:n }; }, [branch, equipped]);
+  const [selected, setSelected] = React.useState(null);
+  const [intent, setIntent] = React.useState(null);
+  const [menu, setMenu] = React.useState(null);
+  const [offsets, setOffsets] = React.useState({});
+  const [pan, setPan] = React.useState({ x:56, y:40 });
+  const [styles, setStyles] = React.useState(() => { try { return JSON.parse(localStorage.getItem("au7o-tt-styles") || "{}"); } catch(e) { return {}; } });
+  const [expanded, setExpanded] = React.useState(() => ({ [tree.root]: true }));
+  const [draft, setDraft] = React.useState("");
+  const [reply, setReply] = React.useState(null);
+  const [pending, setPending] = React.useState(null);
+  const [allow, setAllow] = React.useState(null);
+  const [zoom, setZoom] = React.useState(1);
+  const [tall, setTall] = React.useState(false);
+  const [vw, setVw] = React.useState(320);
+  const [autoV, setAutoV] = React.useState(false);
+  const [tick, setTick] = React.useState(0);
+  const vert = vertical || autoV;
+  const [view, setView] = React.useState(startView);
+  const [ownOpen, setOwnOpen] = React.useState(0);
+  const canvasRef = React.useRef(null);
+  React.useEffect(() => {
+    const on = () => setTick(t => t + 1);
+    window.addEventListener("resize", on);
+    return () => window.removeEventListener("resize", on);
+  }, []);
+
+  React.useEffect(() => { setExpanded({ [TT_TREES[branch].root]: true }); setSelected(null); setIntent(null); setAllow(null); setMenu(null); setOffsets({}); setPan({ x:56, y:40 }); }, [branch]);
+  React.useEffect(() => { try { localStorage.setItem("au7o-tt-styles", JSON.stringify(styles)); } catch(e) {} }, [styles]);
+
+  /* a hotspot can point at a node, not just a branch — open its path and select it */
+  React.useEffect(() => {
+    if (!startNode || !tree.nodes[startNode]) return;
+    const parents = ttParents(tree.nodes);
+    const next = { [tree.root]: true, [startNode]: true };
+    let c = startNode;
+    while (parents[c]) { next[parents[c]] = true; c = parents[c]; }
+    setExpanded(next);
+    setAllow(null);
+    setIntent(null);
+  }, [branch, startNode]);
+
+  const styleOf = id => styles[id] || { shape:"rounded", color:"ink" };
+  const vis0 = ttVisible(tree.nodes, tree.root, expanded, allow);
+  const dense = compact || vis0.length > 9;
+  const PAD = vert ? 10 : 28;
+  const rowH = dense ? 46 : 58;
+  const nodeW = compact ? 150 : TT_NODE_W;
+  /* siblings share the width; when they no longer fit as cards they become chips, then icons */
+  const leaves = ttLeafCount(tree.nodes, vis0, expanded, allow);
+  const fit = vw / leaves;
+  const vMode = fit >= 92 ? "card" : "chip";
+  const V_COL = Math.max(fit, 66);
+  const V_ROW = vMode === "card" ? 100 : 92;
+  const base = vert
+      ? ttLayoutV(tree.nodes, tree.root, expanded, allow, V_ROW, V_COL)
+      : ttLayout(tree.nodes, tree.root, expanded, allow, dense ? 62 : 90, compact ? 176 : 258);
+  const vis = vis0;
+  const posOf = id => { const b = base[id] || { x:0, y:0 }; const o = vert ? null : offsets[id]; return o ? { x:b.x + o.dx, y:b.y + o.dy } : b; };
+  const pts = vis.map(id => posOf(id));
+  const minX = vert ? 0 : Math.min(...pts.map(p => p.x)), minY = Math.min(...pts.map(p => p.y));
+  const spanW = vert ? Math.max(vw, Math.max(...pts.map(p => p.x)) + V_COL) : Math.max(...pts.map(p => p.x)) + nodeW - minX;
+  const spanH = Math.max(...pts.map(p => p.y)) + (vert ? V_ROW : rowH) - minY;
+
+  const onSelect = id => setSelected(id);
+
+  const onToggle = id => {
+    const n = tree.nodes[id];
+    if (!n.kids || !n.kids.length) return;
+    if (allow && !expanded[id] && n.kids.some(k => !allow[k])) setAllow(null);
+    setExpanded(e => ({ ...e, [id]: !e[id] }));
+  };
+
+  /* the canvas scrolls for real; zoom only fits the WIDTH so nodes stay legible, and the
+     initial scroll is pinned to the root node so a whole-car filter always opens on the car */
+  React.useLayoutEffect(() => {
+    const el = canvasRef.current;
+    if (!el) return;
+    const cw = el.clientWidth, ch = el.clientHeight;
+    setAutoV(cw < 560);
+    if (vertical || cw < 560) { setVw(Math.max(180, cw - PAD * 2)); setZoom(1); setTall(spanH + 40 > ch); return; }
+    const z = Math.max(compact ? 0.66 : 0.72, Math.min(1, (cw - (compact ? 24 : 56)) / spanW));
+    setZoom(z);
+    setTall(spanH * z + 40 > ch);
+  }, [expanded, branch, allow, !!selected, vertical, tick]);
+  /* pin the opening scroll to the root once the sizer has actually laid out at its new height */
+  React.useLayoutEffect(() => {
+    const el = canvasRef.current;
+    if (!el) return;
+    const want = ((base[tree.root] || { y:0 }).y - minY) * zoom;
+    const target = Math.max(0, Math.min(want - el.clientHeight / 2 + 30, el.scrollHeight - el.clientHeight));
+    el.scrollLeft = 0;
+    el.scrollTop = target;
+  }, [expanded, branch, allow, zoom]);
+
+  const doIntent = (i, tr) => {
+    setIntent(i.id);
+    const next = { [tr.root]: true }, keep = { [tr.root]: true };
+    const match = n => i.id === "issues" ? !!n.issue : i.id === "maint" ? !!n.riskAt : !!ttRisk(n, miles);
+    const walk = id => { const n = tr.nodes[id]; let hit = match(n); (n.kids || []).forEach(k => { if (walk(k)) hit = true; }); if (hit) { next[id] = true; keep[id] = true; } return hit; };
+    walk(tr.root);
+    setExpanded({ ...next, [tr.root]: true });
+    setAllow(keep);
+    setOffsets({});
+    setSelected(null);
+    setReply({ text: i.line, key: Date.now() });
+    if (say) say(i.line);
+  };
+
+  /* filters always answer for the whole car, not just the branch you happen to be in */
+  const applyIntent = i => {
+    if (intent === i.id) { setIntent(null); setAllow(null); setReply(null); return; }
+    if (branch !== "car") { setPending(i); setBranch("car"); return; }
+    doIntent(i, tree);
+  };
+
+  React.useEffect(() => {
+    if (pending && branch === "car") { doIntent(pending, TT_TREES.car); setPending(null); }
+  }, [branch, pending]);
+
+  const panDown = e => {
+    if (e.button === 2) return;
+    setMenu(null);
+    const el = canvasRef.current;
+    if (!el) return;
+    const sx = e.clientX, sy = e.clientY, sl = el.scrollLeft, st = el.scrollTop;
+    const mv = ev => { el.scrollLeft = sl - (ev.clientX - sx); el.scrollTop = st - (ev.clientY - sy); };
+    const up = () => { window.removeEventListener("pointermove", mv); window.removeEventListener("pointerup", up); };
+    window.addEventListener("pointermove", mv); window.addEventListener("pointerup", up);
+  };
+
+  /* the hub's assistant, working on the tree itself */
+  const answer = raw => {
+    const q = (raw || "").trim();
+    if (!q) return;
+    setDraft("");
+    const t = q.toLowerCase();
+    const parents = ttParents(tree.nodes);
+    const reveal = id => { const next = { ...expanded, [tree.root]:true }; let c = id; while (parents[c]) { next[parents[c]] = true; c = parents[c]; } setExpanded(next); setAllow(null); setIntent(null); };
+    const say2 = text => { setReply({ text, key: Date.now() }); if (say) say(text); };
+
+    const hit = Object.keys(tree.nodes).filter(id => id !== tree.root).find(id => {
+      const words = tree.nodes[id].label.toLowerCase().split(/[^a-z]+/).filter(w => w.length > 2);
+      return words.some(w => t.includes(w)) || (id === "lugs" && /lug|nut/.test(t)) || (id === "padsR" && /rear pad/.test(t)) || (id === "pads" && /pad/.test(t)) || (id === "rotorR" && /rear (rotor|disc)/.test(t)) || (id === "rotor" && /rotor|disc|shudder|shake/.test(t)) || (id === "oilFluid" && /\b0w|5w|weight/.test(t));
+    });
+
+    if (/cheap|aftermarket|budget|instead of oem|alternative/.test(t)) {
+      const alts = Object.keys(tree.nodes).filter(id => tree.nodes[id].alt);
+      alts.forEach(id => reveal(id));
+      setIntent("issues");
+      say2(alts.length
+        ? `Three parts in this tree have a verified-fit aftermarket option: ${alts.map(id => `${tree.nodes[id].label} — ${tree.nodes[id].alt}`).join(" · ")}. I've opened them for you.`
+        : "Nothing in this branch has a cheaper verified-fit option worth recommending yet.");
+      return;
+    }
+    if (/back to the tree|tree view|show the tree|close the schedule/.test(t)) { setView("tree"); say2("Back on the tree."); return; }
+    if ((/only|just|filter|hide|show|everything|what/.test(t) && /due|overdue|need|maintenance|service/.test(t)) || /schedule|owner'?s manual|service interval|due when|next service|coming up|how often/.test(t)) {
+      setView("schedule");
+      setSelected(null);
+      say2("Opened the schedule — the owner's manual, laid out in mileage lanes. Every service stop from here forward with what lands in it, what it costs and how often it comes back. The lane in blue is the next one you'll hit.");
+      return;
+    }
+    if (/back out|whole car|all systems|everything|other (system|categor)|zoom out|top level/.test(t)) { setBranch("car"); say2("Backed out to the car. All three systems are here — click one to drill in."); return; }
+    if (/(i (have|run|installed|fitted|put)|mine|different|another|else|not listed|aftermarket brand|fluidyne|csf|griffin|derale)/.test(t) && /radiator|rad\b|cooling|part/.test(t)) {
+      reveal("radAlum");
+      setSelected("radCore");
+      setView("tree");
+      setOwnOpen(Date.now());
+      say2("Then tell me what it is and it joins the fork as a third option. I've opened the form under the radiator — name the part, the number if you have it, and whether the end tanks are welded aluminium. Welded tanks clear the 2011–2021 known issue outright; plastic ones only reset the clock. Au7o reviews the fitment, and once it's confirmed your part becomes a listed option for every Challenger on the platform.");
+      return;
+    }
+    if (/fail|fails|breaks|weak (point|spot)/.test(t) && tree.nodes.radCore) {
+      reveal("radAlum");
+      setSelected("radCore");
+      say2("The documented one on this platform is the radiator. The 2011–2021 OEM unit runs crimped plastic end tanks that split at the seams — typically 60,000–100,000 mi, sooner on a 392, 35 owner reports. Your car still has the OEM part. I've opened both options under it: the Mopar replacement, which resets the clock, and the Mishimoto MMRAD-SRT-15, which welds the tanks in aluminium and retires the failure.");
+      return;
+    }
+    if (/known issue|fail|break|breaks|problem|recall/.test(t)) { applyIntent(TT_INTENTS[0]); return; }
+    if (/mileage|65|risk|glow/.test(t)) { applyIntent(TT_INTENTS[2]); return; }
+    if (/tidy|reset|arrange|clean up|re-?arrange|straighten/.test(t)) { setOffsets({}); setPan({ x:56, y:40 }); say2("Straightened the tree back out and put every node back on its branch."); return; }
+    if (/top|first|front|move|reorder|bring/.test(t) && hit) {
+      reveal(hit);
+      setSelected(hit);
+      const topY = Math.min(...ttVisible(tree.nodes, tree.root, { ...expanded, [tree.root]:true }).map(id => (base[id] || { y:0 }).y));
+      setOffsets(o => ({ ...o, [hit]: { dx:0, dy: (topY - 90) - (base[hit] ? base[hit].y : 0) } }));
+      setPan(p => ({ ...p, y: Math.max(p.y, 24 - (topY - 90)) }));
+      say2(`Moved ${tree.nodes[hit].label} to the top of the tree and opened its detail.`);
+      return;
+    }
+    if (hit) {
+      const n = tree.nodes[hit];
+      reveal(hit);
+      setSelected(hit);
+      say2(n.issue ? `${n.label} — ${n.issue}` : `${n.label}: ${n.brand || n.spec}. ${n.where}. ${n.life || ""}`.trim());
+      return;
+    }
+    say2("I couldn't tie that to a part in this branch. Try a part name — tire, lug nuts, rotor, pads — or switch branches at the top and ask again.");
+  };
+
+  const edges = [];
+  vis.forEach(id => { if (expanded[id]) (tree.nodes[id].kids || []).filter(k => base[k] && (!allow || allow[k])).forEach(k => edges.push([id, k])); });
+  const sel = selected ? tree.nodes[selected] : null;
+  const horizonOn = horizon != null;
+  const dueSets = React.useMemo(() => horizonOn ? ttDueSets(tree.nodes, tree.root, horizon) : null, [horizonOn, horizon, tree]);
+  const criticalCount = Object.keys(tree.nodes).filter(k => ttRisk(tree.nodes[k], miles) === "critical").length;
+
+  return (
+    <div style={{ display:"flex", flexDirection:"column", height:"100%", minHeight:0, background:"var(--ki-page)" }}>
+      <div style={{ padding: compact ? "8px 10px" : "12px 16px", borderBottom:"1px solid var(--ki-line)", background:"var(--ki-card)", display:"flex", alignItems:"center", gap: compact ? 7 : 11, flexWrap: compact ? "nowrap" : "wrap" }}>
+        {!compact && <img src="brand/au7o-mascot.png" alt="" style={{ width:28, height:28, objectFit:"contain", flexShrink:0 }}/>}
+        <div style={{ minWidth:0, flex: compact ? "1 1 0" : "0 1 auto", overflow:"hidden" }}>
+          <div style={{ display:"flex", alignItems:"center", gap:6, minWidth:0 }}>
+            {branch !== "car" && (
+              <React.Fragment>
+                <button onClick={()=>setBranch("car")} style={{ background:"transparent", border:"none", padding:0, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:15.5, fontWeight:500, letterSpacing:"-0.02em", color:"var(--slate-400)" }}>Your car</button>
+                <Icon name="chevron" size={11} style={{ color:"var(--slate-400)", flexShrink:0 }}/>
+              </React.Fragment>
+            )}
+            <span style={{ fontSize: compact ? 13.5 : 15.5, fontWeight:600, letterSpacing:"-0.02em", whiteSpace: compact ? "nowrap" : "normal", overflow:"hidden", textOverflow:"ellipsis", minWidth:0 }}>{branch === "car" ? (compact ? "Challenger 392" : "2015 Challenger SRT 392") : tree.label}</span>
+          </div>
+          {!compact && <div style={{ fontSize:11, color:"var(--slate-500)" }}>{branch === "car" ? "All systems" : "Tech tree"} · 2015 Challenger SRT 392 · <span className="mono">{miles.toLocaleString()} mi</span></div>}
+        </div>
+        {criticalCount > 0 && !compact && <span className="mono" style={{ fontSize:10.5, fontWeight:700, padding:"3px 9px", borderRadius:999, background:"var(--ki-crit-bg)", color:"var(--ki-crit)" }}>{criticalCount} at risk</span>}
+        <div style={{ marginLeft:"auto" }}/>
+        <div style={{ display:"flex", gap:2, padding:2, borderRadius:999, background:"var(--ki-page)", border:"1px solid var(--ki-line)", flexShrink:0 }}>
+          {[["tree","Tree"],["schedule","Schedule"]].map(([v,lbl]) => (
+            <button key={v} onClick={()=>setView(v)} style={{ padding: compact ? "6px 9px" : "6px 12px", borderRadius:999, border:"none", cursor:"pointer", fontFamily:"var(--font-sans)", fontSize: compact ? 11 : 11.5, fontWeight:600, whiteSpace:"nowrap", background: view===v ? "var(--ink)" : "transparent", color: view===v ? "var(--ki-card)" : "var(--slate-500)" }}>{lbl}</button>
+          ))}
+        </div>
+        <button onClick={onClose} title="Close tech tree" aria-label="Close tech tree" style={{ width: compact ? 34 : 30, height: compact ? 34 : 30, borderRadius: compact ? 999 : 9, background:"var(--ki-card)", border:"1px solid var(--ki-line)", color:"var(--slate-500)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><Icon name="x" size={compact ? 19 : 15}/></button>
+      </div>
+
+
+      {view === "schedule" && typeof TTSchedule !== "undefined" ? <TTSchedule miles={miles} phone={vert || compact} startStop={startStop} startList={startList}/> : (
+      <div style={{ display:"flex", flex:1, minHeight:0 }}>
+        <div style={{ flex:1, minWidth:0, position:"relative", display:"flex", flexDirection:"column", minHeight:0 }}>
+        <div ref={canvasRef} onPointerDown={panDown} onContextMenu={e=>e.preventDefault()} className="dotted-grid web-scroll" style={{ flex:1, minWidth:0, position:"relative", overflow:"auto", overscrollBehavior:"contain", cursor:"grab", background:"var(--ki-page)" }}>
+          <div style={{ position:"relative", width: spanW * zoom + PAD * 2, height: spanH * zoom + PAD * 2 + (vert ? 40 : 0) }}>
+          <div style={{ position:"absolute", left:PAD, top:PAD, transform:`scale(${zoom})`, transformOrigin:"0 0" }}>
+            <svg style={{ position:"absolute", left:0, top:0, width:Math.max(1, spanW), height:Math.max(1, spanH), pointerEvents:"none", overflow:"visible" }}>
+              <g transform={`translate(${-minX},${-minY})`}>
+                {edges.map(([a,b]) => {
+                  const pa = posOf(a), pb = posOf(b);
+                  const risk = ttRisk(tree.nodes[b], miles);
+                  const sw = risk === "critical" ? 2 : 1.5;
+                  const col = risk === "critical" ? "#E5484D" : risk === "watch" ? "#D9822B" : "var(--ki-line)";
+                  const faded = horizonOn && !dueSets.any[b];
+                  if (vert) {
+                    const hx = V_COL / 2, thumbH = vMode === "card" ? 48 : vMode === "chip" ? 42 : 38;
+                    const x1 = pa.x + hx, y1 = pa.y + thumbH, x2 = pb.x + hx, y2 = pb.y - 2;
+                    const cd = Math.max(12, (y2 - y1) / 2);
+                    return <path key={a+b} d={`M${x1} ${y1} C ${x1} ${y1+cd}, ${x2} ${y2-cd}, ${x2} ${y2}`} fill="none" strokeWidth={sw} stroke={col} strokeOpacity={faded ? .28 : 1}/>;
+                  }
+                  const x1 = pa.x + nodeW, y1 = pa.y + (dense ? 23 : 28), x2 = pb.x, y2 = pb.y + (dense ? 23 : 28);
+                  const cd = Math.max(16, (x2 - x1) / 2);
+                  return <path key={a+b} d={`M${x1} ${y1} C ${x1+cd} ${y1}, ${x2-cd} ${y2}, ${x2} ${y2}`} fill="none" strokeWidth={sw} stroke={col} strokeOpacity={faded ? .28 : 1}/>;
+                })}
+              </g>
+            </svg>
+            {vert && vis.map(id => {
+              const kids = (expanded[id] ? (tree.nodes[id].kids || []) : []).filter(k => !allow || allow[k]);
+              const all = (tree.nodes[id].kids || []).filter(k => !allow || allow[k]);
+              return (
+                <TTNodeV key={id} id={id} node={tree.nodes[id]} pos={{ x: posOf(id).x - minX, y: posOf(id).y - minY }} col={V_COL} mode={vMode}
+                  selected={selected===id} risk={ttRisk(tree.nodes[id], miles)} up={ttUpState(tree.nodes[id])}
+                  expanded={!!kids.length} hasKids={!!all.length} kidCount={all.length}
+                  onSelect={onSelect} onToggle={onToggle}/>
+              );
+            })}
+            {!vert && vis.map(id => (
+              <TTNode key={id} id={id} node={tree.nodes[id]} pos={{ x: posOf(id).x - minX, y: posOf(id).y - minY }} style={styleOf(id)} selected={selected===id} zoom={zoom} dense={dense} width={nodeW}
+                dim={horizonOn && !dueSets.any[id]} dueCount={horizonOn ? dueSets.count[id] : 0}
+                risk={ttRisk(tree.nodes[id], miles)} intent={intent} expanded={!!expanded[id]} hasKids={!!(tree.nodes[id].kids || []).length}
+                onSelect={onSelect} onToggle={onToggle} onContext={(nid,x,y)=>setMenu({ id:nid, x, y })}
+                onDrag={vert ? null : ((nid,x,y)=>setOffsets(o => ({ ...o, [nid]: { dx: x + minX - (base[nid]||{x:0}).x, dy: y + minY - (base[nid]||{y:0}).y } })))}/>
+            ))}
+          </div>
+          </div>
+        </div>
+          <div style={{ flexShrink:0, display:"flex", alignItems:"center", justifyContent:"space-between", gap:8, flexWrap:"wrap", padding:"8px 14px", background:"var(--ki-card)", borderTop:"1px solid var(--ki-line)" }}>
+          <div style={{ display:"flex", gap:9, alignItems:"center", flexWrap:"wrap", padding:"6px 11px", borderRadius:999, background:"var(--ki-glass)", border:"1px solid var(--ki-line)", backdropFilter:"blur(10px)", fontSize:10.5, color:"var(--slate-500)", pointerEvents:"auto" }}>
+            <span style={{ display:"inline-flex", alignItems:"center", gap:5 }}><Icon name="alert" size={11} stroke={2} style={{ color:"#E5484D" }}/> Overdue on mileage</span>
+            <span style={{ display:"inline-flex", alignItems:"center", gap:5 }}><Icon name="check" size={11} stroke={2.6} style={{ color:"#12A87A" }}/> On track</span>
+            <span style={{ display:"inline-flex", alignItems:"center", gap:5 }}><Icon name="shield-alert" size={11} stroke={2} style={{ color:TT_UP_HEX }}/> Known issue — fix available</span>
+            <button onClick={()=>{ setOffsets({}); setAllow(null); setIntent(null); if (canvasRef.current) { canvasRef.current.scrollTop = 0; canvasRef.current.scrollLeft = 0; } }} style={{ background:"transparent", border:"none", color:"var(--au7o-blue)", fontSize:10.5, fontWeight:600, cursor:"pointer", fontFamily:"var(--font-sans)", padding:0 }}>Tidy up</button>
+          </div>
+          {tall && (
+            <div style={{ display:"flex", alignItems:"center", gap:6, padding:"5px 10px", borderRadius:999, background:"var(--ki-glass)", border:"1px solid var(--ki-line)", backdropFilter:"blur(10px)", fontSize:10.5, color:"var(--slate-500)" }}>
+              <Icon name="chevron" size={11} style={{ transform:"rotate(90deg)" }}/> Scroll for the rest of the car
+            </div>
+          )}
+          </div>
+          {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={setEquipped} miles={miles} risk={ttRisk(sel, miles)} sheet onClose={()=>setSelected(null)} ownOpen={ownOpen} onAsk={n => say && say(`Here's the ${n.label.toLowerCase()} job end to end — ${n.where.toLowerCase()}. ${n.spec}.`)}/>}
+        </div>
+        {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={setEquipped} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} onClose={()=>setSelected(null)} ownOpen={ownOpen} onAsk={n => say && say(`Here's the ${n.label.toLowerCase()} job end to end — ${n.where.toLowerCase()}. ${n.spec}. I'll keep the tree open beside you.`)}/>}
+      </div>
+      )}
+      <TTComposer value={draft} setValue={setDraft} onSend={answer} reply={reply} suggestions={view === "schedule" ? (compact ? [] : TT_SUGGEST_SCHED) : compact ? [TT_SUGGEST[0], TT_SUGGEST[2]] : TT_SUGGEST}/>
+      <TTStyleMenu menu={menu} style={menu ? styleOf(menu.id) : {}}
+        onShape={s => setStyles(v => ({ ...v, [menu.id]: { ...styleOf(menu.id), shape:s } }))}
+        onColor={c => setStyles(v => ({ ...v, [menu.id]: { ...styleOf(menu.id), color:c } }))}
+        onClose={()=>setMenu(null)}/>
+    </div>
+  );
+}
+
+Object.assign(window, { ttThumb, TT_FINISHES, ttFinish, TTFinishRow, ttAddOwnPart, ttRemoveOwnPart, ttChooseFit, ttFittedRaw, TTOwnPartCard, TTOwnerChip, TTPartNo, ttPartLink, TT_TREES, TT_SHAPES, TT_COLORS, TT_UP_HEX, TT_EQUIP, useEquipped, ttViewNodes, ttUpState, ttHasUpgrade, ttMarkDone, ttUndoDone, ttNextDue, TTUpgradeCard, TTServiceRow, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT, TT_BRANCH_ORDER, TT_CATEGORY_OF, TT_INTENTS, TT_SUGGEST, TechTree, TTNode, TTNodeV, ttLayoutV, TTDetail, TTStyleMenu, TTComposer, ttRisk, ttLayout, ttVisible, ttParents, ttDue, ttDueSets, TT_SUGGEST_SCHED });

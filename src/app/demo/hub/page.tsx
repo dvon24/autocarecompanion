@@ -17,6 +17,7 @@ export const metadata: Metadata = {
  * above it pushed the input below the fold on a phone, and chrome below it hung
  * off the end of a viewport-height layout. The hub owns the whole viewport.
  */
-export default function DemoHubPage() {
-  return <DemoHubClient />;
+export default async function DemoHubPage({ searchParams }: { searchParams: Promise<{ vehicle?: string }> }) {
+  const params = await searchParams;
+  return <DemoHubClient vehicleId={params.vehicle} />;
 }

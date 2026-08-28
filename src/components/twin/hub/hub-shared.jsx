@@ -6,6 +6,7 @@
  * separate standalone files there; there is no reason for four files here.
  */
 import React from "react";
+import Link from "next/link";
 import { Icon } from "../stage/Icon";
 
 /** The known-issues palette, as the design references it. */
@@ -101,12 +102,12 @@ export function HPComposer({ say }) {
 
 export function Au7oMark({ size = 28, color = "var(--ink)" }) {
   return (
-    <div style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+    <Link href="/" aria-label="Au7o home" style={{ display: "inline-flex", alignItems: "center", gap: 8, textDecoration:"none" }}>
       <img src="/twin-stage/au7o-mascot.webp" alt="" style={{ width: size, height: size, objectFit: "contain" }} />
       <span style={{ fontFamily: "var(--font-sans)", fontSize: size * 0.6, fontWeight: 600, letterSpacing: "-0.02em", color }}>
         Au<span style={{ color: "var(--au7o-blue)" }}>7</span>o
       </span>
-    </div>
+    </Link>
   );
 }
 

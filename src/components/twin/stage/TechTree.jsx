@@ -11,7 +11,7 @@
  */
 import React from "react";
 import { Icon } from "./Icon";
-import { useTwinLive, useTwinVehicle, useTwinTrees } from "../twin-context";
+import { useTwinLive, useTwinVehicle, useTwinTrees, useTwinMode } from "../twin-context";
 
 /* Ported from the design bundle's "Hub personalized" module — TTDetail renders
    it, and its absence crashed every part tap with a ReferenceError. */
@@ -234,8 +234,8 @@ TT_TREES.car = {
 const TT_BRANCH_ORDER = ["car", "wheel", "engine", "trans", "wipers"];
 const TT_CATEGORY_OF = { wtb:"wheel", eng:"engine", trx:"trans", wip:"wipers" };
 
-const TT_BRANCH_FOR_HOTSPOT = { wheel:"wheel", hood:"engine", glass:"wipers", rad:"engine", airbox:"engine", rearwheel:"wheel", trans:"trans" };
-const TT_NODE_FOR_HOTSPOT = { rad:"rad", airbox:"airFilter", hood:"oil", rearwheel:"tire" };
+const TT_BRANCH_FOR_HOTSPOT = { wheel:"wheel", hood:"engine", glass:"wipers", rad:"engine", rearwheel:"wheel", trans:"trans" };
+const TT_NODE_FOR_HOTSPOT = { rad:"rad", hood:"oil", rearwheel:"tire" };
 
 /* ── Equipped upgrades — one store the hub, tree and phone all read ── */
 const TT_UP_HEX = "#8B5CF6";
@@ -286,6 +286,15 @@ const ttUpState = node => !node ? null
 const ttHasUpgrade = (nodes, ids, eq) => ids.some(id => nodes[id] && nodes[id].upgrade && !nodes[id].fitFor && !eq[id]);
 
 function ttRisk(node, miles) {
+  if (typeof miles !== "number") return null;
+  if (node.unlogged) return null;
+  if (node.overdueByDate === true) return "critical";
+  if (typeof node.dueMileage === "number") {
+    const remaining = node.dueMileage - miles;
+    if (remaining <= 0) return "critical";
+    if (typeof node.riskAt === "number" && remaining <= node.riskAt * 0.2) return "watch";
+    return null;
+  }
   if (!node.riskAt) return null;
   if (node.servicedAt != null) {
     /* Serviced: risk is how far through the INTERVAL we are. The old code
@@ -304,6 +313,25 @@ function ttRisk(node, miles) {
   if (miles >= node.riskAt) return "critical";
   if (miles >= node.riskAt * 0.8) return "watch";
   return null;
+}
+
+function ttRiskLabel(node, miles, risk = ttRisk(node, miles)) {
+  if (!risk) return null;
+  if (risk === "watch") return "Watch — approaching its service window";
+  const sources = [];
+  if (node.overdueByDate === true && node.dueDate) {
+    const date = new Date(node.dueDate);
+    if (Number.isFinite(date.getTime())) {
+      sources.push(`Past due by date (${date.toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric", timeZone:"UTC" })})`);
+    }
+  }
+  const dueMileage = typeof node.dueMileage === "number"
+    ? node.dueMileage
+    : (typeof node.servicedAt === "number" && typeof node.riskAt === "number" ? node.servicedAt + node.riskAt : null);
+  if (dueMileage != null && typeof miles === "number" && dueMileage <= miles) {
+    sources.push(`Past due by mileage (${dueMileage.toLocaleString()} mi deadline)`);
+  }
+  return sources.length ? sources.join(" · ") : "Service deadline passed";
 }
 
 /* ── Layout: layered left→right, leaves stack vertically ── */
@@ -354,7 +382,7 @@ const ttLeafCount = (nodes, vis, expanded, allow) =>
 
 /* ── Vertical node — a column-shaped chip. Degrades: card → chip → icon-only as siblings crowd. ── */
 function TTNodeV({ id, node, pos, col, mode, selected, risk, up, expanded, hasKids, kidCount, onSelect, onToggle }) {
-  const ring = risk === "critical" ? "#E5484D" : up === "available" ? TT_UP_HEX : risk === "watch" ? "#D9822B" : null;
+  const ring = risk === "critical" ? "#E5484D" : node.knownIssue?.id ? TT_UP_HEX : risk === "watch" ? "#D9822B" : null;
   const thumb = mode === "card" ? 46 : mode === "chip" ? 40 : 36;
   const tap = e => { e.stopPropagation(); onSelect(id); if (hasKids && !expanded) onToggle(id); };
   return (
@@ -365,7 +393,11 @@ function TTNodeV({ id, node, pos, col, mode, selected, risk, up, expanded, hasKi
         {node.img
           ? <img src={ttThumb(node.img)} alt="" draggable="false" style={{ width:"124%", height:"124%", objectFit:"contain", filter:"brightness(1.55) contrast(1.1)" }}/>
           : <Icon name="wrench" size={15} style={{ color:"var(--slate-400)" }}/>}
-        {ring && <span style={{ position:"absolute", top:-2, right:-2, width:9, height:9, borderRadius:"50%", background:ring, border:"1.5px solid var(--ki-card)" }}/>}
+        {node.knownIssue?.id
+          ? <span title="Known issue on record" style={{ position:"absolute", top:-5, right:-5, width:18, height:18, borderRadius:"50%", display:"grid", placeItems:"center", background:TT_UP_HEX, color:"white", border:"1.5px solid var(--ki-card)" }}><Icon name="shield-alert" size={10}/></span>
+          : ring && (
+            <span style={{ position:"absolute", top:-2, right:-2, width:9, height:9, borderRadius:"50%", background:ring, border:"1.5px solid var(--ki-card)" }}/>
+          )}
       </span>
       {mode !== "icon" && (
         <span style={{ fontSize: mode === "card" ? 10 : 9, lineHeight:1.15, fontWeight:600, letterSpacing:"-0.01em", textAlign:"center", color:"var(--ink)", display:"-webkit-box", WebkitLineClamp:2, WebkitBoxOrient:"vertical", overflow:"hidden", maxWidth:"100%" }}>{node.label}</span>
@@ -380,9 +412,9 @@ function TTNodeV({ id, node, pos, col, mode, selected, risk, up, expanded, hasKi
 function TTNode({ id, node, pos, style, selected, risk, intent, expanded, hasKids, onSelect, onToggle, onContext, onDrag, zoom = 1, dense = false, width = TT_NODE_W }) {
   const sh = TT_SHAPES.find(s => s.id === style.shape) || TT_SHAPES[1];
   const col = TT_COLORS.find(c => c.id === style.color) || TT_COLORS[0];
-  const flagged = intent === "issues" ? !!node.issue : intent === "maint" ? !!node.riskAt : false;
+  const flagged = intent === "issues" ? !!node.knownIssue?.id : intent === "maint" ? !!node.riskAt : false;
   const up = ttUpState(node);
-  const ring = risk === "critical" ? "#E5484D" : up === "available" ? TT_UP_HEX : risk === "watch" ? "#D9822B" : null;
+  const ring = risk === "critical" ? "#E5484D" : node.knownIssue?.id ? TT_UP_HEX : risk === "watch" ? "#D9822B" : null;
   const down = e => {
     if (e.button === 2) return;
     e.stopPropagation();
@@ -411,9 +443,9 @@ function TTNode({ id, node, pos, style, selected, risk, intent, expanded, hasKid
         <div style={{ fontSize: dense ? 12 : 12.5, fontWeight:600, letterSpacing:"-0.01em", lineHeight:1.25, color: col.hex === "var(--ink)" ? "var(--ink)" : col.hex }}>{node.label}</div>
         {!dense && <div style={{ fontSize:10, color:"var(--slate-500)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis", marginTop:1 }}>{node.sub}</div>}
       </div>
-      {up === "available" && (
-        <span title="Known issue on record — fix available" style={{ display:"flex", alignItems:"center", gap:3, flexShrink:0, padding:"3px 6px", borderRadius:999, background:"color-mix(in oklab, " + TT_UP_HEX + " 16%, transparent)", color:TT_UP_HEX, fontSize:9.5, fontWeight:700, letterSpacing:"0.04em" }}>
-          <Icon name="shield-alert" size={9} stroke={2.2}/>FIX
+      {node.knownIssue?.id && (
+        <span title="Known issue on record" style={{ display:"flex", alignItems:"center", gap:3, flexShrink:0, padding:"3px 6px", borderRadius:999, background:"color-mix(in oklab, " + TT_UP_HEX + " 16%, transparent)", color:TT_UP_HEX, fontSize:9.5, fontWeight:700, letterSpacing:"0.04em" }}>
+          <Icon name="shield-alert" size={9} stroke={2.2}/>ISSUE
         </span>
       )}
       {(up === "equipped" || (node.servicedAt != null && !risk)) && (
@@ -421,7 +453,9 @@ function TTNode({ id, node, pos, style, selected, risk, intent, expanded, hasKid
           <svg width="9" height="9" viewBox="0 0 10 10"><path d="M1.6 5.2l2.2 2.2L8.4 2.8" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" fill="none"/></svg>
         </span>
       )}
-      {ring && up !== "available" && <span style={{ width:7, height:7, borderRadius:"50%", background:ring, flexShrink:0 }}/>}
+      {ring && !node.knownIssue?.id && (
+        <span style={{ width:7, height:7, borderRadius:"50%", background:ring, flexShrink:0 }}/>
+      )}
       {hasKids && <span role="button" tabIndex={0} aria-label={expanded ? "Collapse" : "Expand"} onPointerDown={e => { e.stopPropagation(); e.preventDefault(); }} onClick={e => { e.stopPropagation(); onToggle(id); }} style={{ flexShrink:0, width: dense ? 22 : 24, height: dense ? 22 : 24, borderRadius:7, background:"var(--ki-page)", border:"1px solid var(--ki-line)", display:"flex", alignItems:"center", justifyContent:"center", color:"var(--slate-500)", fontSize:12, lineHeight:1, fontWeight:700, cursor:"pointer" }}>{expanded ? "−" : "+"}</span>}
     </div>
   );
@@ -577,7 +611,7 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
                 <div style={{ fontSize:17.5, fontWeight:600, letterSpacing:"-0.02em" }}>{node.label}</div>
                 <div style={{ fontSize:12.5, color:"var(--slate-500)", marginTop:2 }}>{node.sub}</div>
               </div>
-              {risk && <span className="mono" style={{ flexShrink:0, fontSize:10, fontWeight:700, padding:"4px 9px", borderRadius:999, background: risk==="critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk==="critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)" }}>{risk === "critical" ? "DUE" : "WATCH"}</span>}
+              {risk && <span className="mono" style={{ flexShrink:0, fontSize:10, fontWeight:700, padding:"4px 9px", borderRadius:999, background: risk==="critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk==="critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)" }}>{ttRiskLabel(node, miles, risk)}</span>}
             </div>
             {node.price && node.price !== "—" && (
               <div style={{ display:"flex", alignItems:"center", gap:9, marginTop:12, padding:"11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
@@ -601,15 +635,18 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
                 </div>
               ))}
             </div>
-            {node.dueNote && risk && (
-              <div style={{ marginTop:13, display:"flex", alignItems:"center", gap:8, padding:"9px 12px", borderRadius:12, background: risk === "critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk === "critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)", fontSize:12, fontWeight:600 }}>
-                <Icon name="alert" size={12} stroke={2.2}/>{node.dueNote}
+            {node.dueNote && (
+              <div style={{ marginTop:13, display:"flex", alignItems:"center", gap:8, padding:"9px 12px", borderRadius:12, background: risk === "critical" ? "var(--ki-crit-bg)" : risk === "watch" ? "var(--ki-mod-bg)" : "var(--ki-page)", color: risk === "critical" ? "var(--ki-crit)" : risk === "watch" ? "var(--ki-mod-ink)" : "var(--slate-600)", fontSize:12, fontWeight:600 }}>
+                <Icon name={risk ? "alert" : "clock"} size={12} stroke={2.2}/>{node.dueNote}
               </div>
             )}
-            {node.issue && (
-              <div style={{ marginTop:13, padding:"11px 12px", borderRadius:12, background:"var(--ki-crit-bg)" }}>
-                <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-crit)" }}>Known issue</div>
-                <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>
+            {node.unlogged && (
+              <div style={{ marginTop:13, padding:"9px 12px", borderRadius:12, background:"var(--ki-page)", color:"var(--slate-600)", fontSize:12, fontWeight:600 }}>No service event logged</div>
+            )}
+            {node.knownIssue?.id && (
+              <div style={{ marginTop:13, padding:"11px 12px", borderRadius:12, background:"rgba(139,92,246,.12)", border:"1px solid rgba(167,139,250,.35)" }}>
+                <div className="eyebrow" style={{ fontSize:9.5, color:TT_UP_HEX }}><Icon name="shield-alert" size={10}/> Known issue on record</div>
+                {node.issue && <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>}
                 {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
               </div>
             )}
@@ -652,7 +689,7 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
           <div style={{ fontSize:16.5, fontWeight:600, letterSpacing:"-0.02em" }}>{node.label}</div>
           <div style={{ fontSize:12, color:"var(--slate-500)", marginTop:2 }}>{node.sub}</div>
           {risk && <div style={{ marginTop:10, display:"flex", alignItems:"center", gap:7, padding:"7px 10px", borderRadius:9, background: risk==="critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk==="critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)", fontSize:11.5, fontWeight:600 }}>
-            <Icon name="alert" size={12} stroke={2.2}/>{risk === "critical" ? `Due or past due at ${miles.toLocaleString()} mi` : "Watch — approaching its window"}
+            <Icon name="alert" size={12} stroke={2.2}/>{ttRiskLabel(node, miles, risk)}
           </div>}
           {node.price && node.price !== "—" && (
             <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:9, padding:"10px 12px", borderRadius:11, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
@@ -676,15 +713,18 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
               </div>
             ))}
           </div>
-          {node.dueNote && risk && (
-            <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:8, padding:"9px 11px", borderRadius:10, background: risk === "critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk === "critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)", fontSize:11.5, fontWeight:600 }}>
-              <Icon name="alert" size={12} stroke={2.2}/>{node.dueNote}
+          {node.dueNote && (
+            <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:8, padding:"9px 11px", borderRadius:10, background: risk === "critical" ? "var(--ki-crit-bg)" : risk === "watch" ? "var(--ki-mod-bg)" : "var(--ki-page)", color: risk === "critical" ? "var(--ki-crit)" : risk === "watch" ? "var(--ki-mod-ink)" : "var(--slate-600)", fontSize:11.5, fontWeight:600 }}>
+              <Icon name={risk ? "alert" : "clock"} size={12} stroke={2.2}/>{node.dueNote}
             </div>
           )}
-          {node.issue && (
-            <div style={{ marginTop:14, padding:"11px 12px", borderRadius:11, background:"var(--ki-crit-bg)", border:"1px solid color-mix(in oklab, var(--ki-crit) 22%, transparent)" }}>
-              <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-crit)" }}>Known issue</div>
-              <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>
+          {node.unlogged && (
+            <div style={{ marginTop:12, padding:"9px 11px", borderRadius:10, background:"var(--ki-page)", color:"var(--slate-600)", fontSize:11.5, fontWeight:600 }}>No service event logged</div>
+          )}
+          {node.knownIssue?.id && (
+            <div style={{ marginTop:14, padding:"11px 12px", borderRadius:11, background:"rgba(139,92,246,.12)", border:"1px solid rgba(167,139,250,.35)" }}>
+              <div className="eyebrow" style={{ fontSize:9.5, color:TT_UP_HEX }}><Icon name="shield-alert" size={10}/> Known issue on record</div>
+              {node.issue && <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>}
               {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
             </div>
           )}
@@ -748,10 +788,16 @@ function TTComposer({ value, setValue, onSend, reply, suggestions }) {
 
 /* ── The canvas ── */
 const TT_INTENTS = [
-  { id:"issues", label:"Known issues", line:"Backed out to the whole car and reshaped it around what's actually documented to fail — lug nuts, front pads and rotors are the three that bite people on a 392." },
+  { id:"issues", label:"Known issues", line:"Opened the explicit known-issue records for this selected vehicle." },
   { id:"maint",  label:"Maintenance due", line:"Backed out to the whole car and opened the tracked maintenance items for this odometer." },
   { id:"risk",   label:"Mileage risk", line:"Whole car. Red is due or past due at the current odometer; amber is inside 20% of its window." },
 ];
+
+function ttMatchesIntent(node, intentId, miles) {
+  if (intentId === "issues") return !!node.knownIssue?.id;
+  if (intentId === "maint") return !!node.riskAt || !!node.unlogged || typeof node.dueMileage === "number" || !!node.dueDate;
+  return !!ttRisk(node, miles);
+}
 
 /**
  * The assistant's answer for a part.
@@ -762,11 +808,18 @@ const TT_INTENTS = [
  * someone equipped an aftermarket unit reads as if the swap never registered.
  */
 function ttAskLine(n, tail = "") {
-  const base = `Here's the ${n.label.toLowerCase()} job end to end — ${n.where.toLowerCase()}. ${n.spec}.`;
+  const facts = [n.where && String(n.where).toLowerCase(), n.spec, n.life].filter(Boolean);
+  const base = facts.length ? `Here's the ${String(n.label || "selected part").toLowerCase()} — ${facts.join(". ")}.` : `Details for ${n.label || "this selected node"} are unavailable in this mapped tree.`;
   const fitted = (n.upgraded || n.fitted) && n.brand
     ? ` You have the ${n.brand} fitted${n.resolved ? ` — ${n.resolved.charAt(0).toLowerCase()}${n.resolved.slice(1)}` : ""}`
     : "";
   return base + fitted + tail;
+}
+
+export function resolveAvailableTwinBranch(branch, trees) {
+  if (branch && trees?.[branch]) return branch;
+  if (trees?.car) return "car";
+  return Object.keys(trees || {})[0] || null;
 }
 
 function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact = false, detailMode = null, vertical = false }) {
@@ -775,9 +828,11 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
   const live = useTwinLive();
   /* Demo tree set unless a live hub supplied the owner's. */
   const trees = useTwinTrees(TT_TREES);
+  const activeBranch = resolveAvailableTwinBranch(branch, trees);
   const vehicle = useTwinVehicle();
+  const twinMode = useTwinMode();
   const carLabel = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? " " + vehicle.trim : ""}`;
-  const tree = React.useMemo(() => { const t = trees[branch]; const n = ttViewNodes(t.nodes, live ? TT_NO_EQUIP : equipped, live ? TT_FINISHES[0] : null); return n === t.nodes ? t : { ...t, nodes:n }; }, [trees, branch, equipped, live]);
+  const tree = React.useMemo(() => { const t = trees[activeBranch]; const n = ttViewNodes(t.nodes, live ? TT_NO_EQUIP : equipped, live ? TT_FINISHES[0] : null); return n === t.nodes ? t : { ...t, nodes:n }; }, [trees, activeBranch, equipped, live]);
   const [selected, setSelected] = React.useState(null);
   const [intent, setIntent] = React.useState(null);
   const [menu, setMenu] = React.useState(null);
@@ -802,7 +857,10 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
     return () => window.removeEventListener("resize", on);
   }, []);
 
-  React.useEffect(() => { setExpanded({ [trees[branch].root]: true }); setSelected(null); setIntent(null); setAllow(null); setMenu(null); setOffsets({}); setPan({ x:56, y:40 }); }, [trees, branch]);
+  React.useEffect(() => {
+    if (activeBranch !== branch) setBranch(activeBranch);
+    setExpanded({ [tree.root]: true }); setSelected(null); setIntent(null); setAllow(null); setMenu(null); setOffsets({}); setPan({ x:56, y:40 });
+  }, [trees, activeBranch, branch, setBranch, tree.root]);
   React.useEffect(() => { try { localStorage.setItem("au7o-tt-styles", JSON.stringify(styles)); } catch(e) {} }, [styles]);
 
   /* a hotspot can point at a node, not just a branch — open its path and select it */
@@ -816,7 +874,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
     setSelected(startNode);
     setAllow(null);
     setIntent(null);
-  }, [branch, startNode]);
+  }, [activeBranch, startNode, tree]);
 
   const styleOf = id => styles[id] || { shape:"rounded", color:"ink" };
   const vis0 = ttVisible(tree.nodes, tree.root, expanded, allow);
@@ -860,7 +918,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
     const z = Math.max(compact ? 0.66 : 0.72, Math.min(1, (cw - (compact ? 24 : 56)) / spanW));
     setZoom(z);
     setTall(spanH * z + 40 > ch);
-  }, [expanded, branch, allow, !!selected, vertical, tick]);
+  }, [expanded, activeBranch, allow, !!selected, vertical, tick]);
 
   /* pin the opening scroll to the root once the sizer has actually laid out at its new height */
   React.useLayoutEffect(() => {
@@ -870,12 +928,12 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
     const target = Math.max(0, Math.min(want - el.clientHeight / 2 + 30, el.scrollHeight - el.clientHeight));
     el.scrollLeft = 0;
     el.scrollTop = target;
-  }, [expanded, branch, allow, zoom]);
+  }, [expanded, activeBranch, allow, zoom]);
 
   const doIntent = (i, tr) => {
     setIntent(i.id);
     const next = { [tr.root]: true }, keep = { [tr.root]: true };
-    const match = n => i.id === "issues" ? !!n.issue : i.id === "maint" ? !!n.riskAt : !!ttRisk(n, miles);
+    const match = n => ttMatchesIntent(n, i.id, miles);
     const walk = id => { const n = tr.nodes[id]; let hit = match(n); (n.kids || []).forEach(k => { if (walk(k)) hit = true; }); if (hit) { next[id] = true; keep[id] = true; } return hit; };
     walk(tr.root);
     setExpanded({ ...next, [tr.root]: true });
@@ -884,9 +942,9 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
     setSelected(null);
     const matchedLabels = Object.values(tr.nodes).filter(match).map(n => n.label).slice(0, 6);
     const line = i.id === "maint"
-      ? `Backed out to the whole car and opened ${matchedLabels.length} tracked maintenance item${matchedLabels.length === 1 ? "" : "s"} at ${miles.toLocaleString()} mi${matchedLabels.length ? `: ${matchedLabels.join(", ")}.` : "."}`
+      ? `Backed out to the whole car and opened ${matchedLabels.length} tracked maintenance item${matchedLabels.length === 1 ? "" : "s"}${typeof miles === "number" ? ` at ${miles.toLocaleString()} mi` : ""}${matchedLabels.length ? `: ${matchedLabels.join(", ")}.` : "."}`
       : i.id === "risk"
-        ? `Whole car at ${miles.toLocaleString()} mi. Red is due or past due; amber is inside 20% of its window${matchedLabels.length ? `: ${matchedLabels.join(", ")}.` : "."}`
+        ? `Whole car${typeof miles === "number" ? ` at ${miles.toLocaleString()} mi` : " with mileage unavailable"}. Red is due or past due only when supported; amber is inside 20% of its window${matchedLabels.length ? `: ${matchedLabels.join(", ")}.` : "."}`
         : i.line;
     setReply({ text: line, key: Date.now() });
     if (say) say(line);
@@ -895,13 +953,13 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
   /* filters always answer for the whole car, not just the branch you happen to be in */
   const applyIntent = i => {
     if (intent === i.id) { setIntent(null); setAllow(null); setReply(null); return; }
-    if (branch !== "car") { setPending(i); setBranch("car"); return; }
+    if (activeBranch !== "car") { setPending(i); setBranch("car"); return; }
     doIntent(i, tree);
   };
 
   React.useEffect(() => {
-    if (pending && branch === "car") { doIntent(pending, trees.car); setPending(null); }
-  }, [branch, pending]);
+    if (pending && activeBranch === "car") { doIntent(pending, trees.car); setPending(null); }
+  }, [activeBranch, pending]);
 
   const panDown = e => {
     if (e.button === 2) return;
@@ -962,10 +1020,10 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
       const n = tree.nodes[hit];
       reveal(hit);
       setSelected(hit);
-      say2(n.issue ? `${n.label} — ${n.issue}` : `${n.label}: ${n.brand || n.spec}. ${n.where}. ${n.life || ""}`.trim());
+      say2(ttAskLine(n));
       return;
     }
-    say2("I couldn't tie that to a part in this branch. Try a part name — tire, lug nuts, rotor, pads — or switch branches at the top and ask again.");
+    say2(`I couldn't tie that to a supported field in the ${vehicle.model} tree. Try one of the visible node names or switch branches.`);
   };
 
   const edges = [];
@@ -979,15 +1037,15 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
         {!compact && <img src="/twin-stage/au7o-mascot.webp" alt="" style={{ width:28, height:28, objectFit:"contain", flexShrink:0 }}/>}
         <div style={{ minWidth:0 }}>
           <div style={{ display:"flex", alignItems:"center", gap:6, minWidth:0 }}>
-            {branch !== "car" && (
+            {activeBranch !== "car" && (
               <React.Fragment>
-                <button onClick={()=>setBranch("car")} style={{ background:"transparent", border:"none", padding:0, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:15.5, fontWeight:500, letterSpacing:"-0.02em", color:"var(--slate-400)" }}>Your car</button>
+                <button onClick={()=>setBranch("car")} style={{ background:"transparent", border:"none", padding:0, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:15.5, fontWeight:500, letterSpacing:"-0.02em", color:"var(--slate-400)" }}>{twinMode === "owner" ? "Your car" : "Demo car"}</button>
                 <Icon name="chevron" size={11} style={{ color:"var(--slate-400)", flexShrink:0 }}/>
               </React.Fragment>
             )}
-            <span style={{ fontSize: compact ? 14 : 15.5, fontWeight:600, letterSpacing:"-0.02em" }}>{branch === "car" ? carLabel : tree.label}</span>
+            <span style={{ fontSize: compact ? 14 : 15.5, fontWeight:600, letterSpacing:"-0.02em" }}>{activeBranch === "car" ? carLabel : tree.label}</span>
           </div>
-          {!compact && <div style={{ fontSize:11, color:"var(--slate-500)" }}>{branch === "car" ? "All systems" : "Tech tree"} · {carLabel} · <span className="mono">{miles.toLocaleString()} mi</span></div>}
+          {!compact && <div style={{ fontSize:11, color:"var(--slate-500)" }}>{activeBranch === "car" ? "All systems" : "Tech tree"} · {carLabel} · <span className="mono">{typeof miles === "number" ? `${miles.toLocaleString()} mi` : "Mileage unavailable"}</span></div>}
         </div>
         {/* "N at risk" chip removed — the risk is already legible from the red
             nodes, and on a phone it crowded the close button. */}
@@ -1040,9 +1098,9 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
         </div>
           <div style={{ position:"absolute", left:14, right:14, bottom:12, display:"flex", alignItems:"flex-end", justifyContent:"space-between", gap:8, flexWrap:"wrap-reverse", pointerEvents:"none" }}>
           <div style={{ display:"flex", gap:9, alignItems:"center", flexWrap:"wrap", padding:"6px 11px", borderRadius:999, background:"var(--ki-glass)", border:"1px solid var(--ki-line)", backdropFilter:"blur(10px)", fontSize:10.5, color:"var(--slate-500)", pointerEvents:"auto" }}>
-            <span style={{ display:"inline-flex", alignItems:"center", gap:5 }}><Icon name="alert" size={11} stroke={2} style={{ color:"#E5484D" }}/> Overdue on mileage</span>
+            <span style={{ display:"inline-flex", alignItems:"center", gap:5 }}><Icon name="alert" size={11} stroke={2} style={{ color:"#E5484D" }}/> Overdue on service deadline</span>
             <span style={{ display:"inline-flex", alignItems:"center", gap:5 }}><Icon name="check" size={11} stroke={2.6} style={{ color:"#12A87A" }}/> On track</span>
-            <span style={{ display:"inline-flex", alignItems:"center", gap:5 }}><Icon name="shield-alert" size={11} stroke={2} style={{ color:TT_UP_HEX }}/> Known issue — fix available</span>
+            <span style={{ display:"inline-flex", alignItems:"center", gap:5 }}><Icon name="shield-alert" size={11} stroke={2} style={{ color:TT_UP_HEX }}/> Known issue on record</span>
             <button onClick={()=>{ setOffsets({}); setAllow(null); setIntent(null); if (canvasRef.current) { canvasRef.current.scrollTop = 0; canvasRef.current.scrollLeft = 0; } }} style={{ background:"transparent", border:"none", color:"var(--au7o-blue)", fontSize:10.5, fontWeight:600, cursor:"pointer", fontFamily:"var(--font-sans)", padding:0 }}>Tidy up</button>
           </div>
           {tall && (
@@ -1065,4 +1123,4 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
 }
 
 /* removed: the standalone bundle exported via window; this module uses real exports (see bottom). */
-export { TechTree, TT_TREES, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT, ttRisk, ttHasUpgrade, ttFinish, useEquipped };
+export { TechTree, TTDetail, TT_TREES, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT, ttRisk, ttRiskLabel, ttMatchesIntent, ttHasUpgrade, ttFinish, useEquipped };

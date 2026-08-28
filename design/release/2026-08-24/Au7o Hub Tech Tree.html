@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Au7o · Hub tech tree</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="src/tokens.css"/>
+  <link rel="stylesheet" href="src/web/web-tokens.css"/>
+  <style>
+a{color:var(--au7o-blue)}a:hover{color:var(--au7o-blue-600)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ki-desk);-webkit-font-smoothing:antialiased}
+.mono{font-family:var(--font-mono)}
+@keyframes hlBubble{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.hl-bubble{animation:hlBubble .35s ease}
+@keyframes thPulse{0%,100%{box-shadow:0 0 12px currentColor}50%{box-shadow:0 0 26px currentColor}}
+.th-dot{animation:thPulse 2.4s ease-in-out infinite;color:rgba(76,201,240,.7)}
+.th-dot-risk{color:rgba(255,107,99,.8);animation-duration:1.5s}
+@keyframes ttGlowCrit{0%,100%{box-shadow:0 0 0 0 rgba(229,72,77,.42),var(--shadow-1)}50%{box-shadow:0 0 0 6px rgba(229,72,77,0),0 0 18px rgba(229,72,77,.55)}}
+.tt-glow-crit{animation:ttGlowCrit 2s ease-in-out infinite}
+.tt-glow-watch{box-shadow:0 0 12px rgba(217,130,43,.35),var(--shadow-1)}
+.tt-node{user-select:none}
+.tt-node:active{cursor:grabbing}
+@keyframes thFade{from{opacity:0}to{opacity:1}}
+@keyframes thRise{from{opacity:0;transform:translateY(14px) scale(.99)}to{opacity:1;transform:none}}
+.th-overlay{animation:thFade .2s ease}
+.th-sheet{animation:thRise .3s cubic-bezier(.2,.7,.3,1)}
+  </style>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script src="image-slot.js"></script>
+  <script type="text/babel" src="src/web/web-shared.jsx"></script>
+  <script type="text/babel" src="src/web/hub-personalized.jsx"></script>
+  <script type="text/babel" src="src/web/hub-live.jsx"></script>
+  <script type="text/babel" src="src/web/tech-tree.jsx"></script>
+  <script type="text/babel" src="src/web/tt-schedule.jsx"></script>
+  <script type="text/babel" src="src/web/hub-minimal.jsx"></script>
+  <script type="text/babel" src="src/web/hub-techtree.jsx"></script>
+</head>
+<body>
+  <template id="__bundler_thumbnail">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+      <rect width="200" height="200" rx="22" fill="#F7F3EA"/>
+      <g transform="translate(30,26)"><g stroke="#0B1220" stroke-width="6" fill="none" stroke-linecap="round"><path d="M62 62h30M92 62v-24M92 62v24"/><circle cx="56" cy="62" r="10" fill="#0B1220" stroke="none"/><circle cx="112" cy="38" r="10" fill="#0B1220" stroke="none"/><circle cx="112" cy="86" r="10" fill="#0B1220" stroke="none"/></g></g><rect x="42" y="118" width="116" height="14" rx="7" fill="#3B82F6"/>
+      <text x="100" y="176" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-size="17" font-weight="bold" fill="#0B1220">Au7o</text>
+    </svg>
+  </template>
+
+  <div id="root"></div>
+  <script type="text/babel" data-presets="env,react">
+ReactDOM.createRoot(document.getElementById("root")).render(<HubTechTree/>);
+  </script>
+</body>
+</html>

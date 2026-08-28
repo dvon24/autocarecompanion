@@ -1,6 +1,10 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import { useMemo } from 'react';
+import { TwinDataCtx } from '@/components/twin/twin-context';
+import { buildDemoTwinPresentation } from '@/components/twin/demo-trees';
+import { resolveDemoVehicleTwin } from '@/lib/vehicle-twin-catalog';
 
 /**
  * The hub is a heavy, entirely interactive screen (car stage + tech-tree canvas
@@ -20,6 +24,11 @@ const Hub = dynamic(
   },
 );
 
-export function DemoHubClient() {
-  return <Hub />;
+export function DemoHubClient({ vehicleId }: { vehicleId?: string | null }) {
+  const value = useMemo(() => {
+    const catalog = resolveDemoVehicleTwin(vehicleId);
+    const presentation = buildDemoTwinPresentation(catalog, { mode:'demo' });
+    return { catalog, presentation, vehicle:catalog.identity, miles:catalog.demoMileage, trees:presentation.trees, issues:[], nextService:null, recent:[], mode:'demo' as const };
+  }, [vehicleId]);
+  return <TwinDataCtx.Provider value={value}><Hub /></TwinDataCtx.Provider>;
 }

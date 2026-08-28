@@ -17,6 +17,8 @@
  * Self-contained (no design-system deps) so it drops into any page.
  */
 
+import Link from 'next/link';
+
 const LINE = '#E3DFD4';
 
 /* Marker positions mirror TH_HOTSPOTS on the real stage. Copied rather than
@@ -63,7 +65,6 @@ const TWIN_HOTSPOTS = [
   { id: 'rearwheel', label: 'Rear Wheel & Tire', x: 20.5, y: 52.5, kind: 'alert' as const, glow: 'car-rear-wheel-highlight-glow' },
   // The radiator is the one with a documented issue AND an upgrade on record.
   { id: 'rad', label: 'Radiator & Coolant', x: 67, y: 58.5, kind: 'shield' as const, glow: 'car-radiator-highlight-glow' },
-  { id: 'airbox', label: 'Engine Air Filter', x: 78.5, y: 42.5, kind: 'alert' as const, glow: 'car-airbox-highlight-glow' },
 ];
 
 export function LiveHubDemo({ vehicleName }: { vehicleName?: string; mileage?: string }) {
@@ -200,7 +201,7 @@ export function LiveHubDemo({ vehicleName }: { vehicleName?: string; mileage?: s
           same car AND the reservation form, so it can capture. The hub is a
           dead end for conversion. The individual markers still deep-link into
           the hub, for people who want the specific part. */}
-      <a
+      <Link
         href="/"
         style={{ textDecoration: 'none', color: 'inherit', padding: '14px 16px 16px', display: 'flex', alignItems: 'center', gap: 12 }}
       >
@@ -227,7 +228,7 @@ export function LiveHubDemo({ vehicleName }: { vehicleName?: string; mileage?: s
         >
           Try it →
         </span>
-      </a>
+      </Link>
     </div>
   );
 }

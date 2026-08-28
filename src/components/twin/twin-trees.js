@@ -96,25 +96,104 @@ export const TWIN_MAINT_NODES = {
   brake_fluid: ["brakeFluid"],
   wiper_blades: ["wipL", "wipR"],
   coolant_flush: ["coolant"],
-  transmission_fluid: ["transFluid", "transPan"],
-  transmission_fluid_auto: ["transFluid", "transPan"],
-  transmission_fluid_manual: ["transFluid"],
   // Intentionally NOT mapped (they do not replace anything):
   //   tire_rotation, brake_inspection, wheel_alignment
 };
 
+export const TWIN_SUPPORTED_MAINTENANCE_TYPES = [
+  ...Object.keys(TWIN_MAINT_NODES),
+  "transmission_fluid",
+  "transmission_fluid_auto",
+  "transmission_fluid_manual",
+];
+
+export const TWIN_TIME_INTERVALS = {
+  oilFluid:{months:6},
+  oilFilter:{months:6},
+  brakeFluid:{years:2},
+  coolant:{years:5},
+  wipL:{years:1},
+  wipR:{years:1},
+};
+
+/** UTC calendar arithmetic with end-of-month clamping (Jan 31 + 1 month = Feb 28/29). */
+export function addCalendarInterval(value, interval) {
+  const timestamp = finiteDate(value);
+  if (timestamp == null || !interval) return null;
+  const source = new Date(timestamp);
+  const totalMonths = source.getUTCFullYear() * 12
+    + source.getUTCMonth()
+    + (interval.years || 0) * 12
+    + (interval.months || 0);
+  const year = Math.floor(totalMonths / 12);
+  const month = totalMonths % 12;
+  const lastDay = new Date(Date.UTC(year, month + 1, 0)).getUTCDate();
+  return Date.UTC(
+    year,
+    month,
+    Math.min(source.getUTCDate(), lastDay),
+    source.getUTCHours(),
+    source.getUTCMinutes(),
+    source.getUTCSeconds(),
+    source.getUTCMilliseconds(),
+  );
+}
+
+function serviceValue(value) {
+  return typeof value === "number" ? { mileage:value, date:null, nextDueMileage:null, nextDueDate:null } : value || null;
+}
+
+function finiteDate(value) {
+  if (!value) return null;
+  const timestamp = value instanceof Date ? value.getTime() : Date.parse(value);
+  return Number.isFinite(timestamp) ? timestamp : null;
+}
+
 /** Humanised "where this part stands", computed instead of hand-written. */
 function dueNoteFor(node, miles, interval) {
-  if (!interval) return null;
-  if (node.servicedAt == null) {
-    return `Never logged — replace every ${interval.toLocaleString()} mi.`;
+  if (node.unlogged) return interval ? `Never logged — replace every ${interval.toLocaleString()} mi.` : "Never logged.";
+  const notes = [];
+  if (typeof node.dueMileage === "number") {
+    const delta = miles - node.dueMileage;
+    if (delta >= 0) notes.push(`${Math.round(delta).toLocaleString()} mi past due`);
+    else notes.push(`due in ${Math.round(-delta).toLocaleString()} mi`);
   }
-  const due = node.servicedAt + interval;
-  const delta = miles - due;
-  if (delta >= 0) return `${Math.round(delta).toLocaleString()} mi past due.`;
-  const left = Math.round(-delta);
-  if (left <= interval * 0.2) return `Due in ${left.toLocaleString()} mi.`;
-  return `Serviced at ${node.servicedAt.toLocaleString()} mi · next at ${due.toLocaleString()} mi.`;
+  if (node.dueDate) {
+    const formatted = new Date(node.dueDate).toLocaleDateString("en-US", { month:"short", day:"numeric", year:"numeric", timeZone:"UTC" });
+    notes.push(node.overdueByDate ? `time interval passed ${formatted}` : `date due ${formatted}`);
+  }
+  if (notes.length) return `${notes.join(" · ")}.`;
+  if (node.servicedAt != null) return `Serviced at ${node.servicedAt.toLocaleString()} mi.`;
+  return null;
+}
+
+function applyServiceEvidence(node, rawService, id, interval, miles, currentDate) {
+  const service = serviceValue(rawService);
+  if (!service) {
+    delete node.servicedAt;
+    delete node.riskAt;
+    if (interval || TWIN_TIME_INTERVALS[id]) node.unlogged = true;
+    const note = dueNoteFor(node, miles, interval);
+    if (note) node.dueNote = note;
+    return node;
+  }
+  const serviceDate = finiteDate(service.date);
+  node.servicedAt = service.mileage;
+  node.riskAt = interval;
+  if (serviceDate != null) node.servicedDate = new Date(serviceDate).toISOString();
+  node.dueMileage = typeof service.nextDueMileage === "number"
+    ? service.nextDueMileage
+    : (interval ? service.mileage + interval : null);
+  const explicitDueDate = finiteDate(service.nextDueDate);
+  const calendarInterval = TWIN_TIME_INTERVALS[id];
+  const dueDate = explicitDueDate ?? addCalendarInterval(serviceDate, calendarInterval);
+  if (dueDate != null) {
+    node.dueDate = new Date(dueDate).toISOString();
+    node.overdueByDate = Number.isFinite(currentDate) && dueDate <= currentDate;
+  }
+  const note = dueNoteFor(node, miles, interval);
+  if (note) node.dueNote = note;
+  return node;
 }
 
 /**
@@ -124,8 +203,9 @@ function dueNoteFor(node, miles, interval) {
  *                                           most recent replacement
  * @param {number} miles                     current odometer
  */
-export function buildTwinTrees(serviced, miles, transmission) {
+export function buildTwinTrees(serviced, miles, transmission, evaluatedAt = null) {
   const svc = serviced || {};
+  const currentDate = finiteDate(evaluatedAt);
 
   // One object per node id, shared across every tree that lists it.
   const shared = {};
@@ -135,10 +215,7 @@ export function buildTwinTrees(serviced, miles, transmission) {
       const node = { ...base };
       const interval = TWIN_INTERVALS[id] != null ? TWIN_INTERVALS[id] : base.riskAt;
 
-      if (svc[id] != null) {
-        node.servicedAt = svc[id];
-        node.riskAt = interval;
-      } else {
+      if (svc[id] == null) {
         /* NEVER LOGGED IS NOT OVERDUE.
            ttRisk treats an unserviced part as due the moment the odometer
            passes riskAt, which is right for the authored demo car and wrong
@@ -156,13 +233,9 @@ export function buildTwinTrees(serviced, miles, transmission) {
         // Only a part with a real interval is "unlogged" in any meaningful
         // sense. Calipers, wheels and the radiator's two option nodes are not
         // service items, so they carry no state either way.
-        if (interval) node.unlogged = true;
+        if (interval || TWIN_TIME_INTERVALS[id]) node.unlogged = true;
       }
-
-      // The demo's hand-written notes are false on a real odometer.
-      const note = dueNoteFor(node, miles, interval);
-      if (note) node.dueNote = note;
-      else delete node.dueNote;
+      applyServiceEvidence(node, svc[id], id, interval, miles, currentDate);
       shared[id] = node;
     }
   }
@@ -191,17 +264,7 @@ export function buildTwinTrees(serviced, miles, transmission) {
     for (const [id, base] of Object.entries(MANUAL_TRANSMISSION_TREE.nodes)) {
       const node = { ...base };
       const interval = TWIN_INTERVALS[id] != null ? TWIN_INTERVALS[id] : base.riskAt;
-      if (svc[id] != null) {
-        node.servicedAt = svc[id];
-        node.riskAt = interval;
-      } else {
-        delete node.servicedAt;
-        delete node.riskAt;
-        if (interval) node.unlogged = true;
-      }
-      const note = dueNoteFor(node, miles, interval);
-      if (note) node.dueNote = note;
-      else delete node.dueNote;
+      applyServiceEvidence(node, svc[id], id, interval, miles, currentDate);
       manualNodes[id] = node;
     }
     out.trans = { ...MANUAL_TRANSMISSION_TREE, nodes: manualNodes };
@@ -214,20 +277,40 @@ export function buildTwinTrees(serviced, miles, transmission) {
     out.car.nodes.car = {
       ...out.car.nodes.car,
       kids: out.car.nodes.car.kids.filter((id) => id !== "trx"),
-      life: "Three verified systems tracked · transmission confirmation still needed",
+      life: "Three verified systems tracked",
     };
   }
   return out;
 }
 
 /** Fold MaintenanceRecord rows into a { nodeId: mileage } map, latest wins. */
-export function servicedFromRecords(records) {
+export function servicedFromRecords(records, currentMileage = Infinity, transmission = null, evaluatedAt = null) {
   const out = {};
+  const currentDate = finiteDate(evaluatedAt) ?? Infinity;
   for (const rec of records || []) {
-    const ids = TWIN_MAINT_NODES[rec.type];
-    if (!ids || typeof rec.mileage !== "number") continue;
+    let ids = TWIN_MAINT_NODES[rec.type];
+    // Legacy generic transmission history is deliberately unassigned. It may
+    // describe a prior gearbox or an unknown fluid, so a later branch choice
+    // must not reinterpret it as evidence for automatic or manual service.
+    if (rec.type === "transmission_fluid") {
+      ids = null;
+    } else if (rec.type === "transmission_fluid_auto") {
+      ids = transmission === "automatic" ? ["transFluid", "transPan"] : null;
+    } else if (rec.type === "transmission_fluid_manual") {
+      ids = transmission === "manual" ? ["transFluid"] : null;
+    }
+    const recordDate = finiteDate(rec.date);
+    if (!ids || typeof rec.mileage !== "number" || rec.mileage < 0 || rec.mileage > currentMileage || (recordDate != null && recordDate > currentDate)) continue;
+    const evidence = {
+      mileage:rec.mileage,
+      date:recordDate == null ? null : new Date(recordDate).toISOString(),
+      nextDueMileage:typeof rec.nextDueMileage === "number" ? rec.nextDueMileage : null,
+      nextDueDate:finiteDate(rec.nextDueDate) == null ? null : new Date(finiteDate(rec.nextDueDate)).toISOString(),
+    };
     for (const id of ids) {
-      if (out[id] == null || rec.mileage > out[id]) out[id] = rec.mileage;
+      const previous = out[id];
+      const previousDate = finiteDate(previous?.date);
+      if (!previous || (recordDate != null && (previousDate == null || recordDate > previousDate)) || (recordDate === previousDate && rec.mileage > previous.mileage)) out[id] = evidence;
     }
   }
   return out;

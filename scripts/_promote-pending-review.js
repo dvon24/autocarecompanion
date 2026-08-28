@@ -27,6 +27,18 @@ const makeFilter = args.includes('--make') ? args[args.indexOf('--make') + 1] : 
 // Avalon hybrid brake booster the dead-URL gate held). --make cannot separate them, because a
 // held row and a fresh wave row can share a make (Toyota Avalon vs Toyota Sequoia).
 const createdAfter = args.includes('--created-after') ? new Date(args[args.indexOf('--created-after') + 1]) : null;
+// --vehicle-type <car|motorcycle> restricts the promotion to one vehicle class.
+//
+// Motorcycles must NOT be promoted by a bare run of this script. Roughly 30 read paths still filter
+// the catalog by make alone rather than by vehicleType, and make names COLLIDE across classes
+// (Suzuki V-Strom vs Suzuki Vitara, Triumph Bonneville vs Triumph TR6), so publishing a bike today
+// leaks it into automotive pages and counts. Neither --make nor --created-after can separate the
+// classes when a wave researches both in one run, which wave 11 did.
+const typeFilter = args.includes('--vehicle-type') ? args[args.indexOf('--vehicle-type') + 1] : null;
+if (typeFilter && !['car', 'motorcycle'].includes(typeFilter)) {
+  console.error('--vehicle-type must be "car" or "motorcycle"');
+  process.exit(1);
+}
 if (createdAfter && Number.isNaN(createdAfter.getTime())) {
   console.error('--created-after needs a valid ISO timestamp, e.g. 2026-08-25T12:00:00Z');
   process.exit(1);
@@ -60,11 +72,12 @@ async function main() {
   const where = { status: 'pending_review' };
   if (makeFilter) where.make = makeFilter;
   if (createdAfter) where.createdAt = { gte: createdAfter };
+  if (typeFilter) where.vehicleType = typeFilter;
   const rows = await prisma.knownIssue.findMany({
     where, select: { id: true, title: true, make: true, model: true, citations: true },
     orderBy: [{ make: 'asc' }, { model: 'asc' }],
   });
-  console.log(`Found ${rows.length} pending_review issues${makeFilter ? ` for ${makeFilter}` : ''}.${dryRun ? ' (dry-run)' : ''}\n`);
+  console.log(`Found ${rows.length} pending_review issues${makeFilter ? ` for ${makeFilter}` : ''}${typeFilter ? ` [vehicleType=${typeFilter}]` : ''}.${dryRun ? ' (dry-run)' : ''}\n`);
 
   let promoted = 0, skipped = 0;
   const skippedList = [];

@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import { getKnownIssuesForArticle } from '@/lib/known-issues';
 import { getRecallsForArticle } from '@/lib/recalls';
 import { getVehicleSpecs } from '@/lib/maintenance';
@@ -14,6 +14,7 @@ import { parseVehicleSlug as parseCatalogVehicleSlug } from '@/lib/vehicle-slug'
 import { getKnownIssueVehicleCandidates } from '@/lib/known-issue-vehicle-aliases';
 import { getTwinHubData } from '@/lib/twin-hub-data';
 import { LiveTwinHub } from '@/components/twin/LiveTwinHub';
+import { sameTwinVehicleIdentity } from '@/lib/twin-fulfillment';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -198,12 +199,13 @@ export default async function VehicleProfilePage({
 
   // Generate parts from vehicle specs (always available, no seeding needed)
   const tag = 'au7o-20';
-  const specsParts: { task: string; parts: any[]; source: string }[] = [];
+  type PartCandidate = Record<string, unknown>;
+  const specsParts: { task: string; parts: PartCandidate[]; source: string }[] = [];
   const cachedTasks = new Set(cachedParts.map(p => p.task));
 
   if (specs) {
     if (specs.oil && !cachedTasks.has('oil_change')) {
-      const parts: any[] = [];
+      const parts: PartCandidate[] = [];
       // Extract just the weight (e.g. "0W-40" from "0W-40 Full Synthetic (Pennzoil...)")
       const oilWeight = specs.oil.type.match(/\d+W-\d+/)?.[0] || specs.oil.type;
       parts.push({
@@ -287,11 +289,15 @@ export default async function VehicleProfilePage({
   // affiliate URL (fall back to a tagged Amazon search).
   const partsByTask: Record<string, { name: string; spec?: string; partNumber?: string; affiliateUrl: string }[]> = {};
   for (const p of allParts) {
-    const list = (Array.isArray(p.parts) ? p.parts : []).map((pt: any) => ({
+    const list = (Array.isArray(p.parts) ? p.parts : []).filter(
+      (pt): pt is PartCandidate => !!pt && typeof pt === 'object' && !Array.isArray(pt),
+    ).map((pt) => ({
       name: String(pt.name || '').trim(),
       spec: pt.spec ? String(pt.spec) : undefined,
       partNumber: pt.partNumber ? String(pt.partNumber) : undefined,
-      affiliateUrl: pt.affiliateUrl || `https://www.amazon.com/s?k=${encodeURIComponent(pt.searchQuery || pt.name || '')}&tag=${tag}`,
+      affiliateUrl: typeof pt.affiliateUrl === 'string' && pt.affiliateUrl
+        ? pt.affiliateUrl
+        : `https://www.amazon.com/s?k=${encodeURIComponent(String(pt.searchQuery || pt.name || ''))}&tag=${tag}`,
     })).filter((pt) => pt.name);
     if (list.length > 0) partsByTask[p.task] = list;
   }
@@ -353,18 +359,15 @@ export default async function VehicleProfilePage({
         where: {
           userId: session.user.id,
           year,
-          make: { equals: make, mode: 'insensitive' },
-          model: { equals: model, mode: 'insensitive' },
         },
         orderBy: [{ isPrimary: 'desc' }, { updatedAt: 'desc' }],
-        select: { id: true, currentMileage: true, trim: true },
+        select: { id: true, year: true, make: true, model: true, currentMileage: true, trim: true },
       });
-      const normalizedTrim = (trim || '').trim().toLowerCase();
-      const exactCandidates = normalizedTrim
-        ? userVehicleCandidates.filter(
-          (candidate) => (candidate.trim || '').trim().toLowerCase() === normalizedTrim,
-        )
-        : userVehicleCandidates;
+      const routeIdentity = { year, make, model, trim: trim === 'Base' ? null : trim };
+      const exactCandidates = userVehicleCandidates.filter((candidate) => (
+        sameTwinVehicleIdentity(routeIdentity, candidate)
+        || (trim === 'Base' && sameTwinVehicleIdentity({ ...routeIdentity, trim: 'Base' }, candidate))
+      ));
       // A slug does not carry a database id. If duplicate exact YMMT rows
       // exist, choosing one would attach the wrong mileage/service history.
       const userVehicle = exactCandidates.length === 1 ? exactCandidates[0] : null;
@@ -460,10 +463,15 @@ export default async function VehicleProfilePage({
   //   * ?twin=0 forces the classic hub back, so there is always a way out
   //     without a deploy.
   //
-  // Any of those failing falls through to the classic hub below.
+  // A ready, fully configured customer offer has its own claim surface. Every
+  // denial (including founder missing-mileage) falls through to the classic
+  // hub; only an allowed result may carry owner data.
   if (isAuthed && twinParam !== '0' && userId && userEmail && userVehicleId) {
-    const twinData = await getTwinHubData(userId, userEmail, userVehicleId).catch(() => null);
-    if (twinData) return <LiveTwinHub data={twinData} />;
+    const twinOutcome = await getTwinHubData(userId, userEmail, userVehicleId).catch(() => null);
+    if (twinOutcome?.access.kind === 'allowed' && twinOutcome.data) {
+      return <LiveTwinHub data={twinOutcome.data} />;
+    }
+    if (twinOutcome?.access.kind === 'claimable') redirect('/twin/claim');
   }
 
   return (

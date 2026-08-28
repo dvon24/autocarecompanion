@@ -78,7 +78,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
             <div style={{ height:112, background:"#0A0D14" }}><img src={catalog.art.base} alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/></div>
             <div style={{ padding:"11px 13px 13px" }}>
               <div style={{ fontSize:13.5, fontWeight:600, letterSpacing:"-0.01em" }}>{vehicle.year} {vehicle.make} {vehicle.model}</div>
-              <div style={{ fontSize:11.5, color:"var(--slate-500)", marginTop:1 }}>{vehicle.trim} · <span className="mono">{typeof miles === "number" ? `${miles.toLocaleString()} mi` : "Mileage unavailable"}</span> · {twinMode}</div>
+              <div style={{ fontSize:11.5, color:"var(--slate-500)", marginTop:1 }}>{vehicle.trim} · <span className="mono">{typeof miles === "number" ? `${miles.toLocaleString()} mi${twinMode === "demo" ? " sample" : ""}` : "Mileage unavailable"}</span> · {twinMode}</div>
               <div style={{ display:"flex", gap:5, marginTop:9, flexWrap:"wrap" }}>
                 {due > 0 && <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"3px 8px", borderRadius:6, background:"var(--ki-crit-bg)", color:"var(--ki-crit)" }}>{due} due</span>}
                 {watch > 0 && <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"3px 8px", borderRadius:6, background:"var(--ki-mod-bg)", color:"var(--ki-mod-ink)" }}>{watch} watch</span>}
@@ -150,6 +150,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
             problem. Same component serves the desktop sidebar and the mobile
             drawer, so both are fixed here. */}
         {[
+          { ic: "home", label: "Home", href: "/" },
           { ic: "book", label: "Known Issues", href: "/known-issues" },
           { ic: "chat", label: "Send feedback", onClick: onFeedback },
         ].map((item) => {
@@ -352,7 +353,7 @@ function THMobile({ tc }) {
           <button onClick={()=>setNav(true)} aria-label="Menu" style={{ width:32, height:32, borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--slate-700)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><Icon name="list" size={15}/></button>
           <Au7oMark size={20}/>
           <span style={{ marginLeft:"auto" }}><ThemeDots tc={tc} size={13}/></span>
-          <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"4px 9px", borderRadius:999, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>{typeof miles === "number" ? `${miles.toLocaleString()} mi` : "Mileage unavailable"}</span>
+          <span className="mono" style={{ fontSize:10.5, fontWeight:600, padding:"4px 9px", borderRadius:999, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>{typeof miles === "number" ? `${miles.toLocaleString()} mi${twinMode === "demo" ? " sample" : ""}` : "Mileage unavailable"}</span>
         </div>
         <div className="web-scroll" style={{ flex:1, minHeight:0, padding:"14px 13px 12px", display:"flex", flexDirection:"column", gap:13 }}>
           <h2 style={{ fontSize:20, fontWeight:600, letterSpacing:"-0.02em", lineHeight:1.2, flex:"0 0 auto" }}>{greeting}. <span style={{ color:"var(--slate-400)" }}>Tap any part.</span></h2>

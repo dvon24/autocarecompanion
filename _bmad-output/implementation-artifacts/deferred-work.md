@@ -15,3 +15,19 @@
 - source_spec: none
   summary: Integrate repair-first commerce-link discovery and fitment review into the known-issue creation workflow.
   evidence: The user selected Split so the approved Acura link release can be reviewed, tested, and deployed independently before changing the known-issue authoring workflow.
+
+- source_spec: none
+  summary: Harden owner twin presentation against malformed provider payloads and restore nullable evidence, chronological date ordering, and the X-ray layer.
+  evidence: Devon approved splitting the final owner/demo review blockers so server-side fitment, claim, validation, and concurrency safety can be completed and reviewed independently first.
+
+- source_spec: none
+  summary: Restore the mobile homepage hero and hub interactions, including the mobile runtime error, exact glyphs, touch routing, focus-safe rotation, sharp art, and model-specific tech-tree navigation.
+  evidence: Devon approved splitting the remaining recovery work into narrow slices; the mobile hero/hub repair is independently shippable after the server/data safety slice.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-harden-owner-twin-server-contracts.md`
+  summary: Make non-transmission vehicle PATCH side effects and the final vehicle update atomic.
+  evidence: The server-contract review found primary-vehicle and mileage-log side effects can succeed before a later vehicle update fails; this behavior predates the narrow trim/date/transmission safety slice and requires its own mutation-atomicity review.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-harden-owner-twin-server-contracts.md`
+  summary: Add an isolated disposable-PostgreSQL integration gate for Prisma serializable conflicts, row-version monotonicity, and transaction rollback.
+  evidence: The server-contract unit suite executes production handlers with deterministic transaction fakes, but proving PostgreSQL and Prisma rollback/conflict behavior requires a dedicated disposable database harness and is not safe to run against the shared production-configured database during this local release slice.
