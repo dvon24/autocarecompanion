@@ -16,12 +16,19 @@ import { useTwinEquipment, useTwinLive, useTwinOwnerActions, useTwinVehicle, use
 
 /* Ported from the design bundle's "Hub personalized" module — TTDetail renders
    it, and its absence crashed every part tap with a ReferenceError. */
-function VerifiedFit() {
+function FitmentBadge({ node }) {
   /* Named the demo car in hardcoded text. On a live hub this badge is a
      fitment claim about the OWNER's car, so it has to read from the vehicle
      actually being shown — a "verified fit" label naming the wrong car is
      exactly the failure this project has been careful to avoid elsewhere. */
   const v = useTwinVehicle();
+  if (node?.partNo === "Not sourced for this demo") {
+    return (
+      <span style={{ display:"inline-flex", alignItems:"center", gap:4, fontSize:10, fontWeight:600, padding:"2px 8px", borderRadius:999, background:"var(--ki-page)", color:"var(--slate-600)", border:"1px solid var(--ki-line)" }}>
+        System mapped · exact part not sourced
+      </span>
+    );
+  }
   return (
     <span style={{ display:"inline-flex", alignItems:"center", gap:4, fontSize:10, fontWeight:600, padding:"2px 8px", borderRadius:999, background:"var(--ki-ok-bg)", color:"var(--ki-ok-ink)" }}>
       <Icon name="check" size={10} stroke={2.4}/> Verified fit · {v.year} {v.trim || v.model}
@@ -54,6 +61,7 @@ const TT_NODE_W = 198;
 const ttThumb = src => {
   if (!src) return "";
   if (src.indexOf("/twin-stage/thumbs/") === 0) return src;
+  if (/\/base-[^/]+\.webp$/i.test(src) || src.endsWith("/car-xray.webp")) return src;
   const file = src.slice(src.lastIndexOf("/") + 1);
   return "/twin-stage/thumbs/" + file;
 };
@@ -628,7 +636,10 @@ function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
 
 function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, narrow }) {
   if (!node) return null;
-  const rows = [["Part number", node.partNo], ["Part", node.brand], ["Where to find it", node.where], ["Spec", node.spec], ["Service life", node.life]].filter(r => r[1]);
+  const isDemoUnsourced = node.partNo === "Not sourced for this demo";
+  const hasQuotedPrice = !isDemoUnsourced && node.price && node.price !== "—";
+  const canBuy = !isDemoUnsourced && Boolean(node.buyUrl);
+  const rows = [["Part number", node.partNo], ["Price", isDemoUnsourced ? node.price : null], ["Part", node.brand], ["Where to find it", node.where], ["Spec", node.spec], ["Service life", node.life]].filter(r => r[1]);
   if (sheet) return (
     <div style={{ position:"absolute", inset:0, zIndex:20, display:"flex", flexDirection:"column", justifyContent:"flex-end" }}>
       <div onClick={onClose} style={{ position:"absolute", inset:0, background:"rgba(11,18,32,.42)" }}/>
@@ -648,16 +659,17 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
               </div>
               {risk && <span className="mono" style={{ flexShrink:0, fontSize:10, fontWeight:700, padding:"4px 9px", borderRadius:999, background: risk==="critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk==="critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)" }}>{ttRiskLabel(node, miles, risk)}</span>}
             </div>
-            {node.price && node.price !== "—" && (
+            {isDemoUnsourced && <div style={{ marginTop:12 }}><FitmentBadge node={node}/></div>}
+            {hasQuotedPrice && (
               <div style={{ display:"flex", alignItems:"center", gap:9, marginTop:12, padding:"11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
                 <div style={{ minWidth:0, flex:1 }}>
                   <div className="mono" style={{ fontSize:15.5, fontWeight:600 }}>{node.price}</div>
                   {node.stock && <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>{node.stock}</div>}
                 </div>
-                <VerifiedFit/>
+                <FitmentBadge node={node}/>
               </div>
             )}
-            {node.buyUrl && (
+            {canBuy && (
               <a href={node.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ marginTop:10, minHeight:44, borderRadius:12, background:"#2563EB", color:"#fff", display:"flex", alignItems:"center", justifyContent:"center", fontSize:13, fontWeight:650, textDecoration:"none" }}>
                 {node.buyLabel || "Order this part"}
               </a>
@@ -681,7 +693,7 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
             {node.knownIssue?.id && (
               <div style={{ marginTop:13, padding:"11px 12px", borderRadius:12, background:"rgba(139,92,246,.12)", border:"1px solid rgba(167,139,250,.35)" }}>
                 <div className="eyebrow" style={{ fontSize:9.5, color:TT_UP_HEX }}><Icon name="shield-alert" size={10}/> Known issue on record</div>
-                {node.issue && <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>}
+                {(node.issue||node.knownIssue.label) && <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue||node.knownIssue.label}</div>}
                 {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
                 {node.knownIssue.href && <a href={node.knownIssue.href} style={{ display:"inline-block", marginTop:7, color:TT_UP_HEX, fontSize:11, fontWeight:650 }}>View known issue</a>}
               </div>
@@ -727,16 +739,17 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
           {risk && <div style={{ marginTop:10, display:"flex", alignItems:"center", gap:7, padding:"7px 10px", borderRadius:9, background: risk==="critical" ? "var(--ki-crit-bg)" : "var(--ki-mod-bg)", color: risk==="critical" ? "var(--ki-crit)" : "var(--ki-mod-ink)", fontSize:11.5, fontWeight:600 }}>
             <Icon name="alert" size={12} stroke={2.2}/>{ttRiskLabel(node, miles, risk)}
           </div>}
-          {node.price && node.price !== "—" && (
+          {isDemoUnsourced && <div style={{ marginTop:12 }}><FitmentBadge node={node}/></div>}
+          {hasQuotedPrice && (
             <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:9, padding:"10px 12px", borderRadius:11, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
               <div style={{ minWidth:0, flex:1 }}>
                 <div className="mono" style={{ fontSize:14.5, fontWeight:600 }}>{node.price}</div>
                 {node.stock && <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>{node.stock}</div>}
               </div>
-              <VerifiedFit/>
+              <FitmentBadge node={node}/>
             </div>
           )}
-          {node.buyUrl && (
+          {canBuy && (
             <a href={node.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ marginTop:10, minHeight:42, borderRadius:11, background:"#2563EB", color:"#fff", display:"flex", alignItems:"center", justifyContent:"center", fontSize:12.5, fontWeight:650, textDecoration:"none" }}>
               {node.buyLabel || "Order this part"}
             </a>
@@ -760,7 +773,7 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
           {node.knownIssue?.id && (
             <div style={{ marginTop:14, padding:"11px 12px", borderRadius:11, background:"rgba(139,92,246,.12)", border:"1px solid rgba(167,139,250,.35)" }}>
               <div className="eyebrow" style={{ fontSize:9.5, color:TT_UP_HEX }}><Icon name="shield-alert" size={10}/> Known issue on record</div>
-              {node.issue && <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue}</div>}
+              {(node.issue||node.knownIssue.label) && <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue||node.knownIssue.label}</div>}
               {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
               {node.knownIssue.href && <a href={node.knownIssue.href} style={{ display:"inline-block", marginTop:7, color:TT_UP_HEX, fontSize:11, fontWeight:650 }}>View known issue</a>}
             </div>
@@ -1173,4 +1186,4 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
 }
 
 /* removed: the standalone bundle exported via window; this module uses real exports (see bottom). */
-export { TechTree, TTDetail, TT_TREES, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT, ttRisk, ttRiskLabel, ttMatchesIntent, ttHasUpgrade, ttFinish, useEquipped };
+export { TechTree, TTDetail, TT_TREES, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT, ttRisk, ttRiskLabel, ttMatchesIntent, ttHasUpgrade, ttFinish, ttThumb, useEquipped };

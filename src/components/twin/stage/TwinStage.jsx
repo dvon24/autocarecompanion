@@ -84,6 +84,10 @@ export const resolveActiveTwinEffect = (mode, active, effects) => (
     ? active
     : null
 );
+export const openTwinHotspot = (hotspot, setActive, onOpen) => {
+  setActive(hotspot.id);
+  onOpen(hotspot.id);
+};
 
 /* ── Hero stage ── */
 /* The glow overlays sit at opacity:0, so a browser defers decoding them until
@@ -164,7 +168,7 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
   const dueCount = thEvidence("car", trees, miles).due;
   const cur = retainActiveHotspot(hover || active, hotspots);
   const lit = resolveActiveTwinEffect(mode, cur, catalog.art.effects);
-  const tap = h => { if (mobile && active !== h.id) { setActive(h.id); return; } setActive(h.id); onOpen(h.id); };
+  const tap = h => openTwinHotspot(h,setActive,onOpen);
   return (
     <div ref={rootRef} className={[expanded ? "stage-expanded" : "", fill ? "stage-fill" : ""].filter(Boolean).join(" ") || undefined}
       style={{ position:"relative", flex: "0 0 auto", borderRadius:16, overflow:"hidden", border:"1px solid var(--ki-line)", background:"#0A0D14", boxShadow:"var(--shadow-2)" }}>
@@ -196,12 +200,12 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
           return (
             <button key={h.id} onMouseEnter={()=>setHover(h.id)} onMouseLeave={()=>setHover(null)} onClick={e=>{ e.stopPropagation(); tap(h); }}
               aria-label={h.label}
-              style={{ position:"absolute", left:h.x+"%", top:h.y+"%", transform:"translate(-50%,-50%)", background:"transparent", border:"none", padding:0, cursor:"pointer", zIndex: on ? 4 : 3 }}>
+              style={{ position:"absolute", left:h.x+"%", top:h.y+"%", transform:"translate(-50%,-50%)", width:mobile?44:"auto", height:mobile?44:"auto", display:"grid", placeItems:"center", background:"transparent", border:"none", padding:0, cursor:"pointer", zIndex: on ? 4 : 3, touchAction:"manipulation" }}>
               <TwinMarkerDot evidence={h} size={mobile?32:44} active={on} className={h.risk && !h.knownIssue && !h.upgrade ? "th-dot th-dot-risk" : "th-dot"}/>
               {(on || open) && (
                 <span style={{ position:"absolute", left:"50%", transform:"translateX(-50%)", ...(above ? { bottom:"100%", marginBottom:9 } : { top:"100%", marginTop:9 }), whiteSpace:"nowrap", background:"rgba(10,13,20,.9)", border:`1px solid ${c.line}`, backdropFilter:"blur(8px)", borderRadius:9, padding:"6px 11px", textAlign:"left" }}>
                   <span style={{ display:"block", fontSize:12, fontWeight:600, color:"#fff", letterSpacing:"-0.01em" }}>{h.label}</span>
-                  <span style={{ display:"block", fontSize:10, color:c.sub, marginTop:1 }}>{h.sub} · {mobile && active !== h.id ? "tap again to open" : "open tech tree"}</span>
+                  <span style={{ display:"block", fontSize:10, color:c.sub, marginTop:1 }}>{h.sub} · open tech tree</span>
                 </span>
               )}
             </button>

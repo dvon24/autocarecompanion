@@ -11,14 +11,14 @@ import { evaluateTwinAccess, getConfirmedTwinTransmission } from '../src/lib/twi
 import { TWIN_TREE_RESOLVERS, answerTwinQuestion, buildDemoTwinPresentation, collectHotspotNodes, mergeCatalogEvidenceIntoOwnerTrees, resolveTwinTrees, summarizeEvidence } from '../src/components/twin/demo-trees.js';
 import { addCalendarInterval, buildTwinTrees, servicedFromRecords } from '../src/components/twin/twin-trees.js';
 import { TWIN_UNAVAILABLE_VEHICLE, TwinDataCtx, useTwinLive, useTwinMiles, useTwinMode, useTwinVehicle } from '../src/components/twin/twin-context.jsx';
-import { TH_DOT, TwinStage, retainActiveHotspot, resolveActiveTwinEffect, thHot } from '../src/components/twin/stage/TwinStage.jsx';
-import { TechTree, TTDetail, resolveAvailableTwinBranch, ttMatchesIntent, ttRisk, ttRiskLabel } from '../src/components/twin/stage/TechTree.jsx';
-import { HubMinimal } from '../src/components/twin/hub/HubMinimal.jsx';
+import { TH_DOT, TwinStage, openTwinHotspot, retainActiveHotspot, resolveActiveTwinEffect, thHot } from '../src/components/twin/stage/TwinStage.jsx';
+import { TechTree, TTDetail, resolveAvailableTwinBranch, ttMatchesIntent, ttRisk, ttRiskLabel, ttThumb } from '../src/components/twin/stage/TechTree.jsx';
+import { HubMinimal, openMinimalHotspot } from '../src/components/twin/hub/HubMinimal.jsx';
 import { THSidebar, mobileComposerPlaceholder } from '../src/components/twin/hub/Hub.jsx';
 import { buildOwnerTwinValue, FounderTransmissionPickerView, getFounderTransmissionPickerModel, pickNextService, saveFounderTransmission, suppressTwinTransmissionWhilePending } from '../src/components/twin/LiveTwinHub.jsx';
 import { HERO_MARKER_VISUALS, TWIN_STAGE_FRAME_STYLE } from '../src/components/home/RotatingTwinStage';
 import { demoHubHref } from '../src/components/home/TwinHero';
-import { AdminOverviewView, TwinAdminShell, TwinSelectedPreview } from '../src/components/admin/twins/TwinAdminShell';
+import { AdminOverviewView, AdminPaintPalette, TwinAdminShell, TwinSelectedPreview } from '../src/components/admin/twins/TwinAdminShell';
 import { buildAdminOverviewSnapshot } from '../src/app/api/admin/overview/admin-overview';
 import { getAdminOverviewResponse } from '../src/app/api/admin/overview/admin-overview-response';
 import type { TwinMarkerEvidence } from '../src/components/twin/stage/TwinMarker';
@@ -75,6 +75,8 @@ test('hero demo CTA and marker vocabulary follow selected truthful catalog state
 });
 
 const publicPath=(value:string)=>path.join(process.cwd(),'public',value.replace(/^\//,''));
+type DemoNodeView={label?:string;sub?:string;img?:string;where?:string;spec?:string;partNo?:string;knownIssue?:{id:string;label?:string;href?:string}};
+type DemoTreeView={short:string;nodes:Record<string,DemoNodeView>};
 test('catalog validates, fulfillment null stays null, and every target is real',()=>{
   assert.deepEqual(validateVehicleTwinCatalog(),[]);
   assert.equal(getTwinByFulfillmentId(null),null);
@@ -87,6 +89,52 @@ test('catalog validates, fulfillment null stays null, and every target is real',
     for(const record of twin.sampleState.records){assert.ok(record.intervalMiles>0);assert.ok(record.lastServiceMileage>=0);assert.match(record.sourceUrl,/^https:\/\//);assert.ok(record.sourceSection.length>3);}
   }
   assert.equal(resolveDemoVehicleTwin('unknown').id,DEFAULT_TWIN_ID);
+});
+
+test('non-Challenger demo trees provide honest illustrated model context at every hotspot',()=>{
+  for(const twin of VEHICLE_TWIN_CATALOG.filter((entry)=>entry.id!=='challenger')){
+    const trees=resolveTwinTrees(twin);const typedTrees=trees as unknown as Record<string,DemoTreeView>;
+    for(const tree of Object.values(typedTrees))for(const [id,node] of Object.entries(tree.nodes)){
+      assert.ok(node.label?.trim(),`${twin.id}/${tree.short}/${id} label`);assert.ok(node.sub?.trim(),`${twin.id}/${tree.short}/${id} context`);
+      const img=node.img;assert.ok(img,`${twin.id}/${tree.short}/${id} art`);assert.ok(img.startsWith('/twin-stage/'),`${twin.id}/${tree.short}/${id} art path`);assert.ok(existsSync(publicPath(img)),`${twin.id}/${tree.short}/${id} missing ${img}`);assert.ok(existsSync(publicPath(ttThumb(img))),`${twin.id}/${tree.short}/${id} rendered thumbnail missing ${ttThumb(img)}`);
+    }
+    for(const hotspot of twin.hotspots){
+      const nodes=collectHotspotNodes(trees,hotspot);assert.ok(nodes.length>0,`${twin.id}/${hotspot.id} is inert`);
+      for(const node of nodes){
+        assert.ok(node.label?.trim(),`${twin.id}/${node.id} label`);assert.ok(node.sub?.trim(),`${twin.id}/${node.id} context`);
+        assert.ok(node.img?.startsWith('/twin-stage/'),`${twin.id}/${node.id} art`);assert.ok(existsSync(publicPath(node.img)),`${twin.id}/${node.id} missing ${node.img}`);
+        assert.ok(node.where?.trim(),`${twin.id}/${node.id} location`);assert.ok(node.spec?.trim(),`${twin.id}/${node.id} specification context`);
+        assert.doesNotMatch(`${node.partNo||''} ${node.spec||''}`,/68218925AA|ATF\+4|MMRAD-SRT|5XC13TRMAA/,`${twin.id}/${node.id} borrowed Challenger fitment`);
+      }
+    }
+  }
+});
+
+test('demo detail labels mapped systems honestly without inventing fitment or a price',()=>{
+  const twin=resolveDemoVehicleTwin('nautilus');const trees=resolveTwinTrees(twin);const engineNodes=trees.engine.nodes as Record<string,{partNo?:string}>;const entry=Object.entries(engineNodes).find(([,candidate])=>candidate.partNo==='Not sourced for this demo');assert.ok(entry);const [nodeId,node]=entry;
+  const markup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:twin,presentation:buildDemoTwinPresentation(twin),vehicle:twin.identity,miles:twin.demoMileage,trees,mode:'demo' as const}},React.createElement(TTDetail,{node,nodeId,onEquip:()=>{},risk:null,miles:twin.demoMileage,onClose:()=>{},onAsk:()=>{},sheet:true,narrow:true})));
+  assert.match(markup,/System mapped · exact part not sourced/);assert.match(markup,/Price not sourced for this demo/);assert.doesNotMatch(markup,/Verified fit/);
+  const challenger=resolveDemoVehicleTwin('challenger');const challengerTrees=resolveTwinTrees(challenger);const pricedNode=challengerTrees.engine.nodes.oilFluid;
+  const pricedMarkup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challenger,presentation:buildDemoTwinPresentation(challenger),vehicle:challenger.identity,miles:challenger.demoMileage,trees:challengerTrees,mode:'demo' as const}},React.createElement(TTDetail,{node:pricedNode,nodeId:'oilFluid',onEquip:()=>{},risk:null,miles:challenger.demoMileage,onClose:()=>{},onAsk:()=>{},sheet:true,narrow:true})));
+  assert.match(pricedMarkup,/Verified fit/);
+});
+
+test('mobile hotspots open once with a 44px target while desktop Minimal retains selection',()=>{
+  const selected:string[]=[];const opened:string[]=[];const hotspot={id:'rad'};
+  openTwinHotspot(hotspot,(id:string)=>selected.push(id),(id:string)=>opened.push(id));assert.deepEqual(selected,['rad']);assert.deepEqual(opened,['rad']);
+  selected.length=0;opened.length=0;openMinimalHotspot({mobile:true,selected:null,hotspot,select:(id:string)=>selected.push(id),open:(id:string)=>opened.push(id)});assert.deepEqual(selected,['rad']);assert.deepEqual(opened,['rad']);
+  selected.length=0;opened.length=0;openMinimalHotspot({mobile:false,selected:null,hotspot,select:(id:string)=>selected.push(id),open:(id:string)=>opened.push(id)});assert.deepEqual(selected,['rad']);assert.deepEqual(opened,[]);
+  const stageSource=readFileSync(path.join(process.cwd(),'src/components/twin/stage/TwinStage.jsx'),'utf8');const minimalSource=readFileSync(path.join(process.cwd(),'src/components/twin/hub/HubMinimal.jsx'),'utf8');assert.match(stageSource,/width:mobile\?44/);assert.match(minimalSource,/width:mobile\?44/);assert.doesNotMatch(stageSource,/tap again to open/);
+});
+
+test('factory paint palettes cite OEM material and never present missing art as selectable',()=>{
+  for(const twin of VEHICLE_TWIN_CATALOG){
+    assert.match(twin.paintPalette.sourceUrl,/^https:\/\//);assert.ok(twin.paintPalette.sourceLabel.includes(String(twin.identity.year)));assert.ok(twin.paintPalette.colors.length>=7);
+    const rendered=twin.paintPalette.colors.filter((color)=>color.artStatus==='rendered');assert.deepEqual(rendered.map((color)=>color.name),[twin.identity.paint]);assert.ok(twin.paintPalette.colors.some((color)=>color.artStatus==='awaiting-art'));
+    const markup=renderToStaticMarkup(React.createElement(AdminPaintPalette,{twin:getAdminTwinDefinitions().find((entry)=>entry.id===twin.id)!}));assert.match(markup,new RegExp(twin.identity.paint.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));assert.match(markup,/Rendered/);assert.match(markup,/Awaiting art/);assert.doesNotMatch(markup,/<button/);
+  }
+  const malformed={...getAdminTwinDefinitions()[0],paintPalette:undefined} as unknown as Parameters<typeof AdminPaintPalette>[0]['twin'];
+  assert.match(renderToStaticMarkup(React.createElement(AdminPaintPalette,{twin:malformed})),/Factory paint palette unavailable/);
 });
 
 test('five Challenger assets register full-resolution and effects remain localized RGBA',async()=>{
@@ -119,6 +167,19 @@ test('every demo shield resolves to a published snapshot row applicable to that 
     assert.ok(row,`${id} is not published in the catalog snapshot`);
     assert.equal(row.vehicle.make,twin.identity.make,id);assert.equal(row.vehicle.model,twin.identity.model,id);assert.ok(row.vehicle.years.includes(twin.identity.year),id);
     if(row.vehicle.trims?.length){const trim=twin.identity.trim.toLowerCase();assert.ok(row.vehicle.trims.some((candidate)=>candidate.toLowerCase().includes(trim)||trim.includes(candidate.toLowerCase())),`${id} excludes ${twin.identity.trim}`);}
+  }
+});
+
+test('reviewed exact-fit issue inventory is complete and each issue has useful linked detail',()=>{
+  const expected:Record<string,string[]>={
+    nautilus:['lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white','lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph','lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart','lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots'],
+    murano:['nissan-murano-automatic-emergency-braking-forward-collision-phantom-activa','nissan-murano-battery-drain-and-no-start-2021','nissan-murano-front-driver-seat-frametrack-2021','nissan-murano-front-radarsensor-malfunctions-triggering-2021','nissan-murano-rearview-camera-image-blank-2021'],
+    xt6:['cadillac-xt6-9speed-transmission-2020','cadillac-xt6-auto-stop-2020','cadillac-xt6-ptu-leak-2020','cadillac-xt6-transmission-shudder-2020','cadillac-xt6-timing-chain-2020'],
+  };
+  for(const twin of VEHICLE_TWIN_CATALOG.filter((entry)=>entry.id!=='challenger')){
+    const mapped=[...new Set(twin.hotspots.flatMap((hotspot)=>hotspot.knownIssueIds||[]))].sort();assert.deepEqual(mapped,[...expected[twin.id]].sort(),`${twin.id} reviewed issue inventory`);
+    const trees=resolveTwinTrees(twin) as unknown as Record<string,DemoTreeView>;const issueNodes=Object.values(trees).flatMap((tree)=>Object.values(tree.nodes)).filter((node)=>node.knownIssue?.id);
+    for(const id of mapped){const node=issueNodes.find((candidate)=>candidate.knownIssue?.id===id);assert.ok(node?.knownIssue,`${twin.id}/${id} node`);assert.ok(node.knownIssue.label?.trim(),`${id} label`);assert.match(node.knownIssue.href||'',new RegExp(`#${id}$`));}
   }
 });
 
@@ -388,9 +449,9 @@ test('Admin overview exposes only real aggregates and explicit unsupported state
   });
   assert.equal(overview.kpis.interestTotal,2);assert.equal(overview.kpis.interestAdded7d,1);assert.equal(overview.kpis.deepLinkRate,50);assert.equal(overview.kpis.issuesWithBuyLinks,1);assert.equal(overview.kpis.issuesWithoutBuyLinks,1);
   assert.equal(overview.queues.recommendationReviews,1);assert.equal(overview.queues.vehicleCorrections.total,12);assert.equal(overview.affiliate.searchLinkQueue[0]?.issueId,'issue-gap');assert.equal(overview.affiliate.searchLinkQueue[0]?.href,'/known-issues/dodge-challenger#issue-gap');assert.equal(overview.analytics.sessions.status,'not-connected');
-  const dataMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:getAdminTwinDefinitions(),state:{data:overview,loading:false,error:null}}));assert.match(dataMarkup,/Captured demand and affiliate clicks/);assert.match(dataMarkup,/50%/);assert.match(dataMarkup,/Transmission service/);assert.match(dataMarkup,/Not connected/);assert.match(dataMarkup,/2019 Lincoln Nautilus/);
+  const dataMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:getAdminTwinDefinitions(),state:{data:overview,loading:false,error:null}}));assert.doesNotMatch(dataMarkup,/Captured demand and affiliate clicks|12-month series/);assert.match(dataMarkup,/Do clicks reach product pages/);assert.match(dataMarkup,/Missing buy links/);assert.match(dataMarkup,/Actionable queues/);assert.match(dataMarkup,/50%/);assert.match(dataMarkup,/Transmission service/);assert.match(dataMarkup,/Not connected/);assert.match(dataMarkup,/2019 Lincoln Nautilus/);
   const empty=buildAdminOverviewSnapshot({now,interests:[],reservations:[],clicks:[],issues:[],feedback:[],userCount:0,activeSubscriberCount:0});
-  const emptyMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:[],state:{data:empty,loading:false,error:null}}));assert.match(emptyMarkup,/No records in this period/);assert.match(emptyMarkup,/No affiliate clicks in the last 30 days/);
+  const emptyMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:[],state:{data:empty,loading:false,error:null}}));assert.doesNotMatch(emptyMarkup,/No records in this period/);assert.match(emptyMarkup,/No affiliate clicks in the last 30 days/);assert.match(emptyMarkup,/Every published issue has a renderable buy link/);
   const loadingMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:[],state:{data:null,loading:true,error:null}}));assert.match(loadingMarkup,/Loading live records/);
   const errorMarkup=renderToStaticMarkup(React.createElement(AdminOverviewView,{twins:[],state:{data:null,loading:false,error:'Overview unavailable'}}));assert.match(errorMarkup,/Overview unavailable/);
   const partial=buildAdminOverviewSnapshot({now,interests:[],reservations:[],clicks:[],issues:[],feedback:[],userCount:0,activeSubscriberCount:0,sourceErrors:{clicks:'offline'}});
@@ -418,7 +479,7 @@ test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected
   const admin=renderToStaticMarkup(React.createElement(TwinSelectedPreview,{twin:getAdminTwinDefinitions()[2]}));assert.match(admin,/Nissan Murano selected twin/);assert.match(admin,/base-red.webp/);
   const emptyAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:[]}));assert.match(emptyAdmin,/Admin Dashboard/);assert.match(emptyAdmin,/Loading live records/);assert.doesNotMatch(emptyAdmin,/No twins match/);
   const fullAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:getAdminTwinDefinitions()}));assert.match(fullAdmin,/Admin Dashboard/);assert.match(fullAdmin,/Founder-only operational data/);assert.match(fullAdmin,/Loading live records/);
-  const adminSource=readFileSync(path.join(process.cwd(),'src/components/admin/twins/TwinAdminShell.tsx'),'utf8');assert.match(adminSource,/Art coverage matrix/);assert.match(adminSource,/Artwork intake/);assert.match(adminSource,/Preview layer/);assert.match(adminSource,/Array\.isArray\(data\.twins\)/);assert.match(adminSource,/AbortController/);assert.match(adminSource,/\/api\/admin\/overview/);assert.doesNotMatch(adminSource,/className="avatar"/);
+  const adminSource=readFileSync(path.join(process.cwd(),'src/components/admin/twins/TwinAdminShell.tsx'),'utf8');assert.match(adminSource,/Art coverage matrix/);assert.match(adminSource,/Artwork intake/);assert.match(adminSource,/Preview layer/);assert.match(adminSource,/Factory paint choices/);assert.match(adminSource,/Awaiting art/);assert.match(adminSource,/Array\.isArray\(data\.twins\)/);assert.match(adminSource,/AbortController/);assert.match(adminSource,/\/api\/admin\/overview/);assert.doesNotMatch(adminSource,/className="avatar"|function OverviewChart|12-month series|Captured demand and affiliate clicks/);
   const hubShared=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');const hub=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');assert.match(hubShared,/<Link href="\/" aria-label="Au7o home"/);assert.match(hub,/label: "Home", href: "\/"/);
   const challengerXray=resolveDemoVehicleTwin('challenger');assert.equal(challengerXray.art.xray,'/twin-stage/car-xray.webp');assert.match(renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challengerXray,presentation:buildDemoTwinPresentation(challengerXray),vehicle:challengerXray.identity,miles:challengerXray.demoMileage,trees:resolveTwinTrees(challengerXray),mode:'demo' as const}},React.createElement(TwinStage,{mode:'xray',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}))),/car-xray\.webp/);
 });

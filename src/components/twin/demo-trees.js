@@ -11,25 +11,46 @@ const cloneTrees = (trees) => {
   }]));
 };
 
-const STRUCTURE = {
-  car:{label:'Whole car',short:'Whole car',root:'car',nodes:{
-    car:{label:'Whole car',group:true,kids:['wheelRoot','engineRoot','wiperRoot'],availability:'unavailable'},
-    wheelRoot:{label:'Wheel, Tire & Brakes',group:true,kids:['tire'],availability:'unavailable'},
-    tire:{label:'Tire',kids:[],availability:'unavailable'},
-    engineRoot:{label:'Engine',group:true,kids:['oil','rad','airFilter'],availability:'unavailable'},
-    oil:{label:'Engine oil',kids:[],availability:'unavailable'},rad:{label:'Radiator & Coolant',kids:[],availability:'unavailable'},
-    airFilter:{label:'Engine Air Filter',kids:[],availability:'unavailable'},
-    wiperRoot:{label:'Windshield Wipers',group:true,kids:['wipL'],availability:'unavailable'},wipL:{label:'Wiper blades',kids:[],availability:'unavailable'},
-  }},
-  wheel:{label:'Wheel, Tire & Brakes',short:'Wheels',root:'wheelRoot',nodes:{}},
-  engine:{label:'Engine',short:'Engine',root:'engineRoot',nodes:{}},
-  wipers:{label:'Windshield Wipers',short:'Wipers',root:'wiperRoot',nodes:{}},
+const UNSOURCED = 'Not sourced for this demo';
+const DEMO_TREE_CONTEXT = {
+  nautilus:{
+    engine:'2.0L EcoBoost turbocharged I4', transmission:'8-speed SelectShift automatic',
+    wheel:'2019 Nautilus wheel and tire package',
+    radiatorIssue:{id:'lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white',label:'2.0L EcoBoost coolant loss / EGR cooler leak'},
+    engineIssues:[{key:'startStop',id:'lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart',label:'Auto Start-Stop / 12V battery malfunction',sub:'2019 Nautilus may fail to restart after an automatic stop',where:'12V battery, charging system and powertrain controls'}],
+    transmissionIssues:[{key:'transShudder',id:'lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph',label:'8F35 low-speed shudder',sub:'Shudder, buck or jerk below 35 mph',where:'8F35 transmission and calibration branch'}],
+    cabinIssues:[{key:'sync',id:'lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots',label:'SYNC 3 / APIM freezes and reboots',sub:'2019 Standard-trim infotainment issue',where:'Center display and APIM behind the instrument panel'}],
+  },
+  murano:{engine:'3.5L VQ35DE V6',transmission:'Xtronic continuously variable transmission',wheel:'2023 Murano SV wheel and tire package',cabinIssues:[
+    {key:'aeb',id:'nissan-murano-automatic-emergency-braking-forward-collision-phantom-activa',label:'AEB phantom activation',sub:'Forward-collision system may brake without a true obstacle',where:'Forward driver-assistance sensing and control system'},
+    {key:'battery',id:'nissan-murano-battery-drain-and-no-start-2021',label:'Battery drain / no-start',sub:'Telematics or infotainment modules may remain awake',where:'12V battery and module sleep-current circuit'},
+    {key:'seatTrack',id:'nissan-murano-front-driver-seat-frametrack-2021',label:'Driver-seat frame / track movement',sub:'Seat may rock, click or move unexpectedly',where:'Front driver-seat frame and floor-mounted track'},
+    {key:'frontRadar',id:'nissan-murano-front-radarsensor-malfunctions-triggering-2021',label:'Front radar / sensor malfunction',sub:'AEB, ICC and forward-collision warnings may appear',where:'Front radar sensor and its mounting/alignment branch'},
+    {key:'rearCamera',id:'nissan-murano-rearview-camera-image-blank-2021',label:'Rear-view camera image failure',sub:'Camera image may be blank, distorted or intermittent',where:'Liftgate camera, harness and AV control unit'},
+  ]},
+  xt6:{
+    engine:'3.6L naturally aspirated V6',transmission:'9-speed automatic transmission',wheel:'2020 XT6 Sport wheel and tire package',
+    timingIssue:{id:'cadillac-xt6-timing-chain-2020',label:'3.6L V6 timing-chain concern'},
+    engineIssues:[{key:'startStop',id:'cadillac-xt6-auto-stop-2020',label:'Auto Start-Stop harshness / battery issue',sub:'Restart harshness and battery-related stop/start faults',where:'12V battery, starter system and powertrain controls'}],
+    transmissionIssues:[
+      {key:'trans9Speed',id:'cadillac-xt6-9speed-transmission-2020',label:'9-speed shudder and hesitation',sub:'Published 9-speed shift-quality issue',where:'9-speed automatic transmission and calibration branch'},
+      {key:'transHarsh',id:'cadillac-xt6-transmission-shudder-2020',label:'Transmission shudder / harsh shifts',sub:'Separate published XT6 transmission-shudder record',where:'9-speed automatic transmission and fluid/control branch'},
+      {key:'ptuLeak',id:'cadillac-xt6-ptu-leak-2020',label:'AWD power-transfer-unit fluid leak',sub:'Sport AWD driveline may leak at the PTU',where:'Power transfer unit between transmission and rear driveline'},
+    ],
+  },
 };
-for (const branch of ['wheel','engine','wipers']) {
-  const root = STRUCTURE[branch].root;
-  const ids = [root, ...STRUCTURE.car.nodes[root].kids];
-  STRUCTURE[branch].nodes = Object.fromEntries(ids.map((id) => [id, STRUCTURE.car.nodes[id]]));
-}
+
+const demoNode = ({label,sub,img,kids=[],where,spec,life,group=false,knownIssue,unlogged=!group}) => ({
+  label,sub,img,kids,where,spec,life,group,knownIssue,unlogged,
+  availability:'sample',partNo:UNSOURCED,price:'Price not sourced for this demo',
+});
+const issueHref = (twin, id) => `/known-issues/${`${twin.identity.make}-${twin.identity.model}`.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')}#${id}`;
+const issueNode = (twin, issue, img) => demoNode({
+  label:issue.label,sub:issue.sub,img,kids:[],where:issue.where,
+  spec:`Published for the ${twin.identity.year} ${twin.identity.make} ${twin.identity.model}${twin.identity.trim?` ${twin.identity.trim}`:''}; diagnose the named system before replacing parts`,
+  life:'Known-issue evidence only; no maintenance interval or replacement part is inferred',
+  knownIssue:{id:issue.id,label:issue.label,href:issueHref(twin,issue.id)},unlogged:false,
+});
 
 function challengerTrees() {
   const trees = cloneTrees(TT_TREES);
@@ -42,31 +63,50 @@ function challengerTrees() {
   return trees;
 }
 function modelSpecificTrees(twin) {
-  const trees = cloneTrees(STRUCTURE);
-  const transmission = {label:'Transmission',short:'Transmission',root:'trx',nodes:{
-    trx:{label:'Transmission',group:true,kids:['transFluid'],availability:'sample'},
-    transFluid:{label:twin.id === 'murano' ? 'Xtronic CVT fluid' : 'Automatic transmission fluid',kids:[],availability:'sample'},
+  const context = DEMO_TREE_CONTEXT[twin.id];
+  if (!context) throw new Error(`No model-specific tree context for ${twin.id}`);
+  const modelLabel=`${twin.identity.year} ${twin.identity.make} ${twin.identity.model} ${twin.identity.trim}`.trim();
+  const wheelNodes = {
+    wheelRoot:demoNode({label:'Wheel, Tire & Brakes',sub:context.wheel,img:'/twin-stage/parts/part-wheel.webp',kids:['tire','brakes'],group:true,where:'All four corners',spec:'Use the tire placard and installed wheel package before ordering',life:'Inspect tires and brakes at every scheduled service'}),
+    tire:demoNode({label:'Tires & Rotation',sub:`${modelLabel} four-tire rotation · sample history`,img:'/twin-stage/parts/part-tire.webp',where:'All four corners',spec:`${modelLabel} exact tire size is wheel-package dependent and remains explicitly unsourced; verify the driver-door placard`,life:'Rotate on the vehicle-specific interval recorded in this demo'}),
+    brakes:demoNode({label:'Brake System',sub:`${modelLabel} pads, rotors, calipers and fluid`,img:'/twin-stage/parts/part-caliper.webp',where:'Front and rear axles',spec:`Measure ${twin.identity.model} pad thickness and rotor condition; no replacement part is asserted here`,life:'Condition-based inspection; this demo has no logged brake replacement'}),
+  };
+  const engineIssueNodes=Object.fromEntries((context.engineIssues||[]).map((issue)=>[issue.key,issueNode(twin,issue,'/twin-stage/parts/part-engine.webp')]));
+  const hoodKids=['oil','airFilter',...(context.timingIssue?['timing']:[]),...Object.keys(engineIssueNodes)];
+  const engineNodes = {
+    engineRoot:demoNode({label:'Engine',sub:context.engine,img:'/twin-stage/parts/part-engine.webp',kids:['hoodRoot','rad'],group:true,where:'Under the hood',spec:`${context.engine} · exact service fluids remain manual/VIN dependent`,life:'Follow the cited sample schedule; no Challenger specifications are reused'}),
+    hoodRoot:demoNode({label:'Engine Service & Issues',sub:`${modelLabel} · ${context.engine}`,img:'/twin-stage/parts/part-engine.webp',kids:hoodKids,group:true,where:'Under the hood and engine controls',spec:'Service records and published engine issues for this exact demo identity',life:'Intervals are shown only where cited sample evidence exists'}),
+    oil:demoNode({label:'Engine Oil & Filter',sub:`${modelLabel} · ${context.engine} scheduled service`,img:'/twin-stage/parts/part-oil-filter.webp',where:'Engine lubrication system',spec:`The exact ${twin.identity.model} viscosity, approval and capacity remain owner-manual dependent in this demo`,life:'The demo clock comes only from the cited owner schedule'}),
+    airFilter:demoNode({label:'Engine Air Filter',sub:`${modelLabel} dry replacement filter element`,img:'/twin-stage/parts/part-air-filter.webp',where:'Engine intake airbox',spec:`The ${context.engine} filter shape and part number remain explicitly unsourced pending VIN confirmation`,life:'Inspect sooner in dust; the cited sample record supplies any shown interval'}),
+    rad:demoNode({label:'Radiator & Coolant',sub:`${modelLabel} cooling circuit inspection`,img:'/twin-stage/parts/part-radiator.webp',kids:['coolant'],group:true,where:'Front cooling module and engine coolant circuit',spec:`Pressure-test the ${context.engine} cooling circuit and verify exact coolant chemistry before service`,life:'Inspect level, hoses and visible joints; no replacement interval is invented',knownIssue:context.radiatorIssue?{...context.radiatorIssue,href:issueHref(twin,context.radiatorIssue.id)}:undefined}),
+    coolant:demoNode({label:'Engine Coolant',sub:`${modelLabel} chemistry requires manual/VIN confirmation`,img:'/twin-stage/parts/part-antifreeze.webp',where:'Cooling circuit and expansion reservoir',spec:`Never mix coolant chemistries; no ${twin.identity.model} product fit is asserted in this demo`,life:'Condition and schedule based; no sample coolant service is logged'}),
+    ...(context.timingIssue?{timing:demoNode({label:'Timing Chain System',sub:`${modelLabel} 3.6L V6 chain, guides and tensioners`,img:'/twin-stage/parts/part-engine.webp',where:'Front and upper engine timing drive',spec:'Diagnose correlation faults and mechanical timing before parts replacement',life:'Known-issue evidence is model/engine specific; no replacement mileage is invented',knownIssue:{...context.timingIssue,href:issueHref(twin,context.timingIssue.id)}})}:{}),
+    ...engineIssueNodes,
+  };
+  const transmissionIssueNodes=Object.fromEntries((context.transmissionIssues||[]).map((issue)=>[issue.key,issueNode(twin,issue,'/twin-stage/parts/part-transmission.webp')]));
+  const transmissionNodes = {
+    trx:demoNode({label:'Transmission',sub:`${modelLabel} · ${context.transmission}`,img:'/twin-stage/parts/part-transmission.webp',kids:['transFluid',...Object.keys(transmissionIssueNodes)],group:true,where:'Powertrain driveline',spec:`${context.transmission} · confirm VIN before any parts or fluid order`,life:'Use the cited vehicle schedule and operating-condition branch'}),
+    transFluid:demoNode({label:twin.id==='murano'?'CVT Fluid Service':'Automatic Transmission Fluid',sub:`${modelLabel} fluid-service branch · exact product not asserted`,img:'/twin-stage/parts/part-transmission.webp',where:'Transmission sump and fill/check circuit',spec:`Fluid type, level temperature and procedure must match this ${context.transmission}`,life:'The sample clock comes only from a cited schedule; severe use may differ'}),
+    ...transmissionIssueNodes,
+  };
+  const cabinIssueNodes=Object.fromEntries((context.cabinIssues||[]).map((issue)=>[issue.key,issueNode(twin,issue,twin.art.base)]));
+  const wiperNodes = {
+    wiperRoot:demoNode({label:context.cabinIssues?.length?'Visibility, Camera & Cabin':'Windshield Wipers',sub:`${modelLabel} front visibility system`,img:'/twin-stage/parts/part-wipers.webp',kids:['wiperBlades','washerFluid',...Object.keys(cabinIssueNodes)],group:true,where:'Windshield, cowl and applicable cabin/driver-assistance systems',spec:`Exact ${twin.identity.model} blade lengths and connectors remain explicitly unsourced`,life:'Inspect for streaking, chatter and torn rubber'}),
+    wiperBlades:demoNode({label:'Front Wiper Blades',sub:`${modelLabel} driver and passenger pair`,img:'/twin-stage/parts/part-wiper-driver.webp',where:'Front wiper arms',spec:`No ${twin.identity.model} blade length or connector fitment is asserted in this demo`,life:'Replace when visibility degrades; no sample service is logged'}),
+    washerFluid:demoNode({label:'Washer Fluid',sub:`${modelLabel} windshield washer reservoir`,img:'/twin-stage/parts/part-washer-fluid.webp',where:'Under-hood washer reservoir',spec:'Use climate-appropriate washer fluid; do not substitute engine coolant',life:'Check level during routine service'}),
+    ...cabinIssueNodes,
+  };
+  const trees = {
+    wheel:{label:'Wheel, Tire & Brakes',short:'Wheels',root:'wheelRoot',nodes:wheelNodes},
+    engine:{label:'Engine',short:'Engine',root:'engineRoot',nodes:engineNodes},
+    trans:{label:'Transmission',short:'Transmission',root:'trx',nodes:transmissionNodes},
+    wipers:{label:context.cabinIssues?.length?'Visibility, Camera & Cabin':'Windshield Wipers',short:context.cabinIssues?.length?'Cabin & safety':'Wipers',root:'wiperRoot',nodes:wiperNodes},
+  };
+  trees.car={label:'Whole car',short:'Whole car',root:'car',nodes:{
+    car:demoNode({label:`${twin.identity.year} ${twin.identity.make} ${twin.identity.model}`,sub:`${twin.identity.trim} · ${twin.identity.engine}`,img:twin.art.base,kids:['wheelRoot','engineRoot','trx','wiperRoot'],group:true,where:'Public demo vehicle',spec:'Sample state only; owner history is not inferred',life:'Four mapped service systems'}),
+    ...wheelNodes,...engineNodes,...transmissionNodes,...wiperNodes,
   }};
-  trees.trans = transmission;
-  trees.car.nodes.car.kids.push('trx'); Object.assign(trees.car.nodes, transmission.nodes);
-  if (twin.id === 'nautilus') {
-    const issue = {id:'lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white',label:'Published known issue'};
-    trees.engine.nodes.rad.knownIssue = issue;
-    trees.car.nodes.rad.knownIssue = issue;
-    const transIssue = {id:'lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph',label:'Published known issue'};
-    trees.trans.nodes.transFluid.knownIssue = transIssue;
-    trees.car.nodes.transFluid.knownIssue = transIssue;
-  }
-  if (twin.id === 'xt6') {
-    const timing = {label:'3.6L V6 timing system',kids:[],availability:'sample',knownIssue:{id:'cadillac-xt6-timing-chain-2020',label:'Published known issue'}};
-    trees.engine.nodes.engineRoot.kids.push('timing');
-    trees.engine.nodes.timing = timing;
-    trees.car.nodes.timing = timing;
-    const transIssue = {id:'cadillac-xt6-9speed-transmission-2020',label:'Published known issue'};
-    trees.trans.nodes.transFluid.knownIssue = transIssue;
-    trees.car.nodes.transFluid.knownIssue = transIssue;
-  }
-  return trees;
+  return cloneTrees(trees);
 }
 
 function applySampleState(trees, twin) {
@@ -78,7 +118,7 @@ function applySampleState(trees, twin) {
   }
   for (const record of twin.sampleState.records) {
     const node = unique.get(record.node);
-    if (!node) continue;
+    if (!node) throw new Error(`Unknown sample node ${record.node} for ${twin.id}`);
     node.availability = 'sample';
     node.unlogged = false;
     node.servicedAt = record.lastServiceMileage;

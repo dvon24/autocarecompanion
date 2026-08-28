@@ -3,7 +3,8 @@
 /**
  * The full-screen hub — ported from `design/au7o (11)` ("Minimal hub for the
  * web demo"): greeting on top, the car filling the middle, one composer at the
- * bottom. First tap on a marker selects it, second opens its tech tree.
+ * bottom. Mobile markers open their tech tree in one tap; desktop retains the
+ * select-then-open interaction.
  *
  * Why this exists as a separate view rather than a CSS fullscreen of the normal
  * hub: it fits the car to a measured box (4:3 on mobile, 16:9 on desktop) via
@@ -34,9 +35,14 @@ import { TT_TREES, ttRisk, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT, ttFinish,
 import { Au7oMark, ThemeDots, VoiceButton, useBubble } from "./hub-shared";
 import { THSidebar, THBubble, THTreeOverlay, THFeedback } from "./Hub";
 
+export const openMinimalHotspot = ({mobile,selected,hotspot,select,open}) => {
+  select(hotspot.id);
+  if (mobile || selected === hotspot.id) open(hotspot.id);
+};
+
 /* Minimal hub for the web demo — same idea as the phone's minimal screen:
    greeting at the top, the vehicle filling the middle, one composer at the bottom.
-   First click on a marker highlights it, second click opens its tech tree. */
+   Mobile opens a marker in one tap; desktop highlights first and opens second. */
 
 function THMinTop({ tc, onMenu, mobile, railOpen, onExit }) {
   const miles = useTwinMiles();
@@ -116,7 +122,7 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
           const on = sel === h.id || hover === h.id, above = h.y > 55, c = TH_DOT(h);
           return (
             <button key={h.id} onMouseEnter={()=>setHover(h.id)} onMouseLeave={()=>setHover(null)} onClick={e=>{ e.stopPropagation(); onTap(h); }} aria-label={h.label}
-              style={{ position:"absolute", left:h.x+"%", top:h.y+"%", transform:"translate(-50%,-50%)", background:"transparent", border:"none", padding:0, cursor:"pointer", zIndex: on ? 4 : 3 }}>
+              style={{ position:"absolute", left:h.x+"%", top:h.y+"%", transform:"translate(-50%,-50%)", width:mobile?44:"auto", height:mobile?44:"auto", display:"grid", placeItems:"center", background:"transparent", border:"none", padding:0, cursor:"pointer", zIndex: on ? 4 : 3, touchAction:"manipulation" }}>
               <TwinMarkerDot evidence={h} size={mobile?34:42} active={on} className={h.risk && !h.knownIssue && !h.upgrade ? "th-dot th-dot-risk" : "th-dot"}/>
               {on && !mobile && (
                 <span style={{ position:"absolute", left:"50%", transform:"translateX(-50%)", ...(above ? { bottom:"100%", marginBottom:9 } : { top:"100%", marginTop:9 }), whiteSpace:"nowrap", background:"rgba(10,13,20,.92)", border:`1px solid ${c.line}`, backdropFilter:"blur(8px)", borderRadius:9, padding:"6px 11px", textAlign:"left" }}>
@@ -192,7 +198,7 @@ function THMinimal({ tc, mobile, onExit }) {
   const hot = sel ? thHot(catalog.hotspots.find(h => h.id === sel), live ? ownerEquipped : equipped, trees, miles) : null;
 
   const openTreeFor = id => { const target=id === "car" ? {branch:"car",node:null} : resolveTwinDeepLink(catalog,id,trees); if (!target.branch) return; setNav(false); setStartNode(target.node); setBranch(target.branch); };
-  const tap = h => { if (sel !== h.id) { setSel(h.id); return; } openTreeFor(h.id); };
+  const tap = h => openMinimalHotspot({mobile,selected:sel,hotspot:h,select:setSel,open:openTreeFor});
 
   return (
     <div className={"ki-theme-" + tc.theme} style={{ height:"100dvh", display:"flex", background:"#080B12", color:"var(--ink)", fontFamily:"var(--font-sans)", overflow:"hidden", position:"relative" }}>
