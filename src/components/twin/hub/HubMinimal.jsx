@@ -3,8 +3,8 @@
 /**
  * The full-screen hub — ported from `design/au7o (11)` ("Minimal hub for the
  * web demo"): greeting on top, the car filling the middle, one composer at the
- * bottom. Mobile markers open their tech tree in one tap; desktop retains the
- * select-then-open interaction.
+ * bottom. Markers use a quick select-then-open interaction on every viewport:
+ * the first tap identifies the system and the second opens its tech tree.
  *
  * Why this exists as a separate view rather than a CSS fullscreen of the normal
  * hub: it fits the car to a measured box (4:3 on mobile, 16:9 on desktop) via
@@ -35,14 +35,14 @@ import { TT_TREES, ttRisk, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT, ttFinish,
 import { Au7oMark, ThemeDots, VoiceButton, useBubble } from "./hub-shared";
 import { THSidebar, THBubble, THTreeOverlay, THFeedback } from "./Hub";
 
-export const openMinimalHotspot = ({mobile,selected,hotspot,select,open}) => {
+export const openMinimalHotspot = ({selected,hotspot,select,open}) => {
   select(hotspot.id);
-  if (mobile || selected === hotspot.id) open(hotspot.id);
+  if (selected === hotspot.id) open(hotspot.id);
 };
 
 /* Minimal hub for the web demo — same idea as the phone's minimal screen:
    greeting at the top, the vehicle filling the middle, one composer at the bottom.
-   Mobile opens a marker in one tap; desktop highlights first and opens second. */
+   Every viewport highlights on the first tap and opens on the second. */
 
 function THMinTop({ tc, onMenu, mobile, railOpen, onExit }) {
   const miles = useTwinMiles();
@@ -198,7 +198,7 @@ function THMinimal({ tc, mobile, onExit }) {
   const hot = sel ? thHot(catalog.hotspots.find(h => h.id === sel), live ? ownerEquipped : equipped, trees, miles) : null;
 
   const openTreeFor = id => { const target=id === "car" ? {branch:"car",node:null} : resolveTwinDeepLink(catalog,id,trees); if (!target.branch) return; setNav(false); setStartNode(target.node); setBranch(target.branch); };
-  const tap = h => openMinimalHotspot({mobile,selected:sel,hotspot:h,select:setSel,open:openTreeFor});
+  const tap = h => openMinimalHotspot({selected:sel,hotspot:h,select:setSel,open:openTreeFor});
 
   return (
     <div className={"ki-theme-" + tc.theme} style={{ height:"100dvh", display:"flex", background:"#080B12", color:"var(--ink)", fontFamily:"var(--font-sans)", overflow:"hidden", position:"relative" }}>

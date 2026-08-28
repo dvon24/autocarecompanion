@@ -68,7 +68,7 @@ const thHot = (h, eq, trees = TT_TREES, miles = TH_MILES) => {
 const TH_DOT = resolveTwinMarkerVisual;
 
 const TH_ENTRY_MODES = [
-  { id:"hotspots", label:"Hotspots", hint:"Pulsing markers sit on the car — hover to name the system, click to open its tree." },
+  { id:"hotspots", label:"Hotspots", hint:"Pulsing markers sit on the car — tap once to identify the system, then tap again to open its tree." },
   { id:"rail",     label:"Part rail", hint:"The car stays clean; systems live on a rail underneath with real part photos." },
   { id:"xray",     label:"X-ray",     hint:"The body goes transparent and every system is labelled at once." },
 ];
@@ -84,9 +84,9 @@ export const resolveActiveTwinEffect = (mode, active, effects) => (
     ? active
     : null
 );
-export const openTwinHotspot = (hotspot, setActive, onOpen) => {
+export const openTwinHotspot = (hotspot, active, setActive, onOpen) => {
   setActive(hotspot.id);
-  onOpen(hotspot.id);
+  if (active === hotspot.id) onOpen(hotspot.id);
 };
 
 /* ── Hero stage ── */
@@ -168,7 +168,7 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
   const dueCount = thEvidence("car", trees, miles).due;
   const cur = retainActiveHotspot(hover || active, hotspots);
   const lit = resolveActiveTwinEffect(mode, cur, catalog.art.effects);
-  const tap = h => openTwinHotspot(h,setActive,onOpen);
+  const tap = h => openTwinHotspot(h,active,setActive,onOpen);
   return (
     <div ref={rootRef} className={[expanded ? "stage-expanded" : "", fill ? "stage-fill" : ""].filter(Boolean).join(" ") || undefined}
       style={{ position:"relative", flex: "0 0 auto", borderRadius:16, overflow:"hidden", border:"1px solid var(--ki-line)", background:"#0A0D14", boxShadow:"var(--shadow-2)" }}>

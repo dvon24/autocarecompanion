@@ -119,12 +119,13 @@ test('demo detail labels mapped systems honestly without inventing fitment or a 
   assert.match(pricedMarkup,/Verified fit/);
 });
 
-test('mobile hotspots open once with a 44px target while desktop Minimal retains selection',()=>{
+test('hotspots select on the first tap and open immediately on the second tap',()=>{
   const selected:string[]=[];const opened:string[]=[];const hotspot={id:'rad'};
-  openTwinHotspot(hotspot,(id:string)=>selected.push(id),(id:string)=>opened.push(id));assert.deepEqual(selected,['rad']);assert.deepEqual(opened,['rad']);
-  selected.length=0;opened.length=0;openMinimalHotspot({mobile:true,selected:null,hotspot,select:(id:string)=>selected.push(id),open:(id:string)=>opened.push(id)});assert.deepEqual(selected,['rad']);assert.deepEqual(opened,['rad']);
-  selected.length=0;opened.length=0;openMinimalHotspot({mobile:false,selected:null,hotspot,select:(id:string)=>selected.push(id),open:(id:string)=>opened.push(id)});assert.deepEqual(selected,['rad']);assert.deepEqual(opened,[]);
-  const stageSource=readFileSync(path.join(process.cwd(),'src/components/twin/stage/TwinStage.jsx'),'utf8');const minimalSource=readFileSync(path.join(process.cwd(),'src/components/twin/hub/HubMinimal.jsx'),'utf8');assert.match(stageSource,/width:mobile\?44/);assert.match(minimalSource,/width:mobile\?44/);assert.doesNotMatch(stageSource,/tap again to open/);
+  openTwinHotspot(hotspot,null,(id:string)=>selected.push(id),(id:string)=>opened.push(id));assert.deepEqual(selected,['rad']);assert.equal(opened.length,0);
+  selected.length=0;opened.length=0;openTwinHotspot(hotspot,'rad',(id:string)=>selected.push(id),(id:string)=>opened.push(id));assert.deepEqual(selected,['rad']);assert.deepEqual(opened,['rad']);
+  selected.length=0;opened.length=0;openMinimalHotspot({selected:null,hotspot,select:(id:string)=>selected.push(id),open:(id:string)=>opened.push(id)});assert.deepEqual(selected,['rad']);assert.equal(opened.length,0);
+  selected.length=0;opened.length=0;openMinimalHotspot({selected:'rad',hotspot,select:(id:string)=>selected.push(id),open:(id:string)=>opened.push(id)});assert.deepEqual(selected,['rad']);assert.deepEqual(opened,['rad']);
+  const stageSource=readFileSync(path.join(process.cwd(),'src/components/twin/stage/TwinStage.jsx'),'utf8');const minimalSource=readFileSync(path.join(process.cwd(),'src/components/twin/hub/HubMinimal.jsx'),'utf8');assert.match(stageSource,/width:mobile\?44/);assert.match(minimalSource,/width:mobile\?44/);assert.match(stageSource,/touchAction:"manipulation"/);assert.match(minimalSource,/touchAction:"manipulation"/);
 });
 
 test('factory paint palettes cite OEM material and never present missing art as selectable',()=>{
