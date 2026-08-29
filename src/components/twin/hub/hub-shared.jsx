@@ -82,16 +82,58 @@ export function VoiceButton({ compact, href = "/diagnose" }) {
   );
 }
 
-export function HPComposer({ say }) {
+export function normalizeTwinChatInput(value) {
+  const text = String(value || "").trim();
+  return text || null;
+}
+
+export function splitTwinAnswerLink(value) {
+  const text = String(value || "");
+  const match = text.match(/^(.*?)(?:\s*·\s*Buy:\s*)(https?:\/\/\S+)$/);
+  return match ? { text:match[1].trim(), url:match[2] } : { text, url:null };
+}
+
+export function TwinChatComposer({ say, answer, compact = false, placeholder = "Ask anything about your car…", prefill = null }) {
+  const [value, setValue] = React.useState("");
+  const [status, setStatus] = React.useState(null);
+  const inputRef = React.useRef(null);
+  React.useEffect(() => {
+    if (!prefill?.value) return;
+    setValue(prefill.value);
+    setStatus(null);
+    const input = inputRef.current;
+    input?.focus();
+    input?.setSelectionRange(prefill.value.length, prefill.value.length);
+  }, [prefill]);
+  const submit = (event) => {
+    event.preventDefault();
+    const question = normalizeTwinChatInput(value);
+    if (!question) { setStatus({text:"Type a question first.",url:null}); return; }
+    const message = typeof answer === "function"
+      ? answer(question)
+      : "That question is outside this mapped Twin. Open Diagnose for broader troubleshooting.";
+    const result = splitTwinAnswerLink(message);
+    setStatus({text:result.url?"Reviewed answer shown above.":result.text,url:result.url});
+    say?.(result.text);
+  };
+  return (
+    <div style={{width:"100%"}}>
+      <form onSubmit={submit} style={{ background:"var(--ki-card)", border:`1px solid ${KI.line}`, borderRadius:compact?14:16, boxShadow:"var(--shadow-1)", padding:compact?"8px 9px 8px 12px":"10px 12px 10px 16px", display:"flex", alignItems:"center", gap:8 }}>
+        <input ref={inputRef} value={value} onChange={(event)=>{setValue(event.target.value);if(status)setStatus(null);}} aria-label="Ask Au7o about this vehicle" placeholder={placeholder} autoComplete="off" style={{flex:1,minWidth:0,border:0,outline:0,background:"transparent",color:"var(--ink)",fontFamily:"var(--font-sans)",fontSize:compact?13:14,lineHeight:1.4}}/>
+        <a href="/diagnose" aria-label="Open camera diagnosis" title="Open camera diagnosis" style={{width:compact?30:34,height:compact?30:34,borderRadius:10,border:`1px solid ${KI.line}`,display:"grid",placeItems:"center",color:"var(--slate-500)",textDecoration:"none",flexShrink:0}}><Icon name="camera" size={12}/></a>
+        {!compact&&<VoiceButton/>}
+        <button type="submit" aria-label="Send question" style={{background:"var(--ink)",border:"none",color:"var(--ki-page)",width:compact?30:34,height:compact?30:34,borderRadius:10,cursor:"pointer",display:"grid",placeItems:"center",flexShrink:0}}><Icon name="send" size={compact?13:14}/></button>
+      </form>
+      {status&&<div role="status" style={{marginTop:6,fontSize:10.5,lineHeight:1.4,color:"var(--slate-500)",textAlign:"center"}}>{status.text}{status.url&&<> <a href={status.url} target="_blank" rel="noopener noreferrer" style={{color:"var(--au7o-blue)",fontWeight:700,textDecoration:"underline"}}>Buy exact reviewed part</a></>}</div>}
+    </div>
+  );
+}
+
+export function HPComposer({ say, answer, prefill = null }) {
   return (
     <div style={{ padding: "14px 44px 20px", borderTop: `1px solid ${KI.line}`, background: "var(--ki-glass)", backdropFilter: "blur(16px)" }}>
       <div style={{ maxWidth: 980, margin: "0 auto" }}>
-        <div style={{ background: "var(--ki-card)", border: `1px solid ${KI.line}`, borderRadius: 16, boxShadow: "var(--shadow-1)", padding: "10px 12px 10px 16px", display: "flex", alignItems: "center", gap: 10 }}>
-          <span style={{ flex: 1, fontSize: 14, color: "var(--slate-400)" }}>Ask anything about your car — symptoms, parts, recalls, or plan a trip.</span>
-          <a href="/diagnose" className="chip chip-sm" style={{ textDecoration: "none" }}><Icon name="camera" size={12} /> Camera</a>
-          <VoiceButton say={say} />
-          <a href="/diagnose" style={{ background: "var(--ink)", border: "none", color: "var(--ki-page)", width: 34, height: 34, borderRadius: 11, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", textDecoration: "none" }}><Icon name="send" size={14} /></a>
-        </div>
+        <TwinChatComposer say={say} answer={answer} prefill={prefill} placeholder="Ask anything about your car — symptoms, parts, recalls, or plan a trip."/>
         <div style={{ fontSize: 10.5, color: "var(--slate-500)", marginTop: 7, textAlign: "center" }}>Au7o knows your vehicle context · responses may need verifying with a mechanic</div>
       </div>
     </div>

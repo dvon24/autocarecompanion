@@ -28,15 +28,58 @@ function FitmentBadge({ node }) {
     && node?.price && !/verify|choose|not sourced/i.test(node.price);
   if (!directReviewedPart) {
     return (
-      <span style={{ display:"inline-flex", alignItems:"center", gap:4, fontSize:10, fontWeight:600, padding:"2px 8px", borderRadius:999, background:"var(--ki-page)", color:"var(--slate-600)", border:"1px solid var(--ki-line)" }}>
+      <span style={{ display:"inline-flex", alignItems:"center", gap:4, maxWidth:"100%", whiteSpace:"normal", lineHeight:1.3, fontSize:10, fontWeight:600, padding:"3px 8px", borderRadius:999, background:"var(--ki-page)", color:"var(--slate-600)", border:"1px solid var(--ki-line)" }}>
         {node?.partNo === "Not sourced for this demo" ? "System mapped · exact part not sourced" : /parts\.nissanusa\.com\/v-/i.test(node?.buyUrl || "") ? "OEM catalog · confirm VIN" : "Part recorded · confirm fitment"}
       </span>
     );
   }
   return (
-    <span style={{ display:"inline-flex", alignItems:"center", gap:4, fontSize:10, fontWeight:600, padding:"2px 8px", borderRadius:999, background:"var(--ki-ok-bg)", color:"var(--ki-ok-ink)" }}>
+    <span style={{ display:"inline-flex", alignItems:"center", gap:4, maxWidth:"100%", whiteSpace:"normal", lineHeight:1.3, fontSize:10, fontWeight:600, padding:"3px 8px", borderRadius:999, background:"var(--ki-ok-bg)", color:"var(--ki-ok-ink)" }}>
       <Icon name="check" size={10} stroke={2.4}/> Fitment reviewed · {v.year} {v.trim || v.model}
     </span>
+  );
+}
+
+export function resolveKnownIssueAction(node) {
+  const issue = node?.knownIssue;
+  if (!issue?.id) return null;
+  const fixParts = Array.isArray(issue.fixParts) ? issue.fixParts : [];
+  let fixPart = null;
+  for (const part of fixParts) {
+    const link = Array.isArray(part?.buyLinks)
+      ? part.buyLinks.find((candidate) => candidate?.verified === true && typeof candidate.url === "string" && candidate.url.length > 0)
+      : null;
+    if (link) { fixPart = { part, link }; break; }
+  }
+  return {
+    summary:issue.description || node.issue || issue.label || null,
+    repair:issue.solution || node.upgrade?.fixes || null,
+    fixPart,
+    href:issue.href || null,
+  };
+}
+
+function TTKnownIssueCard({ node, dense }) {
+  const action = resolveKnownIssueAction(node);
+  if (!action) return null;
+  const { summary, repair, fixPart, href } = action;
+  return (
+    <div style={{ marginTop:dense?13:14, padding:"11px 12px", borderRadius:dense?12:11, background:"rgba(139,92,246,.12)", border:"1px solid rgba(167,139,250,.35)" }}>
+      <div className="eyebrow" style={{ fontSize:9.5, color:TT_UP_HEX }}><Icon name="shield-alert" size={10}/> Known issue on record</div>
+      {summary && <div style={{ marginTop:7 }}><div style={{fontSize:10,fontWeight:700,color:"var(--slate-500)",textTransform:"uppercase",letterSpacing:".06em"}}>Summary</div><div style={{ fontSize:dense?12.5:12, lineHeight:1.5, marginTop:3, textWrap:"pretty" }}>{summary}</div></div>}
+      {repair && <div style={{ marginTop:9 }}><div style={{fontSize:10,fontWeight:700,color:"var(--slate-500)",textTransform:"uppercase",letterSpacing:".06em"}}>How to fix</div><div style={{fontSize:dense?12.5:12,lineHeight:1.5,marginTop:3,textWrap:"pretty"}}>{repair}</div></div>}
+      <div style={{marginTop:10,paddingTop:9,borderTop:"1px solid rgba(167,139,250,.25)"}}>
+        {fixPart ? (
+          <a href={fixPart.link.url} target="_blank" rel="noopener noreferrer sponsored" style={{display:"flex",alignItems:"center",justifyContent:"space-between",gap:8,minHeight:40,padding:"8px 10px",borderRadius:9,background:"var(--ki-card)",border:"1px solid var(--ki-line)",color:"#2563EB",fontSize:11.5,fontWeight:650,textDecoration:"none"}}>
+            <span style={{minWidth:0}}>Fix part: {fixPart.part.component}{fixPart.part.oemPartNumber ? ` · ${fixPart.part.oemPartNumber}` : ""}</span><span style={{flexShrink:0}}>{fixPart.link.vendor || "View part"} →</span>
+          </a>
+        ) : (
+          <div style={{padding:"8px 10px",borderRadius:9,background:"var(--ki-card)",border:"1px solid var(--ki-line)",fontSize:11.5,lineHeight:1.45,color:"var(--slate-600)"}}><strong style={{color:"var(--ink)"}}>Service action:</strong> Ask a dealer or qualified repair shop to confirm the diagnosis and correct repair for this VIN before ordering parts.</div>
+        )}
+      </div>
+      {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:8 }}>{node.issueRef}</div>}
+      {href && <a href={href} style={{ display:"inline-block", marginTop:8, color:TT_UP_HEX, fontSize:11, fontWeight:650 }}>View full known issue</a>}
+    </div>
   );
 }
 
@@ -220,7 +263,7 @@ TT_TREES.trans = {
     trx:{ label:"Transmission", sub:"ZF 8HP70 · 8-speed automatic", img:"/twin-stage/parts/part-transmission.webp", kids:["transFluid","transPan","transPlug"], group:true,
           partNo:"—", where:"Behind the engine, under the tunnel", spec:"ZF 8HP70 · confirm transmission before ordering", price:"—",
           life:"Fluid and the integrated pan filter are the service items — there is no dipstick" },
-    transFluid:{ label:"Transmission Fluid", sub:"ZF LifeguardFluid 8", img:"/twin-stage/parts/part-oil.webp", kids:[], riskAt:60000,
+    transFluid:{ label:"Transmission Fluid", sub:"ZF LifeguardFluid 8", img:"/twin-stage/parts/part-transmission-fluid.webp", kids:[], riskAt:60000,
           partNo:"68218925AA", brand:"Mopar 8 & 9 Speed ATF / ZF LifeguardFluid 8", where:"Fill plug on the driver side of the pan — filled from underneath", spec:"Set the level using the exact temperature procedure · never substitute ATF+4", price:"Verify current price", stock:"Confirm by VIN before ordering",
           life:"60,000 mi for this owner-facing plan; shorten for track or tow use",
           dueNote:"5,000 mi past due — never logged on this demo car." },
@@ -512,7 +555,9 @@ function TTServiceRow({ node, miles, dense }) {
   const live = useTwinLive();
   const ownerActions = useTwinOwnerActions();
   const [logging, setLogging] = React.useState(false);
-  if (!node.maintenanceType || !node.serviceIntervalMiles) return null;
+  const hasMileageInterval = typeof node.serviceIntervalMiles === "number" && node.serviceIntervalMiles > 0;
+  const hasTimeInterval = typeof node.serviceIntervalMonths === "number" && node.serviceIntervalMonths > 0;
+  if (!node.maintenanceType || (!live && !hasMileageInterval && !hasTimeInterval)) return null;
   const done = node.servicedAt != null;
   if (live) return (
     <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)", fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>
@@ -520,13 +565,13 @@ function TTServiceRow({ node, miles, dense }) {
         <MaintenanceLogFlow
           vehicleId={ownerActions.vehicleId}
           currentMileage={miles}
-          service={{ typeId:node.maintenanceType, label:node.serviceLabel || node.label, intervalMiles:node.serviceIntervalMiles }}
+          service={{ typeId:node.maintenanceType, label:node.serviceLabel || node.label, intervalMiles:hasMileageInterval?node.serviceIntervalMiles:null, intervalMonths:hasTimeInterval?node.serviceIntervalMonths:null }}
           accent="#2563EB"
           onLogged={ownerActions.refresh}
         />
       ) : (
         <div style={{ display:"flex", alignItems:"center", gap:9 }}>
-          <div style={{ minWidth:0, flex:1 }}>{done ? <>Last logged at <span className="mono">{node.servicedAt.toLocaleString()} mi</span>.</> : node.firstServiceDeadline && typeof node.dueMileage === "number" && miles > node.dueMileage ? <>Required service is <strong style={{color:"var(--ki-crit)"}}>overdue</strong> · first deadline was <span className="mono">{node.dueMileage.toLocaleString()} mi</span>.</> : node.firstServiceDeadline ? <>Not logged yet · first service at <span className="mono">{node.dueMileage?.toLocaleString() || node.serviceIntervalMiles.toLocaleString()} mi</span>.</> : <>Not logged yet · inspect condition and log service when performed.</>}</div>
+          <div style={{ minWidth:0, flex:1 }}>{done ? <>Last logged at <span className="mono">{node.servicedAt.toLocaleString()} mi</span>.</> : node.firstServiceDeadline && ((typeof node.dueMileage === "number" && miles > node.dueMileage) || node.overdueByDate === true) ? <>Required service is <strong style={{color:"var(--ki-crit)"}}>overdue</strong>{typeof node.dueMileage === "number" ? <> · first mileage deadline was <span className="mono">{node.dueMileage.toLocaleString()} mi</span>.</> : node.dueDate ? <> · first date deadline was <span className="mono">{new Date(node.dueDate).toLocaleDateString()}</span>.</> : "."}</> : node.firstServiceDeadline ? <>Not logged yet · first service {typeof node.dueMileage === "number" ? <>at <span className="mono">{node.dueMileage.toLocaleString()} mi</span></> : node.dueDate ? <>by <span className="mono">{new Date(node.dueDate).toLocaleDateString()}</span></> : <>every <span className="mono">{node.serviceIntervalMonths} months</span></>}.</> : !hasMileageInterval&&!hasTimeInterval ? <>Not logged yet · this is condition-based, so logging records the work without inventing a deadline.</> : <>Not logged yet · log service when performed to reset the {hasMileageInterval&&hasTimeInterval?"mileage and calendar":hasTimeInterval?"calendar":"mileage"} interval.</>}</div>
           <button type="button" onClick={()=>setLogging(true)} style={{ flexShrink:0, padding:"8px 12px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer", whiteSpace:"nowrap" }}>{done ? "Log again" : "Log service"}</button>
         </div>
       )}
@@ -588,19 +633,31 @@ function TTOwnerEvidence({ node, nodeId, dense, miles }) {
     catch (cause) { setError(cause instanceof Error ? cause.message : "Could not save issue note."); }
     finally { setPending(false); }
   };
-  return <div id={`owner-${nodeId}`} style={{marginTop:12,padding:dense?"10px 11px":"11px 12px",borderRadius:12,background:"var(--ki-page)",border:"1px solid var(--ki-line)"}}>
+  const fieldStyle = {width:"100%",minWidth:0,minHeight:40,border:"1px solid var(--ki-line)",borderRadius:9,background:"var(--ki-card)",color:"var(--ink)",padding:"8px 10px",fontFamily:"var(--font-sans)",fontSize:12};
+  const labelStyle = {display:"grid",gap:5,minWidth:0,fontSize:10.5,fontWeight:650,color:"var(--slate-600)"};
+  const primaryStyle = {minHeight:40,padding:"0 14px",border:0,borderRadius:9,background:"#2563EB",color:"#fff",fontFamily:"var(--font-sans)",fontSize:12,fontWeight:650,cursor:"pointer"};
+  const secondaryStyle = {minHeight:40,padding:"0 14px",border:"1px solid var(--ki-line)",borderRadius:9,background:"var(--ki-card)",color:"var(--ink)",fontFamily:"var(--font-sans)",fontSize:12,fontWeight:650,cursor:"pointer"};
+  return <div id={`owner-${nodeId}`} style={{marginTop:12,padding:dense?"12px":"13px",borderRadius:12,background:"var(--ki-page)",border:"1px solid var(--ki-line)"}}>
     {Array.isArray(node.installedParts) && node.installedParts.map((installed,index)=><div key={`${installed.partNumber||installed.name}-${index}`} style={{fontSize:11.5,lineHeight:1.45,marginBottom:6}}><strong>Installed:</strong> {installed.brand ? `${installed.brand} ` : ""}{installed.name}{installed.partNumber ? ` · ${installed.partNumber}` : ""}{Number.isFinite(installed.cost) ? ` · $${installed.cost.toFixed(2)}` : ""}{Number.isFinite(installed.installedAtMileage) ? ` · at ${installed.installedAtMileage.toLocaleString()} mi` : ""}{Number.isFinite(installed.lifespanMiles) ? ` · ${installed.lifespanMiles.toLocaleString()} mi expected life` : ""}</div>)}
     {Array.isArray(node.userIssueNotes) && node.userIssueNotes.map((entry,index)=><div key={index} style={{fontSize:11.5,lineHeight:1.45,color:TT_UP_HEX,marginBottom:6}}><Icon name="shield-alert" size={11}/> {entry}</div>)}
-    {!mode && <div style={{display:"flex",gap:7,flexWrap:"wrap"}}><button type="button" onClick={()=>setMode("part")} style={{padding:"7px 10px",borderRadius:9,border:"1px solid var(--ki-line)",background:"var(--ki-card)",fontWeight:600,cursor:"pointer"}}>Change installed part</button><button type="button" onClick={()=>setMode("issue")} style={{padding:"7px 10px",borderRadius:9,border:"1px solid rgba(167,139,250,.45)",background:"rgba(139,92,246,.09)",color:TT_UP_HEX,fontWeight:600,cursor:"pointer"}}>I have an issue</button></div>}
-    {mode==="part" && <form onSubmit={savePart} style={{display:"grid",gap:7,minWidth:0}}><input required style={{width:"100%",minWidth:0}} placeholder="Installed part or tire" value={part.name} onChange={e=>setPart({...part,name:e.target.value})}/><input style={{width:"100%",minWidth:0}} placeholder="Brand" value={part.brand} onChange={e=>setPart({...part,brand:e.target.value})}/><input style={{width:"100%",minWidth:0}} placeholder="Part number" value={part.partNumber} onChange={e=>setPart({...part,partNumber:e.target.value})}/><div style={{display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,1fr)",gap:7}}><input style={{width:"100%",minWidth:0}} type="number" min="0" step="0.01" placeholder="Price paid" value={part.cost} onChange={e=>setPart({...part,cost:e.target.value})}/><input style={{width:"100%",minWidth:0}} type="number" min="1" placeholder="Expected life (mi)" value={part.lifespanMiles} onChange={e=>setPart({...part,lifespanMiles:e.target.value})}/></div><input style={{width:"100%",minWidth:0}} type="number" min="0" max={Number.isFinite(miles)?miles:undefined} placeholder="Installed at mileage" value={part.installedAtMileage} onChange={e=>setPart({...part,installedAtMileage:e.target.value})}/><label style={{display:"flex",gap:7,alignItems:"flex-start",fontSize:10.5,lineHeight:1.35,color:"var(--slate-600)"}}><input required type="checkbox" checked={part.fitmentConfirmed} onChange={e=>setPart({...part,fitmentConfirmed:e.target.checked})}/> I confirm this is the part currently fitted to this vehicle.</label><div style={{display:"flex",gap:7,flexWrap:"wrap"}}><button disabled={pending || !part.fitmentConfirmed} type="submit">{pending?"Saving…":"Save installed part"}</button><button type="button" onClick={()=>setMode(null)}>Cancel</button></div></form>}
-    {mode==="issue" && <form onSubmit={saveNote} style={{display:"grid",gap:7}}><textarea required rows={3} placeholder={`What are you noticing with ${node.label}?`} value={note} onChange={e=>setNote(e.target.value)}/><div style={{display:"flex",gap:7}}><button disabled={pending} type="submit">{pending?"Saving…":"Add issue note"}</button><button type="button" onClick={()=>setMode(null)}>Cancel</button></div></form>}
+    {!mode && <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(138px,1fr))",gap:8}}><button type="button" onClick={()=>setMode("part")} style={{...secondaryStyle,display:"flex",alignItems:"center",justifyContent:"center",gap:7}}><Icon name="settings" size={13}/>Change installed part</button><button type="button" onClick={()=>setMode("issue")} style={{...secondaryStyle,display:"flex",alignItems:"center",justifyContent:"center",gap:7,color:TT_UP_HEX,borderColor:"rgba(167,139,250,.4)",background:"rgba(139,92,246,.07)"}}><Icon name="shield-alert" size={13}/>I have an issue</button></div>}
+    {mode==="part" && <form onSubmit={savePart} style={{display:"grid",gap:12,minWidth:0}}>
+      <div style={{paddingBottom:9,borderBottom:"1px solid var(--ki-line)"}}><div style={{fontSize:13,fontWeight:700}}>Installed part details</div><div style={{marginTop:2,fontSize:10.5,lineHeight:1.4,color:"var(--slate-500)"}}>Record the exact item fitted to this vehicle.</div></div>
+      <label style={labelStyle}>Part or tire name<input required style={fieldStyle} placeholder="e.g. Michelin Pilot Sport 4S" value={part.name} onChange={e=>setPart({...part,name:e.target.value})}/></label>
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(120px,1fr))",gap:10}}><label style={labelStyle}>Brand<input style={fieldStyle} placeholder="Manufacturer" value={part.brand} onChange={e=>setPart({...part,brand:e.target.value})}/></label><label style={labelStyle}>Part number<input style={fieldStyle} placeholder="Exact number" value={part.partNumber} onChange={e=>setPart({...part,partNumber:e.target.value})}/></label></div>
+      <div style={{paddingTop:2,borderTop:"1px solid var(--ki-line)",display:"grid",gridTemplateColumns:"repeat(auto-fit,minmax(118px,1fr))",gap:10}}><label style={{...labelStyle,marginTop:9}}>Price paid<input style={fieldStyle} type="number" min="0" step="0.01" placeholder="$0.00" value={part.cost} onChange={e=>setPart({...part,cost:e.target.value})}/></label><label style={{...labelStyle,marginTop:9}}>Expected life (mi)<input style={fieldStyle} type="number" min="1" placeholder="Mileage" value={part.lifespanMiles} onChange={e=>setPart({...part,lifespanMiles:e.target.value})}/></label><label style={{...labelStyle,marginTop:9}}>Installed at (mi)<input style={fieldStyle} type="number" min="0" max={Number.isFinite(miles)?miles:undefined} placeholder="Odometer" value={part.installedAtMileage} onChange={e=>setPart({...part,installedAtMileage:e.target.value})}/></label></div>
+      <label style={{display:"flex",gap:9,alignItems:"flex-start",padding:"9px 10px",borderRadius:9,background:"var(--ki-card)",border:"1px solid var(--ki-line)",fontSize:10.5,lineHeight:1.4,color:"var(--slate-600)"}}><input required type="checkbox" style={{marginTop:2,flexShrink:0}} checked={part.fitmentConfirmed} onChange={e=>setPart({...part,fitmentConfirmed:e.target.checked})}/> I confirm this is the part currently fitted to this vehicle.</label>
+      <div style={{display:"flex",gap:8,justifyContent:"flex-end",flexWrap:"wrap"}}><button type="button" onClick={()=>setMode(null)} style={secondaryStyle}>Cancel</button><button disabled={pending || !part.fitmentConfirmed} type="submit" style={{...primaryStyle,opacity:pending || !part.fitmentConfirmed ? .65 : 1}}>{pending?"Saving…":"Save installed part"}</button></div>
+    </form>}
+    {mode==="issue" && <form onSubmit={saveNote} style={{display:"grid",gap:10}}><label style={labelStyle}>What are you noticing?<textarea required rows={4} style={{...fieldStyle,resize:"vertical",lineHeight:1.45}} placeholder={`Describe what happens with ${node.label}, and when.`} value={note} onChange={e=>setNote(e.target.value)}/></label><div style={{display:"flex",gap:8,justifyContent:"flex-end",flexWrap:"wrap"}}><button type="button" onClick={()=>setMode(null)} style={secondaryStyle}>Cancel</button><button disabled={pending} type="submit" style={primaryStyle}>{pending?"Saving…":"Add issue note"}</button></div></form>}
     {error && <div role="alert" style={{marginTop:7,color:"var(--ki-crit)",fontSize:10.5}}>{error}</div>}
   </div>;
 }
 
 function TTFactValue({ label, value, node }) {
-  if (label === "Part number" && node.buyUrl && value && value !== "—") return <a className="mono" href={node.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{fontSize:12.5,lineHeight:1.45,color:"#2563EB",textDecoration:"underline",textUnderlineOffset:2,fontWeight:650}}>{value}</a>;
-  return <span className={label === "Part number" ? "mono" : ""} style={{fontSize:12.5,lineHeight:1.45,fontWeight:label === "Part number" ? 600 : 400}}>{value}</span>;
+  const wrapStyle = {minWidth:0,overflowWrap:"anywhere",wordBreak:"break-word"};
+  if (label === "Part number" && node.buyUrl && value && value !== "—") return <a className="mono" href={node.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{...wrapStyle,fontSize:12.5,lineHeight:1.45,color:"#2563EB",textDecoration:"underline",textUnderlineOffset:2,fontWeight:650}}>{value}</a>;
+  return <span className={label === "Part number" ? "mono" : ""} style={{...wrapStyle,fontSize:12.5,lineHeight:1.45,fontWeight:label === "Part number" ? 600 : 400}}>{value}</span>;
 }
 
 /* ── Finish picker — changing it repaints the wheels on the car photo, not just this card ── */
@@ -691,11 +748,20 @@ function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
 }
 
 function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, narrow }) {
+  const vehicle = useTwinVehicle();
+  const [partHelp, setPartHelp] = React.useState("");
+  React.useEffect(()=>setPartHelp(""),[nodeId]);
   if (!node) return null;
   const isDemoUnsourced = node.partNo === "Not sourced for this demo";
   const hasQuotedPrice = !isDemoUnsourced && node.price && node.price !== "—";
   const canBuy = !isDemoUnsourced && Boolean(node.buyUrl);
   const rows = [["Part number", node.partNo], ["Price", isDemoUnsourced ? node.price : null], ["Part", node.brand], ["Where to find it", node.where], ["Spec", node.spec], ["Service life", node.life]].filter(r => r[1]);
+  const canAsk = Boolean(node.maintenanceType || node.partNo || node.spec || node.knownIssue?.id || node.installedParts?.length);
+  const askPart = () => {
+    const context = buildPartHelpContext(node, vehicle);
+    setPartHelp(onAsk ? "Question loaded in the hub chat for you to review." : context);
+    onAsk?.(node, context);
+  };
   if (sheet) return (
     <div style={{ position:"absolute", inset:0, zIndex:20, display:"flex", flexDirection:"column", justifyContent:"flex-end" }}>
       <div onClick={onClose} style={{ position:"absolute", inset:0, background:"rgba(11,18,32,.42)" }}/>
@@ -717,12 +783,12 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
             </div>
             {isDemoUnsourced && <div style={{ marginTop:12 }}><FitmentBadge node={node}/></div>}
             {hasQuotedPrice && (
-              <div style={{ display:"flex", alignItems:"center", gap:9, marginTop:12, padding:"11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
+              <div style={{ display:"flex", flexDirection:"column", alignItems:"stretch", gap:8, marginTop:12, padding:"11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)", minWidth:0 }}>
                 <div style={{ minWidth:0, flex:1 }}>
-                  <div className="mono" style={{ fontSize:15.5, fontWeight:600 }}>{node.price}</div>
-                  {node.stock && <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>{node.stock}</div>}
+                  <div className="mono" style={{ fontSize:15.5, fontWeight:600, overflowWrap:"anywhere" }}>{node.price}</div>
+                  {node.stock && <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:3, lineHeight:1.4, overflowWrap:"anywhere" }}>{node.stock}</div>}
                 </div>
-                <FitmentBadge node={node}/>
+                <span style={{alignSelf:"flex-start",maxWidth:"100%"}}><FitmentBadge node={node}/></span>
               </div>
             )}
             {canBuy && (
@@ -732,26 +798,19 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
             )}
             <div style={{ marginTop:13, display:"flex", flexDirection:"column", gap:9 }}>
               {rows.map(([k,v]) => (
-                <div key={k} style={{ display:"flex", gap:11, alignItems:"flex-start" }}>
-                  <span style={{ width:86, flexShrink:0, fontSize:10, fontWeight:600, letterSpacing:"0.07em", textTransform:"uppercase", color:"var(--slate-500)", paddingTop:2 }}>{k}</span>
+                <div key={k} style={{ display:"grid", gridTemplateColumns:"minmax(70px,86px) minmax(0,1fr)", gap:11, alignItems:"flex-start" }}>
+                  <span style={{ minWidth:0, fontSize:10, fontWeight:600, letterSpacing:"0.07em", textTransform:"uppercase", color:"var(--slate-500)", paddingTop:2, overflowWrap:"anywhere" }}>{k}</span>
                   <TTFactValue label={k} value={v} node={node}/>
                 </div>
               ))}
             </div>
-            {node.sourceUrl && <a href={node.sourceUrl} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",marginTop:10,color:"#2563EB",fontSize:11.5,fontWeight:650,textDecoration:"underline",textUnderlineOffset:2}}>Service source: {node.sourceLabel || "manufacturer documentation"}</a>}
+            {node.sourceUrl && <a href={node.sourceUrl} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",maxWidth:"100%",marginTop:10,color:"#2563EB",fontSize:11.5,fontWeight:650,textDecoration:"underline",textUnderlineOffset:2,overflowWrap:"anywhere",wordBreak:"break-word"}}>Service source: {node.sourceLabel || "manufacturer documentation"}</a>}
             {node.dueNote && (
               <div style={{ marginTop:13, display:"flex", alignItems:"center", gap:8, padding:"9px 12px", borderRadius:12, background: risk === "critical" ? "var(--ki-crit-bg)" : risk === "watch" ? "var(--ki-mod-bg)" : "var(--ki-page)", color: risk === "critical" ? "var(--ki-crit)" : risk === "watch" ? "var(--ki-mod-ink)" : "var(--slate-600)", fontSize:12, fontWeight:600 }}>
                 <Icon name={risk ? "alert" : "clock"} size={12} stroke={2.2}/>{node.dueNote}
               </div>
             )}
-            {node.knownIssue?.id && (
-              <div style={{ marginTop:13, padding:"11px 12px", borderRadius:12, background:"rgba(139,92,246,.12)", border:"1px solid rgba(167,139,250,.35)" }}>
-                <div className="eyebrow" style={{ fontSize:9.5, color:TT_UP_HEX }}><Icon name="shield-alert" size={10}/> Known issue on record</div>
-                {(node.issue||node.knownIssue.label) && <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue||node.knownIssue.label}</div>}
-                {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
-                {node.knownIssue.href && <a href={node.knownIssue.href} style={{ display:"inline-block", marginTop:7, color:TT_UP_HEX, fontSize:11, fontWeight:650 }}>View known issue</a>}
-              </div>
-            )}
+            <TTKnownIssueCard node={node} dense/>
             {node.resolved && (node.upgraded || node.fitted) && (
               <div style={{ marginTop:13, padding:"11px 12px", borderRadius:12, background:"var(--ki-ok-bg)" }}>
                 <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-ok-ink)" }}>Known issue resolved</div>
@@ -768,10 +827,12 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
                 <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, fontWeight:500 }}>{node.alt}</div>
               </div>
             )}
+            {partHelp && <div role="status" style={{marginTop:12,padding:"10px 11px",borderRadius:10,border:"1px solid color-mix(in oklab, var(--au7o-blue) 30%, var(--ki-line))",background:"color-mix(in oklab, var(--au7o-blue) 7%, var(--ki-card))",fontSize:11.5,lineHeight:1.5,color:"var(--slate-700)"}}>{partHelp}</div>}
           </div>
         </div>
-        <div style={{ flexShrink:0, borderTop:"1px solid var(--ki-line)", padding:"11px 14px 13px", display:"flex", gap:8 }}>
-          <button onClick={onClose} style={{ flex:1, minHeight:46, background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:12, fontSize:13, fontWeight:600, cursor:"pointer", fontFamily:"var(--font-sans)", color:"var(--ink)" }}>Close</button>
+        <div style={{ flexShrink:0, borderTop:"1px solid var(--ki-line)", padding:"11px 14px 13px", display:"flex", gap:8, flexWrap:"wrap" }}>
+          {canAsk&&<button type="button" onClick={askPart} style={{ flex:"1 1 165px", minHeight:46, background:"#2563EB", border:0, borderRadius:12, fontSize:12.5, fontWeight:650, cursor:"pointer", fontFamily:"var(--font-sans)", color:"#fff" }}>Ask Au7o about this part</button>}
+          <button onClick={onClose} style={{ flex:"1 1 90px", minHeight:46, background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:12, fontSize:13, fontWeight:600, cursor:"pointer", fontFamily:"var(--font-sans)", color:"var(--ink)" }}>Close</button>
         </div>
       </div>
     </div>
@@ -796,12 +857,12 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
           </div>}
           {isDemoUnsourced && <div style={{ marginTop:12 }}><FitmentBadge node={node}/></div>}
           {hasQuotedPrice && (
-            <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:9, padding:"10px 12px", borderRadius:11, background:"var(--ki-page)", border:"1px solid var(--ki-line)" }}>
+            <div style={{ marginTop:12, display:"flex", flexDirection:"column", alignItems:"stretch", gap:8, padding:"10px 12px", borderRadius:11, background:"var(--ki-page)", border:"1px solid var(--ki-line)", minWidth:0 }}>
               <div style={{ minWidth:0, flex:1 }}>
-                <div className="mono" style={{ fontSize:14.5, fontWeight:600 }}>{node.price}</div>
-                {node.stock && <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>{node.stock}</div>}
+                <div className="mono" style={{ fontSize:14.5, fontWeight:600, overflowWrap:"anywhere" }}>{node.price}</div>
+                {node.stock && <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1, lineHeight:1.4, overflowWrap:"anywhere" }}>{node.stock}</div>}
               </div>
-              <FitmentBadge node={node}/>
+              <span style={{alignSelf:"flex-start",maxWidth:"100%"}}><FitmentBadge node={node}/></span>
             </div>
           )}
           {canBuy && (
@@ -811,26 +872,19 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
           )}
           <div style={{ marginTop:14, display:"flex", flexDirection:"column", gap:9 }}>
             {rows.map(([k,v]) => (
-              <div key={k} style={{ display:"flex", gap:10, alignItems:"flex-start" }}>
-                <span style={{ width:96, flexShrink:0, fontSize:10.5, color:"var(--slate-500)", textTransform:"uppercase", letterSpacing:"0.06em", fontWeight:600, paddingTop:1 }}>{k}</span>
+              <div key={k} style={{ display:"grid", gridTemplateColumns:"minmax(72px,96px) minmax(0,1fr)", gap:10, alignItems:"flex-start" }}>
+                <span style={{ minWidth:0, fontSize:10.5, color:"var(--slate-500)", textTransform:"uppercase", letterSpacing:"0.06em", fontWeight:600, paddingTop:1, overflowWrap:"anywhere" }}>{k}</span>
                 <TTFactValue label={k} value={v} node={node}/>
               </div>
             ))}
           </div>
-          {node.sourceUrl && <a href={node.sourceUrl} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",marginTop:10,color:"#2563EB",fontSize:11.5,fontWeight:650,textDecoration:"underline",textUnderlineOffset:2}}>Service source: {node.sourceLabel || "manufacturer documentation"}</a>}
+          {node.sourceUrl && <a href={node.sourceUrl} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",maxWidth:"100%",marginTop:10,color:"#2563EB",fontSize:11.5,fontWeight:650,textDecoration:"underline",textUnderlineOffset:2,overflowWrap:"anywhere",wordBreak:"break-word"}}>Service source: {node.sourceLabel || "manufacturer documentation"}</a>}
           {node.dueNote && (
             <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:8, padding:"9px 11px", borderRadius:10, background: risk === "critical" ? "var(--ki-crit-bg)" : risk === "watch" ? "var(--ki-mod-bg)" : "var(--ki-page)", color: risk === "critical" ? "var(--ki-crit)" : risk === "watch" ? "var(--ki-mod-ink)" : "var(--slate-600)", fontSize:11.5, fontWeight:600 }}>
               <Icon name={risk ? "alert" : "clock"} size={12} stroke={2.2}/>{node.dueNote}
             </div>
           )}
-          {node.knownIssue?.id && (
-            <div style={{ marginTop:14, padding:"11px 12px", borderRadius:11, background:"rgba(139,92,246,.12)", border:"1px solid rgba(167,139,250,.35)" }}>
-              <div className="eyebrow" style={{ fontSize:9.5, color:TT_UP_HEX }}><Icon name="shield-alert" size={10}/> Known issue on record</div>
-              {(node.issue||node.knownIssue.label) && <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.issue||node.knownIssue.label}</div>}
-              {node.issueRef && <div className="mono" style={{ fontSize:9.5, color:"var(--slate-500)", marginTop:6 }}>{node.issueRef}</div>}
-              {node.knownIssue.href && <a href={node.knownIssue.href} style={{ display:"inline-block", marginTop:7, color:TT_UP_HEX, fontSize:11, fontWeight:650 }}>View known issue</a>}
-            </div>
-          )}
+          <TTKnownIssueCard node={node}/>
           {node.resolved && (node.upgraded || node.fitted) && (
             <div style={{ marginTop:14, padding:"11px 12px", borderRadius:11, background:"var(--ki-ok-bg)" }}>
               <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-ok-ink)" }}>Known issue resolved</div>
@@ -847,10 +901,11 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
               <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, fontWeight:500 }}>{node.alt}</div>
             </div>
           )}
+          {partHelp && <div role="status" style={{marginTop:12,padding:"10px 11px",borderRadius:10,border:"1px solid color-mix(in oklab, var(--au7o-blue) 30%, var(--ki-line))",background:"color-mix(in oklab, var(--au7o-blue) 7%, var(--ki-card))",fontSize:11.5,lineHeight:1.5,color:"var(--slate-700)"}}>{partHelp}</div>}
         </div>
       </div>
       <div style={{ borderTop:"1px solid var(--ki-line)", padding:"10px 14px", display:"flex", gap:7 }}>
-        <button className="chip chip-sm" style={{ border:"1px solid var(--ki-line)" }}><Icon name="plus" size={11}/> Save</button>
+        {canAsk&&<button type="button" onClick={askPart} style={{flex:1,minHeight:38,border:0,borderRadius:10,background:"#2563EB",color:"#fff",fontSize:11.5,fontWeight:650,cursor:"pointer"}}>Ask Au7o about this part</button>}
       </div>
     </aside>
   );
@@ -920,13 +975,21 @@ function ttAskLine(n, tail = "") {
   return base + fitted + tail;
 }
 
+export function buildPartHelpContext(node, vehicle) {
+  const identity = [vehicle?.year, vehicle?.make, vehicle?.model, vehicle?.trim].filter(Boolean).join(" ") || "selected vehicle";
+  const installed = Array.isArray(node?.installedParts) && node.installedParts.length
+    ? ` Installed configuration: ${node.installedParts.map((part) => [part.brand, part.name, part.partNumber].filter(Boolean).join(" ")).filter(Boolean).join("; ")}.`
+    : (node?.brand ? ` Mapped part: ${node.brand}${node.partNo && node.partNo !== "—" ? ` (${node.partNo})` : ""}.` : "");
+  return `${identity} context loaded. ${ttAskLine(node)}${installed} Reviewed specifications and links in this card remain the source of truth; unresolved fitment must be confirmed before ordering.`;
+}
+
 export function resolveAvailableTwinBranch(branch, trees) {
   if (branch && trees?.[branch]) return branch;
   if (trees?.car) return "car";
   return Object.keys(trees || {})[0] || null;
 }
 
-function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact = false, detailMode = null, vertical = false }) {
+function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNode, compact = false, detailMode = null, vertical = false }) {
   const sheetDetail = detailMode ? detailMode === "sheet" : compact;
   const [demoEquipped, setEquipped] = useEquipped();
   const ownerEquipped = useTwinEquipment();
@@ -1226,9 +1289,9 @@ function TechTree({ branch, setBranch, miles, onClose, say, startNode, compact =
             </div>
           )}
           </div>
-          {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} sheet onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n))}/>}
+          {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} sheet onClose={()=>setSelected(null)} onAsk={(n, context) => onPartHelp ? onPartHelp(context, n) : say && say(ttAskLine(n))}/>}
         </div>
-        {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} onClose={()=>setSelected(null)} onAsk={n => say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
+        {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} onClose={()=>setSelected(null)} onAsk={(n, context) => onPartHelp ? onPartHelp(context, n) : say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
       </div>
       <TTComposer value={draft} setValue={setDraft} onSend={answer} reply={reply} suggestions={compact ? [TT_SUGGEST[0], TT_SUGGEST[2]] : TT_SUGGEST}/>
       <TTStyleMenu menu={menu} style={menu ? styleOf(menu.id) : {}}

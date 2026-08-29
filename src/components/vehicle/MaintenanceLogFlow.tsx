@@ -30,7 +30,10 @@ export interface LogFlowService {
   label: string;
   /** Recommended interval in miles for this service — used to compute
    *  "next due in X mi" on the done state. */
-  intervalMiles: number;
+  intervalMiles?: number | null;
+  /** Calendar interval for services such as brake fluid that are due by time
+   * even when the manufacturer does not publish a mileage interval. */
+  intervalMonths?: number | null;
   /** Pre-fill for the cost input (DIY estimate, dollars only) */
   diyCost?: number | null;
 }
@@ -45,9 +48,32 @@ interface Props {
 
 type State = 'logging' | 'done';
 
+export function resolveNextServiceDue(
+  service: Pick<LogFlowService, 'intervalMiles' | 'intervalMonths'>,
+  mileage: number,
+  date: string,
+): { nextDueMileage: number | null; nextDueDate: string | null } {
+  const nextDueMileage = typeof service.intervalMiles === 'number' && service.intervalMiles > 0
+    ? mileage + service.intervalMiles
+    : null;
+  let nextDueDate: string | null = null;
+  if (typeof service.intervalMonths === 'number' && service.intervalMonths > 0 && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+    const [year, month, day] = date.split('-').map(Number);
+    const targetMonth = month - 1 + service.intervalMonths;
+    const targetYear = year + Math.floor(targetMonth / 12);
+    const normalizedMonth = ((targetMonth % 12) + 12) % 12;
+    const lastDay = new Date(Date.UTC(targetYear, normalizedMonth + 1, 0)).getUTCDate();
+    nextDueDate = new Date(Date.UTC(targetYear, normalizedMonth, Math.min(day, lastDay)))
+      .toISOString()
+      .slice(0, 10);
+  }
+  return { nextDueMileage, nextDueDate };
+}
+
 export function MaintenanceLogFlow({ vehicleId, currentMileage, service, accent, onLogged }: Props) {
   const [state, setState] = useState<State>('logging');
   const [loggedMileage, setLoggedMileage] = useState<number>(currentMileage);
+  const [loggedDate, setLoggedDate] = useState<string>(toISODate(new Date()));
 
   if (state === 'logging') {
     return (
@@ -56,8 +82,9 @@ export function MaintenanceLogFlow({ vehicleId, currentMileage, service, accent,
         currentMileage={currentMileage}
         service={service}
         accent={accent}
-        onConfirmed={(mi) => {
+        onConfirmed={(mi, date) => {
           setLoggedMileage(mi);
+          setLoggedDate(date);
           setState('done');
           onLogged?.();
         }}
@@ -69,6 +96,7 @@ export function MaintenanceLogFlow({ vehicleId, currentMileage, service, accent,
       service={service}
       accent={accent}
       mileage={loggedMileage}
+      date={loggedDate}
     />
   );
 }
@@ -84,7 +112,7 @@ function LogCompletionForm({
   currentMileage: number;
   service: LogFlowService;
   accent: string;
-  onConfirmed: (mileage: number) => void;
+  onConfirmed: (mileage: number, date: string) => void;
 }) {
   const [mi, setMi] = useState<string>(String(currentMileage));
   const [who, setWho] = useState<'diy' | 'shop'>('diy');
@@ -125,6 +153,7 @@ function LogCompletionForm({
     setPending(true);
     setError(null);
     try {
+      const nextDue = resolveNextServiceDue(service, miNum, date);
       const res = await fetch('/api/maintenance', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -134,7 +163,8 @@ function LogCompletionForm({
           mileage: miNum,
           cost: cost ? Number(cost) : undefined,
           date,
-          nextDueMileage: miNum + service.intervalMiles,
+          nextDueMileage: nextDue.nextDueMileage,
+          nextDueDate: nextDue.nextDueDate,
           notes: note || undefined,
           shopName: who === 'shop' ? (note || 'Shop') : undefined,
         }),
@@ -144,7 +174,7 @@ function LogCompletionForm({
         setError(data.message || data.error || `Couldn't log (HTTP ${res.status}).`);
         return;
       }
-      onConfirmed(miNum);
+      onConfirmed(miNum, date);
     } catch {
       setError('Network error. Try again.');
     } finally {
@@ -198,7 +228,7 @@ function LogCompletionForm({
         }}
       >
         <label style={labelStyle}>Odometer reading when completed</label>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
           <div style={{ position: 'relative', flex: 1 }}>
             <input
               type="number"
@@ -232,7 +262,7 @@ function LogCompletionForm({
           <button
             type="button"
             onClick={() => setMi(String(currentMileage))}
-            style={chipStyle}
+            style={{ ...chipStyle, flexShrink: 0 }}
           >
             Use current · {currentMileage.toLocaleString()}
           </button>
@@ -240,7 +270,7 @@ function LogCompletionForm({
       </div>
 
       {/* Who + date */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(130px, 1fr))', gap: 12 }}>
         <div>
           <label style={labelStyle}>Who completed it</label>
           <div style={{ display: 'flex', gap: 6 }}>
@@ -279,7 +309,7 @@ function LogCompletionForm({
       </div>
 
       {/* Cost + note */}
-      <div style={{ display: 'grid', gridTemplateColumns: '110px 1fr', gap: 12 }}>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: 12 }}>
         <div>
           <label style={labelStyle}>Cost</label>
           <div style={{ position: 'relative' }}>
@@ -356,14 +386,15 @@ function LogCompletionForm({
 
 function LogCompletionDone({
   service,
-  accent: _accent,
   mileage,
+  date,
 }: {
   service: LogFlowService;
   accent: string;
   mileage: number;
+  date: string;
 }) {
-  const nextDue = mileage + service.intervalMiles;
+  const nextDue = resolveNextServiceDue(service, mileage, date);
   return (
     <div style={{ paddingTop: 14, borderTop: '1px solid #E3DFD4', marginTop: 10 }}>
       <div
@@ -432,10 +463,18 @@ function LogCompletionDone({
                 marginTop: 2,
               }}
             >
-              {nextDue.toLocaleString()} mi
+              {nextDue.nextDueMileage != null
+                ? `${nextDue.nextDueMileage.toLocaleString()} mi`
+                : nextDue.nextDueDate
+                  ? new Date(`${nextDue.nextDueDate}T00:00:00Z`).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric', timeZone: 'UTC' })
+                  : 'Interval not available'}
             </div>
             <div style={{ fontSize: 10.5, color: '#64748B' }}>
-              in {service.intervalMiles.toLocaleString()} mi · interval reset
+              {service.intervalMiles
+                ? `in ${service.intervalMiles.toLocaleString()} mi · interval reset`
+                : service.intervalMonths
+                  ? `in ${service.intervalMonths} months · interval reset`
+                  : 'Completion recorded'}
             </div>
           </div>
           <div style={{ flex: 1 }}>

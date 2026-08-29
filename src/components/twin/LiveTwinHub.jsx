@@ -20,7 +20,7 @@ import { TwinDataCtx } from "./twin-context";
 import { buildTwinTrees, servicedFromRecords } from "./twin-trees";
 import { getTwinByFulfillmentId } from "../../lib/vehicle-twin-catalog";
 import { sameTwinVehicleIdentity } from "../../lib/twin-fulfillment";
-import { mergeCatalogEvidenceIntoOwnerTrees, buildDemoTwinPresentation, buildModelOwnerTrees, filterTwinCatalogForTrees } from "./demo-trees";
+import { attachKnownIssueDetails, mergeCatalogEvidenceIntoOwnerTrees, buildDemoTwinPresentation, buildModelOwnerTrees, filterTwinCatalogForTrees } from "./demo-trees";
 
 const HubRoot = dynamic(
   () => import("./hub/HubRoot").then((m) => ({ default: m.HubRoot })),
@@ -407,6 +407,7 @@ export function buildOwnerTwinValue(data) {
   const issues = applicableIssues.map((issue) => issue.id === "dodge-challenger-radiator-failure" && mishimotoInstalled
     ? { ...issue, resolved:true }
     : issue).concat(ownerReportedIssues);
+  attachKnownIssueDetails(trees, issues);
   const presentation = buildDemoTwinPresentation(ownerCatalog, {
     trees, miles:data.miles, mode:"owner", recent:data.recent, nextService,
   });

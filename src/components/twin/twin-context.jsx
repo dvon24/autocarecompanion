@@ -163,7 +163,13 @@ export function useTwinOwnerActions() {
 /** Founder-only exact-fit transmission editor, rendered by the sidebar. */
 export function useTwinTransmissionControl() {
   const ctx = React.useContext(TwinDataCtx);
-  return ctx?.mode === "owner" ? (ctx.transmissionControl || null) : null;
+  return ctx?.transmissionControl || null;
+}
+
+/** Reviewed-tree answerer used by the lightweight Twin composer. */
+export function useTwinGuideAnswer() {
+  const ctx = React.useContext(TwinDataCtx);
+  return ctx?.presentation?.guidance?.answer || null;
 }
 
 /** Factory-paint chooser. Owner selections persist on the garage vehicle. */

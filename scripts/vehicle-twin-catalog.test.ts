@@ -12,11 +12,15 @@ import { TWIN_TREE_RESOLVERS, answerTwinQuestion, buildDemoTwinPresentation, bui
 import { addCalendarInterval, buildTwinTrees, servicedFromRecords } from '../src/components/twin/twin-trees.js';
 import { TWIN_UNAVAILABLE_VEHICLE, TwinDataCtx, useTwinLive, useTwinMiles, useTwinMode, useTwinVehicle } from '../src/components/twin/twin-context.jsx';
 import { TH_DOT, TwinStage, openTwinHotspot, retainActiveHotspot, resolveActiveTwinEffect, thHot } from '../src/components/twin/stage/TwinStage.jsx';
-import { TechTree, TTDetail, resolveAvailableTwinBranch, ttMatchesIntent, ttRisk, ttRiskLabel, ttThumb } from '../src/components/twin/stage/TechTree.jsx';
+import { TechTree, TTDetail, buildPartHelpContext, resolveAvailableTwinBranch, resolveKnownIssueAction, ttMatchesIntent, ttRisk, ttRiskLabel, ttThumb } from '../src/components/twin/stage/TechTree.jsx';
 import { HubMinimal, openMinimalHotspot } from '../src/components/twin/hub/HubMinimal.jsx';
 import { THSidebar, mobileComposerPlaceholder } from '../src/components/twin/hub/Hub.jsx';
 import { buildOwnerTwinValue, FounderTransmissionPickerView, getFounderTransmissionPickerModel, pickNextService, saveFounderTransmission, suppressTwinTransmissionWhilePending } from '../src/components/twin/LiveTwinHub.jsx';
-import { HERO_MARKER_VISUALS, TWIN_STAGE_FRAME_STYLE } from '../src/components/home/RotatingTwinStage';
+import { HERO_MARKER_VISUALS, TWIN_STAGE_FRAME_STYLE, resolveHeroHotspotTap } from '../src/components/home/RotatingTwinStage';
+import { projectTwinHotspots } from '../src/components/twin/stage/mobile-hotspots.js';
+import { resolveTwinPaintArtwork } from '../src/components/twin/stage/paint-art.js';
+import { normalizeTwinChatInput, splitTwinAnswerLink } from '../src/components/twin/hub/hub-shared.jsx';
+import { resolveNextServiceDue } from '../src/components/vehicle/MaintenanceLogFlow';
 import { demoHubHref } from '../src/components/home/TwinHero';
 import { AdminOverviewView, AdminPaintPalette, TwinAdminShell, TwinSelectedPreview } from '../src/components/admin/twins/TwinAdminShell';
 import { buildAdminOverviewSnapshot } from '../src/app/api/admin/overview/admin-overview';
@@ -49,6 +53,13 @@ test('mobile twin surfaces keep mode copy and artwork inside a shared responsive
   const mobileBody = hubSource.slice(hubSource.indexOf('function THMobile'), hubSource.indexOf('function HubTechTree'));
   assert.match(mobileBody, /const twinMode = useTwinMode\(\)/);
   assert.match(mobileBody, /twinMode === "owner" \? `your \$\{vehicle\.model\}` : `this \$\{vehicle\.model\} demo`/);
+
+  const vehicleHubSource = readFileSync(path.join(process.cwd(), 'src/components/vehicle/VehicleHub.tsx'), 'utf8');
+  const founderSource = readFileSync(path.join(process.cwd(), 'src/app/founder/signin/page.tsx'), 'utf8');
+  assert.match(vehicleHubSource, /href="\/founder\/signin"[\s\S]*Founder sign in/);
+  assert.match(founderSource, /isFounderEmail\(session\?\.user\?\.email\)[\s\S]*redirect\('\/admin'\)/);
+  assert.match(founderSource, /session\?\.user[\s\S]*redirect\('\/garage'\)/);
+  assert.match(founderSource, /redirect\('\/auth\/signin\?callbackUrl=%2Ffounder%2Fsignin'\)/);
 });
 
 test('hero demo CTA and marker vocabulary follow selected truthful catalog state', () => {
@@ -69,13 +80,62 @@ test('hero demo CTA and marker vocabulary follow selected truthful catalog state
   const stageSource = readFileSync(path.join(process.cwd(), 'src/components/home/RotatingTwinStage.tsx'), 'utf8');
   assert.match(heroSource, /<RotatingTwinStage onSelectedVehicleChange=\{setSelectedTwinId\} \/>/);
   assert.match(heroSource, /<Reserve selectedTwin=\{selectedTwin\} \/>/);
-  assert.match(stageSource, /const markers = twin\.hotspots;/);
+  assert.match(stageSource, /const markers = projectTwinHotspots\(twin\.hotspots/);
   assert.match(stageSource, /<TwinMarkerDot evidence=\{hotspot\}/);
   assert.doesNotMatch(stageSource, /hotspots\.filter\(\(hotspot\) => twin\.art\.effects/);
 });
 
+test('mobile hotspot projection removes transmission, keeps desktop exact, and separates touch targets',()=>{
+  for (const twin of VEHICLE_TWIN_CATALOG) {
+    assert.equal(projectTwinHotspots(twin.hotspots,{mobile:false,twinId:twin.id}),twin.hotspots);
+    const mobile=projectTwinHotspots(twin.hotspots,{mobile:true,twinId:twin.id});
+    assert.equal(mobile.some((hotspot:{id:string})=>hotspot.id==='trans'),false,`${twin.id} mobile transmission hotspot`);
+    for(let left=0;left<mobile.length;left+=1) for(let right=left+1;right<mobile.length;right+=1){
+      const dx=Math.abs((mobile[left].x-mobile[right].x)*3.64);
+      const dy=Math.abs((mobile[left].y-mobile[right].y)*2.05);
+      assert.ok(dx>=44||dy>=44,`${twin.id} ${mobile[left].id}/${mobile[right].id} 44px mobile hitboxes overlap`);
+    }
+  }
+  const camaro=projectTwinHotspots(VEHICLE_TWIN_CATALOG.find((twin)=>twin.id==='camaro')!.hotspots,{mobile:true,twinId:'camaro'});
+  assert.deepEqual(camaro.find((hotspot:{id:string})=>hotspot.id==='wheel')&&[camaro.find((hotspot:{id:string})=>hotspot.id==='wheel')!.x,camaro.find((hotspot:{id:string})=>hotspot.id==='wheel')!.y],[45,63]);
+  assert.equal(resolveHeroHotspotTap(null,'wheel'),'select');
+  assert.equal(resolveHeroHotspotTap('wheel','wheel'),'open');
+});
+
+test('paint, issue help, time-only service, and twin chat helpers fail truthfully',()=>{
+  const catalog=VEHICLE_TWIN_CATALOG[0];
+  const identity=resolveTwinPaintArtwork(catalog,{choice:catalog.identity.paint,options:catalog.paintPalette.colors});
+  assert.equal(identity.art?.base,catalog.art.base);
+  const pendingColor=catalog.paintPalette.colors.find((color)=>color.artStatus!=='rendered')!;
+  assert.deepEqual(resolveTwinPaintArtwork(catalog,{choice:pendingColor.name,options:catalog.paintPalette.colors}).art,null);
+  const issueNode={label:'Differential fluid',spec:'Reviewed fluid specification',knownIssue:{id:'issue',description:'Whine under load',solution:'Inspect the differential before replacing parts',href:'/known-issues/car#issue',fixParts:[]}};
+  assert.equal(resolveKnownIssueAction(issueNode)?.summary,'Whine under load');
+  assert.match(buildPartHelpContext(issueNode,{year:2019,make:'Chevrolet',model:'Camaro',trim:'ZL1 1LE'}),/2019 Chevrolet Camaro ZL1 1LE context loaded/);
+  const camaro=resolveDemoVehicleTwin('camaro');
+  const differential=resolveTwinTrees(camaro).trans.nodes.driveline;
+  const differentialPrompt=buildPartHelpContext(differential,camaro.identity);
+  assert.match(differentialPrompt,/ACDelco GM Original Equipment DEXRON LS 75W-90 gear oil/);
+  assert.match(differentialPrompt,/88862624 \/ 10-4034/);
+  assert.deepEqual(resolveNextServiceDue({intervalMonths:1},12000,'2025-01-31'),{nextDueMileage:null,nextDueDate:'2025-02-28'});
+  assert.equal(normalizeTwinChatInput('  differential fluid?  '),'differential fluid?');
+  assert.equal(normalizeTwinChatInput('   '),null);
+  assert.deepEqual(splitTwinAnswerLink('Reviewed answer · Buy: https://parts.example/item'),{text:'Reviewed answer',url:'https://parts.example/item'});
+  const automaticCamaro=resolveTwinTrees(camaro,{transmission:'automatic'});
+  const manualCamaro=resolveTwinTrees(camaro,{transmission:'manual'});
+  assert.match(automaticCamaro.trans.nodes.transFluid.label,/10L90 Automatic/);
+  assert.match(manualCamaro.trans.nodes.transFluid.label,/TR-6060 Manual/);
+  assert.equal(automaticCamaro.wheel.nodes.brakeFluid.serviceIntervalMonths,60);
+  assert.equal(manualCamaro.wheel.nodes.brakeFluid.serviceIntervalMonths,36);
+  const treeSource=readFileSync(path.join(process.cwd(),'src/components/twin/stage/TechTree.jsx'),'utf8');
+  const hubSource=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');
+  const chatSource=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');
+  assert.match(treeSource,/onPartHelp \? onPartHelp\(context, n\)/);
+  assert.match(hubSource,/setChatPrefill\(\{ value:context, key:\+\+chatPrefillSeq\.current \}\)/);
+  assert.match(chatSource,/input\?\.setSelectionRange\(prefill\.value\.length, prefill\.value\.length\)/);
+});
+
 const publicPath=(value:string)=>path.join(process.cwd(),'public',value.replace(/^\//,''));
-type DemoNodeView={label?:string;sub?:string;img?:string;where?:string;spec?:string;partNo?:string;knownIssue?:{id:string;label?:string;href?:string}};
+type DemoNodeView={label?:string;sub?:string;img?:string;imageUnavailable?:boolean;where?:string;spec?:string;life?:string;partNo?:string;price?:string;buyUrl?:string;alt?:string;maintenanceType?:string;serviceIntervalMonths?:number;knownIssue?:{id:string;label?:string;href?:string}};
 type DemoTreeView={short:string;nodes:Record<string,DemoNodeView>};
 test('catalog validates, fulfillment null stays null, and every target is real',()=>{
   assert.deepEqual(validateVehicleTwinCatalog(),[]);
@@ -85,6 +145,7 @@ test('catalog validates, fulfillment null stays null, and every target is real',
     assert.equal(typeof (TWIN_TREE_RESOLVERS as Record<string, unknown>)[twin.treeResolver],'function');
     const trees=resolveTwinTrees(twin);assert.equal(trees.car.nodes[trees.car.root].img,twin.art.base);
     for(const hot of twin.hotspots){const target=resolveTwinDeepLink(twin,hot.id);assert.ok(target.branch&&trees[target.branch]);if(target.node)assert.ok(trees[target.branch].nodes[target.node]);}
+    for(const tree of Object.values(trees) as DemoTreeView[]) for(const node of Object.values(tree.nodes)) if(node.knownIssue?.id&&node.img)assert.notEqual(node.img,twin.art.base,`${twin.id}/${node.label} must use component art`);
     for(const system of twin.systems){assert.ok(twin.hotspots.some((hot)=>hot.id===system.hot));assert.ok(trees[system.branch]);}
     for(const record of twin.sampleState.records){assert.ok(record.intervalMiles>0);assert.ok(record.lastServiceMileage>=0);assert.match(record.sourceUrl,/^https:\/\//);assert.ok(record.sourceSection.length>3);}
   }
@@ -96,13 +157,13 @@ test('non-Challenger demo trees provide honest illustrated model context at ever
     const trees=resolveTwinTrees(twin);const typedTrees=trees as unknown as Record<string,DemoTreeView>;
     for(const tree of Object.values(typedTrees))for(const [id,node] of Object.entries(tree.nodes)){
       assert.ok(node.label?.trim(),`${twin.id}/${tree.short}/${id} label`);assert.ok(node.sub?.trim(),`${twin.id}/${tree.short}/${id} context`);
-      const img=node.img;assert.ok(img,`${twin.id}/${tree.short}/${id} art`);assert.ok(img.startsWith('/twin-stage/'),`${twin.id}/${tree.short}/${id} art path`);assert.ok(existsSync(publicPath(img)),`${twin.id}/${tree.short}/${id} missing ${img}`);assert.ok(existsSync(publicPath(ttThumb(img))),`${twin.id}/${tree.short}/${id} rendered thumbnail missing ${ttThumb(img)}`);
+      const img=node.img;if(node.imageUnavailable){assert.equal(img,undefined,`${twin.id}/${tree.short}/${id} must not pretend a component image exists`);continue;}assert.ok(img,`${twin.id}/${tree.short}/${id} art`);assert.ok(img.startsWith('/twin-stage/'),`${twin.id}/${tree.short}/${id} art path`);assert.ok(existsSync(publicPath(img)),`${twin.id}/${tree.short}/${id} missing ${img}`);assert.ok(existsSync(publicPath(ttThumb(img))),`${twin.id}/${tree.short}/${id} rendered thumbnail missing ${ttThumb(img)}`);
     }
     for(const hotspot of twin.hotspots){
       const nodes=collectHotspotNodes(trees,hotspot);assert.ok(nodes.length>0,`${twin.id}/${hotspot.id} is inert`);
       for(const node of nodes){
         assert.ok(node.label?.trim(),`${twin.id}/${node.id} label`);assert.ok(node.sub?.trim(),`${twin.id}/${node.id} context`);
-        assert.ok(node.img?.startsWith('/twin-stage/'),`${twin.id}/${node.id} art`);assert.ok(existsSync(publicPath(node.img)),`${twin.id}/${node.id} missing ${node.img}`);
+        if(node.imageUnavailable)assert.equal(node.img,undefined,`${twin.id}/${node.id} must not claim an image`);else {assert.ok(node.img?.startsWith('/twin-stage/'),`${twin.id}/${node.id} art`);assert.ok(existsSync(publicPath(node.img)),`${twin.id}/${node.id} missing ${node.img}`);}
         assert.ok(node.where?.trim(),`${twin.id}/${node.id} location`);assert.ok(node.spec?.trim(),`${twin.id}/${node.id} specification context`);
         assert.doesNotMatch(`${node.partNo||''} ${node.spec||''}`,/68218925AA|ATF\+4|MMRAD-SRT|5XC13TRMAA/,`${twin.id}/${node.id} borrowed Challenger fitment`);
       }
@@ -110,10 +171,23 @@ test('non-Challenger demo trees provide honest illustrated model context at ever
   }
 });
 
-test('demo detail labels mapped systems honestly without inventing fitment or a price',()=>{
-  const twin=resolveDemoVehicleTwin('nautilus');const trees=resolveTwinTrees(twin);const engineNodes=trees.engine.nodes as Record<string,{partNo?:string}>;const entry=Object.entries(engineNodes).find(([,candidate])=>candidate.partNo==='Not sourced for this demo');assert.ok(entry);const [nodeId,node]=entry;
-  const markup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:twin,presentation:buildDemoTwinPresentation(twin),vehicle:twin.identity,miles:twin.demoMileage,trees,mode:'demo' as const}},React.createElement(TTDetail,{node,nodeId,onEquip:()=>{},risk:null,miles:twin.demoMileage,onClose:()=>{},onAsk:()=>{},sheet:true,narrow:true})));
-  assert.match(markup,/System mapped · exact part not sourced/);assert.match(markup,/Price not sourced for this demo/);assert.doesNotMatch(markup,/Verified fit/);
+test('demo detail data holds unresolved fitment without placeholders or generic commerce searches',()=>{
+  const forbidden=/not sourced for this demo|price not sourced|verify current (?:retailer|dealer|price)|choose transmission|configuration required|confirmation required/i;
+  const genericUrl=/TireSearchResults\.jsp|amazon\.com\/s\?|rockauto\.com\/en\/partsearch|parts\.nissanusa\.com\/v-|\/parts-list\//i;
+  for(const twin of VEHICLE_TWIN_CATALOG){
+    const trees=resolveTwinTrees(twin) as unknown as Record<string,DemoTreeView>;
+    const nodes=new Map<string,DemoNodeView>();for(const tree of Object.values(trees))for(const [id,node] of Object.entries(tree.nodes))if(!nodes.has(id))nodes.set(id,node);
+    for(const [id,node] of nodes){
+      assert.doesNotMatch(JSON.stringify(node),forbidden,`${twin.id}/${id} placeholder`);
+      assert.equal(node.alt,undefined,`${twin.id}/${id} unlinked alternate`);
+      if(!node.buyUrl)continue;
+      assert.match(node.buyUrl,/^https:\/\//,`${twin.id}/${id} destination`);assert.doesNotMatch(node.buyUrl,genericUrl,`${twin.id}/${id} generic destination`);
+      assert.ok(node.partNo?.trim(),`${twin.id}/${id} linked part number`);assert.ok(node.price?.trim(),`${twin.id}/${id} linked price`);
+    }
+  }
+  const twin=resolveDemoVehicleTwin('nautilus');const trees=resolveTwinTrees(twin);const node=trees.trans.nodes.driveline;
+  const markup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:twin,presentation:buildDemoTwinPresentation(twin),vehicle:twin.identity,miles:twin.demoMileage,trees,mode:'demo' as const}},React.createElement(TTDetail,{node,nodeId:'driveline',onEquip:()=>{},risk:null,miles:twin.demoMileage,onClose:()=>{},onAsk:()=>{},sheet:true,narrow:true})));
+  assert.match(markup,/Confirm FWD or AWD by VIN/);assert.doesNotMatch(markup,/Order this part|Price not sourced|Not sourced for this demo/);
   const challenger=resolveDemoVehicleTwin('challenger');const challengerTrees=resolveTwinTrees(challenger);const pricedNode=challengerTrees.engine.nodes.oilFluid;
   const pricedMarkup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challenger,presentation:buildDemoTwinPresentation(challenger),vehicle:challenger.identity,miles:challenger.demoMileage,trees:challengerTrees,mode:'demo' as const}},React.createElement(TTDetail,{node:pricedNode,nodeId:'oilFluid',onEquip:()=>{},risk:null,miles:challenger.demoMileage,onClose:()=>{},onAsk:()=>{},sheet:true,narrow:true})));
   assert.match(pricedMarkup,/Fitment reviewed/);
@@ -377,10 +451,47 @@ test('Camaro owner tree sources exact service parts and keeps manual history on 
   assert.match(manual.engine.nodes.airFilter.partNo,/23323508/);
   assert.match(manual.engine.nodes.coolant.partNo,/12346290/);
   assert.match(manual.wheel.nodes.frontRotor.partNo,/84271643.*23399101/);
-  for(const node of [manual.wheel.nodes.tire,manual.wheel.nodes.frontRotor,manual.engine.nodes.oil,manual.engine.nodes.airFilter,manual.engine.nodes.coolant,manual.trans.nodes.driveline]){
+  assert.equal(manual.wheel.nodes.tire.maintenanceType,'tire_replacement');assert.doesNotMatch(manual.wheel.nodes.tire.serviceLabel,/rotation/i);
+  assert.equal(manual.wheel.nodes.brakeFluid.serviceIntervalMonths,36);assert.match(manual.wheel.nodes.brakeFluid.spec,/three years.*manual|manual.*three years/i);
+  for(const node of [manual.wheel.nodes.frontRotor,manual.wheel.nodes.rearBrake]){
+    assert.match(node.life,/pulsation/i);assert.match(node.life,/steering-wheel vibration/i);assert.match(node.life,/runout/i);assert.match(node.life,/scoring/i);
+  }
+  assert.match(manual.wheel.nodes.frontRotor.buyUrl,/\/parts\/chevrolet-pad-kit-frt-disc-brk~23399101\.html$/);
+  for(const node of [manual.wheel.nodes.tire,manual.wheel.nodes.frontRotor,manual.wheel.nodes.brakeFluid,manual.engine.nodes.oil,manual.engine.nodes.airFilter,manual.engine.nodes.coolant,manual.trans.nodes.driveline]){
     assert.match(node.buyUrl,/^https:\/\//);
     assert.ok(node.price && node.price !== '—');
   }
+  const automatic=buildModelOwnerTrees(camaro,records,30000 as never,'automatic' as never,'2026-08-26T00:00:00.000Z' as never);
+  assert.equal(automatic.wheel.nodes.brakeFluid.serviceIntervalMonths,60);
+});
+
+test('Camaro ZL1 1LE eLSD gear-oil action is exact and does not conflate the hydraulic circuit',()=>{
+  const twin=resolveDemoVehicleTwin('camaro');const trees=resolveTwinTrees(twin);const diff=trees.trans.nodes.driveline;
+  assert.equal(diff.serviceIntervalMiles,45000);assert.match(diff.partNo,/88862624.*10-4034.*2 × 32 oz/);assert.match(diff.price,/\$44\.28.*\$88\.56/);
+  assert.equal(diff.buyUrl,'https://parts.chevrolet.com/product/acdelco-gm-original-equipment-dexron-ls-75w-90-gear-oil-32-oz-88862624');
+  assert.match(diff.spec,/ZL1 1LE coupe.*1\.5 L \(1\.6 qt\).*separate eLSD clutch hydraulic circuit holds 160 mL \(5\.4 oz\).*not for that circuit/i);
+  assert.match(diff.sourceUrl,/2019\/Chevrolet\/camaro\/19_CHEV_Camaro_OM/);assert.match(diff.capacitySourceUrl,/2019-high-performance-owner-manual/);
+});
+
+test('XT6 publishes exact 2020 evidence while holding dealer-only AWD fluid and using reviewed PTU imagery',()=>{
+  const xt6=resolveDemoVehicleTwin('xt6');const trees=resolveTwinTrees(xt6);
+  assert.match(trees.engine.nodes.oil.partNo,/12693541.*UPF63R/);assert.match(trees.engine.nodes.oil.spec,/6\.0 qt/);
+  assert.equal(trees.engine.nodes.airFilter.partNo,'23321606 / A3212C');assert.match(trees.engine.nodes.airFilter.buyUrl,/parts\.cadillac\.com\/product\/.*23321606$/);
+  assert.equal(trees.engine.nodes.sparkPlugs.partNo,'12646780 / 41-130');assert.equal(trees.wipers.nodes.cabinFilter.partNo,'13508023 / CF185');
+  assert.match(trees.trans.nodes.transFluid.spec,/DEXRON-VI—not DEXRON ULV/);assert.equal(trees.trans.nodes.transFluid.buyUrl,undefined);
+  assert.match(trees.wheel.nodes.tire.partNo,/235\/55R20 102H.*235 mm/);assert.match(trees.wheel.nodes.tire.spec,/9\.6\d? in section width.*Optional 21-inch/i);assert.match(trees.wheel.nodes.tire.buyUrl,/discounttire\.com\/buy-tires\/pirelli-scorpion-all-season-plus-3\/p\/103603/);
+  assert.equal(trees.wheel.nodes.brakeFluid.partNo,'19353126 / 10-4110');assert.equal(trees.wheel.nodes.brakeFluid.serviceIntervalMonths,60);assert.match(trees.wheel.nodes.brakeFluid.buyUrl,/parts\.cadillac\.com\/product\/.*19353126$/);
+  const driveline=trees.trans.nodes.driveline;assert.equal(driveline.label,'AWD Rear-Axle Fluid & Power Transfer Unit Inspection');assert.equal(driveline.imageUnavailable,false);assert.equal(driveline.img,'/twin-stage/parts/part-power-transfer-unit.webp');assert.ok(existsSync(publicPath(driveline.img)));assert.equal(driveline.serviceIntervalMiles,150000);assert.equal(driveline.buyUrl,undefined);assert.equal(driveline.partNo,undefined);assert.match(driveline.spec,/Active Twin-Clutch.*60,000 and 150,000.*See your dealer.*no PTU product or interval is asserted/i);
+  assert.equal(trees.trans.nodes.transFluid.img,'/twin-stage/parts/part-transmission-fluid.webp');assert.ok(existsSync(publicPath(trees.trans.nodes.transFluid.img)));
+  for(const node of [trees.wheel.nodes.tire,trees.wheel.nodes.frontRotor,trees.wheel.nodes.rearBrake])assert.match(`${node.spec} ${node.life}`,/tread|pulsation|vibration|runout|scoring/i);
+});
+
+test('Challenger commerce uses product pages and holds unreviewed alternates',()=>{
+  const trees=resolveTwinTrees(resolveDemoVehicleTwin('challenger'));
+  assert.match(trees.wheel.nodes.tire.buyUrl,/discounttire\.com\/buy-tires\/pirelli-p-zero-as-plus-3\/p\/137905/);assert.doesNotMatch(trees.wheel.nodes.tire.buyUrl,/TireSearchResults|tirerack\.com/);
+  assert.equal(trees.wheel.nodes.pads.alt,undefined);assert.equal(trees.wheel.nodes.rotor.alt,undefined);assert.equal(trees.wheel.nodes.lugs.alt,undefined);
+  assert.match(trees.engine.nodes.cabinFilter.buyUrl,/\/parts\/mopar-filter-cabin-air~68071668aa\.html$/);
+  assert.match(trees.engine.nodes.radCore.upgrade.buyUrl,/mishimoto\.com\/dodge-challenger-srt8-hellcat-radiator/);
 });
 
 test('founder transmission picker renders only for editable reviewed dual fitment',()=>{

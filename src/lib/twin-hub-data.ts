@@ -6,7 +6,8 @@ import { isFounderEmail } from '@/lib/founder';
 import { evaluateTwinAccess, evaluateTwinReservationProvenance, getConfirmedTwinTransmission, normalizeTwinSessionIdentity, type TwinAccessDecision } from '@/lib/twin-access';
 import { hasValidReviewedTransmissionState, type TransmissionOption } from '@/lib/transmission-options';
 import { getTwinByFulfillmentId } from '@/lib/vehicle-twin-catalog';
-import { slugNorm, vehicleSlug } from '@/lib/vehicle-slug';
+import { vehicleSlug } from '@/lib/vehicle-slug';
+import { buildTwinIssueSummary, type TwinIssueSummary } from '@/lib/twin-known-issues';
 
 /**
  * Server payload for the live twin hub.
@@ -38,13 +39,6 @@ export interface TwinRecentThread {
   t: string;
   w: string;
   i: string;
-  href: string;
-}
-
-export interface TwinIssueSummary {
-  id: string;
-  title: string;
-  severity: string;
   href: string;
 }
 
@@ -344,7 +338,7 @@ export async function getTwinHubData(
     }),
     knownIssueIds.length ? dependencies.prisma.knownIssue.findMany({
       where: { id: { in: knownIssueIds }, status: 'published', years: { has: vehicle.year } },
-      select: { id: true, title: true, severity: true, make: true, model: true },
+      select: { id:true, title:true, severity:true, make:true, model:true, description:true, solution:true, fixParts:true, communityRecommendations:true },
     }).catch(() => []) : Promise.resolve([]),
   ]);
   const specs = getVehicleSpecs({
@@ -374,12 +368,7 @@ export async function getTwinHubData(
       i: 'chat',
       href: `/vehicle/${vehicleSlug(vehicle.year, vehicle.make, vehicle.model, vehicle.trim)}?session=${thread.id}`,
     })),
-    issues: issueRows.map((issue) => ({
-      id: issue.id,
-      title: issue.title,
-      severity: issue.severity,
-      href: `/known-issues/${slugNorm(issue.make)}-${slugNorm(issue.model)}#${issue.id}`,
-    })),
+    issues: issueRows.map(buildTwinIssueSummary),
     installedParts: modifications.map((modification) => {
       const modelData = modification.modelData && typeof modification.modelData === 'object' && !Array.isArray(modification.modelData)
         ? modification.modelData as Record<string, unknown>

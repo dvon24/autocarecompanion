@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { DemoHubClient } from './DemoHubClient';
+import prisma from '@/lib/db';
+import { resolveDemoVehicleTwin } from '@/lib/vehicle-twin-catalog';
+import { buildTwinIssueSummary } from '@/lib/twin-known-issues';
 
 export const metadata: Metadata = {
   title: 'Try the Au7o tech tree — 2015 Challenger demo',
@@ -19,5 +22,11 @@ export const metadata: Metadata = {
  */
 export default async function DemoHubPage({ searchParams }: { searchParams: Promise<{ vehicle?: string }> }) {
   const params = await searchParams;
-  return <DemoHubClient vehicleId={params.vehicle} />;
+  const catalog = resolveDemoVehicleTwin(params.vehicle);
+  const knownIssueIds = [...new Set(catalog.hotspots.flatMap((hotspot) => hotspot.knownIssueIds || []))];
+  const issueRows = knownIssueIds.length ? await prisma.knownIssue.findMany({
+    where:{ id:{ in:knownIssueIds }, status:'published', years:{ has:catalog.identity.year } },
+    select:{ id:true, title:true, severity:true, make:true, model:true, description:true, solution:true, fixParts:true, communityRecommendations:true },
+  }).catch(() => []) : [];
+  return <DemoHubClient vehicleId={catalog.id} issues={issueRows.map(buildTwinIssueSummary)} />;
 }

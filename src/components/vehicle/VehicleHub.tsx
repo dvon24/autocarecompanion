@@ -3408,7 +3408,11 @@ function MobileThreadsDrawer({
             <Link href="/account" className="md-link md-link-primary" onClick={onClose}>
               {user.name} · Account
             </Link>
-          ) : null}
+          ) : (
+            <Link href="/founder/signin" className="md-link md-link-primary" onClick={onClose}>
+              Founder sign in
+            </Link>
+          )}
         </div>
       </aside>
 

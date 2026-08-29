@@ -16,11 +16,12 @@ import { useSearchParams } from "next/navigation";
 import { Icon } from "../stage/Icon";
 import { TwinStage as THStage, TH_V, TH_MILES } from "../stage/TwinStage";
 import { TechTree, TT_TREES, ttRisk, ttHasUpgrade, ttFinish, useEquipped, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT } from "../stage/TechTree";
-import { Au7oMark, KICard, useTheme, useNarrow, useBubble, ThemeDots, SevBadge, VoiceButton, HPComposer, KI } from "./hub-shared";
+import { Au7oMark, KICard, useTheme, useNarrow, useBubble, ThemeDots, SevBadge, TwinChatComposer, HPComposer, KI } from "./hub-shared";
 import { useHubView } from "./hub-view";
-import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinLive, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinIssues, useTwinMode, useTwinTransmissionControl, useTwinPaintControl, greetingFor } from "../twin-context";
+import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinMode, useTwinPaintControl, useTwinGuideAnswer, greetingFor } from "../twin-context";
 import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
 import { collectHotspotNodes, summarizeEvidence } from "../demo-trees";
+import { resolveTwinPaintArtwork } from "../stage/paint-art";
 
 /* /demo/hub?open=<hotspot> — the marketing card on known-issues articles links
    straight to the part someone clicked, so they land in that tech tree instead
@@ -50,62 +51,16 @@ const TH_SYSTEMS = [
   { hot:"glass", branch:"wipers", label:"Windshield Wipers",    img:"/twin-stage/parts/part-wipers.webp" },
 ];
 
-function THTransmissionControl() {
-  const control = useTwinTransmissionControl();
-  const [editing, setEditing] = React.useState(false);
-  if (!control?.model || control.model.options.length <= 1) return null;
-  const missing = !control.model.current;
-  const open = missing || editing;
-  if (!open) return (
-    <button type="button" onClick={()=>setEditing(true)} style={{ width:"100%", display:"flex", alignItems:"center", justifyContent:"space-between", gap:8, padding:"9px 12px", borderRadius:10, border:"1px solid var(--ki-line)", background:"var(--ki-page)", color:"var(--ink)", cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:11.5 }}>
-      <span>{control.model.current === "automatic" ? "Automatic" : "Manual"} transmission</span><span style={{ color:"var(--au7o-blue)", fontWeight:600 }}>Change</span>
-    </button>
-  );
-  return (
-    <div style={{ padding:"10px 12px", borderRadius:10, border:"1px solid var(--ki-line)", background:"var(--ki-page)" }}>
-      <label htmlFor="owner-sidebar-transmission" style={{ display:"block", fontSize:11, fontWeight:650, marginBottom:7 }}>{missing ? "Choose transmission for exact parts" : "Transmission"}</label>
-      <div style={{ display:"flex", gap:6 }}>
-        <select id="owner-sidebar-transmission" value={control.choice} disabled={control.state === "saving" || control.state === "refreshing"} onChange={(event)=>control.setChoice(event.target.value)} style={{ minWidth:0, flex:1, minHeight:34, borderRadius:8, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", padding:"0 8px" }}>
-          <option value="">Select…</option>
-          {control.model.options.map((option)=><option key={option.value} value={option.value}>{option.label}</option>)}
-        </select>
-        <button type="button" onClick={control.save} disabled={!control.choice || control.choice === control.model.current || control.state === "saving" || control.state === "refreshing"} style={{ minHeight:34, border:0, borderRadius:8, padding:"0 10px", background:"var(--ink)", color:"var(--ki-page)", fontWeight:650, opacity:!control.choice || control.choice === control.model.current ? .45 : 1 }}>{control.state === "saving" ? "Saving…" : "Save"}</button>
-      </div>
-      {!missing && <button type="button" onClick={()=>setEditing(false)} style={{ marginTop:6, padding:0, border:0, background:"transparent", color:"var(--slate-500)", fontSize:10.5, cursor:"pointer" }}>Cancel</button>}
-      {control.error && <div role="alert" style={{ color:"var(--ki-crit)", fontSize:10.5, marginTop:6 }}>{control.error}</div>}
-    </div>
-  );
-}
-
-function THPaintControl() {
-  const catalog = useTwinCatalog();
-  const liveControl = useTwinPaintControl();
-  const [demoChoice,setDemoChoice] = React.useState(catalog.identity.paint);
-  React.useEffect(()=>setDemoChoice(catalog.identity.paint),[catalog.id,catalog.identity.paint]);
-  const options = liveControl?.options || catalog.paintPalette?.colors || [];
-  const choice = liveControl?.choice || demoChoice;
-  if (options.length < 2) return null;
-  const selected = options.find((color)=>color.name===choice);
-  return <div style={{marginTop:9,padding:"10px 12px",borderRadius:10,border:"1px solid var(--ki-line)",background:"var(--ki-page)"}}>
-    <label htmlFor="owner-sidebar-paint" style={{display:"block",fontSize:11,fontWeight:650,marginBottom:7}}>Factory color</label>
-    <div style={{display:"flex",gap:6}}><select id="owner-sidebar-paint" value={choice} disabled={liveControl?.state==="saving"} onChange={(event)=>liveControl?liveControl.setChoice(event.target.value):setDemoChoice(event.target.value)} style={{minWidth:0,flex:1,minHeight:34,borderRadius:8,border:"1px solid var(--ki-line)",background:"var(--ki-card)",color:"var(--ink)",padding:"0 8px"}}>{options.map((color)=><option key={color.name} value={color.name}>{color.name}</option>)}</select>{liveControl&&<button type="button" onClick={liveControl.save} disabled={!choice||choice===liveControl.current||liveControl.state==="saving"} style={{minHeight:34,border:0,borderRadius:8,padding:"0 10px",background:"var(--ink)",color:"var(--ki-page)",fontWeight:650,opacity:(!choice||choice===liveControl.current) ? .45 : 1}}>{liveControl.state==="saving"?"Saving…":"Save"}</button>}</div>
-    <div style={{marginTop:6,fontSize:10.5,color:selected?.artStatus==="rendered"?"var(--ki-ok-ink)":"var(--slate-500)"}}>{selected?.artStatus==="rendered"?"Matching vehicle artwork ready":liveControl?"Factory choice can be saved · matching artwork is awaiting render":"Preview choice only · matching artwork is awaiting render"}</div>
-    {liveControl?.error&&<div role="alert" style={{color:"var(--ki-crit)",fontSize:10.5,marginTop:6}}>{liveControl.error}</div>}
-  </div>;
-}
-
 /* ── Sidebar — systems double as a second way in ── */
 function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
   const vehicle = useTwinVehicle();
   const miles = useTwinMiles();
   const trees = useTwinTrees(TT_TREES);
-  const live = useTwinLive();
   const nextService = useTwinNextService();
   const recent = useTwinRecent();
   const catalog = useTwinCatalog();
   const paintControl = useTwinPaintControl();
-  const pendingPaint = Boolean(paintControl && paintControl.options?.find((paint)=>paint.name===paintControl.choice)?.artStatus !== "rendered");
-  const issues = useTwinIssues();
+  const paintArtwork = resolveTwinPaintArtwork(catalog, paintControl);
   const twinMode = useTwinMode();
   const evidence = thEvidence("car", trees, miles);
   const due = evidence.due;
@@ -122,7 +77,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
       <div className="web-scroll" style={{ flex:1, minHeight:0, overflowY:"auto" }}>
         <div style={{ padding:"0 14px" }}>
           <KICard>
-            <div style={{ height:112, background:"#0A0D14",display:"grid",placeItems:"center",color:"rgba(255,255,255,.7)",fontSize:10.5,textAlign:"center",padding:8 }}>{live && pendingPaint ? "Matching color artwork awaiting render" : <img src={catalog.art.base} alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/>}</div>
+            <div style={{ aspectRatio:"16 / 9", overflow:"hidden",display:"grid",placeItems:"center",color:"rgba(255,255,255,.7)",fontSize:10.5,textAlign:"center",background:"#0A0D14" }}>{paintArtwork.art ? <img src={paintArtwork.art.base} alt="" style={{ display:"block",width:"100%",height:"100%",objectFit:"cover" }}/> : "Matching color artwork unavailable"}</div>
             <div style={{ padding:"11px 13px 13px" }}>
               <div style={{ fontSize:13.5, fontWeight:600, letterSpacing:"-0.01em" }}>{vehicle.year} {vehicle.make} {vehicle.model}</div>
               <div style={{ fontSize:11.5, color:"var(--slate-500)", marginTop:1 }}>{vehicle.trim} · <span className="mono">{typeof miles === "number" ? `${miles.toLocaleString()} mi${twinMode === "demo" ? " sample" : ""}` : "Mileage unavailable"}</span> · {twinMode}</div>
@@ -132,13 +87,11 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
               </div>
             </div>
           </KICard>
-          {live && <div style={{ marginTop:9 }}><THTransmissionControl/></div>}
-          <THPaintControl/>
         </div>
         <div style={{ padding:"16px 20px 7px" }} className="eyebrow">Tech trees</div>
         <div style={{ padding:"0 8px 2px" }}>
           <button onClick={()=>onOpen("car")} style={{ width:"100%", display:"flex", alignItems:"center", gap:10, background:"transparent", border:"none", padding:"7px 12px", borderRadius:10, cursor:"pointer", textAlign:"left", color:"var(--ink)", fontFamily:"var(--font-sans)" }}>
-            <span style={{ width:28, height:28, borderRadius:8, overflow:"hidden", background:"#0d1017", border:"1px solid var(--ki-line)", flexShrink:0 }}><img src={catalog.art.base} alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/></span>
+            <span style={{ width:28, height:28, borderRadius:8, overflow:"hidden", background:"#0d1017", border:"1px solid var(--ki-line)", flexShrink:0 }}>{paintArtwork.art&&<img src={paintArtwork.art.base} alt="" style={{ display:"block",width:"100%",height:"100%",objectFit:"cover" }}/>}</span>
             <span style={{ minWidth:0, flex:1 }}>
               <span style={{ display:"block", fontSize:12.5, fontWeight:600 }}>Whole car</span>
               <span style={{ display:"block", fontSize:10.5, color:"var(--slate-500)" }}>{catalog.systems.filter(s=>trees[s.branch]).length} systems{due > 0 ? ` · ${due} due` : ""}</span>
@@ -179,16 +132,6 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
             </KICard>
           </div>
         )}
-        {issues.length > 0 && (
-          <div style={{ padding:"14px 14px 0" }}>
-            <KICard>
-              <div style={{ padding:"11px 14px 8px", display:"flex", alignItems:"center", gap:7 }}><Icon name="shield-alert" size={13} style={{ color:"#8B5CF6" }}/><span className="eyebrow" style={{ fontSize:10 }}>Known issues</span></div>
-              <div style={{ padding:"0 10px 10px", display:"flex", flexDirection:"column", gap:4 }}>
-                {issues.map((issue)=><a key={issue.id} href={issue.href} style={{ display:"block", padding:"7px 8px", borderRadius:8, color:"var(--ink)", textDecoration:"none", fontSize:11.5, lineHeight:1.35 }}>{issue.title}<span style={{ display:"block", marginTop:2, color:issue.resolved ? "var(--ki-ok-ink)" : "var(--slate-500)", fontSize:10 }}>{issue.resolved ? "Resolved by fitted upgrade" : issue.severity}</span></a>)}
-              </div>
-            </KICard>
-          </div>
-        )}
         {threads.length > 0 && <div style={{ padding:"16px 20px 6px" }} className="eyebrow">Recent</div>}
         <div style={{ padding:"0 8px 10px", display:"flex", flexDirection:"column", gap:2 }}>
           {threads.map((t,i)=>(
@@ -210,6 +153,8 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
             drawer, so both are fixed here. */}
         {[
           { ic: "home", label: "Home", href: "/" },
+          { ic: "car", label: "Garage", href: "/garage" },
+          { ic: "user", label: "Founder sign in", href: "/founder/signin" },
           { ic: "book", label: "Known Issues", href: "/known-issues" },
           { ic: "chat", label: "Send feedback", onClick: onFeedback },
         ].map((item) => {
@@ -316,7 +261,7 @@ function THBubble({ bubble, clear }) {
 }
 
 /* ── Tech tree overlay ── */
-function THTreeOverlay({ branch, setBranch, onClose, say, mobile, startNode }) {
+function THTreeOverlay({ branch, setBranch, onClose, say, onPartHelp, mobile, startNode }) {
   const miles = useTwinMiles();
   React.useEffect(() => {
     const on = e => { if (e.key === "Escape") onClose(); };
@@ -329,7 +274,7 @@ function THTreeOverlay({ branch, setBranch, onClose, say, mobile, startNode }) {
         {/* Mobile gets the vertical tree + bottom-sheet detail — the same treatment
             as the hero, which reads far better on a phone. The overlay already
             knew it was mobile; it just never passed that down. */}
-        <TechTree branch={branch} setBranch={setBranch} miles={miles} onClose={onClose} say={say} startNode={startNode}
+        <TechTree branch={branch} setBranch={setBranch} miles={miles} onClose={onClose} say={say} onPartHelp={onPartHelp} startNode={startNode}
           vertical={mobile} compact={mobile} detailMode={mobile ? "sheet" : null}/>
       </div>
     </div>
@@ -345,8 +290,11 @@ function THDesktop({ tc }) {
   const [mode, setMode] = React.useState("hotspots");
   const catalog = useTwinCatalog();
   const searchParams = useSearchParams();
+  const answer = useTwinGuideAnswer();
   const [branch, setBranch] = React.useState(null);
   const [startNode, setStartNode] = React.useState(null);
+  const [chatPrefill, setChatPrefill] = React.useState(null);
+  const chatPrefillSeq = React.useRef(0);
   React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
   const [fb, setFb] = React.useState(false);
   const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
@@ -357,7 +305,19 @@ function THDesktop({ tc }) {
      itself immediately. */
   const greeting = greetingFor();
   const { bubble, say, clear } = useBubble(`${greeting}. This is the ${vehicle.model} ${useTwinMode() === "owner" ? "owner hub" : "demo"} — click any mapped part to open its selected tree.`);
-  const open = (hot, nodeId = null) => { const b = hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]; setStartNode(nodeId || TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(b); say(b === "car" ? "Here's the whole car — every system Au7o tracks. Click one to drill in." : `Opening the ${trees[b].label.toLowerCase()} tree. Back out to the car any time from the breadcrumb.`); };
+  const askPart = React.useCallback((context) => {
+    setBranch(null);
+    setChatPrefill({ value:context, key:++chatPrefillSeq.current });
+    say("Part and vehicle context loaded in the hub chat. Review or edit it, then send when ready.");
+  }, [say]);
+  const open = (hot, nodeId = null) => {
+    const target = resolveTwinDeepLink(catalog, hot, trees);
+    if (!target.branch) return;
+    const b = target.branch;
+    setStartNode(nodeId || target.node || null);
+    setBranch(b);
+    say(b === "car" ? "Here's the whole car — every system Au7o tracks. Click one to drill in." : `Opening the ${trees[b].label.toLowerCase()} tree. Back out to the car any time from the breadcrumb.`);
+  };
   return (
     <div className={"ki-theme-" + tc.theme} style={{ display:"flex", height:"100dvh", background:"var(--ki-page)", color:"var(--ink)", fontFamily:"var(--font-sans)", overflow:"hidden" }}>
       <THSidebar onOpen={open} onFeedback={()=>setFb(true)}/>
@@ -379,9 +339,9 @@ function THDesktop({ tc }) {
               and the car is the whole point of this screen. */}
         </div>
         <THBubble bubble={bubble} clear={clear}/>
-        <HPComposer say={say}/>
+        <HPComposer say={say} answer={answer} prefill={chatPrefill}/>
       </div>
-      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} startNode={startNode}/>}
+      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} onPartHelp={askPart} startNode={startNode}/>}
       {/* Floating feedback pill removed — it sat over the content on mobile.
           Feedback is still reachable from the sidebar item. */}
       <THFeedback open={fb} onClose={()=>setFb(false)}/>
@@ -400,15 +360,29 @@ function THMobile({ tc }) {
   const [mode, setMode] = React.useState("hotspots");
   const catalog = useTwinCatalog();
   const searchParams = useSearchParams();
+  const answer = useTwinGuideAnswer();
   const [branch, setBranch] = React.useState(null);
   const [nav, setNav] = React.useState(false);
   const [fb, setFb] = React.useState(false);
   const [startNode, setStartNode] = React.useState(null);
+  const [chatPrefill, setChatPrefill] = React.useState(null);
+  const chatPrefillSeq = React.useRef(0);
   const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
   const closeTree = React.useCallback(() => setBranch(null), []);
   React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
   const { bubble, say, clear } = useBubble(`${greeting}. Tap any part of ${twinMode === "owner" ? `your ${vehicle.model}` : `this ${vehicle.model} demo`} and I'll open its tech tree.`);
-  const open = (hot, nodeId = null) => { setNav(false); setStartNode(nodeId || TT_NODE_FOR_HOTSPOT[hot] || null); setBranch(hot === "car" ? "car" : TT_BRANCH_FOR_HOTSPOT[hot]); };
+  const askPart = React.useCallback((context) => {
+    setBranch(null);
+    setChatPrefill({ value:context, key:++chatPrefillSeq.current });
+    say("Part and vehicle context loaded in the hub chat. Review or edit it, then send when ready.");
+  }, [say]);
+  const open = (hot, nodeId = null) => {
+    const target = resolveTwinDeepLink(catalog, hot, trees);
+    if (!target.branch) return;
+    setNav(false);
+    setStartNode(nodeId || target.node || null);
+    setBranch(target.branch);
+  };
   return (
     <div className={"ki-theme-" + tc.theme} style={{ height:"100dvh", display:"flex", justifyContent:"center", background:"var(--ki-desk)", color:"var(--ink)", fontFamily:"var(--font-sans)" }}>
       <div style={{ width:"min(430px,100vw)", height:"100%", background:"var(--ki-page)", display:"flex", flexDirection:"column", position:"relative", overflow:"hidden", boxShadow:"var(--shadow-2)" }}>
@@ -438,12 +412,7 @@ function THMobile({ tc }) {
         </div>
         <THBubble bubble={bubble} clear={clear}/>
         <div style={{ padding:"10px 12px 14px", borderTop:"1px solid var(--ki-line)", background:"var(--ki-glass)", backdropFilter:"blur(14px)", zIndex:6 }}>
-          <div style={{ background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:14, boxShadow:"var(--shadow-1)", padding:"9px 10px 9px 14px", display:"flex", alignItems:"center", gap:8 }}>
-            <span style={{ flex:1, fontSize:13, color:"var(--slate-400)" }}>{mobileComposerPlaceholder(twinMode, vehicle.model)}</span>
-            <button className="chip chip-sm"><Icon name="camera" size={12}/></button>
-            <VoiceButton compact say={say}/>
-            <button style={{ background:"var(--ink)", border:"none", color:"var(--ki-page)", width:30, height:30, borderRadius:10, cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center" }}><Icon name="send" size={13}/></button>
-          </div>
+          <TwinChatComposer say={say} answer={answer} compact prefill={chatPrefill} placeholder={mobileComposerPlaceholder(twinMode, vehicle.model)}/>
         </div>
         {nav && (
           <div onClick={()=>setNav(false)} style={{ position:"absolute", inset:0, zIndex:40, background:"rgba(8,11,18,.5)", display:"flex" }}>
@@ -451,7 +420,7 @@ function THMobile({ tc }) {
           </div>
         )}
       </div>
-      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} startNode={startNode} mobile/>}
+      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} onPartHelp={askPart} startNode={startNode} mobile/>}
       {/* Floating feedback pill removed — it sat over the content on mobile.
           Feedback is still reachable from the sidebar item. */}
       <THFeedback open={fb} onClose={()=>setFb(false)}/>

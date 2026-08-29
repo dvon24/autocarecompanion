@@ -19,7 +19,10 @@ import React from "react";
 import { Icon } from "../stage/Icon";
 import { TH_DOT, thHot } from "../stage/TwinStage";
 import { TwinMarkerDot } from "../stage/TwinMarker";
-import { greetingFor, useTwinEquipment, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode } from "../twin-context";
+import { projectTwinHotspots } from "../stage/mobile-hotspots";
+import { resolveTwinPaintArtwork } from "../stage/paint-art";
+import { VehicleStageControls } from "../stage/VehicleStageControls";
+import { greetingFor, useTwinEquipment, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode, useTwinPaintControl, useTwinGuideAnswer } from "../twin-context";
 import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
 
 /* The full-screen view used TH_DUE, a module constant computed once against
@@ -32,7 +35,7 @@ const thmDue = (trees, miles) => {
   return Object.keys(t.nodes).filter(k => k !== t.root && ttRisk(t.nodes[k], miles) === "critical").length;
 };
 import { TT_TREES, ttRisk, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT, ttFinish, useEquipped } from "../stage/TechTree";
-import { Au7oMark, ThemeDots, VoiceButton, useBubble } from "./hub-shared";
+import { Au7oMark, ThemeDots, TwinChatComposer, useBubble } from "./hub-shared";
 import { THSidebar, THBubble, THTreeOverlay, THFeedback } from "./Hub";
 
 export const openMinimalHotspot = ({selected,hotspot,select,open}) => {
@@ -50,7 +53,7 @@ function THMinTop({ tc, onMenu, mobile, railOpen, onExit }) {
   const greeting = greetingFor();
   return (
     <div style={{ flex:"0 0 auto", padding: mobile ? "14px 16px 0" : "20px 26px 0" }}>
-      <div style={{ display:"flex", alignItems:"center", gap:12 }}>
+      <div style={{ display:"flex", alignItems:"center", gap:12, paddingRight:mobile?42:50 }}>
         <Au7oMark size={mobile ? 20 : 24} color="#fff"/>
         <div style={{ flex:1 }}/>
         <ThemeDots tc={tc} size={13}/>
@@ -77,6 +80,13 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
   const miles = useTwinMiles();
   const trees = useTwinTrees(TT_TREES);
   const catalog = useTwinCatalog();
+  const paintControl = useTwinPaintControl();
+  const paintArtwork = resolveTwinPaintArtwork(catalog, paintControl);
+  const displayedArt = paintArtwork.art;
+  const hotspots = React.useMemo(
+    () => projectTwinHotspots(catalog.hotspots, { mobile:Boolean(mobile), twinId:catalog.id }),
+    [catalog.hotspots, catalog.id, mobile],
+  );
   const [hover, setHover] = React.useState(null);
   const [equipped] = useEquipped();
   const live = useTwinLive();
@@ -88,7 +98,7 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
   const [fit, setFit] = React.useState(null);
   const [baseFailed, setBaseFailed] = React.useState(false);
   const [failedEffects, setFailedEffects] = React.useState({});
-  React.useEffect(() => { setBaseFailed(false); setFailedEffects({}); }, [catalog.id]);
+  React.useEffect(() => { setBaseFailed(false); setFailedEffects({}); }, [catalog.id, displayedArt?.base]);
   const ar = 16 / 9;
   React.useEffect(() => {
     const el = boxRef.current; if (!el) return;
@@ -108,17 +118,18 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
     <div ref={boxRef} onClick={onBg} style={{ flex:1, minHeight:0, position:"relative", display:"grid", placeItems:"center", overflow:"hidden", padding: mobile ? "4px 8px" : "8px 26px" }}>
       <div style={{ position:"absolute", width: mobile ? "150%" : "80%", aspectRatio:"1 / 1", borderRadius:"50%", background:"radial-gradient(circle, rgba(59,130,246,.14), rgba(59,130,246,0) 62%)", pointerEvents:"none" }}/>
       <div style={{ position:"relative", width: fit ? fit.width : "100%", height: fit ? fit.height : "100%", visibility: fit ? "visible" : "hidden" }}>
-        {!baseFailed && (
-          <img src={catalog.art.base} onError={()=>setBaseFailed(true)} alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain" }}/>
+        <VehicleStageControls mobile={mobile}/>
+        {!baseFailed && displayedArt && (
+          <img src={displayedArt.base} onError={()=>setBaseFailed(true)} alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}${paintArtwork.selected?.name ? ` in ${paintArtwork.selected.name}` : ""}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain" }}/>
         )}
-        {baseFailed && <div role="img" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model} artwork unavailable`} style={{position:"absolute",inset:0,display:"grid",placeItems:"center",color:"rgba(255,255,255,.72)",fontSize:13}}>Vehicle artwork unavailable</div>}
-        {catalog.id === "challenger" && (
+        {(baseFailed || !displayedArt) && <div role="img" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model} artwork unavailable`} style={{position:"absolute",inset:0,display:"grid",placeItems:"center",padding:20,textAlign:"center",color:"rgba(255,255,255,.72)",fontSize:13}}>{paintArtwork.pending ? `${paintArtwork.selected?.name || paintControl?.choice || "Selected color"} selected · matching vehicle artwork is not available yet` : "Vehicle artwork unavailable"}</div>}
+        {displayedArt && catalog.id === "challenger" && (
           <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: !finish || finish.id === "oem" ? 0 : 1, filter: finish?.filter || "none", transition:"opacity .4s ease" }}/>
         )}
-        {Object.entries(catalog.art.effects).filter(([k])=>!failedEffects[k]).map(([k,src]) => (
-          <img key={k} src={src} onError={()=>setFailedEffects(value=>({...value,[k]:true}))} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: lit === k ? 1 : 0, transition:"opacity .3s ease", pointerEvents:"none", ...(catalog.art.strategy === "opaque-masked" ? {clipPath:catalog.art.masks?.[k]} : {}) }}/>
+        {Object.entries(displayedArt?.effects || {}).filter(([k])=>!failedEffects[k]).map(([k,src]) => (
+          <img key={k} src={src} onError={()=>setFailedEffects(value=>({...value,[k]:true}))} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: lit === k ? 1 : 0, transition:"opacity .3s ease", pointerEvents:"none", ...(displayedArt?.strategy === "opaque-masked" ? {clipPath:displayedArt.masks?.[k]} : {}) }}/>
         ))}
-        {catalog.hotspots.map(h0 => thHot(h0, effectiveEquipped, trees, miles)).filter(Boolean).map(h => {
+        {hotspots.map(h0 => thHot(h0, effectiveEquipped, trees, miles)).filter(Boolean).map(h => {
           const on = sel === h.id || hover === h.id, above = h.y > 55, c = TH_DOT(h);
           return (
             <button key={h.id} onMouseEnter={()=>setHover(h.id)} onMouseLeave={()=>setHover(null)} onClick={e=>{ e.stopPropagation(); onTap(h); }} aria-label={h.label}
@@ -164,16 +175,11 @@ function THMinCaption({ hot, onOpen, mobile }) {
   );
 }
 
-function THMinComposer({ say, mobile, hot }) {
+function THMinComposer({ say, answer, mobile, hot, prefill }) {
   const mode = useTwinMode();
   return (
     <div style={{ flex:"0 0 auto", padding: mobile ? "0 12px 16px" : "0 26px 24px", display:"flex", justifyContent:"center" }}>
-      <div style={{ width:"100%", maxWidth:720, display:"flex", alignItems:"center", gap:8, padding:"9px 9px 9px 16px", borderRadius:18, background:"rgba(255,255,255,.08)", border:"1px solid rgba(255,255,255,.16)", backdropFilter:"blur(14px)" }}>
-        <span style={{ flex:1, fontSize:13.5, color:"rgba(255,255,255,.5)", whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>{hot ? `Ask about the ${hot.label.toLowerCase()}…` : mode === "owner" ? "Ask about your car…" : "Ask about this demo…"}</span>
-        <button className="chip chip-sm" style={{ background:"rgba(255,255,255,.09)", border:"1px solid rgba(255,255,255,.14)", color:"rgba(255,255,255,.8)" }}><Icon name="camera" size={12}/></button>
-        <VoiceButton compact say={say}/>
-        <button aria-label="Send" style={{ background:"var(--au7o-blue, #3B82F6)", border:"none", color:"#fff", width:32, height:32, borderRadius:999, cursor:"pointer", display:"grid", placeItems:"center", flexShrink:0 }}><Icon name="send" size={13}/></button>
-      </div>
+      <div style={{width:"100%",maxWidth:720}}><TwinChatComposer say={say} answer={answer} compact prefill={prefill} placeholder={hot ? `Ask about the ${hot.label.toLowerCase()}…` : mode === "owner" ? "Ask about your car…" : "Ask about this demo…"}/></div>
     </div>
   );
 }
@@ -184,18 +190,33 @@ function THMinimal({ tc, mobile, onExit }) {
   const [sel, setSel] = React.useState(null);
   const [branch, setBranch] = React.useState(null);
   const [startNode, setStartNode] = React.useState(null);
+  const [chatPrefill, setChatPrefill] = React.useState(null);
+  const chatPrefillSeq = React.useRef(0);
   const [nav, setNav] = React.useState(false);
   const [rail, setRail] = React.useState(() => { try { return localStorage.getItem("au7o.hubRail") !== "0"; } catch (e) { return true; } });
   const setRailOpen = v => { try { localStorage.setItem("au7o.hubRail", v ? "1" : "0"); } catch (e) {} setRail(v); };
   const [fb, setFb] = React.useState(false);
   const { bubble, say, clear } = useBubble(null);
+  const askPart = React.useCallback((context) => {
+    setBranch(null);
+    setChatPrefill({ value:context, key:++chatPrefillSeq.current });
+    say("Part and vehicle context loaded in the hub chat. Review or edit it, then send when ready.");
+  }, [say]);
   const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
   const closeTree = React.useCallback(() => setBranch(null), []);
   const [equipped] = useEquipped();
   const live = useTwinLive();
   const ownerEquipped = useTwinEquipment();
   const catalog = useTwinCatalog();
-  const hot = sel ? thHot(catalog.hotspots.find(h => h.id === sel), live ? ownerEquipped : equipped, trees, miles) : null;
+  const answer = useTwinGuideAnswer();
+  const visibleHotspots = React.useMemo(
+    () => projectTwinHotspots(catalog.hotspots, { mobile:Boolean(mobile), twinId:catalog.id }),
+    [catalog.hotspots, catalog.id, mobile],
+  );
+  React.useEffect(() => {
+    if (sel && !visibleHotspots.some((hotspot) => hotspot.id === sel)) setSel(null);
+  }, [sel, visibleHotspots]);
+  const hot = sel ? thHot(visibleHotspots.find(h => h.id === sel), live ? ownerEquipped : equipped, trees, miles) : null;
 
   const openTreeFor = id => { const target=id === "car" ? {branch:"car",node:null} : resolveTwinDeepLink(catalog,id,trees); if (!target.branch) return; setNav(false); setStartNode(target.node); setBranch(target.branch); };
   const tap = h => openMinimalHotspot({selected:sel,hotspot:h,select:setSel,open:openTreeFor});
@@ -212,7 +233,7 @@ function THMinimal({ tc, mobile, onExit }) {
       <THMinStage sel={sel} onTap={tap} onBg={()=>setSel(null)} mobile={mobile}/>
       <THMinCaption hot={hot} mobile={mobile} onOpen={()=>sel && openTreeFor(sel)}/>
       {bubble && <THBubble bubble={bubble} clear={clear}/>}
-      <THMinComposer say={say} mobile={mobile} hot={hot}/>
+      <THMinComposer say={say} answer={answer} mobile={mobile} hot={hot} prefill={chatPrefill}/>
       </div>
       {/* Drawer opens from the LEFT, matching the normal mobile hub (which omits
           justifyContent and so defaults to flex-start) and the desktop rail,
@@ -222,7 +243,7 @@ function THMinimal({ tc, mobile, onExit }) {
           <div onClick={e=>e.stopPropagation()} style={{ height:"100%", boxShadow:"var(--shadow-2)" }}><THSidebar onOpen={openTreeFor} onClose={()=>setNav(false)} onFeedback={()=>{ setNav(false); setFb(true); }} drawer/></div>
         </div>
       )}
-      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} startNode={startNode} mobile={mobile}/>}
+      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} onPartHelp={askPart} startNode={startNode} mobile={mobile}/>}
       <THFeedback open={fb} onClose={()=>setFb(false)}/>
     </div>
   );

@@ -209,7 +209,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       {node:'tire',label:'Tire service',lastServiceMileage:0,intervalMiles:10000,intervalSource:'2025 Nissan Kicks Maintenance Schedule',sourceUrl:'https://maintenance-schedules.nissanusa.com/maintenance-schedules/2025/kicks/components/',sourceSection:'Tires and rotation'},
     ]},
     treeResolver:'kicks',treeStatus:'model-specific',art:generatedArt('/twin-stage/kicks','gun-metallic'),
-    hotspots:standardHotspots({wheel:[54,66],hood:[66,43],glass:[51,30],rearwheel:[28,63],rad:[72,57],trans:[59,64]}, {
+    hotspots:standardHotspots({wheel:[44,71],hood:[65,38],glass:[51,30],rearwheel:[15,61],rad:[73,59],trans:[57,66]}, {
       wheel:{status:'overdue',statusDetail:'Sample tire-service deadline passed; brake history is incomplete'},hood:{node:'hoodRoot',status:'overdue',statusDetail:'Sample oil-service deadline passed; remaining engine history is incomplete'},
       rearwheel:{status:'overdue',statusDetail:'Sample tire-service deadline passed'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},
       trans:{status:'unlogged',statusDetail:'FWD/AWD configuration still requires owner confirmation'},
@@ -230,7 +230,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       {node:'transFluid',label:'Transmission fluid',lastServiceMileage:30000,intervalMiles:30000,intervalSource:'2019 Acura Maintenance Minder',sourceUrl:'https://owners.acura.com/servicemaintenance/minder',sourceSection:'Sub-item 3 · transmission and transfer fluid'},
     ]},
     treeResolver:'mdx',treeStatus:'model-specific',art:generatedArt('/twin-stage/acura-mdx','lunar-silver'),
-    hotspots:standardHotspots({wheel:[52,67],hood:[67,42],glass:[50,29],rearwheel:[24,61],rad:[74,57],trans:[60,64]}, {
+    hotspots:standardHotspots({wheel:[47,68],hood:[70,38],glass:[50,29],rearwheel:[13,63],rad:[75,58],trans:[58,65]}, {
       wheel:{status:'unlogged',statusDetail:'Brake and tire service history not supplied'},hood:{node:'hoodRoot',status:'known-issue',statusDetail:'Fuel-pump recall record · sample oil service approaching due',knownIssueIds:['acura-mdx-fuel-pump-impeller-deformation-causing-stall']},
       rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},
       trans:{status:'known-issue',statusDetail:'Published ZF 9-speed and torque-converter concerns · FWD/SH-AWD confirmation required',knownIssueIds:['acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling','acura-mdx-torque-converter-shudder-2014']},
@@ -246,7 +246,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       {name:'Red Carpet Metallic Tinted Clearcoat',swatch:'#8D1E2C',artStatus:'rendered'},{name:'Infinite Black Metallic',swatch:'#121417',artStatus:'awaiting-art'},
     ]},
     sampleState:{label:'Sample demo state',records:[]},treeResolver:'aviator',treeStatus:'model-specific',art:generatedArt('/twin-stage/lincoln-aviator','red-carpet'),
-    hotspots:standardHotspots({wheel:[53,67],hood:[67,42],glass:[51,28],rearwheel:[25,62],rad:[74,57],trans:[60,64]}, {
+    hotspots:standardHotspots({wheel:[49,67],hood:[72,38],glass:[51,28],rearwheel:[18,59],rad:[76,55],trans:[58,64]}, {
       wheel:{status:'unlogged',statusDetail:'First tire/brake service history not supplied'},hood:{node:'hoodRoot',status:'unlogged',statusDetail:'First engine-service history not supplied'},
       rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},trans:{status:'unlogged',statusDetail:'RWD/AWD configuration requires owner confirmation'},glass:{status:'unlogged',statusDetail:'Wiper service history not supplied'},
     }),systems:systems(true),
@@ -266,7 +266,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       {node:'driveline',label:'Electronic limited-slip differential fluid',lastServiceMileage:0,intervalMiles:45000,intervalSource:'2019 Camaro High Performance Owner\'s Manual Supplement',sourceUrl:'https://www.chevrolet.com/support/vehicle/manuals-guides',sourceSection:'Track and competitive driving · rear axle fluid'},
     ]},
     treeResolver:'camaro',treeStatus:'model-specific',art:generatedArt('/twin-stage/camaro','summit'),
-    hotspots:standardHotspots({wheel:[58,69],hood:[70,43],glass:[53,29],rearwheel:[30,65],rad:[78,57],trans:[62,65]}, {
+    hotspots:standardHotspots({wheel:[44,64],hood:[63,42],glass:[50,29],rearwheel:[20,57],rad:[71,59],trans:[57,63]}, {
       wheel:{status:'unlogged',statusDetail:'Staggered tire and brake history not supplied'},hood:{node:'hoodRoot',status:'unlogged',statusDetail:'Sample oil service reaches its deadline at the sample mileage'},rearwheel:{status:'unlogged',statusDetail:'Rear tire history not supplied'},
       rad:{status:'unlogged',statusDetail:'Main and low-temperature cooling service history not supplied'},trans:{status:'known-issue',statusDetail:'eLSD issue record · manual/automatic choice required',knownIssueIds:['chevy-camaro-rear-differential-noise']},glass:{label:'Infotainment & Visibility',status:'known-issue',statusDetail:'Published MyLink/HMI issue',knownIssueIds:['chevrolet-camaro-mylink-hmi-infotainment-module-failure']},
     }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Infotainment & Visibility'}:system),

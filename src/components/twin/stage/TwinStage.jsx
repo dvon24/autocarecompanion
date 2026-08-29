@@ -14,6 +14,9 @@ import { TT_TREES, ttHasUpgrade, ttFinish, useEquipped } from "./TechTree";
 import { TWIN_DEMO_MILES, TWIN_DEMO_VEHICLE, useTwinEquipment, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode, useTwinPaintControl } from "../twin-context";
 import { collectHotspotNodes, summarizeEvidence } from "../demo-trees";
 import { TwinMarkerDot, resolveTwinMarkerVisual } from "./TwinMarker";
+import { projectTwinHotspots } from "./mobile-hotspots";
+import { resolveTwinPaintArtwork } from "./paint-art";
+import { VehicleStageControls } from "./VehicleStageControls";
 
 /* Au7o Hub — tech tree direction.
    The hub greets you with your car. Click a part and the tech tree opens over it. */
@@ -130,16 +133,21 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
   const catalog = useTwinCatalog();
   const twinMode = useTwinMode();
   const paintControl = useTwinPaintControl();
-  const selectedPaint = paintControl?.options?.find((paint)=>paint.name===paintControl.choice);
-  const matchingArtworkPending = Boolean(live && selectedPaint && selectedPaint.artStatus !== "rendered");
+  const paintArtwork = resolveTwinPaintArtwork(catalog, paintControl);
+  const selectedPaint = paintArtwork.selected;
+  const displayedArt = paintArtwork.art;
+  const matchingArtworkPending = paintArtwork.pending;
   const [equipped] = useEquipped();
   const finish = !live && catalog.id === "challenger" ? ttFinish() : null;
-  const hotspots = catalog.hotspots;
+  const hotspots = React.useMemo(
+    () => projectTwinHotspots(catalog.hotspots, { mobile:Boolean(mobile), twinId:catalog.id }),
+    [catalog.hotspots, catalog.id, mobile],
+  );
   const systems = catalog.systems.filter(s => trees[s.branch]);
-  const glowLayers = React.useMemo(() => Object.values(catalog.art.effects), [catalog.id, catalog.art.effects]);
+  const glowLayers = React.useMemo(() => Object.values(displayedArt?.effects || {}), [displayedArt]);
   const [baseFailed, setBaseFailed] = React.useState(false);
   const [failedEffects, setFailedEffects] = React.useState({});
-  React.useEffect(() => { setBaseFailed(false); setFailedEffects({}); }, [catalog.id]);
+  React.useEffect(() => { setBaseFailed(false); setFailedEffects({}); }, [catalog.id, displayedArt?.base]);
   React.useEffect(() => {
     const onFs = () => { if (!document.fullscreenElement) setExpanded(false); };
     const onKey = (ev) => { if (ev.key === "Escape") setExpanded(false); };
@@ -170,12 +178,13 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
   const effectiveEquipped = live ? ownerEquipped : equipped;
   const dueCount = thEvidence("car", trees, miles).due;
   const cur = retainActiveHotspot(hover || active, hotspots);
-  const lit = resolveActiveTwinEffect(mode, cur, catalog.art.effects);
+  const lit = resolveActiveTwinEffect(mode, cur, displayedArt?.effects);
   const tap = h => openTwinHotspot(h,active,setActive,onOpen);
   return (
     <div ref={rootRef} className={[expanded ? "stage-expanded" : "", fill ? "stage-fill" : ""].filter(Boolean).join(" ") || undefined}
       style={{ position:"relative", flex: "0 0 auto", borderRadius:16, overflow:"hidden", border:"1px solid var(--ki-line)", background:"#0A0D14", boxShadow:"var(--shadow-2)" }}>
       <div className="th-stage-frame" onClick={()=>setActive(null)} style={{ position:"relative", width:"100%", aspectRatio:"16 / 9" }}>
+        <VehicleStageControls mobile={mobile}/>
         {allowFullscreen && (
           <button onClick={toggleExpand} aria-label={expanded ? "Exit full screen" : "View full screen"} title={expanded ? "Exit full screen" : "View full screen"}
             style={{ position:"absolute", top:10, right:10, zIndex:7, width:36, height:36, borderRadius:10, cursor:"pointer", display:"grid", placeItems:"center", background:"rgba(10,13,20,.55)", backdropFilter:"blur(8px)", border:"1px solid rgba(255,255,255,.22)", color:"#fff" }}>
@@ -186,16 +195,16 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
             </svg>
           </button>
         )}
-        {!baseFailed && !matchingArtworkPending && (
-          <img src={catalog.art.base} onError={()=>setBaseFailed(true)} alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }}/>
+        {!baseFailed && displayedArt && !matchingArtworkPending && (
+          <img src={displayedArt.base} onError={()=>setBaseFailed(true)} alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}${selectedPaint?.name ? ` in ${selectedPaint.name}` : ""}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }}/>
         )}
-        {(baseFailed || matchingArtworkPending) && <div role="img" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model} artwork unavailable`} style={{position:"absolute",inset:0,display:"grid",placeItems:"center",padding:24,textAlign:"center",color:"rgba(255,255,255,.72)",fontSize:13,background:"radial-gradient(circle at 50% 45%,#182238,#080B12 70%)"}}>{matchingArtworkPending ? `${selectedPaint.name} selected · matching vehicle artwork is awaiting render` : "Vehicle artwork unavailable"}</div>}
+        {(baseFailed || matchingArtworkPending || !displayedArt) && <div role="img" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model} artwork unavailable`} style={{position:"absolute",inset:0,display:"grid",placeItems:"center",padding:24,textAlign:"center",color:"rgba(255,255,255,.72)",fontSize:13,background:"radial-gradient(circle at 50% 45%,#182238,#080B12 70%)"}}>{matchingArtworkPending ? `${selectedPaint?.name || paintControl?.choice || "Selected color"} selected · matching vehicle artwork is not available yet` : "Vehicle artwork unavailable"}</div>}
         {!matchingArtworkPending && catalog.id === "challenger" && (
           <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: !finish || finish.id === "oem" ? 0 : 1, filter: finish?.filter || "none", transition:"opacity .4s ease, filter .4s ease" }}/>
         )}
-        {!matchingArtworkPending && Object.entries(catalog.art.effects).filter(([id])=>!failedEffects[id]).map(([id, src]) => <img key={id} src={src} onError={()=>setFailedEffects(value=>({...value,[id]:true}))} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:lit === id ? 1 : 0, transition:"opacity .32s ease", ...(catalog.art.strategy === "opaque-masked" ? {clipPath:catalog.art.masks?.[id]} : {}) }}/>) }
-        {!matchingArtworkPending && catalog.art.xray && (
-          <img src={catalog.art.xray} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:mode === "xray" ? 1 : 0 }}/>
+        {!matchingArtworkPending && Object.entries(displayedArt?.effects || {}).filter(([id])=>!failedEffects[id]).map(([id, src]) => <img key={id} src={src} onError={()=>setFailedEffects(value=>({...value,[id]:true}))} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:lit === id ? 1 : 0, transition:"opacity .32s ease", ...(displayedArt?.strategy === "opaque-masked" ? {clipPath:displayedArt.masks?.[id]} : {}) }}/>) }
+        {!matchingArtworkPending && displayedArt?.xray && (
+          <img src={displayedArt.xray} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:mode === "xray" ? 1 : 0 }}/>
         )}
 
         {mode !== "rail" && hotspots.map(h => thHot(h, effectiveEquipped, trees, miles)).filter(Boolean).map(h => {
@@ -206,7 +215,7 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
               style={{ position:"absolute", left:h.x+"%", top:h.y+"%", transform:"translate(-50%,-50%)", width:mobile?44:"auto", height:mobile?44:"auto", display:"grid", placeItems:"center", background:"transparent", border:"none", padding:0, cursor:"pointer", zIndex: on ? 4 : 3, touchAction:"manipulation" }}>
               <TwinMarkerDot evidence={h} size={mobile?32:44} active={on} className={h.risk && !h.knownIssue && !h.upgrade ? "th-dot th-dot-risk" : "th-dot"}/>
               {(on || open) && (
-                <span style={{ position:"absolute", left:"50%", transform:"translateX(-50%)", ...(above ? { bottom:"100%", marginBottom:9 } : { top:"100%", marginTop:9 }), whiteSpace:"nowrap", background:"rgba(10,13,20,.9)", border:`1px solid ${c.line}`, backdropFilter:"blur(8px)", borderRadius:9, padding:"6px 11px", textAlign:"left" }}>
+                <span style={{ position:"absolute", left:"50%", transform:"translateX(-50%)", pointerEvents:"none", ...(above ? { bottom:"100%", marginBottom:9 } : { top:"100%", marginTop:9 }), whiteSpace:"nowrap", background:"rgba(10,13,20,.9)", border:`1px solid ${c.line}`, backdropFilter:"blur(8px)", borderRadius:9, padding:"6px 11px", textAlign:"left" }}>
                   <span style={{ display:"block", fontSize:12, fontWeight:600, color:"#fff", letterSpacing:"-0.01em" }}>{h.label}</span>
                   <span style={{ display:"block", fontSize:10, color:c.sub, marginTop:1 }}>{h.sub} · open tech tree</span>
                 </span>
