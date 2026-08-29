@@ -121,6 +121,11 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig: NextConfig = {
+  // Allow CI/release validation to build beside a running local dev server.
+  // The default remains `.next`; setting NEXT_DIST_DIR avoids concurrent
+  // writers corrupting one another's build output in the shared checkout.
+  distDir: process.env.NEXT_DIST_DIR || '.next',
+
   // Next.js 16 requires explicit turbopack config when webpack plugins are used
   // @ducanh2912/next-pwa uses webpack, so we need to build with webpack
   // Empty turbopack config silences the warning but still uses webpack for PWA

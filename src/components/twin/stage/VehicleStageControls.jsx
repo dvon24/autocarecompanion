@@ -18,14 +18,17 @@ export function VehicleStageControls({ mobile = false }) {
   const [open, setOpen] = React.useState(false);
   const id = React.useId().replace(/:/g, "");
   if (!hasTransmission && !hasPaint) return null;
-  const expanded = open || transmissionMissing;
+  // Keep the compact control out of the hotspot field on phones. A missing
+  // transmission is called out on the button, but the owner opens the panel
+  // deliberately instead of a large panel covering the windshield marker.
+  const expanded = open;
   const currentTransmission = transmission?.model?.current === "automatic" ? "Automatic" : transmission?.model?.current === "manual" ? "Manual" : null;
   const control = {minWidth:0,flex:1,minHeight:34,borderRadius:8,border:"1px solid rgba(255,255,255,.2)",background:"rgba(255,255,255,.96)",color:"#0B1220",padding:"0 8px",fontFamily:"var(--font-sans)",fontSize:11.5};
   return (
     <div onClick={(event)=>event.stopPropagation()} style={{position:"absolute",top:10,left:10,zIndex:7,width:expanded?`min(${mobile?228:278}px, calc(100% - 68px))`:"auto",maxWidth:"calc(100% - 68px)",fontFamily:"var(--font-sans)"}}>
       {!expanded ? (
         <button type="button" onClick={()=>setOpen(true)} aria-expanded="false" style={{minHeight:36,maxWidth:mobile?126:250,display:"flex",alignItems:"center",gap:7,padding:"0 11px",borderRadius:10,border:"1px solid rgba(255,255,255,.22)",background:"rgba(10,13,20,.68)",backdropFilter:"blur(10px)",color:"#fff",cursor:"pointer",boxShadow:"0 6px 18px rgba(0,0,0,.22)"}}>
-          <Icon name="settings" size={13}/><span style={{fontSize:11.5,fontWeight:650,whiteSpace:"nowrap"}}>{mobile?"Setup":"Vehicle setup"}</span>{!mobile&&<span style={{fontSize:10,color:"rgba(255,255,255,.62)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{[currentTransmission, choice].filter(Boolean).join(" · ")}</span>}
+          <Icon name="settings" size={13}/><span style={{fontSize:11.5,fontWeight:650,whiteSpace:"nowrap"}}>{transmissionMissing?"Setup required":mobile?"Setup":"Vehicle setup"}</span>{!mobile&&<span style={{fontSize:10,color:"rgba(255,255,255,.62)",whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>{[currentTransmission, choice].filter(Boolean).join(" · ")}</span>}
         </button>
       ) : (
         <div style={{padding:10,borderRadius:12,border:"1px solid rgba(255,255,255,.22)",background:"rgba(10,13,20,.86)",backdropFilter:"blur(14px)",color:"#fff",boxShadow:"0 10px 30px rgba(0,0,0,.32)"}}>

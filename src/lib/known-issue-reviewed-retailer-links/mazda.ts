@@ -390,6 +390,12 @@ export const productUrlFingerprints = [
   '24d72a12cd7d5c5e12ba09d2',
   // https://www.xtremediesel.com/motorcraft-75w-140-gear-oil-xy-75w140-ql
   'b7f703aa7516da8ccd9e51a0',
+  // Opus 306: mazda-tribute-front-wheel-hub-bearing-growl-pressed-bearing-requires-knuck | PartsGeek | https://www.partsgeek.com/1wz98pr-mazda-tribute-wheel-bearing.html
+  'f1df340b33f9f20df7762cb4',
+  // Opus 306: mazda-tribute-blower-motor-resistor-burns-out-heater-c-fan-works-only-high | AM Autoparts | https://www.am-autoparts.com/products/blower-motor-resistor/AM-1801208271.html
+  'ef96d19a90840fd3dac58707',
+  // Opus 306: mazda-tribute-3-0l-duratec-timing-chain-tensioner-guide-wear-causing-cold | PartsGeek | https://www.partsgeek.com/8s8nhgt-mazda-tribute-timing-chain-kit.html
+  '1ed744dc4c7025efdeaa92ab',
 ] as const;
 
 export const vendorUrlFingerprints = [
@@ -791,6 +797,16 @@ export const vendorUrlFingerprints = [
   '06dc9243500dff18b54472a3',
   // xdp | https://www.xtremediesel.com/motorcraft-75w-140-gear-oil-xy-75w140-ql
   '46d15be68d73038dbafd46e1',
+  // Opus 306: mazda-tribute-front-wheel-hub-bearing-growl-pressed-bearing-requires-knuck | PartsGeek | https://www.partsgeek.com/1wz98pr-mazda-tribute-wheel-bearing.html
+  'f0e3f2c3552dd6d86ba05e4a',
+  // Opus 306: mazda-tribute-blower-motor-resistor-burns-out-heater-c-fan-works-only-high | AM Autoparts | https://www.am-autoparts.com/products/blower-motor-resistor/AM-1801208271.html
+  'c651d57e327522558eb588df',
+  // Opus 306: mazda-tribute-3-0l-duratec-timing-chain-tensioner-guide-wear-causing-cold | PartsGeek | https://www.partsgeek.com/8s8nhgt-mazda-tribute-timing-chain-kit.html
+  'ab68f7c86611b460de817245',
+  // Opus 306: mazda-mpv-cooling-fan-control-module-fails-fans-run-constantly-not-all | eBay | https://www.ebay.com/itm/188195339660
+  '7c97e09d11a8399ec026ebe2',
+  // Opus 306: mazda-tribute-rear-liftgate-glass-hinges-crack-break | eBay | https://www.ebay.com/itm/287348148460
+  '52a8e7c4aa1f0b8d2cc1b19d',
 ] as const;
 
 export const retailerHostFingerprints = [

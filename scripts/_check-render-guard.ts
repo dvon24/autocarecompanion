@@ -119,8 +119,11 @@ for (const makeStat of data.result.stats.makes as Array<{ make: string }>) {
   ];
   for (const [label, expected, actual] of comparisons) {
     const actualSet = new Set(actual);
-    if (actualSet.size !== expected.size || [...expected].some((value) => !actualSet.has(value))) {
-      moduleMismatches.push(`${make} ${label}: expected ${expected.size}, module ${actualSet.size}`);
+    // Approval modules are additive across reviewed batches. The current
+    // batch must be a subset of the module; prior exact approvals for the same
+    // make are expected and must not make a later batch fail this guard.
+    if ([...expected].some((value) => !actualSet.has(value))) {
+      moduleMismatches.push(`${make} ${label}: expected subset ${expected.size}, module ${actualSet.size}`);
     }
   }
 }

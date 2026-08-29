@@ -228,6 +228,14 @@ export const productUrlFingerprints = [
   '0da5d12beaf8c5746f0c6ef6',
   // https://x8r.co.uk/mercedes-om642-intake-inlet-manifold-swirl-flap-repair-runner-connecting-rod-set.html
   '0861d5e0b3305bc25e0541b5',
+  // Opus 306: mercedes-benz-glc-power-tailgate-gas-support-strut-failure-causing-liftgate-to | MBPartsGiant | https://www.mbpartsgiant.com/genuine/mercedes-benz~lift-cylinder~2539800300
+  '9d3e5f37665dba2fbceda562',
+  // Opus 306: mercedes-benz-glc-front-lower-spring-control-arm-thrust-arm-bushing-wear-causi | PartsGeek | https://www.partsgeek.com/ng68ygp-mercedes-glc300-control-arm.html
+  'fd880e38d737f39d9744526a',
+  // Opus 306: mercedes-benz-glc-turbocharger-wastegate-actuator-diaphragm-rupture-causing-un | BINB ROAD | https://www.binbroad.com/products/2740904380-turbo-wastegate-actuator
+  'eb99b5d455b14b747aaad070',
+  // Opus 306: mercedes-benz-amg-gt-getrag-7dcl750-rear-transaxle-dual-clutch-failure-clutch-pac | FCP Euro | https://www.fcpeuro.com/products/mercedes-dct-transmission-service-kit-motul-700-4
+  '581ea996ff840edaa1dd3f7e',
 ] as const;
 
 export const vendorUrlFingerprints = [
@@ -459,6 +467,14 @@ export const vendorUrlFingerprints = [
   'a5f4e6814575005b62aab085',
   // x8r | https://x8r.co.uk/mercedes-om642-intake-inlet-manifold-swirl-flap-repair-runner-connecting-rod-set.html
   '3c6bdb435a998f8d7a1f12a6',
+  // Opus 306: mercedes-benz-glc-power-tailgate-gas-support-strut-failure-causing-liftgate-to | MBPartsGiant | https://www.mbpartsgiant.com/genuine/mercedes-benz~lift-cylinder~2539800300
+  '4b860872fcdbcf19767b7d0a',
+  // Opus 306: mercedes-benz-glc-front-lower-spring-control-arm-thrust-arm-bushing-wear-causi | PartsGeek | https://www.partsgeek.com/ng68ygp-mercedes-glc300-control-arm.html
+  'f5c95f737267c7153505505f',
+  // Opus 306: mercedes-benz-glc-turbocharger-wastegate-actuator-diaphragm-rupture-causing-un | BINB ROAD | https://www.binbroad.com/products/2740904380-turbo-wastegate-actuator
+  '5d920253e236402303882e2d',
+  // Opus 306: mercedes-benz-amg-gt-getrag-7dcl750-rear-transaxle-dual-clutch-failure-clutch-pac | FCP Euro | https://www.fcpeuro.com/products/mercedes-dct-transmission-service-kit-motul-700-4
+  '5c4204cf85543fd9d999c9b1',
 ] as const;
 
 export const retailerHostFingerprints = [
@@ -504,4 +520,8 @@ export const retailerHostFingerprints = [
   '7cfff290db0ca3ed5e1f70fd',
   // x8r.co.uk
   '6dc4c900bdb74d69cadaf03b',
+  // Opus 306: mercedes-benz-glc-front-lower-spring-control-arm-thrust-arm-bushing-wear-causi | PartsGeek | https://www.partsgeek.com/ng68ygp-mercedes-glc300-control-arm.html
+  'b6c9d443e05ef437cef78a38',
+  // Opus 306: mercedes-benz-glc-turbocharger-wastegate-actuator-diaphragm-rupture-causing-un | BINB ROAD | https://www.binbroad.com/products/2740904380-turbo-wastegate-actuator
+  '603f0eecab8c5eb76bea5799',
 ] as const;

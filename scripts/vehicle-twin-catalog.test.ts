@@ -212,11 +212,15 @@ test('factory paint palettes cite OEM material and never present missing art as 
   assert.match(renderToStaticMarkup(React.createElement(AdminPaintPalette,{twin:malformed})),/Factory paint palette unavailable/);
 });
 
-test('five Challenger assets register full-resolution and effects remain localized RGBA',async()=>{
+test('five Challenger SRT 392 assets register as aligned full-resolution masked frames',async()=>{
   const twin=resolveDemoVehicleTwin('challenger');
   const paths=[twin.art.base,...Object.values(twin.art.effects)];assert.equal(paths.length,5);
-  const base=await sharp(publicPath(twin.art.base)).metadata();assert.equal(base.width,1672);assert.equal(base.height,941);
-  for(const effectPath of Object.values(twin.art.effects)){assert.ok(existsSync(publicPath(effectPath)));const meta=await sharp(publicPath(effectPath)).metadata();assert.equal(meta.width,base.width);assert.equal(meta.height,base.height);assert.equal(meta.channels,4);const {data,info}=await sharp(publicPath(effectPath)).ensureAlpha().raw().toBuffer({resolveWithObject:true});let visible=0;for(let i=3;i<data.length;i+=4)if(data[i]>5)visible++;assert.ok(visible/(info.width*info.height)<.4);}
+  assert.equal(twin.identity.trim,'SRT 392');assert.equal(twin.art.strategy,'opaque-masked');
+  const base=await sharp(publicPath(twin.art.base)).metadata();assert.equal(base.width,1680);assert.equal(base.height,945);
+  for(const [id,effectPath] of Object.entries(twin.art.effects)){assert.ok(existsSync(publicPath(effectPath)));assert.ok(twin.art.masks?.[id]);const meta=await sharp(publicPath(effectPath)).metadata();assert.equal(meta.width,base.width);assert.equal(meta.height,base.height);}
+  const archivedHellcat=path.join(process.cwd(),'public','twin-stage','challenger-hellcat');
+  for(const file of ['base-granite-crystal.webp','glow-wheel-granite-crystal.webp','glow-rearwheel-granite-crystal.webp','glow-hood-granite-crystal.webp','glow-radiator-granite-crystal.webp'])assert.ok(existsSync(path.join(archivedHellcat,file)));
+  assert.equal(VEHICLE_TWIN_CATALOG.some((entry)=>entry.id==='challenger-hellcat'),false);
 });
 
 test('opaque art has masks, full URLs are preserved, and absent effects are not markers',()=>{
@@ -633,6 +637,7 @@ test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected
   const emptyAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:[]}));assert.match(emptyAdmin,/Admin Dashboard/);assert.match(emptyAdmin,/Loading live records/);assert.doesNotMatch(emptyAdmin,/No twins match/);
   const fullAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:getAdminTwinDefinitions()}));assert.match(fullAdmin,/Admin Dashboard/);assert.match(fullAdmin,/Founder-only operational data/);assert.match(fullAdmin,/Loading live records/);
   const adminSource=readFileSync(path.join(process.cwd(),'src/components/admin/twins/TwinAdminShell.tsx'),'utf8');assert.match(adminSource,/Art coverage matrix/);assert.match(adminSource,/Artwork intake/);assert.match(adminSource,/Preview layer/);assert.match(adminSource,/Factory paint choices/);assert.match(adminSource,/Awaiting art/);assert.match(adminSource,/Array\.isArray\(data\.twins\)/);assert.match(adminSource,/AbortController/);assert.match(adminSource,/\/api\/admin\/overview/);assert.doesNotMatch(adminSource,/className="avatar"|function OverviewChart|12-month series|Captured demand and affiliate clicks/);
-  const hubShared=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');const hub=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');assert.match(hubShared,/<Link href="\/" aria-label="Au7o home"/);assert.match(hub,/label: "Home", href: "\/"/);
+  const hubShared=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');const hub=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');assert.match(hubShared,/<Link href="\/" aria-label="Au7o home"/);assert.match(hub,/label: "Home", href: "https:\/\/au7o\.io\/"/);assert.doesNotMatch(hub,/label: "Garage"/);assert.match(hub,/label: "Add vehicle", href: "\/garage\?add=1"/);assert.match(hub,/label: "Service records", href: `\/garage\/\$\{encodeURIComponent\(ownerActions\.vehicleId\)\}\/maintenance\?view=history`/);assert.match(hub,/label: "Account", href: "\/account"/);assert.match(hub,/label: "Founder sign in", href: "\/founder\/signin"/);
+  const vehicleHub=readFileSync(path.join(process.cwd(),'src/components/vehicle/VehicleHub.tsx'),'utf8');assert.match(vehicleHub,/<Link href="https:\/\/au7o\.io\/" className="brand">/);assert.match(vehicleHub,/<Link href="https:\/\/au7o\.io\/" className="md-link" onClick=\{onClose\}>/);assert.match(vehicleHub,/href="\/garage\?add=1"/);
   const challengerXray=resolveDemoVehicleTwin('challenger');assert.equal(challengerXray.art.xray,'/twin-stage/car-xray.webp');assert.match(renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challengerXray,presentation:buildDemoTwinPresentation(challengerXray),vehicle:challengerXray.identity,miles:challengerXray.demoMileage,trees:resolveTwinTrees(challengerXray),mode:'demo' as const}},React.createElement(TwinStage,{mode:'xray',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}))),/car-xray\.webp/);
 });

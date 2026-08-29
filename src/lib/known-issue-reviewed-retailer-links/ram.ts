@@ -284,6 +284,8 @@ export const productUrlFingerprints = [
   'dabd50bc345efa2a37622692',
   // https://www.xtremediesel.com/redhead-steering-gears-2879-steering-box-4-bolt-cover
   '98c858e3482112fed8baf9ae',
+  // Opus 306: ram-promaster-city-engine-cooling-fan-motor-fan-control-relay-failure-causing-o | Mopar Parts Giant | https://www.moparpartsgiant.com/parts/mopar-radiator-cooling~68461973aa.html
+  '416d043a9ffc56a272f3a253',
 ] as const;
 
 export const vendorUrlFingerprints = [
@@ -569,6 +571,8 @@ export const vendorUrlFingerprints = [
   '826e4d7ea5fadd213d9f5e68',
   // xdp | https://www.xtremediesel.com/redhead-steering-gears-2879-steering-box-4-bolt-cover
   'a3ed373bb27022400ddd6647',
+  // Opus 306: ram-promaster-city-engine-cooling-fan-motor-fan-control-relay-failure-causing-o | Mopar Parts Giant | https://www.moparpartsgiant.com/parts/mopar-radiator-cooling~68461973aa.html
+  '20e0dcba2faa2d639f851228',
 ] as const;
 
 export const retailerHostFingerprints = [

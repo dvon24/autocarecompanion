@@ -18,7 +18,7 @@ import { TwinStage as THStage, TH_V, TH_MILES } from "../stage/TwinStage";
 import { TechTree, TT_TREES, ttRisk, ttHasUpgrade, ttFinish, useEquipped, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT } from "../stage/TechTree";
 import { Au7oMark, KICard, useTheme, useNarrow, useBubble, ThemeDots, SevBadge, TwinChatComposer, HPComposer, KI } from "./hub-shared";
 import { useHubView } from "./hub-view";
-import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinMode, useTwinPaintControl, useTwinGuideAnswer, greetingFor } from "../twin-context";
+import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinMode, useTwinOwnerActions, useTwinPaintControl, useTwinGuideAnswer, greetingFor } from "../twin-context";
 import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
 import { collectHotspotNodes, summarizeEvidence } from "../demo-trees";
 import { resolveTwinPaintArtwork } from "../stage/paint-art";
@@ -62,6 +62,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
   const paintControl = useTwinPaintControl();
   const paintArtwork = resolveTwinPaintArtwork(catalog, paintControl);
   const twinMode = useTwinMode();
+  const ownerActions = useTwinOwnerActions();
   const evidence = thEvidence("car", trees, miles);
   const due = evidence.due;
   const watch = evidence.watch;
@@ -146,15 +147,15 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
         </div>
       </div>
       <div style={{ borderTop:"1px solid var(--ki-line)", padding:"10px 8px", display:"flex", flexDirection:"column" }}>
-        {/* "Open Drive" and "Add vehicle" removed — the latter was a <button>
-            with no handler, and there is no vehicle to add in a no-account
-            demo. Known Issues is a real link now; it had the same dead-button
-            problem. Same component serves the desktop sidebar and the mobile
-            drawer, so both are fixed here. */}
+        {/* Owner Twins get the real add-vehicle workflow. The public demo does
+            not pretend it can add a vehicle without an account. */}
         {[
-          { ic: "home", label: "Home", href: "/" },
-          { ic: "car", label: "Garage", href: "/garage" },
-          { ic: "user", label: "Founder sign in", href: "/founder/signin" },
+          { ic: "home", label: "Home", href: "https://au7o.io/" },
+          ...(twinMode === "owner" ? [{ ic: "car", label: "Add vehicle", href: "/garage?add=1" }] : []),
+          ...(ownerActions?.vehicleId ? [{ ic: "book", label: "Service records", href: `/garage/${encodeURIComponent(ownerActions.vehicleId)}/maintenance?view=history` }] : []),
+          ...(twinMode === "owner"
+            ? [{ ic: "user", label: "Account", href: "/account" }]
+            : [{ ic: "user", label: "Founder sign in", href: "/founder/signin" }]),
           { ic: "book", label: "Known Issues", href: "/known-issues" },
           { ic: "chat", label: "Send feedback", onClick: onFeedback },
         ].map((item) => {

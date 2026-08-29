@@ -120,6 +120,16 @@ export const productUrlFingerprints = [
   '909a9312a2b7d6bff59ecc1f',
   // https://www.walmart.com/ip/5679174187
   '96c742e715a504c7215b8365',
+  // Opus 306: jaguar-xj-panoramic-roof-powered-sunblind-motor-failure-loss-calibrati | Galaxy Jaguar | https://www.jagroverland.com/service-kit-c2d23230-10-19-xj/
+  'dee7ed7a581dead7e85d1dee',
+  // Opus 306: jaguar-xj-x351-water-pump-plastic-coolant-pipe-failure-under-superchar | Euro AMP | https://www.euro-amp.com/collections/cooling-kits/products/jaguar-land-rover-cooling-system-replace-kit-3-0-v6-5-0-v8-supercharged-engine
+  '0c6160f2490bb069d3134fcc',
+  // Opus 306: jaguar-xj-front-lower-control-arm-bushing-collapse-causing-front-end-c | Jaguar Spirit | https://www.jaguar-spirit.com/gb/steering-suspension/1733-front-lower-control-arm-jaguar.html
+  '4c24bb88757583dbba5195af',
+  // Opus 306: jaguar-xj-plastic-thermostat-housing-water-pump-impeller-failure-4-2-a | Jaguar-Shop.com | https://www.jaguar-shop.com/Thermostat-Housing
+  'a0ac5c1b64f541d1d1c750b4',
+  // Opus 306: jaguar-xj-zf-6hp26-mechatronic-connector-sleeve-plastic-sump-pan-fluid | Jaguar Spirit | https://www.jaguar-spirit.com/gb/x350-x358-2003-2009/267-transmission-filter-kit-jaguar-x350.html
+  'f3ba04ecec924c3fca3ab032',
 ] as const;
 
 export const vendorUrlFingerprints = [
@@ -241,6 +251,18 @@ export const vendorUrlFingerprints = [
   '6dda1a783279aa4559ba1cd7',
   // walmart | https://www.walmart.com/ip/5679174187
   'fca4f5e16b3c93f91db8bfed',
+  // Opus 306: jaguar-xj-panoramic-roof-powered-sunblind-motor-failure-loss-calibrati | Galaxy Jaguar | https://www.jagroverland.com/service-kit-c2d23230-10-19-xj/
+  '3ce68ccf3ebb04bedac36f4c',
+  // Opus 306: jaguar-xj-x351-water-pump-plastic-coolant-pipe-failure-under-superchar | Euro AMP | https://www.euro-amp.com/collections/cooling-kits/products/jaguar-land-rover-cooling-system-replace-kit-3-0-v6-5-0-v8-supercharged-engine
+  'da4c1cdf6291f65cf586dda1',
+  // Opus 306: jaguar-xj-front-lower-control-arm-bushing-collapse-causing-front-end-c | Jaguar Spirit | https://www.jaguar-spirit.com/gb/steering-suspension/1733-front-lower-control-arm-jaguar.html
+  '4a5fdbf6f80bef561e8a3c0f',
+  // Opus 306: jaguar-xj-plastic-thermostat-housing-water-pump-impeller-failure-4-2-a | Jaguar-Shop.com | https://www.jaguar-shop.com/Thermostat-Housing
+  'abd4c3bb50b3651a59e01efa',
+  // Opus 306: jaguar-xj-zf-6hp26-mechatronic-connector-sleeve-plastic-sump-pan-fluid | Jaguar Spirit | https://www.jaguar-spirit.com/gb/x350-x358-2003-2009/267-transmission-filter-kit-jaguar-x350.html
+  'a78eca30ff8a535cb0b8c555',
+  // Opus 306: jaguar-xj-aj133-5-0-v8-timing-chain-tensioner-ratchet-plastic-guide-ra | eBay | https://www.ebay.com/itm/306536006739
+  '102dcb512a80ab2ff0691441',
 ] as const;
 
 export const retailerHostFingerprints = [
@@ -296,4 +318,12 @@ export const retailerHostFingerprints = [
   '633c1bbf57254312c2c1c150',
   // walmart.com
   'ce624b6b31766d560320dd93',
+  // Opus 306: jaguar-xj-panoramic-roof-powered-sunblind-motor-failure-loss-calibrati | Galaxy Jaguar | https://www.jagroverland.com/service-kit-c2d23230-10-19-xj/
+  '7b5c046b2afe668ba98ce2b6',
+  // Opus 306: jaguar-xj-x351-water-pump-plastic-coolant-pipe-failure-under-superchar | Euro AMP | https://www.euro-amp.com/collections/cooling-kits/products/jaguar-land-rover-cooling-system-replace-kit-3-0-v6-5-0-v8-supercharged-engine
+  '365462fd78786d5303438395',
+  // Opus 306: jaguar-xj-front-lower-control-arm-bushing-collapse-causing-front-end-c | Jaguar Spirit | https://www.jaguar-spirit.com/gb/steering-suspension/1733-front-lower-control-arm-jaguar.html
+  'd4854f8f2fff7e9444d300a5',
+  // Opus 306: jaguar-xj-plastic-thermostat-housing-water-pump-impeller-failure-4-2-a | Jaguar-Shop.com | https://www.jaguar-shop.com/Thermostat-Housing
+  'e4db846699d877e1e53cefb6',
 ] as const;

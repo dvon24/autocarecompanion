@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable @typescript-eslint/no-require-imports */
 /**
  * Bulk-promote ALL status='pending_review' KnownIssue rows to 'published'.
  * Mirrors scripts/promote-issue.js per-row logic in one process:
@@ -9,6 +10,7 @@
  * Usage:
  *   node scripts/_promote-pending-review.js              # promote all that pass the URL gate
  *   node scripts/_promote-pending-review.js --make Ford  # only this make
+ *   node scripts/_promote-pending-review.js --ids-file review.json # exact reviewed IDs only
  *   node scripts/_promote-pending-review.js --dry-run    # report only, no writes
  */
 require('dotenv').config({ path: '.env.local' });
@@ -19,6 +21,20 @@ const { Pool } = require('pg');
 const args = process.argv.slice(2);
 const dryRun = args.includes('--dry-run');
 const makeFilter = args.includes('--make') ? args[args.indexOf('--make') + 1] : null;
+const idsFile = args.includes('--ids-file') ? args[args.indexOf('--ids-file') + 1] : null;
+let idFilter = null;
+if (idsFile) {
+  const fs = require('fs');
+  const document = JSON.parse(fs.readFileSync(idsFile, 'utf8'));
+  const rows = Array.isArray(document)
+    ? document
+    : document.decisions || document.result?.resolvedIssues || document.rows || [];
+  idFilter = [...new Set(rows.map((row) => String(row.id || row.issueId || '').trim()).filter(Boolean))];
+  if (!idFilter.length) {
+    console.error('--ids-file did not contain any issue IDs');
+    process.exit(1);
+  }
+}
 // --created-after <ISO> promotes only rows persisted at or after a timestamp.
 //
 // Without it this script promotes EVERY pending_review row, which is wrong whenever the queue holds
@@ -71,13 +87,19 @@ async function main() {
 
   const where = { status: 'pending_review' };
   if (makeFilter) where.make = makeFilter;
+  if (idFilter) where.id = { in: idFilter };
   if (createdAfter) where.createdAt = { gte: createdAfter };
   if (typeFilter) where.vehicleType = typeFilter;
   const rows = await prisma.knownIssue.findMany({
     where, select: { id: true, title: true, make: true, model: true, citations: true },
     orderBy: [{ make: 'asc' }, { model: 'asc' }],
   });
-  console.log(`Found ${rows.length} pending_review issues${makeFilter ? ` for ${makeFilter}` : ''}${typeFilter ? ` [vehicleType=${typeFilter}]` : ''}.${dryRun ? ' (dry-run)' : ''}\n`);
+  console.log(`Found ${rows.length} pending_review issues${makeFilter ? ` for ${makeFilter}` : ''}${idFilter ? ` from ${idFilter.length} requested IDs` : ''}${typeFilter ? ` [vehicleType=${typeFilter}]` : ''}.${dryRun ? ' (dry-run)' : ''}\n`);
+  if (idFilter && rows.length !== idFilter.length) {
+    const found = new Set(rows.map((row) => row.id));
+    const missing = idFilter.filter((id) => !found.has(id));
+    console.log(`  ${missing.length} requested IDs are no longer pending_review and will not be touched.`);
+  }
 
   let promoted = 0, skipped = 0;
   const skippedList = [];

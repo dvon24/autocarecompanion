@@ -970,6 +970,26 @@ export const productUrlFingerprints = [
   '4a326f7d24c77a2ad2e98e82',
   // https://yoshiparts.com/parts/nissan-1327030R00
   'f7a240e62cc9b20c76fc703d',
+  // Opus 306: nissan-frontier-re5r05a-5-speed-valve-body-integrated-tcm-solenoid-failure-c | Sunbelt Valve Body Builders | https://sunbeltvalvebodies.com/products/4f27e-valve-body-copy-4
+  'b4b117a28ba199d0479a5f85',
+  // Opus 306: nissan-frontier-transfer-case-shift-actuator-motor-position-switch-failure-4 | Auto Parts Prime | https://www.autopartsprime.com/dorman/oe-solutions-transfer-case-motor/mp-600919
+  '0cbef867de9c550a4ce54787',
+  // Opus 306: nissan-frontier-vg33e-vg33er-timing-belt-is-wear-item-interference-engine-ne | Engine Parts Only | https://www.enginepartsonly.com/products/2004-nissan-frontier-3-3l-engine-timing-belt-water-pump-kit-tbk634wpze10.html
+  '80b9f0020a25193c4224a14e',
+  // Opus 306: nissan-frontier-wheel-speed-sensor-corrosion-triggering-abs-vdc-off-slip-war | NissanPartsDeal | https://www.nissanpartsdeal.com/parts/nissan-sensor-assy-ant~47901-9ca5a.html
+  '114bdcde69eea4853490a5b3',
+  // Opus 306: nissan-frontier-wheel-speed-sensor-corrosion-triggering-abs-vdc-off-slip-war | NissanPartsDeal | https://www.nissanpartsdeal.com/parts/nissan-sensor-assy-ant~47900-9ca5a.html
+  '103c292e1bbe42623d85a508',
+  // Opus 306: nissan-frontier-wheel-speed-sensor-corrosion-triggering-abs-vdc-off-slip-war | NissanPartsDeal | https://www.nissanpartsdeal.com/parts/nissan-sensor-assy-ant~47901-9ca6a.html
+  '1b29d35ec355d90cff711095',
+  // Opus 306: nissan-frontier-wheel-speed-sensor-corrosion-triggering-abs-vdc-off-slip-war | NissanPartsDeal | https://www.nissanpartsdeal.com/parts/nissan-sensor-asmy-ant~47900-9ca6a.html
+  'a107eef4fb10403e9ee04da4',
+  // Opus 306: nissan-frontier-hvac-blend-door-actuator-failure-causing-no-heat-clicking-un | MegaZip | https://www.megazip.net/zapchasti-dlya/nissan/actuator-assy-27743ZH10A
+  '1c77e9e14691719cbc87cfd3',
+  // Opus 306: nissan-frontier-catalytic-converter-efficiency-failure-4-0l-vq40de | Modern Day Muffler | https://moderndaymuffler.com/products/magnaflow-52665-direct-fit-oem-grade-catalytic-converter-2-id-2-125-od
+  '50c14debf7e1e42a884ed1aa',
+  // Opus 306: nissan-frontier-rear-timing-cover-oil-gallery-gasket-blowout-causing-low-oil | Z1 Off-Road | https://www.z1offroad.com/front-timing-cover/nissan/oem-05-nissan-frontier-rear-timing-cover-vq40de-p-17113.html
+  '1d10303fd71517447848c74f',
 ] as const;
 
 export const vendorUrlFingerprints = [
@@ -1951,6 +1971,26 @@ export const vendorUrlFingerprints = [
   'fcc258d69d5556a0695e2e42',
   // z1 off-road | https://www.z1offroad.com/rear-suspension/nissan/oem-05-21-nissan-frontier-rear-leaf-spring-pack-assembly-p-24419.html
   '76eb8d0e31b4d93b260bd490',
+  // Opus 306: nissan-frontier-re5r05a-5-speed-valve-body-integrated-tcm-solenoid-failure-c | Sunbelt Valve Body Builders | https://sunbeltvalvebodies.com/products/4f27e-valve-body-copy-4
+  '59c1f4c940a8812082cad4fa',
+  // Opus 306: nissan-frontier-transfer-case-shift-actuator-motor-position-switch-failure-4 | Auto Parts Prime | https://www.autopartsprime.com/dorman/oe-solutions-transfer-case-motor/mp-600919
+  'a38ffe46f62ffa686839f16e',
+  // Opus 306: nissan-frontier-vg33e-vg33er-timing-belt-is-wear-item-interference-engine-ne | Engine Parts Only | https://www.enginepartsonly.com/products/2004-nissan-frontier-3-3l-engine-timing-belt-water-pump-kit-tbk634wpze10.html
+  '54861ef936f5b548628e60d7',
+  // Opus 306: nissan-frontier-wheel-speed-sensor-corrosion-triggering-abs-vdc-off-slip-war | NissanPartsDeal | https://www.nissanpartsdeal.com/parts/nissan-sensor-assy-ant~47901-9ca5a.html
+  '65d08a6214f92e97fb77a21d',
+  // Opus 306: nissan-frontier-wheel-speed-sensor-corrosion-triggering-abs-vdc-off-slip-war | NissanPartsDeal | https://www.nissanpartsdeal.com/parts/nissan-sensor-assy-ant~47900-9ca5a.html
+  'c5e0cd28310538d42e013c62',
+  // Opus 306: nissan-frontier-wheel-speed-sensor-corrosion-triggering-abs-vdc-off-slip-war | NissanPartsDeal | https://www.nissanpartsdeal.com/parts/nissan-sensor-assy-ant~47901-9ca6a.html
+  '3a315913861ee8bb60cefb9c',
+  // Opus 306: nissan-frontier-wheel-speed-sensor-corrosion-triggering-abs-vdc-off-slip-war | NissanPartsDeal | https://www.nissanpartsdeal.com/parts/nissan-sensor-asmy-ant~47900-9ca6a.html
+  'ada5edc720003a839088f1f2',
+  // Opus 306: nissan-frontier-hvac-blend-door-actuator-failure-causing-no-heat-clicking-un | MegaZip | https://www.megazip.net/zapchasti-dlya/nissan/actuator-assy-27743ZH10A
+  '978313c880aafc650e4a2ee7',
+  // Opus 306: nissan-frontier-catalytic-converter-efficiency-failure-4-0l-vq40de | Modern Day Muffler | https://moderndaymuffler.com/products/magnaflow-52665-direct-fit-oem-grade-catalytic-converter-2-id-2-125-od
+  '18952a591fc7b178686c282d',
+  // Opus 306: nissan-frontier-rear-timing-cover-oil-gallery-gasket-blowout-causing-low-oil | Z1 Off-Road | https://www.z1offroad.com/front-timing-cover/nissan/oem-05-nissan-frontier-rear-timing-cover-vq40de-p-17113.html
+  '7eb1579e9bdf3598003c2512',
 ] as const;
 
 export const retailerHostFingerprints = [
@@ -2102,4 +2142,12 @@ export const retailerHostFingerprints = [
   'ae7bb61c4196afe7a5d54ab7',
   // z1offroad.com
   '636fd8157b51ef402c4d6dbc',
+  // Opus 306: nissan-frontier-re5r05a-5-speed-valve-body-integrated-tcm-solenoid-failure-c | Sunbelt Valve Body Builders | https://sunbeltvalvebodies.com/products/4f27e-valve-body-copy-4
+  'cde6e8e0cb5553516834ea8f',
+  // Opus 306: nissan-frontier-vg33e-vg33er-timing-belt-is-wear-item-interference-engine-ne | Engine Parts Only | https://www.enginepartsonly.com/products/2004-nissan-frontier-3-3l-engine-timing-belt-water-pump-kit-tbk634wpze10.html
+  '6195c47a92e212839c1eaa8d',
+  // Opus 306: nissan-frontier-hvac-blend-door-actuator-failure-causing-no-heat-clicking-un | MegaZip | https://www.megazip.net/zapchasti-dlya/nissan/actuator-assy-27743ZH10A
+  '96385521931095574ea70ddb',
+  // Opus 306: nissan-frontier-catalytic-converter-efficiency-failure-4-0l-vq40de | Modern Day Muffler | https://moderndaymuffler.com/products/magnaflow-52665-direct-fit-oem-grade-catalytic-converter-2-id-2-125-od
+  'e93466781c125913495f6d17',
 ] as const;

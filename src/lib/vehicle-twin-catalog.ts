@@ -84,6 +84,10 @@ const masks = {
   wheel: 'ellipse(18% 25% at 42% 66%)', rearwheel: 'ellipse(16% 24% at 20% 64%)',
   hood: 'ellipse(29% 18% at 65% 39%)', rad: 'ellipse(23% 23% at 70% 53%)',
 };
+const challengerMasks = {
+  wheel: 'ellipse(17% 25% at 44% 65%)', rearwheel: 'ellipse(14% 23% at 21% 55%)',
+  hood: 'ellipse(31% 20% at 64% 40%)', rad: 'ellipse(29% 30% at 69% 50%)',
+};
 const generatedArt = (root: string, paintSlug: string) => ({
   available:true,base:`${root}/base-${paintSlug}.webp`,strategy:'opaque-masked' as const,masks,
   effects:{wheel:`${root}/glow-wheel-${paintSlug}.webp`,rearwheel:`${root}/glow-rearwheel-${paintSlug}.webp`,hood:`${root}/glow-hood-${paintSlug}.webp`,rad:`${root}/xray-radiator-${paintSlug}.webp`},
@@ -107,7 +111,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       {node:'oilFilter',label:'Oil filter',lastServiceMileage:54000,intervalMiles:6000,intervalSource:'2015 Dodge Challenger Owner\'s Manual',sourceUrl:'https://vehicleinfo.mopar.com/assets/publications/en-us/Dodge/2015/Challenger/1037.pdf',sourceSection:'Maintenance Chart — 6.4L, pp. 565–569'},
       {node:'transFluid',label:'Automatic transmission fluid',lastServiceMileage:0,intervalMiles:60000,intervalSource:'Au7o verified maintenance schedule · 2015 Challenger automatic severe-use branch',sourceUrl:'https://www.mopar.com/dodge/en-us/my-vehicle/maintenance-schedule.html',sourceSection:'ZF 8HP70 transmission service'},
     ]},
-    art: { available: true, base: '/twin-stage/challenger/base-granite-crystal.webp', xray:'/twin-stage/car-xray.webp', strategy: 'alpha-overlay', effects: {
+    art: { available: true, base: '/twin-stage/challenger/base-granite-crystal.webp', xray:'/twin-stage/car-xray.webp', strategy: 'opaque-masked', masks: challengerMasks, effects: {
       wheel: '/twin-stage/challenger/glow-wheel-granite-crystal.webp', rearwheel: '/twin-stage/challenger/glow-rearwheel-granite-crystal.webp',
       hood: '/twin-stage/challenger/glow-hood-granite-crystal.webp', rad: '/twin-stage/challenger/glow-radiator-granite-crystal.webp',
     } },
@@ -196,7 +200,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
   },
   {
     id:'kicks',fulfillmentId:null,ownerReady:false,
-    identity:{year:2025,make:'Nissan',model:'Kicks',trim:'Trim confirmation pending',engine:'2.0L I4',paint:'Gun Metallic'},demoMileage:12000,
+    identity:{year:2025,make:'Nissan',model:'Kicks',trim:'Trim not provided',engine:'2.0L I4',paint:'Gun Metallic'},demoMileage:12000,
     paintPalette:{sourceLabel:'2025 Nissan Kicks brochure · Exterior Colors',sourceUrl:'https://www.nissanusa.com/content/dam/Nissan/us/vehicle-brochures/2025/2025-nissan-kicks-brochure-en.pdf',colors:[
       {name:'Fresh Powder',swatch:'#F4F2EA',artStatus:'awaiting-art'},{name:'Aspen White TriCoat',swatch:'#EEEDE7',artStatus:'awaiting-art'},
       {name:'Gun Metallic',swatch:'#565B60',artStatus:'rendered'},{name:'Canyon Bronze Metallic',swatch:'#75665A',artStatus:'awaiting-art'},

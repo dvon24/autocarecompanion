@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck -- assertions exercise the intentionally untyped legacy JSX tree.
 import assert from 'node:assert/strict';
 import test from 'node:test';
@@ -28,12 +29,12 @@ test('unknown transmission renders no transmission parts', () => {
   assert.equal(trees.car.nodes.transFluid, undefined);
 });
 
-test('rear tire exposes an honest persisted rotation action without guessing overdue state', () => {
+test('rear tire exposes the documented 6,000-mile rotation deadline and persisted action', () => {
   const unlogged = buildTwinTrees({}, 65_000, 'automatic');
   assert.equal(unlogged.wheel.nodes.tire.maintenanceType, 'tire_rotation');
   assert.equal(unlogged.wheel.nodes.tire.serviceIntervalMiles, 6_000);
   assert.equal(unlogged.wheel.nodes.tire.unlogged, true);
-  assert.equal(unlogged.wheel.nodes.tire.riskAt, undefined);
+  assert.equal(unlogged.wheel.nodes.tire.riskAt, 6_000);
 
   const serviced = servicedFromRecords([{
     type:'tire_rotation', mileage:64_000, date:'2026-08-20T00:00:00.000Z', nextDueMileage:70_000, nextDueDate:null,
@@ -60,7 +61,9 @@ test('persisted Mishimoto part resolves the radiator issue in owner context', ()
     recent:[],
     transmission:'automatic',
     evaluatedAt:'2026-08-28T00:00:00.000Z',
-    installedPartNumbers:['  mmrad-srt-15  '],
+    installedParts:[{
+      nodeId:'radCore', kind:'upgrade', partNumber:'  mmrad-srt-15  ', fitmentKey:'dodge-challenger:automatic',
+    }],
     issues:[{id:'dodge-challenger-radiator-failure',title:'OEM Radiator Premature Failure',severity:'Moderate',href:'/known-issues/dodge-challenger#dodge-challenger-radiator-failure'}],
   });
   assert.equal(value.equipped.radCore, true);
@@ -72,7 +75,7 @@ test('owner trees fail closed on absent and transmission-inapplicable issue evid
   const base = {
     fulfillmentId:'dodge-challenger',
     vehicle:{year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',engine:'6.4L V8 HEMI'},
-    miles:65_000, records:[], recent:[], evaluatedAt:'2026-08-28T00:00:00.000Z', installedPartNumbers:[],
+    miles:65_000, records:[], recent:[], evaluatedAt:'2026-08-28T00:00:00.000Z', installedParts:[],
   };
   const absent = buildOwnerTwinValue({...base,transmission:'automatic',issues:[]});
   assert.equal(absent.trees.engine.nodes.radCore.knownIssue, undefined);

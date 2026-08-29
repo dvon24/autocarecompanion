@@ -123,8 +123,8 @@ function THMinStage({ sel, onTap, onBg, mobile }) {
           <img src={displayedArt.base} onError={()=>setBaseFailed(true)} alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}${paintArtwork.selected?.name ? ` in ${paintArtwork.selected.name}` : ""}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain" }}/>
         )}
         {(baseFailed || !displayedArt) && <div role="img" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model} artwork unavailable`} style={{position:"absolute",inset:0,display:"grid",placeItems:"center",padding:20,textAlign:"center",color:"rgba(255,255,255,.72)",fontSize:13}}>{paintArtwork.pending ? `${paintArtwork.selected?.name || paintControl?.choice || "Selected color"} selected · matching vehicle artwork is not available yet` : "Vehicle artwork unavailable"}</div>}
-        {displayedArt && catalog.id === "challenger" && (
-          <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: !finish || finish.id === "oem" ? 0 : 1, filter: finish?.filter || "none", transition:"opacity .4s ease" }}/>
+        {displayedArt?.wheelOverlay && (
+          <img src={displayedArt.wheelOverlay} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: !finish || finish.id === "oem" ? 0 : 1, filter: finish?.filter || "none", transition:"opacity .4s ease" }}/>
         )}
         {Object.entries(displayedArt?.effects || {}).filter(([k])=>!failedEffects[k]).map(([k,src]) => (
           <img key={k} src={src} onError={()=>setFailedEffects(value=>({...value,[k]:true}))} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"contain", opacity: lit === k ? 1 : 0, transition:"opacity .3s ease", pointerEvents:"none", ...(displayedArt?.strategy === "opaque-masked" ? {clipPath:displayedArt.masks?.[k]} : {}) }}/>

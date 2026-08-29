@@ -121,7 +121,7 @@ const TT_TREES = {
       wtb:{ label:"Wheel, Tire & Brakes", sub:"All four corners", img:"/twin-stage/parts/part-wheel.webp", kids:["tire","wheelA","brakes"], group:true,
             partNo:"—", where:"Hub outward, front and rear", spec:"Same wheel and tire all round · brakes differ front to rear", price:"—" },
       tire:{ label:"Tire", sub:"275/40ZR20 · all four", img:"/twin-stage/parts/part-tire.webp", kids:[], riskAt:40000,
-             partNo:"275/40ZR20 106Y XL", brand:"Pirelli P Zero AS Plus 3 replacement option", where:"All four corners — same size front and rear", spec:"275/40ZR20 · XL · confirm the door-jamb cold pressure and the exact tire currently installed", price:"$310.61 ea when reviewed", stock:"Tire Rack · in stock when reviewed", buyUrl:"https://www.tirerack.com/tires/TireSearchResults.jsp?autoMake=Dodge&autoModClar=392&autoModel=Challenger+SRT&autoYear=2015&diameter=20&minLoadRating=XL&minSpeedRating=Z&performance=ALL&ratio=40&skipOver=true&sortCode=60050&tireIndex=0&width=275%2F",
+             partNo:"275/40R20 106Y XL · Discount Tire item 137905", brand:"Pirelli P Zero AS Plus 3 replacement option", where:"All four corners — same size front and rear", spec:"275/40R20 106Y XL · 9–11 in approved rim range and 2,094 lb max load · confirm the door placard and every installed sidewall", price:"$317.00 each when reviewed", stock:"Discount Tire · direct product page live when reviewed", buyUrl:"https://www.discounttire.com/buy-tires/pirelli-p-zero-as-plus-3/p/137905",
              life:"Replace at 3/32\" tread or 6 years", dueNote:"You are 25,000 mi past a typical set.", issue:"Heat-cycled sidewalls on a 392 go off well before the tread does — a set that still shows tread can be long past its grip." },
       wheelA:{ label:"Wheel", finishes:true, sub:"20 × 9.5 forged · all four", img:"/twin-stage/parts/part-wheel.webp", kids:["lugs","tpms"],
                partNo:"5XC13TRMAA", brand:"Mopar forged aluminum", where:"All four corners — same part front and rear", spec:"20×9.5 · 5×115 · +23 mm offset", price:"$542.00 ea", stock:"Mopar parts counter · special order",
@@ -281,7 +281,7 @@ TT_TREES.trans = {
 TT_TREES.car = {
   label:"2015 Dodge Challenger SRT 392", short:"Your car", root:"car", isCar:true,
   nodes: Object.assign({
-    car:{ label:"2015 Challenger SRT 392", sub:"6.4L V8 HEMI · 65,000 mi", img:"/twin-stage/car-base.webp", kids:["wtb","eng","trx","wip"], group:true,
+    car:{ label:"2015 Challenger SRT 392", sub:"6.4L V8 HEMI · 65,000 mi", img:"/twin-stage/challenger/base-granite-crystal.webp", kids:["wtb","eng","trx","wip"], group:true,
           partNo:"VIN 2C3CDZ...", where:"Your garage", spec:"Every system Au7o tracks on this car", price:"—",
           life:"Four systems tracked · parts due across all of them" },
   }, TT_TREES.wheel.nodes, TT_TREES.engine.nodes, TT_TREES.trans.nodes, TT_TREES.wipers.nodes),
@@ -557,7 +557,7 @@ function TTServiceRow({ node, miles, dense }) {
   const [logging, setLogging] = React.useState(false);
   const hasMileageInterval = typeof node.serviceIntervalMiles === "number" && node.serviceIntervalMiles > 0;
   const hasTimeInterval = typeof node.serviceIntervalMonths === "number" && node.serviceIntervalMonths > 0;
-  if (!node.maintenanceType || (!live && !hasMileageInterval && !hasTimeInterval)) return null;
+  if (!node.maintenanceType) return null;
   const done = node.servicedAt != null;
   if (live) return (
     <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)", fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>
@@ -586,13 +586,13 @@ function TTServiceRow({ node, miles, dense }) {
           </span>
           <div style={{ minWidth:0, flex:1 }}>
             <div style={{ fontSize:11.5, fontWeight:600, color:"var(--ki-ok-ink)" }}>Done at <span className="mono">{node.servicedAt.toLocaleString()} mi</span></div>
-            <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>Next around <span className="mono">{ttNextDue(node).toLocaleString()} mi</span></div>
+            <div style={{ fontSize:10.5, color:"var(--slate-500)", marginTop:1 }}>{hasMileageInterval ? <>Next around <span className="mono">{ttNextDue(node).toLocaleString()} mi</span></> : hasTimeInterval ? <>The next date follows the documented calendar interval.</> : <>Condition-based item · no mileage deadline is invented.</>}</div>
           </div>
           <button onClick={()=>ttUndoDone(node)} style={{ flexShrink:0, background:"transparent", border:"none", color:"var(--slate-500)", fontFamily:"var(--font-sans)", fontSize:11, fontWeight:600, cursor:"pointer", padding:0 }}>Undo</button>
         </div>
       ) : (
         <div style={{ display:"flex", alignItems:"center", gap:9 }}>
-          <div style={{ minWidth:0, flex:1, fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>Already replaced this? Log it and Au7o resets the clock.</div>
+          <div style={{ minWidth:0, flex:1, fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>{hasMileageInterval||hasTimeInterval?"Already serviced this? Log it and Au7o resets the documented clock.":"Already inspected or serviced this? Log the work without inventing a deadline."}</div>
           <button onClick={()=>ttMarkDone(node, miles)} style={{ flexShrink:0, padding:"8px 12px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer", whiteSpace:"nowrap" }}>Mark as done</button>
         </div>
       )}

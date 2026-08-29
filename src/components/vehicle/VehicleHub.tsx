@@ -2755,7 +2755,7 @@ function VehicleRail({
   return (
     <aside className="rail">
       <div className="rail-top">
-        <Link href="/" className="brand">
+        <Link href="https://au7o.io/" className="brand">
           <Image src="/og-image.png" alt="Au7o" width={28} height={28} />
           <span className="brand-text">Au<span className="accent">7</span>o</span>
         </Link>
@@ -3338,7 +3338,7 @@ function MobileThreadsDrawer({
       />
       <aside className="md-panel" role="dialog" aria-label="Recent conversations">
         <div className="md-head">
-          <Link href="/" className="md-brand" onClick={onClose}>
+          <Link href="https://au7o.io/" className="md-brand" onClick={onClose}>
             <Image src="/og-image.png" alt="" width={24} height={24} />
             <span>Au<span className="md-accent">7</span>o</span>
           </Link>
@@ -3383,12 +3383,14 @@ function MobileThreadsDrawer({
         <div className="md-spacer" />
 
         <div className="md-foot">
-          {/* /garage redirects a signed-in owner back to their hub (black-flash
-              dead-end), so point signed-in users at account/vehicle management
-              instead; anon keeps the demo garage. */}
-          <Link href={user ? '/account' : '/garage'} className="md-link" onClick={onClose}>
-            Garage
+          <Link href="https://au7o.io/" className="md-link" onClick={onClose}>
+            Home
           </Link>
+          {user && (
+            <Link href="/garage?add=1" className="md-link" onClick={onClose}>
+              Add vehicle
+            </Link>
+          )}
           <Link href="/drive" className="md-link" onClick={onClose}>
             Drive
           </Link>

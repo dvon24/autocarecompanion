@@ -58,13 +58,13 @@ function DotIcon({ kind, color }: { kind: keyof typeof DOT; color: string }) {
 }
 
 const TWIN_HOTSPOTS = [
-  { id: 'wheel', label: 'Wheel, Tire & Brakes', x: 39.6, y: 65.5, kind: 'alert' as const, glow: 'car-wheel-highlight-glow' },
-  { id: 'hood', label: 'Engine', x: 61, y: 42, kind: 'alert' as const, glow: 'car-hood-highlight-glow' },
+  { id: 'wheel', label: 'Wheel, Tire & Brakes', x: 44, y: 65, kind: 'alert' as const, glow: 'glow-wheel-granite-crystal', mask: 'ellipse(17% 25% at 44% 65%)' },
+  { id: 'hood', label: 'Engine', x: 64, y: 40, kind: 'alert' as const, glow: 'glow-hood-granite-crystal', mask: 'ellipse(31% 20% at 64% 40%)' },
   // No glow art for the windshield — the real stage doesn't light it either.
-  { id: 'glass', label: 'Windshield Wipers', x: 44, y: 29, kind: 'alert' as const, glow: null },
-  { id: 'rearwheel', label: 'Rear Wheel & Tire', x: 20.5, y: 52.5, kind: 'alert' as const, glow: 'car-rear-wheel-highlight-glow' },
+  { id: 'glass', label: 'Windshield Wipers', x: 44, y: 29, kind: 'alert' as const, glow: null, mask: null },
+  { id: 'rearwheel', label: 'Rear Wheel & Tire', x: 21, y: 55, kind: 'alert' as const, glow: 'glow-rearwheel-granite-crystal', mask: 'ellipse(14% 23% at 21% 55%)' },
   // The radiator is the one with a documented issue AND an upgrade on record.
-  { id: 'rad', label: 'Radiator & Coolant', x: 67, y: 58.5, kind: 'shield' as const, glow: 'car-radiator-highlight-glow' },
+  { id: 'rad', label: 'Radiator & Coolant', x: 69, y: 50, kind: 'shield' as const, glow: 'glow-radiator-granite-crystal', mask: 'ellipse(29% 30% at 69% 50%)' },
 ];
 
 export function LiveHubDemo({ vehicleName }: { vehicleName?: string; mileage?: string }) {
@@ -118,7 +118,7 @@ export function LiveHubDemo({ vehicleName }: { vehicleName?: string; mileage?: s
 
       <div style={{ position: 'relative' }}>
         <img
-          src="/twin-stage/car-base.webp"
+          src="/twin-stage/challenger/base-granite-crystal.webp"
           alt="Au7o tech tree demo — 2015 Dodge Challenger SRT 392"
           loading="lazy"
           style={{ display: 'block', width: '100%', aspectRatio: '16 / 9', objectFit: 'cover' }}
@@ -173,19 +173,19 @@ export function LiveHubDemo({ vehicleName }: { vehicleName?: string; mileage?: s
           );
         })}
 
-        {/* Per-part glow overlays. They must come AFTER the markers in the DOM
-            for `.au7o-hot-x:hover ~ .au7o-glow-x` to reach them; z-index puts
-            them back beneath. Promo-sized copies (512px, 171KB for all five)
-            rather than the stage's full-res set, which is 1.2MB — too much
-            weight for a hover effect on our highest-traffic pages. */}
+        {/* Per-part SRT 392 frames. They must come AFTER the markers in the DOM
+            for `.au7o-hot-x:hover ~ .au7o-glow-x` to reach them; each opaque
+            frame is clipped to its matching system so the rest of the car
+            stays on the aligned base photograph. */}
         {TWIN_HOTSPOTS.filter((h) => h.glow).map((h) => (
           <img
             key={h.glow}
             className={`au7o-glow au7o-glow-${h.id}`}
-            src={`/twin-stage/promo/${h.glow}.webp`}
+            src={`/twin-stage/challenger/${h.glow}.webp`}
             alt=""
             aria-hidden
             loading="lazy"
+            style={h.mask ? { clipPath: h.mask } : undefined}
           />
         ))}
 

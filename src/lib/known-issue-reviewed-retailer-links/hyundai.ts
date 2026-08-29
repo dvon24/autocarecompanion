@@ -256,6 +256,10 @@ export const productUrlFingerprints = [
   '3661ed90e288b076e9e9fd77',
   // https://yoshiparts.com/parts/hyundai-4262139052
   '3aedef5e12f2e733f58ab759',
+  // Opus 306: hyundai-nexo-fuel-cell-coolant-ion-filter-service-skipped-grossly-overpri | HyundaiPartsDeal | https://www.hyundaipartsdeal.com/genuine/hyundai-catridge-coolant-filter~25831-m5000.html
+  'c82748ddbdc7ed138812cb4d',
+  // Opus 306: hyundai-nexo-fuel-cell-coolant-ion-filter-service-skipped-grossly-overpri | HyundaiPartsDeal | https://www.hyundaipartsdeal.com/genuine/hyundai-fuel-cell-coolant-40-c-ethyl~00232-19080.html
+  '709852b11e39132adac47f8e',
 ] as const;
 
 export const vendorUrlFingerprints = [
@@ -537,6 +541,10 @@ export const vendorUrlFingerprints = [
   'f89fa299057ce0888872375e',
   // yoshiparts | https://yoshiparts.com/parts/hyundai-4262139052
   'e11ae61f676c6b1ef1f33783',
+  // Opus 306: hyundai-nexo-fuel-cell-coolant-ion-filter-service-skipped-grossly-overpri | HyundaiPartsDeal | https://www.hyundaipartsdeal.com/genuine/hyundai-catridge-coolant-filter~25831-m5000.html
+  'e7d7c6cd452adde69932b750',
+  // Opus 306: hyundai-nexo-fuel-cell-coolant-ion-filter-service-skipped-grossly-overpri | HyundaiPartsDeal | https://www.hyundaipartsdeal.com/genuine/hyundai-fuel-cell-coolant-40-c-ethyl~00232-19080.html
+  '0a839cb12a30b120e7148212',
 ] as const;
 
 export const retailerHostFingerprints = [
