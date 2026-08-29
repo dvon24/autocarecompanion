@@ -217,11 +217,16 @@ const nextConfig: NextConfig = {
   },
 };
 
-export default withSentryConfig(withPWA(nextConfig), {
+const pwaConfig = withPWA(nextConfig);
+const sentryBuildConfigured = Boolean(
+  process.env.SENTRY_ORG && process.env.SENTRY_PROJECT && process.env.SENTRY_AUTH_TOKEN,
+);
+
+export default sentryBuildConfigured ? withSentryConfig(pwaConfig, {
   org: process.env.SENTRY_ORG,
   project: process.env.SENTRY_PROJECT,
   silent: true, // Suppress logs during build
   widenClientFileUpload: true,
   disableLogger: true,
   tunnelRoute: '/monitoring', // Proxy Sentry requests to avoid ad blockers
-});
+}) : pwaConfig;

@@ -22,16 +22,20 @@ function FitmentBadge({ node }) {
      actually being shown — a "verified fit" label naming the wrong car is
      exactly the failure this project has been careful to avoid elsewhere. */
   const v = useTwinVehicle();
-  if (node?.partNo === "Not sourced for this demo") {
+  const directReviewedPart = Boolean(node?.buyUrl)
+    && !/parts\.nissanusa\.com\/v-/i.test(node.buyUrl)
+    && node?.partNo && node.partNo !== "—"
+    && node?.price && !/verify|choose|not sourced/i.test(node.price);
+  if (!directReviewedPart) {
     return (
       <span style={{ display:"inline-flex", alignItems:"center", gap:4, fontSize:10, fontWeight:600, padding:"2px 8px", borderRadius:999, background:"var(--ki-page)", color:"var(--slate-600)", border:"1px solid var(--ki-line)" }}>
-        System mapped · exact part not sourced
+        {node?.partNo === "Not sourced for this demo" ? "System mapped · exact part not sourced" : /parts\.nissanusa\.com\/v-/i.test(node?.buyUrl || "") ? "OEM catalog · confirm VIN" : "Part recorded · confirm fitment"}
       </span>
     );
   }
   return (
     <span style={{ display:"inline-flex", alignItems:"center", gap:4, fontSize:10, fontWeight:600, padding:"2px 8px", borderRadius:999, background:"var(--ki-ok-bg)", color:"var(--ki-ok-ink)" }}>
-      <Icon name="check" size={10} stroke={2.4}/> Verified fit · {v.year} {v.trim || v.model}
+      <Icon name="check" size={10} stroke={2.4}/> Fitment reviewed · {v.year} {v.trim || v.model}
     </span>
   );
 }
@@ -74,7 +78,7 @@ const TT_TREES = {
       wtb:{ label:"Wheel, Tire & Brakes", sub:"All four corners", img:"/twin-stage/parts/part-wheel.webp", kids:["tire","wheelA","brakes"], group:true,
             partNo:"—", where:"Hub outward, front and rear", spec:"Same wheel and tire all round · brakes differ front to rear", price:"—" },
       tire:{ label:"Tire", sub:"275/40ZR20 · all four", img:"/twin-stage/parts/part-tire.webp", kids:[], riskAt:40000,
-             partNo:"P ZERO PZ4 2755-2000", brand:"Pirelli P Zero PZ4", where:"All four corners — same size front and rear", spec:"275/40ZR20 · 35 psi cold", price:"$298.99 ea", stock:"Tire Rack · ships 2 days",
+             partNo:"275/40ZR20 106Y XL", brand:"Pirelli P Zero AS Plus 3 replacement option", where:"All four corners — same size front and rear", spec:"275/40ZR20 · XL · confirm the door-jamb cold pressure and the exact tire currently installed", price:"$310.61 ea when reviewed", stock:"Tire Rack · in stock when reviewed", buyUrl:"https://www.tirerack.com/tires/TireSearchResults.jsp?autoMake=Dodge&autoModClar=392&autoModel=Challenger+SRT&autoYear=2015&diameter=20&minLoadRating=XL&minSpeedRating=Z&performance=ALL&ratio=40&skipOver=true&sortCode=60050&tireIndex=0&width=275%2F",
              life:"Replace at 3/32\" tread or 6 years", dueNote:"You are 25,000 mi past a typical set.", issue:"Heat-cycled sidewalls on a 392 go off well before the tread does — a set that still shows tread can be long past its grip." },
       wheelA:{ label:"Wheel", finishes:true, sub:"20 × 9.5 forged · all four", img:"/twin-stage/parts/part-wheel.webp", kids:["lugs","tpms"],
                partNo:"5XC13TRMAA", brand:"Mopar forged aluminum", where:"All four corners — same part front and rear", spec:"20×9.5 · 5×115 · +23 mm offset", price:"$542.00 ea", stock:"Mopar parts counter · special order",
@@ -103,12 +107,12 @@ const TT_TREES = {
                 partNo:"68249074AA", brand:"Brembo 6-piston fixed", where:"Front, bolted to the knuckle", spec:"Bracket bolts 100 ft-lb · pistons 2×36 / 2×40 / 2×44 mm", price:"$689.00 reman", stock:"RockAuto · core charge $120",
                 life:"Rebuild or replace when a piston sticks or a boot tears" },
       rotor:{ label:"Front Rotor", sub:"390 mm slotted two-piece", img:"/twin-stage/parts/part-rotor.webp", kids:[], riskAt:70000,
-              partNo:"68232583AA", brand:"Mopar slotted vented", where:"Front axle, under the caliper", spec:"390 × 34 mm · min thickness 32.0 mm · runout < 0.05 mm", price:"$264.90 ea", stock:"Advance · 3.8 mi",
+              partNo:"68184587AB → 68184587AE", brand:"Genuine Mopar two-piece slotted rotor", where:"Front axle, under the 6-piston caliper", spec:"390 × 34 mm · SRT 392 six-piston Brembo branch · replace as an axle pair", price:"$932.80 ea when reviewed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:"https://www.moparpartsgiant.com/parts/mopar-rotor-brake~68184587ae.html",
               life:"Resurface once, then replace — most 392 owners replace in pairs",
               issue:"Front rotors on the 392 warp early if the car sees hard street stops. Watch for steering-wheel shudder at 55–65 mph braking.",
               alt:"StopTech 126.63066SR slotted · $214.99 ea" },
       pads:{ label:"Front Pads", sub:"Front axle set · 6-pot", img:"/twin-stage/parts/part-pads.webp", kids:[], riskAt:45000,
-             partNo:"68249169AB", brand:"Mopar semi-metallic, 6-piston fitment", where:"Front axle set · 4 pads", spec:"Min thickness 3 mm · bed-in 200 mi · not interchangeable with the rears", price:"$164.99 set", stock:"RockAuto · in stock",
+             partNo:"68144213AA → 68144213AC", brand:"Genuine Mopar front disc brake pad kit", where:"Front axle set · 4 pads", spec:"BR4 six-piston SRT 392 branch · not interchangeable with the rears", price:"$153.00 set when reviewed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:"https://www.moparpartsgiant.com/parts/mopar-front-disc-brake~68144213ac.html",
              life:"30k–45k on a 392 driven the way a 392 gets driven",
              dueNote:"20,000 mi past a typical front set.", issue:"Pad slap and a low pedal are the tells on this car long before the wear sensor squeals.",
              alt:"Hawk HPS 5.0 HB726B.582 · $148.00 set" },
@@ -116,10 +120,10 @@ const TT_TREES = {
                 partNo:"68249076AA", brand:"Brembo 4-piston fixed", where:"Rear, bolted to the knuckle", spec:"Bracket bolts 85 ft-lb · pistons 4×38 mm", price:"$472.00 reman", stock:"RockAuto · core charge $95",
                 life:"Rears seize before they wear — exercise the slides at every pad change" },
       rotorR:{ label:"Rear Rotor", sub:"350 mm vented", img:"/twin-stage/parts/part-rotor.webp", kids:[], riskAt:95000,
-              partNo:"68232587AA", brand:"Mopar vented", where:"Rear axle, under the caliper", spec:"350 × 28 mm · min thickness 26.0 mm", price:"$178.40 ea", stock:"Advance · 3.8 mi",
+              partNo:"5290538AC → 5290538AE", brand:"Genuine Mopar rear brake rotor", where:"Rear axle, under the 4-piston caliper", spec:"350 mm SRT rear-brake branch · replace as an axle pair", price:"$158.63 ea when reviewed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:"https://www.moparpartsgiant.com/parts/mopar-rotor-brake~5290538ae.html",
               life:"Usually outlives two front sets — replace in pairs when they do go" },
       padsR:{ label:"Rear Pads", sub:"Rear axle set · 4-pot", img:"/twin-stage/parts/part-pads.webp", kids:[], riskAt:80000,
-             partNo:"68249171AB", brand:"Mopar semi-metallic, 4-piston fitment", where:"Rear axle set · 4 pads", spec:"Min thickness 3 mm · smaller footprint than the fronts — different part", price:"$132.99 set", stock:"RockAuto · in stock",
+             partNo:"68144223AA → 68144223AD", brand:"Genuine Mopar rear disc brake pad kit", where:"Rear axle set · 4 pads", spec:"BR4 four-piston SRT rear branch · not interchangeable with the fronts", price:"$156.38 set when reviewed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:"https://www.moparpartsgiant.com/parts/mopar-rear-disc-brake~68144223ad.html",
              life:"60k–80k — roughly twice a front set" },
     },
   },
@@ -129,11 +133,11 @@ const TT_TREES = {
       oil:{ label:"Oil Change", sub:"6.4L HEMI · 7.0 qt", img:"/twin-stage/parts/part-oil-filter.webp", kids:["oilFluid","oilFilter","oilPlug"], group:true,
             partNo:"—", where:"Under the car, driver side", spec:"Every 6,000 mi on a 392", price:"—" },
       oilFluid:{ label:"Engine Oil", sub:"SAE 0W-40 · MS-12633", img:"/twin-stage/parts/part-oil.webp", kids:[], riskAt:65000,
-                 partNo:"550045214", brand:"Pennzoil Ultra Platinum 0W-40", where:"7.0 qt with a filter change", spec:"Full synthetic, MS-12633 required — not 5W-20", price:"$32.97 / 5 qt", stock:"Walmart · 1.4 mi",
+                 partNo:"550045214", brand:"Pennzoil Ultra Platinum 0W-40", where:"7.0 qt with a filter change", spec:"Full synthetic, MS-12633 required — not 5W-20", price:"$10.97 / 1 qt when reviewed", stock:"Walmart · in stock when reviewed", buyUrl:"https://www.walmart.com/ip/44981487",
                  life:"6,000 mi or 6 months, whichever lands first",
                  dueNote:"Due now.", issue:"The 392 is one of the few HEMIs that genuinely needs 0W-40 — a quick-lube 5W-20 fill is how lifters start ticking." },
-      oilFilter:{ label:"Oil Filter", sub:"Cartridge · top-mount", img:"/twin-stage/parts/part-oil-filter.webp", kids:[], riskAt:65000,
-                  partNo:"MO-899", brand:"Mopar MO-899", where:"Top of the engine, driver side of the intake", spec:"Cap torque 25 Nm · new O-ring each time", price:"$11.49", stock:"Mopar counter · in stock",
+      oilFilter:{ label:"Oil Filter", sub:"Spin-on · full-flow", img:"/twin-stage/parts/part-oil-filter.webp", kids:[], riskAt:65000,
+                  partNo:"04884899AB → 04884899AC / MO-899", brand:"Genuine Mopar engine oil filter", where:"Lower engine oil-filter mounting point", spec:"6.4L HEMI fitment · lubricate the gasket and follow the filter installation instructions", price:"$6.99 when reviewed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:"https://www.moparpartsgiant.com/oem-2015-dodge-challenger-oil_filter.html",
                   life:"Every oil change, no exceptions" },
       oilPlug:{ label:"Drain Plug & Gasket", sub:"M14 plug · crush washer", img:"/twin-stage/parts/part-drain-plug.webp", kids:[],
                 partNo:"6506305AA", brand:"Mopar crush washer", where:"Oil pan drain plug", spec:"Plug torque 20 ft-lb", price:"$1.35", stock:"Dealer · in stock",
@@ -163,9 +167,9 @@ const TT_TREES = {
 const TT_RAD_UPGRADE = { label:"Mishimoto MMRAD-SRT-15", tag:"All-aluminium direct fit", img:"/twin-stage/parts/part-radiator-alum.webp",
   fixes:"Retires the failure mode instead of resetting the clock — TIG-welded aluminium end tanks in place of the crimped plastic ones, lifetime warranty.",
   price:"$826.00", stock:"Amazon · 2-day", gain:"Reliability +18", confidence:"35 owner reports · fitment reviewed",
-  fit:"6.4L 392 / Scat Pack / SRT (2011–2021). The 5.7L R/T takes MMRAD-SRT-09 — confirm by VIN.",
+  fit:"6.4L 392 / Scat Pack / SRT (2011–2021). The 5.7L R/T takes MMRAD-SRT-09 — confirm by VIN.", buyUrl:"https://www.amazon.com/s?k=Mishimoto%20MMRAD-SRT-15&tag=au7o-20",
   node:{ sub:"All-aluminium · welded tanks", img:"/twin-stage/parts/part-radiator-alum.webp", partNo:"MMRAD-SRT-15", brand:"Mishimoto all-aluminium direct fit", price:"$826.00", stock:"Amazon · 2-day",
-         spec:"2-row aluminium core · TIG-welded end tanks · cap 16 psi", life:"Lifetime warranty — the OEM tank failure no longer applies to this car", riskAt:null, issue:null,
+         spec:"2-row aluminium core · TIG-welded end tanks · cap 16 psi", life:"Lifetime warranty — the OEM tank failure no longer applies to this car", riskAt:null, issue:null, buyUrl:"https://www.amazon.com/s?k=Mishimoto%20MMRAD-SRT-15&tag=au7o-20",
          resolved:"Known issue cleared — the plastic end tanks that fail on this platform are gone." } };
 
 /* Engine — holds the oil change, the two filters, and the radiator/cooling group */
@@ -176,11 +180,11 @@ TT_TREES.engine = {
           partNo:"—", where:"Under the hood", spec:"6.4L 392 HEMI · naturally aspirated", price:"—",
           life:"Oil, filters and coolant are the whole maintenance story on this engine" },
     airFilter:{ label:"Engine Air Filter", sub:"Panel · dry media", img:"/twin-stage/parts/part-air-filter.webp", kids:[], riskAt:60000,
-          partNo:"53034051AD", brand:"Mopar panel filter", where:"Airbox on the passenger side of the engine bay", spec:"Drop-in panel · no oiling · two clips", price:"$28.40", stock:"Advance · 3.8 mi",
+          partNo:"4861746AB → 68646405AA", brand:"Genuine Mopar air filter", where:"Engine air-cleaner housing", spec:"6.4L SRT HEMI branch · dry replacement element · do not wash or oil", price:"$28.89 when reviewed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:"https://www.moparpartsgiant.com/parts/mopar-filter-air~4861746ab.html",
           life:"Every 30,000 mi, sooner on dirt roads",
           dueNote:"Past due.", issue:"A loaded filter on a 392 shows up as a lazy top end long before any code sets." },
-    cabinFilter:{ label:"Cabin Air Filter", sub:"Carbon media", img:"/twin-stage/parts/part-cabin-filter.webp", kids:[], riskAt:55000,
-          partNo:"68318365AA", brand:"Mopar carbon cabin filter", where:"Behind the glovebox, passenger side", spec:"Airflow arrow points down · 10 min job", price:"$21.99", stock:"O'Reilly · 2.1 mi",
+    cabinFilter:{ label:"Cabin Air Filter", sub:"Fresh-air inlet element", img:"/twin-stage/parts/part-cabin-filter.webp", kids:[], riskAt:55000,
+          partNo:"68071668AA → 68535614AA", brand:"Genuine Mopar cabin air filter", where:"Fresh-air inlet below the cowl access cover", spec:"2015 Challenger all-engine branch · install in the airflow direction shown on the element", price:"$25.63 when reviewed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:"https://www.moparpartsgiant.com/oem-2015-dodge-challenger-cabin_air_filter.html",
           life:"Every 20,000 mi or a year",
           dueNote:"Overdue by a wide margin.", issue:"This is the one people notice — weak vents and a musty smell on first start." },
     rad:{ label:"Radiator & Coolant", sub:"Cooling system", img:"/twin-stage/parts/part-radiator.webp", kids:["radCore","coolant"], group:true,
@@ -189,19 +193,19 @@ TT_TREES.engine = {
           issue:"2011–2021 Challenger, all trims — the crimped plastic end tanks split at the seams and weep, typically between 60,000 and 100,000 mi and sooner on a 392 driven hard or in heat. Symptoms start as a seam leak, low-coolant warnings and steam under load.",
           issueRef:"OEM radiator premature failure · 2011–2021 · all trims · 35 owner reports",
           upgrade:TT_RAD_UPGRADE,
-          partNo:"55111282AB", brand:"Mopar / Denso replacement", where:"Front of the engine bay, behind the grille", spec:"Cap 16 psi · bleed at the thermostat housing", price:"$318.00", stock:"RockAuto · ships 3 days",
+          partNo:"5170742AA", brand:"Genuine Mopar engine-cooling radiator", where:"Front of the engine bay, behind the grille", spec:"6.4L SRT HEMI branch · verify VIN and severe-duty cooling configuration", price:"$284.33 when reviewed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:"https://www.moparpartsgiant.com/parts/mopar-radiator-engine-cooling~5170742aa.html",
           life:"Inspect the tank seams at every coolant change — the plastic end tanks are what fail, not the core" },
-    radOem:{ label:"OEM · plastic end tanks", sub:"Mopar / Denso · $318.00", img:"/twin-stage/parts/part-radiator.webp", kids:[], fitFor:"radCore", fitWhen:false,
-          partNo:"55111282AB", brand:"Mopar / Denso replacement", where:"Front of the engine bay, behind the grille", spec:"Aluminium core, crimped plastic end tanks · cap 16 psi", price:"$318.00", stock:"RockAuto · ships 3 days",
+    radOem:{ label:"OEM · plastic end tanks", sub:"Genuine Mopar · $284.33", img:"/twin-stage/parts/part-radiator.webp", kids:[], fitFor:"radCore", fitWhen:false,
+          partNo:"5170742AA", brand:"Genuine Mopar engine-cooling radiator", where:"Front of the engine bay, behind the grille", spec:"6.4L SRT HEMI branch · aluminium core with crimped plastic tanks", price:"$284.33 when reviewed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:"https://www.moparpartsgiant.com/parts/mopar-radiator-engine-cooling~5170742aa.html",
           life:"60,000–100,000 mi before the tank seams weep — then you do this job again",
           issue:"This is the part the known issue is written about. A like-for-like replacement resets the clock but keeps the failure mode.",
           issueRef:"OEM radiator premature failure · 2011–2021 · all trims" },
     radAlum:{ label:"Mishimoto MMRAD-SRT-15", sub:"All-aluminium · welded tanks · $826.00", img:"/twin-stage/parts/part-radiator-alum.webp", kids:[], fitFor:"radCore", fitWhen:true, upgrade:TT_RAD_UPGRADE,
-          partNo:"MMRAD-SRT-15", brand:"Mishimoto all-aluminium direct fit", where:"Same mounts as the OEM unit — direct fit, no bracket work", spec:"2-row aluminium core · TIG-welded end tanks · cap 16 psi", price:"$826.00", stock:"Amazon · 2-day",
+          partNo:"MMRAD-SRT-15", brand:"Mishimoto all-aluminium direct fit", where:"Same mounts as the OEM unit — direct fit, no bracket work", spec:"2-row aluminium core · TIG-welded end tanks · cap 16 psi", price:"$826.00", stock:"Amazon · 2-day", buyUrl:"https://www.amazon.com/s?k=Mishimoto%20MMRAD-SRT-15&tag=au7o-20",
           life:"Lifetime warranty — the plastic-tank failure mode no longer applies",
           resolved:"Fitting this clears the 2011–2021 radiator known issue on your car." },
     coolant:{ label:"Antifreeze", sub:"OAT · MS-12106", img:"/twin-stage/parts/part-antifreeze.webp", kids:[], riskAt:60000,
-          partNo:"68163849AB", brand:"Mopar 10-year OAT, purple", where:"Reservoir on the passenger side of the radiator", spec:"50/50 premix · do not mix with green or orange HOAT", price:"$24.95 gal", stock:"Dealer · in stock",
+          partNo:"68163849AB", brand:"Mopar 10-year OAT, purple", where:"Reservoir on the passenger side of the radiator", spec:"50/50 premix · do not mix with green or orange HOAT", price:"$24.95 gal when reviewed", stock:"RockAuto · exact-part search", buyUrl:"https://www.rockauto.com/en/partsearch/?partnum=68163849AB",
           life:"10 years or 150,000 mi from new, then every 5 years",
           dueNote:"Due for its first change.", issue:"Mixing coolant types on a HEMI drops the pack out of suspension and clogs the heater core — use OAT purple only." },
   }, TT_TREES.oil.nodes),
@@ -221,7 +225,7 @@ TT_TREES.trans = {
           life:"60,000 mi for this owner-facing plan; shorten for track or tow use",
           dueNote:"5,000 mi past due — never logged on this demo car." },
     transPan:{ label:"Pan & Filter", sub:"Filter integrated into pan", img:"/twin-stage/parts/part-oil-filter.webp", kids:[], riskAt:60000,
-          partNo:"68225344AA", brand:"Mopar pan-with-filter assembly", where:"Bottom of the transmission", spec:"Pan, filter and gasket are serviced as one assembly · confirm transmission/VIN", price:"Verify current price", stock:"Confirm by VIN before ordering",
+          partNo:"68225344AA", brand:"Mopar pan-with-filter assembly", where:"Bottom of the transmission", spec:"Pan, filter and gasket are serviced as one assembly · automatic 8HP70 only; confirm VIN", price:"Verify current price", stock:"RockAuto · exact-part search", buyUrl:"https://www.rockauto.com/en/partsearch/?partnum=68225344AA",
           life:"Replace with a full automatic-transmission fluid service" },
     transPlug:{ label:"Fill Plug Seal", sub:"One-time-use seal", img:"/twin-stage/parts/part-drain-plug.webp", kids:[],
           partNo:"Verify by VIN", brand:"Mopar / ZF service seal", where:"Fill plug on the transmission pan", spec:"Use the exact service procedure and torque for the installed transmission", price:"Verify current price", stock:"Confirm by VIN before ordering",
@@ -301,11 +305,14 @@ const ttHasUpgrade = (nodes, ids, eq) => ids.some(id => nodes[id] && nodes[id].u
 
 function ttRisk(node, miles) {
   if (typeof miles !== "number") return null;
-  if (node.unlogged) return null;
+  if (node.unlogged) {
+    if (node.firstServiceDeadline && (node.overdueByDate === true || (typeof node.dueMileage === "number" && node.dueMileage < miles))) return "critical";
+    return null;
+  }
   if (node.overdueByDate === true) return "critical";
   if (typeof node.dueMileage === "number") {
     const remaining = node.dueMileage - miles;
-    if (remaining <= 0) return "critical";
+    if (remaining < 0) return "critical";
     if (typeof node.riskAt === "number" && remaining <= node.riskAt * 0.2) return "watch";
     return null;
   }
@@ -342,7 +349,7 @@ function ttRiskLabel(node, miles, risk = ttRisk(node, miles)) {
   const dueMileage = typeof node.dueMileage === "number"
     ? node.dueMileage
     : (typeof node.servicedAt === "number" && typeof node.riskAt === "number" ? node.servicedAt + node.riskAt : null);
-  if (dueMileage != null && typeof miles === "number" && dueMileage <= miles) {
+  if (dueMileage != null && typeof miles === "number" && dueMileage < miles) {
     sources.push(`Past due by mileage (${dueMileage.toLocaleString()} mi deadline)`);
   }
   return sources.length ? sources.join(" · ") : "Service deadline passed";
@@ -519,7 +526,7 @@ function TTServiceRow({ node, miles, dense }) {
         />
       ) : (
         <div style={{ display:"flex", alignItems:"center", gap:9 }}>
-          <div style={{ minWidth:0, flex:1 }}>{done ? <>Last logged at <span className="mono">{node.servicedAt.toLocaleString()} mi</span>.</> : "No service event logged."}</div>
+          <div style={{ minWidth:0, flex:1 }}>{done ? <>Last logged at <span className="mono">{node.servicedAt.toLocaleString()} mi</span>.</> : node.firstServiceDeadline && typeof node.dueMileage === "number" && miles > node.dueMileage ? <>Required service is <strong style={{color:"var(--ki-crit)"}}>overdue</strong> · first deadline was <span className="mono">{node.dueMileage.toLocaleString()} mi</span>.</> : node.firstServiceDeadline ? <>Not logged yet · first service at <span className="mono">{node.dueMileage?.toLocaleString() || node.serviceIntervalMiles.toLocaleString()} mi</span>.</> : <>Not logged yet · inspect condition and log service when performed.</>}</div>
           <button type="button" onClick={()=>setLogging(true)} style={{ flexShrink:0, padding:"8px 12px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer", whiteSpace:"nowrap" }}>{done ? "Log again" : "Log service"}</button>
         </div>
       )}
@@ -546,6 +553,54 @@ function TTServiceRow({ node, miles, dense }) {
       )}
     </div>
   );
+}
+
+function TTOwnerEvidence({ node, nodeId, dense, miles }) {
+  const live = useTwinLive();
+  const actions = useTwinOwnerActions();
+  const [mode, setMode] = React.useState(null);
+  const [pending, setPending] = React.useState(false);
+  const [error, setError] = React.useState("");
+  const [part, setPart] = React.useState({ name:"", brand:"", partNumber:"", cost:"", lifespanMiles:"", installedAtMileage:String(Number.isFinite(miles)?miles:""), fitmentConfirmed:false });
+  const [note, setNote] = React.useState("");
+  if (!live || !actions) return null;
+  const savePart = async (event) => {
+    event.preventDefault();
+    if (!part.name.trim() || !part.fitmentConfirmed) return;
+    if (part.installedAtMileage !== "" && Number(part.installedAtMileage) > miles) { setError("Installed mileage cannot be greater than the current vehicle mileage."); return; }
+    setPending(true); setError("");
+    try {
+      await actions.saveInstalledPart({ nodeId, part:{
+        category:node.equipmentCategory || (String(node.label).toLowerCase().includes("tire") ? "tires" : "other"),
+        name:part.name.trim(), brand:part.brand.trim() || null, partNumber:part.partNumber.trim() || null,
+        cost:part.cost === "" ? null : Number(part.cost), lifespanMiles:part.lifespanMiles === "" ? null : Number(part.lifespanMiles), installedAtMileage:part.installedAtMileage === "" ? null : Number(part.installedAtMileage),
+        description:`Installed equipment for ${node.label}`, fitmentConfirmed:part.fitmentConfirmed,
+      }});
+      setMode(null);
+    } catch (cause) { setError(cause instanceof Error ? cause.message : "Could not save installed part."); }
+    finally { setPending(false); }
+  };
+  const saveNote = async (event) => {
+    event.preventDefault();
+    if (!note.trim()) return;
+    setPending(true); setError("");
+    try { await actions.annotateIssue({nodeId,note:note.trim()}); setMode(null); }
+    catch (cause) { setError(cause instanceof Error ? cause.message : "Could not save issue note."); }
+    finally { setPending(false); }
+  };
+  return <div id={`owner-${nodeId}`} style={{marginTop:12,padding:dense?"10px 11px":"11px 12px",borderRadius:12,background:"var(--ki-page)",border:"1px solid var(--ki-line)"}}>
+    {Array.isArray(node.installedParts) && node.installedParts.map((installed,index)=><div key={`${installed.partNumber||installed.name}-${index}`} style={{fontSize:11.5,lineHeight:1.45,marginBottom:6}}><strong>Installed:</strong> {installed.brand ? `${installed.brand} ` : ""}{installed.name}{installed.partNumber ? ` · ${installed.partNumber}` : ""}{Number.isFinite(installed.cost) ? ` · $${installed.cost.toFixed(2)}` : ""}{Number.isFinite(installed.installedAtMileage) ? ` · at ${installed.installedAtMileage.toLocaleString()} mi` : ""}{Number.isFinite(installed.lifespanMiles) ? ` · ${installed.lifespanMiles.toLocaleString()} mi expected life` : ""}</div>)}
+    {Array.isArray(node.userIssueNotes) && node.userIssueNotes.map((entry,index)=><div key={index} style={{fontSize:11.5,lineHeight:1.45,color:TT_UP_HEX,marginBottom:6}}><Icon name="shield-alert" size={11}/> {entry}</div>)}
+    {!mode && <div style={{display:"flex",gap:7,flexWrap:"wrap"}}><button type="button" onClick={()=>setMode("part")} style={{padding:"7px 10px",borderRadius:9,border:"1px solid var(--ki-line)",background:"var(--ki-card)",fontWeight:600,cursor:"pointer"}}>Change installed part</button><button type="button" onClick={()=>setMode("issue")} style={{padding:"7px 10px",borderRadius:9,border:"1px solid rgba(167,139,250,.45)",background:"rgba(139,92,246,.09)",color:TT_UP_HEX,fontWeight:600,cursor:"pointer"}}>I have an issue</button></div>}
+    {mode==="part" && <form onSubmit={savePart} style={{display:"grid",gap:7,minWidth:0}}><input required style={{width:"100%",minWidth:0}} placeholder="Installed part or tire" value={part.name} onChange={e=>setPart({...part,name:e.target.value})}/><input style={{width:"100%",minWidth:0}} placeholder="Brand" value={part.brand} onChange={e=>setPart({...part,brand:e.target.value})}/><input style={{width:"100%",minWidth:0}} placeholder="Part number" value={part.partNumber} onChange={e=>setPart({...part,partNumber:e.target.value})}/><div style={{display:"grid",gridTemplateColumns:"minmax(0,1fr) minmax(0,1fr)",gap:7}}><input style={{width:"100%",minWidth:0}} type="number" min="0" step="0.01" placeholder="Price paid" value={part.cost} onChange={e=>setPart({...part,cost:e.target.value})}/><input style={{width:"100%",minWidth:0}} type="number" min="1" placeholder="Expected life (mi)" value={part.lifespanMiles} onChange={e=>setPart({...part,lifespanMiles:e.target.value})}/></div><input style={{width:"100%",minWidth:0}} type="number" min="0" max={Number.isFinite(miles)?miles:undefined} placeholder="Installed at mileage" value={part.installedAtMileage} onChange={e=>setPart({...part,installedAtMileage:e.target.value})}/><label style={{display:"flex",gap:7,alignItems:"flex-start",fontSize:10.5,lineHeight:1.35,color:"var(--slate-600)"}}><input required type="checkbox" checked={part.fitmentConfirmed} onChange={e=>setPart({...part,fitmentConfirmed:e.target.checked})}/> I confirm this is the part currently fitted to this vehicle.</label><div style={{display:"flex",gap:7,flexWrap:"wrap"}}><button disabled={pending || !part.fitmentConfirmed} type="submit">{pending?"Saving…":"Save installed part"}</button><button type="button" onClick={()=>setMode(null)}>Cancel</button></div></form>}
+    {mode==="issue" && <form onSubmit={saveNote} style={{display:"grid",gap:7}}><textarea required rows={3} placeholder={`What are you noticing with ${node.label}?`} value={note} onChange={e=>setNote(e.target.value)}/><div style={{display:"flex",gap:7}}><button disabled={pending} type="submit">{pending?"Saving…":"Add issue note"}</button><button type="button" onClick={()=>setMode(null)}>Cancel</button></div></form>}
+    {error && <div role="alert" style={{marginTop:7,color:"var(--ki-crit)",fontSize:10.5}}>{error}</div>}
+  </div>;
+}
+
+function TTFactValue({ label, value, node }) {
+  if (label === "Part number" && node.buyUrl && value && value !== "—") return <a className="mono" href={node.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{fontSize:12.5,lineHeight:1.45,color:"#2563EB",textDecoration:"underline",textUnderlineOffset:2,fontWeight:650}}>{value}</a>;
+  return <span className={label === "Part number" ? "mono" : ""} style={{fontSize:12.5,lineHeight:1.45,fontWeight:label === "Part number" ? 600 : 400}}>{value}</span>;
 }
 
 /* ── Finish picker — changing it repaints the wheels on the car photo, not just this card ── */
@@ -623,6 +678,7 @@ function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
       </div>
       <div style={{ padding:"9px 11px 11px" }}>
         <div style={{ fontSize:10.5, color:"var(--slate-500)", lineHeight:1.45, marginBottom:9 }}>{u.confidence} · {u.fit}</div>
+        {u.buyUrl && !on && <a href={u.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ width:"100%", minHeight:38, marginBottom:8, borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", background:"var(--ki-card)", color:"#2563EB", border:"1px solid color-mix(in oklab, #2563EB 35%, var(--ki-line))", fontSize:11.5, fontWeight:650, textDecoration:"none" }}>Order this upgrade</a>}
         {!live && <button onClick={()=>onEquip && onEquip(target, val)} style={{ width:"100%", minHeight:38, borderRadius:10, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:12.5, fontWeight:600, display:"flex", alignItems:"center", justifyContent:"center", gap:7,
           background: on ? "var(--ki-card)" : TT_UP_HEX, color: on ? "var(--slate-700)" : "#fff", border: on ? "1px solid var(--ki-line)" : "none" }}>
           {on ? "Swap back to the OEM radiator" : <React.Fragment><svg width="12" height="12" viewBox="0 0 10 10"><path d="M5 8.5V1.8M5 1.8L2 4.8M5 1.8l3 3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" fill="none"/></svg>I have this — equip it</React.Fragment>}
@@ -678,17 +734,15 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
               {rows.map(([k,v]) => (
                 <div key={k} style={{ display:"flex", gap:11, alignItems:"flex-start" }}>
                   <span style={{ width:86, flexShrink:0, fontSize:10, fontWeight:600, letterSpacing:"0.07em", textTransform:"uppercase", color:"var(--slate-500)", paddingTop:2 }}>{k}</span>
-                  <span className={k === "Part number" ? "mono" : ""} style={{ fontSize:12.5, lineHeight:1.45 }}>{v}</span>
+                  <TTFactValue label={k} value={v} node={node}/>
                 </div>
               ))}
             </div>
+            {node.sourceUrl && <a href={node.sourceUrl} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",marginTop:10,color:"#2563EB",fontSize:11.5,fontWeight:650,textDecoration:"underline",textUnderlineOffset:2}}>Service source: {node.sourceLabel || "manufacturer documentation"}</a>}
             {node.dueNote && (
               <div style={{ marginTop:13, display:"flex", alignItems:"center", gap:8, padding:"9px 12px", borderRadius:12, background: risk === "critical" ? "var(--ki-crit-bg)" : risk === "watch" ? "var(--ki-mod-bg)" : "var(--ki-page)", color: risk === "critical" ? "var(--ki-crit)" : risk === "watch" ? "var(--ki-mod-ink)" : "var(--slate-600)", fontSize:12, fontWeight:600 }}>
                 <Icon name={risk ? "alert" : "clock"} size={12} stroke={2.2}/>{node.dueNote}
               </div>
-            )}
-            {node.unlogged && (
-              <div style={{ marginTop:13, padding:"9px 12px", borderRadius:12, background:"var(--ki-page)", color:"var(--slate-600)", fontSize:12, fontWeight:600 }}>No service event logged</div>
             )}
             {node.knownIssue?.id && (
               <div style={{ marginTop:13, padding:"11px 12px", borderRadius:12, background:"rgba(139,92,246,.12)", border:"1px solid rgba(167,139,250,.35)" }}>
@@ -707,6 +761,7 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
             {node.finishes && <TTFinishRow dense/>}
             <TTUpgradeCard node={node} nodeId={nodeId} onEquip={onEquip} dense/>
             <TTServiceRow node={node} miles={miles} dense/>
+            <TTOwnerEvidence node={node} nodeId={nodeId} dense miles={miles}/>
             {node.alt && (
               <div style={{ marginTop:9, padding:"11px 12px", borderRadius:12, background:"var(--ki-ok-bg)" }}>
                 <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-ok-ink)" }}>Aftermarket that fits</div>
@@ -758,17 +813,15 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
             {rows.map(([k,v]) => (
               <div key={k} style={{ display:"flex", gap:10, alignItems:"flex-start" }}>
                 <span style={{ width:96, flexShrink:0, fontSize:10.5, color:"var(--slate-500)", textTransform:"uppercase", letterSpacing:"0.06em", fontWeight:600, paddingTop:1 }}>{k}</span>
-                <span className={k === "Part number" ? "mono" : ""} style={{ fontSize:12, lineHeight:1.45, fontWeight: k === "Part number" ? 600 : 400 }}>{v}</span>
+                <TTFactValue label={k} value={v} node={node}/>
               </div>
             ))}
           </div>
+          {node.sourceUrl && <a href={node.sourceUrl} target="_blank" rel="noopener noreferrer" style={{display:"inline-block",marginTop:10,color:"#2563EB",fontSize:11.5,fontWeight:650,textDecoration:"underline",textUnderlineOffset:2}}>Service source: {node.sourceLabel || "manufacturer documentation"}</a>}
           {node.dueNote && (
             <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:8, padding:"9px 11px", borderRadius:10, background: risk === "critical" ? "var(--ki-crit-bg)" : risk === "watch" ? "var(--ki-mod-bg)" : "var(--ki-page)", color: risk === "critical" ? "var(--ki-crit)" : risk === "watch" ? "var(--ki-mod-ink)" : "var(--slate-600)", fontSize:11.5, fontWeight:600 }}>
               <Icon name={risk ? "alert" : "clock"} size={12} stroke={2.2}/>{node.dueNote}
             </div>
-          )}
-          {node.unlogged && (
-            <div style={{ marginTop:12, padding:"9px 11px", borderRadius:10, background:"var(--ki-page)", color:"var(--slate-600)", fontSize:11.5, fontWeight:600 }}>No service event logged</div>
           )}
           {node.knownIssue?.id && (
             <div style={{ marginTop:14, padding:"11px 12px", borderRadius:11, background:"rgba(139,92,246,.12)", border:"1px solid rgba(167,139,250,.35)" }}>
@@ -787,6 +840,7 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
           {node.finishes && <TTFinishRow/>}
           <TTUpgradeCard node={node} nodeId={nodeId} onEquip={onEquip}/>
           <TTServiceRow node={node} miles={miles}/>
+          <TTOwnerEvidence node={node} nodeId={nodeId} miles={miles}/>
           {node.alt && (
             <div style={{ marginTop:10, padding:"11px 12px", borderRadius:11, background:"var(--ki-ok-bg)" }}>
               <div className="eyebrow" style={{ fontSize:9.5, color:"var(--ki-ok-ink)" }}>Aftermarket that fits</div>

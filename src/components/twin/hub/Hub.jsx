@@ -18,7 +18,7 @@ import { TwinStage as THStage, TH_V, TH_MILES } from "../stage/TwinStage";
 import { TechTree, TT_TREES, ttRisk, ttHasUpgrade, ttFinish, useEquipped, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT } from "../stage/TechTree";
 import { Au7oMark, KICard, useTheme, useNarrow, useBubble, ThemeDots, SevBadge, VoiceButton, HPComposer, KI } from "./hub-shared";
 import { useHubView } from "./hub-view";
-import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinLive, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinIssues, useTwinMode, useTwinTransmissionControl, greetingFor } from "../twin-context";
+import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinLive, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinIssues, useTwinMode, useTwinTransmissionControl, useTwinPaintControl, greetingFor } from "../twin-context";
 import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
 import { collectHotspotNodes, summarizeEvidence } from "../demo-trees";
 
@@ -77,6 +77,23 @@ function THTransmissionControl() {
   );
 }
 
+function THPaintControl() {
+  const catalog = useTwinCatalog();
+  const liveControl = useTwinPaintControl();
+  const [demoChoice,setDemoChoice] = React.useState(catalog.identity.paint);
+  React.useEffect(()=>setDemoChoice(catalog.identity.paint),[catalog.id,catalog.identity.paint]);
+  const options = liveControl?.options || catalog.paintPalette?.colors || [];
+  const choice = liveControl?.choice || demoChoice;
+  if (options.length < 2) return null;
+  const selected = options.find((color)=>color.name===choice);
+  return <div style={{marginTop:9,padding:"10px 12px",borderRadius:10,border:"1px solid var(--ki-line)",background:"var(--ki-page)"}}>
+    <label htmlFor="owner-sidebar-paint" style={{display:"block",fontSize:11,fontWeight:650,marginBottom:7}}>Factory color</label>
+    <div style={{display:"flex",gap:6}}><select id="owner-sidebar-paint" value={choice} disabled={liveControl?.state==="saving"} onChange={(event)=>liveControl?liveControl.setChoice(event.target.value):setDemoChoice(event.target.value)} style={{minWidth:0,flex:1,minHeight:34,borderRadius:8,border:"1px solid var(--ki-line)",background:"var(--ki-card)",color:"var(--ink)",padding:"0 8px"}}>{options.map((color)=><option key={color.name} value={color.name}>{color.name}</option>)}</select>{liveControl&&<button type="button" onClick={liveControl.save} disabled={!choice||choice===liveControl.current||liveControl.state==="saving"} style={{minHeight:34,border:0,borderRadius:8,padding:"0 10px",background:"var(--ink)",color:"var(--ki-page)",fontWeight:650,opacity:(!choice||choice===liveControl.current) ? .45 : 1}}>{liveControl.state==="saving"?"Saving…":"Save"}</button>}</div>
+    <div style={{marginTop:6,fontSize:10.5,color:selected?.artStatus==="rendered"?"var(--ki-ok-ink)":"var(--slate-500)"}}>{selected?.artStatus==="rendered"?"Matching vehicle artwork ready":liveControl?"Factory choice can be saved · matching artwork is awaiting render":"Preview choice only · matching artwork is awaiting render"}</div>
+    {liveControl?.error&&<div role="alert" style={{color:"var(--ki-crit)",fontSize:10.5,marginTop:6}}>{liveControl.error}</div>}
+  </div>;
+}
+
 /* ── Sidebar — systems double as a second way in ── */
 function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
   const vehicle = useTwinVehicle();
@@ -86,6 +103,8 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
   const nextService = useTwinNextService();
   const recent = useTwinRecent();
   const catalog = useTwinCatalog();
+  const paintControl = useTwinPaintControl();
+  const pendingPaint = Boolean(paintControl && paintControl.options?.find((paint)=>paint.name===paintControl.choice)?.artStatus !== "rendered");
   const issues = useTwinIssues();
   const twinMode = useTwinMode();
   const evidence = thEvidence("car", trees, miles);
@@ -103,7 +122,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
       <div className="web-scroll" style={{ flex:1, minHeight:0, overflowY:"auto" }}>
         <div style={{ padding:"0 14px" }}>
           <KICard>
-            <div style={{ height:112, background:"#0A0D14" }}><img src={catalog.art.base} alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/></div>
+            <div style={{ height:112, background:"#0A0D14",display:"grid",placeItems:"center",color:"rgba(255,255,255,.7)",fontSize:10.5,textAlign:"center",padding:8 }}>{live && pendingPaint ? "Matching color artwork awaiting render" : <img src={catalog.art.base} alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/>}</div>
             <div style={{ padding:"11px 13px 13px" }}>
               <div style={{ fontSize:13.5, fontWeight:600, letterSpacing:"-0.01em" }}>{vehicle.year} {vehicle.make} {vehicle.model}</div>
               <div style={{ fontSize:11.5, color:"var(--slate-500)", marginTop:1 }}>{vehicle.trim} · <span className="mono">{typeof miles === "number" ? `${miles.toLocaleString()} mi${twinMode === "demo" ? " sample" : ""}` : "Mileage unavailable"}</span> · {twinMode}</div>
@@ -114,6 +133,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
             </div>
           </KICard>
           {live && <div style={{ marginTop:9 }}><THTransmissionControl/></div>}
+          <THPaintControl/>
         </div>
         <div style={{ padding:"16px 20px 7px" }} className="eyebrow">Tech trees</div>
         <div style={{ padding:"0 8px 2px" }}>

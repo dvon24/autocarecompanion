@@ -80,6 +80,7 @@ export const TWIN_INTERVALS = {
   radCore: 90000,
   transFluid: 60000,
   transPan: 60000,
+  diffFluid: 50000,
 };
 
 /**
@@ -99,6 +100,10 @@ export const TWIN_MAINT_NODES = {
   wiper_blades: ["wipL", "wipR"],
   coolant_flush: ["coolant"],
   tire_rotation: ["tire"],
+  tire_replacement: ["tire"],
+  brake_service: ["pads", "rotor", "padsR", "rotorR"],
+  cooling_system_service: ["radCore"],
+  differential_fluid: ["diffFluid"],
 };
 
 /** Persistable maintenance action shown by each actionable tree node. */
@@ -112,6 +117,12 @@ export const TWIN_NODE_SERVICE = {
   wipL:{type:"wiper_blades", label:"Wiper blades"},
   wipR:{type:"wiper_blades", label:"Wiper blades"},
   tire:{type:"tire_rotation", label:"Tire rotation and inspection"},
+  pads:{type:"brake_service", label:"Front brake service"},
+  rotor:{type:"brake_service", label:"Front rotor service"},
+  padsR:{type:"brake_service", label:"Rear brake service"},
+  rotorR:{type:"brake_service", label:"Rear rotor service"},
+  radCore:{type:"cooling_system_service", label:"Radiator service"},
+  diffFluid:{type:"differential_fluid", label:"Rear differential fluid service"},
 };
 
 export const TWIN_SUPPORTED_MAINTENANCE_TYPES = [
@@ -192,7 +203,17 @@ function applyServiceEvidence(node, rawService, id, interval, miles, currentDate
   if (!service) {
     delete node.servicedAt;
     delete node.riskAt;
-    if (interval || TWIN_TIME_INTERVALS[id]) node.unlogged = true;
+    if (interval || TWIN_TIME_INTERVALS[id]) {
+      node.unlogged = true;
+      // An original, required maintenance item has a real first deadline even
+      // when the owner has not entered history. Once the odometer crosses that
+      // manual-derived interval, it is overdue; before that it remains due-at.
+      if (interval) {
+        node.dueMileage = interval;
+        node.firstServiceDeadline = true;
+        if (Number.isFinite(miles) && miles >= interval) node.riskAt = interval;
+      }
+    }
     const note = dueNoteFor(node, miles, interval);
     if (note) node.dueNote = note;
     return node;
@@ -311,6 +332,21 @@ export function buildTwinTrees(serviced, miles, transmission, evaluatedAt = null
       kids: out.car.nodes.car.kids.filter((id) => id !== "trx"),
       life: "Three verified systems tracked",
     };
+  }
+  if (out.trans && out.car) {
+    const manualRearAxle = transmission === "manual";
+    const diffFluid = applyServiceEvidence({
+      label:"Rear Differential Fluid", sub:manualRearAxle ? "230 mm limited-slip rear axle" : "230 mm rear axle", img:"/twin-stage/parts/part-transmission.webp", kids:[], riskAt:TWIN_INTERVALS.diffFluid,
+      partNo:manualRearAxle ? "68083381AA → 68083381AC" : "68232947AB → 68232947AD", brand:manualRearAxle ? "Mopar LSD Synthetic Gear Lubricant" : "Mopar OD Synthetic Gear Lubricant", where:"Rear axle differential housing", spec:`SAE 75W-85 API GL-5 · ${manualRearAxle ? "limited-slip axle" : "automatic-transmission axle"} · 1.16 qt nominal capacity`, price:manualRearAxle ? "$43.57 listed" : "$17.07 listed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:manualRearAxle ? "https://www.moparpartsgiant.com/parts/mopar-lubricant-gear~68083381aa.html" : "https://www.moparpartsgiant.com/parts/mopar-lubricant-gear~68232947ad.html",
+      sourceUrl:"https://starparts.chrysler.com/Fluids/2015LA_Fluids.html", sourceLabel:"2015 Challenger TechCONNECT fluid chart",
+      life:"Inspect for leaks at every service; owner plan uses 50,000 mi for street use",
+    }, svc.diffFluid, "diffFluid", TWIN_INTERVALS.diffFluid, miles, currentDate);
+    diffFluid.maintenanceType = "differential_fluid";
+    diffFluid.serviceLabel = "Rear differential fluid service";
+    diffFluid.serviceIntervalMiles = TWIN_INTERVALS.diffFluid;
+    out.trans.nodes.diffFluid = diffFluid;
+    if (!out.trans.nodes.trx.kids.includes("diffFluid")) out.trans.nodes.trx.kids = [...out.trans.nodes.trx.kids, "diffFluid"];
+    out.car.nodes.diffFluid = diffFluid;
   }
   return out;
 }

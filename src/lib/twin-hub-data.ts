@@ -50,13 +50,27 @@ export interface TwinIssueSummary {
 
 export interface TwinHubData {
   vehicleId: string;
-  vehicle: { year: number; make: string; model: string; trim: string; engine: string };
+  vehicle: { year: number; make: string; model: string; trim: string; engine: string; color: string | null };
   miles: number;
   /** Raw logged services; the client folds these onto tree nodes. */
   records: TwinServiceRecord[];
   recent: TwinRecentThread[];
   issues: TwinIssueSummary[];
-  installedPartNumbers: string[];
+  installedParts: Array<{
+    nodeId: string;
+    category: string;
+    name: string;
+    brand: string | null;
+    partNumber: string | null;
+    cost: number | null;
+    imageUrl: string | null;
+    notes: string | null;
+    kind: string;
+    lifespanMiles: number | null;
+    installedAtMileage: number | null;
+    installDate: string | null;
+    fitmentKey: string | null;
+  }>;
   transmission: 'automatic' | 'manual' | null;
   transmissionOptions: readonly TransmissionOption[];
   canSelectTransmission: boolean;
@@ -77,6 +91,11 @@ export const TWIN_SERVICE_RECORD_TYPES = [
   'wiper_blades',
   'coolant_flush',
   'tire_rotation',
+  'tire_replacement',
+  'brake_service',
+  'cooling_system_service',
+  'differential_fluid',
+  'transfer_case_fluid',
   'transmission_fluid',
   'transmission_fluid_auto',
   'transmission_fluid_manual',
@@ -190,7 +209,7 @@ export async function getTwinHubData(
         where: { id: vehicleId, userId },
         select: {
           id: true, year: true, make: true, model: true, trim: true,
-          transmission: true, currentMileage: true, updatedAt: true,
+          transmission: true, color: true, currentMileage: true, updatedAt: true,
         },
       }),
       tx.reservation.findUnique({
@@ -319,8 +338,9 @@ export async function getTwinHubData(
   const [threads, modifications, issueRows] = await Promise.all([
     dependencies.getRecentThreads(userId, vehicle.id, 3).catch(() => []),
     dependencies.prisma.modification.findMany({
-      where: { vehicleId: vehicle.id, partNumber: { not: null } },
-      select: { partNumber: true },
+      where: { vehicleId: vehicle.id },
+      select: { category:true, name:true, brand:true, partNumber:true, cost:true, imageUrl:true, description:true, modelData:true, installDate:true },
+      orderBy: { createdAt: 'desc' },
     }),
     knownIssueIds.length ? dependencies.prisma.knownIssue.findMany({
       where: { id: { in: knownIssueIds }, status: 'published', years: { has: vehicle.year } },
@@ -338,7 +358,7 @@ export async function getTwinHubData(
     vehicleId: vehicle.id,
     vehicle: {
       year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim ?? '',
-      engine: specs?.engine || vehicle.trim || '',
+      engine: specs?.engine || vehicle.trim || '', color: vehicle.color,
     },
     miles: vehicle.currentMileage,
     records: records.map((record) => ({
@@ -360,9 +380,26 @@ export async function getTwinHubData(
       severity: issue.severity,
       href: `/known-issues/${slugNorm(issue.make)}-${slugNorm(issue.model)}#${issue.id}`,
     })),
-    installedPartNumbers: modifications
-      .map((modification) => modification.partNumber)
-      .filter((partNumber): partNumber is string => typeof partNumber === 'string' && partNumber.length > 0),
+    installedParts: modifications.map((modification) => {
+      const modelData = modification.modelData && typeof modification.modelData === 'object' && !Array.isArray(modification.modelData)
+        ? modification.modelData as Record<string, unknown>
+        : {};
+      return {
+        nodeId: typeof modelData.nodeId === 'string' ? modelData.nodeId : '',
+        category: modification.category,
+        name: modification.name,
+        brand: modification.brand,
+        partNumber: modification.partNumber,
+        cost: modification.cost,
+        imageUrl: modification.imageUrl,
+        notes: modification.description,
+        kind: typeof modelData.kind === 'string' ? modelData.kind : 'installed-part',
+        lifespanMiles: typeof modelData.lifespanMiles === 'number' && modelData.lifespanMiles > 0 ? modelData.lifespanMiles : null,
+        installedAtMileage: typeof modelData.installedAtMileage === 'number' && modelData.installedAtMileage >= 0 ? modelData.installedAtMileage : null,
+        installDate: modification.installDate?.toISOString() ?? null,
+        fitmentKey: typeof modelData.fitmentKey === 'string' ? modelData.fitmentKey : null,
+      };
+    }),
     transmission: confirmedTransmission,
     transmissionOptions,
     canSelectTransmission: founder && transmissionFitment.requiresChoice,

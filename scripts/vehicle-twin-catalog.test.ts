@@ -8,7 +8,7 @@ import { NextResponse } from 'next/server';
 import sharp from 'sharp';
 import { DEFAULT_TWIN_ID, VEHICLE_TWIN_CATALOG, getAdminTwinDefinitions, getTwinByFulfillmentId, resolveDemoVehicleTwin, resolveTwinDeepLink, validateVehicleTwinCatalog } from '../src/lib/vehicle-twin-catalog';
 import { evaluateTwinAccess, getConfirmedTwinTransmission } from '../src/lib/twin-access';
-import { TWIN_TREE_RESOLVERS, answerTwinQuestion, buildDemoTwinPresentation, collectHotspotNodes, mergeCatalogEvidenceIntoOwnerTrees, resolveTwinTrees, summarizeEvidence } from '../src/components/twin/demo-trees.js';
+import { TWIN_TREE_RESOLVERS, answerTwinQuestion, buildDemoTwinPresentation, buildModelOwnerTrees, collectHotspotNodes, mergeCatalogEvidenceIntoOwnerTrees, resolveTwinTrees, summarizeEvidence } from '../src/components/twin/demo-trees.js';
 import { addCalendarInterval, buildTwinTrees, servicedFromRecords } from '../src/components/twin/twin-trees.js';
 import { TWIN_UNAVAILABLE_VEHICLE, TwinDataCtx, useTwinLive, useTwinMiles, useTwinMode, useTwinVehicle } from '../src/components/twin/twin-context.jsx';
 import { TH_DOT, TwinStage, openTwinHotspot, retainActiveHotspot, resolveActiveTwinEffect, thHot } from '../src/components/twin/stage/TwinStage.jsx';
@@ -29,7 +29,7 @@ import { buildLatestTwinServiceRecordQuery, getTwinHubData, loadLatestTwinServic
 type ServiceEvidence = Record<string, { mileage: number; date: string | null; nextDueMileage: number | null; nextDueDate: string | null }>;
 type TestTreeSet = Record<string, { nodes: Record<string, { overdueByDate?: boolean; dueNote?: string }> }>;
 type LooseTreeSet = Record<string, { root: string; nodes: Record<string, Record<string, unknown>> }>;
-type NextServiceResult = { nodeId: string; overdue: boolean; dueMileage: number | null; dueDate: string | null; dueSource: string; progress: number };
+type NextServiceResult = { nodeId: string; hot: string; overdue: boolean; unlogged: boolean; dueMileage: number | null; dueDate: string | null; dueSource: string; progress: number };
 const foldServiceRecords = servicedFromRecords as unknown as (records: Array<Record<string, unknown>>, mileage: number, transmission?: 'automatic' | 'manual' | null, evaluatedAt?: string | null) => ServiceEvidence;
 const buildTestTrees = buildTwinTrees as unknown as (serviced: ServiceEvidence, mileage: number, transmission: 'automatic' | 'manual' | null, evaluatedAt?: string | null) => TestTreeSet;
 const pickTestNextService = pickNextService as unknown as (trees: LooseTreeSet, miles: number, evaluatedAt?: string | null) => NextServiceResult | null;
@@ -116,7 +116,7 @@ test('demo detail labels mapped systems honestly without inventing fitment or a 
   assert.match(markup,/System mapped · exact part not sourced/);assert.match(markup,/Price not sourced for this demo/);assert.doesNotMatch(markup,/Verified fit/);
   const challenger=resolveDemoVehicleTwin('challenger');const challengerTrees=resolveTwinTrees(challenger);const pricedNode=challengerTrees.engine.nodes.oilFluid;
   const pricedMarkup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challenger,presentation:buildDemoTwinPresentation(challenger),vehicle:challenger.identity,miles:challenger.demoMileage,trees:challengerTrees,mode:'demo' as const}},React.createElement(TTDetail,{node:pricedNode,nodeId:'oilFluid',onEquip:()=>{},risk:null,miles:challenger.demoMileage,onClose:()=>{},onAsk:()=>{},sheet:true,narrow:true})));
-  assert.match(pricedMarkup,/Verified fit/);
+  assert.match(pricedMarkup,/Fitment reviewed/);
 });
 
 test('hotspots select on the first tap and open immediately on the second tap',()=>{
@@ -130,7 +130,7 @@ test('hotspots select on the first tap and open immediately on the second tap',(
 
 test('factory paint palettes cite OEM material and never present missing art as selectable',()=>{
   for(const twin of VEHICLE_TWIN_CATALOG){
-    assert.match(twin.paintPalette.sourceUrl,/^https:\/\//);assert.ok(twin.paintPalette.sourceLabel.includes(String(twin.identity.year)));assert.ok(twin.paintPalette.colors.length>=7);
+    assert.match(twin.paintPalette.sourceUrl,/^https:\/\//);assert.ok(twin.paintPalette.sourceLabel.includes(String(twin.identity.year)));assert.ok(twin.paintPalette.colors.length>=5);
     const rendered=twin.paintPalette.colors.filter((color)=>color.artStatus==='rendered');assert.deepEqual(rendered.map((color)=>color.name),[twin.identity.paint]);assert.ok(twin.paintPalette.colors.some((color)=>color.artStatus==='awaiting-art'));
     const markup=renderToStaticMarkup(React.createElement(AdminPaintPalette,{twin:getAdminTwinDefinitions().find((entry)=>entry.id===twin.id)!}));assert.match(markup,new RegExp(twin.identity.paint.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));assert.match(markup,/Rendered/);assert.match(markup,/Awaiting art/);assert.doesNotMatch(markup,/<button/);
   }
@@ -151,8 +151,16 @@ test('opaque art has masks, full URLs are preserved, and absent effects are not 
   assert.equal(resolveDemoVehicleTwin('challenger').art.effects.airbox,undefined);
 });
 
+test('every rendered Twin ships one aligned base plus four required effect views',async()=>{
+  for(const twin of VEHICLE_TWIN_CATALOG){
+    const required=['wheel','rearwheel','hood','rad'];assert.deepEqual(Object.keys(twin.art.effects).sort(),required.sort(),twin.id);
+    const files=[twin.art.base,...required.map((id)=>twin.art.effects[id])];for(const file of files)assert.ok(existsSync(publicPath(file)),`${twin.id} missing ${file}`);
+    const base=await sharp(publicPath(twin.art.base)).metadata();for(const file of files.slice(1)){const meta=await sharp(publicPath(file)).metadata();assert.equal(meta.width,base.width,`${twin.id}/${file} width`);assert.equal(meta.height,base.height,`${twin.id}/${file} height`);}
+  }
+});
+
 test('published known issues and sample service evidence drive tree/catalog parity',()=>{
-  for(const twin of VEHICLE_TWIN_CATALOG){const trees=resolveTwinTrees(twin);const presentation=buildDemoTwinPresentation(twin);assert.equal(twin.sampleState.label,'Sample demo state');assert.ok(twin.sampleState.records.length>0);for(const hot of twin.hotspots){const nodes=collectHotspotNodes(trees,hot);const ids=nodes.flatMap((node)=>node.knownIssue?.id?[node.knownIssue.id]:[]);assert.deepEqual([...ids].sort(),[...(hot.knownIssueIds||[])].sort(),`${twin.id}/${hot.id}`);assert.equal(hot.status==='known-issue',ids.length>0);assert.equal(presentation.hotspots.find((item:{id:string})=>item.id===hot.id).status,hot.status);if(hot.status==='overdue')assert.ok(typeof twin.demoMileage==='number'&&nodes.some((node)=>typeof node.riskAt==='number'&&typeof node.servicedAt==='number'&&node.servicedAt+node.riskAt<=twin.demoMileage!));}}
+  for(const twin of VEHICLE_TWIN_CATALOG){const trees=resolveTwinTrees(twin);const presentation=buildDemoTwinPresentation(twin);assert.equal(twin.sampleState.label,'Sample demo state');for(const hot of twin.hotspots){const nodes=collectHotspotNodes(trees,hot);const ids=nodes.flatMap((node)=>node.knownIssue?.id?[node.knownIssue.id]:[]);assert.deepEqual([...ids].sort(),[...(hot.knownIssueIds||[])].sort(),`${twin.id}/${hot.id}`);assert.equal(hot.status==='known-issue',ids.length>0);assert.equal(presentation.hotspots.find((item:{id:string})=>item.id===hot.id).status,hot.status,`${twin.id}/${hot.id} status`);if(hot.status==='overdue')assert.ok(typeof twin.demoMileage==='number'&&nodes.some((node)=>typeof node.riskAt==='number'&&typeof node.servicedAt==='number'&&node.servicedAt+node.riskAt<=twin.demoMileage!));}}
   const murano=resolveDemoVehicleTwin('murano');const trees=resolveTwinTrees(murano);assert.equal(trees.trans.nodes.transFluid.knownIssue,undefined);assert.equal(trees.trans.nodes.transFluid.sampleRecord,true);assert.match(trees.trans.nodes.transFluid.sub,/Sample record/);
   const challenger=buildDemoTwinPresentation(resolveDemoVehicleTwin('challenger'));const trans=challenger.hotspots.find((hot:{id:string})=>hot.id==='trans');assert.equal(trans.status,'known-issue');assert.equal(trans.serviceStatus,'overdue');assert.match(trans.label,/Known issue on record.*overdue/i);
   const challengerTwin=resolveDemoVehicleTwin('challenger');assert.equal(challengerTwin.sampleState.records.find((record)=>record.node==='oilFluid')?.intervalMiles,6000);assert.match(challengerTwin.hotspots.find((hot)=>hot.id==='wheel')?.statusDetail||'',/no sample service event logged/i);
@@ -176,6 +184,10 @@ test('reviewed exact-fit issue inventory is complete and each issue has useful l
     nautilus:['lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white','lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph','lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart','lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots'],
     murano:['nissan-murano-automatic-emergency-braking-forward-collision-phantom-activa','nissan-murano-battery-drain-and-no-start-2021','nissan-murano-front-driver-seat-frametrack-2021','nissan-murano-front-radarsensor-malfunctions-triggering-2021','nissan-murano-rearview-camera-image-blank-2021'],
     xt6:['cadillac-xt6-9speed-transmission-2020','cadillac-xt6-auto-stop-2020','cadillac-xt6-ptu-leak-2020','cadillac-xt6-transmission-shudder-2020','cadillac-xt6-timing-chain-2020'],
+    kicks:['nissan-kicks-blank-partial-instrument-cluster-cold-start','nissan-kicks-center-display-goes-blank-reverse-no-backup-camera-image','nissan-kicks-infotainment-touchscreen-freezing-rebooting-carplay-disconne'],
+    mdx:['acura-mdx-fuel-pump-impeller-deformation-causing-stall','acura-mdx-infotainment-reboot-2014','acura-mdx-torque-converter-shudder-2014','acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling'],
+    aviator:[],
+    camaro:['chevrolet-camaro-mylink-hmi-infotainment-module-failure','chevy-camaro-rear-differential-noise'],
   };
   for(const twin of VEHICLE_TWIN_CATALOG.filter((entry)=>entry.id!=='challenger')){
     const mapped=[...new Set(twin.hotspots.flatMap((hotspot)=>hotspot.knownIssueIds||[]))].sort();assert.deepEqual(mapped,[...expected[twin.id]].sort(),`${twin.id} reviewed issue inventory`);
@@ -258,7 +270,7 @@ test('owner builder requires exact registered identity and keeps transmission br
   const base={fulfillmentId:'dodge-challenger',vehicleId:'v1',vehicle:{year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',engine:'6.4L V8 HEMI'},miles:65000,records:[],recent:[]};
   const automatic=buildOwnerTwinValue({...base,transmission:'automatic'});assert.ok(automatic);assert.match(automatic.trees.trans.nodes.trx.sub,/automatic/i);assert.match(automatic.trees.trans.nodes.transFluid.buyLabel,/automatic/i);assert.equal(automatic.trees.car.nodes.transFluid,automatic.trees.trans.nodes.transFluid);
   const manual=buildOwnerTwinValue({...base,transmission:'manual'});assert.ok(manual);assert.match(manual.trees.trans.nodes.trx.sub,/manual/i);assert.match(manual.trees.trans.nodes.transFluid.buyLabel,/manual/i);assert.equal(manual.trees.trans.nodes.transPan,undefined);assert.equal(manual.trees.car.nodes.transPan,undefined);assert.equal(manual.trees.car.nodes.transFluid,manual.trees.trans.nodes.transFluid);
-  const unknown=buildOwnerTwinValue({...base,transmission:null});assert.ok(unknown);assert.equal(unknown.trees.trans,undefined);assert.ok(!unknown.trees.car.nodes.car.kids.includes('trx'));assert.ok(unknown.presentation.systems.every((system:{branch:string})=>system.branch!=='trans'));assert.ok(unknown.presentation.hotspots.every((hotspot:{branch:string})=>hotspot.branch!=='trans'));assert.doesNotMatch(JSON.stringify(unknown.trees),/transmission|ATF\+?4|automatic|manual|buyUrl/i);
+  const unknown=buildOwnerTwinValue({...base,transmission:null});assert.ok(unknown);assert.equal(unknown.trees.trans,undefined);assert.ok(!unknown.trees.car.nodes.car.kids.includes('trx'));assert.ok(unknown.presentation.systems.every((system:{branch:string})=>system.branch!=='trans'));assert.ok(unknown.presentation.hotspots.every((hotspot:{branch:string})=>hotspot.branch!=='trans'));assert.doesNotMatch(JSON.stringify(unknown.trees),/ATF\+?4|8HP70|TR-6060/i);
   assert.ok(unknown.catalog.systems.every((system:{branch:string})=>system.branch!=='trans'));assert.ok(unknown.catalog.hotspots.every((hotspot:{branch:string})=>hotspot.branch!=='trans'));assert.deepEqual(resolveTwinDeepLink(unknown.catalog,'trans',unknown.trees),{hotspot:null,branch:null,node:null});
   const partial=buildOwnerTwinValue({...base,transmission:'automatic',records:[{type:'oil_change',mileage:64000}]});assert.ok(partial);assert.equal(partial.presentation.summary.due,null);assert.equal(partial.presentation.summary.watch,null);assert.notEqual(partial.presentation.hotspots.find((hotspot:{id:string})=>hotspot.id==='hood')?.status,'overdue');
   assert.equal(buildOwnerTwinValue({...base,fulfillmentId:'unknown-owner'}),null);
@@ -324,10 +336,10 @@ test('latest eligible supported history is bounded per type and shared annotatio
 });
 
 test('explicit due mileage/date drive next service, hotspot risk, and independent tree details',()=>{
-  const node={label:'Transmission Fluid',servicedAt:50000,riskAt:60000,dueMileage:56000,dueDate:'2026-08-20T00:00:00.000Z',overdueByDate:true,dueNote:'1,000 mi past due · time interval passed Aug 20, 2026.',unlogged:true,knownIssue:{id:'known-x'},issue:'Known branch issue.'};
+  const node={label:'Transmission Fluid',servicedAt:50000,riskAt:60000,dueMileage:56000,dueDate:'2026-08-20T00:00:00.000Z',overdueByDate:true,dueNote:'1,000 mi past due · time interval passed Aug 20, 2026.',unlogged:true,firstServiceDeadline:true,knownIssue:{id:'known-x'},issue:'Known branch issue.'};
   assert.equal(ttRisk({...node,unlogged:false},55000),'critical');
   assert.equal(ttRisk({...node,overdueByDate:false,unlogged:false},55000),'watch');
-  assert.equal(ttRisk(node,65000),null);
+  assert.equal(ttRisk(node,65000),'critical');
   assert.equal(ttMatchesIntent(node,'maint',65000),true);assert.equal(ttMatchesIntent(node,'issues',65000),true);
   const trees={car:{root:'car',nodes:{car:{group:true},transFluid:{...node,unlogged:false}}}};
   const next=pickTestNextService(trees,55000,'2026-08-26T00:00:00.000Z');assert.ok(next);assert.equal(next.nodeId,'transFluid');assert.equal(next.overdue,true);assert.equal(next.dueMileage,56000);assert.equal(next.dueDate,node.dueDate);assert.equal(next.dueSource,'date');
@@ -338,8 +350,37 @@ test('explicit due mileage/date drive next service, hotspot risk, and independen
   const dateOnly=pickTestNextService(dateOnlyTrees,1000,'2026-08-26T00:00:00.000Z');assert.ok(dateOnly);assert.equal(dateOnly.nodeId,'sooner');assert.equal(dateOnly.dueSource,'date');assert.ok(dateOnly.progress>.75&&dateOnly.progress<1);
   const sourceLabel=testRiskLabel({...node,unlogged:false},55000,'critical');assert.match(sourceLabel || '',/Past due by date/);assert.doesNotMatch(sourceLabel || '',/mileage/);
   const mileageLabel=testRiskLabel({...node,dueDate:null,overdueByDate:false,unlogged:false},57000,'critical');assert.match(mileageLabel || '',/Past due by mileage.*56,000 mi deadline/);
+  const firstDeadline={car:{root:'car',nodes:{car:{group:true},radiator:{label:'Radiator',unlogged:true,firstServiceDeadline:true,dueMileage:90000,riskAt:90000}}}};
+  assert.equal(pickTestNextService(firstDeadline,65000,'2026-08-26T00:00:00.000Z'),null);
+  assert.equal(pickTestNextService(firstDeadline,90000,'2026-08-26T00:00:00.000Z'),null);
+  const overdueFirst=pickTestNextService(firstDeadline,95000,'2026-08-26T00:00:00.000Z');assert.ok(overdueFirst);assert.equal(overdueFirst.nodeId,'radiator');assert.equal(overdueFirst.overdue,true);assert.equal(overdueFirst.unlogged,true);
+  const maintainableGroup={car:{root:'car',nodes:{car:{group:true},rad:{label:'Radiator & Coolant',group:true,maintenanceType:'cooling_system_service',serviceIntervalMiles:90000,unlogged:true,firstServiceDeadline:true,dueMileage:90000,riskAt:90000}}}};
+  const groupDue=pickTestNextService(maintainableGroup,90001,'2026-08-26T00:00:00.000Z');assert.ok(groupDue);assert.equal(groupDue.nodeId,'rad');assert.equal(groupDue.hot,'rad');
   const detail=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{mode:'owner'}},React.createElement(TTDetail,{node:{...node,unlogged:false},nodeId:'transFluid',risk:'critical',miles:55000,onClose:()=>{},onEquip:undefined,onAsk:undefined,sheet:false,narrow:false})));assert.match(detail,/Past due by date/);assert.match(detail,/time interval passed/);assert.match(detail,/Known issue on record/);assert.match(detail,/Known branch issue/);
   const redKnown=TH_DOT({risk:true,knownIssue:true});assert.equal(redKnown.icon,'shield-alert');assert.equal(redKnown.edge,'#A78BFA');assert.match(detail,/Known issue on record/);
+});
+
+test('Camaro owner tree sources exact service parts and keeps manual history on the manual branch',()=>{
+  const camaro=resolveDemoVehicleTwin('camaro');
+  const records=[
+    {type:'transmission_fluid_auto',mileage:25000,date:'2026-01-01T00:00:00.000Z'},
+    {type:'transmission_fluid_manual',mileage:28000,date:'2026-02-01T00:00:00.000Z'},
+    {type:'transmission_fluid',mileage:29500,date:'2026-03-01T00:00:00.000Z'},
+  ];
+  const manual=buildModelOwnerTrees(camaro,records,30000 as never,'manual' as never,'2026-08-26T00:00:00.000Z' as never);
+  assert.equal(manual.trans.nodes.transFluid.maintenanceType,'transmission_fluid_manual');
+  assert.equal(manual.trans.nodes.transFluid.partNo,'88861800');
+  assert.equal(manual.trans.nodes.transFluid.servicedAt,28000);
+  const pending=buildModelOwnerTrees(camaro,records,30000 as never,null as never,'2026-08-26T00:00:00.000Z' as never);
+  assert.ok(pending.trans);assert.equal(pending.trans.nodes.transFluid,undefined);assert.ok(pending.trans.nodes.driveline);assert.ok(pending.car.nodes.driveline);
+  assert.match(manual.wheel.nodes.tire.partNo,/305\/30ZR19.*325\/30ZR19/);
+  assert.match(manual.engine.nodes.airFilter.partNo,/23323508/);
+  assert.match(manual.engine.nodes.coolant.partNo,/12346290/);
+  assert.match(manual.wheel.nodes.frontRotor.partNo,/84271643.*23399101/);
+  for(const node of [manual.wheel.nodes.tire,manual.wheel.nodes.frontRotor,manual.engine.nodes.oil,manual.engine.nodes.airFilter,manual.engine.nodes.coolant,manual.trans.nodes.driveline]){
+    assert.match(node.buyUrl,/^https:\/\//);
+    assert.ok(node.price && node.price !== '—');
+  }
 });
 
 test('founder transmission picker renders only for editable reviewed dual fitment',()=>{

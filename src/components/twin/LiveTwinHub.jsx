@@ -20,7 +20,7 @@ import { TwinDataCtx } from "./twin-context";
 import { buildTwinTrees, servicedFromRecords } from "./twin-trees";
 import { getTwinByFulfillmentId } from "../../lib/vehicle-twin-catalog";
 import { sameTwinVehicleIdentity } from "../../lib/twin-fulfillment";
-import { mergeCatalogEvidenceIntoOwnerTrees, buildDemoTwinPresentation, filterTwinCatalogForTrees } from "./demo-trees";
+import { mergeCatalogEvidenceIntoOwnerTrees, buildDemoTwinPresentation, buildModelOwnerTrees, filterTwinCatalogForTrees } from "./demo-trees";
 
 const HubRoot = dynamic(
   () => import("./hub/HubRoot").then((m) => ({ default: m.HubRoot })),
@@ -54,10 +54,14 @@ function pickNextService(trees, miles, evaluatedAt = null) {
 
   let best = null;
   for (const [id, node] of Object.entries(car.nodes)) {
-    if (id === car.root || node.group) continue;
-    // Never logged: we know it is untracked, not that it is due. Surfacing it
-    // as "overdue" would be a guess dressed as a fact.
-    if (node.servicedAt == null) continue;
+    if (id === car.root || (node.group && !node.maintenanceType)) continue;
+    // An unlogged item is actionable only after the first manual-derived
+    // deadline has actually passed. Before that, the node can show its future
+    // due point without competing for the sidebar's overdue card.
+    const firstDeadlineOverdue = node.servicedAt == null
+      && node.firstServiceDeadline === true
+      && (node.overdueByDate === true || (typeof node.dueMileage === "number" && node.dueMileage < miles));
+    if (node.servicedAt == null && !firstDeadlineOverdue) continue;
     const dueMileage = typeof node.dueMileage === "number"
       ? node.dueMileage
       : (typeof node.riskAt === "number" ? node.servicedAt + node.riskAt : null);
@@ -65,11 +69,12 @@ function pickNextService(trees, miles, evaluatedAt = null) {
     if (dueMileage == null && dueDate == null) continue;
     const mileageRemaining = dueMileage == null ? null : dueMileage - miles;
     const dateRemaining = dueDate == null || now == null ? null : dueDate - now;
-    const mileageOverdue = mileageRemaining != null && mileageRemaining <= 0;
+    const mileageOverdue = mileageRemaining != null && mileageRemaining < 0;
     const dateOverdue = node.overdueByDate === true || (dateRemaining != null && dateRemaining <= 0);
     const overdue = mileageOverdue || dateOverdue;
-    const mileageProgress = dueMileage != null && dueMileage > node.servicedAt
-      ? (miles - node.servicedAt) / (dueMileage - node.servicedAt)
+    const serviceStartMileage = typeof node.servicedAt === "number" ? node.servicedAt : 0;
+    const mileageProgress = dueMileage != null && dueMileage > serviceStartMileage
+      ? (miles - serviceStartMileage) / (dueMileage - serviceStartMileage)
       : null;
     const servicedDate = finiteTime(node.servicedDate);
     const dateProgress = dueDate != null && now != null && servicedDate != null && dueDate > servicedDate
@@ -89,13 +94,15 @@ function pickNextService(trees, miles, evaluatedAt = null) {
             : "mileage";
     const cand = {
       nodeId: id,
-      hot: id === "transFluid" || id === "transPan" ? "trans"
-        : id === "wipL" || id === "wipR" ? "glass"
-          : ["tire", "pads", "rotor", "padsR", "rotorR", "lugs", "tpms", "brakeFluid"].includes(id) ? "wheel"
-            : "hood",
+      hot: ["transFluid", "transPan", "diffFluid", "driveline"].includes(id) ? "trans"
+        : ["wipL", "wipR", "wiperBlades", "washerFluid"].includes(id) ? "glass"
+          : ["tire", "pads", "rotor", "frontRotor", "padsR", "rotorR", "lugs", "tpms", "brakeFluid"].includes(id) ? "wheel"
+            : ["rad", "radCore", "coolant"].includes(id) ? "rad"
+              : "hood",
       label: node.label,
       note: node.dueNote || "",
       overdue,
+      unlogged: node.servicedAt == null,
       dueMileage,
       dueDate: node.dueDate || null,
       dueSource,
@@ -131,6 +138,9 @@ export function LiveTwinHub({ data }) {
   const [transmissionChoice, setTransmissionChoice] = React.useState(data.transmission || "");
   const [transmissionState, setTransmissionState] = React.useState("idle");
   const [transmissionError, setTransmissionError] = React.useState("");
+  const [paintChoice, setPaintChoice] = React.useState(data.vehicle?.color || "");
+  const [paintState, setPaintState] = React.useState("idle");
+  const [paintError, setPaintError] = React.useState("");
   const safeData = React.useMemo(() => suppressTwinTransmissionWhilePending(data, transmissionPending && !data.transmission), [data, transmissionPending]);
   const baseValue = React.useMemo(() => buildOwnerTwinValue(safeData), [safeData]);
   const transmissionPicker = React.useMemo(() => getFounderTransmissionPickerModel(data), [data]);
@@ -143,30 +153,55 @@ export function LiveTwinHub({ data }) {
     setTransmissionPending(false);
   }, [data.transmission, data.vehicleId, data.vehicleRevision]);
 
+  React.useEffect(() => { setPaintChoice(data.vehicle?.color || ""); setPaintState("idle"); setPaintError(""); }, [data.vehicle?.color, data.vehicleId]);
+
   React.useEffect(() => {
     if (transmissionState !== "refreshing") return undefined;
     const timer = window.setTimeout(() => window.location.reload(), 10_000);
     return () => window.clearTimeout(timer);
   }, [transmissionState]);
 
-  const installUpgrade = React.useCallback(async ({ nodeId, upgrade }) => {
+  const saveInstalledPart = React.useCallback(async ({ nodeId, part, kind = "installed-part" }) => {
     const response = await fetch(`/api/vehicles/${encodeURIComponent(data.vehicleId)}/modifications`, {
       method:"POST",
       headers:{ "Content-Type":"application/json" },
       body:JSON.stringify({
-        category:"performance",
-        name:upgrade.label,
-        brand:"Mishimoto",
-        partNumber:upgrade.node?.partNo || "MMRAD-SRT-15",
-        description:upgrade.fixes,
-        modelData:{ source:"owner-twin", nodeId },
+        category:part.category || "other",
+        name:part.name || part.label,
+        brand:part.brand || null,
+        partNumber:part.partNumber || part.partNo || null,
+        description:part.description || part.notes || null,
+        cost:Number.isFinite(part.cost) ? part.cost : null,
+        installDate:new Date().toISOString(),
+        imageUrl:/^https?:\/\//i.test(part.imageUrl || part.img || "") ? (part.imageUrl || part.img) : null,
+        modelData:{ source:"owner-twin", nodeId, kind, fitmentConfirmed:part.fitmentConfirmed === true, fitmentKey:`${baseValue?.catalog?.id || data.fulfillmentId}:${data.transmission || "single"}`, lifespanMiles:part.lifespanMiles || null, installedAtMileage:Number.isFinite(part.installedAtMileage) ? part.installedAtMileage : data.miles },
       }),
     });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(payload.error || "Could not save this fitted part.");
     router.refresh();
     return true;
-  }, [data.vehicleId, router]);
+  }, [baseValue?.catalog?.id, data.fulfillmentId, data.miles, data.transmission, data.vehicleId, router]);
+
+  const installUpgrade = React.useCallback(({ nodeId, upgrade }) => saveInstalledPart({
+    nodeId,
+    kind:"upgrade",
+    part:{
+      category:upgrade.category || "performance",
+      name:upgrade.label,
+      brand:upgrade.brand || upgrade.node?.brand || null,
+      partNumber:upgrade.node?.partNo || null,
+      description:upgrade.fixes,
+      cost:upgrade.numericPrice || null,
+      imageUrl:upgrade.img || null,
+    },
+  }), [saveInstalledPart]);
+
+  const annotateIssue = React.useCallback(({ nodeId, note }) => saveInstalledPart({
+    nodeId,
+    kind:"known-issue-note",
+    part:{ category:"other", name:`Owner issue: ${note.slice(0, 72)}`, description:note },
+  }), [saveInstalledPart]);
 
   const saveTransmission = React.useCallback(async () => {
     if (!transmissionChoice || transmissionChoice === currentTransmission) return false;
@@ -182,12 +217,25 @@ export function LiveTwinHub({ data }) {
     });
   }, [currentTransmission, data.vehicleId, data.vehicleRevision, router, transmissionChoice]);
 
+  const savePaint = React.useCallback(async () => {
+    if (!paintChoice || paintChoice === data.vehicle?.color) return false;
+    setPaintState("saving"); setPaintError("");
+    try {
+      const response = await fetch(`/api/vehicles/${encodeURIComponent(data.vehicleId)}`, {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({color:paintChoice})});
+      const payload = await response.json().catch(()=>({}));
+      if (!response.ok) throw new Error(payload.error || "Could not save the factory color.");
+      setPaintState("saved"); router.refresh(); return true;
+    } catch (cause) { setPaintState("error"); setPaintError(cause instanceof Error ? cause.message : "Could not save the factory color."); return false; }
+  }, [data.vehicle?.color, data.vehicleId, paintChoice, router]);
+
   const value = React.useMemo(() => baseValue ? ({
     ...baseValue,
     ownerActions:{
       vehicleId:data.vehicleId,
       refresh:() => router.refresh(),
       installUpgrade,
+      saveInstalledPart,
+      annotateIssue,
     },
     transmissionControl:transmissionPicker ? {
       model:transmissionPicker,
@@ -197,7 +245,16 @@ export function LiveTwinHub({ data }) {
       setChoice:setTransmissionChoice,
       save:saveTransmission,
     } : null,
-  }) : null, [baseValue, data.vehicleId, installUpgrade, router, saveTransmission, transmissionChoice, transmissionError, transmissionPicker, transmissionState]);
+    paintControl:baseValue?.catalog?.paintPalette?.colors?.length ? {
+      current:data.vehicle?.color || baseValue.catalog.identity.paint,
+      choice:paintChoice,
+      options:baseValue.catalog.paintPalette.colors,
+      state:paintState,
+      error:paintError,
+      setChoice:setPaintChoice,
+      save:savePaint,
+    } : null,
+  }) : null, [annotateIssue, baseValue, data.vehicle?.color, data.vehicleId, installUpgrade, paintChoice, paintError, paintState, router, saveInstalledPart, savePaint, saveTransmission, transmissionChoice, transmissionError, transmissionPicker, transmissionState]);
 
   if (!value) {
     return (
@@ -275,6 +332,9 @@ const OWNER_TWIN_TREE_BUILDERS = {
     const liveTrees = buildTwinTrees(serviced, data.miles, data.transmission, data.evaluatedAt);
     return mergeCatalogEvidenceIntoOwnerTrees(catalog, liveTrees, data.miles);
   },
+  camaro(data, catalog) {
+    return buildModelOwnerTrees(catalog, data.records, data.miles, data.transmission, data.evaluatedAt);
+  },
 };
 
 function sameIdentity(catalog, vehicle) {
@@ -306,13 +366,47 @@ export function buildOwnerTwinValue(data) {
       trees.car.nodes[trees.car.root] = { ...trees.car.nodes[trees.car.root], label:trees.car.label, sub:"Owner garage vehicle", where:"Your garage" };
       delete trees.car.nodes[trees.car.root].partNo;
       delete trees.car.nodes[trees.car.root].spec;
-    }
+  }
   const ownerCatalog = filterTwinCatalogForTrees(catalog, trees);
+  const expectedFitmentKey = `${catalog.id}:${data.transmission || "single"}`;
+  const installedParts = (data.installedParts || []).filter((part) => part.nodeId !== "transFluid" || part.fitmentKey === expectedFitmentKey);
+  const latestByNode = new Map();
+  for (const part of installedParts) if (part.kind !== "known-issue-note" && !latestByNode.has(part.nodeId)) latestByNode.set(part.nodeId, part);
+  const mishimotoInstalled = latestByNode.get("radCore")?.partNumber?.trim().toUpperCase() === "MMRAD-SRT-15";
+  for (const tree of Object.values(trees)) {
+    for (const [nodeId, node] of Object.entries(tree.nodes)) {
+      const installed = installedParts.filter((part) => part.nodeId === nodeId && part.kind !== "known-issue-note").slice(0, 1);
+      const notes = installedParts.filter((part) => part.nodeId === nodeId && part.kind === "known-issue-note");
+      if (installed.length) node.installedParts = installed;
+      const latest = installed[0];
+      if (latest?.lifespanMiles && Number.isFinite(latest.installedAtMileage)) {
+        node.serviceIntervalMiles = latest.lifespanMiles;
+        node.riskAt = latest.lifespanMiles;
+        node.servicedAt = latest.installedAtMileage;
+        node.servicedDate = latest.installDate;
+        node.dueMileage = latest.installedAtMileage + latest.lifespanMiles;
+        node.unlogged = false;
+        delete node.firstServiceDeadline;
+        delete node.dueDate;
+        delete node.overdueByDate;
+        delete node.dueNote;
+      }
+      if (notes.length) {
+        node.userIssueNotes = notes.map((part) => part.notes || part.name).filter(Boolean);
+        if (!node.knownIssue?.id) node.knownIssue = { id:`owner:${nodeId}`, label:"Owner-reported issue", ownerReported:true };
+      }
+    }
+  }
+  // Installed tires/parts can replace the factory interval with the owner's
+  // recorded lifespan. Pick the sidebar item only after those clocks have
+  // been applied, otherwise the card can disagree with the selected node.
   const nextService = pickNextService(trees, data.miles, data.evaluatedAt);
-  const mishimotoInstalled = (data.installedPartNumbers || []).some((partNumber) => partNumber.trim().toUpperCase() === "MMRAD-SRT-15");
+  const ownerReportedIssues = installedParts.filter((part) => part.kind === "known-issue-note").map((part,index) => ({
+    id:`owner:${part.nodeId}:${index}`, title:part.notes || part.name, severity:"Owner reported", href:`#owner-${part.nodeId}`,
+  }));
   const issues = applicableIssues.map((issue) => issue.id === "dodge-challenger-radiator-failure" && mishimotoInstalled
     ? { ...issue, resolved:true }
-    : issue);
+    : issue).concat(ownerReportedIssues);
   const presentation = buildDemoTwinPresentation(ownerCatalog, {
     trees, miles:data.miles, mode:"owner", recent:data.recent, nextService,
   });
@@ -323,7 +417,7 @@ export function buildOwnerTwinValue(data) {
     nextService,
     recent: data.recent || [],
     issues,
-    equipped:{ radCore:mishimotoInstalled },
+    equipped:Object.fromEntries(installedParts.filter((part) => part.nodeId && part.kind === "upgrade").map((part) => [part.nodeId, true]).concat([["radCore",mishimotoInstalled]])),
     catalog:ownerCatalog,
     presentation,
     mode: "owner",

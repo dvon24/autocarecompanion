@@ -166,6 +166,12 @@ export function useTwinTransmissionControl() {
   return ctx?.mode === "owner" ? (ctx.transmissionControl || null) : null;
 }
 
+/** Factory-paint chooser. Owner selections persist on the garage vehicle. */
+export function useTwinPaintControl() {
+  const ctx = React.useContext(TwinDataCtx);
+  return ctx?.paintControl || null;
+}
+
 /** "Good morning/afternoon/evening" — the hub greets by time of day. */
 export function greetingFor(date) {
   const h = (date || new Date()).getHours();

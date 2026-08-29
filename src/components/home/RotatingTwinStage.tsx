@@ -18,6 +18,10 @@ export const TWIN_STAGE_FRAME_STYLE = {
   aspectRatio: '16 / 9',
 } as const;
 
+export function resolveHeroHotspotTap(active: string | null, tapped: string) {
+  return active === tapped ? 'open' : 'select';
+}
+
 export function RotatingTwinStage({ onSelectedVehicleChange }: { onSelectedVehicleChange?: (vehicleId: string) => void }) {
   const [index, setIndex] = useState(0);
   const [active, setActive] = useState<string | null>(null);
@@ -31,12 +35,16 @@ export function RotatingTwinStage({ onSelectedVehicleChange }: { onSelectedVehic
   useEffect(() => onSelectedVehicleChange?.(twin.id), [onSelectedVehicleChange, twin.id]);
   const go = (next: number) => { setIndex((next + VEHICLE_TWIN_CATALOG.length) % VEHICLE_TWIN_CATALOG.length); setActive(null); };
   const open = (hotspot: string) => window.location.assign(`/demo/hub?vehicle=${encodeURIComponent(twin.id)}&open=${encodeURIComponent(hotspot)}`);
+  const tap = (hotspot: string) => {
+    if (resolveHeroHotspotTap(active, hotspot) === 'open') open(hotspot);
+    else setActive(hotspot);
+  };
   const markers = twin.hotspots;
   return <section aria-label="Vehicle Twin preview" onPointerDownCapture={() => setPaused(true)} onMouseEnter={() => setPaused(true)} onMouseLeave={() => setPaused(false)} onFocusCapture={() => setPaused(true)} onBlurCapture={(event) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setPaused(false); }} style={{overflow:'hidden',borderRadius:20,border:'1px solid rgba(255,255,255,.14)',background:'#05070C',boxShadow:'0 24px 60px rgba(0,0,0,.35)'}}>
     <div style={TWIN_STAGE_FRAME_STYLE}>
       <Image src={twin.art.base} alt={`${twin.identity.year} ${twin.identity.make} ${twin.identity.model} ${twin.identity.trim} in ${twin.identity.paint}`} fill priority={index === 0} sizes="(max-width:900px) 100vw,1120px" style={{objectFit:'cover'}} />
       {Object.entries(twin.art.effects).map(([id, src]) => <Image key={id} src={src} alt="" aria-hidden fill sizes="(max-width:900px) 100vw,1120px" style={{objectFit:'cover',opacity:active === id ? 1 : 0,transition:'opacity .3s',...(twin.art.strategy === 'opaque-masked' ? {clipPath:twin.art.masks?.[id]} : {})}} />)}
-      {markers.map((hotspot) => <button key={hotspot.id} type="button" aria-label={`${hotspot.label}: ${hotspot.statusDetail}. Press Enter to open the selected vehicle demo.`} onClick={() => setActive(hotspot.id)} onDoubleClick={() => open(hotspot.id)} onKeyDown={(event) => { if (event.key === 'Enter') open(hotspot.id); }} style={{position:'absolute',left:`${hotspot.x}%`,top:`${hotspot.y}%`,transform:'translate(-50%,-50%)',zIndex:5,padding:0,border:0,background:'transparent',cursor:'pointer'}}><TwinMarkerDot evidence={hotspot} size={44} active={active===hotspot.id}/></button>)}
+      {markers.map((hotspot) => <button key={hotspot.id} type="button" aria-label={`${hotspot.label}: ${hotspot.statusDetail}. Tap once to preview and again to open the selected vehicle demo.`} onClick={() => tap(hotspot.id)} onKeyDown={(event) => { if (event.key === 'Enter') open(hotspot.id); }} style={{position:'absolute',left:`${hotspot.x}%`,top:`${hotspot.y}%`,transform:'translate(-50%,-50%)',zIndex:5,width:48,height:48,display:'grid',placeItems:'center',touchAction:'manipulation',padding:0,border:0,background:'transparent',cursor:'pointer'}}><TwinMarkerDot evidence={hotspot} size={44} active={active===hotspot.id}/></button>)}
     </div>
     <div style={{display:'flex',alignItems:'center',gap:12,padding:'12px 14px',borderTop:'1px solid rgba(255,255,255,.1)',background:'rgba(8,11,18,.96)',flexWrap:'wrap'}}>
       <div><div style={{color:'#fff',fontSize:14.5,fontWeight:600}}>{twin.identity.year} {twin.identity.make} {twin.identity.model} <span style={{color:'rgba(255,255,255,.5)'}}>{twin.identity.trim}</span></div><div className="mono" style={{marginTop:2,color:'rgba(255,255,255,.5)',fontSize:10.5}}>{twin.identity.paint} · {twin.demoMileage?.toLocaleString()} mi sample · model-specific demo evidence</div></div>

@@ -3,7 +3,8 @@ import type { prisma as prismaClient } from '@/lib/db';
 import { isFounderEmail } from '@/lib/founder';
 import { getTransmissionPatchCompanionFields, matchesVehicleRevision, resolveVehicleTransmissionUpdate } from '@/lib/transmission-options';
 import { isPrismaWriteConflict } from '@/lib/prisma-conflict';
-import { normalizeTwinIdentityField } from '@/lib/twin-fulfillment';
+import { getLiveTwinForVehicle, normalizeTwinIdentityField } from '@/lib/twin-fulfillment';
+import { getTwinByFulfillmentId } from '@/lib/vehicle-twin-catalog';
 import { parseVehiclePatch } from '@/lib/twin-route-contracts';
 import { isMaintenanceMutationError, nextMonotonicRevision } from '@/lib/maintenance-mutation';
 
@@ -51,6 +52,13 @@ export function createVehiclePatchHandler(deps: {
       if (!parsed.success) return NextResponse.json({ error: 'Invalid vehicle data', details: parsed.error.issues }, { status: 400 });
       const existing = await deps.prisma.vehicle.findFirst({ where: { id, userId } });
       if (!existing) return NextResponse.json({ error: 'Vehicle not found' }, { status: 404 });
+      if (parsed.data.color !== undefined) {
+        const definition = getLiveTwinForVehicle(existing);
+        const catalog = definition ? getTwinByFulfillmentId(definition.id) : null;
+        if (catalog && !catalog.paintPalette.colors.some((paint) => paint.name === parsed.data.color)) {
+          return NextResponse.json({ error: 'Choose a reviewed factory color for this exact vehicle.' }, { status: 400 });
+        }
+      }
       const { isPrimary, currentMileage, annualMileage, transmission, expectedUpdatedAt, ...updateData } = parsed.data;
       if (transmission !== undefined && !isFounderEmail(session.user.email)) return NextResponse.json({ error: 'Only the founder fitment workflow can change this field' }, { status: 403 });
       const companions = getTransmissionPatchCompanionFields(parsed.data as Record<string, unknown>);

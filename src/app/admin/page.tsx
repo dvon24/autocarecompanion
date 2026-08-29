@@ -1508,8 +1508,10 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
                               <span className="max-w-[220px] inline-block truncate align-bottom text-gray-600" title={`Click came from ${src.tag} — no article page for "${src.label}"`}>
                                 {src.label} <span className="text-gray-400 text-xs">· {src.tag}</span>
                               </span>
+                            ) : click.issueHref ? (
+                              <a href={click.issueHref} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline max-w-[220px] inline-block truncate align-bottom">{id}</a>
                             ) : (
-                              <a href={`/known-issues/${id}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline max-w-[220px] inline-block truncate align-bottom">{id}</a>
+                              <span className="text-gray-600 max-w-[220px] inline-block truncate align-bottom" title="No published issue route found">{id}</span>
                             );
                           })() : <span className="text-gray-400">—</span>}
                         </td>
@@ -1545,13 +1547,15 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-gray-100">
-                    {affiliateStats.needsDeepLink.map((n: { issueId: string; searchClicks: number; lastPart: string }, i: number) => (
+                    {affiliateStats.needsDeepLink.map((n: { issueId: string; issueHref: string | null; searchClicks: number; lastPart: string }, i: number) => (
                       <tr key={i} className="hover:bg-gray-50">
                         <td className="px-6 py-3 text-sm">
                           {/^(ki:|vision:|parts-finder-)/.test(n.issueId) ? (
                             <span className="text-gray-600" title="Click came from hub chat / vision / parts finder — no article page">{n.issueId}</span>
+                          ) : n.issueHref ? (
+                            <a href={n.issueHref} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{n.issueId}</a>
                           ) : (
-                            <a href={`/known-issues/${n.issueId}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">{n.issueId}</a>
+                            <span className="text-gray-600" title="No published issue route found">{n.issueId}</span>
                           )}
                         </td>
                         <td className="px-6 py-3 text-sm text-gray-700">{n.lastPart || '—'}</td>

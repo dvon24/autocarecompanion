@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { requireFounder } from '@/lib/admin-guard';
 import prisma from '@/lib/db';
 import { affiliateTrackLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
+import type { Prisma } from '@prisma/client';
 
 export async function POST(request: Request) {
   // Rate limit: 30 requests per minute per IP
@@ -40,7 +41,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Issue not found' }, { status: 404 });
     }
 
-    const recs = issue.communityRecommendations as any[];
+    const recs = issue.communityRecommendations as Array<Record<string, unknown>>;
     // This endpoint is deliberately unauthenticated (public click tracker), so
     // recommendationIndex is attacker-controlled. Require a real array index —
     // a string like "__proto__" would otherwise index the prototype chain.
@@ -50,14 +51,12 @@ export async function POST(request: Request) {
       recommendationIndex >= 0 &&
       recommendationIndex < recs.length
     ) {
-      if (recs[recommendationIndex].clickCount === undefined) {
-        recs[recommendationIndex].clickCount = 0;
-      }
-      recs[recommendationIndex].clickCount++;
+      const current = typeof recs[recommendationIndex].clickCount === 'number' ? recs[recommendationIndex].clickCount : 0;
+      recs[recommendationIndex] = { ...recs[recommendationIndex], clickCount:current + 1 };
 
       await prisma.knownIssue.update({
         where: { id: issueId },
-        data: { communityRecommendations: recs },
+        data: { communityRecommendations: recs as Prisma.InputJsonValue },
       });
 
       return NextResponse.json({
@@ -84,6 +83,12 @@ export async function GET() {
       orderBy: { clickedAt: 'desc' },
       take: 1000,
     });
+    const articleIssueIds = [...new Set(clicks.map((click) => click.knownIssueId).filter((id) => id && !/^(ki:|vision:|parts-finder-)/.test(id)))];
+    const issueRows = articleIssueIds.length ? await prisma.knownIssue.findMany({
+      where: { id: { in: articleIssueIds }, status: 'published' }, select: { id: true, make: true, model: true },
+    }) : [];
+    const slug = (value: string) => value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    const issueHrefById = new Map(issueRows.map((issue) => [issue.id, `/known-issues/${slug(`${issue.make} ${issue.model}`)}#${issue.id}`]));
 
     // Aggregate stats
     const partStats: Record<string, { brand: string; name: string; clicks: number; lastClicked: string }> = {};
@@ -147,11 +152,11 @@ export async function GET() {
     // FIX LIST: known issues that got clicks on a SEARCH link (not deep) — these
     // are the pages to upgrade to a verified /dp/ deep link (and whose interested
     // clickers could be notified once fixed). Grouped by issue, most-clicked first.
-    const needsMap: Record<string, { issueId: string; searchClicks: number; lastPart: string; lastClicked: string }> = {};
+    const needsMap: Record<string, { issueId: string; issueHref: string | null; searchClicks: number; lastPart: string; lastClicked: string }> = {};
     for (const c of clicks) {
       if (isDeepLink(c.link)) continue;
       const id = c.knownIssueId || 'unknown';
-      if (!needsMap[id]) needsMap[id] = { issueId: id, searchClicks: 0, lastPart: c.partName || '', lastClicked: c.clickedAt.toISOString() };
+      if (!needsMap[id]) needsMap[id] = { issueId: id, issueHref: issueHrefById.get(id) ?? null, searchClicks: 0, lastPart: c.partName || '', lastClicked: c.clickedAt.toISOString() };
       needsMap[id].searchClicks++;
       const ts = c.clickedAt.toISOString();
       if (ts > needsMap[id].lastClicked) { needsMap[id].lastClicked = ts; needsMap[id].lastPart = c.partName || needsMap[id].lastPart; }
@@ -171,6 +176,7 @@ export async function GET() {
       recentClicks: clicks.slice(0, 25).map(c => ({
         timestamp: c.clickedAt.toISOString(),
         issueId: c.knownIssueId,
+        issueHref: issueHrefById.get(c.knownIssueId) ?? null,
         partBrand: c.partBrand,
         partName: c.partName,
         link: c.link,

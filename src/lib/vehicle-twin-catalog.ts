@@ -54,7 +54,7 @@ export interface VehicleTwinCatalogEntry {
 const systems = (includeTransmission: boolean) => [
   { hot: 'wheel', branch: 'wheel', label: 'Wheel, Tire & Brakes', img: '/twin-stage/parts/part-caliper.webp' },
   { hot: 'hood', branch: 'engine', label: 'Engine', img: '/twin-stage/parts/part-engine.webp' },
-  ...(includeTransmission ? [{ hot: 'trans', branch: 'trans', label: 'Transmission', img: '/twin-stage/parts/part-transmission.webp' }] : []),
+  ...(includeTransmission ? [{ hot: 'trans', branch: 'trans', label: 'Transmission & Driveline', img: '/twin-stage/parts/part-transmission.webp' }] : []),
   { hot: 'glass', branch: 'wipers', label: 'Windshield Wipers', img: '/twin-stage/parts/part-wipers.webp' },
 ];
 
@@ -84,6 +84,10 @@ const masks = {
   wheel: 'ellipse(18% 25% at 42% 66%)', rearwheel: 'ellipse(16% 24% at 20% 64%)',
   hood: 'ellipse(29% 18% at 65% 39%)', rad: 'ellipse(23% 23% at 70% 53%)',
 };
+const generatedArt = (root: string, paintSlug: string) => ({
+  available:true,base:`${root}/base-${paintSlug}.webp`,strategy:'opaque-masked' as const,masks,
+  effects:{wheel:`${root}/glow-wheel-${paintSlug}.webp`,rearwheel:`${root}/glow-rearwheel-${paintSlug}.webp`,hood:`${root}/glow-hood-${paintSlug}.webp`,rad:`${root}/xray-radiator-${paintSlug}.webp`},
+});
 
 export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
   {
@@ -163,7 +167,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     art:{available:true,base:'/twin-stage/murano/base-red.webp',effects:opaque('/twin-stage/murano'),strategy:'opaque-masked',masks},
     hotspots:standardHotspots({wheel:[43,65],hood:[64,36],glass:[48,27],rearwheel:[19,64],rad:[70,53],trans:[55,59]}, {
       wheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},rearwheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},
-      hood:{node:'hoodRoot',status:'on-track',statusDetail:'Sample oil service on track'},trans:{status:'on-track',statusDetail:'Sample CVT service on track'},
+      hood:{node:'hoodRoot',status:'on-track',statusDetail:'Sample oil service on track'},trans:{status:'unlogged',statusDetail:'Sample CVT record exists; FWD/AWD driveline history is incomplete'},
       glass:{label:'Safety, Camera & Cabin',status:'known-issue',statusDetail:'Five published driver-assistance, electrical, seat and camera issues · wiper service unlogged',knownIssueIds:['nissan-murano-automatic-emergency-braking-forward-collision-phantom-activa','nissan-murano-battery-drain-and-no-start-2021','nissan-murano-front-driver-seat-frametrack-2021','nissan-murano-front-radarsensor-malfunctions-triggering-2021','nissan-murano-rearview-camera-image-blank-2021']},rad:{status:'unlogged',statusDetail:'No sample service event logged'},
     }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Safety, Camera & Cabin'}:system),
   },
@@ -189,6 +193,83 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       trans:{status:'known-issue',statusDetail:'Three published transmission/AWD issues · no sample fluid service event logged',knownIssueIds:['cadillac-xt6-9speed-transmission-2020','cadillac-xt6-transmission-shudder-2020','cadillac-xt6-ptu-leak-2020']},
       glass:{status:'unlogged',statusDetail:'No sample service event logged'},rad:{status:'unlogged',statusDetail:'No sample service event logged'},
     }),systems:systems(true),
+  },
+  {
+    id:'kicks',fulfillmentId:null,ownerReady:false,
+    identity:{year:2025,make:'Nissan',model:'Kicks',trim:'Trim confirmation pending',engine:'2.0L I4',paint:'Gun Metallic'},demoMileage:12000,
+    paintPalette:{sourceLabel:'2025 Nissan Kicks brochure · Exterior Colors',sourceUrl:'https://www.nissanusa.com/content/dam/Nissan/us/vehicle-brochures/2025/2025-nissan-kicks-brochure-en.pdf',colors:[
+      {name:'Fresh Powder',swatch:'#F4F2EA',artStatus:'awaiting-art'},{name:'Aspen White TriCoat',swatch:'#EEEDE7',artStatus:'awaiting-art'},
+      {name:'Gun Metallic',swatch:'#565B60',artStatus:'rendered'},{name:'Canyon Bronze Metallic',swatch:'#75665A',artStatus:'awaiting-art'},
+      {name:'Scarlet Ember Tintcoat',swatch:'#932934',artStatus:'awaiting-art'},{name:'Deep Blue Pearl',swatch:'#183651',artStatus:'awaiting-art'},
+      {name:'Super Black',swatch:'#101113',artStatus:'awaiting-art'},{name:'Yuzu Yellow / Super Black',swatch:'#B7BC38',artStatus:'awaiting-art'},
+      {name:'Arctic Ice Blue / Super Black',swatch:'#ABC8CF',artStatus:'awaiting-art'},{name:'Deep Blue Pearl / Gun Metallic',swatch:'#243A50',artStatus:'awaiting-art'},
+    ]},
+    sampleState:{label:'Sample demo state',records:[
+      {node:'oil',label:'Engine oil and filter',lastServiceMileage:0,intervalMiles:10000,intervalSource:'2025 Nissan Kicks Maintenance Schedule',sourceUrl:'https://maintenance-schedules.nissanusa.com/maintenance-schedules/2025/kicks/components/',sourceSection:'Engine oil and filter · standard conditions'},
+      {node:'tire',label:'Tire service',lastServiceMileage:0,intervalMiles:10000,intervalSource:'2025 Nissan Kicks Maintenance Schedule',sourceUrl:'https://maintenance-schedules.nissanusa.com/maintenance-schedules/2025/kicks/components/',sourceSection:'Tires and rotation'},
+    ]},
+    treeResolver:'kicks',treeStatus:'model-specific',art:generatedArt('/twin-stage/kicks','gun-metallic'),
+    hotspots:standardHotspots({wheel:[54,66],hood:[66,43],glass:[51,30],rearwheel:[28,63],rad:[72,57],trans:[59,64]}, {
+      wheel:{status:'overdue',statusDetail:'Sample tire-service deadline passed; brake history is incomplete'},hood:{node:'hoodRoot',status:'overdue',statusDetail:'Sample oil-service deadline passed; remaining engine history is incomplete'},
+      rearwheel:{status:'overdue',statusDetail:'Sample tire-service deadline passed'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},
+      trans:{status:'unlogged',statusDetail:'FWD/AWD configuration still requires owner confirmation'},
+      glass:{label:'Safety, Camera & Cabin',status:'known-issue',statusDetail:'Published cluster, backup-camera and infotainment issues',knownIssueIds:['nissan-kicks-blank-partial-instrument-cluster-cold-start','nissan-kicks-center-display-goes-blank-reverse-no-backup-camera-image','nissan-kicks-infotainment-touchscreen-freezing-rebooting-carplay-disconne']},
+    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Safety, Camera & Cabin'}:system),
+  },
+  {
+    id:'mdx',fulfillmentId:null,ownerReady:false,
+    identity:{year:2019,make:'Acura',model:'MDX',trim:'Technology',engine:'3.5L V6',paint:'Lunar Silver Metallic'},demoMileage:48000,
+    paintPalette:{sourceLabel:'2019 Acura MDX brochure · Exterior Colors',sourceUrl:'https://cdn.dealereprocess.org/cdn/brochures/acura/2019-mdx.pdf',colors:[
+      {name:'Platinum White Pearl',swatch:'#EEEDE8',artStatus:'awaiting-art'},{name:'Lunar Silver Metallic',swatch:'#B9BBBC',artStatus:'rendered'},
+      {name:'Modern Steel Metallic',swatch:'#555A5E',artStatus:'awaiting-art'},{name:'Majestic Black Pearl',swatch:'#111317',artStatus:'awaiting-art'},
+      {name:'Fathom Blue Pearl',swatch:'#1C3449',artStatus:'awaiting-art'},{name:'Performance Red Pearl',swatch:'#8D2631',artStatus:'awaiting-art'},
+      {name:'Gunmetal Metallic',swatch:'#68696A',artStatus:'awaiting-art'},
+    ]},
+    sampleState:{label:'Sample demo state',records:[
+      {node:'oil',label:'Engine oil and filter',lastServiceMileage:40000,intervalMiles:7500,intervalSource:'2019 Acura MDX Owner\'s Manual',sourceUrl:'https://owners.acura.com/utility/download?path=/static/pdfs/2019/MDX/2019_MDX_Owners_Manual.pdf',sourceSection:'Maintenance Minder'},
+      {node:'transFluid',label:'Transmission fluid',lastServiceMileage:30000,intervalMiles:30000,intervalSource:'2019 Acura Maintenance Minder',sourceUrl:'https://owners.acura.com/servicemaintenance/minder',sourceSection:'Sub-item 3 · transmission and transfer fluid'},
+    ]},
+    treeResolver:'mdx',treeStatus:'model-specific',art:generatedArt('/twin-stage/acura-mdx','lunar-silver'),
+    hotspots:standardHotspots({wheel:[52,67],hood:[67,42],glass:[50,29],rearwheel:[24,61],rad:[74,57],trans:[60,64]}, {
+      wheel:{status:'unlogged',statusDetail:'Brake and tire service history not supplied'},hood:{node:'hoodRoot',status:'known-issue',statusDetail:'Fuel-pump recall record · sample oil service approaching due',knownIssueIds:['acura-mdx-fuel-pump-impeller-deformation-causing-stall']},
+      rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},
+      trans:{status:'known-issue',statusDetail:'Published ZF 9-speed and torque-converter concerns · FWD/SH-AWD confirmation required',knownIssueIds:['acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling','acura-mdx-torque-converter-shudder-2014']},
+      glass:{label:'Infotainment & Visibility',status:'known-issue',statusDetail:'Published infotainment reboot issue',knownIssueIds:['acura-mdx-infotainment-reboot-2014']},
+    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Infotainment & Visibility'}:system),
+  },
+  {
+    id:'aviator',fulfillmentId:null,ownerReady:false,
+    identity:{year:2026,make:'Lincoln',model:'Aviator',trim:'Premiere',engine:'3.0L Twin-Turbo V6',paint:'Red Carpet Metallic Tinted Clearcoat'},demoMileage:5000,
+    paintPalette:{sourceLabel:'2026 Lincoln Aviator · Exterior Colors',sourceUrl:'https://www.lincoln.com/luxury-suvs/aviator/',colors:[
+      {name:'Pristine White Metallic Tri-Coat',swatch:'#ECEAE3',artStatus:'awaiting-art'},{name:'Harbor Gray',swatch:'#65696B',artStatus:'awaiting-art'},
+      {name:'Cenote Green Bright Colorant Clearcoat',swatch:'#2F5B4A',artStatus:'awaiting-art'},{name:'Whisper Blue Metallic',swatch:'#8195A5',artStatus:'awaiting-art'},
+      {name:'Red Carpet Metallic Tinted Clearcoat',swatch:'#8D1E2C',artStatus:'rendered'},{name:'Infinite Black Metallic',swatch:'#121417',artStatus:'awaiting-art'},
+    ]},
+    sampleState:{label:'Sample demo state',records:[]},treeResolver:'aviator',treeStatus:'model-specific',art:generatedArt('/twin-stage/lincoln-aviator','red-carpet'),
+    hotspots:standardHotspots({wheel:[53,67],hood:[67,42],glass:[51,28],rearwheel:[25,62],rad:[74,57],trans:[60,64]}, {
+      wheel:{status:'unlogged',statusDetail:'First tire/brake service history not supplied'},hood:{node:'hoodRoot',status:'unlogged',statusDetail:'First engine-service history not supplied'},
+      rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},trans:{status:'unlogged',statusDetail:'RWD/AWD configuration requires owner confirmation'},glass:{status:'unlogged',statusDetail:'Wiper service history not supplied'},
+    }),systems:systems(true),
+  },
+  {
+    id:'camaro',fulfillmentId:'chevrolet-camaro-zl1-1le',ownerReady:true,
+    identity:{year:2019,make:'Chevrolet',model:'Camaro',trim:'ZL1 1LE',engine:'6.2L Supercharged LT4 V8',paint:'Summit White'},demoMileage:30000,
+    paintPalette:{sourceLabel:'2019 Chevrolet Camaro brochure · Exterior Colors',sourceUrl:'https://cdn.dealereprocess.org/cdn/brochures/chevrolet/2019-camaro.pdf',colors:[
+      {name:'Summit White',swatch:'#F1F0EA',artStatus:'rendered'},{name:'Black',swatch:'#111216',artStatus:'awaiting-art'},
+      {name:'Satin Steel Gray Metallic',swatch:'#686C70',artStatus:'awaiting-art'},{name:'Shadow Gray Metallic',swatch:'#444A50',artStatus:'awaiting-art'},
+      {name:'Silver Ice Metallic',swatch:'#B8BBBD',artStatus:'awaiting-art'},{name:'Riverside Blue Metallic',swatch:'#174A75',artStatus:'awaiting-art'},
+      {name:'Garnet Red Tintcoat',swatch:'#69222B',artStatus:'awaiting-art'},{name:'Crush',swatch:'#C95824',artStatus:'awaiting-art'},
+      {name:'Red Hot',swatch:'#B4212A',artStatus:'awaiting-art'},
+    ]},
+    sampleState:{label:'Sample demo state',records:[
+      {node:'oil',label:'Engine oil and filter',lastServiceMileage:22500,intervalMiles:7500,intervalSource:'2019 Camaro Owner\'s Manual',sourceUrl:'https://www.chevrolet.com/support/vehicle/manuals-guides',sourceSection:'Maintenance schedule and engine-oil life system'},
+      {node:'driveline',label:'Electronic limited-slip differential fluid',lastServiceMileage:0,intervalMiles:45000,intervalSource:'2019 Camaro High Performance Owner\'s Manual Supplement',sourceUrl:'https://www.chevrolet.com/support/vehicle/manuals-guides',sourceSection:'Track and competitive driving · rear axle fluid'},
+    ]},
+    treeResolver:'camaro',treeStatus:'model-specific',art:generatedArt('/twin-stage/camaro','summit'),
+    hotspots:standardHotspots({wheel:[58,69],hood:[70,43],glass:[53,29],rearwheel:[30,65],rad:[78,57],trans:[62,65]}, {
+      wheel:{status:'unlogged',statusDetail:'Staggered tire and brake history not supplied'},hood:{node:'hoodRoot',status:'unlogged',statusDetail:'Sample oil service reaches its deadline at the sample mileage'},rearwheel:{status:'unlogged',statusDetail:'Rear tire history not supplied'},
+      rad:{status:'unlogged',statusDetail:'Main and low-temperature cooling service history not supplied'},trans:{status:'known-issue',statusDetail:'eLSD issue record · manual/automatic choice required',knownIssueIds:['chevy-camaro-rear-differential-noise']},glass:{label:'Infotainment & Visibility',status:'known-issue',statusDetail:'Published MyLink/HMI issue',knownIssueIds:['chevrolet-camaro-mylink-hmi-infotainment-module-failure']},
+    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Infotainment & Visibility'}:system),
   },
 ] as const;
 

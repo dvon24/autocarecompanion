@@ -11,7 +11,7 @@
 import React from "react";
 import { Icon } from "./Icon";
 import { TT_TREES, ttHasUpgrade, ttFinish, useEquipped } from "./TechTree";
-import { TWIN_DEMO_MILES, TWIN_DEMO_VEHICLE, useTwinEquipment, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode } from "../twin-context";
+import { TWIN_DEMO_MILES, TWIN_DEMO_VEHICLE, useTwinEquipment, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode, useTwinPaintControl } from "../twin-context";
 import { collectHotspotNodes, summarizeEvidence } from "../demo-trees";
 import { TwinMarkerDot, resolveTwinMarkerVisual } from "./TwinMarker";
 
@@ -129,6 +129,9 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
   const trees = useTwinTrees(TT_TREES);
   const catalog = useTwinCatalog();
   const twinMode = useTwinMode();
+  const paintControl = useTwinPaintControl();
+  const selectedPaint = paintControl?.options?.find((paint)=>paint.name===paintControl.choice);
+  const matchingArtworkPending = Boolean(live && selectedPaint && selectedPaint.artStatus !== "rendered");
   const [equipped] = useEquipped();
   const finish = !live && catalog.id === "challenger" ? ttFinish() : null;
   const hotspots = catalog.hotspots;
@@ -183,15 +186,15 @@ function THStage({ mode, setMode, onOpen, mobile, hideNote, noteDark, fill, allo
             </svg>
           </button>
         )}
-        {!baseFailed && (
+        {!baseFailed && !matchingArtworkPending && (
           <img src={catalog.art.base} onError={()=>setBaseFailed(true)} alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`} style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover" }}/>
         )}
-        {baseFailed && <div role="img" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model} artwork unavailable`} style={{position:"absolute",inset:0,display:"grid",placeItems:"center",color:"rgba(255,255,255,.72)",fontSize:13,background:"radial-gradient(circle at 50% 45%,#182238,#080B12 70%)"}}>Vehicle artwork unavailable</div>}
-        {catalog.id === "challenger" && (
+        {(baseFailed || matchingArtworkPending) && <div role="img" aria-label={`${vehicle.year} ${vehicle.make} ${vehicle.model} artwork unavailable`} style={{position:"absolute",inset:0,display:"grid",placeItems:"center",padding:24,textAlign:"center",color:"rgba(255,255,255,.72)",fontSize:13,background:"radial-gradient(circle at 50% 45%,#182238,#080B12 70%)"}}>{matchingArtworkPending ? `${selectedPaint.name} selected · matching vehicle artwork is awaiting render` : "Vehicle artwork unavailable"}</div>}
+        {!matchingArtworkPending && catalog.id === "challenger" && (
           <img src="/twin-stage/car-wheels-bronze.webp" alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity: !finish || finish.id === "oem" ? 0 : 1, filter: finish?.filter || "none", transition:"opacity .4s ease, filter .4s ease" }}/>
         )}
-        {Object.entries(catalog.art.effects).filter(([id])=>!failedEffects[id]).map(([id, src]) => <img key={id} src={src} onError={()=>setFailedEffects(value=>({...value,[id]:true}))} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:lit === id ? 1 : 0, transition:"opacity .32s ease", ...(catalog.art.strategy === "opaque-masked" ? {clipPath:catalog.art.masks?.[id]} : {}) }}/>) }
-        {catalog.art.xray && (
+        {!matchingArtworkPending && Object.entries(catalog.art.effects).filter(([id])=>!failedEffects[id]).map(([id, src]) => <img key={id} src={src} onError={()=>setFailedEffects(value=>({...value,[id]:true}))} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:lit === id ? 1 : 0, transition:"opacity .32s ease", ...(catalog.art.strategy === "opaque-masked" ? {clipPath:catalog.art.masks?.[id]} : {}) }}/>) }
+        {!matchingArtworkPending && catalog.art.xray && (
           <img src={catalog.art.xray} alt="" aria-hidden="true" style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:mode === "xray" ? 1 : 0 }}/>
         )}
 

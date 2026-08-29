@@ -56,6 +56,17 @@ export const TWIN_DEFINITIONS: readonly TwinDefinition[] = [
     transmissions: getReviewedTransmissionChoices({ year: 2015, make: 'dodge', model: 'challenger', trim: 'srt 392' }),
     live: true,
   },
+  {
+    id: 'chevrolet-camaro-zl1-1le',
+    label: 'Chevrolet Camaro ZL1 1LE',
+    make: 'chevrolet',
+    model: 'camaro',
+    yearFrom: 2019,
+    yearTo: 2019,
+    trims: ['zl1 1le'],
+    transmissions: getReviewedTransmissionChoices({ year: 2019, make: 'chevrolet', model: 'camaro', trim: 'zl1 1le' }),
+    live: true,
+  },
 ] as const;
 
 export const TWIN_FULFILLMENT_STATUSES: readonly TwinFulfillmentStatus[] = [
