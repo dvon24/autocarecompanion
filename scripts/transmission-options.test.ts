@@ -124,6 +124,7 @@ test('route contracts execute strict PATCH/maintenance validation and dual-only 
   assert.equal(parseVehiclePatch({model:'\t'}).success,false);
   assert.equal(parseVehiclePatch({trim:' '}).success,false);
   assert.equal(parseMaintenanceCreate({ vehicleId: 'v1', type: 'oil_change', mileage: 10, date: '2026-08-26' }, isLoggableMaintenanceType).success, true);
+  assert.equal(parseMaintenanceCreate({ vehicleId: 'v1', type: 'oil_change', mileage: 10, date: '2026-08-26', nextDueMileage: null, nextDueDate: null }, isLoggableMaintenanceType).success, true);
   assert.equal(parseMaintenanceCreate({ vehicleId: 'v1', type: '__proto__', mileage: 10, date: '2026-08-26' }, isLoggableMaintenanceType).success, false);
   assert.equal(parseMaintenanceCreate({ vehicleId: 'v1', type: 'oil_change', mileage: 10, date: '2026-08-26', unexpected: true }, isLoggableMaintenanceType).success, false);
   assert.equal(parseMaintenanceCreate({ vehicleId: 'v1', type: 'oil_change', mileage: 10, date: '2026-02-30' }, isLoggableMaintenanceType).success, false);

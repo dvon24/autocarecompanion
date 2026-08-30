@@ -73,8 +73,10 @@ const maintenanceCreateSchema = (isLoggableType: (type: string) => boolean) => z
   mileage: boundedInt,
   cost: z.number().finite().min(0).optional(),
   date: maintenanceDate,
-  nextDueMileage: boundedInt.optional(),
-  nextDueDate: maintenanceDate.optional(),
+  // The shared log form represents an unavailable mileage/date clock as null.
+  // Accept that wire value instead of rejecting otherwise valid service logs.
+  nextDueMileage: boundedInt.optional().nullable(),
+  nextDueDate: maintenanceDate.optional().nullable(),
   notes: z.string().max(2000).optional(),
   receiptUrl: z.string().url().optional(),
   shopName: z.string().max(200).optional(),

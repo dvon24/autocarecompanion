@@ -608,7 +608,8 @@ function TTOwnerEvidence({ node, nodeId, dense, miles }) {
   const [error, setError] = React.useState("");
   const [part, setPart] = React.useState({ name:"", brand:"", partNumber:"", cost:"", lifespanMiles:"", installedAtMileage:String(Number.isFinite(miles)?miles:""), fitmentConfirmed:false });
   const [note, setNote] = React.useState("");
-  if (!live || !actions) return null;
+  const isParentNode = node.group === true || (Array.isArray(node.kids) && node.kids.length > 0);
+  if (!live || !actions || isParentNode) return null;
   const savePart = async (event) => {
     event.preventDefault();
     if (!part.name.trim() || !part.fitmentConfirmed) return;

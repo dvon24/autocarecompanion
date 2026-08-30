@@ -178,7 +178,12 @@ export function LiveTwinHub({ data }) {
       }),
     });
     const payload = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(payload.error || "Could not save this fitted part.");
+    if (!response.ok) {
+      const detail = Array.isArray(payload.details)
+        ? payload.details.find((entry) => typeof entry?.message === "string")?.message
+        : null;
+      throw new Error(detail ? `${payload.error || "Could not save this fitted part"}: ${detail}` : payload.error || "Could not save this fitted part.");
+    }
     router.refresh();
     return true;
   }, [baseValue?.catalog?.id, data.fulfillmentId, data.miles, data.transmission, data.vehicleId, router]);
