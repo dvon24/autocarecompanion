@@ -4,7 +4,7 @@ import { isFounderEmail } from '@/lib/founder';
 import { getTransmissionPatchCompanionFields, matchesVehicleRevision, resolveVehicleTransmissionUpdate } from '@/lib/transmission-options';
 import { isPrismaWriteConflict } from '@/lib/prisma-conflict';
 import { getLiveTwinForVehicle, normalizeTwinIdentityField } from '@/lib/twin-fulfillment';
-import { getTwinByFulfillmentId } from '@/lib/vehicle-twin-catalog';
+import { getTwinByFulfillmentId, getTwinPaintOptions } from '@/lib/vehicle-twin-catalog';
 import { parseVehiclePatch } from '@/lib/twin-route-contracts';
 import { isMaintenanceMutationError, nextMonotonicRevision } from '@/lib/maintenance-mutation';
 
@@ -55,7 +55,7 @@ export function createVehiclePatchHandler(deps: {
       if (parsed.data.color !== undefined) {
         const definition = getLiveTwinForVehicle(existing);
         const catalog = definition ? getTwinByFulfillmentId(definition.id) : null;
-        if (catalog && !catalog.paintPalette.colors.some((paint) => paint.name === parsed.data.color)) {
+        if (catalog && !getTwinPaintOptions(catalog, existing.trim).some((paint) => paint.name === parsed.data.color)) {
           return NextResponse.json({ error: 'Choose a reviewed factory color for this exact vehicle.' }, { status: 400 });
         }
       }

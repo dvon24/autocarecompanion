@@ -41,7 +41,7 @@ export function DemoHubClient({ vehicleId, issues = [] }: { vehicleId?: string |
     return {
       catalog,
       presentation,
-      vehicle:catalog.identity,
+      vehicle:{ ...catalog.identity, transmission:transmissionChoice },
       miles:catalog.demoMileage,
       trees,
       issues,

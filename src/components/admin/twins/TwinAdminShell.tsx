@@ -76,7 +76,7 @@ export function AdminPaintPalette({twin,compact=false}:{twin:AdminTwin;compact?:
   if(!colors.length)return <span className="paint-palette-unavailable" role="status">Factory paint palette unavailable</span>;
   const rendered=colors.filter((color)=>color.artStatus==='rendered').length;
   return <span className={compact?'paint-palette compact':'paint-palette'} role="list" aria-label={`${twin.identity.year} ${twin.identity.model} factory paint palette`}>
-    {colors.map((color)=><span key={color.name} className={`paint-choice ${color.artStatus}`} role="listitem" aria-current={color.artStatus==='rendered'?'true':undefined} title={`${color.name} · ${color.artStatus==='rendered'?'Rendered':'Awaiting layered art'}`}><i style={{background:color.swatch}}/>{!compact&&<span><strong>{color.name}</strong><small>{color.artStatus==='rendered'?'Rendered':'Awaiting art'}</small></span>}</span>)}
+    {colors.map((color)=><span key={color.name} className={`paint-choice ${color.artStatus}`} role="listitem" aria-current={color.artStatus==='rendered'?'true':undefined} title={`${color.name} · ${color.artStatus==='rendered'?'Rendered':'Awaiting layered art'}${color.trims?.length?` · ${color.trims.join('/')}`:''}`}><i style={{background:color.swatch}}/>{!compact&&<span><strong>{color.name}</strong><small>{color.artStatus==='rendered'?'Rendered':'Awaiting art'}{color.trims?.length?` · ${color.trims.join('/')}`:''}</small></span>}</span>)}
     {compact&&<small>{rendered}/{colors.length} rendered · {colors.map((color)=>color.name).join(' · ')}</small>}
   </span>;
 }

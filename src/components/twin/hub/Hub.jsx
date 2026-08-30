@@ -18,7 +18,7 @@ import { TwinStage as THStage, TH_V, TH_MILES } from "../stage/TwinStage";
 import { TechTree, TT_TREES, ttRisk, ttHasUpgrade, ttFinish, useEquipped, TT_BRANCH_FOR_HOTSPOT, TT_NODE_FOR_HOTSPOT } from "../stage/TechTree";
 import { Au7oMark, KICard, useTheme, useNarrow, useBubble, ThemeDots, SevBadge, TwinChatComposer, HPComposer, KI } from "./hub-shared";
 import { useHubView } from "./hub-view";
-import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinMode, useTwinOwnerActions, useTwinPaintControl, useTwinGuideAnswer, greetingFor } from "../twin-context";
+import { useTwinVehicle, useTwinMiles, useTwinTrees, useTwinNextService, useTwinRecent, useTwinCatalog, useTwinMode, useTwinOwnerActions, useTwinPaintControl, greetingFor } from "../twin-context";
 import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
 import { collectHotspotNodes, summarizeEvidence } from "../demo-trees";
 import { resolveTwinPaintArtwork } from "../stage/paint-art";
@@ -291,7 +291,6 @@ function THDesktop({ tc }) {
   const [mode, setMode] = React.useState("hotspots");
   const catalog = useTwinCatalog();
   const searchParams = useSearchParams();
-  const answer = useTwinGuideAnswer();
   const [branch, setBranch] = React.useState(null);
   const [startNode, setStartNode] = React.useState(null);
   const [chatPrefill, setChatPrefill] = React.useState(null);
@@ -306,10 +305,11 @@ function THDesktop({ tc }) {
      itself immediately. */
   const greeting = greetingFor();
   const { bubble, say, clear } = useBubble(`${greeting}. This is the ${vehicle.model} ${useTwinMode() === "owner" ? "owner hub" : "demo"} — click any mapped part to open its selected tree.`);
-  const askPart = React.useCallback((context) => {
+  const askPart = React.useCallback((context, node = null, options = {}) => {
     setBranch(null);
-    setChatPrefill({ value:context, key:++chatPrefillSeq.current });
-    say("Part and vehicle context loaded in the hub chat. Review or edit it, then send when ready.");
+    const value = options.question || (node?.label ? `Tell me what I need to know about the ${node.label.toLowerCase()} and help me with the next step.` : context);
+    setChatPrefill({ value, node, autoSend:Boolean(options.autoSend), key:++chatPrefillSeq.current });
+    say(options.autoSend ? "Opening a full vehicle-specific answer in the hub chat." : "Part and vehicle context loaded in the hub chat. Review or edit it, then send when ready.");
   }, [say]);
   const open = (hot, nodeId = null) => {
     const target = resolveTwinDeepLink(catalog, hot, trees);
@@ -340,7 +340,7 @@ function THDesktop({ tc }) {
               and the car is the whole point of this screen. */}
         </div>
         <THBubble bubble={bubble} clear={clear}/>
-        <HPComposer say={say} answer={answer} prefill={chatPrefill}/>
+        <HPComposer say={say} prefill={chatPrefill}/>
       </div>
       {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} onPartHelp={askPart} startNode={startNode}/>}
       {/* Floating feedback pill removed — it sat over the content on mobile.
@@ -361,7 +361,6 @@ function THMobile({ tc }) {
   const [mode, setMode] = React.useState("hotspots");
   const catalog = useTwinCatalog();
   const searchParams = useSearchParams();
-  const answer = useTwinGuideAnswer();
   const [branch, setBranch] = React.useState(null);
   const [nav, setNav] = React.useState(false);
   const [fb, setFb] = React.useState(false);
@@ -372,10 +371,11 @@ function THMobile({ tc }) {
   const closeTree = React.useCallback(() => setBranch(null), []);
   React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
   const { bubble, say, clear } = useBubble(`${greeting}. Tap any part of ${twinMode === "owner" ? `your ${vehicle.model}` : `this ${vehicle.model} demo`} and I'll open its tech tree.`);
-  const askPart = React.useCallback((context) => {
+  const askPart = React.useCallback((context, node = null, options = {}) => {
     setBranch(null);
-    setChatPrefill({ value:context, key:++chatPrefillSeq.current });
-    say("Part and vehicle context loaded in the hub chat. Review or edit it, then send when ready.");
+    const value = options.question || (node?.label ? `Tell me what I need to know about the ${node.label.toLowerCase()} and help me with the next step.` : context);
+    setChatPrefill({ value, node, autoSend:Boolean(options.autoSend), key:++chatPrefillSeq.current });
+    say(options.autoSend ? "Opening a full vehicle-specific answer in the hub chat." : "Part and vehicle context loaded in the hub chat. Review or edit it, then send when ready.");
   }, [say]);
   const open = (hot, nodeId = null) => {
     const target = resolveTwinDeepLink(catalog, hot, trees);
@@ -413,7 +413,7 @@ function THMobile({ tc }) {
         </div>
         <THBubble bubble={bubble} clear={clear}/>
         <div style={{ padding:"10px 12px 14px", borderTop:"1px solid var(--ki-line)", background:"var(--ki-glass)", backdropFilter:"blur(14px)", zIndex:6 }}>
-          <TwinChatComposer say={say} answer={answer} compact prefill={chatPrefill} placeholder={mobileComposerPlaceholder(twinMode, vehicle.model)}/>
+          <TwinChatComposer say={say} compact prefill={chatPrefill} placeholder={mobileComposerPlaceholder(twinMode, vehicle.model)}/>
         </div>
         {nav && (
           <div onClick={()=>setNav(false)} style={{ position:"absolute", inset:0, zIndex:40, background:"rgba(8,11,18,.5)", display:"flex" }}>

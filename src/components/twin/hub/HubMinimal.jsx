@@ -22,7 +22,7 @@ import { TwinMarkerDot } from "../stage/TwinMarker";
 import { projectTwinHotspots } from "../stage/mobile-hotspots";
 import { resolveTwinPaintArtwork } from "../stage/paint-art";
 import { VehicleStageControls } from "../stage/VehicleStageControls";
-import { greetingFor, useTwinEquipment, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode, useTwinPaintControl, useTwinGuideAnswer } from "../twin-context";
+import { greetingFor, useTwinEquipment, useTwinLive, useTwinVehicle, useTwinMiles, useTwinTrees, useTwinCatalog, useTwinMode, useTwinPaintControl } from "../twin-context";
 import { resolveTwinDeepLink } from "../../../lib/vehicle-twin-catalog";
 
 /* The full-screen view used TH_DUE, a module constant computed once against
@@ -175,11 +175,11 @@ function THMinCaption({ hot, onOpen, mobile }) {
   );
 }
 
-function THMinComposer({ say, answer, mobile, hot, prefill }) {
+function THMinComposer({ say, mobile, hot, prefill }) {
   const mode = useTwinMode();
   return (
     <div style={{ flex:"0 0 auto", padding: mobile ? "0 12px 16px" : "0 26px 24px", display:"flex", justifyContent:"center" }}>
-      <div style={{width:"100%",maxWidth:720}}><TwinChatComposer say={say} answer={answer} compact prefill={prefill} placeholder={hot ? `Ask about the ${hot.label.toLowerCase()}…` : mode === "owner" ? "Ask about your car…" : "Ask about this demo…"}/></div>
+      <div style={{width:"100%",maxWidth:720}}><TwinChatComposer say={say} compact prefill={prefill} placeholder={hot ? `Ask about the ${hot.label.toLowerCase()}…` : mode === "owner" ? "Ask about your car…" : "Ask about this demo…"}/></div>
     </div>
   );
 }
@@ -197,10 +197,11 @@ function THMinimal({ tc, mobile, onExit }) {
   const setRailOpen = v => { try { localStorage.setItem("au7o.hubRail", v ? "1" : "0"); } catch (e) {} setRail(v); };
   const [fb, setFb] = React.useState(false);
   const { bubble, say, clear } = useBubble(null);
-  const askPart = React.useCallback((context) => {
+  const askPart = React.useCallback((context, node = null, options = {}) => {
     setBranch(null);
-    setChatPrefill({ value:context, key:++chatPrefillSeq.current });
-    say("Part and vehicle context loaded in the hub chat. Review or edit it, then send when ready.");
+    const value = options.question || (node?.label ? `Tell me what I need to know about the ${node.label.toLowerCase()} and help me with the next step.` : context);
+    setChatPrefill({ value, node, autoSend:Boolean(options.autoSend), key:++chatPrefillSeq.current });
+    say(options.autoSend ? "Opening a full vehicle-specific answer in the hub chat." : "Part and vehicle context loaded in the hub chat. Review or edit it, then send when ready.");
   }, [say]);
   const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
   const closeTree = React.useCallback(() => setBranch(null), []);
@@ -208,7 +209,6 @@ function THMinimal({ tc, mobile, onExit }) {
   const live = useTwinLive();
   const ownerEquipped = useTwinEquipment();
   const catalog = useTwinCatalog();
-  const answer = useTwinGuideAnswer();
   const visibleHotspots = React.useMemo(
     () => projectTwinHotspots(catalog.hotspots, { mobile:Boolean(mobile), twinId:catalog.id }),
     [catalog.hotspots, catalog.id, mobile],
@@ -233,7 +233,7 @@ function THMinimal({ tc, mobile, onExit }) {
       <THMinStage sel={sel} onTap={tap} onBg={()=>setSel(null)} mobile={mobile}/>
       <THMinCaption hot={hot} mobile={mobile} onOpen={()=>sel && openTreeFor(sel)}/>
       {bubble && <THBubble bubble={bubble} clear={clear}/>}
-      <THMinComposer say={say} answer={answer} mobile={mobile} hot={hot} prefill={chatPrefill}/>
+      <THMinComposer say={say} mobile={mobile} hot={hot} prefill={chatPrefill}/>
       </div>
       {/* Drawer opens from the LEFT, matching the normal mobile hub (which omits
           justifyContent and so defaults to flex-start) and the desktop rail,

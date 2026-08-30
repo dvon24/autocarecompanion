@@ -337,7 +337,13 @@ export function buildTwinTrees(serviced, miles, transmission, evaluatedAt = null
     const manualRearAxle = transmission === "manual";
     const diffFluid = applyServiceEvidence({
       label:"Rear Differential Fluid", sub:manualRearAxle ? "230 mm limited-slip rear axle" : "230 mm rear axle", img:"/twin-stage/parts/part-differential.webp", kids:[], riskAt:TWIN_INTERVALS.diffFluid,
-      partNo:manualRearAxle ? "68083381AA → 68083381AC" : "68232947AB → 68232947AD", brand:manualRearAxle ? "Mopar LSD Synthetic Gear Lubricant" : "Mopar OD Synthetic Gear Lubricant", where:"Rear axle differential housing", spec:`SAE 75W-85 API GL-5 · ${manualRearAxle ? "limited-slip axle" : "automatic-transmission axle"} · 1.16 qt nominal capacity`, price:manualRearAxle ? "$43.57 listed" : "$17.07 listed", stock:"MoparPartsGiant · add-to-cart live when reviewed", buyUrl:manualRearAxle ? "https://www.moparpartsgiant.com/parts/mopar-lubricant-gear~68083381aa.html" : "https://www.moparpartsgiant.com/parts/mopar-lubricant-gear~68232947ad.html",
+      partNo:manualRearAxle ? "Base oil 68232947AB → 68232947AD · modifier must be verified separately" : "68232947AB → 68232947AD",
+      brand:manualRearAxle ? "Mopar OD 75W-85 base gear oil + compatible limited-slip friction modifier" : "Mopar OD Synthetic Gear Lubricant",
+      where:"Rear axle differential housing",
+      spec:`SAE 75W-85 API GL-5 · ${manualRearAxle ? "limited-slip axle; the former Mopar LSD-labelled 75W-85 is no longer presented as a current buyable product, so use compatible base oil plus separately dosed modifier only after checking the modifier's current directions; modifier volume counts toward the 1.16 qt total" : "automatic-transmission axle"} · 1.16 qt nominal capacity`,
+      price:manualRearAxle ? "Base oil and modifier price must be verified" : "$17.07 listed",
+      stock:manualRearAxle ? "Former LSD-labelled fluid is unavailable; exact current modifier link held for review" : "MoparPartsGiant · add-to-cart live when reviewed",
+      buyUrl:manualRearAxle ? null : "https://www.moparpartsgiant.com/parts/mopar-lubricant-gear~68232947ad.html",
       sourceUrl:"https://starparts.chrysler.com/Fluids/2015LA_Fluids.html", sourceLabel:"2015 Challenger TechCONNECT fluid chart",
       life:"Inspect for leaks at every service; owner plan uses 50,000 mi for street use",
     }, svc.diffFluid, "diffFluid", TWIN_INTERVALS.diffFluid, miles, currentDate);

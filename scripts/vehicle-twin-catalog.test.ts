@@ -6,7 +6,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { NextResponse } from 'next/server';
 import sharp from 'sharp';
-import { DEFAULT_TWIN_ID, VEHICLE_TWIN_CATALOG, getAdminTwinDefinitions, getTwinByFulfillmentId, resolveDemoVehicleTwin, resolveTwinDeepLink, validateVehicleTwinCatalog } from '../src/lib/vehicle-twin-catalog';
+import { DEFAULT_TWIN_ID, VEHICLE_TWIN_CATALOG, getAdminTwinDefinitions, getTwinByFulfillmentId, getTwinPaintOptions, resolveDemoVehicleTwin, resolveTwinDeepLink, validateVehicleTwinCatalog } from '../src/lib/vehicle-twin-catalog';
 import { evaluateTwinAccess, getConfirmedTwinTransmission } from '../src/lib/twin-access';
 import { TWIN_TREE_RESOLVERS, answerTwinQuestion, buildDemoTwinPresentation, buildModelOwnerTrees, collectHotspotNodes, mergeCatalogEvidenceIntoOwnerTrees, resolveTwinTrees, summarizeEvidence } from '../src/components/twin/demo-trees.js';
 import { addCalendarInterval, buildTwinTrees, servicedFromRecords } from '../src/components/twin/twin-trees.js';
@@ -126,12 +126,40 @@ test('paint, issue help, time-only service, and twin chat helpers fail truthfull
   assert.match(manualCamaro.trans.nodes.transFluid.label,/TR-6060 Manual/);
   assert.equal(automaticCamaro.wheel.nodes.brakeFluid.serviceIntervalMonths,60);
   assert.equal(manualCamaro.wheel.nodes.brakeFluid.serviceIntervalMonths,36);
+  const challengerManual=buildTwinTrees({},65000,'manual') as unknown as {trans:{nodes:{diffFluid:{brand:string;spec:string;buyUrl:string|null}}}};
+  assert.match(challengerManual.trans.nodes.diffFluid.brand,/base gear oil \+ compatible limited-slip friction modifier/);
+  assert.match(challengerManual.trans.nodes.diffFluid.spec,/modifier volume counts toward the 1\.16 qt total/);
+  assert.equal(challengerManual.trans.nodes.diffFluid.buyUrl,null);
   const treeSource=readFileSync(path.join(process.cwd(),'src/components/twin/stage/TechTree.jsx'),'utf8');
   const hubSource=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');
   const chatSource=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');
   assert.match(treeSource,/onPartHelp \? onPartHelp\(context, n\)/);
-  assert.match(hubSource,/setChatPrefill\(\{ value:context, key:\+\+chatPrefillSeq\.current \}\)/);
+  assert.match(treeSource,/onPartHelp\(q, null, \{ autoSend:true, question:q \}\)/);
+  assert.doesNotMatch(treeSource,/couldn't tie that to a supported field/);
+  assert.match(hubSource,/setChatPrefill\(\{ value, node, autoSend:Boolean\(options\.autoSend\), key:\+\+chatPrefillSeq\.current \}\)/);
+  assert.match(chatSource,/streamTwinAssistant\(\{/);
+  assert.match(chatSource,/selectedNode:nodeOverride/);
   assert.match(chatSource,/input\?\.setSelectionRange\(prefill\.value\.length, prefill\.value\.length\)/);
+});
+
+test('factory paint choices follow the exact model year and trim evidence',()=>{
+  const twin=(id:string)=>VEHICLE_TWIN_CATALOG.find((entry)=>entry.id===id)!;
+  const names=(id:string)=>twin(id).paintPalette.colors.map((color)=>color.name);
+  assert.equal(names('nautilus').length,10);
+  assert.equal(names('nautilus').includes('Rhapsody Blue'),false);
+  assert.deepEqual(names('mdx'),['White Diamond Pearl','Lunar Silver Metallic','Modern Steel Metallic','Majestic Black Pearl','Fathom Blue Pearl','Performance Red Pearl','Gunmetal Metallic','Canyon Bronze Metallic']);
+  assert.equal(names('camaro').includes('Shock'),true);
+  assert.equal(names('aviator').includes('Crystal White Metallic Clearcoat'),true);
+  assert.equal(names('aviator').includes('Cenote Green Bright Colorant Clearcoat'),false);
+
+  const kicks=twin('kicks');
+  assert.equal(kicks.paintPalette.colors.length,14);
+  assert.equal(getTwinPaintOptions(kicks,null).length,6);
+  assert.equal(getTwinPaintOptions(kicks,'S').length,7);
+  assert.equal(getTwinPaintOptions(kicks,'SV').length,10);
+  assert.equal(getTwinPaintOptions(kicks,'SR').length,13);
+  assert.equal(getTwinPaintOptions(kicks,'SV').some((color)=>color.name==='Two-tone Yuzu Yellow Metallic/Super Black'),false);
+  assert.equal(getTwinPaintOptions(kicks,'SR').some((color)=>color.name==='Two-tone Yuzu Yellow Metallic/Super Black'),true);
 });
 
 const publicPath=(value:string)=>path.join(process.cwd(),'public',value.replace(/^\//,''));
@@ -205,8 +233,9 @@ test('hotspots select on the first tap and open immediately on the second tap',(
 test('factory paint palettes cite OEM material and never present missing art as selectable',()=>{
   for(const twin of VEHICLE_TWIN_CATALOG){
     assert.match(twin.paintPalette.sourceUrl,/^https:\/\//);assert.ok(twin.paintPalette.sourceLabel.includes(String(twin.identity.year)));assert.ok(twin.paintPalette.colors.length>=5);
-    const rendered=twin.paintPalette.colors.filter((color)=>color.artStatus==='rendered');assert.deepEqual(rendered.map((color)=>color.name),[twin.identity.paint]);assert.ok(twin.paintPalette.colors.some((color)=>color.artStatus==='awaiting-art'));
-    const markup=renderToStaticMarkup(React.createElement(AdminPaintPalette,{twin:getAdminTwinDefinitions().find((entry)=>entry.id===twin.id)!}));assert.match(markup,new RegExp(twin.identity.paint.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));assert.match(markup,/Rendered/);assert.match(markup,/Awaiting art/);assert.doesNotMatch(markup,/<button/);
+    const rendered=twin.paintPalette.colors.filter((color)=>color.artStatus==='rendered');const awaiting=twin.paintPalette.colors.filter((color)=>color.artStatus==='awaiting-art');assert.ok(rendered.some((color)=>color.name===twin.identity.paint));
+    for(const color of rendered){const resolved=resolveTwinPaintArtwork(twin,{choice:color.name,options:twin.paintPalette.colors});assert.ok(resolved.art,`${twin.id}/${color.name} rendered without art`);}
+    const markup=renderToStaticMarkup(React.createElement(AdminPaintPalette,{twin:getAdminTwinDefinitions().find((entry)=>entry.id===twin.id)!}));assert.match(markup,new RegExp(twin.identity.paint.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')));assert.match(markup,/Rendered/);if(awaiting.length)assert.match(markup,/Awaiting art/);else assert.doesNotMatch(markup,/Awaiting art/);assert.doesNotMatch(markup,/<button/);
   }
   const malformed={...getAdminTwinDefinitions()[0],paintPalette:undefined} as unknown as Parameters<typeof AdminPaintPalette>[0]['twin'];
   assert.match(renderToStaticMarkup(React.createElement(AdminPaintPalette,{twin:malformed})),/Factory paint palette unavailable/);
@@ -231,9 +260,12 @@ test('opaque art has masks, full URLs are preserved, and absent effects are not 
 
 test('every rendered Twin ships one aligned base plus four required effect views',async()=>{
   for(const twin of VEHICLE_TWIN_CATALOG){
-    const required=['wheel','rearwheel','hood','rad'];assert.deepEqual(Object.keys(twin.art.effects).sort(),required.sort(),twin.id);
-    const files=[twin.art.base,...required.map((id)=>twin.art.effects[id])];for(const file of files)assert.ok(existsSync(publicPath(file)),`${twin.id} missing ${file}`);
-    const base=await sharp(publicPath(twin.art.base)).metadata();for(const file of files.slice(1)){const meta=await sharp(publicPath(file)).metadata();assert.equal(meta.width,base.width,`${twin.id}/${file} width`);assert.equal(meta.height,base.height,`${twin.id}/${file} height`);}
+    const required=['wheel','rearwheel','hood','rad'];
+    for(const color of twin.paintPalette.colors.filter((paint)=>paint.artStatus==='rendered')){
+      const art=resolveTwinPaintArtwork(twin,{choice:color.name,options:twin.paintPalette.colors}).art!;assert.deepEqual(Object.keys(art.effects).sort(),[...required].sort(),`${twin.id}/${color.name}`);
+      const files=[art.base,...required.map((id)=>art.effects[id])];for(const file of files)assert.ok(existsSync(publicPath(file)),`${twin.id}/${color.name} missing ${file}`);
+      const base=await sharp(publicPath(art.base)).metadata();for(const file of files.slice(1)){const meta=await sharp(publicPath(file)).metadata();assert.equal(meta.width,base.width,`${twin.id}/${color.name}/${file} width`);assert.equal(meta.height,base.height,`${twin.id}/${color.name}/${file} height`);}
+    }
   }
 });
 

@@ -18,7 +18,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { TwinDataCtx } from "./twin-context";
 import { buildTwinTrees, servicedFromRecords } from "./twin-trees";
-import { getTwinByFulfillmentId } from "../../lib/vehicle-twin-catalog";
+import { getTwinByFulfillmentId, getTwinPaintOptions } from "../../lib/vehicle-twin-catalog";
 import { sameTwinVehicleIdentity } from "../../lib/twin-fulfillment";
 import { attachKnownIssueDetails, mergeCatalogEvidenceIntoOwnerTrees, buildDemoTwinPresentation, buildModelOwnerTrees, filterTwinCatalogForTrees } from "./demo-trees";
 
@@ -235,6 +235,11 @@ export function LiveTwinHub({ data }) {
 
   const value = React.useMemo(() => baseValue ? ({
     ...baseValue,
+    vehicle:{
+      ...baseValue.vehicle,
+      engine:baseValue.vehicle?.engine || baseValue.catalog?.identity?.engine,
+      transmission:transmissionChoice || data.transmission || baseValue.vehicle?.transmission,
+    },
     ownerActions:{
       vehicleId:data.vehicleId,
       refresh:() => router.refresh(),
@@ -253,13 +258,14 @@ export function LiveTwinHub({ data }) {
     paintControl:baseValue?.catalog?.paintPalette?.colors?.length ? {
       current:data.vehicle?.color || baseValue.catalog.identity.paint,
       choice:paintChoice,
-      options:baseValue.catalog.paintPalette.colors,
+      options:getTwinPaintOptions(baseValue.catalog,data.vehicle?.trim),
+      trimVerificationRequired:Boolean(baseValue.catalog.paintPalette.supportedTrims?.length&&!baseValue.catalog.paintPalette.supportedTrims.some((trim)=>trim.toLowerCase()===String(data.vehicle?.trim||'').trim().toLowerCase())),
       state:paintState,
       error:paintError,
       setChoice:setPaintChoice,
       save:savePaint,
     } : null,
-  }) : null, [annotateIssue, baseValue, data.vehicle?.color, data.vehicleId, installUpgrade, paintChoice, paintError, paintState, router, saveInstalledPart, savePaint, saveTransmission, transmissionChoice, transmissionError, transmissionPicker, transmissionState]);
+  }) : null, [annotateIssue, baseValue, data.transmission, data.vehicle?.color, data.vehicle?.trim, data.vehicleId, installUpgrade, paintChoice, paintError, paintState, router, saveInstalledPart, savePaint, saveTransmission, transmissionChoice, transmissionError, transmissionPicker, transmissionState]);
 
   if (!value) {
     return (

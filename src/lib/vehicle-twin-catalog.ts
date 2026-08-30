@@ -22,6 +22,15 @@ export interface TwinSampleServiceRecord {
   sourceSection: string;
 }
 
+export interface TwinArtBundle {
+  available: boolean;
+  base: string;
+  effects: Record<string, string>;
+  xray?: string;
+  strategy: 'alpha-overlay' | 'opaque-masked';
+  masks?: Record<string, string>;
+}
+
 export interface VehicleTwinCatalogEntry {
   id: string;
   fulfillmentId: string | null;
@@ -37,16 +46,16 @@ export interface VehicleTwinCatalogEntry {
   paintPalette: {
     sourceLabel: string;
     sourceUrl: string;
-    colors: readonly { name: string; swatch: string; artStatus: 'rendered' | 'awaiting-art' }[];
+    supportedTrims?: readonly string[];
+    colors: readonly {
+      name: string;
+      swatch: string;
+      artStatus: 'rendered' | 'awaiting-art';
+      trims?: readonly string[];
+      art?: TwinArtBundle;
+    }[];
   };
-  art: {
-    available: boolean;
-    base: string;
-    effects: Record<string, string>;
-    xray?: string;
-    strategy: 'alpha-overlay' | 'opaque-masked';
-    masks?: Record<string, string>;
-  };
+  art: TwinArtBundle;
   hotspots: readonly TwinHotspot[];
   systems: readonly { hot: string; branch: string; label: string; img: string }[];
 }
@@ -133,7 +142,6 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       {name:'Ruby Red Metallic Tinted Clearcoat',swatch:'#7E1D2A',artStatus:'awaiting-art'},{name:'Ochre Brown Metallic',swatch:'#655244',artStatus:'awaiting-art'},
       {name:'Ceramic Pearl Metallic Tri-coat',swatch:'#D9D3C6',artStatus:'awaiting-art'},{name:'Burgundy Velvet Metallic Tinted Clearcoat',swatch:'#4B2029',artStatus:'awaiting-art'},
       {name:'Iced Mocha Metallic',swatch:'#75675D',artStatus:'awaiting-art'},{name:'Blue Diamond Metallic',swatch:'#263A54',artStatus:'awaiting-art'},
-      {name:'Rhapsody Blue',swatch:'#182B43',artStatus:'awaiting-art'},
     ]},
     sampleState:{label:'Sample demo state',records:[
       {node:'oil',label:'Engine oil',lastServiceMileage:35000,intervalMiles:10000,intervalSource:'2019 Lincoln Nautilus Owner\'s Manual',sourceUrl:'https://cdn.dealereprocess.org/cdn/servicemanuals/lincoln/2019-nautilus.pdf',sourceSection:'Scheduled Maintenance, pp. 543–548'},
@@ -156,10 +164,10 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     id:'murano',fulfillmentId:null,ownerReady:false,
     identity:{year:2023,make:'Nissan',model:'Murano',trim:'SV',engine:'3.5L V6',paint:'Scarlet Ember Tintcoat'},demoMileage:24000,
     paintPalette:{sourceLabel:'2023 Nissan Murano brochure · Choose Your Color',sourceUrl:'https://www.nissanusa.com/content/dam/Nissan/us/vehicle-brochures/2023/2023-nissan-murano-brochure-en.pdf',colors:[
-      {name:'Pearl White TriCoat',swatch:'#EEEDE7',artStatus:'awaiting-art'},{name:'Brilliant Silver Metallic',swatch:'#B9BCBD',artStatus:'awaiting-art'},
-      {name:'Gun Metallic',swatch:'#565B60',artStatus:'awaiting-art'},{name:'Boulder Gray Pearl',swatch:'#777873',artStatus:'awaiting-art'},
-      {name:'Scarlet Ember Tintcoat',swatch:'#8E2530',artStatus:'rendered'},{name:'Deep Ocean Blue Metallic',swatch:'#17354D',artStatus:'awaiting-art'},
-      {name:'Super Black',swatch:'#101113',artStatus:'awaiting-art'},
+      {name:'Pearl White TriCoat',swatch:'#EEEDE7',artStatus:'rendered',art:generatedArt('/twin-stage/murano','pearl-white')},{name:'Brilliant Silver Metallic',swatch:'#B9BCBD',artStatus:'rendered',art:generatedArt('/twin-stage/murano','brilliant-silver')},
+      {name:'Gun Metallic',swatch:'#565B60',artStatus:'rendered',art:generatedArt('/twin-stage/murano','gun-metallic')},{name:'Boulder Gray Pearl',swatch:'#777873',artStatus:'rendered',art:generatedArt('/twin-stage/murano','boulder-gray')},
+      {name:'Scarlet Ember Tintcoat',swatch:'#8E2530',artStatus:'rendered'},{name:'Deep Ocean Blue Metallic',swatch:'#17354D',artStatus:'rendered',art:generatedArt('/twin-stage/murano','deep-ocean-blue')},
+      {name:'Super Black',swatch:'#101113',artStatus:'rendered',art:generatedArt('/twin-stage/murano','super-black')},
     ]},
     sampleState:{label:'Sample demo state',records:[
       {node:'oil',label:'Engine oil',lastServiceMileage:20000,intervalMiles:7500,intervalSource:'2023 Nissan Murano Maintenance Schedule',sourceUrl:'https://maintenance-schedules.nissanusa.com/maintenance-schedules/2023/murano/components/',sourceSection:'Engine oil and filter · standard conditions'},
@@ -179,11 +187,11 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     id:'xt6',fulfillmentId:null,ownerReady:false,
     identity:{year:2020,make:'Cadillac',model:'XT6',trim:'Sport',engine:'3.6L V6',paint:'Satin Steel Metallic'},demoMileage:52000,
     paintPalette:{sourceLabel:'2020 Cadillac XT6 brochure · Exterior Colors',sourceUrl:'https://www.cadillac.com/content/dam/cadillac/na/us/english/index/downloads/vehiclebrochures/brochures/2020/MY20_XT6_Brochure_v1.pdf',colors:[
-      {name:'Radiant Silver Metallic',swatch:'#B9BBBC',artStatus:'awaiting-art'},{name:'Stellar Black Metallic',swatch:'#15171A',artStatus:'awaiting-art'},
-      {name:'Crystal White Tricoat',swatch:'#ECEAE3',artStatus:'awaiting-art'},{name:'Shadow Metallic',swatch:'#3E4650',artStatus:'awaiting-art'},
-      {name:'Satin Steel Metallic',swatch:'#73777A',artStatus:'rendered'},{name:'Red Horizon Tintcoat',swatch:'#84232B',artStatus:'awaiting-art'},
-      {name:'Manhattan Noir Metallic',swatch:'#29292B',artStatus:'awaiting-art'},{name:'Garnet Metallic',swatch:'#5A2530',artStatus:'awaiting-art'},
-      {name:'Dark Mocha Metallic',swatch:'#4B413B',artStatus:'awaiting-art'},
+      {name:'Radiant Silver Metallic',swatch:'#B9BBBC',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','radiant-silver')},{name:'Stellar Black Metallic',swatch:'#15171A',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','stellar-black')},
+      {name:'Crystal White Tricoat',swatch:'#ECEAE3',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','crystal-white')},{name:'Shadow Metallic',swatch:'#3E4650',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','shadow')},
+      {name:'Satin Steel Metallic',swatch:'#73777A',artStatus:'rendered'},{name:'Red Horizon Tintcoat',swatch:'#84232B',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','red-horizon')},
+      {name:'Manhattan Noir Metallic',swatch:'#29292B',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','manhattan-noir')},{name:'Garnet Metallic',swatch:'#5A2530',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','garnet')},
+      {name:'Dark Mocha Metallic',swatch:'#4B413B',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','dark-mocha')},
     ]},
     sampleState:{label:'Sample demo state',records:[
       {node:'oil',label:'Engine oil',lastServiceMileage:45000,intervalMiles:7500,intervalSource:'2020 Cadillac XT6 Owner\'s Manual',sourceUrl:'https://www.cadillac.com/support/vehicle/manuals-guides',sourceSection:'Maintenance Schedule · 7,500-mile services'},
@@ -201,12 +209,14 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
   {
     id:'kicks',fulfillmentId:null,ownerReady:false,
     identity:{year:2025,make:'Nissan',model:'Kicks',trim:'Trim not provided',engine:'2.0L I4',paint:'Gun Metallic'},demoMileage:12000,
-    paintPalette:{sourceLabel:'2025 Nissan Kicks brochure · Exterior Colors',sourceUrl:'https://www.nissanusa.com/content/dam/Nissan/us/vehicle-brochures/2025/2025-nissan-kicks-brochure-en.pdf',colors:[
-      {name:'Fresh Powder',swatch:'#F4F2EA',artStatus:'awaiting-art'},{name:'Aspen White TriCoat',swatch:'#EEEDE7',artStatus:'awaiting-art'},
-      {name:'Gun Metallic',swatch:'#565B60',artStatus:'rendered'},{name:'Canyon Bronze Metallic',swatch:'#75665A',artStatus:'awaiting-art'},
-      {name:'Scarlet Ember Tintcoat',swatch:'#932934',artStatus:'awaiting-art'},{name:'Deep Blue Pearl',swatch:'#183651',artStatus:'awaiting-art'},
-      {name:'Super Black',swatch:'#101113',artStatus:'awaiting-art'},{name:'Yuzu Yellow / Super Black',swatch:'#B7BC38',artStatus:'awaiting-art'},
-      {name:'Arctic Ice Blue / Super Black',swatch:'#ABC8CF',artStatus:'awaiting-art'},{name:'Deep Blue Pearl / Gun Metallic',swatch:'#243A50',artStatus:'awaiting-art'},
+    paintPalette:{sourceLabel:'2025 Nissan Kicks brochure · Choose Your Color',sourceUrl:'https://www.nissanusa.com/content/dam/Nissan/us/vehicle-brochures/2025/2025-nissan-kicks-brochure-en.pdf',supportedTrims:['S','SV','SR'],colors:[
+      {name:'Fresh Powder',swatch:'#F4F2EA',artStatus:'awaiting-art',trims:['S','SV']},{name:'Aspen White TriCoat',swatch:'#EEEDE7',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','aspen-white')},
+      {name:'Gun Metallic',swatch:'#565B60',artStatus:'rendered',trims:['S','SV','SR']},{name:'Canyon Bronze Metallic',swatch:'#75665A',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','canyon-bronze')},
+      {name:'Scarlet Ember Tintcoat',swatch:'#932934',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','scarlet-ember')},{name:'Deep Blue Pearl',swatch:'#183651',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','deep-blue')},
+      {name:'Super Black',swatch:'#101113',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','super-black')},{name:'Two-tone Aspen White TriCoat/Super Black',swatch:'#E8E6DE',artStatus:'awaiting-art',trims:['SV','SR']},
+      {name:'Two-tone Gun Metallic/Scarlet Ember Tintcoat',swatch:'#66515A',artStatus:'awaiting-art',trims:['SR']},{name:'Two-tone Gun Metallic/Super Black',swatch:'#4F5458',artStatus:'awaiting-art',trims:['SV','SR']},
+      {name:'Two-tone Yuzu Yellow Metallic/Super Black',swatch:'#C8DB00',artStatus:'awaiting-art',trims:['SR']},{name:'Two-tone Scarlet Ember Tintcoat/Super Black',swatch:'#8D2932',artStatus:'awaiting-art',trims:['SR']},
+      {name:'Two-tone Arctic Ice Blue Metallic/Super Black',swatch:'#52A9D0',artStatus:'awaiting-art',trims:['SR']},{name:'Two-tone Deep Blue Pearl/Gun Metallic',swatch:'#243A50',artStatus:'awaiting-art',trims:['SV','SR']},
     ]},
     sampleState:{label:'Sample demo state',records:[
       {node:'oil',label:'Engine oil and filter',lastServiceMileage:0,intervalMiles:10000,intervalSource:'2025 Nissan Kicks Maintenance Schedule',sourceUrl:'https://maintenance-schedules.nissanusa.com/maintenance-schedules/2025/kicks/components/',sourceSection:'Engine oil and filter · standard conditions'},
@@ -224,10 +234,10 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     id:'mdx',fulfillmentId:null,ownerReady:false,
     identity:{year:2019,make:'Acura',model:'MDX',trim:'Technology',engine:'3.5L V6',paint:'Lunar Silver Metallic'},demoMileage:48000,
     paintPalette:{sourceLabel:'2019 Acura MDX brochure · Exterior Colors',sourceUrl:'https://cdn.dealereprocess.org/cdn/brochures/acura/2019-mdx.pdf',colors:[
-      {name:'Platinum White Pearl',swatch:'#EEEDE8',artStatus:'awaiting-art'},{name:'Lunar Silver Metallic',swatch:'#B9BBBC',artStatus:'rendered'},
-      {name:'Modern Steel Metallic',swatch:'#555A5E',artStatus:'awaiting-art'},{name:'Majestic Black Pearl',swatch:'#111317',artStatus:'awaiting-art'},
-      {name:'Fathom Blue Pearl',swatch:'#1C3449',artStatus:'awaiting-art'},{name:'Performance Red Pearl',swatch:'#8D2631',artStatus:'awaiting-art'},
-      {name:'Gunmetal Metallic',swatch:'#68696A',artStatus:'awaiting-art'},
+      {name:'White Diamond Pearl',swatch:'#EEEDE8',artStatus:'rendered',art:generatedArt('/twin-stage/acura-mdx','white-diamond')},{name:'Lunar Silver Metallic',swatch:'#B9BBBC',artStatus:'rendered'},
+      {name:'Modern Steel Metallic',swatch:'#555A5E',artStatus:'rendered',art:generatedArt('/twin-stage/acura-mdx','modern-steel')},{name:'Majestic Black Pearl',swatch:'#111317',artStatus:'rendered',art:generatedArt('/twin-stage/acura-mdx','majestic-black')},
+      {name:'Fathom Blue Pearl',swatch:'#1C3449',artStatus:'rendered',art:generatedArt('/twin-stage/acura-mdx','fathom-blue')},{name:'Performance Red Pearl',swatch:'#8D2631',artStatus:'rendered',art:generatedArt('/twin-stage/acura-mdx','performance-red')},
+      {name:'Gunmetal Metallic',swatch:'#68696A',artStatus:'rendered',art:generatedArt('/twin-stage/acura-mdx','gunmetal')},{name:'Canyon Bronze Metallic',swatch:'#5A4439',artStatus:'rendered',art:generatedArt('/twin-stage/acura-mdx','canyon-bronze')},
     ]},
     sampleState:{label:'Sample demo state',records:[
       {node:'oil',label:'Engine oil and filter',lastServiceMileage:40000,intervalMiles:7500,intervalSource:'2019 Acura MDX Owner\'s Manual',sourceUrl:'https://owners.acura.com/utility/download?path=/static/pdfs/2019/MDX/2019_MDX_Owners_Manual.pdf',sourceSection:'Maintenance Minder'},
@@ -244,10 +254,10 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
   {
     id:'aviator',fulfillmentId:null,ownerReady:false,
     identity:{year:2026,make:'Lincoln',model:'Aviator',trim:'Premiere',engine:'3.0L Twin-Turbo V6',paint:'Red Carpet Metallic Tinted Clearcoat'},demoMileage:5000,
-    paintPalette:{sourceLabel:'2026 Lincoln Aviator · Exterior Colors',sourceUrl:'https://www.lincoln.com/luxury-suvs/aviator/',colors:[
-      {name:'Pristine White Metallic Tri-Coat',swatch:'#ECEAE3',artStatus:'awaiting-art'},{name:'Harbor Gray',swatch:'#65696B',artStatus:'awaiting-art'},
-      {name:'Cenote Green Bright Colorant Clearcoat',swatch:'#2F5B4A',artStatus:'awaiting-art'},{name:'Whisper Blue Metallic',swatch:'#8195A5',artStatus:'awaiting-art'},
-      {name:'Red Carpet Metallic Tinted Clearcoat',swatch:'#8D1E2C',artStatus:'rendered'},{name:'Infinite Black Metallic',swatch:'#121417',artStatus:'awaiting-art'},
+    paintPalette:{sourceLabel:'2026 Lincoln Aviator Premiere · Detailed Specifications',sourceUrl:'https://www.lincoln.com/luxury-suvs/aviator/models/premiere/?intcmp=moddetails-seconNav-modetails',colors:[
+      {name:'Pristine White Metallic Tri-Coat',swatch:'#ECEAE3',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln-aviator','pristine-white')},{name:'Harbor Gray Clearcoat',swatch:'#65696B',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln-aviator','harbor-gray')},
+      {name:'Crystal White Metallic Clearcoat',swatch:'#E3E1DA',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln-aviator','crystal-white')},{name:'Whisper Blue Metallic Clearcoat',swatch:'#8195A5',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln-aviator','whisper-blue')},
+      {name:'Red Carpet Metallic Tinted Clearcoat',swatch:'#8D1E2C',artStatus:'rendered'},{name:'Infinite Black Metallic',swatch:'#121417',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln-aviator','infinite-black')},
     ]},
     sampleState:{label:'Sample demo state',records:[]},treeResolver:'aviator',treeStatus:'model-specific',art:generatedArt('/twin-stage/lincoln-aviator','red-carpet'),
     hotspots:standardHotspots({wheel:[49,67],hood:[72,38],glass:[51,28],rearwheel:[18,59],rad:[76,55],trans:[58,64]}, {
@@ -263,7 +273,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       {name:'Satin Steel Gray Metallic',swatch:'#686C70',artStatus:'awaiting-art'},{name:'Shadow Gray Metallic',swatch:'#444A50',artStatus:'awaiting-art'},
       {name:'Silver Ice Metallic',swatch:'#B8BBBD',artStatus:'awaiting-art'},{name:'Riverside Blue Metallic',swatch:'#174A75',artStatus:'awaiting-art'},
       {name:'Garnet Red Tintcoat',swatch:'#69222B',artStatus:'awaiting-art'},{name:'Crush',swatch:'#C95824',artStatus:'awaiting-art'},
-      {name:'Red Hot',swatch:'#B4212A',artStatus:'awaiting-art'},
+      {name:'Red Hot',swatch:'#B4212A',artStatus:'awaiting-art'},{name:'Shock',swatch:'#C7E400',artStatus:'awaiting-art'},
     ]},
     sampleState:{label:'Sample demo state',records:[
       {node:'oil',label:'Engine oil and filter',lastServiceMileage:22500,intervalMiles:7500,intervalSource:'2019 Camaro Owner\'s Manual',sourceUrl:'https://www.chevrolet.com/support/vehicle/manuals-guides',sourceSection:'Maintenance schedule and engine-oil life system'},
@@ -284,6 +294,20 @@ export function resolveDemoVehicleTwin(id: string | null | undefined) {
 export function getTwinByFulfillmentId(id: string | null | undefined) {
   if (!id) return null;
   return VEHICLE_TWIN_CATALOG.find((twin) => twin.fulfillmentId === id) ?? null;
+}
+const normalizedTrim = (value: string | null | undefined) => value?.trim().toLowerCase().replace(/[^a-z0-9]+/g, '') || '';
+export function getTwinPaintOptions(twin: VehicleTwinCatalogEntry, trim?: string | null) {
+  const supported = twin.paintPalette.supportedTrims;
+  if (!supported?.length) return twin.paintPalette.colors;
+  const wanted = normalizedTrim(trim);
+  const matchedTrim = supported.find((candidate) => normalizedTrim(candidate) === wanted);
+  if (matchedTrim) {
+    return twin.paintPalette.colors.filter((color) => !color.trims?.length || color.trims.some((candidate) => normalizedTrim(candidate) === normalizedTrim(matchedTrim)));
+  }
+  // Until trim is verified, expose only colors offered on every trim. This
+  // prevents a model-wide brochure color from being saved to an incompatible
+  // owner vehicle while still preserving universally valid choices.
+  return twin.paintPalette.colors.filter((color) => !color.trims?.length || supported.every((candidate) => color.trims?.some((trimName) => normalizedTrim(trimName) === normalizedTrim(candidate))));
 }
 export function resolveTwinDeepLink(
   twin: VehicleTwinCatalogEntry,
@@ -321,10 +345,14 @@ export function validateVehicleTwinCatalog(): string[] {
     const issueIds = twin.hotspots.flatMap((hotspot) => hotspot.knownIssueIds || []);
     if (new Set(issueIds).size !== issueIds.length) errors.push(`${twin.id} duplicate issue mapping`);
     const renderedPaints=twin.paintPalette.colors.filter((color)=>color.artStatus==='rendered');
-    if (renderedPaints.length!==1||renderedPaints[0]?.name!==twin.identity.paint) errors.push(`${twin.id} dishonest paint readiness`);
+    if (!renderedPaints.some((color)=>color.name===twin.identity.paint)) errors.push(`${twin.id} identity paint not rendered`);
+    if (renderedPaints.some((color)=>color.name!==twin.identity.paint&&(!color.art?.base||!color.art.effects||!['wheel','rearwheel','hood','rad'].every((id)=>Boolean(color.art?.effects[id]))))) errors.push(`${twin.id} dishonest paint readiness`);
     if (!twin.paintPalette.sourceLabel||!twin.paintPalette.sourceUrl) errors.push(`${twin.id} missing paint source`);
     const paintNames=twin.paintPalette.colors.map((color)=>color.name.trim());
     if (paintNames.some((name,index)=>!name||paintNames.indexOf(name)!==index)||twin.paintPalette.colors.some((color)=>!/^#[0-9a-f]{6}$/i.test(color.swatch))) errors.push(`${twin.id} invalid paint palette`);
+    const supportedTrims=twin.paintPalette.supportedTrims??[];
+    if (supportedTrims.length && twin.paintPalette.colors.some((color)=>!color.trims?.length||color.trims.some((trim)=>!supportedTrims.some((supported)=>normalizedTrim(supported)===normalizedTrim(trim))))) errors.push(`${twin.id} invalid paint trim coverage`);
+    if (!getTwinPaintOptions(twin,twin.identity.trim).some((color)=>color.name===twin.identity.paint)) errors.push(`${twin.id} identity paint unavailable for trim`);
   }
   return errors;
 }

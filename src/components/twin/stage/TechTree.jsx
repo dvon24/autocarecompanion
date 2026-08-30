@@ -1204,7 +1204,12 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
       say2(ttAskLine(n));
       return;
     }
-    say2(`I couldn't tie that to a supported field in the ${vehicle.model} tree. Try one of the visible node names or switch branches.`);
+    if (onPartHelp) {
+      onPartHelp(q, null, { autoSend:true, question:q });
+      say2(`Opening a full ${vehicle.model} mechanic answer. The reviewed tree stays unchanged unless the missing component is later verified.`);
+      return;
+    }
+    say2(`I couldn't tie that to a mapped ${vehicle.model} component here. Ask in the main hub chat for a full vehicle-specific answer.`);
   };
 
   const edges = [];

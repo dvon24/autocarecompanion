@@ -3,13 +3,14 @@ import React from "react";
 import { Icon } from "./Icon";
 import { resolveTwinPaintArtwork } from "./paint-art";
 import { useTwinCatalog, useTwinLive, useTwinPaintControl, useTwinTransmissionControl } from "../twin-context";
+import { getTwinPaintOptions } from "../../../lib/vehicle-twin-catalog";
 
 export function VehicleStageControls({ mobile = false }) {
   const catalog = useTwinCatalog();
   const live = useTwinLive();
   const transmission = useTwinTransmissionControl();
   const paint = useTwinPaintControl();
-  const options = paint?.options || catalog.paintPalette?.colors || [];
+  const options = paint?.options || getTwinPaintOptions(catalog, catalog.identity.trim);
   const choice = paint?.choice || catalog.identity.paint;
   const paintArtwork = resolveTwinPaintArtwork(catalog, { choice, options });
   const hasTransmission = Boolean(transmission?.model?.options?.length > 1);
@@ -42,6 +43,7 @@ export function VehicleStageControls({ mobile = false }) {
             <label htmlFor={`${id}-paint`} style={{display:"block",fontSize:10,fontWeight:650,color:"rgba(255,255,255,.72)",marginBottom:5}}>Factory color</label>
             <div style={{display:"flex",gap:6}}><select id={`${id}-paint`} value={choice} disabled={paint?.state==="saving"} onChange={(event)=>paint?.setChoice?.(event.target.value)} style={control}>{options.map((color)=><option key={color.name} value={color.name} disabled={color.artStatus!=="rendered"}>{color.name}{color.artStatus!=="rendered"?" · artwork pending":""}</option>)}</select>{live&&paint?.save&&<button type="button" onClick={paint.save} disabled={!choice||choice===paint.current||paint.state==="saving"} style={{minHeight:34,padding:"0 9px",border:0,borderRadius:8,background:"#fff",color:"#0B1220",fontSize:11,fontWeight:700,opacity:!choice||choice===paint.current ? .5 : 1}}>{paint.state==="saving"?"Saving…":"Save"}</button>}</div>
             <div style={{marginTop:5,fontSize:9.5,lineHeight:1.35,color:paintArtwork.art?"#87E7B5":"rgba(255,255,255,.68)"}}>{paintArtwork.art?`Showing ${paintArtwork.selected?.name||choice} artwork`:`${paintArtwork.selected?.name||choice} art unavailable · prior color hidden`}</div>
+            {paint?.trimVerificationRequired&&<div role="status" style={{marginTop:5,fontSize:9.5,lineHeight:1.35,color:"#FFD28A"}}>Verify the trim to unlock trim-specific factory colors.</div>}
             {paint?.error&&<div role="alert" style={{marginTop:5,fontSize:10,color:"#FF9B94"}}>{paint.error}</div>}
           </div>}
         </div>

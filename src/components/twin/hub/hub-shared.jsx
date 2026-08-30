@@ -8,6 +8,8 @@
 import React from "react";
 import Link from "next/link";
 import { Icon } from "../stage/Icon";
+import { useTwinCatalog, useTwinIssues, useTwinMiles, useTwinTransmissionControl, useTwinVehicle } from "../twin-context";
+import { buildTwinAssistantVehicle, normalizeTwinNodeContext, streamTwinAssistant } from "../../../lib/twin-assistant-client";
 
 /** The known-issues palette, as the design references it. */
 export const KI = {
@@ -93,47 +95,135 @@ export function splitTwinAnswerLink(value) {
   return match ? { text:match[1].trim(), url:match[2] } : { text, url:null };
 }
 
-export function TwinChatComposer({ say, answer, compact = false, placeholder = "Ask anything about your car…", prefill = null }) {
+function inlineTwinAnswer(text) {
+  const nodes = [];
+  const pattern = /\[([^\]]+)\]\((https:\/\/[^\s)]+)\)|\*\*(.+?)\*\*|`([^`]+)`/g;
+  let last = 0;
+  let match;
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > last) nodes.push(text.slice(last, match.index));
+    if (match[1] && match[2]) {
+      const youtube = /^https:\/\/(?:www\.)?youtube\.com\//i.test(match[2]);
+      nodes.push(<a key={match.index} href={match[2]} target="_blank" rel={youtube ? "noopener noreferrer" : "noopener noreferrer sponsored"} style={{display:youtube?"inline-flex":"inline",alignItems:"center",gap:6,color:youtube?"#DC2626":"#2563EB",fontWeight:700,textDecoration:"underline",textUnderlineOffset:2}}>{youtube&&<span aria-hidden>▶</span>} {match[1]}</a>);
+    } else if (match[3]) nodes.push(<strong key={match.index}>{match[3]}</strong>);
+    else if (match[4]) nodes.push(<code key={match.index} style={{fontFamily:"var(--font-mono)",fontSize:".94em"}}>{match[4]}</code>);
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes;
+}
+
+function TwinAnswerContent({ text }) {
+  const lines = String(text || "").split("\n");
+  return <div style={{display:"grid",gap:6}}>{lines.map((line,index)=>{
+    const follow = line.match(/^→\s+(.+)/);
+    const bullet = line.match(/^[-•]\s+(.+)/);
+    if (!line.trim()) return <div key={index} style={{height:3}}/>;
+    if (follow) return <div key={index} style={{fontSize:11.5,color:"var(--slate-500)"}}>→ {inlineTwinAnswer(follow[1])}</div>;
+    if (bullet) return <div key={index} style={{display:"flex",gap:7,alignItems:"flex-start"}}><span aria-hidden style={{color:"var(--slate-400)"}}>•</span><span>{inlineTwinAnswer(bullet[1])}</span></div>;
+    return <div key={index}>{inlineTwinAnswer(line)}</div>;
+  })}</div>;
+}
+
+export function TwinChatComposer({ say, compact = false, placeholder = "Ask anything about your car…", prefill = null }) {
   const [value, setValue] = React.useState("");
-  const [status, setStatus] = React.useState(null);
+  const [reply, setReply] = React.useState(null);
+  const [messages, setMessages] = React.useState([]);
+  const [sessionId, setSessionId] = React.useState(null);
+  const [selectedNode, setSelectedNode] = React.useState(null);
+  const [pending, setPending] = React.useState(false);
   const inputRef = React.useRef(null);
+  const autoSentKey = React.useRef(null);
+  const vehicle = useTwinVehicle();
+  const catalog = useTwinCatalog();
+  const miles = useTwinMiles();
+  const issues = useTwinIssues();
+  const transmissionControl = useTwinTransmissionControl();
+  const assistantVehicle = React.useMemo(()=>buildTwinAssistantVehicle({vehicle,catalogIdentity:catalog?.identity,transmission:transmissionControl?.choice||transmissionControl?.model?.current||vehicle?.transmission,mileage:miles}),[catalog?.identity,miles,transmissionControl?.choice,transmissionControl?.model?.current,vehicle]);
+  const knownIssueTitles = React.useMemo(()=>(issues||[]).filter(issue=>issue?.id&&issue?.title).slice(0,12).map(issue=>({id:issue.id,title:issue.title})),[issues]);
+
+  const ask = React.useCallback(async (raw, nodeOverride = selectedNode) => {
+    const question = normalizeTwinChatInput(raw);
+    if (!question || pending) {
+      if (!question) setReply({text:"Type a question first.",error:true,key:Date.now()});
+      return;
+    }
+    if (!assistantVehicle) {
+      setReply({text:"This Twin does not have enough vehicle identity to ask safely yet.",error:true,key:Date.now()});
+      return;
+    }
+    const previousMessages = messages;
+    const nextMessages = [...previousMessages,{role:"user",content:question}].slice(-19);
+    setMessages(nextMessages);
+    setValue("");
+    setPending(true);
+    setReply({question,text:"",error:false,key:Date.now()});
+    let streamed = "";
+    try {
+      const result = await streamTwinAssistant({
+        vehicle:assistantVehicle,
+        messages:nextMessages,
+        sessionId,
+        knownIssueTitles,
+        selectedNode:nodeOverride,
+        onSession:setSessionId,
+        onToken:(token)=>{streamed+=token;setReply(current=>({...current,text:streamed}));},
+      });
+      setMessages([...nextMessages,{role:"assistant",content:result.text}].slice(-20));
+      setReply(current=>({...current,text:result.text,error:false}));
+      say?.("Answer ready below — you can keep asking without leaving the hub.");
+    } catch (cause) {
+      const message = cause instanceof Error ? cause.message : "Au7o could not answer just now. Please try again.";
+      setMessages(previousMessages);
+      setValue(question);
+      setReply({question,text:message,error:true,key:Date.now()});
+    } finally {
+      setPending(false);
+    }
+  }, [assistantVehicle, knownIssueTitles, messages, pending, say, selectedNode, sessionId]);
+
   React.useEffect(() => {
     if (!prefill?.value) return;
     setValue(prefill.value);
-    setStatus(null);
+    const nextNode = normalizeTwinNodeContext(prefill.node);
+    setSelectedNode(nextNode);
+    setReply(null);
     const input = inputRef.current;
     input?.focus();
     input?.setSelectionRange(prefill.value.length, prefill.value.length);
-  }, [prefill]);
+  }, [prefill?.key]);
+  React.useEffect(() => {
+    if (prefill?.autoSend && prefill.value && !pending && autoSentKey.current !== prefill.key) {
+      autoSentKey.current = prefill.key;
+      ask(prefill.value, normalizeTwinNodeContext(prefill.node));
+    }
+  }, [pending, prefill?.key]);
   const submit = (event) => {
     event.preventDefault();
-    const question = normalizeTwinChatInput(value);
-    if (!question) { setStatus({text:"Type a question first.",url:null}); return; }
-    const message = typeof answer === "function"
-      ? answer(question)
-      : "That question is outside this mapped Twin. Open Diagnose for broader troubleshooting.";
-    const result = splitTwinAnswerLink(message);
-    setStatus({text:result.url?"Reviewed answer shown above.":result.text,url:result.url});
-    say?.(result.text);
+    ask(value);
   };
   return (
     <div style={{width:"100%"}}>
+      {reply&&<div role={reply.error?"alert":"status"} aria-live="polite" style={{marginBottom:8,maxHeight:compact?220:260,overflowY:"auto",padding:compact?"11px 12px":"13px 14px",borderRadius:14,border:`1px solid ${reply.error?"var(--ki-crit)":"var(--ki-line)"}`,background:"var(--ki-card)",boxShadow:"var(--shadow-1)",fontSize:12.5,lineHeight:1.5,color:reply.error?"var(--ki-crit)":"var(--ink)"}}>
+        {reply.question&&<div className="eyebrow" style={{fontSize:9.5,color:"var(--slate-500)",marginBottom:7,whiteSpace:"nowrap",overflow:"hidden",textOverflow:"ellipsis"}}>You asked · {reply.question}</div>}
+        {reply.text?<TwinAnswerContent text={reply.text}/>:<div style={{color:"var(--slate-500)"}}>Au7o is checking your exact vehicle…</div>}
+      </div>}
       <form onSubmit={submit} style={{ background:"var(--ki-card)", border:`1px solid ${KI.line}`, borderRadius:compact?14:16, boxShadow:"var(--shadow-1)", padding:compact?"8px 9px 8px 12px":"10px 12px 10px 16px", display:"flex", alignItems:"center", gap:8 }}>
-        <input ref={inputRef} value={value} onChange={(event)=>{setValue(event.target.value);if(status)setStatus(null);}} aria-label="Ask Au7o about this vehicle" placeholder={placeholder} autoComplete="off" style={{flex:1,minWidth:0,border:0,outline:0,background:"transparent",color:"var(--ink)",fontFamily:"var(--font-sans)",fontSize:compact?13:14,lineHeight:1.4}}/>
+        <input ref={inputRef} value={value} disabled={pending} onChange={(event)=>{setValue(event.target.value);if(reply&&selectedNode)setSelectedNode(null);}} aria-label="Ask Au7o about this vehicle" placeholder={placeholder} autoComplete="off" style={{flex:1,minWidth:0,border:0,outline:0,background:"transparent",color:"var(--ink)",fontFamily:"var(--font-sans)",fontSize:compact?13:14,lineHeight:1.4,opacity:pending?.65:1}}/>
         <a href="/diagnose" aria-label="Open camera diagnosis" title="Open camera diagnosis" style={{width:compact?30:34,height:compact?30:34,borderRadius:10,border:`1px solid ${KI.line}`,display:"grid",placeItems:"center",color:"var(--slate-500)",textDecoration:"none",flexShrink:0}}><Icon name="camera" size={12}/></a>
         {!compact&&<VoiceButton/>}
-        <button type="submit" aria-label="Send question" style={{background:"var(--ink)",border:"none",color:"var(--ki-page)",width:compact?30:34,height:compact?30:34,borderRadius:10,cursor:"pointer",display:"grid",placeItems:"center",flexShrink:0}}><Icon name="send" size={compact?13:14}/></button>
+        <button type="submit" disabled={pending} aria-label="Send question" style={{background:"var(--ink)",border:"none",color:"var(--ki-page)",width:compact?30:34,height:compact?30:34,borderRadius:10,cursor:pending?"wait":"pointer",display:"grid",placeItems:"center",flexShrink:0,opacity:pending?.55:1}}><Icon name="send" size={compact?13:14}/></button>
       </form>
-      {status&&<div role="status" style={{marginTop:6,fontSize:10.5,lineHeight:1.4,color:"var(--slate-500)",textAlign:"center"}}>{status.text}{status.url&&<> <a href={status.url} target="_blank" rel="noopener noreferrer" style={{color:"var(--au7o-blue)",fontWeight:700,textDecoration:"underline"}}>Buy exact reviewed part</a></>}</div>}
+      <div style={{marginTop:6,fontSize:10.5,lineHeight:1.4,color:"var(--slate-500)",textAlign:"center"}}>Answers use this Twin's exact configuration when available · verify safety-critical work</div>
     </div>
   );
 }
 
-export function HPComposer({ say, answer, prefill = null }) {
+export function HPComposer({ say, prefill = null }) {
   return (
     <div style={{ padding: "14px 44px 20px", borderTop: `1px solid ${KI.line}`, background: "var(--ki-glass)", backdropFilter: "blur(16px)" }}>
       <div style={{ maxWidth: 980, margin: "0 auto" }}>
-        <TwinChatComposer say={say} answer={answer} prefill={prefill} placeholder="Ask anything about your car — symptoms, parts, recalls, or plan a trip."/>
+        <TwinChatComposer say={say} prefill={prefill} placeholder="Ask anything about your car — symptoms, parts, how-to help, or what to buy."/>
         <div style={{ fontSize: 10.5, color: "var(--slate-500)", marginTop: 7, textAlign: "center" }}>Au7o knows your vehicle context · responses may need verifying with a mechanic</div>
       </div>
     </div>
