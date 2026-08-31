@@ -33,7 +33,23 @@ const EU_ONLY = new Set([
 ]);
 
 (async () => {
-  const cov = JSON.parse(fs.readFileSync('data/_lead-coverage.json', 'utf8'));
+  // Ranking is leads-per-published-issue, so a coverage file written before the
+  // last promotion scores nameplates on counts that are no longer true and the
+  // wave targets yesterday's gaps. This script cannot regenerate it (that costs a
+  // separate full pass), so say so loudly instead of ranking on stale numbers.
+  const COV = 'data/_lead-coverage.json';
+  const covAge = Date.now() - fs.statSync(COV).mtimeMs;
+  const lastPromote = (await pool.query(
+    `SELECT max("updatedAt") AS t FROM "KnownIssue" WHERE status = 'published'`
+  )).rows[0].t;
+  if (lastPromote && lastPromote.getTime() > fs.statSync(COV).mtimeMs) {
+    console.log('WARNING: ' + COV + ' predates the newest published issue (' +
+      lastPromote.toISOString().slice(0, 16) + '). Run scripts/_lead-coverage.js first — ' +
+      'otherwise targets are ranked on pre-promotion counts.');
+  } else if (covAge > 7 * 864e5) {
+    console.log('WARNING: ' + COV + ' is ' + Math.round(covAge / 864e5) + ' days old.');
+  }
+  const cov = JSON.parse(fs.readFileSync(COV, 'utf8'));
   const excl = JSON.parse(fs.readFileSync('data/_specs-research-exclusions.json', 'utf8'));
   const exclKeys = new Set(Object.keys(excl));
 
@@ -98,7 +114,12 @@ const EU_ONLY = new Set([
 
   const OUT = `scripts/_wf-research-wave${WAVE}.js`;
   const src = fs.readFileSync('scripts/_wf-research-wave14.js', 'utf8').split(/\r?\n/);
-  const body = src.slice(BODY_FROM_LINE - 1).join('\n');
+  // The wave-14 body hardcodes its own number in its two log lines. Left alone,
+  // every generated wave narrates itself as "Wave 14" and run transcripts become
+  // impossible to tell apart after the fact.
+  const body = src.slice(BODY_FROM_LINE - 1).join('\n')
+    .replace(/\bWave 14:/g, `Wave ${WAVE}:`)
+    .replace(/\bWAVE 14 TOTAL:/g, `WAVE ${WAVE} TOTAL:`);
   const header = `/**
  * RESEARCH WAVE ${WAVE} — DEMAND-DRIVEN THIN NAMEPLATES.
  *
