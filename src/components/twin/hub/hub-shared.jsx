@@ -8,8 +8,8 @@
 import React from "react";
 import Link from "next/link";
 import { Icon } from "../stage/Icon";
-import { useTwinCatalog, useTwinIssues, useTwinMiles, useTwinTransmissionControl, useTwinVehicle } from "../twin-context";
-import { buildTwinAssistantVehicle, normalizeTwinNodeContext, streamTwinAssistant } from "../../../lib/twin-assistant-client";
+import { useTwinCatalog, useTwinIssues, useTwinMiles, useTwinOwnerActions, useTwinTransmissionControl, useTwinVehicle } from "../twin-context";
+import { buildTwinAssistantVehicle, normalizeTwinNodeContext, sendTwinAssistantMessage } from "../../../lib/twin-assistant-client";
 
 /** The known-issues palette, as the design references it. */
 export const KI = {
@@ -131,6 +131,7 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
   const [messages, setMessages] = React.useState([]);
   const [sessionId, setSessionId] = React.useState(null);
   const [selectedNode, setSelectedNode] = React.useState(null);
+  const [continueMutation, setContinueMutation] = React.useState(false);
   const [pending, setPending] = React.useState(false);
   const inputRef = React.useRef(null);
   const autoSentKey = React.useRef(null);
@@ -139,6 +140,7 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
   const miles = useTwinMiles();
   const issues = useTwinIssues();
   const transmissionControl = useTwinTransmissionControl();
+  const ownerActions = useTwinOwnerActions();
   const assistantVehicle = React.useMemo(()=>buildTwinAssistantVehicle({vehicle,catalogIdentity:catalog?.identity,transmission:transmissionControl?.choice||transmissionControl?.model?.current||vehicle?.transmission,mileage:miles}),[catalog?.identity,miles,transmissionControl?.choice,transmissionControl?.model?.current,vehicle]);
   const knownIssueTitles = React.useMemo(()=>(issues||[]).filter(issue=>issue?.id&&issue?.title).slice(0,12).map(issue=>({id:issue.id,title:issue.title})),[issues]);
 
@@ -160,10 +162,12 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
     setReply({question,text:"",error:false,key:Date.now()});
     let streamed = "";
     try {
-      const result = await streamTwinAssistant({
+      const result = await sendTwinAssistantMessage({
         vehicle:assistantVehicle,
         messages:nextMessages,
         sessionId,
+        ownerVehicleId:ownerActions?.vehicleId,
+        continueMutation,
         knownIssueTitles,
         selectedNode:nodeOverride,
         onSession:setSessionId,
@@ -171,7 +175,16 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
       });
       setMessages([...nextMessages,{role:"assistant",content:result.text}].slice(-20));
       setReply(current=>({...current,text:result.text,error:false}));
-      say?.("Answer ready below — you can keep asking without leaving the hub.");
+      setContinueMutation(result.awaitingMutationDetails);
+      if (result.committedActions.length) {
+        setSelectedNode(null);
+        ownerActions?.refresh?.();
+        say?.("Saved to your garage. The Twin is refreshing from the committed record.");
+      } else if (result.awaitingMutationDetails) {
+        say?.("Au7o needs one more detail before anything can be saved.");
+      } else {
+        say?.("Answer ready below — you can keep asking without leaving the hub.");
+      }
     } catch (cause) {
       const message = cause instanceof Error ? cause.message : "Au7o could not answer just now. Please try again.";
       setMessages(previousMessages);
@@ -180,13 +193,14 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
     } finally {
       setPending(false);
     }
-  }, [assistantVehicle, knownIssueTitles, messages, pending, say, selectedNode, sessionId]);
+  }, [assistantVehicle, continueMutation, knownIssueTitles, messages, ownerActions, pending, say, selectedNode, sessionId]);
 
   React.useEffect(() => {
     if (!prefill?.value) return;
     setValue(prefill.value);
     const nextNode = normalizeTwinNodeContext(prefill.node);
     setSelectedNode(nextNode);
+    setContinueMutation(false);
     setReply(null);
     const input = inputRef.current;
     input?.focus();
@@ -209,7 +223,7 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
         {reply.text?<TwinAnswerContent text={reply.text}/>:<div style={{color:"var(--slate-500)"}}>Au7o is checking your exact vehicle…</div>}
       </div>}
       <form onSubmit={submit} style={{ background:"var(--ki-card)", border:`1px solid ${KI.line}`, borderRadius:compact?14:16, boxShadow:"var(--shadow-1)", padding:compact?"8px 9px 8px 12px":"10px 12px 10px 16px", display:"flex", alignItems:"center", gap:8 }}>
-        <input ref={inputRef} value={value} disabled={pending} onChange={(event)=>{setValue(event.target.value);if(reply&&selectedNode)setSelectedNode(null);}} aria-label="Ask Au7o about this vehicle" placeholder={placeholder} autoComplete="off" style={{flex:1,minWidth:0,border:0,outline:0,background:"transparent",color:"var(--ink)",fontFamily:"var(--font-sans)",fontSize:compact?13:14,lineHeight:1.4,opacity:pending?.65:1}}/>
+        <input ref={inputRef} value={value} disabled={pending} onChange={(event)=>setValue(event.target.value)} aria-label="Ask Au7o about this vehicle" placeholder={placeholder} autoComplete="off" style={{flex:1,minWidth:0,border:0,outline:0,background:"transparent",color:"var(--ink)",fontFamily:"var(--font-sans)",fontSize:compact?13:14,lineHeight:1.4,opacity:pending?.65:1}}/>
         <a href="/diagnose" aria-label="Open camera diagnosis" title="Open camera diagnosis" style={{width:compact?30:34,height:compact?30:34,borderRadius:10,border:`1px solid ${KI.line}`,display:"grid",placeItems:"center",color:"var(--slate-500)",textDecoration:"none",flexShrink:0}}><Icon name="camera" size={12}/></a>
         {!compact&&<VoiceButton/>}
         <button type="submit" disabled={pending} aria-label="Send question" style={{background:"var(--ink)",border:"none",color:"var(--ki-page)",width:compact?30:34,height:compact?30:34,borderRadius:10,cursor:pending?"wait":"pointer",display:"grid",placeItems:"center",flexShrink:0,opacity:pending?.55:1}}><Icon name="send" size={compact?13:14}/></button>

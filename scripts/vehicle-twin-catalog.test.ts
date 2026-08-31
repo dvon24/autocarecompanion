@@ -137,7 +137,7 @@ test('paint, issue help, time-only service, and twin chat helpers fail truthfull
   assert.match(treeSource,/onPartHelp\(q, null, \{ autoSend:true, question:q \}\)/);
   assert.doesNotMatch(treeSource,/couldn't tie that to a supported field/);
   assert.match(hubSource,/setChatPrefill\(\{ value, node, autoSend:Boolean\(options\.autoSend\), key:\+\+chatPrefillSeq\.current \}\)/);
-  assert.match(chatSource,/streamTwinAssistant\(\{/);
+  assert.match(chatSource,/sendTwinAssistantMessage\(\{/);
   assert.match(chatSource,/selectedNode:nodeOverride/);
   assert.match(chatSource,/input\?\.setSelectionRange\(prefill\.value\.length, prefill\.value\.length\)/);
 });

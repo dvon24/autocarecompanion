@@ -141,7 +141,7 @@ export default function SubscriptionControls({
   // Free-tier user — show upgrade CTA, no Stripe controls yet.
   if (!isActiveSub) {
     const freeBody = (
-      <div className={frameless ? '' : 'rounded-xl border border-gray-200 bg-white p-5'}>
+      <div className={`min-w-0 max-w-full ${frameless ? '' : 'rounded-xl border border-gray-200 bg-white p-5'}`}>
         {/* Tier badge — in frameless mode the AcctCard title slot is
             owned by the (server-rendered) page, which can't reflect an
             optimistic in-component tier change. So we render the colored
@@ -160,7 +160,7 @@ export default function SubscriptionControls({
         {/* CURRENT PLAN row — paper well showing the active tier so
             the user always sees what they're on (even at Free). */}
         <div
-          className="flex items-center gap-3 mb-3"
+          className="flex min-w-0 flex-wrap items-center gap-3 mb-3"
           style={{
             padding: '13px 15px',
             background: '#EFEDE6',
@@ -168,7 +168,7 @@ export default function SubscriptionControls({
             borderRadius: 12,
           }}
         >
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             <div className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">
               CURRENT PLAN
             </div>
@@ -195,7 +195,7 @@ export default function SubscriptionControls({
                 return (
                   <Link key={id} href={`/subscribe?tier=${id}`} className="block">
                     <div
-                      className="flex items-center gap-3"
+                      className="flex min-w-0 flex-wrap items-center gap-3"
                       style={{
                         padding: '12px 14px',
                         background: '#fff',
@@ -204,7 +204,7 @@ export default function SubscriptionControls({
                       }}
                     >
                       <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
+                        <div className="flex min-w-0 flex-wrap items-center gap-2">
                           <span className="text-sm font-bold text-slate-900">{t.name}</span>
                           {popular && (
                             <span
@@ -215,18 +215,18 @@ export default function SubscriptionControls({
                             </span>
                           )}
                         </div>
-                        <div className="text-[11.5px] text-slate-500 mt-0.5 truncate">
+                        <div className="break-words text-[11.5px] text-slate-500 mt-0.5">
                           {t.tagline}
                         </div>
                       </div>
                       <span
-                        className="text-sm font-bold text-slate-900"
+                        className="shrink-0 text-sm font-bold text-slate-900"
                         style={{ fontFamily: 'ui-monospace, SFMono-Regular, monospace' }}
                       >
                         ${t.price}
                       </span>
                       <span
-                        className="flex-shrink-0 text-xs font-semibold rounded-lg"
+                        className="min-h-9 flex-shrink-0 text-xs font-semibold rounded-lg"
                         style={{
                           padding: '7px 13px',
                           background: popular ? '#3B82F6' : '#0B1220',
@@ -281,7 +281,7 @@ export default function SubscriptionControls({
 
   // Plus / Pro user — full self-service panel.
   const activeBody = (
-    <div className={frameless ? '' : 'rounded-xl border border-gray-200 bg-white p-5'}>
+    <div className={`min-w-0 max-w-full ${frameless ? '' : 'rounded-xl border border-gray-200 bg-white p-5'}`}>
       {/* Tier badge (frameless) — see freeBody note: rendered here from
           local `badge` so it survives an optimistic Plus↔Pro change. */}
       {frameless && (
@@ -297,7 +297,7 @@ export default function SubscriptionControls({
       {/* CURRENT PLAN row — paper well */}
       {frameless && (
         <div
-          className="flex items-center gap-3 mb-3"
+          className="flex min-w-0 flex-wrap items-center gap-3 mb-3"
           style={{
             padding: '13px 15px',
             background: '#EFEDE6',
@@ -305,7 +305,7 @@ export default function SubscriptionControls({
             borderRadius: 12,
           }}
         >
-          <div className="flex-1">
+          <div className="min-w-0 flex-1">
             <div className="text-[9px] font-semibold uppercase tracking-wider text-slate-500">
               CURRENT PLAN
             </div>
@@ -358,7 +358,7 @@ export default function SubscriptionControls({
                 in shrinking what we charge an existing subscriber. */}
             {tier === 'plus' && (
               <div className="mb-5 rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-gray-900">Upgrade to Pro · $24.99/mo</p>
                     <p className="text-xs text-gray-600 mt-1 leading-relaxed">
@@ -372,7 +372,7 @@ export default function SubscriptionControls({
                     onClick={() => callChangeTier('pro')}
                     disabled={pending !== null || !regionAllowed}
                     title={!regionAllowed ? `Plus → Pro upgrades aren't available in ${regionDisplayName(country)} yet.` : undefined}
-                    className={`flex-shrink-0 py-2 px-4 text-sm font-semibold rounded-lg transition-colors disabled:cursor-not-allowed ${
+                    className={`min-h-10 flex-[0_1_auto] py-2 px-4 text-sm font-semibold rounded-lg transition-colors disabled:cursor-not-allowed ${
                       regionAllowed
                         ? 'bg-gray-900 text-white hover:bg-gray-800 disabled:opacity-50'
                         : 'bg-gray-200 text-gray-500 border border-gray-300 opacity-70'
@@ -386,7 +386,7 @@ export default function SubscriptionControls({
 
             {tier === 'pro' && (
               <div className="mb-5 rounded-lg border border-gray-200 bg-gray-50 p-4">
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex min-w-0 flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="text-sm font-semibold text-gray-900">Switch to Plus · $14.99/mo</p>
                     <p className="text-xs text-gray-600 mt-1 leading-relaxed">
@@ -396,7 +396,7 @@ export default function SubscriptionControls({
                   <button
                     onClick={() => callChangeTier('plus')}
                     disabled={pending !== null}
-                    className="flex-shrink-0 py-2 px-4 bg-white border border-gray-300 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="min-h-10 flex-[0_1_auto] py-2 px-4 bg-white border border-gray-300 text-gray-700 text-sm font-semibold rounded-lg hover:bg-gray-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {pending === 'plus' ? 'Switching…' : 'Switch'}
                   </button>

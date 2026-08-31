@@ -48,6 +48,7 @@ const tools = [
           date: { type: 'string', description: 'Exact YYYY-MM-DD date, or ISO datetime with an explicit UTC offset' },
           cost: { type: 'number', description: 'Cost of service (optional)' },
           notes: { type: 'string', description: 'Additional notes (optional)' },
+          shopName: { type: 'string', description: 'Shop or provider name, only when the user supplied it (optional)' },
         },
         required: ['vehicleId', 'type', 'mileage', 'date'],
       },
@@ -104,6 +105,8 @@ const executeGarageAssistantToolBatch = createGarageAssistantToolBatchExecutor({
 interface VehicleContext {
   vehicleId: string;
   vehicleName?: string;
+  timeZone?: string;
+  selectedMaintenanceType?: string;
   overdueItems?: Array<{ type: string; name: string }>;
   dueSoonItems?: Array<{ type: string; name: string }>;
 }
@@ -112,6 +115,21 @@ function getSystemPrompt(
   vehicles: Array<{ id: string; name: string; mileage: number | null }>,
   vehicleContext?: VehicleContext
 ) {
+  let calendarDate = new Date().toISOString().slice(0, 10);
+  if (vehicleContext?.timeZone) {
+    try {
+      const parts = new Intl.DateTimeFormat('en-US', {
+        timeZone: vehicleContext.timeZone,
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      }).formatToParts(new Date());
+      const value = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+      calendarDate = `${value.year}-${value.month}-${value.day}`;
+    } catch {
+      // Invalid client zones fall back to the server's UTC calendar date.
+    }
+  }
   const vehicleList = vehicles.length > 0
     ? vehicles.map((v) => `- ${v.name} (ID: ${v.id}, Mileage: ${v.mileage?.toLocaleString() || 'unknown'})`).join('\n')
     : 'No vehicles in garage yet.';
@@ -137,9 +155,20 @@ If the user wants to log one of these, use the type ID shown in parentheses.`;
       contextInfo += `\n\nDUE SOON for this vehicle:
 ${vehicleContext.dueSoonItems.map(i => `- ${i.name} (type: ${i.type})`).join('\n')}`;
     }
+
+    const selectedMaintenance = vehicleContext.selectedMaintenanceType
+      ? MAINTENANCE_SCHEDULES[vehicleContext.selectedMaintenanceType]
+      : null;
+    if (selectedMaintenance) {
+      contextInfo += `\n\nSELECTED TECH-TREE SERVICE:
+- ${selectedMaintenance.name} (type: ${vehicleContext.selectedMaintenanceType})
+If the user asks to log "this" or "it", use this reviewed type. Still ask for any required mileage or completion date that is missing.`;
+    }
   }
 
   return `You are a helpful garage assistant for AutoCare Companion. You help users manage their vehicles and maintenance records.
+
+Today's calendar date for the owner is ${calendarDate}. Resolve words such as "today" to that exact YYYY-MM-DD value before calling a write tool.
 
 Current user's vehicles:
 ${vehicleList}
@@ -149,7 +178,7 @@ ${maintenanceTypes}${contextInfo}
 
 When the user mentions a vehicle by name, use the matching vehicle ID from the list above.
 When logging maintenance, always ask for the mileage if not provided.
-Be conversational and helpful. Confirm actions after completing them.
+Be conversational and helpful. Confirm actions only after the corresponding tool call completed successfully. If details are missing, ask one focused follow-up and do not imply anything was saved.
 If the user says "yes" or confirms logging an overdue/due soon item, use the correct vehicle ID and maintenance type.
 If the user asks about something outside of vehicle/maintenance management, politely explain you can only help with garage-related tasks.
 

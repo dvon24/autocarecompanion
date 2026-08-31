@@ -7,11 +7,11 @@
 
 import { prisma } from './db';
 import {
-  MAINTENANCE_SCHEDULES,
   getUpcomingMaintenance,
   type MaintenanceStatusResult,
   type VehicleContext,
 } from './maintenance';
+import { renderMaintenanceAlertEmail } from './maintenance-alert-email';
 
 // Types
 export interface NotificationPayload {
@@ -25,6 +25,7 @@ export interface NotificationPayload {
 export interface MaintenanceAlert {
   vehicleId: string;
   vehicleName: string;
+  currentMileage: number | null;
   maintenanceType: string;
   maintenanceName: string;
   status: MaintenanceStatusResult;
@@ -60,13 +61,16 @@ export async function getUsersWithDueMaintenance(): Promise<
       emailNotifications: true,
       pushNotifications: true,
       vehicles: {
+        orderBy: { id: 'asc' },
         select: {
           id: true,
           year: true,
           make: true,
           model: true,
           nickname: true,
+          trim: true,
           currentMileage: true,
+          annualMileage: true,
           lastMileageUpdate: true,
           maintenanceRecords: {
             select: {
@@ -106,12 +110,15 @@ export async function getUsersWithDueMaintenance(): Promise<
         make: vehicle.make,
         model: vehicle.model,
         year: vehicle.year,
+        trim: vehicle.trim ?? undefined,
       };
 
       const upcoming = getUpcomingMaintenance(
         {
           currentMileage: vehicle.currentMileage,
           lastMileageUpdate: vehicle.lastMileageUpdate,
+          annualMileage: vehicle.annualMileage,
+          year: vehicle.year,
         },
         vehicle.maintenanceRecords.map((r) => ({
           ...r,
@@ -125,6 +132,7 @@ export async function getUsersWithDueMaintenance(): Promise<
         alerts.push({
           vehicleId: vehicle.id,
           vehicleName,
+          currentMileage: vehicle.currentMileage,
           maintenanceType: type.id,
           maintenanceName: type.name,
           status,
@@ -279,102 +287,7 @@ export function generateMaintenanceEmailHtml(
   userName: string | null,
   alerts: MaintenanceAlert[]
 ): string {
-  const overdueAlerts = alerts.filter((a) => a.status.status === 'overdue');
-  const dueSoonAlerts = alerts.filter((a) => a.status.status === 'due_soon');
-
-  return `
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maintenance Reminder</title>
-</head>
-<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f5f5;">
-  <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-    <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
-      <!-- Header -->
-      <div style="text-align: center; margin-bottom: 24px;">
-        <h1 style="margin: 0; font-size: 24px; color: #1a1a1a;">
-          Au<span style="color: #3B82F6;">7</span>o
-        </h1>
-        <p style="margin: 8px 0 0; color: #666; font-size: 14px;">Maintenance Reminder</p>
-      </div>
-
-      <!-- Greeting -->
-      <p style="color: #333; font-size: 16px; margin-bottom: 24px;">
-        Hi ${userName || 'there'},
-      </p>
-
-      ${
-        overdueAlerts.length > 0
-          ? `
-      <!-- Overdue Section -->
-      <div style="background: #FEF2F2; border: 1px solid #FECACA; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
-        <h2 style="margin: 0 0 12px; font-size: 16px; color: #DC2626;">
-          ⚠️ Overdue Maintenance (${overdueAlerts.length})
-        </h2>
-        ${overdueAlerts
-          .map(
-            (alert) => `
-          <div style="background: white; border-radius: 8px; padding: 12px; margin-bottom: 8px;">
-            <p style="margin: 0; font-weight: 600; color: #1a1a1a;">${alert.maintenanceName}</p>
-            <p style="margin: 4px 0 0; font-size: 14px; color: #666;">${alert.vehicleName}</p>
-            <p style="margin: 4px 0 0; font-size: 13px; color: #DC2626;">${alert.status.message}</p>
-          </div>
-        `
-          )
-          .join('')}
-      </div>
-      `
-          : ''
-      }
-
-      ${
-        dueSoonAlerts.length > 0
-          ? `
-      <!-- Due Soon Section -->
-      <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
-        <h2 style="margin: 0 0 12px; font-size: 16px; color: #D97706;">
-          🔔 Due Soon (${dueSoonAlerts.length})
-        </h2>
-        ${dueSoonAlerts
-          .map(
-            (alert) => `
-          <div style="background: white; border-radius: 8px; padding: 12px; margin-bottom: 8px;">
-            <p style="margin: 0; font-weight: 600; color: #1a1a1a;">${alert.maintenanceName}</p>
-            <p style="margin: 4px 0 0; font-size: 14px; color: #666;">${alert.vehicleName}</p>
-            <p style="margin: 4px 0 0; font-size: 13px; color: #D97706;">${alert.status.message}</p>
-          </div>
-        `
-          )
-          .join('')}
-      </div>
-      `
-          : ''
-      }
-
-      <!-- CTA -->
-      <div style="text-align: center; margin-top: 24px;">
-        <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://au7o.io'}/garage"
-           style="display: inline-block; padding: 12px 24px; background: #3B82F6; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
-          View My Garage
-        </a>
-      </div>
-
-      <!-- Footer -->
-      <div style="margin-top: 32px; padding-top: 16px; border-top: 1px solid #eee; text-align: center;">
-        <p style="margin: 0; font-size: 12px; color: #999;">
-          You're receiving this because you have maintenance notifications enabled.
-          <br>
-          <a href="${process.env.NEXT_PUBLIC_APP_URL || 'https://au7o.io'}/account" style="color: #666;">Manage preferences</a>
-        </p>
-      </div>
-    </div>
-  </div>
-</body>
-</html>
-  `.trim();
+  return renderMaintenanceAlertEmail({ userName, alerts });
 }
 
 /**

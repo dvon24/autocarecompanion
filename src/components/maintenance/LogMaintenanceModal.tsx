@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MAINTENANCE_SCHEDULES, getApplicableSchedules, type VehicleContext, type ResolvedSchedule } from '@/lib/maintenance';
+import { MAINTENANCE_SCHEDULES, getApplicableSchedules, type VehicleContext } from '@/lib/maintenance';
 
 interface MaintenanceRecord {
   id: string;
@@ -25,6 +25,10 @@ interface LogMaintenanceModalProps {
   onRecordAdded: (record: MaintenanceRecord) => void;
 }
 
+function localISODate(date = new Date()): string {
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+}
+
 export function LogMaintenanceModal({
   vehicleId,
   currentMileage,
@@ -33,7 +37,7 @@ export function LogMaintenanceModal({
   onClose,
   onRecordAdded,
 }: LogMaintenanceModalProps) {
-  const today = new Date().toISOString().split('T')[0];
+  const today = localISODate();
 
   const [formData, setFormData] = useState({
     type: preselectedType || '',
@@ -55,9 +59,28 @@ export function LogMaintenanceModal({
     setLoading(true);
     setError('');
 
-    const mileage = parseInt(formData.mileage);
-    if (isNaN(mileage) || mileage < 0) {
+    const mileage = Number(formData.mileage);
+    const cost = formData.cost === '' ? undefined : Number(formData.cost);
+    const nextDueMileage = formData.setNextDue && formData.nextDueMileage
+      ? Number(formData.nextDueMileage)
+      : undefined;
+    if (!formData.mileage.trim() || !Number.isInteger(mileage) || mileage < 0) {
       setError('Please enter a valid mileage');
+      setLoading(false);
+      return;
+    }
+    if (cost !== undefined && (!Number.isFinite(cost) || cost < 0)) {
+      setError('Please enter a non-negative cost or leave it blank');
+      setLoading(false);
+      return;
+    }
+    if (nextDueMileage !== undefined && (!Number.isInteger(nextDueMileage) || nextDueMileage <= mileage)) {
+      setError('Next due mileage must be a whole number after the service mileage');
+      setLoading(false);
+      return;
+    }
+    if (formData.setNextDue && formData.nextDueDate && formData.nextDueDate <= formData.date) {
+      setError('Next due date must be after the service date');
       setLoading(false);
       return;
     }
@@ -71,13 +94,11 @@ export function LogMaintenanceModal({
           type: formData.type,
           description: formData.description || undefined,
           mileage,
-          cost: formData.cost ? parseFloat(formData.cost) : undefined,
+          cost,
           date: formData.date,
           notes: formData.notes || undefined,
           shopName: formData.shopName || undefined,
-          nextDueMileage: formData.setNextDue && formData.nextDueMileage
-            ? parseInt(formData.nextDueMileage)
-            : undefined,
+          nextDueMileage,
           nextDueDate: formData.setNextDue && formData.nextDueDate
             ? formData.nextDueDate
             : undefined,
@@ -110,7 +131,7 @@ export function LogMaintenanceModal({
   // Calculate suggested next due using resolved interval
   const intervalMiles = resolvedType?.intervalMiles ?? selectedType?.defaultIntervalMiles;
   const suggestedNextMileage = selectedType && formData.mileage && intervalMiles
-    ? parseInt(formData.mileage) + intervalMiles
+    ? Number(formData.mileage) + intervalMiles
     : null;
 
   return (
@@ -188,13 +209,14 @@ export function LogMaintenanceModal({
               type="text"
               value={formData.description}
               onChange={(e) => setFormData((prev) => ({ ...prev, description: e.target.value }))}
+              maxLength={500}
               placeholder="e.g., Full synthetic 0W-20"
               className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
             />
           </div>
 
           {/* Mileage and Date */}
-          <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="grid min-w-0 grid-cols-1 gap-3 mb-4 sm:grid-cols-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Mileage *
@@ -225,7 +247,7 @@ export function LogMaintenanceModal({
           </div>
 
           {/* Cost and Shop */}
-          <div className="grid grid-cols-2 gap-3 mb-4">
+          <div className="grid min-w-0 grid-cols-1 gap-3 mb-4 sm:grid-cols-2">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">
                 Cost
@@ -251,6 +273,7 @@ export function LogMaintenanceModal({
                 type="text"
                 value={formData.shopName}
                 onChange={(e) => setFormData((prev) => ({ ...prev, shopName: e.target.value }))}
+                maxLength={200}
                 placeholder="DIY, Jiffy Lube, etc."
                 className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
               />
@@ -265,6 +288,7 @@ export function LogMaintenanceModal({
             <textarea
               value={formData.notes}
               onChange={(e) => setFormData((prev) => ({ ...prev, notes: e.target.value }))}
+              maxLength={2000}
               placeholder="Any additional notes..."
               rows={2}
               className="w-full px-4 py-2.5 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none resize-none"
@@ -293,7 +317,7 @@ export function LogMaintenanceModal({
             </label>
 
             {formData.setNextDue && (
-              <div className="mt-4 grid grid-cols-2 gap-3">
+              <div className="mt-4 grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2">
                 <div>
                   <label className="block text-xs text-gray-500 mb-1">Next Due Mileage</label>
                   <input
@@ -301,7 +325,7 @@ export function LogMaintenanceModal({
                     value={formData.nextDueMileage}
                     onChange={(e) => setFormData((prev) => ({ ...prev, nextDueMileage: e.target.value }))}
                     placeholder={suggestedNextMileage?.toString() || '55000'}
-                    min={parseInt(formData.mileage) || 0}
+                    min={Number(formData.mileage) || 0}
                     className="w-full px-3 py-2 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none text-sm"
                   />
                 </div>
@@ -320,7 +344,7 @@ export function LogMaintenanceModal({
           </div>
 
           {/* Submit */}
-          <div className="flex gap-3">
+          <div className="flex flex-col-reverse gap-3 sm:flex-row">
             <button
               type="button"
               onClick={onClose}

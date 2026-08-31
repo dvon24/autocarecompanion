@@ -5,6 +5,7 @@ import { isLoggableMaintenanceType } from '@/lib/maintenance';
 import { isRecordBody, MaintenanceMutationError } from '@/lib/maintenance-mutation';
 import { isPrismaWriteConflict } from '@/lib/prisma-conflict';
 import { isAcceptedMaintenanceDate } from '@/lib/twin-route-contracts';
+import { NO_COMMITTED_GARAGE_ACTION_PREFIX } from '@/lib/garage-assistant-maintenance';
 
 const PRODUCTION_GARAGE_TOOLS = new Set([
   'update_mileage', 'log_maintenance', 'get_vehicle_info', 'list_vehicles', 'get_maintenance_status',
@@ -30,6 +31,7 @@ const TOOL_ARGUMENT_SCHEMAS = {
     date: z.string().refine(isAcceptedMaintenanceDate),
     cost: z.number().finite().min(0).optional(),
     notes: z.string().max(2000).optional(),
+    shopName: z.string().trim().min(1).max(200).optional(),
   }).strict(),
   get_vehicle_info: z.object({ vehicleId }).strict(),
   list_vehicles: z.object({}).strict(),
@@ -97,9 +99,11 @@ export function createGarageAssistantToolBatchExecutor(deps: {
         const toolResults: Array<{ tool_call_id: string; output: string }> = [];
         const actions: Array<{ tool: string; result: string }> = [];
         for (const toolCall of preparedCalls) {
-          const result = await deps.executeTool(toolCall.function.name, toolCall.args, userId, tx, operationTime);
+          const rawResult = await deps.executeTool(toolCall.function.name, toolCall.args, userId, tx, operationTime);
+          const committed = !rawResult.startsWith(NO_COMMITTED_GARAGE_ACTION_PREFIX);
+          const result = committed ? rawResult : rawResult.slice(NO_COMMITTED_GARAGE_ACTION_PREFIX.length);
           toolResults.push({ tool_call_id: toolCall.id, output: result });
-          actions.push({ tool: toolCall.function.name, result });
+          if (committed) actions.push({ tool: toolCall.function.name, result });
         }
         return { toolResults, actions };
       }, { isolationLevel: 'Serializable' });

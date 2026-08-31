@@ -16,8 +16,9 @@ import { isPrismaWriteConflict } from '@/lib/prisma-conflict';
 import { isAcceptedMaintenanceDate, parseMaintenanceCreate } from '@/lib/twin-route-contracts';
 
 const PRISMA_INT_MAX = 2_147_483_647;
+export const NO_COMMITTED_GARAGE_ACTION_PREFIX = '[no-commit] ';
 const ASSISTANT_MAINTENANCE_FIELDS = new Set([
-  'vehicleId', 'type', 'mileage', 'date', 'cost', 'notes',
+  'vehicleId', 'type', 'mileage', 'date', 'cost', 'notes', 'shopName',
 ]);
 const AssistantMileageSchema = z.object({
   vehicleId: z.string().trim().min(1),
@@ -66,6 +67,7 @@ export async function executeGarageAssistantMaintenanceInTransaction(
     date: body.date,
     ...(body.cost !== undefined ? { cost: body.cost } : {}),
     ...(body.notes !== undefined ? { notes: body.notes } : {}),
+    ...(body.shopName !== undefined ? { shopName: body.shopName } : {}),
   }, isLoggableMaintenanceType);
   if (!base.success) throw new MaintenanceMutationError('Invalid maintenance data', 400);
 
@@ -107,6 +109,7 @@ export async function executeGarageAssistantMaintenanceInTransaction(
       date: new Date(withDeadlines.data.date),
       cost: withDeadlines.data.cost,
       notes: withDeadlines.data.notes,
+      shopName: withDeadlines.data.shopName,
       nextDueMileage: withDeadlines.data.nextDueMileage,
       nextDueDate: withDeadlines.data.nextDueDate ? new Date(withDeadlines.data.nextDueDate) : null,
     },
@@ -147,6 +150,9 @@ export async function executeGarageAssistantMileageInTransaction(
   if (!parsed.success) throw new MaintenanceMutationError('Invalid mileage data', 400);
   const vehicle = await tx.vehicle.findFirst({ where: { id: parsed.data.vehicleId, userId } });
   if (!vehicle) throw new MaintenanceMutationError('Vehicle not found or access denied.', 404);
+  if (vehicle.currentMileage === parsed.data.mileage) {
+    return `${NO_COMMITTED_GARAGE_ACTION_PREFIX}Mileage is already ${parsed.data.mileage.toLocaleString()} miles for ${vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`}.`;
+  }
   const nextRevision = nextMonotonicVehicleRevision(vehicle.updatedAt, operationTime);
   await tx.vehicle.update({
     where: { id: vehicle.id },

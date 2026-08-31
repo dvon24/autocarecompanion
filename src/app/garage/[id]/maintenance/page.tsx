@@ -2,12 +2,13 @@
 
 import { useEffect, useState, useCallback } from 'react';
 import { useSession } from 'next-auth/react';
-import { useRouter, useParams } from 'next/navigation';
+import { useRouter, useParams, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { PageLayout, ContentCard } from '@/components/ui/PageLayout';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { LogMaintenanceModal } from '@/components/maintenance/LogMaintenanceModal';
 import { GarageAssistant } from '@/components/garage/GarageAssistant';
+import { ServiceRecords } from '@/components/maintenance/ServiceRecords';
 import { useGuide } from '@/hooks/useGuide';
 import { useKnownIssues } from '@/hooks/useKnownIssues';
 import { useRecalls } from '@/hooks/useRecalls';
@@ -35,7 +36,9 @@ interface MaintenanceRecord {
   nextDueMileage?: number | null;
   nextDueDate?: string | null;
   notes?: string | null;
+  receiptUrl?: string | null;
   shopName?: string | null;
+  createdAt?: string;
 }
 
 interface Vehicle {
@@ -54,12 +57,31 @@ interface Vehicle {
 
 type FilterType = 'all' | 'routine' | 'periodic' | 'major';
 
+async function fetchCompleteMaintenanceHistory(vehicleId: string): Promise<MaintenanceRecord[]> {
+  const records: MaintenanceRecord[] = [];
+  let offset = 0;
+  while (true) {
+    const response = await fetch(`/api/maintenance?vehicleId=${encodeURIComponent(vehicleId)}&limit=100&offset=${offset}`);
+    const payload = await response.json().catch(() => ({}));
+    if (!response.ok) throw new Error(payload.message || payload.error || 'Service records could not be loaded.');
+    const page = Array.isArray(payload.records) ? payload.records as MaintenanceRecord[] : [];
+    records.push(...page);
+    if (payload.nextOffset == null) return records;
+    if (!Number.isInteger(payload.nextOffset) || payload.nextOffset <= offset) {
+      throw new Error('Service history pagination returned an invalid continuation.');
+    }
+    offset = payload.nextOffset;
+  }
+}
+
 export default function MaintenancePage() {
   const { status } = useSession();
   const router = useRouter();
   const params = useParams();
+  const searchParams = useSearchParams();
   const [vehicle, setVehicle] = useState<Vehicle | null>(null);
   const [records, setRecords] = useState<MaintenanceRecord[]>([]);
+  const [recordsError, setRecordsError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [showLogModal, setShowLogModal] = useState(false);
   const [filter, setFilter] = useState<FilterType>('all');
@@ -110,7 +132,6 @@ export default function MaintenancePage() {
 
   // User's fixes for known issues
   const {
-    fixes: userFixes,
     refetch: refetchFixes,
     getFixForIssue,
   } = useIssueFixes({
@@ -119,9 +140,14 @@ export default function MaintenancePage() {
 
   const fetchData = useCallback(async () => {
     try {
-      const [vehicleRes, recordsRes] = await Promise.all([
+      const [vehicleRes, historyResult] = await Promise.all([
         fetch(`/api/vehicles/${vehicleId}`),
-        fetch(`/api/maintenance?vehicleId=${vehicleId}`),
+        fetchCompleteMaintenanceHistory(vehicleId)
+          .then((history) => ({ history, error: null as string | null }))
+          .catch((cause) => ({
+            history: null,
+            error: cause instanceof Error ? cause.message : 'Service records could not be loaded.',
+          })),
       ]);
 
       if (vehicleRes.ok) {
@@ -134,12 +160,15 @@ export default function MaintenancePage() {
         return;
       }
 
-      if (recordsRes.ok) {
-        const data = await recordsRes.json();
-        setRecords(data.records);
+      if (historyResult.history) {
+        setRecords(historyResult.history);
+        setRecordsError(null);
+      } else {
+        setRecordsError(historyResult.error || 'Service records could not be loaded.');
       }
     } catch (error) {
       console.error('Failed to fetch data:', error);
+      setRecordsError('Service records could not be loaded. Check your connection and try again.');
     } finally {
       setLoading(false);
     }
@@ -158,6 +187,10 @@ export default function MaintenancePage() {
 
   const handleRecordAdded = (record: MaintenanceRecord) => {
     setRecords((prev) => [record, ...prev]);
+    setRecordsError(null);
+    setVehicle((current) => current && record.mileage > (current.currentMileage ?? 0)
+      ? { ...current, currentMileage: record.mileage, lastMileageUpdate: new Date().toISOString() }
+      : current);
     setShowLogModal(false);
   };
 
@@ -168,11 +201,12 @@ export default function MaintenancePage() {
       const res = await fetch(`/api/maintenance/${recordId}`, {
         method: 'DELETE',
       });
-      if (res.ok) {
-        setRecords((prev) => prev.filter((r) => r.id !== recordId));
-      }
+      const payload = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(payload.message || payload.error || 'Could not delete this record.');
+      setRecords((prev) => prev.filter((r) => r.id !== recordId));
     } catch (error) {
       console.error('Failed to delete record:', error);
+      throw error;
     }
   };
 
@@ -281,6 +315,26 @@ export default function MaintenancePage() {
             Return to garage
           </Link>
         </div>
+      </PageLayout>
+    );
+  }
+
+  if (searchParams.get('view') === 'history') {
+    return (
+      <PageLayout backLink={{ href: `/garage/${vehicleId}/maintenance`, label: 'Maintenance status' }}>
+        <ServiceRecords
+          vehicle={vehicle}
+          records={records}
+          recordsError={recordsError}
+          onRetry={fetchData}
+          onRecordAdded={handleRecordAdded}
+          onDeleteRecord={handleDeleteRecord}
+        />
+        <GarageAssistant
+          vehicleId={vehicle.id}
+          vehicleName={vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`}
+          onActionComplete={fetchData}
+        />
       </PageLayout>
     );
   }
@@ -968,6 +1022,13 @@ export default function MaintenancePage() {
                   ? `${MAINTENANCE_SCHEDULES[selectedType]?.name || selectedType} History`
                   : 'All Maintenance History'}
               </h2>
+              <div className="flex flex-wrap items-center justify-end gap-3">
+                <Link
+                  href={`/garage/${vehicleId}/maintenance?view=history`}
+                  className="text-sm font-medium text-blue-600 hover:text-blue-700"
+                >
+                  Full service records
+                </Link>
               {selectedType && (
                 <button
                   onClick={() => setSelectedType(null)}
@@ -976,6 +1037,7 @@ export default function MaintenancePage() {
                   Show all
                 </button>
               )}
+              </div>
             </div>
 
             {typeRecords.length > 0 ? (

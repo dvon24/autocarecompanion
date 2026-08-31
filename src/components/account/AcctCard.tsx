@@ -26,19 +26,19 @@ export function AcctCard({
   return (
     <section
       id={id}
-      className="bg-white border rounded-2xl overflow-hidden"
+      className="min-w-0 max-w-full bg-white border rounded-2xl overflow-hidden"
       style={{ borderColor: '#E3DFD4', boxShadow: '0 1px 2px rgba(11,18,32,0.06)' }}
     >
       {title && (
         <div
-          className="flex items-center justify-between px-[18px] py-[14px] border-b"
+          className="flex min-w-0 flex-wrap items-center justify-between gap-2 px-[18px] py-[14px] border-b"
           style={{ borderColor: '#E3DFD4' }}
         >
-          <span className="text-sm font-bold tracking-[-0.01em] text-slate-900">{title}</span>
+          <span className="min-w-0 break-words text-sm font-bold tracking-[-0.01em] text-slate-900">{title}</span>
           {action}
         </div>
       )}
-      <div style={{ padding: pad }}>{children}</div>
+      <div className="min-w-0 max-w-full break-words" style={{ padding: pad, overflowWrap: 'anywhere' }}>{children}</div>
     </section>
   );
 }

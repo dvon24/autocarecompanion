@@ -14,7 +14,7 @@ import { ReactNode } from 'react';
  */
 export function AccountShell({ children }: { children: ReactNode }) {
   return (
-    <>
+    <div className="min-w-0 max-w-full overflow-x-clip">
       <div
         className="border-b"
         style={{
@@ -23,8 +23,7 @@ export function AccountShell({ children }: { children: ReactNode }) {
         }}
       >
         <div
-          className="max-w-[1040px] mx-auto flex items-center gap-3"
-          style={{ padding: '11px 24px' }}
+          className="max-w-[1040px] min-w-0 mx-auto flex items-start gap-3 px-4 py-[11px] sm:items-center sm:px-6"
         >
           <span
             className="text-[9.5px] font-bold uppercase text-white rounded-full flex-shrink-0"
@@ -37,8 +36,8 @@ export function AccountShell({ children }: { children: ReactNode }) {
             BETA
           </span>
           <span
-            className="text-[12.5px] leading-snug"
-            style={{ color: '#92400E' }}
+            className="min-w-0 break-words text-[12.5px] leading-snug"
+            style={{ color: '#92400E', overflowWrap: 'anywhere' }}
           >
             Premium features (SMS reminders, push alerts, cross-device sync) are still in active development. What you see today is a read-only history of your chats, diagnoses, and saved vehicles.
           </span>
@@ -46,8 +45,7 @@ export function AccountShell({ children }: { children: ReactNode }) {
       </div>
 
       <div
-        className="max-w-[1040px] mx-auto"
-        style={{ padding: '30px 24px 48px' }}
+        className="max-w-[1040px] min-w-0 mx-auto px-4 pb-12 pt-[30px] sm:px-6"
       >
         <h1
           className="text-3xl font-bold text-slate-900 m-0"
@@ -64,6 +62,6 @@ export function AccountShell({ children }: { children: ReactNode }) {
 
         {children}
       </div>
-    </>
+    </div>
   );
 }

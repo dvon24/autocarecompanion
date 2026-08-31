@@ -10,6 +10,7 @@ import {
 import { isPrismaWriteConflict } from '@/lib/prisma-conflict';
 import { parseMaintenanceCreate } from '@/lib/twin-route-contracts';
 import { hasValidReviewedTransmissionState } from '@/lib/transmission-options';
+import { isManagedMaintenanceReceipt } from '@/lib/maintenance-receipt-storage';
 
 type Session = { user?: { id?: string | null } } | null;
 const LEGACY_GENERIC_METADATA_FIELDS = new Set(['notes', 'receiptUrl']);
@@ -64,6 +65,16 @@ export function createMaintenancePatchHandler(deps: {
         }
 
         const patch = parsedPatch.data as Record<string, unknown>;
+        if (Object.prototype.hasOwnProperty.call(patch, 'receiptUrl') && (
+          isManagedMaintenanceReceipt(existing.receiptUrl)
+          || isManagedMaintenanceReceipt(patch.receiptUrl as string | null | undefined)
+        )) {
+          return {
+            ok: false as const,
+            status: 400,
+            error: 'Private receipts cannot be replaced through record metadata. Delete the record or attach a new receipt securely.',
+          };
+        }
         const suppliesDate = Object.prototype.hasOwnProperty.call(patch, 'date');
         const suppliesNextDueDate = Object.prototype.hasOwnProperty.call(patch, 'nextDueDate');
         if (suppliesDate !== suppliesNextDueDate) {

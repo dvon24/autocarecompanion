@@ -114,13 +114,16 @@ function LogCompletionForm({
   accent: string;
   onConfirmed: (mileage: number, date: string) => void;
 }) {
+  const today = toISODate(new Date());
   const [mi, setMi] = useState<string>(String(currentMileage));
   const [who, setWho] = useState<'diy' | 'shop'>('diy');
-  const [date, setDate] = useState<string>(toISODate(new Date()));
+  const [date, setDate] = useState<string>(today);
   const [cost, setCost] = useState<string>(service.diyCost != null ? String(service.diyCost) : '');
+  const [shopName, setShopName] = useState<string>('');
   const [note, setNote] = useState<string>('');
   const [pending, setPending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<{ mileage?: string; date?: string; cost?: string; shopName?: string }>({});
 
   const fieldStyle: React.CSSProperties = {
     width: '100%',
@@ -146,10 +149,19 @@ function LogCompletionForm({
   const submit = async () => {
     if (pending) return;
     const miNum = Number(mi);
-    if (!Number.isFinite(miNum) || miNum < 0) {
-      setError('Enter a valid odometer reading.');
-      return;
-    }
+    const costNumber = cost === '' ? null : Number(cost);
+    const dateTimestamp = Date.parse(`${date}T00:00:00.000Z`);
+    const realDate = /^\d{4}-\d{2}-\d{2}$/.test(date)
+      && Number.isFinite(dateTimestamp)
+      && toISODate(new Date(dateTimestamp)) === date;
+    const nextFieldErrors = {
+      ...(!mi.trim() || !Number.isInteger(miNum) || miNum < 0 ? { mileage: 'Enter a whole, non-negative odometer reading.' } : {}),
+      ...(!realDate || date > today ? { date: 'Choose a real completion date that is not in the future.' } : {}),
+      ...(costNumber != null && (!Number.isFinite(costNumber) || costNumber < 0) ? { cost: 'Enter a non-negative cost or leave it blank.' } : {}),
+      ...(who === 'shop' && !shopName.trim() ? { shopName: 'Enter the shop or provider so this record is not mislabeled as owner-entered.' } : {}),
+    };
+    setFieldErrors(nextFieldErrors);
+    if (Object.keys(nextFieldErrors).length) return;
     setPending(true);
     setError(null);
     try {
@@ -161,12 +173,12 @@ function LogCompletionForm({
           vehicleId,
           type: service.typeId,
           mileage: miNum,
-          cost: cost ? Number(cost) : undefined,
+          cost: costNumber ?? undefined,
           date,
           nextDueMileage: nextDue.nextDueMileage,
           nextDueDate: nextDue.nextDueDate,
           notes: note || undefined,
-          shopName: who === 'shop' ? (note || 'Shop') : undefined,
+          shopName: who === 'shop' && shopName.trim() ? shopName.trim() : undefined,
         }),
       });
       if (!res.ok) {
@@ -228,13 +240,15 @@ function LogCompletionForm({
         }}
       >
         <label style={labelStyle}>Odometer reading when completed</label>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10, flexWrap: 'wrap' }}>
-          <div style={{ position: 'relative', flex: 1 }}>
+        <div style={{ display: 'flex', alignItems: 'stretch', gap: 10, flexWrap: 'wrap' }}>
+          <div style={{ position: 'relative', flex: '1 1 220px', minWidth: 'min(100%, 220px)' }}>
             <input
               type="number"
               inputMode="numeric"
               value={mi}
-              onChange={(e) => setMi(e.target.value)}
+              onChange={(e) => { setMi(e.target.value); setFieldErrors((previous) => ({ ...previous, mileage: undefined })); }}
+              aria-invalid={Boolean(fieldErrors.mileage)}
+              aria-describedby={fieldErrors.mileage ? 'maintenance-mileage-error' : undefined}
               style={{
                 ...fieldStyle,
                 fontFamily: 'var(--font-mono, ui-monospace, monospace)',
@@ -261,12 +275,16 @@ function LogCompletionForm({
           </div>
           <button
             type="button"
-            onClick={() => setMi(String(currentMileage))}
-            style={{ ...chipStyle, flexShrink: 0 }}
+            onClick={() => {
+              setMi(String(currentMileage));
+              setFieldErrors((previous) => ({ ...previous, mileage: undefined }));
+            }}
+            style={{ ...chipStyle, flex: '1 1 170px', minHeight: 42, whiteSpace: 'normal' }}
           >
             Use current · {currentMileage.toLocaleString()}
           </button>
         </div>
+        {fieldErrors.mileage && <p id="maintenance-mileage-error" role="alert" style={{ margin: '6px 0 0', fontSize: 11.5, color: '#B91C1C' }}>{fieldErrors.mileage}</p>}
       </div>
 
       {/* Who + date */}
@@ -278,7 +296,10 @@ function LogCompletionForm({
               <button
                 key={k}
                 type="button"
-                onClick={() => setWho(k)}
+                onClick={() => {
+                  setWho(k);
+                  if (k === 'diy') setFieldErrors((previous) => ({ ...previous, shopName: undefined }));
+                }}
                 style={{
                   flex: 1,
                   padding: '8px 0',
@@ -301,10 +322,14 @@ function LogCompletionForm({
           <label style={labelStyle}>Date</label>
           <input
             type="date"
+            max={today}
             value={date}
-            onChange={(e) => setDate(e.target.value)}
+            onChange={(e) => { setDate(e.target.value); setFieldErrors((previous) => ({ ...previous, date: undefined })); }}
+            aria-invalid={Boolean(fieldErrors.date)}
+            aria-describedby={fieldErrors.date ? 'maintenance-date-error' : undefined}
             style={{ ...fieldStyle, fontFamily: 'var(--font-mono, ui-monospace, monospace)', fontSize: 12.5 }}
           />
+          {fieldErrors.date && <p id="maintenance-date-error" role="alert" style={{ margin: '5px 0 0', fontSize: 11.5, color: '#B91C1C' }}>{fieldErrors.date}</p>}
         </div>
       </div>
 
@@ -331,11 +356,14 @@ function LogCompletionForm({
               inputMode="decimal"
               min={0}
               value={cost}
-              onChange={(e) => setCost(e.target.value)}
+              onChange={(e) => { setCost(e.target.value); setFieldErrors((previous) => ({ ...previous, cost: undefined })); }}
               placeholder="0"
               style={{ ...fieldStyle, fontFamily: 'var(--font-mono, ui-monospace, monospace)', paddingLeft: 22 }}
+              aria-invalid={Boolean(fieldErrors.cost)}
+              aria-describedby={fieldErrors.cost ? 'maintenance-cost-error' : undefined}
             />
           </div>
+          {fieldErrors.cost && <p id="maintenance-cost-error" role="alert" style={{ margin: '5px 0 0', fontSize: 11.5, color: '#B91C1C' }}>{fieldErrors.cost}</p>}
         </div>
         <div>
           <label style={labelStyle}>Note (optional)</label>
@@ -343,17 +371,38 @@ function LogCompletionForm({
             type="text"
             value={note}
             onChange={(e) => setNote(e.target.value)}
+            maxLength={2000}
             placeholder={who === 'diy' ? 'Parts used, observations…' : 'Shop name, invoice #…'}
             style={fieldStyle}
           />
         </div>
       </div>
 
+      {who === 'shop' && (
+        <div>
+          <label style={labelStyle}>Shop or provider</label>
+          <input
+            type="text"
+            value={shopName}
+            onChange={(e) => {
+              setShopName(e.target.value);
+              setFieldErrors((previous) => ({ ...previous, shopName: undefined }));
+            }}
+            maxLength={200}
+            placeholder="Name shown on the invoice"
+            aria-invalid={Boolean(fieldErrors.shopName)}
+            aria-describedby={fieldErrors.shopName ? 'maintenance-shop-error' : undefined}
+            style={fieldStyle}
+          />
+          {fieldErrors.shopName && <p id="maintenance-shop-error" role="alert" style={{ margin: '5px 0 0', fontSize: 11.5, color: '#B91C1C' }}>{fieldErrors.shopName}</p>}
+        </div>
+      )}
+
       {error && (
         <p style={{ fontSize: 12, color: '#B91C1C', margin: 0 }}>{error}</p>
       )}
 
-      <div style={{ display: 'flex', gap: 8 }}>
+      <div style={{ display: 'flex', gap: 8, position: 'sticky', bottom: 0, zIndex: 2, paddingTop: 4, background: 'inherit' }}>
         <button
           type="button"
           onClick={submit}

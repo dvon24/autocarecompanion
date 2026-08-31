@@ -50,6 +50,11 @@ import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { getStripe } from '@/lib/stripe';
 import { deleteDiagnosisPhotos } from '@/lib/photo-storage';
+import {
+  deleteAllMaintenanceReceiptsForUser,
+  isManagedMaintenanceReceipt,
+  maintenanceReceiptStorageConfigured,
+} from '@/lib/maintenance-receipt-storage';
 
 export const dynamic = 'force-dynamic';
 
@@ -120,6 +125,34 @@ export async function DELETE(req: NextRequest) {
         { status: 502 },
       );
     }
+  }
+
+  // Maintenance receipt bytes use the same private-store erasure invariant:
+  // purge them before the Vehicle -> MaintenanceRecord cascade removes the
+  // only database references to those blobs.
+  const recordsWithReceipts = await prisma.maintenanceRecord.findMany({
+    where: { vehicle: { userId }, receiptUrl: { not: null } },
+    select: { receiptUrl: true },
+  });
+  const managedReceiptCount = recordsWithReceipts.filter((record) => (
+    isManagedMaintenanceReceipt(record.receiptUrl)
+  )).length;
+  if (maintenanceReceiptStorageConfigured()) {
+    try {
+      const purged = await deleteAllMaintenanceReceiptsForUser(userId);
+      console.log(`[account-delete] purged ${purged} stored maintenance receipt(s) for userId=${userId}`);
+    } catch (err) {
+      console.error(`[account-delete] maintenance receipt purge FAILED for userId=${userId}:`, err);
+      return NextResponse.json(
+        { error: 'Could not erase your stored maintenance receipts. Please try again in a moment — your account was NOT deleted.' },
+        { status: 502 },
+      );
+    }
+  } else if (managedReceiptCount > 0) {
+    return NextResponse.json(
+      { error: 'Could not access your stored maintenance receipts. Please try again in a moment — your account was NOT deleted.' },
+      { status: 502 },
+    );
   }
 
   // Order matters when there are no FK relationships from the side

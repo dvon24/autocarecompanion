@@ -31,3 +31,15 @@
 - source_spec: `_bmad-output/implementation-artifacts/spec-harden-owner-twin-server-contracts.md`
   summary: Add an isolated disposable-PostgreSQL integration gate for Prisma serializable conflicts, row-version monotonicity, and transaction rollback.
   evidence: The server-contract unit suite executes production handlers with deterministic transaction fakes, but proving PostgreSQL and Prisma rollback/conflict behavior requires a dedicated disposable database harness and is not safe to run against the shared production-configured database during this local release slice.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-complete-maintenance-records-and-writeback.md`
+  summary: Add durable idempotency for assistant maintenance batches before retrying an ambiguously acknowledged write.
+  evidence: The current serializable batch is atomic, but guaranteeing replay after a response drops requires a persisted idempotency key/result; the approved implementation explicitly excluded schema migration.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-complete-maintenance-records-and-writeback.md`
+  summary: Introduce a deletion outbox or tombstone workflow for atomic maintenance-record and private-receipt erasure.
+  evidence: Blob deletion and Prisma deletion cannot commit atomically; retries and owner-prefix cleanup reduce exposure, but a durable cross-system guarantee needs persisted deletion state excluded from this no-migration slice.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-complete-maintenance-records-and-writeback.md`
+  summary: Standardize latest-service ordering across history metrics, schedule evaluation, and Twin node state.
+  evidence: History presentation orders by completion date while existing maintenance status and Twin helpers use different mileage/date precedence, so backdated corrections can disagree across surfaces.

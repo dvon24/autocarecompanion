@@ -2,6 +2,11 @@ import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { createMaintenancePatchHandler } from '@/lib/maintenance-patch-handler';
+import {
+  deleteMaintenanceReceipts,
+  isManagedMaintenanceReceipt,
+  maintenanceReceiptBelongsToOwner,
+} from '@/lib/maintenance-receipt-storage';
 
 // GET /api/maintenance/[id] - Get single maintenance record
 export async function GET(
@@ -84,9 +89,20 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    await prisma.maintenanceRecord.delete({
-      where: { id },
-    });
+    if (isManagedMaintenanceReceipt(existing.receiptUrl)
+      && maintenanceReceiptBelongsToOwner(existing.receiptUrl, session.user.id, existing.vehicleId)) {
+      try {
+        await deleteMaintenanceReceipts([existing.receiptUrl]);
+      } catch (error) {
+        console.error('[maintenance-delete] receipt purge failed:', error);
+        return NextResponse.json(
+          { error: 'Could not erase the private receipt. The maintenance record was not deleted.' },
+          { status: 502 },
+        );
+      }
+    }
+
+    await prisma.maintenanceRecord.delete({ where: { id } });
 
     return NextResponse.json({ success: true });
   } catch (error) {

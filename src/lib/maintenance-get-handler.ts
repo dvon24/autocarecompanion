@@ -20,9 +20,14 @@ export function createMaintenanceGetHandler(deps: {
       const requestedType = searchParams.get('type')?.trim() ?? '';
       const rawLimit = searchParams.get('limit');
       const limit = rawLimit == null ? 50 : Number(rawLimit);
+      const rawOffset = searchParams.get('offset');
+      const offset = rawOffset == null ? 0 : Number(rawOffset);
       if (!vehicleId) return NextResponse.json({ error: 'vehicleId is required' }, { status: 400 });
       if (!Number.isInteger(limit) || limit < 1) {
         return NextResponse.json({ error: 'limit must be a positive integer' }, { status: 400 });
+      }
+      if (!Number.isInteger(offset) || offset < 0) {
+        return NextResponse.json({ error: 'offset must be a non-negative integer' }, { status: 400 });
       }
 
       const result = await deps.prisma.$transaction(async (tx) => {
@@ -41,7 +46,8 @@ export function createMaintenanceGetHandler(deps: {
         }
         const unreadableTransmissionTypes = Object.keys(TRANSMISSION_SERVICE_BRANCHES)
           .filter((type) => !resolveMaintenanceReadTypes(type, vehicle).length);
-        const records = await tx.maintenanceRecord.findMany({
+        const pageSize = Math.min(limit, 100);
+        const rows = await tx.maintenanceRecord.findMany({
           where: {
             vehicleId,
             ...(readTypes.length === 1 ? { type: readTypes[0] } : {}),
@@ -50,15 +56,22 @@ export function createMaintenanceGetHandler(deps: {
               ? { type: { notIn: unreadableTransmissionTypes } }
               : {}),
           },
-          orderBy: { date: 'desc' },
-          take: Math.min(limit, 100),
+          orderBy: [{ date: 'desc' }, { id: 'desc' }],
+          skip: offset,
+          take: pageSize + 1,
         });
-        return { ok: true as const, records };
+        const hasMore = rows.length > pageSize;
+        const records = rows.slice(0, pageSize);
+        return {
+          ok: true as const,
+          records,
+          nextOffset: hasMore ? offset + records.length : null,
+        };
       }, { isolationLevel: 'Serializable' });
       if (!result.ok) {
         return NextResponse.json({ error: result.error }, { status: result.status });
       }
-      return NextResponse.json({ records: result.records });
+      return NextResponse.json({ records: result.records, nextOffset: result.nextOffset });
     } catch (error) {
       console.error('Error fetching maintenance records:', error);
       return NextResponse.json({ error: 'Failed to fetch maintenance records' }, { status: 500 });

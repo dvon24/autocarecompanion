@@ -10,6 +10,7 @@ export function createMaintenancePostHandler(deps: {
   auth: () => Promise<{ user?: { id?: string | null; email?: string | null } } | null>;
   prisma: typeof prismaClient;
   now?: () => Date;
+  allowReceiptUrl?: boolean;
 }) {
   return async function POST(request: Request) {
     try {
@@ -26,6 +27,12 @@ export function createMaintenancePostHandler(deps: {
       const parsed = parseMaintenanceCreate(body, isLoggableMaintenanceType);
       if (!parsed.success) {
         return NextResponse.json({ error: 'Invalid data', details: parsed.error.issues }, { status: 400 });
+      }
+      if (parsed.data.receiptUrl && !deps.allowReceiptUrl) {
+        return NextResponse.json(
+          { error: 'Use the private receipt upload endpoint to attach receipt files.' },
+          { status: 400 },
+        );
       }
 
       if (!isFounderEmail(session.user.email)) {

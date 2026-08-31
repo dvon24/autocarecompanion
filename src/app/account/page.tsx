@@ -145,8 +145,9 @@ export default async function AccountPage() {
           subscription → diagnoses → chats → emails → privacy → sign out.
         */}
         <style>{`
-          .acct-grid { display: flex; flex-direction: column; gap: 16px; }
+          .acct-grid { display: flex; flex-direction: column; gap: 16px; min-width: 0; max-width: 100%; }
           .acct-col-main, .acct-col-rail { display: contents; }
+          .acct-grid > *, .acct-col-main > *, .acct-col-rail > * { min-width: 0; max-width: 100%; }
           .acct-card--garage       { order: 1; }
           .acct-card--subscription { order: 2; }
           .acct-card--diagnoses    { order: 3; }
@@ -157,7 +158,7 @@ export default async function AccountPage() {
           @media (min-width: 900px) {
             .acct-grid {
               display: grid;
-              grid-template-columns: 1fr 340px;
+              grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
               gap: 22px;
               align-items: start;
             }
@@ -165,6 +166,7 @@ export default async function AccountPage() {
               display: flex;
               flex-direction: column;
               gap: 18px;
+              min-width: 0;
             }
             .acct-col-rail { position: sticky; top: 16px; }
             .acct-card--signout { display: none; }
