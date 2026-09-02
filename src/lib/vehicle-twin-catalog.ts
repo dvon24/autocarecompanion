@@ -179,7 +179,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     art:{available:true,base:'/twin-stage/murano/base-red.webp',effects:opaque('/twin-stage/murano'),strategy:'opaque-masked',masks},
     hotspots:standardHotspots({wheel:[43,65],hood:[64,36],glass:[48,27],rearwheel:[19,64],rad:[70,53],trans:[55,59]}, {
       wheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},rearwheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},
-      hood:{node:'hoodRoot',status:'on-track',statusDetail:'Sample oil service on track'},trans:{status:'unlogged',statusDetail:'Sample CVT record exists; FWD/AWD driveline history is incomplete'},
+      hood:{node:'hoodRoot',status:'unlogged',statusDetail:'Sample oil service is on track; other engine-system service records are not logged'},trans:{status:'unlogged',statusDetail:'Completed demo is FWD; sample CVT/final-drive history exists but future fluid service remains owner-record dependent'},
       glass:{label:'Safety, Camera & Cabin',status:'known-issue',statusDetail:'Five published driver-assistance, electrical, seat and camera issues · wiper service unlogged',knownIssueIds:['nissan-murano-automatic-emergency-braking-forward-collision-phantom-activa','nissan-murano-battery-drain-and-no-start-2021','nissan-murano-front-driver-seat-frametrack-2021','nissan-murano-front-radarsensor-malfunctions-triggering-2021','nissan-murano-rearview-camera-image-blank-2021']},rad:{status:'unlogged',statusDetail:'No sample service event logged'},
     }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Safety, Camera & Cabin'}:system),
   },
@@ -208,7 +208,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
   },
   {
     id:'kicks',fulfillmentId:null,ownerReady:false,
-    identity:{year:2025,make:'Nissan',model:'Kicks',trim:'Trim not provided',engine:'2.0L I4',paint:'Gun Metallic'},demoMileage:12000,
+    identity:{year:2025,make:'Nissan',model:'Kicks',trim:'SV',engine:'2.0L I4',paint:'Gun Metallic'},demoMileage:12000,
     paintPalette:{sourceLabel:'2025 Nissan Kicks brochure · Choose Your Color',sourceUrl:'https://www.nissanusa.com/content/dam/Nissan/us/vehicle-brochures/2025/2025-nissan-kicks-brochure-en.pdf',supportedTrims:['S','SV','SR'],colors:[
       {name:'Fresh Powder',swatch:'#F4F2EA',artStatus:'awaiting-art',trims:['S','SV']},{name:'Aspen White TriCoat',swatch:'#EEEDE7',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','aspen-white')},
       {name:'Gun Metallic',swatch:'#565B60',artStatus:'rendered',trims:['S','SV','SR']},{name:'Canyon Bronze Metallic',swatch:'#75665A',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','canyon-bronze')},
@@ -226,7 +226,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     hotspots:standardHotspots({wheel:[44,71],hood:[65,38],glass:[51,30],rearwheel:[15,61],rad:[73,59],trans:[57,66]}, {
       wheel:{status:'overdue',statusDetail:'Sample tire-service deadline passed; brake history is incomplete'},hood:{node:'hoodRoot',status:'overdue',statusDetail:'Sample oil-service deadline passed; remaining engine history is incomplete'},
       rearwheel:{status:'overdue',statusDetail:'Sample tire-service deadline passed'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},
-      trans:{status:'unlogged',statusDetail:'FWD/AWD configuration still requires owner confirmation'},
+      trans:{status:'unlogged',statusDetail:'Completed demo is FWD; no separate AWD coupling or rear final-drive service'},
       glass:{label:'Safety, Camera & Cabin',status:'known-issue',statusDetail:'Published cluster, backup-camera and infotainment issues',knownIssueIds:['nissan-kicks-blank-partial-instrument-cluster-cold-start','nissan-kicks-center-display-goes-blank-reverse-no-backup-camera-image','nissan-kicks-infotainment-touchscreen-freezing-rebooting-carplay-disconne']},
     }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Safety, Camera & Cabin'}:system),
   },
@@ -247,7 +247,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     hotspots:standardHotspots({wheel:[47,68],hood:[70,38],glass:[50,29],rearwheel:[13,63],rad:[75,58],trans:[58,65]}, {
       wheel:{status:'unlogged',statusDetail:'Brake and tire service history not supplied'},hood:{node:'hoodRoot',status:'known-issue',statusDetail:'Fuel-pump recall record · sample oil service approaching due',knownIssueIds:['acura-mdx-fuel-pump-impeller-deformation-causing-stall']},
       rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},
-      trans:{status:'known-issue',statusDetail:'Published ZF 9-speed and torque-converter concerns · FWD/SH-AWD confirmation required',knownIssueIds:['acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling','acura-mdx-torque-converter-shudder-2014']},
+      trans:{status:'known-issue',statusDetail:'Completed demo is SH-AWD · published ZF 9-speed and torque-converter concerns',knownIssueIds:['acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling','acura-mdx-torque-converter-shudder-2014']},
       glass:{label:'Infotainment & Visibility',status:'known-issue',statusDetail:'Published infotainment reboot issue',knownIssueIds:['acura-mdx-infotainment-reboot-2014']},
     }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Infotainment & Visibility'}:system),
   },
@@ -262,7 +262,7 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     sampleState:{label:'Sample demo state',records:[]},treeResolver:'aviator',treeStatus:'model-specific',art:generatedArt('/twin-stage/lincoln-aviator','red-carpet'),
     hotspots:standardHotspots({wheel:[49,67],hood:[72,38],glass:[51,28],rearwheel:[18,59],rad:[76,55],trans:[58,64]}, {
       wheel:{status:'unlogged',statusDetail:'First tire/brake service history not supplied'},hood:{node:'hoodRoot',status:'unlogged',statusDetail:'First engine-service history not supplied'},
-      rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},trans:{status:'unlogged',statusDetail:'RWD/AWD configuration requires owner confirmation'},glass:{status:'unlogged',statusDetail:'Wiper service history not supplied'},
+      rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},trans:{status:'unlogged',statusDetail:'Completed demo is Premiere RWD; rear-differential service history not supplied'},glass:{status:'unlogged',statusDetail:'Wiper service history not supplied'},
     }),systems:systems(true),
   },
   {
@@ -328,7 +328,7 @@ export function resolveTwinDeepLink(
   return { hotspot: hotspot.id, branch: hotspot.branch, node: hotspot.node ?? null };
 }
 export function getAdminTwinDefinitions() {
-  return VEHICLE_TWIN_CATALOG.map(({ id, identity, demoMileage, sampleState, ownerReady, treeStatus, fulfillmentId, paintPalette, art, hotspots, systems }) => ({ id, identity, demoMileage, sampleState, ownerReady, treeStatus, fulfillmentId, paintPalette, art, hotspots, systems }));
+  return VEHICLE_TWIN_CATALOG.map(({ id, identity, demoMileage, sampleState, treeResolver, ownerReady, treeStatus, fulfillmentId, paintPalette, art, hotspots, systems }) => ({ id, identity, demoMileage, sampleState, treeResolver, ownerReady, treeStatus, fulfillmentId, paintPalette, art, hotspots, systems }));
 }
 export function validateVehicleTwinCatalog(): string[] {
   const errors: string[] = [];

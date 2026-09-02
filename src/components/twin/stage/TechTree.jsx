@@ -22,14 +22,19 @@ function FitmentBadge({ node }) {
      actually being shown — a "verified fit" label naming the wrong car is
      exactly the failure this project has been careful to avoid elsewhere. */
   const v = useTwinVehicle();
-  const directReviewedPart = Boolean(node?.buyUrl)
+  const productSet = Array.isArray(node?.products) && node.products.length > 0;
+  const reviewedProductSet = productSet && node.products.every((product) => Boolean(product?.buyUrl)
+    && product?.partNo && product.partNo !== "—"
+    && /^\$/i.test(String(product?.price || "").trim()));
+  const directReviewedPart = reviewedProductSet || (Boolean(node?.buyUrl)
     && !/parts\.nissanusa\.com\/v-/i.test(node.buyUrl)
     && node?.partNo && node.partNo !== "—"
-    && node?.price && !/verify|choose|not sourced/i.test(node.price);
+    && /^\$/i.test(String(node?.price || "").trim())
+    && !/verify|choose|not sourced/i.test(node.price));
   if (!directReviewedPart) {
     return (
       <span style={{ display:"inline-flex", alignItems:"center", gap:4, maxWidth:"100%", whiteSpace:"normal", lineHeight:1.3, fontSize:10, fontWeight:600, padding:"3px 8px", borderRadius:999, background:"var(--ki-page)", color:"var(--slate-600)", border:"1px solid var(--ki-line)" }}>
-        {node?.partNo === "Not sourced for this demo" ? "System mapped · exact part not sourced" : /parts\.nissanusa\.com\/v-/i.test(node?.buyUrl || "") ? "OEM catalog · confirm VIN" : "Part recorded · confirm fitment"}
+        {node?.commerceStatus === "fitment-hold" ? "Fitment choice required" : node?.commerceStatus === "link-hold" ? "Exact link under review" : node?.partNo === "Not sourced for this demo" ? "System mapped · exact part not sourced" : /parts\.nissanusa\.com\/v-/i.test(node?.buyUrl || "") ? "OEM catalog · confirm VIN" : "Part recorded · confirm fitment"}
       </span>
     );
   }
@@ -37,6 +42,44 @@ function FitmentBadge({ node }) {
     <span style={{ display:"inline-flex", alignItems:"center", gap:4, maxWidth:"100%", whiteSpace:"normal", lineHeight:1.3, fontSize:10, fontWeight:600, padding:"3px 8px", borderRadius:999, background:"var(--ki-ok-bg)", color:"var(--ki-ok-ink)" }}>
       <Icon name="check" size={10} stroke={2.4}/> Fitment reviewed · {v.year} {v.trim || v.model}
     </span>
+  );
+}
+
+function TTProductLinks({ node, dense }) {
+  const products = Array.isArray(node?.products) ? node.products.filter((product) => typeof product?.buyUrl === "string" && /^https:\/\//i.test(product.buyUrl)) : [];
+  if (!products.length) return null;
+  return (
+    <div style={{ marginTop:12, display:"flex", flexDirection:"column", gap:8 }}>
+      <div className="eyebrow" style={{fontSize:9.5}}>Exact parts for this service</div>
+      {products.map((product, index) => (
+        <a key={`${product.partNo || product.label}-${index}`} href={product.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{display:"grid",gridTemplateColumns:"minmax(0,1fr) auto",gap:9,alignItems:"center",padding:dense?"10px 11px":"9px 10px",borderRadius:11,border:"1px solid var(--ki-line)",background:"var(--ki-page)",color:"inherit",textDecoration:"none",minWidth:0}}>
+          <span style={{minWidth:0}}>
+            <strong style={{display:"block",fontSize:dense?12.5:12,lineHeight:1.35,overflowWrap:"anywhere"}}>{product.label || product.brand}</strong>
+            <span style={{display:"block",fontSize:10.5,color:"var(--slate-500)",marginTop:2,overflowWrap:"anywhere"}}>
+              {product.brand}{product.partNo ? " · " : ""}
+              {product.partNo && <span style={{color:"#2563EB",fontWeight:700,textDecoration:"underline",textUnderlineOffset:2}}>{product.partNo}</span>}
+            </span>
+            {product.spec && <span style={{display:"block",fontSize:10.5,color:"var(--slate-600)",lineHeight:1.4,marginTop:4,overflowWrap:"anywhere"}}>{product.spec}</span>}
+          </span>
+          <span style={{textAlign:"right",flexShrink:0}}>
+            <strong className="mono" style={{display:"block",fontSize:11.5}}>{product.price}</strong>
+            <span style={{display:"block",marginTop:4,color:"#2563EB",fontSize:10.5,fontWeight:700}}>{product.buyLabel || "Buy part"} →</span>
+          </span>
+        </a>
+      ))}
+      <span style={{alignSelf:"flex-start"}}><FitmentBadge node={node}/></span>
+    </div>
+  );
+}
+
+function TTCommerceHold({ node }) {
+  if (!node?.commerceStatus || !node?.holdReason) return null;
+  const fitment = node.commerceStatus === "fitment-hold";
+  return (
+    <div style={{ marginTop:11, padding:"10px 11px", borderRadius:11, border:"1px solid var(--ki-line)", background:fitment ? "var(--ki-mod-bg)" : "var(--ki-page)", color:fitment ? "var(--ki-mod-ink)" : "var(--slate-700)" }}>
+      <div className="eyebrow" style={{ fontSize:9.5, marginBottom:4 }}>{fitment ? "Choose fitment before ordering" : "Exact purchase link held"}</div>
+      <div style={{ fontSize:11.5, lineHeight:1.45, textWrap:"pretty" }}>{node.holdReason}</div>
+    </div>
   );
 }
 
@@ -551,7 +594,7 @@ function TTStyleMenu({ menu, style, onShape, onColor, onClose }) {
 
 /* ── Detail drawer ── */
 /* ── Service log row — "I did this" for anything with a mileage clock ── */
-function TTServiceRow({ node, miles, dense }) {
+function TTServiceRow({ node, miles, dense, readOnly = false }) {
   const live = useTwinLive();
   const ownerActions = useTwinOwnerActions();
   const [logging, setLogging] = React.useState(false);
@@ -559,6 +602,11 @@ function TTServiceRow({ node, miles, dense }) {
   const hasTimeInterval = typeof node.serviceIntervalMonths === "number" && node.serviceIntervalMonths > 0;
   if (!node.maintenanceType) return null;
   const done = node.servicedAt != null;
+  if (readOnly) return (
+    <div style={{ marginTop:12, padding:dense ? "10px 11px" : "11px 12px", borderRadius:12, background:done ? "var(--ki-ok-bg)" : "var(--ki-page)", border:"1px solid var(--ki-line)", fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>
+      <strong style={{color:done ? "var(--ki-ok-ink)" : "var(--slate-700)"}}>Review only:</strong> {done ? <>sample service at <span className="mono">{node.servicedAt.toLocaleString()} mi</span>.</> : <>no sample service event is recorded for this item.</>}
+    </div>
+  );
   if (live) return (
     <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)", fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>
       {logging ? (
@@ -662,12 +710,12 @@ function TTFactValue({ label, value, node }) {
 }
 
 /* ── Finish picker — changing it repaints the wheels on the car photo, not just this card ── */
-function TTFinishRow({ dense }) {
+function TTFinishRow({ dense, readOnly = false }) {
   const live = useTwinLive();
   const cur = ttFinish();
-  if (live) return (
+  if (live || readOnly) return (
     <div style={{ marginTop:12, padding: dense ? "10px 11px" : "11px 12px", borderRadius:12, background:"var(--ki-page)", border:"1px solid var(--ki-line)", fontSize:11, color:"var(--slate-500)", lineHeight:1.4 }}>
-      Wheel finishes are a visual preview until a saved modification is added to this vehicle.
+      {readOnly ? "Wheel finish options are shown without changing the shared demo state." : "Wheel finishes are a visual preview until a saved modification is added to this vehicle."}
     </div>
   );
   return (
@@ -689,7 +737,7 @@ function TTFinishRow({ dense }) {
 }
 
 /* ── Upgrade card — the known issue's fix, one tap from equipped ── */
-function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
+function TTUpgradeCard({ node, nodeId, onEquip, dense, readOnly = false }) {
   const live = useTwinLive();
   const [pending, setPending] = React.useState(false);
   const [error, setError] = React.useState("");
@@ -713,7 +761,7 @@ function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
   if (fit && !node.upgrade) return (
     <div style={{ marginTop:12, display:"flex", alignItems:"center", gap:9, padding:"10px 12px", borderRadius:12, background: on ? "var(--ki-ok-bg)" : "var(--ki-page)", border:`1px solid ${on ? "color-mix(in oklab, var(--ki-ok-ink) 28%, transparent)" : "var(--ki-line)"}` }}>
       <span style={{ minWidth:0, flex:1, fontSize:11.5, fontWeight:600, color: on ? "var(--ki-ok-ink)" : "var(--slate-700)" }}>{on ? "Fitted on your car" : "Not what's on your car"}</span>
-      {!live && !on && <button onClick={()=>onEquip && onEquip(target, val)} style={{ flexShrink:0, padding:"7px 11px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>This one is fitted</button>}
+      {!live && !readOnly && !on && <button onClick={()=>onEquip && onEquip(target, val)} style={{ flexShrink:0, padding:"7px 11px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>This one is fitted</button>}
       {live && <span style={{ flexShrink:0, fontSize:10.5, color:"var(--slate-500)" }}>Not confirmed</span>}
     </div>
   );
@@ -737,7 +785,7 @@ function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
       <div style={{ padding:"9px 11px 11px" }}>
         <div style={{ fontSize:10.5, color:"var(--slate-500)", lineHeight:1.45, marginBottom:9 }}>{u.confidence} · {u.fit}</div>
         {u.buyUrl && !on && <a href={u.buyUrl} target="_blank" rel="noopener noreferrer sponsored" style={{ width:"100%", minHeight:38, marginBottom:8, borderRadius:10, display:"flex", alignItems:"center", justifyContent:"center", background:"var(--ki-card)", color:"#2563EB", border:"1px solid color-mix(in oklab, #2563EB 35%, var(--ki-line))", fontSize:11.5, fontWeight:650, textDecoration:"none" }}>Order this upgrade</a>}
-        {!live && <button onClick={()=>onEquip && onEquip(target, val)} style={{ width:"100%", minHeight:38, borderRadius:10, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:12.5, fontWeight:600, display:"flex", alignItems:"center", justifyContent:"center", gap:7,
+        {!live && !readOnly && <button onClick={()=>onEquip && onEquip(target, val)} style={{ width:"100%", minHeight:38, borderRadius:10, cursor:"pointer", fontFamily:"var(--font-sans)", fontSize:12.5, fontWeight:600, display:"flex", alignItems:"center", justifyContent:"center", gap:7,
           background: on ? "var(--ki-card)" : TT_UP_HEX, color: on ? "var(--slate-700)" : "#fff", border: on ? "1px solid var(--ki-line)" : "none" }}>
           {on ? "Swap back to the OEM radiator" : <React.Fragment><svg width="12" height="12" viewBox="0 0 10 10"><path d="M5 8.5V1.8M5 1.8L2 4.8M5 1.8l3 3" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" fill="none"/></svg>I have this — equip it</React.Fragment>}
         </button>}
@@ -748,16 +796,17 @@ function TTUpgradeCard({ node, nodeId, onEquip, dense }) {
   );
 }
 
-function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, narrow }) {
+function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, narrow, readOnly = false }) {
   const vehicle = useTwinVehicle();
   const [partHelp, setPartHelp] = React.useState("");
   React.useEffect(()=>setPartHelp(""),[nodeId]);
   if (!node) return null;
   const isDemoUnsourced = node.partNo === "Not sourced for this demo";
   const hasQuotedPrice = !isDemoUnsourced && node.price && node.price !== "—";
-  const canBuy = !isDemoUnsourced && Boolean(node.buyUrl);
+  const hasProducts = Array.isArray(node.products) && node.products.length > 0;
+  const canBuy = !isDemoUnsourced && Boolean(node.buyUrl) && !hasProducts;
   const rows = [["Part number", node.partNo], ["Price", isDemoUnsourced ? node.price : null], ["Part", node.brand], ["Where to find it", node.where], ["Spec", node.spec], ["Service life", node.life]].filter(r => r[1]);
-  const canAsk = Boolean(node.maintenanceType || node.partNo || node.spec || node.knownIssue?.id || node.installedParts?.length);
+  const canAsk = !readOnly && Boolean(node.maintenanceType || node.partNo || node.spec || node.knownIssue?.id || node.installedParts?.length);
   const askPart = () => {
     const context = buildPartHelpContext(node, vehicle);
     setPartHelp(onAsk ? "Question loaded in the hub chat for you to review." : context);
@@ -797,6 +846,8 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
                 {node.buyLabel || "Order this part"}
               </a>
             )}
+            <TTProductLinks node={node} dense/>
+            <TTCommerceHold node={node}/>
             <div style={{ marginTop:13, display:"flex", flexDirection:"column", gap:9 }}>
               {rows.map(([k,v]) => (
                 <div key={k} style={{ display:"grid", gridTemplateColumns:"minmax(70px,86px) minmax(0,1fr)", gap:11, alignItems:"flex-start" }}>
@@ -818,9 +869,9 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
                 <div style={{ fontSize:12.5, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.resolved}</div>
               </div>
             )}
-            {node.finishes && <TTFinishRow dense/>}
-            <TTUpgradeCard node={node} nodeId={nodeId} onEquip={onEquip} dense/>
-            <TTServiceRow node={node} miles={miles} dense/>
+            {node.finishes && <TTFinishRow dense readOnly={readOnly}/>}
+            <TTUpgradeCard node={node} nodeId={nodeId} onEquip={onEquip} dense readOnly={readOnly}/>
+            <TTServiceRow node={node} miles={miles} dense readOnly={readOnly}/>
             <TTOwnerEvidence node={node} nodeId={nodeId} dense miles={miles}/>
             {node.alt && (
               <div style={{ marginTop:9, padding:"11px 12px", borderRadius:12, background:"var(--ki-ok-bg)" }}>
@@ -871,6 +922,8 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
               {node.buyLabel || "Order this part"}
             </a>
           )}
+          <TTProductLinks node={node}/>
+          <TTCommerceHold node={node}/>
           <div style={{ marginTop:14, display:"flex", flexDirection:"column", gap:9 }}>
             {rows.map(([k,v]) => (
               <div key={k} style={{ display:"grid", gridTemplateColumns:"minmax(72px,96px) minmax(0,1fr)", gap:10, alignItems:"flex-start" }}>
@@ -892,9 +945,9 @@ function TTDetail({ node, nodeId, onEquip, risk, miles, onClose, onAsk, sheet, n
               <div style={{ fontSize:12, lineHeight:1.5, marginTop:5, textWrap:"pretty" }}>{node.resolved}</div>
             </div>
           )}
-          {node.finishes && <TTFinishRow/>}
-          <TTUpgradeCard node={node} nodeId={nodeId} onEquip={onEquip}/>
-          <TTServiceRow node={node} miles={miles}/>
+          {node.finishes && <TTFinishRow readOnly={readOnly}/>}
+          <TTUpgradeCard node={node} nodeId={nodeId} onEquip={onEquip} readOnly={readOnly}/>
+          <TTServiceRow node={node} miles={miles} readOnly={readOnly}/>
           <TTOwnerEvidence node={node} nodeId={nodeId} miles={miles}/>
           {node.alt && (
             <div style={{ marginTop:10, padding:"11px 12px", borderRadius:11, background:"var(--ki-ok-bg)" }}>
@@ -978,10 +1031,13 @@ function ttAskLine(n, tail = "") {
 
 export function buildPartHelpContext(node, vehicle) {
   const identity = [vehicle?.year, vehicle?.make, vehicle?.model, vehicle?.trim].filter(Boolean).join(" ") || "selected vehicle";
+  const mappedProducts = Array.isArray(node?.products) && node.products.length
+    ? ` Exact mapped products: ${node.products.map((product) => [product.label, product.brand, product.partNo && `part ${product.partNo}`, product.price, product.buyUrl && `buy ${product.buyUrl}`].filter(Boolean).join(" · ")).join("; ")}.`
+    : "";
   const installed = Array.isArray(node?.installedParts) && node.installedParts.length
     ? ` Installed configuration: ${node.installedParts.map((part) => [part.brand, part.name, part.partNumber].filter(Boolean).join(" ")).filter(Boolean).join("; ")}.`
     : (node?.brand ? ` Mapped part: ${node.brand}${node.partNo && node.partNo !== "—" ? ` (${node.partNo})` : ""}.` : "");
-  return `${identity} context loaded. ${ttAskLine(node)}${installed} Reviewed specifications and links in this card remain the source of truth; unresolved fitment must be confirmed before ordering.`;
+  return `${identity} context loaded. ${ttAskLine(node)}${installed}${mappedProducts} Reviewed specifications and links in this card remain the source of truth; unresolved fitment must be confirmed before ordering.`;
 }
 
 export function resolveAvailableTwinBranch(branch, trees) {
@@ -990,13 +1046,13 @@ export function resolveAvailableTwinBranch(branch, trees) {
   return Object.keys(trees || {})[0] || null;
 }
 
-function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNode, compact = false, detailMode = null, vertical = false }) {
+function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNode, compact = false, detailMode = null, vertical = false, readOnly = false }) {
   const sheetDetail = detailMode ? detailMode === "sheet" : compact;
   const [demoEquipped, setEquipped] = useEquipped();
   const ownerEquipped = useTwinEquipment();
   const ownerActions = useTwinOwnerActions();
   const live = useTwinLive();
-  const equipped = live ? ownerEquipped : demoEquipped;
+  const equipped = readOnly ? TT_NO_EQUIP : live ? ownerEquipped : demoEquipped;
   /* Demo tree set unless a live hub supplied the owner's. */
   const trees = useTwinTrees(TT_TREES);
   const activeBranch = resolveAvailableTwinBranch(branch, trees);
@@ -1005,16 +1061,17 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
   const carLabel = `${vehicle.year} ${vehicle.make} ${vehicle.model}${vehicle.trim ? " " + vehicle.trim : ""}`;
   const tree = React.useMemo(() => { const t = trees[activeBranch]; const n = ttViewNodes(t.nodes, equipped, live ? TT_FINISHES[0] : null); return n === t.nodes ? t : { ...t, nodes:n }; }, [trees, activeBranch, equipped, live]);
   const persistEquipment = React.useCallback((nodeId, on, upgrade) => {
+    if (readOnly) return false;
     if (!live) return setEquipped(nodeId, on);
     if (!on || !upgrade) return Promise.resolve(false);
     return ownerActions?.installUpgrade({ nodeId, upgrade });
-  }, [live, ownerActions, setEquipped]);
+  }, [live, ownerActions, readOnly, setEquipped]);
   const [selected, setSelected] = React.useState(null);
   const [intent, setIntent] = React.useState(null);
   const [menu, setMenu] = React.useState(null);
   const [offsets, setOffsets] = React.useState({});
   const [pan, setPan] = React.useState({ x:56, y:40 });
-  const [styles, setStyles] = React.useState(() => { if (typeof window === "undefined") return {}; try { return JSON.parse(localStorage.getItem("au7o-tt-styles") || "{}"); } catch(e) { return {}; } });
+  const [styles, setStyles] = React.useState(() => { if (readOnly || typeof window === "undefined") return {}; try { return JSON.parse(localStorage.getItem("au7o-tt-styles") || "{}"); } catch(e) { return {}; } });
   const [expanded, setExpanded] = React.useState(() => ({ [tree.root]: true }));
   const [draft, setDraft] = React.useState("");
   const [reply, setReply] = React.useState(null);
@@ -1039,7 +1096,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
   React.useEffect(() => {
     setExpanded({ [tree.root]: true }); setSelected(null); setIntent(null); setAllow(null); setMenu(null); setOffsets({}); setPan({ x:56, y:40 });
   }, [activeBranch, tree.root, ownerActions?.vehicleId]);
-  React.useEffect(() => { try { localStorage.setItem("au7o-tt-styles", JSON.stringify(styles)); } catch(e) {} }, [styles]);
+  React.useEffect(() => { if (readOnly) return; try { localStorage.setItem("au7o-tt-styles", JSON.stringify(styles)); } catch(e) {} }, [readOnly, styles]);
 
   /* a hotspot can point at a node, not just a branch — open its path and select it */
   React.useEffect(() => {
@@ -1276,8 +1333,8 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
             {!vert && vis.map(id => (
               <TTNode key={id} id={id} node={tree.nodes[id]} pos={{ x: posOf(id).x - minX, y: posOf(id).y - minY }} style={styleOf(id)} selected={selected===id} zoom={zoom} dense={dense} width={nodeW}
                 risk={ttRisk(tree.nodes[id], miles)} intent={intent} expanded={!!expanded[id]} hasKids={!!(tree.nodes[id].kids || []).length}
-                onSelect={onSelect} onToggle={onToggle} onContext={(nid,x,y)=>setMenu({ id:nid, x, y })}
-                onDrag={vert ? null : ((nid,x,y)=>setOffsets(o => ({ ...o, [nid]: { dx: x + minX - (base[nid]||{x:0}).x, dy: y + minY - (base[nid]||{y:0}).y } })))}/>
+                onSelect={onSelect} onToggle={onToggle} onContext={readOnly ? ()=>{} : (nid,x,y)=>setMenu({ id:nid, x, y })}
+                onDrag={vert || readOnly ? null : ((nid,x,y)=>setOffsets(o => ({ ...o, [nid]: { dx: x + minX - (base[nid]||{x:0}).x, dy: y + minY - (base[nid]||{y:0}).y } })))}/>
             ))}
           </div>
           </div>
@@ -1295,15 +1352,15 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
             </div>
           )}
           </div>
-          {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} sheet onClose={()=>setSelected(null)} onAsk={(n, context) => onPartHelp ? onPartHelp(context, n) : say && say(ttAskLine(n))}/>}
+          {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} sheet readOnly={readOnly} onClose={()=>setSelected(null)} onAsk={(n, context) => onPartHelp ? onPartHelp(context, n) : say && say(ttAskLine(n))}/>}
         </div>
-        {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} onClose={()=>setSelected(null)} onAsk={(n, context) => onPartHelp ? onPartHelp(context, n) : say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
+        {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} readOnly={readOnly} onClose={()=>setSelected(null)} onAsk={(n, context) => onPartHelp ? onPartHelp(context, n) : say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
       </div>
-      <TTComposer value={draft} setValue={setDraft} onSend={answer} reply={reply} suggestions={compact ? [TT_SUGGEST[0], TT_SUGGEST[2]] : TT_SUGGEST}/>
-      <TTStyleMenu menu={menu} style={menu ? styleOf(menu.id) : {}}
+      {!readOnly&&<TTComposer value={draft} setValue={setDraft} onSend={answer} reply={reply} suggestions={compact ? [TT_SUGGEST[0], TT_SUGGEST[2]] : TT_SUGGEST}/>}
+      {!readOnly&&<TTStyleMenu menu={menu} style={menu ? styleOf(menu.id) : {}}
         onShape={s => setStyles(v => ({ ...v, [menu.id]: { ...styleOf(menu.id), shape:s } }))}
         onColor={c => setStyles(v => ({ ...v, [menu.id]: { ...styleOf(menu.id), color:c } }))}
-        onClose={()=>setMenu(null)}/>
+        onClose={()=>setMenu(null)}/>}
     </div>
   );
 }
