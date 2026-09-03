@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -25,6 +26,7 @@ import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/component
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
 import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
+import { KnownIssueTwinPilot } from '@/components/known-issues/KnownIssueTwinPilot';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
@@ -35,6 +37,10 @@ import {
   getBMWAuditedEmptyModel,
   getBMWAuditedEmptyModels,
 } from '@/lib/known-issues-audit-registry';
+import {
+  isKnownIssueTwinPilotEnabled,
+  projectKnownIssueTwinIssues,
+} from '@/lib/known-issue-twin-pilot';
 
 // --- ISR + dynamic params ---
 
@@ -516,10 +522,10 @@ export default async function KnownIssuesArticlePage({
   searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ year?: string }>;
+  searchParams: Promise<{ year?: string; twinPilot?: string }>;
 }) {
   const { slug } = await params;
-  const { year: yearParam } = await searchParams;
+  const { year: yearParam, twinPilot } = await searchParams;
   const initialYear = yearParam ? parseInt(yearParam, 10) : undefined;
   const parsed = await parseKnownIssueArticleSlug(slug);
   if (!parsed) notFound();
@@ -754,6 +760,25 @@ export default async function KnownIssuesArticlePage({
   const criticalIssues = issues.filter(i => i.severity === 'high');
   const topReported = [...issues].sort((a, b) => b.reportCount - a.reportCount)[0];
 
+  const pilotCandidate = slug === 'cadillac-xt6' && initialYear === 2020 && twinPilot === '1';
+  const requestHeaders = pilotCandidate ? await headers() : null;
+  const pilotExposureEnabled = isKnownIssueTwinPilotEnabled({
+    slug,
+    requestedYear: initialYear,
+    queryEnabled: twinPilot === '1',
+    isVercel: Boolean(process.env.VERCEL),
+    vercelEnvironment: process.env.VERCEL_ENV,
+    country: requestHeaders?.get('x-vercel-ip-country'),
+    productionFlag: process.env.KNOWN_ISSUE_TWIN_PILOT_ENABLED,
+    nodeEnvironment: process.env.NODE_ENV,
+  });
+  const knownIssueTwinIssues = pilotExposureEnabled
+    ? projectKnownIssueTwinIssues(issues)
+    : [];
+  // A conversion gate needs two real records. If future publishing changes
+  // leave fewer than two, fail closed to the normal article summary.
+  const showKnownIssueTwinPilot = pilotExposureEnabled && knownIssueTwinIssues.length >= 2;
+
   // Sidebar data
   const sidebarGroups = grouped.map(([cat, catIssues]) => ({
     category: cat,
@@ -865,8 +890,11 @@ export default async function KnownIssuesArticlePage({
           />
         )}
 
-        {/* GEO Summary — blockquote style for AI citation */}
-        <blockquote className="border-l-4 border-[#3B82F6] pl-5 mb-10">
+        {showKnownIssueTwinPilot && <KnownIssueTwinPilot issues={knownIssueTwinIssues} />}
+
+        {/* GEO Summary remains in the document for citation and assistive
+            technology while the opt-in pilot visually replaces it. */}
+        <blockquote className={showKnownIssueTwinPilot ? 'sr-only' : 'border-l-4 border-[#3B82F6] pl-5 mb-10'}>
           <p className="leading-relaxed" style={{ color: '#475569' }}>
             According to {analysisAttribution(totalReports)}, the {yearStr} {vehicleName} has {issues.length} {issues.length === 1 ? 'documented issue' : 'documented known issues'}
             {highCount > 0 ? (
