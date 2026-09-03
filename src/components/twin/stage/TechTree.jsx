@@ -13,6 +13,7 @@ import React from "react";
 import { Icon } from "./Icon";
 import { MaintenanceLogFlow } from "../../vehicle/MaintenanceLogFlow";
 import { useTwinEquipment, useTwinLive, useTwinOwnerActions, useTwinVehicle, useTwinTrees, useTwinMode } from "../twin-context";
+import { buildTwinMaintenanceSchedule } from "../maintenance-schedule";
 
 /* Ported from the design bundle's "Hub personalized" module — TTDetail renders
    it, and its absence crashed every part tap with a ReferenceError. */
@@ -391,10 +392,7 @@ const ttHasUpgrade = (nodes, ids, eq) => ids.some(id => nodes[id] && nodes[id].u
 
 function ttRisk(node, miles) {
   if (typeof miles !== "number") return null;
-  if (node.unlogged) {
-    if (node.firstServiceDeadline && (node.overdueByDate === true || (typeof node.dueMileage === "number" && node.dueMileage < miles))) return "critical";
-    return null;
-  }
+  if (node.unlogged) return null;
   if (node.overdueByDate === true) return "critical";
   if (typeof node.dueMileage === "number") {
     const remaining = node.dueMileage - miles;
@@ -619,7 +617,7 @@ function TTServiceRow({ node, miles, dense, readOnly = false }) {
         />
       ) : (
         <div style={{ display:"flex", alignItems:"center", gap:9 }}>
-          <div style={{ minWidth:0, flex:1 }}>{done ? <>Last logged at <span className="mono">{node.servicedAt.toLocaleString()} mi</span>.</> : node.firstServiceDeadline && ((typeof node.dueMileage === "number" && miles > node.dueMileage) || node.overdueByDate === true) ? <>Required service is <strong style={{color:"var(--ki-crit)"}}>overdue</strong>{typeof node.dueMileage === "number" ? <> · first mileage deadline was <span className="mono">{node.dueMileage.toLocaleString()} mi</span>.</> : node.dueDate ? <> · first date deadline was <span className="mono">{new Date(node.dueDate).toLocaleDateString()}</span>.</> : "."}</> : node.firstServiceDeadline ? <>Not logged yet · first service {typeof node.dueMileage === "number" ? <>at <span className="mono">{node.dueMileage.toLocaleString()} mi</span></> : node.dueDate ? <>by <span className="mono">{new Date(node.dueDate).toLocaleDateString()}</span></> : <>every <span className="mono">{node.serviceIntervalMonths} months</span></>}.</> : !hasMileageInterval&&!hasTimeInterval ? <>Not logged yet · this is condition-based, so logging records the work without inventing a deadline.</> : <>Not logged yet · log service when performed to reset the {hasMileageInterval&&hasTimeInterval?"mileage and calendar":hasTimeInterval?"calendar":"mileage"} interval.</>}</div>
+          <div style={{ minWidth:0, flex:1 }}>{done ? <>Last logged at <span className="mono">{node.servicedAt.toLocaleString()} mi</span>.</> : node.unlogged ? <>Never logged{typeof node.dueMileage === "number" ? <> · next routine milestone at <span className="mono">{node.dueMileage.toLocaleString()} mi</span></> : !hasMileageInterval&&!hasTimeInterval ? <> · condition-based inspection</> : <> · log the next completed service to start this car&apos;s history</>}.</> : !hasMileageInterval&&!hasTimeInterval ? <>Not logged yet · this is condition-based, so logging records the work without inventing a deadline.</> : <>Not logged yet · log service when performed to reset the {hasMileageInterval&&hasTimeInterval?"mileage and calendar":hasTimeInterval?"calendar":"mileage"} interval.</>}</div>
           <button type="button" onClick={()=>setLogging(true)} style={{ flexShrink:0, padding:"8px 12px", borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer", whiteSpace:"nowrap" }}>{done ? "Log again" : "Log service"}</button>
         </div>
       )}
@@ -1046,7 +1044,55 @@ export function resolveAvailableTwinBranch(branch, trees) {
   return Object.keys(trees || {})[0] || null;
 }
 
-function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNode, compact = false, detailMode = null, vertical = false, readOnly = false }) {
+function TTSchedule({ schedule, miles, onOpenNode }) {
+  if (!schedule.columns.length) {
+    return <div style={{ flex:1, display:"grid", placeItems:"center", padding:24, color:"var(--slate-500)", textAlign:"center" }}>No mileage-based maintenance intervals are mapped for this vehicle yet.</div>;
+  }
+  return (
+    <div className="web-scroll" style={{ flex:1, minHeight:0, overflow:"auto", padding:"12px 12px 84px", background:"var(--ki-page)" }}>
+      <div style={{ display:"grid", gridTemplateColumns:`repeat(${schedule.columns.length}, minmax(218px, 1fr))`, gap:10, minWidth:schedule.columns.length * 228 }}>
+        {schedule.columns.map((column) => {
+          const delta = column.mileage - miles;
+          const current = delta >= 0 && delta < schedule.step;
+          return (
+            <section key={column.mileage} style={{ minWidth:0, borderRadius:14, border:current ? "2px solid var(--au7o-blue)" : "1px solid var(--ki-line)", background:"var(--ki-card)", overflow:"hidden", boxShadow:current ? "0 8px 22px rgba(37,99,235,.14)" : "none" }}>
+              <div style={{ padding:"12px 12px 10px", background:current ? "var(--au7o-blue)" : "transparent", color:current ? "white" : "var(--ink)" }}>
+                <div className="mono" style={{ fontSize:18, fontWeight:700 }}>{Math.round(column.mileage / 1000)}k</div>
+                <div style={{ fontSize:10.5, opacity:.76 }}>{delta < 0 ? `${Math.abs(delta).toLocaleString()} mi behind you` : delta === 0 ? "routine milestone now" : `in ${delta.toLocaleString()} mi`}</div>
+              </div>
+              <div style={{ padding:10, display:"grid", gap:10 }}>
+                {column.groups.length ? column.groups.map((group) => (
+                  <div key={group.id}>
+                    <div style={{ display:"flex", alignItems:"center", gap:6, color:group.color, background:group.tint, border:`1px solid ${group.color}33`, borderRadius:8, padding:"5px 8px", fontSize:9.5, fontWeight:700, textTransform:"uppercase", letterSpacing:'.05em' }}>
+                      <span style={{ width:6, height:6, borderRadius:99, background:group.color }}/>{group.label}
+                    </div>
+                    <div style={{ display:"grid", gap:6, marginTop:6 }}>
+                      {group.items.map((item) => (
+                        <button key={`${item.id}-${item.dueMileage}`} onClick={()=>onOpenNode(item.id)} style={{ width:"100%", minWidth:0, display:"flex", alignItems:"center", gap:8, padding:"8px", borderRadius:10, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", textAlign:"left", cursor:"pointer", fontFamily:"var(--font-sans)" }}>
+                          {item.image ? <img src={item.image} alt="" style={{ width:34, height:34, flexShrink:0, borderRadius:8, objectFit:"contain", background:"#0d1017" }}/> : <span style={{ width:34, height:34, borderRadius:8, display:"grid", placeItems:"center", background:"var(--ki-page)", flexShrink:0 }}><Icon name="wrench" size={14}/></span>}
+                          <span style={{ minWidth:0, flex:1 }}>
+                            <span style={{ display:"block", fontSize:11.5, fontWeight:650, lineHeight:1.25 }}>{item.label}</span>
+                            <span className="mono" style={{ display:"block", marginTop:2, fontSize:9.5, color:item.status === "overdue" ? "var(--ki-crit)" : "var(--slate-500)" }}>{item.status === "never-logged" ? "Never logged · " : item.status === "overdue" ? "Overdue · " : ""}due at {item.dueMileage.toLocaleString()} mi · every {item.interval.toLocaleString()} mi{item.price ? ` · ${item.price}` : ""}{item.purchaseCount ? ` · ${item.purchaseCount} linked item${item.purchaseCount === 1 ? "" : "s"}` : ""}</span>
+                          </span>
+                          <Icon name="chevron" size={12} style={{ color:"var(--slate-400)", flexShrink:0 }}/>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )) : <p style={{ margin:0, padding:8, fontSize:11, color:"var(--slate-400)" }}>No mapped service at this milestone.</p>}
+              </div>
+            </section>
+          );
+        })}
+      </div>
+      <div style={{ position:"sticky", left:0, bottom:0, display:"flex", justifyContent:"flex-end", marginTop:14, pointerEvents:"none" }}>
+        <div style={{ borderRadius:999, background:"#0b1220", color:"white", padding:"10px 14px", fontSize:11.5, fontWeight:650, boxShadow:"0 8px 20px rgba(0,0,0,.18)" }}>Everything linked to order · {schedule.orderCount}</div>
+      </div>
+    </div>
+  );
+}
+
+function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNode, compact = false, detailMode = null, vertical = false, readOnly = false, initialView = "tree" }) {
   const sheetDetail = detailMode ? detailMode === "sheet" : compact;
   const [demoEquipped, setEquipped] = useEquipped();
   const ownerEquipped = useTwinEquipment();
@@ -1082,6 +1128,9 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
   const [vw, setVw] = React.useState(320);
   const [autoV, setAutoV] = React.useState(false);
   const [tick, setTick] = React.useState(0);
+  const [view, setView] = React.useState(initialView === "schedule" ? "schedule" : "tree");
+  const [scheduleNode, setScheduleNode] = React.useState(null);
+  const schedule = React.useMemo(() => buildTwinMaintenanceSchedule(trees, miles), [trees, miles]);
   const vert = vertical || autoV;
   const canvasRef = React.useRef(null);
   React.useEffect(() => {
@@ -1089,6 +1138,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
     window.addEventListener("resize", on);
     return () => window.removeEventListener("resize", on);
   }, []);
+  React.useEffect(() => setView(initialView === "schedule" ? "schedule" : "tree"), [initialView]);
 
   React.useEffect(() => {
     if (activeBranch !== branch) setBranch(activeBranch);
@@ -1110,6 +1160,16 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
     setAllow(null);
     setIntent(null);
   }, [activeBranch, startNode, tree.root]);
+  React.useEffect(() => {
+    if (view !== "tree" || !scheduleNode || activeBranch !== "car" || !tree.nodes[scheduleNode]) return;
+    const parents = ttParents(tree.nodes);
+    const next = { [tree.root]:true, [scheduleNode]:true };
+    let cursor = scheduleNode;
+    while (parents[cursor]) { next[parents[cursor]] = true; cursor = parents[cursor]; }
+    setExpanded(next);
+    setSelected(scheduleNode);
+    setScheduleNode(null);
+  }, [activeBranch, scheduleNode, tree, view]);
 
   const styleOf = id => styles[id] || { shape:"rounded", color:"ink" };
   const vis0 = ttVisible(tree.nodes, tree.root, expanded, allow);
@@ -1290,13 +1350,15 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
           </div>
           {!compact && <div style={{ fontSize:11, color:"var(--slate-500)" }}>{activeBranch === "car" ? "All systems" : "Tech tree"} · {carLabel} · <span className="mono">{typeof miles === "number" ? `${miles.toLocaleString()} mi` : "Mileage unavailable"}</span></div>}
         </div>
+        <div role="group" aria-label="Tech tree view" style={{ display:"flex", alignItems:"center", gap:2, padding:2, borderRadius:999, border:"1px solid var(--ki-line)", background:"var(--ki-page)", marginLeft:compact ? 0 : "auto" }}>
+          {["tree","schedule"].map((item) => <button key={item} type="button" aria-pressed={view === item} onClick={()=>setView(item)} style={{ minHeight:28, padding:"4px 10px", border:0, borderRadius:999, background:view === item ? "#0b1220" : "transparent", color:view === item ? "white" : "var(--slate-600)", fontFamily:"var(--font-sans)", fontSize:10.5, fontWeight:650, cursor:"pointer", textTransform:"capitalize" }}>{item}</button>)}
+        </div>
         {/* "N at risk" chip removed — the risk is already legible from the red
             nodes, and on a phone it crowded the close button. */}
-        <button onClick={onClose} title="Close tech tree" style={{ marginLeft:"auto", width:30, height:30, borderRadius:9, background:"var(--ki-card)", border:"1px solid var(--ki-line)", color:"var(--slate-500)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><Icon name="x" size={15}/></button>
+        <button onClick={onClose} title="Close tech tree" style={{ marginLeft:compact ? "auto" : 0, width:30, height:30, borderRadius:9, background:"var(--ki-card)", border:"1px solid var(--ki-line)", color:"var(--slate-500)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><Icon name="x" size={15}/></button>
       </div>
 
-
-      <div style={{ display:"flex", flex:1, minHeight:0 }}>
+      {view === "schedule" ? <TTSchedule schedule={schedule} miles={miles} onOpenNode={(id)=>{ setScheduleNode(id); setBranch("car"); setView("tree"); }}/> : <div style={{ display:"flex", flex:1, minHeight:0 }}>
         <div style={{ flex:1, minWidth:0, position:"relative", display:"flex", minHeight:0 }}>
         <div ref={canvasRef} onPointerDown={panDown} onContextMenu={e=>e.preventDefault()} className="dotted-grid web-scroll" style={{ flex:1, minWidth:0, position:"relative", overflow:"auto", overscrollBehavior:"contain", cursor:"grab", background:"var(--ki-page)" }}>
           <div style={{ position:"relative", width: spanW * zoom + PAD * 2, height: spanH * zoom + PAD * 2 + (vert ? 40 : 0) }}>
@@ -1355,7 +1417,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
           {sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} sheet readOnly={readOnly} onClose={()=>setSelected(null)} onAsk={(n, context) => onPartHelp ? onPartHelp(context, n) : say && say(ttAskLine(n))}/>}
         </div>
         {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} readOnly={readOnly} onClose={()=>setSelected(null)} onAsk={(n, context) => onPartHelp ? onPartHelp(context, n) : say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
-      </div>
+      </div>}
       {!readOnly&&<TTComposer value={draft} setValue={setDraft} onSend={answer} reply={reply} suggestions={compact ? [TT_SUGGEST[0], TT_SUGGEST[2]] : TT_SUGGEST}/>}
       {!readOnly&&<TTStyleMenu menu={menu} style={menu ? styleOf(menu.id) : {}}
         onShape={s => setStyles(v => ({ ...v, [menu.id]: { ...styleOf(menu.id), shape:s } }))}

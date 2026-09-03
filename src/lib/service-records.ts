@@ -13,7 +13,8 @@ export interface ServiceRecordView {
   createdAt?: string;
 }
 
-export type ServiceRecordFilter = 'all' | 'receipt' | 'shop' | 'owner';
+export type ServiceProviderType = 'dealer' | 'independent' | 'tire_shop' | 'owner';
+export type ServiceRecordFilter = 'all' | ServiceProviderType;
 
 export interface ServiceRecordMetrics {
   totalSpent: number;
@@ -44,10 +45,26 @@ export function filterServiceRecords(
   records: ServiceRecordView[],
   filter: ServiceRecordFilter,
 ): ServiceRecordView[] {
-  if (filter === 'receipt') return records.filter((record) => Boolean(record.receiptUrl));
-  if (filter === 'shop') return records.filter((record) => Boolean(record.shopName?.trim()));
-  if (filter === 'owner') return records.filter((record) => !record.shopName?.trim());
+  if (filter !== 'all') return records.filter((record) => classifyServiceProvider(record) === filter);
   return records;
+}
+
+const TIRE_PROVIDER = /\b(tire|tyre|discount tire|firestone|goodyear|ntb|mavis|les schwab|big o)\b/i;
+const DEALER_PROVIDER = /\b(dealer|dealership|cdjr|acura|audi|bmw|buick|cadillac|chevrolet|chevy|chrysler|dodge|ford|genesis|gmc|honda|hyundai|infiniti|jeep|kia|lexus|lincoln|mazda|mercedes|mini|mitsubishi|nissan|porsche|ram|subaru|tesla|toyota|volkswagen|volvo)\b/i;
+const OWNER_PROVIDER = /\b(owner|self|diy|driveway|home garage)\b/i;
+
+/**
+ * MaintenanceRecord predates an explicit provider-category field. Keep the
+ * presentation truthful by deriving a conservative category from the source
+ * Au7o already stores. Unknown named shops remain independent rather than
+ * being promoted to dealers.
+ */
+export function classifyServiceProvider(record: Pick<ServiceRecordView, 'shopName'>): ServiceProviderType {
+  const provider = record.shopName?.trim();
+  if (!provider || OWNER_PROVIDER.test(provider)) return 'owner';
+  if (TIRE_PROVIDER.test(provider)) return 'tire_shop';
+  if (DEALER_PROVIDER.test(provider)) return 'dealer';
+  return 'independent';
 }
 
 export function groupServiceRecordsByYear(
@@ -102,4 +119,3 @@ export function calculateServiceRecordMetrics(
 
   return { totalSpent, pricedRecordCount, receiptCount, milesSinceLatest, longestMileageGap };
 }
-

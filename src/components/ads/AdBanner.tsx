@@ -61,7 +61,7 @@ export function AdBanner({
     if (isSubscriber) return;
 
     // Don't initialize in development if no AdSense ID
-    const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
+    const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID?.trim();
     if (!adsenseId && !showPlaceholder) return;
 
     // Only initialize once
@@ -83,7 +83,7 @@ export function AdBanner({
     return null;
   }
 
-  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
+  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID?.trim();
 
   // Show placeholder in development
   if (!adsenseId && showPlaceholder) {

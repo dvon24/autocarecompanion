@@ -55,13 +55,7 @@ function pickNextService(trees, miles, evaluatedAt = null) {
   let best = null;
   for (const [id, node] of Object.entries(car.nodes)) {
     if (id === car.root || (node.group && !node.maintenanceType)) continue;
-    // An unlogged item is actionable only after the first manual-derived
-    // deadline has actually passed. Before that, the node can show its future
-    // due point without competing for the sidebar's overdue card.
-    const firstDeadlineOverdue = node.servicedAt == null
-      && node.firstServiceDeadline === true
-      && (node.overdueByDate === true || (typeof node.dueMileage === "number" && node.dueMileage < miles));
-    if (node.servicedAt == null && !firstDeadlineOverdue) continue;
+    const unlogged = node.unlogged === true || node.servicedAt == null;
     const dueMileage = typeof node.dueMileage === "number"
       ? node.dueMileage
       : (typeof node.riskAt === "number" ? node.servicedAt + node.riskAt : null);
@@ -69,10 +63,12 @@ function pickNextService(trees, miles, evaluatedAt = null) {
     if (dueMileage == null && dueDate == null) continue;
     const mileageRemaining = dueMileage == null ? null : dueMileage - miles;
     const dateRemaining = dueDate == null || now == null ? null : dueDate - now;
-    const mileageOverdue = mileageRemaining != null && mileageRemaining < 0;
-    const dateOverdue = node.overdueByDate === true || (dateRemaining != null && dateRemaining <= 0);
+    const mileageOverdue = !unlogged && mileageRemaining != null && mileageRemaining < 0;
+    const dateOverdue = !unlogged && (node.overdueByDate === true || (dateRemaining != null && dateRemaining <= 0));
     const overdue = mileageOverdue || dateOverdue;
-    const serviceStartMileage = typeof node.servicedAt === "number" ? node.servicedAt : 0;
+    const serviceStartMileage = typeof node.servicedAt === "number"
+      ? node.servicedAt
+      : (dueMileage != null && typeof node.serviceIntervalMiles === "number" ? Math.max(0, dueMileage - node.serviceIntervalMiles) : 0);
     const mileageProgress = dueMileage != null && dueMileage > serviceStartMileage
       ? (miles - serviceStartMileage) / (dueMileage - serviceStartMileage)
       : null;
@@ -100,9 +96,11 @@ function pickNextService(trees, miles, evaluatedAt = null) {
             : ["rad", "radCore", "coolant"].includes(id) ? "rad"
               : "hood",
       label: node.label,
-      note: node.dueNote || "",
+      note: unlogged && dueMileage != null
+        ? `Never logged · next routine service at ${dueMileage.toLocaleString()} mi.`
+        : node.dueNote || "",
       overdue,
-      unlogged: node.servicedAt == null,
+      unlogged,
       dueMileage,
       dueDate: node.dueDate || null,
       dueSource,

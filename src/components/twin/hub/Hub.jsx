@@ -52,7 +52,7 @@ const TH_SYSTEMS = [
 ];
 
 /* ── Sidebar — systems double as a second way in ── */
-function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
+function THSidebar({ onOpen, onOpenSchedule = () => {}, onClose, drawer, onFeedback }) {
   const vehicle = useTwinVehicle();
   const miles = useTwinMiles();
   const trees = useTwinTrees(TT_TREES);
@@ -128,7 +128,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
                 <div style={{ fontSize:13, fontWeight:600 }}>{nextService.label}</div>
                 <div className="mono" style={{ fontSize:11, color:!nextService.overdue ? "var(--slate-500)" : "var(--ki-crit)", marginTop:2 }}>{nextService.note}</div>
                 <div style={{ height:4, borderRadius:999, background:"var(--ki-page)", marginTop:9, overflow:"hidden" }}><div style={{ width:`${Math.round(Math.min(1, nextService.progress == null ? 1 : nextService.progress) * 100)}%`, height:"100%", background:!nextService.overdue ? "var(--ki-mod)" : "var(--ki-crit)" }}/></div>
-                {nextService.hot && <button onClick={()=>onOpen(nextService.hot, nextService.nodeId)} style={{ marginTop:10, width:"100%", minHeight:34, borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>Open item</button>}
+                <button onClick={onOpenSchedule} style={{ marginTop:10, width:"100%", minHeight:34, borderRadius:9, border:"1px solid var(--ki-line)", background:"var(--ki-card)", color:"var(--ink)", fontFamily:"var(--font-sans)", fontSize:11.5, fontWeight:600, cursor:"pointer" }}>Open the schedule</button>
               </div>
             </KICard>
           </div>
@@ -152,7 +152,7 @@ function THSidebar({ onOpen, onClose, drawer, onFeedback }) {
         {[
           { ic: "home", label: "Home", href: "https://au7o.io/" },
           ...(twinMode === "owner" ? [{ ic: "car", label: "Add vehicle", href: "/garage?add=1" }] : []),
-          ...(ownerActions?.vehicleId ? [{ ic: "book", label: "Service records", href: `/garage/${encodeURIComponent(ownerActions.vehicleId)}/maintenance?view=history` }] : []),
+          ...(ownerActions?.vehicleId ? [{ ic: "book", label: "Service records", href: `/garage/${encodeURIComponent(ownerActions.vehicleId)}/records` }] : []),
           ...(twinMode === "owner"
             ? [{ ic: "user", label: "Account", href: "/account" }]
             : [{ ic: "user", label: "Founder sign in", href: "/founder/signin" }]),
@@ -262,7 +262,7 @@ function THBubble({ bubble, clear }) {
 }
 
 /* ── Tech tree overlay ── */
-function THTreeOverlay({ branch, setBranch, onClose, say, onPartHelp, mobile, startNode }) {
+function THTreeOverlay({ branch, setBranch, onClose, say, onPartHelp, mobile, startNode, initialView = "tree" }) {
   const miles = useTwinMiles();
   React.useEffect(() => {
     const on = e => { if (e.key === "Escape") onClose(); };
@@ -276,7 +276,7 @@ function THTreeOverlay({ branch, setBranch, onClose, say, onPartHelp, mobile, st
             as the hero, which reads far better on a phone. The overlay already
             knew it was mobile; it just never passed that down. */}
         <TechTree branch={branch} setBranch={setBranch} miles={miles} onClose={onClose} say={say} onPartHelp={onPartHelp} startNode={startNode}
-          vertical={mobile} compact={mobile} detailMode={mobile ? "sheet" : null}/>
+          vertical={mobile} compact={mobile} detailMode={mobile ? "sheet" : null} initialView={initialView}/>
       </div>
     </div>
   );
@@ -293,9 +293,10 @@ function THDesktop({ tc }) {
   const searchParams = useSearchParams();
   const [branch, setBranch] = React.useState(null);
   const [startNode, setStartNode] = React.useState(null);
+  const [treeView, setTreeView] = React.useState("tree");
   const [chatPrefill, setChatPrefill] = React.useState(null);
   const chatPrefillSeq = React.useRef(0);
-  React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
+  React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setTreeView("tree"); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
   const [fb, setFb] = React.useState(false);
   const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
   const closeTree = React.useCallback(() => setBranch(null), []);
@@ -315,13 +316,15 @@ function THDesktop({ tc }) {
     const target = resolveTwinDeepLink(catalog, hot, trees);
     if (!target.branch) return;
     const b = target.branch;
+    setTreeView("tree");
     setStartNode(nodeId || target.node || null);
     setBranch(b);
     say(b === "car" ? "Here's the whole car — every system Au7o tracks. Click one to drill in." : `Opening the ${trees[b].label.toLowerCase()} tree. Back out to the car any time from the breadcrumb.`);
   };
+  const openSchedule = () => { setStartNode(null); setTreeView("schedule"); setBranch("car"); say("Opening the mileage schedule. Never-logged items stay neutral until you add real service history."); };
   return (
     <div className={"ki-theme-" + tc.theme} style={{ display:"flex", height:"100dvh", background:"var(--ki-page)", color:"var(--ink)", fontFamily:"var(--font-sans)", overflow:"hidden" }}>
-      <THSidebar onOpen={open} onFeedback={()=>setFb(true)}/>
+      <THSidebar onOpen={open} onOpenSchedule={openSchedule} onFeedback={()=>setFb(true)}/>
       <div style={{ flex:1, minWidth:0, display:"flex", flexDirection:"column", position:"relative" }}>
         <div className="web-scroll" style={{ flex:1, minHeight:0, display:"flex", flexDirection:"column", gap:16, padding:"26px clamp(18px,4vw,44px) 16px", maxWidth:1020, width:"100%", margin:"0 auto" }}>
           <div style={{ flex:"0 0 auto" }}>
@@ -342,7 +345,7 @@ function THDesktop({ tc }) {
         <THBubble bubble={bubble} clear={clear}/>
         <HPComposer say={say} prefill={chatPrefill}/>
       </div>
-      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} onPartHelp={askPart} startNode={startNode}/>}
+      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} onPartHelp={askPart} startNode={startNode} initialView={treeView}/>}
       {/* Floating feedback pill removed — it sat over the content on mobile.
           Feedback is still reachable from the sidebar item. */}
       <THFeedback open={fb} onClose={()=>setFb(false)}/>
@@ -365,11 +368,12 @@ function THMobile({ tc }) {
   const [nav, setNav] = React.useState(false);
   const [fb, setFb] = React.useState(false);
   const [startNode, setStartNode] = React.useState(null);
+  const [treeView, setTreeView] = React.useState("tree");
   const [chatPrefill, setChatPrefill] = React.useState(null);
   const chatPrefillSeq = React.useRef(0);
   const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
   const closeTree = React.useCallback(() => setBranch(null), []);
-  React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
+  React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setTreeView("tree"); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
   const { bubble, say, clear } = useBubble(`${greeting}. Tap any part of ${twinMode === "owner" ? `your ${vehicle.model}` : `this ${vehicle.model} demo`} and I'll open its tech tree.`);
   const askPart = React.useCallback((context, node = null, options = {}) => {
     setBranch(null);
@@ -381,9 +385,11 @@ function THMobile({ tc }) {
     const target = resolveTwinDeepLink(catalog, hot, trees);
     if (!target.branch) return;
     setNav(false);
+    setTreeView("tree");
     setStartNode(nodeId || target.node || null);
     setBranch(target.branch);
   };
+  const openSchedule = () => { setNav(false); setStartNode(null); setTreeView("schedule"); setBranch("car"); say("Opening the mileage schedule. Never-logged items stay neutral until you add real service history."); };
   return (
     <div className={"ki-theme-" + tc.theme} style={{ height:"100dvh", display:"flex", justifyContent:"center", background:"var(--ki-desk)", color:"var(--ink)", fontFamily:"var(--font-sans)" }}>
       <div style={{ width:"min(430px,100vw)", height:"100%", background:"var(--ki-page)", display:"flex", flexDirection:"column", position:"relative", overflow:"hidden", boxShadow:"var(--shadow-2)" }}>
@@ -417,11 +423,11 @@ function THMobile({ tc }) {
         </div>
         {nav && (
           <div onClick={()=>setNav(false)} style={{ position:"absolute", inset:0, zIndex:40, background:"rgba(8,11,18,.5)", display:"flex" }}>
-            <div onClick={e=>e.stopPropagation()} style={{ height:"100%", boxShadow:"var(--shadow-2)" }}><THSidebar onOpen={open} onClose={()=>setNav(false)} onFeedback={()=>{ setNav(false); setFb(true); }} drawer/></div>
+            <div onClick={e=>e.stopPropagation()} style={{ height:"100%", boxShadow:"var(--shadow-2)" }}><THSidebar onOpen={open} onOpenSchedule={openSchedule} onClose={()=>setNav(false)} onFeedback={()=>{ setNav(false); setFb(true); }} drawer/></div>
           </div>
         )}
       </div>
-      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} onPartHelp={askPart} startNode={startNode} mobile/>}
+      {branch && <THTreeOverlay branch={branch} setBranch={changeBranch} onClose={closeTree} say={say} onPartHelp={askPart} startNode={startNode} initialView={treeView} mobile/>}
       {/* Floating feedback pill removed — it sat over the content on mobile.
           Feedback is still reachable from the sidebar item. */}
       <THFeedback open={fb} onClose={()=>setFb(false)}/>

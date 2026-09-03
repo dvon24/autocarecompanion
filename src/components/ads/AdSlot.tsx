@@ -14,7 +14,7 @@ interface AdSlotProps {
  */
 export function AdSlot({ slotId, format, className = '' }: AdSlotProps) {
   const adRef = useRef<HTMLDivElement>(null);
-  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
+  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID?.trim();
 
   useEffect(() => {
     if (!adsenseId || !adRef.current) return;

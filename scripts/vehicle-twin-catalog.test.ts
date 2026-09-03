@@ -30,6 +30,7 @@ import type { TwinMarkerEvidence } from '../src/components/twin/stage/TwinMarker
 import { resolveTwinTransmissionBranch, sameTwinVehicleIdentity } from '../src/lib/twin-fulfillment';
 import { isLoggableMaintenanceType, maintenanceTypeMatchesTransmission, resolveMaintenanceWriteType } from '../src/lib/maintenance';
 import { buildLatestTwinServiceRecordQuery, getTwinHubData, loadLatestTwinServiceRecords, TWIN_SERVICE_RECORD_TYPES, twinServiceRecordTypesForBranch } from '../src/lib/twin-hub-data';
+import { buildTwinMaintenanceSchedule, nextRoutineMileage } from '../src/components/twin/maintenance-schedule.js';
 
 type ServiceEvidence = Record<string, { mileage: number; date: string | null; nextDueMileage: number | null; nextDueDate: string | null }>;
 type TestTreeSet = Record<string, { nodes: Record<string, { overdueByDate?: boolean; dueNote?: string }> }>;
@@ -61,6 +62,25 @@ test('mobile twin surfaces keep mode copy and artwork inside a shared responsive
   assert.match(founderSource, /isFounderEmail\(session\?\.user\?\.email\)[\s\S]*redirect\('\/admin'\)/);
   assert.match(founderSource, /session\?\.user[\s\S]*redirect\('\/garage'\)/);
   assert.match(founderSource, /redirect\('\/auth\/signin\?callbackUrl=%2Ffounder%2Fsignin'\)/);
+});
+
+test('unlogged maintenance stays neutral and advances to the next routine mileage schedule', () => {
+  assert.equal(nextRoutineMileage(12000, 6000, 6000), 12000);
+  assert.equal(nextRoutineMileage(12001, 6000, 6000), 18000);
+  const trees = { car:{ root:'car', nodes:{
+    car:{ group:true },
+    oil:{ label:'Engine oil & filter', maintenanceType:'oil_change', serviceIntervalMiles:6000, dueMileage:18000, unlogged:true, products:[{ buyUrl:'https://example.test/oil', price:'$44' }] },
+    oilFilter:{ label:'Oil filter', maintenanceType:'oil_change', serviceIntervalMiles:6000, dueMileage:18000, unlogged:true, buyUrl:'https://example.test/filter' },
+    brakes:{ label:'Brake inspection', maintenanceType:'brake_inspection', serviceIntervalMiles:12000, servicedAt:0, dueMileage:12000, unlogged:false },
+  } } };
+  const schedule = buildTwinMaintenanceSchedule(trees, 15000, 4);
+  assert.deepEqual(schedule.columns.map((column) => column.mileage), [12000, 18000, 24000, 30000]);
+  const items = schedule.columns.flatMap((column) => (column.groups as Array<{ items:Array<{ id:string; status:string; purchaseCount:number }> }>).flatMap((group) => group.items));
+  assert.equal(items.find((item) => item.id === 'oil')?.status, 'never-logged');
+  assert.equal(items.filter((item) => item.id === 'oil').length, 3);
+  assert.ok(items.filter((item) => item.id === 'oil').every((item) => item.purchaseCount === 2));
+  assert.equal(items.find((item) => item.id === 'brakes')?.status, 'overdue');
+  assert.equal(schedule.orderCount, 2);
 });
 
 test('hero demo CTA and marker vocabulary follow selected truthful catalog state', () => {
@@ -275,7 +295,7 @@ test('published known issues and sample service evidence drive tree/catalog pari
   for(const twin of VEHICLE_TWIN_CATALOG){const trees=resolveTwinTrees(twin);const presentation=buildDemoTwinPresentation(twin);assert.equal(twin.sampleState.label,'Sample demo state');for(const hot of twin.hotspots){const nodes=collectHotspotNodes(trees,hot);const ids=nodes.flatMap((node)=>node.knownIssue?.id?[node.knownIssue.id]:[]);assert.deepEqual([...ids].sort(),[...(hot.knownIssueIds||[])].sort(),`${twin.id}/${hot.id}`);assert.equal(hot.status==='known-issue',ids.length>0);assert.equal(presentation.hotspots.find((item:{id:string})=>item.id===hot.id).status,hot.status,`${twin.id}/${hot.id} status`);if(hot.status==='overdue')assert.ok(typeof twin.demoMileage==='number'&&nodes.some((node)=>typeof node.riskAt==='number'&&typeof node.servicedAt==='number'&&node.servicedAt+node.riskAt<=twin.demoMileage!));}}
   const murano=resolveDemoVehicleTwin('murano');const trees=resolveTwinTrees(murano);assert.equal(trees.trans.nodes.transFluid.knownIssue,undefined);assert.equal(trees.trans.nodes.transFluid.sampleRecord,true);assert.match(trees.trans.nodes.transFluid.sub,/Sample record/);
   const challenger=buildDemoTwinPresentation(resolveDemoVehicleTwin('challenger'));const trans=challenger.hotspots.find((hot:{id:string})=>hot.id==='trans');assert.equal(trans.status,'known-issue');assert.equal(trans.serviceStatus,'overdue');assert.match(trans.label,/Known issue on record.*overdue/i);
-  const challengerTwin=resolveDemoVehicleTwin('challenger');assert.equal(challengerTwin.sampleState.records.find((record)=>record.node==='oilFluid')?.intervalMiles,6000);assert.match(challengerTwin.hotspots.find((hot)=>hot.id==='wheel')?.statusDetail||'',/no sample service event logged/i);
+  const challengerTwin=resolveDemoVehicleTwin('challenger');assert.equal(challengerTwin.sampleState.records.find((record)=>record.node==='oilFluid')?.intervalMiles,6000);assert.match(challengerTwin.hotspots.find((hot)=>hot.id==='wheel')?.statusDetail||'',/service never logged/i);
   const muranoRecord=resolveDemoVehicleTwin('murano').sampleState.records;assert.equal(muranoRecord.find((record)=>record.node==='tire')?.intervalMiles,7500);assert.equal(muranoRecord.find((record)=>record.node==='transFluid')?.intervalMiles,60000);
 });
 
@@ -320,9 +340,9 @@ test('owner evidence merge preserves catalog issues and rejects future records',
 });
 
 test('shared summaries never claim false zero and selected presentation drives chrome/sidebar data',()=>{
-  const empty=summarizeEvidence([{id:'x',label:'X',unlogged:true}],65000);assert.equal(empty.status,'unlogged');assert.equal(empty.label,'No service event logged');assert.equal(empty.due,null);assert.equal(empty.watch,null);
+  const empty=summarizeEvidence([{id:'x',label:'X',unlogged:true}],65000);assert.equal(empty.status,'unlogged');assert.equal(empty.label,'Never logged');assert.equal(empty.due,null);assert.equal(empty.watch,null);
   const partial=summarizeEvidence([{id:'x',label:'X',riskAt:10000,servicedAt:5000},{id:'y',label:'Y',riskAt:10000,unlogged:true}],12000);assert.equal(partial.status,'unlogged');assert.equal(partial.label,'Service history incomplete');assert.equal(partial.due,null);assert.equal(partial.watch,null);
-  const coexist=summarizeEvidence([{id:'x',label:'X',riskAt:10000,unlogged:true,knownIssue:{id:'issue-x'}}],12000);assert.equal(coexist.status,'known-issue');assert.match(coexist.label,/Known issue on record.*No service event logged/);assert.equal(coexist.serviceStatus,'unlogged');assert.equal(coexist.due,null);assert.deepEqual(coexist.knownIssues,[{id:'issue-x'}]);
+  const coexist=summarizeEvidence([{id:'x',label:'X',riskAt:10000,unlogged:true,knownIssue:{id:'issue-x'}}],12000);assert.equal(coexist.status,'known-issue');assert.match(coexist.label,/Known issue on record.*Never logged/);assert.equal(coexist.serviceStatus,'unlogged');assert.equal(coexist.due,null);assert.deepEqual(coexist.knownIssues,[{id:'issue-x'}]);
   const mixed=summarizeEvidence([{id:'x',label:'X',riskAt:10000,servicedAt:5000,overdueByDate:true,knownIssue:{id:'issue-x'}},{id:'y',label:'Y',riskAt:10000,unlogged:true}],12000);assert.equal(mixed.status,'known-issue');assert.equal(mixed.serviceStatus,'overdue');assert.match(mixed.label,/Known issue on record.*1 overdue.*history incomplete/i);assert.equal(mixed.due,null);assert.equal(mixed.watch,null);
   const murano=buildDemoTwinPresentation(resolveDemoVehicleTwin('murano'));assert.match(murano.chrome,/Murano demo/);assert.equal(murano.wholeCarArt,'/twin-stage/murano/base-red.webp');assert.equal(murano.recent.length,0);assert.equal(murano.nextService,null);assert.ok(murano.systems.some((system:{branch:string})=>system.branch==='trans'));
   const ownerTrees={engine:{root:'oil',nodes:{oil:{label:'Engine oil',kids:[],servicedAt:23000,riskAt:6000,unlogged:false,availability:'owner'}}}} as unknown as LooseTreeSet;const ownerHot=testHotspotEvidence({id:'hood',branch:'engine',node:'oil',status:'overdue'}, {}, ownerTrees, 24000);assert.equal(ownerHot?.status,'on-track');assert.equal(TH_DOT(ownerHot||{}).icon,'check');
@@ -451,7 +471,7 @@ test('explicit due mileage/date drive next service, hotspot risk, and independen
   const node={label:'Transmission Fluid',servicedAt:50000,riskAt:60000,dueMileage:56000,dueDate:'2026-08-20T00:00:00.000Z',overdueByDate:true,dueNote:'1,000 mi past due · time interval passed Aug 20, 2026.',unlogged:true,firstServiceDeadline:true,knownIssue:{id:'known-x'},issue:'Known branch issue.'};
   assert.equal(ttRisk({...node,unlogged:false},55000),'critical');
   assert.equal(ttRisk({...node,overdueByDate:false,unlogged:false},55000),'watch');
-  assert.equal(ttRisk(node,65000),'critical');
+  assert.equal(ttRisk(node,65000),null);
   assert.equal(ttMatchesIntent(node,'maint',65000),true);assert.equal(ttMatchesIntent(node,'issues',65000),true);
   const trees={car:{root:'car',nodes:{car:{group:true},transFluid:{...node,unlogged:false}}}};
   const next=pickTestNextService(trees,55000,'2026-08-26T00:00:00.000Z');assert.ok(next);assert.equal(next.nodeId,'transFluid');assert.equal(next.overdue,true);assert.equal(next.dueMileage,56000);assert.equal(next.dueDate,node.dueDate);assert.equal(next.dueSource,'date');
@@ -463,9 +483,9 @@ test('explicit due mileage/date drive next service, hotspot risk, and independen
   const sourceLabel=testRiskLabel({...node,unlogged:false},55000,'critical');assert.match(sourceLabel || '',/Past due by date/);assert.doesNotMatch(sourceLabel || '',/mileage/);
   const mileageLabel=testRiskLabel({...node,dueDate:null,overdueByDate:false,unlogged:false},57000,'critical');assert.match(mileageLabel || '',/Past due by mileage.*56,000 mi deadline/);
   const firstDeadline={car:{root:'car',nodes:{car:{group:true},radiator:{label:'Radiator',unlogged:true,firstServiceDeadline:true,dueMileage:90000,riskAt:90000}}}};
-  assert.equal(pickTestNextService(firstDeadline,65000,'2026-08-26T00:00:00.000Z'),null);
-  assert.equal(pickTestNextService(firstDeadline,90000,'2026-08-26T00:00:00.000Z'),null);
-  const overdueFirst=pickTestNextService(firstDeadline,95000,'2026-08-26T00:00:00.000Z');assert.ok(overdueFirst);assert.equal(overdueFirst.nodeId,'radiator');assert.equal(overdueFirst.overdue,true);assert.equal(overdueFirst.unlogged,true);
+  const upcomingFirst=pickTestNextService(firstDeadline,65000,'2026-08-26T00:00:00.000Z');assert.ok(upcomingFirst);assert.equal(upcomingFirst.nodeId,'radiator');assert.equal(upcomingFirst.overdue,false);assert.equal(upcomingFirst.unlogged,true);
+  const milestoneFirst=pickTestNextService(firstDeadline,90000,'2026-08-26T00:00:00.000Z');assert.ok(milestoneFirst);assert.equal(milestoneFirst.overdue,false);
+  const unknownHistory=pickTestNextService(firstDeadline,95000,'2026-08-26T00:00:00.000Z');assert.ok(unknownHistory);assert.equal(unknownHistory.nodeId,'radiator');assert.equal(unknownHistory.overdue,false);assert.equal(unknownHistory.unlogged,true);
   const maintainableGroup={car:{root:'car',nodes:{car:{group:true},rad:{label:'Radiator & Coolant',group:true,maintenanceType:'cooling_system_service',serviceIntervalMiles:90000,unlogged:true,firstServiceDeadline:true,dueMileage:90000,riskAt:90000}}}};
   const groupDue=pickTestNextService(maintainableGroup,90001,'2026-08-26T00:00:00.000Z');assert.ok(groupDue);assert.equal(groupDue.nodeId,'rad');assert.equal(groupDue.hot,'rad');
   const detail=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{mode:'owner'}},React.createElement(TTDetail,{node:{...node,unlogged:false},nodeId:'transFluid',risk:'critical',miles:55000,onClose:()=>{},onEquip:undefined,onAsk:undefined,sheet:false,narrow:false})));assert.match(detail,/Past due by date/);assert.match(detail,/time interval passed/);assert.match(detail,/Known issue on record/);assert.match(detail,/Known branch issue/);
@@ -663,7 +683,7 @@ test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected
   const minimal=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value},React.createElement(HubMinimal,{tc:{theme:'light'},mobile:true,onExit:()=>{}})));assert.match(minimal,/Lincoln Nautilus/);assert.match(minimal,/clip-path/);
   const sampleMinimal=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{...value,miles:twin.demoMileage}},React.createElement(HubMinimal,{tc:{theme:'light'},mobile:true,onExit:()=>{}})));assert.match(sampleMinimal,/42,000 mi sample/);
   const ownerTwin=buildOwnerTwinValue({fulfillmentId:'dodge-challenger',vehicleId:'v1',vehicle:{year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',engine:'6.4L V8 HEMI'},miles:24000,records:[],recent:[],transmission:'automatic'});assert.ok(ownerTwin);
-  const ownerStage=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{...ownerTwin,mode:'owner' as const}},React.createElement(React.Fragment,null,React.createElement(Probe),React.createElement(TwinStage,{mode:'hotspots',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}),React.createElement(THSidebar,{onOpen:()=>{},onClose:()=>{},drawer:false,onFeedback:()=>{}}))));assert.match(ownerStage,/true\|owner/);assert.match(ownerStage,/Your garage · live/);assert.match(ownerStage,/No service event logged/);assert.doesNotMatch(ownerStage,/Public demo|0 due|0 watch/);
+  const ownerStage=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{...ownerTwin,mode:'owner' as const}},React.createElement(React.Fragment,null,React.createElement(Probe),React.createElement(TwinStage,{mode:'hotspots',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}),React.createElement(THSidebar,{onOpen:()=>{},onClose:()=>{},drawer:false,onFeedback:()=>{}}))));assert.match(ownerStage,/true\|owner/);assert.match(ownerStage,/Your garage · live/);assert.match(ownerStage,/Never logged/);assert.doesNotMatch(ownerStage,/Public demo|0 due|0 watch/);
   const ownerActions={vehicleId:'v1',refresh:()=>{},installUpgrade:async()=>true,saveInstalledPart:async()=>true,annotateIssue:async()=>true};
   const parentDetail=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{...ownerTwin,mode:'owner' as const,ownerActions}},React.createElement(TTDetail,{node:{label:'Brakes',sub:'Front and rear',group:true,kids:['front','rear']},nodeId:'brakes',onEquip:()=>{},risk:null,miles:24000,onClose:()=>{},onAsk:()=>{},sheet:false,narrow:false})));
   assert.doesNotMatch(parentDetail,/Change installed part|I have an issue/);
@@ -677,7 +697,7 @@ test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected
   const emptyAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:[]}));assert.match(emptyAdmin,/Admin Dashboard/);assert.match(emptyAdmin,/Loading live records/);assert.doesNotMatch(emptyAdmin,/No twins match/);
   const fullAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:getAdminTwinDefinitions()}));assert.match(fullAdmin,/Admin Dashboard/);assert.match(fullAdmin,/Founder-only operational data/);assert.match(fullAdmin,/Loading live records/);
   const adminSource=readFileSync(path.join(process.cwd(),'src/components/admin/twins/TwinAdminShell.tsx'),'utf8');assert.match(adminSource,/Art coverage matrix/);assert.match(adminSource,/Artwork intake/);assert.match(adminSource,/Preview layer/);assert.match(adminSource,/Factory paint choices/);assert.match(adminSource,/Awaiting art/);assert.match(adminSource,/Array\.isArray\(data\.twins\)/);assert.match(adminSource,/AbortController/);assert.match(adminSource,/\/api\/admin\/overview/);assert.doesNotMatch(adminSource,/className="avatar"|function OverviewChart|12-month series|Captured demand and affiliate clicks/);
-  const hubShared=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');const hub=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');assert.match(hubShared,/<Link href="\/" aria-label="Au7o home"/);assert.match(hub,/label: "Home", href: "https:\/\/au7o\.io\/"/);assert.doesNotMatch(hub,/label: "Garage"/);assert.match(hub,/label: "Add vehicle", href: "\/garage\?add=1"/);assert.match(hub,/label: "Service records", href: `\/garage\/\$\{encodeURIComponent\(ownerActions\.vehicleId\)\}\/maintenance\?view=history`/);assert.match(hub,/label: "Account", href: "\/account"/);assert.match(hub,/label: "Founder sign in", href: "\/founder\/signin"/);
+  const hubShared=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');const hub=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');assert.match(hubShared,/<Link href="\/" aria-label="Au7o home"/);assert.match(hub,/label: "Home", href: "https:\/\/au7o\.io\/"/);assert.doesNotMatch(hub,/label: "Garage"/);assert.match(hub,/label: "Add vehicle", href: "\/garage\?add=1"/);assert.match(hub,/label: "Service records", href: `\/garage\/\$\{encodeURIComponent\(ownerActions\.vehicleId\)\}\/records`/);assert.match(hub,/label: "Account", href: "\/account"/);assert.match(hub,/label: "Founder sign in", href: "\/founder\/signin"/);
   const vehicleHub=readFileSync(path.join(process.cwd(),'src/components/vehicle/VehicleHub.tsx'),'utf8');assert.match(vehicleHub,/<Link href="https:\/\/au7o\.io\/" className="brand">/);assert.match(vehicleHub,/<Link href="https:\/\/au7o\.io\/" className="md-link" onClick=\{onClose\}>/);assert.match(vehicleHub,/href="\/garage\?add=1"/);
   const challengerXray=resolveDemoVehicleTwin('challenger');assert.equal(challengerXray.art.xray,'/twin-stage/car-xray.webp');assert.match(renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challengerXray,presentation:buildDemoTwinPresentation(challengerXray),vehicle:challengerXray.identity,miles:challengerXray.demoMileage,trees:resolveTwinTrees(challengerXray),mode:'demo' as const}},React.createElement(TwinStage,{mode:'xray',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}))),/car-xray\.webp/);
 });

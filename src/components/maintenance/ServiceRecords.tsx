@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useMemo, useRef, useState } from 'react';
-import Link from 'next/link';
 import { LogMaintenanceModal } from '@/components/maintenance/LogMaintenanceModal';
 import {
   getApplicableSchedules,
@@ -10,6 +9,7 @@ import {
 } from '@/lib/maintenance';
 import {
   calculateServiceRecordMetrics,
+  classifyServiceProvider,
   filterServiceRecords,
   groupServiceRecordsByYear,
   sortServiceRecords,
@@ -39,10 +39,18 @@ interface Props {
 
 const FILTERS: Array<{ id: ServiceRecordFilter; label: string }> = [
   { id: 'all', label: 'Everything' },
-  { id: 'receipt', label: 'With receipt' },
-  { id: 'shop', label: 'Shop service' },
-  { id: 'owner', label: 'Owner entered' },
+  { id: 'dealer', label: 'Dealer' },
+  { id: 'independent', label: 'Independent' },
+  { id: 'tire_shop', label: 'Tire shop' },
+  { id: 'owner', label: 'You' },
 ];
+
+const PROVIDERS = {
+  dealer: { label: 'Dealer', dot: 'bg-blue-600', badge: 'bg-blue-600 text-white' },
+  independent: { label: 'Independent', dot: 'bg-violet-600', badge: 'bg-violet-600 text-white' },
+  tire_shop: { label: 'Tire shop', dot: 'bg-cyan-600', badge: 'bg-cyan-600 text-white' },
+  owner: { label: 'You', dot: 'bg-emerald-600', badge: 'bg-emerald-600 text-white' },
+} as const;
 
 function recordName(record: ServiceRecordView): string {
   return MAINTENANCE_SCHEDULES[record.type]?.name || record.description || record.type.replaceAll('_', ' ');
@@ -221,6 +229,11 @@ export function ServiceRecords({ vehicle, records, recordsError, onRetry, onReco
   const filtered = useMemo(() => filterServiceRecords(records, filter), [records, filter]);
   const groups = useMemo(() => groupServiceRecordsByYear(filtered), [filtered]);
   const printRecords = useMemo(() => sortServiceRecords(records), [records]);
+  const providerCounts = useMemo(() => records.reduce<Record<ServiceRecordFilter, number>>((counts, record) => {
+    counts.all += 1;
+    counts[classifyServiceProvider(record)] += 1;
+    return counts;
+  }, { all:0, dealer:0, independent:0, tire_shop:0, owner:0 }), [records]);
   const displayName = vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
   const vehicleContext: VehicleContext = { year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim || undefined };
 
@@ -278,7 +291,6 @@ export function ServiceRecords({ vehicle, records, recordsError, onRetry, onReco
               </p>
             </div>
             <div className="flex min-w-0 flex-wrap gap-2">
-              <Link href={`/garage/${encodeURIComponent(vehicle.id)}/maintenance`} className="inline-flex min-h-11 items-center justify-center rounded-xl border border-[#d9d1c2] bg-white px-4 text-sm font-semibold text-slate-700">Maintenance status</Link>
               <button type="button" onClick={() => window.print()} className="min-h-11 rounded-xl border border-[#d9d1c2] bg-white px-4 text-sm font-semibold text-slate-700">Print records</button>
               <button type="button" onClick={() => fileInput.current?.click()} className="min-h-11 rounded-xl border border-blue-200 bg-blue-50 px-4 text-sm font-semibold text-blue-700">Attach receipt</button>
               <button type="button" onClick={() => setShowLog(true)} className="min-h-11 rounded-xl bg-slate-950 px-4 text-sm font-semibold text-white">Log service</button>
@@ -304,7 +316,7 @@ export function ServiceRecords({ vehicle, records, recordsError, onRetry, onReco
 
         <div className="mt-7 flex min-w-0 gap-2 overflow-x-auto pb-1" role="group" aria-label="Filter service records">
           {FILTERS.map((item) => (
-            <button key={item.id} type="button" aria-pressed={filter === item.id} onClick={() => setFilter(item.id)} className={`min-h-10 shrink-0 rounded-full border px-4 text-xs font-semibold ${filter === item.id ? 'border-slate-950 bg-slate-950 text-white' : 'border-[#d9d1c2] bg-white text-slate-600'}`}>{item.label}</button>
+            <button key={item.id} type="button" aria-pressed={filter === item.id} onClick={() => setFilter(item.id)} className={`min-h-10 shrink-0 rounded-full border px-4 text-xs font-semibold ${filter === item.id ? 'border-slate-950 bg-slate-950 text-white' : 'border-[#d9d1c2] bg-white text-slate-600'}`}>{item.label} <span className="font-mono opacity-70">{providerCounts[item.id]}</span></button>
           ))}
         </div>
 
@@ -316,18 +328,25 @@ export function ServiceRecords({ vehicle, records, recordsError, onRetry, onReco
             </div>
           ) : groups.map((group) => (
             <div key={group.year} className="mb-8 min-w-0">
-              <div className="mb-3 flex items-center gap-3"><h2 className="font-mono text-sm font-bold text-slate-700">{group.year}</h2><span className="h-px flex-1 bg-[#d9d1c2]" /></div>
+              <div className="mb-3 flex items-center gap-3"><h2 className="font-mono text-sm font-bold text-slate-700">{group.year}</h2><span className="h-px flex-1 bg-[#d9d1c2]" /><span className="font-mono text-[10px] text-slate-400">{group.records.some((record) => typeof record.cost === 'number') ? formatCurrency(group.records.reduce((sum, record) => sum + (record.cost ?? 0), 0)) : 'Cost not entered'}</span></div>
               <div className="grid min-w-0 gap-3">
-                {group.records.map((record) => (
-                  <details key={record.id} className="group min-w-0 overflow-hidden rounded-2xl border border-[#dfd9cb] bg-white shadow-[0_1px_2px_rgba(11,18,32,.05)]">
+                {group.records.map((record) => {
+                  const provider = PROVIDERS[classifyServiceProvider(record)];
+                  return (
+                  <div key={record.id} className="grid min-w-0 grid-cols-[18px_minmax(0,1fr)] gap-2 sm:grid-cols-[62px_minmax(0,1fr)] sm:gap-3">
+                    <div className="relative flex min-w-0 flex-col items-center pt-5 after:absolute after:bottom-[-14px] after:right-[8px] after:top-8 after:w-px after:bg-[#d9d1c2] last:after:hidden sm:items-end sm:after:right-[4px]">
+                      <span aria-hidden="true" className={`h-2.5 w-2.5 shrink-0 rounded-full ${provider.dot}`} />
+                      <span className="mt-1 hidden font-mono text-[10px] font-semibold text-slate-400 sm:block">{(record.mileage / 1000).toFixed(1)}k</span>
+                    </div>
+                  <details className="group min-w-0 overflow-hidden rounded-2xl border border-[#dfd9cb] bg-white shadow-[0_1px_2px_rgba(11,18,32,.05)]">
                     <summary className="flex min-w-0 cursor-pointer list-none flex-col gap-3 px-4 py-4 marker:hidden sm:flex-row sm:items-center sm:px-5">
                       <div className="min-w-0 flex-1">
                         <div className="flex min-w-0 flex-wrap items-center gap-2">
-                          <h3 className="min-w-0 break-words text-[15px] font-bold text-slate-950">{recordName(record)}</h3>
-                          <span className="rounded-full bg-slate-100 px-2 py-1 text-[9px] font-bold uppercase tracking-wide text-slate-600">{record.shopName?.trim() ? 'Shop service' : 'Owner entered'}</span>
+                          <h3 className="min-w-0 break-words text-[15px] font-bold text-slate-950">{record.shopName?.trim() || 'Driveway'}</h3>
+                          <span className={`rounded-full px-2 py-1 text-[9px] font-bold uppercase tracking-wide ${provider.badge}`}>{provider.label}</span>
                           {record.receiptUrl && <span className="rounded-full bg-emerald-50 px-2 py-1 text-[9px] font-bold uppercase tracking-wide text-emerald-700">Receipt attached</span>}
                         </div>
-                        <p className="mt-1 break-words text-xs text-slate-500">{formatDate(record.date)} · {record.mileage.toLocaleString('en-US')} mi{record.shopName?.trim() ? ` · ${record.shopName.trim()}` : ''}</p>
+                        <p className="mt-1 break-words text-xs text-slate-500">{recordName(record)} · {formatDate(record.date)} · {record.mileage.toLocaleString('en-US')} mi</p>
                       </div>
                       <div className="flex shrink-0 items-center justify-between gap-4 sm:justify-end">
                         <span className="font-mono text-sm font-bold text-slate-800">{record.cost == null ? 'Cost not entered' : formatCurrency(record.cost)}</span>
@@ -347,7 +366,9 @@ export function ServiceRecords({ vehicle, records, recordsError, onRetry, onReco
                       </div>
                     </div>
                   </details>
-                ))}
+                  </div>
+                  );
+                })}
               </div>
             </div>
           ))}

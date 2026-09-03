@@ -1,5 +1,6 @@
 import { TT_TREES } from './stage/TechTree';
 import { buildTwinTrees } from './twin-trees';
+import { nextRoutineMileage } from './maintenance-schedule';
 
 const cloneTrees = (trees) => {
   const shared = new Map();
@@ -208,6 +209,18 @@ const ISSUE_COMPONENT_ART = Object.freeze({
 function challengerTrees(twin, transmission = 'automatic') {
   const trees = cloneTrees(TT_TREES);
   const branchTrees = buildTwinTrees({}, twin?.demoMileage ?? 65000, transmission || 'automatic');
+  const serviceFields = ['maintenanceType','serviceLabel','serviceIntervalMiles','dueMileage','dueDate','dueNote','unlogged','firstServiceDeadline','overdueByDate'];
+  const merged = new Set();
+  for (const tree of Object.values(trees)) for (const [id,node] of Object.entries(tree.nodes)) {
+    if (merged.has(node)) continue;
+    merged.add(node);
+    const source = branchTrees[Object.keys(branchTrees).find((key) => branchTrees[key]?.nodes?.[id])]?.nodes?.[id];
+    if (!source) continue;
+    for (const field of serviceFields) {
+      if (Object.prototype.hasOwnProperty.call(source, field)) node[field] = source[field];
+      else delete node[field];
+    }
+  }
   if (transmission === 'manual' && branchTrees.trans) {
     for (const id of Object.keys(trees.trans.nodes)) delete trees.car.nodes[id];
     trees.trans = branchTrees.trans;
@@ -438,6 +451,10 @@ function applySampleState(trees, twin) {
     node.unlogged = false;
     node.servicedAt = record.lastServiceMileage;
     node.riskAt = record.intervalMiles;
+    node.dueMileage = record.lastServiceMileage + record.intervalMiles;
+    delete node.dueDate;
+    delete node.overdueByDate;
+    node.dueNote = `Sample record · next routine milestone at ${node.dueMileage.toLocaleString()} mi`;
     node.sampleRecord = true;
     node.intervalSource = record.intervalSource;
     node.sub = `Sample record · last at ${record.lastServiceMileage.toLocaleString()} mi · every ${record.intervalMiles.toLocaleString()} mi`;
@@ -510,7 +527,7 @@ export function buildModelOwnerTrees(twin, records = [], miles = null, transmiss
     const record = records.filter((item) => aliases(node).includes(item.type) && typeof item.mileage === 'number' && item.mileage <= miles).sort((a,b)=>b.mileage-a.mileage)[0];
     if (!record) {
       node.unlogged = true;
-      if (node.firstServiceDeadline && node.serviceIntervalMiles) node.dueMileage = node.serviceIntervalMiles;
+      if (node.firstServiceDeadline && node.serviceIntervalMiles) node.dueMileage = nextRoutineMileage(miles, node.serviceIntervalMiles, node.serviceIntervalMiles);
       continue;
     }
     node.unlogged = false; node.servicedAt = record.mileage; node.servicedDate = record.date;
@@ -538,9 +555,6 @@ export function summarizeEvidence(nodes, miles) {
   const serviceLeaves = nodes.filter((node) => (!node.group || node.maintenanceType) && (
     node.unlogged || (typeof node.riskAt === 'number' && node.riskAt > 0) || !!node.dueDate
   ));
-  const firstDeadlineDue = validMiles ? serviceLeaves.filter((node) => node.unlogged && node.firstServiceDeadline && (
-    (typeof node.dueMileage === 'number' && node.dueMileage < miles) || node.overdueByDate === true
-  )) : [];
   const logged = validMiles ? serviceLeaves.flatMap((node) => {
     const explicit = typeof node.servicedAt === 'number' && Number.isFinite(node.servicedAt) && node.servicedAt >= 0
       ? node.servicedAt
@@ -556,7 +570,7 @@ export function summarizeEvidence(nodes, miles) {
   const observedDue = logged.filter(({node,servicedAt}) => {
     const dueMileage = typeof node.dueMileage === 'number' ? node.dueMileage : (typeof node.riskAt === 'number' ? servicedAt + node.riskAt : null);
     return node.overdueByDate || (dueMileage != null && dueMileage < miles);
-  }).concat(firstDeadlineDue.map((node)=>({node,servicedAt:null})));
+  });
   const observedWatch = logged.filter(({node,servicedAt}) => {
     if (node.overdueByDate || typeof node.riskAt !== 'number') return false;
     const dueMileage = typeof node.dueMileage === 'number' ? node.dueMileage : servicedAt + node.riskAt;
@@ -572,7 +586,7 @@ export function summarizeEvidence(nodes, miles) {
     serviceStatus = observedDue.length ? 'overdue' : unavailable ? 'unavailable' : 'unlogged';
     serviceLabel = observedDue.length
       ? `${observedDue.length} overdue · Service history incomplete`
-      : unavailable ? 'Service evidence unavailable' : logged.length ? 'Service history incomplete' : 'No service event logged';
+      : unavailable ? 'Service evidence unavailable' : logged.length ? 'Service history incomplete' : 'Never logged';
   } else if (due.length) {
     serviceStatus = 'overdue';
     serviceLabel = `${due.length} overdue`;

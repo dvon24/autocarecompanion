@@ -94,7 +94,7 @@ export function renderMaintenanceAlertEmail(input: {
   const upcomingCount = actionable.length - overdueCount;
   const firstVehicleId = actionable[0]?.vehicleId;
   const primaryUrl = firstVehicleId
-    ? internalUrl(baseUrl, `/garage/${encodeURIComponent(firstVehicleId)}/maintenance`)
+    ? internalUrl(baseUrl, `/garage/${encodeURIComponent(firstVehicleId)}/records`)
     : internalUrl(baseUrl, '/garage');
   const greetingName = input.userName?.trim() || 'there';
 
@@ -103,7 +103,7 @@ export function renderMaintenanceAlertEmail(input: {
     const overdue = alerts.filter((alert) => alert.status.status === 'overdue');
     const upcoming = alerts.filter((alert) => alert.status.status === 'due_soon');
     const mileage = formatMileage(first.currentMileage ?? undefined);
-    const historyUrl = internalUrl(baseUrl, `/garage/${encodeURIComponent(vehicleId)}/maintenance?view=history`);
+    const historyUrl = internalUrl(baseUrl, `/garage/${encodeURIComponent(vehicleId)}/records`);
     return `<tr><td style="padding:0 24px 22px;">
       <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
         <tr><td style="padding:16px 0 12px;border-top:1px solid #DED8CB;">
@@ -133,10 +133,9 @@ export function renderMaintenanceAlertEmail(input: {
         <p style="margin:12px 0 0;font-family:Arial,sans-serif;font-size:14px;line-height:21px;color:#475467;">${overdueCount ? `${overdueCount} overdue item${overdueCount === 1 ? '' : 's'}` : 'No overdue items'}${upcomingCount ? `${overdueCount ? ' and ' : ''}${upcomingCount} upcoming item${upcomingCount === 1 ? '' : 's'}` : ''} are shown below from your saved vehicle data.</p>
       </td></tr>
       ${vehicleSections || `<tr><td style="padding:0 24px 24px;font-family:Arial,sans-serif;font-size:14px;line-height:21px;color:#475467;">There are no overdue or upcoming maintenance items to show.</td></tr>`}
-      <tr><td align="center" style="padding:0 24px 28px;"><a href="${primaryUrl}" style="display:inline-block;padding:13px 20px;border-radius:10px;background:#2459C4;font-family:Arial,sans-serif;font-size:14px;line-height:18px;font-weight:700;color:#FFFFFF;text-decoration:none;">Open maintenance status</a></td></tr>
+      <tr><td align="center" style="padding:0 24px 28px;"><a href="${primaryUrl}" style="display:inline-block;padding:13px 20px;border-radius:10px;background:#2459C4;font-family:Arial,sans-serif;font-size:14px;line-height:18px;font-weight:700;color:#FFFFFF;text-decoration:none;">Open service records</a></td></tr>
       <tr><td style="padding:18px 24px;border-top:1px solid #DED8CB;background:#F4F0E7;font-family:Arial,sans-serif;font-size:11px;line-height:17px;color:#667085;">You receive this because maintenance email alerts are enabled. <a href="${internalUrl(baseUrl, '/account')}" style="color:#475467;text-decoration:underline;">Manage preferences</a>.</td></tr>
     </table>
   </td></tr></table>
 </body></html>`;
 }
-

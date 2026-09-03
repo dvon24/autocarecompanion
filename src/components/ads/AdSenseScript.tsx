@@ -51,7 +51,7 @@ const NO_ADS_PREFIXES = [
  * and local dev don't try to load ads.
  */
 export function AdSenseScript() {
-  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID;
+  const adsenseId = process.env.NEXT_PUBLIC_ADSENSE_ID?.trim();
   if (!adsenseId) return null;
 
   // A PLAIN <script>, not next/script.

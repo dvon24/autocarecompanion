@@ -27,6 +27,7 @@
  */
 import { TT_TREES } from "./stage/TechTree";
 import { ebayAffiliate } from "@/lib/ebay-affiliate";
+import { nextRoutineMileage } from "./maintenance-schedule";
 
 const AUTO_FLUID_URL = "https://www.ebay.com/itm/152808690128";
 const MANUAL_FLUID_URL = "https://www.ebay.com/itm/389013189748";
@@ -176,7 +177,9 @@ function finiteDate(value) {
 
 /** Humanised "where this part stands", computed instead of hand-written. */
 function dueNoteFor(node, miles, interval) {
-  if (node.unlogged) return interval ? `Never logged — service interval ${interval.toLocaleString()} mi.` : "Never logged.";
+  if (node.unlogged) return typeof node.dueMileage === "number"
+    ? `Never logged · next routine service at ${node.dueMileage.toLocaleString()} mi.`
+    : interval ? `Never logged — service interval ${interval.toLocaleString()} mi.` : "Never logged.";
   const notes = [];
   if (typeof node.dueMileage === "number") {
     const delta = miles - node.dueMileage;
@@ -203,15 +206,16 @@ function applyServiceEvidence(node, rawService, id, interval, miles, currentDate
   if (!service) {
     delete node.servicedAt;
     delete node.riskAt;
+    delete node.dueDate;
+    delete node.overdueByDate;
     if (interval || TWIN_TIME_INTERVALS[id]) {
       node.unlogged = true;
-      // An original, required maintenance item has a real first deadline even
-      // when the owner has not entered history. Once the odometer crosses that
-      // manual-derived interval, it is overdue; before that it remains due-at.
+      // Missing history is not proof a service was missed. Keep the first
+      // manual interval for provenance, but surface the next routine milestone
+      // at/after the current odometer as a neutral "Never logged" state.
       if (interval) {
-        node.dueMileage = interval;
         node.firstServiceDeadline = true;
-        if (Number.isFinite(miles) && miles >= interval) node.riskAt = interval;
+        node.dueMileage = nextRoutineMileage(miles, interval, interval);
       }
     }
     const note = dueNoteFor(node, miles, interval);

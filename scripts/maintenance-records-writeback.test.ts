@@ -9,6 +9,7 @@ import {
 } from '../src/lib/maintenance-receipt-storage';
 import {
   calculateServiceRecordMetrics,
+  classifyServiceProvider,
   filterServiceRecords,
   groupServiceRecordsByYear,
   type ServiceRecordView,
@@ -39,8 +40,10 @@ test('service record metrics use only persisted facts and handle empty boundarie
 });
 
 test('service record filters and year groups preserve newest-first records', () => {
-  assert.deepEqual(filterServiceRecords(records, 'receipt').map((record) => record.id), ['r2']);
-  assert.deepEqual(filterServiceRecords(records, 'shop').map((record) => record.id), ['r2']);
+  assert.equal(classifyServiceProvider(records[0]), 'tire_shop');
+  assert.equal(classifyServiceProvider({ shopName:'Fitzgerald CDJR' }), 'dealer');
+  assert.equal(classifyServiceProvider({ shopName:'Ridge Auto Works' }), 'independent');
+  assert.deepEqual(filterServiceRecords(records, 'tire_shop').map((record) => record.id), ['r2']);
   assert.deepEqual(filterServiceRecords(records, 'owner').map((record) => record.id), ['r1', 'r3']);
   assert.deepEqual(groupServiceRecordsByYear(records).map((group) => [group.year, group.records.map((record) => record.id)]), [
     ['2025', ['r3', 'r2']],
@@ -84,26 +87,30 @@ test('maintenance email escapes dynamic facts and links to the exact owner vehic
   assert.match(html, /Devon &lt;script&gt;alert\(1\)&lt;\/script&gt;/);
   assert.match(html, /Oil &amp; filter &lt;urgent&gt;/);
   assert.doesNotMatch(html, /<img src=x/);
-  assert.match(html, /https:\/\/app\.au7o\.test\/garage\/vehicle%2Fid%3Funsafe%3D1\/maintenance\?view=history/);
+  assert.match(html, /https:\/\/app\.au7o\.test\/garage\/vehicle%2Fid%3Funsafe%3D1\/records/);
   assert.match(html, /65,432 mi/);
   assert.doesNotMatch(html, /Challenger|\$134\.00|sample/i);
 });
 
 test('responsive and trust boundaries remain present in the affected UI entry points', async () => {
-  const [historyPage, logFlow, tree, account, prompt] = await Promise.all([
+  const [historyPage, redirectPage, logFlow, tree, account, prompt] = await Promise.all([
+    readFile('src/components/maintenance/GarageServiceRecordsClient.tsx', 'utf8'),
     readFile('src/app/garage/[id]/maintenance/page.tsx', 'utf8'),
     readFile('src/components/vehicle/MaintenanceLogFlow.tsx', 'utf8'),
     readFile('src/components/twin/stage/TechTree.jsx', 'utf8'),
     readFile('src/app/account/page.tsx', 'utf8'),
     readFile('src/lib/hub-chat-prompt.ts', 'utf8'),
   ]);
-  assert.match(historyPage, /view=history/);
   assert.match(historyPage, /<ServiceRecords/);
   assert.match(historyPage, /nextOffset/);
   assert.match(historyPage, /offset=\$\{offset\}/);
+  assert.match(redirectPage, /\/records/);
   assert.match(logFlow, /minWidth: 'min\(100%, 220px\)'/);
   assert.match(logFlow, /maintenance-mileage-error/);
   assert.match(tree, /onPointerDown=\{e=>e\.stopPropagation\(\)\}/);
+  assert.match(tree, /className="web-scroll"[\s\S]*overflow:"auto"/);
+  assert.match(tree, /gridTemplateColumns:`repeat\(\$\{schedule\.columns\.length\}, minmax\(218px, 1fr\)\)`/);
+  assert.match(tree, /due at \{item\.dueMileage\.toLocaleString\(\)\} mi/);
   assert.match(account, /minmax\(0, 1fr\) minmax\(0, 340px\)/);
   assert.match(prompt, /response-only/);
   assert.match(prompt, /Never say or imply/);

@@ -43,3 +43,11 @@
 - source_spec: `_bmad-output/implementation-artifacts/spec-complete-maintenance-records-and-writeback.md`
   summary: Standardize latest-service ordering across history metrics, schedule evaluation, and Twin node state.
   evidence: History presentation orders by completion date while existing maintenance status and Twin helpers use different mileage/date precedence, so backdated corrections can disagree across surfaces.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-restore-maintenance-truth-and-schedule.md`
+  summary: Add US-only interactive vehicle Twins above known-issue lists, allow one or two issue interactions, then offer either the $14.99 full Hub or $4.99 visual-known-issues product.
+  evidence: This is a separate paid product surface with entitlement, geography, interaction-metering, generation-specific artwork, and issue-to-hotspot mapping requirements. The visual-only tier must exclude maintenance and AI chat. The current KnownIssue schema has vehicle type but no sales-market field, so a separate market decision is required before “US-only” can reduce vehicle artwork scope.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-restore-maintenance-truth-and-schedule.md`
+  summary: Persist an explicit service-provider category instead of permanently inferring Dealer, Independent, Tire shop, or You from provider names.
+  evidence: Existing MaintenanceRecord rows store only shopName, so this release uses conservative display-only classification; an automaker-named independent specialist can still be mistaken for a dealer without a schema-backed provider type.
