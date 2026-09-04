@@ -208,6 +208,53 @@ const nextConfig: NextConfig = {
         destination: '/known-issues/dtc/:code/citroen',
         permanent: true,
       },
+      // --- Legacy category slugs (GSC soft 404s, 2026-09-04) ---
+      // The research/persist pipeline once wrote categories outside the UI
+      // enum; CATEGORY_ALIASES in src/lib/known-issues.ts normalizes them at
+      // the read boundary, but the old /category/* URLs Google indexed now
+      // dead-end. Send each to the category it normalizes to.
+      { source: '/known-issues/category/fuel-system', destination: '/known-issues/category/fuel', permanent: true },
+      { source: '/known-issues/category/electronics', destination: '/known-issues/category/electrical', permanent: true },
+      { source: '/known-issues/category/ignition', destination: '/known-issues/category/engine', permanent: true },
+      { source: '/known-issues/category/wheels-tires', destination: '/known-issues/category/suspension', permanent: true },
+
+      // --- Truncated / mis-encoded article slugs (GSC soft 404s, 2026-09-04) ---
+      // Google holds ~30 /known-issues/{make}-{first-token-of-model} URLs from
+      // an older slug scheme (ford-f, bmw-3, mercedes-benz-e), plus three that
+      // predate makeSlug normalizing ".", "&" and "/". Each goes to the one
+      // model it can only have meant, or to the make page when ambiguous.
+      { source: '/known-issues/buick-park', destination: '/known-issues/buick-park-avenue', permanent: true },
+      { source: '/known-issues/mercedes-benz-cls', destination: '/known-issues/mercedes-benz-cls-class', permanent: true },
+      { source: '/known-issues/volkswagen-id.4', destination: '/known-issues/volkswagen-id-4', permanent: true },
+      { source: '/known-issues/chevrolet-bolt', destination: '/known-issues/make/chevrolet', permanent: true },
+      { source: '/known-issues/chrysler-town-&-country', destination: '/known-issues/chrysler-town-country', permanent: true },
+      { source: '/known-issues/mercedes-benz-amg', destination: '/known-issues/make/mercedes-benz', permanent: true },
+      { source: '/known-issues/pontiac-trans', destination: '/known-issues/pontiac-trans-am', permanent: true },
+      { source: '/known-issues/honda-del', destination: '/known-issues/make/honda', permanent: true },
+      { source: '/known-issues/bmw-3', destination: '/known-issues/bmw-3-series', permanent: true },
+      { source: '/known-issues/toyota-grand', destination: '/known-issues/toyota-grand-highlander', permanent: true },
+      { source: '/known-issues/suzuki-grand', destination: '/known-issues/suzuki-grand-vitara', permanent: true },
+      { source: '/known-issues/bmw-5', destination: '/known-issues/bmw-5-series', permanent: true },
+      { source: '/known-issues/dodge-grand', destination: '/known-issues/dodge-grand-caravan', permanent: true },
+      { source: '/known-issues/mercedes-benz-e', destination: '/known-issues/mercedes-benz-e-class', permanent: true },
+      { source: '/known-issues/gmc-sierra', destination: '/known-issues/make/gmc', permanent: true },
+      { source: '/known-issues/mercedes-benz-b', destination: '/known-issues/mercedes-benz-b-class', permanent: true },
+      { source: '/known-issues/mercedes-benz-s', destination: '/known-issues/mercedes-benz-s-class', permanent: true },
+      { source: '/known-issues/hyundai-santa', destination: '/known-issues/make/hyundai', permanent: true },
+      { source: '/known-issues/bmw-6', destination: '/known-issues/bmw-6-series', permanent: true },
+      { source: '/known-issues/acura-rlx', destination: '/known-issues/make/acura', permanent: true },
+      { source: '/known-issues/honda-hr', destination: '/known-issues/honda-hr-v', permanent: true },
+      { source: '/known-issues/chrysler-pt', destination: '/known-issues/chrysler-pt-cruiser', permanent: true },
+      { source: '/known-issues/mercedes-benz-g', destination: '/known-issues/mercedes-benz-g-class', permanent: true },
+      { source: '/known-issues/honda-cr', destination: '/known-issues/make/honda', permanent: true },
+      { source: '/known-issues/mini-hardtop', destination: '/known-issues/mini-hardtop-4-door', permanent: true },
+      { source: '/known-issues/mazda-mx', destination: '/known-issues/make/mazda', permanent: true },
+      { source: '/known-issues/ford-f', destination: '/known-issues/make/ford', permanent: true },
+      { source: '/known-issues/mazda-cx', destination: '/known-issues/make/mazda', permanent: true },
+      { source: '/known-issues/jaguar-i', destination: '/known-issues/jaguar-i-pace', permanent: true },
+      { source: '/known-issues/land-rover-range', destination: '/known-issues/make/land-rover', permanent: true },
+      { source: '/known-issues/chrysler-new', destination: '/known-issues/chrysler-new-yorker', permanent: true },
+
       // /parts redirect — Parts Finder hidden 2026-05-30 pending
       // verification. Using a 302 (temporary) so Google doesn't
       // aggressively forget the URL while it's offline. Direct bookmark

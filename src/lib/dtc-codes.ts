@@ -182,7 +182,18 @@ export async function getAllDTCSlugsWithDates(): Promise<{ code: string; lastMod
     .sort((a, b) => a.code.localeCompare(b.code));
 }
 
-/** Get related DTC codes for cross-linking (same series + same system). */
+/**
+ * Get related DTC codes for cross-linking (same series + same system).
+ *
+ * IMPORTANT: only codes that have a page. The DTC library holds 3,320 codes
+ * but /known-issues/dtc/[code] 404s any code with no published issue behind
+ * it (1,168 qualify). Drawing "Related Codes" from the raw library therefore
+ * sprayed dead internal links across the catalog: a 2026-09-04 audit
+ * (scripts/_audit-dtc-related-links.cjs) measured 2,312 of 8,894 rendered
+ * links (26%) pointing at a 404, on 634 of 1,168 pages. Google crawled them
+ * and filed the targets as soft 404s. Gate both strategies on the linkable
+ * set — it's the cached codes-with-pages list, so this costs no extra query.
+ */
 export async function getRelatedDTCCodes(code: string, limit = 8): Promise<{ code: string; name: string; system: string }[]> {
   const upper = code.toUpperCase();
 
@@ -190,11 +201,14 @@ export async function getRelatedDTCCodes(code: string, limit = 8): Promise<{ cod
   const current = await prisma.dTCCode.findUnique({ where: { code: upper }, select: { system: true } });
   if (!current) return [];
 
+  const linkable = (await getLinkableDtcCodes()).map(c => c.toUpperCase());
+  if (linkable.length === 0) return [];
+
   // Strategy 1: Same prefix codes (e.g., P030x for P0300)
   const prefix = upper.slice(0, 4); // e.g., "P030"
   const sameSeries = await prisma.dTCCode.findMany({
     where: {
-      code: { startsWith: prefix, not: upper },
+      code: { startsWith: prefix, not: upper, in: linkable },
     },
     select: { code: true, name: true, system: true },
     take: 4,
@@ -204,6 +218,7 @@ export async function getRelatedDTCCodes(code: string, limit = 8): Promise<{ cod
   const sameSystem = await prisma.dTCCode.findMany({
     where: {
       system: current.system,
+      code: { in: linkable },
       NOT: [
         { code: upper },
         { code: { startsWith: prefix } },
