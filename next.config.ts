@@ -255,6 +255,24 @@ const nextConfig: NextConfig = {
       { source: '/known-issues/land-rover-range', destination: '/known-issues/make/land-rover', permanent: true },
       { source: '/known-issues/chrysler-new', destination: '/known-issues/chrysler-new-yorker', permanent: true },
 
+      // --- Locale known-issues index (GSC 404s, 2026-09-04) ---
+      // /[locale]/known-issues has only a [slug] child, no index page, so
+      // the bare path 404s. Send it to the locale landing page.
+      { source: '/de/known-issues', destination: '/de', permanent: true },
+      { source: '/fr/known-issues', destination: '/fr', permanent: true },
+      { source: '/es/known-issues', destination: '/es', permanent: true },
+      { source: '/ko/known-issues', destination: '/ko', permanent: true },
+      { source: '/pt-br/known-issues', destination: '/pt-br', permanent: true },
+
+      // --- C/K slugs from before makeSlug normalized "/" (GSC 404s) ---
+      // "Chevrolet C/K 1500" once slugged with a literal slash, so Google
+      // holds two-segment URLs that can never route.
+      { source: '/known-issues/chevrolet-c/k-1500', destination: '/known-issues/chevrolet-c-k-1500', permanent: true },
+      { source: '/known-issues/chevrolet-c/k-2500', destination: '/known-issues/chevrolet-c-k-2500', permanent: true },
+      { source: '/known-issues/gmc-c/k-1500', destination: '/known-issues/gmc-c-k-1500', permanent: true },
+      { source: '/known-issues/gmc-c/k-2500', destination: '/known-issues/gmc-c-k-2500', permanent: true },
+      { source: '/known-issues/gmc-c/k-3500', destination: '/known-issues/gmc-c-k-3500', permanent: true },
+
       // /parts redirect — Parts Finder hidden 2026-05-30 pending
       // verification. Using a 302 (temporary) so Google doesn't
       // aggressively forget the URL while it's offline. Direct bookmark

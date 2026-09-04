@@ -50,7 +50,9 @@ export function ModelIssueSearch({
   issues: LiteIssue[];
   make: string;
   model: string;
-  hubHref: string;
+  /** Omitted for restoration classics — the Hub only serves 1990+, so linking
+   *  it for a 1969 model produced a 404 (see hubSupportsYear). */
+  hubHref?: string;
 }) {
   const { data: session } = useSession();
   const isSubscriber = (session?.user as { subscriptionStatus?: string } | undefined)?.subscriptionStatus === 'active';
@@ -168,7 +170,7 @@ export function ModelIssueSearch({
         )}
       </form>
 
-      {gated && (
+      {gated && hubHref && (
         <div className="mt-3 rounded-lg border border-indigo-200 bg-indigo-50 p-3">
           <p className="text-sm font-medium text-indigo-900">Describe it in plain English — AI finds the match.</p>
           <p className="text-xs text-indigo-700 mt-0.5 mb-2">Continue in your vehicle Hub to try Au7o for free. Keyword search stays available here.</p>

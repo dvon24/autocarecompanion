@@ -51,6 +51,23 @@ export function slugNorm(s: string): string {
     .replace(/(^-|-$)/g, '');
 }
 
+/**
+ * Earliest model year the /vehicle/[slug] Hub will serve. Older years 404:
+ * the Hub is built on the selector snapshot, specs and maintenance schedules,
+ * none of which cover pre-1990 vehicles.
+ *
+ * Exported because the known-issues article used to link the Hub for every
+ * model including the restoration classics, producing ~90 dead
+ * /vehicle/1969-volkswagen-karmann-ghia-style URLs that Google filed as 404s
+ * (GSC, 2026-09-04). Callers must check hubSupportsYear() before linking.
+ */
+export const HUB_MIN_YEAR = 1990;
+
+/** True when /vehicle/[slug] will actually serve this model year. */
+export function hubSupportsYear(year: number): boolean {
+  return year >= HUB_MIN_YEAR && year <= new Date().getFullYear() + 1;
+}
+
 export function vehicleSlug(year: number, make: string, model: string, trim?: string | null): string {
   const selectorVehicle = getSelectorVehicleForKnownIssue({ year, make, model });
   const parts = [

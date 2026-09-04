@@ -29,7 +29,7 @@ import { SiteFooter } from '@/components/shared/SiteFooter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { sourceLabel, analysisAttribution, sourceFootnote, metaSourceTail, formatUpdatedLabel } from '@/lib/source-attribution';
-import { vehicleSlug } from '@/lib/vehicle-slug';
+import { vehicleSlug, hubSupportsYear } from '@/lib/vehicle-slug';
 import { getLocalesForSlug, hreflangFor } from '@/lib/i18n';
 import {
   getBMWAuditedEmptyModel,
@@ -974,7 +974,7 @@ export default async function KnownIssuesArticlePage({
                 issues={issues.map((i) => ({ id: i.id, title: i.title, symptoms: i.symptoms, dtcCodes: (i as { dtcCodes?: string[] }).dtcCodes, severity: i.severity }))}
                 make={make}
                 model={model}
-                hubHref={`/vehicle/${vehicleSlug(hubYear, make, model)}`}
+                hubHref={hubSupportsYear(hubYear) ? `/vehicle/${vehicleSlug(hubYear, make, model)}` : undefined}
               />
               <ArticleIssuesList
                 issues={issues}

@@ -10,7 +10,7 @@ import { getMaintenanceSuggestions, getMaintenanceSchedule, renderOpener, type M
 import { getRecentThreads, getTrendingForVehicle, getAttachableIssues } from '@/lib/hub-data';
 import { getOwnersManualSchedule } from '@/lib/owners-manual-schedule';
 import { isFounderEmail } from '@/lib/founder';
-import { parseVehicleSlug as parseCatalogVehicleSlug } from '@/lib/vehicle-slug';
+import { parseVehicleSlug as parseCatalogVehicleSlug, hubSupportsYear } from '@/lib/vehicle-slug';
 import { getKnownIssueVehicleCandidates } from '@/lib/known-issue-vehicle-aliases';
 import { getTwinHubData } from '@/lib/twin-hub-data';
 import { LiveTwinHub } from '@/components/twin/LiveTwinHub';
@@ -32,7 +32,10 @@ function parseHubVehicleSlug(slug: string): {
   try { decoded = decodeURIComponent(slug); } catch { return null; }
   const parsed = parseCatalogVehicleSlug(decoded) || parseLegacyVehicleSlug(decoded);
   if (!parsed) return null;
-  if (parsed.year < 1990 || parsed.year > new Date().getFullYear() + 1) {
+  // Single source of truth for the floor — the known-issues article checks
+  // the same predicate before offering a Hub link, so classics stop emitting
+  // URLs this parser rejects.
+  if (!hubSupportsYear(parsed.year)) {
     return null;
   }
   return { ...parsed, trim: parsed.trim || 'Base' };

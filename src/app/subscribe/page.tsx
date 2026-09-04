@@ -16,6 +16,11 @@ export const dynamic = 'force-dynamic';
 export const metadata = {
   title: 'Pick your plan · Au7o',
   description: 'Free · Plus $14.99/mo · Pro $24.99/mo. Cancel anytime.',
+  // ?reason= only picks the upsell copy; the plans are identical. Same
+  // duplicate-canonical finding as /symptom-chat (GSC, 2026-09-04).
+  alternates: {
+    canonical: 'https://au7o.io/subscribe',
+  },
 };
 
 export default async function SubscribePage({
