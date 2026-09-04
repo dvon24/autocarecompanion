@@ -90,10 +90,23 @@ for (const issue of issues) {
 }
 
 const moduleMismatches: string[] = [];
-for (const makeStat of data.result.stats.makes as Array<{ make: string }>) {
-  const make = makeStat.make;
+// Derive the make list from the batch itself. Some producers (the fix-parts
+// resolver) emit no stats.makes, and reading it directly crashed the guard on
+// exactly the batches that most needed checking. The issues are the truth.
+const batchMakes: string[] = [...new Set(
+  (issues as Array<{ make?: string }>).map((issue) => issue.make).filter((make): make is string => Boolean(make)),
+)];
+for (const make of batchMakes) {
   const moduleName = make.toLowerCase().replace(/[^a-z0-9]+/g, '-');
-  const approvalModule = await import(`../src/lib/known-issue-reviewed-retailer-links/${moduleName}.ts`);
+  let approvalModule;
+  try {
+    approvalModule = await import(`../src/lib/known-issue-reviewed-retailer-links/${moduleName}.ts`);
+  } catch {
+    // No approval module means nothing for this make can render. Report it as a
+    // mismatch rather than dying, so the whole batch still gets a verdict.
+    moduleMismatches.push(`${make}: no approval module (${moduleName}.ts)`);
+    continue;
+  }
   const expectedProducts = new Set<string>();
   const expectedVendors = new Set<string>();
   const expectedHosts = new Set<string>();
