@@ -27,11 +27,11 @@ function FitmentBadge({ node }) {
   const reviewedProductSet = productSet && node.products.every((product) => Boolean(product?.buyUrl)
     && product?.partNo && product.partNo !== "—"
     && /^\$/i.test(String(product?.price || "").trim()));
-  const directReviewedPart = reviewedProductSet || (Boolean(node?.buyUrl)
+  const directReviewedPart = node?.fitmentReviewed !== false && (reviewedProductSet || (Boolean(node?.buyUrl)
     && !/parts\.nissanusa\.com\/v-/i.test(node.buyUrl)
     && node?.partNo && node.partNo !== "—"
     && /^\$/i.test(String(node?.price || "").trim())
-    && !/verify|choose|not sourced/i.test(node.price));
+    && !/verify|choose|not sourced/i.test(node.price)));
   if (!directReviewedPart) {
     return (
       <span style={{ display:"inline-flex", alignItems:"center", gap:4, maxWidth:"100%", whiteSpace:"normal", lineHeight:1.3, fontSize:10, fontWeight:600, padding:"3px 8px", borderRadius:999, background:"var(--ki-page)", color:"var(--slate-600)", border:"1px solid var(--ki-line)" }}>
@@ -1092,7 +1092,7 @@ function TTSchedule({ schedule, miles, onOpenNode }) {
   );
 }
 
-function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNode, compact = false, detailMode = null, vertical = false, readOnly = false, initialView = "tree" }) {
+function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNode, compact = false, detailMode = null, vertical = false, readOnly = false, initialView = "tree", footer = null, showSchedule = true }) {
   const sheetDetail = detailMode ? detailMode === "sheet" : compact;
   const [demoEquipped, setEquipped] = useEquipped();
   const ownerEquipped = useTwinEquipment();
@@ -1128,7 +1128,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
   const [vw, setVw] = React.useState(320);
   const [autoV, setAutoV] = React.useState(false);
   const [tick, setTick] = React.useState(0);
-  const [view, setView] = React.useState(initialView === "schedule" ? "schedule" : "tree");
+  const [view, setView] = React.useState(showSchedule && initialView === "schedule" ? "schedule" : "tree");
   const [scheduleNode, setScheduleNode] = React.useState(null);
   const schedule = React.useMemo(() => buildTwinMaintenanceSchedule(trees, miles), [trees, miles]);
   const vert = vertical || autoV;
@@ -1138,7 +1138,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
     window.addEventListener("resize", on);
     return () => window.removeEventListener("resize", on);
   }, []);
-  React.useEffect(() => setView(initialView === "schedule" ? "schedule" : "tree"), [initialView]);
+  React.useEffect(() => setView(showSchedule && initialView === "schedule" ? "schedule" : "tree"), [initialView, showSchedule]);
 
   React.useEffect(() => {
     if (activeBranch !== branch) setBranch(activeBranch);
@@ -1350,12 +1350,12 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
           </div>
           {!compact && <div style={{ fontSize:11, color:"var(--slate-500)" }}>{activeBranch === "car" ? "All systems" : "Tech tree"} · {carLabel} · <span className="mono">{typeof miles === "number" ? `${miles.toLocaleString()} mi` : "Mileage unavailable"}</span></div>}
         </div>
-        <div role="group" aria-label="Tech tree view" style={{ display:"flex", alignItems:"center", gap:2, padding:2, borderRadius:999, border:"1px solid var(--ki-line)", background:"var(--ki-page)", marginLeft:compact ? 0 : "auto" }}>
+        {showSchedule && <div role="group" aria-label="Tech tree view" style={{ display:"flex", alignItems:"center", gap:2, padding:2, borderRadius:999, border:"1px solid var(--ki-line)", background:"var(--ki-page)", marginLeft:compact ? 0 : "auto" }}>
           {["tree","schedule"].map((item) => <button key={item} type="button" aria-pressed={view === item} onClick={()=>setView(item)} style={{ minHeight:28, padding:"4px 10px", border:0, borderRadius:999, background:view === item ? "#0b1220" : "transparent", color:view === item ? "white" : "var(--slate-600)", fontFamily:"var(--font-sans)", fontSize:10.5, fontWeight:650, cursor:"pointer", textTransform:"capitalize" }}>{item}</button>)}
-        </div>
+        </div>}
         {/* "N at risk" chip removed — the risk is already legible from the red
             nodes, and on a phone it crowded the close button. */}
-        <button onClick={onClose} title="Close tech tree" style={{ marginLeft:compact ? "auto" : 0, width:30, height:30, borderRadius:9, background:"var(--ki-card)", border:"1px solid var(--ki-line)", color:"var(--slate-500)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><Icon name="x" size={15}/></button>
+        <button onClick={onClose} title="Close tech tree" style={{ marginLeft:compact || !showSchedule ? "auto" : 0, width:30, height:30, borderRadius:9, background:"var(--ki-card)", border:"1px solid var(--ki-line)", color:"var(--slate-500)", cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><Icon name="x" size={15}/></button>
       </div>
 
       {view === "schedule" ? <TTSchedule schedule={schedule} miles={miles} onOpenNode={(id)=>{ setScheduleNode(id); setBranch("car"); setView("tree"); }}/> : <div style={{ display:"flex", flex:1, minHeight:0 }}>
@@ -1418,6 +1418,7 @@ function TechTree({ branch, setBranch, miles, onClose, say, onPartHelp, startNod
         </div>
         {!sheetDetail && sel && <TTDetail node={sel} nodeId={selected} onEquip={persistEquipment} miles={miles} risk={ttRisk(sel, miles)} narrow={compact} readOnly={readOnly} onClose={()=>setSelected(null)} onAsk={(n, context) => onPartHelp ? onPartHelp(context, n) : say && say(ttAskLine(n, " I'll keep the tree open beside you."))}/>}
       </div>}
+      {footer && <div style={{ flex:"0 0 auto", borderTop:"1px solid var(--ki-line)", background:"var(--ki-card)" }}>{footer}</div>}
       {!readOnly&&<TTComposer value={draft} setValue={setDraft} onSend={answer} reply={reply} suggestions={compact ? [TT_SUGGEST[0], TT_SUGGEST[2]] : TT_SUGGEST}/>}
       {!readOnly&&<TTStyleMenu menu={menu} style={menu ? styleOf(menu.id) : {}}
         onShape={s => setStyles(v => ({ ...v, [menu.id]: { ...styleOf(menu.id), shape:s } }))}

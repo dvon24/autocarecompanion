@@ -1,5 +1,5 @@
 import { getKnownIssueCommerce, knownIssueAffiliateUrl } from '@/lib/known-issue-commerce';
-import { partCanBeShownForVehicle, resolvePartNumber } from '@/lib/known-issue-part-fitment';
+import { partCanBeShownForVehicle, partFitsVehicle, resolvePartNumber } from '@/lib/known-issue-part-fitment';
 import { VEHICLE_TWIN_CATALOG } from '@/lib/vehicle-twin-catalog';
 import type { KnownIssue } from '@/schemas/knownIssue.schema';
 
@@ -25,7 +25,19 @@ export interface KnownIssueTwinFixPart {
   priceLow: number | null;
   priceHigh: number | null;
   recallFirst: boolean;
+  fitmentScope: string | null;
+  fitmentConfirmed?: boolean;
   buyLinks: KnownIssueTwinBuyLink[];
+}
+
+export interface KnownIssueTwinExplanation {
+  system: string;
+  condition: string;
+  mechanism: string;
+  symptoms: string;
+  action: string;
+  verifiedParts: string;
+  narrative: string;
 }
 
 export interface KnownIssueTwinIssue {
@@ -44,7 +56,9 @@ export interface KnownIssueTwinIssue {
     x: number;
     y: number;
   } | null;
+  recallFirst: boolean;
   fixParts: KnownIssueTwinFixPart[];
+  explanation: KnownIssueTwinExplanation;
 }
 
 const HOTSPOT_LABELS: Record<KnownIssueTwinHotspotId, string> = {
@@ -57,10 +71,39 @@ const HOTSPOT_LABELS: Record<KnownIssueTwinHotspotId, string> = {
 };
 
 function appliesToPilot(issue: KnownIssue): boolean {
-  return issue.status === 'published'
+  return Boolean(issue.id.trim())
+    && issue.status === 'published'
     && issue.vehicleMatch.make.trim().toLowerCase() === 'cadillac'
     && issue.vehicleMatch.model.trim().toLowerCase() === 'xt6'
     && issue.vehicleMatch.years.includes(KNOWN_ISSUE_TWIN_PILOT.year);
+}
+
+export function buildKnownIssueTwinExplanation(
+  issue: Pick<KnownIssue, 'title' | 'description' | 'solution' | 'symptoms' | 'affectedSystems'>,
+  fixParts: KnownIssueTwinFixPart[],
+): KnownIssueTwinExplanation {
+  const systems = (issue.affectedSystems || []).map((value) => value.trim()).filter(Boolean);
+  const symptoms = issue.symptoms.map((value) => value.trim()).filter(Boolean);
+  const parts = fixParts.map((part) => {
+    const partNumber = part.oemPartNumber ? ` (${part.oemPartNumber})` : '';
+    return `${part.component}${partNumber}`;
+  });
+  const system = systems.length > 0
+    ? systems.join(' · ')
+    : 'The published record does not identify a more specific affected system.';
+  const condition = issue.title.trim() || 'a condition that the published record does not specifically name';
+  const mechanism = issue.description.trim() || 'The published record does not establish how this condition develops.';
+  const symptomText = symptoms.length > 0
+    ? symptoms.join('; ')
+    : 'The published record does not establish a symptom sequence.';
+  const action = issue.solution.trim() || 'The published record does not establish a repair step.';
+  const verifiedParts = parts.length > 0
+    ? `Verified products allowed by the current fitment guard: ${parts.join(' · ')}.`
+    : 'No verified repair product passes the current fitment guard for this branch.';
+  return {
+    system, condition, mechanism, symptoms: symptomText, action, verifiedParts,
+    narrative: `Read the tree from the vehicle to ${system}, then to ${condition}. From that condition, the tree decomposes into two related branches. The failure branch explains how it develops using the published record: ${mechanism} Its symptoms branch shows what an owner may notice: ${symptomText} The separate repair branch shows the published action: ${action} ${verifiedParts}`,
+  };
 }
 
 export function projectKnownIssueTwinIssues(issues: KnownIssue[]): KnownIssueTwinIssue[] {
@@ -89,6 +132,7 @@ export function projectKnownIssueTwinIssues(issues: KnownIssue[]): KnownIssueTwi
       const hotspotId = issueHotspotIds.get(issue.id) ?? null;
       const hotspot = hotspotId ? hotspotById.get(hotspotId) : null;
       const commerce = getKnownIssueCommerce(issue);
+      const recallFirst = (issue.fixParts || []).some((part) => part.recallFirst === true);
       const mileage = issue.typicalMileage;
       const typicalMileage = mileage
         && Number.isFinite(mileage.low)
@@ -98,7 +142,44 @@ export function projectKnownIssueTwinIssues(issues: KnownIssue[]): KnownIssueTwi
         ? { low: mileage.low, high: mileage.high }
         : null;
 
-      return {
+      const fixParts = commerce.fixParts
+        .filter((part) => {
+          if (!part.component.trim()) return false;
+          const resolvedPart = resolvePartNumber(part, fitmentVehicle);
+          const hasScopedVariant = (part.variants || []).some((variant) => Boolean(
+            variant.fitment?.years?.length
+            || variant.fitment?.engines?.length
+            || variant.fitment?.trims?.length,
+          ));
+          if (resolvedPart.matched) return true;
+          return !hasScopedVariant && partCanBeShownForVehicle(part.fitment, fitmentVehicle);
+        })
+        .map((part) => {
+          const resolvedPart = resolvePartNumber(part, fitmentVehicle);
+          const resolvedVariant = (part.variants || []).some((variant) => (
+            variant.oemPartNumber === resolvedPart.partNumber
+            && partFitsVehicle(variant.fitment, fitmentVehicle) === 'fits'
+          ));
+          return {
+            component: part.component,
+            oemPartNumber: resolvedPart.partNumber,
+            aftermarketXref: [...(part.aftermarketXref || [])],
+            note: part.note || '',
+            priceLow: part.priceLow ?? null,
+            priceHigh: part.priceHigh ?? null,
+            recallFirst: part.recallFirst === true,
+            fitmentScope: resolvedPart.scope,
+            fitmentConfirmed: resolvedPart.matched || partFitsVehicle(part.fitment, fitmentVehicle) === 'fits',
+            // Buy links live on the base part. A matched variant PN must not
+            // inherit a base-PN destination unless that link is variant-keyed.
+            buyLinks: resolvedVariant ? [] : (part.buyLinks || []).map((link) => ({
+              vendor: link.vendor,
+              url: knownIssueAffiliateUrl(link.url, issue.id),
+            })),
+          } satisfies KnownIssueTwinFixPart;
+        });
+
+      const projected = {
         id: issue.id,
         title: issue.title,
         description: issue.description,
@@ -111,33 +192,11 @@ export function projectKnownIssueTwinIssues(issues: KnownIssue[]): KnownIssueTwi
         hotspot: hotspotId && hotspot
           ? { id: hotspotId, label: HOTSPOT_LABELS[hotspotId], x: hotspot.x, y: hotspot.y }
           : null,
-        fixParts: commerce.fixParts
-          .filter((part) => {
-            if (!partCanBeShownForVehicle(part.fitment, fitmentVehicle)) return false;
-            const hasScopedVariant = (part.variants || []).some((variant) => Boolean(
-              variant.fitment?.years?.length
-              || variant.fitment?.engines?.length
-              || variant.fitment?.trims?.length,
-            ));
-            return !hasScopedVariant || resolvePartNumber(part, fitmentVehicle).matched;
-          })
-          .map((part) => {
-            const resolvedPart = resolvePartNumber(part, fitmentVehicle);
-            return {
-              component: part.component,
-              oemPartNumber: resolvedPart.partNumber,
-              aftermarketXref: [...(part.aftermarketXref || [])],
-              note: part.note || '',
-              priceLow: part.priceLow ?? null,
-              priceHigh: part.priceHigh ?? null,
-              recallFirst: part.recallFirst === true,
-              buyLinks: (part.buyLinks || []).map((link) => ({
-                vendor: link.vendor,
-                url: knownIssueAffiliateUrl(link.url, issue.id),
-              })),
-            };
-          }),
+        recallFirst,
+        fixParts,
+        explanation: buildKnownIssueTwinExplanation(issue, fixParts),
       } satisfies KnownIssueTwinIssue;
+      return projected;
     })
     .sort((left, right) => {
       const leftMileage = left.typicalMileage?.low ?? Number.POSITIVE_INFINITY;
@@ -151,12 +210,20 @@ export function issuesAtMileage(
   mileage: number,
   neighborhoodMiles = 10_000,
 ): KnownIssueTwinIssue[] {
+  if (!Number.isFinite(mileage) || !Number.isFinite(neighborhoodMiles) || neighborhoodMiles < 0) return [];
   const low = Math.max(0, mileage - neighborhoodMiles);
   const high = mileage + neighborhoodMiles;
   return issues.filter((issue) => issue.hotspot
     && issue.typicalMileage
     && issue.typicalMileage.high >= low
     && issue.typicalMileage.low <= high);
+}
+
+export function retainKnownIssueSelection(
+  selectedIssueId: string | null,
+  visibleIssueIds: readonly string[],
+): string | null {
+  return selectedIssueId && visibleIssueIds.includes(selectedIssueId) ? selectedIssueId : null;
 }
 
 export function registerDistinctIssueView(
@@ -198,7 +265,8 @@ export function isKnownIssueTwinPilotEnabled(input: KnownIssueTwinPilotExposure)
     || input.requestedYear !== KNOWN_ISSUE_TWIN_PILOT.year
   ) return false;
 
-  if (!input.isVercel) return input.nodeEnvironment === 'development';
-  if (input.vercelEnvironment === 'preview' || input.vercelEnvironment === 'development') return true;
+  if (input.isVercel && input.vercelEnvironment === 'preview') return true;
+  if (input.nodeEnvironment === 'development') return true;
+  if (!input.isVercel) return false;
   return input.productionFlag === 'true' && input.country?.toUpperCase() === 'US';
 }

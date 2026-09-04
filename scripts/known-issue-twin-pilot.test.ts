@@ -1,11 +1,13 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
+  buildKnownIssueTwinExplanation,
   filterKnownIssueViewHistory,
   isKnownIssueTwinPilotEnabled,
   issuesAtMileage,
   projectKnownIssueTwinIssues,
   registerDistinctIssueView,
+  retainKnownIssueSelection,
 } from '../src/lib/known-issue-twin-pilot';
 import type { KnownIssue } from '../src/schemas/knownIssue.schema';
 
@@ -98,6 +100,7 @@ test('projection rejects excluded fitment, resolves a matching variant, and pres
       },
       {
         component: 'Scoped component', oemPartNumber: 'BASE', aftermarketXref: [], note: '', verified: true, recallFirst: true,
+        fitment: { years: [2020], trims: ['Premium Luxury'] },
         variants: [{ scope: '2020 Sport', oemPartNumber: 'SPORT-2020', note: '', fitment: { years: [2020], trims: ['Sport'], engines: ['3.6L V6'] } }],
         buyLinks: [{ vendor: 'Amazon', url: 'https://www.amazon.com/dp/B01G5EA74I', verified: true, linkType: 'product' }],
       },
@@ -107,6 +110,47 @@ test('projection rejects excluded fitment, resolves a matching variant, and pres
   assert.equal(row.fixParts[0].oemPartNumber, 'SPORT-2020');
   assert.equal(row.fixParts[0].recallFirst, true);
   assert.equal(row.fixParts[0].buyLinks.length, 0, 'recall-first guard suppresses retail destinations');
+  assert.equal(row.recallFirst, true);
+});
+
+test('a variant part number never inherits the base part destination', () => {
+  const [row] = projectKnownIssueTwinIssues([issue({ fixParts: [{
+    component: 'Variant component', oemPartNumber: 'BASE', aftermarketXref: [], note: '', verified: true,
+    variants: [{ scope: '2020 Sport', oemPartNumber: 'SPORT-2020', note: '', fitment: { years: [2020], trims: ['Sport'], engines: ['3.6L V6'] } }],
+    buyLinks: [{ vendor: 'Amazon', url: 'https://www.amazon.com/dp/B01G5EA74I', verified: true, linkType: 'product' }],
+  }] })]);
+  assert.equal(row.fixParts[0].oemPartNumber, 'SPORT-2020');
+  assert.equal(row.fixParts[0].buyLinks.length, 0);
+});
+
+test('a matched variant with no base part number still cannot inherit the base destination', () => {
+  const [row] = projectKnownIssueTwinIssues([issue({ fixParts: [{
+    component: 'Variant component', oemPartNumber: null, aftermarketXref: [], note: '', verified: true,
+    variants: [{ scope: '2020 Sport', oemPartNumber: 'SPORT-2020', note: '', fitment: { years: [2020], trims: ['Sport'], engines: ['3.6L V6'] } }],
+    buyLinks: [{ vendor: 'Amazon', url: 'https://www.amazon.com/dp/B01G5EA74I', verified: true, linkType: 'product' }],
+  }] })]);
+  assert.equal(row.fixParts[0].oemPartNumber, 'SPORT-2020');
+  assert.equal(row.fixParts[0].buyLinks.length, 0);
+});
+
+test('Au7o explanation connects only published fields and guarded products', () => {
+  const explanation = buildKnownIssueTwinExplanation(issue(), [{ component: 'Chain kit', oemPartNumber: 'GM-1', aftermarketXref: [], note: '', priceLow: null, priceHigh: null, recallFirst: false, fitmentScope: '2020 Sport', buyLinks: [] }]);
+  assert.equal(explanation.system, 'Engine timing');
+  assert.match(explanation.narrative, /vehicle to Engine timing, then to Timing chain concern/);
+  assert.match(explanation.narrative, /decomposes into two related branches/);
+  assert.match(explanation.narrative, /failure branch explains how it develops/);
+  assert.match(explanation.narrative, /separate repair branch/);
+  assert.match(explanation.narrative, /engine timing chain can stretch/);
+  assert.match(explanation.narrative, /Check engine light/);
+  assert.match(explanation.narrative, /Chain kit \(GM-1\)/);
+});
+
+test('partial explanation labels the catalog fallback and does not invent evidence', () => {
+  const explanation = buildKnownIssueTwinExplanation(issue({ title: '', description: '', solution: '', symptoms: [], affectedSystems: [], category: 'body' }), []);
+  assert.match(explanation.system, /does not identify a more specific affected system/);
+  assert.match(explanation.narrative, /does not establish how/);
+  assert.match(explanation.narrative, /does not establish a symptom sequence/);
+  assert.match(explanation.narrative, /No verified repair product passes/);
 });
 
 test('mileage mode requires documented mileage and a mapped vehicle location', () => {
@@ -119,6 +163,14 @@ test('mileage mode requires documented mileage and a mapped vehicle location', (
   assert.deepEqual(issuesAtMileage(projected, 20_000).map((row) => row.id), ['cadillac-xt6-ptu-leak-2020']);
   assert.equal(projected.length, 4, 'Show all can retain every applicable issue');
   assert.equal(projected.find((row) => row.id === 'cadillac-xt6-9speed-transmission-2020')?.typicalMileage, null);
+  assert.deepEqual(issuesAtMileage(projected, Number.NaN), []);
+  assert.deepEqual(issuesAtMileage(projected, Number.POSITIVE_INFINITY), []);
+});
+
+test('a timeline range change clears only selections that leave the visible range', () => {
+  assert.equal(retainKnownIssueSelection('a', ['a', 'b']), 'a');
+  assert.equal(retainKnownIssueSelection('a', ['b']), null);
+  assert.equal(retainKnownIssueSelection(null, ['a']), null);
 });
 
 test('gate advances only for two distinct issue ids', () => {
@@ -149,6 +201,7 @@ test('entry resolver is local/preview-friendly and production US plus flag only'
   assert.equal(isKnownIssueTwinPilotEnabled({ ...base, country: 'DE' }), false);
   assert.equal(isKnownIssueTwinPilotEnabled({ ...base, vercelEnvironment: 'preview', country: 'DE', productionFlag: undefined }), true);
   assert.equal(isKnownIssueTwinPilotEnabled({ ...base, isVercel: false, country: null, productionFlag: undefined }), false);
+  assert.equal(isKnownIssueTwinPilotEnabled({ ...base, isVercel: false, country: 'US', productionFlag: 'true' }), false);
   assert.equal(isKnownIssueTwinPilotEnabled({ ...base, isVercel: false, country: null, productionFlag: undefined, nodeEnvironment: 'development' }), true);
   assert.equal(isKnownIssueTwinPilotEnabled({ ...base, queryEnabled: false }), false);
   assert.equal(isKnownIssueTwinPilotEnabled({ ...base, slug: 'dodge-challenger' }), false);

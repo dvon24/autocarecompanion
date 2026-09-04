@@ -2,417 +2,297 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useMemo, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactElement,
+  type ReactNode,
+} from 'react';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
+import { TechTree } from '@/components/twin/stage/TechTree';
+import { TwinDataCtx } from '@/components/twin/twin-context';
 import {
   filterKnownIssueViewHistory,
   issuesAtMileage,
   KNOWN_ISSUE_TWIN_PILOT,
   registerDistinctIssueView,
+  retainKnownIssueSelection,
+  type KnownIssueTwinHotspotId,
   type KnownIssueTwinIssue,
 } from '@/lib/known-issue-twin-pilot';
-import { VEHICLE_TWIN_CATALOG } from '@/lib/vehicle-twin-catalog';
 
-interface KnownIssueTwinPilotProps {
-  issues: KnownIssueTwinIssue[];
-}
+const BASE = '/twin-stage/cadillac/known-issues/base-satin-steel-transparent.webp';
+const EFFECTS: Partial<Record<KnownIssueTwinHotspotId, string>> = {
+  hood: '/twin-stage/cadillac/known-issues/glow-hood-satin-steel-transparent.webp',
+  wheel: '/twin-stage/cadillac/known-issues/glow-wheel-satin-steel-transparent.webp',
+  rearwheel: '/twin-stage/cadillac/known-issues/glow-rearwheel-satin-steel-transparent.webp',
+  rad: '/twin-stage/cadillac/known-issues/xray-radiator-satin-steel-transparent.webp',
+  trans: '/twin-stage/cadillac/known-issues/glow-trans-satin-steel-transparent.webp',
+};
 
-const pilotTwin = VEHICLE_TWIN_CATALOG.find((candidate) => candidate.id === KNOWN_ISSUE_TWIN_PILOT.twinId);
+const VEHICLE = { year: 2020, make: 'Cadillac', model: 'XT6', trim: 'Sport', engine: '3.6L V6' };
 
-function formatMiles(value: number): string {
-  return value.toLocaleString('en-US');
+const KnownIssueTechTree = TechTree as unknown as (props: {
+  branch: string;
+  setBranch: (branch: string) => void;
+  miles: number;
+  onClose: () => void;
+  startNode?: string;
+  vertical?: boolean;
+  compact?: boolean;
+  detailMode?: 'sheet' | null;
+  initialView?: 'tree';
+  readOnly?: boolean;
+  showSchedule?: boolean;
+  footer?: ReactNode;
+}) => ReactElement;
+
+function issueTitle(issue: KnownIssueTwinIssue): string {
+  return issue.title.trim() || 'Published issue — title not recorded';
 }
 
 function mileageLabel(issue: KnownIssueTwinIssue): string {
   if (!issue.typicalMileage) return 'Mileage not established';
-  return `${formatMiles(issue.typicalMileage.low)}–${formatMiles(issue.typicalMileage.high)} mi`;
+  return `${issue.typicalMileage.low.toLocaleString()}–${issue.typicalMileage.high.toLocaleString()} mi`;
 }
 
-function initialMileage(issues: KnownIssueTwinIssue[]): number {
-  const documented = issues.find((issue) => issue.typicalMileage)?.typicalMileage;
-  if (!documented) return pilotTwin?.demoMileage ?? 50_000;
-  return Math.round((documented.low + documented.high) / 2 / 1_000) * 1_000;
-}
-
-function priceLabel(part: KnownIssueTwinIssue['fixParts'][number]): string | null {
-  if (part.priceLow == null && part.priceHigh == null) return null;
+function partPrice(part: KnownIssueTwinIssue['fixParts'][number]): string {
+  if (part.priceLow == null && part.priceHigh == null) return 'Price not published';
   if (part.priceLow != null && part.priceHigh != null && part.priceLow !== part.priceHigh) {
     return `$${part.priceLow.toLocaleString()}–$${part.priceHigh.toLocaleString()}`;
   }
   return `$${(part.priceLow ?? part.priceHigh)!.toLocaleString()}`;
 }
 
-function SeverityBadge({ severity }: { severity: KnownIssueTwinIssue['severity'] }) {
-  const style = severity === 'high'
-    ? 'border-[#F5B8B3] bg-[#FFF0EE] text-[#B42318]'
-    : severity === 'medium'
-      ? 'border-[#F1D39C] bg-[#FFF8E8] text-[#9A5B00]'
-      : 'border-[#CAD7EB] bg-[#F1F6FF] text-[#285EA8]';
-  return <span className={`rounded-full border px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.08em] ${style}`}>{severity}</span>;
+function partImage(hotspot: KnownIssueTwinHotspotId | undefined): string {
+  if (hotspot === 'trans') return '/twin-stage/parts/part-transmission.webp';
+  if (hotspot === 'rad') return '/twin-stage/parts/part-radiator.webp';
+  if (hotspot === 'wheel' || hotspot === 'rearwheel') return '/twin-stage/parts/part-wheel.webp';
+  return '/twin-stage/parts/part-engine.webp';
 }
 
-function IssueTree({ issue }: { issue: KnownIssueTwinIssue }) {
-  const repairGuidance = issue.solution.trim();
+function buildIssueTree(issue: KnownIssueTwinIssue) {
+  const symptomIds = issue.symptoms.map((_, index) => `symptom-${index}`);
+  const partIds = issue.fixParts.map((_, index) => `part-${index}`);
+  const image = partImage(issue.hotspot?.id);
+  const nodes: Record<string, Record<string, unknown>> = {
+    vehicle: { label: '2020 Cadillac XT6', sub: 'Known-issue decomposition', img: BASE, kids: ['system'], group: true },
+    system: { label: issue.explanation.system, sub: 'Affected system recorded for this issue', img: image, kids: ['condition'], group: true },
+    condition: {
+      label: issueTitle(issue), sub: `${issue.severity} · ${mileageLabel(issue)}`, img: image,
+      issue: issue.description || 'No condition description is published for this record.', kids: ['mechanism', 'action'], group: true,
+    },
+    mechanism: {
+      label: 'How the failure develops', sub: issue.explanation.mechanism, img: image,
+      issue: issue.explanation.mechanism, kids: symptomIds.length ? ['symptoms'] : [], group: true,
+    },
+    symptoms: { label: 'What owners may notice', sub: issue.explanation.symptoms, img: image, kids: symptomIds, group: true },
+    action: {
+      label: issue.recallFirst ? 'Recall / dealer action' : 'Repair / dealer action', sub: issue.explanation.action,
+      img: image, issue: issue.explanation.action, kids: partIds, group: true,
+    },
+  };
+
+  issue.symptoms.forEach((symptom, index) => {
+    nodes[`symptom-${index}`] = { label: symptom, sub: 'Published symptom', img: image, kids: [] };
+  });
+  issue.fixParts.forEach((part, index) => {
+    nodes[`part-${index}`] = {
+      label: part.component,
+      sub: part.recallFirst ? 'Recall-first repair item' : 'Verified repair product',
+      img: image,
+      kids: [],
+      partNo: part.oemPartNumber || '—',
+      brand: part.note || part.component,
+      spec: part.fitmentScope || 'Allowed by the current fitment guard; confirm exact vehicle fitment before purchase.',
+      fitmentReviewed: part.fitmentConfirmed === true,
+      price: partPrice(part),
+      buyUrl: part.buyLinks[0]?.url,
+      products: part.buyLinks.map((link) => ({
+        label: part.component,
+        brand: link.vendor,
+        partNo: part.oemPartNumber || '—',
+        spec: part.fitmentScope || part.note,
+        price: partPrice(part),
+        buyUrl: link.url,
+        buyLabel: `View at ${link.vendor}`,
+      })),
+    };
+  });
+  return { label: issueTitle(issue), short: 'Known issue', root: 'vehicle', nodes };
+}
+
+function Au7oExplains({ issue }: { issue: KnownIssueTwinIssue }) {
   return (
-    <div className="rounded-2xl border border-[#D8D1C3] bg-[#FBFAF6] p-4 sm:p-5" aria-live="polite">
-      <div className="mb-3 flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#64748B]">
-        <span className="h-2 w-2 rounded-full bg-[#3B82F6]" />
-        2020 Cadillac XT6
-      </div>
-      <div className="ml-1 border-l border-[#BFD2F6] pl-4">
-        <div className="rounded-xl border border-[#BFD2F6] bg-[#EFF5FF] px-3 py-2 text-sm font-semibold text-[#173E78]">
-          {issue.affectedSystems.length > 0 ? issue.affectedSystems.join(' · ') : 'Affected system not specified in the published record'}
-        </div>
-        <div className="ml-4 border-l border-[#D8D1C3] py-3 pl-4">
-          <div className="rounded-xl border border-[#D8D1C3] bg-white p-3">
-            <div className="mb-2 flex flex-wrap items-center gap-2">
-              <SeverityBadge severity={issue.severity} />
-              <span className="text-xs text-[#64748B]">{mileageLabel(issue)}</span>
-            </div>
-            <h3 className="text-sm font-bold leading-snug text-[#0B1220]">{issue.title}</h3>
-            <div className="mt-1 text-[11px] font-medium text-[#64748B]">
-              Visual location: {issue.hotspot?.label ?? 'not established from reviewed Twin evidence'}
-            </div>
-            <p className="mt-2 text-sm leading-relaxed text-[#475569]">{issue.description}</p>
-            {issue.symptoms.length > 0 && (
-              <div className="mt-3">
-                <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#64748B]">What owners may notice</div>
-                <ul className="mt-1 space-y-1 text-xs leading-relaxed text-[#475569]">
-                  {issue.symptoms.slice(0, 3).map((symptom) => <li key={symptom}>• {symptom}</li>)}
-                </ul>
-              </div>
-            )}
-          </div>
-          <div className="ml-4 border-l border-[#E3DFD4] py-3 pl-4">
-            <div className="rounded-xl border border-[#D8D1C3] bg-[#F7F6F2] p-3">
-              <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#64748B]">Repair / dealer guidance</div>
-              <p className="mt-1 text-xs leading-relaxed text-[#334155]">
-                {repairGuidance || 'No repair guidance has been published for this record. Confirm the condition and next step with a qualified Cadillac technician before ordering parts.'}
-              </p>
-            </div>
-            {issue.fixParts.length > 0 ? issue.fixParts.map((part, index) => {
-              const price = priceLabel(part);
-              return (
-                <div key={`${part.component}-${index}`} className="mt-3 rounded-xl border border-[#BBDDCB] bg-[#F0FAF5] p-3">
-                  <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#177A4C]">
-                    {part.recallFirst ? 'Recall-covered repair item' : 'Verified repair part'}
-                  </div>
-                  <div className="mt-1 text-sm font-semibold text-[#0B1220]">{part.component}</div>
-                  {(part.oemPartNumber || price) && (
-                    <div className="mt-1 text-xs text-[#475569]">
-                      {part.oemPartNumber && <>Part {part.oemPartNumber}</>}
-                      {part.oemPartNumber && price && <> · </>}
-                      {price}
-                    </div>
-                  )}
-                  {part.note && <p className="mt-2 text-xs leading-relaxed text-[#475569]">{part.note}</p>}
-                  {part.recallFirst && (
-                    <p className="mt-2 rounded-lg bg-[#FFF7E6] px-2 py-1.5 text-[11px] font-semibold text-[#8A5200]">
-                      Check the VIN for open recall coverage before buying or installing anything.
-                    </p>
-                  )}
-                  {part.buyLinks.length > 0 ? (
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {part.buyLinks.map((link) => (
-                        <a
-                          key={link.url}
-                          href={link.url}
-                          target="_blank"
-                          rel="noopener noreferrer sponsored"
-                          className="rounded-lg bg-[#0B1220] px-3 py-2 text-xs font-semibold text-white hover:bg-[#26344B]"
-                        >
-                          View at {link.vendor}
-                        </a>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="mt-2 text-[11px] text-[#64748B]">No verified product link is available for this part.</p>
-                  )}
-                </div>
-              );
-            }) : (
-              <div className="mt-3 rounded-xl border border-dashed border-[#D8D1C3] bg-white p-3 text-xs leading-relaxed text-[#64748B]">
-                No verified repair product is attached to this issue. Follow the guidance above, or confirm the next step with a qualified technician, before ordering anything.
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-    </div>
+    <aside className="px-4 py-3 sm:px-5" aria-label="Au7o explains this Tech Tree">
+      <div className="text-[10px] font-bold uppercase tracking-[.16em] text-[#7C3AED]">Au7o explains</div>
+      <p className="mt-1 text-xs leading-5 text-[#263247] sm:text-sm">{issue.explanation.narrative}</p>
+      <p className="mt-1 text-[10px] leading-4 text-[#64748B]">Grounded in this published issue record and its guarded commerce. This organizes evidence; it is not a diagnosis.</p>
+    </aside>
   );
 }
 
-function PilotGate({ onIntent }: { onIntent: () => void }) {
-  return (
-    <div className="rounded-3xl border border-[#D8D1C3] bg-white p-5 shadow-[0_18px_50px_rgba(11,18,32,0.10)] sm:p-8">
-      <div className="mb-2 text-[11px] font-bold uppercase tracking-[0.12em] text-[#7C3AED]">Visual limit reached</div>
-      <h2 className="text-2xl font-bold tracking-[-0.02em] text-[#0B1220]">Keep exploring this XT6 visually</h2>
-      <p className="mt-2 max-w-2xl text-sm leading-relaxed text-[#475569]">
-        The full written Known Issues article remains free below. Choose a visual-only plan for this model, or open the complete Hub with maintenance and Au7o chat.
-      </p>
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        <button
-          type="button"
-          onClick={onIntent}
-          className="rounded-2xl border-2 border-[#7C3AED] bg-[#F7F2FF] p-4 text-left transition hover:bg-[#F0E7FF]"
-        >
-          <span className="block text-sm font-bold text-[#0B1220]">Known Issues Visual</span>
-          <span className="mt-1 block text-2xl font-bold text-[#7C3AED]">$4.99<span className="text-xs font-medium text-[#64748B]"> / month</span></span>
-          <span className="mt-2 block text-xs leading-relaxed text-[#475569]">Interactive visual locations and issue component paths. The written issue cards remain free.</span>
-          <span className="mt-3 inline-block text-xs font-bold text-[#6D28D9]">Preview plan intent →</span>
-        </button>
-        <Link
-          href="/subscribe?tier=plus"
-          onClick={() => trackEvent('known_issue_twin_hub_cta', { model: 'cadillac-xt6', year: 2020 })}
-          className="rounded-2xl border-2 border-[#0B1220] bg-[#0B1220] p-4 text-left text-white transition hover:bg-[#1E293B]"
-        >
-          <span className="block text-sm font-bold">Full Au7o Hub</span>
-          <span className="mt-1 block text-2xl font-bold">$14.99<span className="text-xs font-medium text-[#CBD5E1]"> / month</span></span>
-          <span className="mt-2 block text-xs leading-relaxed text-[#E2E8F0]">Visual Twin, maintenance planning, records, part help and Au7o chat.</span>
-          <span className="mt-3 inline-block text-xs font-bold text-white">View Hub plan →</span>
-        </Link>
-      </div>
-    </div>
-  );
-}
-
-export function KnownIssueTwinPilot({ issues }: KnownIssueTwinPilotProps) {
-  const [mileage, setMileage] = useState(() => initialMileage(issues));
-  const [showAll, setShowAll] = useState(false);
-  const [selectedIssueId, setSelectedIssueId] = useState<string | null>(null);
-  const [viewedIssueIds, setViewedIssueIds] = useState<string[]>([]);
-  const [gated, setGated] = useState(false);
-  const [intentAcknowledged, setIntentAcknowledged] = useState(false);
+function TreeOverlay({ issue, mileage, close }: { issue: KnownIssueTwinIssue; mileage: number; close: () => void }) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previousFocus = useRef<HTMLElement | null>(null);
+  const [mobile, setMobile] = useState(false);
+  const tree = useMemo(() => buildIssueTree(issue), [issue]);
+  const setBranch = useCallback(() => {}, []);
 
   useEffect(() => {
-    trackEvent('known_issue_twin_impression', { model: 'cadillac-xt6', year: 2020 });
-    const restoreTimer = window.setTimeout(() => {
-      let stored: string[] = [];
+    const media = window.matchMedia('(max-width: 640px)');
+    const update = () => setMobile(media.matches);
+    update();
+    media.addEventListener('change', update);
+    return () => media.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
+    previousFocus.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    const priorOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const dialog = dialogRef.current;
+    const focusables = () => Array.from(dialog?.querySelectorAll<HTMLElement>('button:not([disabled]), a[href], input:not([disabled]), [tabindex]:not([tabindex="-1"])') || []);
+    const closeButton = dialog?.querySelector<HTMLElement>('button[title="Close tech tree"]');
+    (closeButton || focusables()[0] || dialog)?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') { event.preventDefault(); close(); return; }
+      if (event.key !== 'Tab') return;
+      const items = focusables();
+      if (!items.length) { event.preventDefault(); dialog?.focus(); return; }
+      const first = items[0]!;
+      const last = items[items.length - 1]!;
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = priorOverflow;
+      previousFocus.current?.focus();
+    };
+  }, [close]);
+
+  const contextValue = useMemo(() => ({ vehicle: VEHICLE, miles: mileage, trees: { car: tree }, mode: 'demo' as const }), [mileage, tree]);
+
+  return (
+    <div className="fixed inset-0 z-[80] flex items-center justify-center bg-[rgba(8,11,18,.62)] p-0 backdrop-blur-[6px] sm:p-7" role="dialog" aria-modal="true" aria-label={`${issueTitle(issue)} Tech Tree`} onMouseDown={(event) => { if (event.target === event.currentTarget) close(); }}>
+      <div ref={dialogRef} tabIndex={-1} className="ki-theme-warm h-full w-full overflow-hidden bg-[var(--ki-page)] text-[var(--ink)] shadow-[0_30px_80px_rgba(0,0,0,.45)] outline-none sm:max-h-[760px] sm:max-w-[1180px] sm:rounded-[18px] sm:border sm:border-[var(--ki-line)]">
+        <TwinDataCtx.Provider value={contextValue}>
+          <KnownIssueTechTree branch="car" setBranch={setBranch} miles={mileage} onClose={close} startNode="condition" vertical={mobile} compact={mobile} detailMode={mobile ? 'sheet' : null} initialView="tree" readOnly showSchedule={false} footer={<Au7oExplains issue={issue} />} />
+        </TwinDataCtx.Provider>
+      </div>
+    </div>
+  );
+}
+
+function PilotGate() {
+  const [acknowledged, setAcknowledged] = useState(false);
+  return (
+    <section className="my-8 border-y border-[#DDD6C9] py-7 text-center">
+      <h2 className="text-xl font-bold">Keep exploring this XT6 visually</h2>
+      <p className="mx-auto mt-2 max-w-xl text-sm leading-6 text-[#526076]">Known Issues Visual is $4.99/month for this model’s visual issue experience. It excludes maintenance tracking and AI chat. The $14.99/month Hub includes the complete vehicle experience.</p>
+      <div className="mt-4 flex flex-wrap justify-center gap-3">
+        <button type="button" onClick={() => { setAcknowledged(true); trackEvent('known_issue_twin_visual_plan_intent', { model: 'cadillac-xt6', year: 2020, price: 4.99 }); }} className="rounded-full bg-[#7C3AED] px-5 py-3 text-sm font-bold text-white">Known Issues Visual · $4.99/mo</button>
+        <Link href="/subscribe?tier=plus" className="rounded-full bg-[#0B1220] px-5 py-3 text-sm font-bold text-white">Full Hub · $14.99/mo</Link>
+      </div>
+      <p className="mt-3 text-xs text-[#6B7280]" role="status">{acknowledged ? 'Interest recorded for this dev preview. No purchase was made.' : 'This dev preview does not charge you. Written Known Issues cards below remain available.'}</p>
+    </section>
+  );
+}
+
+export function KnownIssueTwinPilot({ issues }: { issues: KnownIssueTwinIssue[] }) {
+  const hasDocumentedMileage = issues.some((issue) => issue.typicalMileage != null);
+  const [mileage, setMileage] = useState(() => issues.find((issue) => issue.typicalMileage)?.typicalMileage?.low ?? 50_000);
+  const [showAll, setShowAll] = useState(() => !hasDocumentedMileage);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
+  const [previewId, setPreviewId] = useState<string | null>(null);
+  const [viewed, setViewed] = useState<string[]>([]);
+  const [gated, setGated] = useState(false);
+  const [restored, setRestored] = useState(false);
+  const visible = useMemo(() => showAll ? issues : issuesAtMileage(issues, mileage), [issues, mileage, showAll]);
+  const selected = issues.find((issue) => issue.id === selectedId) ?? null;
+  const visual = issues.find((issue) => issue.id === (previewId ?? selectedId)) ?? null;
+  const activeEffect = visual?.hotspot?.id ?? null;
+  const maxMileage = Math.max(150_000, ...issues.flatMap((issue) => issue.typicalMileage ? [issue.typicalMileage.high + 10_000] : []));
+  const markerGroups = useMemo(() => {
+    const grouped = new Map<KnownIssueTwinHotspotId, KnownIssueTwinIssue[]>();
+    for (const issue of visible) {
+      if (!issue.hotspot) continue;
+      const current = grouped.get(issue.hotspot.id) || [];
+      current.push(issue);
+      grouped.set(issue.hotspot.id, current);
+    }
+    return [...grouped.entries()].map(([hotspotId, rows]) => ({ hotspotId, rows, hotspot: rows[0]!.hotspot! }));
+  }, [visible]);
+
+  useEffect(() => {
+    let cancelled = false;
+    queueMicrotask(() => {
+      if (cancelled) return;
       try {
-        const parsed = JSON.parse(window.sessionStorage.getItem(KNOWN_ISSUE_TWIN_PILOT.sessionKey) || '[]');
-        if (Array.isArray(parsed)) stored = parsed.filter((value): value is string => typeof value === 'string');
-      } catch {
-        stored = [];
-      }
-      const distinct = filterKnownIssueViewHistory(stored, issues.map((issue) => issue.id));
-      setViewedIssueIds(distinct);
-      setGated(distinct.length >= 2);
-      if (distinct.length >= 2) {
-        trackEvent('known_issue_twin_gate_shown', { model: 'cadillac-xt6', year: 2020, restored: true });
-      }
-    }, 0);
-    return () => window.clearTimeout(restoreTimer);
+        const raw: unknown = JSON.parse(sessionStorage.getItem(KNOWN_ISSUE_TWIN_PILOT.sessionKey) || '[]');
+        const current = filterKnownIssueViewHistory(Array.isArray(raw) ? raw : [], issues.map((issue) => issue.id));
+        setViewed(current); setGated(current.length >= 2);
+        if (current.length >= 2) trackEvent('known_issue_twin_gate_shown', { model: 'cadillac-xt6', year: 2020, restored: true });
+      } catch { setViewed([]); setGated(false); }
+      setRestored(true);
+    });
+    return () => { cancelled = true; };
   }, [issues]);
 
-  const visibleIssues = useMemo(
-    () => showAll ? issues : issuesAtMileage(issues, mileage),
-    [issues, mileage, showAll],
-  );
-  const selectedIssue = visibleIssues.find((issue) => issue.id === selectedIssueId) ?? null;
-  const selectedEffect = selectedIssue?.hotspot
-    ? pilotTwin?.art.effects[selectedIssue.hotspot.id]
-    : undefined;
-  const sliderMax = Math.max(
-    150_000,
-    ...issues.map((issue) => issue.typicalMileage?.high ?? 0),
-  );
-  const roundedSliderMax = Math.ceil((sliderMax + 10_000) / 10_000) * 10_000;
+  const closeTree = useCallback(() => setSelectedId(null), []);
 
-  function persistViews(next: string[]) {
-    try {
-      window.sessionStorage.setItem(KNOWN_ISSUE_TWIN_PILOT.sessionKey, JSON.stringify(next));
-    } catch {
-      // The gate remains functional in memory when storage is unavailable.
-    }
+  function setRange(nextMileage: number, nextShowAll = showAll) {
+    setMileage(nextMileage); setShowAll(nextShowAll);
+    const nextVisible = nextShowAll ? issues : issuesAtMileage(issues, nextMileage);
+    const retained = retainKnownIssueSelection(selectedId, nextVisible.map((issue) => issue.id));
+    setSelectedId(retained); if (!retained) setPreviewId(null);
   }
 
   function selectIssue(issue: KnownIssueTwinIssue) {
     if (gated) return;
-    const result = registerDistinctIssueView(viewedIssueIds, issue.id);
-    setSelectedIssueId(issue.id);
-    setViewedIssueIds(result.viewedIssueIds);
-    persistViews(result.viewedIssueIds);
-    trackEvent('known_issue_twin_issue_selected', {
-      model: 'cadillac-xt6',
-      year: 2020,
-      issue_id: issue.id,
-      distinct_selection: result.isNew,
-    });
-    if (result.gated) {
-      setGated(true);
-      trackEvent('known_issue_twin_gate_shown', { model: 'cadillac-xt6', year: 2020 });
+    const next = registerDistinctIssueView(viewed, issue.id);
+    setViewed(next.viewedIssueIds);
+    try { sessionStorage.setItem(KNOWN_ISSUE_TWIN_PILOT.sessionKey, JSON.stringify(next.viewedIssueIds)); } catch { /* in-memory fallback */ }
+    trackEvent('known_issue_twin_issue_selected', { issue_id: issue.id, distinct_selection: next.isNew, distinct_count: next.viewedIssueIds.length });
+    if (next.gated) {
+      setGated(true); setSelectedId(null);
+      trackEvent('known_issue_twin_gate_shown', { issue_id: issue.id, restored: false });
+      return;
     }
+    setSelectedId(issue.id); setPreviewId(null);
   }
 
-  function selectMarker(hotspotId: string) {
-    const candidates = visibleIssues.filter((issue) => issue.hotspot?.id === hotspotId);
-    const next = candidates.find((issue) => !viewedIssueIds.includes(issue.id)) ?? candidates[0];
+  function selectMarker(rows: KnownIssueTwinIssue[]) {
+    const next = rows.find((issue) => !viewed.includes(issue.id)) || rows[0];
     if (next) selectIssue(next);
   }
 
-  function recordVisualPlanIntent() {
-    setIntentAcknowledged(true);
-    trackEvent('known_issue_twin_visual_plan_intent', { model: 'cadillac-xt6', year: 2020, price: 4.99 });
-  }
-
-  if (!pilotTwin || issues.length === 0) return null;
-
-  if (gated) {
-    return (
-      <section className="mb-10" aria-label="Cadillac XT6 visual Known Issues pilot">
-        <PilotGate onIntent={recordVisualPlanIntent} />
-        {intentAcknowledged && (
-          <p className="mt-3 text-center text-xs text-[#64748B]" role="status">
-            Interest recorded for this preview. No purchase was made.
-          </p>
-        )}
-      </section>
-    );
-  }
-
-  const markerGroups = [...new Set(visibleIssues.flatMap((issue) => issue.hotspot?.id ? [issue.hotspot.id] : []))];
+  if (!restored) return null;
+  if (gated) return <PilotGate />;
 
   return (
-    <section className="mb-10" aria-labelledby="known-issue-twin-title">
-      <div className="mb-4 flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <div className="text-[11px] font-bold uppercase tracking-[0.12em] text-[#7C3AED]">Dev preview · Known Issues Visual</div>
-          <h2 id="known-issue-twin-title" className="mt-1 text-xl font-bold tracking-[-0.02em] text-[#0B1220] sm:text-2xl">
-            See where XT6 problems happen
-          </h2>
-          <p className="mt-1 text-sm text-[#64748B]">Published 2020 issues only. Select two different issues to preview the product gate.</p>
-        </div>
-        <span className="rounded-full border border-[#D8D1C3] bg-white px-3 py-1 text-[11px] font-semibold text-[#475569]">
-          {viewedIssueIds.length}/2 visual issue views
-        </span>
+    <section aria-label="Interactive 2020 Cadillac XT6 Known Issues visual" className="my-8">
+      <div className="mb-2 flex flex-wrap items-center justify-between gap-3">
+        <div><div className="text-[10px] font-bold uppercase tracking-[.16em] text-[#7C3AED]">Visual Known Issues · 2020 Cadillac XT6</div><p className="mt-1 text-xs text-[#64748B]">Hover or focus to preview. Click or tap to open the Tech Tree.</p></div>
+        <button type="button" onClick={() => setRange(mileage, !showAll)} className="min-h-11 rounded-full border border-[#DDD6C9] bg-white px-4 text-xs font-bold">{showAll ? 'Use mileage' : 'Show all'}</button>
       </div>
-
-      <div className="overflow-hidden rounded-3xl border border-[#D8D1C3] bg-[#F7F6F2] shadow-[0_16px_45px_rgba(11,18,32,0.08)]">
-        <div className="grid lg:grid-cols-[minmax(0,1.45fr)_minmax(310px,0.75fr)]">
-          <div className="min-w-0 border-b border-[#D8D1C3] lg:border-b-0 lg:border-r">
-            <div className="relative aspect-[16/9] min-h-[255px] overflow-hidden bg-[#F7F6F2]">
-              <div
-                className="absolute inset-[-3%]"
-                style={{
-                  maskImage: 'radial-gradient(ellipse 78% 76% at 52% 50%, #000 55%, transparent 88%)',
-                  WebkitMaskImage: 'radial-gradient(ellipse 78% 76% at 52% 50%, #000 55%, transparent 88%)',
-                }}
-              >
-                <Image src={pilotTwin.art.base} alt="2020 Cadillac XT6 Sport visual Twin" fill priority sizes="(max-width: 1024px) 100vw, 700px" className="object-contain" />
-                {selectedEffect && (
-                  <Image src={selectedEffect} alt="" fill sizes="(max-width: 1024px) 100vw, 700px" className="object-contain" aria-hidden="true" />
-                )}
-              </div>
-              {markerGroups.map((hotspotId) => {
-                const issue = visibleIssues.find((candidate) => candidate.hotspot?.id === hotspotId)!;
-                const hotspot = issue.hotspot!;
-                const count = visibleIssues.filter((candidate) => candidate.hotspot?.id === hotspotId).length;
-                const active = selectedIssue?.hotspot?.id === hotspotId;
-                return (
-                  <button
-                    key={hotspotId}
-                    type="button"
-                    onClick={() => selectMarker(hotspotId)}
-                    aria-label={`${hotspot.label}: ${count} known ${count === 1 ? 'issue' : 'issues'}`}
-                    className={`absolute z-10 flex h-10 w-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border-2 text-xs font-black shadow-lg transition hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#A78BFA]/40 ${active ? 'border-white bg-[#7C3AED] text-white' : 'border-[#7C3AED] bg-white text-[#6D28D9]'}`}
-                    style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }}
-                  >
-                    {count}
-                  </button>
-                );
-              })}
-              <div className="absolute bottom-3 left-3 rounded-xl border border-white/20 bg-[#0B1220]/80 px-3 py-2 text-white backdrop-blur-sm">
-                <div className="text-[10px] font-bold uppercase tracking-[0.1em] text-[#C4B5FD]">Visual Twin</div>
-                <div className="text-xs font-semibold">2020 Cadillac XT6 Sport · 3.6L V6</div>
-              </div>
-            </div>
-
-            <div className="border-t border-[#D8D1C3] bg-white/75 p-4 sm:p-5">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <label htmlFor="xt6-issue-mileage" className="text-xs font-bold uppercase tracking-[0.08em] text-[#475569]">
-                  Known-issue mileage · <span className="text-[#0B1220]">{formatMiles(mileage)} mi</span>
-                </label>
-                <div className="flex rounded-xl border border-[#D8D1C3] bg-[#F7F6F2] p-1 text-xs font-semibold">
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setShowAll(false);
-                      trackEvent('known_issue_twin_timeline_mode', { model: 'cadillac-xt6', year: 2020 });
-                    }}
-                    className={`rounded-lg px-3 py-1.5 ${!showAll ? 'bg-[#0B1220] text-white' : 'text-[#475569]'}`}
-                  >
-                    Near mileage
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => {
-                      setShowAll(true);
-                      trackEvent('known_issue_twin_show_all', { model: 'cadillac-xt6', year: 2020 });
-                    }}
-                    className={`rounded-lg px-3 py-1.5 ${showAll ? 'bg-[#0B1220] text-white' : 'text-[#475569]'}`}
-                  >
-                    Show all
-                  </button>
-                </div>
-              </div>
-              <input
-                id="xt6-issue-mileage"
-                type="range"
-                min={0}
-                max={roundedSliderMax}
-                step={1000}
-                value={mileage}
-                disabled={showAll}
-                onChange={(event) => {
-                  const next = Number(event.target.value);
-                  setMileage(next);
-                  trackEvent('known_issue_twin_mileage_changed', { model: 'cadillac-xt6', year: 2020, mileage: next });
-                }}
-                className="mt-4 h-2 w-full cursor-pointer accent-[#3B82F6] disabled:cursor-not-allowed disabled:opacity-35"
-              />
-              <div className="mt-1 flex justify-between text-[10px] text-[#94A3B8]"><span>0</span><span>{Math.round(roundedSliderMax / 2_000)}k</span><span>{Math.round(roundedSliderMax / 1_000)}k</span></div>
-              {!showAll && <p className="mt-2 text-xs text-[#64748B]">Showing documented ranges that intersect ±10,000 miles. Missing mileage is never estimated.</p>}
-            </div>
-          </div>
-
-          <div className="min-w-0 bg-[#F1EFE8] p-4 sm:p-5">
-            <div className="mb-3 flex items-center justify-between gap-2">
-              <h3 className="text-sm font-bold text-[#0B1220]">{showAll ? 'All 2020 issues' : 'Issues near this mileage'}</h3>
-              <span className="text-xs font-semibold text-[#64748B]">{visibleIssues.length}</span>
-            </div>
-            <div className="max-h-[325px] space-y-2 overflow-y-auto pr-1">
-              {visibleIssues.length > 0 ? visibleIssues.map((issue) => (
-                <button
-                  key={issue.id}
-                  type="button"
-                  onClick={() => selectIssue(issue)}
-                  className={`w-full rounded-xl border p-3 text-left transition ${selectedIssueId === issue.id ? 'border-[#7C3AED] bg-[#F7F2FF]' : 'border-[#D8D1C3] bg-white hover:border-[#A78BFA]'}`}
-                >
-                  <div className="flex items-start justify-between gap-2">
-                    <span className="text-sm font-semibold leading-snug text-[#0B1220]">{issue.title}</span>
-                    <SeverityBadge severity={issue.severity} />
-                  </div>
-                  <div className="mt-2 text-[11px] text-[#64748B]">{mileageLabel(issue)}</div>
-                  {!issue.hotspot && <div className="mt-1 text-[10px] font-medium text-[#9A5B00]">Visual location not established from this record</div>}
-                </button>
-              )) : (
-                <div className="rounded-xl border border-dashed border-[#C8C1B5] bg-white p-4 text-sm leading-relaxed text-[#64748B]">
-                  No published XT6 issue has a documented mileage range near {formatMiles(mileage)} miles. Move the timeline or choose Show all.
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-
-        {selectedIssue && (
-          <div className="border-t border-[#D8D1C3] bg-white p-4 sm:p-6">
-            <IssueTree issue={selectedIssue} />
-          </div>
-        )}
+      {!showAll && <div className="flex items-center gap-3"><input aria-label="Known issue mileage timeline" className="w-full accent-[#7C3AED]" type="range" min="0" max={maxMileage} step="1000" value={Math.min(mileage, maxMileage)} onChange={(event) => setRange(Number(event.target.value), false)} /><output className="min-w-20 text-right text-xs font-bold">{mileage.toLocaleString()} mi</output></div>}
+      <div className="relative mx-auto aspect-[3/2] w-full max-w-4xl">
+        <Image src={BASE} alt="2020 Cadillac XT6 transparent vehicle visual" fill priority sizes="(max-width: 896px) 100vw, 896px" className="object-contain" />
+        {Object.entries(EFFECTS).map(([hotspotId, src]) => <Image key={hotspotId} src={src} alt="" fill sizes="(max-width: 896px) 100vw, 896px" aria-hidden="true" className={`pointer-events-none object-contain transition-opacity duration-300 ${activeEffect === hotspotId ? 'opacity-100' : 'opacity-0'}`} />)}
+        {markerGroups.map(({ hotspotId, rows, hotspot }) => <button key={hotspotId} type="button" aria-label={`${hotspot.label}: ${rows.length} published ${rows.length === 1 ? 'issue' : 'issues'}`} onMouseEnter={() => setPreviewId(rows[0]!.id)} onMouseLeave={() => setPreviewId(null)} onFocus={() => setPreviewId(rows[0]!.id)} onBlur={() => setPreviewId(null)} onClick={() => selectMarker(rows)} style={{ left: `${hotspot.x}%`, top: `${hotspot.y}%` }} className="absolute z-10 grid h-11 w-11 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-2 border-white bg-[#7C3AED]/90 text-xs font-bold text-white shadow-[0_0_0_5px_rgba(124,58,237,.2)] transition-transform hover:scale-110 focus:outline-none focus:ring-4 focus:ring-[#A78BFA]/45">{rows.length}</button>)}
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-[#64748B]">
-        This visual organizes published issue evidence; it does not diagnose a vehicle. Confirm symptoms, VIN coverage and exact fitment before repair.
-      </p>
+      <div className="flex gap-2 overflow-x-auto pb-2">
+        {visible.length ? visible.map((issue) => <button key={issue.id} type="button" onMouseEnter={() => setPreviewId(issue.id)} onMouseLeave={() => setPreviewId(null)} onFocus={() => setPreviewId(issue.id)} onBlur={() => setPreviewId(null)} onClick={() => selectIssue(issue)} className="min-h-11 min-w-[220px] rounded-xl border border-[#DDD6C9] bg-white p-3 text-left text-sm font-semibold"><span className="block">{issueTitle(issue)}</span><span className="mt-1 block text-[11px] font-normal text-[#64748B]">{mileageLabel(issue)}{!issue.hotspot ? ' · Visual location not established' : ''}</span></button>) : <p className="text-sm text-[#64748B]">No published issue has a documented mileage range here. Move the timeline or choose Show all.</p>}
+      </div>
+      {selected && <TreeOverlay issue={selected} mileage={mileage} close={closeTree} />}
     </section>
   );
 }
+
+export default KnownIssueTwinPilot;
