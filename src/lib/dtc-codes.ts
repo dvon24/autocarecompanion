@@ -121,6 +121,67 @@ export const getLinkableDtcCodes = cache(
   ),
 );
 
+/**
+ * Minimum vehicle-specific word count for a /known-issues/dtc/[code] page to
+ * be worth indexing.
+ *
+ * "Unique" means the words WE wrote about real vehicles — issue title,
+ * description, solution and symptoms. It excludes the DTC reference block
+ * (name/description/commonCauses), which is the generic text every other DTC
+ * site also publishes and is not a reason for Google to rank us.
+ *
+ * A 2026-09-04 audit (scripts/_audit-dtc-thin.cjs) found 552 of 1,168
+ * rendering pages backed by a single issue, median 185 unique words, and a
+ * floor of ~73-word pages wrapped in 137 words of boilerplate. GSC filed a
+ * sample of those as soft 404s — correctly. Below this bar we keep the page
+ * live and crawlable but tell Google not to index it, rather than asking it
+ * to rank something we would not defend.
+ *
+ * Self-healing by design: the bar is evaluated from live data, so a page
+ * starts indexing itself as soon as a research wave adds a second vehicle.
+ * Raising the bar is a one-line change; see the audit script for the counts
+ * at each threshold.
+ */
+export const DTC_MIN_UNIQUE_WORDS = 150;
+
+/**
+ * Codes whose page falls below DTC_MIN_UNIQUE_WORDS. Computed in Postgres —
+ * summing word counts over every published issue's text in Node would drag
+ * ~10k rows of prose across the wire on a surface we already had to tune for
+ * Supabase CPU. Cached hourly and shared by the page's robots meta and the
+ * sitemap so the two can never disagree (advertising a noindex URL in the
+ * sitemap is a contradiction Google reports as its own error).
+ *
+ * Splits on the POSIX class rather than \s: Prisma's tagged-template escaping
+ * strips the backslash, so '\s+' reaches Postgres as 's+' and silently splits
+ * on the letter "s" — which undercounts every page by ~3x and would have
+ * noindexed 716 pages instead of 112.
+ */
+export const getThinDtcCodes = cache(
+  unstable_cache(
+    async (): Promise<string[]> => {
+      const rows = await prisma.$queryRaw<{ code: string }[]>`
+        SELECT c.code
+        FROM "KnownIssue" k, unnest(k."dtcCodes") AS c(code)
+        WHERE k.status = 'published'
+        GROUP BY c.code
+        HAVING SUM(
+          COALESCE(array_length(regexp_split_to_array(
+            trim(
+              COALESCE(k.title, '') || ' ' ||
+              COALESCE(k.description, '') || ' ' ||
+              COALESCE(k.solution, '') || ' ' ||
+              COALESCE(array_to_string(k.symptoms, ' '), '')
+            ), '[[:space:]]+'), 1), 0)
+        ) < ${DTC_MIN_UNIQUE_WORDS}
+      `;
+      return rows.map((r) => r.code.toUpperCase());
+    },
+    ['thin-dtc-codes'],
+    { revalidate: 3600 },
+  ),
+);
+
 export interface DTCDirectoryEntry {
   code: string;
   name: string;
@@ -164,10 +225,17 @@ export async function getDTCDates(code: string): Promise<{ published: string; mo
 
 /** Get all DTC slugs with their updatedAt date (for sitemap). */
 export async function getAllDTCSlugsWithDates(): Promise<{ code: string; lastModified: Date }[]> {
-  const codesInIssues = await getAllDTCCodes();
+  const [codesInIssues, thin] = await Promise.all([getAllDTCCodes(), getThinDtcCodes()]);
+
+  // Never advertise a URL we serve with robots noindex — Google reports that
+  // contradiction as its own error and it wastes crawl budget we would rather
+  // spend on the 1,000+ pages that are worth ranking. Same predicate the page
+  // uses, so the two surfaces cannot drift apart.
+  const thinSet = new Set(thin);
+  const indexable = codesInIssues.filter(c => !thinSet.has(c));
 
   const existingDTCs = await prisma.dTCCode.findMany({
-    where: { code: { in: codesInIssues } },
+    where: { code: { in: indexable } },
     select: { code: true, updatedAt: true },
   });
 
@@ -347,11 +415,55 @@ export async function getAllDTCMakeSlugs(): Promise<{ code: string; make: string
     WHERE dtc ~ '^[CPUB]?[0-9A-F]{4,5}$'
     ORDER BY make, dtc
   `;
-  return rows.map(r => ({
-    code: r.dtc.toLowerCase(),
-    make: makeToSlug(r.make),
-  }));
+
+  // The shape regex above says a code LOOKS like a DTC, not that we have one.
+  // /dtc/[code]/[make] 404s any code missing from the library, so without this
+  // the sitemap advertised make pages for codes that can never render. Also
+  // drop the pairs below the content bar, for the same reason the code-level
+  // sitemap does.
+  const [library, thin] = await Promise.all([
+    prisma.dTCCode.findMany({ select: { code: true } }),
+    getThinDtcMakeKeys(),
+  ]);
+  const known = new Set(library.map(d => d.code));
+  const thinSet = new Set(thin);
+
+  return rows
+    .filter(r => known.has(r.dtc.toUpperCase()))
+    .map(r => ({ code: r.dtc.toLowerCase(), make: makeToSlug(r.make) }))
+    .filter(r => !thinSet.has(`${r.code.toUpperCase()}|${r.make}`));
 }
+
+/**
+ * `CODE|make-slug` keys for per-make DTC pages below DTC_MIN_UNIQUE_WORDS.
+ * The make page shows a subset of its parent code page's issues, so it is
+ * always the thinner of the two: 638 of 3,829 fall under the bar even though
+ * only 112 of 1,168 code pages do. Same treatment, same reason.
+ */
+export const getThinDtcMakeKeys = cache(
+  unstable_cache(
+    async (): Promise<string[]> => {
+      const rows = await prisma.$queryRaw<{ code: string; make: string }[]>`
+        SELECT c.code, k.make
+        FROM "KnownIssue" k, unnest(k."dtcCodes") AS c(code)
+        WHERE k.status = 'published'
+        GROUP BY c.code, k.make
+        HAVING SUM(
+          COALESCE(array_length(regexp_split_to_array(
+            trim(
+              COALESCE(k.title, '') || ' ' ||
+              COALESCE(k.description, '') || ' ' ||
+              COALESCE(k.solution, '') || ' ' ||
+              COALESCE(array_to_string(k.symptoms, ' '), '')
+            ), '[[:space:]]+'), 1), 0)
+        ) < ${DTC_MIN_UNIQUE_WORDS}
+      `;
+      return rows.map(r => `${r.code.toUpperCase()}|${makeToSlug(r.make)}`);
+    },
+    ['thin-dtc-make-keys'],
+    { revalidate: 3600 },
+  ),
+);
 
 /** Convert a make name to a URL-safe slug. */
 export function makeToSlug(make: string): string {

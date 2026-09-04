@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes, makeToSlug } from '@/lib/dtc-codes';
+import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes, getThinDtcCodes, makeToSlug } from '@/lib/dtc-codes';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
 import { DiagnosticToolGuidance } from '@/components/known-issues/DiagnosticToolGuidance';
@@ -71,9 +71,18 @@ export async function generateMetadata({
     ? `${data.code} (${data.name}) on ${vehicleList}${moreSuffix} — common causes, repair costs, and per-vehicle fixes from real owner reports.`
     : `${data.code} means "${data.name}." Found on ${data.vehicleCount} vehicle models. Common causes, symptoms, repair costs, and vehicle-specific fixes.`;
 
+  // Thin pages stay live and crawlable but ask not to be indexed. A page
+  // carrying ~73 words of our own text under ~137 words of generic DTC
+  // reference is not something we would defend in a SERP, and Google agreed —
+  // it filed a sample of them as soft 404s. follow:true keeps the link equity
+  // flowing to the vehicle articles they point at. See DTC_MIN_UNIQUE_WORDS;
+  // a page indexes itself once a research wave gives it a second vehicle.
+  const thin = (await getThinDtcCodes()).includes(code.toUpperCase());
+
   return {
     title,
     description,
+    ...(thin ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title,
       description,

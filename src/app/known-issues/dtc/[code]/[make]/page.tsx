@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getDTCWithIssuesForMake, getAllDTCMakeSlugs, slugToMake, makeToSlug, getDTCDates } from '@/lib/dtc-codes';
+import { getDTCWithIssuesForMake, getAllDTCMakeSlugs, slugToMake, makeToSlug, getDTCDates, getThinDtcMakeKeys } from '@/lib/dtc-codes';
 import { TechnicalArticleJsonLd, BreadcrumbJsonLd, FAQJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 
@@ -58,9 +58,15 @@ export async function generateMetadata({
   const title = `${data.code} on ${make}${topModels.length ? ` (${topModels.join(', ')}${moreSuffix})` : ''} — ${data.name}`;
   const description = `${data.code} (${data.name}) on ${make} ${topModels.join(', ')}${moreSuffix} — common causes, model-specific fixes, and repair costs from real owner reports.`;
 
+  // Same content bar as the parent code page. A make page is a subset of its
+  // parent's issues, so it is always the thinner of the two — noindex it when
+  // it falls short, keep it crawlable so its links still carry.
+  const thin = (await getThinDtcMakeKeys()).includes(`${code.toUpperCase()}|${makeSlug}`);
+
   return {
     title,
     description,
+    ...(thin ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title,
       description,
