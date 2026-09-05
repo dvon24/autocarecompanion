@@ -108,9 +108,13 @@ interface KnownIssueCardProps {
    *  internal links to 404s. When omitted (auth-gated surfaces Google
    *  never crawls), all chips link as before. */
   linkableDtcCodes?: string[];
+  /** URL root of the catalog this card renders in ('/known-issues' or
+   *  '/motorcycle-issues'). The related-vehicle links are same-catalog by
+   *  construction (see findRelatedVehiclesForIssues), so they resolve here. */
+  basePath?: string;
 }
 
-export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false, relatedVehicles, linkableDtcCodes }: KnownIssueCardProps) {
+export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false, relatedVehicles, linkableDtcCodes, basePath = '/known-issues' }: KnownIssueCardProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFixModal, setShowFixModal] = useState(false);
@@ -481,7 +485,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               {relatedVehicles.map((rv, i) => (
                 <span key={rv.issueId}>
                   <Link
-                    href={`/known-issues/${rv.slug}#${rv.issueId}`}
+                    href={`${basePath}/${rv.slug}#${rv.issueId}`}
                     className="font-semibold text-[#3B82F6] underline decoration-[#BFDBFE] underline-offset-2 hover:text-[#2563EB] hover:decoration-[#3B82F6]"
                   >
                     {rv.make} {rv.model}

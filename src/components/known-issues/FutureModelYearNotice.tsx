@@ -5,6 +5,8 @@ interface Props {
   vehicleName: string;
   yearRange: { min: number; max: number };
   slug: string;
+  /** Catalog URL root the slug lives under. */
+  basePath?: string;
 }
 
 /**
@@ -37,6 +39,7 @@ export default function FutureModelYearNotice({
   vehicleName,
   yearRange,
   slug,
+  basePath = '/known-issues',
 }: Props) {
   const isNewerThanData = requestedYear > yearRange.max;
   const isOlderThanData = requestedYear < yearRange.min;
@@ -94,7 +97,7 @@ export default function FutureModelYearNotice({
             <p className="text-xs text-amber-700/80 mt-2">
               Already own a {requestedYear} {vehicleName}?{' '}
               <Link
-                href={`/known-issues/${slug}#report`}
+                href={`${basePath}/${slug}#report`}
                 className="underline font-medium hover:text-amber-900"
               >
                 Share your experience

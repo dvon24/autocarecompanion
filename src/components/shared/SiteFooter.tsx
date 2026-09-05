@@ -38,6 +38,7 @@ export function SiteFooter() {
           style={{ fontSize: 13, color: 'var(--slate-500, #64748B)' }}
         >
           <Link href="/known-issues" style={footerLink}>Known Issues</Link>
+          <Link href="/motorcycle-issues" style={footerLink}>Motorcycle Issues</Link>
           <Link href="/known-issues/dtc" style={footerLink}>DTC Lookup</Link>
           <Link href="/drive" style={footerLink}>Drive</Link>
           <Link href="/subscribe" style={footerLink}>Pricing</Link>

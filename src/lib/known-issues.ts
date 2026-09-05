@@ -615,3 +615,18 @@ export const getArticleDates = cache(
 export const getRelatedVehicles = cache(
   unstable_cache(getRelatedVehiclesImpl, ['ki-related-vehicles'], { revalidate: 3600 }),
 );
+
+/** Distinct make names with at least one published issue in a catalog. Drives
+ *  the make-slug index on the make pages and the "this make also builds
+ *  motorcycles" cross-links between catalogs. */
+async function getPublishedMakesImpl(vehicleType: VehicleType = 'car'): Promise<string[]> {
+  const rows = await prisma.knownIssue.findMany({
+    where: { status: 'published', vehicleType },
+    distinct: ['make'],
+    select: { make: true },
+  });
+  return rows.map((r) => r.make).sort((a, b) => a.localeCompare(b));
+}
+export const getPublishedMakes = cache(
+  unstable_cache(getPublishedMakesImpl, ['ki-published-makes'], { revalidate: 3600 }),
+);

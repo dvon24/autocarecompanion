@@ -35,9 +35,11 @@ interface ArticleIssuesListProps {
   relatedByIssueId?: Record<string, RelatedIssueVehicle[]>;
   /** See KnownIssueCard.linkableDtcCodes — pass-through. */
   linkableDtcCodes?: string[];
+  /** See KnownIssueCard.basePath — pass-through. */
+  basePath?: string;
 }
 
-export function ArticleIssuesList({ issues, make, model, initialYear, allYears, relatedByIssueId, linkableDtcCodes }: ArticleIssuesListProps) {
+export function ArticleIssuesList({ issues, make, model, initialYear, allYears, relatedByIssueId, linkableDtcCodes, basePath }: ArticleIssuesListProps) {
   const { selectedVehicle } = useVehicleContext();
   const pathname = usePathname();
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
@@ -263,6 +265,7 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
                   vehicleInfo={vehicleInfo}
                   relatedByIssueId={relatedByIssueId}
                   linkableDtcCodes={linkableDtcCodes}
+                  basePath={basePath}
                 />
               </div>
               {/* Mid-content ad slot — uses Auto Ads (no hand-coded slot id). */}

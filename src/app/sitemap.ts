@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
-import { getAllKnownIssueSlugsWithDates } from '@/lib/known-issues';
+import { getAllKnownIssueSlugsWithDates, makeSlug } from '@/lib/known-issues';
+import { ISSUE_CATALOGS } from '@/lib/known-issues-catalog';
 import { getAllDTCSlugsWithDates, getAllDTCMakeSlugs } from '@/lib/dtc-codes';
 import { getAllSymptomSlugs } from '@/lib/symptoms';
 import { getAllLocaleSlugParams } from '@/lib/i18n';
@@ -214,6 +215,50 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
+  // Non-car catalogs (motorcycles today). Same four page shapes under their
+  // own URL root. Iterates the catalog registry so a future class needs no
+  // sitemap change, and advertises NOTHING for a catalog with no published
+  // rows — not even its index — so an empty catalog can never mint a soft 404.
+  const catalogPages: MetadataRoute.Sitemap = [];
+  for (const catalog of ISSUE_CATALOGS) {
+    if (catalog.vehicleType === 'car') continue;
+    const rows = await prisma.knownIssue.findMany({
+      where: { status: 'published', vehicleType: catalog.vehicleType },
+      select: { make: true, model: true, years: true, category: true, updatedAt: true },
+    });
+    if (rows.length === 0) continue;
+    const root = `${baseUrl}${catalog.basePath}`;
+    const later = (a: Date, b: Date) => (a > b ? a : b);
+    const bySlug = new Map<string, Date>();
+    const byYear = new Map<string, Date>();
+    const byMake = new Map<string, Date>();
+    const byCategory = new Map<string, Date>();
+    for (const row of rows) {
+      const slug = makeSlug(row.make, row.model);
+      bySlug.set(slug, later(row.updatedAt, bySlug.get(slug) ?? row.updatedAt));
+      for (const year of row.years || []) {
+        const key = `${slug}|${year}`;
+        byYear.set(key, later(row.updatedAt, byYear.get(key) ?? row.updatedAt));
+      }
+      byMake.set(row.make, later(row.updatedAt, byMake.get(row.make) ?? row.updatedAt));
+      byCategory.set(row.category, later(row.updatedAt, byCategory.get(row.category) ?? row.updatedAt));
+    }
+    catalogPages.push({ url: root, lastModified: layoutDate, changeFrequency: 'weekly', priority: 0.8 });
+    for (const [slug, lm] of bySlug) {
+      catalogPages.push({ url: `${root}/${slug}`, lastModified: later(lm, layoutDate), changeFrequency: 'monthly', priority: 0.7 });
+    }
+    for (const [key, lm] of byYear) {
+      const [slug, year] = key.split('|');
+      catalogPages.push({ url: `${root}/${slug}?year=${year}`, lastModified: later(lm, layoutDate), changeFrequency: 'monthly', priority: 0.6 });
+    }
+    for (const [category, lm] of byCategory) {
+      catalogPages.push({ url: `${root}/category/${category}`, lastModified: later(lm, layoutDate), changeFrequency: 'monthly', priority: 0.7 });
+    }
+    for (const [make, lm] of byMake) {
+      catalogPages.push({ url: `${root}/make/${make.toLowerCase().replace(/\s+/g, '-')}`, lastModified: later(lm, layoutDate), changeFrequency: 'monthly', priority: 0.8 });
+    }
+  }
+
   // Localized known-issues pages (pt-BR, es, de, fr, ko) — one entry per
   // (locale, slug), plus each locale's landing page.
   const localeParams = getAllLocaleSlugParams();
@@ -255,5 +300,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     });
   }
 
-  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...dtcMakePages, ...symptomPages, ...categoryPages, ...makePages, ...localePages, ...specsPages];
+  return [...staticPages, ...knownIssuesPages, ...yearVariantPages, ...dtcPages, ...dtcMakePages, ...symptomPages, ...categoryPages, ...makePages, ...catalogPages, ...localePages, ...specsPages];
 }
