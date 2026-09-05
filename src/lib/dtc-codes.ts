@@ -73,10 +73,16 @@ export async function getDTCInfo(code: string): Promise<DTCCodeInfo | null> {
   };
 }
 
+// vehicleType: 'car' on every read below — the DTC surface is OBD-II, i.e. automotive. Motorcycle
+// rows carry maker-specific FI codes (Suzuki C41, Honda FI-7) that never match the library, but a
+// bike tagged with a real P-code (a Harley stator issue on P0562) would otherwise mint itself onto
+// the car code page and into the car sitemap. See KnownIssue.vehicleType.
+const CAR = { vehicleType: 'car' } as const;
+
 /** Get all DTC codes that appear in our known issues data. */
 export async function getAllDTCCodes(): Promise<string[]> {
   const rows = await prisma.knownIssue.findMany({
-    where: { status: 'published' },
+    where: { status: 'published', ...CAR },
     select: { dtcCodes: true },
   });
   const codes = new Set<string>();
@@ -163,7 +169,7 @@ export const getThinDtcCodes = cache(
       const rows = await prisma.$queryRaw<{ code: string }[]>`
         SELECT c.code
         FROM "KnownIssue" k, unnest(k."dtcCodes") AS c(code)
-        WHERE k.status = 'published'
+        WHERE k.status = 'published' AND k."vehicleType" = 'car'
         GROUP BY c.code
         HAVING SUM(
           COALESCE(array_length(regexp_split_to_array(
@@ -320,6 +326,7 @@ async function getDTCWithIssuesImpl(code: string): Promise<DTCWithIssues | null>
     where: {
       dtcCodes: { has: upper },
       status: 'published',
+      ...CAR,
     },
     orderBy: { reportCount: 'desc' },
   });
@@ -367,6 +374,7 @@ async function getDTCWithIssuesForMakeImpl(
       dtcCodes: { has: upper },
       status: 'published',
       make: { equals: make, mode: 'insensitive' },
+      ...CAR,
     },
     orderBy: { reportCount: 'desc' },
   });
@@ -409,6 +417,7 @@ export async function getAllDTCMakeSlugs(): Promise<{ code: string; make: string
       SELECT make, unnest("dtcCodes") as dtc
       FROM "KnownIssue"
       WHERE status = 'published'
+        AND "vehicleType" = 'car'
         AND "dtcCodes" IS NOT NULL
         AND array_length("dtcCodes", 1) > 0
     ) sub
@@ -446,7 +455,7 @@ export const getThinDtcMakeKeys = cache(
       const rows = await prisma.$queryRaw<{ code: string; make: string }[]>`
         SELECT c.code, k.make
         FROM "KnownIssue" k, unnest(k."dtcCodes") AS c(code)
-        WHERE k.status = 'published'
+        WHERE k.status = 'published' AND k."vehicleType" = 'car'
         GROUP BY c.code, k.make
         HAVING SUM(
           COALESCE(array_length(regexp_split_to_array(
@@ -473,7 +482,7 @@ export function makeToSlug(make: string): string {
 /** Convert a make slug back to a display name (looks up the actual case). */
 export async function slugToMake(slug: string): Promise<string | null> {
   const rows = await prisma.knownIssue.findMany({
-    where: { status: 'published' },
+    where: { status: 'published', ...CAR },
     select: { make: true },
     distinct: ['make'],
   });

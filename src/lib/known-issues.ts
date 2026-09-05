@@ -97,19 +97,29 @@ export function makeSlug(make: string, model: string): string {
     .replace(/(^-|-$)/g, '');
 }
 
+/**
+ * Which catalog a read serves. Every loader below takes this and defaults to
+ * 'car', so the automotive routes are unchanged and the motorcycle routes
+ * (/motorcycle-issues/*) pass 'motorcycle' explicitly. The two catalogs share
+ * make names (Honda, BMW, Suzuki, Triumph build both), so a read that forgets
+ * the filter resolves a bike into a car page or vice versa. Never query
+ * KnownIssue by make/model without it.
+ */
+export type VehicleType = 'car' | 'motorcycle';
+
 /** Parse a slug back to {make, model}. Returns null if not found. */
-export async function parseSlug(slug: string): Promise<{ make: string; model: string } | null> {
-  const all = await getAllKnownIssueSlugs();
+export async function parseSlug(slug: string, vehicleType: VehicleType = 'car'): Promise<{ make: string; model: string } | null> {
+  const all = await getAllKnownIssueSlugs(vehicleType);
   return all.find(s => s.slug === slug) || null;
 }
 
 /** Get all unique slugs for static generation. */
-async function getAllKnownIssueSlugsImpl(): Promise<{ slug: string; make: string; model: string }[]> {
-  // vehicleType: 'car' — this drives static generation AND the sitemap's per-vehicle article URLs.
-  // Motorcycles are a separate catalog (KnownIssue.vehicleType, added 2026-08-25) and get their own
-  // surfaces; a bike slugged in here would be built and advertised as an automotive article.
+async function getAllKnownIssueSlugsImpl(vehicleType: VehicleType = 'car'): Promise<{ slug: string; make: string; model: string }[]> {
+  // This drives static generation AND the sitemap's per-vehicle article URLs, so the catalog
+  // filter is load-bearing: a bike slugged into the car list would be built and advertised as an
+  // automotive article. (unstable_cache keys on the argument, so the two catalogs never share an entry.)
   const distinct = await prisma.knownIssue.findMany({
-    where: { status: 'published', vehicleType: 'car' },
+    where: { status: 'published', vehicleType },
     distinct: ['make', 'model'],
     select: { make: true, model: true },
   });
@@ -140,12 +150,13 @@ function maxDateString(...dates: string[]): string {
 }
 
 /** Get the earliest createdAt and latest updatedAt for a make+model's published issues. */
-async function getArticleDatesImpl(make: string, model: string): Promise<{ published: string; modified: string }> {
+async function getArticleDatesImpl(make: string, model: string, vehicleType: VehicleType = 'car'): Promise<{ published: string; modified: string }> {
   const result = await prisma.knownIssue.aggregate({
     where: {
       make: { equals: make, mode: 'insensitive' },
       model: { equals: model, mode: 'insensitive' },
       status: 'published',
+      vehicleType,
     },
     _min: { createdAt: true },
     _max: { updatedAt: true },
@@ -163,9 +174,9 @@ async function getArticleDatesImpl(make: string, model: string): Promise<{ publi
 /** Same shape as getArticleDates but scoped to a category — used by the
  *  /known-issues/category/[category] landing pages so their JSON-LD +
  *  sitemap entries advertise fresh dateModified. */
-export async function getCategoryDates(category: string): Promise<{ published: string; modified: string }> {
+export async function getCategoryDates(category: string, vehicleType: VehicleType = 'car'): Promise<{ published: string; modified: string }> {
   const result = await prisma.knownIssue.aggregate({
-    where: { status: 'published', category },
+    where: { status: 'published', category, vehicleType },
     _min: { createdAt: true },
     _max: { updatedAt: true },
   });
@@ -178,9 +189,9 @@ export async function getCategoryDates(category: string): Promise<{ published: s
 
 /** Same shape as getArticleDates but scoped to a make — used by the
  *  /known-issues/make/[make] landing pages. */
-export async function getMakeDates(make: string): Promise<{ published: string; modified: string }> {
+export async function getMakeDates(make: string, vehicleType: VehicleType = 'car'): Promise<{ published: string; modified: string }> {
   const result = await prisma.knownIssue.aggregate({
-    where: { status: 'published', make: { equals: make, mode: 'insensitive' } },
+    where: { status: 'published', make: { equals: make, mode: 'insensitive' }, vehicleType },
     _min: { createdAt: true },
     _max: { updatedAt: true },
   });
@@ -192,9 +203,9 @@ export async function getMakeDates(make: string): Promise<{ published: string; m
 }
 
 /** Get all slugs with their latest updatedAt date (for sitemap). */
-export async function getAllKnownIssueSlugsWithDates(): Promise<{ slug: string; make: string; model: string; lastModified: Date }[]> {
+export async function getAllKnownIssueSlugsWithDates(vehicleType: VehicleType = 'car'): Promise<{ slug: string; make: string; model: string; lastModified: Date }[]> {
   const rows = await prisma.knownIssue.findMany({
-    where: { status: 'published' },
+    where: { status: 'published', vehicleType },
     select: { make: true, model: true, updatedAt: true },
   });
 
@@ -224,12 +235,13 @@ export async function getAllKnownIssueSlugsWithDates(): Promise<{ slug: string; 
 const severityOrder: Record<string, number> = { high: 0, medium: 1, low: 2 };
 
 /** Get all published issues for a make+model across ALL years. */
-async function getKnownIssuesForArticleImpl(make: string, model: string): Promise<KnownIssue[]> {
+async function getKnownIssuesForArticleImpl(make: string, model: string, vehicleType: VehicleType = 'car'): Promise<KnownIssue[]> {
   const rows = await prisma.knownIssue.findMany({
     where: {
       make: { equals: make, mode: 'insensitive' },
       model: { equals: model, mode: 'insensitive' },
       status: 'published',
+      vehicleType,
     },
   });
 
@@ -260,13 +272,15 @@ export function getYearRange(issues: KnownIssue[]): { min: number; max: number }
 
 // --- Related vehicles (for internal cross-linking) ---
 
-async function getRelatedVehiclesImpl(make: string, model: string, limit = 6): Promise<{ slug: string; make: string; model: string; issueCount: number }[]> {
-  // Get same-make vehicles (siblings)
+async function getRelatedVehiclesImpl(make: string, model: string, limit = 6, vehicleType: VehicleType = 'car'): Promise<{ slug: string; make: string; model: string; issueCount: number }[]> {
+  // Get same-make vehicles (siblings) — within the same catalog, or a Honda
+  // Accord's sidebar offers the Gold Wing.
   const sameMake = await prisma.knownIssue.findMany({
     where: {
       make: { equals: make, mode: 'insensitive' },
       NOT: { model: { equals: model, mode: 'insensitive' } },
       status: 'published',
+      vehicleType,
     },
     select: { make: true, model: true },
   });
@@ -375,6 +389,7 @@ export async function findRelatedVehiclesForIssues(
   excludeMake: string,
   excludeModel: string,
   perIssueLimit = 3,
+  vehicleType: VehicleType = 'car',
 ): Promise<Map<string, RelatedIssueVehicle[]>> {
   const result = new Map<string, RelatedIssueVehicle[]>();
   for (const i of issues) result.set(i.id, []);
@@ -446,6 +461,9 @@ export async function findRelatedVehiclesForIssues(
         ],
       },
       status: 'published',
+      // Same catalog only. DTC and engine matching are what cross-link a
+      // Harley stator failure tagged P0562 onto car pages as "also affects".
+      vehicleType,
     },
     select: {
       id: true,
