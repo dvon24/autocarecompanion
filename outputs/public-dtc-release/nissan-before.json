@@ -1,0 +1,244 @@
+{
+  "capturedAt": "2026-09-12T12:09:36.907Z",
+  "issue": {
+    "id": "nissan-350z-steering-lock-nats-2003",
+    "make": "Nissan",
+    "model": "350Z",
+    "years": [
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009
+    ],
+    "trims": [],
+    "engines": [],
+    "category": "electrical",
+    "title": "Steering Lock Module and NATS Immobilizer Failure",
+    "description": "The 2003-2009 Nissan 350Z experiences failures of the NATS (Nissan Anti-Theft System) immobilizer and steering lock module. The NATS antenna ring around the ignition cylinder fails to communicate with the key transponder, causing intermittent no-start conditions. The ECU can enter lockout mode after repeated failed start attempts. Additionally, the mechanical steering lock can bind, preventing key insertion or rotation. These issues leave the vehicle completely inoperable until repaired. The NATS system requires dealer-level diagnostic equipment (Nissan CONSULT) for reprogramming, making roadside repair impossible.",
+    "solution": "",
+    "severity": "high",
+    "confidence": "medium",
+    "symptoms": [
+      "Engine cranks but does not start (NATS lockout)",
+      "Security indicator light flashing rapidly on dashboard",
+      "Key will not turn in ignition cylinder",
+      "Steering wheel locked and cannot be released",
+      "Intermittent starting failures that worsen over time",
+      "Whining noise near driver fuse box area"
+    ],
+    "affectedSystems": [],
+    "dtcCodes": [
+      "P1610",
+      "P1614"
+    ],
+    "estimatedCostLow": 300,
+    "estimatedCostHigh": 1900,
+    "citations": [
+      {
+        "url": "https://www.nissan-techinfo.com/en-US/TSB/TSB-NTB06-071",
+        "type": "tsb",
+        "title": "Nissan TSB NTB06-071: 2003-2009 350Z NATS Immobilizer and Steering Lock Module Issues"
+      },
+      {
+        "url": "https://www.youtube.com/watch?v=7Q2Jxv6x4qk",
+        "type": "video",
+        "title": "EricTheCarGuy - Nissan 350Z No Start Diagnosis and NATS Immobilizer Repair"
+      }
+    ],
+    "communityRecommendations": [
+      {
+        "type": "part",
+        "content": "OEM-quality starter motor for reliable engine cranking",
+        "partName": "Starter Motor",
+        "partBrand": "Denso"
+      },
+      {
+        "type": "part",
+        "content": "Remanufactured starter with gear reduction for improved cranking performance",
+        "partName": "Remanufactured Starter Motor",
+        "partBrand": "Remy"
+      },
+      {
+        "type": "part",
+        "content": "Automotive relay replacement set for common relay failures",
+        "partName": "Automotive Relay 5-Pin 12V",
+        "partBrand": "Bosch"
+      },
+      {
+        "type": "part",
+        "content": "Digital multimeter for diagnosing fuse, relay, and module electrical faults",
+        "partName": "Digital Multimeter",
+        "partBrand": "Innova"
+      }
+    ],
+    "humanApproved": false,
+    "reportCount": 0,
+    "status": "published",
+    "lastReportedByOwners": "",
+    "reviewedOn": "",
+    "createdAt": "2026-03-14T13:30:23.751Z",
+    "updatedAt": "2026-09-08T17:48:39.780Z",
+    "typicalMileageHigh": null,
+    "typicalMileageLow": null,
+    "source": "ai-researched",
+    "relatedIssueIds": [],
+    "fixParts": [],
+    "contentUpdatedOn": "",
+    "contentUpdateSummary": "",
+    "vehicleType": "car",
+    "diagnosticSteps": [
+      {
+        "step": 1,
+        "action": "Safety: No high-voltage, fuel-pressure, SRS or hot-exhaust hazards. Disconnect the battery negative before unplugging or back-probing the BCM, antenna-ring or steering-lock connectors, and reconnect before any start attempt. Never leave the vehicle in gear with the steering column unlocked on a slope while testing."
+      },
+      {
+        "step": 2,
+        "tool": "none (visual)",
+        "action": "Sit in the car, insert the key (or bring the Intelligent Key inside on 2007-2008 cars) and note exactly what happens: does the key turn freely, does the steering wheel release, does the engine crank, and what is the red security indicator doing (steady, slow blink, rapid flash)? Try gently rocking the steering wheel left-right while turning the key.",
+        "expect": "Key turns, wheel releases, engine cranks. A rapid-flashing security light with crank-no-start isolates the fault to the NATS side (key / antenna ring / BCM). A key that will not turn or a wheel that will not release even while rocking the wheel isolates it to the mechanical steering-lock module, which this issue also covers.",
+        "ifFail": "If rocking the wheel frees the lock, the steering-lock module is binding and intermittent; that is the mechanical half of this issue (steering lock replacement). If the key turns and it cranks but the light flashes, continue with the NATS steps below."
+      },
+      {
+        "step": 3,
+        "tool": "none (visual)",
+        "action": "Remove every other key, transponder tag, and metal object from the key ring, install a fresh battery in the fob if it has one, then attempt a start with the primary key. Repeat with the spare registered key.",
+        "expect": "Engine starts with at least one registered key.",
+        "ifFail": "Starts only on the spare: the primary key's transponder is damaged or an unregistered clone, so the fix is a properly registered key, not a car repair. Starts on neither, or only after many tries: the fault is on the vehicle side (antenna ring, wiring, fuse, BCM, or ECU lockout) and the vehicle steps below apply."
+      },
+      {
+        "step": 4,
+        "tool": "basic OBD-II scanner",
+        "action": "Read all stored codes in the ECM and BCM/NATS module. Note whether P1610 (NATS lock mode) is stored alongside P1614. If P1610 is present, perform the lock-mode escape from the service manual (cycling the ignition ON and OFF the specified number of times with the registered key, with no start attempts) and try again.",
+        "expect": "P1614 only, or P1614 plus P1610 that clears and the car starts after the escape procedure.",
+        "ifFail": "If the car starts after the lock-mode escape, the ECU had merely locked out after repeated failed reads; the underlying intermittent read fault (antenna ring or key) still needs steps 4-6. If P1614 keeps resetting immediately with a good registered key, the vehicle-side NATS chain is faulty."
+      },
+      {
+        "step": 5,
+        "tool": "DMM",
+        "action": "Pull and inspect the NATS/BCM and ignition-related fuses listed in the owner's manual fuse chart and check each for continuity. Reinstall and check for battery voltage on both sides of each fuse with the key ON.",
+        "expect": "Fuses intact and battery voltage present on both sides with key ON.",
+        "ifFail": "A blown fuse or no feed means the NATS circuit is unpowered; find the short or open before condemning the antenna ring or BCM. Replacing the fuse alone without a cause is not a fix."
+      },
+      {
+        "step": 6,
+        "tool": "DMM",
+        "action": "Remove the steering-column lower shroud and inspect the NATS antenna ring around the ignition cylinder and its connector for a loose plug, damaged coil, or chafed wiring. With the battery disconnected, check continuity of each antenna-ring wire from its connector to the BCM connector pin per the wiring diagram, and check for shorts to ground; compare the coil against the service-manual spec.",
+        "expect": "Connector fully seated, wiring continuous with no shorts, antenna coil within the service-manual spec.",
+        "ifFail": "An open, short, or out-of-spec coil confirms the antenna ring / harness as the cause of the failed key read; the fix is the antenna ring or harness repair, and the vehicle usually starts without reprogramming once the key is read again."
+      },
+      {
+        "step": 7,
+        "tool": "dealer scan tool (Nissan CONSULT)",
+        "action": "With keys and antenna wiring proven good, connect a Nissan CONSULT (or equivalent tool with NATS access), run NATS self-diagnosis and read the key-registration count and BCM live data during a start attempt with a known-good registered key.",
+        "expect": "BCM reports the key ID received and registered; ECM/BCM communication OK.",
+        "ifFail": "If the BCM still reports no key ID while antenna and key are proven, the BCM/IMMU is the failed component; if the BCM reads the key but the ECM rejects it, the ECM-BCM link or ECM is at fault. Only now does the cost range of this issue (BCM, steering-lock unit, and reprogramming) apply."
+      }
+    ],
+    "diagnosticStepsStatus": "pending_review"
+  },
+  "triage": [
+    {
+      "id": "cmtt31a5a0000x8dkiesi5sp0",
+      "code": "P1610",
+      "make": "Nissan",
+      "intro": "On Nissan, P1610 is NATS lock mode: the car has seen repeated start attempts with a key the immobilizer could not authenticate, so it cranks but will not run and the security indicator keeps flashing. The one documented Nissan failure is the 2003-2009 350Z steering lock module and NATS immobilizer, where a failing antenna ring, a lock-mode ECM, or a binding steering lock all present as a no-start; the most common real-world finding is simple lock mode after a weak-battery, battery-swap, or wrong-key episode, with the antenna amp and steering lock unit behind the cases that recur.",
+      "firstCheck": "Turn the ignition to ON with the registered spare key and watch the security indicator. If it goes out, the immobilizer accepted the key and the original key or lock mode is the problem - run the 3-cycle ON/OFF release. If it keeps flashing with both keys, the fault is downstream of the key (antenna amp, wiring, BCM/ECM). If the key will not turn or the wheel stays locked, it is the steering lock module, not NATS.",
+      "branches": [
+        {
+          "why": "The only documented Nissan P1610 failure; it bundles the NATS antenna-amp/ECM lockout with the mechanical steering lock binding, and the two are split by whether the key turns and whether the indicator goes out with a registered key.",
+          "issueId": "nissan-350z-steering-lock-nats-2003",
+          "condition": "2003-2009 350Z, cranks-no-start with the security indicator flashing rapidly, or key will not turn / steering wheel locked, intermittent and worsening over time",
+          "issueTitle": "Steering Lock Module and NATS Immobilizer Failure"
+        }
+      ],
+      "scanToolNotes": "P1610 is stored in the ECM once lock mode has been entered and stays until it is released, so a code alone does not identify the component. Read the BCM as well as the ECM with a Nissan-capable tool; codes that return on every key cycle after the release, with a registered key, are the ones that discriminate. Key registration and ECM/BCM pairing require Nissan CONSULT.",
+      "sourceIssueIds": [
+        "nissan-350z-steering-lock-nats-2003"
+      ],
+      "status": "pending_review",
+      "createdAt": "2026-09-08T17:48:35.614Z",
+      "updatedAt": "2026-09-08T17:48:35.614Z"
+    },
+    {
+      "id": "cmtt31dxo0002x8dknscc23fa",
+      "code": "P1614",
+      "make": "Nissan",
+      "intro": "On Nissan, P1614 (NATS signal error) shows up almost exclusively as a crank-but-no-start with the red security light flashing, and on the 2003-2009 350Z it is entangled with a second, mechanical failure: the steering-lock module that binds so the key will not turn or the wheel will not release. The single documented Nissan failure for this code is the 350Z NATS antenna/steering-lock issue; most owner-side cases turn out to be the antenna ring or the key rather than the BCM.",
+      "firstCheck": "Try the spare registered key with all other keys and metal off the ring, after fitting a fresh fob battery. Starts on the spare: the primary key's transponder is the fault. Starts on neither: the fault is on the vehicle (antenna ring, fuse/wiring, lock-mode, BCM or steering-lock module) and belongs to the 350Z issue procedure.",
+      "branches": [
+        {
+          "why": "That is the mechanical steering-lock half of the documented 350Z failure (key will not turn, steering wheel locked, intermittent starting that worsens over time).",
+          "issueId": "nissan-350z-steering-lock-nats-2003",
+          "condition": "Key will not turn, or the steering wheel stays locked even while rocking it; the car may free up after wiggling the wheel and then start normally",
+          "issueTitle": "Steering Lock Module and NATS Immobilizer Failure"
+        },
+        {
+          "why": "Matches the documented antenna-ring-to-key communication failure that drives the ECU into lockout after repeated failed reads; the antenna ring and its harness are the first vehicle-side suspects before the BCM.",
+          "issueId": "nissan-350z-steering-lock-nats-2003",
+          "condition": "Engine cranks freely, security light flashes rapidly, no registered key works, and the code returns after a lock-mode escape",
+          "issueTitle": "Steering Lock Module and NATS Immobilizer Failure"
+        }
+      ],
+      "scanToolNotes": "P1614 sets on the BCM/NATS side and is usually read from the ECM as a NATS code; a generic OBD-II reader may only show the ECM copy. Check for a companion P1610 (lock mode), which changes the first action from component testing to the ignition-cycle escape procedure. Freeze-frame data is not meaningful for immobilizer codes.",
+      "sourceIssueIds": [
+        "nissan-350z-steering-lock-nats-2003"
+      ],
+      "status": "pending_review",
+      "createdAt": "2026-09-08T17:48:40.524Z",
+      "updatedAt": "2026-09-08T17:48:40.524Z"
+    }
+  ],
+  "library": [
+    {
+      "code": "P1610",
+      "name": "NATS (Nissan Anti-Theft System) Malfunction",
+      "system": "Electrical",
+      "description": "This is a Nissan-specific code related to the NATS (Nissan Anti-Theft System) immobilizer, the security system that requires a recognized key or transponder before the engine is allowed to start and run. The code sets when the engine control module and the immobilizer (BCM/IMMU) cannot properly communicate or fail to authenticate the key. When this happens, the system blocks fuel and/or spark as an anti-theft measure, so the engine may crank but not start, often with a flashing security light. It generally points to a key, immobilizer, or communication issue rather than a mechanical engine fault.",
+      "commonCauses": [
+        "Unrecognized, damaged, or incorrectly programmed key",
+        "Weak key fob battery or worn transponder",
+        "Faulty immobilizer antenna ring around the ignition",
+        "Communication fault between the ECM and BCM/immobilizer",
+        "Failed or corrupted body control module (BCM)",
+        "Wiring or connector problems in the security circuit",
+        "ECM not properly registered to the immobilizer after replacement"
+      ],
+      "severity": "high",
+      "createdAt": "2026-03-14T14:14:22.259Z",
+      "updatedAt": "2026-06-09T15:18:56.360Z"
+    },
+    {
+      "code": "P1614",
+      "name": "NATS Signal Error",
+      "system": "Electrical",
+      "description": "This is a Nissan/Infiniti-specific code meaning the immobilizer (NATS anti-theft) system could not properly read the signal from the key's transponder chip — essentially a chain-of-communication error between the key, immobilizer antenna, and engine computer. Because the system can't confirm an authorized key, it blocks the engine from starting as an anti-theft measure, so the engine cranks but won't fire. It usually points to the key, the antenna ring, or wiring rather than the engine itself.",
+      "commonCauses": [
+        "Unprogrammed, damaged, or cheap aftermarket key/transponder",
+        "Weak or dead key fob battery",
+        "Faulty immobilizer antenna ring around the ignition",
+        "Blown immobilizer-related fuse",
+        "Damaged or loose wiring/connectors in the NATS circuit",
+        "Interference from a second key or metal object near the key",
+        "Faulty immobilizer control unit or BCM"
+      ],
+      "severity": "high",
+      "createdAt": "2026-03-14T14:14:22.441Z",
+      "updatedAt": "2026-06-09T15:18:22.646Z"
+    }
+  ],
+  "memberships": [
+    {
+      "id": "nissan-350z-steering-lock-nats-2003",
+      "make": "Nissan",
+      "model": "350Z",
+      "dtcCodes": [
+        "P1610",
+        "P1614"
+      ],
+      "status": "published"
+    }
+  ]
+}

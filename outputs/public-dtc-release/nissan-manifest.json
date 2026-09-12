@@ -1,0 +1,200 @@
+{
+  "release": "nissan-nats-2026-09-12",
+  "approvedScope": "User approved publishing the reviewed first DTC content slice; no Hub, billing, account or other research-wave changes.",
+  "beforeSha256": "f06f4e927294d2f02b4ba87db3f8b46c51716156520bcb68103f1e567adbf440",
+  "issueId": "nissan-350z-steering-lock-nats-2003",
+  "issue": {
+    "title": "NATS key-authentication no-start: lock mode or a key-read fault",
+    "description": "The immobilizer checks the registered ignition key before permitting a start. A NATS lock-mode code and a key-read code describe different stages of that check, not a confirmed failed part. Interference, key identification and antenna-circuit faults need to be distinguished. A mechanical key-turning problem is a separate branch.",
+    "solution": "First rule out key interference using the owner’s manual. Have an authorized dealer or qualified Nissan specialist distinguish P1610 lock mode from P1614 key-read failure. On 2005-2008 vehicles with P1610 as the only NATS code, check the battery under NTB10-107 before immobilizer parts diagnosis. Otherwise follow the matching key, antenna and circuit tests. Repair the confirmed fault and perform registration only when required, then verify starting. Bring all keys. A key that will not turn needs a separate mechanical inspection.",
+    "symptoms": [
+      "Engine will not start with a registered key",
+      "Security indicator remains on with ignition ON",
+      "Intermittent key-authentication no-start"
+    ],
+    "diagnosticSteps": [
+      {
+        "step": 1,
+        "action": "Safety: Keep owner checks outside the steering-column wiring. Do not force a key or probe airbag connectors. Column and electrical testing belongs with a qualified technician using the exact-year Nissan precautions.",
+        "sourceUrl": "https://www.350z.se/fsm/coupe/2008_Coupe%2BRoadster/BL.pdf"
+      },
+      {
+        "step": 2,
+        "tool": "Observation and your owner’s manual",
+        "action": "Note whether the key turns, whether the engine cranks, and the ignition position when the security light is on.",
+        "expect": "Blinking with the ignition OFF, LOCK or ACC is normal; it is not a failed-part diagnosis.",
+        "ifFail": "If the key will not turn, arrange a separate key/lock inspection. If it turns but the engine will not start, continue below.",
+        "sourceUrl": "https://owners.nissanusa.com/content/techpub/ManualsAndGuides/ZCoupe/2008/2008-ZCoupe-owner-manual.pdf"
+      },
+      {
+        "step": 3,
+        "tool": "Registered ignition key and registered spare, if available",
+        "action": "Separate other transponder keys and toll/payment tags from the ignition key. Follow the interference-restart instructions in your vehicle’s owner’s manual and note whether the registered spare behaves differently.",
+        "expect": "Starting after removing interference can avoid an unnecessary parts purchase.",
+        "ifFail": "If neither key starts the engine, stop repeated attempts and arrange diagnosis. That result alone does not prove an antenna or control-unit failure.",
+        "sourceUrl": "https://owners.nissanusa.com/content/techpub/ManualsAndGuides/ZCoupe/2008/2008-ZCoupe-owner-manual.pdf"
+      },
+      {
+        "step": 4,
+        "tool": "Nissan CONSULT or confirmed equivalent ECM and NATS coverage",
+        "action": "Technician: save the complete fault report and identify which module reports each fault before clearing anything. Confirm the exact-year NATS diagnostic result.",
+        "expect": "P1610 identifies lock mode; P1614 identifies a key-ID reception problem. Neither names the part to buy.",
+        "ifFail": "If other faults are present, follow their appropriate diagnostic branches rather than assuming every no-start is caused by the antenna.",
+        "sourceUrl": "https://www.350z.se/fsm/coupe/2008_Coupe%2BRoadster/BL.pdf"
+      },
+      {
+        "action": "Technician: on a 2005-2008 no-start with P1610 as the only NATS code, follow NTB10-107 battery voltage/state-of-charge testing and service the battery if required. An unloaded voltage reading alone can miss the problem. Confirm starting after the directed fault clearing. Other NATS codes or an unresolved no-start need the applicable factory diagnosis. The bulletin says that if the security indicator is off during or after cranking, follow non-NATS no-start diagnosis instead of replacing NATS components.",
+        "tool": "Nissan-specified GR-8 battery test/service equipment or validated applicable equivalent",
+        "sourceUrl": "https://charm.li/Nissan-Datsun/2006/350Z%20V6-3.5L%20%28VQ35DE%29/Repair%20and%20Diagnosis/Starting%20and%20Charging/Technical%20Service%20Bulletins/By%20Symptom/Customer%20Interest/Antitheft%20System%20-%20Engine%20No%20Start%2FDTC%20P1610%20Set/",
+        "step": 5
+      },
+      {
+        "step": 6,
+        "tool": "Exact-year Nissan service information",
+        "action": "Technician: for confirmed P1610, use the factory lock-mode recovery procedure with a registered key. For confirmed P1614, inspect antenna installation and follow the key-read circuit diagnosis.",
+        "expect": "The lock-mode branch and key-read branch are separate; successful starting after recovery is recorded rather than treated as proof of a failed module.",
+        "ifFail": "If starting does not recover, continue the exact factory diagnostic path. Do not buy a steering lock from P1610 or P1614 alone.",
+        "sourceUrl": "https://www.350z.se/fsm/coupe/2008_Coupe%2BRoadster/BL.pdf"
+      },
+      {
+        "step": 7,
+        "tool": "Factory wiring diagram and specified electrical test equipment",
+        "action": "Technician: verify antenna installation, power, signal and ground using the procedure matching the year and connector. Repair a confirmed connector or wiring fault, or replace the component isolated by the completed tests.",
+        "expect": "A measured circuit fault is distinguished from a key or module fault. This summary does not substitute generic battery-voltage or coil-resistance values for the factory checks.",
+        "ifFail": "If results or diagram labels are unclear, obtain the correct service information before a replacement decision. Do not guess from a code or a failed spare-key attempt.",
+        "sourceUrl": "https://www.350z.se/fsm/coupe/2008_Coupe%2BRoadster/BL.pdf"
+      },
+      {
+        "step": 8,
+        "tool": "Nissan-capable registration equipment when the repair requires it",
+        "action": "After the confirmed repair, complete any required key registration or control-unit initialization and verify starting with the owner’s registered keys. Bring all keys to the service visit.",
+        "expect": "Starting is restored and the relevant fault does not recur during verification.",
+        "ifFail": "If it returns, preserve the new fault report and continue diagnosis; do not treat code clearing as a repair.",
+        "sourceUrl": "https://owners.nissanusa.com/content/techpub/ManualsAndGuides/ZCoupe/2008/2008-ZCoupe-owner-manual.pdf"
+      }
+    ],
+    "diagnosticStepsStatus": "published",
+    "fixParts": [
+      {
+        "component": "Interstate MTP-35 Group 35 flooded starting battery",
+        "oemPartNumber": null,
+        "aftermarketXref": ["Interstate MTP-35"],
+        "verified": true,
+        "note": "2005-2008 Nissan 350Z 3.5L, only if NTB10-107 testing establishes replacement is required; confirm original tray, hold-down and polarity. Manufacturer suggested retail price $224.95 USD when reviewed September 12, 2026; local price and stock require store selection. Not a universal no-start repair.",
+        "priceLow": 224.95,
+        "priceHigh": 224.95,
+        "buyLinks": [
+          {
+            "url": "https://www.interstatebatteries.com/products/mtp-35",
+            "vendor": "Interstate Batteries",
+            "linkType": "product",
+            "verified": true
+          }
+        ],
+        "fitment": {
+          "years": [
+            2005,
+            2006,
+            2007,
+            2008
+          ],
+          "engines": [
+            "3.5L"
+          ]
+        },
+        "provenance": "Nissan NTB10-107 battery-service branch; Interstate MTP-35 live product specifications and 2005–2008 350Z application list checked 2026-09-12."
+      }
+    ],
+    "citations": [
+      {
+        "type": "manual",
+        "title": "Nissan 350Z 2008 owner manual: immobilizer and security indicator (2-19/2-20)",
+        "url": "https://owners.nissanusa.com/content/techpub/ManualsAndGuides/ZCoupe/2008/2008-ZCoupe-owner-manual.pdf"
+      },
+      {
+        "type": "manual",
+        "title": "Nissan 350Z 2008 factory manual: NATS code definitions and diagnosis, BL-134–146 (mirror)",
+        "url": "https://www.350z.se/fsm/coupe/2008_Coupe%2BRoadster/BL.pdf"
+      },
+      {
+        "type": "tsb",
+        "title": "Nissan NTB10-107: 2005–2008 no-start with P1610 as the only NATS code (reprint)",
+        "url": "https://charm.li/Nissan-Datsun/2006/350Z%20V6-3.5L%20%28VQ35DE%29/Repair%20and%20Diagnosis/Starting%20and%20Charging/Technical%20Service%20Bulletins/By%20Symptom/Customer%20Interest/Antitheft%20System%20-%20Engine%20No%20Start%2FDTC%20P1610%20Set/"
+      }
+    ],
+    "affectedSystems": [
+      "Immobilizer",
+      "Key authentication"
+    ],
+    "communityRecommendations": [],
+    "estimatedCostLow": null,
+    "estimatedCostHigh": null,
+    "reviewedOn": "2026-09-12",
+    "contentUpdatedOn": "2026-09-12",
+    "contentUpdateSummary": "Separated immobilizer lock mode from key-read faults; added diagnosis before replacement, corrected source links, and scoped a battery option to the tested 2005–2008 P1610-only branch."
+  },
+  "triage": [
+    {
+      "code": "P1610",
+      "make": "Nissan",
+      "status": "published",
+      "intro": "On the reviewed 350Z branches, P1610 means the immobilizer is in lock mode. It does not prove the key reader, steering lock or control unit has failed.",
+      "firstCheck": "Record whether the key turns and engine cranks, plus the ignition position when the security light is on. Separate other transponder keys or toll/payment tags and follow your exact owner’s manual. A no-start on both keys is not a component verdict. For 2005-2008 with P1610 as the only NATS code, ask the technician to apply NTB10-107 battery testing before buying immobilizer components.",
+      "branches": [
+        {
+          "issueId": "nissan-350z-steering-lock-nats-2003",
+          "issueTitle": "NATS key-authentication no-start: lock mode or a key-read fault",
+          "condition": "350Z no-start with confirmed NATS lock mode; exact year and key system checked",
+          "why": "Use the lock-mode branch before deciding whether further key or circuit diagnosis is needed."
+        }
+      ],
+      "sourceIssueIds": [
+        "nissan-350z-steering-lock-nats-2003"
+      ],
+      "scanToolNotes": "Use confirmed Nissan ECM and NATS diagnostic coverage. Reading an engine code with a basic scanner does not establish NATS test or registration capability. Preserve all faults and use the exact-year service procedure."
+    },
+    {
+      "code": "P1614",
+      "make": "Nissan",
+      "status": "published",
+      "intro": "On the reviewed 350Z branches, P1614 means the immobilizer is not receiving the ignition key’s identification. Key interference, the key and the antenna circuit must be separated before choosing a repair.",
+      "firstCheck": "Record whether the key turns and engine cranks, plus the ignition position when the security light is on. Separate other transponder keys or toll/payment tags and follow your exact owner’s manual. A no-start on both keys is not a component verdict.",
+      "branches": [
+        {
+          "issueId": "nissan-350z-steering-lock-nats-2003",
+          "issueTitle": "NATS key-authentication no-start: lock mode or a key-read fault",
+          "condition": "350Z no-start with confirmed key-ID reception fault; exact year and key system checked",
+          "why": "The key-read branch checks the antenna installation, key and electrical paths before replacement."
+        }
+      ],
+      "sourceIssueIds": [
+        "nissan-350z-steering-lock-nats-2003"
+      ],
+      "scanToolNotes": "Use confirmed Nissan ECM and NATS diagnostic coverage. Reading an engine code with a basic scanner does not establish NATS test or registration capability. Preserve all faults and use the exact-year service procedure."
+    }
+  ],
+  "library": [
+    {
+      "code": "P1610",
+      "name": "NATS Lock Mode (Nissan)",
+      "description": "In the Nissan 350Z service information reviewed here, P1610 identifies immobilizer lock mode after unsuccessful start authorization. It does not identify a failed steering lock, key reader or control unit. Confirm the exact vehicle and companion faults with Nissan-capable diagnostics. For 2005–2008 vehicles with P1610 as the only NATS fault, bulletin NTB10-107 calls for battery testing and service before further immobilizer diagnosis. A mechanical key-turning problem is a separate check; other manufacturers may use this code differently.",
+      "commonCauses": [
+        "Lock mode after unsuccessful start authorization",
+        "Low cranking voltage in the 2005–2008 P1610-only bulletin branch",
+        "An unregistered key or unresolved key-authentication fault",
+        "An unresolved control-unit or communication fault requiring the exact-year diagnostic procedure"
+      ]
+    },
+    {
+      "code": "P1614",
+      "name": "NATS Key-ID Reception Fault (Nissan)",
+      "description": "In the Nissan 350Z service information reviewed here, P1614 means the immobilizer is not receiving the ignition key identification signal. Check for interference, then use the exact-year key and antenna-circuit diagnostic procedure before replacing anything. This is not a verdict that the remote-control battery, starter or steering lock has failed. The paired P1610 code describes lock mode and has a separate diagnostic branch. Confirm the manufacturer definition before applying this Nissan guidance to another make.",
+      "commonCauses": [
+        "Interference from another transponder key or toll/payment tag",
+        "A key transponder fault requiring confirmation",
+        "Incorrect antenna installation or an antenna-related fault",
+        "A supply, signal, ground or connector fault in the key-read circuit"
+      ]
+    }
+  ]
+}

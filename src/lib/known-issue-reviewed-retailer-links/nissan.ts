@@ -2,6 +2,8 @@
 // Comments keep exact approvals human-reviewable; runtime stores compact fingerprints.
 
 export const productUrlFingerprints = [
+  // 2026-09-12 NATS review: https://www.interstatebatteries.com/products/mtp-35
+  'c8c8e6689cb3506f93e9a08f',
   // https://aipelectronics.com/products/heavy-duty-stock-series-complete-electronic-ignition-distributor-compatible-with-nissan-1994-1998-240sx-2-4l-ka24de-from-0294
   '61fda6641dedaab5b97dcaba',
   // https://arnott.mycarparts.com/items/P-3277
@@ -993,6 +995,8 @@ export const productUrlFingerprints = [
 ] as const;
 
 export const vendorUrlFingerprints = [
+  // 2026-09-12 NATS review: Interstate Batteries | https://www.interstatebatteries.com/products/mtp-35
+  '7e4ed8a0506a62b855b52f64',
   // 1a auto | https://www.1aauto.com/2003-07-nissan-murano-all-wheel-drive-upper-and-lower-pump-to-rack-power-steering-pressure-line-hose-assembly-trq-psa36781/i/1aspp00340
   'c92e16438a3fc422ea5455aa',
   // 1a auto | https://www.1aauto.com/nissan-altima-front-driver-and-passenger-side-2-piece-strut-and-spring-assembly-set-trq-sca57088/i/1assp00636

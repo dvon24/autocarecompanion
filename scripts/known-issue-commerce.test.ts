@@ -9,6 +9,24 @@ import {
   vendorMatchesProductUrl,
 } from '../src/lib/known-issue-commerce';
 
+test('NATS review admits only the exact Interstate MTP-35 product, preserving the existing guards', () => {
+  const url = 'https://www.interstatebatteries.com/products/mtp-35';
+  assert.equal(isKnownIssueProductUrl(url), true);
+  assert.equal(vendorMatchesProductUrl('Interstate Batteries', url), true);
+  for (const rejected of [
+    'https://www.interstatebatteries.com/products/mtp-34',
+    'https://www.interstatebatteries.com/products',
+    'https://www.interstatebatteries.com/products/mtp-35?q=350z',
+    'https://www.interstatebatteries.com.evil.example/products/mtp-35',
+    'http://www.interstatebatteries.com/products/mtp-35',
+  ]) assert.equal(isKnownIssueProductUrl(rejected), false, rejected);
+  assert.equal(vendorMatchesProductUrl('Unrelated vendor', url), false);
+  const part = {component:'Conditional replacement battery',verified:true,buyLinks:[{vendor:'Interstate Batteries',url,verified:true,linkType:'product'}]};
+  assert.equal(getKnownIssueCommerce({fixParts:[part]}).fixParts[0].buyLinks.length,1);
+  assert.equal(getKnownIssueCommerce({fixParts:[{...part,recallFirst:true}]}).fixParts[0].buyLinks.length,0);
+  assert.equal(getKnownIssueCommerce({fixParts:[{...part,verified:false}]}).fixParts.length,0);
+});
+
 test('accepts product-detail URLs and rejects marketplace searches', () => {
   assert.equal(isKnownIssueProductUrl('https://www.amazon.com/dp/B0ABC12345?tag=au7o-20'), true);
   assert.equal(isKnownIssueProductUrl('https://www.amazon.com/gp/product/B0ABC12345'), true);
