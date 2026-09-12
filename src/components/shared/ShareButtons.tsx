@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 interface ShareButtonsProps {
   url: string;
@@ -12,6 +12,12 @@ interface ShareButtonsProps {
 
 export function ShareButtons({ url, title, description, showInstagram = true }: ShareButtonsProps) {
   const [copied, setCopied] = useState(false);
+  // Keep the server and first client render identical. Native sharing exists
+  // only in some browsers and cannot be determined during server rendering.
+  const [supportsNativeShare, setSupportsNativeShare] = useState(false);
+  useEffect(() => {
+    setSupportsNativeShare(typeof navigator.share === 'function');
+  }, []);
 
   const encodedUrl = encodeURIComponent(url);
   const encodedTitle = encodeURIComponent(title);
@@ -50,8 +56,6 @@ export function ShareButtons({ url, title, description, showInstagram = true }: 
       // User cancelled or API unavailable — no action needed
     }
   }, [url, title, description]);
-
-  const supportsNativeShare = typeof navigator !== 'undefined' && 'share' in navigator;
 
   return (
     <div className="flex items-center gap-2 flex-wrap">

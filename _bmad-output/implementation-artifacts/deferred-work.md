@@ -51,3 +51,7 @@
 - source_spec: `_bmad-output/implementation-artifacts/spec-restore-maintenance-truth-and-schedule.md`
   summary: Persist an explicit service-provider category instead of permanently inferring Dealer, Independent, Tire shop, or You from provider names.
   evidence: Existing MaintenanceRecord rows store only shopName, so this release uses conservative display-only classification; an automaker-named independent specialist can still be mistaken for a dealer without a schema-backed provider type.
+
+- source_spec: `_bmad-output/implementation-artifacts/spec-share-buttons-hydration.md`
+  summary: Investigate the separate live Next metadata-boundary hydration mismatch involving Termly floating cookie preferences.
+  evidence: September 12 browser-only instrumentation of the existing 00290 page observed a Termly preferences div at the Next.Metadata hydration position. With external scripts blocked, instrumentation isolated the independent native Share button mismatch fixed here. Preserve beforeInteractive consent defaults; do not suppress hydration warnings or disable consent to pass QA.
