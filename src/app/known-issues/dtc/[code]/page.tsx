@@ -5,12 +5,11 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes, getThinDtcCodes, getLinkableDtcCodes, makeToSlug } from '@/lib/dtc-codes';
-import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
-import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
+import { TechnicalArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
+import { DtcReferenceCard } from '@/components/known-issues/DtcReferenceCard';
 import { KnownIssueCard } from '@/components/known-issues/KnownIssueCard';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { ShareButtons } from '@/components/shared/ShareButtons';
-import { externalHttpUrl } from '@/lib/external-http-url';
 
 // --- ISR + dynamic params ---
 
@@ -65,7 +64,7 @@ export async function generateMetadata({
   // not the definition every DTC site (and the AI Overview) already shows.
   const title = vehicleList
     ? `${data.code}: How to Diagnose & Fix on ${topVehicles.map(v => v.make).join(', ')}${moreSuffix}`
-    : `${data.code}: ${data.name} | OBD-II Code Guide`;
+    : `${data.code}: ${data.name} | Diagnostic Code Guide`;
   // Description (~155 chars). Lead with code + vehicle context. The
   // generic "across N makes" framing was correct but invisible — it
   // matched no real query.
@@ -172,26 +171,10 @@ export default async function DTCCodePage({
     });
     if (topVehicles.length >= 3) break;
   }
-  const moreCount = Math.max(0, data.vehicleCount - topVehicles.length);
   const formatYearLabel = (v: TopVehicle): string => {
     if (!v.minYear) return '';
     return v.minYear === v.maxYear ? `${v.minYear}` : `${v.minYear}-${v.maxYear}`;
   };
-  // Aggregate unique citations across all linked issues so the page can
-  // surface real source URLs (TSBs, NHTSA filings, forum threads). De-dup
-  // by URL since the same recall doc often appears on multiple issues.
-  // Many issues have citations:[] today — that's a data backfill gap, not
-  // a rendering one. The section just hides itself when nothing exists.
-  const citationMap = new Map<string, { type: string; title: string; url: string }>();
-  for (const iss of data.issues) {
-    for (const c of (iss.citations || [])) {
-      const url = externalHttpUrl(c.url);
-      if (!url || citationMap.has(url)) continue;
-      citationMap.set(url, { type: c.type, title: c.title, url });
-    }
-  }
-  const citations = [...citationMap.values()].slice(0, 12);
-
   // Severity
   const severityLabel = data.severity === 'high' ? 'Critical' : data.severity === 'medium' ? 'Moderate' : 'Minor';
   const severityColor = data.severity === 'high' ? 'text-red-700 bg-red-100' : data.severity === 'medium' ? 'text-yellow-700 bg-yellow-100' : 'text-gray-700 bg-gray-100';
@@ -202,10 +185,10 @@ export default async function DTCCodePage({
       question: `What does ${data.code} mean?`,
       answer: `${data.code} stands for "${data.name}." ${data.description}`,
     },
-    {
+    ...(data.commonCauses.length > 0 ? [{
       question: `What are the most common causes of ${data.code}?`,
       answer: `The most common causes of ${data.code} are: ${data.commonCauses.join(', ')}. The specific cause varies by vehicle.`,
-    },
+    }] : []),
     {
       question: `How much does it cost to fix ${data.code}?`,
       answer: minCost > 0
@@ -237,8 +220,8 @@ export default async function DTCCodePage({
               Au<span style={{ color: '#3B82F6' }}>7</span>o
             </span>
           </Link>
-          <div className="flex items-center gap-3">
-            <Link href="/known-issues" className="px-4 py-2 text-sm font-medium text-[#475569] hover:text-[#0B1220] transition-colors">
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link href="/known-issues" className="hidden sm:inline-block px-4 py-2 text-sm font-medium text-[#475569] hover:text-[#0B1220] transition-colors">
               Known Issues
             </Link>
             <Link href="/" className="px-4 py-2 text-sm font-medium text-white rounded-lg hover:opacity-90 transition-opacity" style={{ background: '#0B1220' }}>
@@ -256,7 +239,6 @@ export default async function DTCCodePage({
         datePublished={dtcDates.published}
         dateModified={dtcDates.modified}
       />
-      <FAQJsonLd questions={faqs} />
       <BreadcrumbJsonLd items={[
         { name: 'Au7o', url: 'https://au7o.io' },
         { name: 'Known Issues', url: 'https://au7o.io/known-issues' },
@@ -277,7 +259,7 @@ export default async function DTCCodePage({
 
         {/* Title */}
         <header className="mb-6">
-          <div className="flex items-center gap-3 mb-3">
+          <div className="flex flex-wrap items-center gap-3 mb-3">
             <span className="text-sm font-mono font-bold bg-[#0B1220] text-white px-3 py-1 rounded-md">
               {data.code}
             </span>
@@ -321,12 +303,6 @@ export default async function DTCCodePage({
           </div>
         </header>
 
-        {/* Photo/video diagnose CTA — same banner as the article pages.
-            Someone reading a code page is mid-diagnosis; the photo flow is
-            the fastest path to "is this MY problem". */}
-        <div className="mb-6">
-        </div>
-
         {/* Most-reported vehicles — full issue cards in the article-page
             style (symptoms, How to Fix, diagnostic tools, parts, cost,
             sources). Earlier this was a row of YMMT chips linking away; the
@@ -354,6 +330,8 @@ export default async function DTCCodePage({
                   defaultExpanded={index < 3}
                   linkableDtcCodes={linkableDtcCodes}
                   basePath="/known-issues"
+                  showSources
+                  separateHeaderLinks
                 />
                 </div>
               ))}
@@ -361,299 +339,20 @@ export default async function DTCCodePage({
           </section>
         )}
 
-        {/* GEO Summary — blockquote */}
-        <blockquote className="border-l-4 border-blue-200 pl-5 mb-10">
-          <p className="text-[#475569] leading-relaxed">
-            <strong className="text-[#334155]">{data.code}</strong> is an OBD-II diagnostic trouble code meaning &ldquo;{data.name}.&rdquo; {data.description}{' '}
-            This code is most commonly reported on{' '}
-            {topVehicles.map((v, idx) => {
-              const yearLabel = formatYearLabel(v);
-              return (
-                <span key={`${v.make}-${v.model}`}>
-                  {idx > 0 && (idx === topVehicles.length - 1 ? ', and ' : ', ')}
-                  <strong className="text-[#334155]">
-                    {yearLabel && `${yearLabel} `}{v.make} {v.model}
-                  </strong>
-                  {v.trims.length > 0 && (
-                    <> ({v.trims.join(', ')})</>
-                  )}
-                </span>
-              );
-            })}
-            {moreCount > 0 && <>, plus {moreCount} other vehicle{moreCount === 1 ? '' : 's'}</>}
-            {minCost > 0 && <>, with repair costs ranging from <strong className="text-[#334155]">${minCost.toLocaleString()}</strong> to <strong className="text-[#334155]">${maxCost.toLocaleString()}</strong></>}.
-          </p>
-        </blockquote>
+        <section id="makes" aria-labelledby="makes-heading" className="mb-8 rounded-lg border border-[#E3DFD4] bg-[#FBFAF6] p-4 sm:p-5">
+          <h2 id="makes-heading" className="text-lg font-semibold text-[#0B1220] mb-2">Find {data.code} by make</h2>
+          <p className="text-sm text-[#64748B] mb-4">Browse every documented model and issue for your make.</p>
+          <nav aria-label="All makes for this code" className="flex flex-wrap gap-2">
+            {sortedMakes.map(([make, issues]) => (
+              <Link key={make} href={`/known-issues/dtc/${code.toLowerCase()}/${makeToSlug(make)}`}
+                className="max-w-full break-words rounded-lg border border-[#E3DFD4] bg-white px-3 py-2 text-sm text-[#334155] hover:border-[#3B82F6]">
+                {make} <span className="text-[#64748B]">· {issues.length} issue{issues.length === 1 ? '' : 's'}</span>
+              </Link>
+            ))}
+          </nav>
+        </section>
 
-        {/* Two-column layout */}
-        <div className="lg:flex lg:gap-0">
-          {/* Sidebar TOC */}
-          <aside className="hidden lg:block lg:w-56 xl:w-64 flex-shrink-0 border-r border-[#E3DFD4] pr-8 mr-8">
-            <nav className="sticky top-8 space-y-6" aria-label="Page navigation">
-              <div>
-                <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-3">On This Page</h2>
-                <ul className="space-y-0.5">
-                  <li>
-                    <a href="#causes" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
-                      Common Causes
-                    </a>
-                  </li>
-                  {minCost > 0 && (
-                    <li>
-                      <a href="#cost" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
-                        Repair Cost
-                      </a>
-                    </li>
-                  )}
-                  <li>
-                    <a href="#vehicles" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
-                      Vehicles ({data.vehicleCount})
-                    </a>
-                  </li>
-                  {relatedCodes.length > 0 && (
-                    <li>
-                      <a href="#related" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
-                        Related Codes
-                      </a>
-                    </li>
-                  )}
-                  <li className="pt-1.5 border-t border-[#E3DFD4] mt-1.5">
-                    <a href="#faq" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
-                      FAQ
-                    </a>
-                  </li>
-                  {citations.length > 0 && (
-                    <li>
-                      <a href="#sources" className="flex items-center gap-2 text-sm text-[#64748B] hover:text-[#0B1220] py-1.5 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors">
-                        Sources ({citations.length})
-                      </a>
-                    </li>
-                  )}
-                </ul>
-              </div>
-
-              {/* Sidebar makes list */}
-              {sortedMakes.length > 1 && (
-                <div>
-                  <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-3">Makes</h2>
-                  <ul className="space-y-0.5">
-                    {sortedMakes.map(([make, issues]) => (
-                      <li key={make}>
-                        <a
-                          href={`#dtc-${make.toLowerCase().replace(/\s+/g, '-')}`}
-                          className="flex items-center justify-between text-sm text-[#64748B] hover:text-[#0B1220] py-1 rounded-md hover:bg-[#EFEDE6]/70 px-2 -mx-2 transition-colors"
-                        >
-                          <span className="truncate">{make}</span>
-                          <span className="text-[#CBD5E1] text-xs">{issues.length}</span>
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
-              <a href="#top" className="flex items-center gap-1.5 text-xs text-[#94A3B8] hover:text-[#475569] transition-colors">
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                </svg>
-                Back to top
-              </a>
-            </nav>
-          </aside>
-
-          {/* Main content */}
-          <div className="min-w-0 flex-1">
-            {/* Common Causes — collapsible */}
-            <section id="causes" className="scroll-mt-16 mb-8">
-              <details className="group" open>
-                <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
-                  <h2 className="text-lg font-semibold text-[#0B1220]">Common Causes</h2>
-                  <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-4">
-                  {data.commonCauses.map((cause, i) => (
-                    <div key={i} className="flex items-start gap-3 p-3 rounded-lg">
-                      <span className="flex-shrink-0 w-5 h-5 bg-[#0B1220] text-white text-xs font-bold rounded-full flex items-center justify-center mt-0.5">
-                        {i + 1}
-                      </span>
-                      <span className="text-sm text-[#475569]">{cause}</span>
-                    </div>
-                  ))}
-                </div>
-              </details>
-            </section>
-
-            {/* Cost Range — collapsible */}
-            {minCost > 0 && (
-              <section id="cost" className="scroll-mt-16 mb-8">
-                <details className="group" open>
-                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
-                    <h2 className="text-lg font-semibold text-[#0B1220]">Typical Repair Cost</h2>
-                    <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </summary>
-                  <div className="pt-4">
-                    <div className="flex items-baseline gap-2 mb-1">
-                      <span className="text-2xl font-bold text-[#0B1220]">
-                        ${minCost.toLocaleString()} - ${maxCost.toLocaleString()}
-                      </span>
-                    </div>
-                    <p className="text-sm text-[#64748B]">
-                      Based on {data.issues.length} documented vehicle-specific issues. Actual cost depends on root cause and vehicle.
-                    </p>
-                  </div>
-                </details>
-              </section>
-            )}
-
-            {/* OBD Scanner */}
-
-            {/* Vehicles by Make — collapsible */}
-            <section id="vehicles" className="scroll-mt-16 mb-8">
-              <details className="group" open>
-                <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
-                  <h2 className="text-lg font-semibold text-[#0B1220]">Vehicles Affected ({data.vehicleCount})</h2>
-                  <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <div className="space-y-3 pt-4">
-                  {sortedMakes.map(([make, issues]) => (
-                    <CollapsibleMakeSection
-                      key={make}
-                      make={make}
-                      // Slim DTO: passing the full Prisma rows serialized
-                      // EVERYTHING (descriptions, solutions, citations,
-                      // affiliate blobs) into the client RSC payload —
-                      // P0300 shipped 1.5MB of HTML even though the
-                      // component renders 7 small fields (2026-06-12
-                      // review finding).
-                      issues={issues.map((i) => ({
-                        id: i.id,
-                        slug: i.slug,
-                        title: i.title,
-                        severity: i.severity,
-                        reportCount: i.reportCount,
-                        estimatedCost: i.estimatedCost ?? null,
-                        vehicleMatch: {
-                          make: i.vehicleMatch.make,
-                          model: i.vehicleMatch.model,
-                          years: i.vehicleMatch.years,
-                        },
-                      }))}
-                      dtcCode={data.code}
-                      makeHref={`/known-issues/dtc/${code.toLowerCase()}/${makeToSlug(make)}`}
-                    />
-                  ))}
-                </div>
-              </details>
-            </section>
-
-            {/* Related Codes — collapsible */}
-            {relatedCodes.length > 0 && (
-              <section id="related" className="scroll-mt-16 mb-8">
-                <details className="group" open>
-                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
-                    <h2 className="text-lg font-semibold text-[#0B1220]">Related Codes ({relatedCodes.length})</h2>
-                    <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </summary>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-4">
-                    {relatedCodes.map(rc => (
-                      <Link
-                        key={rc.code}
-                        href={`/known-issues/dtc/${rc.code.toLowerCase()}`}
-                        className="group flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-[#EFEDE6]/70 transition-colors"
-                      >
-                        <span className="font-mono font-bold text-sm text-[#64748B] group-hover:text-blue-600 w-16 flex-shrink-0">
-                          {rc.code}
-                        </span>
-                        <span className="text-sm text-[#475569] truncate">{rc.name}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </details>
-              </section>
-            )}
-
-            {/* FAQ — collapsible */}
-            <section id="faq" className="scroll-mt-16 mb-8">
-              <details className="group">
-                <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
-                  <h2 className="text-lg font-semibold text-[#0B1220]">FAQ</h2>
-                  <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </summary>
-                <div className="space-y-6 pt-4">
-                  {faqs.map((faq, i) => (
-                    <div key={i} className="border-b border-[#E3DFD4] pb-6 last:border-0">
-                      <h3 className="text-base font-semibold text-[#0B1220] mb-2">{faq.question}</h3>
-                      <p className="text-[#475569] leading-relaxed text-sm">{faq.answer}</p>
-                    </div>
-                  ))}
-                </div>
-              </details>
-            </section>
-
-            {/* Sources — TSBs, NHTSA filings, forum threads, manual refs.
-                Aggregated across the issues that mention this DTC code,
-                de-duped by URL. Hidden when no citations exist (many
-                issues currently have citations:[] — that's a data
-                backfill gap, not a code one). Each row is a real <a
-                target="_blank" rel="nofollow noopener"> so the SERP page
-                still controls outbound link signal but users get the
-                primary-source receipt. */}
-            {citations.length > 0 && (
-              <section id="sources" className="scroll-mt-16 mb-8">
-                <details className="group" open>
-                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
-                    <h2 className="text-lg font-semibold text-[#0B1220]">Sources ({citations.length})</h2>
-                    <svg className="w-5 h-5 text-[#94A3B8] transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </summary>
-                  <ul className="space-y-2 pt-4">
-                    {citations.map((c) => {
-                      const typeLabel = c.type === 'tsb' ? 'TSB'
-                        : c.type === 'recall' ? 'Recall'
-                        : c.type === 'nhtsa' ? 'NHTSA'
-                        : c.type === 'forum' ? 'Forum'
-                        : c.type === 'manual' ? 'Manual'
-                        : c.type;
-                      const typeColor = c.type === 'recall' ? 'bg-red-100 text-red-700'
-                        : c.type === 'tsb' ? 'bg-blue-100 text-blue-700'
-                        : c.type === 'nhtsa' ? 'bg-amber-100 text-amber-700'
-                        : 'bg-[#EFEDE6] text-[#334155]';
-                      return (
-                        <li key={c.url}>
-                          <a
-                            href={c.url}
-                            target="_blank"
-                            rel="nofollow noopener noreferrer"
-                            className="group flex items-start gap-3 p-3 rounded-lg border border-[#E3DFD4] hover:border-blue-300 hover:bg-blue-50/50 transition-colors"
-                          >
-                            <span className={`text-[10px] font-mono font-bold uppercase px-1.5 py-0.5 rounded flex-shrink-0 ${typeColor}`}>
-                              {typeLabel}
-                            </span>
-                            <span className="text-sm text-[#475569] group-hover:text-blue-700 transition-colors flex-1 min-w-0">
-                              {c.title}
-                            </span>
-                            <svg className="w-4 h-4 text-[#CBD5E1] group-hover:text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 3h7v7m0-7L10 14m-7 7h7a4 4 0 004-4v-7" />
-                            </svg>
-                          </a>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </details>
-              </section>
-            )}
+        <DtcReferenceCard code={data.code} faqs={faqs} relatedCodes={relatedCodes} />
 
             {/* Soft-conversion: DTC-level email alert capture (SEO-safe, additive). */}
             <div className="mb-8 mt-8">
@@ -690,8 +389,6 @@ export default async function DTCCodePage({
                 &copy; {new Date().getFullYear()} Au7o. All rights reserved.
               </p>
             </footer>
-          </div>
-        </div>
       </article>
     </div>
   );

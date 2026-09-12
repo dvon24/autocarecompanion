@@ -6,6 +6,85 @@ const bundle=compile();
 const plain=value=>JSON.parse(JSON.stringify(value));
 const step={step:1,action:'Check timing before replacing parts',tool:'basic OBD-II scanner',expect:'Compare with the service manual',ifFail:'Inspect the documented cause',sourceUrl:'https://www.toyota.com/owners/'};
 const params=make=>({params:Promise.resolve({code:'p0016',...(make?{make:'toyota'}:{})})});
+const count=(html,text)=>html.split(text).length-1;
+const stripTags=html=>html.replace(/<[^>]*>/g,'').replace(/&quot;/g,'"').replace(/&#x27;/g,"'").replace(/&amp;/g,'&').replace(/<!-- -->/g,'');
+function checkReference(html) {
+  assert.equal(count(html,'id="code-reference"'),1);
+  assert.doesNotMatch(html,/id="(?:causes|cost|vehicles|sources|related)"|is an OBD-II diagnostic trouble code|Vehicles Affected/);
+  const schemas=[...html.matchAll(/<script type="application\/ld\+json">([^]*?)<\/script>/g)].map(match=>JSON.parse(match[1]));
+  const faq=schemas.find(schema=>schema['@type']==='FAQPage');
+  assert.ok(faq);
+  const reference=html.slice(html.indexOf('<section id="code-reference"')).split('</section>')[0].replace(/<script[^]*?<\/script>/g,'');
+  const visibleFaqs=[...reference.matchAll(/<summary[^>]*>([^]*?)<\/summary>\s*<p[^>]*>([^]*?)<\/p>/g)].map(match=>({question:stripTags(match[1]),answer:stripTags(match[2])}));
+  assert.deepEqual(visibleFaqs,faq.mainEntity.map(item=>({question:item.name,answer:item.acceptedAnswer.text})));
+}
+
+test('parent and make consolidate code reference once and keep safe issue citations with their claim',async()=>{
+  const citations=Array.from({length:14},(_,index)=>({type:'manual',title:'Applicable source '+index,url:'https://www.toyota.com/fixture-source/'+index}));
+  const r=runtime(await bundle,{rows:[row({citations:[...citations,citations[0],{type:'forum',title:'Unsafe source',url:'javascript:alert(1)'}]})],dtcOverrides:{commonCauses:['Cause one','Cause two','Cause three','Cause four','Cause five']}});
+  for(const Page of [r.api.CodePage,r.api.MakePage]) {
+    const html=renderToString(await Page(params(Page===r.api.MakePage)));
+    checkReference(html);
+    assert.equal(count(html,'id="published-issue"'),1);
+    assert.equal(count(html.replace(/<script[^]*?<\/script>/g,''),'Check timing correlation.'),1,'code description is visible once');
+    const card=html.slice(html.indexOf('id="published-issue"'),html.indexOf('id="code-reference"'));
+    for(const source of citations) assert.equal(count(card,'href="'+source.url+'"'),1);
+    assert.equal(count(html,'data-dtc-issue-sources'),1);
+    assert.doesNotMatch(html,/Unsafe source|javascript:/);
+    assert.match(html,/Cause five/);
+    assert.doesNotMatch(html.slice(html.indexOf('id="code-reference"')),/Applicable source/);
+  }
+  const issue=(await r.api.getDTCWithIssues('P0016')).issues[0];
+  assert.doesNotMatch(renderToString(React.createElement(r.api.KnownIssueCard,{issue,defaultExpanded:true})),/data-dtc-issue-sources/,'ordinary card default remains unchanged');
+});
+
+test('parent full cards are bounded and every make and non-featured model remains reachable',async()=>{
+  const makes=['Toyota','Audi','BMW','Ford','Honda','Kia','Mazda','Volvo'];
+  const rows=makes.flatMap((make,index)=>[row({id:'issue-'+index,make,model:'Model '+index,title:'Unique issue '+index}),row({id:'second-'+index,make,model:'Second '+index,title:'Second issue '+index})]);
+  const r=runtime(await bundle,{rows,triageRow:null});
+  const html=renderToString(await r.api.CodePage(params(false)));
+  checkReference(html);
+  assert.equal([...html.matchAll(/id="(?:issue|second)-\d+"/g)].length,5);
+  assert.doesNotMatch(html,/Unique issue 7|Second issue 7/,'non-featured full records are not rendered on parent');
+  for(const make of makes) {
+    const slug=r.api.makeToSlug(make);
+    assert.equal(count(html,'href="/known-issues/dtc/p0016/'+slug+'"'),1);
+    const makeHtml=renderToString(await r.api.MakePage({params:Promise.resolve({code:'p0016',make:slug})}));
+    for(const item of rows.filter(item=>item.make===make)) assert.match(makeHtml,new RegExp('id="'+item.id+'"'));
+  }
+});
+
+test('manufacturer and empty-support output omit missing causes/sources and use neutral code wording',async()=>{
+  const r=runtime(await bundle,{rows:[row({dtcCodes:['00290'],citations:[],estimatedCostLow:0,estimatedCostHigh:0})],triageRow:null,dtcOverrides:{code:'00290',name:'Wheel speed signal',description:'',commonCauses:[]}});
+  for(const Page of [r.api.CodePage,r.api.MakePage]) {
+    const request={params:Promise.resolve({code:'00290',...(Page===r.api.MakePage?{make:'toyota'}:{})})};
+    const html=renderToString(await Page(request));
+    checkReference(html);
+    assert.doesNotMatch(html,/common causes|Sources for this issue|data-dtc-issue-sources|OBD-II Code Guide|is an OBD-II|Related codes/);
+    const metadata=await (Page===r.api.CodePage?r.api.codeMetadata:r.api.makeMetadata)(request);
+    assert.doesNotMatch(JSON.stringify(metadata),/OBD-II/);
+  }
+  assert.equal(renderToString(React.createElement(r.api.DtcReferenceCard,{code:'00290',faqs:[],relatedCodes:[]})),'');
+});
+
+test('legacy malformed citations cannot crash cards and usable neighbors survive',async()=>{
+  for(const citations of [{},[null,'bad',{url:{}},{url:'https://www.toyota.com/fixture-valid',title:{},type:{}},{url:'https://www.toyota.com/fixture-neighbor',title:'Preserved neighbor',type:'manual'}]]) {
+    const r=runtime(await bundle,{rows:[row({citations})]});
+    for(const Page of [r.api.CodePage,r.api.MakePage]) {
+      const html=renderToString(await Page(params(Page===r.api.MakePage)));
+      if(Array.isArray(citations)) assert.match(html,/Preserved neighbor/);
+    }
+  }
+});
+
+test('related reference routes use only codes with published issue coverage',async()=>{
+  const r=runtime(await bundle,{rows:[row(),row({id:'related',dtcCodes:['P0017']})],relatedDtcs:[{code:'P0017',name:'Related timing code',system:'Engine'},{code:'P0018',name:'No published issue',system:'Engine'}]});
+  for(const Page of [r.api.CodePage,r.api.MakePage]) {
+    const html=renderToString(await Page(params(Page===r.api.MakePage)));
+    assert.equal(count(html,'href="/known-issues/dtc/p0017"'),1);
+    assert.doesNotMatch(html,/href="\/known-issues\/dtc\/p0018"/);
+  }
+});
 test('real loaders/pages expose only published cars and diagnostics; pending preview flag cannot enable data',async()=>{
   for(const node of ['production','development']) {
     const r=runtime(await bundle,{node,rows:[row({diagnosticSteps:[step],diagnosticStepsStatus:'published'}),row({id:'pending-procedure',diagnosticSteps:[{...step,action:'PENDING SECRET'}]}),row({id:'unpublished',status:'pending_review'}),row({id:'motorcycle',vehicleType:'motorcycle'})],triageRow:triage({status:'pending_review'})});

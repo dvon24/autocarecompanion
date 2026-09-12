@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { makeSlug, getPublishedMakes } from '@/lib/known-issues';
-import { ISSUE_CATALOGS, catalogIsDesignPreview, motorcycleCoverageDescription, type IssueCatalog } from '@/lib/known-issues-catalog';
-import { categoryConfig } from '@/lib/issue-categories';
-import { IssueCategory } from '@/schemas/knownIssue.schema';
+import { ISSUE_CATALOGS, MOTORCYCLE_CATALOG, catalogIsDesignPreview, motorcycleCoverageDescription, type IssueCatalog } from '@/lib/known-issues-catalog';
+import { catalogCategory, categoryConfig } from '@/lib/issue-categories';
+import type { IssueCategory } from '@/schemas/knownIssue.schema';
 import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
-import { MakeLogo } from '@/components/shared/MakeLogo';
+import { DirectorySections } from '@/components/known-issues/catalog/DirectorySections';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import prisma from '@/lib/db';
 
@@ -27,7 +27,7 @@ interface VehicleEntry {
 async function buildDirectory(catalog: IssueCatalog) {
   const rows = await prisma.knownIssue.findMany({
     where: { status: 'published', vehicleType: catalog.vehicleType },
-    select: { make: true, model: true, severity: true, years: true },
+    select: { make: true, model: true, severity: true, years: true, category: true },
   });
 
   const vehicleMap: Record<string, { make: string; model: string; count: number; highCount: number; minYear: number; maxYear: number }> = {};
@@ -59,17 +59,24 @@ async function buildDirectory(catalog: IssueCatalog) {
     grouped[v.make].push(entry);
   }
 
-  return Object.entries(grouped)
+  const directory = Object.entries(grouped)
     .sort(([a], [b]) => a.localeCompare(b))
     .map(([make, vehicles]) => ({
       make,
       vehicles: vehicles.sort((a, b) => a.model.localeCompare(b.model)),
       totalIssues: vehicles.reduce((sum, v) => sum + v.issueCount, 0),
     }));
+  const coveredCategories = new Set(rows.map(row => catalogCategory(row.category)));
+  const categories = (Object.keys(categoryConfig) as IssueCategory[]).filter(category => coveredCategories.has(category));
+  return { directory, categories };
 }
 
 export async function IndexPage(catalog: IssueCatalog) {
-  const directory = await buildDirectory(catalog);
+  const [coverage, motorcycleCoverage] = await Promise.all([
+    buildDirectory(catalog),
+    catalog.vehicleType === 'car' ? buildDirectory(MOTORCYCLE_CATALOG) : Promise.resolve(null),
+  ]);
+  const { directory } = coverage;
   const totalVehicles = directory.reduce((sum, g) => sum + g.vehicles.length, 0);
   const totalIssues = directory.reduce((sum, g) => sum + g.totalIssues, 0);
   const bikeDescription = motorcycleCoverageDescription(totalIssues, catalogIsDesignPreview(catalog));
@@ -97,10 +104,6 @@ export async function IndexPage(catalog: IssueCatalog) {
 
   // searchVehicles / searchDtcCodes removed with IssueSearch — they existed
   // only to feed it, and building them walked every vehicle and DTC row.
-
-  // Split directory into popular and rest
-  const popularMakes = directory.filter(d => catalog.popularMakes.includes(d.make));
-  const otherMakes = directory.filter(d => !catalog.popularMakes.includes(d.make));
 
   return (
     <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
@@ -190,86 +193,7 @@ export async function IndexPage(catalog: IssueCatalog) {
           )}
         </div>
 
-        {/* Popular Makes — featured cards */}
-        {(catalog.vehicleType === 'car' || directory.length > 0) && <section className="mb-12">
-          <h2 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: '#64748B' }}>Popular Makes</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
-            {popularMakes.map(({ make, vehicles, totalIssues: makeTotal }) => (
-              <Link
-                key={make}
-                href={`${catalog.basePath}/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
-                className="group flex items-start gap-3 p-4 bg-white rounded-xl hover:shadow-sm hover:border-blue-300 transition-all"
-                style={{ border: '1px solid #E3DFD4' }}
-              >
-                <MakeLogo make={make} size={36} />
-                <div className="min-w-0">
-                  <h3 className="font-semibold group-hover:text-blue-600 transition-colors" style={{ color: '#0B1220' }}>{make}</h3>
-                  <p className="text-xs mt-0.5" style={{ color: '#64748B' }}>
-                    {vehicles.length} models &middot; {makeTotal} issues
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>}
-
-        {/* All Makes — collapsible compact grid */}
-        <section id="catalog-directory" className="mb-12">
-          {directory.length === 0 && catalog.vehicleType === 'motorcycle' ? <p className="text-[#475569]">There are no published models to browse yet.</p> :
-          <details className="group">
-            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
-              <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">All Makes ({directory.length})</h2>
-              <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 pt-4">
-              {directory.map(({ make, vehicles }) => (
-                <Link
-                  key={make}
-                  href={`${catalog.basePath}/make/${make.toLowerCase().replace(/\s+/g, '-')}`}
-                  className="group flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-[#EFEDE6]/70 transition-colors"
-                >
-                  <MakeLogo make={make} size={24} />
-                  <div className="min-w-0 flex-1">
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 truncate block">{make}</span>
-                    <span className="text-xs text-gray-400">{vehicles.length} models</span>
-                  </div>
-                  <svg className="w-4 h-4 text-gray-300 group-hover:text-gray-500 transition-colors flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              ))}
-            </div>
-          </details>}
-        </section>
-
-        {/* Browse by Category — collapsible */}
-        {(catalog.vehicleType === 'car' || directory.length > 0) && <section className="mb-12">
-          <details className="group">
-            <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
-              <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">Browse by Category</h2>
-              <svg className="w-5 h-5 text-gray-400 transition-transform group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2 pt-4">
-              {(Object.keys(categoryConfig) as IssueCategory[]).map(cat => {
-                const config = categoryConfig[cat];
-                return (
-                  <Link
-                    key={cat}
-                    href={`${catalog.basePath}/category/${cat}`}
-                    className="group flex items-center gap-2 px-3 py-2.5 rounded-lg hover:bg-[#EFEDE6]/70 transition-colors"
-                  >
-                    <span className="text-lg">{config.icon}</span>
-                    <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900">{config.label}</span>
-                  </Link>
-                );
-              })}
-            </div>
-          </details>
-        </section>}
+        <DirectorySections catalog={catalog} directory={directory} />
 
         {/* Common DTC Codes — collapsible. OBD-II is automotive, so other catalogs skip it. */}
         {catalog.dtcLinks && (
@@ -312,6 +236,13 @@ export async function IndexPage(catalog: IssueCatalog) {
           </details>
         </section>
         )}
+
+        {motorcycleCoverage && <DirectorySections
+          catalog={MOTORCYCLE_CATALOG}
+          directory={motorcycleCoverage.directory}
+          categories={motorcycleCoverage.categories}
+          motorcycleDiscovery
+        />}
 
         {/* AI disclaimer */}
         <div className="flex items-start gap-2 py-3 mb-6">

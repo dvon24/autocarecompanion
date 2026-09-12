@@ -16,6 +16,7 @@ export {DtcModelSection} from '@/components/known-issues/DtcModelSection';
 export {DtcSidebar,DtcMobileToc} from '@/components/known-issues/DtcSidebar';
 export {DtcTriageBlock} from '@/components/known-issues/DtcTriageBlock';
 export {KnownIssueCard} from '@/components/known-issues/KnownIssueCard';`;
+const referenceEntry = `export {DtcReferenceCard} from '@/components/known-issues/DtcReferenceCard';`;
 function row(overrides = {}) {
   return {id:'published-issue', vehicleType:'car', make:'Toyota', model:'Camry', years:[2010,2016], trims:[], engines:[],
     category:'engine', title:'Documented timing issue', description:'Owner reports describe a timing fault. Recall eligibility depends on the VIN.',
@@ -59,15 +60,15 @@ function plugin(browser=false) {
     });
   }};
 }
-async function compile(contents=entry,browser=false) {
+async function compile(contents=entry+referenceEntry,browser=false) {
   const result=await esbuild.build({stdin:{contents,loader:'tsx',resolveDir:root},bundle:true,write:false,
     platform:browser?'browser':'node',format:browser?'iife':'cjs',jsx:'automatic',tsconfig:path.join(root,'tsconfig.json'),plugins:[plugin(browser)],logLevel:'silent',
     define:{'process.env.NEXT_PUBLIC_EBAY_CAMPAIGN_ID':'undefined','process.env.NEXT_PUBLIC_EBAY_MKRID':'undefined',...(browser?{'process.env.NODE_ENV':'"development"'}:{})}});
   return result.outputFiles[0].text;
 }
-function runtime(compiled,{rows=[row()],triageRow=triage(),thin=false,node='production'}={}) {
+function runtime(compiled,{rows=[row()],triageRow=triage(),thin=false,node='production',dtcOverrides={},relatedDtcs=[]}={}) {
   const reads=[];
-  const dtc={code:'P0016',name:'Crankshaft/camshaft correlation',system:'Engine',description:'Check timing correlation.',commonCauses:['Timing misalignment'],severity:'medium',createdAt:new Date('2026-09-01'),updatedAt:new Date('2026-09-02')};
+  const dtc={code:'P0016',name:'Crankshaft/camshaft correlation',system:'Engine',description:'Check timing correlation.',commonCauses:['Timing misalignment'],severity:'medium',createdAt:new Date('2026-09-01'),updatedAt:new Date('2026-09-02'),...dtcOverrides};
   const match=(value,condition)=>typeof condition==='object'&&condition!==null
     ? (condition.equals===undefined || String(value).toLowerCase()===condition.equals.toLowerCase())
       && (condition.in===undefined || condition.in.includes(value)) && (condition.has===undefined || value.includes(condition.has))
@@ -81,8 +82,9 @@ function runtime(compiled,{rows=[row()],triageRow=triage(),thin=false,node='prod
     if(args.distinct)result=result.filter((item,index)=>result.findIndex(other=>args.distinct.every(key=>item[key]===other[key]))===index);
     return result;
   }},dTCCode:{findUnique:async args=>args.where.code===dtc.code?dtc:null,findMany:async(args={})=>{
-    if(args.NOT)return [];
-    return !args.where?.code || match(dtc.code,args.where.code)?[dtc]:[];
+    return [dtc,...relatedDtcs].filter(item => (!args.where?.code || match(item.code,args.where.code))
+      && (!args.where?.system || item.system===args.where.system)
+      && !(args.where?.NOT||[]).some(condition=>match(item.code,condition.code)));
   }},dtcTriage:{findFirst:async args=>{
     reads.push(['dtcTriage.findFirst',args]); assert.equal(args.where.status,'published');
     return triageRow && match(triageRow.code,args.where.code)&&match(triageRow.make,args.where.make)&&match(triageRow.status,args.where.status)?triageRow:null;

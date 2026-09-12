@@ -68,12 +68,15 @@ async function loadRoutes() {
     }
   }
   const stubComponent = `function leaf(name,p){
+    if(name==='MakeLogo')return ['Honda','BMW'].includes(p.make)?<img src={'/logos/'+p.make.toLowerCase()+'.png'} alt={p.make+' logo'} width={p.size} height={p.size} className="flex-shrink-0 object-contain"/>:<span role="img" aria-label={p.make+' logo'} className="flex-shrink-0 inline-flex items-center justify-center rounded-md bg-gray-100 text-gray-600" style={{width:p.size,height:p.size,fontSize:Math.floor(p.size*.45)}}>{p.make.slice(0,2)}</span>;
     if(name==='KnownIssueAlertSignup')return <section data-alert-context={p.context} data-car-carousel={String(p.showCarousel)}>Free issue alerts</section>;
     if(name==='ArticleIssuesList')return <section data-base-path={p.basePath} data-code-links={JSON.stringify(p.linkableDtcCodes)}>{p.issues.map(i=><article key={i.id}><h3>{i.title}</h3><p>{i.description}</p><h4>How to Fix</h4><p>{i.solution}</p>{(p.relatedByIssueId?.[i.id]||[]).map(r=><a key={r.issueId} href={p.basePath+'/'+r.slug+'#'+r.issueId}>{r.model}</a>)}</article>)}</section>;
     return <span data-leaf={name}>{p.children}</span>;
   }`;
   // Exercise actual structured data, not a stub that drops every description.
   leaves.delete('@/components/seo/JsonLd');
+  // The shared directory is product UI under test, never a leaf placeholder.
+  leaves.delete('@/components/known-issues/catalog/DirectorySections');
   const bundled = await esbuild.build({ stdin: { resolveDir: root, contents: `
     export * from './src/components/known-issues/catalog/ArticleRoute';
     export * from './src/components/known-issues/catalog/IndexRoute';
@@ -111,6 +114,20 @@ async function main() {
   const prop = (key, value, query = {}) => ({ params: Promise.resolve({ [key]: value }), searchParams: Promise.resolve(query) });
   const render = async element => renderToStaticMarkup(await element);
   const html = {};
+  function motorcycleSections(content) {
+    const start = content.indexOf('<section id="motorcycle-popular-makes"');
+    const end = content.indexOf('</section>', content.indexOf('<section id="motorcycle-catalog-categories"'));
+    assert(start > content.indexOf('Common Error Codes'), 'motorcycle directory follows error codes');
+    assert(end > start && end < content.indexOf('data-leaf="SiteFooter"'), 'directory precedes footer');
+    const section = content.slice(start, end + '</section>'.length);
+    const headings = [...section.matchAll(/<h2[^>]*>(.*?)<\/h2>/g)].map(m => m[1]);
+    assert.deepEqual(headings, ['Popular Makes - Motorcycles', 'All Makes - Motorcycle', 'Browse by Category - Motorcycle']);
+    const ids = [...content.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
+    assert.equal(new Set(ids).size, ids.length, 'section IDs are unique');
+    assert(section.includes('href="/motorcycle-issues"'), 'catalog entry remains discoverable');
+    for (const [, href] of section.matchAll(/href="([^"]+)"/g)) assert(href === '/motorcycle-issues' || href.startsWith('/motorcycle-issues/'), 'motorcycle destinations stay canonical');
+    return section;
+  }
   for (const [name, catalog, model] of [['bike', bike, 'honda-gold-wing'], ['car', car, 'honda-accord']]) {
     const before = codeReads;
     html[name + '-index'] = await render(r.IndexPage(catalog));
@@ -130,6 +147,18 @@ async function main() {
     assert(statics.some(row => row.slug === model));
     assert(!statics.some(row => row.slug === (name === 'bike' ? 'honda-accord' : 'honda-gold-wing')));
   }
+  const populatedSections = motorcycleSections(html['car-index']);
+  assert(populatedSections.includes('2 models · 2 issues'), 'motorcycle counts exclude car and pending rows');
+  assert.deepEqual([...populatedSections.matchAll(/href="\/motorcycle-issues\/category\/([^"]+)"/g)].map(m => m[1]), ['electrical'], 'only published categories appear');
+  assert(!html['bike-index'].includes('motorcycle-popular-makes'), 'standalone motorcycle index never embeds another directory');
+  const originalFindMany = global.__catalogDb.knownIssue.findMany;
+  try {
+    global.__catalogDb.knownIssue.findMany = async args => {
+      if (args.where.vehicleType === 'motorcycle') throw Error('FIXTURE_DB_FAILURE');
+      return originalFindMany(args);
+    };
+    await assert.rejects(r.IndexPage(car), /FIXTURE_DB_FAILURE/, 'database failure never becomes an empty coverage claim');
+  } finally { global.__catalogDb.knownIssue.findMany = originalFindMany; }
   assert(html['bike-article'].includes('/motorcycle-issues/honda-rebel#'), 'related issue deep links stay in motorcycle catalog');
   for (const name of ['KnownIssueAlertSignup', 'AlertSignupPopup', 'MobileBottomBar']) {
     assert(html['car-article'].includes(name === 'KnownIssueAlertSignup' ? 'data-alert-context' : `data-leaf="${name}"`), 'car ' + name + ' remains');
@@ -147,6 +176,13 @@ async function main() {
   assert.equal((await r.bikeIndexMetadata()).robots.index, false);
   assert.equal((await r.categoryMetadata(bike, prop('category', 'electrical'))).robots.index, false);
   html['empty-index'] = empty;
+  // Keep pending records in the empty landing fixture: they must not create coverage.
+  rows.push(fixture('Pending Bike', 'motorcycle', 'pending_review'));
+  html['car-empty-motorcycles'] = await render(r.IndexPage(car));
+  const emptySections = motorcycleSections(html['car-empty-motorcycles']);
+  assert(emptySections.includes('No motorcycle issues are published yet.'));
+  assert(!/href="\/motorcycle-issues\/(?:make|category)\//.test(emptySections), 'empty directory has no unavailable destinations');
+  assert(!emptySections.includes('Pending Bike'));
   html['empty-category'] = await render(r.CategoryPage(bike, prop('category', 'electrical')));
   assert(html['empty-category'].includes('No motorcycle issues are published yet.'));
   assert(!(await r.sitemap()).some(page => page.url.includes('/motorcycle-issues')));
@@ -158,6 +194,21 @@ async function main() {
   }
   const aliasDate = new Date('2026-09-10T00:00:00Z');
   rows.find(row => row.category === 'fuel-system').updatedAt = aliasDate;
+  const mixedRows = rows;
+  rows = [...rows,
+    {...fixture('Car-only brake issue', 'car'), make: 'BMW', category: 'brakes'},
+    {...fixture('R 1250', 'motorcycle'), make: 'BMW', category: 'electronics'},
+    {...fixture('Second R 1250 issue', 'motorcycle'), model: 'R 1250', make: 'BMW', category: 'electrical'},
+    {...fixture('Pending Ducati', 'motorcycle', 'pending_review'), make: 'Ducati', category: 'exhaust'},
+    {...fixture('Long make fixture', 'motorcycle'), make: 'Very Long Motorcycle Manufacturer Name For Layout', category: 'fuel_system'},
+  ];
+  html['car-mixed-motorcycles'] = await render(r.IndexPage(car));
+  const mixedSections = motorcycleSections(html['car-mixed-motorcycles']);
+  assert(mixedSections.includes('1 models · 2 issues'), 'BMW counts unique motorcycle models and published issues');
+  assert(!mixedSections.includes('/make/ducati'), 'pending-only makes never get destinations');
+  assert(mixedSections.includes('/make/very-long-motorcycle-manufacturer-name-for-layout'), 'make slugs use canonical helper');
+  assert.deepEqual([...mixedSections.matchAll(/href="\/motorcycle-issues\/category\/([^"]+)"/g)].map(m => m[1]), ['electrical', 'fuel'], 'mixed aliases deduplicate to canonical motorcycle categories and exclude car-only/pending/unknown categories');
+  rows = mixedRows;
   const fuelDates = await r.getCategoryDates('fuel', 'motorcycle');
   assert.equal(fuelDates.published, '2026-09-08', 'alias-only category uses actual publication date');
   assert.equal(fuelDates.modified, '2026-09-10', 'alias-only category uses actual update date');
@@ -186,6 +237,21 @@ async function main() {
   const originalEnv = {NODE_ENV:process.env.NODE_ENV, AU7O_ISOLATED_SIGNUP_PREVIEW:process.env.AU7O_ISOLATED_SIGNUP_PREVIEW};
   try {
     Object.assign(process.env,{NODE_ENV:'development',AU7O_ISOLATED_SIGNUP_PREVIEW:'true'});
+    const embeddedPreview = await render(r.IndexPage(car));
+    const embeddedPreviewSections = motorcycleSections(embeddedPreview);
+    assert(embeddedPreviewSections.includes('Synthetic motorcycle design examples only'));
+    assert(embeddedPreviewSections.includes('synthetic examples'));
+    assert(!embeddedPreviewSections.includes('Explore published motorcycle issues'));
+    html['preview-car-index'] = embeddedPreview;
+    const previewRows = rows;
+    try {
+      rows = rows.filter(row => row.vehicleType === 'car');
+      const emptyEmbeddedPreview = await render(r.IndexPage(car));
+      const emptyPreviewSections = motorcycleSections(emptyEmbeddedPreview);
+      assert(emptyPreviewSections.includes('Synthetic motorcycle design examples only'));
+      assert(!emptyPreviewSections.includes('published motorcycle'));
+      html['preview-car-empty-motorcycles'] = emptyEmbeddedPreview;
+    } finally { rows = previewRows; }
     for (const [name, element] of [
       ['index',r.IndexPage(bike)], ['make',r.MakePage(bike,prop('make','honda'))],
       ['category',r.CategoryPage(bike,prop('category','electrical'))], ['article',r.ArticlePage(bike,prop('slug','honda-gold-wing'))],
@@ -217,15 +283,32 @@ async function main() {
       await page.route('**/*', async route => {
         const url = new URL(route.request().url());
         if (url.origin !== 'https://catalog.invalid') { missing.push(url.href); return route.abort(); }
-        if (url.pathname === '/') return route.fulfill({ contentType: 'text/html; charset=utf-8', body: '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>' + css + '</style></head><body>' + content + '</body></html>' });
+        if (url.pathname === '/') return route.fulfill({ contentType: 'text/html; charset=utf-8', body: '<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>' + css + '</style></head><body><aside style="padding:12px 16px;background:#FEF3C7;color:#78350F;font:600 14px/1.5 system-ui">Synthetic QA fixture — local design preview. Counts and content below are test data, not production coverage.</aside>' + content + '</body></html>' });
         const file = path.resolve(root, 'public', '.' + decodeURIComponent(url.pathname));
         if (!file.startsWith(path.join(root, 'public') + path.sep) || !fs.existsSync(file)) { missing.push(url.pathname); return route.abort(); }
         return route.fulfill({ path: file });
       });
       await page.goto('https://catalog.invalid/');
+      if (name.startsWith('car-') && name !== 'car-article' && name !== 'car-make' && name !== 'car-category') {
+        for (const id of ['motorcycle-catalog-directory', 'motorcycle-catalog-categories']) {
+          const summary = page.locator(`#${id} summary`);
+          await summary.focus();
+          await page.keyboard.press('Enter');
+          assert(await page.locator(`#${id} details`).evaluate(el => el.open), name + ' keyboard expands ' + id);
+        }
+        for (const link of await page.locator('[id^="motorcycle-"] a').all()) {
+          const box = await link.boundingBox();
+          assert(box && box.x >= 0 && box.x + box.width <= width, name + ' motorcycle links fit viewport');
+        }
+      }
       assert.deepEqual(missing, [], name + ' assets'); assert.deepEqual(errors, [], name + ' runtime');
       assert(!await page.locator('body').innerText().then(text => /Ã|Â|â€/.test(text)), name + ' UTF-8 text');
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), name + ' no horizontal overflow at ' + width);
+      await page.evaluate(async () => {
+        if (document.activeElement instanceof HTMLElement) document.activeElement.blur();
+        window.scrollTo(0, 0);
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      });
       await page.screenshot({ path: path.join(output, `${name}-${width}.png`), fullPage: true });
       await page.close();
     } } finally { await browser.close(); }

@@ -119,6 +119,8 @@ export function DtcModelSection({
               defaultExpanded={index < expandFirst}
               linkableDtcCodes={linkableDtcCodes}
               basePath="/known-issues"
+              showSources
+              separateHeaderLinks
             />
           ))}
           <div className="pt-1 text-right">

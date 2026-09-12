@@ -17,6 +17,8 @@ import { IssueDiagnosticTools } from './IssueDiagnosticTools';
 import { FindDealerNearby } from './FindDealerNearby';
 import { needsDealerReferral } from '@/lib/known-issue-dealer-referral';
 import { currentKnownIssueAnchor, subscribeKnownIssueNavigation } from '@/lib/known-issue-navigation';
+import { DtcIssueSources } from './DtcIssueSources';
+import { DtcAnchorLink } from './DtcAnchorLink';
 
 /**
  * Strip the verification worker's INTERNAL reasoning log out of a fixPart note
@@ -114,9 +116,13 @@ interface KnownIssueCardProps {
    *  construction (see findRelatedVehiclesForIssues), so they resolve here. */
   basePath?: string;
   vehicleType?: 'car' | 'motorcycle';
+  /** DTC routes keep evidence with its applicable repair card. */
+  showSources?: boolean;
+  /** Keep DTC navigation outside the disclosure button. */
+  separateHeaderLinks?: boolean;
 }
 
-export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false, relatedVehicles, linkableDtcCodes, basePath = '/known-issues', vehicleType = 'car' }: KnownIssueCardProps) {
+export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false, relatedVehicles, linkableDtcCodes, basePath = '/known-issues', vehicleType = 'car', showSources = false, separateHeaderLinks = false }: KnownIssueCardProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFixModal, setShowFixModal] = useState(false);
@@ -231,6 +237,31 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
       } catch { /* old browsers — silent */ }
     }
   };
+
+  const codeLinks = issue.dtcCodes && issue.dtcCodes.length > 0 && (
+              <span className="inline-flex items-center gap-1 flex-wrap">
+                <span className="text-[10px] text-[#64748B] font-medium">Error Codes:</span>
+                {issue.dtcCodes.map((code) =>
+                  vehicleType === 'car' && (!linkableDtcCodes || linkableDtcCodes.includes(code.toLowerCase())) ? (
+                    <Link
+                      key={code}
+                      href={`/known-issues/dtc/${code.toLowerCase()}`}
+                    className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-semibold border border-[#BFDBFE] bg-[#EFF6FF] text-[#3B82F6] rounded hover:bg-[#DBEAFE] hover:text-[#2563EB] transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      {code}
+                    </Link>
+                  ) : (
+                    <span
+                      key={code}
+                      className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium bg-[#EFEDE6] text-[#475569] rounded"
+                    >
+                      {code}
+                    </span>
+                  ),
+                )}
+              </span>
+            );
 
   return (
     <div id={issue.id} tabIndex={-1} className="border border-[#E3DFD4] rounded-lg overflow-hidden transition-all scroll-mt-20 bg-[#FBFAF6]">
@@ -350,7 +381,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
                 GitHub heading anchors. Updates the URL hash without
                 scrolling away (location set via history.replaceState
                 inside an inline handler that lives below the JSX). */}
-            <a
+            {!separateHeaderLinks && <a
               href={`#${issue.id}`}
               aria-label="Permalink to this issue"
               title="Copy link to this issue"
@@ -366,7 +397,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               }}
             >
               #
-            </a>
+            </a>}
           </h3>
           {/* Year range and applicable trims */}
           <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mt-1">
@@ -384,30 +415,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               <span className="text-xs text-[#64748B]">All trims</span>
             )}
             {/* DTC codes in header */}
-            {issue.dtcCodes && issue.dtcCodes.length > 0 && (
-              <span className="inline-flex items-center gap-1 flex-wrap">
-                <span className="text-[10px] text-[#64748B] font-medium">Error Codes:</span>
-                {issue.dtcCodes.map((code) =>
-                  vehicleType === 'car' && (!linkableDtcCodes || linkableDtcCodes.includes(code.toLowerCase())) ? (
-                    <Link
-                      key={code}
-                      href={`/known-issues/dtc/${code.toLowerCase()}`}
-                    className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-semibold border border-[#BFDBFE] bg-[#EFF6FF] text-[#3B82F6] rounded hover:bg-[#DBEAFE] hover:text-[#2563EB] transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      {code}
-                    </Link>
-                  ) : (
-                    <span
-                      key={code}
-                      className="inline-flex items-center px-1.5 py-0.5 text-[10px] font-mono font-medium bg-[#EFEDE6] text-[#475569] rounded"
-                    >
-                      {code}
-                    </span>
-                  ),
-                )}
-              </span>
-            )}
+            {!separateHeaderLinks && codeLinks}
           </div>
           {contentUpdateDate && contentUpdateSummary && (
             <div className="mt-2 flex items-start gap-2 rounded-md border border-[#B8AE9B] bg-[#FBFAF6] px-2.5 py-2 text-xs leading-4">
@@ -442,6 +450,12 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
+      {separateHeaderLinks && (
+        <nav aria-label="Issue links" className="flex flex-wrap items-center gap-3 border-t border-[#E3DFD4] px-4 py-2">
+          <DtcAnchorLink anchor={issue.id} className="text-xs text-[#3B82F6] hover:underline">Link to this issue</DtcAnchorLink>
+          {codeLinks}
+        </nav>
+      )}
 
       {/* The body stays in the server-rendered document for indexing and
           accessibility, while the UI starts collapsed. Direct hash links
@@ -729,6 +743,8 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               </span>
             </div>
           )}
+
+          {showSources && <DtcIssueSources citations={issue.citations} />}
 
           {/* Citations & Search */}
           <div>

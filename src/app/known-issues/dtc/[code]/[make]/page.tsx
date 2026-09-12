@@ -2,8 +2,8 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getDTCWithIssuesForMake, getAllDTCMakeSlugs, slugToMake, getDTCDates, getThinDtcMakeKeys, getLinkableDtcCodes, getDtcTriage } from '@/lib/dtc-codes';
-import { TechnicalArticleJsonLd, BreadcrumbJsonLd, FAQJsonLd } from '@/components/seo/JsonLd';
+import { getDTCWithIssuesForMake, getAllDTCMakeSlugs, slugToMake, getDTCDates, getThinDtcMakeKeys, getLinkableDtcCodes, getDtcTriage, getRelatedDTCCodes } from '@/lib/dtc-codes';
+import { TechnicalArticleJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { DtcModelSection } from '@/components/known-issues/DtcModelSection';
@@ -12,7 +12,7 @@ import { DtcTriageBlock } from '@/components/known-issues/DtcTriageBlock';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
 import { MobileBottomBar } from '@/components/known-issues/MobileBottomBar';
 import { AdSlot } from '@/components/ads/AdSlot';
-import { FaqIcon } from '@/components/known-issues/IssueCategoryIcon';
+import { DtcReferenceCard } from '@/components/known-issues/DtcReferenceCard';
 import type { KnownIssue } from '@/schemas/knownIssue.schema';
 
 /**
@@ -63,13 +63,6 @@ function costRange(issues: KnownIssue[]): { min: number; max: number } {
   const lows = issues.filter(i => i.estimatedCost && i.estimatedCost.low > 0).map(i => i.estimatedCost!.low);
   const highs = issues.filter(i => i.estimatedCost && i.estimatedCost.high > 0).map(i => i.estimatedCost!.high);
   return { min: lows.length ? Math.min(...lows) : 0, max: highs.length ? Math.max(...highs) : 0 };
-}
-
-/** First one or two sentences of a solution, for lead paragraphs and FAQ. */
-function leadSentences(text: string, max = 2): string {
-  const parts = text.replace(/\s+/g, ' ').trim().match(/[^.!?]+[.!?]+/g);
-  if (!parts) return text.trim();
-  return parts.slice(0, max).join(' ').trim();
 }
 
 function yearSpan(issues: KnownIssue[]): string {
@@ -140,12 +133,13 @@ export default async function PerMakeDTCPage({
   const make = await slugToMake(makeSlug);
   if (!make) notFound();
 
-  const [data, dtcDates, linkableDtcCodes, allMakeSlugs, triage] = await Promise.all([
+  const [data, dtcDates, linkableDtcCodes, allMakeSlugs, triage, relatedCodes] = await Promise.all([
     getDTCWithIssuesForMake(code, make),
     getDTCDates(code),
     getLinkableDtcCodes(),
     getAllDTCMakeSlugs(),
     getDtcTriage(code, make),
+    getRelatedDTCCodes(code),
   ]);
   if (!data) notFound();
 
@@ -188,9 +182,6 @@ export default async function PerMakeDTCPage({
   }))];
 
   const highCount = data.issues.filter(i => i.severity === 'high').length;
-  const totalReports = data.issues.reduce((s, i) => s + (i.reportCount || 0), 0);
-  const topIssue = data.issues[0];
-  const criticalIssues = data.issues.filter(i => i.severity === 'high').slice(0, 3);
   const severityLabel = data.severity === 'high' ? 'Critical' : data.severity === 'medium' ? 'Moderate' : 'Minor';
 
   const faqs = [
@@ -198,16 +189,10 @@ export default async function PerMakeDTCPage({
       question: `What does ${codeUpper} mean on a ${make}?`,
       answer: `${codeUpper} stands for "${data.name}." ${data.description} On ${make} it is documented across ${data.vehicleCount} model${data.vehicleCount === 1 ? '' : 's'}: ${models.map(([m]) => m).join(', ')}.`,
     },
-    {
-      question: `How do I diagnose ${codeUpper} on a ${make} ${topIssue.vehicleMatch.model}?`,
-      answer: triage
-        ? `${triage.firstCheck} ${leadSentences(triage.intro, 1)} The "Narrow it down" section on this page maps each symptom to the documented failure and its fix.`
-        : `${leadSentences(topIssue.solution, 3)} Published repair guidance and available estimates are in the ${topIssue.vehicleMatch.model} section on this page.`,
-    },
-    {
-      question: `What causes ${codeUpper} on ${make} vehicles?`,
-      answer: `Documented causes on ${make}: ${data.issues.slice(0, 4).map(i => i.title).join('; ')}. Generic causes of ${codeUpper}: ${data.commonCauses.slice(0, 4).join(', ')}.`,
-    },
+    ...(data.commonCauses.length > 0 ? [{
+      question: `What are the most common causes of ${codeUpper}?`,
+      answer: `The most common causes of ${codeUpper} are: ${data.commonCauses.join(', ')}. The specific cause varies by vehicle.`,
+    }] : []),
     {
       question: `How much does it cost to fix ${codeUpper} on a ${make}?`,
       answer: minCost > 0
@@ -262,7 +247,6 @@ export default async function PerMakeDTCPage({
           { name: make, url: articleUrl },
         ]}
       />
-      <FAQJsonLd questions={faqs} />
 
       <article id="top" className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 pb-24 lg:pb-12">
         {/* Breadcrumb */}
@@ -299,29 +283,6 @@ export default async function PerMakeDTCPage({
           </div>
         </header>
 
-        {/* GEO lead — the paragraph AI answers cite. Fix-first: names the
-            most-reported cause and its remedy before restating the definition. */}
-        <blockquote className="border-l-4 border-[#3B82F6] pl-5 mb-10">
-          <p className="leading-relaxed" style={{ color: '#475569' }}>
-            On <strong className="text-[#0B1220]">{make}</strong> vehicles, <strong className="text-[#0B1220]">{codeUpper}</strong> ({data.name.toLowerCase()}) is most often reported on the{' '}
-            <strong className="text-[#0B1220]">{yearSpan([topIssue]) && `${yearSpan([topIssue])} `}{make} {topIssue.vehicleMatch.model}</strong> as{' '}
-            <strong className="text-[#0B1220]">{topIssue.title}</strong>
-            {topIssue.estimatedCost && topIssue.estimatedCost.high > 0 && (
-              <> (${topIssue.estimatedCost.low.toLocaleString()}-${topIssue.estimatedCost.high.toLocaleString()} repair)</>
-            )}. {leadSentences(topIssue.solution, 2)}{' '}
-            {criticalIssues.length > 0 && (
-              <>Rated critical: {criticalIssues.map((issue, i) => (
-                <span key={issue.id}>
-                  {i > 0 && (i === criticalIssues.length - 1 ? ' and ' : ', ')}
-                  <strong className="text-[#0B1220]">{issue.vehicleMatch.model} {issue.title}</strong>
-                </span>
-              ))}. </>
-            )}
-            {totalReports > 100 && <>Compiled from {totalReports.toLocaleString()} owner reports, TSBs and recall filings. </>}
-            Each section below gives the symptoms, how to confirm the cause, the fix, parts and sources for that model.
-          </p>
-        </blockquote>
-
         {/* Two-column layout */}
         <div className="lg:flex lg:gap-0">
           <DtcSidebar
@@ -334,20 +295,6 @@ export default async function PerMakeDTCPage({
           <div className="min-w-0 flex-1">
             {/* Mobile TOC */}
             <DtcMobileToc heading={`${codeUpper} by ${make} model`} entries={sidebarEntries} />
-
-            {/* Generic causes — short, above the vehicle-specific meat. The
-                reference block is what every DTC site publishes; it stays
-                for completeness but is not the reason to rank. */}
-            {data.commonCauses.length > 0 && (
-              <section className="mb-6 bg-white border border-[#E3DFD4] rounded-lg p-4">
-                <h2 className="text-sm font-semibold text-[#0B1220] mb-2">Common causes of {codeUpper} (all vehicles)</h2>
-                <ul className="flex flex-wrap gap-2">
-                  {data.commonCauses.map((cause) => (
-                    <li key={cause} className="text-xs px-2 py-1 rounded bg-[#EFEDE6] text-[#334155] border border-[#E3DFD4]">{cause}</li>
-                  ))}
-                </ul>
-              </section>
-            )}
 
             {/* Code x make triage — the content that is unique to this page. */}
             {triage && <DtcTriageBlock triage={triage} codeUpper={codeUpper} make={make} />}
@@ -374,6 +321,8 @@ export default async function PerMakeDTCPage({
               </div>
             </section>
 
+            <DtcReferenceCard code={codeUpper} faqs={faqs} relatedCodes={relatedCodes} />
+
             <AdSlot slotId="auto" format="horizontal" className="my-10" />
 
             {/* Same code across all makes */}
@@ -382,19 +331,6 @@ export default async function PerMakeDTCPage({
               <Link href={`/known-issues/dtc/${codeLower}`} className="text-[#3B82F6] hover:text-[#2563EB] font-medium">
                 View {codeUpper} across all makes →
               </Link>
-            </section>
-
-            {/* FAQ */}
-            <section id="faq" className="scroll-mt-16 mb-8">
-              <h2 className="text-xl font-semibold mb-5" style={{ color: '#0B1220' }}>Frequently asked questions</h2>
-              <div className="space-y-5">
-                {faqs.map((faq) => (
-                  <div key={faq.question} className="border-b border-[#E3DFD4] pb-5">
-                    <h3 className="font-semibold text-[#0B1220] mb-2">{faq.question}</h3>
-                    <p className="text-sm leading-relaxed text-[#475569]">{faq.answer}</p>
-                  </div>
-                ))}
-              </div>
             </section>
 
             <div className="mb-8">
