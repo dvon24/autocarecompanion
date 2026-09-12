@@ -46,6 +46,7 @@ export function ModelIssueSearch({
   make,
   model,
   hubHref,
+  keywordOnly = false,
 }: {
   issues: LiteIssue[];
   make: string;
@@ -53,6 +54,8 @@ export function ModelIssueSearch({
   /** Omitted for restoration classics — the Hub only serves 1990+, so linking
    *  it for a 1969 model produced a 404 (see hubSupportsYear). */
   hubHref?: string;
+  /** Motorcycle browsing supports local matching only. */
+  keywordOnly?: boolean;
 }) {
   const { data: session } = useSession();
   const isSubscriber = (session?.user as { subscriptionStatus?: string } | undefined)?.subscriptionStatus === 'active';
@@ -74,6 +77,7 @@ export function ModelIssueSearch({
   const fuzzy = useMemo(() => (aiMode ? [] : fuzzyRank(query, issues)), [query, issues, aiMode]);
 
   const runAi = useCallback(async () => {
+    if (keywordOnly) return;
     const q = query.trim();
     if (q.length < 2) return;
     if (!isSubscriber) { setGated(true); return; }
@@ -94,10 +98,11 @@ export function ModelIssueSearch({
       setAiResults(rs);
     } catch { setAiResults([]); }
     setLoading(false);
-  }, [query, isSubscriber, make, model, issues]);
+  }, [query, isSubscriber, make, model, issues, keywordOnly]);
 
   // Camera capture → /api/vision (quota-gated per tier, server-side).
   const onCaptured = useCallback(async (kind: 'photo' | 'video', file: File) => {
+    if (keywordOnly) return;
     setCamOpen(false); setVisionLoading(true); setVision(null); setVisionGate(null); setVisionErr(null);
     const previewUrl = URL.createObjectURL(file);
     try {
@@ -125,10 +130,10 @@ export function ModelIssueSearch({
       setVisionErr(e instanceof Error && (e.name === 'TimeoutError' || e.name === 'AbortError') ? 'That took too long — try a shorter, clearer capture.' : 'Upload failed — check your connection.');
     }
     setVisionLoading(false);
-  }, [make, model]);
+  }, [make, model, keywordOnly]);
 
   const jump = (id: string) => {
-    try { window.location.hash = `#${id}`; } catch { /* */ }
+    try { window.location.assign(`#${id}`); } catch { /* */ }
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
@@ -142,10 +147,10 @@ export function ModelIssueSearch({
       <div className="flex items-center gap-2 mb-2">
         <button type="button" onClick={() => { setAiMode(false); setGated(false); }}
           className={`text-xs font-medium px-2.5 py-1 rounded-full transition-colors ${!aiMode ? 'bg-[#0B1220] text-white' : 'bg-[#EFEDE6] text-[#475569]'}`}>Search</button>
-        <button type="button" onClick={() => setAiMode(true)}
+        {!keywordOnly && <button type="button" onClick={() => setAiMode(true)}
           className={`text-xs font-medium px-2.5 py-1 rounded-full transition-colors inline-flex items-center gap-1 ${aiMode ? 'bg-gradient-to-r from-indigo-600 to-blue-600 text-white' : 'bg-[#EFEDE6] text-[#475569]'}`}>
           ✨ AI search {!isSubscriber && <span className="text-[9px] font-bold px-1 py-0.5 rounded bg-amber-200 text-amber-800">PLUS</span>}
-        </button>
+        </button>}
       </div>
 
       <form onSubmit={onSubmit} className="flex gap-2">
@@ -158,11 +163,11 @@ export function ModelIssueSearch({
             className="w-full pl-9 pr-11 py-2.5 text-sm bg-[#FAF8F2] border border-[#E3DFD4] rounded-lg outline-none focus:border-blue-400 text-[#0B1220]"
           />
           {/* Camera — snap a photo/video to match (quota-gated per tier). */}
-          <button type="button" onClick={() => setCamOpen(true)} aria-label="Show it — snap a photo or video"
+          {!keywordOnly && <button type="button" onClick={() => setCamOpen(true)} aria-label="Show it — snap a photo or video"
             title="Snap a photo or video to match your issue"
             className="absolute right-2 top-1/2 -translate-y-1/2 w-7 h-7 inline-flex items-center justify-center rounded-md text-[#475569] hover:bg-[#EFEDE6]">
             <svg className="w-4.5 h-4.5" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 7h3l2-3h8l2 3h3v13H3V7z" /><circle cx="12" cy="13" r="4" /></svg>
-          </button>
+          </button>}
         </div>
         {aiMode && (
           <button type="submit" disabled={loading || query.trim().length < 2}
@@ -188,7 +193,7 @@ export function ModelIssueSearch({
             ))}
           </ul>
         ) : (
-          <p className="mt-2 text-xs text-[#64748B] px-1">No keyword match. Try <button type="button" onClick={() => setAiMode(true)} className="text-blue-600 underline">AI search</button> to describe it.</p>
+          <p className="mt-2 text-xs text-[#64748B] px-1">{keywordOnly ? 'No keyword match. Try another symptom, issue name, or code.' : <>No keyword match. Try <button type="button" onClick={() => setAiMode(true)} className="text-blue-600 underline">AI search</button> to describe it.</>}</p>
         )
       )}
 
@@ -223,7 +228,7 @@ export function ModelIssueSearch({
       )}
 
       {/* Fullscreen camera */}
-      {camOpen && (
+      {!keywordOnly && camOpen && (
         <LiveCameraShutter
           onPhoto={(f) => onCaptured('photo', f)}
           onVideo={(f) => onCaptured('video', f)}

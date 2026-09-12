@@ -37,9 +37,10 @@ interface ArticleIssuesListProps {
   linkableDtcCodes?: string[];
   /** See KnownIssueCard.basePath — pass-through. */
   basePath?: string;
+  vehicleType?: 'car' | 'motorcycle';
 }
 
-export function ArticleIssuesList({ issues, make, model, initialYear, allYears, relatedByIssueId, linkableDtcCodes, basePath }: ArticleIssuesListProps) {
+export function ArticleIssuesList({ issues, make, model, initialYear, allYears, relatedByIssueId, linkableDtcCodes, basePath, vehicleType = 'car' }: ArticleIssuesListProps) {
   const { selectedVehicle } = useVehicleContext();
   const pathname = usePathname();
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
@@ -49,8 +50,8 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
   const yearFilter = initialYear ?? null;
 
   const vehicleInfo = useMemo(
-    () => vehicleInfoForKnownIssueArticle(selectedVehicle, make, model, yearFilter),
-    [make, model, selectedVehicle, yearFilter],
+    () => vehicleInfoForKnownIssueArticle(vehicleType === 'car' ? selectedVehicle : null, make, model, yearFilter),
+    [make, model, selectedVehicle, yearFilter, vehicleType],
   );
   const userTrim = vehicleInfo?.trim || null;
 
@@ -265,7 +266,8 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
                   vehicleInfo={vehicleInfo}
                   relatedByIssueId={relatedByIssueId}
                   linkableDtcCodes={linkableDtcCodes}
-                  basePath={basePath}
+            basePath={basePath}
+            vehicleType={vehicleType}
                 />
               </div>
               {/* Mid-content ad slot — uses Auto Ads (no hand-coded slot id). */}

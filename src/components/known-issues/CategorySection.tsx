@@ -33,9 +33,10 @@ interface CategorySectionProps {
   linkableDtcCodes?: string[];
   /** See KnownIssueCard.basePath — pass-through. */
   basePath?: string;
+  vehicleType?: 'car' | 'motorcycle';
 }
 
-export function CategorySection({ category, issues, defaultExpanded = false, defaultCardExpanded = false, vehicleInfo, relatedByIssueId, linkableDtcCodes, basePath }: CategorySectionProps) {
+export function CategorySection({ category, issues, defaultExpanded = false, defaultCardExpanded = false, vehicleInfo, relatedByIssueId, linkableDtcCodes, basePath, vehicleType = 'car' }: CategorySectionProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
 
   // Auto-expand when navigating to this category or a child issue via hash anchor
@@ -105,6 +106,7 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
               relatedVehicles={relatedByIssueId?.[issue.id]}
               linkableDtcCodes={linkableDtcCodes}
               basePath={basePath}
+              vehicleType={vehicleType}
             />
           ))}
         </div>

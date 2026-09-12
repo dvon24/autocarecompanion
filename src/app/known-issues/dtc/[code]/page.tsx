@@ -4,10 +4,10 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
-import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes, getThinDtcCodes, makeToSlug } from '@/lib/dtc-codes';
+import { getAllDTCSlugs, getDTCWithIssues, getDTCDates, getRelatedDTCCodes, getThinDtcCodes, getLinkableDtcCodes, makeToSlug } from '@/lib/dtc-codes';
 import { TechnicalArticleJsonLd, FAQJsonLd, BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import { CollapsibleMakeSection } from '@/components/known-issues/CollapsibleMakeSection';
-import { DiagnosticToolGuidance } from '@/components/known-issues/DiagnosticToolGuidance';
+import { KnownIssueCard } from '@/components/known-issues/KnownIssueCard';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { externalHttpUrl } from '@/lib/external-http-url';
@@ -61,8 +61,10 @@ export async function generateMetadata({
 
   // Title — keep tight (~60 chars). Format puts the code first (matches
   // search query lead), then makes (relevance), then code name (context).
+  // Leads with the vehicle-specific fix the SERP can't give the searcher,
+  // not the definition every DTC site (and the AI Overview) already shows.
   const title = vehicleList
-    ? `${data.code} on ${topVehicles.map(v => v.make).join(', ')}${moreSuffix} — ${data.name}`
+    ? `${data.code}: How to Diagnose & Fix on ${topVehicles.map(v => v.make).join(', ')}${moreSuffix}`
     : `${data.code}: ${data.name} | OBD-II Code Guide`;
   // Description (~155 chars). Lead with code + vehicle context. The
   // generic "across N makes" framing was correct but invisible — it
@@ -105,10 +107,11 @@ export default async function DTCCodePage({
   params: Promise<{ code: string }>;
 }) {
   const { code } = await params;
-  const [data, dtcDates, relatedCodes] = await Promise.all([
+  const [data, dtcDates, relatedCodes, linkableDtcCodes] = await Promise.all([
     getDTCWithIssues(code),
     getDTCDates(code),
     getRelatedDTCCodes(code),
+    getLinkableDtcCodes(),
   ]);
   if (!data) notFound();
   // Hard 404 when the code exists in the registry but no published issue
@@ -306,7 +309,7 @@ export default async function DTCCodePage({
                 {data.name}
               </>
             ) : (
-              <>{data.code}: {data.name}</>
+              <>{data.code}: How to Diagnose &amp; Fix — {data.name}</>
             )}
           </h1>
           <div className="flex items-center justify-between flex-wrap gap-2">
@@ -324,43 +327,36 @@ export default async function DTCCodePage({
         <div className="mb-6">
         </div>
 
-        {/* Most-reported-on rail — top 5 vehicles by reportCount, each as
-            a real <Link>. Surfaces YMMT context above the fold for both
-            users (instant visual context: "this code shows up on my
-            Camry/Accord/Cruze") and Google (vehicle keywords appear high
-            in the page body, reinforcing the title/meta signal). The
-            CollapsibleMakeSection grid further down still covers the
-            full list. */}
+        {/* Most-reported vehicles — full issue cards in the article-page
+            style (symptoms, How to Fix, diagnostic tools, parts, cost,
+            sources). Earlier this was a row of YMMT chips linking away; the
+            reader who searched "p0016 toyota" now gets the diagnosis and the
+            fix on this page. The first cards render expanded so the fix text
+            is in the SSR HTML; the make directory below still covers every
+            vehicle. */}
         {data.issues.length > 0 && (
-          <section aria-label="Most reported vehicles for this code" className="mb-8">
-            <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider mb-2">
-              Most Reported On
+          <section id="fixes" aria-label="Most reported vehicles for this code" className="mb-8 scroll-mt-16">
+            <h2 className="text-xl font-semibold text-[#0B1220] mb-1">
+              How to diagnose and fix {data.code}: most-reported vehicles
             </h2>
-            <div className="flex flex-wrap gap-2">
-              {data.issues.slice(0, 5).map((iss) => {
-                const years = iss.vehicleMatch.years || [];
-                const yMin = years.length ? Math.min(...years) : 0;
-                const yMax = years.length ? Math.max(...years) : 0;
-                const yearLabel = !yMin ? '' : yMin === yMax ? String(yMin) : `${yMin}-${yMax}`;
-                const trims = iss.vehicleMatch.trims || [];
-                return (
-                  <Link
-                    key={iss.id}
-                    href={`/known-issues/${iss.slug}#${iss.id}`}
-                    className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#E3DFD4] hover:border-blue-300 hover:bg-blue-50 transition-colors text-sm"
-                  >
-                    {yearLabel && <span className="font-mono text-xs text-[#64748B]">{yearLabel}</span>}
-                    <span className="font-medium text-[#0B1220]">
-                      {iss.vehicleMatch.make} {iss.vehicleMatch.model}
-                    </span>
-                    {trims.length > 0 && (
-                      <span className="text-xs text-[#64748B]">
-                        {trims.length <= 2 ? trims.join(', ') : `${trims[0]} +${trims.length - 1}`}
-                      </span>
-                    )}
-                  </Link>
-                );
-              })}
+            <p className="text-sm text-[#64748B] mb-4">
+              Ranked by owner reports. Each card gives the symptoms, how to confirm the cause, the fix, parts and sources for that vehicle.
+            </p>
+            <div className="space-y-2">
+              {data.issues.slice(0, 5).map((iss, index) => (
+                <div key={iss.id}>
+                  <p className="mb-2 text-sm font-medium text-[#475569]">
+                    {iss.vehicleMatch.make} {iss.vehicleMatch.model}
+                    {iss.vehicleMatch.years.length > 0 && <> · {Math.min(...iss.vehicleMatch.years)}–{Math.max(...iss.vehicleMatch.years)}</>}
+                  </p>
+                <KnownIssueCard
+                  issue={iss}
+                  defaultExpanded={index < 3}
+                  linkableDtcCodes={linkableDtcCodes}
+                  basePath="/known-issues"
+                />
+                </div>
+              ))}
             </div>
           </section>
         )}
@@ -514,7 +510,6 @@ export default async function DTCCodePage({
             )}
 
             {/* OBD Scanner */}
-            <DiagnosticToolGuidance dtcCode={data.code} />
 
             {/* Vehicles by Make — collapsible */}
             <section id="vehicles" className="scroll-mt-16 mb-8">

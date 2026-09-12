@@ -26,10 +26,12 @@ interface IssueDiagnosticToolsProps {
   solution: string;
   /** Codes on the issue, so a page naming one also gets a scanner that reads it. */
   dtcCodes?: string[] | null;
+  /** `tool` of each reviewed diagnostic step, so the walkthrough's own instruments get linked. */
+  stepTools?: Array<string | null | undefined> | null;
 }
 
-export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticToolsProps) {
-  const { tools, procedures, families, hasUnknownCode } = diagnosticToolsForIssue(solution, dtcCodes);
+export function IssueDiagnosticTools({ solution, dtcCodes, stepTools }: IssueDiagnosticToolsProps) {
+  const { tools, procedures, families, hasUnknownCode, fromSteps } = diagnosticToolsForIssue(solution, dtcCodes, stepTools);
 
   if (tools.length === 0) return null;
   const nonPowertrain = families.filter((f) => f !== 'P');
@@ -47,7 +49,9 @@ export function IssueDiagnosticTools({ solution, dtcCodes }: IssueDiagnosticTool
         What you need to diagnose it
       </h4>
       <p className="mb-3 text-xs leading-relaxed text-[#475569]">
-        {matchedProcedure
+        {fromSteps
+          ? 'The instructions name these instruments. Dealer and proprietary scan-tool requirements are not linked to consumer substitutes.'
+          : matchedProcedure
           // Only say the fix STARTS WITH A TEST when the article's own solution
           // actually calls for one. Saying it on a page that already carries a
           // confirmed part would contradict the repair sitting right below it.

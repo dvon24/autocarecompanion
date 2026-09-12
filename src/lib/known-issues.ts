@@ -2,8 +2,10 @@ import { KnownIssue } from '@/schemas/knownIssue.schema';
 import prisma from '@/lib/db';
 import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
-import { categoryConfig } from '@/lib/issue-categories';
+import { categoryConfig, catalogCategory, storedCatalogCategories } from '@/lib/issue-categories';
 import { filterableKnownIssueTrims } from '@/lib/known-issue-trim-filter';
+
+import { diagVisible, readDiagnosticSteps, readFixParts, readCommunityRecommendations } from '@/lib/known-issue-diagnostics';
 
 // --- DB row to KnownIssue shape ---
 
@@ -54,11 +56,16 @@ function dbRowToKnownIssue(row: any): KnownIssue {
       ? { low: row.typicalMileageLow, high: row.typicalMileageHigh }
       : undefined,
     citations: row.citations as any[],
-    communityRecommendations: row.communityRecommendations as any[],
+    communityRecommendations: readCommunityRecommendations(row.communityRecommendations),
     // The buyable fix — exact part(s) + PN + validated buy-links. May be absent
     // on queries that use a narrow `select` (e.g. related-vehicle lookups); the
     // full article fetch returns all columns so the card gets it.
-    fixParts: (row.fixParts as any[]) || [],
+    fixParts: readFixParts(row.fixParts),
+    // How-to-diagnose steps ride along only once reviewed; a wave writes
+    // them pending_review and must never change a live page unreviewed.
+    ...(diagVisible(row.diagnosticStepsStatus)
+      ? { diagnosticSteps: readDiagnosticSteps(row.diagnosticSteps) }
+      : {}),
     humanApproved: row.humanApproved,
     lastReportedByOwners: row.lastReportedByOwners,
     reviewedOn: row.reviewedOn,
@@ -175,8 +182,9 @@ async function getArticleDatesImpl(make: string, model: string, vehicleType: Veh
  *  /known-issues/category/[category] landing pages so their JSON-LD +
  *  sitemap entries advertise fresh dateModified. */
 export async function getCategoryDates(category: string, vehicleType: VehicleType = 'car'): Promise<{ published: string; modified: string }> {
+  const normalizedCategory = vehicleType === 'motorcycle' ? catalogCategory(category) : null;
   const result = await prisma.knownIssue.aggregate({
-    where: { status: 'published', category, vehicleType },
+    where: { status: 'published', category: normalizedCategory ? { in: storedCatalogCategories(normalizedCategory), mode: 'insensitive' } : category, vehicleType },
     _min: { createdAt: true },
     _max: { updatedAt: true },
   });

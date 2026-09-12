@@ -16,6 +16,7 @@ import { formatOwnerReportCount } from '@/lib/owner-report-count';
 import { IssueDiagnosticTools } from './IssueDiagnosticTools';
 import { FindDealerNearby } from './FindDealerNearby';
 import { needsDealerReferral } from '@/lib/known-issue-dealer-referral';
+import { currentKnownIssueAnchor, subscribeKnownIssueNavigation } from '@/lib/known-issue-navigation';
 
 /**
  * Strip the verification worker's INTERNAL reasoning log out of a fixPart note
@@ -112,9 +113,10 @@ interface KnownIssueCardProps {
    *  '/motorcycle-issues'). The related-vehicle links are same-catalog by
    *  construction (see findRelatedVehiclesForIssues), so they resolve here. */
   basePath?: string;
+  vehicleType?: 'car' | 'motorcycle';
 }
 
-export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false, relatedVehicles, linkableDtcCodes, basePath = '/known-issues' }: KnownIssueCardProps) {
+export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUpdated, defaultExpanded = false, relatedVehicles, linkableDtcCodes, basePath = '/known-issues', vehicleType = 'car' }: KnownIssueCardProps) {
   const [expanded, setExpanded] = useState(defaultExpanded);
   const [showReportModal, setShowReportModal] = useState(false);
   const [showFixModal, setShowFixModal] = useState(false);
@@ -130,22 +132,25 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // card. We retry once at the longer delay if the first attempt missed.
   useEffect(() => {
     if (typeof window === 'undefined') return;
+    const timers: ReturnType<typeof setTimeout>[] = [];
     // Runs on mount AND whenever the hash changes — so the per-model search
     // (ModelIssueSearch) can jump to a matched issue by setting the hash and
     // this card expands + scrolls to itself.
     const check = () => {
-      if (window.location.hash !== `#${issue.id}`) return;
+      if (currentKnownIssueAnchor() !== issue.id) return;
       setExpanded(true);
       const scrollTo = () => {
         const el = document.getElementById(issue.id);
-        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        if (el) {
+          el.focus({ preventScroll: true });
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       };
-      setTimeout(scrollTo, 90);
-      setTimeout(scrollTo, 450);
+      timers.push(setTimeout(scrollTo, 90), setTimeout(scrollTo, 450));
     };
     check();
-    window.addEventListener('hashchange', check);
-    return () => window.removeEventListener('hashchange', check);
+    const unsubscribe = subscribeKnownIssueNavigation(check);
+    return () => { unsubscribe(); timers.forEach(clearTimeout); };
   }, [issue.id]);
 
   const severityConfig = {
@@ -187,7 +192,8 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   const config = severityConfig[issue.severity] || severityConfig.medium;
 
   // Determine if this is a highly community-reported issue (50+ reports)
-  const isCommunityReported = issue.reportCount >= 50;
+  const syntheticExample = vehicleType === 'motorcycle' && String(issue.source) === 'synthetic-design-fixture';
+  const isCommunityReported = !syntheticExample && issue.reportCount >= 50;
   const { fixParts: gatedParts, ownerGuidance } = getKnownIssueCommerce(issue);
   // An article's year span is usually wider than any one part number's. When we
   // know the reader's actual vehicle, drop parts whose declared fitment excludes
@@ -227,7 +233,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   };
 
   return (
-    <div id={issue.id} className="border border-[#E3DFD4] rounded-lg overflow-hidden transition-all scroll-mt-20 bg-[#FBFAF6]">
+    <div id={issue.id} tabIndex={-1} className="border border-[#E3DFD4] rounded-lg overflow-hidden transition-all scroll-mt-20 bg-[#FBFAF6]">
       {/* User Fix Status Banner - shows when user has reported fixing this */}
       {userFix && (
         <div className="px-4 py-2 flex items-center justify-between bg-[#3C313D] border-b border-[#2A232B]">
@@ -382,7 +388,7 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               <span className="inline-flex items-center gap-1 flex-wrap">
                 <span className="text-[10px] text-[#64748B] font-medium">Error Codes:</span>
                 {issue.dtcCodes.map((code) =>
-                  !linkableDtcCodes || linkableDtcCodes.includes(code.toLowerCase()) ? (
+                  vehicleType === 'car' && (!linkableDtcCodes || linkableDtcCodes.includes(code.toLowerCase())) ? (
                     <Link
                       key={code}
                       href={`/known-issues/dtc/${code.toLowerCase()}`}
@@ -511,6 +517,36 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
             </ul>
           </div>
 
+          {/* How to Diagnose — ordered verify-before-replace steps, present
+              only once reviewed (see diagnosticStepsStatus). Sits ABOVE the
+              fix because the reader's question is "which cause is mine"
+              before "what do I replace". */}
+          {issue.diagnosticSteps && issue.diagnosticSteps.length > 0 && (
+            <div className="bg-white border border-[#E3DFD4] rounded-lg p-3">
+              <h4 className="text-sm font-medium text-[#0B1220] mb-2 flex items-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 20 20">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 3v2m0 10v2m-6-7h2m10 0h2M5.6 5.6l1.4 1.4m6 6l1.4 1.4M5.6 14.4L7 13m6-6l1.4-1.4M9 12a3 3 0 100-6 3 3 0 000 6z" />
+                </svg>
+                How to Diagnose
+              </h4>
+              <ol className="space-y-2">
+                {issue.diagnosticSteps.map((s) => (
+                  <li key={s.step} className="flex gap-3 text-sm text-[#475569]">
+                    <span className="flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#0B1220] text-white text-[11px] font-semibold mt-0.5">{s.step}</span>
+                    <div className="min-w-0">
+                      <p className="text-[#0B1220]">{s.action}{s.tool && <span className="text-[#64748B]"> — {s.tool}</span>}</p>
+                      {s.expect && <p className="text-xs mt-0.5"><span className="font-medium text-[#334155]">Good:</span> {s.expect}</p>}
+                      {s.ifFail && <p className="text-xs mt-0.5"><span className="font-medium text-[#8B1E1E]">If not:</span> {s.ifFail}</p>}
+                      {s.sourceUrl && (
+                        <a href={s.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-[#3B82F6] hover:underline">source</a>
+                      )}
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
+          )}
+
           {/* Solution/Fix */}
           <div className="bg-[#F7F4EC] border border-[#E3DFD4] rounded-lg p-3">
             <h4 className="text-sm font-medium text-[#0B1220] mb-2 flex items-center gap-2">
@@ -527,14 +563,14 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
               need a compression test AND a gasket, and the tool claim
               ("the procedure needs this") is separate from the part claim
               ("this repairs your car"). */}
-          <IssueDiagnosticTools solution={issue.solution} dtcCodes={issue.dtcCodes} />
+          {vehicleType === 'car' && <IssueDiagnosticTools solution={issue.solution} dtcCodes={issue.dtcCodes} stepTools={issue.diagnosticSteps?.map((s) => s.tool)} />}
 
           {/* Dealer work, not a DIY part: an open recall is repaired free, so the
               next step is reaching a franchise — not buying anything. Gated by
               needsDealerReferral() and placed OUTSIDE the fixParts block, because
               most of these issues carry no parts at all. */}
           {needsDealerReferral(issue) && issue.vehicleMatch?.make && (
-            <FindDealerNearby make={issue.vehicleMatch.make} />
+            <FindDealerNearby make={issue.vehicleMatch.make} vehicleType={vehicleType} />
           )}
 
           {/* Public commerce lives in this one canonical section. Search and
@@ -799,14 +835,14 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
 
           {/* Trust indicators */}
           <div className="pt-2 border-t border-[#E3DFD4] flex items-center gap-2 flex-wrap">
-            <VerificationBadge source={issue.source} />
+            {syntheticExample ? <span className="text-xs text-[#64748B]">Synthetic design example — not a verified defect or repair recommendation.</span> : <><VerificationBadge source={issue.source} />
             <ConfidenceBadge
               confidence={issue.confidence}
               humanApproved={issue.humanApproved}
               lastReportedByOwners={issue.lastReportedByOwners}
               reviewedOn={issue.reviewedOn}
               reportCount={issue.reportCount}
-            />
+            /></>}
           </div>
 
           {/* Action buttons */}

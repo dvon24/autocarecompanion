@@ -19,3 +19,19 @@ export const categoryConfig: Record<IssueCategory, { label: string; icon: string
   emissions: { label: 'Emissions', icon: '\uD83C\uDF3F' },
   other: { label: 'Other', icon: '\uD83D\uDCCB' },
 };
+
+// Stored research aliases supported by the article reader. Unknown values
+// must not mint category URLs that the catalog route cannot resolve.
+const catalogCategoryAliases: Record<string, IssueCategory> = {
+  'fuel-system': 'fuel', fuel_system: 'fuel', electronics: 'electrical',
+  ignition: 'engine', 'wheels-tires': 'suspension',
+};
+
+export function catalogCategory(category: string): IssueCategory | null {
+  const lower = category.toLowerCase();
+  return Object.hasOwn(categoryConfig, lower) ? lower as IssueCategory : Object.hasOwn(catalogCategoryAliases, lower) ? catalogCategoryAliases[lower] : null;
+}
+
+export function storedCatalogCategories(category: IssueCategory): string[] {
+  return [category, ...Object.keys(catalogCategoryAliases).filter(alias => catalogCategoryAliases[alias] === category)];
+}

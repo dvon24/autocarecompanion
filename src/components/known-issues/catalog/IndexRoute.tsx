@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { makeSlug, getPublishedMakes } from '@/lib/known-issues';
-import { ISSUE_CATALOGS, type IssueCatalog } from '@/lib/known-issues-catalog';
+import { ISSUE_CATALOGS, catalogIsDesignPreview, motorcycleCoverageDescription, type IssueCatalog } from '@/lib/known-issues-catalog';
 import { categoryConfig } from '@/lib/issue-categories';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import { BreadcrumbJsonLd, CollectionPageJsonLd } from '@/components/seo/JsonLd';
@@ -72,6 +72,7 @@ export async function IndexPage(catalog: IssueCatalog) {
   const directory = await buildDirectory(catalog);
   const totalVehicles = directory.reduce((sum, g) => sum + g.vehicles.length, 0);
   const totalIssues = directory.reduce((sum, g) => sum + g.totalIssues, 0);
+  const bikeDescription = motorcycleCoverageDescription(totalIssues, catalogIsDesignPreview(catalog));
 
   // Other catalogs that have something published, for the hero cross-link.
   const siblingCatalogs = (await Promise.all(
@@ -108,14 +109,14 @@ export async function IndexPage(catalog: IssueCatalog) {
         { name: catalog.label, url: `https://au7o.io${catalog.basePath}` },
       ]} />
       <CollectionPageJsonLd
-        name={`${catalog.indexTitle} & Problems`}
-        description={`Browse ${totalIssues.toLocaleString()}+ documented ${catalog.noun} problems across ${directory.length} makes and ${totalVehicles} models.`}
+        name={catalogIsDesignPreview(catalog) ? 'Motorcycle Catalog Design Preview' : `${catalog.indexTitle} & Problems`}
+        description={catalog.vehicleType === 'motorcycle' ? bikeDescription : `Browse ${totalIssues.toLocaleString()}+ documented ${catalog.noun} problems across ${directory.length} makes and ${totalVehicles} models.`}
         url={`https://au7o.io${catalog.basePath}`}
         numberOfItems={directory.length}
         itemListElement={directory.map(({ make, totalIssues: makeTotal }) => ({
           name: `${make} Issues`,
           url: `https://au7o.io${catalog.basePath}?make=${encodeURIComponent(make.toLowerCase())}`,
-          description: `${makeTotal} known issues for ${make} ${catalog.nounPlural}`,
+          description: catalogIsDesignPreview(catalog) ? `${makeTotal} synthetic design examples` : `${makeTotal} known issues for ${make} ${catalog.nounPlural}`,
         }))}
       />
 
@@ -144,7 +145,7 @@ export async function IndexPage(catalog: IssueCatalog) {
           </Link>
           <div className="flex items-center gap-3">
             <Link
-              href="/"
+              href={catalog.hubLinks ? '/' : `${catalog.basePath}#catalog-directory`}
               className="px-4 py-2 text-sm font-semibold text-white rounded-lg transition-opacity hover:opacity-90"
               style={{ background: '#0B1220' }}
             >
@@ -168,13 +169,13 @@ export async function IndexPage(catalog: IssueCatalog) {
             className="text-[11px] font-semibold uppercase mb-3"
             style={{ letterSpacing: '0.08em', color: '#3B82F6' }}
           >
-            {catalog.label} · NHTSA-Verified
+            {catalog.label}{catalog.vehicleType === 'car' ? ' · NHTSA-Verified' : catalogIsDesignPreview(catalog) ? ' · Private design preview' : ''}
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold mb-3" style={{ color: '#0B1220', letterSpacing: '-0.02em' }}>
             {catalog.indexTitle}
           </h1>
           <p className="max-w-xl" style={{ color: '#475569' }}>
-            {totalIssues.toLocaleString()}+ documented problems across {directory.length} makes and {totalVehicles} models. Symptoms, costs, and solutions compiled from NHTSA recalls, manufacturer TSBs, and owner forums.
+            {catalog.vehicleType === 'motorcycle' ? bikeDescription : <>{totalIssues.toLocaleString()}+ documented problems across {directory.length} makes and {totalVehicles} models. Symptoms, costs, and solutions compiled from NHTSA recalls, manufacturer TSBs, and owner forums.</>}
           </p>
           {siblingCatalogs.length > 0 && (
             <p className="mt-3 text-sm" style={{ color: '#64748B' }}>
@@ -190,7 +191,7 @@ export async function IndexPage(catalog: IssueCatalog) {
         </div>
 
         {/* Popular Makes — featured cards */}
-        <section className="mb-12">
+        {(catalog.vehicleType === 'car' || directory.length > 0) && <section className="mb-12">
           <h2 className="text-xs font-semibold uppercase tracking-wider mb-4" style={{ color: '#64748B' }}>Popular Makes</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
             {popularMakes.map(({ make, vehicles, totalIssues: makeTotal }) => (
@@ -210,10 +211,11 @@ export async function IndexPage(catalog: IssueCatalog) {
               </Link>
             ))}
           </div>
-        </section>
+        </section>}
 
         {/* All Makes — collapsible compact grid */}
-        <section className="mb-12">
+        <section id="catalog-directory" className="mb-12">
+          {directory.length === 0 && catalog.vehicleType === 'motorcycle' ? <p className="text-[#475569]">There are no published models to browse yet.</p> :
           <details className="group">
             <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
               <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">All Makes ({directory.length})</h2>
@@ -239,11 +241,11 @@ export async function IndexPage(catalog: IssueCatalog) {
                 </Link>
               ))}
             </div>
-          </details>
+          </details>}
         </section>
 
         {/* Browse by Category — collapsible */}
-        <section className="mb-12">
+        {(catalog.vehicleType === 'car' || directory.length > 0) && <section className="mb-12">
           <details className="group">
             <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-[#E3DFD4] list-none">
               <h2 className="text-xs font-semibold text-[#64748B] uppercase tracking-wider">Browse by Category</h2>
@@ -267,7 +269,7 @@ export async function IndexPage(catalog: IssueCatalog) {
               })}
             </div>
           </details>
-        </section>
+        </section>}
 
         {/* Common DTC Codes — collapsible. OBD-II is automotive, so other catalogs skip it. */}
         {catalog.dtcLinks && (
@@ -317,7 +319,7 @@ export async function IndexPage(catalog: IssueCatalog) {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
           <p className="text-xs text-gray-400 leading-relaxed">
-            Issue data was compiled with AI assistance and may contain errors. Always consult a qualified mechanic for diagnosis and repair.
+            {catalogIsDesignPreview(catalog) ? 'Synthetic layout examples only. They are not research findings or repair advice.' : totalIssues === 0 && catalog.vehicleType === 'motorcycle' ? 'Motorcycle coverage is not yet available.' : 'Issue data was compiled with AI assistance and may contain errors. Always consult a qualified mechanic for diagnosis and repair.'}
           </p>
         </div>
 

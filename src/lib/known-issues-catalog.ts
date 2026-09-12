@@ -80,7 +80,7 @@ export const MOTORCYCLE_CATALOG: IssueCatalog = {
   indexMetaTitle: 'Known Motorcycle Issues & Problems | Au7o',
   noun: 'motorcycle',
   nounPlural: 'motorcycles',
-  diagnoseCta: 'Diagnose my bike',
+  diagnoseCta: 'Browse motorcycles',
   contextPrefix: 'motorcycle-issues',
   makeContextPrefix: 'motorcycle-make',
   titleQualifier: 'Motorcycle ',
@@ -109,4 +109,16 @@ export function catalogFor(vehicleType: VehicleType): IssueCatalog {
  *  so the sitemap, breadcrumbs and cards can never disagree. */
 export function makeToSlug(make: string): string {
   return make.toLowerCase().replace(/\s+/g, '-');
+}
+
+/** Isolated preview rows are design examples, never evidence of coverage. */
+export function catalogIsDesignPreview(catalog: IssueCatalog): boolean {
+  return catalog.vehicleType === 'motorcycle' && process.env.NODE_ENV === 'development'
+    && process.env.AU7O_ISOLATED_SIGNUP_PREVIEW === 'true';
+}
+
+export function motorcycleCoverageDescription(count: number, preview: boolean): string {
+  if (count === 0) return 'No motorcycle issues are published yet. Published coverage will appear here when available.';
+  if (preview) return `${count} synthetic design examples for the private motorcycle preview. These are not verified defects, recalls or repair advice.`;
+  return `${count} published motorcycle issues. Browse the listed models and check each issue’s sources and applicability.`;
 }

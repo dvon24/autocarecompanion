@@ -31,7 +31,22 @@ interface Dealer {
 
 type State = 'idle' | 'locating' | 'searching' | 'done' | 'fallback';
 
-export function FindDealerNearby({ make }: { make: string }) {
+export function FindDealerNearby({ make, vehicleType = 'car' }: { make: string; vehicleType?: 'car' | 'motorcycle' }) {
+  if (vehicleType === 'motorcycle') {
+    return (
+      <section className="mb-3 rounded-md border border-[#BFDBFE] bg-[#EFF6FF] p-2.5">
+        <h4 className="text-xs font-semibold text-[#2563EB]">Find a {make} motorcycle dealer</h4>
+        <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(make + ' motorcycle dealer service near me')}`} target="_blank" rel="noopener noreferrer" className="mt-2 block text-xs font-semibold text-[#2563EB] underline">
+          Search {make} motorcycle dealers in Google Maps ↗
+        </a>
+        <p className="mt-2 text-xs text-[#475569]">Call to confirm they service your motorcycle model and can check its VIN and recall eligibility.</p>
+      </section>
+    );
+  }
+  return <CarDealerNearby make={make} />;
+}
+
+function CarDealerNearby({ make }: { make: string }) {
   const [state, setState] = useState<State>('idle');
   const [dealers, setDealers] = useState<Dealer[]>([]);
 

@@ -35,7 +35,7 @@ import {
   getBMWAuditedEmptyModel,
   getBMWAuditedEmptyModels,
 } from '@/lib/known-issues-audit-registry';
-import type { IssueCatalog } from '@/lib/known-issues-catalog';
+import { catalogIsDesignPreview, motorcycleCoverageDescription, type IssueCatalog } from '@/lib/known-issues-catalog';
 
 /**
  * The known-issues ARTICLE template, shared by every catalog.
@@ -286,7 +286,7 @@ export async function articleMetadata(catalog: IssueCatalog, {
   const titlePrefix = yearIsValid
     ? `${requestedYear}`
     : baseYearLabel;
-  const title = knownIssuesArticleTitle(titlePrefix, vehicleName, issues.length);
+  const title = catalogIsDesignPreview(catalog) ? `${vehicleName} Motorcycle Design Preview | Au7o` : knownIssuesArticleTitle(titlePrefix, vehicleName, issues.length);
 
   const descPrefix = yearIsValid
     ? `${requestedYear} `
@@ -297,7 +297,7 @@ export async function articleMetadata(catalog: IssueCatalog, {
   const minCost = getMinCost(issues);
   const maxCost = getMaxCost(issues);
   const costSegment = minCost && maxCost ? `, repair costs ($${minCost}-$${maxCost})` : '';
-  const description = issues.length === 1
+  const description = catalogIsDesignPreview(catalog) ? motorcycleCoverageDescription(issues.length, true) : issues.length === 1
     ? `1 documented problem for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. ${costSegment ? `Symptoms${costSegment}, and` : 'Symptoms and'} ${metaSourceTail(totalReports)}.`
     : `${issues.length} documented problems for the ${descPrefix}${vehicleName}${highCount > 0 ? `, including ${highCount} critical` : ''}. Symptoms${costSegment}, and ${metaSourceTail(totalReports)}.`;
 
@@ -323,9 +323,9 @@ export async function articleMetadata(catalog: IssueCatalog, {
     !yearIsValid && catalog.localized && getLocalesForSlug(slug).length > 0 ? hreflangFor(slug, baseUrl) : undefined;
 
   return {
-    title,
+    title: catalogIsDesignPreview(catalog) ? { absolute: title } : title,
     description,
-    robots: isThinYearVariant
+    robots: (isThinYearVariant || catalogIsDesignPreview(catalog))
       ? { index: false, follow: true, googleBot: { index: false, follow: true } }
       : undefined,
     openGraph: {
@@ -742,7 +742,10 @@ export async function ArticlePage(catalog: IssueCatalog, {
       : (yearRange
         ? (yearRange.min === yearRange.max ? `${yearRange.min}` : `${yearRange.min}-${yearRange.max}`)
         : ''));
-  const faqs = generateFAQs(make, model, issues, yearRange, yearStr);
+  const isolatedMotorcycleFixture = catalogIsDesignPreview(catalog);
+  const faqs = isolatedMotorcycleFixture
+    ? [{ question: 'Are these real motorcycle defects?', answer: 'No. These are synthetic design examples for the private preview. They are not manufacturer, NHTSA or owner-reported findings, and they do not recommend products.' }]
+    : generateFAQs(make, model, issues, yearRange, yearStr);
   // Canonical URL — base for all-years, ?year=YYYY for the year-filtered
   // variant. Must match the canonical we emit in generateMetadata.
   const articleUrl = yearIsValid
@@ -750,7 +753,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
     : `https://au7o.io${catalog.basePath}/${slug}`;
   // H1, <title>, OG, Twitter, and TechArticle.headline share the same
   // concise label. The helper preserves the year when it fits safely.
-  const title = knownIssuesArticleTitle(yearStr, vehicleName, issues.length);
+  const title = isolatedMotorcycleFixture ? `${vehicleName} Motorcycle Design Preview | Au7o` : knownIssuesArticleTitle(yearStr, vehicleName, issues.length);
   const structuredProblemNoun = issues.length === 1 ? 'problem' : 'problems';
   const structuredDetailNoun = articleMinCost && articleMaxCost
     ? 'with symptoms, repair costs, and solutions'
@@ -800,10 +803,10 @@ export async function ArticlePage(catalog: IssueCatalog, {
               {catalog.label}
             </Link>
             <Link
-              href="/get-started"
+              href={catalog.hubLinks ? '/get-started' : catalog.basePath}
               className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#3B82F6] text-white rounded-lg transition-colors hover:bg-[#2563EB]"
             >
-              Get Started
+              {catalog.hubLinks ? 'Get Started' : catalog.diagnoseCta}
             </Link>
           </div>
         </div>
@@ -812,7 +815,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
       {/* JSON-LD Structured Data */}
       <TechnicalArticleJsonLd
         title={title}
-        description={`${issues.length} documented ${structuredProblemNoun} for the ${yearStr} ${vehicleName} ${structuredDetailNoun}.`}
+        description={isolatedMotorcycleFixture ? motorcycleCoverageDescription(issues.length, true) : `${issues.length} documented ${structuredProblemNoun} for the ${yearStr} ${vehicleName} ${structuredDetailNoun}.`}
         url={articleUrl}
         datePublished={articleDates.published}
         dateModified={articleDates.modified}
@@ -852,7 +855,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
           </h1>
           <div className="flex items-center justify-between flex-wrap gap-2">
             <p className="text-sm" style={{ color: '#64748B' }}>
-              {yearStr && `${yearStr} model year${yearRange && yearRange.min !== yearRange.max ? 's' : ''}`} &middot; {sourceLabel(totalReports)} &middot; {formatUpdatedLabel(articleDates.modified)}
+              {yearStr && `${yearStr} model year${yearRange && yearRange.min !== yearRange.max ? 's' : ''}`} &middot; {isolatedMotorcycleFixture ? 'Synthetic design examples' : sourceLabel(totalReports)} &middot; {formatUpdatedLabel(articleDates.modified)}
             </p>
             <ShareButtons url={articleUrl} title={title} />
           </div>
@@ -874,7 +877,9 @@ export async function ArticlePage(catalog: IssueCatalog, {
 
         {/* GEO Summary — blockquote style for AI citation */}
         <blockquote className="border-l-4 border-[#3B82F6] pl-5 mb-10">
-          <p className="leading-relaxed" style={{ color: '#475569' }}>
+          {isolatedMotorcycleFixture ? <p className="leading-relaxed" style={{ color: '#475569' }}>
+            Private motorcycle design preview: {issues.length} synthetic layout examples. These are not verified defects, recalls or repair advice.
+          </p> : <p className="leading-relaxed" style={{ color: '#475569' }}>
             According to {analysisAttribution(totalReports)}, the {yearStr} {vehicleName} has {issues.length} {issues.length === 1 ? 'documented issue' : 'documented known issues'}
             {highCount > 0 ? (
               <>, with {highCount} rated critical. {criticalIssues.length > 0 && (
@@ -891,7 +896,9 @@ export async function ArticlePage(catalog: IssueCatalog, {
                 </>
               )}</>
             ) : (
-              <>. No issues are rated critical, indicating generally reliable ownership. </>
+              catalog.vehicleType === 'motorcycle'
+                ? <>. None of the listed issues is rated critical; this is not a complete reliability assessment. </>
+                : <>. No issues are rated critical, indicating generally reliable ownership. </>
             )}
             {topReported && topReported.reportCount > 100 && (
               <>The most commonly reported issue is <strong className="text-[#0B1220]">{topReported.title}</strong> with {topReported.reportCount.toLocaleString()} owner reports. </>
@@ -899,11 +906,11 @@ export async function ArticlePage(catalog: IssueCatalog, {
             {articleMinCost && articleMaxCost && (
               <>Across all issues with published estimates, repair costs range from ${articleMinCost} to ${articleMaxCost}. </>
             )}
-            <Link href="/" className="text-[#3B82F6] hover:text-blue-700 font-medium">
+            {catalog.hubLinks && <><Link href="/" className="text-[#3B82F6] hover:text-blue-700 font-medium">
               DIY maintenance guides
             </Link>{' '}
-            at <strong className="text-[#0B1220]">au7o.io</strong>.
-          </p>
+            at <strong className="text-[#0B1220]">au7o.io</strong>.</>}
+          </p>}
         </blockquote>
 
         {/* Two-column layout */}
@@ -978,6 +985,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
                   photo/video (quota-gated per tier). Replaces the old photo
                   CTA. Client filter over already-SSR'd content (SEO-safe). */}
               <ModelIssueSearch
+                keywordOnly={catalog.vehicleType === 'motorcycle'}
                 issues={issues.map((i) => ({ id: i.id, title: i.title, symptoms: i.symptoms, dtcCodes: (i as { dtcCodes?: string[] }).dtcCodes, severity: i.severity }))}
                 make={make}
                 model={model}
@@ -992,6 +1000,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
                 relatedByIssueId={Object.fromEntries(relatedByIssue)}
                 linkableDtcCodes={linkableDtcCodes}
                 basePath={catalog.basePath}
+                vehicleType={catalog.vehicleType}
               />
             </section>
 
@@ -1057,26 +1066,25 @@ export async function ArticlePage(catalog: IssueCatalog, {
 
             {/* Always-visible lightweight capture (SEO-friendly, low weight).
                 The rich live-demo "carousel" pops as a modal ~5s in (below). */}
-            <div className="mb-8">
+            {catalog.hubLinks && <div className="mb-8">
               <KnownIssueAlertSignup
                 vehicleName={`${make} ${model}`}
                 context={`${catalog.contextPrefix}:${make} ${model}`}
               />
-            </div>
+            </div>}
             {/* Engagement popup — the live hub-demo carousel, ~5s after load
                 (design/15-FeatureCarousel "Split"). Speaks about THIS vehicle. */}
-            <AlertSignupPopup
+            {catalog.hubLinks && <AlertSignupPopup
               vehicleName={`${make} ${model}`}
               context={`${catalog.contextPrefix}:${make} ${model}`}
               headline={`Get ahead of ${make} ${model} problems — free`}
               blurb={`Leave your email and we'll alert you the moment there's a new recall or known issue for your ${make} ${model}. No account needed.`}
-            />
+            />}
 
             {/* Fallthrough CTA — simplified */}
             <div className="text-center py-8 border-t border-[#E3DFD4]">
-              <p className="text-sm text-[#64748B]">
+              {catalog.hubLinks ? <p className="text-sm text-[#64748B]">
                 Don&apos;t see your problem?{' '}
-                {catalog.hubLinks ? (
                   <VehicleChatLink
                     make={make}
                     model={model}
@@ -1084,18 +1092,12 @@ export async function ArticlePage(catalog: IssueCatalog, {
                     className="text-[#3B82F6] hover:text-blue-700 font-medium"
                   >
                     Describe your symptoms
-                  </VehicleChatLink>
-                ) : (
-                  // The Hub is car-shaped; other catalogs go straight to the chat.
-                  <Link href="/symptom-chat" className="text-[#3B82F6] hover:text-blue-700 font-medium">
-                    Describe your symptoms
-                  </Link>
-                )}{' '}
+                  </VehicleChatLink>{' '}
                 to get a diagnosis, or{' '}
                 <Link href="/" className="text-[#3B82F6] hover:text-blue-700 font-medium">
                   get a full repair guide
                 </Link>.
-              </p>
+              </p> : <p className="text-sm text-[#64748B]">Browse more <Link href={catalog.basePath} className="text-[#3B82F6] hover:text-blue-700 font-medium">motorcycle issues</Link>. For an unlisted problem, consult a qualified motorcycle mechanic.</p>}
             </div>
 
             {/* Related Vehicles */}
@@ -1146,7 +1148,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <p className="text-xs text-[#94A3B8] leading-relaxed">
-                Content on this page was compiled with AI assistance using NHTSA complaints, TSBs, owner reports, and public {catalog.sourcesAdjective} data. While we strive for accuracy, this information may contain errors. Always verify repair procedures and specifications with your vehicle&apos;s service manual or a qualified mechanic.
+                {isolatedMotorcycleFixture ? 'Synthetic layout examples only. They are not research findings or repair advice.' : <>Content on this page was compiled with AI assistance using NHTSA complaints, TSBs, owner reports, and public {catalog.sourcesAdjective} data. While we strive for accuracy, this information may contain errors. Always verify repair procedures and specifications with your vehicle&apos;s service manual or a qualified mechanic.</>}
               </p>
             </div>
 
@@ -1154,7 +1156,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
                 count + © sits close to the article body. */}
             <footer className="pt-6 mt-8 border-t border-[#E3DFD4] text-center">
               <p className="text-xs text-[#94A3B8]">
-                {sourceFootnote(totalReports)}
+                {isolatedMotorcycleFixture ? 'Private motorcycle design preview.' : sourceFootnote(totalReports)}
               </p>
             </footer>
           </div>
@@ -1166,7 +1168,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
           public page. */}
       <SiteFooter />
 
-      <MobileBottomBar />
+      {catalog.hubLinks && <MobileBottomBar />}
     </div>
   );
 }

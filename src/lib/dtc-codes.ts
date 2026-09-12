@@ -3,6 +3,7 @@ import { cache } from 'react';
 import { unstable_cache } from 'next/cache';
 import { KnownIssue } from '@/schemas/knownIssue.schema';
 import { makeSlug, LAYOUT_LAST_REVISED } from './known-issues';
+import { diagVisible, readDiagnosticSteps, readDtcTriage, readFixParts, readCommunityRecommendations } from './known-issue-diagnostics';
 import { filterableKnownIssueTrims } from './known-issue-trim-filter';
 
 export interface DTCCodeInfo {
@@ -15,7 +16,7 @@ export interface DTCCodeInfo {
 }
 
 export interface DTCWithIssues extends DTCCodeInfo {
-  issues: (KnownIssue & { slug: string })[];
+  issues: (KnownIssue & { slug: string; updatedAt: Date })[];
   vehicleCount: number;
   makes: string[];
 }
@@ -43,8 +44,11 @@ function dbRowToKnownIssue(row: any): KnownIssue {
       ? { low: row.estimatedCostLow, high: row.estimatedCostHigh }
       : undefined,
     citations: row.citations as any[],
-    communityRecommendations: row.communityRecommendations as any[],
-    fixParts: (row.fixParts as KnownIssue['fixParts']) || [],
+    communityRecommendations: readCommunityRecommendations(row.communityRecommendations),
+    fixParts: readFixParts(row.fixParts),
+    ...(diagVisible(row.diagnosticStepsStatus)
+      ? { diagnosticSteps: readDiagnosticSteps(row.diagnosticSteps) }
+      : {}),
     source: row.source || 'ai-researched',
     humanApproved: row.humanApproved,
     lastReportedByOwners: row.lastReportedByOwners,
@@ -333,6 +337,7 @@ async function getDTCWithIssuesImpl(code: string): Promise<DTCWithIssues | null>
 
   const issues = rows.map(r => ({
     ...dbRowToKnownIssue(r),
+    updatedAt: r.updatedAt,
     slug: makeSlug(r.make, r.model),
   }));
 
@@ -383,6 +388,7 @@ async function getDTCWithIssuesForMakeImpl(
 
   const issues = rows.map(r => ({
     ...dbRowToKnownIssue(r),
+    updatedAt: r.updatedAt,
     slug: makeSlug(r.make, r.model),
   }));
 
@@ -499,3 +505,33 @@ export const getDTCWithIssues = cache(getDTCWithIssuesImpl);
 // each called getDTCWithIssuesForMake for the same params, doubling DB load on every
 // render/build (2026-06-12 review finding).
 export const getDTCWithIssuesForMake = cache(getDTCWithIssuesForMakeImpl);
+
+export interface DtcTriageBranch {
+  condition: string;
+  issueId: string;
+  issueTitle: string;
+  why: string;
+}
+
+export interface DtcTriage {
+  code: string;
+  make: string;
+  intro: string;
+  firstCheck: string;
+  branches: DtcTriageBranch[];
+  scanToolNotes: string;
+  updatedAt: Date;
+}
+
+/**
+ * Published code x make triage ("which of the documented failures is mine?")
+ * for /known-issues/dtc/[code]/[make]. Null until a reviewed row exists.
+ */
+export const getDtcTriage = cache(async (code: string, make: string): Promise<DtcTriage | null> => {
+  const row = await prisma.dtcTriage.findFirst({
+    where: { code: code.toUpperCase(), make: { equals: make, mode: 'insensitive' }, status: 'published' },
+  });
+  if (!row || row.status !== 'published') return null;
+  const data = await getDTCWithIssuesForMake(code, make);
+  return readDtcTriage(row, code, make, data?.issues ?? []);
+});

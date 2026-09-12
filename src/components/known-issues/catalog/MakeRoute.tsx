@@ -5,8 +5,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { makeSlug, getMakeDates, getPublishedMakes } from '@/lib/known-issues';
-import { ISSUE_CATALOGS, type IssueCatalog } from '@/lib/known-issues-catalog';
-import { categoryConfig } from '@/lib/issue-categories';
+import { ISSUE_CATALOGS, catalogIsDesignPreview, motorcycleCoverageDescription, type IssueCatalog } from '@/lib/known-issues-catalog';
+import { categoryConfig, catalogCategory } from '@/lib/issue-categories';
 import { BreadcrumbJsonLd, TechnicalArticleJsonLd } from '@/components/seo/JsonLd';
 import { ShareButtons } from '@/components/shared/ShareButtons';
 import { SiteFooter } from '@/components/shared/SiteFooter';
@@ -132,8 +132,8 @@ async function getMakePageData(catalog: IssueCatalog, makeSlugParam: string): Pr
     }
 
     // Category counting
-    const cat = row.category as IssueCategory;
-    categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
+    const cat = catalog.vehicleType === 'motorcycle' ? catalogCategory(row.category) : row.category as IssueCategory;
+    if (cat) categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
   }
 
   // Build models array sorted by issue count descending
@@ -183,8 +183,8 @@ export async function makeMetadata(catalog: IssueCatalog, { params }: MakeRouteP
   const data = await getMakePageData(catalog, makeParam);
   if (!data) return { title: 'Not Found' };
 
-  const title = `${data.make} ${catalog.titleQualifier}Known Issues & Problems | Au7o`;
-  const description = `${data.totalIssues} documented problems across ${data.models.length} ${data.make} models${data.highCount > 0 ? `, including ${data.highCount} critical issues` : ''}. Symptoms, repair costs, and solutions compiled from NHTSA recalls, manufacturer TSBs, owner forums, and field reports.`;
+  const title = catalogIsDesignPreview(catalog) ? `${data.make} Motorcycle Design Preview | Au7o` : `${data.make} ${catalog.titleQualifier}Known Issues & Problems | Au7o`;
+  const description = catalog.vehicleType === 'motorcycle' ? motorcycleCoverageDescription(data.totalIssues, catalogIsDesignPreview(catalog)) : `${data.totalIssues} documented problems across ${data.models.length} ${data.make} models${data.highCount > 0 ? `, including ${data.highCount} critical issues` : ''}. Symptoms, repair costs, and solutions compiled from NHTSA recalls, manufacturer TSBs, owner forums, and field reports.`;
   const url = `https://au7o.io${catalog.basePath}/make/${makeParam}`;
 
   return {
@@ -192,6 +192,7 @@ export async function makeMetadata(catalog: IssueCatalog, { params }: MakeRouteP
     // suffix (was rendering "... | Au7o | Au7o").
     title: { absolute: title },
     description,
+    ...(catalogIsDesignPreview(catalog) ? { robots: { index: false, follow: true } } : {}),
     openGraph: {
       title,
       description,
@@ -227,8 +228,8 @@ export async function MakePage(catalog: IssueCatalog, { params }: MakeRouteProps
       (await getPublishedMakes(c.vehicleType)).some((m) => m.toLowerCase() === make.toLowerCase()) ? c : null),
   )).filter((c): c is IssueCatalog => c !== null);
   const makeHeading = `${make} ${catalog.titleQualifier}Known Issues & Problems`;
-  const articleTitle = `${make} Known Issues & Problems — ${totalIssues} documented across ${models.length} models`;
-  const articleDescription = `${totalIssues} documented ${make} problems across ${models.length} models${highCount > 0 ? `, including ${highCount} critical` : ''}. Known issues, repair costs, and solutions for every ${make} owner.`;
+  const articleTitle = catalogIsDesignPreview(catalog) ? `${make} Motorcycle Design Preview` : `${make} Known Issues & Problems — ${totalIssues} documented across ${models.length} models`;
+  const articleDescription = catalog.vehicleType === 'motorcycle' ? motorcycleCoverageDescription(totalIssues, catalogIsDesignPreview(catalog)) : `${totalIssues} documented ${make} problems across ${models.length} models${highCount > 0 ? `, including ${highCount} critical` : ''}. Known issues, repair costs, and solutions for every ${make} owner.`;
 
   return (
     <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
@@ -280,7 +281,7 @@ export async function MakePage(catalog: IssueCatalog, { params }: MakeRouteProps
               {catalog.label}
             </Link>
             <Link
-              href="/"
+              href={catalog.hubLinks ? '/' : catalog.basePath}
               className="px-4 py-2 text-sm font-medium bg-[#0B1220] text-white rounded-lg hover:opacity-90 transition-opacity"
             >
               {catalog.diagnoseCta}
@@ -307,7 +308,7 @@ export async function MakePage(catalog: IssueCatalog, { params }: MakeRouteProps
             {makeHeading}
           </h1>
           <p className="text-[#475569] text-lg max-w-2xl">
-            {totalIssues.toLocaleString()} documented problems across {models.length} {make} models. Every issue includes symptoms, repair costs, and solutions — compiled from NHTSA recalls, manufacturer TSBs, owner forums, and field reports.
+            {catalog.vehicleType === 'motorcycle' ? articleDescription : <>{totalIssues.toLocaleString()} documented problems across {models.length} {make} models. Every issue includes symptoms, repair costs, and solutions — compiled from NHTSA recalls, manufacturer TSBs, owner forums, and field reports.</>}
           </p>
           <div className="mt-4">
             <ShareButtons url={makeUrl} title={`${makeHeading} | Au7o`} />
@@ -348,7 +349,7 @@ export async function MakePage(catalog: IssueCatalog, { params }: MakeRouteProps
         </div>
 
         {/* GEO Summary */}
-        <div className="bg-[#EFEDE6] border border-[#E3DFD4] rounded-xl p-5 sm:p-6 mb-10">
+        {catalog.vehicleType === 'car' && <div className="bg-[#EFEDE6] border border-[#E3DFD4] rounded-xl p-5 sm:p-6 mb-10">
           <p className="text-[#334155] leading-relaxed">
             According to Au7o&apos;s analysis, {make} {catalog.nounPlural} have {totalIssues.toLocaleString()} documented known issues across {models.length} models
             {highCount > 0 ? (
@@ -367,7 +368,7 @@ export async function MakePage(catalog: IssueCatalog, { params }: MakeRouteProps
             </Link>{' '}
             at <strong>au7o.io</strong>.
           </p>
-        </div>
+        </div>}
 
         {/* Models grid */}
         <section className="mb-12">
@@ -434,10 +435,10 @@ export async function MakePage(catalog: IssueCatalog, { params }: MakeRouteProps
         {/* CTA */}
         <section className="mt-12 bg-[#0B1220] text-white rounded-xl p-6 sm:p-8 text-center">
           <h2 className="text-xl sm:text-2xl font-bold mb-3">
-            Get DIY Repair Guides for Your {make}
+            {catalog.vehicleType === 'car' ? <>Get DIY Repair Guides for Your {make}</> : <>Browse motorcycle issues</>}
           </h2>
           <p className="text-gray-300 mb-6 max-w-lg mx-auto">
-            AI-powered step-by-step repair and maintenance guides tailored to your exact vehicle. Enter your year, make, and model to get started.
+            {catalog.vehicleType === 'car' ? 'AI-powered step-by-step repair and maintenance guides tailored to your exact vehicle. Enter your year, make, and model to get started.' : 'Choose a listed motorcycle model to browse its published issue entries.'}
           </p>
           <Link
             href={catalog.basePath}
@@ -451,10 +452,10 @@ export async function MakePage(catalog: IssueCatalog, { params }: MakeRouteProps
         </section>
 
         {/* Soft-conversion: make-level email alert capture (SEO-safe, additive client island). */}
-        <div className="mb-8">
+        {catalog.hubLinks && <div className="mb-8">
           <KnownIssueAlertSignup vehicleName={make} context={`${catalog.makeContextPrefix}:${make}`} />
-        </div>
-        <AlertSignupPopup vehicleName={make} context={`${catalog.makeContextPrefix}:${make}`} />
+        </div>}
+        {catalog.hubLinks && <AlertSignupPopup vehicleName={make} context={`${catalog.makeContextPrefix}:${make}`} />}
 
         {/* Cross-site sitemap for deep-link visitors. */}
         <SiteFooter />
@@ -462,8 +463,8 @@ export async function MakePage(catalog: IssueCatalog, { params }: MakeRouteProps
         {/* Footer */}
         <footer className="mt-8 pt-6 border-t border-[#E3DFD4] text-center">
           <p className="text-xs text-[#64748B]">
-            Data compiled from NHTSA recalls, manufacturer TSBs, owner forums, and AI-assisted research.
-            Issues are verified where possible. Always consult a professional mechanic for diagnosis.
+            {catalog.vehicleType === 'motorcycle' ? catalogIsDesignPreview(catalog) ? 'Synthetic layout examples only, not research findings or repair advice.' : 'Check the sources and model applicability in each published issue. Consult a qualified motorcycle mechanic for diagnosis.' : <>Data compiled from NHTSA recalls, manufacturer TSBs, owner forums, and AI-assisted research.
+            Issues are verified where possible. Always consult a professional mechanic for diagnosis.</>}
           </p>
           <p className="text-xs text-[#64748B] mt-2">
             &copy; {new Date().getFullYear()} Au7o. All rights reserved.

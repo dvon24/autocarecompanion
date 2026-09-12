@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next';
 import { getAllKnownIssueSlugsWithDates, makeSlug } from '@/lib/known-issues';
-import { ISSUE_CATALOGS } from '@/lib/known-issues-catalog';
+import { ISSUE_CATALOGS, catalogIsDesignPreview } from '@/lib/known-issues-catalog';
+import { catalogCategory } from '@/lib/issue-categories';
 import { getAllDTCSlugsWithDates, getAllDTCMakeSlugs } from '@/lib/dtc-codes';
 import { getAllSymptomSlugs } from '@/lib/symptoms';
 import { getAllLocaleSlugParams } from '@/lib/i18n';
@@ -221,7 +222,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // rows — not even its index — so an empty catalog can never mint a soft 404.
   const catalogPages: MetadataRoute.Sitemap = [];
   for (const catalog of ISSUE_CATALOGS) {
-    if (catalog.vehicleType === 'car') continue;
+    if (catalog.vehicleType === 'car' || catalogIsDesignPreview(catalog)) continue;
     const rows = await prisma.knownIssue.findMany({
       where: { status: 'published', vehicleType: catalog.vehicleType },
       select: { make: true, model: true, years: true, category: true, updatedAt: true },
@@ -241,7 +242,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         byYear.set(key, later(row.updatedAt, byYear.get(key) ?? row.updatedAt));
       }
       byMake.set(row.make, later(row.updatedAt, byMake.get(row.make) ?? row.updatedAt));
-      byCategory.set(row.category, later(row.updatedAt, byCategory.get(row.category) ?? row.updatedAt));
+      const category = catalogCategory(row.category);
+      if (category) byCategory.set(category, later(row.updatedAt, byCategory.get(category) ?? row.updatedAt));
     }
     catalogPages.push({ url: root, lastModified: layoutDate, changeFrequency: 'weekly', priority: 0.8 });
     for (const [slug, lm] of bySlug) {

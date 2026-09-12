@@ -128,6 +128,22 @@ export const issueCategorySchema = z.enum([
 ]);
 
 /**
+ * One step of a diagnostic procedure. `expect` is what a good result looks
+ * like; `ifFail` is what a bad result means (usually: which fix applies).
+ * Numeric specs must carry the sourceUrl they came from or be phrased
+ * "per service manual" — the wave verifier drops unsourced numbers.
+ */
+export const diagnosticStepSchema = z.object({
+  step: z.number(),
+  action: z.string(),
+  tool: z.string().optional(),
+  expect: z.string().optional(),
+  ifFail: z.string().optional(),
+  sourceUrl: z.string().optional(),
+});
+export type DiagnosticStep = z.infer<typeof diagnosticStepSchema>;
+
+/**
  * Known issue schema
  */
 export const knownIssueSchema = z.object({
@@ -152,6 +168,12 @@ export const knownIssueSchema = z.object({
   citations: z.array(citationSchema),
   communityRecommendations: z.array(communityRecommendationSchema).optional(),
   fixParts: z.array(fixPartSchema).optional(),
+  /**
+   * How to diagnose — ordered verify-before-replace procedure, present only
+   * when KnownIssue.diagnosticStepsStatus is 'published' (the row mappers
+   * strip pending steps). Written by the DTC diagnostic wave and verified.
+   */
+  diagnosticSteps: z.array(diagnosticStepSchema).optional(),
   source: z.enum(['nhtsa-verified', 'recall-related', 'ai-researched', 'manual']).optional(),
   humanApproved: z.boolean(),
   lastReportedByOwners: z.string(), // When owners last reported this issue

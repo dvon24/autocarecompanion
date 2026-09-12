@@ -3,8 +3,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { makeSlug, getCategoryDates } from '@/lib/known-issues';
-import type { IssueCatalog } from '@/lib/known-issues-catalog';
-import { categoryConfig } from '@/lib/issue-categories';
+import { catalogIsDesignPreview, motorcycleCoverageDescription, type IssueCatalog } from '@/lib/known-issues-catalog';
+import { categoryConfig, catalogCategory, storedCatalogCategories } from '@/lib/issue-categories';
 import { BreadcrumbJsonLd, TechnicalArticleJsonLd } from '@/components/seo/JsonLd';
 import { IssueCategory } from '@/schemas/knownIssue.schema';
 import { SiteFooter } from '@/components/shared/SiteFooter';
@@ -23,6 +23,12 @@ export interface CategoryRouteProps {
 // --- Category helpers ---
 
 const VALID_CATEGORIES = Object.keys(categoryConfig) as IssueCategory[];
+
+function categoryPredicate(catalog: IssueCatalog, category: string) {
+  return catalog.vehicleType === 'motorcycle'
+    ? { in: storedCatalogCategories(category as IssueCategory), mode: 'insensitive' as const }
+    : category;
+}
 
 function categoryLabel(cat: string): string {
   const config = categoryConfig[cat as IssueCategory];
@@ -65,8 +71,8 @@ export async function categoryStaticParams(catalog: IssueCatalog) {
     select: { category: true },
     distinct: ['category'],
   });
-  return rows
-    .map(r => r.category)
+  return [...new Set(rows
+    .map(r => catalog.vehicleType === 'motorcycle' ? catalogCategory(r.category) : r.category))]
     .filter(c => VALID_CATEGORIES.includes(c as IssueCategory))
     .map(c => ({ category: c }));
 }
@@ -78,16 +84,17 @@ export async function categoryMetadata(catalog: IssueCatalog, { params }: Catego
   if (!VALID_CATEGORIES.includes(category as IssueCategory)) return { title: 'Not Found' };
 
   const label = categoryLabel(category);
-  const count = await prisma.knownIssue.count({ where: { status: 'published', category, vehicleType: catalog.vehicleType } });
+  const count = await prisma.knownIssue.count({ where: { status: 'published', category: categoryPredicate(catalog, category), vehicleType: catalog.vehicleType } });
 
-  const title = `${catalog.titleQualifier}${label} Problems & Known Issues | Au7o`;
-  const description = `${count} documented ${label.toLowerCase()} problems across all ${catalog.noun} makes and models. Symptoms, repair costs, and solutions.`;
+  const title = catalogIsDesignPreview(catalog) ? `Motorcycle ${label} Design Preview | Au7o` : `${catalog.titleQualifier}${label} Problems & Known Issues | Au7o`;
+  const description = catalog.vehicleType === 'motorcycle' ? motorcycleCoverageDescription(count, catalogIsDesignPreview(catalog)) : `${count} documented ${label.toLowerCase()} problems across all ${catalog.noun} makes and models. Symptoms, repair costs, and solutions.`;
   const url = `https://au7o.io${catalog.basePath}/category/${category}`;
 
   return {
     // absolute so the layout's "%s | Au7o" template doesn't double the suffix.
     title: { absolute: title },
     description,
+    ...(catalog.vehicleType === 'motorcycle' && (count === 0 || catalogIsDesignPreview(catalog)) ? { robots: { index: false, follow: true } } : {}),
     openGraph: { title, description, url, siteName: 'Au7o' },
     alternates: { canonical: url },
   };
@@ -105,7 +112,7 @@ interface VehicleGroup {
 
 async function getCategoryData(catalog: IssueCatalog, category: string) {
   const rows = await prisma.knownIssue.findMany({
-    where: { status: 'published', category, vehicleType: catalog.vehicleType },
+    where: { status: 'published', category: categoryPredicate(catalog, category), vehicleType: catalog.vehicleType },
     select: { make: true, model: true, severity: true },
   });
 
@@ -154,9 +161,9 @@ export async function CategoryPage(catalog: IssueCatalog, { params }: CategoryRo
   ]);
   const label = categoryLabel(category);
   const icon = categoryIcon(category);
-  const description = categoryDescription(catalog, category);
+  const description = catalog.vehicleType === 'motorcycle' ? motorcycleCoverageDescription(data.totalIssues, catalogIsDesignPreview(catalog)) : categoryDescription(catalog, category);
   const articleUrl = `https://au7o.io${catalog.basePath}/category/${category}`;
-  const articleTitle = `${catalog.titleQualifier}${label} Problems & Known Issues — ${data.totalIssues} documented across ${data.totalVehicles} ${catalog.nounPlural}`;
+  const articleTitle = catalogIsDesignPreview(catalog) ? `Motorcycle ${label} Design Preview` : `${catalog.titleQualifier}${label} Problems & Known Issues — ${data.totalIssues} documented across ${data.totalVehicles} ${catalog.nounPlural}`;
 
   return (
     <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
@@ -196,7 +203,7 @@ export async function CategoryPage(catalog: IssueCatalog, { params }: CategoryRo
           </Link>
           <div className="flex items-center gap-3">
             <Link href={catalog.basePath} className="px-4 py-2 text-sm font-medium text-[#475569] hover:text-[#0B1220] transition-colors">{catalog.label}</Link>
-            <Link href="/" className="px-4 py-2 text-sm font-medium bg-[#0B1220] text-white rounded-lg hover:opacity-90 transition-opacity">{catalog.diagnoseCta}</Link>
+            <Link href={catalog.hubLinks ? '/' : catalog.basePath} className="px-4 py-2 text-sm font-medium bg-[#0B1220] text-white rounded-lg hover:opacity-90 transition-opacity">{catalog.diagnoseCta}</Link>
           </div>
         </div>
       </header>
@@ -329,7 +336,7 @@ export async function CategoryPage(catalog: IssueCatalog, { params }: CategoryRo
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               <p className="text-xs text-[#94A3B8] leading-relaxed">
-                Issue data compiled with AI assistance and may contain errors. Always consult a qualified mechanic.
+                {catalogIsDesignPreview(catalog) ? 'Synthetic layout examples only, not research findings or repair advice.' : data.totalIssues === 0 && catalog.vehicleType === 'motorcycle' ? 'Motorcycle coverage is not yet available in this category.' : 'Issue data compiled with AI assistance and may contain errors. Always consult a qualified mechanic.'}
               </p>
             </div>
 

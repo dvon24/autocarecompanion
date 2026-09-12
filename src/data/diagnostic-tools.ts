@@ -45,7 +45,11 @@ export type Procedure =
   | 'fuel-pressure'
   | 'compression-test'
   | 'cooling-pressure-test'
-  | 'multimeter-basic';
+  | 'multimeter-basic'
+  // Set only by reviewed diagnosticSteps (KnownIssue.diagnosticSteps), whose
+  // `tool` field names the instrument a step needs.
+  | 'live-data'
+  | 'bidirectional';
 
 export type ToolKind = 'scanner' | 'meter' | 'tester';
 
@@ -134,7 +138,7 @@ export const diagnosticTools: DiagnosticTool[] = [
     // conservative generic guarantee and require a true all-system tool below
     // for non-powertrain families.
     codeFamilies: ['P'],
-    procedures: ['scan-codes'],
+    procedures: ['scan-codes', 'live-data'],
     tier: 'advanced',
     productUrl: 'https://www.amazon.com/CRP123X-Lifetime-Calibration-Throttle-Diagnostic/dp/B07RLF8FBC?tag=au7o-20',
   },
@@ -154,7 +158,7 @@ export const diagnosticTools: DiagnosticTool[] = [
       '7-inch touchscreen with Android OS',
     ],
     codeFamilies: ['P', 'B', 'C', 'U'],
-    procedures: ['scan-codes'],
+    procedures: ['scan-codes', 'live-data', 'bidirectional'],
     tier: 'professional',
     productUrl: 'https://www.amazon.com/Autel-Scanner-MaxiCOM-MK808S-Bi-Directional/dp/B094QTNWYQ?tag=au7o-20',
   },
@@ -263,16 +267,69 @@ export function toolsForProcedures(procedures: Procedure[], families: CodeFamily
     .filter((t) => {
       if (!t.procedures.some((p) => wanted.has(p))) return false;
       if (t.kind !== 'scanner') return true;
-      return families.length > 0 && families.every((family) => t.codeFamilies.includes(family));
+      const required = procedures.filter(p => SCANNER_PROCEDURES.includes(p));
+      return required.length > 0 && required.every(p => t.procedures.includes(p))
+        && families.length > 0 && families.every((family) => t.codeFamilies.includes(family));
     })
     .sort((a, b) => a.priceAnchor - b.priceAnchor);
 }
+
+/**
+ * Procedures named by reviewed diagnostic steps' `tool` field. The wave
+ * writers use a small vocabulary ("basic OBD-II scanner", "bidirectional scan
+ * tool with live data", "DMM", "smoke machine" ...); anything dealer-only
+ * ("dealer scan tool (Techstream)") maps to nothing on purpose - we do not
+ * sell a Techstream, and naming a consumer scanner for a Techstream-only test
+ * would be the guess this file refuses to make.
+ */
+const STEP_TOOL_PATTERNS: Array<[Procedure, RegExp]> = [
+  ['bidirectional', /\bbi-?directional\b|\bactive test|\bactuat/i],
+  ['live-data', /\blive[- ]data\b|\bPIDs?\b/i],
+  ['scan-codes', /\bOBD[- ]?(?:II|2)\b|\bscan(?:ner| tool)\b|\bcode reader\b|\bfreeze[- ]frame\b/i],
+  ['multimeter-basic', /\bDMM\b|\bmultimeter\b/i],
+  ['parasitic-draw', /\bclamp (?:amm|met)|\bamp clamp\b|\bammeter\b/i],
+  ['battery-state-of-health', /\bbattery conductance tester\b|\bconductance\b/i],
+  ['smoke-test', /\bsmoke machine\b/i],
+  ['fuel-pressure', /\bfuel pressure gauge\b/i],
+  ['compression-test', /\bcompression (?:tester|gauge)\b|\bleak-?down\b/i],
+  ['cooling-pressure-test', /\bcooling[- ]system pressure tester\b/i],
+];
+
+export function proceduresInStepTools(stepTools: Array<string | null | undefined>): Procedure[] {
+  const found = new Set<Procedure>();
+  for (const raw of stepTools) {
+    const text = String(raw || '').trim();
+    // These fields describe requirements, not a product compatibility list.
+    // Withhold ambiguous/negated or proprietary equipment rather than infer an alternative.
+    if (!text || EXCLUDED_STEP_TOOL.test(text) || UNSUPPORTED_SCAN_REQUIREMENT.test(text)) continue;
+    for (const [procedure, re] of STEP_TOOL_PATTERNS) if (re.test(text)) found.add(procedure);
+  }
+  return [...found];
+}
+
+/**
+ * Keep one scanner that satisfies the complete requirement set. Eligibility
+ * has already checked all scanner capabilities and code families together.
+ */
+function cheapestSuitableScanner(tools: DiagnosticTool[]): DiagnosticTool[] {
+  const scanner = tools.find(t => t.kind === 'scanner');
+  return tools.filter(t => t.kind !== 'scanner' || t.id === scanner?.id);
+}
+
+const SCANNER_PROCEDURES: Procedure[] = ['scan-codes', 'live-data', 'bidirectional'];
+const EXCLUDED_STEP_TOOL = /\b(?:none|not|no|never|without|avoid|cannot|unnecessar\w*|dealer|dealership|shop|technician|professional|proprietary|OEM|Techstream|ISTA|ODIS|CONSULT|wiTech|HDS|GDS|VCDS|OBDeleven|FORScan)\b|\b\w+n['’]t\b|\b(?:dont|isnt|cant|mustnt|shouldnt|neednt)\b/i;
+const SCANNER_WORDS = /\b(?:scan\w*|OBD\w*|reader|bidirectional|bi-directional|live[- ]data|PIDs?|freeze[- ]frame|Techstream|ISTA|ODIS|CONSULT|wiTech|HDS|GDS|VCDS|OBDeleven|FORScan)\b/i;
+// Reading/active-test support does not establish programming or security access.
+// No tool in this catalog proves these requirements for a selected vehicle.
+const UNSUPPORTED_SCAN_REQUIREMENT = /\b(?:program(?:ming|mer)?|reprogram\w*|reflash\w*|flash(?:ing)?|coding|immobili[sz]er|key[- ]?(?:learning|pairing|registration)|J2534|pass[- ]through|ECU[- ]?(?:replacement|initiali[sz]ation))\b/i;
 
 export interface IssueDiagnosticToolSelection {
   tools: DiagnosticTool[];
   procedures: Procedure[];
   families: CodeFamily[];
   hasUnknownCode: boolean;
+  /** True when reviewed diagnostic steps named at least one instrument. */
+  fromSteps: boolean;
 }
 
 /**
@@ -283,8 +340,11 @@ export interface IssueDiagnosticToolSelection {
 export function diagnosticToolsForIssue(
   solution: string,
   dtcCodes?: string[] | null,
+  stepTools?: Array<string | null | undefined> | null,
 ): IssueDiagnosticToolSelection {
-  const procedures = proceduresInSolution(solution);
+  const stepProcedures = proceduresInStepTools(stepTools || []);
+  const fromSteps = stepProcedures.length > 0;
+  const procedures = [...new Set([...proceduresInSolution(solution), ...stepProcedures])];
   const codes = (dtcCodes || []).map((code) => String(code).trim()).filter(Boolean);
   const parsedFamilies = codes.map(codeFamilyOf);
   const hasUnknownCode = parsedFamilies.some((family) => family === null);
@@ -292,10 +352,15 @@ export function diagnosticToolsForIssue(
     parsedFamilies.filter((family): family is CodeFamily => family !== null),
   )];
 
+  const blockedScanner = UNSUPPORTED_SCAN_REQUIREMENT.test(solution)
+    || (stepTools || []).some(raw => typeof raw === 'string'
+      && (UNSUPPORTED_SCAN_REQUIREMENT.test(raw) || (EXCLUDED_STEP_TOOL.test(raw) && SCANNER_WORDS.test(raw))));
+  const tools = toolsForProcedures(procedures, hasUnknownCode || blockedScanner ? [] : families);
   return {
     procedures,
     families,
     hasUnknownCode,
-    tools: toolsForProcedures(procedures, hasUnknownCode ? [] : families),
+    fromSteps,
+    tools: cheapestSuitableScanner(tools),
   };
 }

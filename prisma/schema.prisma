@@ -492,6 +492,13 @@ model KnownIssue {
   //   [{ component, oemPartNumber, aftermarketXref[], priceLow, priceHigh,
   //      buyLinks[{vendor,url}], note }]
   fixParts                 Json     @default("[]")
+  // HOW TO DIAGNOSE: ordered verify-before-replace procedure written by the
+  // DTC diagnostic wave (scripts/_wf-dtc-diag-*.js) and adversarially
+  // verified. Shape: [{ step, action, tool, expect, ifFail, sourceUrl? }].
+  // Rendered by KnownIssueCard only when diagnosticStepsStatus = 'published';
+  // written as 'pending_review' so a wave never changes a live page unreviewed.
+  diagnosticSteps          Json     @default("[]")
+  diagnosticStepsStatus    String   @default("")
   humanApproved            Boolean  @default(false)
   reportCount              Int      @default(0)
   source                   String   @default("ai-researched") // "nhtsa-verified", "ai-researched", "manual"
@@ -533,6 +540,28 @@ model KnownIssue {
 // ============================================
 // OBD-II DTC CODE REFERENCE
 // ============================================
+
+// Code x make triage: "my <make> threw <code> — which of the documented
+// failures is it?" Spans several KnownIssues, so it cannot live on one row.
+// Written by the DTC diagnostic wave, verified, persisted pending_review;
+// /known-issues/dtc/[code]/[make] renders it once published.
+model DtcTriage {
+  id             String   @id @default(cuid())
+  code           String   // upper-case, e.g. "P0016"
+  make           String   // as stored on KnownIssue.make, e.g. "Toyota"
+  intro          String   @db.Text // one paragraph: how this code presents on this make
+  firstCheck     String   @db.Text // the single cheapest test to run first, and why
+  // [{ condition, issueId, issueTitle, why }] — symptom/condition -> the documented failure
+  branches       Json     @default("[]")
+  scanToolNotes  String   @default("") // what to read on the scanner (freeze frame, PIDs) if sourced
+  sourceIssueIds String[] @default([])
+  status         String   @default("pending_review") // pending_review | published | archived
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@unique([code, make])
+  @@index([status])
+}
 
 model DTCCode {
   code         String   @id // e.g. "P0300"
