@@ -9,6 +9,7 @@ const VehiclePatchSchema = z.object({
   model: z.string().trim().min(1).max(100).optional(),
   trim: z.string().trim().min(1).max(100).optional().nullable(),
   transmission: z.enum(['automatic', 'manual']).optional().nullable(),
+  reviewedEquipmentId: z.string().min(1).max(100).optional().nullable(),
   expectedUpdatedAt: z.string().datetime().optional(),
   vin: z.string().trim().min(1).max(17).transform((value) => value.toUpperCase()).optional().nullable(),
   color: z.string().max(50).optional().nullable(),
@@ -25,11 +26,11 @@ const VehiclePatchSchema = z.object({
   if (Object.keys(value).every((key) => key === 'expectedUpdatedAt')) {
     context.addIssue({ code: 'custom', message: 'At least one vehicle field must change' });
   }
-  if (Object.prototype.hasOwnProperty.call(value, 'transmission') && value.expectedUpdatedAt == null) {
+  if ((Object.prototype.hasOwnProperty.call(value, 'transmission') || Object.prototype.hasOwnProperty.call(value, 'reviewedEquipmentId')) && value.expectedUpdatedAt == null) {
     context.addIssue({
       code: 'custom',
       path: ['expectedUpdatedAt'],
-      message: 'The current vehicle revision is required for a transmission choice',
+      message: 'The current vehicle revision is required for equipment or transmission confirmation',
     });
   }
 });

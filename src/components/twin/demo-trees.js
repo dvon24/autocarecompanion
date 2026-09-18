@@ -1,6 +1,12 @@
-import { TT_TREES } from './stage/TechTree';
+import { TT_TREES } from './twin-tree-data';
 import { buildTwinTrees } from './twin-trees';
 import { nextRoutineMileage } from './maintenance-schedule';
+import { compareServiceRecordsNewestFirst } from '../../lib/service-record-order';
+import { attachInspectionPresentation } from './inspection-presentation';
+import { attachDrivelineArt } from './inspection-art';
+import { reviewedDrivelineIntervals } from '../../lib/physical-driveline-policy';
+import { applyExactTwinRuleToNode, getExactTwinMaintenanceRule, getExactTwinMaintenanceCoverage } from '../../lib/exact-twin-maintenance-rules';
+import { buildOilComponentService, buildBrakeComponentService, buildCoolingComponentService, refreshReviewedServiceContext, refreshReviewedPurchase } from './service-component-commerce';
 
 const cloneTrees = (trees) => {
   const shared = new Map();
@@ -18,7 +24,7 @@ const CAMARO_OWNER_MANUAL = 'https://www.chevrolet.com/ownercenter/content/dam/g
 const CAMARO_HIGH_PERFORMANCE_SUPPLEMENT = 'https://www.carmanualsonline.info/chevrolet-camaro-2019-high-performance-owner-manual/?srch=differential';
 const NAUTILUS_OWNER_MANUAL = 'https://cdn.dealereprocess.org/cdn/servicemanuals/lincoln/2019-nautilus.pdf';
 const MURANO_OWNER_MANUAL = 'https://www.nissanusa.com/content/dam/Nissan/us/manuals-and-guides/murano/2023/2023-nissan-murano-owner-manual.pdf';
-const KICKS_OWNER_MANUAL = 'https://www.nissan.ca/content/dam/Nissan/Canada/manuals-and-guides/kicks/2025/2025-Nissan-Kicks.pdf';
+const KICKS_OWNER_MANUAL = 'https://www.nissanusa.com/content/dam/Nissan/us/manuals-and-guides/kicks/2025/2025-nissan-kicks-owner-manual.pdf';
 const MDX_OWNER_MANUAL = 'https://owners.acura.com/utility/download?path=/static/pdfs/2019/MDX/2019_MDX_Owners_Manual.pdf';
 const AVIATOR_OWNER_MANUAL = 'https://www.fordservicecontent.com/Ford_Content/Catalog/owner_information/26MY_Aviator_OM_ENG_V1.pdf';
 const BRAKE_INSPECTION = 'Service when pads reach their published minimum, rotors reach the minimum thickness stamped on the rotor, or inspection finds scoring, heat cracks, excessive runout, a fluid leak, sticking hardware, squeal/grinding, pedal pulsation, steering-wheel vibration, pulling or increased stopping distance.';
@@ -37,15 +43,16 @@ const DEMO_TREE_CONTEXT = {
       driveline:{label:'FWD Final Drive (Integrated)',interval:150000,separateService:true,partNo:'XT-12-QULV',brand:'Motorcraft MERCON ULV',price:'$9.61 / qt when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/ford-oil-automatic-transmission_xt-12-qulv.html',buyLabel:'Buy exact integrated-final-drive fluid',sourceUrl:NAUTILUS_OWNER_MANUAL,sourceLabel:'2019 Lincoln Nautilus Owner Manual',spec:'This completed demo is the Standard FWD branch. It has no PTU or rear differential; the final drive is integrated into the 8F35 and uses the same MERCON ULV service fluid and level-temperature procedure.'},
       tire:{interval:10000,partNo:'245/60R18 109V XL · Discount Tire item 149583',brand:'Michelin CrossClimate2',price:'$263.00 each when reviewed',buyUrl:'https://www.discounttire.com/buy-tires/michelin-crossclimate2/p/149583',buyLabel:'View exact 245/60R18 tire',spec:'Completed Standard FWD demo uses the factory 18-inch package. Confirm 245/60R18 on the door placard before ordering; the reviewed 109V XL replacement meets/exceeds the original service description.'},
       brake:{partNo:'F2GZ-2001-K → F2GZ-2001-P',brand:'Genuine Lincoln front brake pad kit',price:'$87.10 / front axle set when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/ford-kit-brake-lining_f2gz-2001-k.html',buyLabel:'Buy exact 17-inch-rear-package front pads',spec:'Completed demo uses the standard 18-inch wheel / 17-inch solid-rear brake package. This kit is the catalog branch for 18-inch front vented and 17-inch solid rear brakes.'},
-      rearBrake:{partNo:'DG9Z-2200-P',brand:'Genuine Lincoln rear brake pad kit',price:'$67.33 / rear axle set when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/lincoln-pad-brake_dg9z-2200-p.html',buyLabel:'Buy exact Nautilus rear pad kit',spec:'2019–2023 Nautilus rear pad set; inspect rotor thickness/runout, caliper slide operation and parking brake before ordering.'},
+      rearBrake:{partNo:'DG9Z-2200-F / BRF-1474',brand:'Genuine Ford / Motorcraft rear brake pad kit',price:'$79.91 / rear axle set when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/ford-pad-brake_dg9z-2200-f.html',buyLabel:'Buy solid-rear-package pad kit',fitmentReviewed:true,reviewedAt:'2026-09-08',sourceUrl:'https://www.ford.com/product/disc-brake-pad-set-p4000011517',spec:'2019 Nautilus Standard FWD demo with solid rear rotors / 18-inch front and 17-inch rear brake package. Confirm installed caliper and rotor before ordering; do not select the vented-rear DG9Z-2200-P branch solely by model name.'},
       brakeFluid:{partNo:'PM-20 · 16 fl oz',brand:'Motorcraft DOT 4 LV High Performance brake fluid',price:'$11.63 when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/ford-fluid-brake_pm-20.html',buyLabel:'Buy exact DOT 4 LV brake fluid',sourceUrl:NAUTILUS_OWNER_MANUAL,sourceLabel:'2019 Lincoln Nautilus Owner Manual',spec:'Use DOT 4 LV meeting Ford WSS-M6C65-A2 from a new sealed container; do not use generic non-LV DOT 4 as a fitment shortcut.'},
-      spark:{interval:100000,partNo:'CYFS-12Y-PCT → CYFS-12Y-PCTX · quantity 4',brand:'Genuine Ford / Motorcraft spark plug',price:'$12.57 each when reviewed',buyUrl:'https://www.fordpartsgiant.com/oem-2019-lincoln-nautilus-spark_plug.html',buyLabel:'Buy exact 2.0L EcoBoost spark plugs',sourceUrl:NAUTILUS_OWNER_MANUAL,sourceLabel:'2019 Lincoln Nautilus Owner Manual',spec:'Exact 2.0L EcoBoost catalog branch; four plugs required. Do not use the 2.7L or 3.7L plug branch.'},
+      spark:{interval:100000,partNo:'CYFS-12Y-PCT → CYFS-12Y-PCTX · quantity 4',brand:'Genuine Ford / Motorcraft spark plug',price:'$12.57 each when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/lincoln-spark-plug_cyfs-12y-pct.html',buyLabel:'Buy exact 2.0L EcoBoost spark plugs',reviewedAt:'2026-09-08',sourceUrl:NAUTILUS_OWNER_MANUAL,sourceLabel:'2019 Lincoln Nautilus Owner Manual',spec:'Exact 2.0L EcoBoost catalog branch; four plugs required. Do not use the 2.7L or 3.7L plug branch.'},
       wipers:{products:[{label:'Driver wiper · 23 inch',partNo:'FA1Z-17528-A → FA1Z-17528-AA',brand:'Genuine Ford wiper blade',price:'$19.76 when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/ford-blade-asy-wiper_fa1z-17528-aa.html',buyLabel:'Buy driver blade'},{label:'Passenger wiper · 17 inch',partNo:'FA1Z-17528-B → FA1Z-17528-BA',brand:'Genuine Ford wiper blade',price:'$18.96 when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/ford-blade-asy-wiper_fa1z-17528-ba.html',buyLabel:'Buy passenger blade'}],spec:'Exact 2019 Nautilus front pair: 23-inch driver and 17-inch passenger blades.'},
     },
     radiatorIssue:{id:'lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white',label:'2.0L EcoBoost coolant loss / EGR cooler leak'},
     engineIssues:[{key:'startStop',id:'lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart',label:'Auto Start-Stop / 12V battery malfunction',sub:'2019 Nautilus may fail to restart after an automatic stop',where:'12V battery, charging system and powertrain controls'}],
     transmissionIssues:[{key:'transShudder',id:'lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph',label:'8F35 low-speed shudder',sub:'Shudder, buck or jerk below 35 mph',where:'8F35 transmission and calibration branch'}],
-    cabinIssues:[{key:'sync',id:'lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots',label:'SYNC 3 / APIM freezes and reboots',sub:'2019 Standard-trim infotainment issue',where:'Center display and APIM behind the instrument panel'}],
+    cabinIssues:[{key:'sync',id:'lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots',label:'SYNC 3 / APIM freezes and reboots',sub:'2019 Standard-trim infotainment issue',where:'Center display and APIM behind the instrument panel'},
+      {key:'rearCamera',id:'lincoln-nautilus-rearview-camera-software-error-blank-image-image-that-won-t',label:'Rearview camera software recall',sub:'25S72 / 25V442 · check VIN for dealer software update; no hardware purchase',where:'Rearview image and center display software'}],
   },
   murano:{engine:'3.5L VQ35DE V6',transmission:'Xtronic continuously variable transmission',wheel:'2023 Murano SV wheel and tire package',service:{
     oil:{interval:7500,partNo:'15208-65F0E',brand:'Genuine Nissan oil filter',price:'$6.58 when reviewed',buyUrl:'https://www.nissanpartsdeal.com/parts/nissan-oil-filter~15208-65f0e.html',buyLabel:'Buy exact Nissan oil filter',spec:'SAE 0W-20; verify capacity in the 2023 Owner\'s Manual'},
@@ -58,11 +65,10 @@ const DEMO_TREE_CONTEXT = {
     brake:{partNo:'D1060-9UH0A',brand:'Genuine Nissan front disc brake pad kit',price:'$72.40 / front axle set when reviewed',buyUrl:'https://www.nissanpartsdeal.com/parts/nissan-pad-kit-disc-brake~d1060-9uh0a.html',buyLabel:'Buy exact Murano front pad kit',spec:'Exact 2023 Murano SV 3.5L front pad set; inspect rotor thickness/runout and caliper operation before ordering'},
     rearBrake:{partNo:'D4060-9UH0A',brand:'Genuine Nissan rear disc brake pad kit',price:'$87.75 / rear axle set when reviewed',buyUrl:'https://www.nissanpartsdeal.com/parts/nissan-pad-kit-disc-brake~d4060-9uh0a.html',buyLabel:'Buy exact Murano rear pad kit',spec:'Exact 2023 Murano SV 3.5L rear pad set; inspect rotor thickness/runout, parking-brake hardware and caliper operation before ordering'},
     brakeFluid:{partNo:'999MP-A4100P · 12 oz',brand:'Genuine Nissan DOT 3 brake fluid',price:'$8.99 MSRP when reviewed',buyUrl:'https://parts.nissanusa.com/parts/nissan-title-999mpa4100p',buyLabel:'Buy exact Nissan DOT 3 fluid',sourceUrl:MURANO_OWNER_MANUAL,sourceLabel:'2023 Nissan Murano Owner Manual',spec:'Nissan DOT 3 from a clean sealed container; inspect for moisture, leaks and a soft/spongy pedal before service.'},
-    spark:{interval:105000,partNo:'22401-EW61C · quantity 6',brand:'Genuine Nissan spark plug',price:'$20.25 each when reviewed',buyUrl:'https://www.nissanpartsdeal.com/parts/nissan-plug-spark~22401-ew61c.html',buyLabel:'Buy exact VQ35DE spark plugs',spec:'Exact 2023 Murano SV 3.5L VQ35DE branch; six plugs required and the product is sold individually.'},
+    spark:{interval:105000,partNo:'22401-EW61C · quantity 6',brand:'Genuine Nissan spark plug',price:'$20.25 each when reviewed',buyUrl:'https://www.nissanpartsdeal.com/parts/nissan-plug-spark~22401-ew61c.html',buyLabel:'Buy exact VQ35DE spark plugs',spec:'2023 Murano SV 3.5L VQ35DE needs six plugs. The displayed price is per plug; the retailer quantity selector defaulted to ten when reviewed. Select six and confirm the final quantity and total before ordering.'},
     wipers:{partNo:'SET-R495079281-2-F · 26 + 18 inch pair',brand:'Rain-X Latitude Water Repellency 2-in-1 front wiper set',price:'$51.49 / pair when reviewed',buyUrl:'https://www.carparts.com/details/Nissan/Murano/Rain-X/Wiper_Blade/2023/SET-R495079281-2-F.html',buyLabel:'Buy exact-fit Murano wiper pair',spec:'Vehicle-specific 2023 Murano set: 26-inch driver, 18-inch passenger, 9×3 hook.'},
-  },cabinIssues:[
+  },engineIssues:[{key:'battery',id:'nissan-murano-battery-drain-and-no-start-2021',label:'Battery drain / no-start',sub:'Telematics or infotainment modules may remain awake',where:'12V battery and module sleep-current circuit'}],cabinIssues:[
     {key:'aeb',id:'nissan-murano-automatic-emergency-braking-forward-collision-phantom-activa',label:'AEB phantom activation',sub:'Forward-collision system may brake without a true obstacle',where:'Forward driver-assistance sensing and control system'},
-    {key:'battery',id:'nissan-murano-battery-drain-and-no-start-2021',label:'Battery drain / no-start',sub:'Telematics or infotainment modules may remain awake',where:'12V battery and module sleep-current circuit'},
     {key:'seatTrack',id:'nissan-murano-front-driver-seat-frametrack-2021',label:'Driver-seat frame / track movement',sub:'Seat may rock, click or move unexpectedly',where:'Front driver-seat frame and floor-mounted track'},
     {key:'frontRadar',id:'nissan-murano-front-radarsensor-malfunctions-triggering-2021',label:'Front radar / sensor malfunction',sub:'AEB, ICC and forward-collision warnings may appear',where:'Front radar sensor and its mounting/alignment branch'},
     {key:'rearCamera',id:'nissan-murano-rearview-camera-image-blank-2021',label:'Rear-view camera image failure',sub:'Camera image may be blank, distorted or intermittent',where:'Liftgate camera, harness and AV control unit'},
@@ -71,10 +77,10 @@ const DEMO_TREE_CONTEXT = {
     engine:'3.6L naturally aspirated V6',transmission:'9-speed automatic transmission',wheel:'2020 XT6 Sport wheel and tire package',
     service:{
       oil:{interval:7500,partNo:'12693541 / UPF63R',brand:'ACDelco Ultraguard engine oil filter',price:'$18.49 when reviewed',buyUrl:'https://www.autozone.com/p/acdelco-engine-oil-filter-upf63r/1215335',buyLabel:'Buy exact UPF63R oil filter',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 339–340',spec:'SAE 5W-30 dexos1 full synthetic · 6.0 qt with filter; the owner manual identifies 12693541 / UPF63R'},
-      air:{interval:45000,intervalMonths:48,partNo:'23321606 / A3212C',brand:'ACDelco GM Original Equipment engine air filter',price:'$78.76 MSRP when reviewed',buyUrl:'https://parts.cadillac.com/product/acdelco-gm-original-equipment-air-filter-23321606',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 332–340',spec:'Exact 2020–2025 XT6 Luxury, Premium Luxury and Sport fitment; replace by the filter-life monitor or four years when not equipped with the monitor, sooner in dust'},
+      air:{interval:45000,intervalMonths:48,partNo:'23321606 / A3212C',brand:'ACDelco GM Original Equipment engine air filter',price:'$47.26 when reviewed',reviewedAt:'2026-09-08',buyUrl:'https://www.chevypartspros.com/sku/23321606.html',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 332–340',spec:'Exact 2020–2025 XT6 Luxury, Premium Luxury and Sport fitment; replace by the filter-life monitor or four years when not equipped with the monitor, sooner in dust'},
       cabin:{intervalMonths:24,partNo:'13508023 / CF185',brand:'ACDelco passenger-compartment air filter',price:'$30.31 when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-filter-pass-compt-air-13508023.html',buyLabel:'Buy exact XT6 cabin air filter',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 332–340',spec:'Owner-manual replacement part; replace every two years or sooner for reduced airflow, window fogging, odor, heavy traffic, dust or allergens'},
-      spark:{interval:97500,partNo:'12646780 / 41-130 · quantity 6',brand:'ACDelco GM Original Equipment iridium spark plugs',price:'$10.80 each when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-spark-plug-asm-12646780.html',buyLabel:'Buy exact XT6 spark plug',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 332–340',spec:'Six plugs for the 3.6L V6; use the owner-manual 97,500-mile schedule'},
-      coolant:{interval:150000,intervalMonths:60,partNo:'12346290 / 10-101',brand:'ACDelco GM Original Equipment DEX-COOL concentrate',price:'$19.08 / gal when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-coolant-12346290.html',buyLabel:'Buy exact DEX-COOL coolant',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 332–343',spec:'50/50 DEX-COOL mixture only · 12.0 qt without rear A/C or 13.6 qt with rear A/C; this product is concentrate, so mix with the correct water per label/manual and confirm equipment before filling'},
+      spark:{interval:97500,partNo:'12646780 / 41-130 · quantity 6',brand:'ACDelco GM Original Equipment iridium spark plugs',price:'$10.80 each when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-spark-plug-asm-12646780.html',buyLabel:'Buy exact XT6 spark plug',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 332–340',spec:'Six plugs for the 3.6L V6; use the owner-manual 97,500-mile schedule. Sold individually; the retailer quantity selector defaulted to eight when reviewed. Select six and check the final quantity and total.'},
+      coolant:{interval:150000,intervalMonths:60,partNo:'12346290 / 10-101',brand:'ACDelco GM Original Equipment DEX-COOL concentrate',price:'$19.85 / gal when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-coolant-12346290.html',buyLabel:'Buy exact DEX-COOL coolant',reviewedAt:'2026-09-08',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 332–343',spec:'50/50 DEX-COOL mixture only · 12.0 qt without rear A/C or 13.6 qt with rear A/C; this product is concentrate, so mix with the correct water per label/manual and confirm equipment before filling'},
       trans:{interval:45000,partNo:'STPDEXVI1QT',brand:'STP DEXRON-VI automatic transmission fluid',price:'$11.99 / qt when reviewed',buyUrl:'https://www.autozone.com/p/stp-auto-transmission-fluid-stpdexvi1qt/811757',buyLabel:'Buy DEXRON-VI transmission fluid',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 263, 334 and 339',spec:'The 2020 XT6 manual specifies DEXRON-VI—not DEXRON ULV—for its 9-speed automatic. The 45,000-mile change is the severe-use branch; have the level-temperature procedure performed with the VIN-confirmed transmission.'},
       driveline:{label:'AWD Rear Axle & Active Twin-Clutch Fluid',interval:150000,separateService:true,manualFirstDeadline:false,img:'/twin-stage/parts/part-power-transfer-unit.webp',sourceUrl:XT6_OWNER_MANUAL,sourceLabel:'2020 Cadillac XT6 Owner Manual, pp. 330–339',products:[{label:'Rear axle gear oil',partNo:'88862624 / 10-4034 · 32 oz',brand:'ACDelco DEXRON LS 75W-90 gear oil',price:'$25.24 when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-fluid-88862624.html',buyLabel:'Buy rear-axle gear oil',spec:'For the rear gear case; do not put it in the electro-hydraulic clutch circuit.'},{label:'Active twin-clutch hydraulic fluid',partNo:'88901975 · 1 L',brand:'ACDelco / Pentosin CHF-11S electro-hydraulic fluid',price:'$23.78 when reviewed',buyUrl:'https://parts.gmparts.com/product/acdelco-gm-original-equipment-multi-purpose-electro-hydraulic-system-fluid-1-l-88901975',buyLabel:'Buy clutch-system fluid',spec:'For the active twin-clutch electro-hydraulic circuit; do not substitute gear oil.'}],spec:'The Sport is AWD with an Active Twin-Clutch rear drive module. Change rear-axle fluid at 150,000 miles normal or 60,000/150,000 severe use; inspect PTU, axle and output seals and diagnose vibration, whining, popping, clunking or AWD faults before opening either circuit.'},
       tire:{interval:7500,partNo:'235/55R20 102H OE minimum · 235 mm section width · Discount Tire replacement item 103603 is 102V SL',brand:'Pirelli Scorpion AS Plus 3 235/55R20 102V SL',price:'$245.00 each when reviewed',buyUrl:'https://www.discounttire.com/buy-tires/pirelli-scorpion-all-season-plus-3/p/103603',buyLabel:'View exact 235/55R20 tire at Discount Tire',spec:'Recommendation applies only to a Sport carrying the standard 235/55R20 placard: 235 mm nominal section width, 55 aspect ratio, 20-inch rim and approximately 9.65 in section width; the reviewed 102V replacement meets or exceeds the 102H service description. Optional 21-inch wheels use a different size—verify the door placard and installed sidewall.'},
@@ -104,8 +110,8 @@ const DEMO_TREE_CONTEXT = {
       brake:{partNo:'D1060-7LG0A',brand:'Genuine Nissan front disc brake pad kit',price:'$119.08 / front axle set when reviewed',buyUrl:'https://www.nissanpartsdeal.com/parts/nissan-pad-kit-disc-brake-front~d1060-7lg0a.html',buyLabel:'Buy exact 2025 Kicks front pad kit',spec:'Exact redesigned 2025 Kicks 2.0L front pad set; do not substitute the 2025 Kicks Play / 1.6L D1060-5EA0A kit'},
       rearBrake:{partNo:'D4060-7LG1A',brand:'Genuine Nissan rear disc brake pad kit',price:'$89.93 MSRP when reviewed',buyUrl:'https://parts.nissanusa.com/parts/nissan-disc-brake-pad-set-d40607lg1a',buyLabel:'Buy exact Kicks SV FWD rear pads',spec:'Completed 2025 SV FWD demo branch; inspect rotor thickness/runout, caliper operation and parking brake before ordering.'},
       brakeFluid:{partNo:'999MP-A4100P · 12 oz',brand:'Genuine Nissan DOT 3 brake fluid',price:'$8.99 MSRP when reviewed',buyUrl:'https://parts.nissanusa.com/parts/nissan-title-999mpa4100p',buyLabel:'Buy exact Nissan DOT 3 fluid',sourceUrl:KICKS_OWNER_MANUAL,sourceLabel:'2025 Nissan Kicks Owner Manual',spec:'Use Nissan DOT 3 from a clean sealed container; diagnose leaks or a soft/spongy pedal before service.'},
-      spark:{interval:105000,partNo:'22401-7LG1C · quantity 4',brand:'Genuine Nissan iridium spark plug',price:'$21.93 each when reviewed',buyUrl:'https://parts.nissanusa.com/parts/nissan-spark-plug-224017lg1c',buyLabel:'Buy exact 2.0L Kicks spark plugs',sourceUrl:KICKS_OWNER_MANUAL,sourceLabel:'2025 Nissan Kicks Owner Manual',spec:'Completed redesigned 2025 2.0L branch; four plugs required and sold individually.'},
-      wipers:{products:[{label:'Driver wiper · 24 inch',partNo:'EN24 / SKU 783988',brand:'Bosch Envision beam blade',price:'$37.99 when reviewed',buyUrl:'https://www.autozone.com/p/bosch-envision-wiper-blade-en24/783988',buyLabel:'Buy driver blade'},{label:'Passenger wiper · 16 inch',partNo:'EN16 / SKU 784721',brand:'Bosch Envision beam blade',price:'$37.99 when reviewed',buyUrl:'https://www.autozone.com/p/bosch-envision-wiper-blade-en16/784721',buyLabel:'Buy passenger blade'}],spec:'AutoZone fitment result for the redesigned 2025 Kicks: 24-inch driver and 16-inch passenger.'},
+      spark:{interval:105000,partNo:'22401-7LG1C · quantity 4',brand:'Genuine Nissan iridium spark plug',price:'$21.93 each when reviewed',buyUrl:'https://parts.nissanusa.com/parts/nissan-spark-plug-224017lg1c',buyLabel:'Buy reviewed 2.0L Kicks spark-plug branch',sourceUrl:KICKS_OWNER_MANUAL,sourceLabel:'2025 Nissan Kicks Owner Manual',spec:'Redesigned 2025 Kicks 2.0L MR20DD, through July 2025 production only according to the Nissan listing. Confirm VIN/build date and any supersession before ordering. Four plugs required, sold individually; not the 1.6L Kicks Play.'},
+      wipers:{products:[{label:'Driver wiper blade',partNo:'28890-7LF0A',brand:'Genuine Nissan front-left blade',price:'$26.16 / individual blade when reviewed',buyUrl:'https://parts.nissanusa.com/parts/nissan-wiper-blade-288907lf0a',buyLabel:'Buy driver blade',reviewedAt:'2026-09-08',fitmentReviewed:true},{label:'Passenger wiper blade',partNo:'28890-7LF0B',brand:'Genuine Nissan front-right blade',price:'$26.16 / individual blade when reviewed',buyUrl:'https://parts.nissanusa.com/parts/nissan-wiper-blade-288907lf0b',buyLabel:'Buy passenger blade',reviewedAt:'2026-09-08',fitmentReviewed:true}],sourceUrl:'https://parts.nissanusa.com/v-2025-nissan-kicks--sv--2-0l-l4-gas/wiper-and-washer--wiper-arm-blade-and-related-components',sourceLabel:'Nissan 2025 Kicks SV 2.0L wiper catalog',spec:'Redesigned 2025 Kicks SV 2.0L, not Kicks Play. Nissan lists 28890-7LF0A left and 28890-7LF0B right; one of each completes the front pair. Verify installed arms and VIN. Dealer prices and stock vary. Rear wiper is a separate component, not included in this pair.'},
     },
     cabinIssues:[
       {key:'cluster',id:'nissan-kicks-blank-partial-instrument-cluster-cold-start',label:'Instrument cluster blank on cold start',sub:'Published cluster/recall concern for the redesigned Kicks',where:'Instrument cluster and vehicle communication network'},
@@ -117,19 +123,20 @@ const DEMO_TREE_CONTEXT = {
     engine:'3.5L SOHC i-VTEC V6',transmission:'ZF 9-speed automatic',wheel:'2019 MDX Technology wheel and tire package',
     service:{
       oil:{interval:7500,partNo:'15400-RTA-003',brand:'Genuine Honda/Acura engine oil filter',price:'$8.76 when reviewed',buyUrl:'https://www.acurapartswarehouse.com/oem/acura~filter~oil~mahle~tennex~15400-RTA-003.html',buyLabel:'Buy exact Acura oil filter',spec:'Follow Maintenance Minder oil-life indication; verify oil capacity by drivetrain'},
-      air:{interval:30000,partNo:'17220-5J6-A10 / STP SA12061',brand:'2019 MDX direct-fit engine air filter',price:'$21.99 when reviewed',buyUrl:'https://www.autozone.com/p/stp-engine-air-filter-sa12061/629176',buyLabel:'Buy exact-fit MDX engine air filter',spec:'Exact 2019 MDX 3.5L filter geometry; 17220-5J2-A00 was removed because it belongs to a different Acura airbox branch'},
+      air:{interval:30000,partNo:'17220-5J6-A10',brand:'Genuine Acura engine air-cleaner element',price:'$31.87 / one element when reviewed',buyUrl:'https://acura.bernardiparts.com/Acura-ELEMENT-ASSY-AIR-CLEANER__17220-5J6-A10.aspx',buyLabel:'Buy genuine MDX engine air filter',reviewedAt:'2026-09-13',fitmentReviewed:true,sourceUrl:'https://www.acurapartswarehouse.com/oem/acura~element~assy~air~cleaner~17220-5j6-a10.html',sourceLabel:'Acura catalog: 2019 MDX TECH / KA9AT air-cleaner element',spec:'2019 MDX Technology SH-AWD 3.5L / KA9AT factory airbox; one dry engine-intake element, not a cabin filter or complete airbox. Confirm VIN and installed airbox. 17220-5J2-A00 and the unverified STP substitute are not this purchase. Follow Maintenance Minder code 2 and the manual dusty-use guidance, not a retailer generic mileage claim.',stock:'Add to Cart offered when reviewed; confirm current availability and shipping with Bernardi'},
       cabin:{intervalMonths:24,partNo:'80292-SDA-407',brand:'Genuine Acura cabin air filter',price:'$19.97 when reviewed',buyUrl:'https://www.acurapartswarehouse.com/oem/acura~element~filter~80292-SDA-407.html',buyLabel:'Buy exact Acura cabin air filter'},
       coolant:{interval:100000,partNo:'0L999-9011A',brand:'Honda Type 2 coolant',price:'$21.75 / gal when reviewed',buyUrl:'https://acura.bernardiparts.com/Products/COOLANT-%28TYPE-2%29__0L999-9011A.aspx',buyLabel:'Buy exact Honda Type 2 coolant',spec:'Premixed Honda Type 2; never mix incompatible coolant chemistry'},
       trans:{interval:30000,partNo:'08200-9017',brand:'Genuine Acura ATF Type 3.1',price:'$21.89 / qt when reviewed',buyUrl:'https://www.acurapartswarehouse.com/oem/acura~atf~type~3~1~08200-9017.html',buyLabel:'Buy exact Type 3.1 ATF',spec:'ZF 9-speed Type 3.1 branch; do not substitute DW-1 or the obsolete Type 3.0 number 08200-9016A'},
       driveline:{label:'SH-AWD Transfer Assembly & Rear Differential',interval:30000,separateService:true,img:'/twin-stage/parts/part-differential.webp',sourceUrl:MDX_OWNER_MANUAL,sourceLabel:'2019 Acura MDX Owner Manual',products:[{label:'Rear differential fluid · 2 qt required',partNo:'08200-9007A',brand:'Acura All-Wheel Drive Fluid (DPSF)',price:'$13.62 each when reviewed · 2 qt required',buyUrl:'https://acura.bernardiparts.com/Acura-All-Wheel-Drive-Fluid-DPSF__08200-9007A.aspx',buyLabel:'Buy rear differential fluid',spec:'Use only in the SH-AWD rear differential; service requires two US quarts.'},{label:'Transfer assembly gear oil',partNo:'08200-9014A',brand:'Acura Hypoid Gear Oil HGO-1',price:'$25.60 MSRP when reviewed',buyUrl:'https://acura.oempartsonline.com/oem-parts/acura-fluid-hgo-1-82009014a',buyLabel:'Buy transfer gear oil',spec:'Use only in the transfer assembly; approximate change capacity is 0.45 US qt.'}],spec:'Completed Technology demo uses SH-AWD. The transfer assembly and rear differential are separate circuits with different fluids; never interchange HGO-1 and DPSF.'},
       tire:{interval:7500,partNo:'245/50R20 105V XL · Discount Tire item 149584',brand:'Michelin CrossClimate2',price:'$300.00 each when reviewed',buyUrl:'https://www.discounttire.com/buy-tires/michelin-crossclimate2/p/149584',buyLabel:'View exact 245/50R20 tire',spec:'Technology SH-AWD 20-inch branch. Confirm the door placard; the reviewed 105V XL replacement meets/exceeds the original service description.'},
-      brake:{partNo:'45022-TZ5-A01 → 45022-TZ5-A02',brand:'Genuine Acura front disc brake pad set',price:'$79.75 / front axle set when reviewed',buyUrl:'https://www.acurapartswarehouse.com/oem/acura~pad~set~fr~45022-tz5-a01.html',buyLabel:'Buy exact MDX front pad set',spec:'2019 MDX front-axle pad set; confirm VIN before choosing the alternate 45022-TZ5-A10 branch'},
+      brake:{partNo:'45022-TZ5-A10',brand:'Genuine Acura front disc brake pad set',price:'$83.65 / front axle set when reviewed',buyUrl:'https://www.hondaacuraonline.com/oem-parts/acura-brake-pads-front-45022tz5a10',buyLabel:'Buy exact MDX front pad set',fitmentReviewed:true,reviewedAt:'2026-09-08',spec:'2019 MDX Technology SH-AWD 3.5L / KA9AT front pad set with shims and pad springs. The exact-year catalog specifies A10; A01/A02 is not used for this branch.'},
       rearBrake:{partNo:'43022-TZ5-A10',brand:'Genuine Acura rear disc brake pad set',price:'$76.03 / rear axle set when reviewed',buyUrl:'https://www.acurapartswarehouse.com/oem/acura~pad~set~rr~43022-tz5-a10.html',buyLabel:'Buy exact MDX rear pad set',spec:'2019 MDX rear-axle pad set; inspect rotor thickness/runout, parking-brake operation and caliper operation before ordering'},
-      brakeFluid:{partNo:'08798-9008 · 12 oz',brand:'Genuine Honda/Acura DOT 3 brake fluid',price:'$14.94 when reviewed',buyUrl:'https://partlimit.com/products/genuine-honda-08798-9008-brake-fluid-dot-3',buyLabel:'Buy exact Honda/Acura DOT 3 fluid',sourceUrl:MDX_OWNER_MANUAL,sourceLabel:'2019 Acura MDX Owner Manual',spec:'Use DOT 3 from a clean sealed container. Low fluid requires pad/leak inspection, not blind topping off.'},
+      brakeFluid:{partNo:'08798-9008 · 12 oz',brand:'Genuine Honda/Acura DOT 3 brake fluid',price:'$5.65 / 12 oz when reviewed',reviewedAt:'2026-09-08',buyUrl:'https://www.hondapartsconnection.com/oem-parts/honda-fluid-brake-dot-3-12oz-bottle-87989008',buyLabel:'Buy exact Honda/Acura DOT 3 fluid',sourceUrl:MDX_OWNER_MANUAL,sourceLabel:'2019 Acura MDX Owner Manual',spec:'Use DOT 3 from a clean sealed container. Low fluid requires pad/leak inspection, not blind topping off.'},
       spark:{interval:105000,partNo:'12290-R9P-A01 / NGK DILZKR7B11G · quantity 6',brand:'Genuine Acura spark plug',price:'$40.65 each when reviewed',buyUrl:'https://www.acurapartswarehouse.com/oem/acura~spark~plug~dilzkr7b11g~ngk~12290-R9P-A01.html',buyLabel:'Buy exact MDX spark plugs',sourceUrl:MDX_OWNER_MANUAL,sourceLabel:'2019 Acura MDX Owner Manual',spec:'Exact 2019 MDX 3.5L branch; six plugs required and sold individually.'},
       wipers:{partNo:'SET-5079277-2 · 26 + 20 inch pair',brand:'Rain-X Latitude Water Repellency 2-in-1 front wiper set',price:'$51.49 / pair when reviewed',buyUrl:'https://www.carparts.com/details/Acura/MDX/Rain-X/Wiper_Blade/2019/SET-5079277-2.html',buyLabel:'Buy exact-fit MDX wiper pair',spec:'Vehicle-specific 2019 MDX set: 26-inch driver, 20-inch passenger, 9×3 hook.'},
     },
-    engineIssues:[{key:'fuelPump',id:'acura-mdx-fuel-pump-impeller-deformation-causing-stall',label:'Fuel-pump impeller recall',sub:'Deformed impeller may cause stall or no-start',where:'In-tank fuel pump module'}],
+    engineIssues:[{key:'fuelPump',id:'acura-mdx-fuel-pump-impeller-deformation-causing-stall',label:'Fuel-pump impeller recall',sub:'Deformed impeller may cause stall or no-start',where:'In-tank fuel pump module'},
+      {key:'idleStop',id:'acura-mdx-auto-idle-stop-failure-to-restart',label:'Auto Idle-Stop failure to restart',sub:'Acura 23-001 · dealer VIN/software/diagnostic check; no assumed replacement or coverage',where:'3.5L non-hybrid engine restart control · Technology SH-AWD'}],
     transmissionIssues:[
       {key:'zfHesitation',id:'acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling',label:'ZF 9-speed hesitation / harsh shifts',sub:'Published shift-quality concern',where:'ZF 9-speed transmission and software branch'},
       {key:'converter',id:'acura-mdx-torque-converter-shudder-2014',label:'Torque-converter shudder',sub:'Judder under light throttle',where:'Transmission torque converter and fluid branch'},
@@ -150,17 +157,17 @@ const DEMO_TREE_CONTEXT = {
       rearBrake:{partNo:'ACT2231',brand:'Akebono ProACT ceramic rear brake pad set',price:'$76.82 / rear axle set when reviewed',buyUrl:'https://thmotorsports.com/19212515-akebono-act2231',buyLabel:'Buy exact Aviator RWD rear pads',spec:'ACT2231 is an exact 2026 Aviator RWD 255/55R20 fitment result; inspect rotor thickness/runout, caliper operation and parking brake before ordering.'},
       brakeFluid:{partNo:'PM-20 · 16 fl oz',brand:'Motorcraft DOT 4 LV High Performance brake fluid',price:'$11.63 when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/ford-fluid-brake_pm-20.html',buyLabel:'Buy exact DOT 4 LV brake fluid',sourceUrl:AVIATOR_OWNER_MANUAL,sourceLabel:'2026 Lincoln Aviator Owner Manual',spec:'Use DOT 4 LV meeting WSS-M6C65-A2 / ISO 4925 Class 6 from a new sealed container.'},
       spark:{interval:100000,partNo:'SP-594 / CYFS-12Y-RT3 · quantity 6',brand:'Motorcraft spark plug',price:'$14.49 each when reviewed',buyUrl:'https://www.autozone.com/p/motorcraft-spark-plug-sp-594/1169380',buyLabel:'Buy exact 2026 Aviator spark plugs',sourceUrl:AVIATOR_OWNER_MANUAL,sourceLabel:'2026 Lincoln Aviator Owner Manual',spec:'The 2026 owner manual explicitly names SP-594; six plugs required for the 3.0L V6.'},
-      wipers:{products:[{label:'Driver wiper blade',partNo:'WW-2617-NH',brand:'Motorcraft heated-washer-compatible blade',price:'$22.19 when reviewed',buyUrl:'https://www.carparts.com/wiper-blade/motorcraft/miww2617nh',buyLabel:'Buy driver blade'},{label:'Passenger wiper blade',partNo:'WW-2114-NH',brand:'Motorcraft heated-washer-compatible blade',price:'$19.25 when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/ford-blade-asy-wiper_ww-2114-nh.html',buyLabel:'Buy passenger blade'}],sourceUrl:AVIATOR_OWNER_MANUAL,sourceLabel:'2026 Lincoln Aviator Owner Manual',spec:'The owner manual names WW-2617-NH driver and WW-2114-NH passenger. The Aviator uses washer-jet/heated-arm-specific blades; do not substitute generic hook blades.'},
+      wipers:{products:[{label:'Driver wiper blade',partNo:'WW-2617-NH',brand:'Motorcraft non-heated 26-inch blade',price:'$22.19 when reviewed',buyUrl:'https://www.carparts.com/wiper-blade/motorcraft/miww2617nh',buyLabel:'Buy driver blade'},{label:'Passenger wiper blade',partNo:'WW-2114-NH',brand:'Motorcraft non-heated 21-inch blade',price:'$19.25 when reviewed',buyUrl:'https://www.fordpartsgiant.com/parts/ford-blade-asy-wiper_ww-2114-nh.html',buyLabel:'Buy passenger blade'}],sourceUrl:AVIATOR_OWNER_MANUAL,sourceLabel:'2026 Lincoln Aviator Owner Manual, p. 401',spec:'The 2026 owner manual names WW-2617-NH driver and WW-2114-NH passenger. These are the non-heated blade branch; confirm the installed arms and washer connections. Do not substitute them for heated wiper blades or use a generic hook blade without the correct connector.'},
     },
   },
   camaro:{
     engine:'6.2L supercharged LT4 V8',transmission:'TR-6060 6-speed manual or 10L90 10-speed automatic',wheel:'2019 Camaro ZL1 1LE staggered wheel and tire package',
     service:{
       oil:{interval:7500,partNo:'12640445 / PF64 → 25206377',brand:'ACDelco GM Original Equipment oil filter',price:'$5.55 when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-filter-12640445.html',spec:'Use dexosR-approved SAE 0W-40; 10 qt with filter'},
-      air:{interval:45000,partNo:'23323508 / A3223C',brand:'ACDelco GM Original Equipment engine air filter',price:'$81.00 MSRP',buyUrl:'https://parts.chevrolet.com/product/acdelco-gm-original-equipment-air-filter-23323508',spec:'2016–2024 Camaro ZL1/LT4 direct-fit branch; confirm the installed airbox remains stock'},
+      air:{interval:45000,partNo:'23323508 / A3223C',brand:'ACDelco GM Original Equipment engine air filter',price:'$46.58 when reviewed',reviewedAt:'2026-09-08',buyUrl:'https://www.chevypartspros.com/sku/23323508.html',spec:'2016–2024 Camaro ZL1/LT4 direct-fit branch; confirm the installed airbox remains stock'},
       cabin:{intervalMonths:24,partNo:'13508023 / CF185',brand:'ACDelco passenger-compartment air filter',price:'$30.31 when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-filter-pass-compt-air-13508023.html',buyLabel:'Buy exact Camaro cabin air filter',sourceUrl:CAMARO_OWNER_MANUAL,sourceLabel:'2019 Chevrolet Camaro Owner Manual, pp. 321–330',spec:'Owner-manual replacement part; replace every two years or sooner for reduced airflow, window fogging, odor, heavy traffic, dust or allergens'},
-      spark:{interval:97500,partNo:'12642722 · quantity 8',brand:'Genuine Chevrolet LT4 spark plug',price:'$9.69 each when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/chevrolet-spark-plug~12642722.html',buyLabel:'Buy exact ZL1 LT4 spark plugs',sourceUrl:CAMARO_HIGH_PERFORMANCE_SUPPLEMENT,sourceLabel:'2019 Camaro High Performance supplement',spec:'Direct-fit 2017–2024 Camaro high-performance 6.2L branch; eight pre-gapped plugs required and sold individually.'},
-      coolant:{interval:150000,partNo:'12346290 / 10-101',brand:'ACDelco GM Original Equipment DEX-COOL coolant',price:'$33.48 MSRP / gal',buyUrl:'https://parts.chevrolet.com/product/acdelco-gm-original-equipment-dex-cool-extended-life-engine-coolant-1-gal-12346290',spec:'DEX-COOL; mix only to the concentration required by the owner manual and never mix incompatible chemistry'},
+      spark:{interval:97500,partNo:'12642722 · quantity 8',brand:'Genuine Chevrolet LT4 spark plug',price:'$9.69 each when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/chevrolet-spark-plug~12642722.html',buyLabel:'Buy exact ZL1 LT4 spark plugs',sourceUrl:CAMARO_HIGH_PERFORMANCE_SUPPLEMENT,sourceLabel:'2019 Camaro High Performance supplement',spec:'Direct-fit 2017–2024 Camaro high-performance 6.2L branch; eight pre-gapped plugs required and sold individually. The retailer quantity selector defaulted to four when reviewed. Select eight and check the final quantity and total.'},
+      coolant:{interval:150000,partNo:'12346290 / 10-101',brand:'ACDelco GM Original Equipment DEX-COOL concentrate',price:'$19.85 / gal when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-coolant-12346290.html',buyLabel:'Buy exact DEX-COOL coolant',reviewedAt:'2026-09-08',spec:'Concentrate, not ready-to-use coolant. Prepare the owner-manual 50/50 DEX-COOL mixture using the specified water. Confirm which cooling circuit is being serviced and its fill/bleed procedure; the LT4 supercharger circuit is separate. Never open a hot pressurized system or mix incompatible chemistry.'},
       trans:{interval:45000,brand:'Transmission-specific GM fluid service',spec:'The 10L90 and TR-6060 use different fluids. Choose the installed transmission before the tree exposes a product or part number.'},
       driveline:{label:'Electronic Limited-Slip Differential',interval:45000,separateService:true,img:'/twin-stage/parts/part-differential.webp',where:'Rear electronic limited-slip differential gear housing',partNo:'88862624 / 10-4034 · 2 × 32 oz bottles',brand:'ACDelco GM Original Equipment DEXRON LS 75W-90 gear oil',price:'$44.28 MSRP each · $88.56 for two before tax/shipping when reviewed',buyUrl:'https://parts.chevrolet.com/product/acdelco-gm-original-equipment-dexron-ls-75w-90-gear-oil-32-oz-88862624',buyLabel:'Buy exact rear-axle gear oil',sourceUrl:CAMARO_OWNER_MANUAL,sourceLabel:'2019 Camaro Owner Manual, pp. 322 and 330; High Performance supplement, p. 48',capacitySourceUrl:CAMARO_HIGH_PERFORMANCE_SUPPLEMENT,spec:'Exact 2019 ZL1 1LE coupe eLSD gear-case service: DEXRON LS 75W-90, GM 88862624 / ACDelco 10-4034, approximately 1.5 L (1.6 qt), so two 32 oz bottles cover the published approximate capacity. Change at 45,000-mile intervals. The separate eLSD clutch hydraulic circuit holds 160 mL (5.4 oz); this purchase is not for that circuit, which requires its own service procedure.'},
       tire:{rotationAllowed:false,partNo:'305/30ZR19 98Y front · 325/30ZR19 101Y rear · Discount Tire items 38704/38720',brand:'Goodyear Eagle F1 SuperCar 3R',price:'$458.00 front · $480.00 rear when reviewed',buyUrl:'https://www.discounttire.com/buy-tires/goodyear-eagle-f1-supercar-3r/p/38704/rearProduct/38720',buyLabel:'View the exact staggered ZL1 1LE tire set',spec:'Factory staggered ZL1 1LE sizes; front-to-rear rotation is not permitted. Replace by measured tread/condition and verify both installed sidewalls before ordering.'},
@@ -230,15 +237,17 @@ function challengerTrees(twin, transmission = 'automatic') {
       Object.assign(diffFluid,{
         partNo:'68232947AD + 04318060AD',
         brand:'Genuine Mopar 75W-85 base gear oil + Mopar limited-slip friction modifier',
-        price:'$50.13 reviewed set price',
-        stock:'Two 1-qt base-oil bottles plus one 4-oz modifier bottle; current product pages had add-to-cart when reviewed',
-        spec:'SAE 75W-85 API GL-5 base oil + one complete 4 fl oz Mopar MS-10111 limited-slip modifier bottle · service sequence: add the modifier first, then fill with base oil to the specified level; the modifier counts toward the 1.16 qt nominal capacity, so do not pour both full quarts',
+        commerceStatus:'fitment-hold',fitmentReviewed:false,
+        holdReason:'Confirm the installed 230 mm axle and the current Mopar-approved base-oil/modifier combination and dose by VIN. A manual or automatic gearbox alone does not establish the differential specification. The retail bottle size is not a dosing instruction.',
+        stock:'Companion products below are sold separately; exact fluid combination and dose still need confirmation',
+        spec:'The 2015 factory chart distinguishes 230 mm standard and limited-slip axle lubricants. Nominal axle capacity is 1.16 US qt, not two full bottles. Do not infer a complete four-ounce additive dose or an add-first sequence from the retailer description. Include any prescribed modifier within the final fill level.',
         products:[
-          {label:'Genuine Mopar 75W-85 axle lubricant · quantity 2',brand:'MoparPartsGiant',partNo:'68232947AD',price:'$34.14 for two 1-qt bottles',buyUrl:'https://www.moparpartsgiant.com/parts/mopar-lubricant-gear~68232947ad.html',buyLabel:'Buy two base-oil bottles',spec:'2015 Challenger fitment is listed; one bottle is not enough supply for a 1.16 qt fill, but only the amount needed after the modifier is installed goes into the axle'},
-          {label:'Genuine Mopar limited-slip friction modifier · 4 fl oz',brand:'Epic Auto Market',partNo:'04318060AD',price:'$15.99 each',buyUrl:'https://www.epicautomarket.com/products/genuine-mopar-04318060ad-limited-slip-additive-friction-modifier-4-oz',buyLabel:'Buy one modifier bottle',spec:'Mopar MS-10111 limited-slip additive; one complete 4 oz bottle for this reviewed service set'},
+          {label:'Base gear oil · confirm axle approval',brand:'MoparPartsGiant',partNo:'68232947AD',price:'$17.07 / 1-qt bottle when reviewed',buyUrl:'https://www.moparpartsgiant.com/parts/mopar-lubricant-gear~68232947ad.html',buyLabel:'View base gear oil',fitmentReviewed:false,spec:'SAE 75W-85 base gear lubricant, not a complete pre-mixed limited-slip service kit. Exact axle/application approval remains to be confirmed.'},
+          {label:'Limited-slip friction modifier · confirm dose',brand:'Epic Auto Market',partNo:'04318060AD',price:'$15.99 / 4-fl-oz bottle when reviewed',buyUrl:'https://www.epicautomarket.com/products/genuine-mopar-04318060ad-limited-slip-additive-friction-modifier-4-oz',buyLabel:'View modifier bottle',fitmentReviewed:false,spec:'Mopar MS-10111 additive. Four fluid ounces is the package size, not a verified dose for this 230 mm axle.'},
         ],
       });
       delete diffFluid.buyUrl;
+      delete diffFluid.price;
     }
   } else if (branchTrees.trans?.nodes?.diffFluid) {
     const diffFluid = branchTrees.trans.nodes.diffFluid;
@@ -279,6 +288,12 @@ function challengerTrees(twin, transmission = 'automatic') {
     buyLabel:'Buy exact 6.4L HEMI oil filter',
     spec:'6.4L HEMI fitment · lubricate the gasket and follow the filter installation instructions',
   });
+  if(trees.oil.nodes.oilFluid)Object.assign(trees.oil.nodes.oilFluid,{
+    reviewedAt:'2026-09-08',commerceStatus:'fitment-hold',fitmentReviewed:false,
+    holdReason:'Confirm the delivered formulation is approved for the 2015 6.4L SRT application. The owner manual names MS-12633; the current Pennzoil data sheet lists MS-A0921 without explicitly stating the older approval. The product link is retained, but that approval equivalence is not established by this review.',
+    stock:'Walmart sold/shipped one-quart bottle when reviewed; stock and delivery depend on location',
+    sourceUrl:'https://www.shell-livedocs.com/data/published/en-US/32f9b848-c1a8-4e65-bc47-6f0604d9fb6c.pdf',sourceLabel:'Pennzoil 0W-40 technical data, 17 August 2026; compare 2015 owner manual pp.497–499',
+  });
   if (trees.wheel.nodes.lugs) Object.assign(trees.wheel.nodes.lugs,{
     partNo:'6509873AA',brand:'Genuine Mopar capped lug nut',price:'$16.43 each when reviewed',stock:'MoparPartsGiant · add-to-cart live when reviewed',
     buyUrl:'https://www.moparpartsgiant.com/parts/mopar-nut-lug~6509873aa.html',buyLabel:'Buy exact Challenger lug nut',
@@ -294,14 +309,16 @@ function challengerTrees(twin, transmission = 'automatic') {
     buyUrl:'https://www.moparpartsgiant.com/parts/mopar-antifreez-coolant~68163849ab.html',buyLabel:'Buy exact Mopar OAT coolant',
     spec:'US 50/50 OAT premix · MS-12106 · do not mix with green or orange HOAT',
   });
-  if (trees.trans.nodes.transFluid) Object.assign(trees.trans.nodes.transFluid,{
+  if (transmission === 'automatic' && trees.trans.nodes.transFluid) Object.assign(trees.trans.nodes.transFluid,{
     partNo:'68218925AA → 68218925AB',price:'$23.71 / qt when reviewed',stock:'Exact 8/9-speed Mopar fluid product',
     buyUrl:'https://www.fortluft.com/mopar-chrysler-dodge-jeep-ram-8-and-9-speed-automatic-transmission-fluid-new-oem/',buyLabel:'Buy exact Mopar 8/9-speed ATF',
     spec:'ZF 8HP70 · set the level using the exact temperature procedure · never substitute ATF+4',
   });
-  if (trees.trans.nodes.transPan) Object.assign(trees.trans.nodes.transPan,{
-    price:'$243.08 when reviewed',stock:'Mopar Genuine Parts · VIN confirmation at checkout',
-    buyUrl:'https://parts.mopargenuineparts.com/oem-parts/mopar-transmission-pan-and-filter-assembly-68225344aa',buyLabel:'Buy exact 8HP70 pan and filter',
+  if (transmission === 'automatic' && trees.trans.nodes.transPan) Object.assign(trees.trans.nodes.transPan,{
+    partNo:'68261170AA',price:'$311.09 when reviewed',stock:'MoparPartsGiant · one assembly · add-to-cart live when reviewed',
+    buyUrl:'https://www.moparpartsgiant.com/parts/mopar-pan-transmission-oil~68261170aa.html',buyLabel:'Buy exact 8HP70 pan and filter',
+    spec:'2015 Challenger DFK 8HP70 / ESG 6.4L SRT HEMI branch: pan and filter assembly. Confirm VIN and installed transmission; the former 68225344AA link was not established for this branch. Check the service procedure for gasket and required hardware; the listing does not establish that every service item is included.',
+    sourceUrl:'https://www.moparpartsgiant.com/parts-list/2015-dodge-challenger/automatic_transmission/oil_pan_filter_and_related_parts.html',sourceLabel:'2015 Challenger 8HP70 oil pan/filter catalog · item 1',reviewedAt:'2026-09-08',fitmentReviewed:true,
   });
   if (trees.wheel.nodes.wheelA) Object.assign(trees.wheel.nodes.wheelA,{
     partNo:'HC2 295-5115-18 GB',brand:'Voxx Replicas Hellcat 2 gloss-black wheel',price:'$257.66 each when reviewed · $1,030.64 set of 4',stock:'TFS Wheels · add-to-cart live when reviewed',
@@ -314,27 +331,30 @@ function challengerTrees(twin, transmission = 'automatic') {
     buyUrl:'https://www.moparpartsgiant.com/parts/mopar-bolt-oil-drain~6507741aa.html',buyLabel:'Buy exact 6.4L oil drain plug',
     spec:'2015 Challenger 6.4L oil-pan branch · M14 × 1.5 · plug includes its sealing gasket; 6506305AA was removed because it is not the documented SRT 392 drain plug',
   });
-  if (trees.wipers.nodes.wipL) Object.assign(trees.wipers.nodes.wipL,{
-    partNo:'Rain-X 870122Z · 22 in',brand:'Rain-X Truck & SUV beam wiper replacement option',price:'$39.99 when reviewed',
-    buyUrl:'https://www.autozone.com/p/rain-x-truck-suv-wiper-blade-870122z/1204216',buyLabel:'Buy 22-inch driver wiper',
-    spec:'22-inch driver-side replacement option · adapter included; confirm the installed arm connector before opening the package',
+  for(const id of ['wipL','wipR'])if(trees.wipers.nodes[id])Object.assign(trees.wipers.nodes[id],{
+    sub:id==='wipL'?'Driver blade · confirm arm/VIN':'Passenger blade · confirm arm/VIN',stock:undefined,
+    partNo:'68015148AA',brand:'Genuine Mopar front wiper blade',price:'$26.50 / individual blade when reviewed',
+    buyUrl:'https://www.moparpartsgiant.com/parts/mopar-blade-front-wiper~68015148aa.html',buyLabel:id==='wipL'?'Buy driver blade':'Buy passenger blade',
+    spec:'The 2015 Challenger front-wiper catalog lists 68015148AA for both left and right, sold individually. Two blades are needed for a complete front pair; do not buy two pairs. Confirm the original arm connector and VIN before ordering. The previous 22/20-inch Rain-X combination was not established for this 2015 branch.',
+    sourceUrl:'https://www.moparpartsgiant.com/parts-list/2015-dodge-challenger/electrical/front_wiper_system.html',sourceLabel:'2015 Challenger front wiper catalog · item 2',reviewedAt:'2026-09-08',fitmentReviewed:true,
   });
-  if (trees.wipers.nodes.wipR) Object.assign(trees.wipers.nodes.wipR,{
-    partNo:'Rain-X 860120 · 20 in',brand:'Rain-X Ready Match conventional wiper replacement option',price:'$14.99 when reviewed',
-    buyUrl:'https://www.autozone.com/p/rain-x-wiper-blade-860120/1525511',buyLabel:'Buy 20-inch passenger wiper',
-    spec:'20-inch passenger-side replacement option · confirm the installed arm connector before opening the package',
-  });
+  if(trees.wipers.nodes.wip)trees.wipers.nodes.wip.sub='Front pair · two individual blades';
   if (trees.wipers.nodes.wipFluid) Object.assign(trees.wipers.nodes.wipFluid,{
+    reviewedAt:'2026-09-08',
     partNo:'SPWW20 · 1 gal',brand:'ShopPro -20 °F windshield washer fluid',price:'$4.99 / gal when reviewed',
     buyUrl:'https://www.autozone.com/p/shoppro-windshield-washer-fluid-spww20/690800',buyLabel:'Buy -20 °F washer fluid',
     spec:'Use full strength · climate-rated to -20 °F · do not substitute engine coolant or plain water in freezing weather',
   });
-  if (trees.trans.nodes.transPlug) Object.assign(trees.trans.nodes.transPlug,{
+  if (transmission === 'automatic' && trees.trans.nodes.transPlug) Object.assign(trees.trans.nodes.transPlug,{
     partNo:'68145443AA → 68145443AB',brand:'Genuine Mopar 8HP70 oil fill plug',price:'$15.49 when reviewed',stock:'MoparPartsGiant · add-to-cart live when reviewed',
     buyUrl:'https://www.moparpartsgiant.com/parts/mopar-oil-fill~68145443ab.html',buyLabel:'Buy exact 8HP70 fill plug',
     spec:'2015–2020 Challenger 6.4L / SRT 392 automatic branch · use the exact fill-level temperature procedure and published torque',
   });
-  if (trees.trans.nodes.transPlug) { delete trees.trans.nodes.transPlug.commerceStatus; delete trees.trans.nodes.transPlug.holdReason; }
+  if (transmission === 'automatic' && trees.trans.nodes.transPlug) { delete trees.trans.nodes.transPlug.commerceStatus; delete trees.trans.nodes.transPlug.holdReason; }
+  if (transmission === 'manual' && trees.trans.nodes.transPlug) Object.assign(trees.trans.nodes.transPlug,{
+    commerceStatus:'fitment-hold',fitmentReviewed:false,
+    holdReason:'Confirm the installed TR-6060 fill-plug/sealing hardware by VIN and exact service procedure. The automatic 8HP70 fill plug is not the manual-transmission part.',
+  });
   if (trees.wheel.nodes.caliper) Object.assign(trees.wheel.nodes.caliper,{
     products:[
       {label:'Passenger-side front caliper · red 6-piston',partNo:'68248388AA',brand:'Genuine Mopar / Brembo front disc-brake caliper',price:'$912.32 when reviewed',buyUrl:'https://www.moparpartsgiant.com/parts/mopar-caliper-disc-brake~68248388aa.html',buyLabel:'Buy passenger front caliper',spec:'BR7 red six-piston front branch for the 2015 SRT 392; passenger/right side.'},
@@ -350,6 +370,7 @@ function challengerTrees(twin, transmission = 'automatic') {
     spec:'Red four-piston fixed rear calipers; left and right are separate parts. Confirm the installed red-caliper equipment branch before ordering.',
   });
   if (trees.wheel.nodes.brakeFluid) Object.assign(trees.wheel.nodes.brakeFluid,{
+    sub:'DOT 3 · sealed-container factory fluid',
     partNo:'04318080AD / 4318080AD · 12 oz',brand:'Genuine Mopar DOT 3 brake fluid',price:'$9.49 when reviewed',stock:'MoparPartsGiant · add-to-cart live when reviewed',
     buyUrl:'https://www.moparpartsgiant.com/parts/mopar-fluid-brake~4318080ad.html',buyLabel:'Buy exact Mopar DOT 3 fluid',
     spec:'SAE J1703 DOT 3 factory branch · use fluid from a new sealed container; DOT 4 is permitted only when DOT 3 is unavailable, per the owner manual',
@@ -360,7 +381,11 @@ function challengerTrees(twin, transmission = 'automatic') {
     delete node.commerceStatus; delete node.holdReason;
     if (Array.isArray(node.products)) { delete node.partNo; delete node.buyUrl; delete node.price; delete node.stock; }
   }
-  for (const id of ['radCore','radAlum']) {
+  // The stock card's OEM part number must not link to the upgrade product.
+  if (trees.engine.nodes.radCore && trees.engine.nodes.radOem) Object.assign(trees.engine.nodes.radCore,{
+    buyUrl:trees.engine.nodes.radOem.buyUrl,price:trees.engine.nodes.radOem.price,buyLabel:'View genuine Mopar radiator',
+  });
+  for (const id of ['radAlum']) {
     const node = trees.engine.nodes[id];
     if (!node) continue;
     node.buyUrl='https://www.mishimoto.com/dodge-challenger-srt8-hellcat-radiator-2008-2016.html?___store=default';
@@ -381,11 +406,63 @@ function challengerTrees(twin, transmission = 'automatic') {
   };
   annotate('rotor','dodge-challenger-warped-front-brake-rotors-causing-pedal-pulsation-steering-s');
   annotate('radCore','dodge-challenger-radiator-failure');
-  annotate('transFluid','dodge-challenger-zf8-trans-2015');
+  if (transmission === 'automatic') annotate('transFluid','dodge-challenger-zf8-trans-2015');
+  // Refresh only exact reviewed purchases; do not replace the shared nodes or
+  // copy history, mileage, intervals, or installed-part selections.
+  const refreshed = new Set();
+  for (const tree of Object.values(trees)) for (const node of Object.values(tree.nodes)) {
+    if (refreshed.has(node)) continue;
+    refreshed.add(node);
+    Object.assign(node,refreshReviewedPurchase('challenger',node));
+    if (Array.isArray(node.products)) node.products=node.products.map(product=>refreshReviewedPurchase('challenger',product));
+  }
   return trees;
 }
+function drivelineServiceDetails(twin, service, type, label) {
+  const clock = reviewedDrivelineIntervals(type, twin.identity);
+  const details = serviceDetails(clock ? {...service, interval:clock.intervalMiles, intervalMonths:clock.intervalMonths} : service, type, label);
+  if (twin.id === 'mdx') Object.assign(details, {
+    sourceUrl:'https://owners.acura.com/utility/download?path=/static/pdfs/2019/MDX/2019_MDX_Maintenance_Minder.pdf',
+    sourceLabel:'2019 Acura MDX Maintenance Minder, sub-items 3 and 6',
+  });
+  return details;
+}
+
+function physicalDrivelineNodes(twin, context) {
+  const service = context.service.driveline;
+  const modelLabel = `${twin.identity.year} ${twin.identity.make} ${twin.identity.model} ${twin.identity.trim}`.trim();
+  const common = {sub:`${twin.identity.model} demo equipment branch; confirm installed equipment`,sourceUrl:service.sourceUrl,sourceLabel:service.sourceLabel};
+  if (['nautilus','murano','kicks'].includes(twin.id)) return {
+    driveline:demoNode({...common,label:service.label,group:true,kids:['transFluid'],imageUnavailable:true,where:'Final drive integrated inside the FWD transmission; no separate rear unit',
+      spec:service.spec,life:'One shared transmission-fluid service below; no separate differential-fluid job'}),
+  };
+  if (twin.id === 'xt6' || twin.id === 'mdx') {
+    const xt6 = twin.id === 'xt6';
+    const secondId = xt6 ? 'clutchFluid' : 'transferFluid';
+    const rearLife = xt6 ? 'Normal: 150,000 miles. Severe: 75,000 miles only when the manual severe-use conditions apply.' : 'Maintenance Minder 6; no fixed normal-use replacement mileage.';
+    const secondLife = xt6 ? 'No separate fixed replacement interval established; follow the confirmed circuit service procedure.' : 'Maintenance Minder 3; transfer and transmission remain separate physical jobs.';
+    return {
+      driveline:demoNode({...common,label:service.label,group:true,kids:['rearAxleFluid',secondId],imageUnavailable:true,where:xt6?'Rear drive module; two separately serviced fluid circuits':'Transfer assembly and rear differential; separate units and fluids',
+        spec:xt6 ? 'Separate rear gearcase and active twin-clutch hydraulic circuits. Gear oil and hydraulic fluid are not interchangeable.' : service.spec,
+        life:'Log each completed circuit separately. Legacy combined records do not prove either new job.'}),
+      rearAxleFluid:demoNode({...common,...drivelineServiceDetails(twin,service.products[0],'rear_axle_fluid','Rear axle gearcase fluid'),
+        label:xt6?'Rear Axle Gearcase Fluid':'SH-AWD Rear Differential Fluid',img:'/twin-stage/parts/part-differential.webp',
+        where:'Rear drive-unit gearcase',life:rearLife,spec:`${service.products[0].spec} ${rearLife}`}),
+      [secondId]:demoNode({...common,...drivelineServiceDetails(twin,service.products[1],xt6?'awd_clutch_fluid':'transfer_case_fluid',xt6?'AWD clutch hydraulic fluid':'Transfer assembly fluid'),
+        label:xt6?'Active Twin-Clutch Hydraulic Fluid':'Transfer Assembly Gear Oil',imageUnavailable:true,
+        where:xt6?'Separate active twin-clutch hydraulic circuit':'Transfer assembly, separate from transmission and rear differential',
+        life:secondLife,spec:`${service.products[1].spec} ${secondLife}`}),
+    };
+  }
+  return {driveline:demoNode({label:service.label || 'Differential / Driveline',sub:`${modelLabel} drivetrain-specific service branch`,
+    img:service.img,imageUnavailable:!service.img,where:service.where || 'Final drive, differential, transfer case or integrated transaxle as equipped',
+    spec:service.spec || 'Configuration must be confirmed before fluid or parts selection',
+    life:twin.id==='aviator'?'No fixed normal-use replacement interval; inspect leaks/condition and follow the manual.':'A separate node is retained for every Twin, but service logging is enabled only when a separate fluid branch is confirmed',
+    ...(service.separateService ? drivelineServiceDetails(twin,service,'differential_fluid','Differential / driveline fluid') : service)})};
+}
+
 function modelSpecificTrees(twin) {
-  const context = DEMO_TREE_CONTEXT[twin.id];
+  const context = refreshReviewedServiceContext(twin.id, DEMO_TREE_CONTEXT[twin.id]);
   if (!context) throw new Error(`No model-specific tree context for ${twin.id}`);
   const modelLabel=`${twin.identity.year} ${twin.identity.make} ${twin.identity.model} ${twin.identity.trim}`.trim();
   const wheelNodes = {
@@ -396,31 +473,51 @@ function modelSpecificTrees(twin) {
     rearBrake:demoNode({label:'Rear Rotors & Pads',sub:`${modelLabel} rear-axle brake service`,img:'/twin-stage/parts/part-rotor.webp',where:'Rear axle, both sides, including parking-brake hardware as equipped',spec:context.service?.rearBrake?.spec || 'Measure both rear pad sets and rotor thickness/runout; inspect caliper operation and parking-brake hardware. No rear part number or purchase link is asserted without axle/RPO-level fitment.',life:BRAKE_INSPECTION,commerceStatus:context.service?.rearBrake?.buyUrl?context.service?.rearBrake?.commerceStatus:(context.service?.rearBrake?.commerceStatus || 'fitment-hold'),holdReason:context.service?.rearBrake?.buyUrl?context.service?.rearBrake?.holdReason:(context.service?.rearBrake?.holdReason || 'Confirm the rear brake package, rotor size and drivetrain/VIN branch before a rear pad or rotor product is offered.'),...serviceDetails({...context.service?.rearBrake,manualFirstDeadline:false},'brake_service','Rear brake inspection / service')}),
     brakeFluid:demoNode({label:'Brake Fluid',sub:`${modelLabel} hydraulic brake-fluid circuit`,img:'/twin-stage/parts/part-brake-fluid.webp',where:'Master-cylinder reservoir, hydraulic lines, ABS modulator and all four calipers',spec:context.service?.brakeFluid?.spec || UNCONFIRMED_BRAKE_FLUID.spec,life:'Inspect for leaks, contamination, moisture and a soft/spongy pedal; replace only to the confirmed factory time/specification branch',...serviceDetails(context.service?.brakeFluid || UNCONFIRMED_BRAKE_FLUID,'brake_fluid','Brake fluid service')}),
   };
+  // An axle assembly is not proof that both pads and rotors were replaced.
+  // Keep its researched buying information, with separate completed-work leaves.
+  for (const [parentId, axle] of [['frontRotor','front'], ['rearBrake','rear']]) {
+    const parent = wheelNodes[parentId];
+    const components = buildBrakeComponentService(twin.id,axle,axle === 'front' ? context.service?.brake : context.service?.rearBrake);
+    Object.assign(parent,components.parent);
+    parent.group = true;
+    parent.kids = [`${axle}Pads`, `${axle}Discs`];
+    delete parent.maintenanceType; delete parent.serviceLabel;
+    for (const [suffix, part, type, img] of [['Pads','pads',`${axle}_brake_pads`,'part-pads.webp'], ['Discs','rotors',`${axle}_brake_rotors`,'part-rotor.webp']]) {
+      wheelNodes[`${axle}${suffix}`] = demoNode({
+        label:`${axle === 'front' ? 'Front' : 'Rear'} ${part} replacement`,
+        sub:'Record only the components actually replaced',
+        img:`/twin-stage/parts/${img}`, where:`${axle} axle, both sides`,
+        spec:'Use the axle assembly card above for reviewed parts and fitment. Replacing pads does not mean the rotors were replaced.',
+        life:BRAKE_INSPECTION, ...serviceDetails(components[suffix === 'Pads' ? 'pads' : 'rotors'],type,`${axle} ${part} replaced`),
+      });
+    }
+  }
   const engineIssueNodes=Object.fromEntries((context.engineIssues||[]).map((issue)=>[issue.key,issueNode(twin,issue,ISSUE_COMPONENT_ART[issue.key] || '/twin-stage/parts/part-engine.webp')]));
   const hoodKids=['oil','airFilter','sparkPlugs',...(context.timingIssue?['timing']:[]),...Object.keys(engineIssueNodes)];
+  const requirements = getExactTwinMaintenanceCoverage(twin.identity);
   const engineNodes = {
     engineRoot:demoNode({label:'Engine',sub:context.engine,img:'/twin-stage/parts/part-engine.webp',kids:['hoodRoot','rad'],group:true,where:'Under the hood',spec:`${context.engine} · exact service fluids remain manual/VIN dependent`,life:'Follow the cited sample schedule; no Challenger specifications are reused'}),
     hoodRoot:demoNode({label:'Engine Service & Issues',sub:`${modelLabel} · ${context.engine}`,img:'/twin-stage/parts/part-engine.webp',kids:hoodKids,group:true,where:'Under the hood and engine controls',spec:'Service records and published engine issues for this exact demo identity',life:'Intervals are shown only where cited sample evidence exists'}),
-    oil:demoNode({label:'Engine Oil & Filter',sub:`${modelLabel} · ${context.engine} scheduled service`,img:'/twin-stage/parts/part-oil-filter.webp',where:'Engine lubrication system',spec:context.service?.oil?.spec || `Confirm exact ${twin.identity.model} viscosity, approval and capacity in the owner manual`,life:'Service by the cited factory interval or oil-life monitor',...serviceDetails(context.service?.oil,'oil_change','Engine oil and filter')}),
+    oil:demoNode({label:'Engine Oil & Filter',sub:`${modelLabel} · ${context.engine} scheduled service`,img:'/twin-stage/parts/part-oil-filter.webp',where:'Engine lubrication system',spec:context.service?.oil?.spec || `Confirm exact ${twin.identity.model} viscosity, approval and capacity in the owner manual`,life:'Service by the cited factory interval or oil-life monitor',...serviceDetails(buildOilComponentService(twin.id,context.service?.oil),'oil_change','Engine oil and filter')}),
     airFilter:demoNode({label:'Engine Air Filter',sub:`${modelLabel} dry replacement filter element`,img:'/twin-stage/parts/part-air-filter.webp',where:'Engine intake airbox',spec:context.service?.air?.spec || `Verify filter shape and part number against VIN`,life:'Inspect sooner in dust',...serviceDetails(context.service?.air,'air_filter','Engine air filter')}),
     sparkPlugs:demoNode({label:'Spark Plugs',sub:`${modelLabel} ignition service`,img:'/twin-stage/parts/part-spark-plug.webp',unlogged:Boolean(context.service?.spark),where:'Cylinder heads beneath the ignition coils',spec:context.service?.spark?.spec || 'Have the exact engine/VIN matched to the owner-manual plug specification and supersession before ordering; the component image is illustrative and is not a fitment claim.',life:'Replace at the exact owner-manual interval; diagnose misfire, hard starting, rough idle or damaged coils before treating plugs as the cause',commerceStatus:context.service?.spark?.buyUrl?undefined:(context.service?.spark?.commerceStatus || 'fitment-hold'),holdReason:context.service?.spark?.buyUrl?undefined:(context.service?.spark?.holdReason || 'Confirm the exact engine, VIN and current spark-plug supersession before a product is offered.'),...serviceDetails(context.service?.spark || {},'spark_plugs','Spark-plug service')}),
-    rad:demoNode({label:'Radiator & Coolant',sub:`${modelLabel} cooling circuit`,img:'/twin-stage/parts/part-radiator.webp',kids:['coolant'],group:true,where:'Front cooling module and engine coolant circuit',spec:`Pressure-test the ${context.engine} cooling circuit and verify exact coolant chemistry before service`,life:'Radiator replacement is condition-based; coolant follows its own factory interval',knownIssue:context.radiatorIssue?{...context.radiatorIssue,href:issueHref(twin,context.radiatorIssue.id)}:undefined,...serviceDetails(context.service?.coolant,'cooling_system_service','Cooling-system / radiator service')}),
+    rad:demoNode({label:'Radiator & Coolant',sub:`${modelLabel} cooling circuit`,img:'/twin-stage/parts/part-radiator.webp',kids:['coolant'],group:true,where:'Front cooling module and engine coolant circuit',life:'Radiator replacement is condition-based; coolant follows its own factory interval',knownIssue:context.radiatorIssue?{...context.radiatorIssue,href:issueHref(twin,context.radiatorIssue.id)}:undefined,...serviceDetails(buildCoolingComponentService(twin.id,context.service?.coolant),'cooling_system_service','Cooling-system / radiator service')}),
     coolant:demoNode({label:'Engine Coolant',sub:`${modelLabel} factory coolant chemistry`,img:'/twin-stage/parts/part-antifreeze.webp',where:'Cooling circuit and expansion reservoir',spec:context.service?.coolant?.spec || 'Never mix coolant chemistries; verify the exact manual/VIN branch',life:'Use the factory time-and-mileage schedule',...serviceDetails(context.service?.coolant,'coolant_flush','Engine coolant')}),
     ...(context.timingIssue?{timing:demoNode({label:'Timing Chain System',sub:`${modelLabel} 3.6L V6 chain, guides and tensioners`,img:'/twin-stage/parts/part-engine.webp',where:'Front and upper engine timing drive',spec:'Diagnose correlation faults and mechanical timing before parts replacement',life:'Known-issue evidence is model/engine specific; no replacement mileage is invented',knownIssue:{...context.timingIssue,href:issueHref(twin,context.timingIssue.id)}})}:{}),
     ...engineIssueNodes,
   };
   const transmissionIssueNodes=Object.fromEntries((context.transmissionIssues||[]).map((issue)=>[issue.key,issueNode(twin,issue,ISSUE_COMPONENT_ART[issue.key] || '/twin-stage/parts/part-transmission.webp')]));
   const transmissionNodes = {
-    trx:demoNode({label:'Transmission & Driveline',sub:`${modelLabel} · ${context.transmission}`,img:'/twin-stage/parts/part-transmission.webp',kids:['transFluid','driveline',...Object.keys(transmissionIssueNodes)],group:true,where:'Powertrain driveline',spec:`${context.transmission} · confirm VIN/drivetrain before any parts or fluid order`,life:'Use the cited vehicle schedule and operating-condition branch'}),
-    transFluid:demoNode({label:twin.id==='murano'||twin.id==='kicks'?'CVT Fluid Service':'Transmission Fluid',sub:`${modelLabel} transmission fluid branch`,img:twin.id==='murano'||twin.id==='kicks'?'/twin-stage/parts/part-cvt-fluid.webp':'/twin-stage/parts/part-transmission-fluid.webp',where:'Transmission sump and fill/check circuit',spec:context.service?.trans?.spec || `Fluid type, level temperature and procedure must match this ${context.transmission}`,life:'Severe use may shorten the factory interval',...serviceDetails(context.service?.trans,'transmission_fluid_auto','Transmission fluid')}),
-    driveline:demoNode({label:context.service?.driveline?.label || 'Differential / Driveline',sub:`${modelLabel} drivetrain-specific service branch`,img:context.service?.driveline?.img,imageUnavailable:!context.service?.driveline?.img,where:context.service?.driveline?.where || 'Final drive, differential, transfer case or integrated transaxle as equipped',spec:context.service?.driveline?.spec || 'Configuration must be confirmed before fluid or parts selection',life:'A separate node is retained for every Twin, but service logging is enabled only when a separate fluid branch is confirmed',...(context.service?.driveline?.separateService ? serviceDetails(context.service.driveline,'differential_fluid','Differential / driveline fluid') : context.service?.driveline)}),
+    trx:demoNode({label:'Transmission & Driveline',sub:`${modelLabel} · ${context.transmission}`,img:'/twin-stage/parts/part-transmission.webp',kids:[...(['nautilus','murano','kicks'].includes(twin.id)?[]:['transFluid']),'driveline',...Object.keys(transmissionIssueNodes)],group:true,where:'Powertrain driveline',spec:`${context.transmission} · confirm VIN/drivetrain before any parts or fluid order`,life:'Use the cited vehicle schedule and operating-condition branch'}),
+transFluid:demoNode({label:twin.id==='murano'||twin.id==='kicks'?'CVT Fluid Service':'Transmission Fluid',sub:`${modelLabel} transmission fluid branch`,img:twin.id==='murano'||twin.id==='kicks'?'/twin-stage/parts/part-cvt-fluid.webp':'/twin-stage/parts/part-transmission-fluid.webp',where:'Transmission sump and fill/check circuit',spec:context.service?.trans?.spec || `Fluid type, level temperature and procedure must match this ${context.transmission}`,life:twin.id==='mdx'?'Maintenance Minder 3; no fixed normal-use replacement mileage.':twin.id==='xt6'||twin.id==='murano'?'No fixed normal-use replacement mileage; severe/conditional service must match the manual.':'Severe use may shorten the factory interval',...drivelineServiceDetails(twin,context.service?.trans,'transmission_fluid_auto','Transmission fluid')}),
+    ...physicalDrivelineNodes(twin,context),
     ...transmissionIssueNodes,
   };
   const cabinIssueNodes=Object.fromEntries((context.cabinIssues||[]).map((issue)=>[issue.key,issueNode(twin,issue,ISSUE_COMPONENT_ART[issue.key])]));
   const wiperNodes = {
     wiperRoot:demoNode({label:context.cabinIssues?.length?'Visibility, Camera & Cabin':'Windshield Wipers & Cabin Air',sub:`${modelLabel} front visibility and cabin-air systems`,img:'/twin-stage/parts/part-wipers.webp',kids:['wiperBlades','washerFluid','cabinFilter',...Object.keys(cabinIssueNodes)],group:true,where:'Windshield, cowl and applicable cabin/driver-assistance systems',spec:`Have blade connectors and any unlisted cabin-filter fitment matched to the exact ${twin.identity.model} before ordering`,life:'Inspect blades for streaking/chatter and the cabin filter for restricted airflow or odor'}),
     wiperBlades:demoNode({label:'Front Wiper Blades',sub:`${modelLabel} driver and passenger pair`,img:'/twin-stage/parts/part-wiper-driver.webp',where:'Front wiper arms',spec:context.service?.wipers?.spec || `Verify both ${twin.identity.model} blade lengths and connectors before installation`,life:'Replace for streaking, chatter, split rubber, poor contact or impaired wet-weather visibility',...serviceDetails(context.service?.wipers,'wiper_blades','Front wiper blades')}),
-    washerFluid:demoNode({label:'Washer Fluid',sub:`${modelLabel} windshield washer reservoir`,img:'/twin-stage/parts/part-washer-fluid.webp',where:'Under-hood washer reservoir',partNo:'SPWW20 · 1 gal',brand:'ShopPro -20 °F windshield washer fluid',price:'$4.99 / gal when reviewed',buyUrl:'https://www.autozone.com/p/shoppro-windshield-washer-fluid-spww20/690800',buyLabel:'Buy -20 °F washer fluid',spec:'Use full strength · climate-rated to -20 °F; choose a lower freeze-point product if local winter temperatures require it and never substitute engine coolant',life:'Check level during routine service'}),
+    washerFluid:demoNode({label:'Washer Fluid',sub:`${modelLabel} windshield washer reservoir`,img:'/twin-stage/parts/part-washer-fluid.webp',where:'Under-hood washer reservoir',partNo:'SPWW20 · 1 gal',brand:'ShopPro -20 °F windshield washer fluid',price:'$4.99 / gal when reviewed',reviewedAt:'2026-09-08',buyUrl:'https://www.autozone.com/p/shoppro-windshield-washer-fluid-spww20/690800',buyLabel:'Buy -20 °F washer fluid',spec:'Use full strength · climate-rated to -20 °F; choose a lower freeze-point product if local winter temperatures require it and never substitute engine coolant',life:'Check level during routine service'}),
     cabinFilter:demoNode({label:'Cabin Air Filter',sub:`${modelLabel} passenger-compartment filtration`,img:'/twin-stage/parts/part-cabin-filter.webp',where:'HVAC fresh-air inlet / filter housing',spec:context.service?.cabin?.spec || 'Have the filter matched to the VIN and installed housing; replace sooner for weak airflow, persistent fogging, odor, heavy dust or allergens',life:'Condition and time based; no generic filter or interval is asserted when the exact manual branch is unresolved',...serviceDetails(context.service?.cabin || {},'cabin_filter','Cabin air filter')}),
     ...cabinIssueNodes,
   };
@@ -430,10 +527,18 @@ function modelSpecificTrees(twin) {
     trans:{label:'Transmission',short:'Transmission',root:'trx',nodes:transmissionNodes},
     wipers:{label:context.cabinIssues?.length?'Visibility, Camera & Cabin':'Windshield Wipers',short:context.cabinIssues?.length?'Cabin & safety':'Wipers',root:'wiperRoot',nodes:wiperNodes},
   };
+  trees.wipers.label = trees.wipers.short = wiperNodes.wiperRoot.label = 'Interior';
+  attachInspectionPresentation(trees, twin.id, requirements, demoNode);
+  attachDrivelineArt(trees, twin.id);
   trees.car={label:'Whole car',short:'Whole car',root:'car',nodes:{
     car:demoNode({label:`${twin.identity.year} ${twin.identity.make} ${twin.identity.model}`,sub:`${twin.identity.trim} · ${twin.identity.engine}`,img:twin.art.base,kids:['wheelRoot','engineRoot','trx','wiperRoot'],group:true,where:'Public demo vehicle',spec:'Sample state only; owner history is not inferred',life:'Four mapped service systems'}),
     ...wheelNodes,...engineNodes,...transmissionNodes,...wiperNodes,
   }};
+  for (const node of Object.values(trees.car.nodes)) {
+    // Preserve concrete inspection symptoms, not the older source's clock.
+    if (getExactTwinMaintenanceRule(node.maintenanceType,twin.identity) && ['tire_rotation','tire_replacement','brake_fluid','wiper_blades','spark_plugs','air_filter'].includes(node.maintenanceType)) node.serviceInspectionGuidance = node.life;
+    applyExactTwinRuleToNode(node,twin.identity);
+  }
   return cloneTrees(trees);
 }
 
@@ -450,14 +555,16 @@ function applySampleState(trees, twin) {
     node.availability = 'sample';
     node.unlogged = false;
     node.servicedAt = record.lastServiceMileage;
-    node.riskAt = record.intervalMiles;
-    node.dueMileage = record.lastServiceMileage + record.intervalMiles;
+    const reviewedClock = getExactTwinMaintenanceRule(node.maintenanceType, twin.identity);
+    const intervalMiles = reviewedClock ? reviewedClock.intervalMiles : record.intervalMiles;
+    node.riskAt = intervalMiles;
+    node.dueMileage = intervalMiles == null ? null : record.lastServiceMileage + intervalMiles;
     delete node.dueDate;
     delete node.overdueByDate;
-    node.dueNote = `Sample record · next routine milestone at ${node.dueMileage.toLocaleString()} mi`;
+    node.dueNote = node.dueMileage == null ? 'Sample record · no fixed normal-use replacement mileage' : `Sample record · next routine milestone at ${node.dueMileage.toLocaleString()} mi`;
     node.sampleRecord = true;
     node.intervalSource = record.intervalSource;
-    node.sub = `Sample record · last at ${record.lastServiceMileage.toLocaleString()} mi · every ${record.intervalMiles.toLocaleString()} mi`;
+    node.sub = `Sample record · last at ${record.lastServiceMileage.toLocaleString()} mi${intervalMiles == null ? ' · no fixed normal-use replacement mileage' : reviewedClock?.timing === 'monitor' ? ' · monitor-driven; the stated interval is a maximum cap' : ` · every ${intervalMiles.toLocaleString()} mi`}`;
   }
   return trees;
 }
@@ -477,8 +584,8 @@ function applyCamaroTransmission(trees, transmission) {
   const fluid = trees?.trans?.nodes?.transFluid;
   const carFluid = trees?.car?.nodes?.transFluid;
   if (!fluid) return trees;
-  if (transmission === 'automatic') Object.assign(fluid,{label:'10L90 Automatic Transmission Fluid',partNo:'19352619 / 10-4107',brand:'ACDelco DEXRON ULV Automatic Transmission Fluid',price:'$10.92 MSRP / qt',buyUrl:'https://parts.chevrolet.com/product/acdelco-gm-original-equipment-dexron-ulv-automatic-transmission-fluid-1-qt-19352619',spec:'10-speed ZL1 branch · DEXRON ULV only',maintenanceType:'transmission_fluid_auto'});
-  if (transmission === 'manual') Object.assign(fluid,{label:'TR-6060 Manual Transmission Fluid',partNo:'88861800 → 19540137',brand:'Genuine GM manual transmission fluid',price:'$7.36 / qt when reviewed',buyUrl:'https://www.gmpartsgiant.com/parts/gm-fluid-88861800.html',buyLabel:'Buy exact TR-6060 manual fluid',sourceUrl:CAMARO_OWNER_MANUAL,sourceLabel:'2019 Camaro Owner Manual, p. 330',spec:'6-speed V8 manual branch · the owner manual names GM 88861800 and the live product record supplies the current supersession; do not substitute the 10L90 automatic fluid',maintenanceType:'transmission_fluid_manual'});
+  if (transmission === 'automatic') Object.assign(fluid,{label:'10L90 Automatic Transmission Fluid',partNo:'19352619 / 10-4107',brand:'ACDelco DEXRON ULV Automatic Transmission Fluid',price:'$7.37 / qt when reviewed',reviewedAt:'2026-09-08',buyUrl:'https://www.chevroletpartsdirect.com/oem-parts/gm-dexron-ulv-automatic-transmission-fluid-1-qt-19352619',spec:'10-speed ZL1 branch · DEXRON ULV only',maintenanceType:'transmission_fluid_auto'});
+  if (transmission === 'manual') Object.assign(fluid,{label:'TR-6060 Manual Transmission Fluid',partNo:'88861800 → 19540137',brand:'Genuine GM manual transmission fluid',price:'$7.36 / qt when reviewed',reviewedAt:'2026-09-08',buyUrl:'https://www.gmpartsgiant.com/parts/gm-fluid-88861800.html',buyLabel:'Buy exact TR-6060 manual fluid',sourceUrl:CAMARO_OWNER_MANUAL,sourceLabel:'2019 Camaro Owner Manual, p. 330',spec:'6-speed V8 manual branch · the owner manual names GM 88861800 and the live product record supplies the current supersession; do not substitute the 10L90 automatic fluid',maintenanceType:'transmission_fluid_manual'});
   if (!transmission) {
     delete trees.trans.nodes.transFluid;
     trees.trans.nodes.trx.kids = trees.trans.nodes.trx.kids.filter((id)=>id!=='transFluid');
@@ -522,15 +629,23 @@ export function buildModelOwnerTrees(twin, records = [], miles = null, transmiss
   const aliases = (node) => [node.maintenanceType];
   for (const node of unique.values()) {
     node.availability = 'owner';
-    delete node.sampleRecord; delete node.servicedAt; delete node.servicedDate; delete node.dueMileage; delete node.dueDate; delete node.overdueByDate;
+    // Retain every equipment/product condition while identifying the owner
+    // branch honestly. This transformation never runs for demo trees.
+    for (const key of ['sub', 'where', 'spec', 'description', 'life', 'serviceLogHold']) {
+      if (typeof node[key] === 'string') node[key] = node[key].replace(/completed demo/gi, 'confirmed configuration').replace(/completed ([a-z0-9 -]{1,30}) demo/gi, 'Confirmed $1 configuration').replace(/demo equipment branch/gi, 'confirmed equipment branch').replace(/exact demo identity/gi, 'confirmed vehicle identity').replace(/cited sample/gi, 'cited manufacturer').replace(/Owner activation remains held\./g, 'This service job remains unavailable to record.');
+    }
+    delete node.sampleRecord; delete node.servicedAt; delete node.servicedDate; delete node.serviceRecordId; delete node.dueMileage; delete node.dueDate; delete node.overdueByDate;
     if (!node.maintenanceType) continue;
-    const record = records.filter((item) => aliases(node).includes(item.type) && typeof item.mileage === 'number' && item.mileage <= miles).sort((a,b)=>b.mileage-a.mileage)[0];
+    const record = records.filter((item) => aliases(node).includes(item.type)
+      && typeof miles === 'number' && Number.isFinite(miles) && miles >= 0
+      && typeof item.mileage === 'number' && Number.isFinite(item.mileage) && item.mileage >= 0 && item.mileage <= miles
+      && Number.isFinite(Date.parse(item.date)) && Date.parse(item.date) <= Date.parse(evaluatedAt)).sort(compareServiceRecordsNewestFirst)[0];
     if (!record) {
       node.unlogged = true;
-      if (node.firstServiceDeadline && node.serviceIntervalMiles) node.dueMileage = nextRoutineMileage(miles, node.serviceIntervalMiles, node.serviceIntervalMiles);
+      if (node.firstServiceDeadline && node.serviceIntervalMiles) node.dueMileage = nextRoutineMileage(miles, node.serviceIntervalMiles, node.serviceFirstIntervalMiles || node.serviceIntervalMiles);
       continue;
     }
-    node.unlogged = false; node.servicedAt = record.mileage; node.servicedDate = record.date;
+    node.unlogged = false; node.servicedAt = record.mileage; node.servicedDate = record.date; node.serviceRecordId = record.id;
     node.dueMileage = record.nextDueMileage ?? (node.serviceIntervalMiles ? record.mileage + node.serviceIntervalMiles : null);
     node.dueDate = record.nextDueDate || null;
     node.overdueByDate = Boolean(node.dueDate && Date.parse(node.dueDate) <= Date.parse(evaluatedAt));
@@ -550,10 +665,24 @@ export function collectHotspotNodes(trees, hotspot) {
 }
 
 export function summarizeEvidence(nodes, miles) {
+  // Owner annotations belong to individual views, not the shared service job.
+  // Preserve all issue evidence before deduplicating only service counts.
   const known = nodes.filter((node) => node.knownIssue?.id);
+  // Multiple system views still describe one complete inspection record.
+  // Keep branch-only aliases, but never count them twice in whole-car totals.
+  const representedRequirements = new Set();
+  nodes = nodes.filter(node => {
+    if (!node.maintenanceType || !node.canonicalRequirementId) return true;
+    if (representedRequirements.has(node.canonicalRequirementId)) return false;
+    representedRequirements.add(node.canonicalRequirementId);
+    return true;
+  });
   const validMiles = typeof miles === 'number' && Number.isFinite(miles) && miles >= 0;
   const serviceLeaves = nodes.filter((node) => (!node.group || node.maintenanceType) && (
     node.unlogged || (typeof node.riskAt === 'number' && node.riskAt > 0) || !!node.dueDate
+    // A real completed Minder/inspection job still counts as history when
+    // the manual supplies no repeat clock. Its saved deadline also survives.
+    || (node.maintenanceType && typeof node.servicedAt === 'number' && Number.isFinite(node.servicedAt) && node.servicedAt >= 0)
   ));
   const logged = validMiles ? serviceLeaves.flatMap((node) => {
     const explicit = typeof node.servicedAt === 'number' && Number.isFinite(node.servicedAt) && node.servicedAt >= 0
@@ -665,9 +794,14 @@ export function attachKnownIssueDetails(trees, issues = []) {
   return trees;
 }
 
-export function mergeCatalogEvidenceIntoOwnerTrees(twin, ownerTrees, miles) {
-  const catalogTrees = resolveTwinTrees(twin);
+// Purchase evidence is shared; service state and installed equipment are not.
+// Deliberately exclude riskAt, life, maintenanceType, dates, mileage, children,
+// installedParts and userIssueNotes from this list.
+const OWNER_COMMERCE_FIELDS = ['partNo','brand','price','buyUrl','buyLabel','stock','spec','sourceUrl','sourceLabel','products','productsLabel','productFitmentMode','componentRole','fitmentReviewed','reviewedAt','commerceStatus','holdReason','soldQuarts','soldQuantity','purchaseQuantity','upgrade','alt'];
+export function mergeCatalogEvidenceIntoOwnerTrees(twin, ownerTrees, miles, transmission = null) {
+  const catalogTrees = resolveTwinTrees(twin,{transmission});
   const result = cloneTrees(ownerTrees);
+  const merged = new Set();
   for (const [branch, catalogTree] of Object.entries(catalogTrees)) {
     // An absent owner branch is meaningful (for example an unconfirmed dual
     // transmission). Catalog/demo structure must never silently add it back.
@@ -677,7 +811,31 @@ export function mergeCatalogEvidenceIntoOwnerTrees(twin, ownerTrees, miles) {
       // Owner branch shape is authoritative. Catalog evidence may annotate an
       // existing node, but must never reinsert a node removed by fitment.
       if (!ownerNode) continue;
-      if (catalogNode.knownIssue?.id) ownerNode.knownIssue = {...catalogNode.knownIssue};
+      const transmissionNode = id === 'trx' || id.startsWith('trans') || id === 'diffFluid';
+      // An unconfirmed transmission must not inherit the demo's automatic
+      // fallback. Qualified companion purchases carry the same explicit
+      // differential fitment/dose hold into the owner view.
+      const canMergeCommerce = twin.id === 'challenger' && (!transmissionNode || ['manual','automatic'].includes(transmission));
+      if (canMergeCommerce && !merged.has(ownerNode)) {
+        for (const field of OWNER_COMMERCE_FIELDS) {
+          if (Object.prototype.hasOwnProperty.call(catalogNode,field)) ownerNode[field] = structuredClone(catalogNode[field]);
+          else delete ownerNode[field];
+        }
+        // These subtitles describe the product, not history. Keep them aligned
+        // with the corrected DOT specification and wiper identity; preserve
+        // every other owner's service/status subtitle.
+        if(['brakeFluid','wip','wipL','wipR'].includes(id))ownerNode.sub=catalogNode.sub;
+        // The demo's concise purchase copy must not erase the qualified
+        // factory overhaul-vs-drain-and-fill warning in the owner card.
+        if (id === 'transFluid' && transmission === 'automatic') {
+          const original = ownerTrees[branch].nodes[id];
+          ownerNode.spec = original.spec;
+          ownerNode.sourceUrl = original.sourceUrl;
+          ownerNode.sourceLabel = original.sourceLabel;
+        }
+        merged.add(ownerNode);
+      }
+      if ((!transmissionNode || ['manual','automatic'].includes(transmission)) && catalogNode.knownIssue?.id) ownerNode.knownIssue = {...catalogNode.knownIssue};
       if (ownerNode.servicedAt > miles) { delete ownerNode.servicedAt; delete ownerNode.riskAt; ownerNode.unlogged = true; }
     }
   }

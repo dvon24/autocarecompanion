@@ -2,14 +2,11 @@
  * Founder / ops bypass — a single source of truth for which emails are
  * allowed to QA paywalled features without an active subscription.
  *
- * Hardcoded defaults cover Devon's login + secondary (already in region.ts
- * for the geo gate). The optional comma-separated env var
+ * Hardcoded defaults cover Devon's login + secondary. The legacy-named env var
  * `SUBSCRIPTION_REGION_BYPASS_EMAILS` extends the list at runtime —
- * sharing one env var across the geo + tier bypass keeps ops configuration
- * to a single setting in Vercel.
+ * applies only to feature access, never geographic enrollment eligibility.
  *
  * Used by:
- *   - src/lib/pricing/region.ts (geo gate on /subscribe + /account)
  *   - src/app/api/maintenance/route.ts (tier gate on Mark complete)
  *   - Anywhere else a paid-tier feature should be bypassable for the
  *     founder + ops accounts.
@@ -32,7 +29,7 @@ function getFounderSet(): Set<string> {
 
 /**
  * Account authentication is intentionally narrower than the founder/ops
- * bypass. Runtime bypass emails may QA regional pricing, but only Devon's two
+ * bypass. Runtime bypass emails may QA feature access, but only Devon's two
  * established owner identities may create an Au7o session while public
  * accounts are closed.
  */

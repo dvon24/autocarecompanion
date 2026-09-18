@@ -138,25 +138,27 @@ export function KnownIssueCard({ issue, vehicleInfo, vehicleId, userFix, onFixUp
   // card. We retry once at the longer delay if the first attempt missed.
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const timers: ReturnType<typeof setTimeout>[] = [];
+    let timers: ReturnType<typeof setTimeout>[] = [];
+    const clearTimers = () => { timers.forEach(clearTimeout); timers = []; };
     // Runs on mount AND whenever the hash changes — so the per-model search
     // (ModelIssueSearch) can jump to a matched issue by setting the hash and
     // this card expands + scrolls to itself.
     const check = () => {
+      clearTimers();
       if (currentKnownIssueAnchor() !== issue.id) return;
       setExpanded(true);
       const scrollTo = () => {
         const el = document.getElementById(issue.id);
-        if (el) {
-          el.focus({ preventScroll: true });
+        if (el && currentKnownIssueAnchor() === issue.id) {
+          el.querySelector<HTMLElement>('[aria-expanded]')?.focus({ preventScroll: true });
           el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       };
-      timers.push(setTimeout(scrollTo, 90), setTimeout(scrollTo, 450));
+      timers = [setTimeout(scrollTo, 90), setTimeout(scrollTo, 450)];
     };
     check();
     const unsubscribe = subscribeKnownIssueNavigation(check);
-    return () => { unsubscribe(); timers.forEach(clearTimeout); };
+    return () => { clearTimers(); unsubscribe(); };
   }, [issue.id]);
 
   const severityConfig = {

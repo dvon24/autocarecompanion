@@ -38,15 +38,18 @@ const SUBJECTS: Array<{ key: string; label: string; emoji: string; tips: string[
 export function DiagnoseCaptureSheet({
   mode,
   vehicleLabel,
+  vehicleContext,
   onClose,
   onSubmit,
 }: {
   mode: Mode;
   vehicleLabel?: string;
+  vehicleContext?: { vehicleId?: string; year?: number; make?: string; model?: string; trim?: string | null };
   onClose: () => void;
   onSubmit: (file: File, caption?: string) => void;
 }) {
   const isPhoto = mode === 'photo';
+  const quotaQuery=vehicleContext?`?vehicle=${encodeURIComponent(JSON.stringify(vehicleContext))}`:'';
   const cameraRef = useRef<HTMLInputElement>(null);
   const libraryRef = useRef<HTMLInputElement>(null);
   const [file, setFile] = useState<File | null>(null);
@@ -78,12 +81,12 @@ export function DiagnoseCaptureSheet({
   // One-shot read-only quota peek so we can show "N free left this month".
   useEffect(() => {
     let alive = true;
-    fetch('/api/vision', { method: 'GET' })
+    fetch('/api/vision'+quotaQuery, { method: 'GET',cache:'no-store' })
       .then((r) => (r.ok ? r.json() : null))
       .then((d) => { if (alive && d && typeof d.remaining === 'number') setQuota({ remaining: d.remaining, metered: !!d.metered }); })
       .catch(() => {});
     return () => { alive = false; };
-  }, []);
+  }, [quotaQuery]);
 
   const choose = (f?: File | null) => {
     if (!f) return;

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 /**
  * Sticky bottom bar on mobile /known-issues/[slug] pages.
@@ -14,6 +15,11 @@ import Link from 'next/link';
  * is what we are actually trying to prove demand for.
  */
 export function MobileBottomBar() {
+  const { data: session } = useSession();
+  const visual = !!session?.user?.capabilities?.visual;
+  const hub = !!session?.user?.capabilities?.hub;
+  const href = hub ? '/garage' : visual ? '/visual' : session?.user ? '/account' : '/demo/hub';
+  const label = hub ? 'My Hub' : visual ? 'Open Visual library' : session?.user ? 'Return to Account' : 'Explore free Hub demo';
   return (
     <div
       className="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 px-3 pt-2 z-50 flex gap-2 shadow-[0_-2px_8px_rgba(0,0,0,0.04)]"
@@ -22,14 +28,13 @@ export function MobileBottomBar() {
       style={{ paddingBottom: 'max(8px, env(safe-area-inset-bottom))' }}
     >
       <Link
-        href="/"
-        className="flex-1 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-[#3B82F6] rounded-lg active:bg-[#2563EB] transition-colors min-h-[44px]"
-        aria-label="See your car's tech tree"
+        href={href}
+        className="flex-1 flex items-center justify-center gap-2 py-3 text-sm font-semibold text-white bg-blue-700 rounded-lg active:bg-blue-800 transition-colors min-h-[44px]"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
         </svg>
-        See the tech tree
+        {label}
       </Link>
     </div>
   );

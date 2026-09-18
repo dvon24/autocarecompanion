@@ -23,8 +23,7 @@ export const maxDuration = 300;
  */
 export async function POST(request: NextRequest) {
   const session = await auth();
-  const sub = session?.user?.subscriptionStatus;
-  const allowed = isFounderEmail(session?.user?.email) || sub === 'active';
+const allowed = session?.user?.capabilities?.personalAi === true;
   if (!allowed) {
     return NextResponse.json({ error: 'pro_required' }, { status: 403 });
   }

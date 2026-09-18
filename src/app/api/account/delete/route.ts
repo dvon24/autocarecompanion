@@ -49,138 +49,122 @@ import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
 import { getStripe } from '@/lib/stripe';
+import { objectId } from '@/lib/billing-policy';
 import { deleteDiagnosisPhotos } from '@/lib/photo-storage';
-import {
-  deleteAllMaintenanceReceiptsForUser,
-  isManagedMaintenanceReceipt,
-  maintenanceReceiptStorageConfigured,
-} from '@/lib/maintenance-receipt-storage';
+import { lockServiceOwner } from '@/lib/maintenance-service-mutation';
+import { queueReceiptCleanup } from '@/lib/maintenance-receipt-cleanup';
 
 export const dynamic = 'force-dynamic';
 
+class AccountDeleteError extends Error {
+  constructor(message: string, readonly status: number) { super(message); }
+}
+const pendingBilling = () => new AccountDeleteError(
+  'Billing is still pending or needs review. Resolve the existing checkout or billing operation before deleting your account.', 409,
+);
+
 export async function DELETE(req: NextRequest) {
   const session = await auth();
-  if (!session?.user?.id) {
-    return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
-  }
-
+  if (!session?.user?.id) return NextResponse.json({ error: 'Not signed in' }, { status: 401 });
   if (req.headers.get('x-confirm-delete') !== 'true') {
-    return NextResponse.json(
-      { error: 'Missing x-confirm-delete: true header' },
-      { status: 400 },
-    );
+    return NextResponse.json({ error: 'Missing x-confirm-delete: true header' }, { status: 400 });
   }
-
   const userId = session.user.id;
-  const userEmail = session.user.email;
-
-  // Cancel any active Stripe subscription BEFORE erasing the user. Deleting
-  // the row erases stripeCustomerId/subscriptionId, after which webhook
-  // events can't be mapped to anyone and the user has no portal session
-  // left to cancel from — Stripe would keep charging $9.99/mo forever.
-  // Immediate cancel (not period-end): the customer is leaving entirely.
-  // If Stripe is unreachable we ABORT the deletion rather than strand an
-  // uncancellable subscription; the user can retry.
-  const billing = await prisma.user.findUnique({
-    where: { id: userId },
-    select: { subscriptionId: true, subscriptionStatus: true },
-  });
-  if (billing?.subscriptionId) {
-    try {
-      const stripe = getStripe();
-      await stripe.subscriptions.cancel(billing.subscriptionId);
-      console.log(`[account-delete] canceled Stripe subscription ${billing.subscriptionId} for userId=${userId}`);
-    } catch (err) {
-      const msg = err instanceof Error ? err.message : 'Stripe error';
-      // "No such subscription" / already-canceled is fine to proceed past;
-      // anything else must block the erase.
-      const alreadyGone = /No such subscription|canceled/i.test(msg);
-      if (!alreadyGone) {
-        console.error(`[account-delete] Stripe cancel FAILED for userId=${userId}: ${msg} — aborting delete`);
-        return NextResponse.json(
-          { error: 'Could not cancel your subscription. Please cancel it from your account page first, then retry deletion.' },
-          { status: 502 },
-        );
+  try {
+    const deleted = await prisma.$transaction(async tx => {
+      // Same key/order as checkout, reconciliation and plan changes. Every billing
+      // snapshot and final deletion is inside this lock, including provider work.
+      await tx.$queryRaw`SELECT 1 FROM pg_advisory_xact_lock(hashtextextended(${userId}, 0))`;
+      const account = await tx.user.findUnique({ where: { id: userId } });
+      if (!account) throw new AccountDeleteError('Account not found.', 404);
+      const email = account.email?.trim().toLowerCase() || null;
+      if (email) {
+        // Enrollment request reservation takes only this email lock, never the
+        // billing lock. Acquire billing -> enrollment -> service-owner consistently.
+        await tx.$queryRaw`SELECT 1 FROM pg_advisory_xact_lock(hashtextextended(${'enrollment:' + email}, 0))`;
+        const emailOwners = await tx.user.findMany({ where: { email: { equals: email, mode: 'insensitive' } }, select: { id: true } });
+        if (emailOwners.length !== 1 || emailOwners[0].id !== userId) {
+          throw new AccountDeleteError('Account email ownership needs review before deletion.', 409);
+        }
       }
-    }
+      const attempt = await tx.billingAttempt.findUnique({ where: { userId } });
+      // Never erase a durable dispatch/idempotency key while Checkout may still
+      // charge. A local "complete" marker alone is not settlement evidence.
+      if (attempt && (attempt.state !== 'complete' || !attempt.sessionId || !attempt.subscriptionId
+        || !account.subscriptionId || attempt.subscriptionId !== account.subscriptionId
+        || !account.stripeCustomerId || attempt.customerId !== account.stripeCustomerId)) throw pendingBilling();
+      const pendingUpgrade = await tx.hubUpgradeAttempt.findFirst({
+        where: { userId, dispatchStartedAt: { not: null }, completedAt: null }, select: { subscriptionId: true },
+      });
+      if (pendingUpgrade) throw pendingBilling();
+      const reviews = await tx.billingEnrollmentReview.findMany({ where: { userId } });
+      // Reviews survive replacement of Checkout attempts. Do not cascade away
+      // unresolved policy/compensation scope or an unexamined other subscription.
+      // Only the confirmed current binding can be settled by the provider checks below.
+      if (reviews.some(review => review.state !== 'confirmed' || !review.initialVerified
+        || review.subscriptionId !== account.subscriptionId || review.customerId !== account.stripeCustomerId)) throw pendingBilling();
+
+      if (account.subscriptionId || attempt) {
+        try {
+          const stripe = getStripe();
+          if (attempt) {
+            const checkout = await stripe.checkout.sessions.retrieve(attempt.sessionId!);
+            if (checkout.id !== attempt.sessionId || checkout.status !== 'complete'
+              || !['paid', 'no_payment_required'].includes(checkout.payment_status)
+              || checkout.client_reference_id !== userId || checkout.metadata?.attemptKey !== attempt.key
+              || objectId(checkout.customer) !== account.stripeCustomerId
+              || objectId(checkout.subscription) !== account.subscriptionId) throw pendingBilling();
+          }
+          const subscription = await stripe.subscriptions.retrieve(account.subscriptionId!);
+          if (!account.stripeCustomerId || subscription.id !== account.subscriptionId
+            || objectId(subscription.customer) !== account.stripeCustomerId) throw pendingBilling();
+          if (subscription.pending_update || subscription.schedule) throw pendingBilling();
+          if (!['canceled', 'incomplete_expired'].includes(subscription.status)) {
+            // Immediate cancellation remains explicit account-deletion behavior.
+            // Provider errors (including misleading "canceled" text) fail closed.
+            const canceled = await stripe.subscriptions.cancel(subscription.id);
+            if (canceled.id !== subscription.id || canceled.status !== 'canceled'
+              || objectId(canceled.customer) !== account.stripeCustomerId) {
+              throw new Error('Unconfirmed subscription cancellation');
+            }
+          }
+        } catch (error) {
+          if (error instanceof AccountDeleteError) throw error;
+          throw new AccountDeleteError('Could not confirm subscription cancellation. Your account and billing records were not deleted; resolve billing before retrying.', 502);
+        }
+      }
+
+      await lockServiceOwner(tx, userId);
+      // Purge diagnosis blobs before their metadata cascades. Failure retains
+      // account/journals; successful cancellation is safely re-read on a retry.
+      const photos = await tx.diagnosisSample.findMany({
+        where: { userId, imageStored: true, storageKey: { not: null } }, select: { storageKey: true },
+      });
+      try {
+        if (photos.length) await deleteDiagnosisPhotos(photos.map(photo => photo.storageKey!));
+      } catch {
+        throw new AccountDeleteError('Could not erase stored photos. Your account was not deleted; please retry.', 502);
+      }
+      // This intent intentionally survives the owner cascade.
+      await queueReceiptCleanup(tx, { userId });
+      const [chats, prompts, notifications, pushes, fixes, attempts, enrollments] = await Promise.all([
+        tx.chatSession.deleteMany({ where: { userId } }),
+        tx.chatPromptInsight.deleteMany({ where: { userId } }),
+        tx.notificationLog.deleteMany({ where: { userId } }),
+        tx.pushSubscription.deleteMany({ where: { userId } }),
+        tx.userIssueFix.deleteMany({ where: { userId } }),
+        tx.billingAttempt.deleteMany({ where: { userId } }),
+        // Use the locked database email, never a stale JWT email. No email means
+        // there is no proven email-keyed enrollment scope to erase.
+        email ? tx.accountEnrollment.deleteMany({ where: { email } }) : Promise.resolve({ count: 0 }),
+      ]);
+      await tx.user.delete({ where: { id: userId } });
+      return { chatSessions: chats.count, chatPromptInsights: prompts.count, notifications: notifications.count,
+        pushSubscriptions: pushes.count, issueFixes: fixes.count, billingAttempts: attempts.count, accountEnrollments: enrollments.count };
+    }, { isolationLevel: 'ReadCommitted', timeout: 30000, maxWait: 10000 });
+    return NextResponse.json({ ok: true, cleanupPending: true, deleted }, { headers: { 'Cache-Control': 'private, no-store' } });
+  } catch (error) {
+    return NextResponse.json({ error: error instanceof AccountDeleteError ? error.message : 'Account deletion could not be confirmed. Your billing records have not been intentionally discarded; please retry or request review.' },
+      { status: error instanceof AccountDeleteError ? error.status : 503, headers: { 'Cache-Control': 'private, no-store' } });
   }
-
-  // Phase 0.1: purge stored diagnosis photos from the private blob store
-  // BEFORE anything else — once the User row cascades, the
-  // DiagnosisSample rows (and their storageKeys) are gone and the blobs
-  // would be orphaned and un-erasable (the exact failure mode the schema
-  // comment warned about). A blob-purge failure ABORTS the deletion.
-  const samplesWithImages = await prisma.diagnosisSample.findMany({
-    where: { userId, imageStored: true, storageKey: { not: null } },
-    select: { storageKey: true },
-  });
-  if (samplesWithImages.length > 0) {
-    try {
-      await deleteDiagnosisPhotos(samplesWithImages.map((s) => s.storageKey!));
-      console.log(`[account-delete] purged ${samplesWithImages.length} stored diagnosis photo(s) for userId=${userId}`);
-    } catch (err) {
-      console.error(`[account-delete] blob purge FAILED for userId=${userId}:`, err);
-      return NextResponse.json(
-        { error: 'Could not erase your stored photos. Please try again in a moment — your account was NOT deleted.' },
-        { status: 502 },
-      );
-    }
-  }
-
-  // Maintenance receipt bytes use the same private-store erasure invariant:
-  // purge them before the Vehicle -> MaintenanceRecord cascade removes the
-  // only database references to those blobs.
-  const recordsWithReceipts = await prisma.maintenanceRecord.findMany({
-    where: { vehicle: { userId }, receiptUrl: { not: null } },
-    select: { receiptUrl: true },
-  });
-  const managedReceiptCount = recordsWithReceipts.filter((record) => (
-    isManagedMaintenanceReceipt(record.receiptUrl)
-  )).length;
-  if (maintenanceReceiptStorageConfigured()) {
-    try {
-      const purged = await deleteAllMaintenanceReceiptsForUser(userId);
-      console.log(`[account-delete] purged ${purged} stored maintenance receipt(s) for userId=${userId}`);
-    } catch (err) {
-      console.error(`[account-delete] maintenance receipt purge FAILED for userId=${userId}:`, err);
-      return NextResponse.json(
-        { error: 'Could not erase your stored maintenance receipts. Please try again in a moment — your account was NOT deleted.' },
-        { status: 502 },
-      );
-    }
-  } else if (managedReceiptCount > 0) {
-    return NextResponse.json(
-      { error: 'Could not access your stored maintenance receipts. Please try again in a moment — your account was NOT deleted.' },
-      { status: 502 },
-    );
-  }
-
-  // Order matters when there are no FK relationships from the side
-  // we're deleting. We do the manual purges first, then cascade-delete
-  // the User row. Each manual delete is independent so they run in
-  // parallel; the user delete waits for them all to finish.
-  const [chats, prompts, notifications, pushes, fixes] = await Promise.all([
-    prisma.chatSession.deleteMany({ where: { userId } }),
-    prisma.chatPromptInsight.deleteMany({ where: { userId } }),
-    prisma.notificationLog.deleteMany({ where: { userId } }),
-    prisma.pushSubscription.deleteMany({ where: { userId } }),
-    prisma.userIssueFix.deleteMany({ where: { userId } }),
-  ]);
-
-  await prisma.user.delete({ where: { id: userId } });
-
-  console.log(
-    `[account-delete] userId=${userId} email=${userEmail} purged: chats=${chats.count} prompts=${prompts.count} notifications=${notifications.count} pushes=${pushes.count} fixes=${fixes.count}`,
-  );
-
-  return NextResponse.json({
-    ok: true,
-    deleted: {
-      chatSessions: chats.count,
-      chatPromptInsights: prompts.count,
-      notifications: notifications.count,
-      pushSubscriptions: pushes.count,
-      issueFixes: fixes.count,
-    },
-  });
 }

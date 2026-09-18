@@ -1,22 +1,29 @@
 import { NextResponse } from 'next/server';
+import { createHash, randomUUID } from 'node:crypto';
+import { ServiceReviewSchema } from '@/lib/maintenance-service-review';
+import { findServiceReplay, persistServiceReview, persistMaintenanceEntry, validateServiceReviewVehicle, lockServiceOwner, lockServiceVehicle } from '@/lib/maintenance-service-mutation';
+import { assertReceiptUploadAllowed, queueReceiptCleanup } from '@/lib/maintenance-receipt-cleanup';
+import { MAINTENANCE_DOCUMENT_ERROR, MAX_MAINTENANCE_RECEIPT_BODY_BYTES } from '@/lib/maintenance-document';
+import { isMaintenanceMutationError } from '@/lib/maintenance-mutation';
 import { auth } from '@/lib/auth';
 import { prisma } from '@/lib/db';
-import { createMaintenancePostHandler } from '@/lib/maintenance-post-handler';
 import { isFounderEmail } from '@/lib/founder';
+import { canUsePersonalVehicle } from '@/lib/vehicle-capabilities';
 import { isLoggableMaintenanceType } from '@/lib/maintenance';
 import { parseMaintenanceCreate } from '@/lib/twin-route-contracts';
 import {
-  deleteMaintenanceReceipts,
-  MAX_MAINTENANCE_RECEIPT_BYTES,
-  maintenanceReceiptStorageConfigured,
+  ownerReceiptPrefix,
+  maintenanceReceiptUploadsConfigured,
   storeMaintenanceReceipt,
   validateMaintenanceReceipt,
   validateMaintenanceReceiptContents,
+  readMaintenanceReceiptForm,
 } from '@/lib/maintenance-receipt-storage';
 
 export const runtime = 'nodejs';
 
-const createRecord = createMaintenancePostHandler({ auth, prisma, allowReceiptUrl: true });
+const json = (body: unknown, init: { status?: number } = {}) =>
+  NextResponse.json(body, { ...init, headers: { 'Cache-Control': 'private, no-store' } });
 
 function optionalText(form: FormData, key: string): string | undefined {
   const value = form.get(key);
@@ -38,45 +45,67 @@ function currentDateInTimeZone(timeZone: string | undefined): string | null {
   }
 }
 
-async function cleanupRejectedReceipt(value: string): Promise<void> {
-  let lastError: unknown;
-  for (let attempt = 0; attempt < 3; attempt += 1) {
-    try {
-      await deleteMaintenanceReceipts([value]);
-      return;
-    } catch (error) {
-      lastError = error;
-    }
-  }
-  throw lastError instanceof Error ? lastError : new Error('Private receipt cleanup failed');
-}
-
 export async function POST(request: Request) {
   const session = await auth();
-  if (!session?.user?.id) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  if (!maintenanceReceiptStorageConfigured()) {
-    return NextResponse.json(
-      { error: 'Private receipt storage is unavailable. You can still log the service without a receipt.' },
+  if (!session?.user?.id) return json({ error: 'Unauthorized' }, { status: 401 });
+  if (!maintenanceReceiptUploadsConfigured()) {
+    return json(
+      { error: 'Private receipt storage is unavailable. You can still log the service without a receipt.', outcome: 'not_saved' },
       { status: 503 },
     );
   }
   const declaredLength = Number(request.headers.get('content-length'));
-  if (Number.isFinite(declaredLength) && declaredLength > MAX_MAINTENANCE_RECEIPT_BYTES + 256 * 1024) {
-    return NextResponse.json({ error: 'Receipt upload is too large.' }, { status: 413 });
+  if (Number.isFinite(declaredLength) && declaredLength > MAX_MAINTENANCE_RECEIPT_BODY_BYTES) {
+    return json({ error: MAINTENANCE_DOCUMENT_ERROR }, { status: 413 });
   }
 
   let form: FormData;
   try {
-    form = await request.formData();
-  } catch {
-    return NextResponse.json({ error: 'Invalid receipt form.' }, { status: 400 });
+    form = await readMaintenanceReceiptForm(request);
+  } catch (error) {
+    return json({ error: error instanceof RangeError ? MAINTENANCE_DOCUMENT_ERROR : 'Invalid receipt form.' }, { status: error instanceof RangeError ? 413 : 400 });
   }
   const file = form.get('file');
-  if (!(file instanceof File)) return NextResponse.json({ error: 'Choose a receipt file.' }, { status: 400 });
+  if (!(file instanceof File)) return json({ error: 'Choose a receipt file.' }, { status: 400 });
   const fileError = validateMaintenanceReceipt(file);
-  if (fileError) return NextResponse.json({ error: fileError }, { status: 400 });
+  if (fileError) return json({ error: fileError }, { status: 400 });
   const contentError = await validateMaintenanceReceiptContents(file).catch(() => 'Receipt file could not be read.');
-  if (contentError) return NextResponse.json({ error: contentError }, { status: 400 });
+  if (contentError) return json({ error: contentError }, { status: 400 });
+
+  if (form.has('review')) {
+    try {
+      const parsedReview = ServiceReviewSchema.safeParse(JSON.parse(String(form.get('review'))));
+      if (!parsedReview.success) return json({ error: 'Check the reviewed service details.' }, { status: 400 });
+      const review = parsedReview.data;
+      const vehicle = await prisma.vehicle.findFirst({ where: { id: review.vehicleId, userId: session.user.id } });
+      if (!vehicle) return json({ error: 'Vehicle not found' }, { status: 404 });
+      if (!await canUsePersonalVehicle(session.user.id, review.vehicleId)) return json({ error: 'Hub access required' }, { status: 403 });
+      const digest = createHash('sha256').update(new Uint8Array(await file.arrayBuffer())).digest('hex');
+      const replay = await findServiceReplay(prisma, session.user.id, review, digest);
+      if (replay) return json({ record: replay[0], records: replay, replayed: true });
+      validateServiceReviewVehicle(review, vehicle, new Date());
+      const contentKey = createHash('sha256').update(`${session.user.id}:${review.vehicleId}:${review.requestId}:${digest}`).digest('hex');
+      // Commit recovery intent BEFORE storage. Even an interrupted put or an
+      // ambiguous database commit leaves an owner-scoped, reference-checked job.
+      await queueReceiptCleanup(prisma, { userId: session.user.id, vehicleId: review.vehicleId,
+        receiptPath: `${ownerReceiptPrefix(session.user.id, review.vehicleId)}${contentKey}-receipt` }, 60 * 60_000);
+      const saved = await prisma.$transaction(async tx => {
+        await lockServiceOwner(tx, session.user!.id!);
+        await lockServiceVehicle(tx, review.vehicleId);
+        const current = await tx.vehicle.findFirst({ where: { id: review.vehicleId, userId: session.user!.id! } });
+        if (!current) throw new Error('Vehicle changed before receipt filing.');
+        validateServiceReviewVehicle(review, current, new Date());
+        const existingRows = await findServiceReplay(tx, session.user!.id!, review, digest);
+        if (existingRows) return { records: existingRows, replayed: true };
+        await assertReceiptUploadAllowed(tx, `${ownerReceiptPrefix(session.user!.id!, review.vehicleId)}${contentKey}-receipt`);
+        const stored = await storeMaintenanceReceipt({ userId: session.user!.id!, vehicleId: review.vehicleId, file, contentKey });
+        return persistServiceReview(tx, session.user!.id!, review, new Date(), { url: stored.url, digest });
+      }, { isolationLevel: 'ReadCommitted', timeout: 25000 });
+      return json({ record: saved.records[0], ...saved }, { status: 201 });
+    } catch (error) {
+      return json({ error: isMaintenanceMutationError(error) ? error.message : 'Could not confirm this receipt save. Recheck the same review before starting another.' }, { status: isMaintenanceMutationError(error) ? error.status : 503 });
+    }
+  }
 
   const vehicleId = optionalText(form, 'vehicleId');
   const type = optionalText(form, 'type');
@@ -84,7 +113,7 @@ export async function POST(request: Request) {
   const rawMileage = optionalText(form, 'mileage');
   const rawCost = optionalText(form, 'cost');
   if (!vehicleId || !type || !date || !rawMileage) {
-    return NextResponse.json({ error: 'Vehicle, service type, date, and mileage are required.' }, { status: 400 });
+    return json({ error: 'Vehicle, service type, date, and mileage are required.' }, { status: 400 });
   }
 
   const mileage = Number(rawMileage);
@@ -101,57 +130,46 @@ export async function POST(request: Request) {
   };
   const parsed = parseMaintenanceCreate(candidate, isLoggableMaintenanceType);
   if (!parsed.success) {
-    return NextResponse.json({ error: 'Check the service details and try again.', details: parsed.error.issues }, { status: 400 });
+    return json({ error: 'Check the service details and try again.', details: parsed.error.issues }, { status: 400 });
   }
   const timeZone = optionalText(form, 'timeZone');
   const ownerToday = currentDateInTimeZone(timeZone);
-  if (!ownerToday) return NextResponse.json({ error: 'Invalid time zone.' }, { status: 400 });
+  if (!ownerToday) return json({ error: 'Invalid time zone.' }, { status: 400 });
   if (parsed.data.date.slice(0, 10) > ownerToday) {
-    return NextResponse.json({ error: 'Service completion date cannot be in the future.' }, { status: 400 });
+    return json({ error: 'Service completion date cannot be in the future.' }, { status: 400 });
   }
   const ownedVehicle = await prisma.vehicle.findFirst({
     where: { id: vehicleId, userId: session.user.id },
     select: { id: true },
   });
-  if (!ownedVehicle) return NextResponse.json({ error: 'Vehicle not found' }, { status: 404 });
+  if (!ownedVehicle) return json({ error: 'Vehicle not found' }, { status: 404 });
   if (!isFounderEmail(session.user.email)) {
-    const user = await prisma.user.findUnique({
-      where: { id: session.user.id },
-      select: { subscriptionStatus: true, subscriptionId: true },
-    });
-    if (!user?.subscriptionId || user.subscriptionStatus !== 'active') {
-      return NextResponse.json({
+    if (!(await canUsePersonalVehicle(session.user.id, vehicleId))) {
+      return json({
         error: 'tier_required',
-        message: 'Filing receipts to service history is a Plus / Pro feature.',
+        message: 'Hub access is required to track personal service history.',
       }, { status: 403 });
     }
   }
 
-  let stored: { url: string; pathname: string } | null = null;
   try {
-    stored = await storeMaintenanceReceipt({ userId: session.user.id, vehicleId, file });
-    const body = {
-      ...parsed.data,
-      receiptUrl: stored.url,
-    };
-    const recordResponse = await createRecord(new Request('http://local/api/maintenance', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(body),
-    }));
-    if (!recordResponse.ok) {
-      await cleanupRejectedReceipt(stored.url);
-      stored = null;
-    }
-    return recordResponse;
+    const contentKey = createHash('sha256').update(randomUUID()).digest('hex');
+    await queueReceiptCleanup(prisma, { userId: session.user.id, vehicleId,
+      receiptPath: `${ownerReceiptPrefix(session.user.id, vehicleId)}${contentKey}-receipt` }, 60 * 60_000);
+    const record = await prisma.$transaction(async tx => {
+      await lockServiceOwner(tx, session.user!.id!);
+      await lockServiceVehicle(tx, vehicleId);
+      const current = await tx.vehicle.findFirst({ where: { id: vehicleId, userId: session.user!.id! } });
+      if (!current) throw new Error('Vehicle changed before receipt filing.');
+      await assertReceiptUploadAllowed(tx, `${ownerReceiptPrefix(session.user!.id!, vehicleId)}${contentKey}-receipt`);
+      const stored = await storeMaintenanceReceipt({ userId: session.user!.id!, vehicleId, file, contentKey });
+      return persistMaintenanceEntry(tx, current, { ...parsed.data, receiptUrl: stored.url }, new Date());
+    }, { isolationLevel: 'ReadCommitted', timeout: 25000 });
+    return json({ record }, { status: 201 });
   } catch (error) {
-    if (stored) await cleanupRejectedReceipt(stored.url).catch((cleanupError) => {
-      console.error('[maintenance-receipt] cleanup failed after rejected record:', cleanupError);
-    });
-    console.error('[maintenance-receipt] filing failed:', error);
-    return NextResponse.json(
-      { error: error instanceof Error ? error.message : 'Could not file this receipt.' },
-      { status: 500 },
+    return json(
+      { error: isMaintenanceMutationError(error) ? error.message : 'Could not confirm this receipt save. Check service history before trying again. Private document cleanup is queued.' },
+      { status: isMaintenanceMutationError(error) ? error.status : 503 },
     );
   }
 }

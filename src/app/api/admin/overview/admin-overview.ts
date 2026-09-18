@@ -88,7 +88,7 @@ export function buildAdminOverviewSnapshot(input:{
       interestTotal:interests.length,
       interestAdded7d:interests.filter((row)=>row.createdAt>=sevenDaysAgo).length,
       reservationTotal:reservations.length,
-      reservationOpen:reservations.filter((row)=>row.twinStatus!=='claimed').length,
+      reservationOpen:reservations.filter((row)=>!['claimed','canceled'].includes(row.twinStatus)).length,
       userCount,
       activeSubscriberCount,
       affiliateClicks30d:clicks30.length,
@@ -112,7 +112,7 @@ export function buildAdminOverviewSnapshot(input:{
       gaps:issueCoverage.filter((issue)=>!issue.hasBuyLink).sort((a,b)=>b.updatedAt.getTime()-a.updatedAt.getTime()).slice(0,8).map((issue)=>({id:issue.id,make:issue.make,model:issue.model,title:issue.title,href:issueHref(issue)})),
     },
     queues:{
-      reservations:{total:reservations.filter((row)=>row.twinStatus!=='claimed').length,byStatus:reservationStatuses,items:reservations.filter((row)=>row.twinStatus!=='claimed').slice(0,6).map((row)=>({vehicle:row.vehicle||'Vehicle not supplied',status:row.twinStatus,source:row.source||'unknown',verified:row.vehicleVerified,createdAt:row.createdAt.toISOString()}))},
+      reservations:{total:reservations.filter((row)=>!['claimed','canceled'].includes(row.twinStatus)).length,byStatus:reservationStatuses,items:reservations.filter((row)=>!['claimed','canceled'].includes(row.twinStatus)).slice(0,6).map((row)=>({vehicle:row.vehicle||'Vehicle not supplied',status:row.twinStatus,source:row.source||'unknown',verified:row.vehicleVerified,createdAt:row.createdAt.toISOString()}))},
       recommendationReviews:needsReview,
       vehicleCorrections:{total:input.vehicleCorrectionCount??corrections.length,items:corrections.slice(0,5).map((row)=>({message:row.message,createdAt:row.createdAt.toISOString()}))},
     },

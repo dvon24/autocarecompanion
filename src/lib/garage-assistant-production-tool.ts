@@ -9,6 +9,8 @@ import {
   executeGarageAssistantMileageInTransaction,
 } from '@/lib/garage-assistant-maintenance';
 import { MaintenanceMutationError } from '@/lib/maintenance-mutation';
+import { addMaintenanceCalendarMonths, getVehicleMaintenanceIntervals } from '@/lib/vehicle-maintenance-intervals';
+import { getExactTwinMaintenanceRule } from '@/lib/exact-twin-maintenance-rules';
 
 function requiredVehicleId(args: Record<string, unknown>): string {
   const vehicleId = typeof args.vehicleId === 'string' ? args.vehicleId.trim() : '';
@@ -86,31 +88,40 @@ export async function executeGarageAssistantProductionTool(
         include: { maintenanceRecords: true },
       });
       if (!vehicle) return 'Vehicle not found.';
-      if (!vehicle.currentMileage) return 'Please update your current mileage first to see maintenance status.';
+      if (vehicle.currentMileage == null) return 'Please update your current mileage first to see maintenance status.';
 
       const statuses: Array<{ type: string; status: string; message: string }> = [];
       for (const [typeId, schedule] of Object.entries(MAINTENANCE_SCHEDULES)) {
         const readTypes = resolveMaintenanceReadTypes(typeId, vehicle);
+        const intervals = getVehicleMaintenanceIntervals(typeId, vehicle);
+        const rule = getExactTwinMaintenanceRule(typeId, vehicle);
+        const timingGuidance = rule ? ` ${rule.guidance}` : '';
         const records = vehicle.maintenanceRecords
-          .filter((record) => readTypes.includes(record.type))
-          .sort((left, right) => right.mileage - left.mileage);
+          .filter((record) => readTypes.includes(record.type)
+            && record.mileage <= vehicle.currentMileage! && record.date <= operationTime)
+          .sort((left, right) => right.date.getTime() - left.date.getTime() || right.mileage - left.mileage);
         const lastRecord = records[0];
         if (!lastRecord) {
-          const dueAt = schedule.defaultIntervalMiles;
-          statuses.push(vehicle.currentMileage >= dueAt
-            ? { type: schedule.name, status: 'overdue', message: 'Overdue - no service history recorded' }
-            : { type: schedule.name, status: 'unknown', message: `No history - due at ${dueAt.toLocaleString()} mi` });
+          statuses.push({ type: schedule.name, status: 'unknown', message: `No service history recorded; a missed service is not established.${timingGuidance}` });
           continue;
         }
-        const dueAtMileage = lastRecord.nextDueMileage || lastRecord.mileage + schedule.defaultIntervalMiles;
-        const milesUntilDue = dueAtMileage - vehicle.currentMileage;
-        if (milesUntilDue <= 0) {
-          statuses.push({ type: schedule.name, status: 'overdue', message: `Overdue by ${Math.abs(milesUntilDue).toLocaleString()} miles` });
-        } else if (milesUntilDue < 500) {
-          statuses.push({ type: schedule.name, status: 'due_soon', message: `Due in ${milesUntilDue.toLocaleString()} miles` });
-        } else {
-          statuses.push({ type: schedule.name, status: 'ok', message: `Due at ${dueAtMileage.toLocaleString()} mi (${milesUntilDue.toLocaleString()} mi remaining)` });
-        }
+        const dueAtMileage = lastRecord.nextDueMileage
+          ?? (intervals.intervalMiles ? lastRecord.mileage + intervals.intervalMiles : null);
+        const dueDate = lastRecord.nextDueDate?.toISOString()
+          ?? (intervals.intervalMonths ? addMaintenanceCalendarMonths(lastRecord.date.toISOString(), intervals.intervalMonths) : null);
+        const milesUntilDue = dueAtMileage == null ? null : dueAtMileage - vehicle.currentMileage;
+        const daysUntilDue = dueDate ? Math.ceil((Date.parse(dueDate) - operationTime.getTime()) / 86_400_000) : null;
+        const overdue = (milesUntilDue != null && milesUntilDue <= 0) || (daysUntilDue != null && daysUntilDue <= 0);
+        const dueSoon = (milesUntilDue != null && milesUntilDue < 500) || (daysUntilDue != null && daysUntilDue <= 30);
+        const clocks = [
+          dueAtMileage == null ? null : `${dueAtMileage.toLocaleString()} mi (${milesUntilDue!.toLocaleString()} mi remaining)`,
+          dueDate ? dueDate.slice(0, 10) : null,
+        ].filter(Boolean);
+        statuses.push({
+          type: schedule.name, status: overdue ? 'overdue' : dueSoon ? 'due_soon' : 'ok',
+          message: (clocks.length ? `${overdue ? 'Due deadline passed' : rule?.timing === 'monitor' || rule?.timing === 'minder' ? 'Maximum recorded-service limit; monitor may request sooner' : 'Next due'}: ${clocks.join(' or ')}`
+            : 'Service logged; no automatic replacement deadline is established.') + timingGuidance,
+        });
       }
       const order = { overdue: 0, due_soon: 1, unknown: 2, ok: 3 };
       return JSON.stringify(statuses.sort((left, right) => (

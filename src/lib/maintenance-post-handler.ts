@@ -1,10 +1,14 @@
 import { NextResponse } from 'next/server';
 import type { prisma as prismaClient } from '@/lib/db';
 import { isFounderEmail } from '@/lib/founder';
-import { isLoggableMaintenanceType, resolveMaintenanceWriteType } from '@/lib/maintenance';
+import { productEntitlements, entitlementSelect } from '@/lib/product-entitlements';
+import { canUsePersonalVehicle } from '@/lib/vehicle-capabilities';
+import { isLoggableMaintenanceType } from '@/lib/maintenance';
 import { isPrismaWriteConflict } from '@/lib/prisma-conflict';
 import { parseMaintenanceCreate } from '@/lib/twin-route-contracts';
-import { guardTransmissionMaintenanceVehicle, isMaintenanceMutationError, isTransmissionMaintenanceType, nextMonotonicVehicleRevision } from '@/lib/maintenance-mutation';
+import { isMaintenanceMutationError } from '@/lib/maintenance-mutation';
+import { ServiceReviewSchema } from '@/lib/maintenance-service-review';
+import { persistMaintenanceEntry, persistServiceReview, lockServiceOwner, lockServiceVehicle } from '@/lib/maintenance-service-mutation';
 
 export function createMaintenancePostHandler(deps: {
   auth: () => Promise<{ user?: { id?: string | null; email?: string | null } } | null>;
@@ -24,7 +28,12 @@ export function createMaintenancePostHandler(deps: {
       } catch {
         return NextResponse.json({ error: 'Invalid JSON body' }, { status: 400 });
       }
-      const parsed = parseMaintenanceCreate(body, isLoggableMaintenanceType);
+      const isReview = Boolean(body && typeof body === 'object' && 'requestId' in body);
+      const review = isReview ? ServiceReviewSchema.safeParse(body) : null;
+      if (review && !review.success) return NextResponse.json({ error: 'Check the reviewed service details.', details: review.error.issues }, { status: 400 });
+      const parsed = parseMaintenanceCreate(review?.success ? {
+        vehicleId: review.data.vehicleId, type: review.data.jobs[0].type, date: review.data.date, mileage: review.data.mileage,
+      } : body, isLoggableMaintenanceType);
       if (!parsed.success) {
         return NextResponse.json({ error: 'Invalid data', details: parsed.error.issues }, { status: 400 });
       }
@@ -38,67 +47,40 @@ export function createMaintenancePostHandler(deps: {
       if (!isFounderEmail(session.user.email)) {
         const user = await deps.prisma.user.findUnique({
           where: { id: userId },
-          select: { subscriptionStatus: true, subscriptionId: true },
+          select: entitlementSelect,
         });
-        if (!user?.subscriptionId || user.subscriptionStatus !== 'active') {
+        if (!productEntitlements(user).maintenance && !(user?.emailVerified && await canUsePersonalVehicle(userId, parsed.data.vehicleId, deps.prisma))) {
           return NextResponse.json({
             error: 'tier_required',
-            message: 'Logging maintenance to history is a Plus / Pro feature. Upgrade to track services.',
+            message: 'Hub access is required to track personal service history.',
           }, { status: 403 });
         }
       }
 
-      const { vehicleId, date, nextDueDate, ...data } = parsed.data;
+      const { vehicleId } = parsed.data;
       const operationTime = deps.now?.() ?? new Date();
       const result = await deps.prisma.$transaction(async (tx) => {
+        if (review?.success) {
+          const saved = await persistServiceReview(tx, userId, review.data, operationTime);
+          return { ok: true as const, record: saved.records[0], ...saved };
+        }
+        await lockServiceOwner(tx, userId);
+        await lockServiceVehicle(tx, vehicleId);
         const vehicle = await tx.vehicle.findFirst({
           where: { id: vehicleId, userId },
         });
         if (!vehicle) return { ok: false as const, status: 404, error: 'Vehicle not found' };
 
-        const resolvedType = resolveMaintenanceWriteType(data.type, vehicle);
-        if (!resolvedType.ok) {
-          const message = resolvedType.reason === 'transmission-unselected'
-            ? 'Choose Automatic or Manual on this vehicle before logging transmission fluid service'
-            : resolvedType.reason === 'transmission-mismatch'
-              ? 'This maintenance type does not match the saved transmission branch'
-              : 'Invalid maintenance type';
-          return { ok: false as const, status: 400, error: message };
-        }
-
-        const guardedRevision = isTransmissionMaintenanceType(data.type)
-          ? await guardTransmissionMaintenanceVehicle(tx, vehicle, operationTime)
-          : null;
-
-        const record = await tx.maintenanceRecord.create({
-          data: {
-            ...data,
-            type: resolvedType.type,
-            vehicleId,
-            date: new Date(date),
-            nextDueDate: nextDueDate ? new Date(nextDueDate) : null,
-          },
-        });
-        if (data.mileage > (vehicle.currentMileage ?? 0)) {
-          const finalRevision = guardedRevision
-            ?? nextMonotonicVehicleRevision(vehicle.updatedAt, operationTime);
-          await tx.vehicle.update({
-            where: { id: vehicleId },
-            data: {
-              currentMileage: data.mileage,
-              lastMileageUpdate: operationTime,
-              updatedAt: finalRevision,
-            },
-          });
-          await tx.mileageLog.create({
-            data: { vehicleId, mileage: data.mileage, source: 'maintenance' },
-          });
-        }
+        const record = await persistMaintenanceEntry(tx, vehicle, {
+          type: parsed.data.type, mileage: parsed.data.mileage, date: parsed.data.date,
+          cost: parsed.data.cost, description: parsed.data.description, shopName: parsed.data.shopName,
+          notes: parsed.data.notes, receiptUrl: parsed.data.receiptUrl,
+        }, operationTime);
         return { ok: true as const, record };
       }, { isolationLevel: 'Serializable' });
 
       if (!result.ok) return NextResponse.json({ error: result.error }, { status: result.status });
-      return NextResponse.json({ record: result.record }, { status: 201 });
+      return NextResponse.json({ record: result.record, ...('records' in result ? { records: result.records, replayed: result.replayed } : {}) }, { status: 201 });
     } catch (error) {
       if (isMaintenanceMutationError(error)) {
         return NextResponse.json({ error: error.message }, { status: error.status });

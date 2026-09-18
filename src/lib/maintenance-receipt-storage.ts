@@ -1,25 +1,42 @@
 import { randomUUID } from 'node:crypto';
 import { del, get, list, put } from '@vercel/blob';
+import { receiptCleanupEnvironmentReady } from './maintenance-receipt-cleanup-auth';
 
-export const MAX_MAINTENANCE_RECEIPT_BYTES = 8 * 1024 * 1024;
+import { maintenanceDocumentError, MAX_MAINTENANCE_RECEIPT_BODY_BYTES } from '@/lib/maintenance-document';
+export { MAX_MAINTENANCE_RECEIPT_BYTES } from '@/lib/maintenance-document';
 export const MAINTENANCE_RECEIPT_PREFIX = 'maintenance-receipts/';
 
-const RECEIPT_CONTENT_TYPES = new Set([
-  'application/pdf',
-  'image/jpeg',
-  'image/png',
-  'image/webp',
-]);
+/** Bound the body even for chunked uploads without a Content-Length header. */
+export async function readMaintenanceReceiptForm(request: Request): Promise<FormData> {
+  const reader = request.body?.getReader();
+  if (!reader) throw new Error('Missing receipt form.');
+  const chunks: Uint8Array[] = [];
+  let size = 0;
+  try {
+    for (;;) {
+      const chunk = await reader.read();
+      if (chunk.done) break;
+      size += chunk.value.byteLength;
+      if (size > MAX_MAINTENANCE_RECEIPT_BODY_BYTES) { await reader.cancel(); throw new RangeError('Choose a document, 4 MiB or smaller.'); }
+      chunks.push(chunk.value);
+    }
+  } finally { reader.releaseLock(); }
+  return new Response(Buffer.concat(chunks), { headers: { 'Content-Type': request.headers.get('content-type') || '' } }).formData();
+}
 
 export function maintenanceReceiptStorageConfigured(): boolean {
   return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
 }
 
+/** Uploads must not outlive a disabled cleanup lifecycle. Reads and deletes
+ * remain available when new uploads are held. Scheduling is a launch gate. */
+export function maintenanceReceiptUploadsConfigured(): boolean {
+  return maintenanceReceiptStorageConfigured() && receiptCleanupEnvironmentReady();
+}
+
 export function validateMaintenanceReceipt(file: File): string | null {
   if (!(file instanceof File) || file.size <= 0) return 'Choose a receipt file.';
-  if (file.size > MAX_MAINTENANCE_RECEIPT_BYTES) return 'Receipt files must be 8 MB or smaller.';
-  if (!RECEIPT_CONTENT_TYPES.has(file.type)) return 'Use a PDF, JPEG, PNG, or WebP receipt.';
-  return null;
+  return maintenanceDocumentError(file);
 }
 
 export async function validateMaintenanceReceiptContents(file: File): Promise<string | null> {
@@ -61,8 +78,23 @@ export function isManagedMaintenanceReceipt(value: string | null | undefined): b
   }
 }
 
-function ownerReceiptPrefix(userId: string, vehicleId?: string): string {
+export function ownerReceiptPrefix(userId: string, vehicleId?: string): string {
   return `${MAINTENANCE_RECEIPT_PREFIX}${encodeURIComponent(userId)}/${vehicleId ? `${encodeURIComponent(vehicleId)}/` : ''}`;
+}
+
+/** Use a configured-store pathname for cleanup, never a caller-selected host. */
+export function maintenanceReceiptPath(value: string): string | null {
+  if (!isManagedMaintenanceReceipt(value)) return null;
+  if (value.startsWith(MAINTENANCE_RECEIPT_PREFIX)) return value;
+  const parsed = new URL(value);
+  return parsed.protocol === 'https:' && !parsed.search && !parsed.hash ? parsed.pathname.slice(1) : null;
+}
+
+export async function listMaintenanceReceiptPaths(userId: string, vehicleId?: string, cursor?: string): Promise<{ paths: string[]; cursor: string | null }> {
+  if (!maintenanceReceiptStorageConfigured()) throw new Error('Private document storage is unavailable.');
+  const page = await list({ prefix: ownerReceiptPrefix(userId, vehicleId), limit: 100, cursor });
+  if (page.hasMore && !page.cursor) throw new Error('Private document listing needs a continuation cursor.');
+  return { paths: page.blobs.map(blob => blob.pathname), cursor: page.hasMore ? page.cursor! : null };
 }
 
 export function maintenanceReceiptBelongsToOwner(
@@ -81,17 +113,20 @@ export async function storeMaintenanceReceipt(input: {
   userId: string;
   vehicleId: string;
   file: File;
+  contentKey?: string;
 }): Promise<{ url: string; pathname: string }> {
-  if (!maintenanceReceiptStorageConfigured()) {
-    throw new Error('Private receipt storage is not configured.');
+  if (!maintenanceReceiptUploadsConfigured()) {
+    throw new Error('Private receipt storage and cleanup must be configured before uploading.');
   }
   const validationError = await validateMaintenanceReceiptContents(input.file);
   if (validationError) throw new Error(validationError);
-  const pathname = `${ownerReceiptPrefix(input.userId, input.vehicleId)}${randomUUID()}-${safeFilename(input.file.name)}`;
+  if (input.contentKey && !/^[a-f0-9]{64}$/.test(input.contentKey)) throw new Error('Invalid receipt content key.');
+  const pathname = `${ownerReceiptPrefix(input.userId, input.vehicleId)}${input.contentKey || randomUUID()}-${input.contentKey ? 'receipt' : safeFilename(input.file.name)}`;
   const result = await put(pathname, input.file, {
     access: 'private',
     addRandomSuffix: false,
     contentType: input.file.type,
+    ...(input.contentKey ? { allowOverwrite: true } : {}),
   });
   return { url: result.url, pathname: result.pathname };
 }

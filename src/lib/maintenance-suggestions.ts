@@ -1,6 +1,9 @@
 import prisma from '@/lib/db';
-import { MAINTENANCE_SCHEDULES } from '@/lib/maintenance';
+import { MAINTENANCE_SCHEDULES, resolveMaintenanceWriteType } from '@/lib/maintenance';
+import { getVehicleMaintenanceIntervals, type IntervalVehicle } from '@/lib/vehicle-maintenance-intervals';
+import { reviewedDrivelineIdentity } from '@/lib/physical-driveline-policy';
 import type { VehicleSchedule } from '@/lib/owners-manual-schedule';
+import { compareServiceRecordsNewestFirst } from './service-record-order';
 
 /**
  * Map HUB_RELEVANT_TYPES (this file's vocabulary) to keys used in
@@ -26,22 +29,21 @@ const HUB_TO_OWNERS_MANUAL: Record<string, string[]> = {
 
 /**
  * Returns the per-vehicle interval in miles for a given hub-type id,
- * or null if the owner's manual doesn't list one (caller should fall
- * back to the generic MAINTENANCE_SCHEDULES default).
+ * undefined means no verified entry. null means an authoritative no-clock entry.
  */
 function ownersManualIntervalMiles(
   schedule: VehicleSchedule | null | undefined,
   hubTypeId: string,
-): number | null {
-  if (!schedule) return null;
+): number | null | undefined {
+  if (!schedule) return undefined;
   const candidates = HUB_TO_OWNERS_MANUAL[hubTypeId] ?? [];
   for (const key of candidates) {
     const entry = schedule.schedule[key];
-    if (entry && typeof entry.interval_miles === 'number' && entry.interval_miles > 0) {
-      return entry.interval_miles;
+    if (entry?.verified === true) {
+      return typeof entry.interval_miles === 'number' && entry.interval_miles > 0 ? entry.interval_miles : null;
     }
   }
-  return null;
+  return undefined;
 }
 
 /**
@@ -53,7 +55,7 @@ function ownersManualIntervalMiles(
  * Strategy:
  *   1. For each maintenance type in MAINTENANCE_SCHEDULES, calculate the
  *      next-due mileage based on the user's last logged service of that
- *      type (or 0 if never logged).
+ *      type; missing history is not evidence of overdue service.
  *   2. Bucket by status:
  *        - overdue   (current > nextDue + grace)
  *        - due_now   (current is within `dueWindow` mi of nextDue)
@@ -87,7 +89,8 @@ export interface MaintenanceSuggestion {
   typeId: string;
   name: string;
   status: SuggestionStatus;
-  intervalMiles: number;
+  intervalMiles: number | null;
+  deadlineSource?: 'saved-record' | 'schedule';
   lastServiceMileage: number | null;
   lastServiceDate: string | null;
   nextDueMileage: number;
@@ -98,41 +101,61 @@ export interface MaintenanceSuggestion {
 interface RunOptions {
   vehicleId: string;
   currentMileage: number;
+  vehicle?: IntervalVehicle;
+  evaluatedAt?: Date;
   /** Optional owner's-manual schedule for this YMMT — when present, its
    *  per-vehicle interval_miles override the generic defaults from
-   *  MAINTENANCE_SCHEDULES. Lets a 2015 Challenger SRT 392 show 7,000 mi
-   *  oil intervals (its manual) instead of the generic 5,000. */
+   *  MAINTENANCE_SCHEDULES, without inventing a clock for a verified null. */
   ownersManualSchedule?: VehicleSchedule | null;
 }
 
 export async function getMaintenanceSuggestions(opts: RunOptions): Promise<MaintenanceSuggestion[]> {
   const records = await prisma.maintenanceRecord.findMany({
     where: { vehicleId: opts.vehicleId },
-    orderBy: { date: 'desc' },
+    orderBy: [{ date: 'desc' }, { mileage: 'desc' }, { id: 'desc' }],
   });
+  return buildMaintenanceSuggestions(opts, records);
+}
+
+/** Pure production projection, also exercised with synthetic service histories. */
+export function buildMaintenanceSuggestions(opts: RunOptions, records: readonly { id?: string; type: string; mileage: number; date: Date; nextDueMileage?: number | null }[]): MaintenanceSuggestion[] {
+
+  const evaluatedAt = opts.evaluatedAt?.getTime() ?? Date.now();
+  if (!Number.isFinite(opts.currentMileage) || opts.currentMileage < 0 || !Number.isFinite(evaluatedAt)) return [];
+  const orderedRecords = records.filter(record => Number.isFinite(record.mileage) && record.mileage >= 0 && record.mileage <= opts.currentMileage
+    && Number.isFinite(record.date.getTime()) && record.date.getTime() <= evaluatedAt).sort(compareServiceRecordsNewestFirst);
 
   const suggestions: MaintenanceSuggestion[] = [];
   const grace = 1000; // miles past due before "overdue" classification
   const dueWindow = 500; // within this many miles = "due_now"
 
-  for (const typeId of HUB_RELEVANT_TYPES) {
-    const schedule = MAINTENANCE_SCHEDULES[typeId];
+  const physicalId = opts.vehicle ? reviewedDrivelineIdentity(opts.vehicle) : null;
+  const types = [...HUB_RELEVANT_TYPES.filter(type => type !== 'differential_fluid' || !physicalId || physicalId === 'aviator'),
+    ...(physicalId === 'xt6' ? ['rear_axle_fluid', 'awd_clutch_fluid'] : physicalId === 'mdx' ? ['rear_axle_fluid', 'transfer_case_fluid'] : [])];
+  for (const requestedType of types) {
+    const resolved = opts.vehicle ? resolveMaintenanceWriteType(requestedType, opts.vehicle) : null;
+    if (resolved && !resolved.ok) continue;
+    const typeId = resolved?.ok ? resolved.type : requestedType;
+    const schedule = MAINTENANCE_SCHEDULES[typeId] ?? MAINTENANCE_SCHEDULES[requestedType];
     if (!schedule) continue;
 
-    const last = records.find((r) => r.type === typeId);
+    const last = orderedRecords.find((r) => r.type === typeId);
+    // Missing history is not proof of a missed service. The schedule can show
+    // prospective milestones, but the assistant must not call them overdue.
+    if (!last) continue;
     const lastServiceMileage = last?.mileage ?? null;
     const lastServiceDate = last?.date.toISOString().split('T')[0] ?? null;
     // Prefer the per-vehicle owner's-manual interval when we have one;
-    // fall back to the generic default. This is what makes the timeline
-    // show real intervals (7k oil on Challenger SRT, 7.5k on Camaro ZL1)
-    // instead of generic 5k for everyone.
-    const intervalMiles = ownersManualIntervalMiles(opts.ownersManualSchedule, typeId)
-      ?? schedule.defaultIntervalMiles;
-    // Never-logged services use mileage 0 as the reference; the next-due
-    // is the manufacturer interval. For older vehicles this surfaces a
-    // long backlog all at once, which is correct — they should know.
+    // fall back only when there is no reviewed entry, never for a null clock.
+    const manualMiles = ownersManualIntervalMiles(opts.ownersManualSchedule, requestedType);
+    const intervalMiles = opts.vehicle
+      ? getVehicleMaintenanceIntervals(typeId, opts.vehicle).intervalMiles
+      : manualMiles === undefined ? schedule.defaultIntervalMiles : manualMiles;
+    const savedDeadline = typeof last.nextDueMileage === 'number' && Number.isFinite(last.nextDueMileage) && last.nextDueMileage >= last.mileage ? last.nextDueMileage : null;
+    if (savedDeadline == null && (intervalMiles == null || intervalMiles <= 0)) continue;
+    // Only an actual completed service anchors a repeat interval.
     const baseline = lastServiceMileage ?? 0;
-    const nextDueMileage = baseline + intervalMiles;
+    const nextDueMileage = savedDeadline ?? baseline + intervalMiles!;
     const milesUntilDue = nextDueMileage - opts.currentMileage;
 
     let status: SuggestionStatus | null = null;
@@ -147,6 +170,7 @@ export async function getMaintenanceSuggestions(opts: RunOptions): Promise<Maint
       name: schedule.name,
       status,
       intervalMiles,
+      deadlineSource:savedDeadline != null ? 'saved-record' : 'schedule',
       lastServiceMileage,
       lastServiceDate,
       nextDueMileage,
@@ -291,7 +315,7 @@ export function renderOpener(
 
   if (suggestions.length === 0) {
     return {
-      text: `Your ${vehicleLabel} is at ${mileageStr} mi and on top of its scheduled maintenance — nothing flagged based on what you've logged. What's on your mind today?`,
+      text: `Your ${vehicleLabel} is at ${mileageStr} mi. No mileage-based service is flagged by the available records. That does not establish complete history: check Schedule for calendar limits, monitor messages and required inspections. What's on your mind today?`,
       cta: [
         'Common problems at this mileage',
         'Plan a road trip',
@@ -310,10 +334,10 @@ export function renderOpener(
 
   for (const s of overdue) {
     const overBy = Math.abs(s.milesUntilDue).toLocaleString();
-    lines.push(`- **${s.name}** — overdue by ~${overBy} mi (interval: ${s.intervalMiles.toLocaleString()} mi)`);
+    lines.push(`- **${s.name}** — overdue by ~${overBy} mi (${s.deadlineSource === 'saved-record' ? 'saved service-record deadline' : `interval/maximum cap: ${s.intervalMiles?.toLocaleString()} mi`})`);
   }
   for (const s of dueNow) {
-    lines.push(`- **${s.name}** — due now (interval: ${s.intervalMiles.toLocaleString()} mi)`);
+    lines.push(`- **${s.name}** — due now (${s.deadlineSource === 'saved-record' ? 'saved service-record deadline' : `interval/maximum cap: ${s.intervalMiles?.toLocaleString()} mi`})`);
   }
   for (const s of upcoming) {
     lines.push(`- **${s.name}** — coming up in ~${s.milesUntilDue.toLocaleString()} mi`);

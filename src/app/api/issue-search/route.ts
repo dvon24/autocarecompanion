@@ -46,7 +46,7 @@ export async function POST(req: NextRequest) {
   // active-status flag rides in the session JWT, so no DB hit here.
   let session;
   try { session = await auth(); } catch { session = null; }
-  const isSubscriber = !!session?.user && (session.user as { subscriptionStatus?: string }).subscriptionStatus === 'active';
+  const isSubscriber = !!session?.user && session.user.capabilities?.personalAi === true;
   if (!isSubscriber) {
     return NextResponse.json({
       gated: true,

@@ -32,11 +32,14 @@ model User {
   stripeCustomerId   String? @unique
   subscriptionId     String?
   subscriptionStatus String? // active, canceled, past_due, trialing
-  // Phase 1 tiering: free | plus | pro. Null on legacy free users;
-  // legacy active subscribers are backfilled to 'plus' (the $9.99 plan
-  // they had is closest to the new $14.99 Plus tier feature set).
-  // Stripe webhook writes this from subscription.metadata.tier.
-  subscriptionTier   String? // free, plus, pro
+  // Current products: visual | hub. Explicitly reviewed legacy plus/pro
+  // remains separate. Signed webhook resolves configured price IDs; it never
+  // derives capabilities from caller/Stripe metadata or an unknown tier.
+  subscriptionTier   String? // free, visual, hub, plus, pro
+  // Audited migration only: never inferred from an unknown tier or metadata.
+  legacySubscriptionTier String?
+  enrollmentProduct String?
+  enrollmentVehicleId String?
 
   // Notification preferences
   emailNotifications Boolean @default(true)
@@ -74,6 +77,10 @@ model User {
   vehicles            Vehicle[]
   chatSessions        ChatSession[]
   insights            VehicleInsight[]
+  hubUpgradeAttempts  HubUpgradeAttempt[]
+  hubUpgradeRetiredQuotes HubUpgradeRetiredQuote[]
+  subscriptionDowngrades SubscriptionDowngrade[]
+  billingEnrollmentReviews BillingEnrollmentReview[]
   passwordResetTokens PasswordResetToken[]
   diagnosisSamples    DiagnosisSample[]
 }
@@ -167,6 +174,8 @@ model Vehicle {
   // Persisted only for reviewed YMMTs sold with both gearboxes. Null means
   // single-transmission/not-applicable or that the owner has not chosen yet.
   transmission String? // automatic | manual
+  // Explicit owner confirmation of an exact versioned reviewed configuration.
+  reviewedEquipmentId String?
   vin   String?
   color String?
 
@@ -190,6 +199,7 @@ model Vehicle {
   // Relations
   user               User                @relation(fields: [userId], references: [id], onDelete: Cascade)
   maintenanceRecords MaintenanceRecord[]
+  maintenanceSubmissions MaintenanceSubmission[]
   modifications      Modification[]
   mileageHistory     MileageLog[]
   chatSessions       ChatSession[]
@@ -212,6 +222,36 @@ model MileageLog {
 // ============================================
 // MAINTENANCE MODELS
 // ============================================
+
+// Durable retry decisions survive deletion of individual service records.
+model MaintenanceSubmission {
+  id String @id
+  vehicleId String
+  fingerprint String
+  recordIds Json
+  createdAt DateTime @default(now())
+  vehicle Vehicle @relation(fields: [vehicleId], references: [id], onDelete: Cascade)
+  @@index([vehicleId])
+}
+
+// Standalone erasure intent: never cascade away before private bytes are purged.
+model MaintenanceReceiptCleanup {
+  id String @id
+  userId String
+  vehicleId String?
+  receiptPath String?
+  retiredAt DateTime?
+  completedAt DateTime?
+  generation String
+  cursor String?
+  sweepHadReferences Boolean @default(false)
+  attempts Int @default(0)
+  nextAttemptAt DateTime @default(now())
+  lastError String?
+  createdAt DateTime @default(now())
+  @@index([nextAttemptAt])
+  @@index([userId])
+}
 
 model MaintenanceRecord {
   id        String @id @default(cuid())
@@ -775,9 +815,125 @@ model EmailSuppression {
   @@index([createdAt])
 }
 
-model Reservation {
+// Separate consent/audience from Hub reservations and article-alert subscribers.
+// A signup is NOT a payment, authenticated account, or an entitlement.
+model VisualSignup {
   id               String    @id @default(cuid())
   email            String    @unique
+  product          String    @default("visual-known-issues-all-models")
+  country          String
+  source           String
+  consentAt        DateTime  @default(now())
+  createdAt        DateTime  @default(now())
+  unsubscribeToken String    @unique
+  unsubscribedAt   DateTime?
+
+  @@index([createdAt])
+}
+
+model AccountEnrollment {
+  id String @id @default(cuid())
+  email String
+  tokenHash String @unique
+  product String
+  intent String?
+  vehicleId String?
+  returnTo String?
+  expiresAt DateTime
+  usedAt DateTime?
+  createdAt DateTime @default(now())
+  @@index([email, createdAt])
+}
+
+// One durable attempt per account. A failed/uncertain provider response is
+// retried with this same key until its outcome has been reconciled.
+model BillingAttempt {
+  userId String @id
+  key String @unique
+  product String
+  vehicleId String?
+  returnTo String?
+  customerId String?
+  sessionId String? @unique
+  subscriptionId String?
+  url String?
+  state String @default("pending")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BillingEvent {
+  id String @id
+  processedAt DateTime @default(now())
+}
+
+// Durable policy scope survives replacement of the one-per-user Checkout attempt.
+model BillingEnrollmentReview {
+  subscriptionId String @id
+  userId String
+  customerId String
+  sessionId String @unique
+  attemptKey String
+  state String
+  initialVerified Boolean @default(false)
+  updatedAt DateTime @default(now())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+}
+
+// Confirmation commits before dispatch intent, which commits before Stripe.
+// Original Checkout identity remains separate; unknown outcomes retain the key.
+model HubUpgradeAttempt {
+  subscriptionId String @id
+  userId String
+  token String
+  vehicleId String
+  createdAt DateTime @default(now())
+  dispatchStartedAt DateTime?
+  invoiceId String?
+  completedAt DateTime?
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId])
+}
+
+// Durable plan-change journal; retained terminal rows prevent quote replay.
+model SubscriptionDowngrade {
+  id String @id
+  userId String
+  subscriptionId String
+  token String
+  state String
+  scheduleId String?
+  dispatchedAt DateTime
+  createdAt DateTime @default(now())
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([subscriptionId, createdAt])
+  @@index([userId])
+}
+
+// Expiring tombstones prevent an invalidated signed token becoming a new attempt.
+model HubUpgradeRetiredQuote {
+  quoteHash String @id
+  userId String
+  expiresAt DateTime
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@index([userId, expiresAt])
+}
+
+model TwinInvitationDelivery {
+  id String @id @default(cuid())
+  reservationId String @unique
+  status String @default("pending")
+  providerId String?
+  reservationRevision String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Reservation {
+  id               String    @id @default(cuid())
+  // Exact normalized request uniqueness is an expression index in the SQL migration.
+  email            String
   // The car they want it for, as one display string ("2019 Chevrolet Camaro
   // ZL1 1LE"). Drives which vehicle we build the twin for first. Always set —
   // composed from the YMMT fields below when they picked, or their raw typing
@@ -836,6 +992,7 @@ model Reservation {
   claimedAt        DateTime?
   updatedAt        DateTime  @default(now()) @updatedAt
 
+  @@index([email])
   @@index([createdAt])
   @@index([source])
   @@index([twinStatus])

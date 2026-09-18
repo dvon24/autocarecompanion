@@ -14,8 +14,8 @@ export const runtime = 'nodejs';
 export async function GET() {
   const session = await auth().catch(() => null);
   if (!session?.user?.id) {
-    return NextResponse.json({ tier: 'free', authenticated: false });
+    return NextResponse.json({ tier: 'free', authenticated: false, visual: false },{headers:{'Cache-Control':'private, no-store'}});
   }
   const tier = await getUserTier(session.user.id);
-  return NextResponse.json({ tier, authenticated: true });
+  return NextResponse.json({ tier, authenticated: true, visual: session.user.capabilities?.visual === true },{headers:{'Cache-Control':'private, no-store'}});
 }

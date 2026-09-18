@@ -8,7 +8,7 @@
  * Source: design/au7o (2)/bmad-handoff2/screens/12-Pricing.jsx
  */
 
-export type TierId = 'free' | 'plus' | 'pro';
+export type TierId = 'free' | 'visual' | 'hub' | 'plus' | 'pro';
 
 export type TierFeature = { t: string; on: boolean };
 
@@ -31,6 +31,12 @@ export type Tier = {
 };
 
 export const AU7O_TIERS: readonly Tier[] = [
+  { id: 'visual', name: 'Visual', price: '4.99', priceCents: 499, priceAnnual: '0', priceAnnualCents: 0,
+    tagline: 'Every available visual. No trial.', cta: 'Get Visual', ctaStyle: 'primary',
+    features: [{ t: 'All available visual known issues', on: true }, { t: 'Free Test Hub', on: true }, { t: 'Personal maintenance and AI', on: false }] },
+  { id: 'hub', name: 'Hub', price: '14.99', priceCents: 1499, priceAnnual: '0', priceAnnualCents: 0,
+    tagline: 'Your ready vehicle, its maintenance and AI.', cta: 'Get Hub', ctaStyle: 'primary',
+    features: [{ t: 'Everything in Visual', on: true }, { t: 'Personal maintenance and AI', on: true }, { t: 'Up to 3 owner-ready vehicles', on: true }] },
   {
     id: 'free',
     name: 'Free',
@@ -105,6 +111,8 @@ export const TIER_LIMITS: Record<TierId, {
   alerts: boolean;
   prioritySupport: boolean;
 }> = {
+  visual: { vehicles: 0, diagnosesPerWeek: 0, maintenanceTracking: false, alerts: false, prioritySupport: false },
+  hub: { vehicles: 3, diagnosesPerWeek: 10, maintenanceTracking: true, alerts: true, prioritySupport: false },
   free: {
     vehicles: 1,
     diagnosesPerWeek: 2,
@@ -133,9 +141,9 @@ export function isPaidTier(tier: TierId): boolean {
 }
 
 export function getTier(id: TierId | string | null | undefined): Tier {
-  if (!id) return AU7O_TIERS[0];
+  if (!id) return AU7O_TIERS.find((x) => x.id === 'free')!;
   const t = AU7O_TIERS.find((x) => x.id === id);
-  return t ?? AU7O_TIERS[0];
+  return t ?? AU7O_TIERS.find((x) => x.id === 'free')!;
 }
 
 /**
@@ -151,7 +159,8 @@ export function resolveTier(
 ): TierId {
   if (status === 'active' || status === 'trialing') {
     if (tier === 'plus' || tier === 'pro' || tier === 'free') return tier;
-    return 'plus';
+    if (tier === 'hub' || (status === 'active' && tier === 'visual')) return tier;
+    return 'free';
   }
   return 'free';
 }

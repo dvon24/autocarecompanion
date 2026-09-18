@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
+import { canUsePersonalVehicleContext } from '@/lib/vehicle-capabilities';
 import { hubChatMinuteLimiter, getClientIp, rateLimitResponse, voiceDemoAnonLimiter, voiceDemoFreeLimiter } from '@/lib/rate-limit';
 import { peekVoiceDemo, consumeVoiceDemo, voiceDemoKey } from '@/lib/voice-demo-quota';
 
@@ -103,13 +104,14 @@ export async function POST(request: NextRequest) {
   let session;
   try { session = await auth(); } catch { session = null; }
   const userId = session?.user?.id ?? null;
-  const isSubscriber = session?.user?.subscriptionStatus === 'active';
-  const tier: 'full' | 'demo' = isSubscriber ? 'full' : 'demo';
-
   // Burst protection (shared minute limiter).
   const ip = getClientIp(request);
   const burst = hubChatMinuteLimiter.check(ip);
   if (!burst.success) return rateLimitResponse(burst.reset);
+
+  const requestBody = await request.json().catch(() => null);
+  const isSubscriber = session?.user?.capabilities?.personalAi === true || !!(userId && await canUsePersonalVehicleContext(userId, requestBody?.vehicle));
+  const tier: 'full' | 'demo' = isSubscriber ? 'full' : 'demo';
 
   // DEMO gating: non-payers get a short live taste, capped. Anon → keyed by IP
   // + signup upsell; signed-in free → keyed by userId + upgrade upsell. We PEEK
@@ -139,7 +141,7 @@ export async function POST(request: NextRequest) {
   let mode: 'mechanic' | 'drive' = 'mechanic';
   let lang: string | undefined;
   try {
-    const body = await request.json();
+    const body = requestBody;
     if (body && typeof body === 'object') {
       if (body.vehicle) vehicle = body.vehicle as VehicleCtx;
       if (body.mode === 'drive') mode = 'drive';

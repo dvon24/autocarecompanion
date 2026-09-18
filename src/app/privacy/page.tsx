@@ -8,7 +8,10 @@ export const metadata = {
   description: 'Privacy Policy for Au7o - How we collect, use, and protect your data',
 };
 
-export default function PrivacyPage() {
+export default async function PrivacyPage({ searchParams }: {
+  searchParams: Promise<{ from?: string | string[] }>;
+}) {
+  const fromCheckout = (await searchParams).from === 'checkout';
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -26,6 +29,7 @@ export default function PrivacyPage() {
               Au<span className="text-blue-600">7</span>o
             </span>
           </Link>
+          {fromCheckout && <Link href="/account" className="mt-4 inline-flex min-h-11 items-center rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white">Return to subscription</Link>}
         </div>
       </header>
 

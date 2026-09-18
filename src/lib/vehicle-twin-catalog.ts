@@ -57,6 +57,8 @@ export interface VehicleTwinCatalogEntry {
   };
   art: TwinArtBundle;
   hotspots: readonly TwinHotspot[];
+  /** Issue-only areas have no maintenance tree branch. */
+  knownIssueHotspots?: readonly TwinHotspot[];
   systems: readonly { hot: string; branch: string; label: string; img: string }[];
 }
 
@@ -134,14 +136,14 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     }), systems: systems(true),
   },
   {
-    id:'nautilus', fulfillmentId:null, ownerReady:false,
+    id:'nautilus', fulfillmentId:'lincoln-nautilus', ownerReady:true,
     identity:{year:2019,make:'Lincoln',model:'Nautilus',trim:'Standard',engine:'2.0L EcoBoost I4',paint:'Magnetic Gray Metallic'}, demoMileage:42000,
     paintPalette:{sourceLabel:'2019 Lincoln Nautilus order guide · Color & Trim Availability',sourceUrl:'https://www.blueovalforums.com/forums/applications/core/interface/file/attachment.php?id=16393',colors:[
-      {name:'Infinite Black Metallic',swatch:'#16181B',artStatus:'awaiting-art'},{name:'White Platinum Metallic Tri-coat',swatch:'#E7E5DE',artStatus:'awaiting-art'},
-      {name:'Ingot Silver Metallic',swatch:'#A9ADB0',artStatus:'awaiting-art'},{name:'Magnetic Gray Metallic',swatch:'#62676B',artStatus:'rendered'},
-      {name:'Ruby Red Metallic Tinted Clearcoat',swatch:'#7E1D2A',artStatus:'awaiting-art'},{name:'Ochre Brown Metallic',swatch:'#655244',artStatus:'awaiting-art'},
-      {name:'Ceramic Pearl Metallic Tri-coat',swatch:'#D9D3C6',artStatus:'awaiting-art'},{name:'Burgundy Velvet Metallic Tinted Clearcoat',swatch:'#4B2029',artStatus:'awaiting-art'},
-      {name:'Iced Mocha Metallic',swatch:'#75675D',artStatus:'awaiting-art'},{name:'Blue Diamond Metallic',swatch:'#263A54',artStatus:'awaiting-art'},
+      {name:'Infinite Black Metallic',swatch:'#16181B',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln','infinite-black')},{name:'White Platinum Metallic Tri-coat',swatch:'#E7E5DE',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln','white-platinum')},
+      {name:'Ingot Silver Metallic',swatch:'#A9ADB0',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln','ingot-silver')},{name:'Magnetic Gray Metallic',swatch:'#62676B',artStatus:'rendered'},
+      {name:'Ruby Red Metallic Tinted Clearcoat',swatch:'#7E1D2A',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln','ruby-red')},{name:'Ochre Brown Metallic',swatch:'#655244',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln','ochre-brown')},
+      {name:'Ceramic Pearl Metallic Tri-coat',swatch:'#D9D3C6',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln','ceramic-pearl')},{name:'Burgundy Velvet Metallic Tinted Clearcoat',swatch:'#4B2029',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln','burgundy-velvet')},
+      {name:'Iced Mocha Metallic',swatch:'#75675D',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln','iced-mocha')},{name:'Blue Diamond Metallic',swatch:'#263A54',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln','blue-diamond')},
     ]},
     sampleState:{label:'Sample demo state',records:[
       {node:'oil',label:'Engine oil',lastServiceMileage:35000,intervalMiles:10000,intervalSource:'2019 Lincoln Nautilus Owner\'s Manual',sourceUrl:'https://cdn.dealereprocess.org/cdn/servicemanuals/lincoln/2019-nautilus.pdf',sourceSection:'Scheduled Maintenance, pp. 543–548'},
@@ -152,16 +154,16 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     treeResolver:'nautilus',treeStatus:'model-specific',
     art:{available:true,base:'/twin-stage/lincoln/base-gray.webp',effects:opaque('/twin-stage/lincoln'),strategy:'opaque-masked',masks},
     hotspots:standardHotspots({wheel:[42,65],hood:[65,39],glass:[48,29],rearwheel:[18,64],rad:[70,53],trans:[55,59]}, {
-      wheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},
+      wheel:{status:'unlogged',statusDetail:'Sample rotation recorded; follow oil-life service visits; remaining tire/brake history unknown'},
       hood:{node:'hoodRoot',status:'known-issue',statusDetail:'Published engine/start-stop issue · sample oil service on track',knownIssueIds:['lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart']},
-      rearwheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},
+      rearwheel:{status:'unlogged',statusDetail:'Sample rotation recorded; tire inspection history is incomplete. Follow oil-life service visits, not a fixed replacement interval'},
       rad:{status:'known-issue',statusDetail:'Published cooling-system issue',knownIssueIds:['lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white']},
       trans:{status:'known-issue',statusDetail:'Published transmission issue · sample service on track',knownIssueIds:['lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph']},
-      glass:{label:'Visibility, Camera & Cabin',status:'known-issue',statusDetail:'Published SYNC 3 / APIM issue · wiper service unlogged',knownIssueIds:['lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots']},
-    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Visibility, Camera & Cabin'}:system),
+      glass:{label:'Interior',status:'known-issue',statusDetail:'Published SYNC 3 / APIM and VIN-qualified camera software issues · wiper service unlogged',knownIssueIds:['lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots','lincoln-nautilus-rearview-camera-software-error-blank-image-image-that-won-t']},
+    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Interior'}:system),
   },
   {
-    id:'murano',fulfillmentId:null,ownerReady:false,
+    id:'murano',fulfillmentId:'nissan-murano',ownerReady:true,
     identity:{year:2023,make:'Nissan',model:'Murano',trim:'SV',engine:'3.5L V6',paint:'Scarlet Ember Tintcoat'},demoMileage:24000,
     paintPalette:{sourceLabel:'2023 Nissan Murano brochure · Choose Your Color',sourceUrl:'https://www.nissanusa.com/content/dam/Nissan/us/vehicle-brochures/2023/2023-nissan-murano-brochure-en.pdf',colors:[
       {name:'Pearl White TriCoat',swatch:'#EEEDE7',artStatus:'rendered',art:generatedArt('/twin-stage/murano','pearl-white')},{name:'Brilliant Silver Metallic',swatch:'#B9BCBD',artStatus:'rendered',art:generatedArt('/twin-stage/murano','brilliant-silver')},
@@ -179,12 +181,12 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     art:{available:true,base:'/twin-stage/murano/base-red.webp',effects:opaque('/twin-stage/murano'),strategy:'opaque-masked',masks},
     hotspots:standardHotspots({wheel:[43,65],hood:[64,36],glass:[48,27],rearwheel:[19,64],rad:[70,53],trans:[55,59]}, {
       wheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},rearwheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},
-      hood:{node:'hoodRoot',status:'unlogged',statusDetail:'Sample oil service is on track; other engine-system service records are not logged'},trans:{status:'unlogged',statusDetail:'Completed demo is FWD; sample CVT/final-drive history exists but future fluid service remains owner-record dependent'},
-      glass:{label:'Safety, Camera & Cabin',status:'known-issue',statusDetail:'Five published driver-assistance, electrical, seat and camera issues · wiper service unlogged',knownIssueIds:['nissan-murano-automatic-emergency-braking-forward-collision-phantom-activa','nissan-murano-battery-drain-and-no-start-2021','nissan-murano-front-driver-seat-frametrack-2021','nissan-murano-front-radarsensor-malfunctions-triggering-2021','nissan-murano-rearview-camera-image-blank-2021']},rad:{status:'unlogged',statusDetail:'No sample service event logged'},
-    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Safety, Camera & Cabin'}:system),
+      hood:{node:'hoodRoot',status:'known-issue',statusDetail:'Published 12V battery-drain / no-start issue; remaining engine history incomplete',knownIssueIds:['nissan-murano-battery-drain-and-no-start-2021']},trans:{status:'on-track',statusDetail:'FWD sample CVT/final-drive service recorded; no fixed normal-use replacement interval'},
+      glass:{label:'Interior',status:'known-issue',statusDetail:'Four published driver-assistance, seat and camera issues · wiper service unlogged',knownIssueIds:['nissan-murano-automatic-emergency-braking-forward-collision-phantom-activa','nissan-murano-front-driver-seat-frametrack-2021','nissan-murano-front-radarsensor-malfunctions-triggering-2021','nissan-murano-rearview-camera-image-blank-2021']},rad:{status:'unlogged',statusDetail:'No sample service event logged'},
+    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Interior'}:system),
   },
   {
-    id:'xt6',fulfillmentId:null,ownerReady:false,
+    id:'xt6',fulfillmentId:'cadillac-xt6',ownerReady:true,
     identity:{year:2020,make:'Cadillac',model:'XT6',trim:'Sport',engine:'3.6L V6',paint:'Satin Steel Metallic'},demoMileage:52000,
     paintPalette:{sourceLabel:'2020 Cadillac XT6 brochure · Exterior Colors',sourceUrl:'https://www.cadillac.com/content/dam/cadillac/na/us/english/index/downloads/vehiclebrochures/brochures/2020/MY20_XT6_Brochure_v1.pdf',colors:[
       {name:'Radiant Silver Metallic',swatch:'#B9BBBC',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','radiant-silver')},{name:'Stellar Black Metallic',swatch:'#15171A',artStatus:'rendered',art:generatedArt('/twin-stage/cadillac','stellar-black')},
@@ -203,20 +205,27 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       wheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},rearwheel:{status:'overdue',statusDetail:'Sample tire rotation overdue'},
       hood:{node:'hoodRoot',status:'known-issue',statusDetail:'Published timing-chain and start-stop issues · sample oil service on track',knownIssueIds:['cadillac-xt6-timing-chain-2020','cadillac-xt6-auto-stop-2020']},
       trans:{status:'known-issue',statusDetail:'Three published transmission/AWD issues · no sample fluid service event logged',knownIssueIds:['cadillac-xt6-9speed-transmission-2020','cadillac-xt6-transmission-shudder-2020','cadillac-xt6-ptu-leak-2020']},
-      glass:{status:'unlogged',statusDetail:'No sample service event logged'},rad:{status:'unlogged',statusDetail:'No sample service event logged'},
-    }),systems:systems(true),
+      glass:{label:'Interior',status:'unlogged',statusDetail:'No sample service event logged'},rad:{status:'unlogged',statusDetail:'No sample service event logged'},
+    }),
+    knownIssueHotspots:[
+      {id:'trans',branch:'trans',label:'Transmission and driveline',x:55,y:59,status:'known-issue',statusDetail:'Certain 2020 vehicles · VIN-qualified accumulator recall',knownIssueIds:['cadillac-xt6-2020-xt6-start-stop-accumulator-may-be-missing-endcap-bolts']},
+      {id:'cooling',branch:'engine',node:'rad',label:'Engine and cooling contamination',x:77,y:52,status:'known-issue',statusDetail:'2020–2021 LGX only · diagnose the oil cooler before block leakage',knownIssueIds:['cadillac-xt6-3-6l-lgx-engine-oil-migrating-into-cooling-system-through-bl']},
+      {id:'steering',branch:'steering',label:'Electric power steering',x:52,y:62,status:'known-issue',statusDetail:'2020–2021 · September 28–October 22, 2020 build range requires confirmation',knownIssueIds:['cadillac-xt6-electric-power-steering-rack-failure-steering-assist-is-redu']},
+      {id:'camera',branch:'camera',label:'Surround Vision signal',x:49,y:36,status:'known-issue',statusDetail:'2020–2021 optional UV2 · VIN recall check required; front coax cable',knownIssueIds:['cadillac-xt6-rearview-camera-cuts-out-due-to-bad-coaxial-cable-crimp-surr']},
+      {id:'roof',branch:'roof',label:'Roof and body sealing',x:34,y:25,status:'known-issue',statusDetail:'2020–2021 roof braze seams · inspect and seal confirmed pinholes',knownIssueIds:['cadillac-xt6-water-leaks-into-interior-through-pinholes-roof-panel-laser']},
+    ],systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Interior'}:system),
   },
   {
-    id:'kicks',fulfillmentId:null,ownerReady:false,
+    id:'kicks',fulfillmentId:'nissan-kicks',ownerReady:true,
     identity:{year:2025,make:'Nissan',model:'Kicks',trim:'SV',engine:'2.0L I4',paint:'Gun Metallic'},demoMileage:12000,
     paintPalette:{sourceLabel:'2025 Nissan Kicks brochure · Choose Your Color',sourceUrl:'https://www.nissanusa.com/content/dam/Nissan/us/vehicle-brochures/2025/2025-nissan-kicks-brochure-en.pdf',supportedTrims:['S','SV','SR'],colors:[
-      {name:'Fresh Powder',swatch:'#F4F2EA',artStatus:'awaiting-art',trims:['S','SV']},{name:'Aspen White TriCoat',swatch:'#EEEDE7',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','aspen-white')},
+      {name:'Fresh Powder',swatch:'#F4F2EA',artStatus:'rendered',trims:['S','SV'],art:generatedArt('/twin-stage/kicks','fresh-powder')},{name:'Aspen White TriCoat',swatch:'#EEEDE7',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','aspen-white')},
       {name:'Gun Metallic',swatch:'#565B60',artStatus:'rendered',trims:['S','SV','SR']},{name:'Canyon Bronze Metallic',swatch:'#75665A',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','canyon-bronze')},
       {name:'Scarlet Ember Tintcoat',swatch:'#932934',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','scarlet-ember')},{name:'Deep Blue Pearl',swatch:'#183651',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','deep-blue')},
-      {name:'Super Black',swatch:'#101113',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','super-black')},{name:'Two-tone Aspen White TriCoat/Super Black',swatch:'#E8E6DE',artStatus:'awaiting-art',trims:['SV','SR']},
-      {name:'Two-tone Gun Metallic/Scarlet Ember Tintcoat',swatch:'#66515A',artStatus:'awaiting-art',trims:['SR']},{name:'Two-tone Gun Metallic/Super Black',swatch:'#4F5458',artStatus:'awaiting-art',trims:['SV','SR']},
-      {name:'Two-tone Yuzu Yellow Metallic/Super Black',swatch:'#C8DB00',artStatus:'awaiting-art',trims:['SR']},{name:'Two-tone Scarlet Ember Tintcoat/Super Black',swatch:'#8D2932',artStatus:'awaiting-art',trims:['SR']},
-      {name:'Two-tone Arctic Ice Blue Metallic/Super Black',swatch:'#52A9D0',artStatus:'awaiting-art',trims:['SR']},{name:'Two-tone Deep Blue Pearl/Gun Metallic',swatch:'#243A50',artStatus:'awaiting-art',trims:['SV','SR']},
+      {name:'Super Black',swatch:'#101113',artStatus:'rendered',trims:['S','SV','SR'],art:generatedArt('/twin-stage/kicks','super-black')},{name:'Two-tone Aspen White TriCoat/Super Black',swatch:'#E8E6DE',artStatus:'rendered',trims:['SV','SR'],art:generatedArt('/twin-stage/kicks','aspen-white-super-black')},
+      {name:'Two-tone Gun Metallic/Scarlet Ember Tintcoat',swatch:'#66515A',artStatus:'rendered',trims:['SV','SR'],art:generatedArt('/twin-stage/kicks','gun-metallic-scarlet-ember')},{name:'Two-tone Gun Metallic/Super Black',swatch:'#4F5458',artStatus:'rendered',trims:['SV','SR'],art:generatedArt('/twin-stage/kicks','gun-metallic-super-black')},
+      {name:'Two-tone Yuzu Yellow Metallic/Super Black',swatch:'#C8DB00',artStatus:'awaiting-art',trims:['SR']},{name:'Two-tone Scarlet Ember Tintcoat/Super Black',swatch:'#8D2932',artStatus:'rendered',trims:['SV','SR'],art:generatedArt('/twin-stage/kicks','scarlet-ember-super-black')},
+      {name:'Two-tone Arctic Ice Blue Metallic/Super Black',swatch:'#52A9D0',artStatus:'awaiting-art',trims:['SR']},{name:'Two-tone Deep Blue Pearl/Gun Metallic',swatch:'#243A50',artStatus:'rendered',trims:['SV','SR'],art:generatedArt('/twin-stage/kicks','deep-blue-gun-metallic')},
     ]},
     sampleState:{label:'Sample demo state',records:[
       {node:'oil',label:'Engine oil and filter',lastServiceMileage:0,intervalMiles:10000,intervalSource:'2025 Nissan Kicks Maintenance Schedule',sourceUrl:'https://maintenance-schedules.nissanusa.com/maintenance-schedules/2025/kicks/components/',sourceSection:'Engine oil and filter · standard conditions'},
@@ -227,11 +236,11 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
       wheel:{status:'overdue',statusDetail:'Sample tire-service deadline passed; brake history is incomplete'},hood:{node:'hoodRoot',status:'overdue',statusDetail:'Sample oil-service deadline passed; remaining engine history is incomplete'},
       rearwheel:{status:'overdue',statusDetail:'Sample tire-service deadline passed'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},
       trans:{status:'unlogged',statusDetail:'Completed demo is FWD; no separate AWD coupling or rear final-drive service'},
-      glass:{label:'Safety, Camera & Cabin',status:'known-issue',statusDetail:'Published cluster, backup-camera and infotainment issues',knownIssueIds:['nissan-kicks-blank-partial-instrument-cluster-cold-start','nissan-kicks-center-display-goes-blank-reverse-no-backup-camera-image','nissan-kicks-infotainment-touchscreen-freezing-rebooting-carplay-disconne']},
-    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Safety, Camera & Cabin'}:system),
+      glass:{label:'Interior',status:'known-issue',statusDetail:'Published cluster, backup-camera and infotainment issues',knownIssueIds:['nissan-kicks-blank-partial-instrument-cluster-cold-start','nissan-kicks-center-display-goes-blank-reverse-no-backup-camera-image','nissan-kicks-infotainment-touchscreen-freezing-rebooting-carplay-disconne']},
+    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Interior'}:system),
   },
   {
-    id:'mdx',fulfillmentId:null,ownerReady:false,
+    id:'mdx',fulfillmentId:'acura-mdx',ownerReady:true,
     identity:{year:2019,make:'Acura',model:'MDX',trim:'Technology',engine:'3.5L V6',paint:'Lunar Silver Metallic'},demoMileage:48000,
     paintPalette:{sourceLabel:'2019 Acura MDX brochure · Exterior Colors',sourceUrl:'https://cdn.dealereprocess.org/cdn/brochures/acura/2019-mdx.pdf',colors:[
       {name:'White Diamond Pearl',swatch:'#EEEDE8',artStatus:'rendered',art:generatedArt('/twin-stage/acura-mdx','white-diamond')},{name:'Lunar Silver Metallic',swatch:'#B9BBBC',artStatus:'rendered'},
@@ -245,14 +254,14 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     ]},
     treeResolver:'mdx',treeStatus:'model-specific',art:generatedArt('/twin-stage/acura-mdx','lunar-silver'),
     hotspots:standardHotspots({wheel:[47,68],hood:[70,38],glass:[50,29],rearwheel:[13,63],rad:[75,58],trans:[58,65]}, {
-      wheel:{status:'unlogged',statusDetail:'Brake and tire service history not supplied'},hood:{node:'hoodRoot',status:'known-issue',statusDetail:'Fuel-pump recall record · sample oil service approaching due',knownIssueIds:['acura-mdx-fuel-pump-impeller-deformation-causing-stall']},
+      wheel:{status:'unlogged',statusDetail:'Brake and tire service history not supplied'},hood:{node:'hoodRoot',status:'known-issue',statusDetail:'Fuel-pump recall and idle-stop diagnostic records · sample oil service approaching due',knownIssueIds:['acura-mdx-fuel-pump-impeller-deformation-causing-stall','acura-mdx-auto-idle-stop-failure-to-restart']},
       rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},
       trans:{status:'known-issue',statusDetail:'Completed demo is SH-AWD · published ZF 9-speed and torque-converter concerns',knownIssueIds:['acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling','acura-mdx-torque-converter-shudder-2014']},
-      glass:{label:'Infotainment & Visibility',status:'known-issue',statusDetail:'Published infotainment reboot issue',knownIssueIds:['acura-mdx-infotainment-reboot-2014']},
-    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Infotainment & Visibility'}:system),
+      glass:{label:'Interior',status:'known-issue',statusDetail:'Published infotainment reboot issue',knownIssueIds:['acura-mdx-infotainment-reboot-2014']},
+    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Interior'}:system),
   },
   {
-    id:'aviator',fulfillmentId:null,ownerReady:false,
+    id:'aviator',fulfillmentId:'lincoln-aviator',ownerReady:true,
     identity:{year:2026,make:'Lincoln',model:'Aviator',trim:'Premiere',engine:'3.0L Twin-Turbo V6',paint:'Red Carpet Metallic Tinted Clearcoat'},demoMileage:5000,
     paintPalette:{sourceLabel:'2026 Lincoln Aviator Premiere · Detailed Specifications',sourceUrl:'https://www.lincoln.com/luxury-suvs/aviator/models/premiere/?intcmp=moddetails-seconNav-modetails',colors:[
       {name:'Pristine White Metallic Tri-Coat',swatch:'#ECEAE3',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln-aviator','pristine-white')},{name:'Harbor Gray Clearcoat',swatch:'#65696B',artStatus:'rendered',art:generatedArt('/twin-stage/lincoln-aviator','harbor-gray')},
@@ -262,8 +271,8 @@ export const VEHICLE_TWIN_CATALOG: readonly VehicleTwinCatalogEntry[] = [
     sampleState:{label:'Sample demo state',records:[]},treeResolver:'aviator',treeStatus:'model-specific',art:generatedArt('/twin-stage/lincoln-aviator','red-carpet'),
     hotspots:standardHotspots({wheel:[49,67],hood:[72,38],glass:[51,28],rearwheel:[18,59],rad:[76,55],trans:[58,64]}, {
       wheel:{status:'unlogged',statusDetail:'First tire/brake service history not supplied'},hood:{node:'hoodRoot',status:'unlogged',statusDetail:'First engine-service history not supplied'},
-      rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},trans:{status:'unlogged',statusDetail:'Completed demo is Premiere RWD; rear-differential service history not supplied'},glass:{status:'unlogged',statusDetail:'Wiper service history not supplied'},
-    }),systems:systems(true),
+      rearwheel:{status:'unlogged',statusDetail:'Tire service history not supplied'},rad:{status:'unlogged',statusDetail:'Cooling-system history not supplied'},trans:{status:'unlogged',statusDetail:'Completed demo is Premiere RWD; rear-differential service history not supplied'},glass:{label:'Interior',status:'unlogged',statusDetail:'Wiper service history not supplied'},
+    }),systems:systems(true).map((system)=>system.hot==='glass'?{...system,label:'Interior'}:system),
   },
   {
     id:'camaro',fulfillmentId:'chevrolet-camaro-zl1-1le',ownerReady:true,

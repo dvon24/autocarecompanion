@@ -21,7 +21,7 @@ test('NATS review admits only the exact Interstate MTP-35 product, preserving th
     'http://www.interstatebatteries.com/products/mtp-35',
   ]) assert.equal(isKnownIssueProductUrl(rejected), false, rejected);
   assert.equal(vendorMatchesProductUrl('Unrelated vendor', url), false);
-  const part = {component:'Conditional replacement battery',verified:true,buyLinks:[{vendor:'Interstate Batteries',url,verified:true,linkType:'product'}]};
+  const part = {component:'Conditional replacement battery',oemPartNumber:null,aftermarketXref:[],note:'',variants:[],verified:true,buyLinks:[{vendor:'Interstate Batteries',url,verified:true,linkType:'product'}]};
   assert.equal(getKnownIssueCommerce({fixParts:[part]}).fixParts[0].buyLinks.length,1);
   assert.equal(getKnownIssueCommerce({fixParts:[{...part,recallFirst:true}]}).fixParts[0].buyLinks.length,0);
   assert.equal(getKnownIssueCommerce({fixParts:[{...part,verified:false}]}).fixParts.length,0);

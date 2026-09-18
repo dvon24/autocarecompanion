@@ -23,6 +23,12 @@ interface ReviewedTransmissionFitment {
  * work and prevents an unknown drivetrain from becoming a fitment claim.
  */
 export const REVIEWED_TRANSMISSION_FITMENTS: readonly ReviewedTransmissionFitment[] = [
+  { make: 'cadillac', model: 'xt6', yearFrom: 2020, yearTo: 2020, trims: ['sport'], transmissions: ['automatic'] },
+  { make: 'acura', model: 'mdx', yearFrom: 2019, yearTo: 2019, trims: ['technology'], transmissions: ['automatic'] },
+  { make: 'lincoln', model: 'nautilus', yearFrom: 2019, yearTo: 2019, trims: ['standard'], transmissions: ['automatic'] },
+  { make: 'lincoln', model: 'aviator', yearFrom: 2026, yearTo: 2026, trims: ['premiere'], transmissions: ['automatic'] },
+  { make: 'nissan', model: 'murano', yearFrom: 2023, yearTo: 2023, trims: ['sv'], transmissions: ['automatic'] },
+  { make: 'nissan', model: 'kicks', yearFrom: 2025, yearTo: 2025, trims: ['sv'], transmissions: ['automatic'] },
   {
     make: 'dodge',
     model: 'challenger',
@@ -100,8 +106,9 @@ export function getReviewedTransmissionChoices(
 
 /**
  * Reviewed fitment and persisted state are separate concerns. Single-option
- * fitments derive their branch from the registry and therefore must keep the
- * stored selection null; dual fitments may store only one reviewed option.
+ * fitments derive their branch from the registry. New writes keep the stored
+ * selection null; legacy reads also accept the exact sole reviewed option.
+ * Conflicting values remain invalid; dual fitments retain their choice rules.
  * Unreviewed vehicles are left to the caller's existing eligibility rules.
  */
 export function hasValidReviewedTransmissionState(
@@ -109,7 +116,7 @@ export function hasValidReviewedTransmissionState(
 ): boolean {
   const options = getReviewedTransmissionChoices(vehicle);
   if (options.length === 0) return true;
-  if (options.length === 1) return vehicle.transmission == null;
+  if (options.length === 1) return vehicle.transmission == null || vehicle.transmission === options[0];
   return vehicle.transmission == null
     || (isTransmissionChoice(vehicle.transmission) && options.includes(vehicle.transmission));
 }

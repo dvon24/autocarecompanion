@@ -1,7 +1,7 @@
 'use client';
 
 import { SessionProvider as NextAuthSessionProvider } from 'next-auth/react';
-import { useState, useEffect, type ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, type ReactNode } from 'react';
 import { SESSION_MARKER } from '@/lib/session-marker';
 
 /**
@@ -28,9 +28,8 @@ import { SESSION_MARKER } from '@/lib/session-marker';
  * We can't read the real session token (httpOnly), so middleware mirrors its
  * existence into a readable `au7o.sess` marker. See src/middleware.ts.
  *
- * Fail-open: if the marker is missing but the user IS signed in (e.g. a request
- * that somehow skipped middleware), the worst case is one render as
- * unauthenticated. Guarded below by re-checking after mount.
+ * Read the marker after hydration. Consumers that redirect anonymous users
+ * must wait for useSessionMarkerReady() before acting on that initial status.
  */
 
 function hasSessionMarker(): boolean {
@@ -42,38 +41,41 @@ type SessionProviderProps = {
   children: ReactNode;
 };
 
-export function SessionProvider({ children }: SessionProviderProps) {
-  // Read the marker synchronously on the first client render so the provider
-  // mounts with the right value — flipping it later would not re-trigger the
-  // fetch, since next-auth's mount effect has an empty dep array.
-  const [signedIn] = useState<boolean>(hasSessionMarker);
+const SessionMarkerReadyContext = createContext(false);
 
-  // Safety net: if we guessed "anonymous" but a session cookie actually exists,
-  // the marker will have been set by the middleware on this very response, so a
-  // remount (next navigation) picks it up. Force one immediately instead of
-  // leaving a signed-in user looking logged out.
-  const [recheck, setRecheck] = useState(0);
+export function useSessionMarkerReady(): boolean {
+  return useContext(SessionMarkerReadyContext);
+}
+
+export function SessionProvider({ children }: SessionProviderProps) {
+  // Server and initial client render must agree. Reading document.cookie in
+  // the initializer made signed-in browsers render a loading avatar where the
+  // server rendered nothing, replacing the account tree during hydration.
+  const [signedIn, setSignedIn] = useState<boolean | null>(null);
   useEffect(() => {
-    if (signedIn) return;
     const timer = window.setTimeout(() => {
-      if (hasSessionMarker()) setRecheck((n) => n + 1);
+      setSignedIn(hasSessionMarker());
     }, 0);
     return () => window.clearTimeout(timer);
-  }, [signedIn]);
+  }, []);
 
-  const known = signedIn || recheck > 0;
+  // The key below deliberately remounts next-auth after marker detection;
+  // changing only its session prop would not rerun its initial session fetch.
+  const known = signedIn === true;
 
   return (
-    <NextAuthSessionProvider
-      key={known ? 'authed' : 'anon'}
-      // undefined => provider fetches (signed in, needs the real session)
-      // null      => provider skips the fetch (anonymous, answer already known)
-      session={known ? undefined : null}
-      // Anonymous users need no refetch at all; signed-in users still get one
-      // via the normal mount fetch. This kills focus-driven request storms.
-      refetchOnWindowFocus={known}
-    >
-      {children}
-    </NextAuthSessionProvider>
+    <SessionMarkerReadyContext.Provider value={signedIn !== null}>
+      <NextAuthSessionProvider
+        key={known ? 'authed' : 'anon'}
+        // undefined => provider fetches (signed in, needs the real session)
+        // null      => provider skips the fetch (anonymous, answer already known)
+        session={known ? undefined : null}
+        // Anonymous users need no refetch at all; signed-in users still get one
+        // via the normal mount fetch. This kills focus-driven request storms.
+        refetchOnWindowFocus={known}
+      >
+        {children}
+      </NextAuthSessionProvider>
+    </SessionMarkerReadyContext.Provider>
   );
 }

@@ -16,6 +16,8 @@
 
 import { Resend } from 'resend';
 import { isSuppressed } from '@/lib/email-suppression';
+import { stagingRecipientAllowed } from '@/lib/staging-email-policy';
+import type { ReadyInvitationInlineAttachment } from '@/lib/twin-ready-invitation-artwork';
 
 let _resend: Resend | null = null;
 function client(): Resend | null {
@@ -60,6 +62,15 @@ interface SendArgs {
   /** Where replies from the recipient should go (e.g. a founder replying to
    *  feedback wants the user's response routed back to their inbox). */
   replyTo?: string;
+  idempotencyKey?: string;
+  /** Prepared invitation JPEG bytes; attachment preparation occurs before claiming delivery. */
+  attachments?: [ReadyInvitationInlineAttachment];
+  /** Invitation-only: checks suppression and email-wide consent on its held
+   * transaction, probes liveness, then returns a synchronous dispatch lease.
+   * Replaces the root suppression lookup to avoid acquiring a second connection. */
+  invitationConsentGuard?: () => Promise<() => boolean>;
+  /** Synchronous notification only after the guarded provider method is invoked. */
+  onInvitationProviderInvocation?: () => void;
 }
 
 /** Returns true if the send appeared to succeed (or was a no-op in dev). */
@@ -69,44 +80,75 @@ export async function sendEmail(args: SendArgs): Promise<boolean> {
 
 /** Like sendEmail but returns the actual failure reason (for surfacing to a
  *  founder-only admin action instead of a generic "failed"). */
-export async function sendEmailDetailed({ to, subject, html, text, replyTo }: SendArgs): Promise<{ ok: boolean; error?: string }> {
-  const c = client();
+export function createEmailSender(deps: {
+  client: () => Pick<Resend,'emails'> | null;
+  isSuppressed: (email:string) => Promise<boolean>;
+  recipientAllowed: (email:string) => boolean;
+}) {
+return async function sendDetailed({ to, subject, html, text, replyTo, idempotencyKey, attachments, invitationConsentGuard, onInvitationProviderInvocation }: SendArgs): Promise<{ ok: boolean; error?: string; providerId?: string; outcome?: 'not_sent' | 'unknown' | 'suppressed' }> {
+  if (!deps.recipientAllowed(to)) {
+    return { ok: false, outcome: 'not_sent', error: 'Recipient is not permitted in this isolated preview' };
+  }
+  const c = deps.client();
   if (!c) {
     console.warn('[email] RESEND_API_KEY not set; skipping send. To:', to, 'Subject:', subject);
-    return { ok: false, error: 'RESEND_API_KEY is not set in this environment' };
+    return { ok: false, outcome: 'not_sent', error: 'RESEND_API_KEY is not set in this environment' };
   }
   // Suppression chokepoint. An address that permanently bounced or filed a spam
   // complaint is never retried — each retry is charged against our sending
   // reputation, which costs delivery for every real lead. Checked here rather
   // than at each call site so no future sender can forget it. isSuppressed()
   // fails OPEN, so a DB fault can never silently swallow a password reset.
-  if (await isSuppressed(to)) {
+  if (!invitationConsentGuard && await deps.isSuppressed(to)) {
     console.warn('[email] suppressed address, not sending. To:', to, 'Subject:', subject);
-    return { ok: false, error: 'Address is on the suppression list (hard bounce or spam complaint)' };
+    return { ok: false, outcome: 'suppressed', error: 'Address is on the suppression list (hard bounce or spam complaint)' };
   }
   try {
-    const result = await c.emails.send({
+    const payload = {
       from: fromAddress(),
       to,
       subject,
       html,
       text,
+      ...(attachments ? { attachments } : {}),
       // Only a valid-looking address (guards against a bad env value breaking the send).
       ...(replyTo && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(replyTo) ? { replyTo } : {}),
-    });
+    };
+    // Invitations perform suppression on their already-held transaction here.
+    // Any future attachment/payload preparation must precede this guard.
+    // No unguarded async work may occur between this final check and invocation.
+    const leaseIsLive = invitationConsentGuard ? await invitationConsentGuard() : null;
+    if (invitationConsentGuard && (typeof leaseIsLive !== 'function' || !leaseIsLive())) return {ok:false,outcome:'not_sent',error:'Invitation consent check expired. Review before sending again.'};
+    const providerResponse = c.emails.send(payload, idempotencyKey ? { idempotencyKey } : undefined);
+    // Invocation has happened synchronously under the live lease. Release consent
+    // now; the exact same response promise is still awaited and reconciled below.
+    let signalFailed=false;
+    try { if(invitationConsentGuard)onInvitationProviderInvocation?.(); } catch { signalFailed=true; }
+    const result = await providerResponse;
+    if(signalFailed)return {ok:false,outcome:'unknown',providerId:result.data?.id,error:'Invocation notification failed; delivery requires reconciliation.'};
     if (result.error) {
-      const e = result.error as { message?: string; name?: string };
+      const e = result.error as { message?: string; name?: string; statusCode?: number | null };
       const msg = e.message || e.name || JSON.stringify(result.error);
       console.error('[email] Resend error:', result.error);
-      return { ok: false, error: msg };
+      // The SDK returns network failures as application_error/statusCode:null.
+      // Only explicit client rejections prove that no message was accepted.
+      const definitelyRejected = typeof e.statusCode === 'number' && [400, 401, 403, 404, 405, 413, 422, 429].includes(e.statusCode);
+      return { ok: false, outcome: definitelyRejected ? 'not_sent' : 'unknown', error: msg };
     }
-    return { ok: true };
+    if (!result.data?.id) return { ok: false, outcome: 'unknown', error: 'Email acceptance could not be confirmed' };
+    return { ok: true, providerId: result.data?.id };
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error('[email] send threw:', err);
-    return { ok: false, error: msg };
+    return { ok: false, outcome: 'unknown', error: msg };
   }
+};
 }
+export const sendEmailDetailed = createEmailSender({
+  client,
+  isSuppressed,
+  recipientAllowed: to => stagingRecipientAllowed(to, process.env.AU7O_STAGING_EMAIL_ALLOWLIST),
+});
 
 /**
  * Build the HTML body of the password-reset email. Kept here so the

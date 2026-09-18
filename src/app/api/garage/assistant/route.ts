@@ -1,15 +1,17 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
+import { canUsePersonalVehicle } from '@/lib/vehicle-capabilities';
 import { prisma } from '@/lib/db';
 import { MAINTENANCE_SCHEDULES } from '@/lib/maintenance';
 import { logApiCost, isBudgetExceeded } from '@/lib/costs';
 import {
   isMaintenanceMutationError,
+  MaintenanceMutationError,
   isRecordBody,
 } from '@/lib/maintenance-mutation';
 import { createGarageAssistantToolBatchExecutor } from '@/lib/garage-assistant-tool-batch';
 import { executeGarageAssistantProductionTool } from '@/lib/garage-assistant-production-tool';
-import { committedGarageActionFallback, resolveCommittedGarageActionMessage } from '@/lib/garage-assistant-response';
+import { runGarageAssistantConversation } from '@/lib/garage-assistant-conversation';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
@@ -135,7 +137,7 @@ function getSystemPrompt(
     : 'No vehicles in garage yet.';
 
   const maintenanceTypes = Object.entries(MAINTENANCE_SCHEDULES)
-    .map(([id, s]) => `- ${id}: ${s.name} (every ${s.defaultIntervalMiles.toLocaleString()} mi)`)
+    .map(([id, s]) => `- ${id}: ${s.name}`)
     .join('\n');
 
   let contextInfo = '';
@@ -177,7 +179,9 @@ Available maintenance types:
 ${maintenanceTypes}${contextInfo}
 
 When the user mentions a vehicle by name, use the matching vehicle ID from the list above.
-When logging maintenance, always ask for the mileage if not provided.
+When logging maintenance, ask for the completion date and service mileage if either is missing. Do not infer the service mileage from the vehicle's current mileage, or assume the service happened today.
+Plan all explicitly requested services before writing. You may read vehicle information first; then include every ready maintenance log and any requested mileage update in a single tool-call batch. Updating mileage alone does not log a completed service. For example, an oil and filter change plus spark plugs requires both oil_change and spark_plugs records. Do not silently omit a requested service.
+Do not invent related work: front-only brakes do not mean rear or all-axle brakes. If the available maintenance type cannot represent the stated scope accurately, ask a focused clarification before logging that service. Preserve user-supplied service scope in notes.
 Be conversational and helpful. Confirm actions only after the corresponding tool call completed successfully. If details are missing, ask one focused follow-up and do not imply anything was saved.
 If the user says "yes" or confirms logging an overdue/due soon item, use the correct vehicle ID and maintenance type.
 If the user asks about something outside of vehicle/maintenance management, politely explain you can only help with garage-related tasks.
@@ -216,6 +220,9 @@ export async function POST(request: Request) {
     const message = requestBody.message;
     const conversationHistory = requestBody.conversationHistory ?? [];
     const vehicleContext = requestBody.vehicleContext as VehicleContext | undefined;
+    const betaVehicleId = !session.user.capabilities?.personalAi && typeof vehicleContext?.vehicleId === 'string'
+      && await canUsePersonalVehicle(session.user.id, vehicleContext.vehicleId) ? vehicleContext.vehicleId : null;
+    if (!session.user.capabilities?.personalAi && !betaVehicleId) return NextResponse.json({ error: 'hub_required' }, { status: 403 });
 
     if (!message || typeof message !== 'string' || message.length > 8_000) {
       return NextResponse.json({ error: 'Message required' }, { status: 400 });
@@ -231,7 +238,7 @@ export async function POST(request: Request) {
 
     // Get user's vehicles for context
     const vehicles = await prisma.vehicle.findMany({
-      where: { userId: session.user.id },
+      where: { userId: session.user.id, ...(betaVehicleId ? { id: betaVehicleId } : {}) },
       select: {
         id: true,
         year: true,
@@ -263,66 +270,16 @@ export async function POST(request: Request) {
       { role: 'user', content: message },
     ];
 
-    // Call OpenAI with tools
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: 'gpt-5.6-sol',
-        messages,
-        tools,
-        tool_choice: 'auto',
-        max_completion_tokens: 500,
-      }),
-      signal: AbortSignal.timeout(25_000),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
-      console.error('OpenAI API error:', response.status, errorData);
-      return NextResponse.json(
-        { error: errorData.error?.message || 'Failed to process request' },
-        { status: 500 }
-      );
-    }
-
-    const data = await response.json();
-    const assistantMessage = data.choices[0].message;
-
-    // Story 7.1: Log API cost for initial call
-    if (data.usage) {
-      logApiCost(
-        'garage_assistant',
-        data.usage.prompt_tokens || 0,
-        data.usage.completion_tokens || 0,
-        'gpt-5.6-sol'
-      );
-    }
-
-    // Check if there are tool calls to execute
-    if (assistantMessage.tool_calls && assistantMessage.tool_calls.length > 0) {
-      const { toolResults, actions } = await executeGarageAssistantToolBatch(
-        assistantMessage.tool_calls,
-        session.user.id,
-      );
-
-      // Get final response after tool execution
-      const followUpMessages = [
-        ...messages,
-        assistantMessage,
-        ...toolResults.map(tr => ({
-          role: 'tool' as const,
-          tool_call_id: tr.tool_call_id,
-          content: tr.output,
-        })),
-      ];
-
-      let followUpResponse: Response;
-      try {
-        followUpResponse = await fetch('https://api.openai.com/v1/chat/completions', {
+    const result = await runGarageAssistantConversation({
+      messages,
+      executeBatch: (calls) => (betaVehicleId ? createGarageAssistantToolBatchExecutor({ prisma, executeTool: async (name, args, userId, tx, now) => {
+        if (name === 'list_vehicles') return JSON.stringify(vehicleList);
+        if (args.vehicleId !== betaVehicleId) throw new MaintenanceMutationError('This trial covers only its claimed vehicle.', 403);
+        return executeGarageAssistantProductionTool(name, args, userId, tx, now);
+      } }) : executeGarageAssistantToolBatch)(calls, session.user.id),
+      complete: async (roundMessages, allowTools, timeoutMs) => {
+        if (isBudgetExceeded()) throw new Error('Garage assistant API budget exceeded');
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -330,46 +287,25 @@ export async function POST(request: Request) {
           },
           body: JSON.stringify({
             model: 'gpt-5.6-sol',
-            messages: followUpMessages,
+            messages: roundMessages,
+            ...(allowTools ? { tools, tool_choice: 'auto' } : {}),
             max_completion_tokens: 500,
           }),
-          signal: AbortSignal.timeout(25_000),
+          signal: AbortSignal.timeout(timeoutMs),
         });
-      } catch {
-        return NextResponse.json({ message: committedGarageActionFallback(actions), actions });
-      }
-
-      if (!followUpResponse.ok) {
-        // Return tool results directly if follow-up fails
-        return NextResponse.json({
-          message: committedGarageActionFallback(actions),
-          actions,
-        });
-      }
-
-      const followUpData = await followUpResponse.json().catch(() => null);
-
-      // Story 7.1: Log API cost for follow-up call
-      if (followUpData?.usage) {
-        logApiCost(
-          'garage_assistant',
-          followUpData.usage.prompt_tokens || 0,
-          followUpData.usage.completion_tokens || 0,
-          'gpt-5.6-sol'
-        );
-      }
-
-      return NextResponse.json({
-        message: resolveCommittedGarageActionMessage(followUpData, actions),
-        actions,
-      });
-    }
-
-    // No tool calls - just return the message
-    return NextResponse.json({
-      message: assistantMessage.content,
-      actions: null,
+        if (!response.ok) {
+          console.error('OpenAI garage assistant error:', response.status);
+          throw new Error('Failed to process garage assistant request');
+        }
+        const data = await response.json();
+        if (data.usage) {
+          logApiCost('garage_assistant', data.usage.prompt_tokens || 0,
+            data.usage.completion_tokens || 0, 'gpt-5.6-sol');
+        }
+        return data;
+      },
     });
+    return NextResponse.json(result);
 
   } catch (error) {
     if (isMaintenanceMutationError(error)) {

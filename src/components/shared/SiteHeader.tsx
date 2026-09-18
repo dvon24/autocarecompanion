@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { EnrollmentOfferGate } from '@/components/auth/EnrollmentOfferGate';
+import { MemberHeaderAction } from './MemberHeaderAction';
 
 /**
  * Site header — the production sticky nav, extracted so pages other than the
@@ -8,8 +10,8 @@ import Image from 'next/image';
  * LandingPage is deliberately NOT refactored to use this, so the live homepage
  * can't be broken by a change here.
  *
- * Public account entry points are intentionally absent. Callers may provide a
- * non-auth primary action such as the Vehicle Twin reservation anchor.
+ * Signed-in members can return to Account. Anonymous callers may provide a
+ * primary action such as the Vehicle Twin reservation anchor.
  */
 const navLink: React.CSSProperties = {
   fontSize: 13.5,
@@ -58,25 +60,9 @@ export function SiteHeader({
         <nav className="site-nav-links" style={{ display: 'flex', alignItems: 'center', gap: 22 }}>
           <Link href="/known-issues" style={navLink}>Known Issues</Link>
           <Link href="/drive" style={navLink}>Drive</Link>
-          <Link href="/subscribe" style={navLink}>Pricing</Link>
-          <Link
-            href={ctaHref}
-            style={{
-              padding: '8px 16px',
-              background: 'var(--ink, #0B1220)',
-              color: '#fff',
-              borderRadius: 10,
-              fontSize: 13,
-              fontWeight: 600,
-              textDecoration: 'none',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {/* Full label on desktop, short one on phones — "Reserve my spot"
-                eats the whole bar at 390px. */}
-            <span className="cta-label-full">{ctaLabel}</span>
-            <span className="cta-label-short">{ctaShortLabel}</span>
-          </Link>
+          <EnrollmentOfferGate><Link href="/subscribe" style={navLink}>Pricing</Link></EnrollmentOfferGate>
+          <MemberHeaderAction fallbackHref={ctaHref} fallbackLabel={ctaLabel} fallbackShortLabel={ctaShortLabel}
+            enrollment={ctaHref === '#reserve' || ctaHref.startsWith('/reserve/')} />
         </nav>
       </div>
     </header>

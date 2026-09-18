@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
+import { useSessionMarkerReady } from '@/components/auth/SessionProvider';
 import { GarageAssistant } from '@/components/garage/GarageAssistant';
 import { ServiceRecords } from '@/components/maintenance/ServiceRecords';
 import { PageLayout } from '@/components/ui/PageLayout';
@@ -17,6 +18,8 @@ interface Vehicle {
   vin?: string | null;
   nickname?: string | null;
   currentMileage?: number | null;
+  transmission?: string | null;
+  reviewedEquipmentId?: string | null;
 }
 
 async function fetchCompleteHistory(vehicleId: string): Promise<ServiceRecordView[]> {
@@ -35,7 +38,8 @@ async function fetchCompleteHistory(vehicleId: string): Promise<ServiceRecordVie
 }
 
 export function GarageServiceRecordsClient() {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
+  const sessionMarkerReady = useSessionMarkerReady();
   const router = useRouter();
   const params = useParams();
   const vehicleId = params.id as string;
@@ -67,16 +71,26 @@ export function GarageServiceRecordsClient() {
   }, [router, vehicleId]);
 
   useEffect(() => {
-    if (status === 'unauthenticated') router.replace('/subscribe');
+    if (!sessionMarkerReady) return;
+    if (status === 'unauthenticated') router.replace(`/auth/signin?callbackUrl=${encodeURIComponent(`/garage/${encodeURIComponent(vehicleId)}/records`)}`);
     else if (status === 'authenticated' && vehicleId) void fetchData();
-  }, [fetchData, router, status, vehicleId]);
+  }, [fetchData, router, sessionMarkerReady, status, vehicleId]);
 
   const deleteRecord = async (recordId: string) => {
     if (!window.confirm('Delete this maintenance record?')) return;
     const response = await fetch(`/api/maintenance/${encodeURIComponent(recordId)}`, { method:'DELETE' });
     const payload = await response.json().catch(() => ({}));
     if (!response.ok) throw new Error(payload.message || payload.error || 'Could not delete this record.');
+    // Deletion may move the invoice total to a surviving job. Keep the confirmed
+    // deletion, but do not expose the old totals while reloading canonical rows.
     setRecords((current) => current.filter((record) => record.id !== recordId));
+    setRecordsError('Deletion confirmed. Refreshing the remaining service records.');
+    try {
+      setRecords(await fetchCompleteHistory(vehicleId));
+      setRecordsError(null);
+    } catch {
+      setRecordsError('Deletion confirmed, but the remaining records could not be refreshed. Retry before relying on totals or printing.');
+    }
   };
 
   if (status === 'loading' || loading) return <PageLayout backLink={{ href:'/garage', label:'Back to Garage' }}><div className="grid min-h-[45vh] place-items-center text-sm text-slate-500">Loading service records…</div></PageLayout>;
@@ -88,6 +102,8 @@ export function GarageServiceRecordsClient() {
         vehicle={vehicle}
         records={records}
         recordsError={recordsError}
+        canManageMaintenance={session?.user?.capabilities?.maintenance === true}
+        onReviewSaved={fetchData}
         onRetry={fetchData}
         onRecordAdded={(record) => {
           setRecords((current) => [record, ...current.filter((item) => item.id !== record.id)]);

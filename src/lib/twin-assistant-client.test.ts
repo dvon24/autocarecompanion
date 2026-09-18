@@ -32,6 +32,11 @@ test('routes only clear owner write intent to authenticated garage tools', async
   assert.equal(isTwinMutationIntent('Mileage is 156000 and I changed the oil today'), true);
   assert.equal(isTwinMutationIntent('Log my rear differential service at 65,000 miles'), true);
   assert.equal(isTwinMutationIntent('When should I change the oil?'), false);
+  assert.equal(isTwinMutationIntent('How do I change my oil at 60,000 miles?'), false);
+  assert.equal(isTwinMutationIntent('I only had 9 quarts of oil for the Camaro ZL1 1LE when I changed it yesterday. Can I use a dexos 2 version in Germany or regular 0w-40 to top up?'), false);
+  assert.equal(isTwinMutationIntent('I changed the oil yesterday, where can I buy another quart?'), false);
+  assert.equal(isTwinMutationIntent('Can you log my oil change at 60000 miles today?'), true);
+  for (const question of ['I changed my oil yesterday and need advice about topping it up', 'I had an oil leak after a service', 'I need to know whether I should add oil']) assert.equal(isTwinMutationIntent(question), false, question);
   assert.equal(isTwinMutationIntent('What does the odometer measure?'), false);
   assert.equal(isTwinMutationIntent('Log this at 65,000 miles'), false);
   assert.equal(isTwinMutationIntent('Log this at 65,000 miles', true), true);
@@ -152,6 +157,20 @@ test('normalizes reviewed selected-node evidence without copying nested instruct
   });
 });
 
+test('partial mileage success preserves the remaining service question', async () => {
+  const result = await sendTwinAssistantMessage({
+    ownerVehicleId:'owner-1', vehicle:{ year:2019, make:'Chevrolet', model:'Camaro' },
+    messages:[{ role:'user', content:'Update my mileage and log my oil change' }],
+    fetcher:async () => new Response(JSON.stringify({
+      message:'What date did you change the oil?',
+      actions:[{tool:'update_mileage', result:'Updated mileage to 60,000 miles.'}],
+    }), {status:200}),
+  });
+  assert.match(result.text, /Updated mileage/);
+  assert.match(result.text, /What date/);
+  assert.equal(result.awaitingMutationDetails, true);
+});
+
 test('streams the shared mechanic response and sends fitment plus selected component', async () => {
   let sentBody: Record<string, unknown> | null = null;
   const encoder = new TextEncoder();
@@ -173,6 +192,7 @@ test('streams the shared mechanic response and sends fitment plus selected compo
   const selectedNode = { label:'Rear differential fluid', spec:'75W-85 GL-5' };
   const result = await streamTwinAssistant({
     vehicle,
+    ownerVehicleId:'exact-owner-car',
     messages:[{ role:'user', content:'How much modifier do I add?' }],
     selectedNode,
     fetcher,
@@ -184,7 +204,8 @@ test('streams the shared mechanic response and sends fitment plus selected compo
   assert.equal(result.sessionId, 'session-1');
   assert.deepEqual(tokens, ['Use the fill plug first. ', 'Modifier counts toward capacity.']);
   assert.deepEqual(sessions, ['session-1']);
-  const requestBody = sentBody as unknown as { vehicle: unknown; selectedNode: unknown };
+  const requestBody = sentBody as unknown as { vehicle: unknown; selectedNode: unknown; ownerVehicleId: string };
+  assert.equal(requestBody.ownerVehicleId, 'exact-owner-car');
   assert.deepEqual(requestBody.vehicle, vehicle);
   assert.deepEqual(requestBody.selectedNode, selectedNode);
 });

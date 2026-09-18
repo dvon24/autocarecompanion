@@ -7,16 +7,14 @@ import { PricingTiers } from '@/components/pricing/PricingTiers';
 import { MobilePricing } from '@/components/pricing/MobilePricing';
 import type { Tier, TierId, BillingInterval } from '@/lib/pricing/tiers';
 import { regionDisplayName } from '@/lib/pricing/region-display';
+import { EnrollmentOfferGate } from '@/components/auth/EnrollmentOfferGate';
 
 /**
  * /subscribe client. Renders pricing tiers + handles checkout dispatch.
  *
  * `regionAllowed` is driven by the server component using Vercel's geo
  * header (see src/lib/pricing/region.ts). When false:
- *   - Free tier button opens the public known-issues catalog
- *   - Plus + Pro buttons gray out with a "US only" label
- *   - A banner up top tells the visitor what's going on so they don't
- *     bounce thinking the site is broken
+ *   - Paid offers are hidden, with links to free known issues and account management
  *   - As a backstop, the create-checkout API also returns 403 if the
  *     gate is somehow bypassed (e.g. direct API call)
  */
@@ -44,8 +42,16 @@ export function SubscribeClient({
   // the WebView, so swap the whole purchase UI for an informational panel.
   // Keyed on the UA marker (server-detected), never on screen size — phone
   // browsers are plain web and keep full checkout.
-  if (appMode) return <AppSubscribeInfo />;
-  return <SubscribeCheckout country={country} regionAllowed={regionAllowed} />;
+  const unavailable = <main className="mx-auto min-h-screen max-w-2xl px-5 py-12">
+    <h1 className="text-2xl font-semibold">Paid plans are available in the US only.</h1>
+    <p className="mt-3">Existing account access and cancellation remain available. Free written known issues and public demos are available everywhere.</p>
+    <Link href="/known-issues" className="mt-4 inline-block text-blue-600 underline">Browse known issues</Link>
+    <Link href="/account" className="ml-5 text-blue-600 underline">Manage your account</Link>
+  </main>;
+  if (!regionAllowed) return unavailable;
+  return <EnrollmentOfferGate fallback={unavailable}>
+    {appMode ? <AppSubscribeInfo /> : <SubscribeCheckout country={country} regionAllowed={regionAllowed} />}
+  </EnrollmentOfferGate>;
 }
 
 function SubscribeCheckout({

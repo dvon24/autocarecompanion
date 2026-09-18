@@ -1,4 +1,3 @@
-"use client";
 /**
  * Turn the demo tree into a real one.
  *
@@ -25,12 +24,12 @@
  * sharing is load-bearing: ttMarkDone() mutates a node in place, and marking a
  * part done inside the engine tree has to show up in the whole-car tree too.
  */
-import { TT_TREES } from "./stage/TechTree";
+import { TT_TREES } from "./twin-tree-data";
 import { ebayAffiliate } from "@/lib/ebay-affiliate";
 import { nextRoutineMileage } from "./maintenance-schedule";
 
 const AUTO_FLUID_URL = "https://www.ebay.com/itm/152808690128";
-const MANUAL_FLUID_URL = "https://www.ebay.com/itm/389013189748";
+const MANUAL_FLUID_URL = "https://store.mopar.com/oem-parts/mopar-mopar-atf-4-transmission-fluid-68218057ac";
 
 const MANUAL_TRANSMISSION_TREE = {
   label:"Transmission", short:"Transmission", root:"trx",
@@ -39,9 +38,11 @@ const MANUAL_TRANSMISSION_TREE = {
       partNo:"—", where:"Behind the engine, under the tunnel", spec:"Tremec TR-6060 · 6-speed manual", price:"—",
       life:"ATF+4 is the factory-specified lubricant even though this is a manual gearbox" },
     transFluid:{ label:"Manual Transmission Fluid", sub:"Mopar ATF+4 · MS-9602", img:"/twin-stage/parts/part-transmission-fluid.webp", kids:[], riskAt:60000,
-      partNo:"68218057AC", brand:"Genuine Mopar ATF+4", where:"Manual-transmission fill plug", spec:"Approx. 3.4 qt dry capacity · fill 1/4 in below the plug using the service procedure", price:"$51.85 / 6-qt set when reviewed", stock:"eBay · new · add-to-cart live when reviewed",
+      partNo:"68218057AC", brand:"Genuine Mopar ATF+4", where:"Manual-transmission fill plug", spec:"2015 Challenger 6.4L TR-6060 requires ATF+4. Approx. 3.4 US qt dry capacity; use the exact service procedure and fill 1/4 in below the fill-plug hole. The listing sells six one-quart bottles; do not pour the complete pack into the gearbox.", price:"$51.78 / six 1-qt bottles when reviewed", stock:"Mopar eStore · pack of six · add-to-cart available when reviewed",
+      componentRole:"manual-transmission-fluid",soldQuarts:6,purchaseQuantity:1,reviewedAt:"2026-09-08",fitmentReviewed:true,
+      sourceUrl:"https://starparts.chrysler.com/Fluids/2015LA_Fluids.html",sourceLabel:"2015 Challenger TechCONNECT fluid chart · 6.4L TR-6060",
       life:"Inspect per the owner schedule; owner-facing service plan uses 60,000 mi",
-      buyUrl:ebayAffiliate(MANUAL_FLUID_URL, "twin-challenger-manual-fluid"), buyLabel:"Order manual-transmission fluid" },
+      buyUrl:MANUAL_FLUID_URL, buyLabel:"Buy six-quart Mopar ATF+4 pack" },
     transPlug:{ label:"Fill Plug Seal", sub:"Confirm the service hardware", img:"/twin-stage/parts/part-drain-plug.webp", kids:[],
       partNo:"Verify by VIN", brand:"Mopar service hardware", where:"Fill plug on the manual transmission", spec:"Use the exact service procedure and torque for the installed TR-6060", price:"Verify current price", stock:"Confirm by VIN before ordering",
       life:"Replace one-time-use hardware whenever specified by the service procedure" },
@@ -69,9 +70,9 @@ export const TWIN_INTERVALS = {
   wipL: 12000,
   wipR: 12000,
   // Wear items: the demo's numbers were already sane as intervals.
-  // The owner action on the tire node is a rotation/condition check, not a
-  // claim that the tire was replaced. Challenger's schedule uses 6,000 mi.
-  tire: 6000,
+  // Tire replacement has no rotation-derived life. Saved owner deadlines and
+  // installed-tire lifespan can supply a separate, explicit replacement clock.
+  tire: null,
   pads: 45000,
   rotor: 70000,
   padsR: 80000,
@@ -100,10 +101,18 @@ export const TWIN_MAINT_NODES = {
   brake_fluid: ["brakeFluid"],
   wiper_blades: ["wipL", "wipR"],
   coolant_flush: ["coolant"],
-  tire_rotation: ["tire"],
+  // Rotation is history, not evidence that a worn tire was replaced.
+  tire_rotation: [],
   tire_replacement: ["tire"],
-  brake_service: ["pads", "rotor", "padsR", "rotorR"],
-  cooling_system_service: ["radCore"],
+  // Generic/partial work cannot identify replacement of every component.
+  brake_service: [],
+  cooling_system_service: [],
+  front_brake_pads: ["pads"],
+  rear_brake_pads: ["padsR"],
+  front_brake_rotors: ["rotor"],
+  rear_brake_rotors: ["rotorR"],
+  radiator_replacement: ["radCore"],
+  other_service: [],
   differential_fluid: ["diffFluid"],
 };
 
@@ -117,12 +126,12 @@ export const TWIN_NODE_SERVICE = {
   coolant:{type:"coolant_flush", label:"Coolant service"},
   wipL:{type:"wiper_blades", label:"Wiper blades"},
   wipR:{type:"wiper_blades", label:"Wiper blades"},
-  tire:{type:"tire_rotation", label:"Tire rotation and inspection"},
-  pads:{type:"brake_service", label:"Front brake service"},
-  rotor:{type:"brake_service", label:"Front rotor service"},
-  padsR:{type:"brake_service", label:"Rear brake service"},
-  rotorR:{type:"brake_service", label:"Rear rotor service"},
-  radCore:{type:"cooling_system_service", label:"Radiator service"},
+  tire:{type:"tire_replacement", label:"Tire replacement"},
+  pads:{type:"front_brake_pads", label:"Front brake pads replaced"},
+  rotor:{type:"front_brake_rotors", label:"Front brake rotors replaced"},
+  padsR:{type:"rear_brake_pads", label:"Rear brake pads replaced"},
+  rotorR:{type:"rear_brake_rotors", label:"Rear brake rotors replaced"},
+  radCore:{type:"radiator_replacement", label:"Radiator replaced"},
   diffFluid:{type:"differential_fluid", label:"Rear differential fluid service"},
 };
 
@@ -197,7 +206,7 @@ function dueNoteFor(node, miles, interval) {
 
 function applyServiceEvidence(node, rawService, id, interval, miles, currentDate) {
   const action = TWIN_NODE_SERVICE[id];
-  if (action && interval) {
+  if (action && (interval || id === 'tire')) {
     node.maintenanceType = action.type;
     node.serviceLabel = action.label;
     node.serviceIntervalMiles = interval;
@@ -258,7 +267,7 @@ export function buildTwinTrees(serviced, miles, transmission, evaluatedAt = null
     for (const [id, base] of Object.entries(tree.nodes)) {
       if (shared[id]) continue;
       const node = { ...base };
-      const interval = TWIN_INTERVALS[id] != null ? TWIN_INTERVALS[id] : base.riskAt;
+      const interval = Object.prototype.hasOwnProperty.call(TWIN_INTERVALS,id) ? TWIN_INTERVALS[id] : base.riskAt;
 
       if (svc[id] == null) {
         /* NEVER LOGGED IS NOT OVERDUE.
@@ -278,7 +287,7 @@ export function buildTwinTrees(serviced, miles, transmission, evaluatedAt = null
         // Only a part with a real interval is "unlogged" in any meaningful
         // sense. Calipers, wheels and the radiator's two option nodes are not
         // service items, so they carry no state either way.
-        if (interval || TWIN_TIME_INTERVALS[id]) node.unlogged = true;
+        if (id === 'tire' || interval || TWIN_TIME_INTERVALS[id]) node.unlogged = true;
       }
       applyServiceEvidence(node, svc[id], id, interval, miles, currentDate);
       shared[id] = node;
@@ -305,7 +314,9 @@ export function buildTwinTrees(serviced, miles, transmission, evaluatedAt = null
       buyLabel: "Order 6-qt automatic drain-and-fill set",
       price: "$179.95 / 6-qt set when reviewed",
       stock: "eBay · new · more than 10 available when reviewed",
-      spec: "4.0 qt typical pan drain-and-fill · 7.6 qt full system · use the exact temperature-level procedure · never substitute ATF+4",
+      spec: "2015 Challenger 6.4L / ZF 8HP70: the factory chart gives 9.0 US qt (8.5 L) for an overhaul/dry fill, not a routine drain-and-fill quantity. Actual service quantity depends on what was drained and the cooling circuit. Set the level with the exact temperature-based service procedure; never pour the dry-fill capacity into a partially filled transmission or substitute ATF+4.",
+      sourceUrl: "https://starparts.chrysler.com/Fluids/2015LA_Fluids.html",
+      sourceLabel: "2015 Challenger factory fluids chart — 8HP70 overhaul capacity",
     });
     out.car.nodes.car = { ...out.car.nodes.car, life:"Four verified systems tracked · automatic transmission confirmed" };
   } else if (transmission === "manual" && out.trans && out.car) {
@@ -344,7 +355,9 @@ export function buildTwinTrees(serviced, miles, transmission, evaluatedAt = null
       partNo:manualRearAxle ? "Base oil 68232947AB → 68232947AD · modifier must be verified separately" : "68232947AB → 68232947AD",
       brand:manualRearAxle ? "Mopar OD 75W-85 base gear oil + compatible limited-slip friction modifier" : "Mopar OD Synthetic Gear Lubricant",
       where:"Rear axle differential housing",
-      spec:`SAE 75W-85 API GL-5 · ${manualRearAxle ? "limited-slip axle; the former Mopar LSD-labelled 75W-85 is no longer presented as a current buyable product, so use compatible base oil plus separately dosed modifier only after checking the modifier's current directions; modifier volume counts toward the 1.16 qt total" : "automatic-transmission axle"} · 1.16 qt nominal capacity`,
+      spec:"The factory chart distinguishes standard and limited-slip 230 mm axles; transmission type alone does not identify which is installed. Confirm the axle and its current approved lubricant by VIN. Nominal capacity is 1.16 US qt. If a separate modifier is prescribed, its volume counts toward the final fill level; bottle size is not a verified dose.",
+      commerceStatus:"fitment-hold",fitmentReviewed:false,
+      holdReason:"Confirm the installed axle and current approved lubricant/modifier combination and dose before ordering. The base gear oil is not presented as a complete limited-slip service kit.",
       price:manualRearAxle ? "Base oil and modifier price must be verified" : "$17.07 listed",
       stock:manualRearAxle ? "Former LSD-labelled fluid is unavailable; exact current modifier link held for review" : "MoparPartsGiant · add-to-cart live when reviewed",
       buyUrl:manualRearAxle ? null : "https://www.moparpartsgiant.com/parts/mopar-lubricant-gear~68232947ad.html",

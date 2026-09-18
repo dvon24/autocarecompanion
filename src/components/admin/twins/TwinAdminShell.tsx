@@ -11,9 +11,11 @@ import { attachKnownIssueDetails, buildDemoTwinPresentation, resolveTwinTrees } 
 import { getReviewedTransmissionChoices, type TransmissionChoice } from '@/lib/transmission-options';
 import type { TwinIssueSummary } from '@/lib/twin-known-issues';
 import type { AdminOverviewData } from '@/app/api/admin/overview/admin-overview';
+import { VisualSignupsPanel } from './VisualSignupsPanel';
+import { AdminSignupsPanel } from './AdminSignupsPanel';
 
 type AdminTwin = Pick<VehicleTwinCatalogEntry,'id'|'identity'|'demoMileage'|'sampleState'|'treeResolver'|'ownerReady'|'treeStatus'|'fulfillmentId'|'paintPalette'|'art'|'hotspots'|'systems'> & {issues?:readonly TwinIssueSummary[];issuesComplete?:boolean};
-type AdminTab = 'overview'|'gallery'|'operations';
+type AdminTab = 'overview'|'gallery'|'signups'|'operations';
 type Asset = {id:string;label:string;src:string;kind:'base'|'effect'|'xray'};
 type AdminReviewTree = {root?:string;label?:string;short?:string;nodes?:Record<string,unknown>};
 type AdminTreeReviewModel = {error:string;presentation:null;branches:{id:string;label:string}[]}|{error:null;presentation:ReturnType<typeof buildDemoTwinPresentation>;branches:{id:string;label:string}[]};
@@ -57,6 +59,7 @@ export function AdminOverviewView({twins,state,onOpenGallery=()=>{},onOpenTwin=(
   const failedSources=data?Object.entries(data.sources).filter(([,source])=>source.error).map(([source])=>source):[];
   return <>
     <section className="page-head"><div><div className="eyebrow">Overview</div><h1>Admin Dashboard</h1><p>Founder-only operational data. Unsupported analytics stay visibly unavailable.</p></div><button className="primary" onClick={onOpenGallery}>Open Twin Gallery <Icon name="chevron" size={14}/></button></section>
+    <VisualSignupsPanel />
     <section className="brief"><div className="brief-icon"><Icon name="spark2" size={19}/></div><div><strong>Operator brief</strong><p>{data?(data.sources.issues.error?'Issue coverage is unavailable; other operational sources remain visible.':`${data.kpis.issuesWithoutBuyLinks.toLocaleString()} of the ${data.coverage.scanned.toLocaleString()} most recently updated issues scanned have no renderable buy link; ${data.sources.reservations.error?'reservation data is unavailable':`${data.queues.reservations.total} reservations remain open`}.`):`${mapped} of ${twins.length} twins have model-specific evidence while operational records load.`}</p></div><span>{records} labeled sample records</span></section>
     {failedSources.length>0&&<section role="alert" className="brief"><div className="brief-icon"><Icon name="alert" size={18}/></div><div><strong>Partial Admin data</strong><p>{failedSources.join(', ')} unavailable. Healthy panels remain live; unavailable values are not inferred.</p></div></section>}
     <section className="metrics">{data?<><Metric label="Interest list" value={data.sources.interests.error?'—':data.kpis.interestTotal.toLocaleString()} note={data.sources.interests.error?'Unavailable':`+${data.kpis.interestAdded7d} in 7 days`}/><Metric label="Twin reservations" value={data.sources.reservations.error?'—':data.kpis.reservationTotal.toLocaleString()} note={data.sources.reservations.error?'Unavailable':`${data.kpis.reservationOpen} still open`} tone="#7C3AED"/><Metric label="Live twins" value={ready} note={`${twins.length-ready} demo / mapping`} tone="#0A7A55"/><Metric label="Affiliate clicks" value={data.sources.clicks.error?'—':data.kpis.affiliateClicks30d.toLocaleString()} note={data.sources.clicks.error?'Unavailable':data.kpis.deepLinkRate==null?'No clicks in 30 days':`${data.kpis.deepLinkRate}% product links`} tone="#9A6414"/></>:<><Metric label="Catalog twins" value={twins.length} note="Live catalog"/><Metric label="Owner ready" value={ready} note="Claim-gated"/><Metric label="Operational KPIs" value="—" note={state.error?'Unavailable':'Loading'}/><Metric label="Affiliate clicks" value="—" note={state.error?'Unavailable':'Loading'}/></>}</section>

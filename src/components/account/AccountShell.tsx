@@ -12,10 +12,10 @@ import { ReactNode } from 'react';
  * layout decisions in one file so future reordering doesn't fight
  * with shell knobs.
  */
-export function AccountShell({ children }: { children: ReactNode }) {
+export function AccountShell({ children, accountOnly = false }: { children: ReactNode; accountOnly?: boolean }) {
   return (
-    <div className="min-w-0 max-w-full overflow-x-clip">
-      <div
+    <div className="min-w-0 max-w-full overflow-x-clip bg-[#F7F6F2] text-[#0B1220]">
+      {!accountOnly && <div
         className="border-b"
         style={{
           background: '#FEF3C7',
@@ -42,7 +42,7 @@ export function AccountShell({ children }: { children: ReactNode }) {
             Premium features (SMS reminders, push alerts, cross-device sync) are still in active development. What you see today is a read-only history of your chats, diagnoses, and saved vehicles.
           </span>
         </div>
-      </div>
+      </div>}
 
       <div
         className="max-w-[1040px] min-w-0 mx-auto px-4 pb-12 pt-[30px] sm:px-6"
@@ -57,7 +57,7 @@ export function AccountShell({ children }: { children: ReactNode }) {
           className="text-sm text-slate-600"
           style={{ margin: '6px 0 26px' }}
         >
-          Your garage, activity, plan, and data — all in one place.
+          {accountOnly ? 'Your Visual access, plan, and account settings.' : 'Your garage, activity, plan, and data — all in one place.'}
         </p>
 
         {children}

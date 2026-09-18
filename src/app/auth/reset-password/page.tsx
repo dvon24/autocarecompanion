@@ -4,11 +4,15 @@ import { Suspense, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import { safeInternalCallback } from '@/lib/auth-callback';
 
 function ResetPasswordForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const token = searchParams.get('token') || '';
+  const callbackUrl = safeInternalCallback(searchParams.get('callbackUrl'), '/account');
+  const signin = `/auth/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`;
+  const recovery = `/auth/forgot-password?callbackUrl=${encodeURIComponent(callbackUrl)}`;
 
   const [password, setPassword] = useState('');
   const [confirm, setConfirm] = useState('');
@@ -20,7 +24,7 @@ function ResetPasswordForm() {
     return (
       <div className="text-center">
         <p className="text-gray-700 mb-4">This reset link is missing or malformed.</p>
-        <Link href="/auth/forgot-password" className="text-blue-600 hover:text-blue-700 font-medium">
+        <Link href={recovery} className="text-blue-600 hover:text-blue-700 font-medium">
           Request a new link
         </Link>
       </div>
@@ -51,7 +55,7 @@ function ResetPasswordForm() {
         return;
       }
       setDone(true);
-      setTimeout(() => router.push('/auth/signin'), 1500);
+      setTimeout(() => router.push(signin), 1500);
     } catch {
       setError('Network error. Try again.');
     } finally {
@@ -77,6 +81,7 @@ function ResetPasswordForm() {
       {error && (
         <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
           {error}
+          <Link href={recovery} className="block mt-3 underline">Request a new reset link</Link>
         </div>
       )}
       <form onSubmit={handleSubmit} className="space-y-4">

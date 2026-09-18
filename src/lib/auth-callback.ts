@@ -13,11 +13,15 @@ export function safeInternalCallback(
     || !value.startsWith('/')
     || value.startsWith('//')
     || value.includes('\\')
-    || /[\r\n]/.test(value)
+    || /[\x00-\x20\x7f]/.test(value)
   ) {
     return fallback;
   }
-  return value;
+  try {
+    const parsed = new URL(value, 'https://au7o.invalid');
+    if (parsed.origin !== 'https://au7o.invalid' || parsed.pathname.startsWith('//')) return fallback;
+    return parsed.pathname + parsed.search + parsed.hash;
+  } catch { return fallback; }
 }
 
 export function signinHref(callbackUrl: string): string {

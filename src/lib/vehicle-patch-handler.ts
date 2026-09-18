@@ -7,6 +7,7 @@ import { getLiveTwinForVehicle, normalizeTwinIdentityField } from '@/lib/twin-fu
 import { getTwinByFulfillmentId, getTwinPaintOptions } from '@/lib/vehicle-twin-catalog';
 import { parseVehiclePatch } from '@/lib/twin-route-contracts';
 import { isMaintenanceMutationError, nextMonotonicRevision } from '@/lib/maintenance-mutation';
+import { validOwnerEquipmentSelection } from './twin-owner-equipment';
 
 type Session = { user?: { id?: string | null; email?: string | null } } | null;
 const IDENTITY_CAS_CONFLICT = 'IDENTITY_CAS_CONFLICT';
@@ -58,8 +59,29 @@ export function createVehiclePatchHandler(deps: {
         if (catalog && !getTwinPaintOptions(catalog, existing.trim).some((paint) => paint.name === parsed.data.color)) {
           return NextResponse.json({ error: 'Choose a reviewed factory color for this exact vehicle.' }, { status: 400 });
         }
+        if (Object.keys(parsed.data).some((key) => key !== 'color' && key !== 'expectedUpdatedAt')) {
+          return NextResponse.json({ error: 'Save factory color separately from other vehicle changes.' }, { status: 400 });
+        }
+        if (!matchesVehicleRevision(parsed.data.expectedUpdatedAt, existing.updatedAt)) {
+          return NextResponse.json({ error: 'This vehicle changed. Refresh the saved color before trying again.' }, { status: 409 });
+        }
+        const nextRevision = nextMonotonicRevision(existing.updatedAt, deps.now?.() ?? new Date());
+        const guarded = await deps.prisma.$transaction(async (tx) => {
+          const changed = await tx.vehicle.updateMany({
+            where: { id, userId, updatedAt:existing.updatedAt, year:existing.year, make:existing.make, model:existing.model, trim:existing.trim, transmission:existing.transmission, reviewedEquipmentId:existing.reviewedEquipmentId, color:existing.color },
+            data: { color:parsed.data.color, updatedAt:nextRevision },
+          });
+          if (changed.count !== 1) return null;
+          return tx.vehicle.findUnique({ where:{ id } });
+        }, { isolationLevel:'Serializable' });
+        return guarded
+          ? NextResponse.json({ vehicle:guarded, paintSave:{ expectedUpdatedAt:parsed.data.expectedUpdatedAt } })
+          : NextResponse.json({ error:'This vehicle changed while the color was saving. Refresh and try again.' }, { status:409 });
       }
       const { isPrimary, currentMileage, annualMileage, transmission, expectedUpdatedAt, ...updateData } = parsed.data;
+      const equipmentExplicit = Object.prototype.hasOwnProperty.call(parsed.data, 'reviewedEquipmentId');
+      if (equipmentExplicit && !validOwnerEquipmentSelection({ ...existing, ...updateData }, updateData.reviewedEquipmentId)) return NextResponse.json({ error:'This equipment does not match the exact vehicle.' }, { status:400 });
+      if (equipmentExplicit && !matchesVehicleRevision(expectedUpdatedAt, existing.updatedAt)) return NextResponse.json({ error:'This vehicle changed. Refresh before confirming equipment.' }, { status:409 });
       if (transmission !== undefined && !isFounderEmail(session.user.email)) return NextResponse.json({ error: 'Only the founder fitment workflow can change this field' }, { status: 403 });
       const companions = getTransmissionPatchCompanionFields(parsed.data as Record<string, unknown>);
       if (companions.length) return NextResponse.json({ error: 'Save the transmission choice separately from other vehicle changes', fields: companions }, { status: 400 });
@@ -80,12 +102,14 @@ export function createVehiclePatchHandler(deps: {
         return guarded ? NextResponse.json({ vehicle: guarded }) : NextResponse.json({ error: 'This vehicle changed while the transmission choice was saving. Refresh and try again.' }, { status: 409 });
       }
       const vehicleUpdate: Record<string, unknown> = { ...updateData, isPrimary: isPrimary ?? existing.isPrimary };
+      // Any semantic identity change discards old confirmation, never history.
+      if (resolved.shouldWrite && !equipmentExplicit) vehicleUpdate.reviewedEquipmentId = null;
       if (resolved.shouldWrite) vehicleUpdate.transmission = resolved.transmission;
       if (currentMileage !== undefined) {
         vehicleUpdate.currentMileage = currentMileage; vehicleUpdate.lastMileageUpdate = new Date();
       }
       if (annualMileage !== undefined) vehicleUpdate.annualMileage = annualMileage;
-      if (resolved.shouldWrite) {
+      if (resolved.shouldWrite || equipmentExplicit) {
         vehicleUpdate.updatedAt = nextMonotonicRevision(existing.updatedAt, deps.now?.() ?? new Date());
         const guarded = await deps.prisma.$transaction(async (tx) => {
           if (isPrimary) await tx.vehicle.updateMany({ where: { userId, id: { not: id } }, data: { isPrimary: false } });

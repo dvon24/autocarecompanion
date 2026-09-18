@@ -74,6 +74,8 @@ test('maintenance email escapes dynamic facts and links to the exact owner vehic
       vehicleId:'vehicle/id?unsafe=1',
       vehicleName:'2020 <img src=x onerror=alert(1)>',
       currentMileage:65432,
+      vehicle:{id:'vehicle/id?unsafe=1',year:2020,make:'Cadillac',model:'XT6',trim:'Sport'},
+      destination:'hub',
       maintenanceType:'oil_change',
       maintenanceName:'Oil & filter <urgent>',
       status:{
@@ -87,7 +89,8 @@ test('maintenance email escapes dynamic facts and links to the exact owner vehic
   assert.match(html, /Devon &lt;script&gt;alert\(1\)&lt;\/script&gt;/);
   assert.match(html, /Oil &amp; filter &lt;urgent&gt;/);
   assert.doesNotMatch(html, /<img src=x/);
-  assert.match(html, /https:\/\/app\.au7o\.test\/garage\/vehicle%2Fid%3Funsafe%3D1\/records/);
+  assert.match(html, /https:\/\/app\.au7o\.test\/maintenance\/reminder\?vehicleId=vehicle%2Fid%3Funsafe%3D1&amp;view=records/);
+  assert.match(html, /\/maintenance\/reminder\?vehicleId=vehicle%2Fid%3Funsafe%3D1&amp;view=schedule/);
   assert.match(html, /65,432 mi/);
   assert.doesNotMatch(html, /Challenger|\$134\.00|sample/i);
 });
@@ -105,11 +108,14 @@ test('responsive and trust boundaries remain present in the affected UI entry po
   assert.match(historyPage, /nextOffset/);
   assert.match(historyPage, /offset=\$\{offset\}/);
   assert.match(redirectPage, /\/records/);
-  assert.match(logFlow, /minWidth: 'min\(100%, 220px\)'/);
-  assert.match(logFlow, /maintenance-mileage-error/);
+  assert.match(logFlow, /<ServiceReview/);
+  const review = await readFile('src/components/maintenance/ServiceReview.tsx', 'utf8');
+  assert.match(review, /minmax\(min\(100%,180px\),1fr\)/);
+  assert.match(review, /Odometer at service/);
   assert.match(tree, /onPointerDown=\{e=>e\.stopPropagation\(\)\}/);
   assert.match(tree, /className="web-scroll"[\s\S]*overflow:"auto"/);
-  assert.match(tree, /gridTemplateColumns:`repeat\(\$\{schedule\.columns\.length\}, minmax\(218px, 1fr\)\)`/);
+  assert(tree.includes('schedule.columns.length+(schedule.nextService?.length?1:0)'), 'One board includes the non-mileage service lane');
+  assert.match(tree, /minmax\(218px, 1fr\)/);
   assert.match(tree, /due at \{item\.dueMileage\.toLocaleString\(\)\} mi/);
   assert.match(account, /minmax\(0, 1fr\) minmax\(0, 340px\)/);
   assert.match(prompt, /response-only/);

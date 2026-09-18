@@ -89,17 +89,18 @@ export function calculateServiceRecordMetrics(
 ): ServiceRecordMetrics {
   let totalSpent = 0;
   let pricedRecordCount = 0;
-  let receiptCount = 0;
+  const receipts = new Set<string>();
   for (const record of records) {
     const cost = finiteCost(record.cost);
     if (cost != null) {
       totalSpent += cost;
       pricedRecordCount += 1;
     }
-    if (record.receiptUrl) receiptCount += 1;
+    if (record.receiptUrl) receipts.add(record.receiptUrl);
   }
 
   const latest = sortServiceRecords(records)[0];
+  const receiptCount = receipts.size;
   const milesSinceLatest = latest
     && typeof currentMileage === 'number'
     && Number.isFinite(currentMileage)

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { knownIssuesLimiter, getClientIp, rateLimitResponse } from '@/lib/rate-limit';
+import { dealerPlacesRequest, parseDealerSearchInput } from '@/lib/dealer-search';
 
 export const runtime = 'nodejs';
 export const maxDuration = 15;
@@ -7,7 +8,7 @@ export const maxDuration = 15;
 const GOOGLE_KEY = process.env.GOOGLE_PLACES_API_KEY;
 
 /**
- * POST /api/dealers/nearby — franchised dealers near the owner, for known
+ * POST /api/dealers/nearby — brand-specific dealer search near the owner, for known
  * issues whose fix is "see a dealer".
  *
  * Recall-first issues suppress every retail buy link on purpose: an open
@@ -20,7 +21,7 @@ const GOOGLE_KEY = process.env.GOOGLE_PLACES_API_KEY;
  * to shops that cannot perform warranty work.
  *
  * Degrades in three stages, so the feature is never a dead end:
- *   1. key set + owner shares location → ranked list, in page
+ *   1. key set + owner shares location or enters an area → list, in page
  *   2. no key / no match          → `available:false`, client shows a Google
  *                                   Maps search link (no permission needed)
  *   3. owner denies geolocation   → client never calls this at all, same link
@@ -52,25 +53,19 @@ export async function POST(request: NextRequest) {
   const limit = knownIssuesLimiter.check(ip);
   if (!limit.success) return rateLimitResponse(limit.reset);
 
-  if (!GOOGLE_KEY) {
-    return NextResponse.json({ available: false, reason: 'not_configured', dealers: [] });
-  }
-
-  let body: { make?: string; lat?: number; lng?: number };
+  let body: unknown;
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: 'bad_request' }, { status: 400 });
   }
 
-  const make = String(body.make || '').trim().slice(0, 40);
-  const { lat, lng } = body;
-  if (
-    !make ||
-    typeof lat !== 'number' || !Number.isFinite(lat) || lat < -90 || lat > 90 ||
-    typeof lng !== 'number' || !Number.isFinite(lng) || lng < -180 || lng > 180
-  ) {
+  const input = parseDealerSearchInput(body);
+  if (!input) {
     return NextResponse.json({ error: 'missing_params' }, { status: 400 });
+  }
+  if (!GOOGLE_KEY) {
+    return NextResponse.json({ available: false, reason: 'not_configured', dealers: [] });
   }
 
   try {
@@ -81,19 +76,9 @@ export async function POST(request: NextRequest) {
         'X-Goog-Api-Key': GOOGLE_KEY,
         'X-Goog-FieldMask': FIELD_MASK,
       },
-      body: JSON.stringify({
-        // "dealer" (not "repair"/"service") keeps this on franchised stores,
-        // which are the only ones that can perform recall work.
-        textQuery: `${make} dealership`,
-        maxResultCount: 5,
-        rankPreference: 'DISTANCE',
-        locationBias: {
-          circle: {
-            center: { latitude: lat, longitude: lng },
-            radius: 50_000, // 50km — rural owners may have no closer franchise
-          },
-        },
-      }),
+      // A brand-specific search is not verification of franchise status or
+      // recall eligibility; owners still confirm both directly with the dealer.
+      body: JSON.stringify(dealerPlacesRequest(input)),
       signal: AbortSignal.timeout(10_000),
     });
 

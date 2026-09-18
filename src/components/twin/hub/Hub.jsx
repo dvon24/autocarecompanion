@@ -12,6 +12,10 @@
  *     thrown away every note a beta tester wrote.
  */
 import React from "react";
+import { HubAddVehicleModal } from "./HubAddVehicleModal";
+import { HubVehicleSwitcher } from "./HubVehicleSwitcher";
+import { HubDemoReservation } from "./HubDemoReservation";
+import { HubReservationNotice } from "./HubReservationNotice";
 import { useSearchParams } from "next/navigation";
 import { Icon } from "../stage/Icon";
 import { TwinStage as THStage, TH_V, TH_MILES } from "../stage/TwinStage";
@@ -53,6 +57,7 @@ const TH_SYSTEMS = [
 
 /* ── Sidebar — systems double as a second way in ── */
 function THSidebar({ onOpen, onOpenSchedule = () => {}, onClose, drawer, onFeedback }) {
+  const [addingVehicle, setAddingVehicle] = React.useState(false);
   const vehicle = useTwinVehicle();
   const miles = useTwinMiles();
   const trees = useTwinTrees(TT_TREES);
@@ -70,6 +75,7 @@ function THSidebar({ onOpen, onOpenSchedule = () => {}, onClose, drawer, onFeedb
      to nobody, so show the owner's real ones or show none at all. */
   const threads = recent || [];
   return (
+    <>
     <aside style={{ width:264, flex:"0 0 264px", borderRight: drawer ? "none" : "1px solid var(--ki-line)", background:"var(--ki-card)", display:"flex", flexDirection:"column", height:"100%" }}>
       <div style={{ padding:"18px 20px 14px", display:"flex", alignItems:"center" }}>
         <Au7oMark size={24}/>
@@ -88,6 +94,8 @@ function THSidebar({ onOpen, onOpenSchedule = () => {}, onClose, drawer, onFeedb
               </div>
             </div>
           </KICard>
+          {twinMode === "owner" && ownerActions?.vehicleId && <HubVehicleSwitcher vehicleId={ownerActions.vehicleId}/>}
+          {!drawer && <HubDemoReservation/>}
         </div>
         <div style={{ padding:"16px 20px 7px" }} className="eyebrow">Tech trees</div>
         <div style={{ padding:"0 8px 2px" }}>
@@ -150,8 +158,8 @@ function THSidebar({ onOpen, onOpenSchedule = () => {}, onClose, drawer, onFeedb
         {/* Owner Twins get the real add-vehicle workflow. The public demo does
             not pretend it can add a vehicle without an account. */}
         {[
-          { ic: "home", label: "Home", href: "https://au7o.io/" },
-          ...(twinMode === "owner" ? [{ ic: "car", label: "Add vehicle", href: "/garage?add=1" }] : []),
+          { ic: "home", label: "Home", href: "/" },
+          ...(twinMode === "owner" ? [{ ic: "car", label: "Add vehicle", onClick: () => setAddingVehicle(true) }] : []),
           ...(ownerActions?.vehicleId ? [{ ic: "book", label: "Service records", href: `/garage/${encodeURIComponent(ownerActions.vehicleId)}/records` }] : []),
           ...(twinMode === "owner"
             ? [{ ic: "user", label: "Account", href: "/account" }]
@@ -167,6 +175,8 @@ function THSidebar({ onOpen, onOpenSchedule = () => {}, onClose, drawer, onFeedb
         })}
       </div>
     </aside>
+    {addingVehicle && twinMode === "owner" && <HubAddVehicleModal onClose={() => setAddingVehicle(false)} onVehicleAdded={() => window.dispatchEvent(new Event("au7o:vehicles-changed"))}/>}
+    </>
   );
 }
 
@@ -296,7 +306,16 @@ function THDesktop({ tc }) {
   const [treeView, setTreeView] = React.useState("tree");
   const [chatPrefill, setChatPrefill] = React.useState(null);
   const chatPrefillSeq = React.useRef(0);
-  React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setTreeView("tree"); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
+  const ownerIdentity = useTwinOwnerActions()?.vehicleId || [vehicle.year,vehicle.make,vehicle.model,vehicle.trim].join(":");
+  const navigationKey = ownerIdentity + ":" + searchParams.toString();
+  const appliedNavigation = React.useRef(null);
+  React.useEffect(() => {
+    if (appliedNavigation.current === navigationKey) return;
+    appliedNavigation.current = navigationKey;
+    const scheduleRequested = searchParams.get("view") === "schedule";
+    const target = resolveTwinDeepLink(catalog, scheduleRequested ? "car" : searchParams.get("open"), trees);
+    setTreeView(scheduleRequested ? "schedule" : "tree"); setBranch(target.branch); setStartNode(target.node);
+  }, [catalog, searchParams, trees, navigationKey]);
   const [fb, setFb] = React.useState(false);
   const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
   const closeTree = React.useCallback(() => setBranch(null), []);
@@ -338,6 +357,7 @@ function THDesktop({ tc }) {
           </div>
           {/* fill: the car expands to own the column — there is nothing else in it.
               No fullscreen control needed here; it is already as large as the space allows. */}
+          <HubReservationNotice/>
           <THStage mode={mode} setMode={setMode} onOpen={open} fill allowFullscreen onExpand={enterMinimal}/>
           {/* Suggestion chips removed — they competed with the car for attention
               and the car is the whole point of this screen. */}
@@ -373,7 +393,16 @@ function THMobile({ tc }) {
   const chatPrefillSeq = React.useRef(0);
   const changeBranch = React.useCallback((nextBranch) => { setStartNode(null); setBranch(nextBranch); }, []);
   const closeTree = React.useCallback(() => setBranch(null), []);
-  React.useEffect(() => { const target=resolveTwinDeepLink(catalog, searchParams.get("open"), trees); setTreeView("tree"); setBranch(target.branch); setStartNode(target.node); }, [catalog, searchParams, trees]);
+  const ownerIdentity = useTwinOwnerActions()?.vehicleId || [vehicle.year,vehicle.make,vehicle.model,vehicle.trim].join(":");
+  const navigationKey = ownerIdentity + ":" + searchParams.toString();
+  const appliedNavigation = React.useRef(null);
+  React.useEffect(() => {
+    if (appliedNavigation.current === navigationKey) return;
+    appliedNavigation.current = navigationKey;
+    const scheduleRequested = searchParams.get("view") === "schedule";
+    const target = resolveTwinDeepLink(catalog, scheduleRequested ? "car" : searchParams.get("open"), trees);
+    setTreeView(scheduleRequested ? "schedule" : "tree"); setBranch(target.branch); setStartNode(target.node);
+  }, [catalog, searchParams, trees, navigationKey]);
   const { bubble, say, clear } = useBubble(`${greeting}. Tap any part of ${twinMode === "owner" ? `your ${vehicle.model}` : `this ${vehicle.model} demo`} and I'll open its tech tree.`);
   const askPart = React.useCallback((context, node = null, options = {}) => {
     setBranch(null);
@@ -401,7 +430,9 @@ function THMobile({ tc }) {
         </div>
         <div className="web-scroll" style={{ flex:1, minHeight:0, padding:"14px 13px 12px", display:"flex", flexDirection:"column", gap:13 }}>
           <h2 style={{ fontSize:20, fontWeight:600, letterSpacing:"-0.02em", lineHeight:1.2, flex:"0 0 auto" }}>{greeting}. <span style={{ color:"var(--slate-400)" }}>Tap any part.</span></h2>
+          <HubReservationNotice/>
           <THStage mode={mode} setMode={setMode} onOpen={open} mobile allowFullscreen onExpand={enterMinimal}/>
+          <HubDemoReservation/>
           <div style={{ display:"flex", flexDirection:"column", gap:7, flex:"0 0 auto" }}>
             {catalog.systems.filter(s => trees[s.branch]).map(s => (
               <button key={s.branch} onClick={()=>open(s.hot)} style={{ display:"flex", alignItems:"center", gap:11, background:"var(--ki-card)", border:"1px solid var(--ki-line)", borderRadius:13, padding:"10px 12px", cursor:"pointer", textAlign:"left", minHeight:56, fontFamily:"var(--font-sans)", color:"var(--ink)" }}>

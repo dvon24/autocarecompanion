@@ -14,7 +14,10 @@ import { parseVehicleSlug as parseCatalogVehicleSlug, hubSupportsYear } from '@/
 import { getKnownIssueVehicleCandidates } from '@/lib/known-issue-vehicle-aliases';
 import { getTwinHubData } from '@/lib/twin-hub-data';
 import { LiveTwinHub } from '@/components/twin/LiveTwinHub';
+import { OwnerEquipmentConfirmation } from '@/components/twin/OwnerEquipmentConfirmation';
+import { OwnerHubSetup } from '@/components/twin/OwnerHubSetup';
 import { sameTwinVehicleIdentity } from '@/lib/twin-fulfillment';
+import { selectOwnedHubVehicle } from '@/lib/hub-vehicle-selection';
 
 export const revalidate = 3600;
 export const dynamicParams = true;
@@ -119,10 +122,10 @@ export default async function VehicleProfilePage({
   searchParams,
 }: {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ session?: string; from?: string; twin?: string }>;
+  searchParams: Promise<{ session?: string; from?: string; twin?: string; vehicleId?: string }>;
 }) {
   const { slug } = await params;
-  const { session: sessionIdParam, twin: twinParam } = await searchParams;
+  const { session: sessionIdParam, twin: twinParam, vehicleId: selectedVehicleId } = await searchParams;
   const vehicle = parseHubVehicleSlug(slug);
   if (!vehicle) notFound();
 
@@ -317,6 +320,7 @@ export default async function VehicleProfilePage({
   let maintenanceSchedule: ScheduleData | null = null;
   let userId: string | null = null;
   let userEmail: string | null = null;
+  let memberProduct: string | null = null;
   let userInfo: { name: string; joinedAt: string; isSubscriber: boolean } | null = null;
   // Saved vehicles for the top-bar switcher dropdown — only populated
   // when authed. Empty array on anonymous viewers so the switcher just
@@ -326,6 +330,7 @@ export default async function VehicleProfilePage({
     const session = await auth();
     if (session?.user?.id) {
       isAuthed = true;
+      memberProduct = session.user.subscriptionTier ?? null;
       userId = session.user.id;
       // Pull the user row to get joinedAt for the rail footer's "SUBSCRIBER · X MO".
       const userRow = await prisma.user.findUnique({
@@ -341,7 +346,7 @@ export default async function VehicleProfilePage({
           // they can QA Plus/Pro surfaces (Mark complete, etc.) from a
           // Free DB row. Matches the server-side bypass in
           // /api/maintenance.
-          isSubscriber: session.user.subscriptionStatus === 'active' || isFounderEmail(userRow.email),
+          isSubscriber: session.user.capabilities?.personalAi === true || isFounderEmail(userRow.email),
         };
       }
       // Pull ALL vehicles for the switcher dropdown — same query as
@@ -364,7 +369,7 @@ export default async function VehicleProfilePage({
           year,
         },
         orderBy: [{ isPrimary: 'desc' }, { updatedAt: 'desc' }],
-        select: { id: true, year: true, make: true, model: true, currentMileage: true, trim: true },
+        select: { id: true, year: true, make: true, model: true, currentMileage: true, trim: true, transmission: true },
       });
       const routeIdentity = { year, make, model, trim: trim === 'Base' ? null : trim };
       const exactCandidates = userVehicleCandidates.filter((candidate) => (
@@ -373,7 +378,7 @@ export default async function VehicleProfilePage({
       ));
       // A slug does not carry a database id. If duplicate exact YMMT rows
       // exist, choosing one would attach the wrong mileage/service history.
-      const userVehicle = exactCandidates.length === 1 ? exactCandidates[0] : null;
+      const userVehicle = selectOwnedHubVehicle(exactCandidates, selectedVehicleId);
       if (userVehicle) {
         userVehicleId = userVehicle.id;
         if (userVehicle.currentMileage != null) {
@@ -389,6 +394,7 @@ export default async function VehicleProfilePage({
             vehicleId: userVehicle.id,
             currentMileage: userVehicle.currentMileage,
             ownersManualSchedule: oms,
+            vehicle: userVehicle,
           });
           maintenanceSchedule = await getMaintenanceSchedule({
             vehicleId: userVehicle.id,
@@ -472,13 +478,21 @@ export default async function VehicleProfilePage({
   if (isAuthed && twinParam !== '0' && userId && userEmail && userVehicleId) {
     const twinOutcome = await getTwinHubData(userId, userEmail, userVehicleId).catch(() => null);
     if (twinOutcome?.access.kind === 'allowed' && twinOutcome.data) {
-      return <LiveTwinHub data={twinOutcome.data} />;
+      return <LiveTwinHub key={userVehicleId} data={twinOutcome.data} />;
     }
     if (twinOutcome?.access.kind === 'claimable') redirect('/twin/claim');
+    if(twinOutcome&&'ownerSetup' in twinOutcome&&twinOutcome.ownerSetup)return <OwnerHubSetup key={twinOutcome.ownerSetup.vehicleRevision} setup={twinOutcome.ownerSetup}/>;
+    if (twinOutcome && 'equipmentSetup' in twinOutcome && twinOutcome.equipmentSetup) {
+      if (!twinOutcome.equipmentSetup.canConfirm) redirect('/twin/claim');
+      return <OwnerEquipmentConfirmation {...twinOutcome.equipmentSetup}/>;
+    }
   }
+
+  if (isAuthed && (memberProduct === 'visual' || memberProduct === 'hub') && !isFounderEmail(userEmail)) redirect('/account');
 
   return (
     <VehicleHub
+      key={userVehicleId || slug}
       vehicle={{ year, make, model, trim }}
       slug={slug}
       isAuthed={isAuthed}

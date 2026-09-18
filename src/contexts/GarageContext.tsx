@@ -73,6 +73,8 @@ export function GarageProvider({ children }: GarageProviderProps) {
         const data = await res.json();
         setApiVehicles(data.vehicles || []);
         setApiError(null);
+      } else {
+        setApiError('Could not refresh saved vehicles. The list may be out of date. Reload to check your saved vehicles before trying another change.');
       }
     } catch (error) {
       setApiError('Failed to fetch vehicles');
