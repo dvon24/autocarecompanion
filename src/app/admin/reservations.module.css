@@ -1,0 +1,24 @@
+.container { container-type: inline-size; width: 100%; min-width: 0; }
+.table { width: 100%; table-layout: fixed; }
+.table th, .table td { padding: 12px; min-width: 0; max-width: none; white-space: normal; overflow-wrap: anywhere; }
+.table th { font-size: 10px; }
+.table select { width: 100%; max-width: 100%; min-width: 0; min-height: 40px; }
+.fieldLabel { display: none; }
+
+/* Use the available panel width, including when embedded in the admin shell. */
+@container (max-width: 1379px) {
+  .table, .table tbody { display: block; width: 100%; }
+  .table thead { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .table tbody { padding: 12px; }
+  .table tbody tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 16px; padding: 8px; border: 1px solid #e5e7eb; border-radius: 12px; background: white; }
+  .table tbody tr + tr { margin-top: 12px; }
+  .table td { display: block; padding: 10px 8px; }
+  .fieldLabel { display: block; margin-bottom: 6px; font-size: 10px; font-weight: 650; line-height: 1.4; letter-spacing: .05em; text-transform: uppercase; color: #6b7280; }
+}
+@container (max-width: 699px) {
+  .table tbody tr { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 8px; }
+}
+@container (max-width: 459px) {
+  .table tbody tr { grid-template-columns: minmax(0, 1fr); }
+  .table tbody { padding: 8px; }
+}

@@ -859,7 +859,7 @@ export async function POST(request: NextRequest) {
     try { chatSession = await auth(); } catch { chatSession = null; }
     const isAuthed = !!chatSession?.user?.id;
     const sessionUserId = chatSession?.user?.id || null;
-    const isSubscriber = chatSession?.user?.subscriptionStatus === 'active';
+    const isSubscriber = chatSession?.user?.capabilities?.personalAi === true;
 
     // Burst protection applies to everyone.
     const burstLimit = hubChatMinuteLimiter.check(ip);

@@ -4,16 +4,14 @@ import type { prisma as prismaClient } from '@/lib/db';
 import {
   isLoggableMaintenanceType,
   MAINTENANCE_SCHEDULES,
-  resolveMaintenanceWriteType,
 } from '@/lib/maintenance';
 import {
-  guardTransmissionMaintenanceVehicle,
-  isTransmissionMaintenanceType,
   MaintenanceMutationError,
   nextMonotonicVehicleRevision,
 } from '@/lib/maintenance-mutation';
 import { isPrismaWriteConflict } from '@/lib/prisma-conflict';
-import { isAcceptedMaintenanceDate, parseMaintenanceCreate } from '@/lib/twin-route-contracts';
+import { parseMaintenanceCreate } from '@/lib/twin-route-contracts';
+import { persistMaintenanceEntry } from '@/lib/maintenance-service-mutation';
 
 const PRISMA_INT_MAX = 2_147_483_647;
 export const NO_COMMITTED_GARAGE_ACTION_PREFIX = '[no-commit] ';
@@ -24,22 +22,6 @@ const AssistantMileageSchema = z.object({
   vehicleId: z.string().trim().min(1),
   mileage: z.number().finite().int().min(0).max(PRISMA_INT_MAX),
 }).strict();
-
-function addCalendarMonthsPreservingInput(value: string, months: number): string | null {
-  const match = /^(\d{4})-(\d{2})-(\d{2})(.*)$/.exec(value);
-  if (!match) return null;
-  const startYear = Number(match[1]);
-  const startMonth = Number(match[2]);
-  const startDay = Number(match[3]);
-  const monthIndex = startYear * 12 + (startMonth - 1) + months;
-  const year = Math.floor(monthIndex / 12);
-  const month = monthIndex % 12 + 1;
-  if (year < 0 || year > 9999) return null;
-  const lastDay = new Date(Date.UTC(year, month, 0)).getUTCDate();
-  const day = Math.min(startDay, lastDay);
-  const next = `${String(year).padStart(4, '0')}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}${match[4]}`;
-  return isAcceptedMaintenanceDate(next) ? next : null;
-}
 
 function transmissionScheduleType(type: string): string {
   return type === 'transmission_fluid_auto' || type === 'transmission_fluid_manual'
@@ -73,66 +55,9 @@ export async function executeGarageAssistantMaintenanceInTransaction(
 
   const schedule = MAINTENANCE_SCHEDULES[transmissionScheduleType(base.data.type)];
   if (!schedule) throw new MaintenanceMutationError(`Unknown maintenance type: ${base.data.type}`, 400);
-  const nextDueMileage = schedule.defaultIntervalMiles > 0
-    && base.data.mileage <= PRISMA_INT_MAX - schedule.defaultIntervalMiles
-    ? base.data.mileage + schedule.defaultIntervalMiles
-    : undefined;
-  const nextDueDate = schedule.defaultIntervalMonths > 0
-    ? addCalendarMonthsPreservingInput(base.data.date, schedule.defaultIntervalMonths)
-    : null;
-  const withDeadlines = parseMaintenanceCreate({
-    ...base.data,
-    ...(nextDueMileage !== undefined ? { nextDueMileage } : {}),
-    ...(nextDueDate ? { nextDueDate } : {}),
-  }, isLoggableMaintenanceType);
-  if (!withDeadlines.success) throw new MaintenanceMutationError('Invalid maintenance data', 400);
-
-  const vehicle = await tx.vehicle.findFirst({ where: { id: withDeadlines.data.vehicleId, userId } });
+  const vehicle = await tx.vehicle.findFirst({ where: { id: base.data.vehicleId, userId } });
   if (!vehicle) throw new MaintenanceMutationError('Vehicle not found or access denied.', 404);
-  const resolvedType = resolveMaintenanceWriteType(withDeadlines.data.type, vehicle);
-  if (!resolvedType.ok) {
-    const message = resolvedType.reason === 'transmission-unselected'
-      ? 'Choose Automatic or Manual on this vehicle before logging transmission fluid service'
-      : resolvedType.reason === 'transmission-mismatch'
-        ? 'This maintenance type does not match the saved transmission branch'
-        : 'Invalid maintenance type';
-    throw new MaintenanceMutationError(message, 400);
-  }
-  const guardedRevision = isTransmissionMaintenanceType(withDeadlines.data.type)
-    ? await guardTransmissionMaintenanceVehicle(tx, vehicle, operationTime)
-    : null;
-  const record = await tx.maintenanceRecord.create({
-    data: {
-      vehicleId: withDeadlines.data.vehicleId,
-      type: resolvedType.type,
-      mileage: withDeadlines.data.mileage,
-      date: new Date(withDeadlines.data.date),
-      cost: withDeadlines.data.cost,
-      notes: withDeadlines.data.notes,
-      shopName: withDeadlines.data.shopName,
-      nextDueMileage: withDeadlines.data.nextDueMileage,
-      nextDueDate: withDeadlines.data.nextDueDate ? new Date(withDeadlines.data.nextDueDate) : null,
-    },
-  });
-  if (withDeadlines.data.mileage > (vehicle.currentMileage ?? 0)) {
-    const finalRevision = guardedRevision
-      ?? nextMonotonicVehicleRevision(vehicle.updatedAt, operationTime);
-    await tx.vehicle.update({
-      where: { id: vehicle.id },
-      data: {
-        currentMileage: withDeadlines.data.mileage,
-        lastMileageUpdate: operationTime,
-        updatedAt: finalRevision,
-      },
-    });
-    await tx.mileageLog.create({
-      data: {
-        vehicleId: vehicle.id,
-        mileage: withDeadlines.data.mileage,
-        source: 'maintenance',
-      },
-    });
-  }
+  const record = await persistMaintenanceEntry(tx, vehicle, base.data, operationTime);
   const costLabel = record.cost != null ? ` ($${record.cost.toFixed(2)})` : '';
   const dueLabel = record.nextDueMileage != null
     ? ` Next due at ${record.nextDueMileage.toLocaleString()} miles.`

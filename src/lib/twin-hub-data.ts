@@ -1,13 +1,19 @@
+import { sameReservationFitment, hasUnresolvedReservationGarage } from './reservation-identity';
+import { reservationEmailWhere } from './reservation-email-lock';
 import prisma from '@/lib/db';
 import { getVehicleSpecs } from '@/lib/maintenance';
 import { getRecentThreads } from '@/lib/hub-data';
 import { getLiveTwinForVehicle, getTwinDefinition, resolveTwinTransmissionBranch, sameTwinVehicleIdentity, twinMatchesVehicle } from '@/lib/twin-fulfillment';
 import { isFounderEmail } from '@/lib/founder';
+import { productEntitlements, entitlementSelect } from '@/lib/product-entitlements';
 import { evaluateTwinAccess, evaluateTwinReservationProvenance, getConfirmedTwinTransmission, normalizeTwinSessionIdentity, type TwinAccessDecision } from '@/lib/twin-access';
 import { hasValidReviewedTransmissionState, type TransmissionOption } from '@/lib/transmission-options';
 import { getTwinByFulfillmentId } from '@/lib/vehicle-twin-catalog';
 import { vehicleSlug } from '@/lib/vehicle-slug';
-import { buildTwinIssueSummary, type TwinIssueSummary } from '@/lib/twin-known-issues';
+import { type TwinIssueSummary } from '@/lib/twin-known-issues';
+import { buildOwnerTwinIssueSummary } from './twin-owner-issues';
+import { confirmedOwnerEquipment, ownerEquipmentReady, ownerEquipmentOption, type ReviewedOwnerEquipment } from './twin-owner-equipment';
+import { pendingOwnerHubSetup, type OwnerHubSetup } from './owner-hub-setup';
 
 /**
  * Server payload for the live twin hub.
@@ -28,6 +34,7 @@ import { buildTwinIssueSummary, type TwinIssueSummary } from '@/lib/twin-known-i
  * truth for "what counts as due".
  */
 export interface TwinServiceRecord {
+  id?: string;
   type: string;
   mileage: number;
   date: string;
@@ -44,7 +51,7 @@ export interface TwinRecentThread {
 
 export interface TwinHubData {
   vehicleId: string;
-  vehicle: { year: number; make: string; model: string; trim: string; engine: string; color: string | null };
+  vehicle: { year: number; make: string; model: string; trim: string; engine: string; color: string | null; reviewedEquipmentId?: string | null };
   miles: number;
   /** Raw logged services; the client folds these onto tree nodes. */
   records: TwinServiceRecord[];
@@ -75,7 +82,7 @@ export interface TwinHubData {
 
 export type TwinHubOutcome =
   | { access: Extract<TwinAccessDecision, { kind: 'allowed' }>; data: TwinHubData }
-  | { access: Exclude<TwinAccessDecision, { kind: 'allowed' }>; data: null };
+  | { access: Exclude<TwinAccessDecision, { kind: 'allowed' }>; data: null; ownerSetup?:OwnerHubSetup; equipmentSetup?: { vehicleId:string; vehicleRevision:string; profile:ReviewedOwnerEquipment; canConfirm:boolean } };
 
 export const TWIN_SERVICE_RECORD_TYPES = [
   'oil_change',
@@ -87,8 +94,47 @@ export const TWIN_SERVICE_RECORD_TYPES = [
   'tire_rotation',
   'tire_replacement',
   'brake_service',
+  'brake_axles_inspection',
+  'steering_inspection',
+  'suspension_inspection',
+  'brake_parking_inspection',
+  'cooling_strength_hoses_inspection',
+  'exhaust_heat_shields_inspection',
+  'halfshaft_boots_inspection',
+  'tire_tread_inspection',
+  'wheel_components_inspection',
+  'steering_suspension_driveshaft_inspection',
+  'steering_suspension_inspection',
+  'brake_system_inspection',
+  'steering_system_inspection',
+  'chassis_inspection',
+  'power_steering_inspection',
+  'driveline_inspection',
+  'driveshaft_boots_inspection',
+  'brake_lines_inspection',
+  'fluid_levels_inspection',
+  'exhaust_inspection',
+  'fuel_lines_inspection',
+  'front_brake_pads',
+  'rear_brake_pads',
+  'front_brake_rotors',
+  'rear_brake_rotors',
+  'radiator_replacement',
+  'other_service',
+  'spark_plugs',
+  'serpentine_belt',
+  'timing_belt',
+  'drive_belt_inspection',
+  'water_pump_inspection',
+  'valve_clearance_inspection',
+  'evap_system_inspection',
+  'ac_desiccant_replacement',
+  'key_battery_inspection',
+  'key_battery_replacement',
   'cooling_system_service',
   'differential_fluid',
+  'rear_axle_fluid',
+  'awd_clutch_fluid',
   'transfer_case_fluid',
   'transmission_fluid',
   'transmission_fluid_auto',
@@ -115,7 +161,7 @@ export function buildLatestTwinServiceRecordQuery(
     where: {
       vehicleId,
       type,
-      mileage: { lte: currentMileage },
+      mileage: { gte: 0, lte: currentMileage },
       date: { lte: now },
     },
     orderBy: [{ date: 'desc' as const }, { mileage: 'desc' as const }, { id: 'desc' as const }],
@@ -146,6 +192,15 @@ export async function loadLatestTwinServiceRecords(
     findFirst(buildLatestTwinServiceRecordQuery(vehicleId, type, currentMileage, now))
   )));
   return rows.filter((row): row is TwinServiceRecordRow => row != null);
+}
+
+/** Preserve selected evidence identity through the server/client boundary. */
+export function serializeTwinServiceRecord(record: TwinServiceRecordRow): TwinServiceRecord {
+  return {
+    id: record.id, type: record.type, mileage: record.mileage,
+    date: record.date.toISOString(), nextDueMileage: record.nextDueMileage,
+    nextDueDate: record.nextDueDate?.toISOString() ?? null,
+  };
 }
 
 /**
@@ -198,22 +253,26 @@ export async function getTwinHubData(
   const snapshot = await dependencies.prisma.$transaction(async (tx) => {
     const currentTimeRows = await tx.$queryRaw<Array<{ now: Date }>>`SELECT CURRENT_TIMESTAMP AS "now"`;
     const now = currentTimeRows[0]?.now ?? new Date(Number.NaN);
-    const [vehicle, reservation] = await Promise.all([
+    const paidHub = !founder && productEntitlements(await tx.user.findUnique({ where: { id: userId }, select: entitlementSelect })).hub;
+    const [vehicle, reservations] = await Promise.all([
       tx.vehicle.findFirst({
         where: { id: vehicleId, userId },
         select: {
           id: true, year: true, make: true, model: true, trim: true,
-          transmission: true, color: true, currentMileage: true, updatedAt: true,
+          transmission: true, reviewedEquipmentId:true, color: true, currentMileage: true, updatedAt: true,
         },
       }),
-      tx.reservation.findUnique({
-        where: { email },
+      tx.reservation.findMany({
+        where: await reservationEmailWhere(tx,email),
         select: {
-          twinStatus: true, assignedTwin: true, transmission: true, trialDays: true, claimedAt: true,
+          country: true, twinStatus: true, assignedTwin: true, transmission: true, trialDays: true, claimedAt: true,
           year: true, make: true, model: true, trim: true, vehicleVerified: true, trimVerified: true,
         },
       }),
     ]);
+
+    const matchingReservations = vehicle ? reservations.filter(row => sameReservationFitment(row, vehicle)) : [];
+    const reservation = matchingReservations.length === 1 ? matchingReservations[0] : null;
 
     if (!vehicle) {
       const access = evaluateTwinAccess({
@@ -233,7 +292,7 @@ export async function getTwinHubData(
       return { access, payload: null };
     }
 
-    if (!founder) {
+    if (!founder && !paidHub) {
       const provenanceRejection = evaluateTwinReservationProvenance(reservation);
       if (provenanceRejection) return { access: provenanceRejection, payload: null };
       if (reservation && !hasValidReviewedTransmissionState(reservation)) {
@@ -248,23 +307,24 @@ export async function getTwinHubData(
 
     const directTwin = getLiveTwinForVehicle(vehicle);
     const assignedTwin = getTwinDefinition(reservation?.assignedTwin);
-    const twin = founder ? directTwin : assignedTwin;
+    const twin = founder || paidHub ? directTwin : assignedTwin;
     const catalog = (dependencies.resolveOwnerCatalog ?? getTwinByFulfillmentId)(twin?.id);
     const reservedVehicle = reservation?.year && reservation.make && reservation.model
       ? { year: reservation.year, make: reservation.make, model: reservation.model, trim: reservation.trim }
       : null;
 
     let exactCustomerGarage = true;
-    if (!founder && reservedVehicle && assignedTwin) {
+    if (!founder && !paidHub && reservedVehicle && assignedTwin) {
       const candidates = await tx.vehicle.findMany({
         where: { userId, year: reservedVehicle.year },
-        select: { id: true, year: true, make: true, model: true, trim: true },
+        select: { id: true, year: true, make: true, model: true, trim: true, transmission: true },
       });
       const exactCandidates = candidates.filter((candidate) => (
         twinMatchesVehicle(assignedTwin, candidate)
-        && sameTwinVehicleIdentity(reservedVehicle, candidate)
+        && sameReservationFitment(reservation!, candidate)
       ));
-      exactCustomerGarage = exactCandidates.length === 1 && exactCandidates[0].id === vehicle.id;
+      exactCustomerGarage = exactCandidates.length === 1 && exactCandidates[0].id === vehicle.id
+        && !hasUnresolvedReservationGarage(reservation!,candidates,resolveTwinTransmissionBranch(assignedTwin,reservation!.transmission,reservedVehicle).requiresChoice);
     }
 
     const exactAssignment = exactCustomerGarage
@@ -278,15 +338,16 @@ export async function getTwinHubData(
     const transmissionFitment = resolveTwinTransmissionBranch(twin, vehicle.transmission, vehicle);
     const needsTransmission = transmissionFitment.requiresChoice;
     const reservationTransmission = getConfirmedTwinTransmission(reservation, exactAssignment);
-    const customerTransmissionMatches = !needsTransmission
+    const customerTransmissionMatches = paidHub ? !!transmissionFitment.branch : !needsTransmission
       || (reservationTransmission != null && reservationTransmission === transmissionFitment.branch);
-    const confirmedTransmission = founder
+    const confirmedTransmission = founder || paidHub
       ? transmissionFitment.branch
       : (needsTransmission
         ? (reservationTransmission === transmissionFitment.branch ? transmissionFitment.branch : null)
         : transmissionFitment.branch);
     const access = evaluateTwinAccess({
       founder,
+      paidHub,
       supported: !!directTwin && !!catalog?.ownerReady && transmissionFitment.options.length > 0,
       garageMatches: !!directTwin && exactCustomerGarage,
       positiveMileage: typeof vehicle.currentMileage === 'number' && vehicle.currentMileage > 0,
@@ -296,7 +357,14 @@ export async function getTwinHubData(
       reservation,
       now,
     });
+    const ownerSetup=(founder||paidHub)?pendingOwnerHubSetup(vehicle):null;
+    if(ownerSetup)return {access:{kind:'denied' as const,allowed:false as const,claimable:false as const,reason:'equipment-unconfirmed' as const,expiresAt:null},payload:null,ownerSetup};
     const currentMileage = vehicle.currentMileage;
+    if ((access.kind === 'allowed' || access.kind === 'claimable') && !ownerEquipmentReady(vehicle)) {
+      const profile = ownerEquipmentOption(vehicle);
+      return { access: { kind:'denied' as const, allowed:false as const, claimable:false as const, reason:'equipment-unconfirmed' as const, expiresAt:null }, payload:null,
+        equipmentSetup:profile ? { vehicleId:vehicle.id, vehicleRevision:vehicle.updatedAt.toISOString(), profile, canConfirm:access.kind === 'allowed' } : undefined };
+    }
     if (access.kind !== 'allowed' || !twin || !catalog?.ownerReady || typeof currentMileage !== 'number' || currentMileage <= 0) {
       return { access, payload: null };
     }
@@ -323,12 +391,12 @@ export async function getTwinHubData(
   }, { isolationLevel: 'Serializable' });
 
   if (snapshot.access.kind !== 'allowed' || !snapshot.payload) {
-    return { access: snapshot.access as Exclude<TwinAccessDecision, { kind: 'allowed' }>, data: null };
+    return { access: snapshot.access as Exclude<TwinAccessDecision, { kind: 'allowed' }>, data: null, ...('equipmentSetup' in snapshot ? { equipmentSetup:snapshot.equipmentSetup } : {}),...('ownerSetup' in snapshot?{ownerSetup:snapshot.ownerSetup}:{}) };
   }
 
   const { vehicle, twin, records, now, transmissionFitment, confirmedTransmission } = snapshot.payload;
   const catalog = (dependencies.resolveOwnerCatalog ?? getTwinByFulfillmentId)(twin.id);
-  const knownIssueIds = [...new Set(catalog?.hotspots.flatMap((hotspot) => hotspot.knownIssueIds || []) || [])];
+  const knownIssueIds = [...new Set([...(catalog?.hotspots || []), ...(catalog?.knownIssueHotspots || [])].flatMap((hotspot) => hotspot.knownIssueIds || []))];
   const [threads, modifications, issueRows] = await Promise.all([
     dependencies.getRecentThreads(userId, vehicle.id, 3).catch(() => []),
     dependencies.prisma.modification.findMany({
@@ -338,7 +406,7 @@ export async function getTwinHubData(
     }),
     knownIssueIds.length ? dependencies.prisma.knownIssue.findMany({
       where: { id: { in: knownIssueIds }, status: 'published', years: { has: vehicle.year } },
-      select: { id:true, title:true, severity:true, make:true, model:true, description:true, solution:true, fixParts:true, communityRecommendations:true },
+      select: { id:true, title:true, severity:true, make:true, model:true, description:true, solution:true, fixParts:true, communityRecommendations:true, years:true, trims:true, engines:true, citations:true },
     }).catch(() => []) : Promise.resolve([]),
   ]);
   const specs = getVehicleSpecs({
@@ -352,23 +420,18 @@ export async function getTwinHubData(
     vehicleId: vehicle.id,
     vehicle: {
       year: vehicle.year, make: vehicle.make, model: vehicle.model, trim: vehicle.trim ?? '',
-      engine: specs?.engine || vehicle.trim || '', color: vehicle.color,
+      engine: confirmedOwnerEquipment(vehicle)?.engine || specs?.engine || vehicle.trim || '', color: vehicle.color,
+      reviewedEquipmentId:vehicle.reviewedEquipmentId,
     },
     miles: vehicle.currentMileage,
-    records: records.map((record) => ({
-      type: record.type,
-      mileage: record.mileage,
-      date: record.date.toISOString(),
-      nextDueMileage: record.nextDueMileage,
-      nextDueDate: record.nextDueDate?.toISOString() ?? null,
-    })),
+    records: records.map(serializeTwinServiceRecord),
     recent: threads.map((thread) => ({
       t: thread.preview || 'Untitled thread',
       w: agoLabel(thread.updatedAt, now),
       i: 'chat',
       href: `/vehicle/${vehicleSlug(vehicle.year, vehicle.make, vehicle.model, vehicle.trim)}?session=${thread.id}`,
     })),
-    issues: issueRows.map(buildTwinIssueSummary),
+    issues: issueRows.map(issue=>buildOwnerTwinIssueSummary(issue,vehicle)),
     installedParts: modifications.map((modification) => {
       const modelData = modification.modelData && typeof modification.modelData === 'object' && !Array.isArray(modification.modelData)
         ? modification.modelData as Record<string, unknown>

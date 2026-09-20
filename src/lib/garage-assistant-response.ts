@@ -6,7 +6,7 @@ export function committedGarageActionFallback(actions: readonly CommittedGarageA
   const results = actions.map((action) => action.result.trim()).filter(Boolean);
   return results.length > 0
     ? results.join('\n')
-    : 'Your garage updates were saved successfully.';
+    : 'No garage changes were saved. Please provide the service, completion date, and mileage for anything you want logged.';
 }
 
 export function resolveCommittedGarageActionMessage(

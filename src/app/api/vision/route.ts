@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse, after } from 'next/server';
 import { auth } from '@/lib/auth';
+import { canUsePersonalVehicleContext } from '@/lib/vehicle-capabilities';
 import prisma from '@/lib/db';
 import {
   hubChatMinuteLimiter,
@@ -146,8 +147,6 @@ export async function POST(request: NextRequest) {
   vlog('auth_done', { authed: !!session?.user?.id });
 
   const userId: string | null = session?.user?.id ?? null;
-  const isSubscriber = !!session && session.user.subscriptionStatus === 'active';
-
   // Burst protection — applies to everyone.
   const ip = getClientIp(request);
   const burst = hubChatMinuteLimiter.check(ip);
@@ -164,6 +163,12 @@ export async function POST(request: NextRequest) {
       gated: false,
     }, { status: 429, headers: { 'Retry-After': String(burst.reset) } });
   }
+
+  let form: FormData;
+  try { form = await request.formData(); } catch { return respond({ error: 'bad_form' }, { status: 400 }); }
+  let requestedVehicle: unknown = null;
+  try { const rawVehicle = form.get('vehicle'); if (typeof rawVehicle === 'string') requestedVehicle = JSON.parse(rawVehicle); } catch { /* invalid context grants no beta access */ }
+  const isSubscriber = session?.user?.capabilities?.personalAi === true || !!(userId && await canUsePersonalVehicleContext(userId, requestedVehicle));
 
   // Quota: anon = 1/mo per IP, free authed = 3/mo, Plus = 40/mo (the
   // advertised "10/week" on a monthly window so it reuses the existing
@@ -187,7 +192,7 @@ export async function POST(request: NextRequest) {
         const u = await prisma.user.findUnique({ where: { id: userId }, select: { subscriptionTier: true } });
         subscriptionTier = u?.subscriptionTier ?? null;
       } catch { /* fall through to unlimited */ }
-      limit = subscriptionTier === 'plus' ? PLUS_MONTHLY_CAP : SUBSCRIBER_MONTHLY_CAP;
+      limit = subscriptionTier === 'pro' ? SUBSCRIBER_MONTHLY_CAP : PLUS_MONTHLY_CAP;
     } else {
       limit = DEFAULT_FREE_PHOTO_LIMIT;
     }
@@ -237,13 +242,6 @@ export async function POST(request: NextRequest) {
   }
 
   // Parse multipart body.
-  let form: FormData;
-  try {
-    form = await request.formData();
-  } catch (err) {
-    vlog('formdata_failed', { err: err instanceof Error ? err.message : String(err) });
-    return failWithRefund({ error: 'bad_form' }, 400);
-  }
   vlog('formdata_parsed');
 
   // ─── Detect mode: single image (photo) vs multi-frame + audio (video) ─
@@ -1161,7 +1159,9 @@ export async function GET(request: NextRequest) {
   let session;
   try { session = await auth(); } catch { session = null; }
   const userId: string | null = session?.user?.id ?? null;
-  const isSubscriber = !!session && session.user.subscriptionStatus === 'active';
+  let requestedVehicle: unknown = null;
+  try { const raw=request.nextUrl.searchParams.get('vehicle'); if(raw&&raw.length<=1000)requestedVehicle=JSON.parse(raw); } catch { /* Malformed context cannot grant beta access. */ }
+  const isSubscriber = session?.user?.capabilities?.personalAi === true || !!(userId && await canUsePersonalVehicleContext(userId,requestedVehicle));
   const ip = getClientIp(request);
 
   const ANON_FREE_PHOTO_LIMIT = 1;
@@ -1174,7 +1174,7 @@ export async function GET(request: NextRequest) {
         const u = await prisma.user.findUnique({ where: { id: userId }, select: { subscriptionTier: true } });
         subscriptionTier = u?.subscriptionTier ?? null;
       } catch { /* default to unlimited cap */ }
-      limit = subscriptionTier === 'plus' ? PLUS_MONTHLY_CAP : SUBSCRIBER_MONTHLY_CAP;
+      limit = subscriptionTier === 'pro' ? SUBSCRIBER_MONTHLY_CAP : PLUS_MONTHLY_CAP;
     } else {
       limit = DEFAULT_FREE_PHOTO_LIMIT;
     }
@@ -1187,5 +1187,5 @@ export async function GET(request: NextRequest) {
     metered: limit < 100,
     signedIn: !!userId,
     resetAt: q.resetAt.toISOString(),
-  });
+  },{headers:{'Cache-Control':'private, no-store'}});
 }

@@ -18,6 +18,7 @@
  */
 
 import schedulesData from '@/data/maintenance-schedules.json';
+import { getExactTwinOwnersManualSchedule } from './exact-twin-maintenance-rules';
 
 export interface ServiceInterval {
   /** Human-readable interval, e.g. "60,000 mi or every 5 years" */
@@ -49,6 +50,8 @@ export interface ServiceInterval {
   note?: string;
   /** Owner-manual sourced (true) vs estimated (false) */
   verified: boolean;
+  /** Source for an exact-fitment interval correction; does not reverify fluid/part specifications. */
+  interval_source?: VehicleScheduleSource;
 }
 
 export interface VehicleScheduleSource {
@@ -76,6 +79,40 @@ interface SchedulesFile {
   [make: string]: unknown;
 }
 
+function applyExactIntervalCorrections(
+  opts: { year: number; make: string; model: string; trim?: string },
+  schedule: VehicleSchedule,
+): VehicleSchedule {
+  // Primary-source correction scoped to the reviewed 2015 SRT 392 only.
+  // The generation dataset's 7,000 mi / 12 months contradicts printed p.207.
+  // Do not propagate this correction to other model years or trim identities.
+  if (opts.year !== 2015 || opts.make !== 'Dodge' || opts.model !== 'Challenger'
+    || opts.trim?.toLowerCase() !== 'srt 392') return schedule;
+  return {
+    ...schedule,
+    years: [2015],
+    trims: ['SRT 392'],
+    schedule: {
+      ...schedule.schedule,
+      engine_oil: {
+        ...schedule.schedule.engine_oil,
+        interval_display: 'No more than 6,000 mi or 6 months, whichever comes first; service sooner when the oil-change indicator requests it.',
+        interval_miles: 6000,
+        interval_months: 6,
+        interval_severe_display: undefined,
+        interval_severe_miles: undefined,
+        interval_severe_months: undefined,
+        verified: true,
+        interval_source: {
+          primary: '2015 Dodge Challenger User Guide (includes SRT 392/SRT Hellcat)',
+          url: 'https://vehicleinfo.mopar.com/assets/publications/en-us/Dodge/2015/Challenger_SRT/162.pdf',
+          section: 'Maintenance Schedule — 6.2L Supercharged and 6.4L; printed p.207, PDF page index 208',
+        },
+      },
+    },
+  };
+}
+
 /**
  * Get the full owner's-manual-sourced schedule for a specific YMMT.
  *
@@ -88,6 +125,8 @@ export function getOwnersManualSchedule(opts: {
   model: string;
   trim?: string;
 }): VehicleSchedule | null {
+  const exact = getExactTwinOwnersManualSchedule(opts);
+  if (exact) return exact;
   const data = schedulesData as SchedulesFile;
   const makeData = data[opts.make] as Record<string, Record<string, VehicleSchedule>> | undefined;
   if (!makeData) return null;
@@ -102,7 +141,7 @@ export function getOwnersManualSchedule(opts: {
     if (!generation.years.includes(opts.year)) continue;
     // Trim match takes priority
     if (opts.trim && generation.trims.some((t) => t.toLowerCase() === opts.trim?.toLowerCase())) {
-      return generation;
+      return applyExactIntervalCorrections(opts, generation);
     }
     // Otherwise keep the first year-matched entry as fallback
     if (!bestMatch) bestMatch = generation;

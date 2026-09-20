@@ -1,13 +1,15 @@
 'use client';
 
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { MaintenanceSuggestion, ScheduleData, ScheduleService, ScheduleServiceStatus } from '@/lib/maintenance-suggestions';
 import type { RecentThread, TrendingChip, AttachableIssue } from '@/lib/hub-data';
 import { Icon, type IconName } from '@/components/ui/Icon';
 import { vehicleSlug } from '@/lib/vehicle-slug';
+import { savedVehicleHubHref } from '@/lib/hub-vehicle-selection';
+import { HubAddVehicleModal } from '@/components/twin/hub/HubAddVehicleModal';
 import { InlineGateCard, type GateInfo } from '@/components/vehicle/InlineGateCard';
 import { VisionResultCard, type VisionResult } from '@/components/vehicle/VisionResultCard';
 import { LiveCameraShutter } from '@/components/diagnose/LiveCameraShutter';
@@ -224,6 +226,7 @@ interface Message {
   vision?: VisionResult;
 }
 
+const EMPTY_USER_VEHICLES: NonNullable<VehicleHubProps['userVehicles']> = [];
 export function VehicleHub({
   vehicle,
   slug,
@@ -240,13 +243,38 @@ export function VehicleHub({
   user,
   schedule,
   ownersManualSchedule,
-  userVehicles = [],
+  userVehicles: initialUserVehicles = EMPTY_USER_VEHICLES,
   loggableVehicleId,
   canLogMaintenance,
   initialSessionId,
   showMaintenanceUpgradeTile,
 }: VehicleHubProps) {
   const router = useRouter();
+  const [userVehicles, setUserVehicles] = useState(initialUserVehicles);
+  useEffect(() => { let current=true;queueMicrotask(()=>{if(current)setUserVehicles(initialUserVehicles);});return()=>{current=false;}; }, [initialUserVehicles]);
+  const [addVehicleOpen, setAddVehicleOpen] = useState(false);
+  const [vehicleRefreshError, setVehicleRefreshError] = useState(false);
+  const addVehicleTrigger = useRef<HTMLElement | null>(null);
+  const threadsTrigger = useRef<HTMLElement | null>(null);
+  const refreshVehicles = async () => {
+    try {
+      const response = await fetch('/api/vehicles?view=switcher', { signal: AbortSignal.timeout(10000) });
+      const data = await response.json();
+      if (!response.ok || !Array.isArray(data.vehicles)) throw new Error('Could not load vehicles');
+      setUserVehicles(data.vehicles);
+      setVehicleRefreshError(false);
+    } catch { setVehicleRefreshError(true); }
+  };
+  const openThreads = () => {
+    threadsTrigger.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setThreadsOpen(true);
+  };
+  const openAddVehicle = () => {
+    if (!isAuthed) return;
+    addVehicleTrigger.current = threadsOpen ? threadsTrigger.current : document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setThreadsOpen(false);
+    setAddVehicleOpen(true);
+  };
   // After a successful log POST, soft-refresh so the SSR schedule reflects
   // the new MaintenanceRecord (next-due resets, the row moves into "Recently
   // completed") WITHOUT a full-page reload — window.location.reload() caused
@@ -887,6 +915,7 @@ export function VehicleHub({
             currentMileage: currentMileage ?? undefined,
           },
           sessionId: sessionIdRef.current,
+          ownerVehicleId: loggableVehicleId || undefined,
           messages: [
             ...messages.map((m) => ({ role: m.role, content: m.vision ? visionToContext(m.vision) : m.content })),
             { role: 'user' as const, content: trimmed },
@@ -1112,6 +1141,12 @@ export function VehicleHub({
 
   return (
     <>
+      {addVehicleOpen && <div className="ki-theme-paper"><HubAddVehicleModal
+        returnFocusTo={addVehicleTrigger.current}
+        onClose={() => setAddVehicleOpen(false)}
+        onVehicleAdded={() => { void refreshVehicles(); }}
+      /></div>}
+      {vehicleRefreshError && <div role="status">Your vehicle was saved, but the switcher could not refresh. <button onClick={() => { void refreshVehicles(); }}>Retry loading vehicles</button></div>}
       {/* Chat-limit modal — fires when anonymous users have used their
           weekly 5-chat allowance. Closes on backdrop click. */}
       {showUpgrade && !isAuthenticated && (
@@ -1155,6 +1190,7 @@ export function VehicleHub({
           maintenanceSuggestions={maintenanceSuggestions}
           user={user}
           onSelectThread={loadSession}
+          onAddVehicle={openAddVehicle}
         />
 
         <MobileThreadsDrawer
@@ -1165,10 +1201,11 @@ export function VehicleHub({
           recentThreads={recentThreads}
           user={user}
           onSelectThread={loadSession}
+          onAddVehicle={openAddVehicle}
         />
 
         <section className="hub-col">
-          <TopBar vehicle={vehicle} user={user} userVehicles={userVehicles} currentSlug={slug} isAuthed={isAuthed} onOpenThreads={() => setThreadsOpen(true)} />
+          <TopBar vehicle={vehicle} user={user} userVehicles={userVehicles} currentSlug={slug} isAuthed={isAuthed} onOpenThreads={openThreads} onAddVehicle={openAddVehicle} />
 
 
           <div ref={scrollRef} className="hub-conv">
@@ -1275,7 +1312,8 @@ export function VehicleHub({
         threadsOpen={threadsOpen}
         onChangeInput={setInput}
         onSend={(text) => send(text)}
-        onOpenThreads={() => setThreadsOpen(true)}
+        onOpenThreads={openThreads}
+        onAddVehicle={openAddVehicle}
         onCloseThreads={() => setThreadsOpen(false)}
         loggableVehicleId={loggableVehicleId}
         canLogMaintenance={canLogMaintenance}
@@ -1373,9 +1411,10 @@ function MobileVehicleSwitcher({
   userVehicles: NonNullable<VehicleHubProps['userVehicles']>;
   currentSlug: string;
 }) {
+  const selectedId = useSearchParams().get('vehicleId');
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-  const hasOthers = userVehicles.length > 1;
+  const hasOthers = userVehicles.some(v => selectedId ? v.id !== selectedId : vehicleSlug(v.year, v.make, v.model, v.trim) !== currentSlug);
   const name = `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
 
   useEffect(() => {
@@ -1406,12 +1445,12 @@ function MobileVehicleSwitcher({
         <div role="menu" style={{ position: 'absolute', top: 'calc(100% + 8px)', left: 0, zIndex: 40, minWidth: 210, background: '#fff', border: '1px solid var(--paper-line, #E3DFD4)', borderRadius: 12, boxShadow: '0 12px 32px rgba(11,18,32,0.18)', overflow: 'hidden' }}>
           {userVehicles.map((v) => {
             const vSlug = vehicleSlug(v.year, v.make, v.model, v.trim);
-            const isCurrent = vSlug === currentSlug;
+            const isCurrent = selectedId ? v.id === selectedId : vSlug === currentSlug;
             const label = v.nickname || `${v.year} ${v.make} ${v.model}`;
             return (
               <Link
                 key={v.id}
-                href={`/vehicle/${vSlug}`}
+                href={savedVehicleHubHref(v)}
                 onClick={() => setOpen(false)}
                 role="menuitem"
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 10, padding: '11px 14px', textDecoration: 'none', color: '#0B1220', fontSize: 13.5, fontWeight: isCurrent ? 700 : 500, background: isCurrent ? '#F5F3EC' : 'transparent' }}
@@ -1431,7 +1470,7 @@ function MobileHub({
   vehicle, slug, userVehicles = [], isAuthed, currentMileage, opener, schedule, attachableIssues, recalls = [], partsByTask = {},
   maintenanceSuggestions, recentThreads, user,
   messages, input, pending, threadsOpen,
-  onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload,
+  onChangeInput, onSend, onOpenThreads, onCloseThreads, onSelectThread, onPhotoUpload, onVideoUpload, onAddVehicle,
   loggableVehicleId, canLogMaintenance, onLogged, showMaintenanceUpgradeTile,
 }: {
   vehicle: VehicleHubProps['vehicle'];
@@ -1456,6 +1495,7 @@ function MobileHub({
   onSend: (text: string) => void;
   onOpenThreads: () => void;
   onCloseThreads: () => void;
+  onAddVehicle: () => void;
   onSelectThread?: (threadId: string) => void;
   onPhotoUpload?: (file: File, caption?: string) => void;
   onVideoUpload?: (file: File, caption?: string) => void;
@@ -1586,6 +1626,7 @@ function MobileHub({
         recentThreads={recentThreads}
         user={user}
         onSelectThread={onSelectThread}
+        onAddVehicle={onAddVehicle}
       />
 
       {/* App header — menu + persistent mobile brand on the left, vehicle
@@ -2738,7 +2779,7 @@ function MobileIssuesCard({
 
 /* ─── Vehicle rail ─── */
 function VehicleRail({
-  vehicle, currentMileage, counts, recentThreads, maintenanceSuggestions, user, onSelectThread,
+  vehicle, currentMileage, counts, recentThreads, maintenanceSuggestions, user, onSelectThread, onAddVehicle,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   currentMileage: number | null;
@@ -2747,6 +2788,7 @@ function VehicleRail({
   maintenanceSuggestions: MaintenanceSuggestion[];
   user: VehicleHubProps['user'];
   onSelectThread?: (threadId: string) => void;
+  onAddVehicle: () => void;
 }) {
   const v = vehicle;
   // The most pressing service is the first one — getMaintenanceSuggestions
@@ -2819,9 +2861,7 @@ function VehicleRail({
       {/* Bottom action row — replaces the old UserFooter (subscriber tag).
           Account access lives on the global FloatingAuthButton, so this
           row is now task-oriented: jump to Drive, browse Known Issues,
-          add another vehicle. The Add-vehicle CTA is shown for everyone
-          but gated for non-subscribers when they already have ≥1 saved
-          vehicle (multi-vehicle is a premium feature). */}
+          add another vehicle. The authenticated save API enforces quotas. */}
       <div className="rail-bottom-actions">
         <Link href="/drive" className="rail-action" title="Open Drive">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
@@ -2841,16 +2881,17 @@ function VehicleRail({
           </svg>
           <span>Known Issues</span>
         </Link>
-        <Link
-          href={user?.isSubscriber ? '/garage?add=1' : '/subscribe?reason=multi-vehicle'}
+        {user && <button
+          type="button"
+          onClick={onAddVehicle}
           className="rail-action rail-action-ghost"
-          title={user?.isSubscriber ? 'Add another vehicle to your garage' : 'Multi-vehicle requires a subscription'}
+          title="Add another vehicle to your garage"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
             <path d="M12 5v14M5 12h14" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
           </svg>
-          <span>Add vehicle{user && !user.isSubscriber ? ' · upgrade' : ''}</span>
-        </Link>
+          <span>Add vehicle</span>
+        </button>}
       </div>
 
       <style jsx>{`
@@ -3060,7 +3101,7 @@ function UserFooter({ user }: { user: NonNullable<VehicleHubProps['user']> }) {
 /* ─── Top bar ─── A3-design: vehicle switcher pill on the left, quick-
  action area on the right (Translate widget docks here via global CSS). */
 function TopBar({
-  vehicle, user, userVehicles, currentSlug, isAuthed, onOpenThreads,
+  vehicle, user, userVehicles, currentSlug, isAuthed, onOpenThreads, onAddVehicle,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   user: VehicleHubProps['user'];
@@ -3068,6 +3109,7 @@ function TopBar({
   currentSlug: string;
   isAuthed: boolean;
   onOpenThreads: () => void;
+  onAddVehicle: () => void;
 }) {
   // Read subscriber state off the user prop so the vehicle switcher can
   // surface an upgrade CTA instead of a dead-end "Add vehicle" link when
@@ -3089,6 +3131,7 @@ function TopBar({
           currentSlug={currentSlug}
           isAuthed={isAuthed}
           isSubscriber={isSubscriber}
+          onAddVehicle={onAddVehicle}
         />
       </div>
       <div className="tb-right">
@@ -3171,7 +3214,7 @@ function TopBar({
    viewers (or signed-in users with no saved vehicles) see a plain
    label with no dropdown affordance — there's nothing to switch to. */
 function VehicleSwitcher({
-  vehicle, userVehicles, currentSlug, isAuthed, isSubscriber,
+  vehicle, userVehicles, currentSlug, isAuthed, isSubscriber, onAddVehicle,
 }: {
   vehicle: VehicleHubProps['vehicle'];
   userVehicles: NonNullable<VehicleHubProps['userVehicles']>;
@@ -3181,10 +3224,12 @@ function VehicleSwitcher({
    *  1-vehicle limit see an upgrade CTA pointing at /subscribe instead
    *  of a normal add link, which would dead-end at /garage's quota 403. */
   isSubscriber?: boolean;
+  onAddVehicle: () => void;
 }) {
   // Free users hit the 1-vehicle quota with their first add — once they
   // have a vehicle, surfacing "+ Add a vehicle" lies to them about
   // what's possible. Upgrade CTA tells the real story.
+  const selectedId = useSearchParams().get('vehicleId');
   const atFreeQuota = isAuthed && !isSubscriber && userVehicles.length >= 1;
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -3237,12 +3282,12 @@ function VehicleSwitcher({
           ) : (
             userVehicles.map((v) => {
               const vSlug = vehicleSlug(v.year, v.make, v.model, v.trim);
-              const isCurrent = vSlug === currentSlug;
+              const isCurrent = selectedId ? v.id === selectedId : vSlug === currentSlug;
               const displayLabel = v.nickname || `${v.year} ${v.make} ${v.model}`;
               return (
                 <Link
                   key={v.id}
-                  href={`/vehicle/${vSlug}`}
+                  href={savedVehicleHubHref(v)}
                   className={`vs-item ${isCurrent ? 'vs-item-current' : ''}`}
                   onClick={() => setOpen(false)}
                   role="menuitem"
@@ -3270,9 +3315,9 @@ function VehicleSwitcher({
               </div>
             </>
           ) : (
-            <Link href="/garage?add=1" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
+            <button type="button" className="vs-item vs-item-action" onClick={() => { ref.current?.querySelector<HTMLButtonElement>('.vs-trigger')?.focus(); setOpen(false); onAddVehicle(); }} role="menuitem" style={{ width: '100%', border: 0, textAlign: 'left', fontFamily: 'inherit', cursor: 'pointer' }}>
               + Add a vehicle
-            </Link>
+            </button>
           )}
           <Link href="/garage?manage=1" className="vs-item vs-item-action" onClick={() => setOpen(false)} role="menuitem">
             Manage garage →
@@ -3291,10 +3336,11 @@ function VehicleSwitcher({
    panel is rendered at all viewport sizes but the wrapper is display:none
    above 900px, so it costs nothing on desktop. */
 function MobileThreadsDrawer({
-  open, onClose, vehicle, currentMileage, recentThreads, user, onSelectThread,
+  open, onClose, vehicle, currentMileage, recentThreads, user, onSelectThread, onAddVehicle,
 }: {
   open: boolean;
   onClose: () => void;
+  onAddVehicle: () => void;
   vehicle: VehicleHubProps['vehicle'];
   currentMileage: number | null;
   recentThreads: RecentThread[];
@@ -3387,9 +3433,9 @@ function MobileThreadsDrawer({
             Home
           </Link>
           {user && (
-            <Link href="/garage?add=1" className="md-link" onClick={onClose}>
+            <button type="button" className="md-link" onClick={onAddVehicle} style={{ background: 'transparent', border: 0, fontFamily: 'inherit', textAlign: 'left', cursor: 'pointer' }}>
               Add vehicle
-            </Link>
+            </button>
           )}
           <Link href="/drive" className="md-link" onClick={onClose}>
             Drive

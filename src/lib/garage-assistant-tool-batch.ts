@@ -11,6 +11,10 @@ const PRODUCTION_GARAGE_TOOLS = new Set([
   'update_mileage', 'log_maintenance', 'get_vehicle_info', 'list_vehicles', 'get_maintenance_status',
 ]);
 
+export function isGarageAssistantWriteTool(name: string): boolean {
+  return name.trim() === 'update_mileage' || name.trim() === 'log_maintenance';
+}
+
 export type GarageAssistantToolCall = {
   id: string;
   function: { name: string; arguments: string };
@@ -100,8 +104,9 @@ export function createGarageAssistantToolBatchExecutor(deps: {
         const actions: Array<{ tool: string; result: string }> = [];
         for (const toolCall of preparedCalls) {
           const rawResult = await deps.executeTool(toolCall.function.name, toolCall.args, userId, tx, operationTime);
-          const committed = !rawResult.startsWith(NO_COMMITTED_GARAGE_ACTION_PREFIX);
-          const result = committed ? rawResult : rawResult.slice(NO_COMMITTED_GARAGE_ACTION_PREFIX.length);
+          const noCommit = rawResult.startsWith(NO_COMMITTED_GARAGE_ACTION_PREFIX);
+          const committed = isGarageAssistantWriteTool(toolCall.function.name) && !noCommit;
+          const result = noCommit ? rawResult.slice(NO_COMMITTED_GARAGE_ACTION_PREFIX.length) : rawResult;
           toolResults.push({ tool_call_id: toolCall.id, output: result });
           if (committed) actions.push({ tool: toolCall.function.name, result });
         }

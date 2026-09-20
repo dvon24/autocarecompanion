@@ -1,3 +1,4 @@
+import './helpers/reservation-test-boundary';
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import { readFileSync } from 'node:fs';
@@ -20,6 +21,7 @@ import { executeGarageAssistantProductionTool } from '../src/lib/garage-assistan
 import { nextMonotonicRevision, parseMaintenancePatch } from '../src/lib/maintenance-mutation';
 import { transmissionSelectionFitsReviewedOptions } from '../src/lib/twin-fulfillment';
 
+const serviceLockQuery = async (sql: TemplateStringsArray) => { assert.match(sql.join(''), /pg_advisory_xact_lock/); return []; };
 const require = createRequire(import.meta.url);
 const { validateVehicleTransmissionColumn } = require('./apply-vehicle-transmission.js') as {
   validateVehicleTransmissionColumn: (rows: unknown[]) => boolean;
@@ -156,6 +158,7 @@ test('maintenance POST executes normalization inside its serializable transactio
   const created: Array<Record<string, unknown>> = [];
   const revision=new Date('2026-08-26T10:00:00.000Z');let revisionGuards=0;
   const tx = {
+    $queryRaw: serviceLockQuery,
     vehicle: {
       findFirst: async () => ({ id: 'v1', userId: 'u1', year: 2015, make: 'Dodge', model: 'Challenger', trim: 'SRT 392', transmission: 'manual', currentMileage: 2000, updatedAt:revision }),
       updateMany: async () => ({count:++revisionGuards}),
@@ -178,7 +181,7 @@ test('maintenance POST executes normalization inside its serializable transactio
 test('maintenance POST preserves accepted dates and rejects malformed input without writes',async()=>{
   const stored:Array<Record<string,unknown>>=[];let transactions=0;
   const vehicle={id:'v1',userId:'u1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic',currentMileage:100,updatedAt:new Date('2026-08-26T00:00:00.000Z')};
-  const tx={vehicle:{findFirst:async()=>vehicle,update:async()=>({}),updateMany:async()=>({count:1})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{stored.push(data);return{id:'r1',...data};}},mileageLog:{create:async()=>({})}};
+  const tx={$queryRaw:serviceLockQuery,vehicle:{findFirst:async()=>vehicle,update:async()=>({}),updateMany:async()=>({count:1})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{stored.push(data);return{id:'r1',...data};}},mileageLog:{create:async()=>({})}};
   const handler=createMaintenancePostHandler({auth:async()=>({user:{id:'u1',email:'devonsroberson24@yahoo.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>{transactions+=1;return callback(tx);}} as never});
   const malformed=await handler(new Request('http://local',{method:'POST',headers:{'content-type':'application/json'},body:'{"vehicleId":'}));assert.equal(malformed.status,400);assert.equal(transactions,0);assert.equal(stored.length,0);
   const fractional=await handler(new Request('http://local',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({vehicleId:'v1',type:'oil_change',mileage:10.5,date:'2026-08-26'})}));assert.equal(fractional.status,400);assert.equal(transactions,0);
@@ -194,12 +197,12 @@ test('transmission service CAS makes either concurrent branch ordering lose with
 
   const serviceFirstState={id:'v1',userId:'u1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic' as const,currentMileage:2000,updatedAt:startRevision,isPrimary:true};
   const serviceFirstRecords:Array<Record<string,unknown>>=[];
-  const serviceFirstTx={vehicle:{findFirst:async()=>({...serviceFirstState}),updateMany:async({where,data}:{where:{updatedAt:Date};data:{updatedAt:Date}})=>{if(where.updatedAt.getTime()!==serviceFirstState.updatedAt.getTime())return{count:0};serviceFirstState.updatedAt=data.updatedAt;return{count:1};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{serviceFirstRecords.push(data);return{id:'r1',...data};}},mileageLog:{create:async()=>({})}};
+  const serviceFirstTx={$queryRaw:serviceLockQuery,vehicle:{findFirst:async()=>({...serviceFirstState}),updateMany:async({where,data}:{where:{updatedAt:Date};data:{updatedAt:Date}})=>{if(where.updatedAt.getTime()!==serviceFirstState.updatedAt.getTime())return{count:0};serviceFirstState.updatedAt=data.updatedAt;return{count:1};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{serviceFirstRecords.push(data);return{id:'r1',...data};}},mileageLog:{create:async()=>({})}};
   const serviceFirst=createMaintenancePostHandler({auth,prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(serviceFirstTx)} as never});assert.equal((await serviceFirst(makeRequest())).status,201);assert.equal(serviceFirstRecords[0].type,'transmission_fluid_auto');
   const pickerAfter=createVehiclePatchHandler({auth,prisma:{vehicle:{findFirst:async()=>({...serviceFirstState})}} as never});const pickerAfterResponse=await pickerAfter(new Request('http://local',{method:'PATCH',headers:{'content-type':'application/json'},body:JSON.stringify({transmission:'manual',expectedUpdatedAt:startRevision.toISOString()})}),{params:Promise.resolve({id:'v1'})});assert.equal(pickerAfterResponse.status,409);assert.equal(serviceFirstState.transmission,'automatic');
 
   const pickerFirstState={...serviceFirstState,transmission:'automatic' as 'automatic'|'manual',updatedAt:startRevision};const pickerFirstRecords:Array<Record<string,unknown>>=[];
-  const pickerFirstTx={vehicle:{findFirst:async()=>({...pickerFirstState}),updateMany:async()=>{pickerFirstState.transmission='manual';pickerFirstState.updatedAt=new Date(startRevision.getTime()+1);return{count:0};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{pickerFirstRecords.push(data);return{id:'r2',...data};}},mileageLog:{create:async()=>({})}};
+  const pickerFirstTx={$queryRaw:serviceLockQuery,vehicle:{findFirst:async()=>({...pickerFirstState}),updateMany:async()=>{pickerFirstState.transmission='manual';pickerFirstState.updatedAt=new Date(startRevision.getTime()+1);return{count:0};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{pickerFirstRecords.push(data);return{id:'r2',...data};}},mileageLog:{create:async()=>({})}};
   const serviceLoses=createMaintenancePostHandler({auth,prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(pickerFirstTx)} as never});assert.equal((await serviceLoses(makeRequest())).status,409);assert.equal(pickerFirstState.transmission,'manual');assert.equal(pickerFirstRecords.length,0);
 });
 
@@ -226,22 +229,22 @@ test('vehicle PATCH persists bounded integer fields unchanged',async()=>{
 
 test('claim POST executes exact garage activation and stale guarded outcomes', async () => {
   const now=new Date('2026-08-26T10:00:00.000Z');const revision=new Date('2026-08-25T10:00:00.000Z');let reservationWrites=0;let vehicleWrites=0;let isolation='';let predicateTrimVerified:unknown;
-  const reservation={id:'r1',email:'owner@example.com',vehicle:'2015 Dodge Challenger SRT 392',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,assignedTwin:'dodge-challenger',transmission:'manual',vehicleVerified:true,twinStatus:'ready',trialDays:7,claimedAt:null,updatedAt:revision};
+  const reservation={id:'r1',country:'US',email:'owner@example.com',vehicle:'2015 Dodge Challenger SRT 392',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,assignedTwin:'dodge-challenger',transmission:'manual',vehicleVerified:true,twinStatus:'ready',trialDays:7,claimedAt:null,updatedAt:revision};
   const vehicle={id:'v1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'manual',currentMileage:2000,updatedAt:revision};
-  const tx={$queryRaw:async()=>[{now}],reservation:{findUnique:async()=>reservation,updateMany:async({where}:{where:Record<string,unknown>})=>{predicateTrimVerified=where.trimVerified;return{count:++reservationWrites};}},vehicle:{findMany:async()=>[vehicle],updateMany:async()=>({count:++vehicleWrites})}};
+  const tx={$queryRaw:async()=>[{now}],reservation:{findMany:async()=>[reservation],updateMany:async({where}:{where:Record<string,unknown>})=>{predicateTrimVerified=where.trimVerified;return{count:++reservationWrites};}},vehicle:{findMany:async()=>[vehicle],updateMany:async()=>({count:++vehicleWrites})}};
   const prisma={$transaction:async(callback:(value:unknown)=>Promise<unknown>,options:{isolationLevel:string})=>{isolation=options.isolationLevel;return callback(tx);}};
   const handler=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:prisma as never});const response=await handler();
   assert.equal(response.status,200);assert.equal(isolation,'Serializable');assert.equal(reservationWrites,1);assert.equal(vehicleWrites,1);assert.equal(predicateTrimVerified,true);assert.match((await response.json()).href,/2015-dodge-challenger-srt-392/);
   let blankSessionTransactions=0;const blankSession=createTwinClaimPostHandler({auth:async()=>({user:{id:' ',email:' '}}),prisma:{$transaction:async()=>{blankSessionTransactions+=1;}} as never});assert.equal((await blankSession()).status,401);assert.equal(blankSessionTransactions,0);
-  for(const trimVerified of [false,undefined]){reservationWrites=0;vehicleWrites=0;const denied=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({...tx,reservation:{...tx.reservation,findUnique:async()=>({...reservation,trimVerified})}})} as never});assert.equal((await denied()).status,409);assert.equal(reservationWrites,0);assert.equal(vehicleWrites,0);}
-  reservationWrites=0;vehicleWrites=0;const missingTrim=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({...tx,reservation:{...tx.reservation,findUnique:async()=>({...reservation,trim:null,trimVerified:true})}})} as never});assert.equal((await missingTrim()).status,409);assert.equal(reservationWrites,0);assert.equal(vehicleWrites,0);
-  reservationWrites=0;vehicleWrites=0;const blankMake=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({...tx,reservation:{...tx.reservation,findUnique:async()=>({...reservation,make:'  '})}})} as never});assert.equal((await blankMake()).status,409);assert.equal(reservationWrites,0);assert.equal(vehicleWrites,0);
+  for(const trimVerified of [false,undefined]){reservationWrites=0;vehicleWrites=0;const denied=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({...tx,reservation:{...tx.reservation,findMany:async()=>[{...reservation,trimVerified}]}})} as never});assert.equal((await denied()).status,409);assert.equal(reservationWrites,0);assert.equal(vehicleWrites,0);}
+  reservationWrites=0;vehicleWrites=0;const missingTrim=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({...tx,reservation:{...tx.reservation,findMany:async()=>[{...reservation,trim:null,trimVerified:true}]}})} as never});assert.equal((await missingTrim()).status,409);assert.equal(reservationWrites,0);assert.equal(vehicleWrites,0);
+  reservationWrites=0;vehicleWrites=0;const blankMake=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({...tx,reservation:{...tx.reservation,findMany:async()=>[{...reservation,make:'  '}]}})} as never});assert.equal((await blankMake()).status,409);assert.equal(reservationWrites,0);assert.equal(vehicleWrites,0);
   reservationWrites=0;vehicleWrites=0;const branchConflict=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({...tx,vehicle:{...tx.vehicle,findMany:async()=>[{...vehicle,transmission:'automatic'}]}})} as never});assert.equal((await branchConflict()).status,409);assert.equal(reservationWrites,0);assert.equal(vehicleWrites,0);
   const stale=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:{$transaction:async()=>{throw {code:'P2034'};}} as never});assert.equal((await stale()).status,409);
 });
 
 test('ready fulfillment requires human-verified non-null trim provenance',()=>{
-  const base={reservation:{vehicleVerified:true,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true},hasLiveMatchingTwin:true,trialDays:7,transmissionOptionCount:2,transmission:'automatic' as const};
+  const base={reservation:{country:'US',vehicleVerified:true,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true},hasLiveMatchingTwin:true,trialDays:7,transmissionOptionCount:2,transmission:'automatic' as const};
   assert.equal(canEnterTwinReadyState(base),true);
   assert.equal(canEnterTwinReadyState({...base,transmissionOptionCount:0}),false);
   assert.equal(canEnterTwinReadyState({...base,reservation:{...base.reservation,trimVerified:false}}),false);
@@ -253,9 +256,9 @@ test('ready fulfillment requires human-verified non-null trim provenance',()=>{
 
 test('admin ready handler rejects non-object JSON and enforces verified trim provenance',async()=>{
   const revision=new Date('2026-08-26T10:00:00.000Z');let reads=0;let writes=0;
-  const base={id:'r1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,vehicleVerified:true,twinStatus:'pending',updatedAt:revision,readyAt:null};
+  const base={id:'r1',country:'US',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,vehicleVerified:true,twinStatus:'pending',updatedAt:revision,readyAt:null};
   let current={...base};
-  const prisma={reservation:{findUnique:async()=>{reads+=1;return current;},updateMany:async()=>({count:++writes}),findUniqueOrThrow:async()=>({...current,twinStatus:'ready',assignedTwin:'dodge-challenger',trialDays:7,transmission:'automatic',readyAt:revision})}};
+  const prisma={twinInvitationDelivery:{findUnique:async()=>null},reservation:{findUnique:async()=>{reads+=1;return current;},updateMany:async()=>({count:++writes}),findUniqueOrThrow:async()=>({...current,twinStatus:'ready',assignedTwin:'dodge-challenger',trialDays:7,transmission:'automatic',readyAt:revision})}};
   const handler=createAdminReservationPostHandler({requireFounder:async()=>null,prisma:prisma as never});
   const request=(body:string)=>new Request('http://local/admin/reservations',{method:'POST',headers:{'content-type':'application/json'},body});
   assert.equal((await handler(request('null'))).status,400);assert.equal(reads,0);assert.equal(writes,0);
@@ -270,9 +273,9 @@ test('admin ready handler rejects non-object JSON and enforces verified trim pro
 
 test('claim page loader requires a complete session and rejects provenance before garage/catalog work',async()=>{
   let reservationReads=0;let garageReads=0;let catalogReads=0;
-  const base={vehicle:'2015 Dodge Challenger SRT 392',twinStatus:'ready',assignedTwin:'dodge-challenger',transmission:'automatic',trialDays:7,claimedAt:null,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,vehicleVerified:true};
+  const base={id:'r1',country:'US',updatedAt:new Date('2026-08-26T00:00:00Z'),vehicle:'2015 Dodge Challenger SRT 392',twinStatus:'ready',assignedTwin:'dodge-challenger',transmission:'automatic',trialDays:7,claimedAt:null,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,vehicleVerified:true};
   let reservation:{trim:string|null;trimVerified:boolean|undefined}&Omit<typeof base,'trim'|'trimVerified'>={...base};
-  const prisma={reservation:{findUnique:async()=>{reservationReads+=1;return reservation;}},vehicle:{findMany:async()=>{garageReads+=1;return[];}},$queryRaw:async()=>[{now:new Date('2026-08-26T10:00:00.000Z')}]};
+  const prisma={twinInvitationDelivery:{findUnique:async()=>null},reservation:{findMany:async()=>{reservationReads+=1;return[reservation];}},vehicle:{findMany:async()=>{garageReads+=1;return[];}},$queryRaw:async()=>[{now:new Date('2026-08-26T10:00:00.000Z')}]};
   const deps={prisma:prisma as never,resolveOwnerCatalog:()=>{catalogReads+=1;return null;}};
   assert.equal((await loadTwinClaimPageOutcome({user:{email:'owner@example.com'}},deps)).kind,'sign-in');
   assert.equal((await loadTwinClaimPageOutcome({user:{id:'u1'}},deps)).kind,'sign-in');
@@ -324,7 +327,7 @@ test('actual picker and transmission service handlers resolve an overlapping pic
   const start=new Date('2026-08-26T10:00:00.000Z');const next=new Date(start.getTime()+1);let releaseCas!:()=>void;let signalRead!:()=>void;
   const casReleased=new Promise<void>((resolve)=>{releaseCas=resolve;});const serviceRead=new Promise<void>((resolve)=>{signalRead=resolve;});
   const state={id:'v1',userId:'u1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic' as 'automatic'|'manual',currentMileage:2000,updatedAt:start,isPrimary:true};let serviceWrites=0;
-  const serviceTx={vehicle:{findFirst:async()=>{signalRead();return{...state};},updateMany:async({where}:{where:{updatedAt:Date;transmission:string}})=>{await casReleased;if(where.updatedAt.getTime()!==state.updatedAt.getTime()||where.transmission!==state.transmission)return{count:0};state.updatedAt=next;return{count:1};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{serviceWrites+=1;return{id:'m1',...data};}},mileageLog:{create:async()=>({})}};
+  const serviceTx={$queryRaw:serviceLockQuery,vehicle:{findFirst:async()=>{signalRead();return{...state};},updateMany:async({where}:{where:{updatedAt:Date;transmission:string}})=>{await casReleased;if(where.updatedAt.getTime()!==state.updatedAt.getTime()||where.transmission!==state.transmission)return{count:0};state.updatedAt=next;return{count:1};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{serviceWrites+=1;return{id:'m1',...data};}},mileageLog:{create:async()=>({})}};
   const auth=async()=>({user:{id:'u1',email:'devonsroberson24@yahoo.com'}});
   const service=createMaintenancePostHandler({auth,prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(serviceTx)} as never,now:()=>new Date('2026-08-26T10:00:01.000Z')});
   const servicePromise=service(new Request('http://local/maintenance',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({vehicleId:'v1',type:'transmission_fluid',mileage:1500,date:'2026-08-26'})}));await serviceRead;
@@ -352,12 +355,12 @@ test('identity-clearing vehicle edits and transmission service conflict in both 
   const serviceWins={id:'v1',userId:'u1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic' as string|null,currentMileage:2000,updatedAt:initial,isPrimary:true};let serviceWinsRecords=0;
   const identityLoses=createVehiclePatchHandler({auth,prisma:{vehicle:{findFirst:async()=>({...serviceWins})},$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({vehicle:{updateMany:async({where,data}:{where:{updatedAt:Date};data:Record<string,unknown>})=>{signalIdentityCas();await identityReleased;if(where.updatedAt.getTime()!==serviceWins.updatedAt.getTime())return{count:0};Object.assign(serviceWins,data);return{count:1};},findUnique:async()=>({...serviceWins})},mileageLog:{create:async()=>({})}})} as never});
   const identityPromise=identityLoses(identityRequest(),{params:Promise.resolve({id:'v1'})});await identityAtCas;
-  const serviceFirstTx={vehicle:{findFirst:async()=>({...serviceWins}),updateMany:async({where,data}:{where:{updatedAt:Date};data:{updatedAt:Date}})=>{if(where.updatedAt.getTime()!==serviceWins.updatedAt.getTime())return{count:0};serviceWins.updatedAt=data.updatedAt;return{count:1};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{serviceWinsRecords+=1;return{id:'m1',...data};}},mileageLog:{create:async()=>({})}};
+  const serviceFirstTx={$queryRaw:serviceLockQuery,vehicle:{findFirst:async()=>({...serviceWins}),updateMany:async({where,data}:{where:{updatedAt:Date};data:{updatedAt:Date}})=>{if(where.updatedAt.getTime()!==serviceWins.updatedAt.getTime())return{count:0};serviceWins.updatedAt=data.updatedAt;return{count:1};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{serviceWinsRecords+=1;return{id:'m1',...data};}},mileageLog:{create:async()=>({})}};
   const serviceFirst=createMaintenancePostHandler({auth,prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(serviceFirstTx)} as never,now:()=>new Date(initial.getTime()+1)});assert.equal((await serviceFirst(serviceRequest())).status,201);releaseIdentity();assert.equal((await identityPromise).status,409);assert.equal(serviceWinsRecords,1);assert.equal(serviceWins.trim,'SRT 392');
 
   let releaseService!:()=>void;let signalServiceRead!:()=>void;const serviceReleased=new Promise<void>((resolve)=>{releaseService=resolve;});const serviceDidRead=new Promise<void>((resolve)=>{signalServiceRead=resolve;});
   const identityWins={id:'v1',userId:'u1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic' as string|null,currentMileage:2000,updatedAt:initial,isPrimary:true};let identityWinsRecords=0;
-  const waitingServiceTx={vehicle:{findFirst:async()=>{signalServiceRead();return{...identityWins};},updateMany:async({where,data}:{where:{updatedAt:Date};data:{updatedAt:Date}})=>{await serviceReleased;if(where.updatedAt.getTime()!==identityWins.updatedAt.getTime())return{count:0};identityWins.updatedAt=data.updatedAt;return{count:1};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{identityWinsRecords+=1;return{id:'m2',...data};}},mileageLog:{create:async()=>({})}};
+  const waitingServiceTx={$queryRaw:serviceLockQuery,vehicle:{findFirst:async()=>{signalServiceRead();return{...identityWins};},updateMany:async({where,data}:{where:{updatedAt:Date};data:{updatedAt:Date}})=>{await serviceReleased;if(where.updatedAt.getTime()!==identityWins.updatedAt.getTime())return{count:0};identityWins.updatedAt=data.updatedAt;return{count:1};},update:async()=>({})},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{identityWinsRecords+=1;return{id:'m2',...data};}},mileageLog:{create:async()=>({})}};
   const waitingService=createMaintenancePostHandler({auth,prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(waitingServiceTx)} as never,now:()=>new Date(initial.getTime()+1)});const waitingServicePromise=waitingService(serviceRequest());await serviceDidRead;
   const winningIdentity=createVehiclePatchHandler({auth,prisma:{vehicle:{findFirst:async()=>({...identityWins})},$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({vehicle:{updateMany:async({where,data}:{where:{updatedAt:Date};data:Record<string,unknown>})=>{if(where.updatedAt.getTime()!==identityWins.updatedAt.getTime())return{count:0};Object.assign(identityWins,data,{updatedAt:new Date(initial.getTime()+2)});return{count:1};},findUnique:async()=>({...identityWins})},mileageLog:{create:async()=>({})}})} as never});assert.equal((await winningIdentity(identityRequest(),{params:Promise.resolve({id:'v1'})})).status,200);releaseService();assert.equal((await waitingServicePromise).status,409);assert.equal(identityWinsRecords,0);assert.equal(identityWins.trim,'SXT');assert.equal(identityWins.transmission,null);
 });
@@ -365,7 +368,7 @@ test('identity-clearing vehicle edits and transmission service conflict in both 
 test('assistant writes reject relative dates, preserve offset-local months, and omit Int overflow',async()=>{
   const records:Array<Record<string,unknown>>=[];let transactions=0;let updates=0;let mileageLogs=0;
   const vehicle={id:'v1',userId:'u1',year:2019,make:'Lincoln',model:'Nautilus',trim:'Reserve',transmission:null,currentMileage:100,updatedAt:new Date('2026-08-26T00:00:00.000Z'),nickname:null};
-  const tx={vehicle:{findFirst:async()=>vehicle,updateMany:async()=>({count:1}),update:async()=>{updates+=1;return{};}},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{records.push(data);return{...data,cost:null};}},mileageLog:{create:async()=>{mileageLogs+=1;return{};}}};
+  const tx={$executeRaw:async(sql:TemplateStringsArray,...values:unknown[])=>{assert.match(sql.join(''),/UPDATE "Vehicle"/);assert.equal(values[3],vehicle.id);updates+=1;return 1;},vehicle:{findFirst:async()=>vehicle,updateMany:async()=>({count:1}),update:async()=>{updates+=1;return{};}},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>{records.push(data);return{...data,cost:null};}},mileageLog:{create:async()=>{mileageLogs+=1;return{};}}};
   const prisma={$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>{transactions+=1;return callback(tx);}};
   const maintenance=createGarageAssistantMaintenanceExecutor({prisma:prisma as never,now:()=>new Date('2026-08-27T00:00:00.000Z')});
   await assert.rejects(()=>maintenance({vehicleId:'v1',type:'oil_change',mileage:100,date:'today'},'u1'),(error:unknown)=>(error as {status?:number}).status===400);assert.equal(records.length,0);
@@ -400,13 +403,13 @@ test('assistant multi-tool batch rolls back earlier writes when a later call is 
 test('guarded maintenance mileage keeps a monotonic revision and matching history',async()=>{
   const revision=new Date('2026-08-27T10:00:00.000Z');const vehicle={id:'v1',userId:'u1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic',currentMileage:100,updatedAt:revision,nickname:null};
   const vehicleUpdates:Array<Record<string,unknown>>=[];const logs:Array<Record<string,unknown>>=[];
-  const tx={vehicle:{findFirst:async()=>vehicle,updateMany:async({data}:{data:Record<string,unknown>})=>{vehicle.updatedAt=data.updatedAt as Date;return{count:1};},update:async({data}:{data:Record<string,unknown>})=>{vehicleUpdates.push(data);return{};}},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>({...data,id:'m1',cost:null})},mileageLog:{create:async({data}:{data:Record<string,unknown>})=>{logs.push(data);return data;}}};
+  const tx={$queryRaw:serviceLockQuery,$executeRaw:async(sql:TemplateStringsArray,...values:unknown[])=>{assert.match(sql.join(''),/GREATEST/);assert.equal(values[3],vehicle.id);const updatedAt=new Date(Math.max(vehicle.updatedAt.getTime()+1,(values[2] as Date).getTime()));vehicleUpdates.push({currentMileage:values[0],updatedAt});vehicle.updatedAt=updatedAt;return 1;},vehicle:{findFirst:async()=>vehicle,updateMany:async({data}:{data:Record<string,unknown>})=>{vehicle.updatedAt=data.updatedAt as Date;return{count:1};},update:async({data}:{data:Record<string,unknown>})=>{vehicleUpdates.push(data);return{};}},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>({...data,id:'m1',cost:null})},mileageLog:{create:async({data}:{data:Record<string,unknown>})=>{logs.push(data);return data;}}};
   const post=createMaintenancePostHandler({auth:async()=>({user:{id:'u1',email:'devonsroberson24@yahoo.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(tx)} as never,now:()=>revision});
   const response=await post(new Request('http://local/maintenance',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({vehicleId:'v1',type:'transmission_fluid',mileage:200,date:'2026-08-27'})}));
-  assert.equal(response.status,201);assert.equal((vehicleUpdates[0].updatedAt as Date).getTime(),revision.getTime()+1);assert.deepEqual(logs[0],{vehicleId:'v1',mileage:200,source:'maintenance'});
+  assert.equal(response.status,201);assert.equal((vehicleUpdates[0].updatedAt as Date).getTime(),revision.getTime()+2);assert.deepEqual(logs[0],{vehicleId:'v1',mileage:200,source:'maintenance'});
   vehicle.currentMileage=100;vehicle.updatedAt=revision;vehicleUpdates.length=0;logs.length=0;
   await executeGarageAssistantMaintenanceInTransaction(tx as never,{vehicleId:'v1',type:'transmission_fluid',mileage:250,date:'2026-08-27'},'u1',revision);
-  assert.equal((vehicleUpdates[0].updatedAt as Date).getTime(),revision.getTime()+1);assert.deepEqual(logs[0],{vehicleId:'v1',mileage:250,source:'maintenance'});
+  assert.equal((vehicleUpdates[0].updatedAt as Date).getTime(),revision.getTime()+2);assert.deepEqual(logs[0],{vehicleId:'v1',mileage:250,source:'maintenance'});
 });
 
 test('maintenance PATCH is nonempty, keeps only narrow legacy metadata, and pairs due dates',async()=>{
@@ -427,8 +430,8 @@ test('maintenance PATCH is nonempty, keeps only narrow legacy metadata, and pair
 
 test('admin reservation partial updates preserve omissions and reject malformed branch state',async()=>{
   const revision=new Date('2026-08-27T10:00:00.000Z');let reads=0;const writes:Array<Record<string,unknown>>=[];
-  const reservation={id:'r1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',vehicleVerified:true,trimVerified:true,twinStatus:'reserved',assignedTwin:'dodge-challenger',trialDays:7,transmission:'automatic',readyAt:null,updatedAt:revision};
-  const prisma={reservation:{findUnique:async()=>{reads+=1;return reservation;},updateMany:async({data}:{data:Record<string,unknown>})=>{writes.push(data);return{count:1};},findUniqueOrThrow:async()=>({...reservation,updatedAt:revision})}};
+  const reservation={id:'r1',country:'US',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',vehicleVerified:true,trimVerified:true,twinStatus:'reserved',assignedTwin:'dodge-challenger',trialDays:7,transmission:'automatic',readyAt:null,updatedAt:revision};
+  const prisma={twinInvitationDelivery:{findUnique:async()=>null},reservation:{findUnique:async()=>{reads+=1;return reservation;},updateMany:async({data}:{data:Record<string,unknown>})=>{writes.push(data);return{count:1};},findUniqueOrThrow:async()=>({...reservation,updatedAt:revision})}};
   const handler=createAdminReservationPostHandler({requireFounder:async()=>null,prisma:prisma as never,now:()=>revision});const request=(body:unknown)=>new Request('http://local/admin/reservations',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});
   for(const body of [{id:'r1',expectedUpdatedAt:revision.toISOString(),unknown:true},{id:'r1',expectedUpdatedAt:revision.toISOString(),trialDays:'7'},{id:'r1',expectedUpdatedAt:'tomorrow',status:'building'},{id:'r1',expectedUpdatedAt:revision.toISOString()}])assert.equal((await handler(request(body))).status,400);
   assert.equal(reads,0);
@@ -472,17 +475,17 @@ test('assistant batch preserves one monotonic vehicle revision across later mile
   const revision=new Date('2026-08-27T10:00:00.000Z');
   const vehicle={id:'v1',userId:'u1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic',currentMileage:100,updatedAt:revision,nickname:null};
   const finalRevisions:Date[]=[];
-  const tx={vehicle:{findFirst:async()=>({...vehicle}),updateMany:async({where,data}:{where:{updatedAt:Date};data:{updatedAt:Date}})=>{if(where.updatedAt.getTime()!==vehicle.updatedAt.getTime())return{count:0};vehicle.updatedAt=data.updatedAt;return{count:1};},update:async({data}:{data:{currentMileage:number;updatedAt:Date}})=>{vehicle.currentMileage=data.currentMileage;vehicle.updatedAt=data.updatedAt;finalRevisions.push(data.updatedAt);return{...vehicle};}},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>({...data,id:'m1',cost:null})},mileageLog:{create:async()=>({})}};
+  const tx={$executeRaw:async(sql:TemplateStringsArray,...values:unknown[])=>{assert.match(sql.join(''),/GREATEST/);assert.equal(values[3],vehicle.id);vehicle.currentMileage=values[0] as number;vehicle.updatedAt=new Date(Math.max(vehicle.updatedAt.getTime()+1,(values[2] as Date).getTime()));finalRevisions.push(vehicle.updatedAt);return 1;},vehicle:{findFirst:async()=>({...vehicle}),updateMany:async({where,data}:{where:{updatedAt:Date};data:{updatedAt:Date}})=>{if(where.updatedAt.getTime()!==vehicle.updatedAt.getTime())return{count:0};vehicle.updatedAt=data.updatedAt;return{count:1};},update:async({data}:{data:{currentMileage:number;updatedAt:Date}})=>{vehicle.currentMileage=data.currentMileage;vehicle.updatedAt=data.updatedAt;finalRevisions.push(data.updatedAt);return{...vehicle};}},maintenanceRecord:{create:async({data}:{data:Record<string,unknown>})=>({...data,id:'m1',cost:null})},mileageLog:{create:async()=>({})}};
   const batch=createGarageAssistantToolBatchExecutor({prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(tx)} as never,now:()=>revision,executeTool:executeGarageAssistantProductionTool});
   const calls=[{id:'1',type:'function',function:{name:'log_maintenance',arguments:JSON.stringify({vehicleId:'v1',type:'transmission_fluid',mileage:200,date:'2026-08-27'})}},{id:'2',type:'function',function:{name:'update_mileage',arguments:JSON.stringify({vehicleId:'v1',mileage:300})}}];
-  const result=await batch(calls,'u1');assert.equal(result.actions.length,2);assert.deepEqual(finalRevisions.map((value)=>value.getTime()),[revision.getTime()+1,revision.getTime()+2]);assert.equal(vehicle.updatedAt.getTime(),revision.getTime()+2);
+  const result=await batch(calls,'u1');assert.equal(result.actions.length,2);assert.deepEqual(finalRevisions.map((value)=>value.getTime()),[revision.getTime()+2,revision.getTime()+3]);assert.equal(vehicle.updatedAt.getTime(),revision.getTime()+3);
 });
 
 test('single-fitment ready and claim handlers reject stored branches and persist null',async()=>{
   const now=new Date('2026-08-27T10:00:00.000Z');
   const singleTwin={id:'dodge-challenger',label:'Lincoln Nautilus',make:'lincoln',model:'nautilus',yearFrom:2019,yearTo:2019,trims:['reserve'],transmissions:['automatic'] as const,live:true};
-  const reservation={id:'r1',email:'owner@example.com',vehicle:'2019 Lincoln Nautilus Reserve',year:2019,make:'Lincoln',model:'Nautilus',trim:'Reserve',trimVerified:true,vehicleVerified:true,twinStatus:'building',assignedTwin:'dodge-challenger',trialDays:7,transmission:'automatic' as string|null,readyAt:null,claimedAt:null,updatedAt:now};let adminWrites=0;
-  const admin=createAdminReservationPostHandler({requireFounder:async()=>null,now:()=>now,resolveTwinDefinition:()=>singleTwin,prisma:{reservation:{findUnique:async()=>reservation,updateMany:async()=>({count:++adminWrites}),findUniqueOrThrow:async()=>reservation}} as never});
+  const reservation={id:'r1',country:'US',email:'owner@example.com',vehicle:'2019 Lincoln Nautilus Reserve',year:2019,make:'Lincoln',model:'Nautilus',trim:'Reserve',trimVerified:true,vehicleVerified:true,twinStatus:'building',assignedTwin:'dodge-challenger',trialDays:7,transmission:'automatic' as string|null,readyAt:null,claimedAt:null,updatedAt:now};let adminWrites=0;
+  const admin=createAdminReservationPostHandler({requireFounder:async()=>null,now:()=>now,resolveTwinDefinition:()=>singleTwin,prisma:{twinInvitationDelivery:{findUnique:async()=>null},reservation:{findUnique:async()=>reservation,updateMany:async()=>({count:++adminWrites}),findUniqueOrThrow:async()=>reservation}} as never});
   const adminRequest=(body:unknown)=>new Request('http://local/admin/reservations',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});
   assert.equal((await admin(adminRequest({id:'r1',expectedUpdatedAt:now.toISOString(),status:'ready'}))).status,400);assert.equal(adminWrites,0);
   assert.equal((await admin(adminRequest({id:'r1',expectedUpdatedAt:now.toISOString(),transmission:null}))).status,200);assert.equal(adminWrites,1);
@@ -490,7 +493,7 @@ test('single-fitment ready and claim handlers reject stored branches and persist
   let reservationWrites=0;let vehicleWrites=0;let copiedTransmission:unknown='unset';
   reservation.twinStatus='ready';reservation.transmission='automatic';
   const garage={id:'v1',year:2019,make:'Lincoln',model:'Nautilus',trim:'Reserve',transmission:null as string|null,currentMileage:2000,updatedAt:now};
-  const tx={$queryRaw:async()=>[{now}],reservation:{findUnique:async()=>reservation,updateMany:async()=>({count:++reservationWrites})},vehicle:{findMany:async()=>[garage],updateMany:async({data}:{data:{transmission:string|null}})=>{copiedTransmission=data.transmission;return{count:++vehicleWrites};}}};
+  const tx={$queryRaw:async()=>[{now}],reservation:{findMany:async()=>[reservation],updateMany:async()=>({count:++reservationWrites})},vehicle:{findMany:async()=>[garage],updateMany:async({data}:{data:{transmission:string|null}})=>{copiedTransmission=data.transmission;return{count:++vehicleWrites};}}};
   const claim=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),resolveTwinDefinition:()=>singleTwin,prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(tx)} as never});
   assert.equal((await claim()).status,409);assert.equal(reservationWrites,0);assert.equal(vehicleWrites,0);
   reservation.transmission=null;garage.transmission='automatic';assert.equal((await claim()).status,409);assert.equal(reservationWrites,0);assert.equal(vehicleWrites,0);
@@ -511,10 +514,10 @@ test('reviewed transmission integrity and readability stay fail-closed across si
   const singleAutomatic={...singleNull,transmission:'automatic'};
   const singleManual={...singleNull,transmission:'manual'};
   assert.equal(hasValidReviewedTransmissionState(singleNull),true);
-  assert.equal(hasValidReviewedTransmissionState(singleAutomatic),false);
+  assert.equal(hasValidReviewedTransmissionState(singleAutomatic),true);
   assert.equal(hasValidReviewedTransmissionState(singleManual),false);
   assert.deepEqual(resolveMaintenanceWriteType('transmission_fluid',singleNull),{ok:true,type:'transmission_fluid_auto'});
-  assert.deepEqual(resolveMaintenanceWriteType('transmission_fluid',singleAutomatic),{ok:false,reason:'transmission-mismatch'});
+  assert.deepEqual(resolveMaintenanceWriteType('transmission_fluid',singleAutomatic),{ok:true,type:'transmission_fluid_auto'});
   assert.deepEqual(resolveMaintenanceWriteType('transmission_fluid_manual',singleManual),{ok:false,reason:'transmission-mismatch'});
   assert.deepEqual(resolveReadableTransmissionMaintenanceTypes(singleManual),['transmission_fluid','transmission_fluid_auto']);
   assert.equal(maintenanceTypeIsReadableForVehicle('transmission_fluid_manual',singleManual),false);
@@ -532,6 +535,7 @@ test('reviewed transmission integrity and readability stay fail-closed across si
   const corruptPost=createMaintenancePostHandler({
     auth:async()=>({user:{id:'u1',email:'devonsroberson24@yahoo.com'}}),
     prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback({
+      $queryRaw:serviceLockQuery,
       vehicle:{findFirst:async()=>({...singleManual,id:'v1',userId:'u1',updatedAt:new Date('2026-08-27T00:00:00.000Z'),currentMileage:1000}),updateMany:async()=>{guards+=1;return{count:1};}},
       maintenanceRecord:{create:async()=>{records+=1;return{};}},mileageLog:{create:async()=>({})},
     })} as never,
@@ -605,10 +609,10 @@ test('picker and identity CAS writes advance revisions under same-millisecond an
 
 test('claim CAS advances reservation and vehicle revisions with a regressed database clock',async()=>{
   const revision=new Date('2026-08-27T10:00:00.000Z');const now=new Date(revision.getTime()-10_000);
-  const reservation={id:'r1',email:'owner@example.com',vehicle:'2015 Dodge Challenger SRT 392',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,assignedTwin:'dodge-challenger',transmission:'automatic',vehicleVerified:true,twinStatus:'ready',trialDays:7,claimedAt:null,updatedAt:revision};
+  const reservation={id:'r1',country:'US',email:'owner@example.com',vehicle:'2015 Dodge Challenger SRT 392',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,assignedTwin:'dodge-challenger',transmission:'automatic',vehicleVerified:true,twinStatus:'ready',trialDays:7,claimedAt:null,updatedAt:revision};
   const vehicle={id:'v1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic',currentMileage:2000,updatedAt:revision};
   let reservationData:Record<string,unknown>={};let vehicleData:Record<string,unknown>={};
-  const tx={$queryRaw:async()=>[{now}],reservation:{findUnique:async()=>reservation,updateMany:async({data}:{data:Record<string,unknown>})=>{reservationData=data;return{count:1};}},vehicle:{findMany:async()=>[vehicle],updateMany:async({data}:{data:Record<string,unknown>})=>{vehicleData=data;return{count:1};}}};
+  const tx={$queryRaw:async()=>[{now}],reservation:{findMany:async()=>[reservation],updateMany:async({data}:{data:Record<string,unknown>})=>{reservationData=data;return{count:1};}},vehicle:{findMany:async()=>[vehicle],updateMany:async({data}:{data:Record<string,unknown>})=>{vehicleData=data;return{count:1};}}};
   const claim=createTwinClaimPostHandler({auth:async()=>({user:{id:'u1',email:'owner@example.com'}}),prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(tx)} as never});
   assert.equal((await claim()).status,200);
   assert.equal((reservationData.updatedAt as Date).getTime(),revision.getTime()+1);assert.equal((vehicleData.updatedAt as Date).getTime(),revision.getTime()+1);

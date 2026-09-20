@@ -1,6 +1,7 @@
 import { getReviewedTransmissionChoices, resolveReviewedTransmissionBranch } from '@/lib/transmission-options';
+import { REVIEWED_OWNER_EQUIPMENT } from './twin-owner-equipment';
 
-export type TwinFulfillmentStatus = 'reserved' | 'building' | 'ready' | 'claimed';
+export type TwinFulfillmentStatus = 'reserved' | 'building' | 'ready' | 'claimed' | 'canceled';
 
 export interface TwinDefinition {
   id: string;
@@ -45,6 +46,10 @@ export function sameTwinVehicleIdentity(
  * hotspots, and fitment data ready for an owner's hub.
  */
 export const TWIN_DEFINITIONS: readonly TwinDefinition[] = [
+  ...REVIEWED_OWNER_EQUIPMENT.map(profile => ({
+    id:profile.fulfillmentId, label:`${profile.make} ${profile.model}`, make:profile.make.toLowerCase(), model:profile.model.toLowerCase(),
+    yearFrom:profile.year, yearTo:profile.year, trims:[profile.trim.toLowerCase()], transmissions:getReviewedTransmissionChoices(profile), live:true,
+  })),
   {
     id: 'dodge-challenger',
     label: 'Dodge Challenger',
@@ -74,6 +79,7 @@ export const TWIN_FULFILLMENT_STATUSES: readonly TwinFulfillmentStatus[] = [
   'building',
   'ready',
   'claimed',
+  'canceled',
 ] as const;
 
 export function getTwinDefinition(id: string | null | undefined): TwinDefinition | null {

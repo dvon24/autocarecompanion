@@ -36,6 +36,11 @@ const withPWA = withPWAInit({
     // a fresh response over a cached one.
     runtimeCaching: [
       {
+        // Geographic eligibility must never fall back to a cached US response.
+        urlPattern: /\/api\/enrollment-eligibility(?:\?.*)?$/,
+        handler: 'NetworkOnly',
+      },
+      {
         // The vehicle-picker data file — now excluded from precache (see
         // publicExcludes). NetworkFirst so it's always fresh when online,
         // with a short cache as the offline safety net.
@@ -121,6 +126,7 @@ const withPWA = withPWAInit({
 });
 
 const nextConfig: NextConfig = {
+  outputFileTracingRoot: process.cwd(),
   // Allow CI/release validation to build beside a running local dev server.
   // The default remains `.next`; setting NEXT_DIST_DIR avoids concurrent
   // writers corrupting one another's build output in the shared checkout.

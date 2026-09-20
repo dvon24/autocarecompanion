@@ -14,9 +14,11 @@ import { prisma } from '@/lib/db';
 import { sendEmail, passwordResetEmail, appUrl } from '@/lib/email';
 import { z } from 'zod';
 import { RateLimiter } from '@/lib/rate-limit';
+import { safeInternalCallback } from '@/lib/auth-callback';
 
 const Body = z.object({
   email: z.string().email().max(254),
+  callbackUrl: z.string().max(2000).optional(),
 });
 
 // Best-effort abuse brake (in-memory, per instance): without it any IP
@@ -84,7 +86,8 @@ export async function POST(request: Request) {
     },
   });
 
-  const resetLink = `${appUrl()}/auth/reset-password?token=${encodeURIComponent(rawToken)}`;
+  const callbackUrl = safeInternalCallback(parsed.callbackUrl, '/account');
+  const resetLink = `${appUrl()}/auth/reset-password?token=${encodeURIComponent(rawToken)}&callbackUrl=${encodeURIComponent(callbackUrl)}`;
   const { html, text } = passwordResetEmail(resetLink, TOKEN_TTL_MIN);
 
   await sendEmail({

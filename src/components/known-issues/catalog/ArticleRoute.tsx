@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import { headers } from 'next/headers';
 import Link from 'next/link';
 import Image from 'next/image';
 import {
@@ -26,6 +27,11 @@ import { ShareButtons } from '@/components/shared/ShareButtons';
 import { KnownIssueAlertSignup } from '@/components/known-issues/KnownIssueAlertSignup';
 import { AlertSignupPopup } from '@/components/known-issues/AlertSignupPopup';
 import { SiteFooter } from '@/components/shared/SiteFooter';
+import { KnownIssueTwinPilot } from '@/components/known-issues/KnownIssueTwinPilot';
+import { KnownIssueTwinFilterProvider, KnownIssueTwinIssueHeading } from '@/components/known-issues/KnownIssueTwinFilterContext';
+import { MemberHeaderAction } from '@/components/shared/MemberHeaderAction';
+import { isKnownIssueTwinPilotEnabled, projectKnownIssueTwinIssues } from '@/lib/known-issue-twin-pilot';
+import { resolveKnownIssueTwinVisual } from '@/lib/known-issue-twin-visuals';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
 import { sourceLabel, analysisAttribution, sourceFootnote, metaSourceTail, formatUpdatedLabel } from '@/lib/source-attribution';
@@ -50,7 +56,7 @@ import { catalogIsDesignPreview, motorcycleCoverageDescription, type IssueCatalo
  */
 export interface ArticleRouteProps {
   params: Promise<{ slug: string }>;
-  searchParams: Promise<{ year?: string }>;
+  searchParams: Promise<{ year?: string; twinPilot?: string; trim?:string; engine?:string }>;
 }
 
 // Add models here as their full-record audit reaches the SEO verification
@@ -525,7 +531,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
   searchParams,
 }: ArticleRouteProps) {
   const { slug } = await params;
-  const { year: yearParam } = await searchParams;
+  const { year: yearParam, twinPilot, trim: visualTrim, engine: visualEngine } = await searchParams;
   const initialYear = yearParam ? parseInt(yearParam, 10) : undefined;
   const parsed = await parseKnownIssueArticleSlug(catalog, slug);
   if (!parsed) notFound();
@@ -558,7 +564,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
       },
     ];
     return (
-      <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
+      <div className="min-h-screen" style={{ background: '#F7F6F2', color: '#0B1220' }}>
         <header
           className="sticky top-0 z-30 px-6 py-4"
           style={{
@@ -579,9 +585,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
               <Link href={catalog.basePath} className="hidden sm:inline-block px-3 sm:px-4 py-2 text-sm font-medium text-[#475569] hover:text-[#0B1220] transition-colors">
                 {catalog.label}
               </Link>
-              <Link href="/get-started" className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#3B82F6] text-white rounded-lg transition-colors hover:bg-[#2563EB]">
-                Get Started
-              </Link>
+              <MemberHeaderAction fallbackHref="/get-started" fallbackLabel="Get Started" enrollment />
             </div>
           </div>
         </header>
@@ -632,7 +636,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
             </div>
           </section>
 
-          <KnownIssueAlertSignup vehicleName={vehicleName} context={`${catalog.contextPrefix}:${vehicleName}`} />
+          <KnownIssueAlertSignup vehicleName={vehicleName} context={`${catalog.contextPrefix}:${vehicleName}`} showCarousel={catalog.hubLinks} />
 
           {related.length > 0 && (
             <section className="mt-10 mb-10">
@@ -666,7 +670,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
         </main>
 
         <SiteFooter />
-        <MobileBottomBar />
+        {catalog.hubLinks && <MobileBottomBar />}
       </div>
     );
   }
@@ -763,6 +767,34 @@ export async function ArticlePage(catalog: IssueCatalog, {
   const criticalIssues = issues.filter(i => i.severity === 'high');
   const topReported = [...issues].sort((a, b) => b.reportCount - a.reportCount)[0];
 
+  // In the isolated walkthrough, canonical links must not lose the visual.
+  // Keep production opt-in/geo policy unchanged and never depict another year.
+  const visualDefinition = catalog.vehicleType === 'car' && (!yearParam || /^\d{4}$/.test(yearParam))
+    ? resolveKnownIssueTwinVisual(slug, initialYear, {trim:visualTrim,engine:visualEngine}) : null;
+  const isolatedVisualEntry = !!visualDefinition && process.env.NODE_ENV === 'development'
+    && process.env.AU7O_ISOLATED_SIGNUP_PREVIEW === 'true'
+    && (initialYear == null || initialYear === visualDefinition.year);
+  const pilotYear = isolatedVisualEntry ? visualDefinition.year : initialYear;
+  const pilotRequested = twinPilot === '1' || isolatedVisualEntry;
+  const pilotCandidate = !!visualDefinition && pilotYear === visualDefinition.year && pilotRequested;
+  const requestHeaders = pilotCandidate ? await headers() : null;
+  const pilotExposureEnabled = !!visualDefinition && isKnownIssueTwinPilotEnabled({
+    slug,
+    requestedYear: pilotYear,
+    queryEnabled: pilotRequested,
+    isVercel: Boolean(process.env.VERCEL),
+    vercelEnvironment: process.env.VERCEL_ENV,
+    country: requestHeaders?.get('x-vercel-ip-country'),
+    productionFlag: process.env.KNOWN_ISSUE_TWIN_PILOT_ENABLED,
+    nodeEnvironment: process.env.NODE_ENV,
+  });
+  const knownIssueTwinIssues = pilotExposureEnabled
+    ? projectKnownIssueTwinIssues(issues, visualDefinition)
+    : [];
+  // A conversion gate needs two real records. If future publishing changes
+  // leave fewer than two, fail closed to the normal article summary.
+  const showKnownIssueTwinPilot = pilotExposureEnabled && knownIssueTwinIssues.filter(issue=>issue.hotspot).length >= 2;
+
   // Sidebar data
   const sidebarGroups = grouped.map(([cat, catIssues]) => ({
     category: cat,
@@ -771,7 +803,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
   }));
 
   return (
-    <div className="min-h-screen" style={{ background: '#F7F6F2' }}>
+    <div className="min-h-screen" style={{ background: '#F7F6F2', color: '#0B1220' }}>
       {/* Header */}
       <header
         className="sticky top-0 z-30 px-6 py-4"
@@ -802,12 +834,9 @@ export async function ArticlePage(catalog: IssueCatalog, {
             >
               {catalog.label}
             </Link>
-            <Link
-              href={catalog.hubLinks ? '/get-started' : catalog.basePath}
-              className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#3B82F6] text-white rounded-lg transition-colors hover:bg-[#2563EB]"
-            >
-              {catalog.hubLinks ? 'Get Started' : catalog.diagnoseCta}
-            </Link>
+            {catalog.hubLinks
+              ? <MemberHeaderAction fallbackHref="/demo/hub" fallbackLabel="Test Hub demo" />
+              : <Link href={catalog.basePath} className="px-3 sm:px-4 py-2 text-sm font-semibold bg-[#3B82F6] text-white rounded-lg hover:bg-[#2563EB]">{catalog.diagnoseCta}</Link>}
           </div>
         </div>
       </header>
@@ -829,6 +858,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
       ]} />
 
       <article id="top" className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 pb-24 lg:pb-12">
+        <KnownIssueTwinFilterProvider>
         {/* Breadcrumb */}
         <nav className="text-sm mb-6" style={{ color: '#94A3B8' }} aria-label="Breadcrumb">
           <ol className="flex items-center gap-1.5">
@@ -875,11 +905,11 @@ export async function ArticlePage(catalog: IssueCatalog, {
           />
         )}
 
-        {/* GEO Summary — blockquote style for AI citation */}
-        <blockquote className="border-l-4 border-[#3B82F6] pl-5 mb-10">
-          {isolatedMotorcycleFixture ? <p className="leading-relaxed" style={{ color: '#475569' }}>
-            Private motorcycle design preview: {issues.length} synthetic layout examples. These are not verified defects, recalls or repair advice.
-          </p> : <p className="leading-relaxed" style={{ color: '#475569' }}>
+        {showKnownIssueTwinPilot && visualDefinition && <KnownIssueTwinPilot key={visualDefinition.twinId} definition={visualDefinition} issues={knownIssueTwinIssues} />}
+        {/* Preserve the ordinary summary unless the car-only pilot is eligible. */}
+        <blockquote className={showKnownIssueTwinPilot ? 'sr-only' : 'border-l-4 border-[#3B82F6] pl-5 mb-10'}>
+          <p className="leading-relaxed" style={{ color: '#475569' }}>
+            {isolatedMotorcycleFixture ? <>These {issues.length} synthetic examples demonstrate issue categories, severity styles, symptoms and repair sections. They do not describe a real motorcycle or verified research. Open an example to review the layout.</> : <>
             According to {analysisAttribution(totalReports)}, the {yearStr} {vehicleName} has {issues.length} {issues.length === 1 ? 'documented issue' : 'documented known issues'}
             {highCount > 0 ? (
               <>, with {highCount} rated critical. {criticalIssues.length > 0 && (
@@ -910,7 +940,8 @@ export async function ArticlePage(catalog: IssueCatalog, {
               DIY maintenance guides
             </Link>{' '}
             at <strong className="text-[#0B1220]">au7o.io</strong>.</>}
-          </p>}
+            </>}
+          </p>
         </blockquote>
 
         {/* Two-column layout */}
@@ -977,9 +1008,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
 
             {/* Issues List */}
             <section>
-              <h2 className="text-xl font-semibold mb-4" style={{ color: '#0B1220' }}>
-                All {issues.length} Known {issues.length === 1 ? 'Issue' : 'Issues'}
-              </h2>
+              <KnownIssueTwinIssueHeading total={issues.length} />
               {/* Unified "find your issue" bar — free fuzzy/keyword search,
                   Plus AI natural-language search, and a camera to snap a
                   photo/video (quota-gated per tier). Replaces the old photo
@@ -1070,6 +1099,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
               <KnownIssueAlertSignup
                 vehicleName={`${make} ${model}`}
                 context={`${catalog.contextPrefix}:${make} ${model}`}
+                showCarousel={catalog.hubLinks}
               />
             </div>}
             {/* Engagement popup — the live hub-demo carousel, ~5s after load
@@ -1161,6 +1191,7 @@ export async function ArticlePage(catalog: IssueCatalog, {
             </footer>
           </div>
         </div>
+        </KnownIssueTwinFilterProvider>
       </article>
 
       {/* Site-wide footer (legal links + share + AI disclaimer + brand).

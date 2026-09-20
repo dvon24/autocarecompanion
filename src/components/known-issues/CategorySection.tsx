@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { currentKnownIssueAnchor, subscribeKnownIssueNavigation } from '@/lib/known-issue-navigation';
 import { KnownIssueCard } from './KnownIssueCard';
 import { triggerHaptic } from '@/hooks/useHaptic';
 import { KnownIssue, IssueCategory } from '@/schemas/knownIssue.schema';
@@ -43,7 +44,7 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
   useEffect(() => {
     if (typeof window === 'undefined') return;
     const checkHash = () => {
-      const hash = window.location.hash.slice(1);
+      const hash = currentKnownIssueAnchor();
       if (!hash) return;
       // Expand if hash matches category name
       if (hash === category) {
@@ -56,8 +57,7 @@ export function CategorySection({ category, issues, defaultExpanded = false, def
       }
     };
     checkHash();
-    window.addEventListener('hashchange', checkHash);
-    return () => window.removeEventListener('hashchange', checkHash);
+    return subscribeKnownIssueNavigation(checkHash);
   }, [category, issues]);
   const config = categoryConfig[category] ?? categoryConfig.other;
   const highCount = issues.filter(i => i.severity === 'high').length;

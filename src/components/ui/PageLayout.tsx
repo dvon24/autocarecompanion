@@ -98,7 +98,9 @@ export function PageLayout({
                     </Link>
                   </ScrollReveal>
                   <ScrollReveal delay={100} duration={600} direction="down" distance={15}>
-                    <div className="flex items-center gap-4">
+                    {/* Reserve room for the fixed global account avatar, which
+                        sits outside this header's flex layout on narrow screens. */}
+                    <div className="mr-10 flex items-center gap-4">
                       {backLink && (
                         <Link
                           href={backLink.href}

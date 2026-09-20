@@ -9,18 +9,18 @@
  *   • the tree set, with each part's clock reset from real logged services
  *   • "next service", derived from that tree rather than hardcoded
  *
- * Both live here rather than on the server because the service intervals sit
- * next to the tree they annotate (twin-trees.js), so "what counts as due" has
- * exactly one definition.
+ * Maintenance trees and installed-part clocks come from the same pure builder
+ * used by the server reminder sender; this component supplies presentation.
  */
 import React from "react";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { TwinDataCtx } from "./twin-context";
-import { buildTwinTrees, servicedFromRecords } from "./twin-trees";
+import { buildOwnerMaintenanceTrees, ownerInstalledParts } from "./owner-maintenance-trees";
 import { getTwinByFulfillmentId, getTwinPaintOptions } from "../../lib/vehicle-twin-catalog";
-import { sameTwinVehicleIdentity } from "../../lib/twin-fulfillment";
-import { attachKnownIssueDetails, mergeCatalogEvidenceIntoOwnerTrees, buildDemoTwinPresentation, buildModelOwnerTrees, filterTwinCatalogForTrees } from "./demo-trees";
+import { ownerEquipmentFitmentKey } from "../../lib/twin-owner-equipment";
+import { attachKnownIssueDetails, buildDemoTwinPresentation, filterTwinCatalogForTrees } from "./demo-trees";
+import { useOwnerPaintControl } from "./use-owner-paint-control";
 
 const HubRoot = dynamic(
   () => import("./hub/HubRoot").then((m) => ({ default: m.HubRoot })),
@@ -136,13 +136,11 @@ export function LiveTwinHub({ data }) {
   const [transmissionChoice, setTransmissionChoice] = React.useState(data.transmission || "");
   const [transmissionState, setTransmissionState] = React.useState("idle");
   const [transmissionError, setTransmissionError] = React.useState("");
-  const [paintChoice, setPaintChoice] = React.useState(data.vehicle?.color || "");
-  const [paintState, setPaintState] = React.useState("idle");
-  const [paintError, setPaintError] = React.useState("");
   const safeData = React.useMemo(() => suppressTwinTransmissionWhilePending(data, transmissionPending && !data.transmission), [data, transmissionPending]);
   const baseValue = React.useMemo(() => buildOwnerTwinValue(safeData), [safeData]);
   const transmissionPicker = React.useMemo(() => getFounderTransmissionPickerModel(data), [data]);
   const currentTransmission = transmissionPicker?.current || null;
+  const paint = useOwnerPaintControl(data, baseValue?.catalog ? getTwinPaintOptions(baseValue.catalog,data.vehicle?.trim) : [], () => router.refresh());
 
   React.useEffect(() => {
     setTransmissionChoice(data.transmission || "");
@@ -150,8 +148,6 @@ export function LiveTwinHub({ data }) {
     setTransmissionError("");
     setTransmissionPending(false);
   }, [data.transmission, data.vehicleId, data.vehicleRevision]);
-
-  React.useEffect(() => { setPaintChoice(data.vehicle?.color || ""); setPaintState("idle"); setPaintError(""); }, [data.vehicle?.color, data.vehicleId]);
 
   React.useEffect(() => {
     if (transmissionState !== "refreshing") return undefined;
@@ -172,7 +168,7 @@ export function LiveTwinHub({ data }) {
         cost:Number.isFinite(part.cost) ? part.cost : null,
         installDate:new Date().toISOString(),
         imageUrl:/^https?:\/\//i.test(part.imageUrl || part.img || "") ? (part.imageUrl || part.img) : null,
-        modelData:{ source:"owner-twin", nodeId, kind, fitmentConfirmed:part.fitmentConfirmed === true, fitmentKey:`${baseValue?.catalog?.id || data.fulfillmentId}:${data.transmission || "single"}`, lifespanMiles:part.lifespanMiles || null, installedAtMileage:Number.isFinite(part.installedAtMileage) ? part.installedAtMileage : data.miles },
+        modelData:{ source:"owner-twin", nodeId, kind, fitmentConfirmed:part.fitmentConfirmed === true, fitmentKey:ownerEquipmentFitmentKey(baseValue?.catalog?.id || data.fulfillmentId, data.transmission, data.vehicle), lifespanMiles:part.lifespanMiles || null, installedAtMileage:Number.isFinite(part.installedAtMileage) ? part.installedAtMileage : data.miles },
       }),
     });
     const payload = await response.json().catch(() => ({}));
@@ -184,7 +180,7 @@ export function LiveTwinHub({ data }) {
     }
     router.refresh();
     return true;
-  }, [baseValue?.catalog?.id, data.fulfillmentId, data.miles, data.transmission, data.vehicleId, router]);
+  }, [baseValue?.catalog?.id, data.fulfillmentId, data.miles, data.transmission, data.vehicle, data.vehicleId, router]);
 
   const installUpgrade = React.useCallback(({ nodeId, upgrade }) => saveInstalledPart({
     nodeId,
@@ -220,26 +216,17 @@ export function LiveTwinHub({ data }) {
     });
   }, [currentTransmission, data.vehicleId, data.vehicleRevision, router, transmissionChoice]);
 
-  const savePaint = React.useCallback(async () => {
-    if (!paintChoice || paintChoice === data.vehicle?.color) return false;
-    setPaintState("saving"); setPaintError("");
-    try {
-      const response = await fetch(`/api/vehicles/${encodeURIComponent(data.vehicleId)}`, {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({color:paintChoice})});
-      const payload = await response.json().catch(()=>({}));
-      if (!response.ok) throw new Error(payload.error || "Could not save the factory color.");
-      setPaintState("saved"); router.refresh(); return true;
-    } catch (cause) { setPaintState("error"); setPaintError(cause instanceof Error ? cause.message : "Could not save the factory color."); return false; }
-  }, [data.vehicle?.color, data.vehicleId, paintChoice, router]);
-
   const value = React.useMemo(() => baseValue ? ({
     ...baseValue,
     vehicle:{
       ...baseValue.vehicle,
+      color:paint.current || null,
       engine:baseValue.vehicle?.engine || baseValue.catalog?.identity?.engine,
       transmission:transmissionChoice || data.transmission || baseValue.vehicle?.transmission,
     },
     ownerActions:{
       vehicleId:data.vehicleId,
+      serviceRecordCount:Array.isArray(data.records) ? data.records.length : null,
       refresh:() => router.refresh(),
       installUpgrade,
       saveInstalledPart,
@@ -254,16 +241,11 @@ export function LiveTwinHub({ data }) {
       save:saveTransmission,
     } : null,
     paintControl:baseValue?.catalog?.paintPalette?.colors?.length ? {
-      current:data.vehicle?.color || baseValue.catalog.identity.paint,
-      choice:paintChoice,
+      ...paint,
       options:getTwinPaintOptions(baseValue.catalog,data.vehicle?.trim),
       trimVerificationRequired:Boolean(baseValue.catalog.paintPalette.supportedTrims?.length&&!baseValue.catalog.paintPalette.supportedTrims.some((trim)=>trim.toLowerCase()===String(data.vehicle?.trim||'').trim().toLowerCase())),
-      state:paintState,
-      error:paintError,
-      setChoice:setPaintChoice,
-      save:savePaint,
     } : null,
-  }) : null, [annotateIssue, baseValue, data.transmission, data.vehicle?.color, data.vehicle?.trim, data.vehicleId, installUpgrade, paintChoice, paintError, paintState, router, saveInstalledPart, savePaint, saveTransmission, transmissionChoice, transmissionError, transmissionPicker, transmissionState]);
+  }) : null, [annotateIssue, baseValue, data.records, data.transmission, data.vehicle?.trim, data.vehicleId, installUpgrade, paint, router, saveInstalledPart, saveTransmission, transmissionChoice, transmissionError, transmissionPicker, transmissionState]);
 
   if (!value) {
     return (
@@ -335,28 +317,11 @@ export async function saveFounderTransmission({ fetcher, vehicleId, vehicleRevis
   }
 }
 
-const OWNER_TWIN_TREE_BUILDERS = {
-  challenger(data, catalog) {
-    const serviced = servicedFromRecords(data.records, data.miles, data.transmission, data.evaluatedAt);
-    const liveTrees = buildTwinTrees(serviced, data.miles, data.transmission, data.evaluatedAt);
-    return mergeCatalogEvidenceIntoOwnerTrees(catalog, liveTrees, data.miles);
-  },
-  camaro(data, catalog) {
-    return buildModelOwnerTrees(catalog, data.records, data.miles, data.transmission, data.evaluatedAt);
-  },
-};
-
-function sameIdentity(catalog, vehicle) {
-  return sameTwinVehicleIdentity(catalog.identity, vehicle);
-}
-
 /** Build owner context only through an explicitly registered owner builder. */
 export function buildOwnerTwinValue(data) {
   const catalog = getTwinByFulfillmentId(data?.fulfillmentId);
-  const builder = catalog && OWNER_TWIN_TREE_BUILDERS[catalog.treeResolver];
-  if (!catalog?.ownerReady || !builder || !data?.vehicle || !sameIdentity(catalog, data.vehicle)) return null;
-
-  const trees = builder(data, catalog);
+  const trees = buildOwnerMaintenanceTrees(data);
+  if (!trees || !catalog) return null;
   const applicableIssues = (data.issues || []).filter((issue) => !(
     data.transmission === "manual" && issue.id === "dodge-challenger-zf8-trans-2015"
   ));
@@ -377,8 +342,7 @@ export function buildOwnerTwinValue(data) {
       delete trees.car.nodes[trees.car.root].spec;
   }
   const ownerCatalog = filterTwinCatalogForTrees(catalog, trees);
-  const expectedFitmentKey = `${catalog.id}:${data.transmission || "single"}`;
-  const installedParts = (data.installedParts || []).filter((part) => part.nodeId !== "transFluid" || part.fitmentKey === expectedFitmentKey);
+  const installedParts = ownerInstalledParts(data, catalog);
   const latestByNode = new Map();
   for (const part of installedParts) if (part.kind !== "known-issue-note" && !latestByNode.has(part.nodeId)) latestByNode.set(part.nodeId, part);
   const mishimotoInstalled = latestByNode.get("radCore")?.partNumber?.trim().toUpperCase() === "MMRAD-SRT-15";
@@ -387,19 +351,6 @@ export function buildOwnerTwinValue(data) {
       const installed = installedParts.filter((part) => part.nodeId === nodeId && part.kind !== "known-issue-note").slice(0, 1);
       const notes = installedParts.filter((part) => part.nodeId === nodeId && part.kind === "known-issue-note");
       if (installed.length) node.installedParts = installed;
-      const latest = installed[0];
-      if (latest?.lifespanMiles && Number.isFinite(latest.installedAtMileage)) {
-        node.serviceIntervalMiles = latest.lifespanMiles;
-        node.riskAt = latest.lifespanMiles;
-        node.servicedAt = latest.installedAtMileage;
-        node.servicedDate = latest.installDate;
-        node.dueMileage = latest.installedAtMileage + latest.lifespanMiles;
-        node.unlogged = false;
-        delete node.firstServiceDeadline;
-        delete node.dueDate;
-        delete node.overdueByDate;
-        delete node.dueNote;
-      }
       if (notes.length) {
         node.userIssueNotes = notes.map((part) => part.notes || part.name).filter(Boolean);
         if (!node.knownIssue?.id) node.knownIssue = { id:`owner:${nodeId}`, label:"Owner-reported issue", ownerReported:true };

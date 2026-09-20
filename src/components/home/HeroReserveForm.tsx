@@ -2,6 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { EnrollmentOfferGate } from '@/components/auth/EnrollmentOfferGate';
 import { trackEvent } from '@/components/analytics/GoogleAnalytics';
 import { RESERVATION_COUNTRIES, composeVehicle } from '@/lib/reservation';
 import { loadYmmt } from '@/lib/load-ymmt';
@@ -76,12 +79,19 @@ function useSearchString(): string {
   );
 }
 
-export function HeroReserveForm({
+export function HeroReserveForm(props: Parameters<typeof EligibleHeroReserveForm>[0]) {
+  return <EnrollmentOfferGate><EligibleHeroReserveForm {...props} /></EnrollmentOfferGate>;
+}
+
+function EligibleHeroReserveForm({
   source,
   ctaLabel = 'Reserve my spot',
   dark,
   wide,
   glass,
+  ownerReturnHref,
+  ownerReturnLabel = 'Return to My Hub',
+  equipmentRequest = false,
 }: {
   /** "hero" | "demo" — the placement being demand-tested. */
   source: string;
@@ -89,10 +99,26 @@ export function HeroReserveForm({
   dark?: boolean;
   wide?: boolean;
   glass?: boolean;
+  /** Canonical destination resolved from the authenticated owner's saved vehicle. */
+  ownerReturnHref?: string;
+  ownerReturnLabel?: 'Return to My Hub' | 'Return to Account';
+  equipmentRequest?: boolean;
 }) {
-  const [email, setEmail] = useState('');
+  const { data: session } = useSession();
+  const router = useRouter();
+  const [emailPick, setEmail] = useState<string | null>(null);
+  // Late session resolution can fill an untouched field, but never replaces
+  // an address the owner edited (including an intentionally cleared field).
+  const email = emailPick ?? session?.user?.email ?? '';
   const [country, setCountry] = useState('');
   const [state, setState] = useState<'idle' | 'loading' | 'done' | 'error'>('idle');
+  const [submitError, setSubmitError] = useState('');
+  const [configurationDetails, setConfigurationDetails] = useState('');
+  useEffect(() => {
+    if (state !== 'done' || source !== 'hub-owner' || !ownerReturnHref) return;
+    const timer = setTimeout(() => router.replace(ownerReturnHref), 1200);
+    return () => clearTimeout(timer);
+  }, [state, source, ownerReturnHref, router]);
 
   const [ymmt, setYmmt] = useState<Ymmt | null>(null);
   const [ymmtFailed, setYmmtFailed] = useState(false);
@@ -109,7 +135,7 @@ export function HeroReserveForm({
   // Free-text escape hatch. Auto-engages if the catalog cannot be loaded at
   // all, so a failed fetch degrades to the old behaviour instead of a dead
   // form — the same principle load-ymmt.ts applies with its bundled fallback.
-  const [manualPick, setManualPick] = useState<boolean | null>(null);
+  const [manualPick, setManualPick] = useState<boolean | null>(equipmentRequest ? true : null);
   const [manualVehiclePick, setManualVehiclePick] = useState<string | null>(null);
 
   // Typed trim, for the two cases the dropdown cannot cover: models the
@@ -145,6 +171,8 @@ export function HeroReserveForm({
   // so this component never forces a Suspense bailout on the static homepage.
   const search = useSearchString();
   const params = useMemo(() => {
+    // A rejected equipment profile is not the owner's actual vehicle. Start blank.
+    if (equipmentRequest) return null;
     const q = new URLSearchParams(search);
     const got = {
       year: q.get('year') ?? '',
@@ -155,7 +183,7 @@ export function HeroReserveForm({
     };
     const any = Boolean(got.year || got.make || got.model || got.trim || got.vehicle);
     return any ? got : null;
-  }, [search]);
+  }, [search, equipmentRequest]);
 
   // A prefill link is proof they came here to reserve, so the catalog is worth
   // fetching immediately rather than waiting for them to touch the form.
@@ -300,7 +328,7 @@ export function HeroReserveForm({
     || state === 'error'
     || yearPick !== null || makePick !== null || modelPick !== null || trimPick !== null
     || trimTextPick !== null || manualVehiclePick !== null || transmission !== ''
-    || email !== '' || country !== '';
+    || emailPick !== null || country !== '';
   const gapStyle: React.CSSProperties = {
     border: `1px solid ${onGlass ? '#FCA5A5' : '#DC2626'}`,
     boxShadow: onGlass ? '0 0 0 3px rgba(252,165,165,.16)' : '0 0 0 3px rgba(220,38,38,.10)',
@@ -319,6 +347,7 @@ export function HeroReserveForm({
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setSubmitError('');
     const vehicle = manual ? manualVehicle.trim() : composeVehicle({ year, make, model, trim: effectiveTrim });
     if (!email.includes('@') || email.length > 254 || !vehicle || !country || !canSubmit) {
       setState('error');
@@ -339,6 +368,7 @@ export function HeroReserveForm({
           model: verified ? model : null,
           trim: verified ? effectiveTrim || null : null,
           transmission: verified && needsTransmission ? transmission : null,
+          ...(equipmentRequest ? { note: configurationDetails.trim() || null } : {}),
         }),
       });
       if (res.ok) {
@@ -346,16 +376,19 @@ export function HeroReserveForm({
         try { localStorage.setItem('au7o.twinReservation', 'done'); } catch { /* private mode */ }
         try { trackEvent('twin_reservation', { source, country, verified }); } catch { /* analytics best-effort */ }
       } else {
+        const failure = await res.json().catch(() => null);
+        setSubmitError(typeof failure?.message === 'string' ? failure.message : typeof failure?.error === 'string' ? failure.error : 'Your request was not saved. Please try again.');
         setState('error');
       }
     } catch {
+      setSubmitError('We could not confirm your request. Please try again.');
       setState('error');
     }
   };
 
   if (state === 'done') {
     const shown = manual ? manualVehicle.trim() : composeVehicle({ year, make, model, trim: effectiveTrim });
-    const liveTwin = !manual && getLiveTwinForVehicle({ year: Number(year), make, model, trim: effectiveTrim });
+    const liveTwin = !equipmentRequest && !manual && getLiveTwinForVehicle({ year: Number(year), make, model, trim: effectiveTrim });
     return (
       <div
         role="status"
@@ -373,11 +406,12 @@ export function HeroReserveForm({
             this page is measuring whether enough people want it to justify
             building it, and the confirmation has to say that honestly. */}
         <span>
-          <strong>You&apos;re on the list.</strong>{' '}
-          {liveTwin
-            ? `The ${shown} twin is live; we’ll email this address when your access is ready.`
-            : `We’re still gauging interest before we build this${shown ? `, and the ${shown} is now a vote for that car` : ''}. If it goes ahead, you’ll hear from us first.`}
-          {' '}No spam, unsubscribe anytime.
+          <strong>Your reservation request was received.</strong>{' '}
+          {equipmentRequest ? 'We’ll review the actual vehicle and configuration you entered. Your saved vehicle and equipment confirmation have not changed.' : liveTwin
+            ? `The ${shown} twin is live. This request does not grant access yet.`
+            : `We’re still gauging interest before we build this${shown ? `, and the ${shown} is now a vote for that car` : ''}.`}
+          {' '}Existing email opt-outs stay unchanged. No charge was made.
+          {source === 'hub-owner' && ownerReturnHref && <><br />{ownerReturnLabel === 'Return to Account' ? 'Returning to your Account…' : 'Returning to your existing Hub…'}{' '}<Link href={ownerReturnHref} style={{ textDecoration: 'underline' }}>{ownerReturnLabel}</Link></>}
         </span>
       </div>
     );
@@ -390,6 +424,7 @@ export function HeroReserveForm({
       onFocusCapture={fetchYmmt}
       style={{ display: 'flex', flexDirection: 'column', gap: 8, width: wide ? '100%' : undefined }}
     >
+      {equipmentRequest && <p style={{fontSize:14,lineHeight:1.6,margin:'0 0 8px'}}>Enter your actual year, make, model and trim. Add engine, drivetrain, wheel size or other differences in Configuration details below; write “unknown” where needed. Do not copy the configuration you just rejected. This requests a review; it does not change your saved vehicle or confirm equipment.</p>}
       {manual ? (
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
           <input
@@ -475,6 +510,15 @@ export function HeroReserveForm({
         </div>
       )}
 
+      {equipmentRequest && <label style={{display:'grid',gap:6,fontSize:13,color:onGlass?'#fff':'var(--ink)'}}>
+        Configuration details (optional)
+        <textarea aria-label="Configuration details" value={configurationDetails} maxLength={1000} rows={4}
+          onChange={event=>{setConfigurationDetails(event.target.value);if(state==='error')setState('idle');}}
+          disabled={state==='loading'} placeholder="Engine, drivetrain, wheels, what differs, or anything you’re unsure of"
+          style={{...field,width:'100%',resize:'vertical'}} />
+        <span style={{fontSize:11.5}}>Up to 1,000 characters. We’ll review these details with your request.</span>
+      </label>}
+
       {usingTrimText && (
         <div style={{ fontSize: 11.5, lineHeight: 1.45, color: onGlass ? 'rgba(255,255,255,.7)' : 'var(--slate-500)', textWrap: 'pretty' }}>
           {hasCatalogTrims
@@ -509,7 +553,7 @@ export function HeroReserveForm({
         </button>
       </div>
 
-      {!ymmtFailed && (
+      {!ymmtFailed && !equipmentRequest && (
         <button
           type="button"
           onClick={() => { setManualPick(!manual); if (state === 'error') setState('idle'); }}
@@ -540,9 +584,10 @@ export function HeroReserveForm({
 
       {state === 'error' && (
         <div role="alert" style={{ fontSize: 11.5, color: onGlass ? '#FCA5A5' : '#B91C1C' }}>
-          {manual
+          {submitError || (manual
             ? 'Enter your vehicle, a valid email, and your country, then try again.'
-            : `Pick your year, make and model${needsTransmission ? ', transmission' : ''}, add a valid email and your country, then try again.`}
+            : `Pick your year, make and model${needsTransmission ? ', transmission' : ''}, add a valid email and your country, then try again.`)}
+          {source === 'hub-owner' && <Link href={ownerReturnHref?.replace(/([?&])reservation=received$/, '') || '/account'} style={{ display: 'block', marginTop: 8, color: 'inherit', textDecoration: 'underline' }}>{ownerReturnLabel}</Link>}
         </div>
       )}
     </form>
@@ -556,7 +601,11 @@ export function HeroReserveForm({
  * counter only once it clears the API's threshold — an invented number is the
  * one thing on this page a visitor could catch us lying about.
  */
-export function HeroReserveMeta({ dark, center, priceNote = '7 days free, then $14.99/mo' }: { dark?: boolean; center?: boolean; priceNote?: string }) {
+export function HeroReserveMeta(props: Parameters<typeof EligibleHeroReserveMeta>[0]) {
+  return <EnrollmentOfferGate><EligibleHeroReserveMeta {...props} /></EnrollmentOfferGate>;
+}
+
+function EligibleHeroReserveMeta({ dark, center, priceNote = '7 days free, then $14.99/mo' }: { dark?: boolean; center?: boolean; priceNote?: string }) {
   const [reserved, setReserved] = useState<number | null>(null);
 
   useEffect(() => {

@@ -18,10 +18,12 @@
 
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
+import { canUsePersonalVehicle } from '@/lib/vehicle-capabilities';
 import { prisma } from '@/lib/db';
 import { z } from 'zod';
 
 const Body = z.object({
+  vehicleId: z.string().max(128).optional(),
   year: z.number().int().min(1900).max(2100),
   make: z.string().min(1).max(64),
   model: z.string().min(1).max(64),
@@ -48,15 +50,20 @@ export async function POST(request: Request) {
   const { year, make, model, trim, mileage } = parsed;
 
   // Find existing Vehicle row by user + YMMT (case-insensitive on make/model).
-  const existing = await prisma.vehicle.findFirst({
+  const matches = await prisma.vehicle.findMany({
     where: {
       userId: session.user.id,
+      ...(parsed.vehicleId ? { id: parsed.vehicleId } : {}),
       year,
       make: { equals: make, mode: 'insensitive' },
       model: { equals: model, mode: 'insensitive' },
+      trim: trim ? { equals: trim, mode: 'insensitive' } : null,
     },
     select: { id: true, currentMileage: true, trim: true },
   });
+  if (matches.length !== 1) return NextResponse.json({ error: 'exact_vehicle_required', message: 'Select the exact vehicle in your garage first.' }, { status: 409 });
+  const existing = matches[0];
+  if (!(await canUsePersonalVehicle(session.user.id, existing.id))) return NextResponse.json({ error: 'hub_required' }, { status: 403 });
 
   let id: string;
   if (existing) {

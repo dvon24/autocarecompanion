@@ -17,7 +17,7 @@ test('manual owners receive only the TR-6060 ATF+4 branch and an order link', ()
   const trees = buildTwinTrees({}, 65_000, 'manual');
   assert.equal(trees.trans.nodes.trx.sub, 'Tremec TR-6060 · 6-speed manual');
   assert.equal(trees.trans.nodes.transFluid.partNo, '68218057AC');
-  assert.match(trees.trans.nodes.transFluid.buyUrl, /ebay\.com\/itm\/389013189748/);
+  assert.equal(trees.trans.nodes.transFluid.buyUrl, 'https://store.mopar.com/oem-parts/mopar-mopar-atf-4-transmission-fluid-68218057ac');
   assert.equal(trees.trans.nodes.transPan, undefined);
   assert.equal(trees.car.nodes.transPan, undefined);
 });
@@ -29,19 +29,22 @@ test('unknown transmission renders no transmission parts', () => {
   assert.equal(trees.car.nodes.transFluid, undefined);
 });
 
-test('rear tire exposes the documented 6,000-mile rotation deadline and persisted action', () => {
+test('tire replacement never borrows the rotation clock or resets from a rotation record', () => {
   const unlogged = buildTwinTrees({}, 65_000, 'automatic');
-  assert.equal(unlogged.wheel.nodes.tire.maintenanceType, 'tire_rotation');
-  assert.equal(unlogged.wheel.nodes.tire.serviceIntervalMiles, 6_000);
-  assert.equal(unlogged.wheel.nodes.tire.unlogged, true);
-  assert.equal(unlogged.wheel.nodes.tire.riskAt, 6_000);
+  assert.equal(unlogged.wheel.nodes.tire.maintenanceType, 'tire_replacement');
+  assert.equal(unlogged.wheel.nodes.tire.serviceIntervalMiles, null);
+  assert.equal(unlogged.wheel.nodes.tire.riskAt, undefined);
+  assert.equal(unlogged.wheel.nodes.tire.dueMileage, undefined);
 
   const serviced = servicedFromRecords([{
     type:'tire_rotation', mileage:64_000, date:'2026-08-20T00:00:00.000Z', nextDueMileage:70_000, nextDueDate:null,
   }], 65_000, 'automatic', '2026-08-28T00:00:00.000Z');
   const logged = buildTwinTrees(serviced, 65_000, 'automatic', '2026-08-28T00:00:00.000Z');
-  assert.equal(logged.wheel.nodes.tire.servicedAt, 64_000);
-  assert.equal(logged.wheel.nodes.tire.dueMileage, 70_000);
+  assert.equal(logged.wheel.nodes.tire.servicedAt, undefined);
+  assert.equal(logged.wheel.nodes.tire.dueMileage, undefined);
+  const replaced = servicedFromRecords([{type:'tire_replacement',mileage:64_000,date:'2026-08-20T00:00:00.000Z',nextDueMileage:100_000}],65_000,'automatic','2026-08-28T00:00:00.000Z');
+  const actual = buildTwinTrees(replaced,65_000,'automatic','2026-08-28T00:00:00.000Z').wheel.nodes.tire;
+  assert.equal(actual.servicedAt,64_000);assert.equal(actual.dueMileage,100_000);assert.equal(actual.serviceIntervalMiles,null);
 });
 
 test('inspection records do not reset brake replacement clocks', () => {

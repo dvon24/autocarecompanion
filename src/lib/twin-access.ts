@@ -1,13 +1,17 @@
+import { isUSReservationCountry } from './reservation-identity';
 export const TWIN_TRIAL_DURATIONS = [7, 30] as const;
 
 export type TwinAccessReason =
   | 'allowed-founder'
   | 'allowed-customer'
+  | 'allowed-paid-hub'
   | 'claimable-ready'
   | 'unsupported-vehicle'
   | 'garage-mismatch'
   | 'missing-mileage'
+  | 'equipment-unconfirmed'
   | 'missing-reservation'
+  | 'country-unavailable'
   | 'vehicle-unverified'
   | 'trim-unverified'
   | 'assignment-mismatch'
@@ -22,6 +26,7 @@ export type TwinAccessReason =
   | 'invalid-current-time';
 
 export interface TwinReservationAccessState {
+  country?: string | null;
   twinStatus?: string | null;
   transmission?: string | null;
   trialDays?: number | null;
@@ -44,6 +49,7 @@ export function normalizeTwinSessionIdentity(session: {
 
 export interface TwinAccessInput {
   founder: boolean;
+  paidHub?: boolean;
   supported: boolean;
   positiveMileage: boolean;
   garageMatches: boolean;
@@ -55,9 +61,9 @@ export interface TwinAccessInput {
 }
 
 export type TwinAccessDecision =
-  | { kind: 'allowed'; allowed: true; claimable: false; reason: 'allowed-founder' | 'allowed-customer'; expiresAt: Date | null }
+  | { kind: 'allowed'; allowed: true; claimable: false; reason: 'allowed-founder' | 'allowed-customer' | 'allowed-paid-hub'; expiresAt: Date | null }
   | { kind: 'claimable'; allowed: false; claimable: true; reason: 'claimable-ready'; expiresAt: null }
-  | { kind: 'denied'; allowed: false; claimable: false; reason: Exclude<TwinAccessReason, 'allowed-founder' | 'allowed-customer' | 'claimable-ready'>; expiresAt: null };
+  | { kind: 'denied'; allowed: false; claimable: false; reason: Exclude<TwinAccessReason, 'allowed-founder' | 'allowed-customer' | 'allowed-paid-hub' | 'claimable-ready'>; expiresAt: null };
 
 function denied(reason: Extract<TwinAccessDecision, { kind: 'denied' }>['reason']): Extract<TwinAccessDecision, { kind: 'denied' }> {
   return { kind: 'denied', allowed: false, claimable: false, reason, expiresAt: null };
@@ -67,6 +73,7 @@ export function evaluateTwinReservationProvenance(
   reservation: TwinReservationAccessState | null,
 ): Extract<TwinAccessDecision, { kind: 'denied' }> | null {
   if (!reservation) return denied('missing-reservation');
+  if (!isUSReservationCountry(reservation.country)) return denied('country-unavailable');
   if (reservation.vehicleVerified !== true) return denied('vehicle-unverified');
   if (!Number.isInteger(reservation.year) || (reservation.year ?? 0) <= 0
     || !reservation.make?.trim() || !reservation.model?.trim()) return denied('vehicle-unverified');
@@ -106,6 +113,11 @@ export function evaluateTwinAccess(input: TwinAccessInput): TwinAccessDecision {
     return { kind: 'allowed', allowed: true, claimable: false, reason: 'allowed-founder', expiresAt: null };
   }
 
+  if (input.paidHub) {
+    if (input.requiresTransmissionChoice && !input.customerTransmissionMatches) return denied('transmission-unconfirmed');
+    return { kind: 'allowed', allowed: true, claimable: false, reason: 'allowed-paid-hub', expiresAt: null };
+  }
+
   const reservation = input.reservation;
   const provenanceRejection = evaluateTwinReservationProvenance(reservation);
   if (provenanceRejection) return provenanceRejection;
@@ -117,6 +129,7 @@ export function evaluateTwinAccess(input: TwinAccessInput): TwinAccessDecision {
   }
 
   if (reservation.twinStatus === 'ready') {
+    if (reservation.claimedAt != null) return denied('status-not-eligible');
     return { kind: 'claimable', allowed: false, claimable: true, reason: 'claimable-ready', expiresAt: null };
   }
   if (reservation.twinStatus !== 'claimed') return denied('status-not-eligible');

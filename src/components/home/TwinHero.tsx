@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { EnrollmentOfferGate } from '@/components/auth/EnrollmentOfferGate';
 import { useState } from 'react';
 import { HeroReserveForm, HeroReserveMeta } from './HeroReserveForm';
 import { RotatingTwinStage } from './RotatingTwinStage';
@@ -74,12 +75,17 @@ function Headline({ size = 52 }: { size?: number }) {
 function Stats({ stats }: { stats: ReturnType<typeof statsFor> }) {
   return (
     <div className="hero-stat-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(136px,1fr))', gap: 10, flexWrap: 'wrap' }}>
-      {stats.map((s) => (
+      {stats.map((s, i) => i === 0 ? (
         <div key={s.l} style={{ padding: '13px 15px', borderRadius: 16, background: '#fff', border: '1px solid var(--paper-line)', boxShadow: 'var(--shadow-1)' }}>
           <div className="mono" style={{ fontSize: s.v.length > 8 ? 13.5 : 17, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--ink)' }}>{s.v}</div>
           <div style={{ fontSize: 10.5, color: 'var(--slate-500)', marginTop: 3, lineHeight: 1.35 }}>{s.l}</div>
         </div>
-      ))}
+      ) : <EnrollmentOfferGate key={s.l}>
+        <div style={{ padding: '13px 15px', borderRadius: 16, background: '#fff', border: '1px solid var(--paper-line)' }}>
+          <div className="mono" style={{ fontSize: 17, fontWeight: 600 }}>{s.v}</div>
+          <div style={{ fontSize: 10.5, color: 'var(--slate-500)', marginTop: 3 }}>{s.l}</div>
+        </div>
+      </EnrollmentOfferGate>)}
     </div>
   );
 }
@@ -95,12 +101,12 @@ function StatsInline({ stats }: { stats: ReturnType<typeof statsFor> }) {
       className="hero-stat-inline"
       style={{ fontSize: 12.5, lineHeight: 1.6, color: 'var(--slate-700)', textAlign: 'center', textWrap: 'pretty' }}
     >
-      {stats.map((s, i) => (
+      {stats.map((s, i) => i === 0 ? (
         <span key={s.l}>
           {i > 0 && <span style={{ color: 'var(--slate-400)', margin: '0 7px' }}>·</span>}
           <strong style={{ color: 'var(--ink)', fontWeight: 600 }}>{s.v}</strong> {s.l}
         </span>
-      ))}
+      ) : <EnrollmentOfferGate key={s.l}><span><span style={{ color: 'var(--slate-400)', margin: '0 7px' }}>·</span><strong>{s.v}</strong> {s.l}</span></EnrollmentOfferGate>)}
     </div>
   );
 }
@@ -118,6 +124,7 @@ function Reserve({ selectedTwin }: { selectedTwin: VehicleTwinCatalogEntry }) {
     : `${selectedTwin.identity.year} ${selectedTwin.identity.make} ${selectedTwin.identity.model} at ${selectedTwin.demoMileage.toLocaleString()} mi. No account.`;
   return (
     <div id="reserve" style={{ display: 'flex', gap: 11, flexWrap: 'wrap' }}>
+      <EnrollmentOfferGate>
       <div style={{ flex: '1 1 380px', minWidth: 0, padding: '15px 16px', borderRadius: 16, border: '1px solid var(--paper-line)', background: '#fff', boxShadow: 'var(--shadow-1)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <span style={{ width: 32, height: 32, borderRadius: 10, background: 'var(--au7o-blue-50, #EFF5FF)', color: 'var(--au7o-blue)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
@@ -139,6 +146,7 @@ function Reserve({ selectedTwin }: { selectedTwin: VehicleTwinCatalogEntry }) {
         </div>
       </div>
 
+      </EnrollmentOfferGate>
       <div style={{ flex: '1 1 260px', minWidth: 0, display: 'flex', alignItems: 'center', gap: 13, padding: '15px 16px', borderRadius: 16, border: '1px solid var(--paper-line)', background: '#fff', boxShadow: 'var(--shadow-1)' }}>
         <span style={{ width: 32, height: 32, borderRadius: 10, background: 'var(--paper-2, #F4F1EA)', color: 'var(--slate-500)', display: 'grid', placeItems: 'center', flexShrink: 0 }}>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>

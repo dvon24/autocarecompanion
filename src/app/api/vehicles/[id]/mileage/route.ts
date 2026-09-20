@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
+import { canUsePersonalVehicle } from '@/lib/vehicle-capabilities';
 import { prisma } from '@/lib/db';
 import { z } from 'zod';
 
@@ -24,6 +25,7 @@ export async function POST(
       );
     }
 
+    if (!(await canUsePersonalVehicle(session.user.id, id))) return NextResponse.json({ error: 'hub_required' }, { status: 403 });
     // Verify ownership
     const vehicle = await prisma.vehicle.findFirst({
       where: {

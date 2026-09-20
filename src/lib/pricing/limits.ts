@@ -1,5 +1,6 @@
 import { prisma } from '@/lib/db';
 import { TIER_LIMITS, resolveTier, type TierId } from './tiers';
+import { productEntitlements, entitlementSelect } from '../product-entitlements';
 
 /**
  * Server-side tier resolver. Reads subscriptionStatus + subscriptionTier
@@ -11,10 +12,13 @@ import { TIER_LIMITS, resolveTier, type TierId } from './tiers';
 export async function getUserTier(userId: string): Promise<TierId> {
   const user = await prisma.user.findUnique({
     where: { id: userId },
-    select: { subscriptionStatus: true, subscriptionTier: true },
+    select: entitlementSelect,
   });
   if (!user) return 'free';
-  return resolveTier(user.subscriptionStatus, user.subscriptionTier);
+  const capabilities = productEntitlements(user);
+  if (capabilities.founder) return 'pro';
+  if (capabilities.hub) return user.legacySubscriptionTier === 'pro' ? 'pro' : 'hub';
+  return capabilities.visual ? 'visual' : 'free';
 }
 
 /**

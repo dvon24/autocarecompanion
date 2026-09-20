@@ -8,6 +8,7 @@
 
 import maintenanceOverrides from '@/data/maintenance-overrides.json';
 import vehicleSpecsData from '@/data/vehicle-specs.json';
+import { physicalDrivelineTypeEligible } from '@/lib/physical-driveline-policy';
 import { resolveTwinTransmissionBranch, type TwinDefinition } from '@/lib/twin-fulfillment';
 import {
   getReviewedTransmissionChoices,
@@ -376,6 +377,8 @@ export interface MaintenanceType {
   defaultIntervalMonths: number;
   icon: string;
   category: 'routine' | 'periodic' | 'major';
+  /** Loggable work without a generic recurrence or price estimate. */
+  recordOnly?: boolean;
 }
 
 export interface VehicleContext {
@@ -446,6 +449,12 @@ export const MAINTENANCE_SCHEDULES: Record<string, MaintenanceType> = {
     icon: 'disc',
     category: 'periodic',
   },
+  front_brake_pads: { id: 'front_brake_pads', name: 'Front brake pads replaced', description: 'Confirmed replacement of front pads only', defaultIntervalMiles: 0, defaultIntervalMonths: 0, icon: 'disc', category: 'major' },
+  rear_brake_pads: { id: 'rear_brake_pads', name: 'Rear brake pads replaced', description: 'Confirmed replacement of rear pads only', defaultIntervalMiles: 0, defaultIntervalMonths: 0, icon: 'disc', category: 'major' },
+  front_brake_rotors: { id: 'front_brake_rotors', name: 'Front brake rotors replaced', description: 'Confirmed replacement of front rotors only', defaultIntervalMiles: 0, defaultIntervalMonths: 0, icon: 'disc', category: 'major' },
+  rear_brake_rotors: { id: 'rear_brake_rotors', name: 'Rear brake rotors replaced', description: 'Confirmed replacement of rear rotors only', defaultIntervalMiles: 0, defaultIntervalMonths: 0, icon: 'disc', category: 'major' },
+  radiator_replacement: { id: 'radiator_replacement', name: 'Radiator replaced', description: 'Confirmed radiator replacement, not inspection or coolant work', defaultIntervalMiles: 0, defaultIntervalMonths: 0, icon: 'thermometer', category: 'major' },
+  other_service: { id: 'other_service', name: 'Other documented work (history only)', description: 'Preserve explicit unmapped completed work without resetting component clocks', defaultIntervalMiles: 0, defaultIntervalMonths: 0, icon: 'wrench', category: 'routine' },
   tire_replacement: {
     id: 'tire_replacement',
     name: 'Tire Replacement',
@@ -527,6 +536,16 @@ export const MAINTENANCE_SCHEDULES: Record<string, MaintenanceType> = {
     icon: 'filter',
     category: 'periodic',
   },
+  rear_axle_fluid: {
+    id: 'rear_axle_fluid', name: 'Rear Axle Gearcase Fluid',
+    description: 'Service the separate rear gearcase only; not a transfer assembly or clutch hydraulic circuit',
+    defaultIntervalMiles: 0, defaultIntervalMonths: 0, icon: 'droplets', category: 'periodic',
+  },
+  awd_clutch_fluid: {
+    id: 'awd_clutch_fluid', name: 'AWD Clutch Hydraulic Fluid',
+    description: 'Service the active twin-clutch hydraulic circuit only; not the rear gearcase',
+    defaultIntervalMiles: 0, defaultIntervalMonths: 0, icon: 'droplets', category: 'periodic',
+  },
   differential_fluid: {
     id: 'differential_fluid',
     name: 'Differential Fluid',
@@ -572,6 +591,32 @@ export const MAINTENANCE_SCHEDULES: Record<string, MaintenanceType> = {
     icon: 'link',
     category: 'major',
   },
+  drive_belt_inspection: { id:'drive_belt_inspection', name:'Drive-belt inspection', description:'Document an actual accessory drive-belt inspection; not belt replacement', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  brake_axles_inspection: { id:'brake_axles_inspection', name:'Front and rear brake inspection', description:'Document completed inspection of both front and rear brakes; not one axle, brake repair or fluid service', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'disc', category:'routine' },
+  steering_inspection: { id:'steering_inspection', name:'Steering inspection', description:'Inspect tie rod ends, steering gearbox and boots; record only the inspection completed', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  suspension_inspection: { id:'suspension_inspection', name:'Suspension inspection', description:'Inspect suspension components; not suspension repair or replacement', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  brake_parking_inspection: { id:'brake_parking_inspection', name:'Brake pads, rotors, hoses and parking-brake inspection', description:'Inspect all four named brake scopes; not brake repair or a narrower axle inspection', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  cooling_strength_hoses_inspection: { id:'cooling_strength_hoses_inspection', name:'Cooling-system strength and hoses inspection', description:'Inspect engine cooling-system strength and hoses; not a level check or coolant change', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  exhaust_heat_shields_inspection: { id:'exhaust_heat_shields_inspection', name:'Exhaust system and heat-shield inspection', description:'Inspect both exhaust system and heat shields; not a narrower exhaust check or repair', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  halfshaft_boots_inspection: { id:'halfshaft_boots_inspection', name:'Halfshaft boots inspection', description:'Inspect halfshaft boots; not an ambiguous driveshaft-boots record or replacement', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  tire_tread_inspection: { id:'tire_tread_inspection', name:'Tire wear and measured tread-depth inspection', description:'Inspect tires and wear and measure tread depth; optional actual readings may be recorded in notes', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  wheel_components_inspection: { id:'wheel_components_inspection', name:'Wheels and related components inspection', description:'Inspect wheels and related components for abnormal noise, wear, looseness or drag; not tire rotation', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  steering_suspension_driveshaft_inspection: { id:'steering_suspension_driveshaft_inspection', name:'Steering, suspension, driveshaft and U-joints inspection', description:'Inspect steering linkage, ball joints, suspension, tie-rod ends, driveshaft and U-joints; all named scopes must be completed', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  steering_suspension_inspection: { id:'steering_suspension_inspection', name:'Steering linkage and suspension inspection', description:'Inspect steering linkage, ball joints, suspension and tie-rod ends; not a narrower steering or suspension record', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  brake_system_inspection: { id:'brake_system_inspection', name:'Complete brake-system inspection', description:'Inspect brake lines and hoses, pads, rotors and all other brake parts; not a narrower axle check or brake repair', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'disc', category:'routine' },
+  steering_system_inspection: { id:'steering_system_inspection', name:'Steering-system component inspection', description:'Inspect steering components for damage, wear, damaged rubber boots and loose or missing parts; power steering is separate', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  chassis_inspection: { id:'chassis_inspection', name:'Chassis component inspection', description:'Inspect chassis components for damage, wear, rubber boot damage and loose or missing parts; not chassis repair', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  power_steering_inspection: { id:'power_steering_inspection', name:'Power-steering inspection', description:'Inspect power-steering electrical connections, binding, cracks and chafing; not fluid service or repair', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  driveline_inspection: { id:'driveline_inspection', name:'Complete halfshaft and driveshaft inspection', description:'Inspect shafts, joints, boots, clamps, fasteners, center bearing and seals; a boots-only check or driveline repair is separate', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  driveshaft_boots_inspection: { id:'driveshaft_boots_inspection', name:'Driveshaft boots inspection', description:'Inspect driveshaft boots; not shaft or boot replacement', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  brake_lines_inspection: { id:'brake_lines_inspection', name:'Brake hoses and lines inspection', description:'Inspect brake hoses and lines including ABS/VSA; not brake-fluid change or hose replacement', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'disc', category:'routine' },
+  fluid_levels_inspection: { id:'fluid_levels_inspection', name:'Fluid levels and condition inspection', description:'Inspect all fluid levels and condition; no top-up, fluid change or repair is implied', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'droplet', category:'routine' },
+  exhaust_inspection: { id:'exhaust_inspection', name:'Exhaust system inspection', description:'Inspect the exhaust system; not exhaust repair or replacement', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  fuel_lines_inspection: { id:'fuel_lines_inspection', name:'Fuel lines and connections inspection', description:'Inspect fuel lines and connections; not fuel-system repair or component replacement', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  evap_system_inspection: { id:'evap_system_inspection', name:'Evaporative-system inspection', description:'Document visual fuel/vapor line and hose inspection; not component replacement', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  ac_desiccant_replacement: { id:'ac_desiccant_replacement', name:'A/C desiccant replacement', description:'Document professional A/C desiccant replacement; not a refrigerant top-up or generic A/C repair', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'major' },
+  water_pump_inspection: { id:'water_pump_inspection', name:'Water-pump inspection', description:'Document an actual water-pump inspection; not pump replacement or coolant service', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
+  valve_clearance_inspection: { id:'valve_clearance_inspection', name:'Valve-clearance inspection', description:'Document an actual valve-clearance inspection; not adjustment or spark-plug replacement', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'wrench', category:'routine' },
   serpentine_belt: {
     id: 'serpentine_belt',
     name: 'Serpentine Belt',
@@ -590,6 +635,8 @@ export const MAINTENANCE_SCHEDULES: Record<string, MaintenanceType> = {
     icon: 'battery-charging',
     category: 'major',
   },
+  key_battery_inspection: { id:'key_battery_inspection', name:'Key-fob battery inspection', description:'Document key-fob battery inspection; not cell replacement or vehicle 12V battery work', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'key', category:'routine' },
+  key_battery_replacement: { id:'key_battery_replacement', name:'Key-fob battery replacement', description:'Replace the key-fob cell; not the vehicle 12V starting battery', recordOnly:true, defaultIntervalMiles:0, defaultIntervalMonths:0, icon:'key', category:'routine' },
   ev_battery_check: {
     id: 'ev_battery_check',
     name: 'HV Battery Health Check',
@@ -632,6 +679,7 @@ export function maintenanceTypeMatchesTransmission(
 }
 
 export type MaintenanceVehicleTransmissionContext = {
+  reviewedEquipmentId?: string | null;
   year: number;
   make: string;
   model: string;
@@ -653,6 +701,7 @@ export function resolveMaintenanceWriteType(
   definition: TwinDefinition | null = null,
 ): { ok: true; type: string } | { ok: false; reason: 'invalid-type' | 'transmission-unselected' | 'transmission-mismatch' } {
   if (!isLoggableMaintenanceType(type)) return { ok: false, reason: 'invalid-type' };
+  if (!physicalDrivelineTypeEligible(type, vehicle)) return { ok: false, reason: 'invalid-type' };
 
   const transmissionMaintenance = type === 'transmission_fluid'
     || Object.prototype.hasOwnProperty.call(TRANSMISSION_SERVICE_BRANCHES, type);
@@ -892,7 +941,7 @@ export function getScheduleForVehicle(
   vehicle: VehicleContext
 ): ResolvedSchedule | null {
   const baseType = MAINTENANCE_SCHEDULES[typeId];
-  if (!baseType) return null;
+  if (!baseType || baseType.recordOnly) return null;
 
   const override = getOverride(typeId, vehicle);
 
@@ -1036,6 +1085,9 @@ export function getMaintenanceStatus(
 
   if (!schedule) {
     return { status: 'unknown', message: 'Unknown maintenance type' };
+  }
+  if (schedule.recordOnly) {
+    return { status: 'unknown', message: 'Record the completed service; follow the exact manual or Minder with no generic deadline.' };
   }
 
   // Resolve vehicle-specific intervals
@@ -1256,6 +1308,10 @@ export function getUpcomingMaintenance(
 /**
  * Calculate estimated annual maintenance cost.
  * When vehicleContext is provided, uses vehicle-specific costs and intervals.
+ * Includes only work with a positive finite repeat-mileage frequency; omitted
+ * calendar/condition/manual-only work has unknown cost frequency, not zero cost.
+ * Invalid annual mileage returns zero. Unrepresentable contributions or sums
+ * are skipped rather than clamped to an invented price.
  */
 export function estimateAnnualMaintenanceCost(
   milesPerYear: number = 12000,
@@ -1265,25 +1321,33 @@ export function estimateAnnualMaintenanceCost(
   let periodic = 0;
   let major = 0;
 
+  if (!Number.isFinite(milesPerYear) || milesPerYear <= 0) return { routine, periodic, major, total: 0 };
+
+  const addEstimate = (intervalMiles: number, cost: number, category: MaintenanceType['category']) => {
+    if (!Number.isFinite(intervalMiles) || intervalMiles <= 0) return;
+    const servicesPerYear = milesPerYear / intervalMiles;
+    if (!Number.isFinite(servicesPerYear)) return;
+    const annualCost = cost * servicesPerYear;
+    if (!Number.isFinite(annualCost)) return;
+    const nextRoutine = routine + (category === 'routine' ? annualCost : 0);
+    const nextPeriodic = periodic + (category === 'periodic' ? annualCost : 0);
+    const nextMajor = major + (category !== 'routine' && category !== 'periodic' ? annualCost : 0);
+    if (![nextRoutine, nextPeriodic, nextMajor, nextRoutine + nextPeriodic + nextMajor].every(Number.isFinite)) return;
+    routine = nextRoutine;
+    periodic = nextPeriodic;
+    major = nextMajor;
+  };
+
   if (vehicleContext) {
     const applicable = getApplicableSchedules(vehicleContext);
     for (const schedule of applicable) {
-      const servicesPerYear = milesPerYear / schedule.intervalMiles;
-      const annualCost = schedule.estimatedCost * servicesPerYear;
-
-      if (schedule.category === 'routine') routine += annualCost;
-      else if (schedule.category === 'periodic') periodic += annualCost;
-      else major += annualCost;
+      addEstimate(schedule.intervalMiles, schedule.estimatedCost, schedule.category);
     }
   } else {
     for (const [typeId, type] of Object.entries(MAINTENANCE_SCHEDULES)) {
       const cost = DEFAULT_COSTS[typeId] ?? 100;
-      const servicesPerYear = milesPerYear / type.defaultIntervalMiles;
-      const annualCost = cost * servicesPerYear;
-
-      if (type.category === 'routine') routine += annualCost;
-      else if (type.category === 'periodic') periodic += annualCost;
-      else major += annualCost;
+      if (type.recordOnly) continue;
+      addEstimate(type.defaultIntervalMiles, cost, type.category);
     }
   }
 

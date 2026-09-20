@@ -109,6 +109,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // The password-protected local signup sandbox must not send test activity
+  // into live ad/analytics properties. Production consent ordering is unchanged.
+  const isolatedSignupPreview = process.env.NODE_ENV === 'development'
+    && process.env.AU7O_ISOLATED_SIGNUP_PREVIEW === 'true';
   return (
     <html lang="en">
       <head>
@@ -117,11 +121,11 @@ export default function RootLayout({
             for GCM compliance and can't be deferred) so its DNS+TCP+TLS is warm
             before it executes; dns-prefetch the now-deferred analytics/ads
             origins so they resolve faster when they load post-interactive. */}
-        <link rel="preconnect" href="https://app.termly.io" />
+        {!isolatedSignupPreview && <><link rel="preconnect" href="https://app.termly.io" />
         <link rel="dns-prefetch" href="https://app.termly.io" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.clarity.ms" />
-        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
+        <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" /></>}
         {/* Termly resource-blocker — MUST be the first script in <head>
             so Consent Mode v2 default signals arrive before any Google
             tag fires. Loads beforeInteractive (via Next's <Script>) so
@@ -130,10 +134,10 @@ export default function RootLayout({
             injection which made it land AFTER GA — Termly's GCM
             Validation Scan flagged that as "default consent signals
             sent too late." This placement passes the scan. */}
-        <TermlyConsentBootstrap />
+        {!isolatedSignupPreview && <TermlyConsentBootstrap />}
         {/* Advance Auto Parts / Impact affiliate ownership verification.
             Keep this in the document head so Impact can verify au7o.io. */}
-        <script
+        {!isolatedSignupPreview && <script
           type="text/javascript"
           /* Same Termly problem as <AdSenseScript />: this is an inline
              wrapper that injects utt.impactcdn.com at runtime, so the URL
@@ -147,16 +151,14 @@ export default function RootLayout({
             __html:
               "(function(i,m,p,a,c,t){c.ire_o=p;c[p]=c[p]||function(){(c[p].a=c[p].a||[]).push(arguments)};t=a.createElement(m);var z=a.getElementsByTagName(m)[0];t.async=1;t.src=i;z.parentNode.insertBefore(t,z)})('https://utt.impactcdn.com/P-A7655285-4eb7-438d-a105-b982cf1c4d4e1.js','script','impactStat',document,window);impactStat('transformLinks');impactStat('trackImpression');",
           }}
-        />
+        />}
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         {/* AdSense site verification + Auto Ads loader. Per Google's
             instructions the script must live in <head> verbatim with the
             crossorigin="anonymous" attribute. */}
         <meta name="google-adsense-account" content="ca-pub-6245698513720418" />
-        <AdSenseScript />
-        <GoogleAnalytics />
-        <MicrosoftClarity />
+        {!isolatedSignupPreview && <><AdSenseScript /><GoogleAnalytics /><MicrosoftClarity /></>}
         <OrganizationJsonLd />
         <WebSiteJsonLd />
         <SoftwareApplicationJsonLd />
@@ -167,7 +169,7 @@ export default function RootLayout({
         {/* SPA navigation: re-init Termly's banner on every route change
             so its scope tracks pathname + query updates. The initial
             script load is done via <TermlyConsentBootstrap /> in <head>. */}
-        <TermlyRouteReinit />
+        {!isolatedSignupPreview && <TermlyRouteReinit />}
         {/* Google Translate widget removed 2026-06-12 — native locale pages
             (/pt-br, /es, /de, /fr, /ko) replace machine translation, and the
             widget's iframe weighed on LCP for every visitor. */}
@@ -185,7 +187,7 @@ export default function RootLayout({
             <PhotoDebugOverlay />
           </AppProvider>
         </SessionProvider>
-        <Analytics />
+        {!isolatedSignupPreview && <Analytics />}
       </body>
     </html>
   );

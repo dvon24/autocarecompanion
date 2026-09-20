@@ -6,12 +6,10 @@
  */
 
 import { prisma } from './db';
-import {
-  getUpcomingMaintenance,
-  type MaintenanceStatusResult,
-  type VehicleContext,
-} from './maintenance';
-import { renderMaintenanceAlertEmail } from './maintenance-alert-email';
+import { productEntitlements, entitlementSelect } from './product-entitlements';
+import { renderMaintenanceAlertEmail, type MaintenanceAlertEmailItem } from './maintenance-alert-email';
+import { buildMaintenanceReminders, buildOwnerMaintenanceReminders, maintenanceEmailDeliveryKey } from './maintenance-reminder-data';
+import { getTwinHubData } from './twin-hub-data';
 
 // Types
 export interface NotificationPayload {
@@ -22,19 +20,12 @@ export interface NotificationPayload {
   data?: Record<string, string>;
 }
 
-export interface MaintenanceAlert {
-  vehicleId: string;
-  vehicleName: string;
-  currentMileage: number | null;
-  maintenanceType: string;
-  maintenanceName: string;
-  status: MaintenanceStatusResult;
-}
+export type MaintenanceAlert = MaintenanceAlertEmailItem;
 
 /**
  * Get all users with upcoming or overdue maintenance
  */
-export async function getUsersWithDueMaintenance(): Promise<
+export async function getUsersWithDueMaintenance(now = new Date()): Promise<
   Array<{
     user: {
       id: string;
@@ -49,12 +40,13 @@ export async function getUsersWithDueMaintenance(): Promise<
   // Get all premium users with vehicles
   const users = await prisma.user.findMany({
     where: {
-      subscriptionStatus: 'active',
+      subscriptionStatus: { in: ['active', 'trialing'] },
       vehicles: {
         some: {},
       },
     },
     select: {
+      ...entitlementSelect,
       id: true,
       email: true,
       name: true,
@@ -69,6 +61,8 @@ export async function getUsersWithDueMaintenance(): Promise<
           model: true,
           nickname: true,
           trim: true,
+          transmission: true,
+          color: true,
           currentMileage: true,
           annualMileage: true,
           lastMileageUpdate: true,
@@ -99,44 +93,20 @@ export async function getUsersWithDueMaintenance(): Promise<
   }> = [];
 
   for (const user of users) {
+    if (!productEntitlements(user).maintenance) continue;
     const alerts: MaintenanceAlert[] = [];
 
     for (const vehicle of user.vehicles) {
-      const vehicleName =
-        vehicle.nickname || `${vehicle.year} ${vehicle.make} ${vehicle.model}`;
-
-      // Build vehicle context for vehicle-specific schedules
-      const vehicleCtx: VehicleContext = {
-        make: vehicle.make,
-        model: vehicle.model,
-        year: vehicle.year,
-        trim: vehicle.trim ?? undefined,
-      };
-
-      const upcoming = getUpcomingMaintenance(
-        {
-          currentMileage: vehicle.currentMileage,
-          lastMileageUpdate: vehicle.lastMileageUpdate,
-          annualMileage: vehicle.annualMileage,
-          year: vehicle.year,
-        },
-        vehicle.maintenanceRecords.map((r) => ({
-          ...r,
-          date: new Date(r.date),
-          nextDueDate: r.nextDueDate ? new Date(r.nextDueDate) : null,
-        })),
-        vehicleCtx
-      );
-
-      for (const { type, status } of upcoming) {
-        alerts.push({
-          vehicleId: vehicle.id,
-          vehicleName,
-          currentMileage: vehicle.currentMileage,
-          maintenanceType: type.id,
-          maintenanceName: type.name,
-          status,
-        });
+      try {
+        const outcome = await getTwinHubData(user.id, user.email, vehicle.id);
+        if (outcome.access.kind === 'allowed' && outcome.data) {
+          alerts.push(...buildOwnerMaintenanceReminders(vehicle, outcome.data));
+        } else {
+          alerts.push(...buildMaintenanceReminders(vehicle, vehicle.maintenanceRecords, now));
+        }
+      } catch {
+        // Uncertain access or installed clocks must not produce a stale reminder.
+        console.error('[Maintenance] Skipped vehicle after owner data could not be loaded', vehicle.id);
       }
     }
 
@@ -163,7 +133,8 @@ export async function getUsersWithDueMaintenance(): Promise<
 export async function sendEmailNotification(
   to: string,
   subject: string,
-  html: string
+  html: string,
+  idempotencyKey?: string,
 ): Promise<boolean> {
   const resendApiKey = process.env.RESEND_API_KEY;
 
@@ -180,6 +151,7 @@ export async function sendEmailNotification(
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${resendApiKey}`,
+        ...(idempotencyKey ? { 'Idempotency-Key': idempotencyKey } : {}),
       },
       body: JSON.stringify({
         from: process.env.EMAIL_FROM || 'Au7o <notifications@au7o.io>',
@@ -298,7 +270,9 @@ export async function processMaintenanceNotifications(): Promise<{
   emailsSent: number;
   pushSent: number;
 }> {
-  const usersWithAlerts = await getUsersWithDueMaintenance();
+  const now = new Date();
+  const dayStart = new Date(`${now.toISOString().slice(0,10)}T00:00:00.000Z`);
+  const usersWithAlerts = await getUsersWithDueMaintenance(now);
 
   let emailsSent = 0;
   let pushSent = 0;
@@ -323,8 +297,11 @@ export async function processMaintenanceNotifications(): Promise<{
 
     // Send email notification
     if (user.emailNotifications) {
+      const alreadySent = await prisma.notificationLog.findFirst({ where:{ userId:user.id, channel:'email', type:{ in:['maintenance_due','maintenance_overdue'] }, sentAt:{ gte:dayStart } }, select:{ id:true } });
       const html = generateMaintenanceEmailHtml(user.name, alerts);
-      const sent = await sendEmailNotification(user.email, `Au7o: ${title}`, html);
+      // Resend retains this daily key for 24 hours. Changed retry payloads fail
+      // closed rather than sending a second reminder; next day remains eligible.
+      const sent = !alreadySent && await sendEmailNotification(user.email, `Au7o: ${title}`, html, maintenanceEmailDeliveryKey(user.id, now));
       if (sent) {
         emailsSent++;
         await logNotification(user.id, notificationType, 'email', title, body);

@@ -1,4 +1,6 @@
+import { isUSReservationCountry } from './reservation-identity';
 export interface ReservationReadyState {
+  country?: string | null;
   year: number | null;
   make: string | null;
   model: string | null;
@@ -22,7 +24,8 @@ export function canEnterTwinReadyState(input: {
   const compatibleTransmission = input.transmission == null
     ? optionCount <= 1
     : options == null || options.includes(input.transmission);
-  return reservation.vehicleVerified === true
+  return isUSReservationCountry(reservation.country)
+    && reservation.vehicleVerified === true
     && Number.isInteger(reservation.year)
     && (reservation.year ?? 0) > 0
     && !!reservation.make?.trim()

@@ -31,6 +31,7 @@ export type TwinAssistantMessage = {
 
 type StreamArgs = {
   vehicle: TwinAssistantVehicle;
+  ownerVehicleId?: string | null;
   messages: TwinAssistantMessage[];
   sessionId?: string | null;
   knownIssueTitles?: Array<{ id: string; title: string }>;
@@ -56,6 +57,10 @@ export type TwinAssistantResult = {
 const MUTATION_SUBJECT = '(?:mileage|odometer|oil(?:\\s+change)?|maintenance|service|fluid|filter|brakes?|rotors?|tires?|coolant|spark\\s+plugs?|belt|wipers?)';
 const MUTATION_VERB = '(?:update|set|change|log|record|add|save|mark)';
 
+export function isTwinInformationIntent(message: string): boolean {
+  return /\b(?:when|how|what|why|where|whether|advice|compatible|compatibility|can\s+i|could\s+i|should\s+i|do\s+i\s+need|is\s+it\s+(?:safe|okay|ok)|leak|noise|warning)\b|\?/i.test(message);
+}
+
 /** Keep response-only mechanic chat for questions, and reserve the authenticated
  * garage tools for clear owner write requests. Demo mode never supplies an
  * ownerVehicleId, so it cannot cross this boundary. */
@@ -64,15 +69,18 @@ export function isTwinMutationIntent(message: string, hasSelectedMaintenance = f
   if (!value) return false;
   const explicitWrite = new RegExp(`\\b${MUTATION_VERB}\\b[\\s\\S]{0,80}\\b${MUTATION_SUBJECT}\\b`, 'i');
   const mileageStatement = /\b(?:my\s+)?(?:mileage|odometer)\s+(?:is|reads?|shows?)\s+[\d,.]+\b/i;
-  const completedService = /\b(?:i|we)\s+(?:just\s+)?(?:changed|replaced|serviced|did|completed|had|got)\b[\s\S]{0,80}\b(?:oil|fluid|filter|brakes?|rotors?|tires?|coolant|spark\s+plugs?|belt|wipers?|service|maintenance)\b/i;
+  const completedService = /\b(?:i|we)\s+(?:just\s+)?(?:changed|replaced|serviced|did|completed)\b[\s\S]{0,80}\b(?:oil|fluid|filter|brakes?|rotors?|tires?|coolant|spark\s+plugs?|belt|wipers?|service|maintenance)\b/i;
   const contextualWrite = hasSelectedMaintenance && (
     /\b(?:log|record|save|mark)\b[\s\S]{0,50}\b(?:this|it)\b/i.test(value)
     || /\b(?:i|we)\s+(?:just\s+)?(?:changed|replaced|serviced|did|completed)\s+(?:this|it)\b/i.test(value)
   );
-  const asksForInformation = /^(?:when|how(?:\s+often|\s+do|\s+can|\s+should)?|what|why|should\s+i|do\s+i\s+need)\b/i.test(value);
-  const directWriteQuestion = explicitWrite.test(value) && /\d/.test(value);
-  if (asksForInformation && !directWriteQuestion) return false;
-  return explicitWrite.test(value) || mileageStatement.test(value) || completedService.test(value) || contextualWrite;
+  // A past repair inside a question is evidence, not permission to log it.
+  // In particular: "I changed it yesterday ... can I top up with dexos2?"
+  // must reach the mechanic/research path, even though it names a service.
+  const asksForInformation = isTwinInformationIntent(value);
+  const directWriteRequest = /(?:^|[.!?;]\s*|\band\s+)(?:(?:please|can you|could you|would you)\s+)?(?:log|record|save|mark|update|set|add)\b/i.test(value) && explicitWrite.test(value);
+  if (asksForInformation && !directWriteRequest) return false;
+  return directWriteRequest || mileageStatement.test(value) || completedService.test(value) || contextualWrite;
 }
 
 function committedActions(value: unknown): TwinAssistantCommittedAction[] {
@@ -99,7 +107,7 @@ export function guardUncommittedMutationMessage(message: string, actions: TwinAs
 }
 
 export function isMutationFollowUpMessage(message: string): boolean {
-  return /\?|\b(?:need|missing|provide|confirm|what|which|when|mileage|odometer|completion date)\b/i.test(message);
+  return /\?|\b(?:need|missing|provide|confirm|what|which|when|completion date)\b/i.test(message);
 }
 
 export async function requestTwinMutation(input: {
@@ -136,15 +144,19 @@ export async function requestTwinMutation(input: {
       : actions.length
         ? 'Your garage was updated.'
         : 'I need a little more detail before I can change your garage.';
+  const needsDetails = isMutationFollowUpMessage(responseText);
   const text = actions.length
-    ? actions.map((action) => action.result).filter(Boolean).join(' ') || 'Your garage was updated.'
+    ? [actions.map((action) => action.result).filter(Boolean).join(' ') || 'Your garage was updated.',
+      // Keep a missing-detail question after a partial success; otherwise the
+      // mileage saves but the requested oil record silently gets abandoned.
+      ...(needsDetails ? [responseText] : [])].join('\n\n')
     : guardUncommittedMutationMessage(responseText, actions);
   return {
     text,
     sessionId: null,
     route: 'mutation',
     committedActions: actions,
-    awaitingMutationDetails: actions.length === 0 && isMutationFollowUpMessage(text),
+    awaitingMutationDetails: needsDetails || (actions.length === 0 && isMutationFollowUpMessage(text)),
   };
 }
 
@@ -153,7 +165,8 @@ export async function sendTwinAssistantMessage(
 ): Promise<TwinAssistantResult> {
   const current = input.messages.at(-1);
   if (input.ownerVehicleId && current?.role === 'user' && (
-    input.continueMutation || isTwinMutationIntent(current.content, Boolean(input.selectedNode?.maintenanceType))
+    (input.continueMutation && !isTwinInformationIntent(current.content))
+    || isTwinMutationIntent(current.content, Boolean(input.selectedNode?.maintenanceType))
   )) {
     return requestTwinMutation({
       ownerVehicleId: input.ownerVehicleId,
@@ -228,6 +241,7 @@ export function normalizeTwinNodeContext(node: Record<string, unknown> | null | 
 
 export async function streamTwinAssistant({
   vehicle,
+  ownerVehicleId,
   messages,
   sessionId,
   knownIssueTitles = [],
@@ -239,7 +253,7 @@ export async function streamTwinAssistant({
   const response = await fetcher('/api/hub-chat', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ vehicle, messages, sessionId, knownIssueTitles, selectedNode }),
+    body: JSON.stringify({ vehicle, ownerVehicleId, messages, sessionId, knownIssueTitles, selectedNode }),
   });
 
   if (!response.ok || !response.body) {

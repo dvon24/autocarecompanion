@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useMemo, useEffect } from 'react';
+import { currentKnownIssueAnchor, subscribeKnownIssueNavigation } from '@/lib/known-issue-navigation';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useVehicleContext } from '@/contexts/AppContext';
@@ -10,6 +11,7 @@ import { SeverityFilter } from './SeverityFilter';
 import { AdSlot } from '@/components/ads/AdSlot';
 import { filterableKnownIssueTrims, knownIssueMatchesTrim } from '@/lib/known-issue-trim-filter';
 import { vehicleInfoForKnownIssueArticle } from '@/lib/known-issue-article-vehicle';
+import { useKnownIssueTwinFilter } from './KnownIssueTwinFilterContext';
 
 export interface RelatedIssueVehicle {
   slug: string;
@@ -35,12 +37,15 @@ interface ArticleIssuesListProps {
   relatedByIssueId?: Record<string, RelatedIssueVehicle[]>;
   /** See KnownIssueCard.linkableDtcCodes — pass-through. */
   linkableDtcCodes?: string[];
-  /** See KnownIssueCard.basePath — pass-through. */
+  /** Catalog URL root passed through to cards and related-vehicle links. */
   basePath?: string;
   vehicleType?: 'car' | 'motorcycle';
 }
 
 export function ArticleIssuesList({ issues, make, model, initialYear, allYears, relatedByIssueId, linkableDtcCodes, basePath, vehicleType = 'car' }: ArticleIssuesListProps) {
+  const twinFilter = useKnownIssueTwinFilter();
+  const twinIssueIds = twinFilter?.activeIssueIds;
+  const revealTwinIssue = twinFilter?.revealIssue;
   const { selectedVehicle } = useVehicleContext();
   const pathname = usePathname();
   const [severityFilter, setSeverityFilter] = useState<('high' | 'medium' | 'low')[]>(['high', 'medium', 'low']);
@@ -67,6 +72,19 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
   }, [issues]);
 
   const [trimFilter, setTrimFilter] = useState<string | null>(userTrim);
+  const setVisualTrim = twinFilter?.setSelectedTrim;
+  useEffect(() => { setVisualTrim?.(trimFilter); }, [trimFilter, setVisualTrim]);
+  useEffect(() => {
+    const reveal = () => {
+      const issue = issues.find(item => item.id === currentKnownIssueAnchor());
+      if (!issue) return;
+      revealTwinIssue?.(issue.id);
+      setSeverityFilter(previous => previous.includes(issue.severity) ? previous : [...previous, issue.severity]);
+      setTrimFilter(previous => knownIssueMatchesTrim(issue.vehicleMatch.trims, previous) ? previous : null);
+    };
+    reveal();
+    return subscribeKnownIssueNavigation(reveal);
+  }, [issues, revealTwinIssue]);
 
   // Back-to-top arrow that rides the right edge of the cards (Devon wanted it
   // on the cards, not pinned to the window corner). Shown once you've scrolled
@@ -81,12 +99,13 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
 
   const filteredIssues = useMemo(() =>
     issues.filter(i => {
+      if (twinIssueIds && !twinIssueIds.has(i.id)) return false;
       if (severityFilter.includes(i.severity) === false) return false;
       if (yearFilter !== null && i.vehicleMatch.years.includes(yearFilter) === false) return false;
       if (!knownIssueMatchesTrim(i.vehicleMatch.trims, trimFilter)) return false;
       return true;
     }),
-    [issues, severityFilter, yearFilter, trimFilter]
+    [issues, severityFilter, yearFilter, trimFilter, twinIssueIds]
   );
 
   const groupedIssues = useMemo(() => {
@@ -249,7 +268,9 @@ export function ArticleIssuesList({ issues, make, model, initialYear, allYears, 
         {groupedIssues.length === 0 ? (
           <div className="text-center py-8 text-[#64748B]">
             <p>No issues match your selected filters.</p>
-            <p className="text-sm mt-1">Try selecting different severity levels above.</p>
+            <p className="text-sm mt-1">{twinIssueIds !== null && twinIssueIds !== undefined
+              ? 'Move the mileage timeline or choose Show all.'
+              : 'Try selecting different severity levels above.'}</p>
           </div>
         ) : (
           groupedIssues.map(({ category, issues: catIssues }, index) => (

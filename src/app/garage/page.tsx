@@ -5,12 +5,12 @@
  *   - Signed-in user WITH at least one saved vehicle → 302 to
  *     /vehicle/{slug} for their primary (or first) Vehicle row.
  *     The hub IS the garage when you have a car saved.
- *   - Signed-in user with NO vehicles → render the client garage
- *     page so they can add their first vehicle.
+ *   - Signed-in add intents or NO vehicles → Account's shared Twin picker.
+ *   - Explicit manage intent → focused owner settings, never the legacy add editor.
  *   - Anonymous user → render the client garage page (demo mode,
  *     localStorage-backed) so they can experiment without an account.
  *
- * Uses the existing GarageClient component for the latter two cases
+ * Uses the existing GarageClient component for anonymous visitors
  * — no UI duplication, just a routing decision at the top.
  */
 
@@ -24,13 +24,15 @@ export const dynamic = 'force-dynamic';
 
 export default async function GaragePage({ searchParams }: { searchParams: Promise<{ add?: string; manage?: string }> }) {
   const sp = await searchParams;
-  // The bare-/garage → hub redirect is for the "open my car" case. But "Add a
-  // vehicle" and "Manage garage" MUST reach the garage UI even when you already
-  // have a car — otherwise they bounce straight back to the hub (looks like a
-  // refresh). An explicit ?add / ?manage intent skips the redirect.
+  // Add goes to the shared picker; explicit management retains existing settings.
   const wantsGarageUI = sp.add === '1' || sp.manage === '1';
 
   const session = await auth();
+  // Pages and layouts can render concurrently. Apply the same boundary here
+  // before reading vehicles or redirecting to an owner Hub.
+  if (session?.user && !session.user.capabilities?.garage) redirect('/account');
+  if (session?.user?.id && sp.add === '1') redirect('/account');
+  if (session?.user?.id && sp.manage === '1') return <GarageClient ownerSettings />;
 
   // Signed-in branch: look up the user's vehicles and redirect to the
   // hub for their primary (or first) one. We do this server-side so
@@ -45,18 +47,16 @@ export default async function GaragePage({ searchParams }: { searchParams: Promi
         // Then most recently created
         { createdAt: 'desc' },
       ],
-      select: { year: true, make: true, model: true, trim: true },
+      select: { id: true, year: true, make: true, model: true, trim: true },
     });
 
     if (primary) {
       const slug = vehicleSlug(primary.year, primary.make, primary.model, primary.trim ?? null);
-      redirect(`/vehicle/${slug}`);
+      redirect(`/vehicle/${slug}?vehicleId=${encodeURIComponent(primary.id)}`);
     }
-    // Fall through: signed in but no saved vehicles — show GarageClient
-    // so the user can add their first one. The GarageContext detects
-    // the authed-empty case and renders the add-vehicle flow correctly.
+    redirect('/account');
   }
 
-  // Anonymous OR signed-in-with-no-vehicles → demo/onboarding UI.
+  // Anonymous visitors retain the existing local-only demo.
   return <GarageClient />;
 }

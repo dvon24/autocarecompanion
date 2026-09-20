@@ -5,6 +5,7 @@
  * shared modules (Au7oMark, KICard, useTheme, useNarrow). They lived in
  * separate standalone files there; there is no reason for four files here.
  */
+import { TwinServiceEntry } from "../TwinServiceEntry";
 import React from "react";
 import Link from "next/link";
 import { Icon } from "../stage/Icon";
@@ -142,6 +143,15 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
   const transmissionControl = useTwinTransmissionControl();
   const ownerActions = useTwinOwnerActions();
   const assistantVehicle = React.useMemo(()=>buildTwinAssistantVehicle({vehicle,catalogIdentity:catalog?.identity,transmission:transmissionControl?.choice||transmissionControl?.model?.current||vehicle?.transmission,mileage:miles}),[catalog?.identity,miles,transmissionControl?.choice,transmissionControl?.model?.current,vehicle]);
+  const contextKey = [ownerActions?.vehicleId,assistantVehicle?.year,assistantVehicle?.make,assistantVehicle?.model,assistantVehicle?.trim,assistantVehicle?.engine,assistantVehicle?.transmission].join('|');
+  const requestEpoch = React.useRef(0);
+  React.useEffect(() => {
+    requestEpoch.current += 1;
+    setValue(''); setReply(null); setMessages([]); setSessionId(null);
+    setSelectedNode(null); setContinueMutation(false); setPending(false);
+    autoSentKey.current = null;
+    return () => { requestEpoch.current += 1; };
+  }, [contextKey]);
   const knownIssueTitles = React.useMemo(()=>(issues||[]).filter(issue=>issue?.id&&issue?.title).slice(0,12).map(issue=>({id:issue.id,title:issue.title})),[issues]);
 
   const ask = React.useCallback(async (raw, nodeOverride = selectedNode) => {
@@ -161,6 +171,7 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
     setPending(true);
     setReply({question,text:"",error:false,key:Date.now()});
     let streamed = "";
+    const epoch = requestEpoch.current;
     try {
       const result = await sendTwinAssistantMessage({
         vehicle:assistantVehicle,
@@ -170,9 +181,10 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
         continueMutation,
         knownIssueTitles,
         selectedNode:nodeOverride,
-        onSession:setSessionId,
-        onToken:(token)=>{streamed+=token;setReply(current=>({...current,text:streamed}));},
+        onSession:(id)=>{if(requestEpoch.current === epoch) setSessionId(id);},
+        onToken:(token)=>{if(requestEpoch.current === epoch){streamed+=token;setReply(current=>({...current,text:streamed}));}},
       });
+      if (requestEpoch.current !== epoch) return;
       setMessages([...nextMessages,{role:"assistant",content:result.text}].slice(-20));
       setReply(current=>({...current,text:result.text,error:false}));
       setContinueMutation(result.awaitingMutationDetails);
@@ -186,12 +198,13 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
         say?.("Answer ready below — you can keep asking without leaving the hub.");
       }
     } catch (cause) {
+      if (requestEpoch.current !== epoch) return;
       const message = cause instanceof Error ? cause.message : "Au7o could not answer just now. Please try again.";
       setMessages(previousMessages);
       setValue(question);
       setReply({question,text:message,error:true,key:Date.now()});
     } finally {
-      setPending(false);
+      if (requestEpoch.current === epoch) setPending(false);
     }
   }, [assistantVehicle, continueMutation, knownIssueTitles, messages, ownerActions, pending, say, selectedNode, sessionId]);
 
@@ -224,6 +237,7 @@ export function TwinChatComposer({ say, compact = false, placeholder = "Ask anyt
       </div>}
       <form onSubmit={submit} style={{ background:"var(--ki-card)", border:`1px solid ${KI.line}`, borderRadius:compact?14:16, boxShadow:"var(--shadow-1)", padding:compact?"8px 9px 8px 12px":"10px 12px 10px 16px", display:"flex", alignItems:"center", gap:8 }}>
         <input ref={inputRef} value={value} disabled={pending} onChange={(event)=>setValue(event.target.value)} aria-label="Ask Au7o about this vehicle" placeholder={placeholder} autoComplete="off" style={{flex:1,minWidth:0,border:0,outline:0,background:"transparent",color:"var(--ink)",fontFamily:"var(--font-sans)",fontSize:compact?13:14,lineHeight:1.4,opacity:pending?.65:1}}/>
+        <TwinServiceEntry receipt/>
         <a href="/diagnose" aria-label="Open camera diagnosis" title="Open camera diagnosis" style={{width:compact?30:34,height:compact?30:34,borderRadius:10,border:`1px solid ${KI.line}`,display:"grid",placeItems:"center",color:"var(--slate-500)",textDecoration:"none",flexShrink:0}}><Icon name="camera" size={12}/></a>
         {!compact&&<VoiceButton/>}
         <button type="submit" disabled={pending} aria-label="Send question" style={{background:"var(--ink)",border:"none",color:"var(--ki-page)",width:compact?30:34,height:compact?30:34,borderRadius:10,cursor:pending?"wait":"pointer",display:"grid",placeItems:"center",flexShrink:0,opacity:pending?.55:1}}><Icon name="send" size={compact?13:14}/></button>

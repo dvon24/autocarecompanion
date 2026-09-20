@@ -21,6 +21,11 @@ export interface TwinIssueRow {
   solution: string;
   fixParts: unknown;
   communityRecommendations: unknown;
+  // Optional for legacy summaries; qualified owner approvals require all four.
+  years?: number[];
+  trims?: string[];
+  engines?: string[];
+  citations?: unknown;
 }
 
 export function buildTwinIssueSummary(issue: TwinIssueRow): TwinIssueSummary {

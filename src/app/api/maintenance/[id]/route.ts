@@ -1,12 +1,10 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@/lib/auth';
+import { canUsePersonalVehicle } from '@/lib/vehicle-capabilities';
 import { prisma } from '@/lib/db';
 import { createMaintenancePatchHandler } from '@/lib/maintenance-patch-handler';
-import {
-  deleteMaintenanceReceipts,
-  isManagedMaintenanceReceipt,
-  maintenanceReceiptBelongsToOwner,
-} from '@/lib/maintenance-receipt-storage';
+import { lockServiceOwner, lockServiceVehicle, transferDeletedInvoiceCost } from '@/lib/maintenance-service-mutation';
+import { queueStoredReceiptCleanup } from '@/lib/maintenance-receipt-cleanup';
 
 // GET /api/maintenance/[id] - Get single maintenance record
 export async function GET(
@@ -56,7 +54,15 @@ export async function GET(
 }
 
 // PATCH /api/maintenance/[id] - Update maintenance record
-export const PATCH = createMaintenancePatchHandler({ auth, prisma });
+const updateMaintenance = createMaintenancePatchHandler({ auth, prisma });
+export async function PATCH(request: Request, context: { params: Promise<{ id: string }> }) {
+  const session = await auth(); const { id } = await context.params;
+  if (!session?.user?.id) return NextResponse.json({ error: 'unauthorized' }, { status: 401 });
+  const record = await prisma.maintenanceRecord.findFirst({ where: { id, vehicle: { userId: session.user.id } }, select: { vehicleId: true } });
+  if (!record) return NextResponse.json({ error: 'not_found' }, { status: 404 });
+  if (!(await canUsePersonalVehicle(session.user.id, record.vehicleId))) return NextResponse.json({ error: 'hub_required' }, { status: 403 });
+  return updateMaintenance(request, context);
+}
 
 // DELETE /api/maintenance/[id] - Delete maintenance record
 export async function DELETE(
@@ -89,22 +95,18 @@ export async function DELETE(
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
     }
 
-    if (isManagedMaintenanceReceipt(existing.receiptUrl)
-      && maintenanceReceiptBelongsToOwner(existing.receiptUrl, session.user.id, existing.vehicleId)) {
-      try {
-        await deleteMaintenanceReceipts([existing.receiptUrl]);
-      } catch (error) {
-        console.error('[maintenance-delete] receipt purge failed:', error);
-        return NextResponse.json(
-          { error: 'Could not erase the private receipt. The maintenance record was not deleted.' },
-          { status: 502 },
-        );
-      }
-    }
+    const cleanupPending = await prisma.$transaction(async tx => {
+      await lockServiceOwner(tx, session.user!.id!);
+      await lockServiceVehicle(tx, existing.vehicleId);
+      const current = await tx.maintenanceRecord.findFirst({ where: { id, vehicle: { userId: session.user!.id! } } });
+      if (!current) return false;
+      await transferDeletedInvoiceCost(tx, current);
+      const queued = await queueStoredReceiptCleanup(tx, { userId: session.user!.id!, vehicleId: current.vehicleId, receiptUrl: current.receiptUrl });
+      await tx.maintenanceRecord.delete({ where: { id } });
+      return queued;
+    }, { isolationLevel: 'ReadCommitted', timeout: 20000 });
 
-    await prisma.maintenanceRecord.delete({ where: { id } });
-
-    return NextResponse.json({ success: true });
+    return NextResponse.json({ success: true, cleanupPending }, { headers: { 'Cache-Control': 'private, no-store' } });
   } catch (error) {
     console.error('Error deleting maintenance record:', error);
     return NextResponse.json(

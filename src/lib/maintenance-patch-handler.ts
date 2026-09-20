@@ -11,6 +11,8 @@ import { isPrismaWriteConflict } from '@/lib/prisma-conflict';
 import { parseMaintenanceCreate } from '@/lib/twin-route-contracts';
 import { hasValidReviewedTransmissionState } from '@/lib/transmission-options';
 import { isManagedMaintenanceReceipt } from '@/lib/maintenance-receipt-storage';
+import { isPhysicalDrivelineType } from '@/lib/physical-driveline-policy';
+import { serviceInvoiceGroup, lockServiceVehicle } from '@/lib/maintenance-service-mutation';
 
 type Session = { user?: { id?: string | null } } | null;
 const LEGACY_GENERIC_METADATA_FIELDS = new Set(['notes', 'receiptUrl']);
@@ -55,6 +57,7 @@ export function createMaintenancePatchHandler(deps: {
         if (existing.vehicle.userId !== userId) {
           return { ok: false as const, status: 401, error: 'Unauthorized' };
         }
+        if (serviceInvoiceGroup(id)) await lockServiceVehicle(tx, existing.vehicleId);
         if (isTransmissionMaintenanceType(existing.type)
           && !hasValidReviewedTransmissionState(existing.vehicle)) {
           return {
@@ -106,7 +109,7 @@ export function createMaintenancePatchHandler(deps: {
           return { ok: false as const, status: 400, error: 'Invalid data', details: validated.error.issues };
         }
 
-        const preservesLegacyGeneric = existing.type === 'transmission_fluid'
+        const preservesLegacyGeneric = ['transmission_fluid','differential_fluid','transfer_case_fluid','rear_axle_fluid','awd_clutch_fluid'].includes(existing.type)
           && !Object.prototype.hasOwnProperty.call(patch, 'type')
           && Object.keys(patch).every((key) => LEGACY_GENERIC_METADATA_FIELDS.has(key));
         const resolvedType = preservesLegacyGeneric
@@ -125,7 +128,9 @@ export function createMaintenancePatchHandler(deps: {
         const persistedType = resolvedType.type;
 
         if (isTransmissionMaintenanceType(existing.type)
-          || isTransmissionMaintenanceType(validated.data.type)) {
+          || isTransmissionMaintenanceType(validated.data.type)
+          || isPhysicalDrivelineType(existing.type) || isPhysicalDrivelineType(validated.data.type)
+          || (existing.vehicle.reviewedEquipmentId != null && ['differential_fluid','transfer_case_fluid'].some(type=>type===existing.type||type===validated.data.type))) {
           await guardTransmissionMaintenanceVehicle(
             tx,
             existing.vehicle,
@@ -148,6 +153,11 @@ export function createMaintenancePatchHandler(deps: {
             shopName: validated.data.shopName ?? null,
           },
         });
+        const invoiceGroup = serviceInvoiceGroup(id);
+        if (invoiceGroup && Object.prototype.hasOwnProperty.call(patch, 'cost')) {
+          // The edited value is the invoice total, not an extra charge per job.
+          await tx.maintenanceRecord.updateMany({ where: { vehicleId: existing.vehicleId, id: { startsWith: `${invoiceGroup}_`, not: id } }, data: { cost: null } });
+        }
         return { ok: true as const, record };
       }, { isolationLevel: 'Serializable' });
 

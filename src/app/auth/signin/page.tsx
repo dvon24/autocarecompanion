@@ -7,10 +7,15 @@ import Image from 'next/image';
 import { useSearchParams } from 'next/navigation';
 import { GoogleSignInButton } from '@/components/auth/GoogleSignInButton';
 import { AuthValueColumn } from '@/components/auth/AuthValueColumn';
+import { reservationOfferId } from '@/lib/reservation-identity';
+import { safeInternalCallback } from '@/lib/auth-callback';
+import { EnrollmentOfferGate } from '@/components/auth/EnrollmentOfferGate';
 
 function SignInForm() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/garage';
+  const callbackUrl = safeInternalCallback(searchParams.get('callbackUrl'), '/account');
+  const destination = new URL(callbackUrl, 'https://au7o.invalid');
+  const reservationId = destination.pathname === '/twin/claim' ? reservationOfferId(destination.searchParams.get('reservationId')) : null;
   const urlError = searchParams.get('error');
 
   const [email, setEmail] = useState('');
@@ -30,7 +35,7 @@ function SignInForm() {
         redirect: false,
       });
 
-      if (result?.error) {
+      if (!result?.ok || result.error) {
         setErrorMessage('Invalid email or password');
       } else {
         window.location.href = callbackUrl;
@@ -53,6 +58,10 @@ function SignInForm() {
         </div>
       )}
 
+      {destination.pathname === '/twin/claim' && <EnrollmentOfferGate><p className="my-4 text-sm"><Link className="text-blue-600 underline" href={`/auth/signup?product=hub&intent=reservation${reservationId ? `&reservationId=${encodeURIComponent(reservationId)}` : ''}`}>Create an account for this vehicle offer</Link></p></EnrollmentOfferGate>}
+
+      {process.env.NODE_ENV === 'development' && <p className="my-4 text-sm text-gray-700">Use your email and Au7o password here. The au7o-review login only unlocks the protected preview.</p>}
+      {destination.pathname === '/subscribe' && <EnrollmentOfferGate><p className="my-4 text-sm"><Link className="text-blue-600 underline" href={`/auth/signup?${destination.searchParams.toString()}`}>Start over or request another verification email</Link></p></EnrollmentOfferGate>}
       {/* Error Messages */}
       {(urlError || errorMessage) && (
         <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-xl text-red-700 text-sm">
@@ -83,7 +92,7 @@ function SignInForm() {
               Password
             </label>
             <Link
-              href="/auth/forgot-password"
+              href={`/auth/forgot-password?callbackUrl=${encodeURIComponent(callbackUrl)}`}
               className="text-xs text-blue-600 hover:text-blue-700 font-medium"
             >
               Forgot password?
@@ -164,9 +173,9 @@ export default function SignInPage() {
                 Au<span className="text-blue-600">7</span>o
               </span>
             </Link>
-            <Link href="/subscribe" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
+            <EnrollmentOfferGate><Link href="/subscribe" className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors">
               Subscribe
-            </Link>
+            </Link></EnrollmentOfferGate>
           </header>
 
           <div className="flex-1 flex flex-col items-center justify-center py-8">
@@ -175,7 +184,7 @@ export default function SignInPage() {
                 Welcome back
               </h1>
               <p className="text-gray-500 mb-6 text-sm">
-                Sign in to access your garage.
+                Sign in to your Au7o account with your email.
               </p>
 
               <Suspense fallback={<SignInFormLoading />}>

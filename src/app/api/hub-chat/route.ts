@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse, after } from 'next/server';
 import { auth } from '@/lib/auth';
+import { canUsePersonalVehicle, canUsePersonalVehicleContext } from '@/lib/vehicle-capabilities';
 import prisma from '@/lib/db';
 import {
   hubChatAnonDayLimiter,
@@ -22,9 +23,10 @@ import { resolveParts, type PartIntent } from '@/lib/resolve-parts';
 import { warmVerifiedPart } from '@/lib/verified-parts';
 import { resolvePartLink } from '@/lib/resolve-part-link';
 import { getVehicleSpecs } from '@/lib/maintenance';
-import { getWebSpecs } from '@/lib/verified-specs';
+import { needsHubResearch, researchHubQuestion, hubResearchBlock, researchSourceMarkdown, partialModelUrlHold, SOURCE_MARK_OPEN } from '@/lib/hub-chat-research';
 import { canonicalizePart } from '@/lib/part-vocabulary';
 import { STATIC_SYSTEM_PROMPT } from '@/lib/hub-chat-prompt';
+import { canResumeHubOwnerSession, selectHubChatOwnerVehicle } from '@/lib/hub-vehicle-selection';
 import { buildYouTubeSearchMarkdown, partialGroundingMarkerHold, VIDEO_MARK_OPEN } from '@/lib/hub-chat-video';
 import type { PartCategory } from '@/types/vision';
 import {
@@ -36,9 +38,9 @@ import {
 } from '@/lib/hub-chat-model';
 
 // A transport-level primary timeout can still be followed by one fallback
-// attempt. Give both bounded 55-second requests room inside Vercel's function
-// lifetime instead of terminating the fallback a few seconds after it starts.
-export const maxDuration = 120;
+// attempt. Allow bounded 35-second research and both 55-second model requests
+// inside the function lifetime, with room for geocoding and persistence.
+export const maxDuration = 180;
 export const runtime = 'nodejs';
 
 /**
@@ -161,6 +163,7 @@ interface HubNodeContext {
 }
 interface HubChatBody {
   vehicle?: HubVehicle;
+  ownerVehicleId?: string;
   sessionId?: string;
   messages?: HubMessage[];
   /** Top KnownIssue titles for this vehicle, passed by the hub so the
@@ -212,19 +215,19 @@ function estimateTokens(text: string): number {
  * names ("Sway bar end links" / "Header gaskets") that don't match
  * anything in our DB and the cards never render.
  */
-function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[], webSpecRows?: string[]): string {
+function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[]): string {
   const v = vehicle;
   const mileage = v.currentMileage ? `, currently at ~${v.currentMileage.toLocaleString()} miles` : '';
   const configuration = [v.engine && `engine ${v.engine}`, v.transmission && `${v.transmission} transmission`, v.drivetrain && `${v.drivetrain} drivetrain`].filter(Boolean);
   let block = `Active vehicle context: the user is asking about a ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''}${mileage}${configuration.length ? `, with ${configuration.join(', ')}` : ''}. Use this make and model in every reply that references the car.`;
 
   // Ground fluid/spec answers so the model doesn't invent (and vary) fluid
-  // types/capacities. Prefer the authoritative spec DB; if this vehicle isn't
-  // in the DB, fall back to web-searched specs (verified-specs.getWebSpecs).
+  // types/capacities. Static rows are background evidence; question-specific
+  // research below checks the applicable official sources independently.
   // Without this the hub gave a different differential fluid spec every ask.
   try {
-    let rows: string[] = [];
-    let sourceLabel = "from Au7o's spec database";
+    const rows: string[] = [];
+    const sourceLabel = "from Au7o's spec database; not a live lookup";
     const specs = getVehicleSpecs({ year: v.year, make: v.make, model: v.model, trim: v.trim || '' });
     if (specs) {
       const fmt = (val: unknown): string =>
@@ -251,10 +254,6 @@ function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[], we
       add('Brake fluid', 'brakeFluid');
       add('Spark plugs', 'sparkPlugs');
     }
-    if (!rows.length && webSpecRows?.length) {
-      rows = webSpecRows;
-      sourceLabel = 'web-verified from manufacturer/service sources';
-    }
     if (rows.length) {
       // Only claim "VERIFIED" when the block has actually had its audit pass
       // (carries provenance). Raw generated data gets an honest, softer header —
@@ -265,7 +264,7 @@ function buildVehicleBlock(vehicle: HubVehicle, knownIssues: KnownIssueRef[], we
         : `Factory specs for this ${v.year} ${v.make} ${v.model}${v.trim ? ` ${v.trim}` : ''} (${sourceLabel} — not yet independently audited; treat as a strong default, not gospel)`;
       block += `\n\n${header}:
 ${rows.join('\n')}
-When the user asks about a fluid type, weight, viscosity, capacity, or spec, use these EXACT values — do not invent, round, or vary them, and give the SAME answer every time. If a spec they ask about is NOT listed here, say you'd verify it by VIN rather than guessing.`;
+These database values are background evidence. Do not invent missing values. If current official research for the exact configuration disagrees, explain the discrepancy and use the applicable official source; do not force a generic database row onto a different trim, market, engine or street/track use.`;
     }
   } catch { /* specs optional — never block the reply */ }
 
@@ -428,7 +427,7 @@ async function resolveMarkerToMarkdown(
 /** Longest suffix of `s` that is a proper prefix of the marker opener — held
  *  back so a marker split across stream deltas isn't emitted raw. */
 function partialOpenHold(s: string): number {
-  return partialGroundingMarkerHold(s, [PART_MARK_OPEN, VIDEO_MARK_OPEN]);
+  return partialGroundingMarkerHold(s, [PART_MARK_OPEN, VIDEO_MARK_OPEN, SOURCE_MARK_OPEN]);
 }
 
 /** Neutralize any link the MODEL wrote in its prose (it's told to emit markers,
@@ -438,7 +437,7 @@ function partialOpenHold(s: string): number {
 function stripModelLinks(s: string): string {
   return s
     .replace(/\[([^\]]*)\]\((?:[^)]*)\)/g, '$1') // [label](url) → label
-    .replace(/\bhttps?:\/\/\S+/gi, '');           // any bare URL the model wrote
+    .replace(/\b(?:https?:\/\/|www\.)\S+/gi, ''); // any bare URL the model wrote
 }
 
 /** How many trailing chars to hold back so we never emit a markdown link that's
@@ -538,7 +537,7 @@ export async function POST(request: NextRequest) {
   // tampering. Subscribers bypass entirely; authed-free users use the
   // grandfather-aware limit (existing users keep 25/week for 90 days,
   // new signups start on 5/week per the pricing brief).
-  const isSubscriber = session?.user?.subscriptionStatus === 'active';
+  const isSubscriber = session?.user?.capabilities?.personalAi === true || !!(userId && await canUsePersonalVehicleContext(userId, { ...v, vehicleId: body.ownerVehicleId }));
   let consumedQuotaKey: string | null = null;
   if (!isSubscriber) {
     // For authed users, fetch createdAt to apply grandfather logic.
@@ -588,19 +587,31 @@ export async function POST(request: NextRequest) {
 
   // ── 4. Resolve which Vehicle row this corresponds to (authed only) ──
   let vehicleId: string | null = null;
+  const requestedOwnerId = typeof body.ownerVehicleId === 'string' && body.ownerVehicleId.trim()
+    ? body.ownerVehicleId.trim().slice(0, 128) : undefined;
   if (isAuthed) {
     try {
-      const found = await prisma.vehicle.findFirst({
+      const candidates = await prisma.vehicle.findMany({
         where: {
           userId: userId!,
           year: v.year,
-          make: { equals: v.make, mode: 'insensitive' },
-          model: { equals: v.model, mode: 'insensitive' },
+          ...(requestedOwnerId ? { id: requestedOwnerId } : {}),
         },
-        select: { id: true },
+        select: { id: true, year: true, make: true, model: true, trim: true },
       });
+      const found = selectHubChatOwnerVehicle(candidates, v, requestedOwnerId);
       vehicleId = found?.id ?? null;
     } catch { /* silent — chat works without a Vehicle row */ }
+    if (requestedOwnerId && !vehicleId) {
+      refundDayLimit();
+      if (consumedQuotaKey) await refundChatQuota(consumedQuotaKey);
+      return NextResponse.json({ error: 'vehicle_context_mismatch', message: 'The selected car could not be confirmed. Reload its Hub and try again.' }, { status: 409 });
+    }
+    if (vehicleId && userId && !(await canUsePersonalVehicle(userId, vehicleId))) {
+      refundDayLimit();
+      if (consumedQuotaKey) await refundChatQuota(consumedQuotaKey);
+      return NextResponse.json({ error: 'hub_required', message: 'Personal vehicle chat requires Hub or a claimed vehicle trial.' }, { status: 403 });
+    }
   }
   // Anonymous users get a synthetic id from the IP+UA hash so we can
   // tie multi-turn anonymous conversations together without inventing
@@ -627,7 +638,7 @@ export async function POST(request: NextRequest) {
           ...(userId ? { userId } : { userId: null, anonymousId }),
         },
       });
-      if (existing) {
+      if (existing && (!userId || canResumeHubOwnerSession(existing.vehicleId, vehicleId))) {
         const prevMessages = (existing.messages as unknown as HubMessage[]) || [];
         sessionMessages = [...prevMessages, messages[messages.length - 1]].slice(-MAX_HISTORY_MESSAGES);
         await prisma.chatSession.update({
@@ -636,6 +647,8 @@ export async function POST(request: NextRequest) {
         });
       } else {
         sessionId = null; // not yours (or gone) → new session below
+        // Never copy another car's conversation into this selected car.
+        if (existing && userId) sessionMessages = [messages[messages.length - 1]];
       }
     }
     if (!sessionId) {
@@ -652,6 +665,8 @@ export async function POST(request: NextRequest) {
     }
   } catch (err) {
     console.warn('[hub-chat] session persist failed (chat continues):', err);
+    // An unconfirmed session lookup must not become a later unscoped write.
+    sessionId = null;
   }
 
   // Log to insight table (fire-and-forget, never blocks the reply).
@@ -670,17 +685,7 @@ export async function POST(request: NextRequest) {
   // long system message still gets cache hits — just managed by
   // OpenAI's cache rather than declared by us.
   const knownIssueTitles = Array.isArray(body.knownIssueTitles) ? body.knownIssueTitles.slice(0, 12) : [];
-  // If this vehicle isn't in the spec DB, web-search its factory fluid specs
-  // (cache-first, bounded) so the chat still grounds instead of guessing.
-  let webSpecRows: string[] | undefined;
-  try {
-    const hasDbSpecs = !!getVehicleSpecs({ year: v.year, make: v.make, model: v.model, trim: v.trim || '' });
-    if (!hasDbSpecs) {
-      const ws = await getWebSpecs(v);
-      webSpecRows = ws?.rows;
-    }
-  } catch { /* grounding is best-effort */ }
-  const vehicleBlock = buildVehicleBlock(v, knownIssueTitles, webSpecRows);
+  const vehicleBlock = buildVehicleBlock(v, knownIssueTitles);
   const selectedNodeBlock = buildSelectedNodeBlock(body.selectedNode);
 
   // ── Location grounding for trip suggestions ───────────────────
@@ -706,6 +711,15 @@ export async function POST(request: NextRequest) {
       } catch { /* silent — location grounding is optional */ }
     }
   }
+  // Research follows all existing consent, authentication and quota checks.
+  // It runs for relevant questions even when the static spec DB has a row.
+  const recentQuestions = sessionMessages.slice(0, -1).filter((m) => m.role === 'user').slice(-2).map((m) => m.content);
+  const wantsResearch = needsHubResearch(userMessage, recentQuestions);
+  const research = wantsResearch
+    ? await researchHubQuestion({ vehicle: v, question: userMessage, recentQuestions, locationHint: locationBlock, selectedNode: body.selectedNode, signal: request.signal })
+    : null;
+  const researchBlock = research ? hubResearchBlock(research) : '';
+
   // The XML wrapper is only on the LATEST user message. Earlier turns
   // are trusted (already produced by the model or echoed back from the
   // user via our own UI). Wrapping every turn would inflate token cost
@@ -722,7 +736,7 @@ export async function POST(request: NextRequest) {
   // system prompts >1024 tokens, so the single concatenated prompt
   // still benefits from prompt caching for repeated identical
   // (static + vehicle) combinations.
-  const systemContent = [STATIC_SYSTEM_PROMPT, vehicleBlock, selectedNodeBlock, locationBlock]
+  const systemContent = [STATIC_SYSTEM_PROMPT, vehicleBlock, selectedNodeBlock, locationBlock, researchBlock]
     .filter(Boolean)
     .join('\n\n');
 
@@ -762,12 +776,12 @@ export async function POST(request: NextRequest) {
       const pump = async (final: boolean) => {
         for (;;) {
           const rest = rawModel.slice(flushedLen);
-          const candidateIndexes = [rest.indexOf(PART_MARK_OPEN), rest.indexOf(VIDEO_MARK_OPEN)].filter((index) => index >= 0);
+          const candidateIndexes = [rest.indexOf(PART_MARK_OPEN), rest.indexOf(VIDEO_MARK_OPEN), rest.indexOf(SOURCE_MARK_OPEN)].filter((index) => index >= 0);
           const open = candidateIndexes.length ? Math.min(...candidateIndexes) : -1;
           if (open === -1) {
             // Hold back a partial marker OR a partial markdown link at the tail so
             // we never emit half a link the sanitizer can't see whole.
-            const hold = final ? 0 : Math.max(partialOpenHold(rest), partialLinkHold(rest));
+            const hold = final ? 0 : Math.max(partialOpenHold(rest), partialLinkHold(rest), partialModelUrlHold(rest));
             const rawEmit = rest.slice(0, rest.length - hold);
             if (rawEmit) {
               flushedLen += rawEmit.length; // advance by RAW length (positions in rawModel)
@@ -783,16 +797,20 @@ export async function POST(request: NextRequest) {
             if (clean) { assistantText += clean; send({ type: 'token', text: clean }); }
           }
           const rest2 = rawModel.slice(flushedLen);
-          const markerOpen = rest2.startsWith(PART_MARK_OPEN) ? PART_MARK_OPEN : VIDEO_MARK_OPEN;
+          const markerOpen = rest2.startsWith(PART_MARK_OPEN) ? PART_MARK_OPEN : rest2.startsWith(SOURCE_MARK_OPEN) ? SOURCE_MARK_OPEN : VIDEO_MARK_OPEN;
           const close = rest2.indexOf(']]');
           if (close === -1) {
             if (final) flushedLen = rawModel.length; // incomplete marker at EOF — drop it, never leak raw
             return;
           }
           const innerText = rest2.slice(markerOpen.length, close);
-          const md = markerOpen === PART_MARK_OPEN
-            ? await resolveMarkerToMarkdown(innerText, v, warmParts)
-            : buildYouTubeSearchMarkdown(innerText, v);
+          const md = markerOpen === SOURCE_MARK_OPEN
+            ? researchSourceMarkdown(innerText, research?.sources || [])
+            : markerOpen === PART_MARK_OPEN
+              ? wantsResearch
+                ? stripModelLinks(innerText.split('||')[0].replace(/[\[\]<>]/g, '').trim())
+                : await resolveMarkerToMarkdown(innerText, v, warmParts)
+              : buildYouTubeSearchMarkdown(innerText, v);
           if (md) { assistantText += md; send({ type: 'token', text: md }); }
           flushedLen += close + 2;
         }

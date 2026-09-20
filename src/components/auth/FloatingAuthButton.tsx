@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation';
  * white background, subtle border).
  *
  * Unauthenticated visitors see no account control.
- * Authed:   user initials avatar → dropdown with Account / Garage / Sign out
+ * Authed:   user initials avatar → Account / entitled My Hub / Sign out
  *
  * Positioning: fixed top-3 right-3 (the Google Translate pill that
  * used to occupy this corner was removed 2026-06-12). The container is
@@ -45,6 +45,9 @@ export function FloatingAuthButton() {
   //     a floating "Sign in" in the corner is a competing exit for the small
   //     minority who already have an account.
   const onPricing = /^\/(subscribe|pricing)(\/|$)/.test(pathname ?? '');
+  // Account owns its completion/privacy controls. Policy pages stay focused
+  // on the policy and their explicit return navigation.
+  const onAccountOrPrivacy = /^\/(account|privacy)(\/|$)/.test(pathname ?? '');
   const onVehicleHub = pathname?.startsWith('/vehicle/') ?? false;
   // The Hub has its own mobile account control in the dedicated phone
   // header. Keep this global control on desktop, but hide the duplicate at
@@ -63,7 +66,7 @@ export function FloatingAuthButton() {
     return () => document.removeEventListener('mousedown', handler);
   }, [open]);
 
-  if (onAuthPage || onHome || onHeaderedPage || onTwinDemo || onPricing) return null;
+  if (onAuthPage || onHome || onHeaderedPage || onTwinDemo || onPricing || onAccountOrPrivacy) return null;
 
   // Skeleton while session resolves so the link doesn't pop in.
   if (status === 'loading') {
@@ -123,7 +126,7 @@ export function FloatingAuthButton() {
             Account
           </Link>
 
-          <Link
+          {session.user.capabilities?.hub && <Link
             href="/garage"
             onClick={() => setOpen(false)}
             className="flex items-center gap-3 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
@@ -131,8 +134,8 @@ export function FloatingAuthButton() {
             <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
             </svg>
-            Garage
-          </Link>
+            My Hub
+          </Link>}
 
           <div className="border-t border-gray-100 mt-2 pt-1">
             <button

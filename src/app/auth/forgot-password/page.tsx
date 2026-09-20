@@ -1,10 +1,15 @@
 'use client';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
+import { useSearchParams } from 'next/navigation';
+import { safeInternalCallback } from '@/lib/auth-callback';
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function ForgotPasswordPage() {
+function ForgotPasswordForm() {
+  const params = useSearchParams();
+  const callbackUrl = safeInternalCallback(params.get('callbackUrl'), '/account');
+  const signin = `/auth/signin?callbackUrl=${encodeURIComponent(callbackUrl)}`;
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -19,7 +24,7 @@ export default function ForgotPasswordPage() {
       const res = await fetch('/api/auth/forgot-password', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email: email.trim() }),
+        body: JSON.stringify({ email: email.trim(), callbackUrl }),
       });
       if (!res.ok) throw new Error('Server error');
       setSubmitted(true);
@@ -53,21 +58,6 @@ export default function ForgotPasswordPage() {
               Enter your email and we&apos;ll send you a reset link.
             </p>
 
-            {/* Email provider isn't connected yet — surface that honestly
-                so users don't sit waiting for an email that won't arrive.
-                Remove this banner once RESEND_API_KEY + FROM_EMAIL are
-                set on Vercel and a verified sender is configured. */}
-            <div className="mb-6 p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-900 text-sm">
-              <div className="font-semibold mb-1">Under construction</div>
-              <p className="leading-snug">
-                We&apos;re finishing setup of our email provider. For now, password
-                resets won&apos;t arrive in your inbox.{' '}
-                <a href="mailto:devonsroberson24@yahoo.com" className="underline font-medium">
-                  Email support
-                </a>{' '}
-                and we&apos;ll reset it manually.
-              </p>
-            </div>
 
             {submitted ? (
               <div className="text-center space-y-4">
@@ -78,13 +68,13 @@ export default function ForgotPasswordPage() {
                 </div>
                 <p className="text-gray-700">
                   If <span className="font-semibold">{email}</span> matches an account,
-                  we&apos;ve sent a reset link. Check your inbox (and spam folder).
+                  a reset link will arrive if the request is eligible. Allow a few minutes and check spam.
                 </p>
                 <p className="text-sm text-gray-500">
                   The link expires in 60 minutes.
                 </p>
                 <Link
-                  href="/auth/signin"
+                  href={signin}
                   className="inline-block text-blue-600 hover:text-blue-700 font-medium mt-2"
                 >
                   &larr; Back to sign in
@@ -122,7 +112,7 @@ export default function ForgotPasswordPage() {
                   </button>
                 </form>
                 <div className="text-center mt-6">
-                  <Link href="/auth/signin" className="text-gray-500 hover:text-gray-700 text-sm">
+                  <Link href={signin} className="text-gray-500 hover:text-gray-700 text-sm">
                     &larr; Back to sign in
                   </Link>
                 </div>
@@ -133,4 +123,8 @@ export default function ForgotPasswordPage() {
       </main>
     </div>
   );
+}
+
+export default function ForgotPasswordPage() {
+  return <Suspense fallback={<p>Loading password recovery…</p>}><ForgotPasswordForm /></Suspense>;
 }

@@ -1,12 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { MaintenanceOverview } from '@/components/maintenance/MaintenanceStatusBar';
 import { useGuide } from '@/hooks/useGuide';
 import { useKnownIssues } from '@/hooks/useKnownIssues';
 import { MAINTENANCE_SCHEDULES, type VehicleContext } from '@/lib/maintenance';
+import { savedVehicleHubHref } from '@/lib/hub-vehicle-selection';
 import { vehicleSlug } from '@/lib/vehicle-slug';
 
 interface Vehicle {
@@ -35,17 +36,24 @@ interface Vehicle {
 interface VehicleCardProps {
   vehicle: Vehicle;
   onDelete: () => void | Promise<void>;
-  onMileageUpdate?: (vehicleId: string, currentMileage: number, annualMileage: number | null) => Promise<boolean>;
+  onMileageUpdate?: (vehicleId: string, currentMileage: number | null, annualMileage: number | null) => Promise<boolean>;
+  settingsOnly?: boolean;
 }
 
-export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardProps) {
+export function VehicleCard({ vehicle, onDelete, onMileageUpdate, settingsOnly = false }: VehicleCardProps) {
   const router = useRouter();
   const [deleting, setDeleting] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [editingMileage, setEditingMileage] = useState(false);
   const [currentMileageInput, setCurrentMileageInput] = useState(vehicle.currentMileage?.toString() || '');
   const [annualMileageInput, setAnnualMileageInput] = useState(vehicle.annualMileage?.toString() || '');
+  const currentMileageRef = useRef<HTMLInputElement>(null);
+  const annualMileageRef = useRef<HTMLInputElement>(null);
+  const [currentMileageBadInput, setCurrentMileageBadInput] = useState(false);
+  const [annualMileageBadInput, setAnnualMileageBadInput] = useState(false);
   const [savingMileage, setSavingMileage] = useState(false);
+  const [mileageError, setMileageError] = useState('');
   const [localMileage, setLocalMileage] = useState(vehicle.currentMileage);
   const [localAnnualMileage, setLocalAnnualMileage] = useState(vehicle.annualMileage);
   const [generatingGuideFor, setGeneratingGuideFor] = useState<string | null>(null);
@@ -60,7 +68,7 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
 
   // Known issues hook
   const { issues: knownIssues, loading: knownIssuesLoading } = useKnownIssues({
-    year: vehicle.year,
+    year: settingsOnly ? 0 : vehicle.year,
     make: vehicle.make,
     model: vehicle.model,
     trim: vehicle.trim ?? undefined,
@@ -79,7 +87,7 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
   };
 
   const handleGenerateGuide = async (maintenanceType: string) => {
-    if (isGenerating) return;
+    if (settingsOnly || isGenerating) return;
 
     const type = MAINTENANCE_SCHEDULES[maintenanceType];
     if (!type) return;
@@ -109,33 +117,46 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
 
   // Navigate to guide page when guide is ready
   useEffect(() => {
-    if (hasGuide && guide) {
+    if (!settingsOnly && hasGuide && guide) {
       sessionStorage.setItem('currentGuide', JSON.stringify(guide));
       setGeneratingGuideFor(null);
       router.push('/guide');
     }
-  }, [hasGuide, guide, router]);
+  }, [hasGuide, guide, router, settingsOnly]);
 
   const handleDelete = async () => {
+    if (deleting || savingMileage) return;
+    setDeleteError('');
     setDeleting(true);
     try {
       await onDelete();
-    } catch (error) {
-      console.error('Failed to delete vehicle:', error);
+      setShowDeleteConfirm(false);
+    } catch {
+      setDeleteError('We could not confirm deletion. Your vehicle is still shown. Please reload before trying again.');
     } finally {
       setDeleting(false);
-      setShowDeleteConfirm(false);
     }
   };
 
   const handleSaveMileage = async () => {
-    if (!onMileageUpdate) return;
+    if (!onMileageUpdate || savingMileage || deleting) return;
+    // Number inputs report partial values (for example "1e") as an empty string.
+    // Distinguish invalid typing from an intentional clear before converting to null.
+    if (currentMileageBadInput || annualMileageBadInput || currentMileageRef.current?.validity.badInput || annualMileageRef.current?.validity.badInput) {
+      setMileageError('Enter valid whole miles, or clear the field completely for an unknown value.');
+      return;
+    }
 
-    const newCurrentMileage = parseInt(currentMileageInput) || 0;
-    const newAnnualMileage = annualMileageInput ? parseInt(annualMileageInput) : null;
+    const newCurrentMileage = currentMileageInput.trim() === '' ? null : Number(currentMileageInput);
+    const newAnnualMileage = annualMileageInput.trim() === '' ? null : Number(annualMileageInput);
 
-    if (newCurrentMileage < 0) return;
+    if ((newCurrentMileage !== null && (!Number.isSafeInteger(newCurrentMileage) || newCurrentMileage < 0 || newCurrentMileage > 2147483647))
+      || (newAnnualMileage !== null && (!Number.isSafeInteger(newAnnualMileage) || newAnnualMileage < 0 || newAnnualMileage > 200000))) {
+      setMileageError('Enter valid, nonnegative whole miles. Annual miles cannot exceed 200,000. Leave unknown values blank.');
+      return;
+    }
 
+    setMileageError('');
     setSavingMileage(true);
     try {
       const success = await onMileageUpdate(vehicle.id, newCurrentMileage, newAnnualMileage);
@@ -143,17 +164,20 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
         setLocalMileage(newCurrentMileage);
         setLocalAnnualMileage(newAnnualMileage);
         setEditingMileage(false);
-      }
-    } catch (error) {
-      console.error('Failed to update mileage:', error);
+      } else setMileageError('Your mileage was not confirmed. Please try again.');
+    } catch {
+      setMileageError('Your mileage was not confirmed. Please try again.');
     } finally {
       setSavingMileage(false);
     }
   };
 
   const handleCancelEdit = () => {
+    setCurrentMileageBadInput(false);
+    setAnnualMileageBadInput(false);
     setCurrentMileageInput(localMileage?.toString() || '');
     setAnnualMileageInput(localAnnualMileage?.toString() || '');
+    setMileageError('');
     setEditingMileage(false);
   };
 
@@ -174,7 +198,7 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
                   Primary
                 </span>
               )}
-              {!knownIssuesLoading && knownIssues.length > 0 && (
+              {!settingsOnly && !knownIssuesLoading && knownIssues.length > 0 && (
                 <Link
                   // Point the badge at the actual known-issues article
                   // for this vehicle (not the maintenance page) so a
@@ -202,7 +226,8 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
           </div>
           <div className="relative">
             <button
-              onClick={() => setShowDeleteConfirm(true)}
+              onClick={() => { setDeleteError(''); setShowDeleteConfirm(true); }}
+              disabled={editingMileage || savingMileage || deleting}
               className="p-2 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
               title="Delete vehicle"
             >
@@ -216,12 +241,16 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
               </svg>
             </button>
 
-            {/* Delete confirmation popover */}
+          </div>
+        </div>
+
+            {/* In-flow confirmation stays readable within compact settings cards. */}
             {showDeleteConfirm && (
-              <div className="absolute right-0 top-full mt-2 w-64 bg-white rounded-xl shadow-lg border border-gray-200 p-4 z-10">
+              <div className="mt-3 bg-white rounded-xl border border-red-200 p-4">
                 <p className="text-sm text-gray-700 mb-3">
-                  Delete this vehicle? This cannot be undone.
+                  Delete this vehicle and its service history, modifications and uploads? This cannot be undone.
                 </p>
+                {deleteError && <p role="alert" className="text-sm text-red-700 mb-3">{deleteError}</p>}
                 <div className="flex gap-2">
                   <button
                     onClick={() => setShowDeleteConfirm(false)}
@@ -240,8 +269,6 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
                 </div>
               </div>
             )}
-          </div>
-        </div>
 
         {/* Mileage Section */}
         <div className="mt-4">
@@ -254,8 +281,11 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
                   </label>
                   <input
                     type="number"
+                    ref={currentMileageRef}
+                    aria-label="Current mileage" min={0} max={2147483647} step={1} disabled={savingMileage}
                     value={currentMileageInput}
-                    onChange={(e) => setCurrentMileageInput(e.target.value)}
+                    onInput={(e) => setCurrentMileageBadInput(e.currentTarget.validity.badInput)}
+                    onChange={(e) => { setCurrentMileageBadInput(e.target.validity.badInput); setCurrentMileageInput(e.target.value); }}
                     className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="e.g., 45000"
                   />
@@ -266,13 +296,17 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
                   </label>
                   <input
                     type="number"
+                    ref={annualMileageRef}
+                    aria-label="Annual miles" min={0} max={200000} step={1} disabled={savingMileage}
                     value={annualMileageInput}
-                    onChange={(e) => setAnnualMileageInput(e.target.value)}
+                    onInput={(e) => setAnnualMileageBadInput(e.currentTarget.validity.badInput)}
+                    onChange={(e) => { setAnnualMileageBadInput(e.target.validity.badInput); setAnnualMileageInput(e.target.value); }}
                     className="w-full px-3 py-2 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
                     placeholder="e.g., 12000"
                   />
                 </div>
               </div>
+              {mileageError && <p role="alert" className="text-sm text-red-700">{mileageError}</p>}
               <div className="flex gap-2">
                 <button
                   onClick={handleCancelEdit}
@@ -297,12 +331,12 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
                   <div>
                     <p className="text-xs text-gray-500 uppercase tracking-wide">Current</p>
                     <p className="text-xl font-bold text-gray-900 mt-0.5">
-                      {localMileage
+                      {localMileage != null
                         ? `${localMileage.toLocaleString()} mi`
                         : 'Not set'}
                     </p>
                   </div>
-                  {localAnnualMileage && (
+                  {localAnnualMileage != null && (
                     <div>
                       <p className="text-xs text-gray-500 uppercase tracking-wide">Annual</p>
                       <p className="text-sm font-medium text-gray-700 mt-0.5">
@@ -327,6 +361,7 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
                 {onMileageUpdate && (
                   <button
                     onClick={() => setEditingMileage(true)}
+                    disabled={deleting || showDeleteConfirm}
                     className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                     title="Edit mileage"
                   >
@@ -341,7 +376,7 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
         </div>
 
         {/* Maintenance Status Bars */}
-        <div className="mt-4">
+        {!settingsOnly && <div className="mt-4">
           <p className="text-xs text-gray-500 uppercase tracking-wide mb-2">Maintenance Status</p>
           <MaintenanceOverview
             currentMileage={localMileage}
@@ -356,13 +391,13 @@ export function VehicleCard({ vehicle, onDelete, onMileageUpdate }: VehicleCardP
             isGenerating={isGenerating}
             vehicleContext={vehicleContext}
           />
-        </div>
+        </div>}
       </div>
 
       {/* Actions - Open the vehicle hub (chat + known issues + maintenance + drive). */}
       <div className="px-5 py-3 bg-gray-50/50 border-t border-gray-100">
         <Link
-          href={`/vehicle/${vehicleSlug(vehicle.year, vehicle.make, vehicle.model, vehicle.trim)}`}
+          href={settingsOnly ? savedVehicleHubHref(vehicle) : `/vehicle/${vehicleSlug(vehicle.year, vehicle.make, vehicle.model, vehicle.trim)}`}
           className="block w-full text-center px-4 py-2.5 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
         >
           Open Vehicle Hub

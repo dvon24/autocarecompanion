@@ -46,6 +46,8 @@ export const SUBSCRIPTION_PRICE_ID = process.env.STRIPE_PRICE_ID;
  * (callers must 500 — checkout cannot proceed without a price).
  */
 export function getPriceIdForTier(tier: TierId, interval: BillingInterval = 'month'): string | null {
+  if (tier === 'visual') return interval === 'month' ? process.env.STRIPE_PRICE_ID_VISUAL || null : null;
+  if (tier === 'hub') return interval === 'month' ? process.env.STRIPE_PRICE_ID_HUB || process.env.STRIPE_PRICE_ID_PLUS || null : null;
   if (interval === 'year') {
     // Annual plans (created by scripts/create-annual-prices.js):
     //   STRIPE_PRICE_ID_PLUS_ANNUAL — $99/yr

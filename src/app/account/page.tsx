@@ -1,3 +1,6 @@
+import { reservationOfferEligible } from '@/lib/reservation-offer-summary';
+import { ReservationOffers } from '@/components/twin/ReservationOffers';
+import { reservationEmailWhere } from '@/lib/reservation-email-lock';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import { auth } from '@/lib/auth';
@@ -9,6 +12,7 @@ import SecondaryEmailEditor from '@/components/account/SecondaryEmailEditor';
 import { AccountShell } from '@/components/account/AccountShell';
 import { AcctCard } from '@/components/account/AcctCard';
 import { GarageSummary } from '@/components/account/GarageSummary';
+import { GarageTwinActions } from '@/components/account/GarageTwinActions';
 import { RecentDiagnoses } from '@/components/account/RecentDiagnoses';
 import { RecentChats } from '@/components/account/RecentChats';
 import MobileSignOut from '@/components/account/MobileSignOut';
@@ -19,6 +23,12 @@ import { resolveTier } from '@/lib/pricing/tiers';
 import { SiteFooter } from '@/components/shared/SiteFooter';
 import { headers } from 'next/headers';
 import { isAllowedSubscriptionRegion } from '@/lib/pricing/region';
+import { productEntitlements, entitlementSelect, publicEnrollmentEnabled } from '@/lib/product-entitlements';
+import { getBillingEnrollmentReview } from '@/lib/billing-enrollment-review';
+import { getSelectedEnrollment, hasCompletedEnrollmentHistory, needsEnrollmentCompletion } from '@/lib/selected-enrollment';
+import { EnrollmentCompletion } from '@/components/account/EnrollmentCompletion';
+import { enrollmentContinuation } from '@/lib/visual-return-destination';
+import { enrollmentRegionMessage } from '@/lib/pricing/region';
 
 export const dynamic = 'force-dynamic';
 
@@ -49,14 +59,11 @@ export default async function AccountPage() {
 
   const userId = session.user.id;
 
-  // Same geo gate as /subscribe — paid plan changes are US-only for now
-  // (VAT/GST + state sales-tax registration pending). Free users outside
-  // the US see a notice + grayed CTAs instead of clickable Plus/Pro tiles.
-  // Founder + ops emails (see SUBSCRIPTION_REGION_BYPASS_EMAILS) bypass
-  // the gate so they can QA the flow from anywhere.
+  // Paid offers share the strict US gate; account access and cancellation
+  // remain available worldwide, including for owners traveling abroad.
   const h = await headers();
   const country = h.get('x-vercel-ip-country');
-  const regionAllowed = isAllowedSubscriptionRegion(country, session.user.email);
+  const regionAllowed = isAllowedSubscriptionRegion(country);
 
   // Subscription state — same load-bearing logic as before. The Stripe
   // round-trip for cancel_at_period_end / current_period_end is wrapped
@@ -64,16 +71,24 @@ export default async function AccountPage() {
   const userSubInfo = await prisma.user.findUnique({
     where: { id: userId },
     select: {
+      ...entitlementSelect,
       subscriptionId: true,
       subscriptionStatus: true,
       subscriptionTier: true,
       secondaryEmail: true,
+      id: true,
+      createdAt: true,
+      enrollmentProduct: true,
+      enrollmentVehicleId: true,
     },
   });
   const hasStripeSub = !!userSubInfo?.subscriptionId;
+  const enrollmentReview = await getBillingEnrollmentReview(prisma, userId, userSubInfo?.subscriptionId);
+  const billingReview = enrollmentReview?.state === 'review_required';
   const effectiveStatus = hasStripeSub ? userSubInfo?.subscriptionStatus ?? null : null;
   const effectiveTier = hasStripeSub ? userSubInfo?.subscriptionTier ?? null : null;
   const resolvedTier = resolveTier(effectiveStatus, effectiveTier);
+  const capabilities = productEntitlements(userSubInfo);
   let subCancelAtPeriodEnd = false;
   let subCurrentPeriodEnd: number | null = null;
   if (
@@ -89,6 +104,41 @@ export default async function AccountPage() {
     } catch {
       // Stripe unavailable — render the controls without period info.
     }
+  }
+
+  const reservations = session.user.email ? await prisma.reservation.findMany({ where: await reservationEmailWhere(prisma,session.user.email), orderBy: [{createdAt:'asc'},{id:'asc'}], select: { id:true, transmission:true, twinStatus: true, vehicle: true, trialDays: true, country:true,year:true,make:true,model:true,trim:true,vehicleVerified:true,trimVerified:true,assignedTwin:true,claimedAt:true } }) : [];
+  if (userSubInfo && needsEnrollmentCompletion(userSubInfo, {
+    initialVerified: enrollmentReview?.initialVerified,
+    hasReservationOffer: reservations.some(reservationOfferEligible),
+    establishedHistory: !capabilities.visual && !!userSubInfo.enrollmentProduct && await hasCompletedEnrollmentHistory(prisma, userId),
+  })) {
+    const selected = await getSelectedEnrollment(prisma, userSubInfo);
+    if (selected) {
+      const unavailable = billingReview ? 'Your billing needs review. Use the billing controls below or contact support before another checkout.'
+        : !publicEnrollmentEnabled() ? 'New subscriptions are currently closed. Your account and privacy controls remain available.'
+        : (h.get('user-agent') || '').includes('Au7oApp') ? 'Complete your subscription in a web browser. In-app purchases are not available here.'
+        : enrollmentRegionMessage(country);
+      return <EnrollmentCompletion email={userSubInfo.email} {...selected} unavailable={unavailable}
+        hubHref={enrollmentContinuation('hub', selected.vehicleId)}
+        paymentPending={hasStripeSub ? !['canceled', 'incomplete_expired'].includes(effectiveStatus || '') : ['complete', 'billing_review'].includes(selected.attemptState || '')}
+        billingControls={hasStripeSub || billingReview ? <SubscriptionControls initialBillingReview={billingReview} initialTier={resolvedTier} initialStatus={effectiveStatus} initialCancelAtPeriodEnd={subCancelAtPeriodEnd} initialCurrentPeriodEnd={subCurrentPeriodEnd} regionAllowed={regionAllowed} country={country} frameless /> : undefined} />;
+    }
+  }
+  if (!capabilities.hub) {
+    return <PageLayout backLink={{ href: '/?home=1', label: 'Home' }} showBackground={false} contentClassName="bg-[#F7F6F2]">
+      <AccountShell accountOnly><div className="grid min-w-0 gap-4 md:grid-cols-2">
+        <AcctCard title={capabilities.visual ? 'Your Visual access' : 'Your account'}><p className="text-sm leading-relaxed text-slate-600">{capabilities.visual ? 'Explore every available visual known-issue model. Your plan does not include a personal Hub, maintenance tracking or AI chat.' : 'Your verified account is ready. Choose a plan or activate the vehicle offer prepared for you.'}</p><div className="mt-4 flex flex-wrap gap-3">
+          <Link href={capabilities.visual ? '/visual' : '/known-issues/cadillac-xt6?year=2020&twinPilot=1'} className="rounded-xl border border-[#E3DFD4] bg-white px-4 py-3 text-sm font-semibold text-[#0B1220] hover:bg-[#EFEDE6]">{capabilities.visual ? 'Open Visual library' : 'Preview Visual Known Issues'}</Link>
+          <Link href="/demo/hub?vehicle=xt6" className="rounded-xl border border-[#E3DFD4] bg-white px-4 py-3 text-sm font-semibold text-[#0B1220] hover:bg-[#EFEDE6]">Test the Hub · Free demo</Link>
+          {!billingReview && regionAllowed && publicEnrollmentEnabled() && (!hasStripeSub || (effectiveStatus === 'active' && !subCancelAtPeriodEnd)) && <Link href="/subscribe?product=hub" className="rounded-xl bg-blue-600 px-4 py-3 text-sm font-semibold text-white">{capabilities.visual ? 'Upgrade to Hub' : 'Explore Hub'}</Link>}
+        </div></AcctCard>
+        <AcctCard title="Subscription"><SubscriptionControls initialBillingReview={billingReview} initialTier={resolvedTier} initialStatus={effectiveStatus} initialCancelAtPeriodEnd={subCancelAtPeriodEnd} initialCurrentPeriodEnd={subCurrentPeriodEnd} regionAllowed={regionAllowed} country={country} frameless /></AcctCard>
+        <div className="min-w-0 md:col-span-2"><ReservationOffers reservations={reservations.map(row=>({...row,eligible:reservationOfferEligible(row)}))}/></div>
+        <AcctCard title="Emails"><SecondaryEmailEditor loginEmail={session.user.email ?? ''} initialSecondary={userSubInfo?.secondaryEmail ?? null} frameless /></AcctCard>
+        <AcctCard title="Privacy & Data"><AccountPrivacyActions email={session.user.email ?? ''} frameless /></AcctCard>
+        <MobileSignOut />
+      </div></AccountShell><SiteFooter />
+    </PageLayout>;
   }
 
   const [chats, diagnoses, vehicles] = await Promise.all([
@@ -127,11 +177,12 @@ export default async function AccountPage() {
 
   return (
     <PageLayout
-      backLink={{ href: '/', label: 'Home' }}
+      backLink={{ href: '/?home=1', label: 'Home' }}
       showBackground={false}
       contentClassName="bg-[#F7F6F2]"
     >
       <AccountShell>
+        <div className="mb-4"><ReservationOffers reservations={reservations.map(row=>({...row,eligible:reservationOfferEligible(row)}))}/></div>
         {/*
           Two columns that pack INDEPENDENTLY on desktop — main (garage,
           diagnoses, chats, privacy) and a right rail (subscription,
@@ -169,7 +220,6 @@ export default async function AccountPage() {
               min-width: 0;
             }
             .acct-col-rail { position: sticky; top: 16px; }
-            .acct-card--signout { display: none; }
           }
         `}</style>
         <div className="acct-grid">
@@ -177,14 +227,7 @@ export default async function AccountPage() {
             <div className="acct-card--garage">
               <AcctCard
                 title="My Garage"
-                action={
-                  <Link
-                    href="/garage"
-                    className="text-[12.5px] text-blue-600 hover:text-blue-700 font-semibold inline-flex items-center gap-1"
-                  >
-                    Manage <Icon name="chevron" size={11} />
-                  </Link>
-                }
+                action={<GarageTwinActions />}
               >
                 <GarageSummary vehicles={vehicles} columns={2} />
               </AcctCard>
@@ -220,6 +263,7 @@ export default async function AccountPage() {
             <div className="acct-card--subscription">
               <AcctCard title="Subscription">
                 <SubscriptionControls
+                  initialBillingReview={billingReview}
                   initialTier={resolvedTier}
                   initialStatus={effectiveStatus}
                   initialCancelAtPeriodEnd={subCancelAtPeriodEnd}
@@ -241,8 +285,6 @@ export default async function AccountPage() {
               </AcctCard>
             </div>
 
-            {/* Mobile-only sign out button. Desktop relies on the
-                top-nav UserMenu / FloatingAuthButton. */}
             <div className="acct-card--signout">
               <MobileSignOut />
             </div>

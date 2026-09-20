@@ -1,3 +1,4 @@
+import './helpers/reservation-test-boundary';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -149,7 +150,8 @@ test('paint, issue help, time-only service, and twin chat helpers fail truthfull
   assert.equal(manualCamaro.wheel.nodes.brakeFluid.serviceIntervalMonths,36);
   const challengerManual=buildTwinTrees({},65000,'manual') as unknown as {trans:{nodes:{diffFluid:{brand:string;spec:string;buyUrl:string|null}}}};
   assert.match(challengerManual.trans.nodes.diffFluid.brand,/base gear oil \+ compatible limited-slip friction modifier/);
-  assert.match(challengerManual.trans.nodes.diffFluid.spec,/modifier volume counts toward the 1\.16 qt total/);
+  assert.match(challengerManual.trans.nodes.diffFluid.spec,/transmission type alone does not identify/);
+  assert.match(challengerManual.trans.nodes.diffFluid.spec,/1\.16 US qt.*If a separate modifier is prescribed.*volume counts toward the final fill level.*bottle size is not a verified dose/);
   assert.equal(challengerManual.trans.nodes.diffFluid.buyUrl,null);
   const treeSource=readFileSync(path.join(process.cwd(),'src/components/twin/stage/TechTree.jsx'),'utf8');
   const hubSource=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');
@@ -177,7 +179,11 @@ test('factory paint choices follow the exact model year and trim evidence',()=>{
   assert.equal(kicks.paintPalette.colors.length,14);
   assert.equal(getTwinPaintOptions(kicks,null).length,6);
   assert.equal(getTwinPaintOptions(kicks,'S').length,7);
-  assert.equal(getTwinPaintOptions(kicks,'SV').length,10);
+  assert.equal(getTwinPaintOptions(kicks,'SV').length,12);
+  assert.deepEqual(getTwinPaintOptions(kicks,'SV').filter(color=>color.name.startsWith('Two-tone')).map(color=>color.name).sort(),[
+    'Two-tone Aspen White TriCoat/Super Black','Two-tone Gun Metallic/Scarlet Ember Tintcoat',
+    'Two-tone Gun Metallic/Super Black','Two-tone Scarlet Ember Tintcoat/Super Black','Two-tone Deep Blue Pearl/Gun Metallic',
+  ].sort());
   assert.equal(getTwinPaintOptions(kicks,'SR').length,13);
   assert.equal(getTwinPaintOptions(kicks,'SV').some((color)=>color.name==='Two-tone Yuzu Yellow Metallic/Super Black'),false);
   assert.equal(getTwinPaintOptions(kicks,'SR').some((color)=>color.name==='Two-tone Yuzu Yellow Metallic/Super Black'),true);
@@ -237,10 +243,23 @@ test('demo detail data holds unresolved fitment without placeholders or generic 
   }
   const twin=resolveDemoVehicleTwin('nautilus');const trees=resolveTwinTrees(twin);const node=trees.trans.nodes.driveline;
   const markup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:twin,presentation:buildDemoTwinPresentation(twin),vehicle:twin.identity,miles:twin.demoMileage,trees,mode:'demo' as const}},React.createElement(TTDetail,{node,nodeId:'driveline',onEquip:()=>{},risk:null,miles:twin.demoMileage,onClose:()=>{},onAsk:()=>{},sheet:true,narrow:true})));
-  assert.match(markup,/completed demo is the Standard FWD branch/i);assert.match(markup,/Buy exact integrated-final-drive fluid/);assert.doesNotMatch(markup,/Price not sourced|Not sourced for this demo/);
+  assert.match(markup,/completed demo is the Standard FWD branch/i);assert.doesNotMatch(markup,/Buy exact integrated-final-drive fluid|Price not sourced|Not sourced for this demo/);
+  assert.equal(node.group,true);assert.equal(node.maintenanceType,undefined);assert.equal(node.buyUrl,undefined);
+  assert.deepEqual(node.kids.filter((id:string)=>!trees.trans.nodes[id].manualRequirement),['transFluid']);
+  assert.deepEqual(node.kids.filter((id:string)=>trees.trans.nodes[id].manualRequirement),[
+    'requirement_halfshaftBootsInspection','requirement_steeringSuspensionDriveshaftInspection_driveline','requirement_requiredChecks_view_1',
+  ]);
+  assert.equal(trees.trans.nodes.requirement_halfshaftBootsInspection.maintenanceType,'halfshaft_boots_inspection');
+  assert.equal(trees.trans.nodes.requirement_steeringSuspensionDriveshaftInspection_driveline.maintenanceType,'steering_suspension_driveshaft_inspection');
+  assert.equal(trees.trans.nodes.requirement_steeringSuspensionDriveshaftInspection_driveline.visualHidden,true);
+  assert.ok(trees.trans.nodes.requirement_requiredChecks_view_1.serviceLogHold);
+  for(const id of node.kids.filter((id:string)=>trees.trans.nodes[id].manualRequirement))assert.equal(trees.trans.nodes[id].buyUrl,undefined);
+  assert.equal(trees.trans.nodes.transFluid.partNo,'XT-12-QULV');assert.equal(trees.trans.nodes.transFluid.maintenanceType,'transmission_fluid_auto');
+  assert.equal(trees.trans.nodes.transFluid.buyUrl,'https://www.fordpartsgiant.com/parts/ford-oil-automatic-transmission_xt-12-qulv.html');
   const challenger=resolveDemoVehicleTwin('challenger');const challengerTrees=resolveTwinTrees(challenger);const pricedNode=challengerTrees.engine.nodes.oilFluid;
   const pricedMarkup=renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challenger,presentation:buildDemoTwinPresentation(challenger),vehicle:challenger.identity,miles:challenger.demoMileage,trees:challengerTrees,mode:'demo' as const}},React.createElement(TTDetail,{node:pricedNode,nodeId:'oilFluid',onEquip:()=>{},risk:null,miles:challenger.demoMileage,onClose:()=>{},onAsk:()=>{},sheet:true,narrow:true})));
-  assert.match(pricedMarkup,/Fitment reviewed/);
+  assert.equal(pricedNode.commerceStatus,'fitment-hold');assert.equal(pricedNode.fitmentReviewed,false);
+  assert.match(pricedMarkup,/MS-12633/);assert.match(pricedMarkup,/not established/);assert.doesNotMatch(pricedMarkup,/Fitment reviewed/);
 });
 
 test('hotspots select on the first tap and open immediately on the second tap',()=>{
@@ -300,7 +319,7 @@ test('published known issues and sample service evidence drive tree/catalog pari
 });
 
 test('every demo shield resolves to a published snapshot row applicable to that vehicle',()=>{
-  const snapshot=JSON.parse(readFileSync(path.join(process.cwd(),'data/known-issues-catalog-deeplink-snapshot-2026-07-17.json'),'utf8'));
+  const snapshot=JSON.parse(readFileSync(path.join(process.cwd(),'scripts/fixtures/twin-catalog-published-issues.json'),'utf8'));
   assert.match(snapshot.source,/live published KnownIssue rows/);
   const rows=new Map(snapshot.records.map((row:{id:string})=>[row.id,row]));
   for(const twin of VEHICLE_TWIN_CATALOG)for(const id of twin.hotspots.flatMap((hot)=>hot.knownIssueIds||[])){
@@ -313,11 +332,11 @@ test('every demo shield resolves to a published snapshot row applicable to that 
 
 test('reviewed exact-fit issue inventory is complete and each issue has useful linked detail',()=>{
   const expected:Record<string,string[]>={
-    nautilus:['lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white','lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph','lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart','lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots'],
+    nautilus:['lincoln-nautilus-2-0l-ecoboost-coolant-loss-egr-cooler-leak-low-coolant-white','lincoln-nautilus-8f35-8-speed-automatic-shudder-buck-jerk-under-35-mph','lincoln-nautilus-auto-start-stop-malfunction-engine-won-t-auto-restart','lincoln-nautilus-sync-3-apim-infotainment-freezes-black-screens-reboots','lincoln-nautilus-rearview-camera-software-error-blank-image-image-that-won-t'],
     murano:['nissan-murano-automatic-emergency-braking-forward-collision-phantom-activa','nissan-murano-battery-drain-and-no-start-2021','nissan-murano-front-driver-seat-frametrack-2021','nissan-murano-front-radarsensor-malfunctions-triggering-2021','nissan-murano-rearview-camera-image-blank-2021'],
     xt6:['cadillac-xt6-9speed-transmission-2020','cadillac-xt6-auto-stop-2020','cadillac-xt6-ptu-leak-2020','cadillac-xt6-transmission-shudder-2020','cadillac-xt6-timing-chain-2020'],
     kicks:['nissan-kicks-blank-partial-instrument-cluster-cold-start','nissan-kicks-center-display-goes-blank-reverse-no-backup-camera-image','nissan-kicks-infotainment-touchscreen-freezing-rebooting-carplay-disconne'],
-    mdx:['acura-mdx-fuel-pump-impeller-deformation-causing-stall','acura-mdx-infotainment-reboot-2014','acura-mdx-torque-converter-shudder-2014','acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling'],
+    mdx:['acura-mdx-fuel-pump-impeller-deformation-causing-stall','acura-mdx-infotainment-reboot-2014','acura-mdx-torque-converter-shudder-2014','acura-mdx-zf-9-speed-transmission-hesitation-hard-shifts-stalling','acura-mdx-auto-idle-stop-failure-to-restart'],
     aviator:[],
     camaro:['chevrolet-camaro-mylink-hmi-infotainment-module-failure','chevy-camaro-rear-differential-noise'],
   };
@@ -360,7 +379,7 @@ test('access matrix separates founder, claimable, customer, expired, and malform
   assert.equal(evaluateTwinAccess({...common,founder:true,positiveMileage:false,reservation:null}).reason,'missing-mileage');
   assert.equal(evaluateTwinAccess({...common,founder:true,supported:false,reservation:null}).reason,'unsupported-vehicle');
 
-  const ready={twinStatus:'ready',transmission:'automatic',trialDays:7,claimedAt:null,vehicleVerified:true,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true};
+  const ready={country:'US',twinStatus:'ready',transmission:'automatic',trialDays:7,claimedAt:null,vehicleVerified:true,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true};
   assert.equal(getConfirmedTwinTransmission(ready,true),'automatic');
   assert.equal(getConfirmedTwinTransmission(ready,false),null);
   assert.equal(evaluateTwinAccess({...common,founder:false,reservation:ready}).kind,'claimable');
@@ -369,13 +388,13 @@ test('access matrix separates founder, claimable, customer, expired, and malform
   assert.equal(evaluateTwinAccess({...common,founder:false,assignmentMatches:false,reservation:ready}).reason,'assignment-mismatch');
 
   for(const transmission of ['automatic','manual']){
-    const claim={twinStatus:'claimed',transmission,trialDays:30,claimedAt:'2026-08-20T00:00:00Z',vehicleVerified:true,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true};
+    const claim={country:'US',twinStatus:'claimed',transmission,trialDays:30,claimedAt:'2026-08-20T00:00:00Z',vehicleVerified:true,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true};
     assert.equal(evaluateTwinAccess({...common,founder:false,reservation:claim}).kind,'allowed');
   }
-  const claimed={twinStatus:'claimed',transmission:'automatic',trialDays:30,claimedAt:'2026-08-20T00:00:00Z',vehicleVerified:true,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true};
+  const claimed={country:'US',twinStatus:'claimed',transmission:'automatic',trialDays:30,claimedAt:'2026-08-20T00:00:00Z',vehicleVerified:true,year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true};
   assert.equal(evaluateTwinAccess({...common,founder:false,customerTransmissionMatches:false,reservation:claimed}).reason,'transmission-mismatch');
   assert.equal(evaluateTwinAccess({...common,founder:false,customerTransmissionMatches:false,reservation:{...claimed,twinStatus:'ready',claimedAt:null}}).kind,'claimable');
-  const singleTransmissionClaim={twinStatus:'claimed',transmission:null,trialDays:30,claimedAt:'2026-08-20T00:00:00Z',vehicleVerified:true,year:2019,make:'Lincoln',model:'Nautilus',trim:'Reserve',trimVerified:true};
+  const singleTransmissionClaim={country:'US',twinStatus:'claimed',transmission:null,trialDays:30,claimedAt:'2026-08-20T00:00:00Z',vehicleVerified:true,year:2019,make:'Lincoln',model:'Nautilus',trim:'Reserve',trimVerified:true};
   assert.equal(evaluateTwinAccess({...common,founder:false,requiresTransmissionChoice:false,reservation:singleTransmissionClaim}).kind,'allowed');
   for(const status of [null,'reserved','building','cancelled','unknown'])assert.equal(evaluateTwinAccess({...common,founder:false,reservation:{...ready,twinStatus:status}}).reason,'status-not-eligible');
   for(const trialDays of [null,0,8,31,Number.NaN])assert.equal(evaluateTwinAccess({...common,founder:false,reservation:{...ready,trialDays}}).reason,'invalid-trial-duration');
@@ -400,8 +419,8 @@ test('access matrix separates founder, claimable, customer, expired, and malform
 
 test('owner builder requires exact registered identity and keeps transmission branches exact',()=>{
   const base={fulfillmentId:'dodge-challenger',vehicleId:'v1',vehicle:{year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',engine:'6.4L V8 HEMI'},miles:65000,records:[],recent:[]};
-  const automatic=buildOwnerTwinValue({...base,transmission:'automatic'});assert.ok(automatic);assert.match(automatic.trees.trans.nodes.trx.sub,/automatic/i);assert.match(automatic.trees.trans.nodes.transFluid.buyLabel,/automatic/i);assert.equal(automatic.trees.car.nodes.transFluid,automatic.trees.trans.nodes.transFluid);
-  const manual=buildOwnerTwinValue({...base,transmission:'manual'});assert.ok(manual);assert.match(manual.trees.trans.nodes.trx.sub,/manual/i);assert.match(manual.trees.trans.nodes.transFluid.buyLabel,/manual/i);assert.equal(manual.trees.trans.nodes.transPan,undefined);assert.equal(manual.trees.car.nodes.transPan,undefined);assert.equal(manual.trees.car.nodes.transFluid,manual.trees.trans.nodes.transFluid);
+  const automatic=buildOwnerTwinValue({...base,transmission:'automatic'});assert.ok(automatic);assert.match(automatic.trees.trans.nodes.trx.sub,/automatic/i);assert.equal(automatic.trees.trans.nodes.transFluid.maintenanceType,'transmission_fluid_auto');assert.match(automatic.trees.trans.nodes.transFluid.buyLabel,/Mopar 8\/9-speed ATF/);assert.equal(automatic.trees.car.nodes.transFluid,automatic.trees.trans.nodes.transFluid);
+  const manual=buildOwnerTwinValue({...base,transmission:'manual'});assert.ok(manual);assert.match(manual.trees.trans.nodes.trx.sub,/manual/i);assert.equal(manual.trees.trans.nodes.transFluid.maintenanceType,'transmission_fluid_manual');assert.equal(manual.trees.trans.nodes.transFluid.partNo,'68218057AC');assert.equal(manual.trees.trans.nodes.transFluid.buyUrl,'https://store.mopar.com/oem-parts/mopar-mopar-atf-4-transmission-fluid-68218057ac');assert.equal(manual.trees.trans.nodes.transPan,undefined);assert.equal(manual.trees.car.nodes.transPan,undefined);assert.equal(manual.trees.car.nodes.transFluid,manual.trees.trans.nodes.transFluid);
   const unknown=buildOwnerTwinValue({...base,transmission:null});assert.ok(unknown);assert.equal(unknown.trees.trans,undefined);assert.ok(!unknown.trees.car.nodes.car.kids.includes('trx'));assert.ok(unknown.presentation.systems.every((system:{branch:string})=>system.branch!=='trans'));assert.ok(unknown.presentation.hotspots.every((hotspot:{branch:string})=>hotspot.branch!=='trans'));assert.doesNotMatch(JSON.stringify(unknown.trees),/ATF\+?4|8HP70|TR-6060/i);
   assert.ok(unknown.catalog.systems.every((system:{branch:string})=>system.branch!=='trans'));assert.ok(unknown.catalog.hotspots.every((hotspot:{branch:string})=>hotspot.branch!=='trans'));assert.deepEqual(resolveTwinDeepLink(unknown.catalog,'trans',unknown.trees),{hotspot:null,branch:null,node:null});
   const partial=buildOwnerTwinValue({...base,transmission:'automatic',records:[{type:'oil_change',mileage:64000}]});assert.ok(partial);assert.equal(partial.presentation.summary.due,null);assert.equal(partial.presentation.summary.watch,null);assert.notEqual(partial.presentation.hotspots.find((hotspot:{id:string})=>hotspot.id==='hood')?.status,'overdue');
@@ -508,16 +527,20 @@ test('Camaro owner tree sources exact service parts and keeps manual history on 
   assert.match(manual.wheel.nodes.tire.partNo,/305\/30ZR19.*325\/30ZR19/);
   assert.match(manual.engine.nodes.airFilter.partNo,/23323508/);
   assert.match(manual.engine.nodes.coolant.partNo,/12346290/);
-  assert.match(manual.wheel.nodes.frontRotor.partNo,/84271643.*23399101/);
+  assert.deepEqual(manual.wheel.nodes.frontRotor.kids,['frontPads','frontDiscs']);assert.equal(manual.wheel.nodes.frontRotor.maintenanceType,undefined);
+  assert.equal(manual.wheel.nodes.frontPads.partNo,'23399101');assert.equal(manual.wheel.nodes.frontDiscs.partNo,'84271643');
+  assert.notEqual(manual.wheel.nodes.frontPads.maintenanceType,manual.wheel.nodes.frontDiscs.maintenanceType);
   assert.equal(manual.wheel.nodes.tire.maintenanceType,'tire_replacement');assert.doesNotMatch(manual.wheel.nodes.tire.serviceLabel,/rotation/i);
   assert.equal(manual.wheel.nodes.brakeFluid.serviceIntervalMonths,36);assert.match(manual.wheel.nodes.brakeFluid.spec,/three years.*manual|manual.*three years/i);
   for(const node of [manual.wheel.nodes.frontRotor,manual.wheel.nodes.rearBrake]){
     assert.match(node.life,/pulsation/i);assert.match(node.life,/steering-wheel vibration/i);assert.match(node.life,/runout/i);assert.match(node.life,/scoring/i);
   }
-  assert.match(manual.wheel.nodes.frontRotor.buyUrl,/\/parts\/chevrolet-pad-kit-frt-disc-brk~23399101\.html$/);
-  for(const node of [manual.wheel.nodes.tire,manual.wheel.nodes.frontRotor,manual.wheel.nodes.brakeFluid,manual.engine.nodes.oil,manual.engine.nodes.airFilter,manual.engine.nodes.coolant,manual.trans.nodes.driveline]){
-    assert.match(node.buyUrl,/^https:\/\//);
-    assert.ok(node.price && node.price !== '—');
+  assert.match(manual.wheel.nodes.frontPads.buyUrl,/\/parts\/chevrolet-pad-kit-frt-disc-brk~23399101\.html$/);
+  for(const node of [manual.wheel.nodes.tire,manual.wheel.nodes.frontPads,manual.wheel.nodes.frontDiscs,manual.wheel.nodes.brakeFluid,manual.engine.nodes.oil,manual.engine.nodes.airFilter,manual.engine.nodes.coolant,manual.trans.nodes.driveline]){
+    for(const product of node.products?.length ? node.products : [node]) {
+      assert.match(product.buyUrl,/^https:\/\//);assert.ok(product.partNo?.trim());
+      assert.ok(product.price && product.price !== '—');
+    }
   }
   const automatic=buildModelOwnerTrees(camaro,records,30000 as never,'automatic' as never,'2026-08-26T00:00:00.000Z' as never);
   assert.equal(automatic.wheel.nodes.brakeFluid.serviceIntervalMonths,60);
@@ -525,21 +548,29 @@ test('Camaro owner tree sources exact service parts and keeps manual history on 
 
 test('Camaro ZL1 1LE eLSD gear-oil action is exact and does not conflate the hydraulic circuit',()=>{
   const twin=resolveDemoVehicleTwin('camaro');const trees=resolveTwinTrees(twin);const diff=trees.trans.nodes.driveline;
-  assert.equal(diff.serviceIntervalMiles,45000);assert.match(diff.partNo,/88862624.*10-4034.*2 × 32 oz/);assert.match(diff.price,/\$44\.28.*\$88\.56/);
-  assert.equal(diff.buyUrl,'https://parts.chevrolet.com/product/acdelco-gm-original-equipment-dexron-ls-75w-90-gear-oil-32-oz-88862624');
+  assert.equal(diff.serviceIntervalMiles,45000);assert.match(diff.partNo,/88862624.*10-4034.*2 × 32 oz/);assert.match(diff.price,/\$25\.24.*\$50\.48.*when reviewed/);
+  assert.equal(diff.buyUrl,'https://www.gmpartsgiant.com/parts/gm-fluid-88862624.html');
   assert.match(diff.spec,/ZL1 1LE coupe.*1\.5 L \(1\.6 qt\).*separate eLSD clutch hydraulic circuit holds 160 mL \(5\.4 oz\).*not for that circuit/i);
   assert.match(diff.sourceUrl,/2019\/Chevrolet\/camaro\/19_CHEV_Camaro_OM/);assert.match(diff.capacitySourceUrl,/2019-high-performance-owner-manual/);
 });
 
 test('XT6 publishes exact 2020 service products for the transmission and split active-twin-clutch driveline',()=>{
   const xt6=resolveDemoVehicleTwin('xt6');const trees=resolveTwinTrees(xt6);
-  assert.match(trees.engine.nodes.oil.partNo,/12693541.*UPF63R/);assert.match(trees.engine.nodes.oil.spec,/6\.0 qt/);
-  assert.equal(trees.engine.nodes.airFilter.partNo,'23321606 / A3212C');assert.match(trees.engine.nodes.airFilter.buyUrl,/parts\.cadillac\.com\/product\/.*23321606$/);
+  assert.match(trees.engine.nodes.oil.products.find((product:{componentRole:string})=>product.componentRole==='oil-filter').partNo,/12693541.*UPF63R/);assert.match(trees.engine.nodes.oil.spec,/6 US qt/);
+  assert.equal(trees.engine.nodes.airFilter.partNo,'23321606 / A3212C');assert.equal(trees.engine.nodes.airFilter.buyUrl,'https://www.chevypartspros.com/sku/23321606.html');
   assert.equal(trees.engine.nodes.sparkPlugs.partNo,'12646780 / 41-130 · quantity 6');assert.equal(trees.wipers.nodes.cabinFilter.partNo,'13508023 / CF185');
   assert.match(trees.trans.nodes.transFluid.spec,/DEXRON-VI—not DEXRON ULV/);assert.match(trees.trans.nodes.transFluid.buyUrl,/autozone\.com\/p\/stp-auto-transmission-fluid/);
   assert.match(trees.wheel.nodes.tire.partNo,/235\/55R20 102H.*235 mm/);assert.match(trees.wheel.nodes.tire.spec,/9\.6\d? in section width.*Optional 21-inch/i);assert.match(trees.wheel.nodes.tire.buyUrl,/discounttire\.com\/buy-tires\/pirelli-scorpion-all-season-plus-3\/p\/103603/);
-  assert.equal(trees.wheel.nodes.brakeFluid.partNo,'19353126 / 10-4110');assert.equal(trees.wheel.nodes.brakeFluid.serviceIntervalMonths,60);assert.match(trees.wheel.nodes.brakeFluid.buyUrl,/parts\.cadillac\.com\/product\/.*19353126$/);
-  const driveline=trees.trans.nodes.driveline;assert.equal(driveline.label,'AWD Rear Axle & Active Twin-Clutch Fluid');assert.equal(driveline.imageUnavailable,false);assert.equal(driveline.img,'/twin-stage/parts/part-power-transfer-unit.webp');assert.ok(existsSync(publicPath(driveline.img)));assert.equal(driveline.serviceIntervalMiles,150000);assert.equal(driveline.buyUrl,undefined);assert.equal(driveline.partNo,undefined);assert.equal(driveline.products.length,2);assert.match(driveline.products[0].partNo,/88862624/);assert.match(driveline.products[1].partNo,/88901975/);assert.match(driveline.spec,/Active Twin-Clutch.*60,000\/150,000 severe use/i);
+  assert.equal(trees.wheel.nodes.brakeFluid.partNo,'19353126 / 10-4110');assert.equal(trees.wheel.nodes.brakeFluid.serviceIntervalMonths,60);assert.match(trees.wheel.nodes.brakeFluid.buyUrl,/gmwholesaledirect\.com\/.*19353126$/);
+  const driveline=trees.trans.nodes.driveline;assert.equal(driveline.label,'AWD Rear Axle & Active Twin-Clutch Fluid');assert.equal(driveline.group,true);assert.equal(driveline.imageUnavailable,false);assert.match(driveline.img,/^\/twin-stage\/parts\//);assert.equal(driveline.serviceIntervalMiles,undefined);assert.equal(driveline.maintenanceType,undefined);assert.equal(driveline.buyUrl,undefined);assert.equal(driveline.products,undefined);
+  assert.deepEqual(driveline.kids.filter((id:string)=>!trees.trans.nodes[id].manualRequirement),['rearAxleFluid','clutchFluid']);
+  assert.deepEqual(driveline.kids.filter((id:string)=>trees.trans.nodes[id].manualRequirement),['requirement_drivelineInspection']);
+  const inspection=trees.trans.nodes.requirement_drivelineInspection;
+  assert.equal(inspection.maintenanceType,'driveline_inspection');assert.equal(inspection.buyUrl,undefined);assert.equal(inspection.unlogged,true);
+  const rear=trees.trans.nodes.rearAxleFluid;const clutch=trees.trans.nodes.clutchFluid;
+  assert.equal(rear.maintenanceType,'rear_axle_fluid');assert.match(rear.partNo,/88862624/);assert.equal(rear.serviceIntervalMiles,150000);assert.match(rear.spec,/Severe: 75,000 miles/);
+  assert.equal(clutch.maintenanceType,'awd_clutch_fluid');assert.match(clutch.partNo,/88901975/);assert.equal(clutch.serviceIntervalMiles,null);assert.equal(clutch.imageUnavailable,false);assert.match(clutch.img,/^\/twin-stage\/parts\//);
+  for(const node of [rear,clutch]){assert.match(node.buyUrl,/^https:\/\//);assert.ok(node.price);assert.equal(trees.car.nodes[node===rear?'rearAxleFluid':'clutchFluid'],node);}
   assert.equal(trees.trans.nodes.transFluid.img,'/twin-stage/parts/part-transmission-fluid.webp');assert.ok(existsSync(publicPath(trees.trans.nodes.transFluid.img)));
   for(const node of [trees.wheel.nodes.tire,trees.wheel.nodes.frontRotor,trees.wheel.nodes.rearBrake])assert.match(`${node.spec} ${node.life}`,/tread|pulsation|vibration|runout|scoring/i);
 });
@@ -550,7 +581,7 @@ test('Challenger commerce uses product pages and holds unreviewed alternates',()
   assert.equal(trees.wheel.nodes.pads.alt,undefined);assert.equal(trees.wheel.nodes.rotor.alt,undefined);assert.equal(trees.wheel.nodes.lugs.alt,undefined);
   assert.match(trees.engine.nodes.cabinFilter.buyUrl,/\/parts\/mopar-filter-cabin-air~68071668aa\.html$/);
   assert.match(trees.engine.nodes.radCore.upgrade.buyUrl,/mishimoto\.com\/dodge-challenger-srt8-hellcat-radiator/);
-  const manual=resolveTwinTrees(resolveDemoVehicleTwin('challenger'),{transmission:'manual'}).trans.nodes.diffFluid;assert.equal(manual.products.length,2);assert.match(manual.partNo,/68232947AD.*04318060AD/);assert.match(manual.spec,/add the modifier first.*do not pour both full quarts/i);assert.match(manual.products[0].buyUrl,/moparpartsgiant\.com\/parts\/mopar-lubricant-gear/);assert.match(manual.products[1].buyUrl,/epicautomarket\.com\/products\/genuine-mopar-04318060ad/);
+  const manual=resolveTwinTrees(resolveDemoVehicleTwin('challenger'),{transmission:'manual'}).trans.nodes.diffFluid;assert.equal(manual.products.length,2);assert.match(manual.partNo,/68232947AD.*04318060AD/);assert.match(manual.spec,/Do not infer a complete four-ounce additive dose or an add-first sequence/i);assert.equal(manual.commerceStatus,'fitment-hold');assert.equal(manual.fitmentReviewed,false);assert.ok(manual.products.every((product:{fitmentReviewed:boolean})=>product.fitmentReviewed===false));assert.match(manual.products[0].buyUrl,/moparpartsgiant\.com\/parts\/mopar-lubricant-gear/);assert.match(manual.products[1].buyUrl,/epicautomarket\.com\/products\/genuine-mopar-04318060ad/);
 });
 
 test('founder transmission picker renders only for editable reviewed dual fitment',()=>{
@@ -595,8 +626,8 @@ test('iteration-five exact branches, calendar clocks, owner sentinels, and picke
 test('owner snapshot denies ambiguous exact garage rows before history crosses the boundary',async()=>{
   const updatedAt=new Date('2026-08-25T00:00:00.000Z');let maintenanceReads=0;let isolation='';
   const vehicle={id:'v1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic',currentMileage:65000,updatedAt};
-  const reservation={twinStatus:'claimed',assignedTwin:'dodge-challenger',transmission:'automatic',trialDays:30,claimedAt:new Date('2026-08-20T00:00:00.000Z'),year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,vehicleVerified:true};
-  const tx={$queryRaw:async()=>[{now:new Date('2026-08-26T00:00:00.000Z')}],vehicle:{findFirst:async()=>vehicle,findMany:async()=>[vehicle,{...vehicle,id:'v2'}]},reservation:{findUnique:async()=>reservation},maintenanceRecord:{findFirst:async()=>{maintenanceReads+=1;return null;}}};
+  const reservation={country:'US',twinStatus:'claimed',assignedTwin:'dodge-challenger',transmission:'automatic',trialDays:30,claimedAt:new Date('2026-08-20T00:00:00.000Z'),year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',trimVerified:true,vehicleVerified:true};
+  const tx={user:{findUnique:async()=>({emailVerified:new Date(),subscriptionId:null})},$queryRaw:async()=>[{now:new Date('2026-08-26T00:00:00.000Z')}],vehicle:{findFirst:async()=>vehicle,findMany:async()=>[vehicle,{...vehicle,id:'v2'}]},reservation:{findMany:async()=>[reservation]},maintenanceRecord:{findFirst:async()=>{maintenanceReads+=1;return null;}}};
   const outcome=await getTwinHubData('u1','owner@example.com','v1',{prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>,options:{isolationLevel:string})=>{isolation=options.isolationLevel;return callback(tx);}} as never,getRecentThreads:async()=>[]});
   assert.equal(isolation,'Serializable');assert.equal(outcome.data,null);assert.equal(outcome.access.kind,'denied');assert.equal(outcome.access.reason,'garage-mismatch');assert.equal(maintenanceReads,0);
 });
@@ -604,34 +635,34 @@ test('owner snapshot denies ambiguous exact garage rows before history crosses t
 test('owner snapshot denies unverified customer trim before loading history or exact-fit parts',async()=>{
   const updatedAt=new Date('2026-08-25T00:00:00.000Z');let maintenanceReads=0;let catalogReads=0;
   const vehicle={id:'v1',year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',transmission:'automatic',currentMileage:65000,updatedAt};
-  const baseReservation={twinStatus:'claimed',assignedTwin:'dodge-challenger',transmission:'automatic',trialDays:30,claimedAt:new Date('2026-08-20T00:00:00.000Z'),year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',vehicleVerified:true};
+  const baseReservation={country:'US',twinStatus:'claimed',assignedTwin:'dodge-challenger',transmission:'automatic',trialDays:30,claimedAt:new Date('2026-08-20T00:00:00.000Z'),year:2015,make:'Dodge',model:'Challenger',trim:'SRT 392',vehicleVerified:true};
   for(const trimVerified of [false,undefined]){
-    const tx={$queryRaw:async()=>[{now:new Date('2026-08-26T00:00:00.000Z')}],vehicle:{findFirst:async()=>vehicle,findMany:async()=>[vehicle]},reservation:{findUnique:async()=>({...baseReservation,trimVerified})},maintenanceRecord:{findFirst:async()=>{maintenanceReads+=1;return null;}}};
+    const tx={user:{findUnique:async()=>({emailVerified:new Date(),subscriptionId:null})},$queryRaw:async()=>[{now:new Date('2026-08-26T00:00:00.000Z')}],vehicle:{findFirst:async()=>vehicle,findMany:async()=>[vehicle]},reservation:{findMany:async()=>[{...baseReservation,trimVerified}]},maintenanceRecord:{findFirst:async()=>{maintenanceReads+=1;return null;}}};
     const outcome=await getTwinHubData('u1','owner@example.com','v1',{prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(tx)} as never,getRecentThreads:async()=>[],resolveOwnerCatalog:()=>{catalogReads+=1;return null;}});
     assert.equal(outcome.data,null);assert.equal(outcome.access.kind,'denied');assert.equal(outcome.access.reason,'trim-unverified');
   }
   assert.equal(maintenanceReads,0);assert.equal(catalogReads,0);
 });
 
-test('owner snapshot denies corrupt reviewed single-fitment state before loading records or exact-fit payloads',async()=>{
+test('owner snapshot denies unmatched reservation or conflicting single-fitment state before private payloads',async()=>{
   const updatedAt=new Date('2026-08-27T00:00:00.000Z');let maintenanceReads=0;let catalogReads=0;let threadReads=0;
-  const baseReservation={twinStatus:'claimed',assignedTwin:'dodge-challenger',transmission:null as string|null,trialDays:30,claimedAt:new Date('2026-08-20T00:00:00.000Z'),year:2019,make:'Lincoln',model:'Nautilus',trim:'Reserve',trimVerified:true,vehicleVerified:true};
+  const baseReservation={country:'US',twinStatus:'claimed',assignedTwin:'dodge-challenger',transmission:null as string|null,trialDays:30,claimedAt:new Date('2026-08-20T00:00:00.000Z'),year:2019,make:'Lincoln',model:'Nautilus',trim:'Reserve',trimVerified:true,vehicleVerified:true};
   const corruptStates=[
-    {vehicleTransmission:'automatic',reservationTransmission:null},
-    {vehicleTransmission:'manual',reservationTransmission:null},
-    {vehicleTransmission:null,reservationTransmission:'automatic'},
-    {vehicleTransmission:null,reservationTransmission:'manual'},
+    {vehicleTransmission:'automatic',reservationTransmission:null,reason:'missing-reservation'},
+    {vehicleTransmission:'manual',reservationTransmission:null,reason:'unsupported-vehicle'},
+    {vehicleTransmission:null,reservationTransmission:'automatic',reason:'missing-reservation'},
+    {vehicleTransmission:null,reservationTransmission:'manual',reason:'missing-reservation'},
   ];
   for(const state of corruptStates){
     const vehicle={id:'v1',year:2019,make:'Lincoln',model:'Nautilus',trim:'Reserve',transmission:state.vehicleTransmission,currentMileage:65000,updatedAt};
     const reservation={...baseReservation,transmission:state.reservationTransmission};
-    const tx={$queryRaw:async()=>[{now:new Date('2026-08-27T12:00:00.000Z')}],vehicle:{findFirst:async()=>vehicle,findMany:async()=>[vehicle]},reservation:{findUnique:async()=>reservation},maintenanceRecord:{findFirst:async()=>{maintenanceReads+=1;return null;}}};
+    const tx={user:{findUnique:async()=>({emailVerified:new Date(),subscriptionId:null})},$queryRaw:async()=>[{now:new Date('2026-08-27T12:00:00.000Z')}],vehicle:{findFirst:async()=>vehicle,findMany:async()=>[vehicle]},reservation:{findMany:async()=>[reservation]},maintenanceRecord:{findFirst:async()=>{maintenanceReads+=1;return null;}}};
     const outcome=await getTwinHubData('u1','owner@example.com','v1',{
       prisma:{$transaction:async(callback:(value:unknown)=>Promise<unknown>)=>callback(tx)} as never,
       getRecentThreads:async()=>{threadReads+=1;return[];},
       resolveOwnerCatalog:()=>{catalogReads+=1;return null;},
     });
-    assert.equal(outcome.data,null);assert.equal(outcome.access.kind,'denied');assert.equal(outcome.access.reason,'unsupported-vehicle');
+    assert.equal(outcome.data,null);assert.equal(outcome.access.kind,'denied');assert.equal(outcome.access.reason,state.reason);
   }
   assert.equal(maintenanceReads,0);assert.equal(catalogReads,0);assert.equal(threadReads,0);
 });
@@ -697,14 +728,14 @@ test('runtime renders TwinStage, null-mile provider, Minimal masks, and selected
   const emptyAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:[]}));assert.match(emptyAdmin,/Admin Dashboard/);assert.match(emptyAdmin,/Loading live records/);assert.doesNotMatch(emptyAdmin,/No twins match/);
   const fullAdmin=renderToStaticMarkup(React.createElement(TwinAdminShell,{operations:React.createElement('div',null,'ops'),initialTwins:getAdminTwinDefinitions()}));assert.match(fullAdmin,/Admin Dashboard/);assert.match(fullAdmin,/Founder-only operational data/);assert.match(fullAdmin,/Loading live records/);
   const adminSource=readFileSync(path.join(process.cwd(),'src/components/admin/twins/TwinAdminShell.tsx'),'utf8');assert.match(adminSource,/Art coverage matrix/);assert.match(adminSource,/Artwork intake/);assert.match(adminSource,/Preview layer/);assert.match(adminSource,/Factory paint choices/);assert.match(adminSource,/Awaiting art/);assert.match(adminSource,/Array\.isArray\(data\.twins\)/);assert.match(adminSource,/AbortController/);assert.match(adminSource,/\/api\/admin\/overview/);assert.doesNotMatch(adminSource,/className="avatar"|function OverviewChart|12-month series|Captured demand and affiliate clicks/);
-  const hubShared=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');const hub=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');assert.match(hubShared,/<Link href="\/" aria-label="Au7o home"/);assert.match(hub,/label: "Home", href: "https:\/\/au7o\.io\/"/);assert.doesNotMatch(hub,/label: "Garage"/);assert.match(hub,/label: "Add vehicle", href: "\/garage\?add=1"/);assert.match(hub,/label: "Service records", href: `\/garage\/\$\{encodeURIComponent\(ownerActions\.vehicleId\)\}\/records`/);assert.match(hub,/label: "Account", href: "\/account"/);assert.match(hub,/label: "Founder sign in", href: "\/founder\/signin"/);
-  const vehicleHub=readFileSync(path.join(process.cwd(),'src/components/vehicle/VehicleHub.tsx'),'utf8');assert.match(vehicleHub,/<Link href="https:\/\/au7o\.io\/" className="brand">/);assert.match(vehicleHub,/<Link href="https:\/\/au7o\.io\/" className="md-link" onClick=\{onClose\}>/);assert.match(vehicleHub,/href="\/garage\?add=1"/);
+  const hubShared=readFileSync(path.join(process.cwd(),'src/components/twin/hub/hub-shared.jsx'),'utf8');const hub=readFileSync(path.join(process.cwd(),'src/components/twin/hub/Hub.jsx'),'utf8');assert.match(hubShared,/<Link href="\/" aria-label="Au7o home"/);assert.match(hub,/label: "Home", href: "\/"/);assert.doesNotMatch(hub,/label: "Garage"/);assert.match(hub,/label: "Add vehicle", onClick: \(\) => setAddingVehicle\(true\)/);assert.doesNotMatch(hub,/label: "Add vehicle", href:/);assert.match(hub,/label: "Service records", href: `\/garage\/\$\{encodeURIComponent\(ownerActions\.vehicleId\)\}\/records`/);assert.match(hub,/label: "Account", href: "\/account"/);assert.match(hub,/label: "Founder sign in", href: "\/founder\/signin"/);
+  const vehicleHub=readFileSync(path.join(process.cwd(),'src/components/vehicle/VehicleHub.tsx'),'utf8');assert.match(vehicleHub,/<Link href="https:\/\/au7o\.io\/" className="brand">/);assert.match(vehicleHub,/<Link href="https:\/\/au7o\.io\/" className="md-link" onClick=\{onClose\}>/);assert.doesNotMatch(vehicleHub,/href="\/garage\?add=1"/);assert.match(vehicleHub,/addVehicleOpen && <div[^>]*><HubAddVehicleModal/);assert.match(vehicleHub,/onAddVehicle=\{openAddVehicle\}/);assert.match(vehicleHub,/onClick=\{onAddVehicle\}/);
   const challengerXray=resolveDemoVehicleTwin('challenger');assert.equal(challengerXray.art.xray,'/twin-stage/car-xray.webp');assert.match(renderToStaticMarkup(React.createElement(TwinDataCtx.Provider,{value:{catalog:challengerXray,presentation:buildDemoTwinPresentation(challengerXray),vehicle:challengerXray.identity,miles:challengerXray.demoMileage,trees:resolveTwinTrees(challengerXray),mode:'demo' as const}},React.createElement(TwinStage,{mode:'xray',setMode:()=>{},onOpen:()=>{},mobile:false,hideNote:false,noteDark:false,fill:false,allowFullscreen:false,onExpand:undefined}))),/car-xray\.webp/);
 });
 
 test('Admin Twin Gallery reviews the exact shared trees and fails closed',()=>{
   type SnapshotIssue={id:string;title:string;severity?:string;description:string;solution:string;fixParts?:unknown[];communityRecommendations?:unknown[];vehicle:{make:string;model:string;years?:number[]}};
-  const snapshot=JSON.parse(readFileSync(path.join(process.cwd(),'data/known-issues-catalog-deeplink-snapshot-2026-07-17.json'),'utf8')) as {records:SnapshotIssue[]};
+  const snapshot=JSON.parse(readFileSync(path.join(process.cwd(),'scripts/fixtures/twin-catalog-published-issues.json'),'utf8')) as {records:SnapshotIssue[]};
   const rows=new Map(snapshot.records.map((row)=>[row.id,row]));
   const twins=getAdminTwinDefinitions().map((twin)=>{const issues=[...rows.values()].filter((row)=>row.vehicle.make===twin.identity.make&&row.vehicle.model===twin.identity.model&&row.vehicle.years?.includes(twin.identity.year)).map((row)=>buildTwinIssueSummary({id:row.id,title:row.title,severity:row.severity??'moderate',make:row.vehicle.make,model:row.vehicle.model,description:row.description,solution:row.solution,fixParts:row.fixParts??[],communityRecommendations:row.communityRecommendations??[]}));return {...twin,issues,issuesComplete:true};});assert.equal(twins.length,8);
   for(const twin of twins){

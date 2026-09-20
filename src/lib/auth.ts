@@ -7,6 +7,7 @@ import bcrypt from 'bcryptjs';
 import { prisma } from './db';
 import { loginIpLimiter, loginEmailLimiter, getClientIp } from './rate-limit';
 import { isAccountAccessEmail } from './founder';
+import { productEntitlements } from './product-entitlements';
 
 /**
  * Auth Configuration
@@ -80,11 +81,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         // Public accounts are closed. Apply the abuse brake first, then spend
         // the same bcrypt-shaped work as a bad owner password before returning
         // the generic credentials failure.
-        if (!isAccountAccessEmail(emailKey)) {
-          await bcrypt.compare(password, CLOSED_ACCOUNT_PASSWORD_HASH);
-          return null;
-        }
-
         // Find user by email
         const user = await prisma.user.findUnique({
           where: { email: emailKey },
@@ -94,10 +90,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             name: true,
             passwordHash: true,
             subscriptionStatus: true,
+            emailVerified: true,
+            legacySubscriptionTier: true,
           },
         });
 
-        if (!user) {
+        if (!user || (!isAccountAccessEmail(emailKey) && !user.emailVerified && !user.legacySubscriptionTier)) {
+          await bcrypt.compare(password, CLOSED_ACCOUNT_PASSWORD_HASH);
           return null;
         }
 
@@ -127,37 +126,35 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     error: '/auth/error',
   },
   callbacks: {
-    async signIn({ user }) {
+    async signIn({ user, account, profile }) {
       // Covers OAuth as well as credentials. The credentials provider also
       // checks before doing any password work; this is the provider-agnostic
       // backstop.
-      return isAccountAccessEmail(user.email);
+      if (account?.provider === 'google' && !(profile as { email_verified?: boolean } | undefined)?.email_verified) return false;
+      if (isAccountAccessEmail(user.email)) return true;
+      const existing = user.email ? await prisma.user.findUnique({ where: { email: user.email.toLowerCase() }, select: { emailVerified: true, legacySubscriptionTier: true } }) : null;
+      return !!(existing?.emailVerified || existing?.legacySubscriptionTier);
     },
-    async jwt({ token, user, trigger, session }) {
+    async jwt({ token, user }) {
       // JWT sessions can outlive a deployment. Returning null retires any
       // previously issued non-owner session on its next auth refresh.
-      if (!isAccountAccessEmail(user?.email ?? token.email)) return null;
-
       // Initial sign in
       if (user) {
         token.id = user.id;
         token.subscriptionStatus = user.subscriptionStatus;
       }
 
-      // Update session when triggered
-      if (trigger === 'update' && session) {
-        token.subscriptionStatus = session.subscriptionStatus;
-      }
-
       // Refresh subscription status from database periodically
-      if (token.id && !user) {
+      if (token.id) {
         const dbUser = await prisma.user.findUnique({
           where: { id: token.id as string },
-          select: { subscriptionStatus: true },
+          select: { email: true, emailVerified: true, subscriptionId: true, subscriptionStatus: true, subscriptionTier: true, legacySubscriptionTier: true },
         });
-        if (dbUser) {
-          token.subscriptionStatus = dbUser.subscriptionStatus;
-        }
+        if (!dbUser || (!isAccountAccessEmail(dbUser.email) && !dbUser.emailVerified && !dbUser.legacySubscriptionTier)) return null;
+        token.subscriptionStatus = dbUser.subscriptionStatus;
+        token.subscriptionTier = dbUser.subscriptionTier;
+        token.hasSubscriptionHistory = !!dbUser.subscriptionId;
+        token.capabilities = productEntitlements(dbUser);
       }
 
       return token;
@@ -166,7 +163,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user && token.id) {
         session.user.id = token.id as string;
         session.user.subscriptionStatus = token.subscriptionStatus as string | null;
-        session.user.isPremium = token.subscriptionStatus === 'active';
+        session.user.subscriptionTier = token.subscriptionTier;
+        session.user.hasSubscriptionHistory = token.hasSubscriptionHistory;
+        session.user.capabilities = token.capabilities;
+        session.user.isPremium = !!token.capabilities?.hub;
       }
       return session;
     },
@@ -188,6 +188,9 @@ declare module 'next-auth' {
       name?: string | null;
       subscriptionStatus?: string | null;
       isPremium?: boolean;
+      subscriptionTier?: string | null;
+      hasSubscriptionHistory?: boolean;
+      capabilities?: ReturnType<typeof productEntitlements>;
     };
   }
 
@@ -203,5 +206,8 @@ declare module '@auth/core/jwt' {
   interface JWT {
     id?: string;
     subscriptionStatus?: string | null;
+    subscriptionTier?: string | null;
+    hasSubscriptionHistory?: boolean;
+    capabilities?: ReturnType<typeof productEntitlements>;
   }
 }

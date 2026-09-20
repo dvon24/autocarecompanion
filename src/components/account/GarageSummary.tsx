@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { Icon } from '@/components/ui/Icon';
-import { vehicleSlug } from '@/lib/vehicle-slug';
+import { savedVehicleHubHref } from '@/lib/hub-vehicle-selection';
+import { GarageVehicleRemove } from './GarageVehicleRemove';
 
 interface GarageVehicle {
   id: string;
@@ -20,12 +21,11 @@ interface GarageVehicle {
  * the SAME vehicle as every other surface. The page orders by
  * [{ isPrimary: 'desc' }, { updatedAt: 'desc' }] to match.
  *
- * Two columns on desktop, single column on mobile. Empty state matches
+ * One vertical stack on every screen. Empty state matches
  * the prior dashed-card pattern but uses the new BMAD chrome.
  */
 export function GarageSummary({
   vehicles,
-  columns = 2,
 }: {
   vehicles: GarageVehicle[];
   columns?: 1 | 2;
@@ -37,12 +37,7 @@ export function GarageSummary({
         style={{ borderColor: '#D8D2C3' }}
       >
         <p className="text-slate-600 text-sm">No vehicles yet.</p>
-        <Link
-          href="/garage"
-          className="text-blue-600 hover:text-blue-700 font-medium text-sm mt-2 inline-block"
-        >
-          Add a vehicle →
-        </Link>
+        <p className="text-slate-600 text-sm mt-2">Use Add vehicle above to choose an available Twin, or request yours.</p>
       </div>
     );
   }
@@ -51,7 +46,8 @@ export function GarageSummary({
     <div
       style={{
         display: 'grid',
-        gridTemplateColumns: `repeat(${columns}, 1fr)`,
+        gridTemplateColumns: 'minmax(0, 1fr)',
+        minWidth: 0,
         gap: 10,
       }}
     >
@@ -60,11 +56,11 @@ export function GarageSummary({
         const ymm = `${v.year} ${v.make} ${v.model}${v.trim ? ' ' + v.trim : ''}`;
         const display = v.nickname || ymm;
         return (
-          <Link
+          <div key={v.id} style={{display:'flex',alignItems:'center',gap:4,minWidth:0,borderRadius:12,border:'1px solid #E3DFD4',background:'#EFEDE6',paddingRight:4}}><Link
             key={v.id}
-            href={`/vehicle/${vehicleSlug(v.year, v.make, v.model, v.trim)}`}
+            href={savedVehicleHubHref(v)}
             className="flex items-center gap-3 rounded-xl border hover:bg-white hover:border-blue-300 hover:shadow-sm transition-all"
-            style={{ padding: '13px 14px', background: '#EFEDE6', borderColor: '#E3DFD4' }}
+            style={{ padding: '13px 14px', background: '#EFEDE6', borderColor: 'transparent', minWidth:0,flex:1 }}
           >
             <span
               className="inline-flex items-center justify-center bg-white text-slate-600 flex-shrink-0 border"
@@ -92,7 +88,7 @@ export function GarageSummary({
                 </div>
               )}
             </div>
-          </Link>
+          </Link><GarageVehicleRemove vehicleId={v.id} label={ymm}/></div>
         );
       })}
     </div>

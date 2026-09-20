@@ -87,7 +87,10 @@ async function main() {
         await page.getByPlaceholder('Search Honda Test Model issues, a symptom, or a code…').fill('charging');
         await page.getByRole('button',{name:'Charging fault',exact:true}).click();
         await page.getByRole('heading',{name:'What you need to diagnose it',exact:true}).waitFor();
-        await page.getByRole('button',{name:'Find a Honda dealer near me',exact:true}).waitFor();
+        await page.getByRole('heading',{name:'Find a Honda dealer',exact:true}).waitFor();
+        await page.getByRole('button',{name:'Use my location',exact:true}).waitFor();
+        await page.getByLabel('City or postcode',{exact:true}).waitFor();
+        assert(await page.getByRole('button',{name:'Search this area',exact:true}).isDisabled(),'No location search without explicit input');
         assert.equal(await page.getByRole('link',{name:'P0562',exact:true}).count(),1);
         assert.deepEqual(requests,[]);assert.deepEqual(errors,[]);
         results.push({width,carControlsPreserved:true});

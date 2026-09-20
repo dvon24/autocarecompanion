@@ -61,11 +61,11 @@ export function ConfidenceBadge({
       })
     : null;
 
-  const reviewDate = new Date(reviewedOn);
-  const formattedReviewDate = reviewDate.toLocaleDateString('en-US', {
+  const reviewDate = reviewedOn ? new Date(reviewedOn) : null;
+  const formattedReviewDate = reviewDate && !Number.isNaN(reviewDate.getTime()) ? reviewDate.toLocaleDateString('en-US', {
     month: 'short',
     year: 'numeric',
-  });
+  }) : null;
   const ownerReportCountLabel = formatOwnerReportCount(reportCount);
 
   return (
@@ -97,9 +97,9 @@ export function ConfidenceBadge({
       )}
 
       {/* Reviewed by us */}
-      <span className="text-gray-400">
+      {formattedReviewDate && <span className="text-gray-400">
         Reviewed {formattedReviewDate}
-      </span>
+      </span>}
     </div>
   );
 }

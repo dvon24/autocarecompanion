@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useSession } from 'next-auth/react';
+import { useKnownIssueTwinFilter } from './KnownIssueTwinFilterContext';
 import { KnownIssueAlertSignup } from './KnownIssueAlertSignup';
 import { KnownIssuesCaptureSplit } from './KnownIssuesCaptureSplit';
 import { LiveHubDemo } from '@/components/marketing/LiveHubDemo';
@@ -26,6 +28,9 @@ export function AlertSignupPopup(props: {
   headline?: string;
   blurb?: string;
 }) {
+  const { status } = useSession();
+  const twinFilter = useKnownIssueTwinFilter();
+  const visualInteractionActive = twinFilter?.visualInteractionActive === true;
   const [forceOpen] = useState(() => {
     try {
       return new URLSearchParams(window.location.search).get('popup') === '1';
@@ -35,10 +40,21 @@ export function AlertSignupPopup(props: {
   });
   const [open, setOpen] = useState(forceOpen);
   const [closed, setClosed] = useState(false);
+  const [competingDialog, setCompetingDialog] = useState(false);
   const [isPhone, setIsPhone] = useState<boolean | null>(() => {
     if (typeof window === 'undefined') return null;
     return window.matchMedia('(max-width: 767px)').matches;
   });
+
+  useEffect(() => {
+    // Observe other workflows as well as the pilot: reporting, repairs and
+    // member dialogs must never compete with automatic lead capture.
+    const update = () => setCompetingDialog(Boolean(document.querySelector('[role="dialog"]:not([data-alert-capture])')));
+    update();
+    const observer = new MutationObserver(update);
+    observer.observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['role'] });
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     const media = window.matchMedia('(max-width: 767px)');
@@ -56,7 +72,7 @@ export function AlertSignupPopup(props: {
   useEffect(() => {
     // Force-show override for testing: append ?popup=1 to any known-issues URL
     // and it opens immediately, ignoring the once-per-visitor flag.
-    if (forceOpen) return;
+    if (forceOpen || status !== 'unauthenticated' || visualInteractionActive || competingDialog || closed) return;
 
     let flag: string | null = null;
     try { flag = localStorage.getItem(FLAG_KEY); } catch { /* private mode */ }
@@ -75,6 +91,8 @@ export function AlertSignupPopup(props: {
     };
     function fire() {
       if (fired) return;
+      if (document.querySelector('[role="dialog"]:not([data-alert-capture])')
+        || document.activeElement?.matches('input, textarea, select, [contenteditable="true"]')) return;
       fired = true;
       cleanup();
       setOpen(true);
@@ -83,11 +101,21 @@ export function AlertSignupPopup(props: {
     timer = window.setTimeout(fire, 5000);
     window.addEventListener('scroll', onScroll, { passive: true });
     return cleanup;
-  }, [forceOpen]);
+  }, [forceOpen, status, visualInteractionActive, competingDialog, closed]);
+
+  // Once an interaction displaces capture, keep it dismissed for this visit.
+  // Closing the tree restores focus without making another dialog appear.
+  useEffect(() => {
+    if (!visualInteractionActive && !competingDialog) return;
+    let live = true;
+    queueMicrotask(() => { if (live) setClosed(true); });
+    return () => { live = false; };
+  }, [visualInteractionActive, competingDialog]);
 
   // Wait for the breakpoint probe before mounting modal content so phones
   // never flash the desktop feature carousel for a frame during hydration.
-  if (!open || closed || isPhone === null) return null;
+  if (!open || closed || isPhone === null || visualInteractionActive || competingDialog
+    || (!forceOpen && status !== 'unauthenticated')) return null;
 
   const dismiss = () => {
     try { localStorage.setItem(FLAG_KEY, 'dismissed'); } catch { /* */ }
@@ -97,6 +125,7 @@ export function AlertSignupPopup(props: {
   return (
     <div
       role="dialog"
+      data-alert-capture
       aria-modal="true"
       onClick={dismiss}
       style={{ position: 'fixed', inset: 0, zIndex: 90, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: isPhone ? 12 : 16, background: 'rgba(11,14,20,0.6)', backdropFilter: 'blur(3px)', overflowY: 'auto' }}

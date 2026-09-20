@@ -1,10 +1,13 @@
 'use client';
+import { TwinInvitationPreview } from '@/components/admin/TwinInvitationPreview';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { getTransmissionOptions, type TransmissionChoice } from '@/lib/transmission-options';
 import { TwinAdminShell } from '@/components/admin/twins/TwinAdminShell';
+import reservationStyles from './reservations.module.css';
+import { reservationCountry, reservationCountryCounts } from '@/lib/reservation-queue';
 
 interface EmailEntry {
   id: string;
@@ -52,7 +55,7 @@ interface ReservationEntry {
   path: string | null;
   note: string | null;
   invitedAt: string | null;
-  twinStatus: 'reserved' | 'building' | 'ready' | 'claimed';
+  twinStatus: 'reserved' | 'building' | 'ready' | 'claimed' | 'canceled';
   assignedTwin: string | null;
   trialDays: 7 | 30 | null;
   readyAt: string | null;
@@ -219,6 +222,8 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
   const [emails, setEmails] = useState<EmailEntry[]>([]);
   const [feedback, setFeedback] = useState<FeedbackEntry[]>([]);
   const [reservations, setReservations] = useState<ReservationEntry[]>([]);
+  const [countryFilter, setCountryFilter] = useState('');
+  const filteredReservations = reservations.filter(row => !countryFilter || reservationCountry(row.country) === countryFilter);
   const [twins, setTwins] = useState<TwinDefinitionEntry[]>([]);
   const [users, setUsers] = useState<UserEntry[]>([]);
   const [vehicleFeedback, setVehicleFeedback] = useState<VehicleFeedback[]>([]);
@@ -250,14 +255,16 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
   async function updateReservation(
     entry: ReservationEntry,
     changes: Partial<Pick<ReservationEntry, 'twinStatus' | 'assignedTwin' | 'trialDays' | 'transmission'>>,
+    cancel = false,
   ) {
+    if (cancel && !confirm(`Mark the request for ${entry.vehicle || 'this vehicle'} by ${entry.email} as canceled by customer? This is permanent in the queue. Their account and history stay intact. No new invitation will be sent; an email already in flight cannot be recalled.`)) return;
     const next = { ...entry, ...changes };
     setSavingReservationId(entry.id);
     try {
       const response = await fetch('/api/admin/reservations', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
+        body: JSON.stringify(cancel ? { id: entry.id, action: 'cancel', confirm: true, expectedUpdatedAt: entry.updatedAt } : {
           id: entry.id,
           status: next.twinStatus,
           assignedTwin: next.assignedTwin,
@@ -436,7 +443,7 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
       </header>}
 
       {/* Content */}
-      <main className="max-w-4xl mx-auto px-6 py-8">
+      <main className={`${activeTab === 'reservations' ? 'max-w-[1600px]' : 'max-w-4xl'} mx-auto px-3 sm:px-6 py-8 min-w-0`}>
         {!embedded && <h1 className="text-2xl font-semibold text-gray-900 mb-6">Admin Dashboard</h1>}
 
         {/* Tabs */}
@@ -634,6 +641,7 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
                   ['building', reservations.filter((r) => r.twinStatus === 'building').length],
                   ['ready', reservations.filter((r) => r.twinStatus === 'ready').length],
                   ['claimed', reservations.filter((r) => r.twinStatus === 'claimed').length],
+                  ['canceled', reservations.filter((r) => r.twinStatus === 'canceled').length],
                 ];
                 return entries.map(([label, count]) => (
                   <div key={label} className="bg-white rounded-xl border border-gray-200 px-5 py-3 min-w-[120px]">
@@ -644,28 +652,37 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
               })()}
             </div>
 
-            <div className="bg-white rounded-xl border border-gray-200 overflow-x-auto">
-              {reservations.length === 0 ? (
+            <div className="flex flex-wrap items-center gap-3 rounded-xl border border-gray-200 bg-white p-4 text-gray-900">
+              <label htmlFor="reservation-country" className="text-sm font-medium">Country</label>
+              <select id="reservation-country" value={countryFilter} onChange={event => setCountryFilter(event.target.value)} className="max-w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900">
+                <option value="">All countries ({reservations.length})</option>
+                {reservationCountryCounts(reservations).map(([country, count]) => <option key={country} value={country}>{country} ({count})</option>)}
+              </select>
+              <span role="status" className="text-sm text-gray-600">Showing {filteredReservations.length} of {reservations.length} loaded reservations</span>
+              <p className="w-full text-xs text-gray-500">Counts include canceled history in the latest 1,000 reservations loaded, not lifetime totals. Countries are listed A–Z.</p>
+            </div>
+            <div className={`${reservationStyles.container} bg-white rounded-xl border border-gray-200`}>
+              {filteredReservations.length === 0 ? (
                 <div className="p-8 text-center text-gray-500">
-                  No twin reservations yet
+                  {countryFilter ? 'No reservations match this country. Select All countries to see the full loaded list.' : 'No twin reservations yet'}
                 </div>
               ) : (
-                <table className="w-full min-w-[1400px]">
-                  <thead className="bg-gray-50 border-b border-gray-200">
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Owner</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Requested vehicle</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Transmission</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Account match</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Build</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assigned twin</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Offer</th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ready</th>
+                <table role="table" aria-label="Twin reservations" className={reservationStyles.table}>
+                  <thead role="rowgroup" className="bg-gray-50 border-b border-gray-200">
+                    <tr role="row">
+                      <th scope="col" role="columnheader" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                      <th scope="col" role="columnheader" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Owner</th>
+                      <th scope="col" role="columnheader" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Requested vehicle</th>
+                      <th scope="col" role="columnheader" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Transmission</th>
+                      <th scope="col" role="columnheader" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Account match</th>
+                      <th scope="col" role="columnheader" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Build</th>
+                      <th scope="col" role="columnheader" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Assigned twin</th>
+                      <th scope="col" role="columnheader" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Offer</th>
+                      <th scope="col" role="columnheader" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Ready</th>
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {reservations.map((r) => {
+                  <tbody role="rowgroup" className="divide-y divide-gray-100">
+                    {filteredReservations.map((r) => {
                       const matchingTwins = twins.filter((twin) => (
                         twin.make === r.make?.trim().toLowerCase()
                         && twin.model === r.model?.trim().toLowerCase()
@@ -677,27 +694,31 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
                       const saving = savingReservationId === r.id;
                       const transmissionOptions = getTransmissionOptions(r);
                       return (
-                        <tr key={r.id} className="hover:bg-gray-50 align-top">
-                          <td className="px-6 py-4 text-xs text-gray-500 whitespace-nowrap">
+                        <tr role="row" key={r.id} className="hover:bg-gray-50 align-top">
+                          <td role="cell" className="px-6 py-4 text-xs text-gray-500 whitespace-nowrap">
+                            <span className={reservationStyles.fieldLabel} aria-hidden="true">Date</span>
                             {new Date(r.timestamp).toLocaleString()}
                             <div className="mt-1 text-gray-400">{r.source || 'unknown'}</div>
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-900">
+                          <td role="cell" className="px-6 py-4 text-sm text-gray-900">
+                            <span className={reservationStyles.fieldLabel} aria-hidden="true">Owner</span>
                             <div className="font-medium">{r.email}</div>
-                            <div className="mt-1 text-xs text-gray-500">{r.country || 'Country unknown'}</div>
+                            <div className="mt-1 text-xs text-gray-500">{reservationCountry(r.country)}</div>
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-700 max-w-[260px]">
+                          <td role="cell" className="px-6 py-4 text-sm text-gray-700 max-w-[260px]">
+                            <span className={reservationStyles.fieldLabel} aria-hidden="true">Requested vehicle</span>
                             <div>{r.vehicle || <span className="text-gray-400">—</span>}</div>
                             <span className={`mt-1 inline-flex rounded px-2 py-0.5 text-xs font-medium ${r.vehicleVerified ? 'bg-emerald-50 text-emerald-700' : 'bg-amber-50 text-amber-700'}`}>
                               {r.vehicleVerified ? (r.trimVerified ? 'YMMT verified' : 'Vehicle verified · check trim') : 'Manual · verify vehicle'}
                             </span>
                             {r.note && <div className="mt-2 text-xs text-gray-500">{r.note}</div>}
                           </td>
-                          <td className="px-6 py-4 text-sm text-gray-700">
+                          <td role="cell" className="px-6 py-4 text-sm text-gray-700">
+                            <span className={reservationStyles.fieldLabel} aria-hidden="true">Transmission</span>
                             {transmissionOptions.length > 1 ? (
-                              <select
+                              <select aria-label={`Transmission for ${r.email}`}
                                 value={r.transmission || ''}
-                                disabled={saving || r.twinStatus === 'claimed'}
+                                disabled={saving || r.twinStatus === 'claimed' || r.twinStatus === 'canceled'}
                                 onChange={(event) => updateReservation(r, { transmission: (event.target.value || null) as TransmissionChoice | null })}
                                 className="rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-800 disabled:opacity-50"
                               >
@@ -708,7 +729,8 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
                               <span className="text-xs text-gray-400">Not required</span>
                             )}
                           </td>
-                          <td className="px-6 py-4 text-sm">
+                          <td role="cell" className="px-6 py-4 text-sm">
+                            <span className={reservationStyles.fieldLabel} aria-hidden="true">Account match</span>
                             {r.account ? (
                               <div>
                                 <span className="inline-flex rounded bg-emerald-50 px-2 py-0.5 text-xs font-medium text-emerald-700">Exact email match</span>
@@ -718,10 +740,11 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
                               <span className="inline-flex rounded bg-gray-100 px-2 py-0.5 text-xs font-medium text-gray-600">Waiting for signup</span>
                             )}
                           </td>
-                          <td className="px-6 py-4">
-                            <select
+                          <td role="cell" className="px-6 py-4">
+                            <span className={reservationStyles.fieldLabel} aria-hidden="true">Build</span>
+                            <select aria-label={`Build status for ${r.email}`}
                               value={r.twinStatus}
-                              disabled={saving || r.twinStatus === 'claimed'}
+                              disabled={saving || r.twinStatus === 'claimed' || r.twinStatus === 'canceled'}
                               onChange={(event) => updateReservation(r, { twinStatus: event.target.value as ReservationEntry['twinStatus'] })}
                               className="rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-800 disabled:opacity-50"
                             >
@@ -729,23 +752,32 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
                               <option value="building">Building</option>
                               <option value="ready">Ready</option>
                               {r.twinStatus === 'claimed' && <option value="claimed">Claimed</option>}
+                              {r.twinStatus === 'canceled' && <option value="canceled">Canceled by customer</option>}
                             </select>
+                            {!['claimed', 'canceled'].includes(r.twinStatus) && <button type="button" disabled={!!savingReservationId} onClick={() => updateReservation(r, {}, true)} className="mt-2 block rounded-lg border border-red-200 px-2 py-2 text-xs font-medium text-red-700 disabled:opacity-50">Cancel request</button>}
                           </td>
-                          <td className="px-6 py-4">
-                            <select
+                          <td role="cell" className="px-6 py-4">
+                            <span className={reservationStyles.fieldLabel} aria-hidden="true">Assigned twin</span>
+                            <select aria-label={`Assigned twin for ${r.email}`}
                               value={r.assignedTwin || ''}
-                              disabled={saving || r.twinStatus === 'claimed' || matchingTwins.length === 0}
+                              disabled={saving || r.twinStatus === 'claimed' || r.twinStatus === 'canceled' || matchingTwins.length === 0}
                               onChange={(event) => updateReservation(r, { assignedTwin: event.target.value || null })}
                               className="max-w-[190px] rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-800 disabled:opacity-50"
                             >
                               <option value="">{matchingTwins.length ? 'Not assigned' : 'Not built yet'}</option>
                               {matchingTwins.map((twin) => <option key={twin.id} value={twin.id}>{twin.label}</option>)}
                             </select>
+                            {r.assignedTwin && (
+                              <div className="mt-2 text-xs text-gray-600">
+                                {twins.find((twin) => twin.id === r.assignedTwin)?.label || r.assignedTwin}
+                              </div>
+                            )}
                           </td>
-                          <td className="px-6 py-4">
-                            <select
+                          <td role="cell" className="px-6 py-4">
+                            <span className={reservationStyles.fieldLabel} aria-hidden="true">Offer</span>
+                            <select aria-label={`Offer for ${r.email}`}
                               value={r.trialDays || ''}
-                              disabled={saving || r.twinStatus === 'claimed'}
+                              disabled={saving || r.twinStatus === 'claimed' || r.twinStatus === 'canceled'}
                               onChange={(event) => updateReservation(r, { trialDays: event.target.value ? Number(event.target.value) as 7 | 30 : null })}
                               className="rounded-lg border border-gray-300 bg-white px-2 py-1.5 text-sm text-gray-800 disabled:opacity-50"
                             >
@@ -754,12 +786,14 @@ function LegacyAdminOperations({ embedded = false }: { embedded?: boolean }) {
                               <option value="30">30 days</option>
                             </select>
                           </td>
-                          <td className="px-6 py-4 text-xs text-gray-500 whitespace-nowrap">
-                            {saving ? 'Saving…' : r.claimedAt
+                          <td role="cell" className="px-6 py-4 text-xs text-gray-500 whitespace-nowrap">
+                            <span className={reservationStyles.fieldLabel} aria-hidden="true">Ready</span>
+                            {saving ? 'Saving…' : r.twinStatus === 'canceled' ? 'Canceled by customer' : r.claimedAt
                               ? `Claimed ${new Date(r.claimedAt).toLocaleDateString()}`
                               : r.readyAt
                                 ? new Date(r.readyAt).toLocaleDateString()
                                 : 'Not ready'}
+                            {r.twinStatus === 'ready' && <TwinInvitationPreview id={r.id} expectedUpdatedAt={r.updatedAt} invitedAt={r.invitedAt} />}
                           </td>
                         </tr>
                       );
